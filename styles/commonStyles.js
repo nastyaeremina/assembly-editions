@@ -72,9 +72,13 @@ const PricingMainBlock = styled.div`
 `;
 
 const FcfeatureWrap = styled.div`
-  padding: 60px 0;
-  background-color: ${({ theme }) => theme.colors.black};
-
+  padding: 80px 0;
+  margin-top: 50px;
+  background-color: ${({ theme }) => theme.colors.greendark};
+  background-image: url("/images/ctabg.svg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
   /* overflow: hidden;
   &.dnone {
     display: none;
@@ -139,6 +143,22 @@ const SecondryButton = styled.div`
     background-color: ${({ theme }) => theme.colors.whiteColor};
     box-shadow: 1px 0 3px 0 rgb(0 0 0 / 12%);
     color: ${({ theme }) => theme.colors.black};
+    letter-spacing: 0.02em;
+    text-decoration: none;
+    transition: all 300ms;
+    :hover {
+      background-color: ${({ theme }) => theme.colors.gainsboro};
+    }
+  }
+`;
+const CtaButton = styled.div`
+  a {
+    ${ButtonText}
+    display: inline-block;
+    padding: 11px 35px;
+    border: 1px solid ${({ theme }) => theme.colors.greenlight};
+    border-radius: 48px;
+    color: ${({ theme }) => theme.colors.greenlight};
     letter-spacing: 0.02em;
     text-decoration: none;
     transition: all 300ms;
@@ -587,6 +607,7 @@ export {
   BlackButton,
   Container,
   SecondryButton,
+  CtaButton,
   Scfeature,
   LinearBg,
   SlashBlock,
