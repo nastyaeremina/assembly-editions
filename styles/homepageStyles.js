@@ -422,13 +422,13 @@ const BusinessText = styled.div`
   }
 `;
 const Functionality = styled.div`
-  padding: 120px 0;
+  padding: 50px 0 50px;
 `;
 const TopFunctionWrap = styled.div`
   width: 100%;
-  max-width: 918px;
+  max-width: 1020px;
   h3 {
-    margin: 0 0 20px 0;
+    margin: 0 0 16px 0;
     ${Heading3};
     color: ${({ theme }) => theme.colors.title};
   }
@@ -445,25 +445,42 @@ const TabRow = styled.div`
   display: flex;
 `;
 const TabBox = styled.div`
-  .activetab {
-    background-color: #f4d8c4;
-    color: ${({ theme }) => theme.colors.black};
-  }
   a {
     ${Label};
     color: ${({ theme }) => theme.colors.lightgray};
     padding: 7px 20px;
-    border-radius: 4px;
+    border-radius: 74px;
     font-weight: 500;
     letter-spacing: 0.01em;
     :hover {
       color: ${({ theme }) => theme.colors.title};
     }
-    :active {
-      background-color: #f4d8c4;
-      color: ${({ theme }) => theme.colors.black};
-    }
   }
+  .activetab {
+    background-color: ${({ theme }) => theme.colors.browndark};
+    color: ${({ theme }) => theme.colors.brownlight};
+  }
+`;
+const IconSvg = styled.div`
+  position: relative;
+  margin-bottom: 28px;
+  ::after {
+    content: "";
+    position: absolute;
+    border-top: 1px solid #000000;
+    width: 100%;
+    top: 50%;
+  }
+`;
+const IconViewblank = styled.div`
+  width: 20px;
+  height: 20px;
+  background-color: #ccccd0;
+  border-radius: 50px;
+  position: absolute;
+  right: 10px;
+  top: -11px;
+  display: inline-flex;
 `;
 const TabName = styled.span`
   display: block;
@@ -518,10 +535,14 @@ const RightDetail = styled.div`
   border-radius: 5px;
   padding: 18px 18px 13px;
   width: 100%;
+  background: #ffffff;
+  position: relative;
 `;
-const Extension = styled.div``;
+const Extension = styled.div`
+  padding: 50px 0;
+`;
 const AutomateSection = styled.div`
-  padding: 120px 0;
+  padding: 50px 0;
 `;
 const AutomateText = styled.div`
   max-width: 975px;
@@ -598,7 +619,7 @@ const IconView = styled.div`
 const IconWithoutView = styled.div`
   width: 20px;
   height: 20px;
-  background-color: #e9e9ea;
+  background-color: #ccccd0;
   border-radius: 50px;
   position: absolute;
   right: 10px;
@@ -612,13 +633,13 @@ const LineIcon = styled.div`
   transform: translate(100%, 0);
 `;
 const HelpSection = styled.div`
-  padding-top: 82px;
-  padding-bottom: 120px;
+  padding: 50px 0;
 `;
 
 const HelpMain = styled.div`
   display: flex;
   border: 1.5px solid #000000;
+  border-radius: 4px;
   background-color: ${({ theme }) => theme.colors.whitecolor};
   image {
     border-radius: 0px 4px 4px 0px;
@@ -656,6 +677,7 @@ const HelpLink = styled.div`
   align-items: center;
   a {
     color: ${({ theme }) => theme.colors.primary};
+    cursor: pointer;
   }
 `;
 const HelpWrap = styled.div`
@@ -729,4 +751,6 @@ export {
   HelpLink,
   HelpWrap,
   HelpMargin,
+  IconSvg,
+  IconViewblank,
 };

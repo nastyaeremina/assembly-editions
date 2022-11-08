@@ -1,8 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
-import {
-  Container,
-} from "../../styles/commonStyles";
+import { Container } from "../../styles/commonStyles";
 import {
   FooterSection,
   FooterInnerBlock,
@@ -79,36 +77,29 @@ export default function Footer() {
                   <FooterMenuList>
                     <a>Messaging</a>
                     <a>Billing</a>
-                    <a>Files </a>
+                    <a>Files</a>
                     <a>Forms</a>
                     <a>Helpdesk</a>
                     <a>Contracts</a>
-                    <a>Extensions</a>
+                    <a>Apps</a>
                   </FooterMenuList>
-                  <FooterMenu className="padding">
-                    <p>Platform</p>
-                    <FooterMenuList>
-                      <a>Automations</a>
-                      <a>Extensions</a>
-                    </FooterMenuList>
-                  </FooterMenu>
                 </FooterMenu>
               </FotterMenuLeft>
               <FotterMenuLeft>
                 <FooterMenu>
-                  <p>Use cases</p>
+                  <p>Solutions</p>
                   <FooterMenuList>
                     <a>Accounting & Financial Services</a>
                     <a>Marketing & Creative</a>
-                    <a>Legal Services</a>
                     <a>Startups & Tech-enabled services</a>
                   </FooterMenuList>
                   <FooterMenu className="padding">
                     <p>Company</p>
                     <FooterMenuList>
-                      <a>Pricing</a>
                       <a>Enterprise</a>
+                      <a>Pricing</a>
                       <a>Jobs</a>
+                      <a>Brand</a>
                     </FooterMenuList>
                   </FooterMenu>
                 </FooterMenu>
@@ -118,20 +109,13 @@ export default function Footer() {
                   <p>Resources</p>
                   <FooterMenuList>
                     <a>Blog</a>
-                    <a>API Reference</a>
                     <a>Security</a>
-                    <a>What’s new</a>
-                    <a>Help center</a>
-                    <a>Video tutorials</a>
+                    <a>What’s New</a>
+                    <a>Help Center</a>
+                    <a>Video Tutorials</a>
+                    <a>API Reference</a>
+                    <a>System Status</a>
                   </FooterMenuList>
-                  <FooterMenu className="padding">
-                    <p>Learn</p>
-                    <FooterMenuList>
-                      <a>Customizing your portal</a>
-                      <a>Customizing your portal</a>
-                      <a>Why you need a customer billing portal</a>
-                    </FooterMenuList>
-                  </FooterMenu>
                 </FooterMenu>
               </FotterMenuLeft>
             </FooterRight>
