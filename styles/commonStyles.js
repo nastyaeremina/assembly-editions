@@ -116,7 +116,7 @@ const PrimaryButton = styled.div`
     ${ButtonText}
     display: inline-block;
     letter-spacing: 0.02em;
-    padding: 12px 35px;
+    padding: 11px 35px;
     border-radius: 26px;
     background-color: ${({ theme }) => theme.colors.primary};
     color: ${({ theme }) => theme.colors.whiteColor};

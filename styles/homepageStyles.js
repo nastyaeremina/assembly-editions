@@ -165,7 +165,7 @@ const FeatureLinkBlock = styled.div``;
 
 const HeroSection = styled.div`
   width: 100%;
-  padding: 160px 0 120px 0;
+  padding: 160px 0 50px 0;
   text-align: center;
   /* background-image: url("/images/Frame-1-figma-1.webp"); */
   /* background-position: center;
@@ -206,7 +206,7 @@ const HeroLeft = styled.div`
 `;
 const HeroHeading = styled.h1`
   ${Heading1};
-  color: ${({ theme }) => theme.colors.greendark};
+  color: ${({ theme }) => theme.colors.title};
   margin: 0 0 40px 0;
   span {
     color: ${({ theme }) => theme.colors.primary};
@@ -220,7 +220,7 @@ const Para = styled.p`
   ${Body1}
   letter-spacing: 0.02em;
   margin: 0;
-  color: ${({ theme }) => theme.colors.title};
+  color: ${({ theme }) => theme.colors.body};
   @media only screen and (max-width: 991px) {
     text-align: center;
     ${Body1}
@@ -399,11 +399,12 @@ const ReviewRight = styled.div`
     color: ${({ theme }) => theme.colors.caption};
   }
 `;
-const BusinessSection = styled.div``;
+const BusinessSection = styled.div`
+  padding: 50px 0 50px;
+`;
 const BusinessText = styled.div`
-  max-width: 975px;
   width: 100%;
-  padding-bottom: 50px;
+  padding-bottom: 40px;
   h2 {
     ${Heading3};
     margin: 0;
