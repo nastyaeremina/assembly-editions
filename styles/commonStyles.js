@@ -78,7 +78,7 @@ const FcfeatureWrap = styled.div`
   background-image: url("/images/ctabg.svg");
   background-position: center;
   background-repeat: no-repeat;
-  background-size: contain;
+  background-size: cover;
   /* overflow: hidden;
   &.dnone {
     display: none;

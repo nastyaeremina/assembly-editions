@@ -95,11 +95,13 @@ const Body3 = css`
   font-weight: 400;
   font-size: 20px;
   line-height: 26px;
+  letter-spacing: 0.02em;
 `;
 const Body4 = css`
   font-weight: 400;
   font-size: 18px;
   line-height: 23px;
+  letter-spacing: 0.02em;
 `;
 const Body5 = css`
   font-weight: 400;

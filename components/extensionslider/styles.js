@@ -60,7 +60,7 @@ const WrapImage = styled.div`
   }
 `;
 const SliderInner = styled.div`
-  padding: 16px 15px;
+  padding: 15px;
   border: 1px solid #000000;
   border-radius: 8px;
   background-color: ${({ theme }) => theme.colors.whiteColor};
@@ -71,6 +71,7 @@ const SliderInner = styled.div`
     ${Body5};
     color: ${({ theme }) => theme.colors.midiumgray};
     letter-spacing: 0.02em;
+    margin: 0;
   }
 `;
 const SliderSub = styled.div`

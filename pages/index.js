@@ -47,6 +47,7 @@ import {
   HelpLink,
   HelpWrap,
   HelpMargin,
+  BtnView,
 } from "../styles/homepageStyles";
 import BusinessSlider from "../components/businessSlider/businessslider";
 import ExtensionSlider from "../components/extensionslider/extensionslider";
@@ -67,9 +68,9 @@ export default function Home() {
               It’s all about connection<span>.</span>
             </HeroHeading>
             <Para>
-              Give your customers a one-stop shop experience with a client
+              Give your customers a one-stop shop experience with a customer
               portal that streamlines messaging, payments, file-sharing, help
-              centers, dashboard access, and more.
+              centers, custom app access, and more.
             </Para>
             <HeroBtnBlock>
               <PrimaryButton>
@@ -131,12 +132,13 @@ export default function Home() {
             <BusinessText>
               <h2>
                 Discover why thousands of entrepreneurs choose Copilot to start,
-                run, and grow their business.
+                run, and grow their business<span>.</span>
               </h2>
               <p>
-                Whether you’re starting a new business, looking to improve
-                operations, or want to accelerate growth, our goal to be a
-                valuable partner at every stage of the business lifecycle.{" "}
+                Tech-enabled service businesses of all types — marketing
+                agencies, accounting firms, law firms, and 100s of others — run
+                on Copilot to provide clients a branded, unified, and delightful
+                experience on web and mobile.
               </p>
             </BusinessText>
           </Container>
@@ -146,9 +148,9 @@ export default function Home() {
           <Container>
             <TopFunctionWrap>
               <h3>
-                Powerful out-of-the box functionality,
+                Powerful out-of-the box functionality<span>,</span>
                 <br />
-                ready to go.
+                ready to go<span>.</span>
               </h3>
               <p>
                 Provide clients a uniform experience with on-brand design,
@@ -215,16 +217,20 @@ export default function Home() {
         <Extension>
           <Container>
             <BusinessText>
-              <h2>Go even further with Extensions</h2>
-              <p>
-                Streamline the client experience even more by embedding products
-                you already use and surface them in the client experience —
-                Calendly for scheduling, Airtable kanban boards, ClickUp forms,
+              <h2>
+                Go even further with Partner Apps<span>.</span>
+              </h2>
+              <p className="app-dec">
+                Streamline the client experience even more by connecting
+                products you already use and surface them in the client
+                experience — Calendly for scheduling, Airtable project trackers,
                 Google Data Studio dashboards, and thousands more.
               </p>
-              <SecondryButton>
-                <Link href="/request-demo">See all Extensions</Link>
-              </SecondryButton>
+              <BtnView>
+                <SecondryButton>
+                  <Link href="/request-demo">See all Extensions</Link>
+                </SecondryButton>
+              </BtnView>
             </BusinessText>
           </Container>
           <ExtensionSlider />
@@ -232,13 +238,15 @@ export default function Home() {
         <AutomateSection>
           <Container>
             <AutomateText>
-              <h2>Automate your firm</h2>
+              <h2>
+                Automate your firm<span>.</span>
+              </h2>
               <p>
                 Automate workflows inside your portal and connect external tools
                 as well. For example, for new clients assign an onboarding form,
                 send out a customized welcome message, set up a default folder
                 structure, and create a lead in Salesforce. Use
-                <span>Zapier</span>for easy setup or our <span>API</span> for
+                <span> Zapier </span>for easy setup or our <span>API</span> for
                 full control.
               </p>
             </AutomateText>
@@ -372,7 +380,7 @@ export default function Home() {
           <Container>
             <HelpMain>
               <HelpLeft>
-                <h3>The help you need, when you need it</h3>
+                <h3>The support you need, when you need it</h3>
                 <HelpWrap>
                   <HelpLeftSub>
                     <h4>Our Community</h4>
@@ -391,10 +399,10 @@ export default function Home() {
                     </HelpLink>
                   </HelpLeftSub>
                   <HelpLeftSub>
-                    <h4>Our Community</h4>
+                    <h4>Copilot Blog</h4>
                     <p>
-                      Meet our team and a community of businesses that run on
-                      Copilot. Requires a Slack account.
+                      Read about company announcements, new features, customer
+                      spotlights, and more.
                     </p>
                     <HelpLink>
                       <a href="#">Join Community</a>
@@ -410,10 +418,10 @@ export default function Home() {
                 <HelpMargin>
                   <HelpWrap>
                     <HelpLeftSub>
-                      <h4>Our Community</h4>
+                      <h4>Copilot University</h4>
                       <p>
-                        Meet our team and a community of businesses that run on
-                        Copilot. Requires a Slack account.
+                        Watch video tutorials that cover getting set up,
+                        configuring your portal, best practices, and more.
                       </p>
                       <HelpLink>
                         <a href="#">Join Community</a>
@@ -426,10 +434,10 @@ export default function Home() {
                       </HelpLink>
                     </HelpLeftSub>
                     <HelpLeftSub>
-                      <h4>Our Community</h4>
+                      <h4>Help Center</h4>
                       <p>
-                        Meet our team and a community of businesses that run on
-                        Copilot. Requires a Slack account.
+                        Read answers to the most common questions, learn best
+                        practices, and contact our team.
                       </p>
                       <HelpLink>
                         <a href="#">Join Community</a>

@@ -75,13 +75,13 @@ export default function Footer() {
                 <FooterMenu>
                   <p>Features</p>
                   <FooterMenuList>
-                    <a>Messaging</a>
-                    <a>Billing</a>
-                    <a>Files</a>
-                    <a>Forms</a>
-                    <a>Helpdesk</a>
-                    <a>Contracts</a>
-                    <a>Apps</a>
+                    <Link href="#">Messaging</Link>
+                    <Link href="#">Billing</Link>
+                    <Link href="#">Files</Link>
+                    <Link href="#">Forms</Link>
+                    <Link href="#">Helpdesk</Link>
+                    <Link href="#">Contracts</Link>
+                    <Link href="#">Apps</Link>
                   </FooterMenuList>
                 </FooterMenu>
               </FotterMenuLeft>
@@ -89,17 +89,17 @@ export default function Footer() {
                 <FooterMenu>
                   <p>Solutions</p>
                   <FooterMenuList>
-                    <a>Accounting & Financial Services</a>
-                    <a>Marketing & Creative</a>
-                    <a>Startups & Tech-enabled services</a>
+                    <Link href="#">Accounting & Financial Services</Link>
+                    <Link href="#">Marketing & Creative</Link>
+                    <Link href="#">Startups & Tech-enabled services</Link>
                   </FooterMenuList>
                   <FooterMenu className="padding">
                     <p>Company</p>
                     <FooterMenuList>
-                      <a>Enterprise</a>
-                      <a>Pricing</a>
-                      <a>Jobs</a>
-                      <a>Brand</a>
+                      <Link href="#">Enterprise</Link>
+                      <Link href="#">Pricing</Link>
+                      <Link href="#">Jobs</Link>
+                      <Link href="#">Brand</Link>
                     </FooterMenuList>
                   </FooterMenu>
                 </FooterMenu>
@@ -108,13 +108,13 @@ export default function Footer() {
                 <FooterMenu>
                   <p>Resources</p>
                   <FooterMenuList>
-                    <a>Blog</a>
-                    <a>Security</a>
-                    <a>What’s New</a>
-                    <a>Help Center</a>
-                    <a>Video Tutorials</a>
-                    <a>API Reference</a>
-                    <a>System Status</a>
+                    <Link href="#">Blog</Link>
+                    <Link href="#">Security</Link>
+                    <Link href="#">What’s New</Link>
+                    <Link href="#">Help Center</Link>
+                    <Link href="#">Video Tutorials</Link>
+                    <Link href="#">API Reference</Link>
+                    <Link href="#">System Status</Link>
                   </FooterMenuList>
                 </FooterMenu>
               </FotterMenuLeft>

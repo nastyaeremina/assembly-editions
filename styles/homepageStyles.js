@@ -228,7 +228,7 @@ const Para = styled.p`
 `;
 
 const HeroBtnBlock = styled.div`
-  margin: 42px 0;
+  margin: 40px 0;
   display: flex;
   justify-content: center;
   gap: 20px;
@@ -409,16 +409,21 @@ const BusinessText = styled.div`
     ${Heading3};
     margin: 0;
     color: ${({ theme }) => theme.colors.title};
-    padding-bottom: 20px;
+    padding-bottom: 16px;
+    span {
+      color: ${({ theme }) => theme.colors.primary};
+    }
   }
   p {
     ${Body3};
     margin: 0;
     color: ${({ theme }) => theme.colors.bodycolor};
     letter-spacing: 0.02em;
-    padding-bottom: 32px;
-    max-width: 852px;
     width: 100%;
+  }
+  .app-dec {
+    width: 100%;
+    max-width: 810px;
   }
 `;
 const Functionality = styled.div`
@@ -431,6 +436,9 @@ const TopFunctionWrap = styled.div`
     margin: 0 0 16px 0;
     ${Heading3};
     color: ${({ theme }) => theme.colors.title};
+    span {
+      color: ${({ theme }) => theme.colors.primary};
+    }
   }
   p {
     ${Body3};
@@ -510,7 +518,7 @@ const CenterBox = styled.div`
   padding: 8px 0;
 `;
 const ContainWrap = styled.div`
-  margin-top: 32px;
+  margin-top: 40px;
   display: flex;
   width: 100%;
 `;
@@ -519,7 +527,7 @@ const LeftDetail = styled.div`
   max-width: 278px;
   margin-right: 28px;
   h4 {
-    margin: 0 0 16px 0;
+    margin: 0 0 12px 0;
     ${Heading4};
     color: ${({ theme }) => theme.colors.title};
   }
@@ -527,7 +535,7 @@ const LeftDetail = styled.div`
     ${Body4};
     letter-spacing: 0.02em;
     color: ${({ theme }) => theme.colors.body};
-    margin: 0 0 28px 0;
+    margin: 0 0 24px 0;
   }
 `;
 const RightDetail = styled.div`
@@ -547,12 +555,15 @@ const AutomateSection = styled.div`
 const AutomateText = styled.div`
   max-width: 975px;
   width: 100%;
-  margin-bottom: 50px;
+  margin-bottom: 40px;
   h2 {
     ${Heading3};
     margin: 0;
     color: ${({ theme }) => theme.colors.title};
-    padding-bottom: 20px;
+    padding-bottom: 16px;
+    span {
+      color: ${({ theme }) => theme.colors.primary};
+    }
   }
   p {
     ${Body3};
@@ -588,8 +599,11 @@ const CardItem = styled.div`
   display: flex;
   align-items: center;
   position: relative;
-  margin-bottom: 50px;
+  margin-bottom: 40px;
   width: 100%;
+  :last-child {
+    margin-bottom: 0;
+  }
   .hr-icon {
     transform: translate(0, -50%);
     right: -68px;
@@ -650,11 +664,11 @@ const HelpLeft = styled.div`
   max-width: 777px;
   width: 100%;
   h3 {
-    max-width: 553px;
+    max-width: 657px;
     width: 100%;
     ${Heading3};
     color: ${({ theme }) => theme.colors.title};
-    margin: 0 0 42px 0;
+    margin: 0 0 40px 0;
   }
 `;
 const HelpLeftSub = styled.div`
@@ -682,10 +696,13 @@ const HelpLink = styled.div`
 `;
 const HelpWrap = styled.div`
   display: flex;
-  gap: 27px;
+  gap: 28px;
 `;
 const HelpMargin = styled.div`
-  margin-top: 67px;
+  margin-top: 40px;
+`;
+const BtnView = styled.div`
+  margin-top: 28px;
 `;
 
 export {
@@ -753,4 +770,5 @@ export {
   HelpMargin,
   IconSvg,
   IconViewblank,
+  BtnView,
 };
