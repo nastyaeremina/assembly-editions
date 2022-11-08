@@ -4,8 +4,6 @@ import Image from "next/image";
 import { NextSeo } from "next-seo";
 import Link from "next/link";
 import Navbar from "../components/navbar/navbar";
-
-
 import {
   Container,
   PrimaryButton,
@@ -48,6 +46,7 @@ import {
   HelpWrap,
   HelpMargin,
 } from "../styles/homepageStyles";
+import BusinessSlider from "../components/business-slider/businessslider";
 
 export default function Home() {
   return (
@@ -56,9 +55,9 @@ export default function Home() {
         title="Copilot - It’s all about connection"
         description="copilot offers client portal software solution to manage sales reporting, management, marketing, improve customer relationships and more. Get the best free CRM system for your business."
       />
-    <Layout>
-      <Navbar />
-      <HeroSection>
+      <Layout>
+        <Navbar />
+        <HeroSection>
           <Container>
             <HeroHeading>
               It’s all about connection<span>.</span>
@@ -70,17 +69,12 @@ export default function Home() {
             </Para>
             <HeroBtnBlock>
               <PrimaryButton>
-                <Link href="/">
-                  Start Trial
-                </Link>
+                <Link href="/">Start Trial</Link>
               </PrimaryButton>
               <SecondryButton>
-                <Link href="/request-demo">
-                  Book Demo
-                </Link>
+                <Link href="/request-demo">Book Demo</Link>
               </SecondryButton>
             </HeroBtnBlock>
-
             <ReviewLogo>
               <>
                 <Image
@@ -128,7 +122,23 @@ export default function Home() {
             </ReviewLogo>
           </Container>
         </HeroSection>
-    </Layout>
+        <BusinessSection>
+          <Container>
+            <BusinessText>
+              <h2>
+                Discover why thousands of entrepreneurs choose Copilot to start,
+                run, and grow their business.
+              </h2>
+              <p>
+                Whether you’re starting a new business, looking to improve
+                operations, or want to accelerate growth, our goal to be a
+                valuable partner at every stage of the business lifecycle.{" "}
+              </p>
+            </BusinessText>
+          </Container>
+          <BusinessSlider />
+        </BusinessSection>
+      </Layout>
     </>
-  )
+  );
 }
