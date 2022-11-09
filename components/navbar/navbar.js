@@ -26,6 +26,10 @@ import {
   ThirdLine,
   OverLayBlock,
   TrySalescampBlock,
+  DropDownLink,
+  DropdownMenu,
+  DropdownSpan,
+  DropDownToggle,
 } from "./styles";
 
 export default function Navbar({ BlogDetails }) {
@@ -52,6 +56,50 @@ export default function Navbar({ BlogDetails }) {
   } else {
     isScrollPage = false;
   }
+  const DropDownList = () => {
+    return (
+      <>
+        {mobile && (
+          <DropDownToggle>
+            <DropdownSpan>Resources</DropdownSpan>
+          </DropDownToggle>
+        )}
+        <DropdownMenu>
+          <DropDownLink
+            className={router.pathname === "/blogs" ? "active" : ""}
+          >
+            <Link href="/blogs">
+              <a>Blogs</a>
+            </Link>
+          </DropDownLink>
+          <DropDownLink
+            className={router.pathname === "/updates" ? "active" : ""}
+          >
+            <Link href="/updates">
+              <a>Updates</a>
+            </Link>
+          </DropDownLink>
+          <DropDownLink className={router.pathname === "/help" ? "active" : ""}>
+            <Link href="/help">
+              <a>Help Center</a>
+            </Link>
+          </DropDownLink>
+          <DropDownLink>
+            <Link href="/">
+              <a data-nolt="button">Roadmap</a>
+            </Link>
+          </DropDownLink>
+          <DropDownLink
+            className={router.pathname === "/free-sales-tools" ? "active" : ""}
+          >
+            <Link href="/free-sales-tools">
+              <a>Sales Tools</a>
+            </Link>
+          </DropDownLink>
+        </DropdownMenu>
+      </>
+    );
+  };
 
   const Navigation = () => {
     return (
@@ -65,39 +113,29 @@ export default function Navbar({ BlogDetails }) {
             <SpanLink
               className={router.pathname === "/pricing" ? "active" : ""}
             >
-              <Link href="/pricing">
-                Pricing
-              </Link>
+              <Link href="/pricing">Pricing</Link>
             </SpanLink>
             <SpanLink
               className={router.pathname === "/modulebilling" ? "active" : ""}
             >
-              <Link href="/modulebilling">
-                Features
-              </Link>
+              <Link href="/modulebilling">Features</Link>
             </SpanLink>
             <SpanLink
               className={router.pathname === "/extensions" ? "active" : ""}
             >
-              <Link href="/extensions">
-                Extensions
-              </Link>
+              <Link href="/extensions">Extensions</Link>
             </SpanLink>
             <SpanLink
               className={router.pathname === "/features" ? "active" : ""}
             >
-              <Link href="/features">
-                Company 
-              </Link>
+              <Link href="/features">Company</Link>
             </SpanLink>
             <SpanLink
               className={router.pathname === "/features" ? "active" : ""}
             >
-              <Link href="/features">
-                Resources 
-              </Link>
+              <Link href="/features">Resources</Link>
             </SpanLink>
-     
+
             {mobile && <DropDownList />}
             {/* <HorizontalLine></HorizontalLine> */}
           </NavigationBlock>
@@ -105,19 +143,13 @@ export default function Navbar({ BlogDetails }) {
             <SignInSignUpBtn>
               <>
                 <SignIn>
-                  <Link href="/">
-                    Login
-                  </Link>
+                  <Link href="/">Login</Link>
                 </SignIn>
                 <SignIn>
-                  <Link href="/">
-                    Book demo
-                  </Link>
+                  <Link href="/">Book demo</Link>
                 </SignIn>
                 <BlackButton>
-                  <Link href="/">
-                    Start trial
-                  </Link>
+                  <Link href="/">Start trial</Link>
                 </BlackButton>
               </>
             </SignInSignUpBtn>
@@ -125,15 +157,12 @@ export default function Navbar({ BlogDetails }) {
         </NavMenu>
         <TrySalescampBlock BlogDetails={BlogDetails} mobile={mobile}>
           <PrimaryButton>
-            <Link href="/">
-              Try copilot
-            </Link>
+            <Link href="/">Try copilot</Link>
           </PrimaryButton>
         </TrySalescampBlock>
       </>
     );
   };
-
 
   return (
     <>
