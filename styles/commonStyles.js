@@ -155,7 +155,7 @@ const CtaButton = styled.div`
   a {
     ${ButtonText}
     display: inline-block;
-    padding: 11px 35px;
+    padding: 11px 32px;
     border: 1px solid ${({ theme }) => theme.colors.greenlight};
     border-radius: 48px;
     color: ${({ theme }) => theme.colors.greenlight};

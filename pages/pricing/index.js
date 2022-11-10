@@ -292,18 +292,22 @@ export default function NewIndex() {
                     <td className="tableBorder">
                      
                     </td>
-                    <td className="tabletext">
-                      $29<span>per internal user</span>
+                    <td>
+                      <h3>
+                      $29</h3><span className="spantext">per internal user</span>
                     </td>
-                    <td className="tabletext">
-                      $69<span>per internal user</span>
+                    <td>
+                      <h3>
+                      $69</h3><span  className="spantext">per internal user</span>
                     </td>
-                    <td className="tabletext">
-                      $119
+                    <td>
+                      <h3>
+                      $119</h3>
                       {/* <PriceTxt>
                         <p>per internal user</p>
                       </PriceTxt> */}
-                      <p>5 User Minimum</p>
+                      <span  className="spantext">per internal user</span>
+                      <span  className="spantext">5 User Minimum</span>
                     </td>
                   </tr>
 
@@ -566,6 +570,9 @@ export default function NewIndex() {
                   <tr>
                     <td>
                       <h4>API Access</h4>
+                      <p>
+                      Use our REST API and Webhooks to set up automations and connect other tools. 
+                      </p>
                     </td>
                     <td>
                       <span></span>
@@ -579,7 +586,8 @@ export default function NewIndex() {
                   </tr>
                   <tr>
                     <td>
-                      White labeling
+                      <h4>
+                      White labeling</h4>
                       <p>
                         With a custom domain you can host your portal on your
                         own URL. With a custom email domain you can send client
@@ -592,150 +600,77 @@ export default function NewIndex() {
                       <span></span>
                     </td>
                     <td>
-                      <span>Professional Rate Limit</span>
-                      <PricePadding>
-                        <span>Professional Rate Limit</span>
-                      </PricePadding>
+                      <span>Custom domain</span>
+                    
+                      <span className="spanpadding">Custom email domain</span>
                     </td>
                     <td>
-                      <span>Professional Rate Limit</span>
-                      <PricePadding>
-                        <span>
-                          Custom email domain Remove ‘Powered by Portal’
-                        </span>
-                      </PricePadding>
+                      <span>Custom domain</span>
+                      <span className="spanpadding">Custom email domain</span>
+                      <span className="spanpadding">Remove ‘Powered by Copilot’</span>
                     </td>
                   </tr>
                   <tr>
                     <td>
-                      <TextUnderline>White labeling</TextUnderline>
+                      <h4>HIPAA compliance with BAA</h4>
                       <p>
-                        With a custom domain you can host your portal on your
-                        own URL. With a custom email domain you can send client
-                        email notifications from your own email. Powered by
-                        Portal is a small badge that shows in the client
-                        experience and can be removed on the Advanced plan.
+                      If you're a covered entity or business associate subject to HIPAA, contact our team to enter into a BAA.
                       </p>
                     </td>
                     <td>
                       <span></span>
                     </td>
                     <td>
-                      <span>Professional Rate Limit</span>
-                      <PricePadding>
-                        <span>Professional Rate Limit</span>
-                      </PricePadding>
-                    </td>
-                    <td>
-                      <span>Professional Rate Limit</span>
-                      <PricePadding>
-                        <span>Professional Rate Limit</span>
-                      </PricePadding>
-                      <PricePadding>
-                        <TextUnderline>
-                          <span>Professional Rate Limit</span>
-                        </TextUnderline>
-                      </PricePadding>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      Automations & Zapier
-                      <p>
-                        Use Portal API and Zapier triggers to set up automations
-                        that streamline the experience for your clients.
-                      </p>
-                      <LearnLink>
-                        <Link href="/">
+                      <span></span>
                      
-                            Learn More
-                            <ImgMargin>
-                              <Image
-                                src="/images/right.svg"
-                                alt="main-logo"
-                                height={9}
-                                width={6}
-                              />
-                            </ImgMargin>
-                   
-                        </Link>
-                      </LearnLink>
+                    </td>
+                    <td>
+                    <Image
+                          src="/images/checkmark.svg"
+                          alt="main-logo"
+                          height={20}
+                          width={20}
+                        />
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <h4>
+                    Custom roles & permissions</h4> 
+                      <p>
+                      Create custom roles for your team if you want full control over what functionality each internal user can access in your portal.
+                      </p>
+                     
                     </td>
                     <td></td>
                     <td>
-                      <ImageWrap>
+                     
+                    </td>
+                    <td>
+                    <ImageWrap>
                         <Image
                           src="/images/checkmark.svg"
                           alt="main-logo"
                           height={20}
                           width={20}
                         />
-                        <p>Coming Soon</p>
+                        <p className="imagretext">Coming Soon</p>
                       </ImageWrap>
                     </td>
-                    <td>
-                      <Image
-                        src="/images/checkmark.svg"
-                        alt="main-logo"
-                        height={20}
-                        width={20}
-                      />
-                    </td>
                   </tr>
-                  <tr>
-                    <td>
-                      Automations & Zapier
-                      <p>
-                        Use Portal API and Zapier triggers to set up automations
-                        that streamline the experience for your clients.
-                      </p>
-                      <LearnLink>
-                        <Link href="/">
-                      
-                            Learn More
-                            <ImgMargin>
-                              <Image
-                                src="/images/right.svg"
-                                alt="main-logo"
-                                height={9}
-                                width={6}
-                              />
-                            </ImgMargin>
-                       
-                        </Link>
-                      </LearnLink>
-                    </td>
-                    <td></td>
-                    <td>
-                      <Image
-                        src="/images/checkmark.svg"
-                        alt="main-logo"
-                        height={20}
-                        width={20}
-                      />
-                    </td>
-                    <td>
-                      <Image
-                        src="/images/checkmark.svg"
-                        alt="main-logo"
-                        height={20}
-                        width={20}
-                      />
-                    </td>
-                  </tr>
+                
                   <tr className="tablecolor">
-                    <td>Features</td>
+                  <td className="tablepadding">Copilot Apps</td>
                     <td></td>
                     <td></td>
                     <td></td>
                   </tr>
                   <tr>
                     <td>
-                      Team collaboration
+                      <h4>
+                      Messaging</h4>
                       <p>
-                        Assign a lead and one or more assignees to each of your
-                        clients. This lets you stay organized and gives you full
-                        control over which team member can access which client.
+                      Securely communicate with clients in an integrated chat experience. Clients can send messages in your portal or reply to messaging email notifications in a seamless experience.
                       </p>
                       {/* <LearnLink>
                         <Link href="/">
@@ -780,11 +715,10 @@ export default function NewIndex() {
                   </tr>
                   <tr>
                     <td>
-                      Team collaboration
+                      <h4>
+                      Billing</h4>
                       <p>
-                        Assign a lead and one or more assignees to each of your
-                        clients. This lets you stay organized and gives you full
-                        control over which team member can access which client.
+                      Create one-time invoices and recurring subscriptions in your portal. Give clients a way to seamlessly check out, pay via credit card or ACH, access invoices, and manage payment methods. Syncs with QuickBooks.
                       </p>
                       {/* <LearnLink>
                         <Link href="/">
@@ -798,7 +732,7 @@ export default function NewIndex() {
                                 width={6}
                               />
                             </ImgMargin>
-                        
+                      
                         </Link>
                       </LearnLink> */}
                     </td>
@@ -829,27 +763,12 @@ export default function NewIndex() {
                   </tr>
                   <tr>
                     <td>
-                      Team collaboration
+                      <h4>
+                      Files</h4>
                       <p>
-                        Assign a lead and one or more assignees to each of your
-                        clients. This lets you stay organized and gives you full
-                        control over which team member can access which client.
+                      Upload files, add links, and stay organized with folders. Advanced controls let you specify whether clients have the same controls or more limited access.
                       </p>
-                      <LearnLink>
-                        <Link href="/">
-                          
-                            Learn More
-                            <ImgMargin>
-                              <Image
-                                src="/images/right.svg"
-                                alt="main-logo"
-                                height={9}
-                                width={6}
-                              />
-                            </ImgMargin>
                      
-                        </Link>
-                      </LearnLink>
                     </td>
                     <td>
                       <Image
@@ -878,27 +797,12 @@ export default function NewIndex() {
                   </tr>
                   <tr>
                     <td>
-                      Team collaboration
+                      <h4>
+                      Contracts</h4>
                       <p>
-                        Assign a lead and one or more assignees to each of your
-                        clients. This lets you stay organized and gives you full
-                        control over which team member can access which client.
+                      Upload PDFs and request eSignatures directly in your portal.
                       </p>
-                      <LearnLink>
-                        <Link href="/">
-                        
-                            Learn More
-                            <ImgMargin>
-                              <Image
-                                src="/images/right.svg"
-                                alt="main-logo"
-                                height={9}
-                                width={6}
-                              />
-                            </ImgMargin>
-                   
-                        </Link>
-                      </LearnLink>
+                     
                     </td>
                     <td>
                       <Image
@@ -927,27 +831,12 @@ export default function NewIndex() {
                   </tr>
                   <tr>
                     <td>
-                      Team collaboration
+                      <h4>
+                      Forms</h4>
                       <p>
-                        Assign a lead and one or more assignees to each of your
-                        clients. This lets you stay organized and gives you full
-                        control over which team member can access which client.
+                      Streamline the client onboarding experience and data intake with reusable forms.
                       </p>
-                      <LearnLink>
-                        <Link href="/">
-                   
-                            Learn More
-                            <ImgMargin>
-                              <Image
-                                src="/images/right.svg"
-                                alt="main-logo"
-                                height={9}
-                                width={6}
-                              />
-                            </ImgMargin>
-                     
-                        </Link>
-                      </LearnLink>
+                    
                     </td>
                     <td>
                       <Image
@@ -976,27 +865,12 @@ export default function NewIndex() {
                   </tr>
                   <tr>
                     <td>
-                      Team collaboration
+                      <h4>
+                      Knowledge base</h4>
                       <p>
-                        Assign a lead and one or more assignees to each of your
-                        clients. This lets you stay organized and gives you full
-                        control over which team member can access which client.
+                      Create a knowledge base for your clients to reduce manual support time. With a powerful article editor, use rich text, images, videos, and embeds to create content. Use tags and custom visibility controls to organize articles and indicate which client can see which content
                       </p>
-                      <LearnLink>
-                        <Link href="/">
-                     
-                            Learn More
-                            <ImgMargin>
-                              <Image
-                                src="/images/right.svg"
-                                alt="main-logo"
-                                height={9}
-                                width={6}
-                              />
-                            </ImgMargin>
-                         
-                        </Link>
-                      </LearnLink>
+                    
                     </td>
                     <td>
                       <Image
@@ -1024,16 +898,76 @@ export default function NewIndex() {
                     </td>
                   </tr>
                   <tr className="tablecolor">
-                    <td>Payment processing fees</td>
+                  <td className="tablepadding">Apps</td>
                     <td></td>
                     <td></td>
                     <td></td>
                   </tr>
                   <tr>
                     <td>
-                      Credit cards
+                      <h4>
+                      Partner Apps</h4>
                       <p>
-                        Payment processing fee for credit cards. You can control
+                      Embed products like Airtable, ClickUp, Calendly, Google Data Studio, and 1000s of others in your portal and give clients a true one-stop shop experience.
+                      </p>
+                     
+                    </td>
+                    <td>
+                     
+                    </td>
+                    <td>
+                      <Image
+                        src="/images/checkmark.svg"
+                        alt="main-logo"
+                        height={20}
+                        width={20}
+                      />
+                    </td>
+                    <td>
+                      <Image
+                        src="/images/checkmark.svg"
+                        alt="main-logo"
+                        height={20}
+                        width={20}
+                      />
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <h4>
+                      Custom Apps</h4>
+                      <p>
+                      A custom app is a web application that can be embedded into your portal and receives information about the current user or company. You can render custom content automatically depending on the client that is signed in.
+                      </p>
+                     
+                    </td>
+                    <td>
+                    
+                    </td>
+                    <td>
+                     
+                    </td>
+                    <td>
+                      <Image
+                        src="/images/checkmark.svg"
+                        alt="main-logo"
+                        height={20}
+                        width={20}
+                      />
+                    </td>
+                  </tr>
+                  <tr className="tablecolor">
+                  <td className="tablepadding">Payment processing fees</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                  </tr>
+               
+                  <tr>
+                    <td>
+                      <h4>Credit cards</h4>
+                      <p>
+                      Payment processing fee for credit cards. You can control
                         whether you want to absorb payment processing fees or
                         pass them on to your client.
                       </p>
@@ -1046,17 +980,14 @@ export default function NewIndex() {
                     </td>
                     <td>
                       <span>3.1% + $0.30</span>
+                      <span className="spanpadding">100</span>
                     </td>
                   </tr>
                   <tr>
                     <td>
-                      ACH
+                      <h4>ACH</h4>
                       <p>
-                        Payment processing fee for ACH Debit. You can control
-                        whether you want to absorb payment processing fees or
-                        pass them on to your client. Instant ACH powered by
-                        Plaid and traditional ACH with micro-deposit
-                        verification are both supported.
+                      Payment processing fee for ACH Debit. You can control whether you want to absorb payment processing fees or pass them on to your client. Instant ACH powered by Plaid and traditional ACH with micro-deposit verification are both supported.
                       </p>
                     </td>
                     <td>
@@ -1071,18 +1002,16 @@ export default function NewIndex() {
                   </tr>
 
                   <tr className="tablecolor">
-                    <td>Additional Payment processing fees</td>
+                  <td className="tablepadding">Additional Payment processing fees</td>
                     <td></td>
                     <td></td>
                     <td></td>
                   </tr>
                   <tr>
                     <td>
-                      Payments for invoices generated by a recurring
-                      subscription
+                      <h4>Payments for invoices generated by a recurring subscription</h4>
                       <p>
-                        Payments for invoices that are generated by a
-                        subscription may incur an additional fee.
+                      Payments for invoices that are generated by a subscription may incur an additional fee.
                       </p>
                     </td>
                     <td>
@@ -1097,9 +1026,9 @@ export default function NewIndex() {
                   </tr>
                   <tr>
                     <td>
-                      International credit cards
+                      <h4>International credit cards</h4>
                       <p>
-                        International credit cards incur an additional 1% fee.
+                      International credit cards incur an additional 1% fee.
                       </p>
                     </td>
                     <td>
@@ -1114,10 +1043,9 @@ export default function NewIndex() {
                   </tr>
                   <tr>
                     <td>
-                      Currency conversion required
+                      <h4>Currency conversion required</h4>
                       <p>
-                        Credit card payments that require currency conversion
-                        incur an additional 1% fee.
+                      Credit card payments that require currency conversion incur an additional 1% fee.
                       </p>
                     </td>
                     <td>
@@ -1131,53 +1059,27 @@ export default function NewIndex() {
                     </td>
                   </tr>
                   <tr className="tablecolor">
-                    <td>Support</td>
+                  <td className="tablepadding">Support</td>
                     <td></td>
                     <td></td>
                     <td></td>
                   </tr>
                   <tr>
                     <td>
-                      Email and community support
+                      <h4>
+                      Email and community support</h4>
                       <p>
-                        Receive support from our Slack community and get answers
-                        from our support team.
+                      Receive support from our Slack community and get answers from our support team.
                       </p>
+                     
                     </td>
                     <td>
-                      <Image
+                    <Image
                         src="/images/checkmark.svg"
                         alt="main-logo"
                         height={20}
                         width={20}
                       />
-                    </td>
-                    <td>
-                      <Image
-                        src="/images/checkmark.svg"
-                        alt="main-logo"
-                        height={20}
-                        width={20}
-                      />
-                    </td>
-                    <td>
-                      <Image
-                        src="/images/checkmark.svg"
-                        alt="main-logo"
-                        height={20}
-                        width={20}
-                      />
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
-                      Priority support
-                      <p>
-                        Receive elevated support from our priority support team.
-                      </p>
-                    </td>
-                    <td>
-                      <span></span>
                     </td>
                     <td>
                       <Image
@@ -1198,17 +1100,23 @@ export default function NewIndex() {
                   </tr>
                   <tr>
                     <td>
-                      Dedicated expert
+                      <h4>
+                      Priority support</h4>
                       <p>
-                        Meet 1:1 with an expert to help you set up your portal,
-                        migrate data, set up workflow automations and more.
+                      Receive elevated support from our priority support team.
                       </p>
+                     
                     </td>
                     <td>
-                      <span></span>
+                    
                     </td>
                     <td>
-                      <span></span>
+                    <Image
+                        src="/images/checkmark.svg"
+                        alt="main-logo"
+                        height={20}
+                        width={20}
+                      />
                     </td>
                     <td>
                       <Image
@@ -1218,7 +1126,31 @@ export default function NewIndex() {
                         width={20}
                       />
                     </td>
-                  </tr> 
+                  </tr>
+                  <tr>
+                    <td>
+                      <h4>
+                      Dedicated expert</h4>
+                      <p>
+                      Meet 1:1 with an expert to help you set up your portal, migrate data, set up workflow automations, and more. 
+                      </p>
+                     
+                    </td>
+                    <td>
+                    
+                    </td>
+                    <td>
+                  
+                    </td>
+                    <td>
+                      <Image
+                        src="/images/checkmark.svg"
+                        alt="main-logo"
+                        height={20}
+                        width={20}
+                      />
+                    </td>
+                  </tr>
                 </tbody>
               </table>
             </PriceTable>

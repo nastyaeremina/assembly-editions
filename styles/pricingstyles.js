@@ -234,10 +234,7 @@ const PriceTable = styled.div`
       color: ${({ theme }) => theme.colors.greendark};
       
     }
-    .spantext {
-      ${FooterText};
-      color: ${({ theme }) => theme.colors.darkgray};
-    }
+   
     .subtext{
         ${FooterText};
       color: ${({ theme }) => theme.colors.darkgray};
@@ -267,6 +264,10 @@ const PriceTable = styled.div`
         display: block;
         letter-spacing: 0.02em;
       }
+      .spantext {
+      ${FooterText};
+      color: ${({ theme }) => theme.colors.darkgray};
+    }
       p {
         color: ${({ theme }) => theme.colors.body};
         margin: 4px 0 0 0;
@@ -280,6 +281,15 @@ const PriceTable = styled.div`
       }
       .spanpadding{
         padding-top:12px;
+      }
+      h3{
+        color: ${({ theme }) => theme.colors.greendark};
+        ${TableText}
+        margin: 0 0 4px 0;
+      }
+      .imagretext{
+        color: ${({ theme }) => theme.colors.greenmiddark};
+        margin: 0;
       }
     }
   }

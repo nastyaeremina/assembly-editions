@@ -32,7 +32,7 @@ const theme = {
     title: "#131313",
     body: "#4C4C4C",
     lightgray: "#757575",
-    midiumgray: "#5B5B5B",
+    darkgray: "#5B5B5B",
     black: "#000000",
     whiteColor: "#FFFFFF",
     neutral: "#F3F3F2",
