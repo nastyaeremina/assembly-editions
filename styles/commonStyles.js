@@ -120,7 +120,7 @@ const PrimaryButton = styled.div`
     ${ButtonText}
     display: inline-block;
     letter-spacing: 0.02em;
-    padding: 11px 35px;
+    padding: 11px 32px;
     border-radius: 26px;
     background-color: ${({ theme }) => theme.colors.primary};
     color: ${({ theme }) => theme.colors.whiteColor};
@@ -137,7 +137,7 @@ const SecondryButton = styled.div`
   a {
     ${ButtonText}
     display: inline-block;
-    padding: 11px 35px;
+    padding: 11px 32px;
     border: 1px solid #000000;
     border-radius: 48px;
     background-color: ${({ theme }) => theme.colors.whiteColor};

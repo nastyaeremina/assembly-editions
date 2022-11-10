@@ -1,4 +1,3 @@
-import { useState } from "react";
 import Layout from "/components/layout";
 import Image from "next/image";
 import { NextSeo } from "next-seo";

@@ -27,7 +27,7 @@ const NavbarInner = styled.div`
   display: flex;
   /* justify-content: space-between; */
   align-items: center;
-  gap: 56px;
+  gap: 60px;
 `;
 const SalescampLogo = styled.img`
   cursor: pointer;
