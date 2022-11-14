@@ -24,8 +24,8 @@ const HeroSection = styled.div`
     width: 100%;
     margin: 0 auto;
   }
-  span{
-    margin:0;
+  span {
+    margin: 0;
     color: ${({ theme }) => theme.colors.primary};
     ${Heading2}
   }
@@ -175,7 +175,7 @@ const PriceWrap = styled.div`
 `;
 const PricePlan = styled.ul`
   padding-top: 32px;
-  max-width:285px;
+  max-width: 285px;
   width: 100%;
   h4 {
     color: ${({ theme }) => theme.colors.title};
@@ -194,8 +194,8 @@ const PricePlanWrap = styled.li`
     letter-spacing: 0.02em;
     ${Body4};
     margin: 0;
-max-width: 249px;
-width: 100%;
+    max-width: 249px;
+    width: 100%;
   }
 `;
 const PlanPlanSub = styled.div``;
@@ -226,17 +226,16 @@ const PriceTable = styled.div`
     .tablecolor {
       background-color: ${({ theme }) => theme.colors.greenlight};
     }
-    .tablepadding{
-        padding: 12px 20px;
+    .tablepadding {
+      padding: 12px 20px;
     }
     .tabletext {
       ${TableText}
       color: ${({ theme }) => theme.colors.greendark};
-      
     }
-   
-    .subtext{
-        ${FooterText};
+
+    .subtext {
+      ${FooterText};
       color: ${({ theme }) => theme.colors.darkgray};
     }
     th {
@@ -248,7 +247,7 @@ const PriceTable = styled.div`
       padding: 12px 20px;
       text-align: left;
       width: 200px;
-      border-right: 1px solid #E3FFEE;
+      border-right: 1px solid #e3ffee;
     }
     td {
       ${Body3}
@@ -265,29 +264,29 @@ const PriceTable = styled.div`
         letter-spacing: 0.02em;
       }
       .spantext {
-      ${FooterText};
-      color: ${({ theme }) => theme.colors.darkgray};
-    }
+        ${FooterText};
+        color: ${({ theme }) => theme.colors.darkgray};
+      }
       p {
         color: ${({ theme }) => theme.colors.body};
         margin: 4px 0 0 0;
         ${Body5};
         letter-spacing: 0.02em;
       }
-      h4{
+      h4 {
         ${Body4};
         color: ${({ theme }) => theme.colors.title};
         margin: 0;
       }
-      .spanpadding{
-        padding-top:12px;
+      .spanpadding {
+        padding-top: 12px;
       }
-      h3{
+      h3 {
         color: ${({ theme }) => theme.colors.greendark};
         ${TableText}
         margin: 0 0 4px 0;
       }
-      .imagretext{
+      .imagretext {
         color: ${({ theme }) => theme.colors.greenmiddark};
         margin: 0;
       }
@@ -337,7 +336,6 @@ const PriceImage = styled.div`
   display: flex;
   border: 1px solid #000000;
   border-radius: 4px;
-  margin-bottom: 120px;
 `;
 const PriceImageLeft = styled.div`
   padding: 40px;
@@ -349,7 +347,7 @@ const PriceImageLeft = styled.div`
     ${Heading3};
     color: ${({ theme }) => theme.colors.title};
   }
-  span{
+  span {
     ${Heading3};
     color: ${({ theme }) => theme.colors.primary};
   }
@@ -367,9 +365,7 @@ const Pricefaq = styled.div`
   }
   margin: 0 0 60px 0;
 `;
-const PriceText = styled.div`
-
-`;
+const PriceText = styled.div``;
 export {
   HeroHeading,
   HeroSection,

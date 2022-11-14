@@ -34,7 +34,14 @@ export default function Meta() {
       <link rel="alternate" type="application/rss+xml" href="/feed.xml" />
 
       <meta property="og:image" content={HOME_OG_IMAGE_URL} />
+      <script
+        src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js"
+        integrity="sha512-aVKKRRi/Q/YV+4mjoKBsE4x3H+BkegoM/em46NNlCqNTmUYADjBbeNefNxYV7giUp0VxICtqdrbqU7iVaeZNXA=="
+        crossorigin="anonymous"
+        referrerpolicy="no-referrer"
+      ></script>
       <script src="/js/header-common.js" type="text/javascript" async></script>
+      <script src="/js/faq-common.js" type="text/javascript" async></script>
     </Head>
   );
 }
