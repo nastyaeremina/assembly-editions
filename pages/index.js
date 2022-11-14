@@ -39,7 +39,6 @@ import {
   IconView,
   IconWithoutView,
   LineIcon,
-  IconViewblank,
   HelpSection,
   HelpMain,
   HelpLeft,

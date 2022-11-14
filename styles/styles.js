@@ -82,58 +82,69 @@ const Heading6 = css`
   }
 `;
 const Body1 = css`
+font-family: ${({ theme }) => theme.fontfamily.Bagoss};
   font-weight: 400;
   font-size: 24px;
   line-height: 31px;
 `;
 const Body2 = css`
+font-family: ${({ theme }) => theme.fontfamily.Bagoss};
   font-weight: 400;
   font-size: 22px;
   line-height: 20px;
 `;
 const Body3 = css`
+font-family: ${({ theme }) => theme.fontfamily.Bagoss};
   font-weight: 400;
   font-size: 20px;
   line-height: 26px;
   letter-spacing: 0.02em;
 `;
 const Body4 = css`
+font-family: ${({ theme }) => theme.fontfamily.Bagoss};
   font-weight: 400;
   font-size: 18px;
   line-height: 23px;
   letter-spacing: 0.02em;
 `;
 const Body5 = css`
+font-family: ${({ theme }) => theme.fontfamily.Bagoss};
   font-weight: 400;
   font-size: 15px;
   line-height: 19px;
 `;
 const Quote = css`
+font-family: ${({ theme }) => theme.fontfamily.Bagoss};
   font-weight: 400;
   font-size: 40px;
   line-height: 48px;
 `;
 const HeaderFont = css`
+font-family: ${({ theme }) => theme.fontfamily.Bagoss};
   font-weight: 500;
   font-size: 16px;
   line-height: 24px;
 `;
 const FooterText = css`
+font-family: ${({ theme }) => theme.fontfamily.Bagoss};
   font-weight: 400;
   font-size: 13px;
   line-height: 17px;
 `;
 const ButtonText = css`
+font-family: ${({ theme }) => theme.fontfamily.Bagoss};
   font-weight: 500;
   font-size: 18px;
   line-height: 26px;
 `;
 const Label = css`
+font-family: ${({ theme }) => theme.fontfamily.Bagoss};
   font-weight: 500;
   font-size: 17px;
   line-height: 21px;
 `;
 const Caption = css`
+font-family: ${({ theme }) => theme.fontfamily.Bagoss};
   font-weight: 400;
   font-size: 12px;
   line-height: 24px;

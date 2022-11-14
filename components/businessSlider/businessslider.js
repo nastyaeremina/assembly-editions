@@ -14,22 +14,22 @@ import {
 
 const BusinessSlider = ({ data }) => {
   console.log("data", data);
-  const slideView = useMemo(() => {
-    return data?.map((item, index) => {
-      return (
-        <Slide key={`slideview_index_${index}`}>
-          <WrapImage>
-            <Image
-              src="/images/slider1.png"
-              alt="arrow-icon"
-              width={350}
-              height={350}
-            />
-          </WrapImage>
-        </Slide>
-      );
-    });
-  }, [data]);
+  // const slideView = useMemo(() => {
+  //   return data?.map((item, index) => {
+  //     return (
+  //       <Slide key={`slideview_index_${index}`}>
+  //         <WrapImage>
+  //           <Image
+  //             src="/images/slider1.png"
+  //             alt="arrow-icon"
+  //             width={350}
+  //             height={350}
+  //           />
+  //         </WrapImage>
+  //       </Slide>
+  //     );
+  //   });
+  // }, [data]);
 
   var settings = {
     dots: false,

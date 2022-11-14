@@ -1,6 +1,5 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { StatefulPopover } from "baseui/popover";
 import { useState, useEffect, useCallback } from "react";
 import CopilotLogos from "../../public/images/blacklogo.svg";
 import {
@@ -121,9 +120,9 @@ export default function Navbar({ BlogDetails }) {
               <Link href="/modulebilling">Features</Link>
             </SpanLink>
             <SpanLink
-              className={router.pathname === "/extensions" ? "active" : ""}
+              className={router.pathname === "/apps" ? "active" : ""}
             >
-              <Link href="/extensions">Extensions</Link>
+              <Link href="/apps">Apps</Link>
             </SpanLink>
             <SpanLink
               className={router.pathname === "/features" ? "active" : ""}

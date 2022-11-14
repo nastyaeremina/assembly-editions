@@ -7,7 +7,7 @@ import { Slide, SliderWrap, WrapImage, SliderInner, SliderSub } from "./styles";
 
 const ExtensionSlider = ({ data }) => {
   console.log("data", data);
-  const slideView = useMemo(() => {
+  
     return data?.map((item, index) => {
       return (
         <Slide key={`slideview_index_${index}`}>
@@ -22,7 +22,7 @@ const ExtensionSlider = ({ data }) => {
         </Slide>
       );
     });
-  }, [data]);
+   
 
   var settings = {
     dots: false,
