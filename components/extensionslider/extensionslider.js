@@ -1,30 +1,30 @@
 import Image from "next/image";
 import Slider from "react-slick";
-import { useMemo } from "react";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import { Slide, SliderWrap, WrapImage, SliderInner, SliderSub } from "./styles";
+import { SliderWrap, SliderInner, SliderSub } from "./styles";
 
 const ExtensionSlider = ({ data }) => {
   console.log("data", data);
-  
-    return data?.map((item, index) => {
-      return (
-        <Slide key={`slideview_index_${index}`}>
-          <WrapImage>
-            <Image
-              src="/images/slider.png"
-              alt="arrow-icon"
-              width={350}
-              height={350}
-            />
-          </WrapImage>
-        </Slide>
-      );
-    });
-   
 
-  var settings = {
+  // const slideView = useMemo(() => {
+  //   return data?.map((item, index) => {
+  //     return (
+  //       <Slide key={`slideview_index_${index}`}>
+  //         <WrapImage>
+  //           <Image
+  //             src="/images/slider.png"
+  //             alt="arrow-icon"
+  //             width={350}
+  //             height={350}
+  //           />
+  //         </WrapImage>
+  //       </Slide>
+  //     );
+  //   });
+  // }, [data]);
+
+  const settings = {
     dots: false,
     infinite: true,
     centerMode: false,
@@ -70,10 +70,6 @@ const ExtensionSlider = ({ data }) => {
               />
               <h4>Calendly</h4>
             </SliderSub>
-            <p>
-              Calendly is your scheduling automation platform for eliminating
-              the hassle of back...
-            </p>
           </SliderInner>
           <SliderInner>
             <SliderSub>
@@ -86,10 +82,6 @@ const ExtensionSlider = ({ data }) => {
               />
               <h4>Jotform</h4>
             </SliderSub>
-            <p>
-              Improve your workflow with powerful online forms designed to meet
-              your every need.
-            </p>
           </SliderInner>
           <SliderInner>
             <SliderSub>
@@ -102,10 +94,6 @@ const ExtensionSlider = ({ data }) => {
               />
               <h4>Airtable</h4>
             </SliderSub>
-            <p>
-              Airtable is a low-code platform for building collaborative apps.
-              Customize your workflow, collab...
-            </p>
           </SliderInner>
           <SliderInner>
             <SliderSub>
@@ -118,10 +106,6 @@ const ExtensionSlider = ({ data }) => {
               />
               <h4>Calendly</h4>
             </SliderSub>
-            <p>
-              Calendly is your scheduling automation platform for eliminating
-              the hassle of back...
-            </p>
           </SliderInner>
           <SliderInner>
             <SliderSub>
@@ -134,10 +118,6 @@ const ExtensionSlider = ({ data }) => {
               />
               <h4>Jotform</h4>
             </SliderSub>
-            <p>
-              Improve your workflow with powerful online forms designed to meet
-              your every need.
-            </p>
           </SliderInner>
           <SliderInner>
             <SliderSub>
@@ -150,10 +130,6 @@ const ExtensionSlider = ({ data }) => {
               />
               <h4>Airtable</h4>
             </SliderSub>
-            <p>
-              Airtable is a low-code platform for building collaborative apps.
-              Customize your workflow, collab...
-            </p>
           </SliderInner>
         </Slider>
       </SliderWrap>
