@@ -24,7 +24,7 @@ const ExtensionSlider = ({ data }) => {
   //   });
   // }, [data]);
 
-  var settings = {
+  const settings = {
     dots: false,
     infinite: true,
     centerMode: false,
