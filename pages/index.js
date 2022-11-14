@@ -129,8 +129,9 @@ export default function Home() {
           <Container>
             <BusinessText>
               <h2>
-                Discover why thousands of entrepreneurs choose Copilot to start,
-                run, and grow their business<span>.</span>
+                Discover why thousands of entrepreneurs choose Copilot to start
+                <span>, </span>
+                run<span>,</span> and grow their business<span>.</span>
               </h2>
               <p>
                 Tech-enabled service businesses of all types — marketing

@@ -70,10 +70,6 @@ const ExtensionSlider = ({ data }) => {
               />
               <h4>Calendly</h4>
             </SliderSub>
-            <p>
-              Calendly is your scheduling automation platform for eliminating
-              the hassle of back...
-            </p>
           </SliderInner>
           <SliderInner>
             <SliderSub>
@@ -86,10 +82,6 @@ const ExtensionSlider = ({ data }) => {
               />
               <h4>Jotform</h4>
             </SliderSub>
-            <p>
-              Improve your workflow with powerful online forms designed to meet
-              your every need.
-            </p>
           </SliderInner>
           <SliderInner>
             <SliderSub>
@@ -102,10 +94,6 @@ const ExtensionSlider = ({ data }) => {
               />
               <h4>Airtable</h4>
             </SliderSub>
-            <p>
-              Airtable is a low-code platform for building collaborative apps.
-              Customize your workflow, collab...
-            </p>
           </SliderInner>
           <SliderInner>
             <SliderSub>
@@ -118,10 +106,6 @@ const ExtensionSlider = ({ data }) => {
               />
               <h4>Calendly</h4>
             </SliderSub>
-            <p>
-              Calendly is your scheduling automation platform for eliminating
-              the hassle of back...
-            </p>
           </SliderInner>
           <SliderInner>
             <SliderSub>
@@ -134,10 +118,6 @@ const ExtensionSlider = ({ data }) => {
               />
               <h4>Jotform</h4>
             </SliderSub>
-            <p>
-              Improve your workflow with powerful online forms designed to meet
-              your every need.
-            </p>
           </SliderInner>
           <SliderInner>
             <SliderSub>
@@ -150,10 +130,6 @@ const ExtensionSlider = ({ data }) => {
               />
               <h4>Airtable</h4>
             </SliderSub>
-            <p>
-              Airtable is a low-code platform for building collaborative apps.
-              Customize your workflow, collab...
-            </p>
           </SliderInner>
         </Slider>
       </SliderWrap>

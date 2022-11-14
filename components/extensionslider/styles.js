@@ -60,25 +60,24 @@ const WrapImage = styled.div`
   }
 `;
 const SliderInner = styled.div`
-  padding: 15px;
+  padding: 11px 15px;
   border: 1px solid #000000;
   border-radius: 8px;
   background-color: ${({ theme }) => theme.colors.whiteColor};
-  max-width: 270px;
   width: 100%;
-  margin: 0 12px;
-  p {
+  max-width: 180px;
+  margin: 0 40px;
+  /* p {
     ${Body5};
     color: ${({ theme }) => theme.colors.midiumgray};
     letter-spacing: 0.02em;
     margin: 0;
-  }
+  } */
 `;
 const SliderSub = styled.div`
   display: flex;
   gap: 8px;
   align-items: center;
-  padding-bottom: 12px;
   h4 {
     ${Body4};
     margin: 0;
