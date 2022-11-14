@@ -14,7 +14,7 @@ export default function CTA() {
         <Container>
           <CtaInner>
             <h2>
-              Start, run, and grow <span>your business</span>
+              Start<span>,</span> run<span>,</span> and grow your business
             </h2>
             <CtaBtn>
               <PrimaryButton>

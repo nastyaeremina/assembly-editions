@@ -69,31 +69,31 @@ export default function Navbar({ BlogDetails }) {
             className={router.pathname === "/blogs" ? "active" : ""}
           >
             <Link href="/blogs">
-              <a>Blogs</a>
+            Blogs
             </Link>
           </DropDownLink>
           <DropDownLink
             className={router.pathname === "/updates" ? "active" : ""}
           >
             <Link href="/updates">
-              <a>Updates</a>
+              Updates
             </Link>
           </DropDownLink>
           <DropDownLink className={router.pathname === "/help" ? "active" : ""}>
             <Link href="/help">
-              <a>Help Center</a>
+             Help Center
             </Link>
           </DropDownLink>
           <DropDownLink>
-            <Link href="/">
-              <a data-nolt="button">Roadmap</a>
+            <Link href="/">Roadmap
+              {/* <a data-nolt="button"></a> */}
             </Link>
           </DropDownLink>
           <DropDownLink
             className={router.pathname === "/free-sales-tools" ? "active" : ""}
           >
             <Link href="/free-sales-tools">
-              <a>Sales Tools</a>
+              Sales Tools
             </Link>
           </DropDownLink>
         </DropdownMenu>
@@ -123,7 +123,7 @@ export default function Navbar({ BlogDetails }) {
             <SpanLink
               className={router.pathname === "/extensions" ? "active" : ""}
             >
-              <Link href="/extensions">Extensions</Link>
+              <Link href="/extensions">Apps</Link>
             </SpanLink>
             <SpanLink
               className={router.pathname === "/features" ? "active" : ""}

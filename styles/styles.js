@@ -89,7 +89,7 @@ const Body1 = css`
 const Body2 = css`
   font-weight: 400;
   font-size: 22px;
-  line-height: 20px;
+  line-height: 29px;
 `;
 const Body3 = css`
   font-weight: 400;
