@@ -7,10 +7,12 @@ const CtaInner = styled.div`
     color: ${({ theme }) => theme.colors.whiteColor};
     ${Heading2};
     padding-bottom: 40px;
-    margin: 0;
+    margin: 0 auto;
+    max-width: 708px;
+    width:100%;
     span {
-      color: ${({ theme }) => theme.colors.whiteColor};
-      display: block;
+      color: ${({ theme }) => theme.colors.primary};
+      /* display: block; */
     }
   }
 `;

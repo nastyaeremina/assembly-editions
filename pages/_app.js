@@ -1,9 +1,27 @@
 /* eslint-disable max-len */
 import "../styles/globals.css";
 import { DefaultSeo } from "next-seo";
-import { ThemeProvider } from "styled-components";
+import { ThemeProvider,createGlobalStyle } from "styled-components";
 import SEO from "../next-seo.config";
 
+const GlobalStyle = createGlobalStyle`
+  html {
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
+  }
+  body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Bagoss', sans-serif;
+  }
+  :root {
+    // eslint-disable-next-line max-len, max-len
+    --shadowColor: 0px 1px 3px rgba(10, 10, 46, 0.1), 0px 3px 14px rgba(10, 10, 46, 0.04), 0px 8px 32px rgba(10, 10, 46, 0.08), 0px 30px 84px rgba(10, 10, 46, 0.1);
+    --shadowCard:  0px 3px 10px rgba(0, 0, 0, 0.1);
+    --inputBoxShadow: 0 0 0 3px #afcdff;
+  }
+`;
 const theme = {
   fontfamily: {
     Bagoss: "Bagoss",
@@ -14,7 +32,7 @@ const theme = {
     title: "#131313",
     body: "#4C4C4C",
     lightgray: "#757575",
-    midiumgray: "#5B5B5B",
+    darkgray: "#5B5B5B",
     black: "#000000",
     whiteColor: "#FFFFFF",
     neutral: "#F3F3F2",
@@ -65,6 +83,7 @@ const theme = {
 export default function MyApp({ Component, pageProps }) {
   return (
     <>
+    <GlobalStyle/>
       <ThemeProvider theme={theme}>
         <DefaultSeo {...SEO} />
         <Component {...pageProps} />
