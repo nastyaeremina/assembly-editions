@@ -1,28 +1,28 @@
 import Image from "next/image";
 import Slider from "react-slick";
-import { useMemo } from "react";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import { Slide, SliderWrap, WrapImage, SliderInner, SliderSub } from "./styles";
+import { SliderWrap, SliderInner, SliderSub } from "./styles";
 
 const ExtensionSlider = ({ data }) => {
   console.log("data", data);
-  
-    return data?.map((item, index) => {
-      return (
-        <Slide key={`slideview_index_${index}`}>
-          <WrapImage>
-            <Image
-              src="/images/slider.png"
-              alt="arrow-icon"
-              width={350}
-              height={350}
-            />
-          </WrapImage>
-        </Slide>
-      );
-    });
-   
+
+  // const slideView = useMemo(() => {
+  //   return data?.map((item, index) => {
+  //     return (
+  //       <Slide key={`slideview_index_${index}`}>
+  //         <WrapImage>
+  //           <Image
+  //             src="/images/slider.png"
+  //             alt="arrow-icon"
+  //             width={350}
+  //             height={350}
+  //           />
+  //         </WrapImage>
+  //       </Slide>
+  //     );
+  //   });
+  // }, [data]);
 
   var settings = {
     dots: false,
