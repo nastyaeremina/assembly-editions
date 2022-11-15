@@ -9,7 +9,6 @@ const GlobalStyle = createGlobalStyle`
     -moz-osx-font-smoothing: grayscale;
     -webkit-font-smoothing: antialiased;
     scroll-behavior: smooth;
-
   }
   body {
     margin: 0;
@@ -37,6 +36,7 @@ const theme = {
     darkgray: "#5B5B5B",
     black: "#000000",
     whiteColor: "#FFFFFF",
+    border: "#CCCCD0",
     neutral: "#F3F3F2",
     darkPrimary: "#2e69ce",
     textColor: "#424242",

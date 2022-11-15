@@ -174,6 +174,12 @@ const CardTxt = css`
   font-size: 12px;
   line-height: 13px;
 `;
+const Body6 = css`
+  font-weight: 500;
+  font-size: 9px;
+  line-height: 12px;
+  letter-spacing: 0.01em;
+`;
 export {
   Heading1,
   Heading2,
@@ -186,6 +192,7 @@ export {
   Body3,
   Body4,
   Body5,
+  Body6,
   Quote,
   HeaderFont,
   FooterText,

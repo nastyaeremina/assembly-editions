@@ -1,0 +1,40 @@
+import styled from "styled-components";
+import { Body4, ButtonText, Quote } from "../../../styles/styles";
+
+const QuoteSection = styled.div`
+  padding: 50px 0;
+`;
+
+const Mainss = styled.div`
+  display: flex;
+  gap: 40px;
+  border: 1.5px solid #000000;
+  border-radius: 4px;
+  background: #ffffff;
+`;
+const QuoteTxt = styled.div`
+  padding-right: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding-bottom: 40px;
+  h3 {
+    ${Quote};
+    margin: 40px 0 30px 0;
+    color: ${({ theme }) => theme.colors.title};
+  }
+`;
+const QuoteSubTxt = styled.div`
+  h4 {
+    margin: 0 0 5px 0;
+    ${ButtonText};
+    color: ${({ theme }) => theme.colors.title};
+  }
+  p {
+    margin: 0;
+    ${Body4};
+    color: ${({ theme }) => theme.colors.body};
+  }
+`;
+
+export { QuoteSection, Mainss, QuoteTxt, QuoteSubTxt };
