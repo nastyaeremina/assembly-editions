@@ -88,11 +88,6 @@ const NavigationBlock = styled.ul`
   }
 `;
 const SpanLink = styled.li`
-  &.active {
-    a {
-      color: ${({ theme }) => theme.colors.darkPrimary};
-    }
-  }
   a {
     ${HeaderFont}
     margin: 0 14px;
@@ -105,6 +100,11 @@ const SpanLink = styled.li`
   }
   a:hover {
     color: ${({ theme }) => theme.colors.primary};
+  }
+  &.active {
+    a {
+      color: ${({ theme }) => theme.colors.primary};
+    }
   }
 
   @media only screen and (max-width: 768px) {

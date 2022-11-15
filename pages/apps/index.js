@@ -1,4 +1,5 @@
 import Layout from "/components/layout";
+import Link from "next/link";
 import { NextSeo } from "next-seo";
 import { getAllBlogs } from "../../lib/contentful-blogs";
 import Navbar from "../../components/navbar/navbar";
@@ -10,6 +11,8 @@ import {
   Catagory,
   Catagoryitem,
   FeatureLeft,
+  LeftWrap,
+  InputWrap,
   FeatureRight,
   FeatureMenu,
   FeatureCard,
@@ -22,11 +25,19 @@ import {
   CardSub,
   CardInfo,
   SchedulingApps,
+  AppsTitle,
+  BuildWrap,
+  BuildAppsDetail,
+  OtherWrap,
 } from "../../styles/appsStyles";
-import { Container, PrimaryButton } from "../../styles/commonStyles";
+import {
+  Container,
+  PrimaryButton,
+  SecondryButton,
+} from "../../styles/commonStyles";
 import CTA from "../../components/cta/cta";
-import Link from "next/link";
 import Image from "next/image";
+import FAQ from "../../components/faq/faq";
 
 export default function Extensions({ allPosts }) {
   return (
@@ -40,13 +51,9 @@ export default function Extensions({ allPosts }) {
         <HeroSection>
           <Container>
             <h2>App Directory</h2>
-            <p>
-            Try Copilot free for 14 days, no credit card required
-            </p>
+            <p>Try Copilot free for 14 days, no credit card required</p>
             <PrimaryButton>
-              <Link href="/">
-                Start Trial
-              </Link>
+              <Link href="/">Start Trial</Link>
             </PrimaryButton>
           </Container>
         </HeroSection>
@@ -54,48 +61,57 @@ export default function Extensions({ allPosts }) {
           <Container>
             <FeatureWrap>
               <FeatureLeft>
-                <Input placeholder="Find a product..." />
-                <Catagory>
-                  <h4>Categories</h4>
-                  <Catagoryitem>
-                    <Link href={"#Brief-Section"}>
-                      All
-                    </Link>
-                  </Catagoryitem>
-                  <Catagoryitem>
-                    <Link href={"#Brief-Section"}>
-                    Project management
-                    </Link>
-                  </Catagoryitem>
-                  <Catagoryitem>
-                    <Link href={"#Brief-Section"}>
-                     Data visualization
-                    </Link>
-                  </Catagoryitem>
-                  <Catagoryitem>
-                    <Link href={"#Brief-Section"}>
-                     Scheduling
-                    </Link>
-                  </Catagoryitem>
-                  <Catagoryitem>
-                    <Link href={"#Integrations-Section"}>
-                   Integrations
-                    </Link>
-                  </Catagoryitem>
-                </Catagory>
+                <LeftWrap>
+                  <InputWrap>
+                    <Image
+                      src="/images/searchicon.svg"
+                      alt="search-icon"
+                      width={20}
+                      height={20}
+                    />
+                    <Input placeholder="Find an app" />
+                  </InputWrap>
+                  <Catagory>
+                    <h4>Partner Apps</h4>
+                    <Catagoryitem>
+                      <Link href={"#Brief-Section"}>All</Link>
+                    </Catagoryitem>
+                    <Catagoryitem>
+                      <Link href={"#Project-Section"}>Project management</Link>
+                    </Catagoryitem>
+                    <Catagoryitem>
+                      <Link href={"#data-section"}>Data visualization</Link>
+                    </Catagoryitem>
+                    <Catagoryitem>
+                      <Link href={"#Scheduling-Section"}>Scheduling</Link>
+                    </Catagoryitem>
+                    <Catagoryitem>
+                      <Link href={"#Integrations-Section"}>Videos</Link>
+                    </Catagoryitem>
+                  </Catagory>
+                  <OtherWrap>
+                    <h4>Other</h4>
+                    <Catagoryitem>
+                      <Link href={"#Brief-Section"}>Custom Apps</Link>
+                    </Catagoryitem>
+                    <Catagoryitem>
+                      <Link href={"#Brief-Section"}>Data Integrations</Link>
+                    </Catagoryitem>
+                  </OtherWrap>
+                </LeftWrap>
               </FeatureLeft>
 
               <FeatureRight>
                 <Featured id="Brief-Section">
-                  <h4>Featured</h4>
+                  <h3>Featured</h3>
                   <FeatureMenu>
                     <FeatureCard>
                       <FeatureImg>
                         <Image
                           src="/images/featurelogo1.svg"
                           alt="main-logo"
-                          height={60}
                           width={236}
+                          height={56}
                         />
                       </FeatureImg>
                       <CardText>
@@ -113,9 +129,9 @@ export default function Extensions({ allPosts }) {
                     <FeatureCard>
                       <FeatureImg>
                         <Image
-                          src="/images/featurelogo1.svg"
+                          src="/images/featurelogo2.svg"
                           alt="main-logo"
-                          height={60}
+                          height={56}
                           width={236}
                         />
                       </FeatureImg>
@@ -130,13 +146,12 @@ export default function Extensions({ allPosts }) {
                         <p>Scheduling</p>
                       </CardEnd>
                     </FeatureCard>
-
                     <FeatureCard>
                       <FeatureImg>
                         <Image
                           src="/images/featurelogo3.svg"
                           alt="main-logo"
-                          height={60}
+                          height={56}
                           width={236}
                         />
                       </FeatureImg>
@@ -153,12 +168,8 @@ export default function Extensions({ allPosts }) {
                     </FeatureCard>
                   </FeatureMenu>
                 </Featured>
-                <ExtensionsSection>
-                  <h4>Extensions</h4>
-                  <p>
-                    Integrations are non cilent facing apps that work with
-                    Copilot’s infrastructure
-                  </p>
+                <ExtensionsSection id="Project-Section">
+                  <h3>Project management</h3>
                   <ExtensionCard>
                     <CardSub>
                       <CardInfo>
@@ -211,9 +222,8 @@ export default function Extensions({ allPosts }) {
                   </ExtensionCard>
                 </ExtensionsSection>
 
-                <SchedulingApps>
-                  <h4>Featured</h4>
-
+                <SchedulingApps id="Scheduling-Section">
+                  <h3>Scheduling</h3>
                   <ExtensionCard>
                     <CardSub>
                       <CardInfo>
@@ -264,8 +274,6 @@ export default function Extensions({ allPosts }) {
                         collaborative apps. Customize your workflow, collab...
                       </p>
                     </CardSub>
-                  </ExtensionCard>
-                  <ExtensionCard>
                     <CardSub>
                       <CardInfo>
                         <Image
@@ -318,11 +326,10 @@ export default function Extensions({ allPosts }) {
                   </ExtensionCard>
                 </SchedulingApps>
                 <ExtensionsSection id="Integrations-Section">
-                  <h4>Integrations</h4>
-                  <p>
-                    Integrations are non cilent facing apps that work with
-                    Copilot’s infrastructure
-                  </p>
+                  <AppsTitle>
+                    <h3>Data Integrations</h3>
+                    <p>Integrations</p>
+                  </AppsTitle>
                   <ExtensionCard>
                     <CardSub>
                       <CardInfo>
@@ -374,10 +381,31 @@ export default function Extensions({ allPosts }) {
                     </CardSub>
                   </ExtensionCard>
                 </ExtensionsSection>
+                <ExtensionsSection>
+                  <AppsTitle>
+                    <h3>Custom Apps</h3>
+                  </AppsTitle>
+                  <BuildWrap>
+                    <BuildAppsDetail>
+                      <h5>Build your own app</h5>
+                      <p>
+                        A custom app is a web application that can be embedded
+                        into your portal and receives information about the
+                        current user or company. With that capability you can
+                        render custom content automatically depending on the
+                        user that is currently signed in.
+                      </p>
+                      <SecondryButton>
+                        <Link href="/">Read API docs</Link>
+                      </SecondryButton>
+                    </BuildAppsDetail>
+                  </BuildWrap>
+                </ExtensionsSection>
               </FeatureRight>
             </FeatureWrap>
           </Container>
         </FeatureSection>
+        <FAQ />
         <CTA />
       </Layout>
     </>
