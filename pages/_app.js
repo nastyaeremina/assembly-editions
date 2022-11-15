@@ -1,13 +1,15 @@
 /* eslint-disable max-len */
 import "../styles/globals.css";
 import { DefaultSeo } from "next-seo";
-import { ThemeProvider,createGlobalStyle } from "styled-components";
+import { ThemeProvider, createGlobalStyle } from "styled-components";
 import SEO from "../next-seo.config";
 
 const GlobalStyle = createGlobalStyle`
   html {
     -moz-osx-font-smoothing: grayscale;
     -webkit-font-smoothing: antialiased;
+    scroll-behavior: smooth;
+
   }
   body {
     margin: 0;
@@ -83,7 +85,7 @@ const theme = {
 export default function MyApp({ Component, pageProps }) {
   return (
     <>
-    <GlobalStyle/>
+      <GlobalStyle />
       <ThemeProvider theme={theme}>
         <DefaultSeo {...SEO} />
         <Component {...pageProps} />

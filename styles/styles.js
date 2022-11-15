@@ -62,8 +62,8 @@ const Heading4 = css`
 
 const Heading5 = css`
   font-weight: 500;
-  font-size: 20px;
-  line-height: 24px;
+  font-size: 24px;
+  line-height: 31px;
   font-family: ${({ theme }) => theme.fontfamily.Bagoss};
   @media only screen and (max-width: 479px) {
     font-size: 18px;

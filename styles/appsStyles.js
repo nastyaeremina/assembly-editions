@@ -7,6 +7,7 @@ import {
   CardTxt,
   Heading2,
   Heading4,
+  Heading5,
   Value,
 } from "./styles";
 const HeroSection = styled.div`
@@ -18,7 +19,6 @@ const HeroSection = styled.div`
     color: ${({ theme }) => theme.colors.title};
     margin: 0 auto;
     margin-bottom: 20px;
-  
   }
   p {
     ${Body2};
@@ -33,25 +33,28 @@ const FeatureSection = styled.div`
 `;
 const FeatureWrap = styled.div`
   display: flex;
-  gap: 60px;
+  gap: 36px;
 `;
 const Input = styled.input`
   ${Value};
-  background-image: "/images/search1.svg";
-  color: ${({ theme }) => theme.colors.lightgray};
+  color: ${({ theme }) => theme.colors.title};
   letter-spacing: 0.01em;
-  padding: 12px 20px;
+  padding: 14px 20px 14px 55px;
   border: 1px solid #bebebf;
   border-radius: 48px;
   width: 306px;
+  outline: 0;
+  ::placeholder {
+    color: ${({ theme }) => theme.colors.lightgray};
+  }
 `;
 const Catagory = styled.ul`
-  padding-top: 49px;
+  padding-top: 40px;
 
   h4 {
     padding-bottom: 20px;
     margin: 0;
-    ${Body1};
+    ${Heading5};
     color: ${({ theme }) => theme.colors.title};
     border-bottom: 1px solid #000000;
     letter-spacing: 0.02em;
@@ -65,25 +68,43 @@ const Catagoryitem = styled.li`
   a {
     ${Body4};
     letter-spacing: 0.02em;
-    color: ${({ theme }) => theme.colors.black};
-
+    color: ${({ theme }) => theme.colors.primary};
     margin: 0;
-    :first-child {
-      color: ${({ theme }) => theme.colors.primary};
+    :hover {
+      color: ${({ theme }) => theme.colors.title};
+    }
+    :active {
+      color: ${({ theme }) => theme.colors.title};
     }
   }
 `;
-const FeatureLeft = styled.div``;
-const FeatureRight = styled.div`
+const OtherWrap = styled.ul`
+  padding-top: 79px;
   h4 {
+    padding-bottom: 20px;
+    margin: 0;
+    ${Heading5};
+    color: ${({ theme }) => theme.colors.title};
+    border-bottom: 1px solid #000000;
+    letter-spacing: 0.02em;
+    max-width: 306px;
+    width: 100%;
+  }
+`;
+const FeatureLeft = styled.div`
+  position: relative;
+`;
+const FeatureRight = styled.div`
+  h3 {
     ${Heading4};
     color: ${({ theme }) => theme.colors.title};
-    margin: 0 0 20px 0;
+    margin: 0 0 28px 0;
   }
 `;
 const FeatureMenu = styled.div`
-  display: flex;
-  gap: 25px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 36px;
 `;
 const FeatureCard = styled.div`
   background-color: ${({ theme }) => theme.colors.whitecolor};
@@ -92,31 +113,27 @@ const FeatureCard = styled.div`
   overflow: hidden;
   max-width: 100%;
   width: 100%;
-  img {
-    padding: 16px 40px;
-  }
 `;
 const CardText = styled.div`
-  padding: 16px 0;
+  padding: 20px 16px;
   border-top: 1px solid black;
   border-bottom: 1px solid black;
   h4 {
-    padding: 0 20px;
     ${Body4};
     color: ${({ theme }) => theme.colors.title};
     letter-spacing: 0.02em;
     margin: 0 0 8px 0;
   }
   p {
-    letter-spacing: 0.02em;
-    color: ${({ theme }) => theme.colors.mediumgray};
+    color: ${({ theme }) => theme.colors.darkgray};
     ${Body5};
-    padding: 0 20px;
+    letter-spacing: 0.02em;
+    margin: 0;
   }
 `;
 const CardEnd = styled.div`
   background-color: ${({ theme }) => theme.colors.greenlight};
-  padding: 6px 16px;
+  padding: 8px 16px;
   p {
     ${CardTxt};
     color: ${({ theme }) => theme.colors.purpledark};
@@ -137,20 +154,26 @@ const ExtensionsSection = styled.div`
   }
 `;
 const ExtensionCard = styled.div`
-  padding-top: 20px;
-  display: flex;
-  gap: 24px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 36px;
 `;
 const CardSub = styled.div`
   background: #ffffff;
   border: 1px solid #000000;
   border-radius: 8px;
-  padding: 16px;
+  padding: 15px;
   p {
-    color: ${({ theme }) => theme.colors.mediumgray};
+    color: ${({ theme }) => theme.colors.darkgray};
     letter-spacing: 0.02em;
     ${Body5}
     margin: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 3; /* number of lines to show */
+    line-clamp: 3;
+    -webkit-box-orient: vertical;
   }
 `;
 const CardInfo = styled.div`
@@ -170,6 +193,55 @@ const SchedulingApps = styled.div`
   padding-top: 40px;
 `;
 const CardWrap = styled.div``;
+const AppsTitle = styled.div`
+  margin-bottom: 28px;
+  h3 {
+    margin-bottom: 0;
+  }
+  p {
+    margin: 0;
+    ${Body4};
+    color: ${({ theme }) => theme.colors.title};
+    margin-top: 12px;
+  }
+`;
+const BuildWrap = styled.div`
+  background-color: ${({ theme }) => theme.colors.whiteColor};
+  border: 1px solid #000000;
+  border-radius: 8px;
+  padding: 27px;
+`;
+const BuildAppsDetail = styled.div`
+  h5 {
+    ${Body4};
+    color: ${({ theme }) => theme.colors.black};
+    margin: 0;
+  }
+  p {
+    ${Body5};
+    color: ${({ theme }) => theme.colors.darkgray};
+    letter-spacing: 0.02em;
+    margin: 12px 0 28px 0;
+  }
+  a {
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 24px;
+    padding: 7px 31px;
+  }
+`;
+const InputWrap = styled.div`
+  position: relative;
+  img {
+    position: absolute;
+    top: 18px;
+    left: 20px;
+  }
+`;
+const LeftWrap = styled.div`
+  position: sticky;
+  top: 95px;
+`;
 export {
   HeroSection,
   FeatureSection,
@@ -191,4 +263,10 @@ export {
   CardInfo,
   SchedulingApps,
   CardWrap,
+  AppsTitle,
+  BuildWrap,
+  BuildAppsDetail,
+  InputWrap,
+  OtherWrap,
+  LeftWrap,
 };
