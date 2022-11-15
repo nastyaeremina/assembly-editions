@@ -198,7 +198,7 @@ export default function Home() {
                     communication and stay organized.{" "}
                   </p>
                   <SecondryButton>
-                    <Link href="/request-demo">Learn More</Link>
+                    <Link href="messege">Learn More</Link>
                   </SecondryButton>
                 </LeftDetail>
                 <RightDetail>

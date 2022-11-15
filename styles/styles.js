@@ -174,6 +174,12 @@ const CardTxt = css`
   font-size: 12px;
   line-height: 13px;
 `;
+const LinkTxt = css`
+font-weight: 500;
+font-size: 20px;
+line-height: 26px;
+letter-spacing: 0.02em;
+`;
 export {
   Heading1,
   Heading2,
@@ -197,4 +203,5 @@ export {
   TableText,
   Value,
   CardTxt,
+  LinkTxt
 };

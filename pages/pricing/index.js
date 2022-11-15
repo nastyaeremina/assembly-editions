@@ -18,11 +18,7 @@ import {
   PriceButton,
   YearlyButton,
   MonthlyButton,
-  LeftTopBorder,
-  RightTopBorder,
   WrapSlide,
-  LeftbottomBorder,
-  RightBottomBorder,
   PricingMenu,
   PriceOption,
   PriceMenuLeft,
@@ -34,15 +30,10 @@ import {
   PricePlanWrap,
   PlanButton,
   PriceTable,
-  LearnLink,
-  ImgMargin,
   TextUnderline,
-  PriceTxt,
-  PricePadding,
   ImageWrap,
   PriceImage,
   PriceImageLeft,
-  Pricefaq,
   PriceText,
 } from "../../styles/pricingstyles";
 import CTA from "../../components/cta/cta";
@@ -65,7 +56,7 @@ export default function NewIndex() {
             </h2>
             <p>Try Copilot free for 14 days, no credit card required</p>
             <PrimaryButton>
-              <Link href="/">Start Trial</Link>
+              <Link href="#">Start Trial</Link>
             </PrimaryButton>
           </Container>
         </HeroSection>
@@ -75,11 +66,11 @@ export default function NewIndex() {
               <PriceButton>
                 <WrapSlide>
                   <YearlyButton>
-                    <Link href="/">Pay yearly</Link>
+                    <Link href="#">Pay yearly</Link>
                   </YearlyButton>
                 </WrapSlide>
                 <MonthlyButton>
-                  <Link href="/">Pay monthly</Link>
+                  <Link href="#">Pay monthly</Link>
                 </MonthlyButton>
               </PriceButton>
               <PricingMenu>
@@ -265,7 +256,7 @@ export default function NewIndex() {
                   </PriceMenuLeft>
                 </PriceOption>
                 <PlanButton>
-                  <Link href="/">Hide plan features</Link>
+                  <Link href="#">Hide plan features</Link>
                 </PlanButton>
               </PricingMenu>
             </PriceMenu>
@@ -1147,7 +1138,7 @@ export default function NewIndex() {
                   compliance, advanced reporting needs, and more.
                 </p>
                 <SecondryButton>
-                  <Link href="/request-demo">Learn More</Link>
+                  <Link href="/message">Learn More</Link>
                 </SecondryButton>
               </PriceImageLeft>
               <>
