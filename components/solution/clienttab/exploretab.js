@@ -32,7 +32,7 @@ export default function ExploreTab() {
               module and add more when the time is right.
             </p>
             <SecondryButton>
-              <Link href="/">
+              <Link href="#">
                 Create client account in a demo portal
                 <Image
                   src="/images/helpicon.svg"

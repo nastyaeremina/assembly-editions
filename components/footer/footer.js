@@ -89,7 +89,9 @@ export default function Footer() {
                 <FooterMenu>
                   <p>Solutions</p>
                   <FooterMenuList>
-                    <Link href="#">Accounting & Financial Services</Link>
+                    <Link href="/solution">
+                      Accounting & Financial Services
+                    </Link>
                     <Link href="#">Marketing & Creative</Link>
                     <Link href="#">Startups & Tech-enabled services</Link>
                   </FooterMenuList>
@@ -98,7 +100,7 @@ export default function Footer() {
                     <FooterMenuList>
                       <Link href="#">Enterprise</Link>
                       <Link href="#">Pricing</Link>
-                      <Link href="#">Jobs</Link>
+                      <Link href="/jobs">Jobs</Link>
                       <Link href="#">Brand</Link>
                     </FooterMenuList>
                   </FooterMenu>
