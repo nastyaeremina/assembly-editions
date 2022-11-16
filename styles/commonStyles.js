@@ -278,6 +278,9 @@ const BreadCumLink = styled.div`
   }
 `;
 
+const HeroCommonSection = styled.div`
+  padding: 180px 0 50px;
+`;
 const SlashBlock = styled.div`
   margin: 0 6px;
 `;
@@ -648,4 +651,5 @@ export {
   FaqContainer,
   FaqHeading,
   SolutionTopSection,
+  HeroCommonSection,
 };

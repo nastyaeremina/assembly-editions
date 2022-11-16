@@ -36,10 +36,10 @@ export default function SolutionHero() {
                 </p>
                 <BtnWrap>
                   <PrimaryButton>
-                    <Link href="/">Start Trial</Link>
+                    <Link href="#">Start Trial</Link>
                   </PrimaryButton>
                   <SecondryButton>
-                    <Link href="/">Why Copilot</Link>
+                    <Link href="#">Why Copilot</Link>
                   </SecondryButton>
                 </BtnWrap>
               </TextSection>

@@ -180,6 +180,11 @@ const Body6 = css`
   line-height: 12px;
   letter-spacing: 0.01em;
 `;
+const Name = css`
+  font-weight: 500;
+  font-size: 10px;
+  line-height: 14px;
+`;
 export {
   Heading1,
   Heading2,
@@ -204,4 +209,5 @@ export {
   TableText,
   Value,
   CardTxt,
+  Name,
 };

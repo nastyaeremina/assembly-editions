@@ -180,6 +180,7 @@ sub {
 
 img {
   border: 0;
+  height: auto;
 }
 
 svg:not(:root) {
