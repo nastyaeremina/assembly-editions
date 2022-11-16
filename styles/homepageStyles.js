@@ -10,7 +10,6 @@ import {
   Heading4,
   Body2,
   Label,
-  Heading2,
 } from "./styles";
 
 const Scfeaturetitle = styled.div`
@@ -705,42 +704,7 @@ const HelpMargin = styled.div`
 const BtnView = styled.div`
   margin-top: 28px;
 `;
-const MsgHeroSection = styled.div`
-  background-color: ${({ theme }) => theme.colors.browndark};
-  /* padding-top: 180px; */
-  text-align: center;
-  position: relative;
-  /* ::before{
-    content: "";
-    position: absolute;
-    background-color: #F4D8C4;
-    width: 147px;
-    height: 82px;
-    top: 121px;
-    right: 43px;
-    left: 592px;
-  } */
-`;
-const HeroSub = styled.div`
-padding:120px 0 140px 0;
-text-align: center;
-h2{
-  ${Heading2};
-  color: ${({ theme }) => theme.colors.brownlight};
-  margin:0;
-}
-span{
-  background: linear-gradient(to right, #D7B79E 50%, #113155 50%);
-}
-`;
-const HeroTop = styled.div`
-width: 147px;
-height: 17px;
-background: #F4D8C4;
-border-radius: 8px 8px 8px 0px;
-margin: 0 auto;
 
-`;
 export {
   Scfeaturetitle,
   FeatureTag,
@@ -807,7 +771,4 @@ export {
   IconSvg,
   IconViewblank,
   BtnView,
-  MsgHeroSection,
-  HeroSub,
-  HeroTop
 };

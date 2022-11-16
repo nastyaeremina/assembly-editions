@@ -112,6 +112,11 @@ export default function Navbar({ BlogDetails }) {
             >
               <Link href="/modulebilling">Features</Link>
             </SpanLink>
+            {/* <SpanLink
+              className={router.pathname === "/solution" ? "active" : ""}
+            >
+              <Link href="/solution">Solution</Link>
+            </SpanLink> */}
             <SpanLink className={router.pathname === "/apps" ? "active" : ""}>
               <Link href="/apps">Apps</Link>
             </SpanLink>
