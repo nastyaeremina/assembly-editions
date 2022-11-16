@@ -5,7 +5,6 @@ import Link from "next/link";
 import Image from "next/image";
 import Layout from "../../components/layout";
 import Navbar from "../../components/navbar/navbar";
-// import useMobileDevice from "../../hooks/useMobileDevice";
 import {
   Container,
   PrimaryButton,
@@ -18,11 +17,7 @@ import {
   PriceButton,
   YearlyButton,
   MonthlyButton,
-  LeftTopBorder,
-  RightTopBorder,
   WrapSlide,
-  LeftbottomBorder,
-  RightBottomBorder,
   PricingMenu,
   PriceOption,
   PriceMenuLeft,
@@ -34,22 +29,15 @@ import {
   PricePlanWrap,
   PlanButton,
   PriceTable,
-  LearnLink,
-  ImgMargin,
-  TextUnderline,
-  PriceTxt,
-  PricePadding,
   ImageWrap,
   PriceImage,
   PriceImageLeft,
-  Pricefaq,
   PriceText,
 } from "../../styles/pricingstyles";
 import CTA from "../../components/cta/cta";
 import FAQ from "../../components/faq/faq";
 
 export default function NewIndex() {
-  // const mobile = useMobileDevice();
   return (
     <>
       <NextSeo
@@ -292,9 +280,6 @@ export default function NewIndex() {
                     </td>
                     <td>
                       <h3>$119</h3>
-                      {/* <PriceTxt>
-                        <p>per internal user</p>
-                      </PriceTxt> */}
                       <span className="spantext">per internal user</span>
                       <span className="spantext">5 User Minimum</span>
                     </td>
@@ -428,21 +413,6 @@ export default function NewIndex() {
                         clients. This lets you stay organized and gives you full
                         control over which team member can access which client.
                       </p>
-                      {/* <LearnLink>
-                        <Link href="/">
-                          
-                            Learn More
-                            <ImgMargin>
-                              <Image
-                                src="/images/right.svg"
-                                alt="main-logo"
-                                height={9}
-                                width={6}
-                              />
-                            </ImgMargin>
-                         
-                        </Link>
-                      </LearnLink> */}
                     </td>
                     <td>
                       <Image
@@ -510,21 +480,6 @@ export default function NewIndex() {
                         Use Portal API and Zapier triggers to set up automations
                         that streamline the experience for your clients.
                       </p>
-                      {/* <LearnLink>
-                        <Link href="/">
-                       
-                            Learn More
-                            <ImgMargin>
-                              <Image
-                                src="/images/right.svg"
-                                alt="main-logo"
-                                height={9}
-                                width={6}
-                              />
-                            </ImgMargin>
-                          
-                        </Link>
-                      </LearnLink> */}
                     </td>
                     <td></td>
                     <td>
@@ -651,21 +606,6 @@ export default function NewIndex() {
                         reply to messaging email notifications in a seamless
                         experience.
                       </p>
-                      {/* <LearnLink>
-                        <Link href="/">
-                         
-                            Learn More
-                            <ImgMargin>
-                              <Image
-                                src="/images/right.svg"
-                                alt="main-logo"
-                                height={9}
-                                width={6}
-                              />
-                            </ImgMargin>
-                      
-                        </Link>
-                      </LearnLink> */}
                     </td>
                     <td>
                       <Image
@@ -1147,9 +1087,9 @@ export default function NewIndex() {
                   compliance, advanced reporting needs, and more.
                 </p>
                 <SecondryButton>
-                  <Link href="/request-demo">Learn More</Link>
+                  <Link href="#">Learn More</Link>
                 </SecondryButton>
-              </PriceImageLeft>
+              </PriceImageLeft>p
               <>
                 <Image
                   src="/images/price.png"
