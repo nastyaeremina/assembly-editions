@@ -39,7 +39,6 @@ export default function Meta() {
         integrity="sha512-aVKKRRi/Q/YV+4mjoKBsE4x3H+BkegoM/em46NNlCqNTmUYADjBbeNefNxYV7giUp0VxICtqdrbqU7iVaeZNXA=="
         crossorigin="anonymous"
         referrerpolicy="no-referrer"
-        async
       ></script>
       <script src="/js/header-common.js" type="text/javascript" async></script>
       <script src="/js/faq-common.js" type="text/javascript" async></script>
