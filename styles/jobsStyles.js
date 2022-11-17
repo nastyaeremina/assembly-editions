@@ -2,6 +2,7 @@ import styled from "styled-components";
 import {
   Body1,
   Body2,
+  Body3,
   Body4,
   Body5,
   Body6,
@@ -11,6 +12,7 @@ import {
   Heading3,
   Heading4,
   Label,
+  LinkTxt,
   Name,
 } from "./styles";
 
@@ -304,7 +306,7 @@ const ImgIcon = styled.div`
 const DetailView = styled.div`
   h4 {
     ${Body1};
-    margin: 20px 0 0;
+    margin: 20px 0 0 0;
     color: ${({ theme }) => theme.colors.title};
   }
   p {
@@ -312,6 +314,118 @@ const DetailView = styled.div`
     margin: 12px 0 0;
     color: ${({ theme }) => theme.colors.body};
   }
+`;
+const JObMain = styled.div`
+  padding-top: 40px;
+  margin-top: 80px;
+  padding-bottom: 100px;
+`;
+const DetailLink = styled.div`
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  p {
+    ${LinkTxt};
+    margin: 0;
+    color: ${({ theme }) => theme.colors.lightgray};
+  }
+`;
+const JobDetail = styled.div`
+  display: flex;
+  padding-top: 28px;
+  gap:46px;
+`;
+const DetailLeft = styled.div`
+ max-width: 260px;
+ width:100%;
+  h3 {
+    ${Heading3};
+    color: ${({ theme }) => theme.colors.title};
+    margin: 0 0 24px 0;
+  }
+`;
+const DetailWrap = styled.div`
+  display: flex;
+  gap: 8px;
+  flex-direction: column;
+  padding-bottom: 20px;
+  p {
+    ${Body4};
+    margin: 0;
+    color: ${({ theme }) => theme.colors.lightgray};
+  }
+  span {
+    ${Body4};
+    margin: 0;
+    color: ${({ theme }) => theme.colors.title};
+  }
+`;
+const ImageWrap = styled.div`
+  display: flex;
+  gap: 4px;
+  padding-bottom: 31px;
+`;
+const DetailRight = styled.div`
+`;
+const DetailText = styled.ul`
+  h4 {
+    ${Heading4};
+    color: ${({ theme }) => theme.colors.title};
+    margin: 0;
+  }
+`;
+const DeatilTextSub = styled.li`
+p{
+  ${Body3};
+  color: ${({ theme }) => theme.colors.body};
+  margin: 24px 0 0 0;
+  :first-child{
+    margin:20px 0 0 0 ;
+  }
+}
+span{
+  ${Body3};
+  color: ${({ theme }) => theme.colors.primary};
+  margin: 0;
+}
+`;
+const DetailInner = styled.ul`
+padding-top: 40px;
+h4 {
+    ${Heading4};
+    color: ${({ theme }) => theme.colors.title};
+    margin: 0 0 20px 0;
+  }
+.bullet{
+  padding-top: 7px;
+}
+.textcolor{
+  color: ${({ theme }) => theme.colors.darkgray};
+}
+`;
+const DetailInnerSub = styled.li`
+display: flex;
+gap: 16px;
+align-items:flex-start ;
+.mr0{
+  margin-bottom: 0;
+}
+p{
+  ${Body4};
+  color: ${({ theme }) => theme.colors.body};
+  margin: 0 0 16px 0;
+  /* :last-child{
+    margin: 0;
+  } */
+  span{
+    color: ${({ theme }) => theme.colors.title};
+  }
+}
+`;
+const BulletImage = styled.div`
+padding: 5px 10px;
+margin-top:7px;
+background-color: ${({ theme }) => theme.colors.greenmidlight};
 `;
 export {
   HeroJobSection,
@@ -349,4 +463,16 @@ export {
   ImgIcon,
   DetailView,
   MainWrap,
+  JObMain,
+  DetailLink,
+  JobDetail,
+  DetailLeft,
+  DetailWrap,
+  ImageWrap,
+  DetailRight,
+  DetailText,
+  DeatilTextSub,
+  DetailInner,
+  DetailInnerSub,
+  BulletImage
 };
