@@ -19,7 +19,7 @@ import {
   BulletImage
 } from "../../styles/jobsStyles";
 
-export default function Jobs() {
+export default function JobsDetail() {
   return (
     <>
       <NextSeo
