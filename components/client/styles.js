@@ -19,7 +19,7 @@ gap: 16px;
 justify-content: space-between;
 padding-bottom: 16px;
 padding-top: 40px;
-transition: all 0.5s ease;
+/* transition: all 0.5s ease; */
 .mydiv:hover .hide  {
     display:block;
     color:white;
@@ -33,7 +33,7 @@ const ModuleCard = styled.div`
 padding: 24px 20px;
 border: 1px solid #01292C;
 border-radius: 4px;
-transition: all 5s ease;
+/* transition: all 5s ease; */
 .hide{
     display: none;
  
