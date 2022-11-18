@@ -223,7 +223,7 @@ export default function Navbar({ BlogDetails }) {
               <Link href="/features">Company</Link>
               <InnerList company className="innerlist">
                 <ListLi>
-                  <MenuWrap href="#">
+                  <MenuWrap href="/enterprise">
                     <LeftImg>
                       <Image
                         src="/images/enterlogo.svg"
@@ -238,7 +238,7 @@ export default function Navbar({ BlogDetails }) {
                   </MenuWrap>
                 </ListLi>
                 <ListLi>
-                  <MenuWrap href="#">
+                  <MenuWrap href="/jobs">
                     <LeftImg>
                       <Image
                         src="/images/jobicon.svg"
@@ -253,7 +253,7 @@ export default function Navbar({ BlogDetails }) {
                   </MenuWrap>
                 </ListLi>
                 <ListLi>
-                  <MenuWrap href="#">
+                  <MenuWrap href="/brands">
                     <LeftImg>
                       <Image
                         src="/images/brand.svg"

@@ -99,9 +99,9 @@ export default function Footer() {
                     <p>Company</p>
                     <FooterMenuList>
                       <Link href="/enterprise">Enterprise</Link>
-                      <Link href="#">Pricing</Link>
+                      <Link href="/pricing">Pricing</Link>
                       <Link href="/jobs">Jobs</Link>
-                      <Link href="#">Brand</Link>
+                      <Link href="/brands">Brand</Link>
                     </FooterMenuList>
                   </FooterMenu>
                 </FooterMenu>
