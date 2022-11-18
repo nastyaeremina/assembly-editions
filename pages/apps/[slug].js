@@ -18,7 +18,7 @@ import {
   FeatureImg,
   CardText,
   CardEnd,
-  FeatureCard,
+  FeatureCard
 } from "../../styles/appsStyles";
 import { Container, PrimaryButton } from "../../styles/commonStyles";
 import CTA from "../../components/cta/cta";
@@ -92,7 +92,6 @@ export default function AppsDetail() {
                     <p>Type</p>
                     <HelpWrap>
                       <span>App</span>
-
                       <Image
                         src="/images/help.svg"
                         alt="bill-icon"

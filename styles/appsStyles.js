@@ -5,8 +5,11 @@ import {
   Body5,
   CardTxt,
   Heading2,
+  Heading3,
   Heading4,
   Heading5,
+  Label,
+  LinkTxt,
   Value,
 } from "./styles";
 const HeroSection = styled.div`
@@ -38,7 +41,7 @@ const Input = styled.input`
   ${Value};
   color: ${({ theme }) => theme.colors.title};
   letter-spacing: 0.01em;
-  padding: 14px 20px 14px 55px;
+  padding: 11px 20px 11px 55px;
   border: 1px solid #bebebf;
   border-radius: 48px;
   width: 306px;
@@ -241,6 +244,118 @@ const LeftWrap = styled.div`
   position: sticky;
   top: 95px;
 `;
+const DetailLink = styled.div`
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  padding-bottom: 28px;
+  p {
+    ${LinkTxt};
+    margin: 0;
+    color: ${({ theme }) => theme.colors.lightgray};
+  }
+`;
+const AppsDetailMain = styled.div`
+padding-top: 40px;
+margin-top: 80px;
+`;
+const AppDetailCard = styled.div`
+ background-color: ${({ theme }) => theme.colors.background};
+ padding: 40px 0;
+ margin-bottom: 40px;
+ p{
+  margin: 20px 0 32px 0;
+  ${Body2};
+  color: ${({ theme }) => theme.colors.body};
+ }
+`;
+const DetailWrap = styled.div`
+border: 1px solid #000000;
+border-radius: 7px;
+padding: 25px;
+position:relative ;
+.imagepostion{
+  position: absolute;
+  top:131px;
+  right: 0;
+}
+.imagepostion2{
+  position: absolute;
+  top:247px;
+  right:0;
+}
+`;
+const DetailMain = styled.div`
+display:flex;
+padding-bottom: 100px;
+`;
+const LinePostion = styled.div`
+position: absolute;
+top:15px;
+right: -45px;
+`;
+const DetailRight = styled.div`padding: 30px 0;
+.mr10{
+  padding-top: 10px;
+}
+`;
+const RightWrap = styled.div`
+display: flex;
+gap:10px;
+padding-bottom: 60px;
+align-items: flex-start;
+`;
+const DetailTxt = styled.div`
+p{
+  ${Label};
+  color: ${({ theme }) => theme.colors.lightgray};
+  margin: 0 0 12px 0;
+}
+span{
+  ${Body4};
+      color: ${({ theme }) => theme.colors.title};
+      margin: 0;
+
+  
+}
+a{
+  color: ${({ theme }) => theme.colors.primary};
+  ${Body4};
+
+}
+`;
+const HelpWrap = styled.div`
+display: flex;
+gap:12px;
+`;
+const RightTxt = styled.div`
+  background-color: ${({ theme }) => theme.colors.greenlight};
+  padding:7px 20px;
+  margin-top: 12px;
+  h4{
+    ${Label};
+    color: ${({ theme }) => theme.colors.primary};
+    margin: 0;
+    letter-spacing: 0.01em;
+  }
+`;
+const LeftImage = styled.div`
+padding-top: 10px;
+`;
+const AppWrap = styled.div`
+padding-bottom: 50px;
+h3{
+  ${Heading3};
+  margin: 0;
+  color: ${({ theme }) => theme.colors.black};
+}
+`;
+const CardSection = styled.div`
+padding-top: 50px;
+display: grid;
+grid-template-columns: 1fr 1fr 1fr 1fr;
+grid-gap: 48px;
+`;
 export {
   HeroSection,
   FeatureSection,
@@ -268,4 +383,18 @@ export {
   InputWrap,
   OtherWrap,
   LeftWrap,
+  DetailLink,
+  AppsDetailMain,
+  AppDetailCard,
+  DetailWrap,
+  DetailMain,
+  LinePostion,
+  DetailRight,
+  RightWrap,
+  DetailTxt,
+  HelpWrap,
+  RightTxt,
+  LeftImage,
+  AppWrap,
+  CardSection
 };

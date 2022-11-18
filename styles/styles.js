@@ -92,6 +92,7 @@ const Body2 = css`
   font-weight: 400;
   font-size: 22px;
   line-height: 29px;
+  letter-spacing: 0.02em;
 `;
 const Body3 = css`
   font-family: ${({ theme }) => theme.fontfamily.Bagoss};
