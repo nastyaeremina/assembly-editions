@@ -41,7 +41,7 @@ const Input = styled.input`
   ${Value};
   color: ${({ theme }) => theme.colors.title};
   letter-spacing: 0.01em;
-  padding: 14px 20px 14px 55px;
+  padding: 11px 20px 11px 55px;
   border: 1px solid #bebebf;
   border-radius: 48px;
   width: 306px;

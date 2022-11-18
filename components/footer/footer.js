@@ -75,7 +75,7 @@ export default function Footer() {
                 <FooterMenu>
                   <p>Features</p>
                   <FooterMenuList>
-                    <Link href="#">Messaging</Link>
+                    <Link href="/modules/messege">Messaging</Link>
                     <Link href="#">Billing</Link>
                     <Link href="#">Files</Link>
                     <Link href="#">Forms</Link>
