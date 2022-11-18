@@ -1,5 +1,11 @@
 import styled, { css } from "styled-components";
-import { HeaderFont, Body2, Body5, FooterText } from "../../styles/styles";
+import {
+  HeaderFont,
+  Body2,
+  Body5,
+  FooterText,
+  Body4,
+} from "../../styles/styles";
 
 const NavbarWrapper = styled.div`
   position: fixed;
@@ -146,7 +152,7 @@ const InnerList = styled.ul`
   position: absolute;
   top: 48px;
   left: -10px;
-  padding: 0px;
+  padding: 8px 0;
   background: #fff;
   box-shadow: 0px 8px 30px #ddd;
   z-index: 90;
@@ -157,6 +163,15 @@ const InnerList = styled.ul`
     css`
       width: 100%;
       min-width: 360px;
+      background-color: #ffffff;
+      border: 1px solid #00160e;
+      box-shadow: 0px 8px 24px rgba(0, 0, 0, 0.35);
+    `}
+  ${(props) =>
+    props.company &&
+    css`
+      width: 100%;
+      min-width: 200px;
       background-color: #ffffff;
       border: 1px solid #00160e;
       box-shadow: 0px 8px 24px rgba(0, 0, 0, 0.35);
@@ -473,6 +488,12 @@ const MenuWrap = styled.a`
         }
       }
     `}
+    :hover {
+    background-color: ${({ theme }) => theme.colors.greendark};
+    h6 {
+      color: ${({ theme }) => theme.colors.greenlight};
+    }
+  }
 `;
 const LeftImg = styled.div`
   display: inline-flex;
@@ -484,6 +505,11 @@ const RightText = styled.div`
     margin: 0 0 4px 0;
     ${Body5};
     letter-spacing: 0.02em;
+  }
+  h6 {
+    ${Body5};
+    letter-spacing: 0.02em;
+    margin: 0;
   }
   span {
     ${FooterText};
