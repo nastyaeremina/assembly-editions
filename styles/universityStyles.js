@@ -1,27 +1,38 @@
-import styled from "styled-components";
-import { Body2, Body4, Body5, Heading2, Heading4, Heading5, LinkTxt, Value } from "./styles";
+import styled, { css } from "styled-components";
+import {
+  Body2,
+  Body4,
+  Body5,
+  Heading2,
+  Heading4,
+  Heading5,
+  LinkTxt,
+  Value,
+} from "./styles";
 const UniversitySection = styled.div`
-padding-top:80px;
+  padding-top: 80px;
+  padding-bottom: 100px;
 `;
 const UniversityHero = styled.div`
-padding: 100px 0 50px 0;
-text-align: center;
-max-width: 780px;
-margin:0 auto;
-h2{
+  padding-top: 100px;
+  text-align: center;
+  max-width: 780px;
+  margin: 0 auto;
+  h2 {
     ${Heading2};
     color: ${({ theme }) => theme.colors.title};
-margin: 0 0 20px 0;
-}
-p{
+    margin: 0 0 20px 0;
+  }
+  p {
     color: ${({ theme }) => theme.colors.body};
-margin:0;
-${Body2};
-}
+    margin: 0;
+    ${Body2};
+  }
 `;
 const FeatureWrap = styled.div`
-display: flex;
+  display: flex;
   gap: 36px;
+  padding-top: 100px;
 `;
 const FeatureLeft = styled.div`
   position: relative;
@@ -43,7 +54,7 @@ const Input = styled.input`
   color: ${({ theme }) => theme.colors.title};
   letter-spacing: 0.01em;
   padding: 11px 80px 11px 56px;
-  border: 1px solid #CCCCD0;
+  border: 1px solid #ccccd0;
   border-radius: 48px;
   width: 306px;
   outline: 0;
@@ -53,10 +64,9 @@ const Input = styled.input`
 `;
 const Catagory = styled.ul`
   padding-top: 50px;
-.active{
+  .active {
     color: ${({ theme }) => theme.colors.title};
-
-}
+  }
   h4 {
     padding-bottom: 20px;
     margin: 0;
@@ -85,13 +95,21 @@ const Catagoryitem = styled.li`
   }
 `;
 const FeatureRight = styled.div`
+  position: relative;
   h3 {
     ${Heading4};
     color: ${({ theme }) => theme.colors.title};
     margin: 0 0 28px 0;
   }
 `;
-const Featured = styled.div``;
+const Featured = styled.div`
+  /* padding-top: 100px; */
+  ${(props) =>
+    props.isSelected &&
+    css`
+      padding-top: 100px;
+    `}
+`;
 const FeatureMenu = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
@@ -99,25 +117,44 @@ const FeatureMenu = styled.div`
   row-gap: 28px;
 `;
 const FeatureCard = styled.div`
-border-radius: 4px;
+  border-radius: 4px;
 `;
 const ExtensionsSection = styled.div`
   padding-top: 40px;
-
+  ${(props) =>
+    props.isSelected &&
+    css`
+      padding-top: 100px;
+    `}
+`;
+const ExtensionCard = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 36px;
+`;
+const SchedulingApps = styled.div`
+  padding-top: 40px;
+  ${(props) =>
+    props.isSelected &&
+    css`
+      padding-top: 100px;
+    `}
 `;
 export {
-    UniversitySection,
-    UniversityHero,
-    FeatureWrap,
-    FeatureLeft,
-    LeftWrap,
-    InputWrap,
-    Input,
-    Catagory,
-    Catagoryitem,
-    FeatureRight,
-    Featured,
-    FeatureMenu,
-    FeatureCard,
-    ExtensionsSection
+  UniversitySection,
+  UniversityHero,
+  FeatureWrap,
+  FeatureLeft,
+  LeftWrap,
+  InputWrap,
+  Input,
+  Catagory,
+  Catagoryitem,
+  FeatureRight,
+  Featured,
+  FeatureMenu,
+  FeatureCard,
+  ExtensionsSection,
+  SchedulingApps,
+  ExtensionCard,
 };
