@@ -82,6 +82,7 @@ export default function University() {
                     />
                     <Input placeholder="Find a video..." />
                   </InputWrap>
+
                   <Catagory>
                     <h4>Categories</h4>
                     <Catagoryitem>
@@ -133,96 +134,116 @@ export default function University() {
                 >
                   <h3>Get Started</h3>
                   <FeatureMenu>
-                    <FeatureCard>
-                      <Image
-                        src="/images/video1.png"
-                        alt="video"
-                        width={270}
-                        height={152}
-                        layout={"fixed"}
-                      />
-                    </FeatureCard>
-                    <FeatureCard>
-                      <Image
-                        src="/images/video1.png"
-                        alt="video"
-                        width={270}
-                        height={152}
-                        layout={"fixed"}
-                      />
-                    </FeatureCard>
-                    <FeatureCard>
-                      <Image
-                        src="/images/video1.png"
-                        alt="video"
-                        width={270}
-                        height={152}
-                        layout={"fixed"}
-                      />
-                    </FeatureCard>
-                    <FeatureCard>
-                      <Image
-                        src="/images/video1.png"
-                        alt="video"
-                        width={270}
-                        height={152}
-                        layout={"fixed"}
-                      />
-                    </FeatureCard>
-                    <FeatureCard>
-                      <Image
-                        src="/images/video1.png"
-                        alt="video"
-                        width={270}
-                        height={152}
-                        layout={"fixed"}
-                      />
-                    </FeatureCard>
-                    <FeatureCard>
-                      <Image
-                        src="/images/video1.png"
-                        alt="video"
-                        width={270}
-                        height={152}
-                        layout={"fixed"}
-                      />
-                    </FeatureCard>
-                    <FeatureCard>
-                      <Image
-                        src="/images/video1.png"
-                        alt="video"
-                        width={270}
-                        height={152}
-                        layout={"fixed"}
-                      />
-                    </FeatureCard>
-                    <FeatureCard>
-                      <Image
-                        src="/images/video1.png"
-                        alt="video"
-                        width={270}
-                        height={152}
-                        layout={"fixed"}
-                      />
-                    </FeatureCard>
-                    <FeatureCard>
-                      <Image
-                        src="/images/video1.png"
-                        alt="video"
-                        width={270}
-                        height={152}
-                        layout={"fixed"}
-                      />
-                    </FeatureCard>
-                    <FeatureCard>
-                      <Image
-                        src="/images/video1.png"
-                        alt="video"
-                        width={270}
-                        height={152}
-                        layout={"fixed"}
-                      />
-                    </FeatureCard>
+                    <Link href="university/video">
+                      <FeatureCard>
+                        <Image
+                          src="/images/video1.png"
+                          alt="video"
+                          width={270}
+                          height={152}
+                          layout={"fixed"}
+                        />
+                      </FeatureCard>
+                    </Link>
+                    <Link href="#">
+                      <FeatureCard>
+                        <Image
+                          src="/images/video1.png"
+                          alt="video"
+                          width={270}
+                          height={152}
+                          layout={"fixed"}
+                        />
+                      </FeatureCard>
+                    </Link>
+                    <Link href="#">
+                      <FeatureCard>
+                        <Image
+                          src="/images/video1.png"
+                          alt="video"
+                          width={270}
+                          height={152}
+                          layout={"fixed"}
+                        />
+                      </FeatureCard>
+                    </Link>
+                    <Link href="#">
+                      <FeatureCard>
+                        <Image
+                          src="/images/video1.png"
+                          alt="video"
+                          width={270}
+                          height={152}
+                          layout={"fixed"}
+                        />
+                      </FeatureCard>
+                    </Link>
+                    <Link href="#">
+                      <FeatureCard>
+                        <Image
+                          src="/images/video1.png"
+                          alt="video"
+                          width={270}
+                          height={152}
+                          layout={"fixed"}
+                        />
+                      </FeatureCard>
+                    </Link>
+                    <Link href="#">
+                      <FeatureCard>
+                        <Image
+                          src="/images/video1.png"
+                          alt="video"
+                          width={270}
+                          height={152}
+                          layout={"fixed"}
+                        />
+                      </FeatureCard>
+                    </Link>
+                    <Link href="#">
+                      <FeatureCard>
+                        <Image
+                          src="/images/video1.png"
+                          alt="video"
+                          width={270}
+                          height={152}
+                          layout={"fixed"}
+                        />
+                      </FeatureCard>
+                    </Link>
+                    <Link href="#">
+                      <FeatureCard>
+                        <Image
+                          src="/images/video1.png"
+                          alt="video"
+                          width={270}
+                          height={152}
+                          layout={"fixed"}
+                        />
+                      </FeatureCard>
+                    </Link>
+                    <Link href="#">
+                      <FeatureCard>
+                        <Image
+                          src="/images/video1.png"
+                          alt="video"
+                          width={270}
+                          height={152}
+                          layout={"fixed"}
+                        />
+                      </FeatureCard>
+                    </Link>
+                    <Link href="#">
+                      <FeatureCard>
+                        <Image
+                          src="/images/video1.png"
+                          alt="video"
+                          width={270}
+                          height={152}
+                          layout={"fixed"}
+                        />
+                      </FeatureCard>
+                    </Link>
                   </FeatureMenu>
                 </Featured>
                 <ExtensionsSection
@@ -231,69 +252,83 @@ export default function University() {
                 >
                   <h3>Project management</h3>
                   <FeatureMenu>
-                    <FeatureCard>
-                      <Image
-                        src="/images/video1.png"
-                        alt="video"
-                        width={270}
-                        height={152}
-                        layout={"fixed"}
-                      />
-                    </FeatureCard>
-                    <FeatureCard>
-                      <Image
-                        src="/images/video1.png"
-                        alt="video"
-                        width={270}
-                        height={152}
-                        layout={"fixed"}
-                      />
-                    </FeatureCard>
-                    <FeatureCard>
-                      <Image
-                        src="/images/video1.png"
-                        alt="video"
-                        width={270}
-                        height={152}
-                        layout={"fixed"}
-                      />
-                    </FeatureCard>
-                    <FeatureCard>
-                      <Image
-                        src="/images/video1.png"
-                        alt="video"
-                        width={270}
-                        height={152}
-                        layout={"fixed"}
-                      />
-                    </FeatureCard>
-                    <FeatureCard>
-                      <Image
-                        src="/images/video1.png"
-                        alt="video"
-                        width={270}
-                        height={152}
-                        layout={"fixed"}
-                      />
-                    </FeatureCard>
-                    <FeatureCard>
-                      <Image
-                        src="/images/video1.png"
-                        alt="video"
-                        width={270}
-                        height={152}
-                        layout={"fixed"}
-                      />
-                    </FeatureCard>
-                    <FeatureCard>
-                      <Image
-                        src="/images/video1.png"
-                        alt="video"
-                        width={270}
-                        height={152}
-                        layout={"fixed"}
-                      />
-                    </FeatureCard>
+                    <Link href="#">
+                      <FeatureCard>
+                        <Image
+                          src="/images/video1.png"
+                          alt="video"
+                          width={270}
+                          height={152}
+                          layout={"fixed"}
+                        />
+                      </FeatureCard>
+                    </Link>
+                    <Link href="#">
+                      <FeatureCard>
+                        <Image
+                          src="/images/video1.png"
+                          alt="video"
+                          width={270}
+                          height={152}
+                          layout={"fixed"}
+                        />
+                      </FeatureCard>
+                    </Link>
+                    <Link href="#">
+                      <FeatureCard>
+                        <Image
+                          src="/images/video1.png"
+                          alt="video"
+                          width={270}
+                          height={152}
+                          layout={"fixed"}
+                        />
+                      </FeatureCard>
+                    </Link>
+                    <Link href="#">
+                      <FeatureCard>
+                        <Image
+                          src="/images/video1.png"
+                          alt="video"
+                          width={270}
+                          height={152}
+                          layout={"fixed"}
+                        />
+                      </FeatureCard>
+                    </Link>
+                    <Link href="#">
+                      <FeatureCard>
+                        <Image
+                          src="/images/video1.png"
+                          alt="video"
+                          width={270}
+                          height={152}
+                          layout={"fixed"}
+                        />
+                      </FeatureCard>
+                    </Link>
+                    <Link href="#">
+                      <FeatureCard>
+                        <Image
+                          src="/images/video1.png"
+                          alt="video"
+                          width={270}
+                          height={152}
+                          layout={"fixed"}
+                        />
+                      </FeatureCard>
+                    </Link>
+                    <Link href="#">
+                      <FeatureCard>
+                        <Image
+                          src="/images/video1.png"
+                          alt="video"
+                          width={270}
+                          height={152}
+                          layout={"fixed"}
+                        />
+                      </FeatureCard>
+                    </Link>
                   </FeatureMenu>
                 </ExtensionsSection>
                 <SchedulingApps
@@ -302,132 +337,160 @@ export default function University() {
                 >
                   <h3>Partner Apps</h3>
                   <ExtensionCard>
-                    <FeatureCard>
-                      <Image
-                        src="/images/video1.png"
-                        alt="video"
-                        width={270}
-                        height={152}
-                        layout={"fixed"}
-                      />
-                    </FeatureCard>
-                    <FeatureCard>
-                      <Image
-                        src="/images/video1.png"
-                        alt="video"
-                        width={270}
-                        height={152}
-                        layout={"fixed"}
-                      />
-                    </FeatureCard>
-                    <FeatureCard>
-                      <Image
-                        src="/images/video1.png"
-                        alt="video"
-                        width={270}
-                        height={152}
-                        layout={"fixed"}
-                      />
-                    </FeatureCard>
-                    <FeatureCard>
-                      <Image
-                        src="/images/video1.png"
-                        alt="video"
-                        width={270}
-                        height={152}
-                        layout={"fixed"}
-                      />
-                    </FeatureCard>
-                    <FeatureCard>
-                      <Image
-                        src="/images/video1.png"
-                        alt="video"
-                        width={270}
-                        height={152}
-                        layout={"fixed"}
-                      />
-                    </FeatureCard>
-                    <FeatureCard>
-                      <Image
-                        src="/images/video1.png"
-                        alt="video"
-                        width={270}
-                        height={152}
-                        layout={"fixed"}
-                      />
-                    </FeatureCard>
-                    <FeatureCard>
-                      <Image
-                        src="/images/video1.png"
-                        alt="video"
-                        width={270}
-                        height={152}
-                        layout={"fixed"}
-                      />
-                    </FeatureCard>
-                    <FeatureCard>
-                      <Image
-                        src="/images/video1.png"
-                        alt="video"
-                        width={270}
-                        height={152}
-                        layout={"fixed"}
-                      />
-                    </FeatureCard>
-                    <FeatureCard>
-                      <Image
-                        src="/images/video1.png"
-                        alt="video"
-                        width={270}
-                        height={152}
-                        layout={"fixed"}
-                      />
-                    </FeatureCard>
-                    <FeatureCard>
-                      <Image
-                        src="/images/video1.png"
-                        alt="video"
-                        width={270}
-                        height={152}
-                        layout={"fixed"}
-                      />
-                    </FeatureCard>
-                    <FeatureCard>
-                      <Image
-                        src="/images/video1.png"
-                        alt="video"
-                        width={270}
-                        height={152}
-                        layout={"fixed"}
-                      />
-                    </FeatureCard>
-                    <FeatureCard>
-                      <Image
-                        src="/images/video1.png"
-                        alt="video"
-                        width={270}
-                        height={152}
-                        layout={"fixed"}
-                      />
-                    </FeatureCard>
-                    <FeatureCard>
-                      <Image
-                        src="/images/video1.png"
-                        alt="video"
-                        width={270}
-                        height={152}
-                        layout={"fixed"}
-                      />
-                    </FeatureCard>
-                    <FeatureCard>
-                      <Image
-                        src="/images/video1.png"
-                        alt="video"
-                        width={270}
-                        height={152}
-                        layout={"fixed"}
-                      />
-                    </FeatureCard>
+                    <Link href="#">
+                      <FeatureCard>
+                        <Image
+                          src="/images/video1.png"
+                          alt="video"
+                          width={270}
+                          height={152}
+                          layout={"fixed"}
+                        />
+                      </FeatureCard>
+                    </Link>
+                    <Link href="#">
+                      <FeatureCard>
+                        <Image
+                          src="/images/video1.png"
+                          alt="video"
+                          width={270}
+                          height={152}
+                          layout={"fixed"}
+                        />
+                      </FeatureCard>
+                    </Link>
+                    <Link href="#">
+                      <FeatureCard>
+                        <Image
+                          src="/images/video1.png"
+                          alt="video"
+                          width={270}
+                          height={152}
+                          layout={"fixed"}
+                        />
+                      </FeatureCard>
+                    </Link>
+                    <Link href="#">
+                      <FeatureCard>
+                        <Image
+                          src="/images/video1.png"
+                          alt="video"
+                          width={270}
+                          height={152}
+                          layout={"fixed"}
+                        />
+                      </FeatureCard>
+                    </Link>
+                    <Link href="#">
+                      <FeatureCard>
+                        <Image
+                          src="/images/video1.png"
+                          alt="video"
+                          width={270}
+                          height={152}
+                          layout={"fixed"}
+                        />
+                      </FeatureCard>
+                    </Link>
+                    <Link href="#">
+                      <FeatureCard>
+                        <Image
+                          src="/images/video1.png"
+                          alt="video"
+                          width={270}
+                          height={152}
+                          layout={"fixed"}
+                        />
+                      </FeatureCard>
+                    </Link>
+                    <Link href="#">
+                      <FeatureCard>
+                        <Image
+                          src="/images/video1.png"
+                          alt="video"
+                          width={270}
+                          height={152}
+                          layout={"fixed"}
+                        />
+                      </FeatureCard>
+                    </Link>
+                    <Link href="#">
+                      <FeatureCard>
+                        <Image
+                          src="/images/video1.png"
+                          alt="video"
+                          width={270}
+                          height={152}
+                          layout={"fixed"}
+                        />
+                      </FeatureCard>
+                    </Link>
+                    <Link href="#">
+                      <FeatureCard>
+                        <Image
+                          src="/images/video1.png"
+                          alt="video"
+                          width={270}
+                          height={152}
+                          layout={"fixed"}
+                        />
+                      </FeatureCard>
+                    </Link>
+                    <Link href="#">
+                      <FeatureCard>
+                        <Image
+                          src="/images/video1.png"
+                          alt="video"
+                          width={270}
+                          height={152}
+                          layout={"fixed"}
+                        />
+                      </FeatureCard>
+                    </Link>
+                    <Link href="#">
+                      <FeatureCard>
+                        <Image
+                          src="/images/video1.png"
+                          alt="video"
+                          width={270}
+                          height={152}
+                          layout={"fixed"}
+                        />
+                      </FeatureCard>
+                    </Link>
+                    <Link href="#">
+                      <FeatureCard>
+                        <Image
+                          src="/images/video1.png"
+                          alt="video"
+                          width={270}
+                          height={152}
+                          layout={"fixed"}
+                        />
+                      </FeatureCard>
+                    </Link>
+                    <Link href="#">
+                      <FeatureCard>
+                        <Image
+                          src="/images/video1.png"
+                          alt="video"
+                          width={270}
+                          height={152}
+                          layout={"fixed"}
+                        />
+                      </FeatureCard>
+                    </Link>
+                    <Link href="#">
+                      <FeatureCard>
+                        <Image
+                          src="/images/video1.png"
+                          alt="video"
+                          width={270}
+                          height={152}
+                          layout={"fixed"}
+                        />
+                      </FeatureCard>
+                    </Link>
                   </ExtensionCard>
                 </SchedulingApps>
                 <SchedulingApps
@@ -436,42 +499,51 @@ export default function University() {
                 >
                   <h3>Advanced</h3>
                   <ExtensionCard>
-                    <FeatureCard>
-                      <Image
-                        src="/images/video1.png"
-                        alt="video"
-                        width={270}
-                        height={152}
-                        layout={"fixed"}
-                      />
-                    </FeatureCard>
-                    <FeatureCard>
-                      <Image
-                        src="/images/video1.png"
-                        alt="video"
-                        width={270}
-                        height={152}
-                        layout={"fixed"}
-                      />
-                    </FeatureCard>
-                    <FeatureCard>
-                      <Image
-                        src="/images/video1.png"
-                        alt="video"
-                        width={270}
-                        height={152}
-                        layout={"fixed"}
-                      />
-                    </FeatureCard>
-                    <FeatureCard>
-                      <Image
-                        src="/images/video1.png"
-                        alt="video"
-                        width={270}
-                        height={152}
-                        layout={"fixed"}
-                      />
-                    </FeatureCard>
+                    <Link href="#">
+                      <FeatureCard>
+                        <Image
+                          src="/images/video1.png"
+                          alt="video"
+                          width={270}
+                          height={152}
+                          layout={"fixed"}
+                        />
+                      </FeatureCard>
+                    </Link>
+                    <Link href="#">
+                      <FeatureCard>
+                        <Image
+                          src="/images/video1.png"
+                          alt="video"
+                          width={270}
+                          height={152}
+                          layout={"fixed"}
+                        />
+                      </FeatureCard>
+                    </Link>
+                    <Link href="#">
+                      <FeatureCard>
+                        <Image
+                          src="/images/video1.png"
+                          alt="video"
+                          width={270}
+                          height={152}
+                          layout={"fixed"}
+                        />
+                      </FeatureCard>
+                    </Link>
+
+                    <Link href="#">
+                      <FeatureCard>
+                        <Image
+                          src="/images/video1.png"
+                          alt="video"
+                          width={270}
+                          height={152}
+                          layout={"fixed"}
+                        />
+                      </FeatureCard>
+                    </Link>
                   </ExtensionCard>
                 </SchedulingApps>
                 <SchedulingApps
@@ -480,33 +552,39 @@ export default function University() {
                 >
                   <h3>Industry courses</h3>
                   <ExtensionCard>
-                    <FeatureCard>
-                      <Image
-                        src="/images/video1.png"
-                        alt="video"
-                        width={270}
-                        height={152}
-                        layout={"fixed"}
-                      />
-                    </FeatureCard>
-                    <FeatureCard>
-                      <Image
-                        src="/images/video1.png"
-                        alt="video"
-                        width={270}
-                        height={152}
-                        layout={"fixed"}
-                      />
-                    </FeatureCard>
-                    <FeatureCard>
-                      <Image
-                        src="/images/video1.png"
-                        alt="video"
-                        width={270}
-                        height={152}
-                        layout={"fixed"}
-                      />
-                    </FeatureCard>
+                    <Link href="#">
+                      <FeatureCard>
+                        <Image
+                          src="/images/video1.png"
+                          alt="video"
+                          width={270}
+                          height={152}
+                          layout={"fixed"}
+                        />
+                      </FeatureCard>
+                    </Link>
+                    <Link href="#">
+                      <FeatureCard>
+                        <Image
+                          src="/images/video1.png"
+                          alt="video"
+                          width={270}
+                          height={152}
+                          layout={"fixed"}
+                        />
+                      </FeatureCard>
+                    </Link>
+                    <Link href="#">
+                      <FeatureCard>
+                        <Image
+                          src="/images/video1.png"
+                          alt="video"
+                          width={270}
+                          height={152}
+                          layout={"fixed"}
+                        />
+                      </FeatureCard>
+                    </Link>
                   </ExtensionCard>
                 </SchedulingApps>
                 <SchedulingApps
@@ -515,24 +593,28 @@ export default function University() {
                 >
                   <h3>Quick tips</h3>
                   <ExtensionCard>
-                    <FeatureCard>
-                      <Image
-                        src="/images/video1.png"
-                        alt="video"
-                        width={270}
-                        height={152}
-                        layout={"fixed"}
-                      />
-                    </FeatureCard>
-                    <FeatureCard>
-                      <Image
-                        src="/images/video1.png"
-                        alt="video"
-                        width={270}
-                        height={152}
-                        layout={"fixed"}
-                      />
-                    </FeatureCard>
+                    <Link href="#">
+                      <FeatureCard>
+                        <Image
+                          src="/images/video1.png"
+                          alt="video"
+                          width={270}
+                          height={152}
+                          layout={"fixed"}
+                        />
+                      </FeatureCard>
+                    </Link>
+                    <Link href="#">
+                      <FeatureCard>
+                        <Image
+                          src="/images/video1.png"
+                          alt="video"
+                          width={270}
+                          height={152}
+                          layout={"fixed"}
+                        />
+                      </FeatureCard>
+                    </Link>
                   </ExtensionCard>
                 </SchedulingApps>
               </FeatureRight>
