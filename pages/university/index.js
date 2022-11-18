@@ -52,8 +52,8 @@ export default function University() {
                     <Input placeholder="Find a video..." />
                   </InputWrap>
                   <Catagory>
-                    <h4>Partner Apps</h4>
-                    <Catagoryitem>
+                    <h4>Categories</h4>
+                    <Catagoryitem className="pd16">
                       <Link href={"#Brief-Section"}>All</Link>
                     </Catagoryitem>
                     <Catagoryitem>
@@ -165,7 +165,92 @@ export default function University() {
                       /></FeatureCard>
                   </FeatureMenu>
                 </Featured>
-                <ExtensionsSection></ExtensionsSection>
+                <ExtensionsSection id="Project-Section">
+
+                <h3>Project management</h3>
+                <FeatureMenu>
+                    <FeatureCard>
+                      <Image
+                        src="/images/video1.png"
+                        alt="video"
+                        width={270}
+                        height={152}
+                        layout={"fixed"}
+                      /></FeatureCard>
+                        <FeatureCard>
+                      <Image
+                        src="/images/video1.png"
+                        alt="video"
+                        width={270}
+                        height={152}
+                        layout={"fixed"}
+                      /></FeatureCard>
+                         <FeatureCard>
+                      <Image
+                        src="/images/video1.png"
+                        alt="video"
+                        width={270}
+                        height={152}
+                        layout={"fixed"}
+                      /></FeatureCard>
+                     <FeatureCard>
+                      <Image
+                        src="/images/video1.png"
+                        alt="video"
+                        width={270}
+                        height={152}
+                        layout={"fixed"}
+                      /></FeatureCard>
+                        <FeatureCard>
+                      <Image
+                        src="/images/video1.png"
+                        alt="video"
+                        width={270}
+                        height={152}
+                        layout={"fixed"}
+                      /></FeatureCard>
+                         <FeatureCard>
+                      <Image
+                        src="/images/video1.png"
+                        alt="video"
+                        width={270}
+                        height={152}
+                        layout={"fixed"}
+                      /></FeatureCard>
+                           <FeatureCard>
+                      <Image
+                        src="/images/video1.png"
+                        alt="video"
+                        width={270}
+                        height={152}
+                        layout={"fixed"}
+                      /></FeatureCard>
+                     <FeatureCard>
+                      <Image
+                        src="/images/video1.png"
+                        alt="video"
+                        width={270}
+                        height={152}
+                        layout={"fixed"}
+                      /></FeatureCard>
+                        <FeatureCard>
+                      <Image
+                        src="/images/video1.png"
+                        alt="video"
+                        width={270}
+                        height={152}
+                        layout={"fixed"}
+                      /></FeatureCard>
+                         <FeatureCard>
+                      <Image
+                        src="/images/video1.png"
+                        alt="video"
+                        width={270}
+                        height={152}
+                        layout={"fixed"}
+                      /></FeatureCard>
+                  </FeatureMenu>
+                </ExtensionsSection>
               </FeatureRight>
             </FeatureWrap>
           </Container>

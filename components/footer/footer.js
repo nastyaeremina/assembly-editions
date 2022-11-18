@@ -114,7 +114,7 @@ export default function Footer() {
                     <Link href="#">Security</Link>
                     <Link href="#">What’s New</Link>
                     <Link href="#">Help Center</Link>
-                    <Link href="#">Video Tutorials</Link>
+                    <Link href="/university">Video Tutorials</Link>
                     <Link href="#">API Reference</Link>
                     <Link href="#">System Status</Link>
                   </FooterMenuList>
