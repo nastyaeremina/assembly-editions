@@ -151,6 +151,21 @@ const SecondryButton = styled.div`
     }
   }
 `;
+const GreenButton = styled.div`
+  a {
+    ${ButtonText}
+    display: inline-block;
+    padding: 11px 32px;
+    border: 1px solid ${({ theme }) => theme.colors.greenlight};
+    border-radius: 48px;
+    background-color: transparent;
+    box-shadow: 1px 0 3px 0 rgb(0 0 0 / 12%);
+    color: ${({ theme }) => theme.colors.greenlight};
+    letter-spacing: 0.02em;
+    text-decoration: none;
+    transition: all 300ms;
+  }
+`;
 const CtaButton = styled.div`
   a {
     ${ButtonText}
@@ -652,4 +667,5 @@ export {
   FaqHeading,
   SolutionTopSection,
   HeroCommonSection,
+  GreenButton,
 };

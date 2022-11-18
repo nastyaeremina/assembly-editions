@@ -98,7 +98,7 @@ export default function Footer() {
                   <FooterMenu className="padding">
                     <p>Company</p>
                     <FooterMenuList>
-                      <Link href="#">Enterprise</Link>
+                      <Link href="/enterprise">Enterprise</Link>
                       <Link href="#">Pricing</Link>
                       <Link href="/jobs">Jobs</Link>
                       <Link href="#">Brand</Link>
