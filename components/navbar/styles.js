@@ -1,5 +1,5 @@
 import styled, { css } from "styled-components";
-import { HeaderFont, Body2 } from "../../styles/styles";
+import { HeaderFont, Body2, Body5, FooterText } from "../../styles/styles";
 
 const NavbarWrapper = styled.div`
   position: fixed;
@@ -18,9 +18,9 @@ const NavbarWrapper = styled.div`
   ${(props) =>
     props.isScrollPage &&
     css`
-      background: rgba(250, 250, 251, 0.75);
-      backdrop-filter: blur(32px);
-      box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.08);
+      background: rgba(253, 253, 251, 0.8);
+      backdrop-filter: blur(6px);
+      border-bottom: 1px solid #ccccd0;
     `}
 `;
 const NavbarInner = styled.div`
@@ -87,7 +87,17 @@ const NavigationBlock = styled.ul`
     align-items: flex-start;
   }
 `;
+const LineMenuImg = styled.div`
+  position: absolute;
+  visibility: 0;
+  opacity: 0;
+  left: -10px;
+  bottom: -27px;
+  display: none;
+`;
 const SpanLink = styled.li`
+  position: relative;
+  transition: all 300ms;
   a {
     ${HeaderFont}
     margin: 0 14px;
@@ -122,7 +132,37 @@ const SpanLink = styled.li`
       margin-right: 0;
     }
   }
+  :hover .innerlist,
+  li {
+    display: block;
+  }
+  :hover .img-line {
+    opacity: 1;
+    visibility: visible;
+    display: block;
+  }
 `;
+const InnerList = styled.ul`
+  position: absolute;
+  top: 48px;
+  left: -10px;
+  padding: 0px;
+  background: #fff;
+  box-shadow: 0px 8px 30px #ddd;
+  z-index: 90;
+  display: none;
+  transition: all 300ms;
+  ${(props) =>
+    props.features &&
+    css`
+      width: 100%;
+      min-width: 360px;
+      background-color: #ffffff;
+      border: 1px solid #00160e;
+      box-shadow: 0px 8px 24px rgba(0, 0, 0, 0.35);
+    `}
+`;
+const ListLi = styled.li``;
 const HeaderBtnGroup = styled.div`
   @media only screen and (max-width: 768px) {
     width: 100%;
@@ -371,7 +411,85 @@ const OverLayBlock = styled.div`
       height: calc(100vh - 64px);
     `}
 `;
-
+const MenuWrap = styled.a`
+  display: flex;
+  align-items: center;
+  padding: 12px 20px;
+  margin: 0 !important;
+  transition: all 300ms;
+  //hover style for features list
+  ${(props) =>
+    props.msghover &&
+    css`
+      :hover {
+        background-color: ${({ theme }) => theme.colors.browndark};
+        h5,
+        span {
+          color: ${({ theme }) => theme.colors.brownlight};
+        }
+      }
+    `}
+  ${(props) =>
+    props.billhover &&
+    css`
+      :hover {
+        background-color: ${({ theme }) => theme.colors.bluedark};
+        h5,
+        span {
+          color: ${({ theme }) => theme.colors.bluelight};
+        }
+      }
+    `}
+    ${(props) =>
+    props.filehover &&
+    css`
+      :hover {
+        background-color: ${({ theme }) => theme.colors.purpledark};
+        h5,
+        span {
+          color: ${({ theme }) => theme.colors.purplelight};
+        }
+      }
+    `}
+    ${(props) =>
+    props.formhover &&
+    css`
+      :hover {
+        background-color: ${({ theme }) => theme.colors.yellowdark};
+        h5,
+        span {
+          color: ${({ theme }) => theme.colors.yellowlight};
+        }
+      }
+    `}
+    ${(props) =>
+    props.helphover &&
+    css`
+      :hover {
+        background-color: ${({ theme }) => theme.colors.orangedark};
+        h5,
+        span {
+          color: ${({ theme }) => theme.colors.orangelight};
+        }
+      }
+    `}
+`;
+const LeftImg = styled.div`
+  display: inline-flex;
+`;
+const RightText = styled.div`
+  color: ${({ theme }) => theme.colors.title};
+  padding-left: 20px;
+  h5 {
+    margin: 0 0 4px 0;
+    ${Body5};
+    letter-spacing: 0.02em;
+  }
+  span {
+    ${FooterText};
+    display: block;
+  }
+`;
 export {
   NavbarWrapper,
   NavbarInner,
@@ -395,4 +513,10 @@ export {
   OverLayBlock,
   TrySalescampBlock,
   CopilotLogo,
+  InnerList,
+  ListLi,
+  MenuWrap,
+  LeftImg,
+  RightText,
+  LineMenuImg,
 };
