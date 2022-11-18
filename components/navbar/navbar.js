@@ -221,6 +221,61 @@ export default function Navbar({ BlogDetails }) {
               className={router.pathname === "/features" ? "active" : ""}
             >
               <Link href="/features">Company</Link>
+              <InnerList company className="innerlist">
+                <ListLi>
+                  <MenuWrap href="#">
+                    <LeftImg>
+                      <Image
+                        src="/images/enterlogo.svg"
+                        alt="enter-icon"
+                        width={16}
+                        height={16}
+                      />
+                    </LeftImg>
+                    <RightText>
+                      <h6>Enterprise</h6>
+                    </RightText>
+                  </MenuWrap>
+                </ListLi>
+                <ListLi>
+                  <MenuWrap href="#">
+                    <LeftImg>
+                      <Image
+                        src="/images/jobicon.svg"
+                        alt="job-icon"
+                        width={16}
+                        height={16}
+                      />
+                    </LeftImg>
+                    <RightText>
+                      <h6>Jobs</h6>
+                    </RightText>
+                  </MenuWrap>
+                </ListLi>
+                <ListLi>
+                  <MenuWrap href="#">
+                    <LeftImg>
+                      <Image
+                        src="/images/brand.svg"
+                        alt="file-icon"
+                        width={16}
+                        height={16}
+                      />
+                    </LeftImg>
+                    <RightText>
+                      <h6>Brand</h6>
+                    </RightText>
+                  </MenuWrap>
+                </ListLi>
+              </InnerList>
+              <LineMenuImg className="img-line">
+                <Image
+                  src="/images/companyline.svg"
+                  alt="line-icon"
+                  width={100}
+                  height={30}
+                />
+              </LineMenuImg>
             </SpanLink>
             <SpanLink
               className={router.pathname === "/features" ? "active" : ""}
