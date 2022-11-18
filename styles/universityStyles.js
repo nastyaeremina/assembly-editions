@@ -4,6 +4,7 @@ import {
   Body4,
   Body5,
   Heading2,
+  Heading3,
   Heading4,
   Heading5,
   LinkTxt,
@@ -140,6 +141,58 @@ const SchedulingApps = styled.div`
       padding-top: 100px;
     `}
 `;
+const DetailVideoMain = styled.div`
+  padding-top: 80px;
+`;
+const DetailVideoHero = styled.div`
+  padding: 40px 0;
+  h3 {
+    ${Heading3};
+    color: ${({ theme }) => theme.colors.title};
+    margin: 0;
+  }
+`;
+const Backlink = styled.div`
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  padding-bottom: 28px;
+  p {
+    ${LinkTxt};
+    margin: 0;
+    color: ${({ theme }) => theme.colors.lightgray};
+  }
+`;
+const VideoImage = styled.div`
+  position: relative;
+  padding-bottom: 40px;
+`;
+const VideoSection = styled.div`
+  padding-bottom: 100px;
+  .mainimage {
+    position: absolute;
+    top: 34%;
+    left: 42%;
+  }
+  p {
+    ${Body2};
+    color: ${({ theme }) => theme.colors.body};
+    margin: 0;
+  }
+`;
+const VIdeoWrap = styled.div`
+  padding-bottom: 100px;
+  h3 {
+    ${Heading3};
+    color: ${({ theme }) => theme.colors.title};
+    margin: 0;
+  }
+`;
+const UniversityVideo = styled.div`
+  display: flex;
+  justify-content: space-between;
+  padding-top: 40px;
+`;
 export {
   UniversitySection,
   UniversityHero,
@@ -157,4 +210,11 @@ export {
   ExtensionsSection,
   SchedulingApps,
   ExtensionCard,
+  DetailVideoMain,
+  DetailVideoHero,
+  Backlink,
+  VideoSection,
+  VideoImage,
+  VIdeoWrap,
+  UniversityVideo,
 };
