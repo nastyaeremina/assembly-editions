@@ -1,6 +1,5 @@
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 import {
-  Body1,
   Body2,
   Body4,
   Body5,
