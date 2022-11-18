@@ -69,5 +69,7 @@ const TopFunctionWrap = styled.div`
     margin: 0;
   }
 `;
-const ContentMain = styled.div``;
+const ContentMain = styled.div`
+padding-top: 100px;
+`;
 export {ContentMain, BottomFunction, TabRow, TabBox, ContainWrap, LeftDetail, TopFunctionWrap,RightDetail };

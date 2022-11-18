@@ -42,7 +42,7 @@ const Input = styled.input`
   ${Value};
   color: ${({ theme }) => theme.colors.title};
   letter-spacing: 0.01em;
-  padding: 12px 80px 12px 56px;
+  padding: 11px 80px 11px 56px;
   border: 1px solid #CCCCD0;
   border-radius: 48px;
   width: 306px;
@@ -103,12 +103,7 @@ border-radius: 4px;
 `;
 const ExtensionsSection = styled.div`
   padding-top: 40px;
-  p {
-    ${Body5};
-    color: ${({ theme }) => theme.colors.title};
-    margin: 0;
-    letter-spacing: 0.02em;
-  }
+
 `;
 export {
     UniversitySection,
