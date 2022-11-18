@@ -281,6 +281,121 @@ export default function Navbar({ BlogDetails }) {
               className={router.pathname === "/features" ? "active" : ""}
             >
               <Link href="/features">Resources</Link>
+              <InnerList company className="innerlist">
+                <ListLi>
+                  <MenuWrap href="#">
+                    <LeftImg>
+                      <Image
+                        src="/images/penicon.svg"
+                        alt="pen-icon"
+                        width={16}
+                        height={16}
+                      />
+                    </LeftImg>
+                    <RightText resourcetext>
+                      <h6>Blog</h6>
+                    </RightText>
+                  </MenuWrap>
+                </ListLi>
+                <ListLi>
+                  <MenuWrap href="#">
+                    <LeftImg>
+                      <Image
+                        src="/images/secure.svg"
+                        alt="secure-icon"
+                        width={16}
+                        height={16}
+                      />
+                    </LeftImg>
+                    <RightText resourcetext>
+                      <h6>Security</h6>
+                    </RightText>
+                  </MenuWrap>
+                </ListLi>
+                <ListLi>
+                  <MenuWrap href="#">
+                    <LeftImg>
+                      <Image
+                        src="/images/refresh.svg"
+                        alt="refresh-icon"
+                        width={16}
+                        height={16}
+                      />
+                    </LeftImg>
+                    <RightText resourcetext>
+                      <h6>What’s New</h6>
+                    </RightText>
+                  </MenuWrap>
+                </ListLi>
+                <ListLi>
+                  <MenuWrap href="#">
+                    <LeftImg>
+                      <Image
+                        src="/images/headphone.svg"
+                        alt="help-icon"
+                        width={16}
+                        height={16}
+                      />
+                    </LeftImg>
+                    <RightText resourcetext>
+                      <h6>Help Center</h6>
+                    </RightText>
+                  </MenuWrap>
+                </ListLi>
+                <ListLi>
+                  <MenuWrap href="#">
+                    <LeftImg>
+                      <Image
+                        src="/images/videoicon.svg"
+                        alt="video-icon"
+                        width={16}
+                        height={16}
+                      />
+                    </LeftImg>
+                    <RightText resourcetext>
+                      <h6>Video Tutorials</h6>
+                    </RightText>
+                  </MenuWrap>
+                </ListLi>
+                <ListLi>
+                  <MenuWrap href="#">
+                    <LeftImg>
+                      <Image
+                        src="/images/apiicon.svg"
+                        alt="api-icon"
+                        width={16}
+                        height={16}
+                      />
+                    </LeftImg>
+                    <RightText resourcetext>
+                      <h6>API Reference</h6>
+                    </RightText>
+                  </MenuWrap>
+                </ListLi>
+                <ListLi>
+                  <MenuWrap href="#">
+                    <LeftImg>
+                      <Image
+                        src="/images/headphone.svg"
+                        alt="system-icon"
+                        width={16}
+                        height={16}
+                      />
+                    </LeftImg>
+                    <RightText resourcetext>
+                      <h6>System Status</h6>
+                    </RightText>
+                  </MenuWrap>
+                </ListLi>
+              </InnerList>
+              <LineMenuImg className="img-line">
+                <Image
+                  src="/images/resourceline.svg"
+                  alt="line-icon"
+                  width={108}
+                  height={30}
+                />
+              </LineMenuImg>
             </SpanLink>
 
             {mobile && <DropDownList />}

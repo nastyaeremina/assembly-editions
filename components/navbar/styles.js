@@ -501,6 +501,11 @@ const LeftImg = styled.div`
 const RightText = styled.div`
   color: ${({ theme }) => theme.colors.title};
   padding-left: 20px;
+  ${(props) =>
+    props.resourcetext &&
+    css`
+      padding-left: 12px;
+    `}
   h5 {
     margin: 0 0 4px 0;
     ${Body5};
