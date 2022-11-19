@@ -110,8 +110,8 @@ export default function Footer() {
                 <FooterMenu>
                   <p>Resources</p>
                   <FooterMenuList>
-                    <Link href="#">Blog</Link>
-                    <Link href="#">Security</Link>
+                    <Link href="http://copilot.com/blog">Blog</Link>
+                    <Link href="http://security.copilot.com">Security</Link>
                     <Link href="#">What’s New</Link>
                     <Link href="#">Help Center</Link>
                     <Link href="/university">Video Tutorials</Link>

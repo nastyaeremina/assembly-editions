@@ -432,7 +432,14 @@ const MenuWrap = styled.a`
   padding: 12px 20px;
   margin: 0 !important;
   transition: all 300ms;
+  :hover {
+    background-color: ${({ theme }) => theme.colors.greendark};
+    h6 {
+      color: ${({ theme }) => theme.colors.greenlight};
+    }
+  }
   //hover style for features list
+
   ${(props) =>
     props.msghover &&
     css`
@@ -488,12 +495,6 @@ const MenuWrap = styled.a`
         }
       }
     `}
-    :hover {
-    background-color: ${({ theme }) => theme.colors.greendark};
-    h6 {
-      color: ${({ theme }) => theme.colors.greenlight};
-    }
-  }
 `;
 const LeftImg = styled.div`
   display: inline-flex;

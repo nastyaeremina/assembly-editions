@@ -74,7 +74,7 @@ export default function Navbar({ BlogDetails }) {
           <DropDownLink
             className={router.pathname === "/blogs" ? "active" : ""}
           >
-            <Link href="/blogs">Blogs</Link>
+            <Link href="copilot.com/blog">Blogs</Link>
           </DropDownLink>
           <DropDownLink
             className={router.pathname === "/updates" ? "active" : ""}
@@ -283,7 +283,7 @@ export default function Navbar({ BlogDetails }) {
               <Link href="/features">Resources</Link>
               <InnerList company className="innerlist">
                 <ListLi>
-                  <MenuWrap href="#">
+                  <MenuWrap href="http://copilot.com/blog">
                     <LeftImg>
                       <Image
                         src="/images/penicon.svg"
@@ -298,7 +298,7 @@ export default function Navbar({ BlogDetails }) {
                   </MenuWrap>
                 </ListLi>
                 <ListLi>
-                  <MenuWrap href="#">
+                  <MenuWrap href="http://security.copilot.com">
                     <LeftImg>
                       <Image
                         src="/images/secure.svg"
@@ -313,7 +313,7 @@ export default function Navbar({ BlogDetails }) {
                   </MenuWrap>
                 </ListLi>
                 <ListLi>
-                  <MenuWrap href="#">
+                  <MenuWrap href="http://copilot.com/updates">
                     <LeftImg>
                       <Image
                         src="/images/refresh.svg"
@@ -343,7 +343,7 @@ export default function Navbar({ BlogDetails }) {
                   </MenuWrap>
                 </ListLi>
                 <ListLi>
-                  <MenuWrap href="#">
+                  <MenuWrap href="/university">
                     <LeftImg>
                       <Image
                         src="/images/videoicon.svg"
@@ -358,7 +358,7 @@ export default function Navbar({ BlogDetails }) {
                   </MenuWrap>
                 </ListLi>
                 <ListLi>
-                  <MenuWrap href="#">
+                  <MenuWrap href="http://docs.copilot.com/">
                     <LeftImg>
                       <Image
                         src="/images/apiicon.svg"
@@ -373,7 +373,7 @@ export default function Navbar({ BlogDetails }) {
                   </MenuWrap>
                 </ListLi>
                 <ListLi>
-                  <MenuWrap href="#">
+                  <MenuWrap href="https://status.copilot.com/">
                     <LeftImg>
                       <Image
                         src="/images/headphone.svg"
