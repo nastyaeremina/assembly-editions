@@ -12,6 +12,9 @@ import {
   Label,
 } from "./styles";
 
+const HomeMain = styled.div`
+  background-color: ${({ theme }) => theme.colors.bgpages};
+`;
 const Scfeaturetitle = styled.div`
   max-width: 720px;
   width: 100%;
@@ -165,7 +168,7 @@ const FeatureLinkBlock = styled.div``;
 
 const HeroSection = styled.div`
   width: 100%;
-  padding: 160px 0 50px 0;
+  padding: 180px 0 50px 0;
   text-align: center;
   /* background-image: url("/images/Frame-1-figma-1.webp"); */
   /* background-position: center;
@@ -706,6 +709,7 @@ const BtnView = styled.div`
 `;
 
 export {
+  HomeMain,
   Scfeaturetitle,
   FeatureTag,
   SectionHeading,
