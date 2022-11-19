@@ -83,6 +83,7 @@ const theme = {
     bgpages: "#FDFDFB",
     hover: "#FF492C",
     bgcolor: "#FFFFFD",
+    subtitle: "#3D3D3D",
   },
 };
 
