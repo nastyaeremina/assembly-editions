@@ -79,7 +79,8 @@ const theme = {
     footercolor: "#F3F3F2",
     caption: "#6E847C",
     bodycolor: "#4C4C4C",
-    background:"#F8F8F8",
+    background: "#F8F8F8",
+    bgpages: "#FDFDFB",
   },
 };
 
