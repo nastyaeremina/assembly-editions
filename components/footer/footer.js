@@ -112,11 +112,13 @@ export default function Footer() {
                   <FooterMenuList>
                     <Link href="http://copilot.com/blog">Blog</Link>
                     <Link href="http://security.copilot.com">Security</Link>
-                    <Link href="#">What’s New</Link>
+                    <Link href="http://copilot.com/updates">What’s New</Link>
                     <Link href="#">Help Center</Link>
                     <Link href="/university">Video Tutorials</Link>
-                    <Link href="#">API Reference</Link>
-                    <Link href="#">System Status</Link>
+                    <Link href="http://docs.copilot.com/">API Reference</Link>
+                    <Link href="https://status.copilot.com/">
+                      System Status
+                    </Link>
                   </FooterMenuList>
                 </FooterMenu>
               </FotterMenuLeft>

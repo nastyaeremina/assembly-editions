@@ -389,10 +389,14 @@ const ReviewLogo = styled.div`
   align-items: center;
   justify-content: center;
   gap: 10px;
+  display: inline-block;
 `;
 const Reviewimage = styled.div`
   display: flex;
   gap: 3px;
+  :hover {
+    display: none;
+  }
 `;
 const ReviewRight = styled.div`
   p {
@@ -707,7 +711,54 @@ const HelpMargin = styled.div`
 const BtnView = styled.div`
   margin-top: 28px;
 `;
-
+const ImageHover = styled.div`
+  transition: 300ms all ease-in-out;
+  animation: fadeIn ease 0.3s;
+  -webkit-animation: fadeIn ease 0.3s;
+  -moz-animation: fadeIn ease 0.3s;
+  -o-animation: fadeIn ease 0.3s;
+  -ms-animation: fadeIn ease 0.3s;
+  display: inline-block;
+  cursor: pointer;
+  position: relative;
+  .show {
+    display: block;
+    opacity: 1;
+    transition: 300ms all ease-in;
+    animation: fadeIn ease 0.3s;
+    -webkit-animation: fadeIn ease 0.3s;
+    -moz-animation: fadeIn ease 0.3s;
+    -o-animation: fadeIn ease 0.3s;
+    -ms-animation: fadeIn ease 3s;
+  }
+  :hover .show {
+    /* display: none; */
+    opacity: 0;
+  }
+  :hover .hide {
+    /* display: block; */
+    opacity: 1;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    visibility: visible;
+  }
+  .hide {
+    /* display: none; */
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    transition: 300ms all ease-out;
+    animation: fadeIn ease 0.3s;
+    -webkit-animation: fadeIn ease 0.3s;
+    -moz-animation: fadeIn ease 0.3s;
+    -o-animation: fadeIn ease 0.3s;
+    -ms-animation: fadeIn ease 3s;
+  }
+`;
 export {
   HomeMain,
   Scfeaturetitle,
@@ -775,4 +826,5 @@ export {
   IconSvg,
   IconViewblank,
   BtnView,
+  ImageHover,
 };
