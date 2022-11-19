@@ -80,7 +80,7 @@ const theme = {
     caption: "#6E847C",
     bodycolor: "#4C4C4C",
     background: "#F8F8F8",
-    bgpages: "#FDFDFB",
+    bgcolor: "#FFFFFD",
   },
 };
 

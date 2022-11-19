@@ -36,7 +36,9 @@ export default function SolutionHero() {
                 </p>
                 <BtnWrap>
                   <PrimaryButton>
-                    <Link href="#">Start Trial</Link>
+                    <Link href="https://dashboard.copilot.com/onboarding">
+                      Start Trial
+                    </Link>
                   </PrimaryButton>
                   <SecondryButton>
                     <Link href="#">Why Copilot</Link>

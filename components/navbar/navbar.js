@@ -405,13 +405,17 @@ export default function Navbar({ BlogDetails }) {
             <SignInSignUpBtn>
               <>
                 <SignIn>
-                  <Link href="/">Login</Link>
+                  <Link href="https://dashboard.copilot.com/login?step=signIn">
+                    Login
+                  </Link>
                 </SignIn>
                 <SignIn>
                   <Link href="/">Book demo</Link>
                 </SignIn>
                 <BlackButton>
-                  <Link href="/">Start trial</Link>
+                  <Link href="https://dashboard.copilot.com/onboarding">
+                    Start trial
+                  </Link>
                 </BlackButton>
               </>
             </SignInSignUpBtn>

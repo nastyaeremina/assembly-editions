@@ -53,7 +53,9 @@ export default function Extensions({ allPosts }) {
             <h2>App Directory</h2>
             <p>Try Copilot free for 14 days, no credit card required</p>
             <PrimaryButton>
-              <Link href="/">Start Trial</Link>
+              <Link href="https://dashboard.copilot.com/onboarding">
+                Start Trial
+              </Link>
             </PrimaryButton>
           </Container>
         </HeroSection>
