@@ -81,6 +81,7 @@ const theme = {
     bodycolor: "#4C4C4C",
     background: "#F8F8F8",
     bgpages: "#FDFDFB",
+    hover: "#FF492C",
   },
 };
 
