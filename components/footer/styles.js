@@ -152,6 +152,16 @@ const FooterSocialList = styled.ul`
   gap: 24px;
 `;
 const FooterSocialItem = styled.li`
+  display: flex;
+  transition: all 300ms;
+  cursor: pointer;
+  :hover {
+    svg {
+      path {
+        fill: #000;
+      }
+    }
+  }
   a {
     display: inline-block;
     overflow: hidden;
