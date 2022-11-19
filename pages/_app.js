@@ -82,6 +82,7 @@ const theme = {
     background: "#F8F8F8",
     bgpages: "#FDFDFB",
     hover: "#FF492C",
+    bgcolor: "#FFFFFD",
   },
 };
 

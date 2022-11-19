@@ -76,7 +76,9 @@ export default function Home() {
               </Para>
               <HeroBtnBlock>
                 <PrimaryButton>
-                  <Link href="/">Start Trial</Link>
+                  <Link href="https://dashboard.copilot.com/onboarding">
+                    Start Trial
+                  </Link>
                 </PrimaryButton>
                 <SecondryButton>
                   <Link href="/request-demo">Book Demo</Link>
