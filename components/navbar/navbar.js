@@ -1,12 +1,17 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useState, useEffect, useCallback } from "react";
+import Image from "next/image";
 import CopilotLogos from "../../public/images/blacklogo.svg";
+import GreenLogos from "../../public/images/greenlogo.svg";
+import WhiteLogos from "../../public/images/whitelogo.svg";
+
 import {
   BlackButton,
   Container,
   PrimaryButton,
 } from "../../styles/commonStyles";
+import { HEADER_LIST, NAVBAR_COLOR_LIST } from "../../constants/constant";
 import useMobileDevice from "../../hooks/useMobileDevice";
 import {
   NavbarWrapper,
@@ -36,13 +41,19 @@ import {
   RightText,
   LineMenuImg,
 } from "./styles";
-import Image from "next/image";
 
-export default function Navbar({ BlogDetails }) {
+export default function Navbar({
+  BlogDetails,
+  isModule,
+  headerIndex,
+  isEnterPrice,
+}) {
   const mobile = useMobileDevice();
   const router = useRouter();
 
   const [isOpenMobileMenu, setIsOpenMobileMenu] = useState(false);
+  const [colorList, setColorList] = useState(NAVBAR_COLOR_LIST[0]);
+
   const handleMobileMenu = useCallback(() => {
     setIsOpenMobileMenu(!isOpenMobileMenu);
   }, [isOpenMobileMenu]);
@@ -110,12 +121,16 @@ export default function Navbar({ BlogDetails }) {
         >
           <NavigationBlock>
             <SpanLink
+              textColor={colorList?.fontColor}
+              hoverColor={colorList?.primaryColor}
               className={router.pathname === "/pricing" ? "active" : ""}
             >
               <Link href="/pricing">Pricing</Link>
             </SpanLink>
             <SpanLink
               className={router.pathname === "/modulebilling" ? "active" : ""}
+              textColor={colorList?.fontColor}
+              hoverColor={colorList?.primaryColor}
             >
               <Link href="/modulebilling">Features</Link>
               <InnerList features className="innerlist">
@@ -214,10 +229,16 @@ export default function Navbar({ BlogDetails }) {
             >
               <Link href="/solution">Solution</Link>
             </SpanLink> */}
-            <SpanLink className={router.pathname === "/apps" ? "active" : ""}>
+            <SpanLink
+              textColor={colorList?.fontColor}
+              hoverColor={colorList?.primaryColor}
+              className={router.pathname === "/apps" ? "active" : ""}
+            >
               <Link href="/apps">Apps</Link>
             </SpanLink>
             <SpanLink
+              textColor={colorList?.fontColor}
+              hoverColor={colorList?.primaryColor}
               className={router.pathname === "/features" ? "active" : ""}
             >
               <Link href="/features">Company</Link>
@@ -278,6 +299,8 @@ export default function Navbar({ BlogDetails }) {
               </LineMenuImg>
             </SpanLink>
             <SpanLink
+              textColor={colorList?.fontColor}
+              hoverColor={colorList?.primaryColor}
               className={router.pathname === "/features" ? "active" : ""}
             >
               <Link href="/features">Resources</Link>
@@ -404,15 +427,24 @@ export default function Navbar({ BlogDetails }) {
           <HeaderBtnGroup>
             <SignInSignUpBtn>
               <>
-                <SignIn>
+                <SignIn
+                  textColor={colorList?.fontColor}
+                  hoverColor={colorList?.primaryColor}
+                >
                   <Link href="https://dashboard.copilot.com/login?step=signIn">
                     Login
                   </Link>
                 </SignIn>
-                <SignIn>
+                <SignIn
+                  textColor={colorList?.fontColor}
+                  hoverColor={colorList?.primaryColor}
+                >
                   <Link href="/">Book demo</Link>
                 </SignIn>
-                <BlackButton>
+                <BlackButton
+                  textColor={isModule ? colorList?.fontColor : "#FFFFFF"}
+                  backgroundColor={colorList?.buttonColor}
+                >
                   <Link href="https://dashboard.copilot.com/onboarding">
                     Start trial
                   </Link>
@@ -430,26 +462,31 @@ export default function Navbar({ BlogDetails }) {
     );
   };
 
+  useEffect(() => {
+    if (headerIndex) setColorList(NAVBAR_COLOR_LIST[headerIndex]);
+    else setColorList(NAVBAR_COLOR_LIST[HEADER_LIST.DEFAULT]);
+  }, [headerIndex]);
+
   return (
     <>
-      <NavbarWrapper isScrollPage={isScrollPage}>
+      <NavbarWrapper isScrollPage={isScrollPage} colorList={colorList}>
         <Container>
           <NavbarInner>
             <Link href="/">
-              {isScrollPage && BlogDetails ? (
-                <CopilotLogo
-                  loading="lazy"
-                  width="143"
-                  height="31"
-                  src={CopilotLogos.src}
-                ></CopilotLogo>
-              ) : BlogDetails ? (
+              {isModule ? (
                 <SalescampLogo
                   loading="lazy"
                   width="143"
                   height="31"
-                  src={CopilotLogos.src}
-                ></SalescampLogo>
+                  src={WhiteLogos.src}
+                />
+              ) : isEnterPrice ? (
+                <SalescampLogo
+                  loading="lazy"
+                  width="143"
+                  height="31"
+                  src={GreenLogos.src}
+                />
               ) : (
                 <SalescampLogo
                   loading="lazy"

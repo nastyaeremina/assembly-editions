@@ -24,9 +24,10 @@ const NavbarWrapper = styled.div`
   ${(props) =>
     props.isScrollPage &&
     css`
-      background: rgba(253, 253, 251, 0.8);
+      background: ${props.colorList?.bgColor};
+      opacity: 0.8;
       backdrop-filter: blur(6px);
-      border-bottom: 1px solid #ccccd0;
+      border-bottom: 1px solid ${props.colorList?.borderBottomColor};
     `}
 `;
 const NavbarInner = styled.div`
@@ -107,7 +108,12 @@ const SpanLink = styled.li`
   a {
     ${HeaderFont}
     margin: 0 14px;
-    color: ${({ theme }) => theme.colors.title};
+    ${(props) =>
+      props.textColor &&
+      css`
+        color: ${props.textColor};
+      `}
+    /* color: ${({ theme }) => theme.colors.title}; */
     transition: all 300ms;
     cursor: pointer;
     /* :hover {
@@ -115,7 +121,11 @@ const SpanLink = styled.li`
     } */
   }
   a:hover {
-    color: ${({ theme }) => theme.colors.primary};
+    ${(props) =>
+      props.hoverColor &&
+      css`
+        color: ${props.hoverColor};
+      `}/* color: ${({ theme }) => theme.colors.primary}; */
   }
   &.active {
     a {
@@ -206,11 +216,20 @@ const SignIn = styled.li`
     /* padding: 8px 16px; */
     align-items: center;
     transition: all 300ms;
-    color: ${({ theme }) => theme.colors.title};
+    ${(props) =>
+      props.textColor &&
+      css`
+        color: ${props.textColor};
+      `}
+    /* color: ${({ theme }) => theme.colors.title}; */
     cursor: pointer;
     text-decoration: none;
     :hover {
-      color: ${({ theme }) => theme.colors.primary};
+      ${(props) =>
+        props.hoverColor &&
+        css`
+          color: ${props.hoverColor};
+        `}
     }
   }
 `;

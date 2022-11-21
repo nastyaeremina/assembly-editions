@@ -2,6 +2,7 @@ import { NextSeo } from "next-seo";
 import Link from "next/link";
 import Layout from "../../components/layout";
 import Navbar from "../../components/navbar/navbar";
+import { HEADER_LIST } from "../../constants/constant";
 import { Container, GreenButton } from "../../styles/commonStyles";
 import {
   EnterPriseHero,
@@ -20,7 +21,7 @@ export default function Enterprise() {
       />
       <Layout>
         <MainWrap>
-          <Navbar />
+          <Navbar isEnterPrice={true} headerIndex={HEADER_LIST.ENTERPRICE} />
           <EnterPriseHero>
             <Container>
               <LeftHero>
