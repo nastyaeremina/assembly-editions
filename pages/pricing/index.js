@@ -33,6 +33,7 @@ import {
   PriceImage,
   PriceImageLeft,
   PriceText,
+  BulletImage,
 } from "../../styles/pricingstyles";
 import CTA from "../../components/cta/cta";
 import FAQ from "../../components/faq/faq";
@@ -89,39 +90,19 @@ export default function NewIndex() {
                         <PricePlan>
                           <h4>All Starter plans include</h4>
                           <PricePlanWrap>
-                            <Image
-                              src="/images/bullet.svg"
-                              alt="main-logo"
-                              height={23}
-                              width={20}
-                            />
+                            <BulletImage></BulletImage>
                             <p>Up to 100 clients and 10GB of storage</p>
                           </PricePlanWrap>
                           <PricePlanWrap>
-                            <Image
-                              src="/images/bullet.svg"
-                              alt="main-logo"
-                              height={23}
-                              width={20}
-                            />
+                            <BulletImage></BulletImage>
                             <p>Client management and custom fields</p>
                           </PricePlanWrap>
                           <PricePlanWrap>
-                            <Image
-                              src="/images/bullet.svg"
-                              alt="main-logo"
-                              height={23}
-                              width={20}
-                            />
+                            <BulletImage></BulletImage>
                             <p>Customizable branding and color scheme</p>
                           </PricePlanWrap>
                           <PricePlanWrap>
-                            <Image
-                              src="/images/bullet.svg"
-                              alt="main-logo"
-                              height={23}
-                              width={20}
-                            />
+                            <BulletImage></BulletImage>
                             <p>
                               Access to every Portal module including Messaging,
                               Billing, Files, Forms, and Surveys
@@ -150,39 +131,19 @@ export default function NewIndex() {
                         <PricePlan>
                           <h4>Everything in Starter</h4>
                           <PricePlanWrap>
-                            <Image
-                              src="/images/bullet.svg"
-                              alt="main-logo"
-                              height={23}
-                              width={20}
-                            />
+                            <BulletImage></BulletImage>
                             <p>Up to 100 clients and 10GB of storage</p>
                           </PricePlanWrap>
                           <PricePlanWrap>
-                            <Image
-                              src="/images/bullet.svg"
-                              alt="main-logo"
-                              height={23}
-                              width={20}
-                            />
+                            <BulletImage></BulletImage>
                             <p>Up to 2,000 clients and 2TB storage</p>
                           </PricePlanWrap>
                           <PricePlanWrap>
-                            <Image
-                              src="/images/bullet.svg"
-                              alt="main-logo"
-                              height={23}
-                              width={20}
-                            />
+                            <BulletImage></BulletImage>
                             <p>Automations</p>
                           </PricePlanWrap>
                           <PricePlanWrap>
-                            <Image
-                              src="/images/bullet.svg"
-                              alt="main-logo"
-                              height={23}
-                              width={20}
-                            />
+                            <BulletImage></BulletImage>
                             <p>Extensions</p>
                           </PricePlanWrap>
                         </PricePlan>
@@ -212,39 +173,19 @@ export default function NewIndex() {
                         <PricePlan>
                           <h4>Everything in Professional</h4>
                           <PricePlanWrap>
-                            <Image
-                              src="/images/bullet.svg"
-                              alt="main-logo"
-                              height={23}
-                              width={20}
-                            />
+                            <BulletImage></BulletImage>
                             <p>Up to 20,000 clients and 20TB storage</p>
                           </PricePlanWrap>
                           <PricePlanWrap>
-                            <Image
-                              src="/images/bullet.svg"
-                              alt="main-logo"
-                              height={23}
-                              width={20}
-                            />
+                            <BulletImage></BulletImage>
                             <p>Remove ‘Powered by Copilot’</p>
                           </PricePlanWrap>
                           <PricePlanWrap>
-                            <Image
-                              src="/images/bullet.svg"
-                              alt="main-logo"
-                              height={23}
-                              width={20}
-                            />
+                            <BulletImage></BulletImage>
                             <p>HIPAA compliance</p>
                           </PricePlanWrap>
                           <PricePlanWrap>
-                            <Image
-                              src="/images/bullet.svg"
-                              alt="main-logo"
-                              height={23}
-                              width={20}
-                            />
+                            <BulletImage></BulletImage>
                             <p>Dedicated success manager</p>
                           </PricePlanWrap>
                         </PricePlan>
