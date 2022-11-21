@@ -366,6 +366,11 @@ const Pricefaq = styled.div`
   margin: 0 0 60px 0;
 `;
 const PriceText = styled.div``;
+const BulletImage = styled.div`
+  padding: 5px 10px;
+  margin-top: 7px;
+  background-color: ${({ theme }) => theme.colors.greenmidlight};
+`;
 export {
   HeroHeading,
   HeroSection,
@@ -401,4 +406,5 @@ export {
   PriceImageLeft,
   Pricefaq,
   PriceText,
+  BulletImage,
 };
