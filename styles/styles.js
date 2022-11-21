@@ -187,10 +187,10 @@ const Name = css`
   line-height: 14px;
 `;
 const LinkTxt = css`
-font-weight: 500;
-font-size: 20px;
-line-height: 26px;
-letter-spacing: 0.02em;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 26px;
+  letter-spacing: 0.02em;
 `;
 export {
   Heading1,
@@ -217,5 +217,5 @@ export {
   Value,
   CardTxt,
   Name,
-  LinkTxt
+  LinkTxt,
 };
