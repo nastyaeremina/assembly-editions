@@ -1,5 +1,12 @@
 import styled from "styled-components";
-import { Body3, Body4, HeaderFont, Heading4 } from "../../styles/styles";
+import {
+  Body3,
+  Body4,
+  Body6,
+  HeaderFont,
+  Heading3,
+  Heading4,
+} from "../../styles/styles";
 const MainSection = styled.div`
   padding: 40px 80px;
   background-color: ${({ theme }) => theme.colors.bgcolor}; ;
@@ -134,6 +141,138 @@ const NameInfo = styled.div`
     font-size: 14px;
   }
 `;
+const SliderSection = styled.div`
+position:relative;
+  .swiper-slide {
+    text-align: center;
+    font-size: 18px;
+    background: #fff;
+
+    /* Center slide text vertically */
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    -webkit-justify-content: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    -webkit-align-items: center;
+    align-items: center;
+  }
+  .ImageSection {
+    max-width: 900px;
+    width: 100%;
+    /* background-image: url("/images/demoimage.png");
+    height: 900px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    /* padding: 120px 0 60px; */ */
+  }
+  .swiper {
+    width: 100%;
+    height: 100vh;
+  }
+  .swiper-slide img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .swiper-pagination-bullet {
+    width: 72px;
+    height: 72px;
+    text-align: center;
+    color: ${({ theme }) => theme.colors.body};
+ display: flex;
+ align-items: center;
+ justify-content: center;
+    opacity: 1;
+    background: transparent;
+    border: 1.08px solid #4C4C4C;
+    animation: spin 1.5s infinite linear;
+    margin:0;
+    span{
+      ${Body6};
+      display: flex;
+justify-content: center;
+align-items: center;
+    }
+  }
+
+  .swiper-pagination-bullet-active {
+    color: #fff;
+    background: transparent;
+    border: 1px solid #09AA6C;
+border-radius: 68.4px;
+    span{
+      ${Body6};
+   color: ${({ theme }) => theme.colors.whitecolor};
+   display: flex;
+   align-items: center;
+   justify-content: center;
+    }
+  }
+  .swiper-pagination{
+    display:flex;
+    bottom: 60px;
+justify-content: end;
+gap:16px;
+left: -120px;
+bottom: 60px;
+margin: 0 !important;
+}
+`;
+const Swiper = styled.div`
+  width: 100%;
+  height: 100%;
+`;
+
+const SwiperSlide = styled.div`
+  text-align: center;
+  font-size: 18px;
+  background: #fff;
+
+  /* Center slide text vertically */
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  -webkit-align-items: center;
+  align-items: center;
+`;
+const ImageText = styled.div`
+  position: absolute;
+  max-width: 660px;
+  width: 100%;
+  text-align: left;
+  bottom: 172px;
+  h3 {
+    ${Heading3};
+    color: ${({ theme }) => theme.colors.whiteColor};
+    margin: 0 0 24px 0;
+  }
+`;
+const TextWrapper = styled.div`
+  display: flex;
+  justify-content: space-between;
+  border-top: 1px solid #ffffff;
+  padding-top: 24px;
+  p {
+    ${Body4};
+    color: ${({ theme }) => theme.colors.whiteColor};
+    margin: 0;
+  }
+`;
 export {
   MainSection,
   FormSection,
@@ -143,4 +282,9 @@ export {
   NameBlock,
   NameInfo,
   LastText,
+  SliderSection,
+  Swiper,
+  SwiperSlide,
+  ImageText,
+  TextWrapper,
 };

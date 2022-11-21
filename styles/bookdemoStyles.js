@@ -7,9 +7,14 @@ const BookSection = styled.div`
 const ImageSection = styled.div`
   max-width: 900px;
   width: 100%;
-  img {
+  /* background-image: url("/images/demoimage.png"); */
+  /* height: 900px; */
+  /* background-size: contain;
+  background-repeat: no-repeat; */
+  /* padding: 120px 0 60px; */
+  /* img {
     max-width: 900px;
     width: 100%;
-  }
+  } */
 `;
 export { BookSection, ImageSection };

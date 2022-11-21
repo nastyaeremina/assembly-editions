@@ -5,6 +5,7 @@ import Link from "next/link";
 
 import { BookSection, ImageSection } from "../../styles/bookdemoStyles";
 import BookDemoForm from "../../components/bookdemo/bookDemo";
+import Slider from "../../components/bookdemo/slider";
 
 export default function BookDemo() {
   return (
@@ -16,12 +17,7 @@ export default function BookDemo() {
       <BookSection>
         <BookDemoForm />
         <ImageSection>
-          <Image
-            src="/images/demoimage.png"
-            width={900}
-            height={900}
-            alt="msg-icon"
-          />
+          <Slider />
         </ImageSection>
       </BookSection>
     </>
