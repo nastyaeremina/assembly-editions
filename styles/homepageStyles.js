@@ -681,6 +681,7 @@ const HelpLeft = styled.div`
 const HelpLeftSub = styled.div`
   /* max-width: 315px;
   width: 100%; */
+
   h4 {
     ${Heading4};
     color: ${({ theme }) => theme.colors.title};
@@ -696,9 +697,49 @@ const HelpLink = styled.div`
   display: flex;
   gap: 10px;
   align-items: center;
+  transition: 300ms all ease-in-out;
+  animation: fadeIn ease 0.3s;
+  -webkit-animation: fadeIn ease 0.3s;
+  -moz-animation: fadeIn ease 0.3s;
+  -o-animation: fadeIn ease 0.3s;
+  -ms-animation: fadeIn ease 0.3s;
   a {
     color: ${({ theme }) => theme.colors.primary};
     cursor: pointer;
+  }
+  :hover a {
+    color: black;
+    transition: 300ms all ease-in-out;
+    animation: fadeIn ease 0.3s;
+    -webkit-animation: fadeIn ease 0.3s;
+    -moz-animation: fadeIn ease 0.3s;
+    -o-animation: fadeIn ease 0.3s;
+    -ms-animation: fadeIn ease 0.3s;
+  }
+  .hide {
+    display: none;
+    transition: 300ms all ease-in-out;
+    animation: fadeIn ease 0.3s;
+    -webkit-animation: fadeIn ease 0.3s;
+    -moz-animation: fadeIn ease 0.3s;
+    -o-animation: fadeIn ease 0.3s;
+    -ms-animation: fadeIn ease 0.3s;
+  }
+  .show {
+    display: block;
+    transition: 300ms all ease-in-out;
+    animation: fadeIn ease 0.3s;
+    -webkit-animation: fadeIn ease 0.3s;
+    -moz-animation: fadeIn ease 0.3s;
+    -o-animation: fadeIn ease 0.3s;
+    -ms-animation: fadeIn ease 0.3s;
+  }
+
+  :hover .show {
+    display: none;
+  }
+  :hover .hide {
+    display: block;
   }
 `;
 const HelpWrap = styled.div`
