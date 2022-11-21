@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import {
   ButtonText,
   HeaderFont,
@@ -189,8 +189,18 @@ const BlackButton = styled.li`
     display: inline-block;
     padding: 8px 32px;
     border-radius: 48px;
-    background-color: ${({ theme }) => theme.colors.black};
-    color: ${({ theme }) => theme.colors.neutral};
+    ${(props) =>
+      props.textColor &&
+      css`
+        color: ${props.textColor};
+      `}
+    ${(props) =>
+      props.backgroundColor &&
+      css`
+        background-color: ${props.backgroundColor};
+      `}
+    /* background-color: ${({ theme }) => theme.colors.black}; */
+    /* color: ${({ theme }) => theme.colors.neutral}; */
     text-decoration: none;
     transition: all 300ms;
   }

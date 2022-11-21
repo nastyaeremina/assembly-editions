@@ -53,6 +53,7 @@ import {
 import BusinessSlider from "../components/businessSlider/businessslider";
 import ExtensionSlider from "../components/extensionslider/extensionslider";
 import CTA from "../components/cta/cta";
+import { HEADER_LIST } from "../constants/constant";
 
 export default function Home() {
   return (
@@ -62,7 +63,7 @@ export default function Home() {
         description="copilot offers client portal software solution to manage sales reporting, management, marketing, improve customer relationships and more. Get the best free CRM system for your business."
       />
       <Layout>
-        <Navbar />
+        <Navbar headerIndex={HEADER_LIST.HOME} isModule={false} />
         <HomeMain>
           <HeroSection>
             <Container>
