@@ -50,7 +50,6 @@ export default function Navbar({
 }) {
   const mobile = useMobileDevice();
   const router = useRouter();
-
   const [isOpenMobileMenu, setIsOpenMobileMenu] = useState(false);
   const [colorList, setColorList] = useState(NAVBAR_COLOR_LIST[0]);
 
@@ -135,7 +134,7 @@ export default function Navbar({
               <Link href="/modulebilling">Features</Link>
               <InnerList features className="innerlist">
                 <ListLi>
-                  <MenuWrap msghover href="/modules/messege">
+                  <MenuWrap msghover href="/modules/message">
                     <LeftImg>
                       <Image
                         src="/images/menumsg.svg"
@@ -151,7 +150,7 @@ export default function Navbar({
                   </MenuWrap>
                 </ListLi>
                 <ListLi>
-                  <MenuWrap billhover href="#">
+                  <MenuWrap billhover href="/modules/billing">
                     <LeftImg>
                       <Image
                         src="/images/billmenuicon.svg"
@@ -167,7 +166,7 @@ export default function Navbar({
                   </MenuWrap>
                 </ListLi>
                 <ListLi>
-                  <MenuWrap filehover href="#">
+                  <MenuWrap filehover href="/modules/file">
                     <LeftImg>
                       <Image
                         src="/images/filemenuicon.svg"
@@ -183,7 +182,7 @@ export default function Navbar({
                   </MenuWrap>
                 </ListLi>
                 <ListLi>
-                  <MenuWrap formhover href="#">
+                  <MenuWrap formhover href="/modules/form">
                     <LeftImg>
                       <Image
                         src="/images/formmenuicon.svg"
@@ -199,7 +198,7 @@ export default function Navbar({
                   </MenuWrap>
                 </ListLi>
                 <ListLi>
-                  <MenuWrap helphover href="#">
+                  <MenuWrap helphover href="/modules/knowledge">
                     <LeftImg>
                       <Image
                         src="/images/deskmenuicon.svg"

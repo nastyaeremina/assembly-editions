@@ -20,7 +20,10 @@ export default function Slider() {
   const slideRender = useMemo(() => {
     return slide?.map((item, index) => {
       return (
-        <SwiperSlide className="swiperslide ImageSection">
+        <SwiperSlide
+          className="swiperslide ImageSection"
+          key={`sliderItem_index_${index}`}
+        >
           {/* Slide {item} */}
           <Image
             src="/images/demoimage.png"
