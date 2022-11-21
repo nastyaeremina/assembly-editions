@@ -82,7 +82,7 @@ export default function Home() {
                   </Link>
                 </PrimaryButton>
                 <SecondryButton>
-                  <Link href="/request-demo">Book Demo</Link>
+                  <Link href="/book-demo">Book Demo</Link>
                 </SecondryButton>
               </HeroBtnBlock>
               <ReviewLogo>
@@ -431,14 +431,22 @@ export default function Home() {
                         Meet our team and a community of businesses that run on
                         Copilot. Requires a Slack account.
                       </p>
-                      <HelpLink>
+                      <HelpLink className="">
                         <a href="#">Join Community</a>
                         <Image
                           src="/images/rightarrow.svg"
                           width={12}
                           height={12}
                           alt="right-arrow"
-                        ></Image>
+                          className="show"
+                        />
+                        <Image
+                          src="/images/hovericon.svg"
+                          width={12}
+                          height={12}
+                          alt="right-arrow"
+                          className="hide"
+                        />
                       </HelpLink>
                     </HelpLeftSub>
                     <HelpLeftSub>
