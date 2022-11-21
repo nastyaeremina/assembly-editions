@@ -1,8 +1,16 @@
 import styled from "styled-components";
-import { Body3, Body4, Heading4 } from "../../styles/styles";
+import { Body3, Body4, HeaderFont, Heading4 } from "../../styles/styles";
 const MainSection = styled.div`
   padding: 40px 80px;
   background-color: ${({ theme }) => theme.colors.bgcolor}; ;
+`;
+const LastText = styled.div`
+  text-align: center;
+  p {
+    ${HeaderFont};
+    color: ${({ theme }) => theme.colors.title};
+    margin: 20px 0 0 0;
+  }
 `;
 const FormSection = styled.div`
   .btnposition {
@@ -74,7 +82,7 @@ const FoemDetail = styled.div`
   textarea {
     width: 100%;
     height: auto;
-    max-width: 380px;
+    max-width: 100%;
     min-height: 50px;
     padding-top: 10px;
     padding-bottom: 10px;
@@ -134,4 +142,5 @@ export {
   Input,
   NameBlock,
   NameInfo,
+  LastText,
 };

@@ -10,6 +10,7 @@ import {
   LeftBorder,
   RightBorder,
   WrapSlide,
+  SlideImg,
 } from "./styles";
 
 const BusinessSlider = ({ data }) => {
@@ -69,13 +70,14 @@ const BusinessSlider = ({ data }) => {
           <WrapSlide className="mydiv">
             <LeftBorder className="hide"></LeftBorder>
             <WrapImage>
-              <Image
-                src="/images/slider1.png"
-                alt="red-icon"
-                width={350}
-                height={350}
-                layout={"fixed"}
-              />
+              <SlideImg>
+                <Image
+                  src="/images/slider1.png"
+                  alt="red-icon"
+                  width={350}
+                  height={350}
+                />
+              </SlideImg>
               <h4>Growth Agency</h4>
               <p className="hide">{`“We went from idea to launch in 2 weeks and spent < 5% of what an engineering team would have cost.”`}</p>
             </WrapImage>
@@ -84,12 +86,14 @@ const BusinessSlider = ({ data }) => {
           <WrapSlide className="mydiv">
             <LeftBorder className="hide"></LeftBorder>
             <WrapImage>
-              <Image
-                src="/images/slide2.png"
-                alt="silde-icon"
-                width={350}
-                height={350}
-              />
+              <SlideImg>
+                <Image
+                  src="/images/slide2.png"
+                  alt="silde-icon"
+                  width={350}
+                  height={350}
+                />
+              </SlideImg>
               <h4>Virtual CFO</h4>
               <p className="hide">{`“We went from idea to launch in 2 weeks and spent < 5% of what an engineering team would have cost.”`}</p>
             </WrapImage>
@@ -98,12 +102,14 @@ const BusinessSlider = ({ data }) => {
           <WrapSlide className="mydiv">
             <LeftBorder className="hide"></LeftBorder>
             <WrapImage>
-              <Image
-                src="/images/slide3.png"
-                alt="silde-icon"
-                width={350}
-                height={350}
-              />
+              <SlideImg>
+                <Image
+                  src="/images/slide3.png"
+                  alt="silde-icon"
+                  width={350}
+                  height={350}
+                />
+              </SlideImg>
               <h4>Professional Services</h4>
               <p className="hide">{`“We went from idea to launch in 2 weeks and spent < 5% of what an engineering team would have cost.”`}</p>
             </WrapImage>
@@ -112,12 +118,14 @@ const BusinessSlider = ({ data }) => {
           <WrapSlide className="mydiv">
             <LeftBorder className="hide"></LeftBorder>
             <WrapImage>
-              <Image
-                src="/images/slide3.png"
-                alt="silde-icon"
-                width={350}
-                height={350}
-              />
+              <SlideImg>
+                <Image
+                  src="/images/slide3.png"
+                  alt="silde-icon"
+                  width={350}
+                  height={350}
+                />
+              </SlideImg>
               <h4>Event planning startup</h4>
               <p className="hide">{`“We went from idea to launch in 2 weeks and spent < 5% of what an engineering team would have cost.”`}</p>
             </WrapImage>
