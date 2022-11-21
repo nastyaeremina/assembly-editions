@@ -9,6 +9,7 @@ import {
   Input,
   NameBlock,
   NameInfo,
+  LastText,
 } from "./styles";
 
 export default function BookDemoForm() {
@@ -149,6 +150,9 @@ export default function BookDemoForm() {
             Let’s talk
           </Link>
         </PrimaryButton>
+        <LastText>
+          <p>or start your 14-day free trial</p>
+        </LastText>
       </FormSection>
     </MainSection>
   );
