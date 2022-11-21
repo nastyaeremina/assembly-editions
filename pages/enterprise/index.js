@@ -1,15 +1,46 @@
 import { NextSeo } from "next-seo";
+import Image from "next/image";
 import Link from "next/link";
+import FAQ from "../../components/faq/faq";
 import Layout from "../../components/layout";
 import Navbar from "../../components/navbar/navbar";
 import { HEADER_LIST } from "../../constants/constant";
-import { Container, GreenButton } from "../../styles/commonStyles";
+import {
+  Container,
+  GreenButton,
+  TransparenBlack,
+} from "../../styles/commonStyles";
 import {
   EnterPriseHero,
   MainWrap,
   LeftHero,
   TitleSec,
   BtnWrap,
+  BenefitsSection,
+  BenefitBox,
+  BoxView,
+  DetailView,
+  ComingUp,
+  SpanText,
+  MovingSection,
+  PlusWrap,
+  BtnList,
+  StepsSection,
+  StepWrap,
+  LeftStep,
+  RightStep,
+  DayOne,
+  TopView,
+  DayLabel,
+  Daybox,
+  BottomView,
+  DaySecond,
+  LeftTopView,
+  DayCenter,
+  LeftBottomView,
+  BottomDay,
+  LastLabel,
+  BottomLast,
 } from "../../styles/enterpriseStyles";
 
 export default function Enterprise() {
@@ -41,6 +72,164 @@ export default function Enterprise() {
               </LeftHero>
             </Container>
           </EnterPriseHero>
+          <BenefitsSection>
+            <Container>
+              <BenefitBox>
+                <BoxView>
+                  <DetailView>
+                    <h4>Custom Features</h4>
+                    <p>
+                      Work with deployed Copilot engineers to add custom
+                      features and integrations.
+                    </p>
+                  </DetailView>
+                </BoxView>
+                <BoxView>
+                  <DetailView>
+                    <h4>Dedicated Support</h4>
+                    <p>
+                      A dedicated expert will be there to ensure a successful
+                      launch.
+                    </p>
+                  </DetailView>
+                </BoxView>
+                <BoxView>
+                  <DetailView>
+                    <h4>Enterprise Compliance</h4>
+                    <p>
+                      Security audit compliance, payment via PO, custom TOS, and
+                      more.
+                    </p>
+                  </DetailView>
+                </BoxView>
+                <BoxView>
+                  <DetailView>
+                    <h4>Continuous Backup</h4>
+                    <p>
+                      Continuous backups and retention to Amazon S3 or
+                      elsewhere.
+                    </p>
+                  </DetailView>
+                </BoxView>
+                <BoxView>
+                  <DetailView>
+                    <h4>99.9% Uptime SLAs</h4>
+                    <p>
+                      Guaranteed reliable performance with a 99.9% uptime SLA.
+                    </p>
+                  </DetailView>
+                </BoxView>
+                <BoxView>
+                  <DetailView>
+                    <h4>Custom Payment Processing Rates</h4>
+                    <p>Custom payment processing rates</p>
+                  </DetailView>
+                </BoxView>
+                <BoxView>
+                  <DetailView>
+                    <h4>Advanced Reporting</h4>
+                    <p>
+                      Granular insights about how your team and clients are
+                      using Portal.
+                    </p>
+                  </DetailView>
+                </BoxView>
+                <BoxView>
+                  <DetailView>
+                    <h4>Native Mobile Apps</h4>
+                    <p>Get access to white-label native mobile apps.</p>
+                  </DetailView>
+                </BoxView>
+                <ComingUp>
+                  <SpanText>Coming 2023</SpanText>
+                </ComingUp>
+              </BenefitBox>
+            </Container>
+          </BenefitsSection>
+          <MovingSection>
+            <Container>
+              <PlusWrap>
+                <h3>Moving to Copilot Plus?</h3>
+                <p>
+                  95% of customer we work with go from first meeting to full
+                  deployment in less than 30 days.{" "}
+                </p>
+                <BtnList>
+                  <TransparenBlack>
+                    <Link href="#">Lets talk</Link>
+                  </TransparenBlack>
+                </BtnList>
+              </PlusWrap>
+            </Container>
+          </MovingSection>
+          <StepsSection>
+            <Container>
+              <StepWrap>
+                <LeftStep>
+                  <DayCenter>
+                    <LeftTopView>
+                      <DayLabel>
+                        <Daybox>
+                          <span>Day 7</span>
+                        </Daybox>
+                      </DayLabel>
+                    </LeftTopView>
+                    <LeftBottomView>
+                      <h4>Migration plan</h4>
+                      <p>Our team and our expert network will work with</p>
+                    </LeftBottomView>
+                  </DayCenter>
+                </LeftStep>
+                <RightStep>
+                  <DayOne>
+                    <TopView>
+                      <DayLabel>
+                        <Daybox>
+                          <span>Day 1</span>
+                        </Daybox>
+                      </DayLabel>
+                    </TopView>
+                    <BottomView>
+                      <h4>Kickoff call</h4>
+                      <p>
+                        Meet with a Copilot expert and deployed engineering team
+                        so that we can understand requirements a propose a plan.
+                      </p>
+                    </BottomView>
+                  </DayOne>
+                  <DaySecond>
+                    <TopView>
+                      <DayLabel>
+                        <Daybox>
+                          <span>Day 15</span>
+                        </Daybox>
+                      </DayLabel>
+                    </TopView>
+                    <BottomView>
+                      <h4>Soft launch</h4>
+                      <p>
+                        We’ll work with you hand-in-hand to make sure the intial
+                        deployment to a subset of beta customers goes well.
+                      </p>
+                    </BottomView>
+                  </DaySecond>
+                </RightStep>
+              </StepWrap>
+              <BottomDay>
+                <LastLabel>
+                  <span>Day 30</span>
+                </LastLabel>
+                <BottomLast>
+                  <h4>Full deployment</h4>
+                  <p>
+                    Once we’ve gone through a beta launch, we’ll have you have a
+                    successful full deployment.
+                  </p>
+                </BottomLast>
+              </BottomDay>
+            </Container>
+          </StepsSection>
+          <FAQ enterprise />
         </MainWrap>
       </Layout>
     </>
