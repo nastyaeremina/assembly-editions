@@ -33,7 +33,6 @@ const WrapImage = styled.div`
   width: 100%;
   /* position: relative; */
   padding: 22px 0;
-  margin: 0 22px;
   display: flex;
   align-items: center;
   flex-direction: column;
@@ -41,14 +40,14 @@ const WrapImage = styled.div`
 
   h4 {
     text-align: center;
-    padding-top: 22px;
+    padding-top: 24px;
     ${Body3};
     margin: 0;
     color: ${({ theme }) => theme.colors.greendark};
   }
   p {
     ${Body5};
-    padding-top: 7px;
+    padding-top: 8px;
     text-align: center;
     margin: 0;
     color: ${({ theme }) => theme.colors.body};
@@ -85,4 +84,20 @@ const WrapSlide = styled.div`
     opacity: 100;
   }
 `;
-export { Slide, SliderWrap, WrapImage, LeftBorder, RightBorder, WrapSlide };
+const SlideImg = styled.div`
+  max-height: 350px;
+  img {
+    border-radius: 4px;
+    height: 100%;
+  }
+`;
+
+export {
+  Slide,
+  SliderWrap,
+  WrapImage,
+  LeftBorder,
+  RightBorder,
+  WrapSlide,
+  SlideImg,
+};
