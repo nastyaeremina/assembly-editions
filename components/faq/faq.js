@@ -2,10 +2,10 @@ import Link from "next/link";
 import { Container } from "../../styles/commonStyles";
 import { FaqSection, FaqWrap, FaqTitle } from "./styles";
 
-export default function FAQ() {
+export default function FAQ({ enterprise }) {
   return (
     <>
-      <FaqSection>
+      <FaqSection enterprise={enterprise}>
         <Container>
           <FaqTitle>
             <h3 className="faqtitle">Frequently Asked Questions</h3>

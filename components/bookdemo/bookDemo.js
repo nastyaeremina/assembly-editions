@@ -16,13 +16,15 @@ export default function BookDemoForm() {
   return (
     <MainSection>
       <FormSection>
-        <Image
-          src="/images/booklogo.svg"
-          alt="book-logo"
-          width={107}
-          height={24}
-          layout={"fixed"}
-        />
+        <Link href="/">
+          <Image
+            src="/images/booklogo.svg"
+            alt="book-logo"
+            width={107}
+            height={24}
+            layout={"fixed"}
+          />
+        </Link>
         <FormTxt>
           <h4>Let’s talk</h4>
           <p>Speak to a Copilot expert to learn more and experience a demo.</p>

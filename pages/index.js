@@ -82,7 +82,7 @@ export default function Home() {
                   </Link>
                 </PrimaryButton>
                 <SecondryButton>
-                  <Link href="/request-demo">Book Demo</Link>
+                  <Link href="/book-demo">Book Demo</Link>
                 </SecondryButton>
               </HeroBtnBlock>
               <ReviewLogo>
