@@ -2,7 +2,7 @@ import * as React from "react";
 import Meta from "../components/meta";
 import Footer from "./footer/footer";
 
-export default function Layout({ children }) {
+export default function Layout({ children, isEnterPrice }) {
   React.useEffect(() => {
     window.Webflow && window.Webflow.destroy();
     window.Webflow && window.Webflow.ready();
@@ -13,7 +13,7 @@ export default function Layout({ children }) {
       <div>
         <main>{children}</main>
       </div>
-      <Footer />
+      <Footer isEnterPrice={isEnterPrice} />
     </>
   );
 }

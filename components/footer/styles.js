@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import {
   Body4,
   FooterText,
@@ -10,7 +10,12 @@ import {
 
 const FooterSection = styled.div`
   background-color: ${({ theme }) => theme.colors.neutral};
-  padding: 60px 0;
+  padding: 40px 0 60px;
+  ${(props) =>
+    props.isEnterPrice &&
+    css`
+      background-color: ${({ theme }) => theme.colors.greendark};
+    `}
 `;
 const FooterInnerBlock = styled.div`
   display: flex;
@@ -128,6 +133,13 @@ const FooterMenu = styled.ul`
     margin: 0;
     padding-bottom: 10px;
   }
+  ${(props) =>
+    props.isEnterPrice &&
+    css`
+      p {
+        color: ${({ theme }) => theme.colors.greenmidlight};
+      }
+    `}
 `;
 const FooterLastBlock = styled.div`
   padding: 48px 0;
@@ -162,6 +174,17 @@ const FooterSocialItem = styled.li`
       }
     }
   }
+  ${(props) =>
+    props.isEnterPrice &&
+    css`
+      :hover {
+        svg {
+          path {
+            fill: #7ddaa0;
+          }
+        }
+      }
+    `}
   a {
     display: inline-block;
     overflow: hidden;
@@ -220,6 +243,13 @@ const FooterFirst = styled.div`
     color: ${({ theme }) => theme.colors.lightgray};
     margin: 20px 0 24px 0;
   }
+  ${(props) =>
+    props.isEnterPrice &&
+    css`
+      p {
+        color: ${({ theme }) => theme.colors.greenlight};
+      }
+    `}
 `;
 const FotterMenuLeft = styled.div`
   max-width: 33.33%;
@@ -242,6 +272,16 @@ const FooterMenuList = styled.li`
       color: ${({ theme }) => theme.colors.title};
     }
   }
+  ${(props) =>
+    props.isEnterPrice &&
+    css`
+      a {
+        color: ${({ theme }) => theme.colors.greenlight};
+        :hover {
+          color: ${({ theme }) => theme.colors.greenmidlight};
+        }
+      }
+    `}
 `;
 export {
   FooterSection,

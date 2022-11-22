@@ -22,6 +22,12 @@ const EnterPriseHero = styled.div`
   background-size: cover;
   width: 100%;
   height: 100vw;
+  background-color: linear-gradient(
+    180deg,
+    #00160e 0%,
+    rgba(0, 22, 14, 0.8552) 79.69%,
+    rgba(0, 22, 14, 0) 100%
+  );
 `;
 const LeftHero = styled.div`
   max-width: 712px;
@@ -44,6 +50,22 @@ const TitleSec = styled.div`
 const BtnWrap = styled.div``;
 const BenefitsSection = styled.div`
   padding: 0px 0 136px;
+  position: relative;
+  ::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    height: 320px;
+    top: -133px;
+    background: linear-gradient(
+      180deg,
+      #00160e 0%,
+      rgba(0, 22, 14, 0.8552) 79.69%,
+      rgba(0, 22, 14, 0) 100%
+    );
+    transform: rotate(-180deg);
+  }
 `;
 const BenefitWrap = styled.div`
   h4 {

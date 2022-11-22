@@ -50,7 +50,7 @@ export default function Enterprise() {
         title="Create your portal, pick a plan later"
         description="Try Copilot free for 14 days, no credit card required"
       />
-      <Layout>
+      <Layout isEnterPrice={true}>
         <MainWrap>
           <Navbar isEnterPrice={true} headerIndex={HEADER_LIST.ENTERPRICE} />
           <EnterPriseHero>
