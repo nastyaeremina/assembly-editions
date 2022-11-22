@@ -14,8 +14,42 @@ import {
 } from "../../styles/universityStyles";
 import { Container } from "../../styles/commonStyles";
 import Image from "next/image";
+import {
+  getAllUniversityVideos,
+  getAllUniversityVideoWithSlug,
+  getUniversityVideoDetail,
+} from "../../lib/contentful-universityVideos";
+import { isEmpty } from "../../helpers/helpers";
+import { useMemo } from "react";
 
-export default function UniversityDetail() {
+export default function UniversityDetail({
+  relatedVideos,
+  universityVideoDetail,
+}) {
+  console.log("relatedApps", relatedVideos);
+
+  const renderRelatedVideosView = useMemo(() => {
+    if (isEmpty(relatedVideos)) return null;
+    return relatedVideos?.map((item, index) => {
+      return (
+        <Link
+          href={`/university/${item?.slug}`}
+          key={`relatedvideos_index_${index}`}
+        >
+          <FeatureCard>
+            <Image
+              src={item?.thumbnail?.url}
+              alt="video"
+              width={270}
+              height={152}
+              layout={"fixed"}
+            />
+          </FeatureCard>
+        </Link>
+      );
+    });
+  }, [relatedVideos]);
+
   return (
     <>
       <NextSeo
@@ -39,13 +73,13 @@ export default function UniversityDetail() {
                   <p>Back to Univeristy</p>
                 </Backlink>
               </Link>
-              <h3>How To Customize Your Portal</h3>
+              <h3>{universityVideoDetail?.name}</h3>
             </DetailVideoHero>
             <VideoSection>
-              <Link href="#">
+              <Link href={universityVideoDetail?.videoLink}>
                 <VideoImage>
                   <Image
-                    src="/images/video.png"
+                    src={universityVideoDetail?.thumbnail?.url}
                     alt="video"
                     width={1224}
                     height={689}
@@ -61,66 +95,54 @@ export default function UniversityDetail() {
                   />
                 </VideoImage>
               </Link>
-              <p>
-                In this video, learn about best practices when customizing your
-                portal. Specifically, learn about basic customizations (logo,
-                login image, color scheme, etc), welcome messages, Module and
-                Extensions settings, custom domains and custom email domains,
-                and Automations.
-              </p>
+              <p>{universityVideoDetail?.description}</p>
             </VideoSection>
-            <VIdeoWrap>
-              <h3>Related videos</h3>
-              <UniversityVideo>
-                <Link href="#">
-                  <FeatureCard>
-                    <Image
-                      src="/images/video1.png"
-                      alt="video"
-                      width={270}
-                      height={152}
-                      layout={"fixed"}
-                    />
-                  </FeatureCard>
-                </Link>
-                <Link href="#">
-                  <FeatureCard>
-                    <Image
-                      src="/images/video1.png"
-                      alt="video"
-                      width={270}
-                      height={152}
-                      layout={"fixed"}
-                    />
-                  </FeatureCard>
-                </Link>
-                <Link href="#">
-                  <FeatureCard>
-                    <Image
-                      src="/images/video1.png"
-                      alt="video"
-                      width={270}
-                      height={152}
-                      layout={"fixed"}
-                    />
-                  </FeatureCard>
-                </Link>
-                <Link href="#">
-                  <FeatureCard>
-                    <Image
-                      src="/images/video1.png"
-                      alt="video"
-                      width={270}
-                      height={152}
-                      layout={"fixed"}
-                    />
-                  </FeatureCard>
-                </Link>
-              </UniversityVideo>
-            </VIdeoWrap>
+            {!isEmpty(relatedVideos) && (
+              <VIdeoWrap>
+                <h3>Related videos</h3>
+                <UniversityVideo>{renderRelatedVideosView}</UniversityVideo>
+              </VIdeoWrap>
+            )}
           </Container>
         </DetailVideoMain>
       </Layout>
     </>
   );
+}
+export async function getServerSideProps({ params, preview = false }) {
+  let allPosts = [];
+  let data = [];
+  let page = 0;
+  do {
+    const skip = page * 100;
+    data = (await getAllUniversityVideos(skip)) || [];
+    allPosts = allPosts.concat(data);
+
+    if (data?.length !== 100) break;
+    // eslint-disable-next-line no-plusplus
+    else page++;
+  } while (data?.length !== 0);
+
+  const universityVideoDetail =
+    (await getUniversityVideoDetail(params?.slug)) || {};
+
+  const relatedVideos = allPosts
+    ?.filter(
+      (item) =>
+        item?.videoCategory === universityVideoDetail?.videoCategory &&
+        item?.slug !== universityVideoDetail?.slug
+    )
+    ?.slice(0, 4);
+  return {
+    props: { universityVideoDetail, relatedVideos },
+  };
+}
+
+export async function getServerSidePaths() {
+  const allPosts = (await getAllUniversityVideoWithSlug()) ?? [];
+  return {
+    paths: allPosts?.map((slug) => `${slug}`) ?? [],
+
+    fallback: true,
+  };
 }
