@@ -38,8 +38,101 @@ import {
 import CTA from "../../components/cta/cta";
 import Image from "next/image";
 import FAQ from "../../components/faq/faq";
+import {
+  getAllDataIntegrationApp,
+  getAllParrtnerAppsCategories,
+  getAllPartnerApps,
+  getFeaturedPartnerAppsContent,
+} from "../../lib/contentful-partnerApps";
+import { useCallback, useMemo } from "react";
+import { isEmpty } from "../../helpers/helpers";
 
-export default function Extensions({ allPosts }) {
+export default function Extensions({
+  featuredApps,
+  allCategoryWithPost,
+  dataIntegrationApps,
+}) {
+  const renderFeaturedView = useMemo(() => {
+    if (isEmpty(featuredApps)) return null;
+    return featuredApps?.map((item, index) => {
+      return (
+        <FeatureCard key={`featuredview_index_${index}`}>
+          <Link href={`/apps/${item?.slug}`}>
+            <FeatureImg>
+              <Image
+                src={item?.logo?.url}
+                alt="main-logo"
+                width={236}
+                height={56}
+              />
+            </FeatureImg>
+            <CardText>
+              <h4>{item?.name}</h4>
+              <p>{item?.description}</p>
+            </CardText>
+            <CardEnd>
+              <p>{item?.partnerAppCategoriesCollection?.items[0]?.name}</p>
+            </CardEnd>
+          </Link>
+        </FeatureCard>
+      );
+    });
+  }, [featuredApps]);
+
+  const renderCategoryList = useMemo(() => {
+    if (isEmpty(allCategoryWithPost)) return null;
+    return allCategoryWithPost?.map((item, index) => {
+      return (
+        <Catagoryitem key={`categorylist_index_${index}`}>
+          <Link href={`#${item?.category?.slug}`}>{item?.category?.name}</Link>
+        </Catagoryitem>
+      );
+    });
+  }, [allCategoryWithPost]);
+
+  const renderPartnerAppsView = useCallback((appList) => {
+    if (isEmpty(appList)) return null;
+    return appList?.map((item, index) => {
+      return (
+        <CardSub key={`partnerappview_index${index}`}>
+          <Link href={`/apps/${item?.slug}`}>
+            <CardInfo>
+              <Image
+                src={item?.icon?.url}
+                alt="red-icon"
+                width={35}
+                height={35}
+                layout={"fixed"}
+              />
+              <h4>{item?.name}</h4>
+            </CardInfo>
+            <p>{item?.description}</p>
+          </Link>
+        </CardSub>
+      );
+    }, []);
+  }, []);
+
+  const renderAllCategoryAppsView = useMemo(() => {
+    if (isEmpty(allCategoryWithPost)) return null;
+    return allCategoryWithPost?.map((item, index) => {
+      return (
+        <ExtensionsSection
+          id={item?.category?.slug}
+          key={`allCategoryappsview_index_${index}`}
+        >
+          <h3>{item?.category?.name}</h3>
+          <ExtensionCard>{renderPartnerAppsView(item?.list)}</ExtensionCard>
+        </ExtensionsSection>
+      );
+    });
+  }, [allCategoryWithPost, renderPartnerAppsView]);
+
+  const renderDataIntegrationApps = useMemo(() => {
+    if (isEmpty(dataIntegrationApps)) return null;
+    return renderPartnerAppsView(dataIntegrationApps);
+  }, [dataIntegrationApps, renderPartnerAppsView]);
+
   return (
     <>
       <NextSeo
@@ -78,312 +171,41 @@ export default function Extensions({ allPosts }) {
                     <Catagoryitem>
                       <Link href={"#Brief-Section"}>All</Link>
                     </Catagoryitem>
-                    <Catagoryitem>
-                      <Link href={"#Project-Section"}>Project management</Link>
-                    </Catagoryitem>
-                    <Catagoryitem>
-                      <Link href={"#data-section"}>Data visualization</Link>
-                    </Catagoryitem>
-                    <Catagoryitem>
-                      <Link href={"#Scheduling-Section"}>Scheduling</Link>
-                    </Catagoryitem>
-                    <Catagoryitem>
-                      <Link href={"#Integrations-Section"}>Videos</Link>
-                    </Catagoryitem>
+                    {renderCategoryList}
                   </Catagory>
                   <OtherWrap>
                     <h4>Other</h4>
                     <Catagoryitem>
-                      <Link href={"#Brief-Section"}>Custom Apps</Link>
+                      <Link href={"#Integrations-Section"}>
+                        Data Integrations
+                      </Link>
                     </Catagoryitem>
                     <Catagoryitem>
-                      <Link href={"#Brief-Section"}>Data Integrations</Link>
+                      <Link href={"#custome-apps"}>Custom Apps</Link>
                     </Catagoryitem>
                   </OtherWrap>
                 </LeftWrap>
               </FeatureLeft>
 
               <FeatureRight>
-                <Featured id="Brief-Section">
-                  <h3>Featured</h3>
-                  <FeatureMenu>
-                    <FeatureCard>
-                      <FeatureImg>
-                        <Image
-                          src="/images/featurelogo1.svg"
-                          alt="main-logo"
-                          width={236}
-                          height={56}
-                        />
-                      </FeatureImg>
-                      <CardText>
-                        <h4>Calendly</h4>
-                        <p>
-                          Let clients schedule meetings with you by surfacing a
-                          Calendly scheduling page.
-                        </p>
-                      </CardText>
-                      <CardEnd>
-                        <p>Scheduling</p>
-                      </CardEnd>
-                    </FeatureCard>
+                {!isEmpty(featuredApps) && (
+                  <Featured id="Brief-Section">
+                    <h3>Featured</h3>
+                    <FeatureMenu>{renderFeaturedView}</FeatureMenu>
+                  </Featured>
+                )}
+                {renderAllCategoryAppsView}
 
-                    <FeatureCard>
-                      <FeatureImg>
-                        <Image
-                          src="/images/featurelogo2.svg"
-                          alt="main-logo"
-                          height={56}
-                          width={236}
-                        />
-                      </FeatureImg>
-                      <CardText>
-                        <h4>Jotform</h4>
-                        <p>
-                          Lets clients to submit forms by surfacing a form
-                          created in Jotform.
-                        </p>
-                      </CardText>
-                      <CardEnd>
-                        <p>Scheduling</p>
-                      </CardEnd>
-                    </FeatureCard>
-                    <FeatureCard>
-                      <FeatureImg>
-                        <Image
-                          src="/images/featurelogo3.svg"
-                          alt="main-logo"
-                          height={56}
-                          width={236}
-                        />
-                      </FeatureImg>
-                      <CardText>
-                        <h4>Airtable</h4>
-                        <p>
-                          Let clients to access grid, kanban, timeline,
-                          calendar, form and other views.
-                        </p>
-                      </CardText>
-                      <CardEnd>
-                        <p>Project management</p>
-                      </CardEnd>
-                    </FeatureCard>
-                  </FeatureMenu>
-                </Featured>
-                <ExtensionsSection id="Project-Section">
-                  <h3>Project management</h3>
-                  <ExtensionCard>
-                    <CardSub>
-                      <CardInfo>
-                        <Image
-                          src="/images/Favicon.svg"
-                          alt="red-icon"
-                          width={35}
-                          height={35}
-                          layout={"fixed"}
-                        />
-                        <h4>Calendly</h4>
-                      </CardInfo>
-                      <p>
-                        Calendly is your scheduling automation platform for
-                        eliminating the hassle of back...
-                      </p>
-                    </CardSub>
-                    <CardSub>
-                      <CardInfo>
-                        <Image
-                          src="/images/Favicon2.svg"
-                          alt="red-icon"
-                          width={35}
-                          height={35}
-                          layout={"fixed"}
-                        />
-                        <h4>Jotform</h4>
-                      </CardInfo>
-                      <p>
-                        Improve your workflow with powerful online forms
-                        designed to meet your every need.
-                      </p>
-                    </CardSub>
-                    <CardSub>
-                      <CardInfo>
-                        <Image
-                          src="/images/Favicon3.svg"
-                          alt="red-icon"
-                          width={35}
-                          height={35}
-                          layout={"fixed"}
-                        />
-                        <h4>Airtable</h4>
-                      </CardInfo>
-                      <p>
-                        Airtable is a low-code platform for building
-                        collaborative apps. Customize your workflow, collab...
-                      </p>
-                    </CardSub>
-                  </ExtensionCard>
-                </ExtensionsSection>
-
-                <SchedulingApps id="Scheduling-Section">
-                  <h3>Scheduling</h3>
-                  <ExtensionCard>
-                    <CardSub>
-                      <CardInfo>
-                        <Image
-                          src="/images/Favicon.svg"
-                          alt="red-icon"
-                          width={35}
-                          height={35}
-                          layout={"fixed"}
-                        />
-                        <h4>Calendly</h4>
-                      </CardInfo>
-                      <p>
-                        Calendly is your scheduling automation platform for
-                        eliminating the hassle of back...
-                      </p>
-                    </CardSub>
-                    <CardSub>
-                      <CardInfo>
-                        <Image
-                          src="/images/Favicon2.svg"
-                          alt="red-icon"
-                          width={35}
-                          height={35}
-                          layout={"fixed"}
-                        />
-                        <h4>Jotform</h4>
-                      </CardInfo>
-                      <p>
-                        Improve your workflow with powerful online forms
-                        designed to meet your every need.
-                      </p>
-                    </CardSub>
-
-                    <CardSub>
-                      <CardInfo>
-                        <Image
-                          src="/images/Favicon3.svg"
-                          alt="red-icon"
-                          width={35}
-                          height={35}
-                          layout={"fixed"}
-                        />
-                        <h4>Airtable</h4>
-                      </CardInfo>
-                      <p>
-                        Airtable is a low-code platform for building
-                        collaborative apps. Customize your workflow, collab...
-                      </p>
-                    </CardSub>
-                    <CardSub>
-                      <CardInfo>
-                        <Image
-                          src="/images/Favicon.svg"
-                          alt="red-icon"
-                          width={35}
-                          height={35}
-                          layout={"fixed"}
-                        />
-                        <h4>Calendly</h4>
-                      </CardInfo>
-                      <p>
-                        Calendly is your scheduling automation platform for
-                        eliminating the hassle of back...
-                      </p>
-                    </CardSub>
-                    <CardSub>
-                      <CardInfo>
-                        <Image
-                          src="/images/Favicon2.svg"
-                          alt="red-icon"
-                          width={35}
-                          height={35}
-                          layout={"fixed"}
-                        />
-                        <h4>Jotform</h4>
-                      </CardInfo>
-                      <p>
-                        Improve your workflow with powerful online forms
-                        designed to meet your every need.
-                      </p>
-                    </CardSub>
-
-                    <CardSub>
-                      <CardInfo>
-                        <Image
-                          src="/images/Favicon3.svg"
-                          alt="red-icon"
-                          width={35}
-                          height={35}
-                          layout={"fixed"}
-                        />
-                        <h4>Airtable</h4>
-                      </CardInfo>
-                      <p>
-                        Airtable is a low-code platform for building
-                        collaborative apps. Customize your workflow, collab...
-                      </p>
-                    </CardSub>
-                  </ExtensionCard>
-                </SchedulingApps>
-                <ExtensionsSection id="Integrations-Section">
-                  <AppsTitle>
-                    <h3>Data Integrations</h3>
-                    <p>Integrations</p>
-                  </AppsTitle>
-                  <ExtensionCard>
-                    <CardSub>
-                      <CardInfo>
-                        <Image
-                          src="/images/Favicon.svg"
-                          alt="red-icon"
-                          width={35}
-                          height={35}
-                          layout={"fixed"}
-                        />
-                        <h4>Calendly</h4>
-                      </CardInfo>
-                      <p>
-                        Calendly is your scheduling automation platform for
-                        eliminating the hassle of back...
-                      </p>
-                    </CardSub>
-                    <CardSub>
-                      <CardInfo>
-                        <Image
-                          src="/images/Favicon2.svg"
-                          alt="red-icon"
-                          width={35}
-                          height={35}
-                          layout={"fixed"}
-                        />
-                        <h4>Jotform</h4>
-                      </CardInfo>
-                      <p>
-                        Improve your workflow with powerful online forms
-                        designed to meet your every need.
-                      </p>
-                    </CardSub>
-                    <CardSub>
-                      <CardInfo>
-                        <Image
-                          src="/images/Favicon3.svg"
-                          alt="red-icon"
-                          width={35}
-                          height={35}
-                          layout={"fixed"}
-                        />
-                        <h4>Airtable</h4>
-                      </CardInfo>
-                      <p>
-                        Airtable is a low-code platform for building
-                        collaborative apps. Customize your workflow, collab...
-                      </p>
-                    </CardSub>
-                  </ExtensionCard>
-                </ExtensionsSection>
-                <ExtensionsSection>
+                {!isEmpty(dataIntegrationApps) && (
+                  <ExtensionsSection id="Integrations-Section">
+                    <AppsTitle>
+                      <h3>Data Integrations</h3>
+                      <p>Integrations</p>
+                    </AppsTitle>
+                    <ExtensionCard>{renderDataIntegrationApps}</ExtensionCard>
+                  </ExtensionsSection>
+                )}
+                <ExtensionsSection id="custome-apps">
                   <AppsTitle>
                     <h3>Custom Apps</h3>
                   </AppsTitle>
@@ -414,10 +236,30 @@ export default function Extensions({ allPosts }) {
   );
 }
 
-export async function getStaticProps({ params, preview = false }) {
-  const Posts = (await getAllBlogs(preview)) ?? [];
+export async function getServerSideProps({ preview = false }) {
+  const allPosts = (await getAllPartnerApps(preview)) ?? [];
+  const allCategory = (await getAllParrtnerAppsCategories(preview)) ?? [];
+  const dataIntegrationApps = (await getAllDataIntegrationApp(preview)) ?? [];
+
+  const featuredApps = allPosts?.filter((item) => item?.isFeatured === true);
+
+  let allCategoryWithPost = [];
+
+  allCategory?.forEach((item) => {
+    const filterList = allPosts?.filter((element) =>
+      element?.partnerAppCategoriesCollection?.items?.some(
+        (category) => category?.slug === item?.slug
+      )
+    );
+    if (!isEmpty(filterList))
+      allCategoryWithPost?.push({ category: item, list: filterList });
+  });
 
   return {
-    props: { preview, Posts },
+    props: {
+      featuredApps,
+      allCategoryWithPost,
+      dataIntegrationApps,
+    },
   };
 }
