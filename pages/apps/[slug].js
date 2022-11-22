@@ -228,10 +228,7 @@ export async function getServerSideProps({ params, preview = false }) {
 }
 
 export async function getServerSidePaths() {
-  const allAppsSlug = (await getAllPartnerAppsWithSlug()) ?? [];
-  const allDataIntegrationAppsSlug =
-    (await getAllDataIntegrationAppWithSlug()) ?? [];
-  const allPosts = { ...allAppsSlug, ...allDataIntegrationAppsSlug };
+  const allPosts = (await getAllPartnerAppsWithSlug()) ?? [];
   return {
     paths: allPosts?.map((slug) => `${slug}`) ?? [],
 
