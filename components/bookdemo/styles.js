@@ -3,11 +3,14 @@ import {
   Body3,
   Body4,
   Body6,
+  CardTxt,
   HeaderFont,
   Heading3,
   Heading4,
 } from "../../styles/styles";
 const MainSection = styled.div`
+  max-width: 540px;
+  width: 100%;
   padding: 40px 80px;
   background-color: ${({ theme }) => theme.colors.bgcolor}; ;
 `;
@@ -38,11 +41,11 @@ const FormTxt = styled.div`
     margin: 0;
   }
 `;
-const FoemDetail = styled.div`
+const FormDetail = styled.div`
   padding-bottom: 40px;
   label {
     display: block;
-    ${Body3};
+    ${CardTxt};
     color: ${({ theme }) => theme.colors.subtitle};
     margin: 0 0 5px 0;
   }
@@ -88,9 +91,10 @@ const FoemDetail = styled.div`
   }
   textarea {
     width: 100%;
-    height: auto;
+    /* height: auto; */
     max-width: 100%;
-    min-height: 50px;
+    min-height: 32px;
+    height: 32px;
     padding-top: 10px;
     padding-bottom: 10px;
     outline: 0;
@@ -130,6 +134,9 @@ const Input = styled.input`
 const NameBlock = styled.div`
   display: flex;
   gap: 20px;
+  .firstlable {
+    width: 100%;
+  }
 `;
 const NameInfo = styled.div`
   .inputtext {
@@ -277,7 +284,7 @@ export {
   MainSection,
   FormSection,
   FormTxt,
-  FoemDetail,
+  FormDetail,
   Input,
   NameBlock,
   NameInfo,

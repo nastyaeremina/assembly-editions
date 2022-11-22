@@ -40,9 +40,6 @@ export default function SolutionHero() {
                       Start Trial
                     </Link>
                   </PrimaryButton>
-                  <SecondryButton>
-                    <Link href="#">Why Copilot</Link>
-                  </SecondryButton>
                 </BtnWrap>
               </TextSection>
             </LeftWrap>
@@ -65,8 +62,8 @@ export default function SolutionHero() {
                 <LineIcon>
                   <Image
                     src="/images/soluline.svg"
-                    width={816}
-                    height={358.08}
+                    width={982}
+                    height={418.08}
                     alt="link-icon"
                   />
                 </LineIcon>

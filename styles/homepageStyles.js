@@ -10,6 +10,7 @@ import {
   Heading4,
   Body2,
   Label,
+  LinkTxt,
 } from "./styles";
 
 const HomeMain = styled.div`
@@ -679,13 +680,13 @@ const HelpLeft = styled.div`
   }
 `;
 const HelpLeftSub = styled.div`
-  /* max-width: 315px;
-  width: 100%; */
-  .learn-link,
+  / .learn-link,
   .learn-link svg path {
     transition: all 300ms ease;
   }
   a {
+    ${LinkTxt};
+    margin: 0;
     color: ${({ theme }) => theme.colors.primary};
     cursor: pointer;
     :hover .HoverArrow__linePath {
@@ -731,50 +732,6 @@ const HelpLeftSub = styled.div`
 `;
 const HelpLink = styled.div`
   display: flex;
-  /* display: flex;
-  gap: 10px;
-  align-items: center;
-  transition: 300ms all ease-in-out;
-  animation: fadeIn ease 0.3s;
-  -webkit-animation: fadeIn ease 0.3s;
-  -moz-animation: fadeIn ease 0.3s;
-  -o-animation: fadeIn ease 0.3s;
-  -ms-animation: fadeIn ease 0.3s; */
-
-  /* :hover a {
-    color: black;
-    transition: 300ms all ease-in-out;
-    animation: fadeIn ease 0.3s;
-    -webkit-animation: fadeIn ease 0.3s;
-    -moz-animation: fadeIn ease 0.3s;
-    -o-animation: fadeIn ease 0.3s;
-    -ms-animation: fadeIn ease 0.3s;
-  }
-  .hide {
-    display: none;
-    transition: 300ms all ease-in-out;
-    animation: fadeIn ease 0.3s;
-    -webkit-animation: fadeIn ease 0.3s;
-    -moz-animation: fadeIn ease 0.3s;
-    -o-animation: fadeIn ease 0.3s;
-    -ms-animation: fadeIn ease 0.3s;
-  }
-  .show {
-    display: block;
-    transition: 300ms all ease-in-out;
-    animation: fadeIn ease 0.3s;
-    -webkit-animation: fadeIn ease 0.3s;
-    -moz-animation: fadeIn ease 0.3s;
-    -o-animation: fadeIn ease 0.3s;
-    -ms-animation: fadeIn ease 0.3s;
-  }
-
-  :hover .show {
-    display: none;
-  }
-  :hover .hide {
-    display: block;
-  } */
 `;
 const HelpWrap = styled.div`
   display: flex;

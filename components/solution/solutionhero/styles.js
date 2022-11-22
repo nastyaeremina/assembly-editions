@@ -41,8 +41,8 @@ const ImageView = styled.div`
 const LineIcon = styled.div`
   position: absolute;
   z-index: -1;
-  right: 32px;
-  bottom: 33px;
+  right: 35px;
+  bottom: -40px;
 `;
 const MobileImg = styled.div`
   display: inline-flex;
