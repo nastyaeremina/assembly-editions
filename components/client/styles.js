@@ -22,10 +22,44 @@ const CardSection = styled.div`
   /* transition: all 0.5s ease; */
   .mydiv:hover .hide {
     display: block;
-    color: white;
   }
   .mydiv:hover .show {
     display: none;
+  }
+
+  .mydiv:hover {
+    background-image: url("/images/billhoverbg.svg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    a {
+      color: ${({ theme }) => theme.colors.whiteColor};
+      position: relative;
+      top: 3px;
+    }
+  }
+  .file:hover .hide {
+    display: block;
+  }
+  .file:hover .show {
+    display: none;
+  }
+
+  .file:hover {
+    background-image: url("/images/hoverfile.svg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    a {
+      color: ${({ theme }) => theme.colors.whiteColor};
+    }
+  }
+  .form:hover {
+    background-image: url("/images/hoverform.svg");
+  }
+  .base:hover {
+    background-image: url("/images/hoverbase.svg");
+  }
+  .contact:hover {
+    background-image: url("/images/hovercontact.svg");
   }
 `;
 const ModuleCard = styled.div`
@@ -37,9 +71,6 @@ const ModuleCard = styled.div`
     display: none;
   }
   :hover {
-    background-image: url("/images/billhoverbg.svg");
-    background-repeat: no-repeat;
-    background-size: cover;
     display: block;
     color: white;
   }
@@ -108,8 +139,6 @@ const BlockWrap = styled.div`
   }
 `;
 const HelpLeftSub = styled.div`
-  padding-top: 40px;
-  display: block;
   .learn-link,
   .learn-link svg path {
     transition: all 300ms ease;
@@ -124,9 +153,6 @@ const HelpLeftSub = styled.div`
     }
     :hover .HoverArrow__tipPath {
       transform: translateX(4px);
-    }
-    :hover {
-      color: whiteColor;
     }
   }
   .learn-link:hover {
@@ -162,6 +188,12 @@ const HelpLeftSub = styled.div`
     color: ${({ theme }) => theme.colors.bodycolor};
   }
 `;
+const ImageWrapper = styled.div``;
+const HelpLink = styled.div`
+  display: block;
+  margin-top: 40px;
+  text-align: left;
+`;
 export {
   ClientMain,
   ClientHero,
@@ -172,4 +204,6 @@ export {
   BlockText,
   BlockWrap,
   HelpLeftSub,
+  ImageWrapper,
+  HelpLink,
 };

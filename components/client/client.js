@@ -11,8 +11,9 @@ import {
   BlockText,
   BlockWrap,
   HelpLeftSub,
+  ImageWrapper,
+  HelpLink,
 } from "./styles";
-import { HelpLink } from "../../styles/homepageStyles";
 
 export default function Client() {
   return (
@@ -64,7 +65,7 @@ export default function Client() {
                 </HelpLink>
               </HelpLeftSub>
             </ModuleCard>
-            <ModuleCard className="mydiv">
+            <ModuleCard className="mydiv file">
               <Image
                 src="/images/file.svg"
                 alt="red-icon"
@@ -74,7 +75,7 @@ export default function Client() {
                 className="show"
               />
               <Image
-                src="/images/contact.svg"
+                src="/images/filehover.svg"
                 alt="red-icon"
                 width={190}
                 height={142}
@@ -104,7 +105,7 @@ export default function Client() {
                 </HelpLink>
               </HelpLeftSub>
             </ModuleCard>
-            <ModuleCard className="mydiv">
+            <ModuleCard className="mydiv form">
               <Image
                 src="/images/form.svg"
                 alt="red-icon"
@@ -114,7 +115,7 @@ export default function Client() {
                 className="show"
               />
               <Image
-                src="/images/contact.svg"
+                src="/images/formhover.svg"
                 alt="red-icon"
                 width={190}
                 height={142}
@@ -144,23 +145,25 @@ export default function Client() {
                 </HelpLink>
               </HelpLeftSub>
             </ModuleCard>
-            <ModuleCard className="mydiv">
-              <Image
-                src="/images/base.svg"
-                alt="red-icon"
-                width={190}
-                height={142}
-                layout={"fixed"}
-                className="show"
-              />
-              <Image
-                src="/images/contact.svg"
-                alt="red-icon"
-                width={190}
-                height={142}
-                layout={"fixed"}
-                className="hide"
-              />
+            <ModuleCard className="mydiv base">
+              <ImageWrapper>
+                <Image
+                  src="/images/base.svg"
+                  alt="red-icon"
+                  width={190}
+                  height={142}
+                  layout={"fixed"}
+                  className="show"
+                />
+                <Image
+                  src="/images/basehover.svg"
+                  alt="red-icon"
+                  width={190}
+                  height={142}
+                  layout={"fixed"}
+                  className="hide"
+                />
+              </ImageWrapper>
               <HelpLeftSub>
                 <HelpLink className="icon-link">
                   <a href="#" className="learn-link mb0">
@@ -184,7 +187,7 @@ export default function Client() {
                 </HelpLink>
               </HelpLeftSub>
             </ModuleCard>
-            <ModuleCard className="mydiv">
+            <ModuleCard className="mydiv contact">
               <Image
                 src="/images/contact.svg"
                 alt="red-icon"
@@ -194,7 +197,7 @@ export default function Client() {
                 className="show"
               />
               <Image
-                src="/images/contact.svg"
+                src="/images/contacthover.svg"
                 alt="red-icon"
                 width={190}
                 height={142}

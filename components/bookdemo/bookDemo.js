@@ -5,7 +5,7 @@ import {
   MainSection,
   FormSection,
   FormTxt,
-  FoemDetail,
+  FormDetail,
   Input,
   NameBlock,
   NameInfo,
@@ -29,15 +29,15 @@ export default function BookDemoForm() {
           <h4>Let’s talk</h4>
           <p>Speak to a Copilot expert to learn more and experience a demo.</p>
         </FormTxt>
-        <FoemDetail>
+        <FormDetail>
           <NameBlock>
-            <NameInfo>
+            <NameInfo className="firstlable">
               <label for="First-Name-">
                 First Name <span>*</span>
               </label>
               <Input type="text" className="inputtext" />
             </NameInfo>
-            <NameInfo>
+            <NameInfo className="firstlable">
               <label for="Last-Name-">
                 Last name <span>*</span>
               </label>
@@ -145,7 +145,7 @@ export default function BookDemoForm() {
             required=""
             class="sm"
           ></textarea>
-        </FoemDetail>
+        </FormDetail>
 
         <PrimaryButton>
           <Link href="#" className="btnposition">
