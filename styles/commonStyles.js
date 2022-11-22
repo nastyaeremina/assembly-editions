@@ -182,7 +182,7 @@ const CtaButton = styled.div`
     }
   }
 `;
-const BlackButton = styled.li`
+const BlackButton = styled.div`
   a {
     margin-left: 14px;
     ${HeaderFont}
@@ -202,6 +202,20 @@ const BlackButton = styled.li`
     /* background-color: ${({ theme }) => theme.colors.black}; */
     /* color: ${({ theme }) => theme.colors.neutral}; */
     text-decoration: none;
+    transition: all 300ms;
+  }
+`;
+const TransparenBlack = styled.div`
+  a {
+    ${HeaderFont}
+    display: inline-block;
+    padding: 8px 32px;
+    border-radius: 48px;
+    border: 1px solid #000000;
+    border-radius: 48px;
+    color: ${({ theme }) => theme.colors.black};
+    text-decoration: none;
+    background-color: transparent;
     transition: all 300ms;
   }
 `;
@@ -678,4 +692,5 @@ export {
   SolutionTopSection,
   HeroCommonSection,
   GreenButton,
+  TransparenBlack,
 };

@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import {
   Body1,
   Heading,
@@ -9,6 +9,12 @@ import {
 
 const FaqSection = styled.div`
   padding: 100px 0 50px;
+  ${(props) =>
+    props.enterprise &&
+    css`
+      padding: 100px 0;
+      background-color: ${({ theme }) => theme.colors.greenlight};
+    `}
 `;
 const FaqTitle = styled.div`
   h3 {

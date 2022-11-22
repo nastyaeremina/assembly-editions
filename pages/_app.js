@@ -16,12 +16,6 @@ const GlobalStyle = createGlobalStyle`
     box-sizing: border-box;
     font-family: 'Bagoss', sans-serif;
   }
-  :root {
-    // eslint-disable-next-line max-len, max-len
-    --shadowColor: 0px 1px 3px rgba(10, 10, 46, 0.1), 0px 3px 14px rgba(10, 10, 46, 0.04), 0px 8px 32px rgba(10, 10, 46, 0.08), 0px 30px 84px rgba(10, 10, 46, 0.1);
-    --shadowCard:  0px 3px 10px rgba(0, 0, 0, 0.1);
-    --inputBoxShadow: 0 0 0 3px #afcdff;
-  }
 `;
 const theme = {
   fontfamily: {
