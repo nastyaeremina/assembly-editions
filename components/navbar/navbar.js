@@ -581,7 +581,7 @@ export default function Navbar({
                   textColor={colorList?.fontColor}
                   hoverColor={colorList?.primaryColor}
                 >
-                  <Link href="/">Book demo</Link>
+                  <Link href="/book-demo">Book demo</Link>
                 </SignIn>
                 <BlackButton
                   textColor={isModule ? colorList?.fontColor : "#FFFFFF"}

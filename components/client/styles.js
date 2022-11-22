@@ -32,7 +32,7 @@ const CardSection = styled.div`
     background-repeat: no-repeat;
     background-size: cover;
     a {
-      color: ${({ theme }) => theme.colors.whiteColor};
+      color: ${({ theme }) => theme.colors.bluelight};
       position: relative;
       top: 3px;
     }
@@ -49,17 +49,26 @@ const CardSection = styled.div`
     background-repeat: no-repeat;
     background-size: cover;
     a {
-      color: ${({ theme }) => theme.colors.whiteColor};
+      color: ${({ theme }) => theme.colors.purplelight};
     }
   }
   .form:hover {
     background-image: url("/images/hoverform.svg");
+    a {
+      color: ${({ theme }) => theme.colors.yellowlight};
+    }
   }
   .base:hover {
     background-image: url("/images/hoverbase.svg");
+    a {
+      color: ${({ theme }) => theme.colors.orangelight};
+    }
   }
   .contact:hover {
     background-image: url("/images/hovercontact.svg");
+    a {
+      color: ${({ theme }) => theme.colors.magentalight};
+    }
   }
 `;
 const ModuleCard = styled.div`
@@ -104,6 +113,25 @@ const BlockSection = styled.div`
   padding: 40px 50px;
   display: flex;
   gap: 60px;
+
+  :hover {
+    background-image: url("/images/hoverblock.svg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    a {
+      color: ${({ theme }) => theme.colors.greenlight};
+    }
+    h3 {
+      color: ${({ theme }) => theme.colors.greenlight};
+    }
+  }
+  :hover .HoverArrow__linePath {
+    opacity: 1;
+    fill: none;
+  }
+  :hover .HoverArrow__tipPath {
+    transform: translateX(4px);
+  }
 `;
 const BlockText = styled.div`
   text-align: left;
