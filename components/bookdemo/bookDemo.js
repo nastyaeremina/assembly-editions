@@ -83,7 +83,7 @@ export default function BookDemoForm() {
             <option value="other">Other</option>
           </select>
           <label for="Last-Name-">
-            How did you find us? <span>*</span>
+            What industry are you in? <span>*</span>
           </label>
           <select
             id="industry"
@@ -116,7 +116,7 @@ export default function BookDemoForm() {
             <option value="other">Other</option>
           </select>
           <label for="Last-Name-">
-            How did you find us? <span>*</span>
+            How large is your company? <span>*</span>
           </label>
           <select
             id="company_size"
@@ -134,7 +134,8 @@ export default function BookDemoForm() {
             <option value="100+">100+</option>
           </select>
           <label for="Last-Name-">
-            How did you find us? <span>*</span>
+            What should we know about your situation or objectives?{" "}
+            <span>*</span>
           </label>
           <textarea
             id="What-should-we-know-about-your-situation-or-objectives"

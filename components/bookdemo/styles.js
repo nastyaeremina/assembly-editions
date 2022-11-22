@@ -78,9 +78,10 @@ const FormDetail = styled.div`
     display: block;
     width: 100%;
     padding: 5px 12px;
-    font-size: 14px;
-    line-height: 1.42857143;
-    color: #333;
+    font-size: 18px;
+    line-height: 26px;
+    color: ${({ theme }) => theme.colors.lightgray};
+    font-weight: 400px;
     /* vertical-align: middle; */
     background-color: #fff;
     border: 1px solid #ccc;
@@ -95,10 +96,10 @@ const FormDetail = styled.div`
     max-width: 100%;
     min-height: 32px;
     height: 32px;
-    padding-top: 10px;
-    padding-bottom: 10px;
+    padding: 8px 12px;
     outline: 0;
     border: 1px solid #dfe1eb;
+    overflow: hidden;
     :hover {
       border-color: ${({ theme }) => theme.colors.primary};
     }
@@ -110,7 +111,7 @@ const FormDetail = styled.div`
     height: 32px;
     min-height: auto;
     margin-bottom: 20px;
-    padding: 0 10px;
+    padding: 8px 12px;
     border-radius: 4px;
     font-size: 14px;
   }
@@ -149,7 +150,7 @@ const NameInfo = styled.div`
   }
 `;
 const SliderSection = styled.div`
-position:relative;
+  position: relative;
   .swiper-slide {
     text-align: center;
     font-size: 18px;
@@ -176,7 +177,7 @@ position:relative;
     height: 900px;
     background-size: contain;
     background-repeat: no-repeat;
-    /* padding: 120px 0 60px; */ */
+    padding: 120px 0 60px; */
   }
   .swiper {
     width: 100%;
@@ -194,44 +195,44 @@ position:relative;
     height: 72px;
     text-align: center;
     color: ${({ theme }) => theme.colors.body};
- display: flex;
- align-items: center;
- justify-content: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     opacity: 1;
     background: transparent;
-    border: 1.08px solid #4C4C4C;
+    border: 1.08px solid #4c4c4c;
     animation: spin 1.5s infinite linear;
-    margin:0;
-    span{
+    margin: 0;
+    span {
       ${Body6};
       display: flex;
-justify-content: center;
-align-items: center;
+      justify-content: center;
+      align-items: center;
     }
   }
 
   .swiper-pagination-bullet-active {
     color: #fff;
     background: transparent;
-    border: 1px solid #09AA6C;
-border-radius: 68.4px;
-    span{
+    border: 1px solid #09aa6c;
+    border-radius: 68.4px;
+    span {
       ${Body6};
-   color: ${({ theme }) => theme.colors.whitecolor};
-   display: flex;
-   align-items: center;
-   justify-content: center;
+      color: ${({ theme }) => theme.colors.whitecolor};
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
   }
-  .swiper-pagination{
-    display:flex;
+  .swiper-pagination {
+    display: flex;
     bottom: 60px;
-justify-content: end;
-gap:16px;
-left: -120px;
-bottom: 60px;
-margin: 0 !important;
-}
+    justify-content: end;
+    gap: 16px;
+    left: -120px;
+    bottom: 60px;
+    margin: 0 !important;
+  }
 `;
 const Swiper = styled.div`
   width: 100%;
