@@ -20,7 +20,7 @@ export const MUDULE_LIST = {
 };
 export const NAVBAR_COLOR_LIST = [
   {
-    bgColor: "#fffffd",
+    bgColor: "rgba(255, 255, 253, 0.8)",
     borderBottomColor: "#CCCCD0",
     fontColor: "#131313",
     buttonColor: "#000000",
@@ -28,49 +28,49 @@ export const NAVBAR_COLOR_LIST = [
   },
 
   {
-    bgColor: "#120800",
+    bgColor: "rgba(18, 8, 0, 0.8)",
     borderBottomColor: "#85664D",
     fontColor: "#F3F3F2",
     buttonColor: "#D7B79E",
     primaryColor: "#D7B79E",
   },
   {
-    bgColor: "#01011d",
+    bgColor: "rgba(1, 1, 29, 0.8)",
     borderBottomColor: "#3D3FBE",
     fontColor: "#F3F3F2",
     buttonColor: "#989AF2",
     primaryColor: "#989AF2",
   },
   {
-    bgColor: "#01292c",
+    bgColor: "rgba(1, 41, 44, 0.8)",
     borderBottomColor: "#03888F",
     fontColor: "#F3F3F2",
     buttonColor: "#00AFB9",
     primaryColor: "#00AFB9",
   },
   {
-    bgColor: "#171500",
+    bgColor: "rgba(23, 21, 0, 0.8)",
     borderBottomColor: "#958602",
     fontColor: "#F3F3F2",
     buttonColor: "#F3DA1A",
     primaryColor: "#F3DA1A",
   },
   {
-    bgColor: "#1c0c00",
+    bgColor: "rgba(28, 12, 0, 0.8)",
     borderBottomColor: "#CF650D",
     fontColor: "#F3F3F2",
     buttonColor: "#FD8C2E",
     primaryColor: "#FD8C2E",
   },
   {
-    bgColor: " #27000a",
+    bgColor: "rgba(39, 0, 10, 0.8)",
     borderBottomColor: "#B8294B",
     fontColor: "#F3F3F2",
     buttonColor: "#F35B80",
     primaryColor: "#F35B80",
   },
   {
-    bgColor: "#fdfdfb",
+    bgColor: "rgba(253, 253, 251, 0.8)",
     borderBottomColor: "#CCCCD0",
     fontColor: "#131313",
     buttonColor: "#000000",
@@ -78,7 +78,7 @@ export const NAVBAR_COLOR_LIST = [
   },
 
   {
-    bgColor: "#00160e",
+    bgColor: "rgba(0, 22, 14, 0.8)",
     borderBottomColor: "#003F27",
     fontColor: "#E3FFEE",
     buttonColor: "#003F27",
