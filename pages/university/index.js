@@ -85,7 +85,11 @@ export default function University() {
 
                   <Catagory>
                     <h4>Categories</h4>
-                    <Catagoryitem>
+                    <Catagoryitem
+                      onClick={() => {
+                        onClickCategories(CATEGORIES.GET_STARTED);
+                      }}
+                    >
                       <Link href={"#GetStarted-Section"}>All</Link>
                     </Catagoryitem>
                     <Catagoryitem

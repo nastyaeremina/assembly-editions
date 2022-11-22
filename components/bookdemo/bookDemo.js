@@ -70,7 +70,7 @@ export default function BookDemoForm() {
             required=""
             class="wselect"
           >
-            <option value="">Please Select...</option>
+            <option value=""></option>
             <option value="linkedin">LinkedIn</option>
             <option value="google">Google</option>
             <option value="reddit">Reddit</option>
@@ -92,7 +92,7 @@ export default function BookDemoForm() {
             required=""
             class="wselect"
           >
-            <option value="">Please Select...</option>
+            <option value=""></option>
             <option value="accounting_and_bookkeeping">
               Accounting and bookkeeping
             </option>
@@ -125,7 +125,7 @@ export default function BookDemoForm() {
             required=""
             class="wselect"
           >
-            <option value="">Please Select...</option>
+            <option value=""></option>
             <option value="1">Just me</option>
             <option value="5">2 - 5</option>
             <option value="10">6 - 10</option>
