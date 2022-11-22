@@ -25,7 +25,6 @@ const NavbarWrapper = styled.div`
     props.isScrollPage &&
     css`
       background: ${props.colorList?.bgColor};
-      opacity: 0.8;
       backdrop-filter: blur(6px);
       border-bottom: 1px solid ${props.colorList?.borderBottomColor};
     `}
@@ -453,6 +452,26 @@ const MenuWrap = styled.a`
   transition: all 300ms;
   :hover {
     background-color: ${({ theme }) => theme.colors.greendark};
+    svg {
+      path {
+        fill: #e3ffee;
+      }
+    }
+    .logo {
+      circle {
+        fill: #e3ffee;
+      }
+      path {
+        fill: #00160e;
+      }
+    }
+    /* .brand {
+      g {
+        path {
+          fill: #e3ffee;
+        }
+      }
+    } */
     h6 {
       color: ${({ theme }) => theme.colors.greenlight};
     }
