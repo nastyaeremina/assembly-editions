@@ -18,13 +18,60 @@ import {
   FeatureImg,
   CardText,
   CardEnd,
-  FeatureCard
+  FeatureCard,
 } from "../../styles/appsStyles";
 import { Container, PrimaryButton } from "../../styles/commonStyles";
 import CTA from "../../components/cta/cta";
 import Image from "next/image";
+import {
+  getAllDataIntegrationAppWithSlug,
+  getAllPartnerApps,
+  getAllPartnerAppsWithSlug,
+} from "../../lib/contentful-partnerApps";
+import { useMemo } from "react";
+import { isEmpty } from "../../helpers/helpers";
 
-export default function AppsDetail() {
+export default function AppsDetail({ appDetail, relatedApps }) {
+  const renderRelatedAppView = useMemo(() => {
+    if (isEmpty(relatedApps)) return null;
+    return relatedApps?.map((item, index) => {
+      return (
+        <FeatureCard key={`renderrelatedappsview_index_${index}`}>
+          <Link href={`/apps/${item?.slug}`}>
+            <FeatureImg>
+              <Image
+                src={item?.logo?.url}
+                alt="main-logo"
+                width={236}
+                height={56}
+              />
+            </FeatureImg>
+            <CardText>
+              <h4>{item?.name}</h4>
+              <p>{item?.description}</p>
+            </CardText>
+            <CardEnd>
+              <p>{item?.partnerAppCategoriesCollection?.items[0]?.name}</p>
+            </CardEnd>
+          </Link>
+        </FeatureCard>
+      );
+    });
+  }, [relatedApps]);
+
+  const renderCategoryView = useMemo(() => {
+    if (isEmpty(appDetail?.partnerAppCategoriesCollection?.items)) return null;
+    return appDetail?.partnerAppCategoriesCollection?.items?.map(
+      (item, index) => {
+        return (
+          <RightTxt key={`rendercategoryview_index_${index}`}>
+            <h4>{item?.name}</h4>
+          </RightTxt>
+        );
+      }
+    );
+  }, [appDetail?.partnerAppCategoriesCollection?.items]);
+
   return (
     <>
       <NextSeo
@@ -35,8 +82,8 @@ export default function AppsDetail() {
         <Navbar />
         <AppsDetailMain>
           <Container>
-            <DetailLink>
-              <Link href="#">
+            <Link href="/apps">
+              <DetailLink>
                 <Image
                   src="/images/leftarrow.svg"
                   alt="bill-icon"
@@ -44,26 +91,27 @@ export default function AppsDetail() {
                   height={12}
                   layout={"fixed"}
                 />
-              </Link>
-              <p>Back to all Apps</p>
-            </DetailLink>
+                <p>Back to all Apps</p>
+              </DetailLink>
+            </Link>
           </Container>
           <AppDetailCard>
             <Container>
               <Image
-                src="/images/airtablebig.svg"
+                src={appDetail?.logo?.url}
                 alt="bill-icon"
                 width={350}
                 height={68}
                 layout={"fixed"}
               />
-              <p>
-                Airtable is a popular Extension that can be used for many use
-                cases. For example, you can embed an intake form or you can
-                embed a project tracking kanban board for each client.{" "}
-              </p>
+              <p>{appDetail?.description}</p>
               <PrimaryButton>
-                <Link href="#">Setup instructions</Link>
+                <Link
+                  href={appDetail?.setupInstructionsLink ?? ""}
+                  target="_blank"
+                >
+                  Setup instructions
+                </Link>
               </PrimaryButton>
             </Container>
           </AppDetailCard>
@@ -71,7 +119,7 @@ export default function AppsDetail() {
             <DetailMain>
               <DetailWrap>
                 <Image
-                  src="/images/appdetail.png"
+                  src={appDetail?.preview?.url}
                   alt="bill-icon"
                   width={869}
                   height={543}
@@ -102,132 +150,53 @@ export default function AppsDetail() {
                     </HelpWrap>
                   </DetailTxt>
                 </RightWrap>
-                <RightWrap>
-                  <Image
-                    src="/images/linesmall.svg"
-                    alt="bill-icon"
-                    width={45}
-                    height={1}
-                    layout={"fixed"}
-                    className="mr10"
-                  />
-                  <DetailTxt>
-                    <p>Website</p>
+                {!isEmpty(appDetail?.website) && (
+                  <RightWrap>
+                    <Image
+                      src="/images/linesmall.svg"
+                      alt="bill-icon"
+                      width={45}
+                      height={1}
+                      layout={"fixed"}
+                      className="mr10"
+                    />
+                    <DetailTxt>
+                      <p>Website</p>
 
-                    <Link href="#">www.airtable.com</Link>
-                  </DetailTxt>
-                </RightWrap>
-                <RightWrap>
-                  <Image
-                    src="/images/linesmall.svg"
-                    alt="bill-icon"
-                    width={45}
-                    height={1}
-                    layout={"fixed"}
-                    className="mr10"
-                  />
+                      <Link
+                        href={`https://${appDetail?.website}`}
+                        target="_blank"
+                      >
+                        {appDetail?.website}
+                      </Link>
+                    </DetailTxt>
+                  </RightWrap>
+                )}
+                {!isEmpty(appDetail?.partnerAppCategoriesCollection?.items) && (
+                  <RightWrap>
+                    <Image
+                      src="/images/linesmall.svg"
+                      alt="bill-icon"
+                      width={45}
+                      height={1}
+                      layout={"fixed"}
+                      className="mr10"
+                    />
 
-                  <DetailTxt>
-                    <p>Categories</p>
-                    <RightTxt>
-                      <h4>Project management</h4>
-                    </RightTxt>
-                    <RightTxt>
-                      <h4>Forms</h4>
-                    </RightTxt>
-                    <RightTxt>
-                      <h4>Knowledge base</h4>
-                    </RightTxt>
-                  </DetailTxt>
-                </RightWrap>
+                    <DetailTxt>
+                      <p>Categories</p>
+                      {renderCategoryView}
+                    </DetailTxt>
+                  </RightWrap>
+                )}
               </DetailRight>
             </DetailMain>
-            <AppWrap>
-              <h3>Related apps</h3>
-              <CardSection>
-                <FeatureCard>
-                  <FeatureImg>
-                    <Image
-                      src="/images/featurelogo1.svg"
-                      alt="main-logo"
-                      width={236}
-                      height={56}
-                    />
-                  </FeatureImg>
-                  <CardText>
-                    <h4>Calendly</h4>
-                    <p>
-                      Let clients schedule meetings with you by surfacing a
-                      Calendly scheduling page.
-                    </p>
-                  </CardText>
-                  <CardEnd>
-                    <p>Scheduling</p>
-                  </CardEnd>
-                </FeatureCard>
-
-                <FeatureCard>
-                  <FeatureImg>
-                    <Image
-                      src="/images/featurelogo2.svg"
-                      alt="main-logo"
-                      height={56}
-                      width={236}
-                    />
-                  </FeatureImg>
-                  <CardText>
-                    <h4>Jotform</h4>
-                    <p>
-                      Lets clients to submit forms by surfacing a form created
-                      in Jotform.
-                    </p>
-                  </CardText>
-                  <CardEnd>
-                    <p>Scheduling</p>
-                  </CardEnd>
-                </FeatureCard>
-                <FeatureCard>
-                  <FeatureImg>
-                    <Image
-                      src="/images/featurelogo3.svg"
-                      alt="main-logo"
-                      height={56}
-                      width={236}
-                    />
-                  </FeatureImg>
-                  <CardText>
-                    <h4>Airtable</h4>
-                    <p>
-                      Let clients to access grid, kanban, timeline, calendar,
-                      form and other views.
-                    </p>
-                  </CardText>
-                  <CardEnd>
-                    <p>Project management</p>
-                  </CardEnd>
-                </FeatureCard>
-                <FeatureCard>
-                  <FeatureImg>
-                    <Image
-                      src="/images/featurelogo1.svg"
-                      alt="main-logo"
-                      width={236}
-                      height={56}
-                    />
-                  </FeatureImg>
-                  <CardText>
-                    <h4>Calendly</h4>
-                    <p>
-                      Let clients schedule meetings with you by surfacing a
-                      Calendly scheduling page.
-                    </p>
-                  </CardText>
-                  <CardEnd>
-                    <p>Scheduling</p>
-                  </CardEnd>
-                </FeatureCard>
-              </CardSection>
-            </AppWrap>
+            {!isEmpty(relatedApps) && (
+              <AppWrap>
+                <h3>Related apps</h3>
+                <CardSection>{renderRelatedAppView}</CardSection>
+              </AppWrap>
+            )}
           </Container>
         </AppsDetailMain>
 
@@ -235,4 +204,34 @@ export default function AppsDetail() {
       </Layout>
     </>
   );
+}
+
+export async function getServerSideProps({ params, preview = false }) {
+  const allPosts = (await getAllPartnerApps(preview)) ?? [];
+  const appDetail = allPosts?.filter(
+    (item) => item?.slug === params?.slug
+  )?.[0];
+  const categoryList = appDetail?.partnerAppCategoriesCollection?.items?.map(
+    (item) => item?.slug
+  );
+  const relatedApps = allPosts
+    ?.filter(
+      (item) =>
+        item?.partnerAppCategoriesCollection?.items?.some((element) =>
+          categoryList.includes(element?.slug)
+        ) && item?.slug !== params?.slug
+    )
+    ?.slice(0, 4);
+  return {
+    props: { appDetail, relatedApps },
+  };
+}
+
+export async function getServerSidePaths() {
+  const allPosts = (await getAllPartnerAppsWithSlug()) ?? [];
+  return {
+    paths: allPosts?.map((slug) => `${slug}`) ?? [],
+
+    fallback: true,
+  };
 }

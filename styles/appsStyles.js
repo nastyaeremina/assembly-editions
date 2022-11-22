@@ -115,11 +115,12 @@ const FeatureCard = styled.div`
   overflow: hidden;
   max-width: 100%;
   width: 100%;
+  position: relative;
 `;
 const CardText = styled.div`
-  padding: 20px 16px;
+  padding: 20px 16px 50px 16px;
   border-top: 1px solid black;
-  border-bottom: 1px solid black;
+  overflow: auto;
   h4 {
     ${Body4};
     color: ${({ theme }) => theme.colors.title};
@@ -136,6 +137,12 @@ const CardText = styled.div`
 const CardEnd = styled.div`
   background-color: ${({ theme }) => theme.colors.greenlight};
   padding: 8px 16px;
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-top: 1px solid black;
+
   p {
     ${CardTxt};
     color: ${({ theme }) => theme.colors.purpledark};
@@ -148,6 +155,7 @@ const FeatureImg = styled.div`
 const Featured = styled.div``;
 const ExtensionsSection = styled.div`
   padding-top: 40px;
+
   p {
     ${Body5};
     color: ${({ theme }) => theme.colors.title};
@@ -256,83 +264,81 @@ const DetailLink = styled.div`
   }
 `;
 const AppsDetailMain = styled.div`
-padding-top: 40px;
-margin-top: 80px;
+  padding-top: 40px;
+  margin-top: 80px;
 `;
 const AppDetailCard = styled.div`
- background-color: ${({ theme }) => theme.colors.background};
- padding: 40px 0;
- margin-bottom: 40px;
- p{
-  margin: 20px 0 32px 0;
-  ${Body2};
-  color: ${({ theme }) => theme.colors.body};
- }
+  background-color: ${({ theme }) => theme.colors.background};
+  padding: 40px 0;
+  margin-bottom: 40px;
+  p {
+    margin: 20px 0 32px 0;
+    ${Body2};
+    color: ${({ theme }) => theme.colors.body};
+  }
 `;
 const DetailWrap = styled.div`
-border: 1px solid #000000;
-border-radius: 7px;
-padding: 25px;
-position:relative ;
-.imagepostion{
-  position: absolute;
-  top:131px;
-  right: 0;
-}
-.imagepostion2{
-  position: absolute;
-  top:247px;
-  right:0;
-}
+  border: 1px solid #000000;
+  border-radius: 7px;
+  padding: 25px;
+  position: relative;
+  .imagepostion {
+    position: absolute;
+    top: 131px;
+    right: 0;
+  }
+  .imagepostion2 {
+    position: absolute;
+    top: 247px;
+    right: 0;
+  }
 `;
 const DetailMain = styled.div`
-display:flex;
-padding-bottom: 100px;
+  display: flex;
+  padding-bottom: 100px;
 `;
 const LinePostion = styled.div`
-position: absolute;
-top:15px;
-right: -45px;
+  position: absolute;
+  top: 15px;
+  right: -45px;
 `;
-const DetailRight = styled.div`padding: 30px 0;
-.mr10{
-  padding-top: 10px;
-}
+const DetailRight = styled.div`
+  padding: 30px 0;
+  .mr10 {
+    padding-top: 10px;
+  }
 `;
 const RightWrap = styled.div`
-display: flex;
-gap:10px;
-padding-bottom: 60px;
-align-items: flex-start;
+  display: flex;
+  gap: 10px;
+  padding-bottom: 60px;
+  align-items: flex-start;
 `;
 const DetailTxt = styled.div`
-p{
-  ${Label};
-  color: ${({ theme }) => theme.colors.lightgray};
-  margin: 0 0 12px 0;
-}
-span{
-  ${Body4};
-      color: ${({ theme }) => theme.colors.title};
-      margin: 0;
-
-  
-}
-a{
-  color: ${({ theme }) => theme.colors.primary};
-  ${Body4};
-
-}
+  p {
+    ${Label};
+    color: ${({ theme }) => theme.colors.lightgray};
+    margin: 0 0 12px 0;
+  }
+  span {
+    ${Body4};
+    color: ${({ theme }) => theme.colors.title};
+    margin: 0;
+  }
+  a {
+    color: ${({ theme }) => theme.colors.primary};
+    ${Body4};
+  }
 `;
 const HelpWrap = styled.div`
-display: flex;
-gap:12px;
+  display: flex;
+  gap: 12px;
 `;
 const RightTxt = styled.div`
   background-color: ${({ theme }) => theme.colors.greenlight};
-  padding:7px 20px;
+  padding: 7px 20px;
   margin-top: 12px;
-  h4{
+  h4 {
     ${Label};
     color: ${({ theme }) => theme.colors.primary};
     margin: 0;
@@ -340,21 +346,21 @@ const RightTxt = styled.div`
   }
 `;
 const LeftImage = styled.div`
-padding-top: 10px;
+  padding-top: 10px;
 `;
 const AppWrap = styled.div`
-padding-bottom: 50px;
-h3{
-  ${Heading3};
-  margin: 0;
-  color: ${({ theme }) => theme.colors.black};
-}
+  padding-bottom: 50px;
+  h3 {
+    ${Heading3};
+    margin: 0;
+    color: ${({ theme }) => theme.colors.black};
+  }
 `;
 const CardSection = styled.div`
-padding-top: 50px;
-display: grid;
-grid-template-columns: 1fr 1fr 1fr 1fr;
-grid-gap: 48px;
+  padding-top: 50px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-gap: 48px;
 `;
 export {
   HeroSection,
@@ -396,5 +402,5 @@ export {
   RightTxt,
   LeftImage,
   AppWrap,
-  CardSection
+  CardSection,
 };
