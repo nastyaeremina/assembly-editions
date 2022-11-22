@@ -431,14 +431,28 @@ export default function Home() {
                         Meet our team and a community of businesses that run on
                         Copilot. Requires a Slack account.
                       </p>
-                      <HelpLink>
-                        <a href="#">Join Community</a>
-                        <Image
-                          src="/images/rightarrow.svg"
-                          width={12}
-                          height={12}
-                          alt="right-arrow"
-                        ></Image>
+                      <HelpLink className="icon-link">
+                        <a href="#" className="learn-link mb0">
+                          Join Community
+                          <svg
+                            class="HoverArrow"
+                            width="10"
+                            height="10"
+                            viewBox="0 0 10 10"
+                            aria-hidden="true"
+                          >
+                            <g fill-rule="evenodd">
+                              <path
+                                class="HoverArrow__linePath"
+                                d="M0 5h7"
+                              ></path>
+                              <path
+                                class="HoverArrow__tipPath"
+                                d="M1 1l4 4-4 4"
+                              ></path>
+                            </g>
+                          </svg>
+                        </a>
                       </HelpLink>
                     </HelpLeftSub>
                     <HelpLeftSub>
@@ -447,14 +461,28 @@ export default function Home() {
                         Read about company announcements, new features, customer
                         spotlights, and more.
                       </p>
-                      <HelpLink>
-                        <a href="#">Join Community</a>
-                        <Image
-                          src="/images/rightarrow.svg"
-                          width={12}
-                          height={12}
-                          alt="right-arrow"
-                        ></Image>
+                      <HelpLink className="icon-link">
+                        <a href="#" className="learn-link mb0">
+                          Join Community
+                          <svg
+                            class="HoverArrow"
+                            width="10"
+                            height="10"
+                            viewBox="0 0 10 10"
+                            aria-hidden="true"
+                          >
+                            <g fill-rule="evenodd">
+                              <path
+                                class="HoverArrow__linePath"
+                                d="M0 5h7"
+                              ></path>
+                              <path
+                                class="HoverArrow__tipPath"
+                                d="M1 1l4 4-4 4"
+                              ></path>
+                            </g>
+                          </svg>
+                        </a>
                       </HelpLink>
                     </HelpLeftSub>
                   </HelpWrap>
@@ -466,14 +494,28 @@ export default function Home() {
                           Watch video tutorials that cover getting set up,
                           configuring your portal, best practices, and more.
                         </p>
-                        <HelpLink>
-                          <a href="#">Join Community</a>
-                          <Image
-                            src="/images/rightarrow.svg"
-                            width={12}
-                            height={12}
-                            alt="right-arrow"
-                          ></Image>
+                        <HelpLink className="icon-link">
+                          <a href="#" className="learn-link mb0">
+                            Join Community
+                            <svg
+                              class="HoverArrow"
+                              width="10"
+                              height="10"
+                              viewBox="0 0 10 10"
+                              aria-hidden="true"
+                            >
+                              <g fill-rule="evenodd">
+                                <path
+                                  class="HoverArrow__linePath"
+                                  d="M0 5h7"
+                                ></path>
+                                <path
+                                  class="HoverArrow__tipPath"
+                                  d="M1 1l4 4-4 4"
+                                ></path>
+                              </g>
+                            </svg>
+                          </a>
                         </HelpLink>
                       </HelpLeftSub>
                       <HelpLeftSub>
@@ -482,14 +524,28 @@ export default function Home() {
                           Read answers to the most common questions, learn best
                           practices, and contact our team.
                         </p>
-                        <HelpLink>
-                          <a href="#">Join Community</a>
-                          <Image
-                            src="/images/rightarrow.svg"
-                            width={12}
-                            height={12}
-                            alt="right-arrow"
-                          ></Image>
+                        <HelpLink className="icon-link">
+                          <a href="#" className="learn-link mb0">
+                            Join Community
+                            <svg
+                              class="HoverArrow"
+                              width="10"
+                              height="10"
+                              viewBox="0 0 10 10"
+                              aria-hidden="true"
+                            >
+                              <g fill-rule="evenodd">
+                                <path
+                                  class="HoverArrow__linePath"
+                                  d="M0 5h7"
+                                ></path>
+                                <path
+                                  class="HoverArrow__tipPath"
+                                  d="M1 1l4 4-4 4"
+                                ></path>
+                              </g>
+                            </svg>
+                          </a>
                         </HelpLink>
                       </HelpLeftSub>
                     </HelpWrap>
