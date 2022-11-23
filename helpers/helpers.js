@@ -1,3 +1,5 @@
+import { MONTH_LIST } from "../constants/constant";
+
 export function isEmpty(value) {
   if (
     value === undefined ||
@@ -10,3 +12,12 @@ export function isEmpty(value) {
     return false;
   }
 }
+
+export const dateToMonthYear = (date) => {
+  if (!date) return;
+  const newDate = new Date(date)
+
+  var m = newDate.getUTCMonth(); //Month from 0 to 11
+  var y = newDate.getUTCFullYear();
+  return MONTH_LIST[m] + ', ' + y;
+};

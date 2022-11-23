@@ -206,6 +206,7 @@ const ImgBorder = styled.div`
   border-radius: 4px;
   overflow: hidden;
   background-color: #ffffff;
+  max-height: 320px;
 `;
 const TabList = styled.div`
   margin-top: 20px;
