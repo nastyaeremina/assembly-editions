@@ -6,8 +6,9 @@ import CTA from "../../components/cta/cta";
 import FAQ from "../../components/faq/faq";
 import Layout from "../../components/layout";
 import Navbar from "../../components/navbar/navbar";
-import { isEmpty } from "../../helpers/helpers";
+import { dateToMonthYear, isEmpty } from "../../helpers/helpers";
 import { NO_OF_JOBS_PER_PAGE } from "../../lib/constants";
+import { getAllJobBlogPosts } from "../../lib/contentful-jobBlogPosts";
 import { getAllJobImages, getAllJobs } from "../../lib/contentful-jobsListing";
 import { Container } from "../../styles/commonStyles";
 import {
@@ -48,8 +49,7 @@ import {
   MainWrap,
 } from "../../styles/jobsStyles";
 
-export default function Jobs({ jobList, jobImagesList }) {
-  console.log("jobImagesList", jobImagesList);
+export default function Jobs({ jobList, jobImagesList, jobBlogPostList }) {
   const [selectedImageIndex, setSelectedImageIndex] = useState(0)
 
   const renderJobsListingView = useCallback((list) => {
@@ -121,6 +121,35 @@ export default function Jobs({ jobList, jobImagesList }) {
 
   }, [jobImagesList, selectedImageIndex])
 
+  const renderAuthorListView = useCallback((authorList) => {
+    return authorList?.map((item, index) => {
+      return (<> {index !== 0 && item?.trim().length !== 0 && <Dot key={`authorlistitemwithdot_index_${index}`}></Dot>}
+        <p key={`authorlistitem_index_${index}`}> {item?.trim()}</p></>)
+    })
+  }, [])
+
+  const renderJobBlogPostView = useMemo(() => {
+    if (isEmpty(jobBlogPostList)) return null
+    return jobBlogPostList?.map((item, index) => {
+      let authorList = []
+      if (!isEmpty(item?.author)) {
+        authorList = item?.author.split(",")
+      }
+      return (<TitleWrap key={`jobblogpostitem_index_${index}`}>
+        <TeamLine>
+          <Link href={item?.blogLink ?? ""}>
+            {item?.name}
+          </Link>
+          <p>{dateToMonthYear(item?.date)}</p>
+        </TeamLine>
+        {!isEmpty(authorList) &&
+          <NameView>
+            {renderAuthorListView(authorList)}
+          </NameView>}
+      </TitleWrap>)
+    })
+  }, [jobBlogPostList, renderAuthorListView])
+
   return (
     <>
       <NextSeo
@@ -177,10 +206,11 @@ export default function Jobs({ jobList, jobImagesList }) {
                       <a href="#"> email us</a> if you have any questions!
                     </p>
                   </AboutWrap>
-                  <TeamView>
+                  {!isEmpty(jobBlogPostList) && <TeamView>
                     <h4>Writing from the team</h4>
                     <TeamDetail>
-                      <TitleWrap>
+                      {renderJobBlogPostView}
+                      {/* <TitleWrap>
                         <TeamLine>
                           <Link href="#">
                             Engineering Interviews at Copilot
@@ -246,9 +276,9 @@ export default function Jobs({ jobList, jobImagesList }) {
                           <Dot></Dot>
                           <p>Chris Magorian</p>
                         </NameView>
-                      </TitleWrap>
+                      </TitleWrap> */}
                     </TeamDetail>
-                  </TeamView>
+                  </TeamView>}
                   {!isEmpty(jobImagesList) && <>
                     <ImgWrap>
                       {renderJobImageView}
@@ -417,6 +447,7 @@ export default function Jobs({ jobList, jobImagesList }) {
 
 export async function getServerSideProps({ preview = false }) {
   const jobImagesList = (await getAllJobImages(preview)) ?? [];
+  const jobBlogPostList = (await getAllJobBlogPosts(preview)) ?? [];
 
   let allPosts = [];
   let data = [];
@@ -448,6 +479,6 @@ export async function getServerSideProps({ preview = false }) {
   });
 
   return {
-    props: { jobList: newList, jobImagesList },
+    props: { jobList: newList, jobImagesList, jobBlogPostList },
   };
 }
