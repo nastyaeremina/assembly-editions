@@ -6,10 +6,10 @@ const CtaInner = styled.div`
   h2 {
     color: ${({ theme }) => theme.colors.whiteColor};
     ${Heading2};
-    padding-bottom: 40px;
+    padding-bottom: 50px;
     margin: 0 auto;
     max-width: 708px;
-    width:100%;
+    width: 100%;
     span {
       color: ${({ theme }) => theme.colors.primary};
       /* display: block; */

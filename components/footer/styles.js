@@ -252,7 +252,7 @@ const FooterFirst = styled.div`
     `}
 `;
 const FotterMenuLeft = styled.div`
-  max-width: 33.33%;
+  max-width: 290px;
   width: 100%;
   .padding {
     padding-top: 40px;

@@ -43,7 +43,7 @@ const WrapImage = styled.div`
     padding-top: 24px;
     ${Body3};
     margin: 0;
-    color: ${({ theme }) => theme.colors.greendark};
+    color: ${({ theme }) => theme.colors.title};
   }
   p {
     ${Body5};

@@ -102,7 +102,7 @@ const AboutWrap = styled.div`
 `;
 const JobDetailWrap = styled.div``;
 const JobView = styled.div`
-  margin-bottom: 20px;
+  margin-bottom: 18px;
   h4 {
     margin: 0;
     ${HeaderFont};
@@ -333,11 +333,11 @@ const DetailLink = styled.div`
 const JobDetail = styled.div`
   display: flex;
   padding-top: 28px;
-  gap:46px;
+  gap: 46px;
 `;
 const DetailLeft = styled.div`
- max-width: 260px;
- width:100%;
+  max-width: 260px;
+  width: 100%;
   h3 {
     ${Heading3};
     color: ${({ theme }) => theme.colors.title};
@@ -365,8 +365,7 @@ const ImageWrap = styled.div`
   gap: 4px;
   padding-bottom: 31px;
 `;
-const DetailRight = styled.div`
-`;
+const DetailRight = styled.div``;
 const DetailText = styled.ul`
   h4 {
     ${Heading4};
@@ -375,57 +374,57 @@ const DetailText = styled.ul`
   }
 `;
 const DeatilTextSub = styled.li`
-p{
-  ${Body3};
-  color: ${({ theme }) => theme.colors.body};
-  margin: 24px 0 0 0;
-  :first-child{
-    margin:20px 0 0 0 ;
+  p {
+    ${Body3};
+    color: ${({ theme }) => theme.colors.body};
+    margin: 24px 0 0 0;
+    :first-child {
+      margin: 20px 0 0 0;
+    }
   }
-}
-span{
-  ${Body3};
-  color: ${({ theme }) => theme.colors.primary};
-  margin: 0;
-}
+  span {
+    ${Body3};
+    color: ${({ theme }) => theme.colors.primary};
+    margin: 0;
+  }
 `;
 const DetailInner = styled.ul`
-padding-top: 40px;
-h4 {
+  padding-top: 40px;
+  h4 {
     ${Heading4};
     color: ${({ theme }) => theme.colors.title};
     margin: 0 0 20px 0;
   }
-.bullet{
-  padding-top: 7px;
-}
-.textcolor{
-  color: ${({ theme }) => theme.colors.darkgray};
-}
+  .bullet {
+    padding-top: 7px;
+  }
+  .textcolor {
+    color: ${({ theme }) => theme.colors.darkgray};
+  }
 `;
 const DetailInnerSub = styled.li`
-display: flex;
-gap: 16px;
-align-items:flex-start ;
-.mr0{
-  margin-bottom: 0;
-}
-p{
-  ${Body4};
-  color: ${({ theme }) => theme.colors.body};
-  margin: 0 0 16px 0;
-  /* :last-child{
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+  .mr0 {
+    margin-bottom: 0;
+  }
+  p {
+    ${Body4};
+    color: ${({ theme }) => theme.colors.body};
+    margin: 0 0 16px 0;
+    /* :last-child{
     margin: 0;
   } */
-  span{
-    color: ${({ theme }) => theme.colors.title};
+    span {
+      color: ${({ theme }) => theme.colors.title};
+    }
   }
-}
 `;
 const BulletImage = styled.div`
-padding: 5px 10px;
-margin-top:7px;
-background-color: ${({ theme }) => theme.colors.greenmidlight};
+  padding: 5px 10px;
+  margin-top: 7px;
+  background-color: ${({ theme }) => theme.colors.greenmidlight};
 `;
 export {
   HeroJobSection,
@@ -474,5 +473,5 @@ export {
   DeatilTextSub,
   DetailInner,
   DetailInnerSub,
-  BulletImage
+  BulletImage,
 };

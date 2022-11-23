@@ -140,8 +140,7 @@ const SecondryButton = styled.div`
     padding: 11px 32px;
     border: 1px solid #000000;
     border-radius: 48px;
-    background-color: ${({ theme }) => theme.colors.whiteColor};
-    box-shadow: 1px 0 3px 0 rgb(0 0 0 / 12%);
+    background-color: transparent;
     color: ${({ theme }) => theme.colors.black};
     letter-spacing: 0.02em;
     text-decoration: none;

@@ -183,6 +183,9 @@ const PricePlan = styled.ul`
     margin: 0 0 20px 0;
     letter-spacing: 0.02em;
   }
+  p {
+    color: ${({ theme }) => theme.colors.darkgray};
+  }
 `;
 const PricePlanWrap = styled.li`
   display: flex;
@@ -223,11 +226,20 @@ const PriceTable = styled.div`
       background-color: transparent;
       width: 624px;
     }
+    .radius {
+      border-radius: 4px 0px 0px 0px;
+    }
+    .rightradius {
+      border-radius: 0px 4px 0px 0px;
+    }
     .tablecolor {
       background-color: ${({ theme }) => theme.colors.greenlight};
     }
     .tablepadding {
       padding: 12px 20px;
+    }
+    .leftradius {
+      border-radius: 3px 0px 0px 0px;
     }
     .tabletext {
       ${TableText}
@@ -240,7 +252,7 @@ const PriceTable = styled.div`
     }
     th {
       ${Body3};
-      border-radius: 3px 0px 0px 0px;
+      /* border-radius: 3px 0px 0px 0px; */
       background-color: ${({ theme }) => theme.colors.greendark};
       letter-spacing: 0.02em;
       color: ${({ theme }) => theme.colors.greenlight};
@@ -340,8 +352,11 @@ const PriceImage = styled.div`
 const PriceImageLeft = styled.div`
   padding: 40px;
   max-width: 820px;
-
   width: 100%;
+  border-right: 1px solid #000000;
+  img {
+    display: block;
+  }
   h3 {
     margin: 40px 0 0 0;
     ${Heading3};
@@ -370,6 +385,14 @@ const BulletImage = styled.div`
   padding: 5px 10px;
   margin-top: 7px;
   background-color: ${({ theme }) => theme.colors.greenmidlight};
+`;
+const PricePlusImage = styled.div`
+  max-height: 361px;
+  height: 100%;
+  img {
+    max-height: 361px;
+    height: 100%;
+  }
 `;
 export {
   HeroHeading,
@@ -407,4 +430,5 @@ export {
   Pricefaq,
   PriceText,
   BulletImage,
+  PricePlusImage,
 };

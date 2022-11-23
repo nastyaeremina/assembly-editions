@@ -62,7 +62,7 @@ const WrapImage = styled.div`
 const SliderInner = styled.div`
   padding: 11px 15px;
   border: 1px solid #000000;
-  border-radius: 8px;
+  border-radius: 4px;
   background-color: ${({ theme }) => theme.colors.whiteColor};
   width: 100%;
   max-width: 180px;
@@ -81,7 +81,7 @@ const SliderSub = styled.div`
   h4 {
     ${Body4};
     margin: 0;
-    color: ${({ theme }) => theme.colors.black};
+    color: ${({ theme }) => theme.colors.title};
   }
 `;
 export { Slide, SliderWrap, WrapImage, SliderInner, SliderSub };
