@@ -5,6 +5,9 @@ import Image from "next/image";
 import CopilotLogos from "../../public/images/blacklogo.svg";
 import GreenLogos from "../../public/images/greenlogo.svg";
 import WhiteLogos from "../../public/images/whitelogo.svg";
+import MobileBlackLogos from "../../public/images/mobileblacklogo.svg";
+import MobileWhiteLogos from "../../public/images/whitemobilelogo.svg";
+import MobileGreenLogos from "../../public/images/greenmblogo.svg";
 
 import {
   BlackButton,
@@ -40,6 +43,8 @@ import {
   MenuWrap,
   RightText,
   LineMenuImg,
+  SignInMobile,
+  MobileRight,
 } from "./styles";
 
 export default function Navbar({
@@ -616,18 +621,43 @@ export default function Navbar({
           <NavbarInner>
             <Link href="/">
               {isModule ? (
-                <SalescampLogo
-                  loading="lazy"
-                  width="143"
-                  height="31"
-                  src={WhiteLogos.src}
-                />
+                mobile ? (
+                  <SalescampLogo
+                    loading="lazy"
+                    width="96"
+                    height="21"
+                    src={MobileWhiteLogos.src}
+                  />
+                ) : (
+                  <SalescampLogo
+                    loading="lazy"
+                    width="143"
+                    height="31"
+                    src={WhiteLogos.src}
+                  />
+                )
               ) : isEnterPrice ? (
+                mobile ? (
+                  <SalescampLogo
+                    loading="lazy"
+                    width="96"
+                    height="21"
+                    src={MobileGreenLogos.src}
+                  />
+                ) : (
+                  <SalescampLogo
+                    loading="lazy"
+                    width="143"
+                    height="31"
+                    src={GreenLogos.src}
+                  />
+                )
+              ) : mobile ? (
                 <SalescampLogo
                   loading="lazy"
-                  width="143"
-                  height="31"
-                  src={GreenLogos.src}
+                  width="96"
+                  height="21"
+                  src={MobileBlackLogos.src}
                 />
               ) : (
                 <SalescampLogo
@@ -635,7 +665,7 @@ export default function Navbar({
                   width="143"
                   height="31"
                   src={CopilotLogos.src}
-                ></SalescampLogo>
+                />
               )}
             </Link>
             {mobile ? (
@@ -651,24 +681,45 @@ export default function Navbar({
             ) : (
               <Navigation />
             )}
-
-            <MobileMenu onClick={handleMobileMenu}>
-              <FirstLine
+            <MobileRight>
+              <SignInMobile>
+                <>
+                  <SignIn
+                    textColor={colorList?.fontColor}
+                    hoverColor={colorList?.primaryColor}
+                  >
+                    <Link href="https://dashboard.copilot.com/login?step=signIn">
+                      Login
+                    </Link>
+                  </SignIn>
+                  <BlackButton
+                    textColor={isModule ? colorList?.fontColor : "#FFFFFF"}
+                    backgroundColor={colorList?.buttonColor}
+                  >
+                    <Link href="https://dashboard.copilot.com/onboarding">
+                      Start trial
+                    </Link>
+                  </BlackButton>
+                </>
+              </SignInMobile>
+              <MobileMenu onClick={handleMobileMenu}>
+                <FirstLine
+                  isOpenMobileMenu={isOpenMobileMenu}
+                  BlogDetails={BlogDetails}
+                  isScrollPage={isScrollPage}
+                ></FirstLine>
+                {/* <SecondLine
                 isOpenMobileMenu={isOpenMobileMenu}
                 BlogDetails={BlogDetails}
                 isScrollPage={isScrollPage}
-              ></FirstLine>
-              <SecondLine
-                isOpenMobileMenu={isOpenMobileMenu}
-                BlogDetails={BlogDetails}
-                isScrollPage={isScrollPage}
-              ></SecondLine>
-              <ThirdLine
-                isOpenMobileMenu={isOpenMobileMenu}
-                BlogDetails={BlogDetails}
-                isScrollPage={isScrollPage}
-              ></ThirdLine>
-            </MobileMenu>
+              ></SecondLine> */}
+                <ThirdLine
+                  isOpenMobileMenu={isOpenMobileMenu}
+                  BlogDetails={BlogDetails}
+                  isScrollPage={isScrollPage}
+                ></ThirdLine>
+              </MobileMenu>
+            </MobileRight>
           </NavbarInner>
         </Container>
       </NavbarWrapper>

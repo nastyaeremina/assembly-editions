@@ -33,9 +33,10 @@ const BusinessSlider = ({ data }) => {
   // }, [data]);
 
   var settings = {
-    dots: false,
     infinite: true,
+    mobileFirst: true,
     centerMode: false,
+    adaptiveHeight: true,
     speed: 500,
     slidesToScroll: 2,
     variableWidth: true,
@@ -57,8 +58,12 @@ const BusinessSlider = ({ data }) => {
       {
         breakpoint: 600,
         settings: {
+          mobileFirst: true,
           slidesToShow: 1,
           slidesToScroll: 1,
+          dots: true,
+          centerMode: true,
+          variableWidth: true,
         },
       },
     ],

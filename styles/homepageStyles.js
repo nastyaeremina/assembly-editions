@@ -11,6 +11,11 @@ import {
   Body2,
   Label,
   LinkTxt,
+  MbBody1,
+  MobileH3,
+  MbBody3,
+  MbBody4,
+  HeaderFont,
 } from "./styles";
 
 const HomeMain = styled.div`
@@ -44,7 +49,7 @@ const FeatureWrapBlock = styled.div`
   width: 100%;
   max-width: 896px;
   margin: 14px auto 0 auto;
-  @media only screen and (max-width: 768px) {
+  @media only screen and (max-width: 749px) {
     margin: 24px 0 0 0;
   }
 `;
@@ -56,10 +61,10 @@ const FeatureBlock = styled.ul`
   justify-content: center;
   flex-wrap: wrap;
   margin: 0 -16px;
-  @media only screen and (max-width: 768px) {
+  @media only screen and (max-width: 749px) {
     margin: 0 -12px;
   }
-  @media only screen and (max-width: 479px) {
+  @media only screen and (max-width: 749px) {
     margin: 0;
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -79,10 +84,10 @@ const LearnMoreLink = styled.div`
     margin: 0 6px 0 0;
     color: ${({ theme }) => theme.colors.primary};
   }
-  @media only screen and (max-width: 768px) {
+  @media only screen and (max-width: 749px) {
     opacity: 1;
   }
-  @media only screen and (max-width: 479px) {
+  @media only screen and (max-width: 749px) {
     span {
       font-size: 14px;
       line-height: 18px;
@@ -99,7 +104,7 @@ const FeatureCardTitle = styled.h3`
   text-align: center;
   color: ${({ theme }) => theme.colors.textColor};
   transition: all 300ms;
-  @media only screen and (max-width: 479px) {
+  @media only screen and (max-width: 749px) {
     margin: 10px 0 0 0;
     font-size: 14px;
     line-height: 20px;
@@ -137,7 +142,7 @@ const FeatureItem = styled.li`
       }
     }
   }
-  @media only screen and (max-width: 768px) {
+  @media only screen and (max-width: 749px) {
     padding: 12px;
     a {
       max-width: 100%;
@@ -161,7 +166,7 @@ const FeatureItem = styled.li`
       }
     }
   }
-  @media only screen and (max-width: 479px) {
+  @media only screen and (max-width: 749px) {
     padding: 0;
   }
 `;
@@ -176,10 +181,7 @@ const HeroSection = styled.div`
   background-size: cover;
   background-repeat: no-repeat; */
   overflow: hidden;
-  @media only screen and (max-width: 768px) {
-    padding: 136px 0 84px 0;
-  }
-  @media only screen and (max-width: 479px) {
+  @media only screen and (max-width: 749px) {
     padding: 120px 0 40px 0;
   }
 `;
@@ -217,6 +219,14 @@ const HeroHeading = styled.h1`
   }
   @media only screen and (max-width: 991px) {
     text-align: center;
+    font-size: 110px;
+    line-height: 100px;
+  }
+  @media only screen and (max-width: 749px) {
+    margin-bottom: 20px;
+    font-size: 60px;
+    line-height: 54px;
+    color: ${({ theme }) => theme.colors.greendark};
   }
 `;
 
@@ -229,6 +239,9 @@ const Para = styled.p`
     text-align: center;
     ${Body1}
   }
+  @media only screen and (max-width: 749px) {
+    ${MbBody1};
+  }
 `;
 
 const HeroBtnBlock = styled.div`
@@ -236,27 +249,13 @@ const HeroBtnBlock = styled.div`
   display: flex;
   justify-content: center;
   gap: 20px;
-
   @media only screen and (max-width: 991px) {
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-top: 24px;
   }
-  @media only screen and (max-width: 479px) {
-    flex-direction: column;
-    margin-top: 16px;
-    button {
-      max-width: 220px;
-      width: 100%;
-      a {
-        width: 100%;
-      }
-      :last-child {
-        margin-left: 0;
-        margin-top: 12px;
-      }
-    }
+  @media only screen and (max-width: 749px) {
+    gap: 16px;
   }
 `;
 
@@ -278,7 +277,7 @@ const EmailModal = styled.div`
   position: absolute;
   left: -60px;
   top: 86px;
-  @media only screen and (max-width: 768px) {
+  @media only screen and (max-width: 749px) {
     display: none;
   }
 `;
@@ -287,7 +286,7 @@ const SmsModal = styled.div`
   position: absolute;
   top: 71px;
   right: -54px;
-  @media only screen and (max-width: 768px) {
+  @media only screen and (max-width: 749px) {
     display: none;
   }
 `;
@@ -296,7 +295,7 @@ const CallModal = styled.div`
   position: absolute;
   right: 0;
   bottom: -28px;
-  @media only screen and (max-width: 768px) {
+  @media only screen and (max-width: 749px) {
     display: none;
   }
 `;
@@ -409,6 +408,10 @@ const ReviewRight = styled.div`
 `;
 const BusinessSection = styled.div`
   padding: 50px 0 50px;
+  overflow: hidden;
+  @media only screen and (max-width: 749px) {
+    padding: 40px 0 80px;
+  }
 `;
 const BusinessText = styled.div`
   width: 100%;
@@ -435,13 +438,28 @@ const BusinessText = styled.div`
     width: 100%;
     max-width: 810px;
   }
+  @media only screen and (max-width: 749px) {
+    h2 {
+      ${MobileH3};
+      color: ${({ theme }) => theme.colors.greendark};
+    }
+    p {
+      ${MbBody3};
+    }
+  }
 `;
 const Functionality = styled.div`
   padding: 50px 0 50px;
+  @media only screen and (max-width: 749px) {
+    padding: 40px 0;
+  }
 `;
 const TopFunctionWrap = styled.div`
   width: 100%;
   max-width: 1020px;
+  .titlewrap {
+    max-width: 820px;
+  }
   h3 {
     margin: 0 0 16px 0;
     ${Heading3};
@@ -449,18 +467,37 @@ const TopFunctionWrap = styled.div`
     span {
       color: ${({ theme }) => theme.colors.primary};
     }
+    @media only screen and (max-width: 991px) {
+      font-size: 44px;
+      line-height: 50px;
+    }
+    @media only screen and (max-width: 749px) {
+      ${MobileH3};
+    }
   }
   p {
     ${Body3};
     color: ${({ theme }) => theme.colors.body};
     margin: 0;
+    @media only screen and (max-width: 749px) {
+      ${MbBody3};
+    }
   }
 `;
 const BottomFunction = styled.div`
   margin-top: 40px;
+  @media only screen and (max-width: 749px) {
+    margin-top: 28px;
+  }
 `;
 const TabRow = styled.div`
   display: flex;
+  @media only screen and (max-width: 749px) {
+    overflow: auto;
+    ::-webkit-scrollbar {
+      display: none;
+    }
+  }
 `;
 const TabBox = styled.div`
   a {
@@ -491,6 +528,9 @@ const IconSvg = styled.div`
     border-top: 1px solid #000000;
     width: 100%;
     top: 50%;
+  }
+  @media only screen and (max-width: 749px) {
+    display: none;
   }
 `;
 const IconViewblank = styled.div`
@@ -534,6 +574,10 @@ const ContainWrap = styled.div`
   margin-top: 40px;
   display: flex;
   width: 100%;
+  @media only screen and (max-width: 749px) {
+    flex-wrap: wrap;
+    margin-top: 28px;
+  }
 `;
 const LeftDetail = styled.div`
   width: 100%;
@@ -550,6 +594,21 @@ const LeftDetail = styled.div`
     color: ${({ theme }) => theme.colors.body};
     margin: 0 0 24px 0;
   }
+  @media only screen and (max-width: 749px) {
+    max-width: 100%;
+    margin-right: 0;
+    h4 {
+      margin: 0 0 8px 0;
+      ${Heading4};
+      color: ${({ theme }) => theme.colors.title};
+    }
+    p {
+      ${MbBody4};
+      letter-spacing: 0.02em;
+      color: ${({ theme }) => theme.colors.body};
+      margin: 0 0 24px 0;
+    }
+  }
 `;
 const RightDetail = styled.div`
   border: 1px solid #000000;
@@ -558,12 +617,26 @@ const RightDetail = styled.div`
   width: 100%;
   background: transparent;
   position: relative;
+  @media only screen and (max-width: 749px) {
+    margin-top: 28px;
+    padding: 5px 6px;
+  }
+  img {
+    height: 100%;
+    max-width: 100%;
+  }
 `;
 const Extension = styled.div`
   padding: 50px 0;
+  @media only screen and (max-width: 749px) {
+    padding: 40px 0;
+  }
 `;
 const AutomateSection = styled.div`
   padding: 50px 0;
+  @media only screen and (max-width: 749px) {
+    padding: 40px 0;
+  }
 `;
 const AutomateText = styled.div`
   max-width: 975px;
@@ -590,12 +663,28 @@ const AutomateText = styled.div`
       color: ${({ theme }) => theme.colors.primary};
     }
   }
+  @media only screen and (max-width: 749px) {
+    max-width: 100%;
+    margin-bottom: 0;
+    p {
+      ${MbBody4};
+      letter-spacing: 0.02em;
+      color: ${({ theme }) => theme.colors.body};
+      margin: 0;
+    }
+  }
 `;
 const BottomList = styled.div`
   width: 100%;
   display: flex;
   gap: 63px;
   position: relative;
+  @media only screen and (max-width: 991px) {
+    display: none;
+  }
+  @media only screen and (max-width: 749px) {
+    display: none;
+  }
 `;
 const CardWrapper = styled.div`
   max-width: 366px;
@@ -665,15 +754,22 @@ const LineIcon = styled.div`
 `;
 const HelpSection = styled.div`
   padding: 50px 0;
+  @media only screen and (max-width: 749px) {
+    padding: 40px 0;
+  }
 `;
-
 const HelpMain = styled.div`
   display: flex;
+  align-items: stretch;
   border: 1px solid #000000;
   border-radius: 4px;
   background-color: ${({ theme }) => theme.colors.whiteColor};
   image {
     border-radius: 0px 4px 4px 0px;
+    max-width: 100%;
+  }
+  @media only screen and (max-width: 991px) {
+    flex-wrap: wrap;
   }
 `;
 const HelpLeft = styled.div`
@@ -687,6 +783,20 @@ const HelpLeft = styled.div`
     ${Heading3};
     color: ${({ theme }) => theme.colors.title};
     margin: 0 0 40px 0;
+    span {
+      color: ${({ theme }) => theme.colors.primary};
+    }
+  }
+  @media only screen and (max-width: 991px) {
+    padding: 30px;
+  }
+  @media only screen and (max-width: 749px) {
+    padding: 20px;
+    max-width: 100%;
+    h3 {
+      max-width: 100%;
+      margin-bottom: 28px;
+    }
   }
   span {
     color: ${({ theme }) => theme.colors.primary};
@@ -744,6 +854,35 @@ const HelpLeftSub = styled.div`
     margin: 0 0 20px 0;
     color: ${({ theme }) => theme.colors.bodycolor};
   }
+  @media only screen and (max-width: 749px) {
+    h4 {
+      ${Heading4};
+      color: ${({ theme }) => theme.colors.title};
+      margin: 0 0 12px 0;
+    }
+    p {
+      ${MbBody4};
+      margin: 0 0 16px 0;
+      color: ${({ theme }) => theme.colors.bodycolor};
+    }
+    a {
+      ${HeaderFont};
+    }
+  }
+`;
+const HelpImg = styled.div`
+  margin-top: -1px;
+  img {
+    max-width: 100%;
+    display: block;
+    height: 100%;
+  }
+  @media only screen and (max-width: 991px) {
+    width: 100%;
+    img {
+      width: 100%;
+    }
+  }
 `;
 const HelpLink = styled.div`
   display: flex;
@@ -751,9 +890,15 @@ const HelpLink = styled.div`
 const HelpWrap = styled.div`
   display: flex;
   gap: 28px;
+  @media only screen and (max-width: 749px) {
+    flex-wrap: wrap;
+  }
 `;
 const HelpMargin = styled.div`
   margin-top: 40px;
+  @media only screen and (max-width: 749px) {
+    margin-top: 28px;
+  }
 `;
 const BtnView = styled.div`
   margin-top: 28px;
@@ -874,4 +1019,5 @@ export {
   IconViewblank,
   BtnView,
   ImageHover,
+  HelpImg,
 };

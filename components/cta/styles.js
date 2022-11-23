@@ -6,13 +6,21 @@ const CtaInner = styled.div`
   h2 {
     color: ${({ theme }) => theme.colors.whiteColor};
     ${Heading2};
-    padding-bottom: 50px;
+    padding-bottom: 40px;
     margin: 0 auto;
     max-width: 708px;
     width: 100%;
     span {
       color: ${({ theme }) => theme.colors.primary};
       /* display: block; */
+    }
+  }
+  @media only screen and (max-width: 749px) {
+    h2 {
+      font-weight: 400;
+      font-size: 44px;
+      line-height: 42px;
+      max-width: 260px;
     }
   }
 `;
@@ -32,6 +40,12 @@ const CtaBtn = styled.div`
   display: flex;
   justify-content: center;
   gap: 16px;
+  @media only screen and (max-width: 749px) {
+    flex-direction: column;
+    .paddingbtn {
+      padding: 7px 38px;
+    }
+  }
 `;
 const CtaRight = styled.div`
   width: 100%;

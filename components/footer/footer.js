@@ -11,6 +11,8 @@ import {
   FooterMenu,
   FotterMenuLeft,
   FooterMenuList,
+  FooterMobile,
+  FotterMenuMobile,
 } from "./styles";
 
 export default function Footer({ isEnterPrice }) {
@@ -350,6 +352,55 @@ export default function Footer({ isEnterPrice }) {
                 </FooterMenu>
               </FotterMenuLeft>
             </FooterRight>
+            <FooterMobile>
+              <FotterMenuMobile>
+                <FooterMenu isEnterPrice={isEnterPrice}>
+                  <p>Features</p>
+                  <FooterMenuList isEnterPrice={isEnterPrice}>
+                    <Link href="/modules/message">Messaging</Link>
+                    <Link href="/modules/billing">Billing</Link>
+                    <Link href="/modules/file">Files</Link>
+                    <Link href="/modules/form">Forms</Link>
+                    <Link href="/modules/knowledge">Helpdesk</Link>
+                    <Link href="/modules/contract">Contracts</Link>
+                    <Link href="/apps">Apps</Link>
+                  </FooterMenuList>
+                </FooterMenu>
+                <FooterMenu className="padding" isEnterPrice={isEnterPrice}>
+                  <p>Solutions</p>
+                  <FooterMenuList isEnterPrice={isEnterPrice}>
+                    <Link href="/solution">Accounting firms</Link>
+                    <Link href="#">Marketing agencies</Link>
+                    <Link href="#">Startups</Link>
+                  </FooterMenuList>
+                </FooterMenu>
+              </FotterMenuMobile>
+              <FotterMenuMobile>
+                <FooterMenu isEnterPrice={isEnterPrice}>
+                  <p>Company</p>
+                  <FooterMenuList isEnterPrice={isEnterPrice}>
+                    <Link href="/enterprise">Enterprise</Link>
+                    <Link href="/pricing">Pricing</Link>
+                    <Link href="/jobs">Jobs</Link>
+                    <Link href="/brands">Brand</Link>
+                  </FooterMenuList>
+                </FooterMenu>
+                <FooterMenu className="padding" isEnterPrice={isEnterPrice}>
+                  <p>Resources</p>
+                  <FooterMenuList isEnterPrice={isEnterPrice}>
+                    <Link href="http://copilot.com/blog">Blog</Link>
+                    <Link href="http://security.copilot.com">Security</Link>
+                    <Link href="http://copilot.com/updates">What’s New</Link>
+                    <Link href="#">Help Center</Link>
+                    <Link href="/university">Video Tutorials</Link>
+                    <Link href="http://docs.copilot.com/">API Reference</Link>
+                    <Link href="https://status.copilot.com/">
+                      System Status
+                    </Link>
+                  </FooterMenuList>
+                </FooterMenu>
+              </FotterMenuMobile>
+            </FooterMobile>
           </FooterInnerBlock>
         </Container>
       </FooterSection>
