@@ -211,10 +211,10 @@ export default function NewIndex() {
               <table>
                 <thead>
                   <tr>
-                    <th className="tableBorder"></th>
-                    <th className="radius">Starter</th>
-                    <th>Professional</th>
-                    <th className="rightradius">Advanced</th>
+                    <td className="tableBorder"></td>
+                    <td className="radius">Starter</td>
+                    <td>Professional</td>
+                    <td className="rightradius">Advanced</td>
                   </tr>
                 </thead>
                 <tbody>
