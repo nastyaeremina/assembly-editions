@@ -16,10 +16,17 @@ const FooterSection = styled.div`
     css`
       background-color: ${({ theme }) => theme.colors.greendark};
     `}
+  @media only screen and (max-width: 749px) {
+    padding: 50px 0;
+  }
 `;
 const FooterInnerBlock = styled.div`
   display: flex;
   gap: 36px;
+  @media only screen and (max-width: 749px) {
+    flex-wrap: wrap;
+    gap: 40px;
+  }
 `;
 const FooterTitleBlock = styled.div`
   padding: 64px 0;
@@ -210,6 +217,9 @@ const FooterRight = styled.div`
   display: flex;
   gap: 16px;
   width: 100%;
+  @media only screen and (max-width: 749px) {
+    display: none;
+  }
 `;
 const MobileFooterList = styled.ul`
   list-style: none;
@@ -250,6 +260,10 @@ const FooterFirst = styled.div`
         color: ${({ theme }) => theme.colors.greenlight};
       }
     `}
+  @media only screen and (max-width: 768px) {
+    width: 100%;
+    max-width: 100%;
+  }
 `;
 const FotterMenuLeft = styled.div`
   max-width: 290px;
@@ -283,6 +297,21 @@ const FooterMenuList = styled.li`
       }
     `}
 `;
+const FooterMobile = styled.div`
+  display: none;
+  @media only screen and (max-width: 749px) {
+    display: flex;
+    width: 100%;
+    gap: 16px;
+  }
+`;
+const FotterMenuMobile = styled.div`
+  max-width: 50%;
+  width: 100%;
+  .padding {
+    padding-top: 30px;
+  }
+`;
 export {
   FooterSection,
   FooterInnerBlock,
@@ -306,4 +335,6 @@ export {
   FooterMenu,
   FotterMenuLeft,
   FooterMenuList,
+  FooterMobile,
+  FotterMenuMobile,
 };

@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import {
   Body2,
   Body4,
@@ -31,7 +31,7 @@ const HeroSection = styled.div`
   }
 `;
 const FeatureSection = styled.div`
-  padding: 100px 0;
+  padding-top: 100px;
 `;
 const FeatureWrap = styled.div`
   display: flex;
@@ -68,9 +68,14 @@ const Catagoryitem = styled.li`
   padding: 16px 0;
   border-bottom: 1px solid #000000;
   a {
-    ${Body4};
+    ${LinkTxt};
     letter-spacing: 0.02em;
     color: ${({ theme }) => theme.colors.primary};
+    ${(props) =>
+      props.isActive &&
+      css`
+        color: ${({ theme }) => theme.colors.title};
+      `}
     margin: 0;
     :hover {
       color: ${({ theme }) => theme.colors.title};
@@ -111,7 +116,7 @@ const FeatureMenu = styled.div`
 const FeatureCard = styled.div`
   background-color: ${({ theme }) => theme.colors.whitecolor};
   border: 1px solid #01011d;
-  border-radius: 8px;
+  border-radius: 4px;
   overflow: hidden;
   max-width: 100%;
   width: 100%;
@@ -171,7 +176,7 @@ const ExtensionCard = styled.div`
 const CardSub = styled.div`
   background: #ffffff;
   border: 1px solid #000000;
-  border-radius: 8px;
+  border-radius: 4px;
   padding: 15px;
   p {
     color: ${({ theme }) => theme.colors.darkgray};
@@ -193,7 +198,7 @@ const CardInfo = styled.div`
   padding-bottom: 12px;
 
   h4 {
-    color: ${({ theme }) => theme.colors.black};
+    color: ${({ theme }) => theme.colors.title};
     ${Body4}
     letter-spacing: 0.02em;
     margin: 0;
@@ -244,7 +249,7 @@ const InputWrap = styled.div`
   position: relative;
   img {
     position: absolute;
-    top: 18px;
+    top: 15px;
     left: 20px;
   }
 `;
