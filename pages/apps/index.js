@@ -44,7 +44,7 @@ import {
   getAllPartnerApps,
   getFeaturedPartnerAppsContent,
 } from "../../lib/contentful-partnerApps";
-import { useCallback, useMemo } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import { isEmpty } from "../../helpers/helpers";
 
 export default function Extensions({
@@ -52,6 +52,15 @@ export default function Extensions({
   allCategoryWithPost,
   dataIntegrationApps,
 }) {
+  const [selected_category, setSelected_category] = useState();
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      console.log(window.location);
+      let hash = window.location.hash;
+      let result = hash.replace(/#/g, "");
+      setSelected_category(result);
+    }
+  }, []);
   const renderFeaturedView = useMemo(() => {
     if (isEmpty(featuredApps)) return null;
     return featuredApps?.map((item, index) => {
@@ -82,13 +91,21 @@ export default function Extensions({
   const renderCategoryList = useMemo(() => {
     if (isEmpty(allCategoryWithPost)) return null;
     return allCategoryWithPost?.map((item, index) => {
+      let isActive = item?.category?.slug === selected_category;
       return (
-        <Catagoryitem key={`categorylist_index_${index}`}>
-          <Link href={`#${item?.category?.slug}`}>{item?.category?.name}</Link>
+        <Catagoryitem key={`categorylist_index_${index}`} isActive={isActive}>
+          <Link
+            href={`#${item?.category?.slug}`}
+            onClick={() => {
+              setSelected_category(item?.category?.slug);
+            }}
+          >
+            {item?.category?.name}
+          </Link>
         </Catagoryitem>
       );
     });
-  }, [allCategoryWithPost]);
+  }, [allCategoryWithPost, selected_category]);
 
   const renderPartnerAppsView = useCallback((appList) => {
     if (isEmpty(appList)) return null;
