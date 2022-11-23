@@ -1,14 +1,14 @@
 import { NextSeo } from "next-seo";
 import Image from "next/image";
 import Link from "next/link";
-import { useCallback, useMemo } from "react";
+import { useCallback, useMemo, useState } from "react";
 import CTA from "../../components/cta/cta";
 import FAQ from "../../components/faq/faq";
 import Layout from "../../components/layout";
 import Navbar from "../../components/navbar/navbar";
 import { isEmpty } from "../../helpers/helpers";
 import { NO_OF_JOBS_PER_PAGE } from "../../lib/constants";
-import { getAllJobs } from "../../lib/contentful-jobsListing";
+import { getAllJobImages, getAllJobs } from "../../lib/contentful-jobsListing";
 import { Container } from "../../styles/commonStyles";
 import {
   HeroJobSection,
@@ -48,7 +48,9 @@ import {
   MainWrap,
 } from "../../styles/jobsStyles";
 
-export default function Jobs({ jobList }) {
+export default function Jobs({ jobList, jobImagesList }) {
+  console.log("jobImagesList", jobImagesList);
+  const [selectedImageIndex, setSelectedImageIndex] = useState(0)
 
   const renderJobsListingView = useCallback((list) => {
     if (isEmpty(list)) return null
@@ -78,8 +80,46 @@ export default function Jobs({ jobList }) {
 
         </RoleList>
       </JobView>
-    }, [])
+    })
   }, [jobList, renderJobsListingView])
+
+  const renderJobImageView = useMemo(() => {
+    const imageUrl = jobImagesList?.[selectedImageIndex]?.image?.url
+    if (isEmpty(imageUrl)) return null
+    return <ImgBorder>
+      <Image
+        src={imageUrl}
+        alt="red-icon"
+        width={552}
+        height={320}
+      />
+    </ImgBorder>
+
+  }, [jobImagesList, selectedImageIndex])
+
+  const onClickImageTab = useCallback((index) => {
+    setSelectedImageIndex(index)
+  }, []);
+
+  const renderJobImageTabView = useMemo(() => {
+    if (isEmpty(jobImagesList)) return null
+    return jobImagesList?.map((item, index) => {
+      return (
+        <TabView className={index === selectedImageIndex ? "activetab" : ""} key={`jobimagetabview_index_${index}`} onClick={() => onClickImageTab(index)}>
+          <span>{`${index < 9 ? '0' : ''}${index + 1}`}</span>
+          {index === selectedImageIndex && <ActiveTab></ActiveTab>}
+        </TabView>)
+    })
+
+  }, [jobImagesList, onClickImageTab, selectedImageIndex])
+
+  const renderJobImageNameView = useMemo(() => {
+    if (isEmpty(jobImagesList?.[selectedImageIndex]?.name)) return null
+    return <RegionView>
+      <p>{jobImagesList?.[selectedImageIndex]?.name}</p>
+    </RegionView>
+
+  }, [jobImagesList, selectedImageIndex])
 
   return (
     <>
@@ -209,51 +249,16 @@ export default function Jobs({ jobList }) {
                       </TitleWrap>
                     </TeamDetail>
                   </TeamView>
-                  <ImgWrap>
-                    <ImgBorder>
-                      <Image
-                        src="/images/jobslide.png"
-                        alt="red-icon"
-                        width={552}
-                        height={320}
-                      />
-                    </ImgBorder>
-                    <TabList>
-                      <TabWrap>
-                        <TabView className="activetab">
-                          <span>01</span>
-                          <ActiveTab></ActiveTab>
-                        </TabView>
-                        <TabView>
-                          <span>02</span>
-                        </TabView>
-                        <TabView>
-                          <span>03</span>
-                        </TabView>
-                        <TabView>
-                          <span>04</span>
-                        </TabView>
-                        <TabView>
-                          <span>05</span>
-                        </TabView>
-                        <TabView>
-                          <span>06</span>
-                        </TabView>
-                        <TabView>
-                          <span>07</span>
-                        </TabView>
-                        <TabView>
-                          <span>08</span>
-                        </TabView>
-                        <TabView>
-                          <span>09</span>
-                        </TabView>
-                      </TabWrap>
-                    </TabList>
-                  </ImgWrap>
-                  <RegionView>
-                    <p>International offsite in Istanbul</p>
-                  </RegionView>
+                  {!isEmpty(jobImagesList) && <>
+                    <ImgWrap>
+                      {renderJobImageView}
+                      <TabList>
+                        <TabWrap>
+                          {renderJobImageTabView}
+                        </TabWrap>
+                      </TabList>
+                    </ImgWrap>
+                    {renderJobImageNameView}</>}
                 </TeamBlock>
               </CareerBlock>
             </Container>
@@ -411,6 +416,8 @@ export default function Jobs({ jobList }) {
 }
 
 export async function getServerSideProps({ preview = false }) {
+  const jobImagesList = (await getAllJobImages(preview)) ?? [];
+
   let allPosts = [];
   let data = [];
   let page = 0;
@@ -441,6 +448,6 @@ export async function getServerSideProps({ preview = false }) {
   });
 
   return {
-    props: { jobList: newList },
+    props: { jobList: newList, jobImagesList },
   };
 }
