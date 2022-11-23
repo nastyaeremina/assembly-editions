@@ -423,6 +423,8 @@ const BusinessText = styled.div`
     }
   }
   p {
+    max-width: 1164px;
+    width: 100%;
     ${Body3};
     margin: 0;
     color: ${({ theme }) => theme.colors.bodycolor};
@@ -475,6 +477,9 @@ const TabBox = styled.div`
   .activetab {
     background-color: ${({ theme }) => theme.colors.browndark};
     color: ${({ theme }) => theme.colors.brownlight};
+    :hover {
+      color: ${({ theme }) => theme.colors.brownlight};
+    }
   }
 `;
 const IconSvg = styled.div`
@@ -549,9 +554,9 @@ const LeftDetail = styled.div`
 const RightDetail = styled.div`
   border: 1px solid #000000;
   border-radius: 5px;
-  padding: 18px 18px 13px;
+  padding: 16px 18px;
   width: 100%;
-  background: #ffffff;
+  background: transparent;
   position: relative;
 `;
 const Extension = styled.div`
@@ -569,9 +574,10 @@ const AutomateText = styled.div`
     margin: 0;
     color: ${({ theme }) => theme.colors.title};
     padding-bottom: 16px;
-    span {
-      color: ${({ theme }) => theme.colors.primary};
-    }
+  }
+  a {
+    color: ${({ theme }) => theme.colors.primary};
+    display: inline-block;
   }
   p {
     ${Body3};
@@ -588,15 +594,18 @@ const AutomateText = styled.div`
 const BottomList = styled.div`
   width: 100%;
   display: flex;
-  margin: 0 -31.5px;
+  gap: 63px;
   position: relative;
 `;
 const CardWrapper = styled.div`
+  max-width: 366px;
   width: 100%;
-  max-width: 33.33%;
-  padding: 0 31.5px;
+
   :last-child {
     padding-right: 0;
+  }
+  :first-child {
+    padding-left: 0;
   }
 `;
 const CardItem = styled.div`
@@ -660,17 +669,18 @@ const HelpSection = styled.div`
 
 const HelpMain = styled.div`
   display: flex;
-  border: 1.5px solid #000000;
+  border: 1px solid #000000;
   border-radius: 4px;
-  background-color: ${({ theme }) => theme.colors.whitecolor};
+  background-color: ${({ theme }) => theme.colors.whiteColor};
   image {
     border-radius: 0px 4px 4px 0px;
   }
 `;
 const HelpLeft = styled.div`
   padding: 60px;
-  max-width: 777px;
+  max-width: 779px;
   width: 100%;
+
   h3 {
     max-width: 657px;
     width: 100%;
@@ -678,8 +688,13 @@ const HelpLeft = styled.div`
     color: ${({ theme }) => theme.colors.title};
     margin: 0 0 40px 0;
   }
+  span {
+    color: ${({ theme }) => theme.colors.primary};
+  }
 `;
 const HelpLeftSub = styled.div`
+  max-width: 315px;
+  width: 100%;
   / .learn-link,
   .learn-link svg path {
     transition: all 300ms ease;

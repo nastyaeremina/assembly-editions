@@ -34,6 +34,7 @@ import {
   PriceImageLeft,
   PriceText,
   BulletImage,
+  PricePlusImage,
 } from "../../styles/pricingstyles";
 import CTA from "../../components/cta/cta";
 import FAQ from "../../components/faq/faq";
@@ -66,11 +67,11 @@ export default function NewIndex() {
               <PriceButton>
                 <WrapSlide>
                   <YearlyButton>
-                    <Link href="/">Pay yearly</Link>
+                    <Link href="#">Pay yearly</Link>
                   </YearlyButton>
                 </WrapSlide>
                 <MonthlyButton>
-                  <Link href="/">Pay monthly</Link>
+                  <Link href="#">Pay monthly</Link>
                 </MonthlyButton>
               </PriceButton>
               <PricingMenu>
@@ -136,15 +137,18 @@ export default function NewIndex() {
                           </PricePlanWrap>
                           <PricePlanWrap>
                             <BulletImage></BulletImage>
-                            <p>Up to 2,000 clients and 2TB storage</p>
+                            <p>Client management and custom fields</p>
                           </PricePlanWrap>
                           <PricePlanWrap>
                             <BulletImage></BulletImage>
-                            <p>Automations</p>
+                            <p>Customizable branding and color scheme</p>
                           </PricePlanWrap>
                           <PricePlanWrap>
                             <BulletImage></BulletImage>
-                            <p>Extensions</p>
+                            <p>
+                              Access to every Portal module including Messaging,
+                              Billing, Files, Forms, and Surveys
+                            </p>
                           </PricePlanWrap>
                         </PricePlan>
                       </PriceLeft>
@@ -174,19 +178,22 @@ export default function NewIndex() {
                           <h4>Everything in Professional</h4>
                           <PricePlanWrap>
                             <BulletImage></BulletImage>
-                            <p>Up to 20,000 clients and 20TB storage</p>
+                            <p>Up to 100 clients and 10GB of storage</p>
                           </PricePlanWrap>
                           <PricePlanWrap>
                             <BulletImage></BulletImage>
-                            <p>Remove ‘Powered by Copilot’</p>
+                            <p>Client management and custom fields</p>
                           </PricePlanWrap>
                           <PricePlanWrap>
                             <BulletImage></BulletImage>
-                            <p>HIPAA compliance</p>
+                            <p>Customizable branding and color scheme</p>
                           </PricePlanWrap>
                           <PricePlanWrap>
                             <BulletImage></BulletImage>
-                            <p>Dedicated success manager</p>
+                            <p>
+                              Access to every Portal module including Messaging,
+                              Billing, Files, Forms, and Surveys
+                            </p>
                           </PricePlanWrap>
                         </PricePlan>
                       </PriceLeft>
@@ -205,9 +212,9 @@ export default function NewIndex() {
                 <thead>
                   <tr>
                     <th className="tableBorder"></th>
-                    <th>Starter</th>
+                    <th className="radius">Starter</th>
                     <th>Professional</th>
-                    <th>Advanced</th>
+                    <th className="rightradius">Advanced</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -251,7 +258,7 @@ export default function NewIndex() {
                     </td>
                     <td>
                       <span>20,000</span>
-                      <span className="spanpadding">100</span>
+                      {/* <span className="spanpadding">100</span> */}
                     </td>
                   </tr>
                   <tr>
@@ -272,7 +279,7 @@ export default function NewIndex() {
                     </td>
                     <td>
                       <span>20TB</span>
-                      <span className="spanpadding">100</span>
+                      {/* <span className="spanpadding">100</span> */}
                     </td>
                   </tr>
                   <tr className="tablecolor">
@@ -839,7 +846,7 @@ export default function NewIndex() {
                     </td>
                     <td>
                       <span>3.1% + $0.30</span>
-                      <span className="spanpadding">100</span>
+                      {/* <span className="spanpadding">100</span> */}
                     </td>
                   </tr>
                   <tr>
@@ -1033,15 +1040,14 @@ export default function NewIndex() {
                   <Link href="#">Learn More</Link>
                 </SecondryButton>
               </PriceImageLeft>
-              p
-              <>
+              <PricePlusImage>
                 <Image
                   src="/images/price.png"
-                  alt="main-logo"
-                  height={381}
+                  alt="plus-image"
                   width={421}
+                  height={361}
                 />
-              </>
+              </PricePlusImage>
             </PriceImage>
           </Container>
         </PricingSection>

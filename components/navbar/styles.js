@@ -549,15 +549,18 @@ const RightText = styled.div`
     margin: 0 0 4px 0;
     ${Body5};
     letter-spacing: 0.02em;
+    color: ${({ theme }) => theme.colors.title};
   }
   h6 {
     ${Body5};
     letter-spacing: 0.02em;
     margin: 0;
+    color: ${({ theme }) => theme.colors.title};
   }
   span {
     ${FooterText};
     display: block;
+    color: ${({ theme }) => theme.colors.title};
   }
 `;
 export {

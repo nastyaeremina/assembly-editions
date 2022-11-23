@@ -113,6 +113,7 @@ const Body5 = css`
   font-weight: 400;
   font-size: 15px;
   line-height: 19px;
+  letter-spacing: 0.02em;
 `;
 const Quote = css`
   font-family: ${({ theme }) => theme.fontfamily.Bagoss};

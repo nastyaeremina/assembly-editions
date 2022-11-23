@@ -209,19 +209,16 @@ export default function Home() {
                     </Link>
                   </TabBox>
                   <TabBox>
-                    <Link href={"#"}>File</Link>
+                    <Link href={"#"}>Billing</Link>
                   </TabBox>
                   <TabBox>
-                    <Link href={"#"}>Helpdesk</Link>
+                    <Link href={"#"}>Files</Link>
                   </TabBox>
                   <TabBox>
                     <Link href={"#"}>Forms</Link>
                   </TabBox>
                   <TabBox>
-                    <Link href={"#"}>Billing</Link>
-                  </TabBox>
-                  <TabBox>
-                    <Link href={"#"}>Contracts</Link>
+                    <Link href={"#"}>Helpdesk</Link>
                   </TabBox>
                 </TabRow>
                 <ContainWrap>
@@ -241,13 +238,13 @@ export default function Home() {
                       client communication and stay organized.{" "}
                     </p>
                     <SecondryButton>
-                      <Link href="/request-demo">Learn More</Link>
+                      <Link href="#">Learn More</Link>
                     </SecondryButton>
                   </LeftDetail>
                   <RightDetail>
                     <Image
                       src="/images/msgscreen.png"
-                      width={881}
+                      width={882}
                       height={550}
                       alt="msg-screen"
                     />
@@ -270,7 +267,7 @@ export default function Home() {
                 </p>
                 <BtnView>
                   <SecondryButton>
-                    <Link href="/request-demo">See all Extensions</Link>
+                    <Link href="#">Browse Apps</Link>
                   </SecondryButton>
                 </BtnView>
               </BusinessText>
@@ -288,9 +285,8 @@ export default function Home() {
                   tools as well. For example, for new clients assign an
                   onboarding form, send out a customized welcome message, set up
                   a default folder structure, and create a lead in Salesforce.
-                  Use
-                  <span> Zapier </span>for easy setup or our <span>API</span>{" "}
-                  for full control.
+                  Use <Link href="#"> Zapier </Link> for easy setup or our{" "}
+                  <Link href="">API</Link> for full control.
                 </p>
               </AutomateText>
               <BottomList>
@@ -303,7 +299,7 @@ export default function Home() {
                       alt="link-icon"
                     />
                     <CardTextView>
-                      <h5>Condition</h5>
+                      <h5>New client activated</h5>
                       <span>Company size &#60;= 50</span>
                     </CardTextView>
                     <IconView>
@@ -423,7 +419,9 @@ export default function Home() {
             <Container>
               <HelpMain>
                 <HelpLeft>
-                  <h3>The support you need, when you need it</h3>
+                  <h3>
+                    The support you need<span>,</span> when you need it
+                  </h3>
                   <HelpWrap>
                     <HelpLeftSub>
                       <h4>Our Community</h4>
@@ -436,9 +434,9 @@ export default function Home() {
                           Join Community
                           <svg
                             class="HoverArrow"
-                            width="10"
-                            height="10"
-                            viewBox="0 0 10 10"
+                            width="12"
+                            height="12"
+                            viewBox="0 0 12 12"
                             aria-hidden="true"
                           >
                             <g fill-rule="evenodd">
@@ -463,12 +461,12 @@ export default function Home() {
                       </p>
                       <HelpLink className="icon-link">
                         <a href="#" className="learn-link mb0">
-                          Join Community
+                          Read Blog
                           <svg
                             class="HoverArrow"
-                            width="10"
-                            height="10"
-                            viewBox="0 0 10 10"
+                            width="12"
+                            height="12"
+                            viewBox="0 0 12 12"
                             aria-hidden="true"
                           >
                             <g fill-rule="evenodd">
@@ -496,12 +494,12 @@ export default function Home() {
                         </p>
                         <HelpLink className="icon-link">
                           <a href="#" className="learn-link mb0">
-                            Join Community
+                            Watch videos
                             <svg
                               class="HoverArrow"
-                              width="10"
-                              height="10"
-                              viewBox="0 0 10 10"
+                              width="12"
+                              height="12"
+                              viewBox="0 0 12 12"
                               aria-hidden="true"
                             >
                               <g fill-rule="evenodd">
@@ -526,12 +524,12 @@ export default function Home() {
                         </p>
                         <HelpLink className="icon-link">
                           <a href="#" className="learn-link mb0">
-                            Join Community
+                            Get help
                             <svg
                               class="HoverArrow"
-                              width="10"
-                              height="10"
-                              viewBox="0 0 10 10"
+                              width="12"
+                              height="12"
+                              viewBox="0 0 12 12"
                               aria-hidden="true"
                             >
                               <g fill-rule="evenodd">
@@ -553,8 +551,8 @@ export default function Home() {
                 </HelpLeft>
                 <Image
                   src="/images/helpimage.png"
-                  width={447}
-                  height={661}
+                  width={443}
+                  height={632}
                   alt="right-arrow"
                   objectFit="cover"
                 />
