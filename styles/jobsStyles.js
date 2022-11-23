@@ -364,7 +364,12 @@ const DetailWrap = styled.div`
 const ImageWrap = styled.div`
   display: flex;
   gap: 4px;
-  padding-bottom: 31px;
+  padding-bottom: 11px;
+  img{
+    width: 30px;
+    height:30px; 
+    border-radius:30px
+  }
 `;
 const DetailRight = styled.div``;
 const DetailText = styled.ul`
@@ -407,6 +412,7 @@ const DetailInnerSub = styled.li`
   display: flex;
   gap: 16px;
   align-items: flex-start;
+  
   .mr0 {
     margin-bottom: 0;
   }
@@ -426,6 +432,62 @@ const BulletImage = styled.div`
   padding: 5px 10px;
   margin-top: 7px;
   background-color: ${({ theme }) => theme.colors.greenmidlight};
+`;
+const DetailRIghtText = styled.div`
+ h1,
+ h2,
+ h3,
+ h4,
+ h5,
+ h6  {
+    ${Heading4};
+    color: ${({ theme }) => theme.colors.title};
+    margin: 0;
+    padding-top: 40px;
+    :first-child{
+      padding-top: 0;
+    }
+  }
+  
+    b {
+    font-weight: 400;
+  }
+  
+  p {
+    ${Body3};
+    color: ${({ theme }) => theme.colors.body};
+    margin: 24px 0 0 0;
+    :first-child {
+      margin: 20px 0 0 0;
+    }
+    a{
+      display: inline-block;
+      color: ${({ theme }) => theme.colors.primary};
+    }
+  }
+  span {
+    ${Body3};
+    color: ${({ theme }) => theme.colors.primary};
+    margin: 0;
+  }
+  li{
+    position: relative;
+    ::before{
+      content: '';
+      position: absolute;
+      top: 7px;
+      left: 0;
+      width: 20px;
+      height: 10px;
+      background-color: ${({ theme }) => theme.colors.greenmidlight};
+    }
+    p{
+  padding: 0 10px 0 36px;
+  margin-top: 7px;
+  font-weight: 400;
+  font-size: 18px;
+  color: #131313;
+  }}
 `;
 export {
   HeroJobSection,
@@ -475,4 +537,5 @@ export {
   DetailInner,
   DetailInnerSub,
   BulletImage,
+  DetailRIghtText
 };
