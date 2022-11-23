@@ -50,105 +50,113 @@ import {
 } from "../../styles/jobsStyles";
 
 export default function Jobs({ jobList, jobImagesList, jobBlogPostList }) {
-  const [selectedImageIndex, setSelectedImageIndex] = useState(0)
+  const [selectedImageIndex, setSelectedImageIndex] = useState(0);
 
   const renderJobsListingView = useCallback((list) => {
-    if (isEmpty(list)) return null
+    if (isEmpty(list)) return null;
     return list?.map((item, index) => {
-      return <Link href={`/jobs/${item?.slug}`} key={`joblist_index_${index}`}>
-        <RoleRow >
-          <LeftRow>
-            <p>{item?.name}</p>
-          </LeftRow>
-          <RightRow>
-            <p>{isEmpty(item?.location) ? 'Remote' : item?.location}</p>
-            {/* <Dot className="bgdot"></Dot>
+      return (
+        <Link href={`/jobs/${item?.slug}`} key={`joblist_index_${index}`}>
+          <RoleRow>
+            <LeftRow>
+              <p>{item?.name}</p>
+            </LeftRow>
+            <RightRow>
+              <p>{isEmpty(item?.location) ? "Remote" : item?.location}</p>
+              {/* <Dot className="bgdot"></Dot>
               <p>New York</p> */}
-          </RightRow>
-        </RoleRow>
-      </Link>
-    }, [])
-  }, [])
+            </RightRow>
+          </RoleRow>
+        </Link>
+      );
+    }, []);
+  }, []);
 
   const renderJobsRolesListView = useMemo(() => {
-    if (isEmpty(jobList)) return null
+    if (isEmpty(jobList)) return null;
     return jobList?.map((item, index) => {
-      return <JobView key={`jobsroleslist_index_${index}`}>
-        <h4>{item?.department}</h4>
-        <RoleList>
-          {renderJobsListingView(item?.list)}
-
-        </RoleList>
-      </JobView>
-    })
-  }, [jobList, renderJobsListingView])
+      return (
+        <JobView key={`jobsroleslist_index_${index}`}>
+          <h4>{item?.department}</h4>
+          <RoleList>{renderJobsListingView(item?.list)}</RoleList>
+        </JobView>
+      );
+    });
+  }, [jobList, renderJobsListingView]);
 
   const renderJobImageView = useMemo(() => {
-    const imageUrl = jobImagesList?.[selectedImageIndex]?.image?.url
-    if (isEmpty(imageUrl)) return null
-    return <ImgBorder>
-      <Image
-        src={imageUrl}
-        alt="red-icon"
-        width={552}
-        height={320}
-      />
-    </ImgBorder>
-
-  }, [jobImagesList, selectedImageIndex])
+    const imageUrl = jobImagesList?.[selectedImageIndex]?.image?.url;
+    if (isEmpty(imageUrl)) return null;
+    return (
+      <ImgBorder>
+        <Image src={imageUrl} alt="red-icon" width={552} height={320} />
+      </ImgBorder>
+    );
+  }, [jobImagesList, selectedImageIndex]);
 
   const onClickImageTab = useCallback((index) => {
-    setSelectedImageIndex(index)
+    setSelectedImageIndex(index);
   }, []);
 
   const renderJobImageTabView = useMemo(() => {
-    if (isEmpty(jobImagesList)) return null
+    if (isEmpty(jobImagesList)) return null;
     return jobImagesList?.map((item, index) => {
       return (
-        <TabView className={index === selectedImageIndex ? "activetab" : ""} key={`jobimagetabview_index_${index}`} onClick={() => onClickImageTab(index)}>
-          <span>{`${index < 9 ? '0' : ''}${index + 1}`}</span>
+        <TabView
+          className={index === selectedImageIndex ? "activetab" : ""}
+          key={`jobimagetabview_index_${index}`}
+          onClick={() => onClickImageTab(index)}
+        >
+          <span>{`${index < 9 ? "0" : ""}${index + 1}`}</span>
           {index === selectedImageIndex && <ActiveTab></ActiveTab>}
-        </TabView>)
-    })
-
-  }, [jobImagesList, onClickImageTab, selectedImageIndex])
+        </TabView>
+      );
+    });
+  }, [jobImagesList, onClickImageTab, selectedImageIndex]);
 
   const renderJobImageNameView = useMemo(() => {
-    if (isEmpty(jobImagesList?.[selectedImageIndex]?.name)) return null
-    return <RegionView>
-      <p>{jobImagesList?.[selectedImageIndex]?.name}</p>
-    </RegionView>
-
-  }, [jobImagesList, selectedImageIndex])
+    if (isEmpty(jobImagesList?.[selectedImageIndex]?.name)) return null;
+    return (
+      <RegionView>
+        <p>{jobImagesList?.[selectedImageIndex]?.name}</p>
+      </RegionView>
+    );
+  }, [jobImagesList, selectedImageIndex]);
 
   const renderAuthorListView = useCallback((authorList) => {
     return authorList?.map((item, index) => {
-      return (<> {index !== 0 && item?.trim().length !== 0 && <Dot key={`authorlistitemwithdot_index_${index}`}></Dot>}
-        <p key={`authorlistitem_index_${index}`}> {item?.trim()}</p></>)
-    })
-  }, [])
+      return (
+        <>
+          {" "}
+          {index !== 0 && item?.trim().length !== 0 && (
+            <Dot key={`authorlistitemwithdot_index_${index}`}></Dot>
+          )}
+          <p key={`authorlistitem_index_${index}`}> {item?.trim()}</p>
+        </>
+      );
+    });
+  }, []);
 
   const renderJobBlogPostView = useMemo(() => {
-    if (isEmpty(jobBlogPostList)) return null
+    if (isEmpty(jobBlogPostList)) return null;
     return jobBlogPostList?.map((item, index) => {
-      let authorList = []
+      let authorList = [];
       if (!isEmpty(item?.author)) {
-        authorList = item?.author.split(",")
+        authorList = item?.author.split(",");
       }
-      return (<TitleWrap key={`jobblogpostitem_index_${index}`}>
-        <TeamLine>
-          <Link href={item?.blogLink ?? ""}>
-            {item?.name}
-          </Link>
-          <p>{dateToMonthYear(item?.date)}</p>
-        </TeamLine>
-        {!isEmpty(authorList) &&
-          <NameView>
-            {renderAuthorListView(authorList)}
-          </NameView>}
-      </TitleWrap>)
-    })
-  }, [jobBlogPostList, renderAuthorListView])
+      return (
+        <TitleWrap key={`jobblogpostitem_index_${index}`}>
+          <TeamLine>
+            <Link href={item?.blogLink ?? ""}>{item?.name}</Link>
+            <p>{dateToMonthYear(item?.date)}</p>
+          </TeamLine>
+          {!isEmpty(authorList) && (
+            <NameView>{renderAuthorListView(authorList)}</NameView>
+          )}
+        </TitleWrap>
+      );
+    });
+  }, [jobBlogPostList, renderAuthorListView]);
 
   return (
     <>
@@ -188,9 +196,9 @@ export default function Jobs({ jobList, jobImagesList, jobBlogPostList }) {
                       class backgrounds.
                     </p>
                   </RoleWrap>
-                  {!isEmpty(jobList) && <JobDetailWrap>
-                    {renderJobsRolesListView}
-                  </JobDetailWrap>}
+                  {!isEmpty(jobList) && (
+                    <JobDetailWrap>{renderJobsRolesListView}</JobDetailWrap>
+                  )}
                 </RoleBlock>
                 <TeamBlock>
                   <AboutWrap>
@@ -206,22 +214,23 @@ export default function Jobs({ jobList, jobImagesList, jobBlogPostList }) {
                       <a href="#"> email us</a> if you have any questions!
                     </p>
                   </AboutWrap>
-                  {!isEmpty(jobBlogPostList) && <TeamView>
-                    <h4>Writing from the team</h4>
-                    <TeamDetail>
-                      {renderJobBlogPostView}
-                    </TeamDetail>
-                  </TeamView>}
-                  {!isEmpty(jobImagesList) && <>
-                    <ImgWrap>
-                      {renderJobImageView}
-                      <TabList>
-                        <TabWrap>
-                          {renderJobImageTabView}
-                        </TabWrap>
-                      </TabList>
-                    </ImgWrap>
-                    {renderJobImageNameView}</>}
+                  {!isEmpty(jobBlogPostList) && (
+                    <TeamView>
+                      <h4>Writing from the team</h4>
+                      <TeamDetail>{renderJobBlogPostView}</TeamDetail>
+                    </TeamView>
+                  )}
+                  {!isEmpty(jobImagesList) && (
+                    <>
+                      <ImgWrap>
+                        {renderJobImageView}
+                        <TabList>
+                          <TabWrap>{renderJobImageTabView}</TabWrap>
+                        </TabList>
+                      </ImgWrap>
+                      {renderJobImageNameView}
+                    </>
+                  )}
                 </TeamBlock>
               </CareerBlock>
             </Container>
@@ -397,9 +406,7 @@ export async function getServerSideProps({ preview = false }) {
 
   let newList = [];
   allPosts?.forEach((item) => {
-    const index = newList?.findIndex(
-      (x) => x?.department === item?.department
-    );
+    const index = newList?.findIndex((x) => x?.department === item?.department);
     if (index !== -1) {
       newList[index]?.list?.push(item);
     } else {
