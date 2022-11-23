@@ -61,9 +61,9 @@ export default function Jobs({ jobList, jobImagesList, jobBlogPostList }) {
             <p>{item?.name}</p>
           </LeftRow>
           <RightRow>
-            <p>{isEmpty(item?.location) ? 'Remote' : item?.location}</p>
-            {/* <Dot className="bgdot"></Dot>
-              <p>New York</p> */}
+            {item?.isRemote && <p>Remote</p>}
+            {(!isEmpty(item?.location)) && item?.isRemote ? <><Dot className="bgdot"></Dot>
+              <p>{item?.location}</p></> : <p>{item?.location}</p>}
           </RightRow>
         </RoleRow>
       </Link>
