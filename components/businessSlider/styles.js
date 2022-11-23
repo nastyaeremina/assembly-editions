@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { Body3, Body5 } from "../../styles/styles";
+import { Body3, Body5, MbBody3 } from "../../styles/styles";
 
 const Slide = styled.div`
   a {
@@ -14,9 +14,26 @@ const Slide = styled.div`
   }
 `;
 const SliderWrap = styled.div`
-  overflow: hidden;
   .mydiv:hover .hide {
     opacity: 1;
+  }
+  .slick-dots {
+    bottom: -40px;
+  }
+  .slick-dots li {
+    margin: 0;
+  }
+  .slick-dots li button:before {
+    font-size: 10px;
+    line-height: 20px;
+    width: 10px;
+    height: 10px;
+    color: #dfdfde;
+    opacity: 1;
+  }
+  .slick-dots li.slick-active button:before {
+    opacity: 1;
+    color: black;
   }
 `;
 const WrapImage = styled.div`
@@ -44,6 +61,10 @@ const WrapImage = styled.div`
     ${Body3};
     margin: 0;
     color: ${({ theme }) => theme.colors.title};
+    @media only screen and (max-width: 768px) {
+      padding-top: 20px;
+      ${MbBody3};
+    }
   }
   p {
     ${Body5};
@@ -52,6 +73,14 @@ const WrapImage = styled.div`
     margin: 0;
     color: ${({ theme }) => theme.colors.body};
     letter-spacing: 0.02em;
+    @media only screen and (max-width: 768px) {
+      padding-top: 20px;
+      ${MbBody3};
+    }
+  }
+  @media only screen and (max-width: 768px) {
+    margin: 0 24px;
+    padding: 0;
   }
 `;
 const LeftBorder = styled.div`
@@ -63,6 +92,9 @@ const LeftBorder = styled.div`
   border-top-left-radius: 4px;
   display: block;
   transition: 0.3s;
+  @media only screen and (max-width: 768px) {
+    display: none;
+  }
 `;
 const RightBorder = styled.div`
   border-top: 1px solid black;
@@ -73,6 +105,9 @@ const RightBorder = styled.div`
   border-bottom-right-radius: 4px;
   border-top-right-radius: 4px;
   transition: 0.3s;
+  @media only screen and (max-width: 768px) {
+    display: none;
+  }
 `;
 const WrapSlide = styled.div`
   display: flex !important;
@@ -82,6 +117,11 @@ const WrapSlide = styled.div`
   }
   :hover {
     opacity: 100;
+  }
+  @media only screen and (max-width: 768px) {
+    .hide {
+      opacity: 1;
+    }
   }
 `;
 const SlideImg = styled.div`

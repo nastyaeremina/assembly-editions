@@ -9,13 +9,15 @@ import {
   Body1,
   Body2,
   Body3,
+  MbButtonText,
+  MbPrimaryBtn,
 } from "./styles";
 
 const Container = styled.div`
   width: 100%;
-  max-width: 1254px;
+  max-width: 1272px;
   margin: 0 auto;
-  padding: 0 15px;
+  padding: 0 24px;
 `;
 
 const FcfeatureBlock = styled.div`
@@ -79,16 +81,9 @@ const FcfeatureWrap = styled.div`
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-  /* overflow: hidden;
-  &.dnone {
-    display: none;
-  }
-  @media only screen and (max-width: 768px) {
-    padding: 80px 0;
-  }
   @media only screen and (max-width: 749px) {
-    padding: 60px 0;
-  } */
+    margin-top: 40px;
+  }
 `;
 
 const SolutionTopSection = styled.div`
@@ -131,6 +126,12 @@ const PrimaryButton = styled.div`
       background-color: ${({ theme }) => theme.colors.primary};
     }
   }
+  @media only screen and (max-width: 749px) {
+    a {
+      ${MbPrimaryBtn};
+      padding: 7px 32px;
+    }
+  }
 `;
 
 const SecondryButton = styled.div`
@@ -147,6 +148,12 @@ const SecondryButton = styled.div`
     transition: all 300ms;
     :hover {
       background-color: ${({ theme }) => theme.colors.gainsboro};
+    }
+  }
+  @media only screen and (max-width: 749px) {
+    a {
+      ${MbPrimaryBtn};
+      padding: 7px 32px;
     }
   }
 `;
@@ -179,6 +186,11 @@ const CtaButton = styled.div`
     :hover {
       background-color: ${({ theme }) => theme.colors.gainsboro};
     }
+    @media only screen and (max-width: 749px) {
+      text-align: center;
+      padding: 7px 32px;
+      ${MbPrimaryBtn};
+    }
   }
 `;
 const BlackButton = styled.div`
@@ -203,6 +215,13 @@ const BlackButton = styled.div`
     text-decoration: none;
     transition: all 300ms;
   }
+  @media only screen and (max-width: 749px) {
+    a {
+      ${MbButtonText};
+      padding: 10px 16px;
+      margin-left: 2px;
+    }
+  }
 `;
 const TransparenBlack = styled.div`
   a {
@@ -221,7 +240,7 @@ const TransparenBlack = styled.div`
 
 const Scfeature = styled.div`
   padding: 60px 0;
-  @media only screen and (max-width: 768px) {
+  @media only screen and (max-width: 749px) {
     padding: 30px 0;
   }
 `;
@@ -232,7 +251,7 @@ const ScHeroSection = styled.div`
   &.solution {
     overflow: hidden;
   }
-  @media only screen and (max-width: 768px) {
+  @media only screen and (max-width: 749px) {
     padding: 136px 0 84px 0;
   }
   @media only screen and (max-width: 749px) {
@@ -331,7 +350,7 @@ const RichTextBlock = styled.div`
   p {
     ${Body1}
     color: ${({ theme }) => theme.colors.blackOlive};
-    @media only screen and (max-width: 768px) {
+    @media only screen and (max-width: 749px) {
       ${Body2}
     }
   }
@@ -343,7 +362,7 @@ const RichTextBlock = styled.div`
     margin: 32px 0 16px 0;
     color: ${({ theme }) => theme.colors.lightDark};
     font-family: ${({ theme }) => theme.fontfamily.darkColor};
-    @media only screen and (max-width: 479px) {
+    @media only screen and (max-width: 749px) {
       margin: 24px 0 12px 0;
     }
   }
@@ -354,7 +373,7 @@ const RichTextBlock = styled.div`
     font-weight: 700;
     font-size: 30px;
     line-height: 38px;
-    @media only screen and (max-width: 479px) {
+    @media only screen and (max-width: 749px) {
       margin: 0 0 16px 0;
       font-size: 24px;
       line-height: 30px;
@@ -371,7 +390,7 @@ const RichTextBlock = styled.div`
   p {
     margin: 0;
     margin: 0 0 16px 0;
-    @media only screen and (max-width: 479px) {
+    @media only screen and (max-width: 749px) {
       margin: 0 0 12px 0;
     }
   }
@@ -407,7 +426,7 @@ const RichTextBlock = styled.div`
       background-repeat: no-repeat;
       background-position: 0 12px;
     }
-    @media only screen and (max-width: 768px) {
+    @media only screen and (max-width: 749px) {
       padding: 0 0 0 4px;
       li {
         padding: 0 0 0 16px;
@@ -424,7 +443,7 @@ const RichTextBlock = styled.div`
       padding: 0 0 0 10px;
       background-image: none;
     }
-    @media only screen and (max-width: 479px) {
+    @media only screen and (max-width: 749px) {
       padding: 0 0 0 32px;
     }
   }
@@ -468,7 +487,7 @@ const LogosList = styled.ul`
   justify-content: space-between;
   align-items: center;
   flex-wrap: wrap;
-  @media only screen and (max-width: 768px) {
+  @media only screen and (max-width: 749px) {
     margin: 0 -8px;
     justify-content: center;
   }
@@ -485,7 +504,7 @@ const PageNotFoundMain = styled.div`
   display: flex;
   align-items: center;
   flex-direction: column;
-  @media only screen and (max-width: 768px) {
+  @media only screen and (max-width: 749px) {
     padding: 136px 0 84px 0;
   }
 `;
@@ -499,7 +518,7 @@ const PageNotFoundPara = styled.p`
   margin: 16px 0 32px 0;
   text-align: center;
   color: ${({ theme }) => theme.colors.textColor};
-  @media only screen and (max-width: 768px) {
+  @media only screen and (max-width: 749px) {
     font-size: 18px;
     line-height: 24px;
   }
@@ -510,7 +529,7 @@ const SearchForm = styled.form`
   width: 100%;
   max-width: 420px;
   margin: 30px auto 0 auto;
-  @media only screen and (max-width: 768px) {
+  @media only screen and (max-width: 749px) {
     max-width: 360px;
     margin: 20px auto 0 auto;
   }
@@ -531,7 +550,7 @@ const SearchInput = styled.input`
     ${Body3}
     font-weight: 500;
   }
-  @media only screen and (max-width: 768px) {
+  @media only screen and (max-width: 749px) {
     padding: 8px 40px 8px 20px;
   }
 `;
@@ -547,7 +566,7 @@ const SearchIcon = styled.input`
   cursor: pointer;
   outline-offset: 0;
   text-indent: -99999px;
-  @media only screen and (max-width: 768px) {
+  @media only screen and (max-width: 749px) {
     right: 13px;
     top: 9px;
   }
@@ -605,7 +624,7 @@ const CategoryCard = styled.div`
         color: ${({ theme }) => theme.colors.primary};
       }
     }
-    @media only screen and (max-width: 768px) {
+    @media only screen and (max-width: 749px) {
       :hover {
         background-color: none;
         box-shadow: none;

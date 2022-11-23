@@ -6,16 +6,16 @@ const Heading1 = css`
   line-height: 135px;
   font-family: ${({ theme }) => theme.fontfamily.Bagoss};
   @media only screen and (max-width: 991px) {
-    font-size: 48px;
-    line-height: 56px;
+    font-size: 80px;
+    line-height: 76px;
   }
   @media only screen and (max-width: 768px) {
-    font-size: 38px;
-    line-height: 44px;
+    font-size: 60px;
+    line-height: 54px;
   }
   @media only screen and (max-width: 479px) {
-    font-size: 32px;
-    line-height: 38px;
+    font-size: 60px;
+    line-height: 54px;
   }
 `;
 
@@ -25,8 +25,8 @@ const Heading2 = css`
   line-height: 76px;
   font-family: ${({ theme }) => theme.fontfamily.Bagoss};
   @media only screen and (max-width: 768px) {
-    font-size: 36px;
-    line-height: 42px;
+    /* font-size: 36px;
+    line-height: 42px; */
   }
   @media only screen and (max-width: 479px) {
     font-size: 28px;
@@ -39,13 +39,13 @@ const Heading3 = css`
   font-size: 50px;
   line-height: 55px;
   font-family: ${({ theme }) => theme.fontfamily.Bagoss};
-  @media only screen and (max-width: 768px) {
-    font-size: 28px;
-    line-height: 32px;
+  @media only screen and (max-width: 991px) {
+    font-size: 44px;
+    line-height: 50px;
   }
   @media only screen and (max-width: 479px) {
-    font-size: 24px;
-    line-height: 30px;
+    font-size: 28px;
+    line-height: 31px;
   }
 `;
 
@@ -55,8 +55,8 @@ const Heading4 = css`
   line-height: 34px;
   font-family: ${({ theme }) => theme.fontfamily.Bagoss};
   @media only screen and (max-width: 479px) {
-    font-size: 20px;
-    line-height: 24px;
+    font-size: 22px;
+    line-height: 23px;
   }
 `;
 
@@ -193,6 +193,38 @@ const LinkTxt = css`
   line-height: 26px;
   letter-spacing: 0.02em;
 `;
+const MbButtonText = css`
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 12px;
+  letter-spacing: 0.02em;
+`;
+const MbBody1 = css`
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 23px;
+  letter-spacing: 0.02em;
+`;
+const MbPrimaryBtn = css`
+  font-weight: 500;
+  font-size: 15px;
+  line-height: 26px;
+`;
+const MobileH3 = css`
+  font-weight: 400;
+  font-size: 28px;
+  line-height: 31px;
+`;
+const MbBody3 = css`
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 21px;
+`;
+const MbBody4 = css`
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 20px;
+`;
 export {
   Heading1,
   Heading2,
@@ -219,4 +251,10 @@ export {
   CardTxt,
   Name,
   LinkTxt,
+  MbButtonText,
+  MbBody1,
+  MbPrimaryBtn,
+  MobileH3,
+  MbBody3,
+  MbBody4,
 };

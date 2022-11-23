@@ -5,6 +5,7 @@ import {
   Body5,
   FooterText,
   Body4,
+  MbButtonText,
 } from "../../styles/styles";
 
 const NavbarWrapper = styled.div`
@@ -28,12 +29,19 @@ const NavbarWrapper = styled.div`
       backdrop-filter: blur(6px);
       border-bottom: 1px solid ${props.colorList?.borderBottomColor};
     `}
+  @media only screen and (max-width: 991px) {
+    padding: 16px 0;
+  }
 `;
 const NavbarInner = styled.div`
   display: flex;
   /* justify-content: space-between; */
   align-items: center;
   gap: 60px;
+  @media only screen and (max-width: 991px) {
+    justify-content: space-between;
+    gap: unset;
+  }
 `;
 const SalescampLogo = styled.img`
   cursor: pointer;
@@ -60,7 +68,7 @@ const NavMenu = styled.div`
   align-items: center;
   justify-content: space-between;
   width: 100%;
-  @media only screen and (max-width: 768px) {
+  @media only screen and (max-width: 991px) {
     flex-direction: column;
     padding: 12px;
     position: absolute;
@@ -87,7 +95,7 @@ const NavigationBlock = styled.ul`
   align-items: center;
   margin: 0 -14px;
   /* justify-content: space-between; */
-  @media only screen and (max-width: 768px) {
+  @media only screen and (max-width: 991px) {
     flex-direction: column;
     width: 100%;
     align-items: flex-start;
@@ -132,7 +140,7 @@ const SpanLink = styled.li`
     }
   }
 
-  @media only screen and (max-width: 768px) {
+  @media only screen and (max-width: 991px) {
     margin-bottom: 4px;
     width: 100%;
     &.active {
@@ -188,7 +196,7 @@ const InnerList = styled.ul`
 `;
 const ListLi = styled.li``;
 const HeaderBtnGroup = styled.div`
-  @media only screen and (max-width: 768px) {
+  @media only screen and (max-width: 991px) {
     width: 100%;
   }
 `;
@@ -199,7 +207,7 @@ const SignInSignUpBtn = styled.ul`
   button {
     margin-left: 14px;
   }
-  @media only screen and (max-width: 768px) {
+  @media only screen and (max-width: 991px) {
     width: 100%;
     padding: 12px 0;
     border-top: 1px solid #ebeef2;
@@ -231,6 +239,11 @@ const SignIn = styled.li`
         `}
     }
   }
+  @media only screen and (max-width: 991px) {
+    a {
+      ${MbButtonText};
+    }
+  }
 `;
 
 const DropDownToggle = styled.div`
@@ -240,7 +253,7 @@ const DropDownToggle = styled.div`
   transition: all 300ms;
   user-select: none;
   cursor: pointer;
-  @media only screen and (max-width: 768px) {
+  @media only screen and (max-width: 991px) {
     width: 100%;
     padding: 12px;
   }
@@ -249,7 +262,7 @@ const DropdownSpan = styled.span`
   margin-right: 4px;
   color: ${({ theme }) => theme.colors.textColor};
   ${Body2}
-  @media only screen and (max-width: 768px) {
+  @media only screen and (max-width: 991px) {
     width: 100%;
     font-size: 13px;
     line-height: 18px;
@@ -279,7 +292,7 @@ const HorizontalLine = styled.div`
   margin-right: 8px;
   margin-left: 16px;
   background-color: rgba(0, 0, 0, 0.12);
-  @media only screen and (max-width: 768px) {
+  @media only screen and (max-width: 991px) {
     display: none;
   }
 `;
@@ -289,7 +302,7 @@ const DropdownMenu = styled.div`
   border-radius: 8px;
   background-color: ${({ theme }) => theme.colors.whiteColor};
   box-shadow: 0 3px 10px 0 rgb(37 37 38 / 8%);
-  @media only screen and (max-width: 768px) {
+  @media only screen and (max-width: 991px) {
     padding: 0;
     border: none;
     border-radius: 0;
@@ -322,7 +335,7 @@ const DropDownLink = styled.span`
       outline: none;
     }
   }
-  @media only screen and (max-width: 768px) {
+  @media only screen and (max-width: 991px) {
     width: 100%;
     &.active {
       a {
@@ -337,20 +350,23 @@ const DropDownLink = styled.span`
 `;
 
 const MobileMenu = styled.div`
-  height: 24px;
-  width: 24px;
+  height: 44px;
+  width: 44px;
   display: none;
-  @media only screen and (max-width: 768px) {
-    display: block;
+  @media only screen and (max-width: 991px) {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
   }
 `;
 const FirstLine = styled.span`
   display: block;
   width: 24px;
   height: 2px;
-  background-color: ${({ theme }) => theme.colors.darkColor};
+  background-color: ${({ theme }) => theme.colors.black};
   border-radius: 1px;
-  margin-bottom: 6px;
+  margin-bottom: 14px;
   transition: all 300ms;
   transform: translate3d(0px, 0px, 0px) rotateZ(0deg);
   ${(props) =>
@@ -374,7 +390,7 @@ const SecondLine = styled.span`
   display: block;
   width: 24px;
   height: 2px;
-  background-color: ${({ theme }) => theme.colors.darkColor};
+  background-color: ${({ theme }) => theme.colors.black};
   border-radius: 1px;
   margin-bottom: 6px;
   transition: all 300ms;
@@ -400,7 +416,7 @@ const ThirdLine = styled.span`
   display: block;
   width: 24px;
   height: 2px;
-  background-color: ${({ theme }) => theme.colors.darkColor};
+  background-color: ${({ theme }) => theme.colors.black};
   border-radius: 1px;
   transition: all 300ms;
   transform: translate3d(0px, 0px, 0px) rotateZ(0deg);
@@ -563,6 +579,22 @@ const RightText = styled.div`
     color: ${({ theme }) => theme.colors.title};
   }
 `;
+const SignInMobile = styled.ul`
+  display: none;
+  @media only screen and (max-width: 991px) {
+    display: flex;
+    align-items: center;
+  }
+`;
+const MobileRight = styled.div`
+  display: none;
+  @media only screen and (max-width: 991px) {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+`;
+
 export {
   NavbarWrapper,
   NavbarInner,
@@ -592,4 +624,6 @@ export {
   LeftImg,
   RightText,
   LineMenuImg,
+  SignInMobile,
+  MobileRight,
 };

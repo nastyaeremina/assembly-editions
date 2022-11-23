@@ -18,7 +18,10 @@ export default function CTA() {
             </h2>
             <CtaBtn>
               <PrimaryButton>
-                <Link href="https://dashboard.copilot.com/onboarding">
+                <Link
+                  className="paddingbtn"
+                  href="https://dashboard.copilot.com/onboarding"
+                >
                   Start Trial
                 </Link>
               </PrimaryButton>
