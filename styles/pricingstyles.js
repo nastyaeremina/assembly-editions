@@ -177,6 +177,7 @@ const PricePlan = styled.ul`
   padding-top: 32px;
   max-width: 285px;
   width: 100%;
+  margin: 0 auto;
   h4 {
     color: ${({ theme }) => theme.colors.title};
     ${Body2};
@@ -189,7 +190,7 @@ const PricePlan = styled.ul`
 `;
 const PricePlanWrap = styled.li`
   display: flex;
-  gap: 14px;
+  gap: 16px;
   margin: 12px 0 0 0;
   align-items: flex-start;
   p {
@@ -197,8 +198,8 @@ const PricePlanWrap = styled.li`
     letter-spacing: 0.02em;
     ${Body4};
     margin: 0;
-    max-width: 249px;
-    width: 100%;
+    /* max-width: 249px;
+    width: 100%; */
   }
 `;
 const PlanPlanSub = styled.div``;
