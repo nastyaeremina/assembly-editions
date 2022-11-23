@@ -875,6 +875,7 @@ const HelpImg = styled.div`
   img {
     max-width: 100%;
     display: block;
+    height: 100%;
   }
   @media only screen and (max-width: 991px) {
     width: 100%;
@@ -895,6 +896,9 @@ const HelpWrap = styled.div`
 `;
 const HelpMargin = styled.div`
   margin-top: 40px;
+  @media only screen and (max-width: 749px) {
+    margin-top: 28px;
+  }
 `;
 const BtnView = styled.div`
   margin-top: 28px;
