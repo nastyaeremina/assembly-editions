@@ -1,10 +1,14 @@
 import { NextSeo } from "next-seo";
 import Image from "next/image";
 import Link from "next/link";
+import { useCallback, useMemo } from "react";
 import CTA from "../../components/cta/cta";
 import FAQ from "../../components/faq/faq";
 import Layout from "../../components/layout";
 import Navbar from "../../components/navbar/navbar";
+import { isEmpty } from "../../helpers/helpers";
+import { NO_OF_JOBS_PER_PAGE } from "../../lib/constants";
+import { getAllJobs } from "../../lib/contentful-jobsListing";
 import { Container } from "../../styles/commonStyles";
 import {
   HeroJobSection,
@@ -44,7 +48,39 @@ import {
   MainWrap,
 } from "../../styles/jobsStyles";
 
-export default function Jobs() {
+export default function Jobs({ jobList }) {
+
+  const renderJobsListingView = useCallback((list) => {
+    if (isEmpty(list)) return null
+    return list?.map((item, index) => {
+      return <Link href={`/jobs/${item?.slug}`} key={`joblist_index_${index}`}>
+        <RoleRow >
+          <LeftRow>
+            <p>{item?.name}</p>
+          </LeftRow>
+          <RightRow>
+            <p>{isEmpty(item?.location) ? 'Remote' : item?.location}</p>
+            {/* <Dot className="bgdot"></Dot>
+              <p>New York</p> */}
+          </RightRow>
+        </RoleRow>
+      </Link>
+    }, [])
+  }, [])
+
+  const renderJobsRolesListView = useMemo(() => {
+    if (isEmpty(jobList)) return null
+    return jobList?.map((item, index) => {
+      return <JobView key={`jobsroleslist_index_${index}`}>
+        <h4>{item?.department}</h4>
+        <RoleList>
+          {renderJobsListingView(item?.list)}
+
+        </RoleList>
+      </JobView>
+    }, [])
+  }, [jobList, renderJobsListingView])
+
   return (
     <>
       <NextSeo
@@ -83,145 +119,9 @@ export default function Jobs() {
                       class backgrounds.
                     </p>
                   </RoleWrap>
-                  <JobDetailWrap>
-                    <JobView>
-                      <h4>Engineering</h4>
-                      <RoleList>
-                        <RoleRow>
-                          <LeftRow>
-                            <p>Customer Support Engineer</p>
-                          </LeftRow>
-                          <RightRow>
-                            <p>New York</p>
-                          </RightRow>
-                        </RoleRow>
-                        <RoleRow>
-                          <LeftRow>
-                            <p>Senior Mobile Engineer</p>
-                          </LeftRow>
-                          <RightRow>
-                            <p>New York</p>
-                          </RightRow>
-                        </RoleRow>
-                        <RoleRow>
-                          <LeftRow>
-                            <p>Senior Frontend Engineer</p>
-                          </LeftRow>
-                          <RightRow>
-                            <p>New York</p>
-                          </RightRow>
-                        </RoleRow>
-                        <RoleRow>
-                          <LeftRow>
-                            <p>Lead QA Engineer</p>
-                          </LeftRow>
-                          <RightRow>
-                            <p>Remote</p>
-                            <Dot className="bgdot"></Dot>
-                            <p>New York</p>
-                          </RightRow>
-                        </RoleRow>
-                      </RoleList>
-                    </JobView>
-                    <JobView>
-                      <h4>Product</h4>
-                      <RoleList>
-                        <RoleRow>
-                          <LeftRow>
-                            <p>Senior Designer</p>
-                          </LeftRow>
-                          <RightRow>
-                            <p>Remote</p>
-                          </RightRow>
-                        </RoleRow>
-                        <RoleRow>
-                          <LeftRow>
-                            <p>Product Manager - Portal Payments</p>
-                          </LeftRow>
-                          <RightRow>
-                            <p>New York</p>
-                          </RightRow>
-                        </RoleRow>
-                        <RoleRow>
-                          <LeftRow>
-                            <p>Product Manager - Portal Store</p>
-                          </LeftRow>
-                          <RightRow>
-                            <p>New York</p>
-                          </RightRow>
-                        </RoleRow>
-                      </RoleList>
-                    </JobView>
-                    <JobView>
-                      <h4>Marketing</h4>
-                      <RoleList>
-                        <RoleRow>
-                          <LeftRow>
-                            <p>Marketing Manager</p>
-                          </LeftRow>
-                          <RightRow>
-                            <p>Remote</p>
-                            <Dot className="bgdot"></Dot>
-                            <p>New York</p>
-                          </RightRow>
-                        </RoleRow>
-                        <RoleRow>
-                          <LeftRow>
-                            <p>Social & Community Manager</p>
-                          </LeftRow>
-                          <RightRow>
-                            <p>Remote</p>
-                          </RightRow>
-                        </RoleRow>
-                      </RoleList>
-                    </JobView>
-                    <JobView>
-                      <h4>Sales</h4>
-                      <RoleList>
-                        <RoleRow>
-                          <LeftRow>
-                            <p>Technical SDR</p>
-                          </LeftRow>
-                          <RightRow>
-                            <p>Remote</p>
-                          </RightRow>
-                        </RoleRow>
-                        <RoleRow>
-                          <LeftRow>
-                            <p>Account Executive</p>
-                          </LeftRow>
-                          <RightRow>
-                            <p>Remote</p>
-                          </RightRow>
-                        </RoleRow>
-                      </RoleList>
-                    </JobView>
-                    <JobView>
-                      <h4>Talent</h4>
-                      <RoleList>
-                        <RoleRow>
-                          <LeftRow>
-                            <p>Recruiter</p>
-                          </LeftRow>
-                          <RightRow>
-                            <p>Remote</p>
-                            <Dot className="bgdot"></Dot>
-                            <p>New York</p>
-                          </RightRow>
-                        </RoleRow>
-                        <RoleRow>
-                          <LeftRow>
-                            <p>Account Executive</p>
-                          </LeftRow>
-                          <RightRow>
-                            <p>Remote</p>
-                            <Dot className="bgdot"></Dot>
-                            <p>New York</p>
-                          </RightRow>
-                        </RoleRow>
-                      </RoleList>
-                    </JobView>
-                  </JobDetailWrap>
+                  {!isEmpty(jobList) && <JobDetailWrap>
+                    {renderJobsRolesListView}
+                  </JobDetailWrap>}
                 </RoleBlock>
                 <TeamBlock>
                   <AboutWrap>
@@ -508,4 +408,39 @@ export default function Jobs() {
       </Layout>
     </>
   );
+}
+
+export async function getServerSideProps({ preview = false }) {
+  let allPosts = [];
+  let data = [];
+  let page = 0;
+  do {
+    const skip = page * NO_OF_JOBS_PER_PAGE;
+    data = (await getAllJobs(skip)) || [];
+    allPosts = allPosts.concat(data);
+
+    if (data?.length !== NO_OF_JOBS_PER_PAGE) break;
+    // eslint-disable-next-line no-plusplus
+    else page++;
+  } while (data?.length !== 0);
+
+  let newList = [];
+  allPosts?.forEach((item) => {
+    const index = newList?.findIndex(
+      (x) => x?.department === item?.department
+    );
+    if (index !== -1) {
+      newList[index]?.list?.push(item);
+    } else {
+      const newItem = {
+        department: item?.department,
+        list: [item],
+      };
+      newList?.push(newItem);
+    }
+  });
+
+  return {
+    props: { jobList: newList },
+  };
 }
