@@ -22,18 +22,13 @@ import {
 } from "../../styles/universityStyles";
 import { Container } from "../../styles/commonStyles";
 import Image from "next/image";
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
+import { getAllUniversityVideos } from "../../lib/contentful-universityVideos";
+import { isEmpty } from "../../helpers/helpers";
+import slugify from "slugify";
 
-const CATEGORIES = {
-  GET_STARTED: "GET_STARTED",
-  COPILOT_APPS: "COPILOT_APPS",
-  PARTNER_APPS: "PARTNER_APPS",
-  ADVANCED: "ADVANCED",
-  INDUSTRY_COURSES: "INDUSTRY_COURSES",
-  QUICK_TIPS: "QUICK_TIPS",
-};
 let selected_categry = null;
-export default function University() {
+export default function University({ universityVideosList }) {
   // const [selected_categry, useSelected_categry] = useState(null);
   const handleScroll = useCallback(() => {
     if (!selected_categry) return;
@@ -41,17 +36,68 @@ export default function University() {
     selected_categry = null;
   }, []);
 
-  // useEffect(() => {
-  //   window.addEventListener("scroll", handleScroll);
-  //   return () => window.removeEventListener("scroll", handleScroll);
-  // }, [handleScroll]);
-
   const onClickCategories = useCallback((name) => {
     selected_categry = name;
     setTimeout(() => {
       selected_categry = null;
     }, 1000);
   }, []);
+
+  const renderCategoryView = useMemo(() => {
+    if (isEmpty(universityVideosList)) return null;
+    return universityVideosList?.map((item, index) => {
+      return (
+        <Catagoryitem
+          key={`rendercategoryitem_index_${index}`}
+          onClick={() => {
+            onClickCategories(slugify(item?.category));
+          }}
+        >
+          <Link href={`#${slugify(item?.category)}`}>{item?.category}</Link>
+        </Catagoryitem>
+      );
+    });
+  }, [onClickCategories, universityVideosList]);
+
+  const renderUniversityVideosView = useCallback((videoList) => {
+    if (isEmpty(videoList)) return null;
+    return videoList?.map((item, index) => {
+      return (
+        <Link
+          href={`/university/${item?.slug}`}
+          key={`universityvideos_index_${index}`}
+        >
+          <FeatureCard>
+            <Image
+              src={item?.thumbnail?.url}
+              alt="video"
+              width={270}
+              height={152}
+              layout={"fixed"}
+            />
+          </FeatureCard>
+        </Link>
+      );
+    });
+  }, []);
+
+  const renderUniversityVideosListView = useMemo(() => {
+    if (isEmpty(universityVideosList)) return null;
+    return universityVideosList?.map((item, index) => {
+      return (
+        <ExtensionsSection
+          id={slugify(item?.category)}
+          key={`renderuniversityvideoslistiten_index_${index}`}
+          isSelected={slugify(item?.category) === selected_categry}
+          isNotFirst={index !== 0}
+        >
+          <h3>{item?.category}</h3>
+          <FeatureMenu>{renderUniversityVideosView(item?.list)}</FeatureMenu>
+        </ExtensionsSection>
+      );
+    });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [renderUniversityVideosView, universityVideosList, selected_categry]);
 
   return (
     <>
@@ -82,550 +128,69 @@ export default function University() {
                     />
                     <Input placeholder="Find a video..." />
                   </InputWrap>
-
-                  <Catagory>
-                    <h4>Categories</h4>
-                    <Catagoryitem
-                      onClick={() => {
-                        onClickCategories(CATEGORIES.GET_STARTED);
-                      }}
-                    >
-                      <Link href={"#GetStarted-Section"}>All</Link>
-                    </Catagoryitem>
-                    <Catagoryitem
-                      onClick={() => {
-                        onClickCategories(CATEGORIES.GET_STARTED);
-                      }}
-                    >
-                      <Link href={"#GetStarted-Section"}>Get Started</Link>
-                    </Catagoryitem>
-                    <Catagoryitem
-                      onClick={() => {
-                        onClickCategories(CATEGORIES.COPILOT_APPS);
-                      }}
-                    >
-                      <Link href={"#CopilotApps-Section"}>Copilot Apps</Link>
-                    </Catagoryitem>
-                    <Catagoryitem
-                      onClick={() => {
-                        onClickCategories(CATEGORIES.PARTNER_APPS);
-                      }}
-                    >
-                      <Link href={"#PartnerApps-Section"}>Partner Apps</Link>
-                    </Catagoryitem>
-                    <Catagoryitem
-                      onClick={() => {
-                        onClickCategories(CATEGORIES.ADVANCED);
-                      }}
-                    >
-                      <Link href={"#Advanced-Section"}>Advanced</Link>
-                    </Catagoryitem>
-                    <Catagoryitem>
-                      <Link href={"#Industrycourses-Section"}>
-                        Industry Courses
-                      </Link>
-                    </Catagoryitem>
-                    <Catagoryitem>
-                      <Link href={"#QuickTips-Section"}>Quick Tips</Link>
-                    </Catagoryitem>
-                  </Catagory>
+                  {!isEmpty(universityVideosList) && (
+                    <Catagory>
+                      <h4>Categories</h4>
+                      <Catagoryitem>
+                        <Link
+                          href={`#${slugify(
+                            universityVideosList?.[0]?.category
+                          )}`}
+                          onClick={() => {
+                            onClickCategories(
+                              slugify(universityVideosList?.[0]?.category)
+                            );
+                          }}
+                        >
+                          All
+                        </Link>
+                      </Catagoryitem>
+                      {renderCategoryView}
+                    </Catagory>
+                  )}
                 </LeftWrap>
               </FeatureLeft>
-              <FeatureRight>
-                <Featured
-                  id="GetStarted-Section"
-                  isSelected={CATEGORIES.GET_STARTED === selected_categry}
-                >
-                  <h3>Get Started</h3>
-                  <FeatureMenu>
-                    <Link href="university/video">
-                      <FeatureCard>
-                        <Image
-                          src="/images/video1.png"
-                          alt="video"
-                          width={270}
-                          height={152}
-                          layout={"fixed"}
-                        />
-                      </FeatureCard>
-                    </Link>
-                    <Link href="#">
-                      <FeatureCard>
-                        <Image
-                          src="/images/video1.png"
-                          alt="video"
-                          width={270}
-                          height={152}
-                          layout={"fixed"}
-                        />
-                      </FeatureCard>
-                    </Link>
-                    <Link href="#">
-                      <FeatureCard>
-                        <Image
-                          src="/images/video1.png"
-                          alt="video"
-                          width={270}
-                          height={152}
-                          layout={"fixed"}
-                        />
-                      </FeatureCard>
-                    </Link>
-                    <Link href="#">
-                      <FeatureCard>
-                        <Image
-                          src="/images/video1.png"
-                          alt="video"
-                          width={270}
-                          height={152}
-                          layout={"fixed"}
-                        />
-                      </FeatureCard>
-                    </Link>
-                    <Link href="#">
-                      <FeatureCard>
-                        <Image
-                          src="/images/video1.png"
-                          alt="video"
-                          width={270}
-                          height={152}
-                          layout={"fixed"}
-                        />
-                      </FeatureCard>
-                    </Link>
-                    <Link href="#">
-                      <FeatureCard>
-                        <Image
-                          src="/images/video1.png"
-                          alt="video"
-                          width={270}
-                          height={152}
-                          layout={"fixed"}
-                        />
-                      </FeatureCard>
-                    </Link>
-                    <Link href="#">
-                      <FeatureCard>
-                        <Image
-                          src="/images/video1.png"
-                          alt="video"
-                          width={270}
-                          height={152}
-                          layout={"fixed"}
-                        />
-                      </FeatureCard>
-                    </Link>
-                    <Link href="#">
-                      <FeatureCard>
-                        <Image
-                          src="/images/video1.png"
-                          alt="video"
-                          width={270}
-                          height={152}
-                          layout={"fixed"}
-                        />
-                      </FeatureCard>
-                    </Link>
-                    <Link href="#">
-                      <FeatureCard>
-                        <Image
-                          src="/images/video1.png"
-                          alt="video"
-                          width={270}
-                          height={152}
-                          layout={"fixed"}
-                        />
-                      </FeatureCard>
-                    </Link>
-                    <Link href="#">
-                      <FeatureCard>
-                        <Image
-                          src="/images/video1.png"
-                          alt="video"
-                          width={270}
-                          height={152}
-                          layout={"fixed"}
-                        />
-                      </FeatureCard>
-                    </Link>
-                  </FeatureMenu>
-                </Featured>
-                <ExtensionsSection
-                  id="CopilotApps-Section"
-                  isSelected={CATEGORIES.COPILOT_APPS === selected_categry}
-                >
-                  <h3>Project management</h3>
-                  <FeatureMenu>
-                    <Link href="#">
-                      <FeatureCard>
-                        <Image
-                          src="/images/video1.png"
-                          alt="video"
-                          width={270}
-                          height={152}
-                          layout={"fixed"}
-                        />
-                      </FeatureCard>
-                    </Link>
-                    <Link href="#">
-                      <FeatureCard>
-                        <Image
-                          src="/images/video1.png"
-                          alt="video"
-                          width={270}
-                          height={152}
-                          layout={"fixed"}
-                        />
-                      </FeatureCard>
-                    </Link>
-                    <Link href="#">
-                      <FeatureCard>
-                        <Image
-                          src="/images/video1.png"
-                          alt="video"
-                          width={270}
-                          height={152}
-                          layout={"fixed"}
-                        />
-                      </FeatureCard>
-                    </Link>
-                    <Link href="#">
-                      <FeatureCard>
-                        <Image
-                          src="/images/video1.png"
-                          alt="video"
-                          width={270}
-                          height={152}
-                          layout={"fixed"}
-                        />
-                      </FeatureCard>
-                    </Link>
-                    <Link href="#">
-                      <FeatureCard>
-                        <Image
-                          src="/images/video1.png"
-                          alt="video"
-                          width={270}
-                          height={152}
-                          layout={"fixed"}
-                        />
-                      </FeatureCard>
-                    </Link>
-                    <Link href="#">
-                      <FeatureCard>
-                        <Image
-                          src="/images/video1.png"
-                          alt="video"
-                          width={270}
-                          height={152}
-                          layout={"fixed"}
-                        />
-                      </FeatureCard>
-                    </Link>
-                    <Link href="#">
-                      <FeatureCard>
-                        <Image
-                          src="/images/video1.png"
-                          alt="video"
-                          width={270}
-                          height={152}
-                          layout={"fixed"}
-                        />
-                      </FeatureCard>
-                    </Link>
-                  </FeatureMenu>
-                </ExtensionsSection>
-                <SchedulingApps
-                  id="PartnerApps-Section"
-                  isSelected={CATEGORIES.PARTNER_APPS === selected_categry}
-                >
-                  <h3>Partner Apps</h3>
-                  <ExtensionCard>
-                    <Link href="#">
-                      <FeatureCard>
-                        <Image
-                          src="/images/video1.png"
-                          alt="video"
-                          width={270}
-                          height={152}
-                          layout={"fixed"}
-                        />
-                      </FeatureCard>
-                    </Link>
-                    <Link href="#">
-                      <FeatureCard>
-                        <Image
-                          src="/images/video1.png"
-                          alt="video"
-                          width={270}
-                          height={152}
-                          layout={"fixed"}
-                        />
-                      </FeatureCard>
-                    </Link>
-                    <Link href="#">
-                      <FeatureCard>
-                        <Image
-                          src="/images/video1.png"
-                          alt="video"
-                          width={270}
-                          height={152}
-                          layout={"fixed"}
-                        />
-                      </FeatureCard>
-                    </Link>
-                    <Link href="#">
-                      <FeatureCard>
-                        <Image
-                          src="/images/video1.png"
-                          alt="video"
-                          width={270}
-                          height={152}
-                          layout={"fixed"}
-                        />
-                      </FeatureCard>
-                    </Link>
-                    <Link href="#">
-                      <FeatureCard>
-                        <Image
-                          src="/images/video1.png"
-                          alt="video"
-                          width={270}
-                          height={152}
-                          layout={"fixed"}
-                        />
-                      </FeatureCard>
-                    </Link>
-                    <Link href="#">
-                      <FeatureCard>
-                        <Image
-                          src="/images/video1.png"
-                          alt="video"
-                          width={270}
-                          height={152}
-                          layout={"fixed"}
-                        />
-                      </FeatureCard>
-                    </Link>
-                    <Link href="#">
-                      <FeatureCard>
-                        <Image
-                          src="/images/video1.png"
-                          alt="video"
-                          width={270}
-                          height={152}
-                          layout={"fixed"}
-                        />
-                      </FeatureCard>
-                    </Link>
-                    <Link href="#">
-                      <FeatureCard>
-                        <Image
-                          src="/images/video1.png"
-                          alt="video"
-                          width={270}
-                          height={152}
-                          layout={"fixed"}
-                        />
-                      </FeatureCard>
-                    </Link>
-                    <Link href="#">
-                      <FeatureCard>
-                        <Image
-                          src="/images/video1.png"
-                          alt="video"
-                          width={270}
-                          height={152}
-                          layout={"fixed"}
-                        />
-                      </FeatureCard>
-                    </Link>
-                    <Link href="#">
-                      <FeatureCard>
-                        <Image
-                          src="/images/video1.png"
-                          alt="video"
-                          width={270}
-                          height={152}
-                          layout={"fixed"}
-                        />
-                      </FeatureCard>
-                    </Link>
-                    <Link href="#">
-                      <FeatureCard>
-                        <Image
-                          src="/images/video1.png"
-                          alt="video"
-                          width={270}
-                          height={152}
-                          layout={"fixed"}
-                        />
-                      </FeatureCard>
-                    </Link>
-                    <Link href="#">
-                      <FeatureCard>
-                        <Image
-                          src="/images/video1.png"
-                          alt="video"
-                          width={270}
-                          height={152}
-                          layout={"fixed"}
-                        />
-                      </FeatureCard>
-                    </Link>
-                    <Link href="#">
-                      <FeatureCard>
-                        <Image
-                          src="/images/video1.png"
-                          alt="video"
-                          width={270}
-                          height={152}
-                          layout={"fixed"}
-                        />
-                      </FeatureCard>
-                    </Link>
-                    <Link href="#">
-                      <FeatureCard>
-                        <Image
-                          src="/images/video1.png"
-                          alt="video"
-                          width={270}
-                          height={152}
-                          layout={"fixed"}
-                        />
-                      </FeatureCard>
-                    </Link>
-                  </ExtensionCard>
-                </SchedulingApps>
-                <SchedulingApps
-                  id="Advanced-Section"
-                  isSelected={CATEGORIES.ADVANCED === selected_categry}
-                >
-                  <h3>Advanced</h3>
-                  <ExtensionCard>
-                    <Link href="#">
-                      <FeatureCard>
-                        <Image
-                          src="/images/video1.png"
-                          alt="video"
-                          width={270}
-                          height={152}
-                          layout={"fixed"}
-                        />
-                      </FeatureCard>
-                    </Link>
-                    <Link href="#">
-                      <FeatureCard>
-                        <Image
-                          src="/images/video1.png"
-                          alt="video"
-                          width={270}
-                          height={152}
-                          layout={"fixed"}
-                        />
-                      </FeatureCard>
-                    </Link>
-                    <Link href="#">
-                      <FeatureCard>
-                        <Image
-                          src="/images/video1.png"
-                          alt="video"
-                          width={270}
-                          height={152}
-                          layout={"fixed"}
-                        />
-                      </FeatureCard>
-                    </Link>
-
-                    <Link href="#">
-                      <FeatureCard>
-                        <Image
-                          src="/images/video1.png"
-                          alt="video"
-                          width={270}
-                          height={152}
-                          layout={"fixed"}
-                        />
-                      </FeatureCard>
-                    </Link>
-                  </ExtensionCard>
-                </SchedulingApps>
-                <SchedulingApps
-                  id="Industrycourses-Section"
-                  isSelected={CATEGORIES.INDUSTRY_COURSES === selected_categry}
-                >
-                  <h3>Industry courses</h3>
-                  <ExtensionCard>
-                    <Link href="#">
-                      <FeatureCard>
-                        <Image
-                          src="/images/video1.png"
-                          alt="video"
-                          width={270}
-                          height={152}
-                          layout={"fixed"}
-                        />
-                      </FeatureCard>
-                    </Link>
-                    <Link href="#">
-                      <FeatureCard>
-                        <Image
-                          src="/images/video1.png"
-                          alt="video"
-                          width={270}
-                          height={152}
-                          layout={"fixed"}
-                        />
-                      </FeatureCard>
-                    </Link>
-                    <Link href="#">
-                      <FeatureCard>
-                        <Image
-                          src="/images/video1.png"
-                          alt="video"
-                          width={270}
-                          height={152}
-                          layout={"fixed"}
-                        />
-                      </FeatureCard>
-                    </Link>
-                  </ExtensionCard>
-                </SchedulingApps>
-                <SchedulingApps
-                  id="QuickTips-Section"
-                  isSelected={CATEGORIES.QUICK_TIPS === selected_categry}
-                >
-                  <h3>Quick tips</h3>
-                  <ExtensionCard>
-                    <Link href="#">
-                      <FeatureCard>
-                        <Image
-                          src="/images/video1.png"
-                          alt="video"
-                          width={270}
-                          height={152}
-                          layout={"fixed"}
-                        />
-                      </FeatureCard>
-                    </Link>
-                    <Link href="#">
-                      <FeatureCard>
-                        <Image
-                          src="/images/video1.png"
-                          alt="video"
-                          width={270}
-                          height={152}
-                          layout={"fixed"}
-                        />
-                      </FeatureCard>
-                    </Link>
-                  </ExtensionCard>
-                </SchedulingApps>
-              </FeatureRight>
+              <FeatureRight>{renderUniversityVideosListView}</FeatureRight>
             </FeatureWrap>
           </Container>
         </UniversitySection>
       </Layout>
     </>
   );
+}
+export async function getServerSideProps({ preview = false }) {
+  let allPosts = [];
+  let data = [];
+  let page = 0;
+  do {
+    const skip = page * 100;
+    data = (await getAllUniversityVideos(skip)) || [];
+    allPosts = allPosts.concat(data);
+
+    if (data?.length !== 100) break;
+    // eslint-disable-next-line no-plusplus
+    else page++;
+  } while (data?.length !== 0);
+  console.log("allPosts", allPosts);
+
+  let newList = [];
+  allPosts?.forEach((item) => {
+    const index = newList?.findIndex(
+      (x) => x?.category === item?.videoCategory
+    );
+    if (index !== -1) {
+      newList[index]?.list?.push(item);
+    } else {
+      const newItem = {
+        category: item?.videoCategory,
+        list: [item],
+      };
+      newList?.push(newItem);
+    }
+  });
+  console.log("newList", newList);
+
+  return {
+    props: { universityVideosList: newList },
+  };
 }

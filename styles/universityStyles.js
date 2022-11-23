@@ -123,6 +123,11 @@ const FeatureCard = styled.div`
 const ExtensionsSection = styled.div`
   padding-top: 40px;
   ${(props) =>
+    props.isNotFirst &&
+    css`
+      padding-top: 40px;
+    `}
+  ${(props) =>
     props.isSelected &&
     css`
       padding-top: 100px;
