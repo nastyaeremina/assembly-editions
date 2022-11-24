@@ -22,7 +22,7 @@ const FaqTitle = styled.div`
     margin: 0;
     color: ${({ theme }) => theme.colors.title};
   }
-  margin-bottom: 60px;
+  margin-bottom: 20px;
 `;
 const FaqWrap = styled.div`
   .faq-list {

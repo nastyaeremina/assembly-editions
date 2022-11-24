@@ -2,6 +2,9 @@
 import "../styles/globals.css";
 import { DefaultSeo } from "next-seo";
 import { ThemeProvider, createGlobalStyle } from "styled-components";
+import { Provider as StyletronProvider } from "styletron-react";
+import { styletron } from "../styletron";
+
 import SEO from "../next-seo.config";
 
 const GlobalStyle = createGlobalStyle`
@@ -85,10 +88,12 @@ export default function MyApp({ Component, pageProps }) {
   return (
     <>
       <GlobalStyle />
-      <ThemeProvider theme={theme}>
-        <DefaultSeo {...SEO} />
-        <Component {...pageProps} />
-      </ThemeProvider>
+      <StyletronProvider value={styletron}>
+        <ThemeProvider theme={theme}>
+          <DefaultSeo {...SEO} />
+          <Component {...pageProps} />
+        </ThemeProvider>
+      </StyletronProvider>
     </>
   );
 }
