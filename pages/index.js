@@ -371,22 +371,26 @@ export default function Home() {
                         <a href="#" className="learn-link mb0">
                           Join Community
                           <svg
-                            class="HoverArrow"
-                            width="12"
+                            width="16"
                             height="12"
-                            viewBox="0 0 12 12"
-                            aria-hidden="true"
+                            viewBox="0 0 16 12"
+                            fill="none"
+                            class="HoverArrow"
                           >
-                            <g fill-rule="evenodd">
-                              <path
-                                class="HoverArrow__linePath"
-                                d="M0 5h7"
-                              ></path>
-                              <path
-                                class="HoverArrow__tipPath"
-                                d="M1 1l4 4-4 4"
-                              ></path>
-                            </g>
+                            <path
+                              d="M5.7998 1.37109L10.4283 5.99958L5.7998 10.6281"
+                              stroke-width="1.92854"
+                              stroke-linecap="round"
+                              stroke-linejoin="round"
+                              class="HoverArrow__tipPath"
+                            />
+                            <path
+                              d="M10.33 5.99951H1.5"
+                              stroke-width="2"
+                              stroke-linecap="round"
+                              stroke-linejoin="round"
+                              class="HoverArrow__linePath"
+                            />
                           </svg>
                         </a>
                       </HelpLink>
@@ -401,22 +405,26 @@ export default function Home() {
                         <a href="#" className="learn-link mb0">
                           Read Blog
                           <svg
-                            class="HoverArrow"
-                            width="12"
+                            width="16"
                             height="12"
-                            viewBox="0 0 12 12"
-                            aria-hidden="true"
+                            viewBox="0 0 16 12"
+                            fill="none"
+                            class="HoverArrow"
                           >
-                            <g fill-rule="evenodd">
-                              <path
-                                class="HoverArrow__linePath"
-                                d="M0 5h7"
-                              ></path>
-                              <path
-                                class="HoverArrow__tipPath"
-                                d="M1 1l4 4-4 4"
-                              ></path>
-                            </g>
+                            <path
+                              d="M5.7998 1.37109L10.4283 5.99958L5.7998 10.6281"
+                              stroke-width="1.92854"
+                              stroke-linecap="round"
+                              stroke-linejoin="round"
+                              class="HoverArrow__tipPath"
+                            />
+                            <path
+                              d="M10.33 5.99951H1.5"
+                              stroke-width="2"
+                              stroke-linecap="round"
+                              stroke-linejoin="round"
+                              class="HoverArrow__linePath"
+                            />
                           </svg>
                         </a>
                       </HelpLink>
@@ -434,22 +442,26 @@ export default function Home() {
                           <a href="#" className="learn-link mb0">
                             Watch videos
                             <svg
-                              class="HoverArrow"
-                              width="12"
+                              width="16"
                               height="12"
-                              viewBox="0 0 12 12"
-                              aria-hidden="true"
+                              viewBox="0 0 16 12"
+                              fill="none"
+                              class="HoverArrow"
                             >
-                              <g fill-rule="evenodd">
-                                <path
-                                  class="HoverArrow__linePath"
-                                  d="M0 5h7"
-                                ></path>
-                                <path
-                                  class="HoverArrow__tipPath"
-                                  d="M1 1l4 4-4 4"
-                                ></path>
-                              </g>
+                              <path
+                                d="M5.7998 1.37109L10.4283 5.99958L5.7998 10.6281"
+                                stroke-width="1.92854"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                class="HoverArrow__tipPath"
+                              />
+                              <path
+                                d="M10.33 5.99951H1.5"
+                                stroke-width="2"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                class="HoverArrow__linePath"
+                              />
                             </svg>
                           </a>
                         </HelpLink>
@@ -464,22 +476,26 @@ export default function Home() {
                           <a href="#" className="learn-link mb0">
                             Get help
                             <svg
-                              class="HoverArrow"
-                              width="12"
+                              width="16"
                               height="12"
-                              viewBox="0 0 12 12"
-                              aria-hidden="true"
+                              viewBox="0 0 16 12"
+                              fill="none"
+                              class="HoverArrow"
                             >
-                              <g fill-rule="evenodd">
-                                <path
-                                  class="HoverArrow__linePath"
-                                  d="M0 5h7"
-                                ></path>
-                                <path
-                                  class="HoverArrow__tipPath"
-                                  d="M1 1l4 4-4 4"
-                                ></path>
-                              </g>
+                              <path
+                                d="M5.7998 1.37109L10.4283 5.99958L5.7998 10.6281"
+                                stroke-width="1.92854"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                class="HoverArrow__tipPath"
+                              />
+                              <path
+                                d="M10.33 5.99951H1.5"
+                                stroke-width="2"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                class="HoverArrow__linePath"
+                              />
                             </svg>
                           </a>
                         </HelpLink>
