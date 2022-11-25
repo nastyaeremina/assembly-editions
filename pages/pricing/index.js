@@ -48,7 +48,7 @@ import FAQ from "../../components/faq/faq";
 export default function NewIndex() {
 
   const [isShowFeature,setShowFeature] = useState(true);
-  const [isYearly,Yearly] = useState(false);
+  const [isYearly,Yearly] = useState(true);
  
   const toggleShowFeature = useCallback(() => {
     setShowFeature(!isShowFeature);
