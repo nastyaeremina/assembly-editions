@@ -220,6 +220,7 @@ const PlanButton = styled.div`
 const PriceTable = styled.div`
   padding: 100px 0;
   table {
+    display:none;
     width: 100%;
     border-spacing: 0;
     .tableBorder {
@@ -303,6 +304,9 @@ const PriceTable = styled.div`
         color: ${({ theme }) => theme.colors.greenmiddark};
         margin: 0;
       }
+    }&.active
+    {
+      display:block;
     }
   }
 `;

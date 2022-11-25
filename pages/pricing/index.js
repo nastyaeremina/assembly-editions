@@ -1,10 +1,12 @@
 // TODO: switch is not working
 
+import { useState, useCallback } from "react";
 import { NextSeo } from "next-seo";
 import Link from "next/link";
 import Image from "next/image";
 import Layout from "../../components/layout";
 import Navbar from "../../components/navbar/navbar";
+
 import {
   Container,
   PrimaryButton,
@@ -39,7 +41,19 @@ import {
 import CTA from "../../components/cta/cta";
 import FAQ from "../../components/faq/faq";
 
+
+
+
+
 export default function NewIndex() {
+
+  const [isShowFeature,setShowFeature] = useState(true);
+  const toggleShowFeature = useCallback(() => {
+    setShowFeature(!isShowFeature);
+  }, [isShowFeature]);
+
+
+
   return (
     <>
       <NextSeo
@@ -203,12 +217,12 @@ export default function NewIndex() {
                   </PriceMenuLeft>
                 </PriceOption>
                 <PlanButton>
-                  <Link href="/">Hide plan features</Link>
+                  <button  onClick={toggleShowFeature}>{!isShowFeature && "Hide plan features"}{isShowFeature && "Show plan features"}</button>
                 </PlanButton>
               </PricingMenu>
             </PriceMenu>
             <PriceTable>
-              <table>
+              <table className={!isShowFeature && "active"}>
                 <thead>
                   <tr>
                     <td className="tableBorder"></td>
