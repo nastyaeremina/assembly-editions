@@ -220,7 +220,8 @@ const PlanButton = styled.div`
   width: 100%;
   text-align: center;
   margin: 0 auto;
-  a {
+  cursor: pointer;
+  button {
     color: ${({ theme }) => theme.colors.black};
     letter-spacing: 0.02em;
     ${ButtonText};

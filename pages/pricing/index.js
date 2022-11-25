@@ -227,8 +227,8 @@ export default function NewIndex() {
                     </WrapSlide>
                   </PriceMenuLeft>
                 </PriceOption>
-                <PlanButton>
-                  <button  onClick={toggleShowFeature}>{!isShowFeature && "Hide plan features"}{isShowFeature && "Show plan features"}</button>
+                <PlanButton  onClick={toggleShowFeature}>
+                  <button>{!isShowFeature && "Hide plan features"}{isShowFeature && "Show plan features"}</button>
                 </PlanButton>
               </PricingMenu>
             </PriceMenu>
