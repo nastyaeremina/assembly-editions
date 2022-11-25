@@ -46,22 +46,31 @@ const PriceButton = styled.div`
   padding-bottom: 32px;
 `;
 const YearlyButton = styled.div`
-  background-color: ${({ theme }) => theme.colors.greenlight};
   padding: 7px 20px;
   border-radius: 4px;
-  a {
-    color: ${({ theme }) => theme.colors.black};
+  button {
+    color: ${({ theme }) => theme.colors.lightgray};
     letter-spacing: 0.01em;
     ${Label};
+  }&.active{
+    background-color: ${({ theme }) => theme.colors.greenlight};
+    button{
+      color: ${({ theme }) => theme.colors.black};
+    }
   }
 `;
 const MonthlyButton = styled.div`
   padding: 7px 20px;
   border-radius: 4px;
-  a {
+  button {
     color: ${({ theme }) => theme.colors.lightgray};
     ${Label};
     letter-spacing: 0.01em;
+  }&.active{
+    background-color: ${({ theme }) => theme.colors.greenlight};
+    button{
+      color: ${({ theme }) => theme.colors.black};
+    }
   }
 `;
 const LeftTopBorder = styled.div`
