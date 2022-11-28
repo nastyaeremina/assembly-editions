@@ -75,8 +75,8 @@ html {
   font-family: sans-serif;
   -ms-text-size-adjust: 100%;
   -webkit-text-size-adjust: 100%;
-    -moz-osx-font-smoothing: grayscale;
-    -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
 }
 
 body {
@@ -303,4 +303,21 @@ table {
 td,
 th {
   padding: 0;
+}
+
+@-webkit-keyframes lineboarderanimation {
+  0% {
+    background-position: 0 0, 300px 116px, 0 150px, 216px 0;
+  }
+  to {
+    background-position: 300px 0, 0 116px, 0 0, 216px 150px;
+  }
+}
+@keyframes lineboarderanimation {
+  0% {
+    background-position: 0 0, 300px 116px, 0 150px, 216px 0;
+  }
+  to {
+    background-position: 300px 0, 0 116px, 0 0, 216px 150px;
+  }
 }
