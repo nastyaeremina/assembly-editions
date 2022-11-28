@@ -526,6 +526,7 @@ const IconSvg = styled.div`
     content: "";
     position: absolute;
     border-top: 1px solid #000000;
+    max-width: 241px;
     width: 100%;
     top: 50%;
   }
@@ -615,7 +616,7 @@ const RightDetail = styled.div`
   border-radius: 5px;
   padding: 16px 18px;
   width: 100%;
-  background: #fdfdfb;
+  background: transparent;
   position: relative;
   @media only screen and (max-width: 749px) {
     margin-top: 28px;
@@ -774,12 +775,12 @@ const HelpMain = styled.div`
 `;
 const HelpLeft = styled.div`
   padding: 60px;
-  max-width: 779px;
-  width: 100%;
+  /* max-width: 779px;
+  width: 100%; */
 
   h3 {
-    max-width: 657px;
-    width: 100%;
+    /* max-width: 657px; */
+    /* width: 100%; */
     ${Heading3};
     color: ${({ theme }) => theme.colors.title};
     margin: 0 0 40px 0;
@@ -797,6 +798,7 @@ const HelpLeft = styled.div`
       max-width: 100%;
       margin-bottom: 28px;
     }
+    display: block;
   }
   span {
     color: ${({ theme }) => theme.colors.primary};

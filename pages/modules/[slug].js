@@ -76,7 +76,7 @@ export default function Modules({ module }) {
                       />
                     </MessegeItem>
                   </ContractWrap>
-                  <span>made easy</span>
+                  <h2 className="txtcolor">made easy</h2>
                 </KnowHero>
               </Container>
             </ContractHero>
@@ -137,7 +137,7 @@ export default function Modules({ module }) {
             <KnowledgeHero>
               <Container>
                 <KnowHero>
-                  <h2>Create a </h2>
+                  <h2 className="basecolor">Create a </h2>
 
                   <MessegeItem>
                     <span className="orengecolor">knowledge</span>
@@ -150,7 +150,7 @@ export default function Modules({ module }) {
                       className="knowimage"
                     />
                   </MessegeItem>
-                  <h2>repository</h2>
+                  <h2 className="basecolor">repository</h2>
                 </KnowHero>
               </Container>
             </KnowledgeHero>
@@ -202,7 +202,7 @@ export default function Modules({ module }) {
       <Layout>
         {renderHeroSection}
         <Content />
-        <Tools />
+        <Tools moduleColor={"#D7B79E"} />
         <Quote />
         <Client />
         <CTA />
