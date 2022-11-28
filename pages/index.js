@@ -55,8 +55,27 @@ import BusinessSlider from "../components/businessSlider/businessslider";
 import ExtensionSlider from "../components/extensionslider/extensionslider";
 import CTA from "../components/cta/cta";
 import { HEADER_LIST } from "../constants/constant";
+import { Tabs, Tab } from "baseui/tabs-motion";
+import React from "react";
+import classNames from "classnames";
+const Keys = {
+  MESSAGING: 0,
+  BILLING: 1,
+  FILES: 2,
+  FORMS: 3,
+  HELPDESK: 4,
+};
 
 export default function Home() {
+  const [activeKey, setActiveKey] = React.useState(0);
+  console.log(
+    " Keys.MESSAGING === activeKey",
+    activeKey,
+    Keys.MESSAGING,
+    Keys.BILLING,
+    Keys.MESSAGING === activeKey,
+    Keys.BILLING === activeKey
+  );
   return (
     <>
       <NextSeo
@@ -141,7 +160,7 @@ export default function Home() {
               </TopFunctionWrap>
               <BottomFunction>
                 <TabRow>
-                  <TabBox>
+                  {/* <TabBox>
                     <Link href={"#"} className="activetab">
                       Messaging
                     </Link>
@@ -157,7 +176,55 @@ export default function Home() {
                   </TabBox>
                   <TabBox>
                     <Link href={"#"}>Helpdesk</Link>
-                  </TabBox>
+                  </TabBox> */}
+                  <Tabs
+                    activeKey={activeKey}
+                    onChange={({ activeKey }) =>
+                      setActiveKey(Number(activeKey))
+                    }
+                    overrides={{
+                      Tab: {
+                        style: { ":hover": { background: "red" } },
+                      },
+                    }}
+                    title="Messaging"
+                  >
+                    <Tab
+                      title="Messaging"
+                      className={classNames({
+                        tabcss: Keys.MESSAGING === activeKey,
+                        tabsecond: Keys.MESSAGING !== activeKey,
+                      })}
+                    ></Tab>
+                    <Tab
+                      title="Billing"
+                      className={classNames({
+                        tabcss: Keys.BILLING === activeKey,
+                        tabsecond: Keys.BILLING !== activeKey,
+                      })}
+                    ></Tab>
+                    <Tab
+                      title="Files"
+                      className={classNames({
+                        tabcss: Keys.FILES === activeKey,
+                        tabsecond: Keys.FILES !== activeKey,
+                      })}
+                    ></Tab>
+                    <Tab
+                      title="Forms"
+                      className={classNames({
+                        tabcss: Keys.FORMS === activeKey,
+                        tabsecond: Keys.FORMS !== activeKey,
+                      })}
+                    ></Tab>
+                    <Tab
+                      title="Helpdesk"
+                      className={classNames({
+                        tabcss: Keys.HELPDESK === activeKey,
+                        tabsecond: Keys.HELPDESK !== activeKey,
+                      })}
+                    ></Tab>
+                  </Tabs>
                 </TabRow>
                 <ContainWrap>
                   <LeftDetail>

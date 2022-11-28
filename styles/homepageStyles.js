@@ -498,6 +498,37 @@ const TabRow = styled.div`
       display: none;
     }
   }
+  .tabcss {
+    background-color: ${({ theme }) => theme.colors.browndark};
+    color: ${({ theme }) => theme.colors.brownlight};
+    border-radius: 74px;
+    ${Label};
+    letter-spacing: 0.01em;
+    padding: 7px 20px;
+
+    :hover {
+      color: ${({ theme }) => theme.colors.brownlight};
+    }
+
+    .b2 {
+      padding-bottom: 0;
+    }
+  }
+  .ag {
+    display: block;
+  }
+  .tabsecond {
+    padding: 7px 20px;
+    color: ${({ theme }) => theme.colors.lightgray};
+    ${Label};
+    letter-spacing: 0.01em;
+  }
+  .c1 {
+    display: none;
+  }
+  .bw {
+    display: none;
+  }
 `;
 const TabBox = styled.div`
   a {
