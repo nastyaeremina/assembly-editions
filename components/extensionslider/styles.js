@@ -16,14 +16,18 @@ const Slide = styled.div`
 const SliderWrap = styled.div`
   overflow: hidden;
   position: relative;
-  ::before {
+  /* ::before {
     content: "";
+    width: 100%;
+    background-image: url("/images/backimage.svg");
+    background-size: contain;
+    background-repeat: no-repeat;
     position: absolute;
     left: 0;
     right: 0;
     top: 50%;
     border-top: 1px dashed #000000;
-  }
+  } */
 `;
 const WrapImage = styled.div`
   /* border: 1px solid black;
@@ -84,4 +88,23 @@ const SliderSub = styled.div`
     color: ${({ theme }) => theme.colors.title};
   }
 `;
-export { Slide, SliderWrap, WrapImage, SliderInner, SliderSub };
+const SliderLine = styled.div`
+  -webkit-animation: lineboarderanimation 10s linear infinite;
+  animation: lineboarderanimation 10s linear infinite;
+  background: linear-gradient(90deg, rgba(0, 0, 0, 1) 50%, transparent 0),
+    linear-gradient(90deg, rgba(0, 0, 0, 1) 50%, transparent 0),
+    linear-gradient(0deg, rgba(0, 0, 0, 1) 50%, transparent 0),
+    linear-gradient(0deg, rgba(0, 0, 0, 1) 50%, transparent 0);
+  background-position: 0 0, 200px 100px, 0 100px, 200px 0;
+  background-repeat: repeat-x, repeat-x, repeat-y, repeat-y;
+  background-size: 7px 4px, 7px 4px, 7px 14px, 7px 14px;
+  bottom: 0;
+  height: 1px;
+  left: 5px;
+  margin: auto;
+  position: absolute;
+  right: 5px;
+  top: 0;
+  /* overflow: hidden; */
+`;
+export { Slide, SliderWrap, WrapImage, SliderInner, SliderSub, SliderLine };

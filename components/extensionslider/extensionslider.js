@@ -2,7 +2,7 @@ import Image from "next/image";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import { SliderWrap, SliderInner, SliderSub } from "./styles";
+import { SliderWrap, SliderInner, SliderSub, SliderLine } from "./styles";
 
 const ExtensionSlider = ({ data }) => {
   console.log("data", data);
@@ -58,6 +58,7 @@ const ExtensionSlider = ({ data }) => {
   return (
     <>
       <SliderWrap>
+        <SliderLine></SliderLine>
         <Slider {...settings}>
           <SliderInner>
             <SliderSub>
