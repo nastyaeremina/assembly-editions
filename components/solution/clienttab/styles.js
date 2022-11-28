@@ -5,6 +5,7 @@ import {
   Body6,
   Heading3,
   Heading4,
+  SliderTxt,
 } from "../../../styles/styles";
 
 const ExploreSection = styled.div`
@@ -37,7 +38,7 @@ const BottomSection = styled.div``;
 const SignatureSection = styled.div`
   padding-top: 40px;
   display: flex;
-  align-items: center;
+  align-items: flex-end;
   justify-content: space-between;
 `;
 const LeftWrap = styled.div`
@@ -62,7 +63,7 @@ const TabWrap = styled.div`
   .activetab {
     position: relative;
     span {
-      ${Body6};
+      ${SliderTxt};
       color: ${({ theme }) => theme.colors.body};
     }
     border: 1.08px solid #4c4c4c;
@@ -78,7 +79,7 @@ const TabView = styled.div`
   position: relative;
   cursor: pointer;
   span {
-    ${Body6};
+    ${SliderTxt};
     color: ${({ theme }) => theme.colors.border};
   }
   border: 1.08px solid #ccccd0;
@@ -90,7 +91,7 @@ const TabView = styled.div`
   justify-content: center;
 `;
 const LastSection = styled.div`
-  margin-top: 40px;
+  margin-top: 50px;
   position: relative;
   ::before {
     content: "";
@@ -108,7 +109,7 @@ const LastSection = styled.div`
 `;
 const SignBox = styled.div`
   border: 1px solid #131313;
-  border-radius: 7px;
+  border-radius: 8px;
   padding: 35px;
 `;
 const SignImgView = styled.div`

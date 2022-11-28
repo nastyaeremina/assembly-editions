@@ -22,7 +22,7 @@ export default function Footer({ isEnterPrice }) {
         <Container>
           <FooterInnerBlock>
             <FooterFirst isEnterPrice={isEnterPrice}>
-              <Link href="#">
+              <Link href="/">
                 {isEnterPrice ? (
                   <Image
                     src="/images/footerenter.svg"
@@ -42,7 +42,7 @@ export default function Footer({ isEnterPrice }) {
 
               <p>The new standard for modern services business.</p>
               <FooterSocialList>
-                <Link href="#">
+                <Link href="https://twitter.com/copilot">
                   <FooterSocialItem isEnterPrice={isEnterPrice}>
                     {isEnterPrice ? (
                       <svg
@@ -87,7 +87,7 @@ export default function Footer({ isEnterPrice }) {
                     )}
                   </FooterSocialItem>
                 </Link>
-                <Link href="#">
+                <Link href="https://www.facebook.com/copilotplatforms">
                   <FooterSocialItem isEnterPrice={isEnterPrice}>
                     {isEnterPrice ? (
                       <svg
@@ -132,7 +132,7 @@ export default function Footer({ isEnterPrice }) {
                     )}
                   </FooterSocialItem>
                 </Link>
-                <Link href="#">
+                <Link href="https://www.linkedin.com/company/copilotplatforms/">
                   <FooterSocialItem isEnterPrice={isEnterPrice}>
                     {isEnterPrice ? (
                       <svg
@@ -193,7 +193,7 @@ export default function Footer({ isEnterPrice }) {
                     )}
                   </FooterSocialItem>
                 </Link>
-                <Link href="#">
+                <Link href="https://www.youtube.com/channel/UCTeLqsY5Z0Hh7i-7iFQlpxA">
                   <FooterSocialItem isEnterPrice={isEnterPrice}>
                     {isEnterPrice ? (
                       <svg
@@ -238,7 +238,7 @@ export default function Footer({ isEnterPrice }) {
                     )}
                   </FooterSocialItem>
                 </Link>
-                <Link href="#">
+                <Link href="https://www.instagram.com/copilotplatforms/">
                   <FooterSocialItem isEnterPrice={isEnterPrice}>
                     {isEnterPrice ? (
                       <svg

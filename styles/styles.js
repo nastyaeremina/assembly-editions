@@ -86,6 +86,7 @@ const Body1 = css`
   font-weight: 400;
   font-size: 24px;
   line-height: 31px;
+  letter-spacing: 0.02em;
 `;
 const Body2 = css`
   font-family: ${({ theme }) => theme.fontfamily.Bagoss};
@@ -138,6 +139,7 @@ const ButtonText = css`
   font-weight: 500;
   font-size: 18px;
   line-height: 26px;
+  letter-spacing: 0.02em;
 `;
 const Label = css`
   font-family: ${({ theme }) => theme.fontfamily.Bagoss};
@@ -225,6 +227,12 @@ const MbBody4 = css`
   font-size: 15px;
   line-height: 20px;
 `;
+const SliderTxt = css`
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 21px;
+  letter-spacing: 0.01em;
+`;
 export {
   Heading1,
   Heading2,
@@ -257,4 +265,5 @@ export {
   MobileH3,
   MbBody3,
   MbBody4,
+  SliderTxt,
 };

@@ -44,7 +44,7 @@ export default function Client() {
 
               <HelpLeftSub>
                 <HelpLink className="icon-link">
-                  <a href="#" className="learn-link mb0">
+                  <a href="/modules/billing" className="learn-link mb0">
                     Billling
                     <svg
                       class="HoverArrow"
@@ -84,7 +84,7 @@ export default function Client() {
               />
               <HelpLeftSub>
                 <HelpLink className="icon-link">
-                  <a href="#" className="learn-link mb0">
+                  <a href="/modules/file" className="learn-link mb0">
                     Files
                     <svg
                       class="HoverArrow"
@@ -124,7 +124,7 @@ export default function Client() {
               />
               <HelpLeftSub>
                 <HelpLink className="icon-link">
-                  <a href="#" className="learn-link mb0">
+                  <a href="/modules/form" className="learn-link mb0">
                     Forms
                     <svg
                       class="HoverArrow"
@@ -166,7 +166,7 @@ export default function Client() {
               </ImageWrapper>
               <HelpLeftSub>
                 <HelpLink className="icon-link">
-                  <a href="#" className="learn-link mb0">
+                  <a href="/modules/knowledge" className="learn-link mb0">
                     Knowledge Base
                     <svg
                       class="HoverArrow"
@@ -206,7 +206,7 @@ export default function Client() {
               />
               <HelpLeftSub>
                 <HelpLink className="icon-link">
-                  <a href="#" className="learn-link mb0">
+                  <a href="/modules/contact" className="learn-link mb0">
                     Contracts
                     <svg
                       class="HoverArrow"
@@ -234,7 +234,7 @@ export default function Client() {
               alt="red-icon"
               width={185}
               height={145}
-              layout={"fixed"}
+              // layout={"fixed"}
             />
             <BlockText>
               <h3>

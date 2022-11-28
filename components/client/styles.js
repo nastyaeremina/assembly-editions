@@ -37,6 +37,18 @@ const CardSection = styled.div`
       top: 3px;
     }
   }
+  .file {
+    border: 1px solid #01011d;
+  }
+  .form {
+    border: 1px solid #171500;
+  }
+  .base {
+    border: 1px solid #1c0c00;
+  }
+  .contact {
+    border: 1px solid #27000a;
+  }
   .file:hover .hide {
     display: block;
   }
@@ -108,12 +120,17 @@ const CardText = styled.div`
   }
 `;
 const BlockSection = styled.div`
-  border: 1px solid #000000;
+  border: 1px solid #00160e;
   border-radius: 4px;
-  padding: 40px 50px;
+  padding: 40px 49px;
   display: flex;
   gap: 60px;
-
+  img {
+    max-width: 185px;
+    width: 100%;
+    max-height: 145px;
+    height: 100%;
+  }
   :hover {
     background-image: url("/images/hoverblock.svg");
     background-repeat: no-repeat;
@@ -135,6 +152,8 @@ const BlockSection = styled.div`
 `;
 const BlockText = styled.div`
   text-align: left;
+  max-width: 879px;
+  width: 100%;
   h3 {
     margin: 0 0 50px 0;
     ${Body1};
