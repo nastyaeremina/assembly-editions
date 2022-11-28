@@ -6,7 +6,10 @@ import { documentToReactComponents } from "@contentful/rich-text-react-renderer"
 import Layout from "../../components/layout";
 import Navbar from "../../components/navbar/navbar";
 import { isEmpty } from "../../helpers/helpers";
-import { getAllJobsWithSlug, getJobDetails } from "../../lib/contentful-jobsListing";
+import {
+  getAllJobsWithSlug,
+  getJobDetails,
+} from "../../lib/contentful-jobsListing";
 import { Container, PrimaryButton } from "../../styles/commonStyles";
 import {
   JObMain,
@@ -22,27 +25,28 @@ import {
   DetailInnerSub,
   BulletImage,
   DetailRIghtText,
+  DetailPosition,
 } from "../../styles/jobsStyles";
 
 export default function JobsDetail({ jobDetail }) {
-
   const renderTeamMemberView = useMemo(() => {
-    const teamMemberList = jobDetail?.teamMembersCollection?.items || []
-    if (isEmpty(teamMemberList)) return null
+    const teamMemberList = jobDetail?.teamMembersCollection?.items || [];
+    if (isEmpty(teamMemberList)) return null;
     return teamMemberList?.map((item, index) => {
-      return <Link href={item?.profileLink ?? ""} key={`teammember_index_${index}`} >
-        <Image
-          src={item?.profilePicture?.url}
-          alt="bill-icon"
-          width={30}
-          height={30}
-          layout={"fixed"}
-          className="billimage"
-
-        />
-      </Link >
-    })
-  }, [jobDetail?.teamMembersCollection?.items])
+      return (
+        <Link href={item?.profileLink ?? ""} key={`teammember_index_${index}`}>
+          <Image
+            src={item?.profilePicture?.url}
+            alt="bill-icon"
+            width={30}
+            height={30}
+            layout={"fixed"}
+            className="billimage"
+          />
+        </Link>
+      );
+    });
+  }, [jobDetail?.teamMembersCollection?.items]);
 
   return (
     <>
@@ -56,7 +60,6 @@ export default function JobsDetail({ jobDetail }) {
           <Container>
             <Link href="/jobs">
               <DetailLink>
-
                 <Image
                   src="/images/leftarrow.svg"
                   alt="bill-icon"
@@ -65,32 +68,36 @@ export default function JobsDetail({ jobDetail }) {
                   layout={"fixed"}
                 />
                 <p>Back to all Apps</p>
-
               </DetailLink>
             </Link>
 
             <JobDetail>
-              <DetailLeft>
-                <h3>{jobDetail?.name}</h3>
-                {!isEmpty(jobDetail?.department) && <DetailWrap>
-                  <p>Department</p>
-                  <span>{jobDetail?.department}</span>
-                </DetailWrap>}
-                {!isEmpty(jobDetail?.location) && <DetailWrap>
-                  <p>Location</p>
-                  <span>{jobDetail?.location}</span>
-                </DetailWrap>}
-                {!isEmpty(jobDetail?.teamMembersCollection?.items) &&
-                  <DetailWrap>
-                    <p>Work with</p>
-                    <ImageWrap>
-                      {renderTeamMemberView}
-                    </ImageWrap>
-                  </DetailWrap>}
-                <PrimaryButton>
-                  <Link href={jobDetail?.applyLink ?? ""}>Apply now</Link>
-                </PrimaryButton>
-              </DetailLeft>
+              <DetailPosition>
+                <DetailLeft>
+                  <h3>{jobDetail?.name}</h3>
+                  {!isEmpty(jobDetail?.department) && (
+                    <DetailWrap>
+                      <p>Department</p>
+                      <span>{jobDetail?.department}</span>
+                    </DetailWrap>
+                  )}
+                  {!isEmpty(jobDetail?.location) && (
+                    <DetailWrap>
+                      <p>Location</p>
+                      <span>{jobDetail?.location}</span>
+                    </DetailWrap>
+                  )}
+                  {!isEmpty(jobDetail?.teamMembersCollection?.items) && (
+                    <DetailWrap>
+                      <p>Work with</p>
+                      <ImageWrap>{renderTeamMemberView}</ImageWrap>
+                    </DetailWrap>
+                  )}
+                  <PrimaryButton>
+                    <Link href={jobDetail?.applyLink ?? ""}>Apply now</Link>
+                  </PrimaryButton>
+                </DetailLeft>
+              </DetailPosition>
               <DetailRight>
                 <DetailRIghtText>
                   {documentToReactComponents(jobDetail?.jobDescription?.json)}
@@ -120,4 +127,3 @@ export async function getServerSidePaths() {
     fallback: true,
   };
 }
-
