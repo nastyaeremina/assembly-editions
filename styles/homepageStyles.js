@@ -616,7 +616,7 @@ const RightDetail = styled.div`
   border-radius: 5px;
   padding: 16px 18px;
   width: 100%;
-  background-color: ${({ theme }) => theme.colors.bgpages};
+  background: transparent;
   position: relative;
   @media only screen and (max-width: 749px) {
     margin-top: 28px;
@@ -821,7 +821,7 @@ const HelpLeftSub = styled.div`
       fill: none;
     }
     :hover .HoverArrow__tipPath {
-      transform: translateX(4px);
+      transform: translateX(2px);
     }
   }
   .learn-link:hover {

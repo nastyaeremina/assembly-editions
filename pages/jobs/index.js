@@ -55,22 +55,22 @@ export default function Jobs({ jobList, jobImagesList, jobBlogPostList }) {
   const renderJobsListingView = useCallback((list) => {
     if (isEmpty(list)) return null;
     return list?.map((item, index) => {
-      return (
-        <Link href={`/jobs/${item?.slug}`} key={`joblist_index_${index}`}>
-          <RoleRow>
-            <LeftRow>
-              <p>{item?.name}</p>
-            </LeftRow>
-            <RightRow>
-              <p>{isEmpty(item?.location) ? "Remote" : item?.location}</p>
-              {/* <Dot className="bgdot"></Dot>
-              <p>New York</p> */}
-            </RightRow>
-          </RoleRow>
-        </Link>
-      );
-    }, []);
-  }, []);
+      return <Link href={`/jobs/${item?.slug}`} key={`joblist_index_${index}`}>
+        <RoleRow >
+          <LeftRow>
+            <p>{item?.name}</p>
+          </LeftRow>
+          <RightRow>
+            {item?.isRemote && <p>Remote</p>}
+            {(!isEmpty(item?.location)) && item?.isRemote ? <><Dot className="bgdot"></Dot>
+              <p>{item?.location}</p></> : <p>{item?.location}</p>}
+          </RightRow>
+        </RoleRow>
+      </Link>
+    })
+  }, [])
+
+
 
   const renderJobsRolesListView = useMemo(() => {
     if (isEmpty(jobList)) return null;

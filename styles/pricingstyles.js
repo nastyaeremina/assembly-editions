@@ -46,22 +46,31 @@ const PriceButton = styled.div`
   padding-bottom: 32px;
 `;
 const YearlyButton = styled.div`
-  background-color: ${({ theme }) => theme.colors.greenlight};
   padding: 7px 20px;
   border-radius: 4px;
-  a {
-    color: ${({ theme }) => theme.colors.black};
+  button {
+    color: ${({ theme }) => theme.colors.lightgray};
     letter-spacing: 0.01em;
     ${Label};
+  }&.active{
+    background-color: ${({ theme }) => theme.colors.greenlight};
+    button{
+      color: ${({ theme }) => theme.colors.black};
+    }
   }
 `;
 const MonthlyButton = styled.div`
   padding: 7px 20px;
   border-radius: 4px;
-  a {
+  button {
     color: ${({ theme }) => theme.colors.lightgray};
     ${Label};
     letter-spacing: 0.01em;
+  }&.active{
+    background-color: ${({ theme }) => theme.colors.greenlight};
+    button{
+      color: ${({ theme }) => theme.colors.black};
+    }
   }
 `;
 const LeftTopBorder = styled.div`
@@ -211,7 +220,8 @@ const PlanButton = styled.div`
   width: 100%;
   text-align: center;
   margin: 0 auto;
-  a {
+  cursor: pointer;
+  button {
     color: ${({ theme }) => theme.colors.black};
     letter-spacing: 0.02em;
     ${ButtonText};
@@ -220,6 +230,7 @@ const PlanButton = styled.div`
 const PriceTable = styled.div`
   padding: 100px 0;
   table {
+    display:none;
     width: 100%;
     border-spacing: 0;
     .tableBorder {
@@ -303,6 +314,9 @@ const PriceTable = styled.div`
         color: ${({ theme }) => theme.colors.greenmiddark};
         margin: 0;
       }
+    }&.active
+    {
+      display:block;
     }
   }
 `;

@@ -62,6 +62,7 @@ const QuoteTop = styled.div`
 `;
 const QuoteLine = styled.div`
   position: absolute;
-  top: 0;
+  bottom: -104px;
+  right: -1px;
 `;
 export { QuoteMain, Mainss, QuoteTxt, QuoteSubTxt, QuoteTop, QuoteLine };

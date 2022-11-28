@@ -3,30 +3,21 @@ import { Container } from "../../styles/commonStyles";
 import { ToolMain, ModuleSection, ModuleWrap } from "./styles";
 import { QuoteLine } from "../quote/styles";
 
-export default function Tools() {
+export default function Tools({ moduleColor }) {
   return (
-    <ToolMain>
-      <QuoteLine>
-        <Image
-          src="/images/line.svg"
-          alt="red-icon"
-          width={1}
-          height={100}
-          layout={"fixed"}
-        />
-      </QuoteLine>
+    <ToolMain moduleColor={moduleColor}>
       <Container>
         <h3>
-          Give your team all the tools it needs for invoicing, subscriptions,
-          and more
+          Give your team all the tools it needs for invoicing<span>,</span>{" "}
+          subscriptions<span>,</span> and more
         </h3>
         <ModuleSection>
           <ModuleWrap>
             <Image
               src="/images/home.svg"
               alt="red-icon"
-              width={40}
-              height={40}
+              width={44}
+              height={44}
               layout={"fixed"}
             />
             <h4>Team access</h4>
@@ -39,8 +30,8 @@ export default function Tools() {
             <Image
               src="/images/home.svg"
               alt="red-icon"
-              width={40}
-              height={40}
+              width={44}
+              height={44}
               layout={"fixed"}
             />
             <h4>Security</h4>
@@ -48,23 +39,31 @@ export default function Tools() {
               Security audit compliance, payment via PO, custom TOS, and more.
             </p>
           </ModuleWrap>
-          <ModuleWrap>
+          <ModuleWrap className="bigborder">
             <Image
               src="/images/home.svg"
               alt="red-icon"
-              width={40}
-              height={40}
+              width={44}
+              height={44}
               layout={"fixed"}
             />
             <h4>Branding</h4>
             <p>Guaranteed reliable performance with a 99.99% uptime SLA.</p>
+            <Image
+              src="/images/bigline.svg"
+              alt="red-icon"
+              width={1}
+              height={250}
+              layout={"fixed"}
+              className="borderposition"
+            />
           </ModuleWrap>
           <ModuleWrap className="borderright">
             <Image
               src="/images/home.svg"
               alt="red-icon"
-              width={40}
-              height={40}
+              width={44}
+              height={44}
               layout={"fixed"}
             />
             <h4>Integrations</h4>
@@ -74,11 +73,20 @@ export default function Tools() {
             </p>
           </ModuleWrap>
           <ModuleWrap className="moduleborder">
+            <QuoteLine>
+              <Image
+                src="/images/line.svg"
+                alt="red-icon"
+                width={1}
+                height={100}
+                layout={"fixed"}
+              />
+            </QuoteLine>
             <Image
               src="/images/home.svg"
               alt="red-icon"
-              width={40}
-              height={40}
+              width={44}
+              height={44}
               layout={"fixed"}
             />
             <h4>Simple checkout</h4>
@@ -90,8 +98,8 @@ export default function Tools() {
             <Image
               src="/images/home.svg"
               alt="red-icon"
-              width={40}
-              height={40}
+              width={44}
+              height={44}
               layout={"fixed"}
             />
             <h4>Notifications</h4>
@@ -101,8 +109,8 @@ export default function Tools() {
             <Image
               src="/images/home.svg"
               alt="red-icon"
-              width={40}
-              height={40}
+              width={44}
+              height={44}
               layout={"fixed"}
             />
             <h4>Reminders</h4>
@@ -112,8 +120,8 @@ export default function Tools() {
             <Image
               src="/images/home.svg"
               alt="red-icon"
-              width={40}
-              height={40}
+              width={44}
+              height={44}
               layout={"fixed"}
             />
             <h4>Integrations</h4>

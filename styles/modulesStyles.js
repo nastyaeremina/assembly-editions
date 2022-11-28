@@ -24,12 +24,18 @@ const KnowledgeHero = styled.div`
   .knowtxt {
     color: ${({ theme }) => theme.colors.title};
   }
+  .basecolor {
+    color: ${({ theme }) => theme.colors.brownlight};
+  }
 `;
 const ContractHero = styled.div`
   background-color: ${({ theme }) => theme.colors.magentadark};
   text-align: center;
   .contractgap {
     gap: 14px;
+  }
+  .txtcolor {
+    color: ${({ theme }) => theme.colors.magentalight};
   }
 `;
 const FormMain = styled.div`

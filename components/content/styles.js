@@ -47,7 +47,7 @@ const LeftDetail = styled.div`
 const RightDetail = styled.div`
   border: 1px solid #000000;
   border-radius: 5px;
-  padding: 18px 18px 13px;
+  padding: 16px 18px;
   width: 100%;
   background: #ffffff;
   position: relative;
@@ -70,6 +70,15 @@ const TopFunctionWrap = styled.div`
   }
 `;
 const ContentMain = styled.div`
-padding-top: 100px;
+  padding-top: 100px;
 `;
-export {ContentMain, BottomFunction, TabRow, TabBox, ContainWrap, LeftDetail, TopFunctionWrap,RightDetail };
+export {
+  ContentMain,
+  BottomFunction,
+  TabRow,
+  TabBox,
+  ContainWrap,
+  LeftDetail,
+  TopFunctionWrap,
+  RightDetail,
+};

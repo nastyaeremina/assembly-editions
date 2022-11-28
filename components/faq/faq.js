@@ -1,8 +1,18 @@
 import Link from "next/link";
+import * as React from "react";
+import { Accordion, Panel } from "baseui/accordion";
 import { Container } from "../../styles/commonStyles";
+import { useStyletron } from "baseui";
 import { FaqSection, FaqWrap, FaqTitle } from "./styles";
+import PlusIcon from "../../public/images/PlusIcons.svg";
+import Plus from "baseui/icon/plus";
+
+function CustomPanel(props) {
+  return <Panel {...props} />;
+}
 
 export default function FAQ({ enterprise }) {
+  const [css] = useStyletron();
   return (
     <>
       <FaqSection enterprise={enterprise}>
@@ -10,6 +20,113 @@ export default function FAQ({ enterprise }) {
           <FaqTitle>
             <h3 className="faqtitle">Frequently Asked Questions</h3>
           </FaqTitle>
+          <Accordion
+            onChange={({ expanded }) => console.log(expanded)}
+            overrides={{
+              Header: {
+                style: ({ $theme }) => ({
+                  color: "#131313",
+                  paddingTop: "40px",
+                  paddingBottom: "0px",
+                  paddingLeft: "0px",
+                  paddingRight: "0px",
+                  fontSize: "32px",
+                  lineHeight: "34px",
+                  fontFamily: "Bagoss",
+                  fontWeight: "400",
+                  // ":hover": {
+                  //   color: "white",
+                  // },
+                }),
+              },
+              Content: {
+                style: ({ $theme }) => ({
+                  backgroundColor: "transparent",
+                  paddingTop: "20px",
+                  paddingBottom: "0px",
+                  paddingLeft: "0px",
+                  paddingRight: "72px",
+                  color: "#4C4C4C",
+                  fontSize: "24px",
+                  lineHeight: "31px",
+                  fontFamily: "Bagoss",
+                  fontWeight: "400",
+                  letterSpacing: "0.02em",
+                }),
+              },
+              ContentAnimationContainer: {
+                style: ({ $theme }) => ({
+                  padding: "0px",
+                }),
+              },
+              PanelContainer: {
+                style: ({ $theme }) => ({
+                  borderBottomColor: "#131313",
+                  overflow: "hidden",
+                  paddingBottom: "40px",
+                }),
+              },
+              ToggleIcon: {
+                style: ({ $theme }) => ({
+                  color: "#000000",
+                  paddingRight: "0",
+                  width: "32px",
+                  height: "32px",
+                }),
+              },
+              ToggleIconGroup: {
+                style: ({ $theme }) => ({
+                  fontWeight: "100",
+                  paddingRight: "0",
+                  fontSize: "32px",
+                }),
+              },
+            }}
+          >
+            <CustomPanel title="Who is Copilot intended for?">
+              Copilot is a technology company that builds infrastructure for the
+              services economy. Businesses of every size — from small agencies
+              to large law firms — use Portal building blocks to productize
+              their business and provide clients a streamlined experience.
+            </CustomPanel>
+            <CustomPanel title="What’s the difference between a marketing site & copilot ?">
+              Copilot is a technology company that builds infrastructure for the
+              services economy. Businesses of every size — from small agencies
+              to large law firms — use Portal building blocks to productize
+              their business and provide clients a streamlined experience.
+            </CustomPanel>
+            <CustomPanel title="How many users can you have ?">
+              Copilot is a technology company that builds infrastructure for the
+              services economy. Businesses of every size — from small agencies
+              to large law firms — use Portal building blocks to productize
+              their business and provide clients a streamlined experience.
+            </CustomPanel>
+            <CustomPanel title="Is Copilot secure ?  Where is my data stored ?">
+              Copilot is a technology company that builds infrastructure for the
+              services economy. Businesses of every size — from small agencies
+              to large law firms — use Portal building blocks to productize
+              their business and provide clients a streamlined experience.
+            </CustomPanel>
+            <CustomPanel title="How many users can you have ?">
+              Copilot is a technology company that builds infrastructure for the
+              services economy. Businesses of every size — from small agencies
+              to large law firms — use Portal building blocks to productize
+              their business and provide clients a streamlined experience.
+            </CustomPanel>
+            <CustomPanel title="What’s the difference between a marketing site & copilot ?">
+              Copilot is a technology company that builds infrastructure for the
+              services economy. Businesses of every size — from small agencies
+              to large law firms — use Portal building blocks to productize
+              their business and provide clients a streamlined experience.
+            </CustomPanel>
+            <CustomPanel title="How much does Copilot+ cost ?">
+              Copilot is a technology company that builds infrastructure for the
+              services economy. Businesses of every size — from small agencies
+              to large law firms — use Portal building blocks to productize
+              their business and provide clients a streamlined experience.
+            </CustomPanel>
+          </Accordion>
+          {/* 
           <FaqWrap>
             <ul className="faq-list">
               <li>
@@ -89,7 +206,7 @@ export default function FAQ({ enterprise }) {
                 </p>
               </li>
             </ul>
-          </FaqWrap>
+          </FaqWrap> */}
         </Container>
       </FaqSection>
     </>
