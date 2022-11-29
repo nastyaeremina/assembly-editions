@@ -4,6 +4,8 @@ import { NextSeo } from "next-seo";
 import Link from "next/link";
 import StarLogo from "../public/images/star5.svg";
 import Navbar from "../components/navbar/navbar";
+import { StatefulTabs, Tab, StyledTab } from 'baseui/tabs';
+import { LabelMedium } from 'baseui/typography';
 import {
   Container,
   PrimaryButton,
@@ -55,7 +57,6 @@ import BusinessSlider from "../components/businessSlider/businessslider";
 import ExtensionSlider from "../components/extensionslider/extensionslider";
 import CTA from "../components/cta/cta";
 import { HEADER_LIST } from "../constants/constant";
-import { Tabs, Tab } from "baseui/tabs-motion";
 import React from "react";
 import classNames from "classnames";
 const Keys = {
@@ -65,6 +66,58 @@ const Keys = {
   FORMS: 3,
   HELPDESK: 4,
 };
+
+
+function TabOverride({ children, ...rest }) {
+  return (
+    <StyledTab {...rest}>
+      <LabelMedium
+        overrides={{
+          Block: {
+            style: { color: 'inherit', ':hover': { color: 'inherit' } },
+          },
+        }}
+      >
+        {children}
+      </LabelMedium>
+    </StyledTab>
+  );
+}
+
+const tabStyle = ({ $active, $disabled, $theme }) => ({
+  outlineColor: $theme.colors.white,
+  color: $active ? "#fff" : "#757575",
+  backgroundColor: $active ? "#120800" : "inherit",
+  'border-radius': '40px',
+  'padding': '7px 20px',
+  ':hover': $active
+    ? {  
+      color: "#fff",
+      backgroundColor: "#333",
+    }
+    : {
+      color: "#000",
+    },
+});
+
+const tabBarStyle = ({ $theme }) => ({
+  backgroundColor: "#fff",
+  'margin-bottom': '20px',
+  'padding-left': '0px'
+});
+const tabContentStyle = ({ $theme }) => ({
+  borderLeftWidth: '2px',
+  borderRightWidth: '2px',
+  borderBottomWidth: '2px',
+  borderTopWidth: '0',
+  borderLeftColor: $theme.colors.mono600,
+  borderRightColor: $theme.colors.mono600,
+  borderTopColor: $theme.colors.mono600,
+  borderBottomColor: $theme.colors.mono600,
+});
+const content = ['Tab Content 1', 'Tab Content 2', 'Tab Content 3'];
+
+
 
 export default function Home() {
   const [activeKey, setActiveKey] = React.useState(0);
@@ -76,6 +129,7 @@ export default function Home() {
     Keys.MESSAGING === activeKey,
     Keys.BILLING === activeKey
   );
+
   return (
     <>
       <NextSeo
@@ -177,56 +231,23 @@ export default function Home() {
                   <TabBox>
                     <Link href={"#"}>Helpdesk</Link>
                   </TabBox> */}
-                  <Tabs
-                    activeKey={activeKey}
-                    onChange={({ activeKey }) =>
-                      setActiveKey(Number(activeKey))
-                    }
-                    overrides={{
-                      Tab: {
-                        style: { ":hover": { background: "red" } },
-                      },
+                  <StatefulTabs
+                    initialState={{ activeKey: activeKey }}
+                    onChange={({ activeKey }) => {
+                      setActiveKey(activeKey);
                     }}
-                    title="Messaging"
+                    overrides={{
+                      TabBar: {
+                        style: tabBarStyle,
+                      },
+                      TabContent: {
+                        style: tabContentStyle,
+                      },
+                      Tab: { component: TabOverride, style: tabStyle },
+                    }}
                   >
-                    <Tab
-                      title="Messaging"
-                      className={classNames({
-                        tabcss: Keys.MESSAGING === activeKey,
-                        tabsecond: Keys.MESSAGING !== activeKey,
-                      })}
-                    ></Tab>
-                    <Tab
-                      title="Billing"
-                      className={classNames({
-                        tabcss: Keys.BILLING === activeKey,
-                        tabsecond: Keys.BILLING !== activeKey,
-                      })}
-                    ></Tab>
-                    <Tab
-                      title="Files"
-                      className={classNames({
-                        tabcss: Keys.FILES === activeKey,
-                        tabsecond: Keys.FILES !== activeKey,
-                      })}
-                    ></Tab>
-                    <Tab
-                      title="Forms"
-                      className={classNames({
-                        tabcss: Keys.FORMS === activeKey,
-                        tabsecond: Keys.FORMS !== activeKey,
-                      })}
-                    ></Tab>
-                    <Tab
-                      title="Helpdesk"
-                      className={classNames({
-                        tabcss: Keys.HELPDESK === activeKey,
-                        tabsecond: Keys.HELPDESK !== activeKey,
-                      })}
-                    ></Tab>
-                  </Tabs>
-                </TabRow>
-                <ContainWrap>
+                    <Tab title="Messaging">
+                    <ContainWrap>
                   <LeftDetail>
                     <IconSvg>
                       <Image
@@ -255,6 +276,22 @@ export default function Home() {
                     />
                   </RightDetail>
                 </ContainWrap>
+                    </Tab>
+                    <Tab title="Billing">
+                      <div>{content[Number(activeKey)]}</div>
+                    </Tab>
+                    <Tab title="Files">
+                      <div>{content[Number(activeKey)]}</div>
+                    </Tab>
+                    <Tab title="Forms">
+                      <div>{content[Number(activeKey)]}</div>
+                    </Tab>
+                    <Tab title="Helpdesk">
+                      <div>{content[Number(activeKey)]}</div>
+                    </Tab>
+                  </StatefulTabs>
+                </TabRow>
+               
               </BottomFunction>
             </Container>
           </Functionality>
