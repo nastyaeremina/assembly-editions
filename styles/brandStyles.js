@@ -192,7 +192,8 @@ const BlockSub = styled.div`
   }
   span {
     color: ${({ theme }) => theme.colors.greenlight};
-    ${Body2}
+    ${Body2};
+    letter-spacing: 0;
   }
 `;
 const BlockLight = styled.div`

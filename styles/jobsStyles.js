@@ -56,13 +56,17 @@ const CareerSection = styled.div`
   padding: 50px 0;
 `;
 const CareerBlock = styled.div`
-  display: grid;
-  grid-template-columns: 1fr 1fr;
+  display: flex;
   gap: 60px;
 `;
-const RoleBlock = styled.div``;
+const RoleBlock = styled.div`
+  max-width: 612px;
+  width: 100%;
+`;
 const TeamBlock = styled.div`
-  padding-left: 30px;
+  /* padding-left: 30px; */
+  max-width: 552px;
+  width: 100%;
 `;
 const RoleWrap = styled.div`
   margin-bottom: 40px;
@@ -220,11 +224,11 @@ const TabWrap = styled.div`
     position: relative;
     span {
       ${Body6};
-      color: ${({ theme }) => theme.colors.body};
+      color: ${({ theme }) => theme.colors.black};
     }
     border: 1px solid #000000;
-    width: 38px;
-    height: 38px;
+    width: 40px;
+    height: 40px;
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -239,8 +243,8 @@ const TabView = styled.div`
     color: ${({ theme }) => theme.colors.border};
   }
   border: 1px solid #ccccd0;
-  width: 38px;
-  height: 38px;
+  width: 40px;
+  height: 40px;
   border-radius: 50%;
   display: flex;
   align-items: center;

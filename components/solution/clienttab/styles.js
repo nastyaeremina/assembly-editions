@@ -118,6 +118,10 @@ const SignImgView = styled.div`
   background: #ffffff;
   position: relative;
   border-radius: 6px;
+  img {
+    max-height: 725px;
+    height: 100%;
+  }
 `;
 const ActiveTab = styled.div`
   position: absolute;

@@ -86,7 +86,7 @@ export default function ExploreTab() {
                   src="/images/esignature.png"
                   alt="main-logo"
                   width={1154}
-                  height={754}
+                  height={725}
                 />
               </SignImgView>
             </SignBox>
