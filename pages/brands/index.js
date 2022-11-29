@@ -49,7 +49,7 @@ export default function Brand() {
                 “C”, lowercase “p”, and without a dash. It is the brand name of
                 our company and product. The company legal name is Copilot
                 Platforms Inc. On social media, you can refer to us with
-                #copilot.{" "}
+                #copilot.
               </p>
             </BrandName>
             <BrandName>
@@ -62,9 +62,9 @@ export default function Brand() {
               <BrandImage>
                 <BrandImageLeft className="effect-goliath">
                   <Image
-                    src="/images/smalllogo.svg"
+                    src="/images/logo.svg"
                     alt="logo"
-                    width={133}
+                    width={405}
                     height={90}
                     layout={"fixed"}
                   />
@@ -180,8 +180,8 @@ export default function Brand() {
                   <Image
                     src="/images/primarylogo2.svg"
                     alt="logo"
-                    width={186}
-                    height={186}
+                    width={200}
+                    height={200}
                     layout={"fixed"}
                   />
                   <HoverLink className="hover-name">
