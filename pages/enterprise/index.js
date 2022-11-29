@@ -102,7 +102,7 @@ export default function Enterprise() {
                     </p>
                   </DetailView>
                 </BoxView>
-                <BoxView>
+                <BoxView className="bordernone">
                   <DetailView>
                     <h4>Continuous Backup</h4>
                     <p>
@@ -111,7 +111,7 @@ export default function Enterprise() {
                     </p>
                   </DetailView>
                 </BoxView>
-                <BoxView>
+                <BoxView className="borderbottom">
                   <DetailView>
                     <h4>99.9% Uptime SLAs</h4>
                     <p>

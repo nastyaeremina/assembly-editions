@@ -79,6 +79,13 @@ const BenefitBox = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
   position: relative;
+  border-radius: 4px 4px 0px 4px;
+  .bordernone {
+    border-right: none;
+  }
+  .borderbottom {
+    border-bottom: none;
+  }
 `;
 const BoxView = styled.div`
   padding: 28px 24px;
@@ -88,6 +95,7 @@ const BoxView = styled.div`
   display: flex;
   height: 100%;
   min-height: 265px;
+
   :last-child {
     border-right: none;
   }
@@ -120,15 +128,16 @@ const ComingUp = styled.div`
   position: absolute;
   background-color: ${({ theme }) => theme.colors.greenlight};
   right: -1px;
-  bottom: -37px;
+  bottom: -30px;
   left: 50%;
-  padding: 8px;
+  padding: 7px 24px;
   border: 1px solid ${({ theme }) => theme.colors.greenlight};
   border-radius: 0px 0px 4px 4px;
 `;
 const SpanText = styled.span`
   ${CardTxt};
   color: ${({ theme }) => theme.colors.purpledark};
+  display: block;
 `;
 const MovingSection = styled.div`
   background-color: ${({ theme }) => theme.colors.greenlight};

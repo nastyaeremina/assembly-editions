@@ -165,7 +165,7 @@ const GreenButton = styled.div`
     border: 1px solid ${({ theme }) => theme.colors.greenlight};
     border-radius: 48px;
     background-color: transparent;
-    box-shadow: 1px 0 3px 0 rgb(0 0 0 / 12%);
+    /* box-shadow: 1px 0 3px 0 rgb(0 0 0 / 12%); */
     color: ${({ theme }) => theme.colors.greenlight};
     letter-spacing: 0.02em;
     text-decoration: none;
@@ -225,9 +225,9 @@ const BlackButton = styled.div`
 `;
 const TransparenBlack = styled.div`
   a {
-    ${HeaderFont}
+    ${ButtonText}
     display: inline-block;
-    padding: 8px 32px;
+    padding: 11px 32px;
     border-radius: 48px;
     border: 1px solid #000000;
     border-radius: 48px;

@@ -8,9 +8,12 @@ const QuoteSection = styled.div`
 const Mainss = styled.div`
   display: flex;
   gap: 40px;
-  border: 1.5px solid #000000;
+  border: 1px solid #000000;
   border-radius: 4px;
   background: #ffffff;
+  img {
+    border-right: 1px solid black;
+  }
 `;
 const QuoteTxt = styled.div`
   padding-right: 40px;
@@ -18,6 +21,7 @@ const QuoteTxt = styled.div`
   flex-direction: column;
   justify-content: space-between;
   padding-bottom: 40px;
+
   h3 {
     ${Quote};
     margin: 40px 0 30px 0;

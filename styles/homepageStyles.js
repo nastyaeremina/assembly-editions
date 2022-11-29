@@ -603,7 +603,7 @@ const CenterBox = styled.div`
   padding: 8px 0;
 `;
 const ContainWrap = styled.div`
-  margin-top: 40px;
+  /* margin-top: 40px; */
   display: flex;
   width: 100%;
   @media only screen and (max-width: 749px) {
