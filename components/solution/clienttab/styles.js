@@ -117,6 +117,7 @@ const SignImgView = styled.div`
   box-shadow: 0px 0px 34px rgba(0, 0, 0, 0.07);
   background: #ffffff;
   position: relative;
+  border-radius: 6px;
 `;
 const ActiveTab = styled.div`
   position: absolute;

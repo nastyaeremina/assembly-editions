@@ -141,7 +141,7 @@ const CardText = styled.div`
 `;
 const CardEnd = styled.div`
   background-color: ${({ theme }) => theme.colors.greenlight};
-  padding: 8px 16px;
+  padding: 6px 24px;
   position: absolute;
   left: 0;
   right: 0;
@@ -284,7 +284,7 @@ const AppDetailCard = styled.div`
 `;
 const DetailWrap = styled.div`
   border: 1px solid #000000;
-  border-radius: 7px;
+  border-radius: 8px;
   padding: 25px;
   position: relative;
   .imagepostion {

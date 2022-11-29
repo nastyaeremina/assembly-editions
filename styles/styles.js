@@ -146,6 +146,7 @@ const Label = css`
   font-weight: 500;
   font-size: 17px;
   line-height: 21px;
+  letter-spacing: 0.01em;
 `;
 const Caption = css`
   font-family: ${({ theme }) => theme.fontfamily.Bagoss};

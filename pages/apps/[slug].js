@@ -100,7 +100,7 @@ export default function AppsDetail({ appDetail, relatedApps }) {
               <Image
                 src={appDetail?.logo?.url}
                 alt="bill-icon"
-                width={350}
+                width={309}
                 height={68}
                 layout={"fixed"}
               />

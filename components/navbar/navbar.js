@@ -589,7 +589,7 @@ export default function Navbar({
                   <Link href="/book-demo">Book demo</Link>
                 </SignIn>
                 <BlackButton
-                  textColor={"#FFFFFF"}
+                  textColor={isEnterPrice ? colorList?.fontColor : "#FFFFFF"}
                   backgroundColor={colorList?.buttonColor}
                 >
                   <Link href="https://dashboard.copilot.com/onboarding">
