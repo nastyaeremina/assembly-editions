@@ -33,13 +33,17 @@ const BusinessSlider = ({ data }) => {
   // }, [data]);
 
   var settings = {
-    infinite: true,
     mobileFirst: true,
     centerMode: false,
     adaptiveHeight: true,
-    speed: 500,
     slidesToScroll: 2,
     variableWidth: true,
+    infinite: true,
+    autoplay: true,
+    autoplaySpeed: 0,
+    arrows: false,
+    speed: 9000,
+    pauseOnHover: false,
     cssEase: "linear",
     responsive: [
       {
@@ -64,6 +68,11 @@ const BusinessSlider = ({ data }) => {
           dots: true,
           centerMode: true,
           variableWidth: true,
+          infinite: false,
+          autoplay: false,
+          autoplaySpeed: 0,
+          arrows: false,
+          speed: 0,
         },
       },
     ],
@@ -79,6 +88,7 @@ const BusinessSlider = ({ data }) => {
                 <Image
                   src="/images/slider1.png"
                   alt="red-icon"
+                  className="zoom"
                   width={350}
                   height={350}
                 />
@@ -95,6 +105,7 @@ const BusinessSlider = ({ data }) => {
                 <Image
                   src="/images/slide2.png"
                   alt="silde-icon"
+                  className="zoom"
                   width={350}
                   height={350}
                 />
@@ -111,6 +122,7 @@ const BusinessSlider = ({ data }) => {
                 <Image
                   src="/images/slide3.png"
                   alt="silde-icon"
+                  className="zoom"
                   width={350}
                   height={350}
                 />
@@ -127,6 +139,7 @@ const BusinessSlider = ({ data }) => {
                 <Image
                   src="/images/slide3.png"
                   alt="silde-icon"
+                  className="zoom"
                   width={350}
                   height={350}
                 />
