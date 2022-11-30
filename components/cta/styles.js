@@ -8,7 +8,7 @@ const CtaInner = styled.div`
   background-size: cover;
   text-align: center; */
   position: absolute;
-  top: 130px;
+  top: 80px;
   left: 597px;
   text-align: center;
   h2 {
@@ -93,12 +93,13 @@ const CtaRight = styled.div`
   }
 `;
 const CtaAnimation = styled.div`
-  padding-top: 50px;
+  /* padding-top: 50px; */
   position: relative;
   top: 0;
   bottom: 0;
   right: 0;
   left: 0;
+  overflow: hidden;
 `;
 const CtaMain = styled.div`
   position: absolute;
@@ -111,11 +112,11 @@ const CtaImage = styled.div`
   .leftcta {
     position: absolute;
     left: 0;
-    top: 100px;
+    top: 50px;
   }
   .rightcta {
     position: absolute;
-    top: 100px;
+    top: 50px;
     right: 0;
   }
 `;

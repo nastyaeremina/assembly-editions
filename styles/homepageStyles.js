@@ -20,6 +20,7 @@ import {
 
 const HomeMain = styled.div`
   background-color: ${({ theme }) => theme.colors.bgpages};
+  padding-bottom: 50px;
 `;
 const Scfeaturetitle = styled.div`
   max-width: 720px;
