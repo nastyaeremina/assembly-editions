@@ -35,6 +35,12 @@ const SliderWrap = styled.div`
     opacity: 1;
     color: black;
   }
+  .zoom {
+    transition: transform 0.3s;
+  }
+  .mydiv:hover .zoom {
+    transform: scale(1.11);
+  }
 `;
 const WrapImage = styled.div`
   /* border: 1px solid black;
@@ -57,7 +63,7 @@ const WrapImage = styled.div`
 
   h4 {
     text-align: center;
-    padding-top: 24px;
+    padding-top: 36px;
     ${Body3};
     margin: 0;
     color: ${({ theme }) => theme.colors.title};
@@ -112,6 +118,7 @@ const RightBorder = styled.div`
 const WrapSlide = styled.div`
   display: flex !important;
   align-items: stretch;
+  padding: 0 5px;
   .hide {
     opacity: 0;
   }
