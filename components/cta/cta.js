@@ -22,11 +22,20 @@ export default function CTA() {
         <canvas id="gradient-canvas" data-transition-in />
         <CtaImage>
           <Image
-            src="/images/ctabg.svg"
+            src="/images/leftcta.svg"
             alt="red-icon"
-            width={1440}
+            width={370}
             height={287}
-            // layout={"fixed"}
+            layout={"fixed"}
+            className="leftcta"
+          />
+          <Image
+            src="/images/rightcta.svg"
+            alt="red-icon"
+            width={370}
+            height={287}
+            layout={"fixed"}
+            className="rightcta"
           />
         </CtaImage>
         <CtaInner>

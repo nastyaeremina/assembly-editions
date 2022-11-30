@@ -4,8 +4,8 @@ import { NextSeo } from "next-seo";
 import Link from "next/link";
 import StarLogo from "../public/images/star5.svg";
 import Navbar from "../components/navbar/navbar";
-import { StatefulTabs, Tab, StyledTab } from 'baseui/tabs';
-import { LabelMedium } from 'baseui/typography';
+import { StatefulTabs, Tab, StyledTab } from "baseui/tabs";
+import { LabelMedium } from "baseui/typography";
 import {
   Container,
   PrimaryButton,
@@ -67,14 +67,13 @@ const Keys = {
   HELPDESK: 4,
 };
 
-
 function TabOverride({ children, ...rest }) {
   return (
     <StyledTab {...rest}>
       <LabelMedium
         overrides={{
           Block: {
-            style: { color: 'inherit', ':hover': { color: 'inherit' } },
+            style: { color: "inherit", ":hover": { color: "inherit" } },
           },
         }}
       >
@@ -88,36 +87,34 @@ const tabStyle = ({ $active, $disabled, $theme }) => ({
   outlineColor: $theme.colors.white,
   color: $active ? "#fff" : "#757575",
   backgroundColor: $active ? "#120800" : "inherit",
-  'border-radius': '40px',
-  'padding': '7px 20px',
-  ':hover': $active
-    ? {  
-      color: "#fff",
-      backgroundColor: "#333",
-    }
+  "border-radius": "40px",
+  padding: "7px 20px",
+  ":hover": $active
+    ? {
+        color: "#fff",
+        backgroundColor: "#333",
+      }
     : {
-      color: "#000",
-    },
+        color: "#000",
+      },
 });
 
 const tabBarStyle = ({ $theme }) => ({
   backgroundColor: "#fff",
-  'margin-bottom': '20px',
-  'padding-left': '0px'
+  "margin-bottom": "20px",
+  "padding-left": "0px",
 });
 const tabContentStyle = ({ $theme }) => ({
-  borderLeftWidth: '2px',
-  borderRightWidth: '2px',
-  borderBottomWidth: '2px',
-  borderTopWidth: '0',
+  borderLeftWidth: "2px",
+  borderRightWidth: "2px",
+  borderBottomWidth: "2px",
+  borderTopWidth: "0",
   borderLeftColor: $theme.colors.mono600,
   borderRightColor: $theme.colors.mono600,
   borderTopColor: $theme.colors.mono600,
   borderBottomColor: $theme.colors.mono600,
 });
-const content = ['Tab Content 1', 'Tab Content 2', 'Tab Content 3'];
-
-
+const content = ["Tab Content 1", "Tab Content 2", "Tab Content 3"];
 
 export default function Home() {
   const [activeKey, setActiveKey] = React.useState(0);
@@ -247,51 +244,109 @@ export default function Home() {
                     }}
                   >
                     <Tab title="Messaging">
-                    <ContainWrap>
-                  <LeftDetail>
-                    <IconSvg>
-                      <Image
-                        src="/images/msgicon.svg"
-                        width={64}
-                        height={60}
-                        alt="msg-icon"
-                      />
-                    </IconSvg>
-                    <h4>Messaging</h4>
-                    <p>
-                      Let clients securely and seamlessly message you from your
-                      portal. And give your team the ability to centralize
-                      client communication and stay organized.{" "}
-                    </p>
-                    <SecondryButton>
-                      <Link href="#">Learn More</Link>
-                    </SecondryButton>
-                  </LeftDetail>
-                  <RightDetail>
-                    <Image
-                      src="/images/msgscreen.png"
-                      width={881.76}
-                      height={550.63}
-                      alt="msg-screen"
-                    />
-                  </RightDetail>
-                </ContainWrap>
+                      <ContainWrap>
+                        <LeftDetail>
+                          <IconSvg>
+                            <Image
+                              src="/images/msgicon.svg"
+                              width={64}
+                              height={60}
+                              alt="msg-icon"
+                            />
+                          </IconSvg>
+                          <h4>Messaging</h4>
+                          <p>
+                            Let clients securely and seamlessly message you from
+                            your portal. And give your team the ability to
+                            centralize client communication and stay organized.{" "}
+                          </p>
+                          <SecondryButton>
+                            <Link href="#">Learn More</Link>
+                          </SecondryButton>
+                        </LeftDetail>
+                        <RightDetail>
+                          <Image
+                            src="/images/msgscreen.png"
+                            width={881.76}
+                            height={550.63}
+                            alt="msg-screen"
+                          />
+                        </RightDetail>
+                      </ContainWrap>
                     </Tab>
                     <Tab title="Billing">
-                      <div>{content[Number(activeKey)]}</div>
+                      {/* <div>{content[Number(activeKey)]}</div> */}
+                      <ContainWrap>
+                        <LeftDetail>
+                          <IconSvg>
+                            <Image
+                              src="/images/billicon.svg"
+                              width={64}
+                              height={60}
+                              alt="bill-icon"
+                            />
+                          </IconSvg>
+                          <h4>Billing </h4>
+                          <p>
+                            Let clients securely and seamlessly message you from
+                            your portal. And give your team the ability to
+                            centralize client communication and stay organized.
+                          </p>
+                          <SecondryButton>
+                            <Link href="#">Learn More</Link>
+                          </SecondryButton>
+                        </LeftDetail>
+                        <RightDetail>
+                          <Image
+                            src="/images/billscreen.png"
+                            width={881}
+                            height={550}
+                            alt="msg-screen"
+                          />
+                        </RightDetail>
+                      </ContainWrap>
                     </Tab>
                     <Tab title="Files">
                       <div>{content[Number(activeKey)]}</div>
                     </Tab>
                     <Tab title="Forms">
-                      <div>{content[Number(activeKey)]}</div>
+                      {/* <div>{content[Number(activeKey)]}</div>
+                       */}
+                      <ContainWrap>
+                        <LeftDetail>
+                          <IconSvg>
+                            <Image
+                              src="/images/formicon.svg"
+                              width={64}
+                              height={60}
+                              alt="bill-icon"
+                            />
+                          </IconSvg>
+                          <h4>Forms</h4>
+                          <p>
+                            Let clients securely and seamlessly message you from
+                            your portal. And give your team the ability to
+                            centralize client communication and stay organized.
+                          </p>
+                          <SecondryButton>
+                            <Link href="#">Learn More</Link>
+                          </SecondryButton>
+                        </LeftDetail>
+                        <RightDetail>
+                          <Image
+                            src="/images/formscreen.png"
+                            width={881}
+                            height={550}
+                            alt="form-screen"
+                          />
+                        </RightDetail>
+                      </ContainWrap>
                     </Tab>
                     <Tab title="Helpdesk">
                       <div>{content[Number(activeKey)]}</div>
                     </Tab>
                   </StatefulTabs>
                 </TabRow>
-               
               </BottomFunction>
             </Container>
           </Functionality>

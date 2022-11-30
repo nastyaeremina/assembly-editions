@@ -10,6 +10,7 @@ const CtaInner = styled.div`
   position: absolute;
   top: 130px;
   left: 597px;
+  text-align: center;
   h2 {
     color: ${({ theme }) => theme.colors.whiteColor};
     ${Heading2};
@@ -104,9 +105,19 @@ const CtaMain = styled.div`
 `;
 const CtaSection = styled.div``;
 const CtaImage = styled.div`
-  position: absolute;
+  /* position: absolute;
   top: 50px;
-  left: 231px;
+  left: 231px; */
+  .leftcta {
+    position: absolute;
+    left: 0;
+    top: 100px;
+  }
+  .rightcta {
+    position: absolute;
+    top: 100px;
+    right: 0;
+  }
 `;
 export {
   CtaInner,
