@@ -211,23 +211,6 @@ export default function Home() {
               </TopFunctionWrap>
               <BottomFunction>
                 <TabRow>
-                  {/* <TabBox>
-                    <Link href={"#"} className="activetab">
-                      Messaging
-                    </Link>
-                  </TabBox>
-                  <TabBox>
-                    <Link href={"#"}>Billing</Link>
-                  </TabBox>
-                  <TabBox>
-                    <Link href={"#"}>Files</Link>
-                  </TabBox>
-                  <TabBox>
-                    <Link href={"#"}>Forms</Link>
-                  </TabBox>
-                  <TabBox>
-                    <Link href={"#"}>Helpdesk</Link>
-                  </TabBox> */}
                   <StatefulTabs
                     initialState={{ activeKey: activeKey }}
                     onChange={({ activeKey }) => {
@@ -307,7 +290,37 @@ export default function Home() {
                       </ContainWrap>
                     </Tab>
                     <Tab title="Files">
-                      <div>{content[Number(activeKey)]}</div>
+                      {/* <div>{content[Number(activeKey)]}</div>
+                       */}
+                      <ContainWrap>
+                        <LeftDetail>
+                          <IconSvg>
+                            <Image
+                              src="/images/fileicon.svg"
+                              width={64}
+                              height={60}
+                              alt="bill-icon"
+                            />
+                          </IconSvg>
+                          <h4>Files</h4>
+                          <p>
+                            Let clients securely and seamlessly message you from
+                            your portal. And give your team the ability to
+                            centralize client communication and stay organized.
+                          </p>
+                          <SecondryButton>
+                            <Link href="#">Learn More</Link>
+                          </SecondryButton>
+                        </LeftDetail>
+                        <RightDetail>
+                          <Image
+                            src="/images/filescreen.png"
+                            width={881}
+                            height={550}
+                            alt="msg-screen"
+                          />
+                        </RightDetail>
+                      </ContainWrap>
                     </Tab>
                     <Tab title="Forms">
                       {/* <div>{content[Number(activeKey)]}</div>
@@ -322,7 +335,7 @@ export default function Home() {
                               alt="bill-icon"
                             />
                           </IconSvg>
-                          <h4>Forms</h4>
+                          <h4>Files</h4>
                           <p>
                             Let clients securely and seamlessly message you from
                             your portal. And give your team the ability to
@@ -337,13 +350,42 @@ export default function Home() {
                             src="/images/formscreen.png"
                             width={881}
                             height={550}
-                            alt="form-screen"
+                            alt="msg-screen"
                           />
                         </RightDetail>
                       </ContainWrap>
                     </Tab>
                     <Tab title="Helpdesk">
-                      <div>{content[Number(activeKey)]}</div>
+                      {/* <div>{content[Number(activeKey)]}</div> */}
+                      <ContainWrap>
+                        <LeftDetail>
+                          <IconSvg>
+                            <Image
+                              src="/images/clientsvg.svg"
+                              width={64}
+                              height={60}
+                              alt="bill-icon"
+                            />
+                          </IconSvg>
+                          <h4>Helpdesk</h4>
+                          <p>
+                            Let clients securely and seamlessly message you from
+                            your portal. And give your team the ability to
+                            centralize client communication and stay organized.
+                          </p>
+                          <SecondryButton>
+                            <Link href="#">Learn More</Link>
+                          </SecondryButton>
+                        </LeftDetail>
+                        <RightDetail>
+                          <Image
+                            src="/images/clientscreen.png"
+                            width={881}
+                            height={550}
+                            alt="form-screen"
+                          />
+                        </RightDetail>
+                      </ContainWrap>
                     </Tab>
                   </StatefulTabs>
                 </TabRow>

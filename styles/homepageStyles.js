@@ -490,6 +490,9 @@ const TopFunctionWrap = styled.div`
 `;
 const BottomFunction = styled.div`
   margin-top: 40px;
+  .af {
+    width: 100%;
+  }
   @media only screen and (max-width: 749px) {
     margin-top: 28px;
   }
