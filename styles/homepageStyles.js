@@ -453,6 +453,9 @@ const Functionality = styled.div`
   @media only screen and (max-width: 749px) {
     padding: 40px 0;
   }
+  .ak {
+    margin-bottom: 40px;
+  }
 `;
 const TopFunctionWrap = styled.div`
   width: 100%;
@@ -605,7 +608,8 @@ const CenterBox = styled.div`
 const ContainWrap = styled.div`
   /* margin-top: 40px; */
   display: flex;
-  width: 100%;
+  /* width: 100%; */
+  margin: -12px -24px;
   @media only screen and (max-width: 749px) {
     flex-wrap: wrap;
     margin-top: 28px;
@@ -655,7 +659,10 @@ const RightDetail = styled.div`
   }
   img {
     height: 100%;
-    max-width: 100%;
+    max-width: 880px;
+    width: 100%;
+    max-height: 550px;
+    display: block;
   }
 `;
 const Extension = styled.div`
