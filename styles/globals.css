@@ -329,7 +329,7 @@ th {
   max-height: 412px;
   height: 100%;
   -webkit-filter: blur(5px);
-  filter: blur(5px);
+  filter: blur(50px);
   --gradient-color-1: #09aa6c;
   --gradient-color-2: #00160e;
   --gradient-color-3: #003f27;

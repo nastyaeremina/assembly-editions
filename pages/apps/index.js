@@ -186,7 +186,7 @@ export default function Extensions({
                   <Catagory>
                     <h4>Partner Apps</h4>
                     <Catagoryitem>
-                      <Link href={"#Brief-Section"}>All</Link>
+                      <Link href={"#Brief-Section"}>Featured</Link>
                     </Catagoryitem>
                     {renderCategoryList}
                   </Catagory>
