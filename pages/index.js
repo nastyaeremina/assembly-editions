@@ -270,8 +270,8 @@ export default function Home() {
                   <RightDetail>
                     <Image
                       src="/images/msgscreen.png"
-                      width={882}
-                      height={550}
+                      width={881.76}
+                      height={550.63}
                       alt="msg-screen"
                     />
                   </RightDetail>

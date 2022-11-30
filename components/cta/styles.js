@@ -2,7 +2,14 @@ import styled from "styled-components";
 import { Heading, Heading2 } from "../../styles/styles";
 
 const CtaInner = styled.div`
-  text-align: center;
+  /* background-image: url("/images/ctabg.svg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  text-align: center; */
+  position: absolute;
+  top: 130px;
+  left: 597px;
   h2 {
     color: ${({ theme }) => theme.colors.whiteColor};
     ${Heading2};
@@ -84,5 +91,31 @@ const CtaRight = styled.div`
     }
   }
 `;
-
-export { CtaInner, CtaLeft, CtaRight, SectionHeading, CtaBtn };
+const CtaAnimation = styled.div`
+  padding-top: 50px;
+  position: relative;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+`;
+const CtaMain = styled.div`
+  position: absolute;
+`;
+const CtaSection = styled.div``;
+const CtaImage = styled.div`
+  position: absolute;
+  top: 50px;
+  left: 231px;
+`;
+export {
+  CtaInner,
+  CtaLeft,
+  CtaRight,
+  SectionHeading,
+  CtaBtn,
+  CtaAnimation,
+  CtaMain,
+  CtaSection,
+  CtaImage,
+};

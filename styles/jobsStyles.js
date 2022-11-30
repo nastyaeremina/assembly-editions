@@ -106,7 +106,7 @@ const AboutWrap = styled.div`
 `;
 const JobDetailWrap = styled.div``;
 const JobView = styled.div`
-  margin-bottom: 18px;
+  margin-bottom: 14px;
   h4 {
     margin: 0;
     ${HeaderFont};

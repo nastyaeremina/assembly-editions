@@ -65,7 +65,7 @@ const theme = {
     browndark: "#120800",
     brownmiddark: "#85664D",
     brownmidlight: "#F4D8C4",
-    brownlight: "#FFF7F0",
+    brownlight: "#FFF6F0",
     magenta: "#F35B80",
     magentadark: "#27000A",
     magentamiddark: "#B8294B",

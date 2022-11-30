@@ -81,8 +81,17 @@ const FcfeatureWrap = styled.div`
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
+  position: absolute;
   @media only screen and (max-width: 749px) {
     margin-top: 40px;
+  }
+  #gradient-canvas {
+    width: 100%;
+    height: 100%;
+    --gradient-color-1: #09aa6c;
+    --gradient-color-2: #6ec3f4;
+    --gradient-color-3: #eae2ff;
+    --gradient-color-4: #b9beff;
   }
 `;
 
