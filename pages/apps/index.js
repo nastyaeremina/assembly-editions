@@ -29,6 +29,7 @@ import {
   BuildWrap,
   BuildAppsDetail,
   OtherWrap,
+  CardMain,
 } from "../../styles/appsStyles";
 import {
   Container,
@@ -65,25 +66,27 @@ export default function Extensions({
     if (isEmpty(featuredApps)) return null;
     return featuredApps?.map((item, index) => {
       return (
-        <FeatureCard key={`featuredview_index_${index}`}>
-          <Link href={`/apps/${item?.slug}`}>
-            <FeatureImg>
-              <Image
-                src={item?.logo?.url}
-                alt="main-logo"
-                width={236}
-                height={56}
-              />
-            </FeatureImg>
-            <CardText>
-              <h4>{item?.name}</h4>
-              <p>{item?.description}</p>
-            </CardText>
-            <CardEnd>
-              <p>{item?.partnerAppCategoriesCollection?.items[0]?.name}</p>
-            </CardEnd>
-          </Link>
-        </FeatureCard>
+        <CardMain>
+          <FeatureCard key={`featuredview_index_${index}`}>
+            <Link href={`/apps/${item?.slug}`}>
+              <FeatureImg>
+                <Image
+                  src={item?.logo?.url}
+                  alt="main-logo"
+                  width={236}
+                  height={56}
+                />
+              </FeatureImg>
+              <CardText>
+                <h4>{item?.name}</h4>
+                <p>{item?.description}</p>
+              </CardText>
+              <CardEnd>
+                <p>{item?.partnerAppCategoriesCollection?.items[0]?.name}</p>
+              </CardEnd>
+            </Link>
+          </FeatureCard>
+        </CardMain>
       );
     });
   }, [featuredApps]);

@@ -226,7 +226,7 @@ export default function Home() {
                       Tab: { component: TabOverride, style: tabStyle },
                     }}
                   >
-                    <Tab title="Messaging">
+                    <Tab title="Messaging" className="ml0">
                       <ContainWrap>
                         <LeftDetail>
                           <IconSvg>

@@ -113,14 +113,23 @@ const FeatureMenu = styled.div`
   grid-template-columns: 1fr 1fr 1fr;
   gap: 36px;
 `;
+const CardMain = styled.div`
+  border: 1px solid #01011d;
+  position: relative;
+  height: 100%;
+`;
 const FeatureCard = styled.div`
   background-color: ${({ theme }) => theme.colors.whitecolor};
-  border: 1px solid #01011d;
+
   border-radius: 4px;
   overflow: hidden;
   max-width: 100%;
   width: 100%;
-  position: relative;
+  transition: all 0.3s;
+  :hover {
+    border: 1.5px solid #01011d;
+    box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.1);
+  }
 `;
 const CardText = styled.div`
   padding: 20px 16px 50px 16px;
@@ -408,4 +417,5 @@ export {
   LeftImage,
   AppWrap,
   CardSection,
+  CardMain,
 };

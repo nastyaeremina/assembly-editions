@@ -456,6 +456,9 @@ const Functionality = styled.div`
   }
   .ak {
     margin-bottom: 40px;
+    @media only screen and (max-width: 744px) {
+      margin-bottom: 28px;
+    }
   }
 `;
 const TopFunctionWrap = styled.div`
@@ -496,15 +499,17 @@ const BottomFunction = styled.div`
   @media only screen and (max-width: 749px) {
     margin-top: 28px;
   }
+  .ml0 {
+    margin-left: -6px;
+  }
 `;
 const TabRow = styled.div`
   display: flex;
+
   @media only screen and (max-width: 749px) {
     overflow: auto;
-    ::-webkit-scrollbar {
-      display: none;
-    }
   }
+
   .tabcss {
     background-color: ${({ theme }) => theme.colors.browndark};
     color: ${({ theme }) => theme.colors.brownlight};
@@ -522,7 +527,22 @@ const TabRow = styled.div`
     }
   }
   .ag {
-    display: block;
+    display: flex;
+    margin-left: -6px;
+    overflow: auto;
+    ::-webkit-scrollbar {
+      display: none;
+    }
+  }
+  .b8 {
+    :hover {
+      background-color: rgb(18, 8, 0);
+    }
+  }
+  .b7:hover {
+    background-color: rgb(18, 8, 0);
+  }
+  .ml0 {
   }
   .tabsecond {
     padding: 7px 20px;
@@ -535,6 +555,9 @@ const TabRow = styled.div`
   }
   .bw {
     display: none;
+  }
+  .bl {
+    padding: 0;
   }
 `;
 const TabBox = styled.div`
@@ -610,13 +633,10 @@ const CenterBox = styled.div`
   padding: 8px 0;
 `;
 const ContainWrap = styled.div`
-  /* margin-top: 40px; */
   display: flex;
-  /* width: 100%; */
-  margin: -12px -24px;
   @media only screen and (max-width: 749px) {
     flex-wrap: wrap;
-    margin-top: 28px;
+    /* margin-top: 28px; */
   }
 `;
 const LeftDetail = styled.div`
