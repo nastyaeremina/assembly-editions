@@ -172,8 +172,13 @@ const FooterSocialList = styled.ul`
 `;
 const FooterSocialItem = styled.li`
   display: flex;
-  transition: all 300ms;
+  transition: 0.3s;
   cursor: pointer;
+  svg {
+    path {
+      transition: 0.3s;
+    }
+  }
   :hover {
     svg {
       path {
@@ -278,6 +283,7 @@ const FooterMenuList = styled.li`
     color: ${({ theme }) => theme.colors.lightgray};
     display: block;
     padding-bottom: 10px;
+    transition: all 300ms;
     cursor: pointer;
     :last-child {
       padding: 0;
