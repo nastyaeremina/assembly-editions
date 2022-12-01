@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { Heading, Heading2 } from "../../styles/styles";
+import { Heading, Heading2, MobileH2 } from "../../styles/styles";
 
 const CtaInner = styled.div`
   /* background-image: url("/images/ctabg.svg");
@@ -8,8 +8,10 @@ const CtaInner = styled.div`
   background-size: cover;
   text-align: center; */
   position: absolute;
-  top: 80px;
-  left: 597px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
   text-align: center;
   h2 {
     color: ${({ theme }) => theme.colors.whiteColor};
@@ -18,6 +20,9 @@ const CtaInner = styled.div`
     margin: 0 auto;
     max-width: 708px;
     width: 100%;
+    @media only screen and (max-width: 991px) {
+      ${MobileH2}
+    }
     span {
       color: ${({ theme }) => theme.colors.primary};
       /* display: block; */
@@ -100,6 +105,10 @@ const CtaAnimation = styled.div`
   right: 0;
   left: 0;
   overflow: hidden;
+  @media only screen and (max-width: 991px) {
+    max-height: 464px;
+    height: 100%;
+  }
 `;
 const CtaMain = styled.div`
   position: absolute;
@@ -113,11 +122,38 @@ const CtaImage = styled.div`
     position: absolute;
     left: 0;
     top: 50px;
+    @media only screen and (max-width: 991px) {
+      display: none;
+    }
   }
   .rightcta {
     position: absolute;
     top: 50px;
     right: 0;
+    @media only screen and (max-width: 991px) {
+      display: none;
+    }
+  }
+  .ctaleft {
+    position: absolute;
+    left: 0;
+    top: 10px;
+    display: none;
+
+    @media only screen and (max-width: 991px) {
+      display: block;
+      max-height: 390px;
+      height: 100%;
+    }
+  }
+  .ctaright {
+    position: absolute;
+    top: 10px;
+    right: 0;
+    display: none;
+    @media only screen and (max-width: 991px) {
+      display: block;
+    }
   }
 `;
 export {

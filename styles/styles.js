@@ -213,6 +213,11 @@ const MbPrimaryBtn = css`
   font-size: 15px;
   line-height: 26px;
 `;
+const MobileH2 = css`
+  font-weight: 400;
+  font-size: 44px;
+  line-height: 42px;
+`;
 const MobileH3 = css`
   font-weight: 400;
   font-size: 28px;
@@ -263,6 +268,7 @@ export {
   MbButtonText,
   MbBody1,
   MbPrimaryBtn,
+  MobileH2,
   MobileH3,
   MbBody3,
   MbBody4,

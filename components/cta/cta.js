@@ -37,6 +37,22 @@ export default function CTA() {
             layout={"fixed"}
             className="rightcta"
           />
+          <Image
+            src="/images/ctaleft.svg"
+            alt="red-icon"
+            width={89}
+            height={390}
+            layout={"fixed"}
+            className="ctaleft"
+          />
+          <Image
+            src="/images/ctaright.svg"
+            alt="red-icon"
+            width={89}
+            height={390}
+            layout={"fixed"}
+            className="ctaright"
+          />
         </CtaImage>
         <CtaInner>
           <h2>Start, run, and grow your business</h2>

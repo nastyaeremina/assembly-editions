@@ -131,8 +131,8 @@ export default function NewIndex() {
                           <PricePlanWrap>
                             <BulletImage></BulletImage>
                             <p>
-                              Access to every Portal module including Messaging,
-                              Billing, Files, Forms, and Surveys
+                              Access to every Copilot App including Messaging,
+                              Billing, Files, Forms, and Helpdesk
                             </p>
                           </PricePlanWrap>
                         </PricePlan>
@@ -848,6 +848,34 @@ export default function NewIndex() {
                     </td>
                   </tr>
 
+                  <tr>
+                    <td>
+                      <h4>Data Integration Apps</h4>
+                      <p>
+                        Connect products like QuickBooks and Google Analytics so
+                        that data can flow from Copilot into an external system
+                        or the other way around.
+                      </p>
+                    </td>
+                    <td></td>
+                    <td>
+                      <Image
+                        src="/images/checkmark.svg"
+                        alt="main-logo"
+                        height={20}
+                        width={20}
+                      />
+                    </td>
+                    <td>
+                      <Image
+                        src="/images/checkmark.svg"
+                        alt="main-logo"
+                        height={20}
+                        width={20}
+                      />
+                    </td>
+                  </tr>
+                  <tr></tr>
                   <tr>
                     <td>
                       <h4>Data Integration Apps</h4>

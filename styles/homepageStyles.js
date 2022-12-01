@@ -1,4 +1,4 @@
-import styled, { css } from "styled-components";
+import styled, { css } from 'styled-components';
 import {
   Body1,
   Body3,
@@ -15,12 +15,15 @@ import {
   MobileH3,
   MbBody3,
   MbBody4,
-  HeaderFont,
-} from "./styles";
+  HeaderFont
+} from './styles';
 
 const HomeMain = styled.div`
   background-color: ${({ theme }) => theme.colors.bgpages};
   padding-bottom: 50px;
+  @media only screen and (max-width: 749px) {
+    padding-bottom: 0;
+  }
 `;
 const Scfeaturetitle = styled.div`
   max-width: 720px;
@@ -525,6 +528,18 @@ const TabRow = styled.div`
     .b2 {
       padding-bottom: 0;
     }
+    .b4 {
+      ${(props) =>
+        props.textColor &&
+        css`
+          color: ${props.textColor};
+        `}
+      ${(props) =>
+        props.bgColor &&
+        css`
+          background-color: ${props.bgColor};
+        `}
+    }
   }
   .ag {
     display: flex;
@@ -584,7 +599,7 @@ const IconSvg = styled.div`
   position: relative;
   margin-bottom: 28px;
   ::after {
-    content: "";
+    content: '';
     position: absolute;
     border-top: 1px solid #000000;
     max-width: 241px;
@@ -1087,5 +1102,5 @@ export {
   IconViewblank,
   BtnView,
   ImageHover,
-  HelpImg,
+  HelpImg
 };

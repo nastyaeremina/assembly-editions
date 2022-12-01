@@ -1,5 +1,5 @@
-import styled from "styled-components";
-import { Body4, Heading2, Heading4 } from "./styles";
+import styled from 'styled-components';
+import { Body4, Heading2, Heading4, Heading6 } from './styles';
 const MainSection = styled.div``;
 const PrivacuHero = styled.div`
   background-color: ${({ theme }) => theme.colors.greendark};

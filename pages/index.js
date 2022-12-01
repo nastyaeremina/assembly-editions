@@ -56,7 +56,7 @@ import {
 import BusinessSlider from "../components/businessSlider/businessslider";
 import ExtensionSlider from "../components/extensionslider/extensionslider";
 import CTA from "../components/cta/cta";
-import { HEADER_LIST } from "../constants/constant";
+import { HEADER_LIST, MODULE_COLOR_LIST } from "../constants/constant";
 import React from "react";
 import classNames from "classnames";
 
@@ -76,20 +76,28 @@ function TabOverride({ children, ...rest }) {
   );
 }
 
-const tabStyle = ({ $active, $disabled, $theme }) => ({
+const tabStyle = ({
+  $active,
+  $disabled,
+  $theme,
+  $textColor,
+  $backgroundColor,
+}) => ({
   outlineColor: $theme.colors.white,
-  color: $active ? "#fff" : "#757575",
-  backgroundColor: $active ? "#120800" : "inherit",
+  // color: $active ? '#fff' : '#757575',
+  // backgroundColor: $active ? MODULE_COLOR_LIST[activeKey].bgColor : 'inherit',
+  color: $active ? $textColor : $textColor,
+  // backgroundColor: $active ? $backgroundColor : 'inherit',
   "border-radius": "40px",
   padding: "7px 20px",
-  ":hover": $active
-    ? {
-        color: "#fff",
-        backgroundColor: "#333",
-      }
-    : {
-        color: "#000",
-      },
+  // ':hover': $active
+  //   ? {
+  //       color: '#fff',
+  //       backgroundColor: '#333'
+  //     }
+  //   : {
+  //       color: '#000'
+  //     }
 });
 
 const tabBarStyle = ({ $theme }) => ({
@@ -107,7 +115,6 @@ const tabContentStyle = ({ $theme }) => ({
   borderTopColor: $theme.colors.mono600,
   borderBottomColor: $theme.colors.mono600,
 });
-const content = ["Tab Content 1", "Tab Content 2", "Tab Content 3"];
 
 export default function Home() {
   const [activeKey, setActiveKey] = React.useState(0);
@@ -205,9 +212,10 @@ export default function Home() {
               <BottomFunction>
                 <TabRow>
                   <StatefulTabs
-                    initialState={{ activeKey: activeKey }}
-                    onChange={({ activeKey }) => {
-                      setActiveKey(activeKey);
+                    initialState={{
+                      activeKey: activeKey,
+                      textColor: "#fff",
+                      backgroundColor: MODULE_COLOR_LIST[activeKey].bgColor,
                     }}
                     overrides={{
                       TabBar: {
@@ -328,7 +336,7 @@ export default function Home() {
                               alt="bill-icon"
                             />
                           </IconSvg>
-                          <h4>Files</h4>
+                          <h4>Forms</h4>
                           <p>
                             Let clients securely and seamlessly message you from
                             your portal. And give your team the ability to
