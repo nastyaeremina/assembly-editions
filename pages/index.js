@@ -59,13 +59,6 @@ import CTA from "../components/cta/cta";
 import { HEADER_LIST } from "../constants/constant";
 import React from "react";
 import classNames from "classnames";
-const Keys = {
-  MESSAGING: 0,
-  BILLING: 1,
-  FILES: 2,
-  FORMS: 3,
-  HELPDESK: 4,
-};
 
 function TabOverride({ children, ...rest }) {
   return (
@@ -118,14 +111,14 @@ const content = ["Tab Content 1", "Tab Content 2", "Tab Content 3"];
 
 export default function Home() {
   const [activeKey, setActiveKey] = React.useState(0);
-  console.log(
-    " Keys.MESSAGING === activeKey",
-    activeKey,
-    Keys.MESSAGING,
-    Keys.BILLING,
-    Keys.MESSAGING === activeKey,
-    Keys.BILLING === activeKey
-  );
+  // console.log(
+  //   " Keys.MESSAGING === activeKey",
+  //   activeKey,
+  //   Keys.MESSAGING,
+  //   Keys.BILLING,
+  //   Keys.MESSAGING === activeKey,
+  //   Keys.BILLING === activeKey
+  // );
 
   return (
     <>
