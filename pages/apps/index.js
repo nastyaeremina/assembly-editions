@@ -66,7 +66,7 @@ export default function Extensions({
     if (isEmpty(featuredApps)) return null;
     return featuredApps?.map((item, index) => {
       return (
-        <CardMain>
+        <CardMain key={`featuresitem_index_${index}`}>
           <FeatureCard key={`featuredview_index_${index}`}>
             <Link href={`/apps/${item?.slug}`}>
               <FeatureImg>

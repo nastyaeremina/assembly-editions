@@ -42,7 +42,7 @@ const BusinessSlider = ({ data }) => {
     autoplay: true,
     autoplaySpeed: 0,
     arrows: false,
-    speed: 9000,
+    speed: 8000,
     pauseOnHover: false,
     cssEase: "linear",
     responsive: [
