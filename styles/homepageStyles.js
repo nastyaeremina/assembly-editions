@@ -895,6 +895,7 @@ const HelpLeftSub = styled.div`
   .HoverArrow__linePath {
     opacity: 0;
     fill: none;
+    transition: opacity var(--hoverTransition, var(--arrowHoverTransition));
   }
   .HoverArrow {
     stroke-width: 2px;
@@ -907,6 +908,9 @@ const HelpLeftSub = styled.div`
     fill: none;
     stroke: currentColor;
     margin-left: 8px;
+    --arrowSpacing: 5px;
+    --arrowHoverTransition: 150ms cubic-bezier(0.215, 0.61, 0.355, 1);
+    --arrowHoverOffset: translateX(3px);
   }
   h4 {
     ${Heading4};
