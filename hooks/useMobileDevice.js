@@ -1,6 +1,7 @@
 import { useState, useEffect, useLayoutEffect } from "react";
 
-const useIsomorphicLayoutEffect = typeof window !== 'undefined' ? useLayoutEffect : useEffect;
+const useIsomorphicLayoutEffect =
+  typeof window !== "undefined" ? useLayoutEffect : useEffect;
 
 const useMobileDevice = () => {
   const [isMobileDevice, setIsMobileDevice] = useState(false);
@@ -8,7 +9,7 @@ const useMobileDevice = () => {
   useIsomorphicLayoutEffect(() => {
     function updateSize() {
       const width = window.innerWidth;
-      if (width <= 768) {
+      if (width <= 991) {
         setIsMobileDevice(true);
       } else {
         setIsMobileDevice(false);

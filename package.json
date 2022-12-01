@@ -3,10 +3,16 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "prepare": "husky install",
+    "dev": "cross-env REACT_APP_ENV=development next dev",
+    "start": "cross-env REACT_APP_ENV=development next start",
     "build": "next build",
-    "start": "next start",
-    "lint": "next lint"
+    "test": "cross-env REACT_APP_ENV=test next test",
+    "eject": "next eject",
+    "check-format": "prettier --check .",
+    "check-lint": "eslint . --ext ts --ext tsx --ext js",
+    "format": "prettier --write .",
+    "test-all": "npm run check-format && npm run check-lint && npm run check-types && npm run build"
   },
   "dependencies": {
     "@contentful/rich-text-react-renderer": "^15.12.1",
@@ -14,6 +20,7 @@
     "baseui": "^12.2.0",
     "classnames": "^2.3.2",
     "contentful": "^9.1.18",
+    "cross-env": "7.0.3",
     "eslint": "8.26.0",
     "eslint-config-next": "13.0.1",
     "next": "latest",
@@ -42,6 +49,7 @@
     "eslint-plugin-jsx-a11y": "^6.6.1",
     "eslint-plugin-react": "^7.31.10",
     "eslint-plugin-react-hooks": "^4.6.0",
+    "husky": "^8.0.1",
     "prettier": "^2.7.1",
     "stylelint": "^14.13.0",
     "stylelint-config-recommended": "^9.0.0",
