@@ -1,27 +1,15 @@
-import Image from "next/image";
-import {
-  NavigationBlock,
-  NavMenu,
-  MobileListLi,
-  MenuWrap,
-  LeftImg,
-  RightText,
-} from "./styles";
+import Image from 'next/image';
+import { NavigationBlock, NavMenu, MobileListLi, MenuWrap, LeftImg, RightText } from './styles';
 
-export default function FeatureMenu() {
+export default function FeatureSubMenu() {
   return (
     <>
       <NavMenu>
         <NavigationBlock>
           <MobileListLi>
-            <MenuWrap msghover href="/modules/message">
+            <MenuWrap msghover href='/modules/message'>
               <LeftImg>
-                <Image
-                  src="/images/menumsg.svg"
-                  alt="msg-icon"
-                  width={32}
-                  height={32}
-                />
+                <Image src='/images/menumsg.svg' alt='msg-icon' width={32} height={32} />
               </LeftImg>
               <RightText>
                 <h5>Messaging</h5>
@@ -30,14 +18,9 @@ export default function FeatureMenu() {
             </MenuWrap>
           </MobileListLi>
           <MobileListLi>
-            <MenuWrap billhover href="/modules/billing">
+            <MenuWrap billhover href='/modules/billing'>
               <LeftImg>
-                <Image
-                  src="/images/billmenuicon.svg"
-                  alt="bill-icon"
-                  width={32}
-                  height={32}
-                />
+                <Image src='/images/billmenuicon.svg' alt='bill-icon' width={32} height={32} />
               </LeftImg>
               <RightText>
                 <h5>Billing</h5>
@@ -46,14 +29,9 @@ export default function FeatureMenu() {
             </MenuWrap>
           </MobileListLi>
           <MobileListLi>
-            <MenuWrap filehover href="/modules/file">
+            <MenuWrap filehover href='/modules/file'>
               <LeftImg>
-                <Image
-                  src="/images/filemenuicon.svg"
-                  alt="file-icon"
-                  width={32}
-                  height={32}
-                />
+                <Image src='/images/filemenuicon.svg' alt='file-icon' width={32} height={32} />
               </LeftImg>
               <RightText>
                 <h5>Files & eSignatures</h5>
@@ -62,14 +40,9 @@ export default function FeatureMenu() {
             </MenuWrap>
           </MobileListLi>
           <MobileListLi>
-            <MenuWrap helphover href="/modules/knowledge">
+            <MenuWrap helphover href='/modules/knowledge'>
               <LeftImg>
-                <Image
-                  src="/images/deskmenuicon.svg"
-                  alt="desk-icon"
-                  width={32}
-                  height={32}
-                />
+                <Image src='/images/deskmenuicon.svg' alt='desk-icon' width={32} height={32} />
               </LeftImg>
               <RightText>
                 <h5>Helpdesk</h5>

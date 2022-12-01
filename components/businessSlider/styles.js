@@ -1,5 +1,5 @@
-import styled from "styled-components";
-import { Body3, Body5, MbBody3 } from "../../styles/styles";
+import styled from 'styled-components';
+import { Body3, Body5, MbBody3 } from '../../styles/styles';
 
 const Slide = styled.div`
   a {
@@ -8,7 +8,7 @@ const Slide = styled.div`
     position: relative;
     border-radius: 12px;
     overflow: hidden;
-    @media only screen and (max-width: 600px) {
+    @media only screen and (max-width: 991px) {
       border-radius: 0;
     }
   }
@@ -40,6 +40,10 @@ const SliderWrap = styled.div`
   }
   .mydiv:hover .zoom {
     transform: scale(1.11);
+    @media only screen and (max-width: 991px) {
+      transform: none;
+      transition: transform 0.3s;
+    }
   }
 `;
 const WrapImage = styled.div`
@@ -67,7 +71,7 @@ const WrapImage = styled.div`
     ${Body3};
     margin: 0;
     color: ${({ theme }) => theme.colors.title};
-    @media only screen and (max-width: 768px) {
+    @media only screen and (max-width: 911px) {
       padding-top: 20px;
       ${MbBody3};
     }
@@ -79,12 +83,12 @@ const WrapImage = styled.div`
     margin: 0;
     color: ${({ theme }) => theme.colors.body};
     letter-spacing: 0.02em;
-    @media only screen and (max-width: 768px) {
+    @media only screen and (max-width: 911px) {
       padding-top: 20px;
       ${MbBody3};
     }
   }
-  @media only screen and (max-width: 768px) {
+  @media only screen and (max-width: 911px) {
     margin: 0 24px;
     padding: 0;
   }
@@ -139,12 +143,4 @@ const SlideImg = styled.div`
   }
 `;
 
-export {
-  Slide,
-  SliderWrap,
-  WrapImage,
-  LeftBorder,
-  RightBorder,
-  WrapSlide,
-  SlideImg,
-};
+export { Slide, SliderWrap, WrapImage, LeftBorder, RightBorder, WrapSlide, SlideImg };
