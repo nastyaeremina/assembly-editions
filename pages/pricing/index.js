@@ -41,15 +41,10 @@ import {
 import CTA from "../../components/cta/cta";
 import FAQ from "../../components/faq/faq";
 
-
-
-
-
 export default function NewIndex() {
+  const [isShowFeature, setShowFeature] = useState(true);
+  const [isYearly, Yearly] = useState(true);
 
-  const [isShowFeature,setShowFeature] = useState(true);
-  const [isYearly,Yearly] = useState(true);
- 
   const toggleShowFeature = useCallback(() => {
     setShowFeature(!isShowFeature);
   }, [isShowFeature]);
@@ -61,9 +56,6 @@ export default function NewIndex() {
   const setMonthly = useCallback(() => {
     Yearly(false);
   }, [false]);
-
- 
-
 
   return (
     <>
@@ -91,12 +83,18 @@ export default function NewIndex() {
             <PriceMenu>
               <PriceButton>
                 <WrapSlide>
-                  <YearlyButton className={isYearly && "active"} onClick={setYearly}>
+                  <YearlyButton
+                    className={isYearly && "active"}
+                    onClick={setYearly}
+                  >
                     <button>Pay yearly</button>
                   </YearlyButton>
                 </WrapSlide>
-                <MonthlyButton className={!isYearly && "active"} onClick={setMonthly}>
-                  <button >Pay monthly</button>
+                <MonthlyButton
+                  className={!isYearly && "active"}
+                  onClick={setMonthly}
+                >
+                  <button>Pay monthly</button>
                 </MonthlyButton>
               </PriceButton>
               <PricingMenu>
@@ -110,7 +108,10 @@ export default function NewIndex() {
                           Everything you need to run a modern services business
                         </p>
                         <PriceWrap>
-                          <h2>{isYearly && "$29"}{!isYearly && "$39"}</h2>
+                          <h2>
+                            {isYearly && "$29"}
+                            {!isYearly && "$39"}
+                          </h2>
                           <p>per internal user per month</p>
                         </PriceWrap>
                         <PricePlan>
@@ -130,8 +131,8 @@ export default function NewIndex() {
                           <PricePlanWrap>
                             <BulletImage></BulletImage>
                             <p>
-                              Access to every Portal module including Messaging,
-                              Billing, Files, Forms, and Surveys
+                              Access to every Copilot App including Messaging,
+                              Billing, Files, Forms, and Helpdesk
                             </p>
                           </PricePlanWrap>
                         </PricePlan>
@@ -148,10 +149,13 @@ export default function NewIndex() {
                         <h4>Professional</h4>
                         <p>
                           Level up with more clients, custom domains,
-                          automations, and extensions
+                          automations, and apps
                         </p>
                         <PriceWrap>
-                          <h2>{isYearly && "$69"}{!isYearly && "$89"}</h2>
+                          <h2>
+                            {isYearly && "$69"}
+                            {!isYearly && "$89"}
+                          </h2>
                           <p>per internal user per month</p>
                         </PriceWrap>
                         <PricePlan>
@@ -171,8 +175,8 @@ export default function NewIndex() {
                           <PricePlanWrap>
                             <BulletImage></BulletImage>
                             <p>
-                              Access to every Portal module including Messaging,
-                              Billing, Files, Forms, and Surveys
+                              Support for Partner Apps to connect products like
+                              Airtable, ClickUp, Calendly, and others
                             </p>
                           </PricePlanWrap>
                         </PricePlan>
@@ -192,7 +196,10 @@ export default function NewIndex() {
                           and enterprise compliance
                         </p>
                         <PriceWrap>
-                          <h2>{isYearly && "$119"}{!isYearly && "$139"}</h2>
+                          <h2>
+                            {isYearly && "$119"}
+                            {!isYearly && "$139"}
+                          </h2>
                           <PriceText>
                             <p>per internal user</p>
                             <p>per month</p>
@@ -227,8 +234,11 @@ export default function NewIndex() {
                     </WrapSlide>
                   </PriceMenuLeft>
                 </PriceOption>
-                <PlanButton  onClick={toggleShowFeature}>
-                  <button>{!isShowFeature && "Hide plan features"}{isShowFeature && "Show plan features"}</button>
+                <PlanButton onClick={toggleShowFeature}>
+                  <button>
+                    {!isShowFeature && "Hide plan details"}
+                    {isShowFeature && "Show plan details"}
+                  </button>
                 </PlanButton>
               </PricingMenu>
             </PriceMenu>
@@ -246,15 +256,24 @@ export default function NewIndex() {
                   <tr>
                     <td className="tableBorder"></td>
                     <td>
-                      <h3>{isYearly && "$29"}{!isYearly && "$39"}</h3>
+                      <h3>
+                        {isYearly && "$29"}
+                        {!isYearly && "$39"}
+                      </h3>
                       <span className="spantext">per internal user</span>
                     </td>
                     <td>
-                      <h3>{isYearly && "$69"}{!isYearly && "$89"}</h3>
+                      <h3>
+                        {isYearly && "$69"}
+                        {!isYearly && "$89"}
+                      </h3>
                       <span className="spantext">per internal user</span>
                     </td>
                     <td>
-                      <h3>{isYearly && "$119"}{!isYearly && "$139"}</h3>
+                      <h3>
+                        {isYearly && "$119"}
+                        {!isYearly && "$139"}
+                      </h3>
                       <span className="spantext">per internal user</span>
                       <span className="spantext">5 User Minimum</span>
                     </td>
@@ -826,6 +845,34 @@ export default function NewIndex() {
                       />
                     </td>
                   </tr>
+                  <tr>
+                    <td>
+                      <h4>Data Integration Apps</h4>
+                      <p>
+                        Connect products like QuickBooks and Google Analytics so
+                        that data can flow from Copilot into an external system
+                        or the other way around.
+                      </p>
+                    </td>
+                    <td></td>
+                    <td>
+                      <Image
+                        src="/images/checkmark.svg"
+                        alt="main-logo"
+                        height={20}
+                        width={20}
+                      />
+                    </td>
+                    <td>
+                      <Image
+                        src="/images/checkmark.svg"
+                        alt="main-logo"
+                        height={20}
+                        width={20}
+                      />
+                    </td>
+                  </tr>
+                  <tr></tr>
                   <tr>
                     <td>
                       <h4>Custom Apps</h4>
