@@ -1,12 +1,5 @@
-import styled, { css } from "styled-components";
-import {
-  HeaderFont,
-  Body2,
-  Body5,
-  FooterText,
-  Body4,
-  MbButtonText,
-} from "../../styles/styles";
+import styled, { css } from 'styled-components';
+import { HeaderFont, Body2, Body5, FooterText, Body4, MbButtonText } from '../../styles/styles';
 
 const NavbarWrapper = styled.div`
   position: fixed;
@@ -62,6 +55,9 @@ const TrySalescampBlock = styled.div`
     css`
       display: none;
     `}
+    @media only screen and (max-width: 991px) {
+    display: none;
+  }
 `;
 const NavMenu = styled.div`
   display: flex;
@@ -76,7 +72,7 @@ const NavMenu = styled.div`
     right: 16px;
     background-color: ${({ theme }) => theme.colors.whiteColor};
     box-shadow: var(--shadowColor);
-    border-radius: 12px;
+    border-radius: 0px;
   }
   ${(props) =>
     props.BlogDetails &&
@@ -89,6 +85,14 @@ const NavMenu = styled.div`
     css`
       display: flex;
     `}
+    @media only screen and (max-width: 991px) {
+    display: flex;
+    left: 0;
+    right: 0;
+    padding: 0;
+    background: #fdfdfb;
+    box-shadow: 0px 4px 24px rgba(0, 0, 0, 0.7);
+  }
 `;
 const NavigationBlock = styled.ul`
   display: flex;
@@ -120,19 +124,15 @@ const SpanLink = styled.li`
       css`
         color: ${props.textColor};
       `}
-    /* color: ${({ theme }) => theme.colors.title}; */
     transition: all 300ms;
     cursor: pointer;
-    /* :hover {
-      color: ${({ theme }) => theme.colors.darkPrimary};
-    } */
   }
   a:hover {
     ${(props) =>
       props.hoverColor &&
       css`
         color: ${props.hoverColor};
-      `}/* color: ${({ theme }) => theme.colors.primary}; */
+      `}
   }
   &.active {
     a {
@@ -141,28 +141,104 @@ const SpanLink = styled.li`
   }
 
   @media only screen and (max-width: 991px) {
-    margin-bottom: 4px;
+    margin-bottom: 0px;
     width: 100%;
+    border-bottom: 1px solid #000000;
+    :first-child {
+      border-top: 1px solid #000000;
+    }
     &.active {
       a {
         background-color: ${({ theme }) => theme.colors.lightBg};
       }
     }
     a {
-      padding: 8px 12px;
+      padding: 20px 24px;
       display: block;
-      border-radius: 6px;
-      margin-right: 0;
+      border-radius: 0px;
+      margin: 0;
     }
   }
   :hover .innerlist,
   li {
     display: block;
+
+    @media only screen and (max-width: 991px) {
+      display: none;
+    }
   }
   :hover .img-line {
     opacity: 1;
     visibility: visible;
     display: block;
+    @media only screen and (max-width: 991px) {
+      display: none;
+    }
+  }
+`;
+const SpanMobileLink = styled.li`
+  display: none;
+  position: relative;
+  transition: all 300ms;
+  a {
+    ${HeaderFont}
+    margin: 0 14px;
+    ${(props) =>
+      props.textColor &&
+      css`
+        color: ${props.textColor};
+      `}
+    transition: all 300ms;
+    cursor: pointer;
+  }
+  a:hover {
+    ${(props) =>
+      props.hoverColor &&
+      css`
+        color: ${props.hoverColor};
+      `}
+  }
+  &.active {
+    a {
+      color: ${({ theme }) => theme.colors.primary};
+    }
+  }
+
+  @media only screen and (max-width: 991px) {
+    margin-bottom: 0px;
+    display: block;
+    width: 100%;
+    border-bottom: 1px solid #000000;
+    :first-child {
+      border-top: 1px solid #000000;
+    }
+    &.active {
+      a {
+        background-color: ${({ theme }) => theme.colors.lightBg};
+      }
+    }
+    a {
+      padding: 20px 24px;
+      display: block;
+      border-radius: 0px;
+      margin: 0;
+    }
+  }
+  :hover .innerlist,
+  li {
+    display: block;
+
+    @media only screen and (max-width: 991px) {
+      display: none;
+    }
+  }
+  :hover .img-line {
+    opacity: 1;
+    visibility: visible;
+    display: block;
+    @media only screen and (max-width: 991px) {
+      display: none;
+    }
   }
 `;
 const InnerList = styled.ul`
@@ -254,8 +330,8 @@ const DropDownToggle = styled.div`
   user-select: none;
   cursor: pointer;
   @media only screen and (max-width: 991px) {
-    width: 100%;
-    padding: 12px;
+    /* width: 100%;
+    padding: 12px; */
   }
 `;
 const DropdownSpan = styled.span`
@@ -263,13 +339,13 @@ const DropdownSpan = styled.span`
   color: ${({ theme }) => theme.colors.textColor};
   ${Body2}
   @media only screen and (max-width: 991px) {
-    width: 100%;
+    /* width: 100%;
     font-size: 13px;
     line-height: 18px;
     padding-bottom: 8px;
     color: ${({ theme }) => theme.colors.romanSilver};
     text-transform: uppercase;
-    border-bottom: 1px solid #ebeef2;
+    border-bottom: 1px solid #ebeef2; */
   }
 `;
 const DropDownArrow = styled.div`
@@ -449,15 +525,17 @@ const OverLayBlock = styled.div`
   ${(props) =>
     props.isOpenMobileMenu &&
     css`
-      top: 86px;
-      height: calc(100vh - 86px);
+      top: 76px;
+      height: calc(100vh - 76px);
+      padding-top: 0;
     `}
   ${(props) =>
     props.isOpenMobileMenu &&
     props.isScrollPage &&
     css`
-      top: 64px;
-      height: calc(100vh - 64px);
+      top: 76px;
+      padding-top: 0;
+      height: calc(100vh - 76px);
     `}
 `;
 const MenuWrap = styled.a`
@@ -466,6 +544,10 @@ const MenuWrap = styled.a`
   padding: 12px 20px;
   margin: 0 !important;
   transition: all 300ms;
+
+  @media only screen and (max-width: 991px) {
+    width: 100%;
+  }
   :hover {
     background-color: ${({ theme }) => theme.colors.greendark};
     svg {
@@ -594,6 +676,130 @@ const MobileRight = styled.div`
     gap: 8px;
   }
 `;
+const MobileListLi = styled.li`
+  @media only screen and (max-width: 991px) {
+    width: 100%;
+    border-bottom: 1px solid #000000;
+    :first-child {
+      border-top: 1px solid #000000;
+    }
+  }
+`;
+const MobileText = styled.div`
+  ${HeaderFont}
+  padding: 20px 24px;
+  color: #131313;
+  -webkit-transition: all 300ms;
+  transition: all 300ms;
+  cursor: pointer;
+`;
+const MenuMobileWrap = styled.a`
+  display: flex;
+  align-items: center;
+  padding: 12px 20px;
+  margin: 0 !important;
+  transition: all 300ms;
+
+  @media only screen and (max-width: 991px) {
+    width: 100%;
+    padding: 22px 24px;
+  }
+  :hover {
+    background-color: ${({ theme }) => theme.colors.greendark};
+    svg {
+      path {
+        fill: #e3ffee;
+      }
+    }
+    .logo {
+      circle {
+        fill: #e3ffee;
+      }
+      path {
+        fill: #00160e;
+      }
+    }
+    /* .brand {
+      g {
+        path {
+          fill: #e3ffee;
+        }
+      }
+    } */
+    h6 {
+      color: ${({ theme }) => theme.colors.greenlight};
+    }
+  }
+  //hover style for features list
+
+  ${(props) =>
+    props.msghover &&
+    css`
+      :hover {
+        background-color: ${({ theme }) => theme.colors.browndark};
+        h5,
+        span {
+          color: ${({ theme }) => theme.colors.brownlight};
+        }
+      }
+    `}
+  ${(props) =>
+    props.billhover &&
+    css`
+      :hover {
+        background-color: ${({ theme }) => theme.colors.bluedark};
+        h5,
+        span {
+          color: ${({ theme }) => theme.colors.bluelight};
+        }
+      }
+    `}
+    ${(props) =>
+    props.filehover &&
+    css`
+      :hover {
+        background-color: ${({ theme }) => theme.colors.purpledark};
+        h5,
+        span {
+          color: ${({ theme }) => theme.colors.purplelight};
+        }
+      }
+    `}
+    ${(props) =>
+    props.formhover &&
+    css`
+      :hover {
+        background-color: ${({ theme }) => theme.colors.yellowdark};
+        h5,
+        span {
+          color: ${({ theme }) => theme.colors.yellowlight};
+        }
+      }
+    `}
+    ${(props) =>
+    props.helphover &&
+    css`
+      :hover {
+        background-color: ${({ theme }) => theme.colors.orangedark};
+        h5,
+        span {
+          color: ${({ theme }) => theme.colors.orangelight};
+        }
+      }
+    `}
+`;
+const BackWrap = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  span {
+    ${MbButtonText};
+    color: ${({ theme }) => theme.colors.black};
+  }
+`;
+const SvgIcon = styled.div`
+  display: inline-flex;
+`;
 
 export {
   NavbarWrapper,
@@ -626,4 +832,10 @@ export {
   LineMenuImg,
   SignInMobile,
   MobileRight,
+  MobileListLi,
+  MenuMobileWrap,
+  MobileText,
+  SpanMobileLink,
+  BackWrap,
+  SvgIcon
 };
