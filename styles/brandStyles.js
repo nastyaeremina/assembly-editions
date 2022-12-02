@@ -1,12 +1,5 @@
-import styled from "styled-components";
-import {
-  Body2,
-  Body3,
-  ButtonText,
-  Heading2,
-  Heading4,
-  LinkTxt,
-} from "./styles";
+import styled from 'styled-components';
+import { Body2, Body3, ButtonText, Heading2, Heading4, LinkTxt } from './styles';
 const BrandMain = styled.div`
   padding: 80px 0 50px 0;
 `;
@@ -181,7 +174,7 @@ const BlockSub = styled.div`
   border-radius: 0px 0px 10px 10px;
   padding: 8px 20px;
   position: absolute;
-  bottom: 0;
+  bottom: -2px;
   right: 0;
   left: 0;
   display: flex;
@@ -201,7 +194,7 @@ const BlockLight = styled.div`
   border-radius: 0px 0px 10px 10px;
   padding: 8px 20px;
   position: absolute;
-  bottom: 0;
+  bottom: -2px;
   right: 0;
   left: 0;
   display: flex;
@@ -229,5 +222,5 @@ export {
   Block1,
   BlockSub,
   BlockLight,
-  BrandMain,
+  BrandMain
 };

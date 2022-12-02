@@ -1,4 +1,4 @@
-const { css } = require("styled-components");
+const { css } = require('styled-components');
 
 const Heading1 = css`
   font-weight: 400;
@@ -72,7 +72,7 @@ const Heading5 = css`
 `;
 
 const Heading6 = css`
-  font-weight: 700;
+  font-weight: 500;
   font-size: 18px;
   line-height: 24px;
   font-family: ${({ theme }) => theme.fontfamily.Bagoss};
@@ -272,5 +272,5 @@ export {
   MobileH3,
   MbBody3,
   MbBody4,
-  SliderTxt,
+  SliderTxt
 };

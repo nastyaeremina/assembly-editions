@@ -674,7 +674,11 @@ const LifeTimeBlock = styled.div`
   box-shadow: 1px 1px 3px 0 rgb(0 0 0 / 12%);
   color: ${({ theme }) => theme.colors.whiteColor};
 `;
-
+const BulletImage = styled.div`
+  background-color: ${({ theme }) => theme.colors.greenmidlight};
+  width: 20px;
+  height: 10px;
+`;
 export {
   PrimaryButton,
   BlackButton,
@@ -724,4 +728,5 @@ export {
   HeroCommonSection,
   GreenButton,
   TransparenBlack
+  BulletImage
 };

@@ -16,17 +16,43 @@ const PostContent = styled.div`
   .mr0 {
     margin: 0;
   }
+  .mt12 {
+    margin-top: 12px;
+  }
   p {
-    margin: 8px 0 8px 0;
+    margin: 16px 0 0 0;
     ${Body4};
+    color: ${({ theme }) => theme.colors.body};
+  }
+  span {
+    ${Heading6};
     color: ${({ theme }) => theme.colors.body};
   }
 `;
 const PrivacyContent = styled.div`
+  padding-top: 60px;
   h4 {
     ${Heading4};
     color: ${({ theme }) => theme.colors.title};
     margin: 0;
   }
 `;
-export { MainSection, PrivacuHero, PostContent, PrivacyContent };
+const PrivacyData = styled.div`
+  padding-left: 36px;
+  position: relative;
+  margin-top: 10px;
+  p {
+    margin: 0;
+  }
+  :before {
+    content: '';
+    position: absolute;
+    top: 7px;
+    left: 0;
+    width: 20px;
+    height: 10px;
+    background-color: #7ddaa0;
+  }
+`;
+const PrivacyContactData = styled.div``;
+export { MainSection, PrivacuHero, PostContent, PrivacyContent, PrivacyData, PrivacyContactData };
