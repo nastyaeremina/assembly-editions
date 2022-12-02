@@ -210,7 +210,7 @@ export default function Home() {
                             ability to centralize client communication and stay organized.{' '}
                           </p>
                           <SecondryButton>
-                            <Link href='#'>Learn More</Link>
+                            <Link href='https://copilot-release.vercel.app/modules/message'>Learn More</Link>
                           </SecondryButton>
                         </LeftDetail>
                         <RightDetail>
@@ -231,7 +231,7 @@ export default function Home() {
                             ability to centralize client communication and stay organized.
                           </p>
                           <SecondryButton>
-                            <Link href='#'>Learn More</Link>
+                            <Link href='https://copilot-release.vercel.app/modules/billing'>Learn More</Link>
                           </SecondryButton>
                         </LeftDetail>
                         <RightDetail>
@@ -253,7 +253,7 @@ export default function Home() {
                             ability to centralize client communication and stay organized.
                           </p>
                           <SecondryButton>
-                            <Link href='#'>Learn More</Link>
+                            <Link href='https://copilot-release.vercel.app/modules/file'>Learn More</Link>
                           </SecondryButton>
                         </LeftDetail>
                         <RightDetail>
@@ -275,7 +275,7 @@ export default function Home() {
                             ability to centralize client communication and stay organized.
                           </p>
                           <SecondryButton>
-                            <Link href='#'>Learn More</Link>
+                            <Link href='https://copilot-release.vercel.app/modules/form'>Learn More</Link>
                           </SecondryButton>
                         </LeftDetail>
                         <RightDetail>
@@ -296,7 +296,7 @@ export default function Home() {
                             ability to centralize client communication and stay organized.
                           </p>
                           <SecondryButton>
-                            <Link href='#'>Learn More</Link>
+                            <Link href='https://copilot-release.vercel.app/modules/knowledge'>Learn More</Link>
                           </SecondryButton>
                         </LeftDetail>
                         <RightDetail>
@@ -322,7 +322,7 @@ export default function Home() {
                 </p>
                 <BtnView>
                   <SecondryButton>
-                    <Link href='#'>Browse Apps</Link>
+                    <Link href='https://copilot-release.vercel.app/apps'>Browse Apps</Link>
                   </SecondryButton>
                 </BtnView>
               </BusinessText>
@@ -425,7 +425,7 @@ export default function Home() {
                       <h4>Our Community</h4>
                       <p>Meet our team and a community of businesses that run on Copilot. Requires a Slack account.</p>
                       <HelpLink className='icon-link'>
-                        <a href='#' className='learn-link mb0'>
+                        <a href='https://copilot-release.vercel.app/jobs' className='learn-link mb0'>
                           Join Community
                           <svg width='16' height='12' viewBox='0 0 16 12' fill='none' class='HoverArrow'>
                             <path
@@ -450,7 +450,7 @@ export default function Home() {
                       <h4>Copilot Blog</h4>
                       <p>Read about company announcements, new features, customer spotlights, and more.</p>
                       <HelpLink className='icon-link'>
-                        <a href='#' className='learn-link mb0'>
+                        <a href='http://copilot.com/blog' className='learn-link mb0'>
                           Read Blog
                           <svg width='16' height='12' viewBox='0 0 16 12' fill='none' class='HoverArrow'>
                             <path
@@ -481,7 +481,7 @@ export default function Home() {
                           more.
                         </p>
                         <HelpLink className='icon-link'>
-                          <a href='#' className='learn-link mb0'>
+                          <a href='https://copilot-release.vercel.app/university' className='learn-link mb0'>
                             Watch videos
                             <svg width='16' height='12' viewBox='0 0 16 12' fill='none' class='HoverArrow'>
                               <path
@@ -506,7 +506,7 @@ export default function Home() {
                         <h4>Help Center</h4>
                         <p>Read answers to the most common questions, learn best practices, and contact our team.</p>
                         <HelpLink className='icon-link'>
-                          <a href='#' className='learn-link mb0'>
+                          <a href='https://support.copilot.com/hc/en-us' className='learn-link mb0'>
                             Get help
                             <svg width='16' height='12' viewBox='0 0 16 12' fill='none' class='HoverArrow'>
                               <path
