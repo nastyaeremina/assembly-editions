@@ -29,9 +29,9 @@ export const FUNCTION_LIST = {
 export const MODULE_COLOR_LIST = [
   { bgColor: '#120800', fontColor: '#ffffff' },
   { bgColor: '#01292C', fontColor: '#E0FBFD' },
-  { bgColor: '#120800', fontColor: '#ffffff' },
-  { bgColor: '#120800', fontColor: '#ffffff' },
-  { bgColor: '#120800', fontColor: '#ffffff' }
+  { bgColor: '#01011D', fontColor: '#EFEEFF' },
+  { bgColor: '#171500', fontColor: '#FDFBEC' },
+  { bgColor: '#1C0C00', fontColor: '#FFEDDE' }
 ];
 export const NAVBAR_COLOR_LIST = [
   {

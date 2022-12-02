@@ -549,14 +549,14 @@ const TabRow = styled.div`
       display: none;
     }
   }
-  .b8 {
+  .bd {
     :hover {
-      background-color: rgb(18, 8, 0);
+      color: #757575;
     }
   }
-  .b7:hover {
+  /* .b7:hover {
     background-color: rgb(18, 8, 0);
-  }
+  } */
   .ml0 {
   }
   .tabsecond {

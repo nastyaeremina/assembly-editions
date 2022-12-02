@@ -1,17 +1,5 @@
-import styled, { css } from "styled-components";
-import {
-  Body2,
-  Body4,
-  Body5,
-  CardTxt,
-  Heading2,
-  Heading3,
-  Heading4,
-  Heading5,
-  Label,
-  LinkTxt,
-  Value,
-} from "./styles";
+import styled, { css } from 'styled-components';
+import { Body2, Body4, Body5, CardTxt, Heading2, Heading3, Heading4, Heading5, Label, LinkTxt, Value } from './styles';
 const HeroSection = styled.div`
   padding-top: 180px;
   text-align: center;
@@ -126,10 +114,10 @@ const FeatureCard = styled.div`
   max-width: 100%;
   width: 100%;
   transition: all 0.3s;
-  :hover {
+  /* :hover {
     border: 1.5px solid #01011d;
     box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.1);
-  }
+  } */
 `;
 const CardText = styled.div`
   padding: 20px 16px 50px 16px;
@@ -417,5 +405,5 @@ export {
   LeftImage,
   AppWrap,
   CardSection,
-  CardMain,
+  CardMain
 };
