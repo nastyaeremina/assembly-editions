@@ -223,6 +223,11 @@ const MobileH3 = css`
   font-size: 28px;
   line-height: 31px;
 `;
+const MobileH4 = css`
+  font-weight: 400;
+  font-size: 22px;
+  line-height: 23px;
+`;
 const MbBody3 = css`
   font-weight: 400;
   font-size: 16px;
@@ -270,6 +275,7 @@ export {
   MbPrimaryBtn,
   MobileH2,
   MobileH3,
+  MobileH4,
   MbBody3,
   MbBody4,
   SliderTxt
