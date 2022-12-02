@@ -737,9 +737,9 @@ const AutomateText = styled.div`
     letter-spacing: 0.02em;
     max-width: 933px;
     width: 100%;
-    span {
-      color: ${({ theme }) => theme.colors.primary};
-    }
+  }
+  span {
+    color: ${({ theme }) => theme.colors.primary};
   }
   @media only screen and (max-width: 749px) {
     max-width: 100%;

@@ -339,8 +339,9 @@ export default function Home() {
                 <p>
                   Automate workflows inside your portal and connect external tools as well. For example, for new clients
                   assign an onboarding form, send out a customized welcome message, set up a default folder structure,
-                  and create a lead in Salesforce. Use <Link href='#'> Zapier </Link> for easy setup or our{' '}
-                  <Link href=''>API</Link> for full control.
+                  and create a lead in Salesforce. Use{' '}
+                  <Link href='https://zapier.com/apps/portal/integrations'> Zapier </Link> for easy setup or our{' '}
+                  <Link href='https://docs.copilot.com/reference/introduction'>API</Link> for full control.
                 </p>
               </AutomateText>
               <BottomList>
