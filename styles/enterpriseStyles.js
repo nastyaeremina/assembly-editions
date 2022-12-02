@@ -1,33 +1,18 @@
-import styled from "styled-components";
-import {
-  Body1,
-  Body2,
-  Body3,
-  Body4,
-  CardTxt,
-  Heading2,
-  Heading3,
-  Heading4,
-  Label,
-} from "./styles";
+import styled from 'styled-components';
+import { Body2, Body4, CardTxt, Heading2, Heading3, Heading4, Label } from './styles';
 
 const MainWrap = styled.div`
   background-color: ${({ theme }) => theme.colors.greendark};
 `;
 const EnterPriseHero = styled.div`
   padding: 160px 0 0 0;
-  background-image: url("/images/enterpriceone.png");
+  background-image: url('/images/enterpriceone.png');
   background-position: center 80px;
   background-repeat: no-repeat;
   background-size: cover;
   width: 100%;
   height: 100vw;
-  background-color: linear-gradient(
-    180deg,
-    #00160e 0%,
-    rgba(0, 22, 14, 0.8552) 79.69%,
-    rgba(0, 22, 14, 0) 100%
-  );
+  background-color: linear-gradient(180deg, #00160e 0%, rgba(0, 22, 14, 0.8552) 79.69%, rgba(0, 22, 14, 0) 100%);
 `;
 const LeftHero = styled.div`
   max-width: 712px;
@@ -52,18 +37,13 @@ const BenefitsSection = styled.div`
   padding: 0px 0 136px;
   position: relative;
   ::before {
-    content: "";
+    content: '';
     position: absolute;
     left: 0;
     right: 0;
     height: 320px;
     top: -133px;
-    background: linear-gradient(
-      180deg,
-      #00160e 0%,
-      rgba(0, 22, 14, 0.8552) 79.69%,
-      rgba(0, 22, 14, 0) 100%
-    );
+    background: linear-gradient(180deg, #00160e 0%, rgba(0, 22, 14, 0.8552) 79.69%, rgba(0, 22, 14, 0) 100%);
     transform: rotate(-180deg);
   }
 `;
@@ -161,11 +141,11 @@ const PlusWrap = styled.div`
 const BtnList = styled.div`
   position: relative;
   ::before {
-    content: "";
+    content: '';
     height: 80px;
     border-left: 1px dashed #00160e;
     position: absolute;
-    top: 42px;
+    top: 50px;
   }
 `;
 const StepsSection = styled.div`
@@ -194,7 +174,7 @@ const TopView = styled.div`
   padding-left: 55px;
   position: relative;
   ::after {
-    content: "";
+    content: '';
     position: absolute;
     left: 0;
     width: 14px;
@@ -205,7 +185,7 @@ const TopView = styled.div`
     background-color: ${({ theme }) => theme.colors.greenlight};
   }
   ::before {
-    content: "";
+    content: '';
     width: 55px;
     border-top: 1px dashed #e3ffee;
     position: absolute;
@@ -264,7 +244,7 @@ const LeftTopView = styled.div`
   padding-right: 55px;
   position: relative;
   ::after {
-    content: "";
+    content: '';
     position: absolute;
     right: -8px;
     width: 14px;
@@ -275,7 +255,7 @@ const LeftTopView = styled.div`
     background-color: ${({ theme }) => theme.colors.greenlight};
   }
   ::before {
-    content: "";
+    content: '';
     width: 55px;
     border-top: 1px dashed #e3ffee;
     position: absolute;
@@ -291,7 +271,7 @@ const BottomDay = styled.div`
   position: relative;
   padding-top: 40px;
   ::after {
-    content: "";
+    content: '';
     position: absolute;
     top: 0;
     width: 14px;
@@ -302,7 +282,7 @@ const BottomDay = styled.div`
     background-color: ${({ theme }) => theme.colors.greenlight};
   }
   ::before {
-    content: "";
+    content: '';
     border-left: 1px dashed #e3ffee;
     position: absolute;
     height: 40px;
@@ -364,5 +344,5 @@ export {
   LeftBottomView,
   BottomDay,
   LastLabel,
-  BottomLast,
+  BottomLast
 };
