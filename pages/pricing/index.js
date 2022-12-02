@@ -1,17 +1,13 @@
 // TODO: switch is not working
 
-import { useState, useCallback } from "react";
-import { NextSeo } from "next-seo";
-import Link from "next/link";
-import Image from "next/image";
-import Layout from "../../components/layout";
-import Navbar from "../../components/navbar/navbar";
+import { useState, useCallback } from 'react';
+import { NextSeo } from 'next-seo';
+import Link from 'next/link';
+import Image from 'next/image';
+import Layout from '../../components/layout';
+import Navbar from '../../components/navbar/navbar';
 
-import {
-  Container,
-  PrimaryButton,
-  SecondryButton,
-} from "../../styles/commonStyles";
+import { Container, PrimaryButton, SecondryButton } from '../../styles/commonStyles';
 import {
   HeroSection,
   PricingSection,
@@ -36,10 +32,10 @@ import {
   PriceImageLeft,
   PriceText,
   BulletImage,
-  PricePlusImage,
-} from "../../styles/pricingstyles";
-import CTA from "../../components/cta/cta";
-import FAQ from "../../components/faq/faq";
+  PricePlusImage
+} from '../../styles/pricingstyles';
+import CTA from '../../components/cta/cta';
+import FAQ from '../../components/faq/faq';
 
 export default function NewIndex() {
   const [isShowFeature, setShowFeature] = useState(true);
@@ -60,8 +56,8 @@ export default function NewIndex() {
   return (
     <>
       <NextSeo
-        title="Create your portal, pick a plan later"
-        description="Try Copilot free for 14 days, no credit card required"
+        title='Create your portal, pick a plan later'
+        description='Try Copilot free for 14 days, no credit card required'
       />
       <Layout>
         <Navbar />
@@ -72,9 +68,7 @@ export default function NewIndex() {
             </h2>
             <p>Try Copilot free for 14 days, no credit card required</p>
             <PrimaryButton>
-              <Link href="https://dashboard.copilot.com/onboarding">
-                Start Trial
-              </Link>
+              <Link href='https://dashboard.copilot.com/onboarding'>Start Trial</Link>
             </PrimaryButton>
           </Container>
         </HeroSection>
@@ -83,17 +77,11 @@ export default function NewIndex() {
             <PriceMenu>
               <PriceButton>
                 <WrapSlide>
-                  <YearlyButton
-                    className={isYearly && "active"}
-                    onClick={setYearly}
-                  >
+                  <YearlyButton className={isYearly && 'active'} onClick={setYearly}>
                     <button>Pay yearly</button>
                   </YearlyButton>
                 </WrapSlide>
-                <MonthlyButton
-                  className={!isYearly && "active"}
-                  onClick={setMonthly}
-                >
+                <MonthlyButton className={!isYearly && 'active'} onClick={setMonthly}>
                   <button>Pay monthly</button>
                 </MonthlyButton>
               </PriceButton>
@@ -104,13 +92,11 @@ export default function NewIndex() {
                       <LeftBorder></LeftBorder>
                       <PriceLeft>
                         <h4>Starter</h4>
-                        <p>
-                          Everything you need to run a modern services business
-                        </p>
+                        <p>Everything you need to run a modern services business</p>
                         <PriceWrap>
                           <h2>
-                            {isYearly && "$29"}
-                            {!isYearly && "$39"}
+                            {isYearly && '$29'}
+                            {!isYearly && '$39'}
                           </h2>
                           <p>per internal user per month</p>
                         </PriceWrap>
@@ -130,10 +116,7 @@ export default function NewIndex() {
                           </PricePlanWrap>
                           <PricePlanWrap>
                             <BulletImage></BulletImage>
-                            <p>
-                              Access to every Copilot App including Messaging,
-                              Billing, Files, Forms, and Helpdesk
-                            </p>
+                            <p>Access to every Copilot App including Messaging, Billing, Files, Forms, and Helpdesk</p>
                           </PricePlanWrap>
                         </PricePlan>
                       </PriceLeft>
@@ -147,14 +130,11 @@ export default function NewIndex() {
 
                       <PriceLeft>
                         <h4>Professional</h4>
-                        <p>
-                          Level up with more clients, custom domains,
-                          automations, and apps
-                        </p>
+                        <p>Level up with more clients, custom domains, automations, and apps</p>
                         <PriceWrap>
                           <h2>
-                            {isYearly && "$69"}
-                            {!isYearly && "$89"}
+                            {isYearly && '$69'}
+                            {!isYearly && '$89'}
                           </h2>
                           <p>per internal user per month</p>
                         </PriceWrap>
@@ -175,8 +155,7 @@ export default function NewIndex() {
                           <PricePlanWrap>
                             <BulletImage></BulletImage>
                             <p>
-                              Support for Partner Apps to connect products like
-                              Airtable, ClickUp, Calendly, and others
+                              Support for Partner Apps to connect products like Airtable, ClickUp, Calendly, and others
                             </p>
                           </PricePlanWrap>
                         </PricePlan>
@@ -191,14 +170,11 @@ export default function NewIndex() {
 
                       <PriceLeft>
                         <h4>Advanced</h4>
-                        <p>
-                          Level up further with a fully white-label experience
-                          and enterprise compliance
-                        </p>
+                        <p>Level up further with a fully white-label experience and enterprise compliance</p>
                         <PriceWrap>
                           <h2>
-                            {isYearly && "$119"}
-                            {!isYearly && "$139"}
+                            {isYearly && '$119'}
+                            {!isYearly && '$139'}
                           </h2>
                           <PriceText>
                             <p>per internal user</p>
@@ -237,51 +213,51 @@ export default function NewIndex() {
                 </PriceOption>
                 <PlanButton onClick={toggleShowFeature}>
                   <button>
-                    {!isShowFeature && "Hide plan details"}
-                    {isShowFeature && "Show plan details"}
+                    {!isShowFeature && 'Hide plan details'}
+                    {isShowFeature && 'Show plan details'}
                   </button>
                 </PlanButton>
               </PricingMenu>
             </PriceMenu>
             <PriceTable>
-              <table className={!isShowFeature && "active"}>
+              <table className={!isShowFeature && 'active'}>
                 <thead>
                   <tr>
-                    <td className="tableBorder"></td>
-                    <td className="radius">Starter</td>
+                    <td className='tableBorder'></td>
+                    <td className='radius'>Starter</td>
                     <td>Professional</td>
-                    <td className="rightradius">Advanced</td>
+                    <td className='rightradius'>Advanced</td>
                   </tr>
                 </thead>
                 <tbody>
                   <tr>
-                    <td className="tableBorder"></td>
+                    <td className='tableBorder'></td>
                     <td>
                       <h3>
-                        {isYearly && "$29"}
-                        {!isYearly && "$39"}
+                        {isYearly && '$29'}
+                        {!isYearly && '$39'}
                       </h3>
-                      <span className="spantext">per internal user</span>
+                      <span className='spantext'>per internal user</span>
                     </td>
                     <td>
                       <h3>
-                        {isYearly && "$69"}
-                        {!isYearly && "$89"}
+                        {isYearly && '$69'}
+                        {!isYearly && '$89'}
                       </h3>
-                      <span className="spantext">per internal user</span>
+                      <span className='spantext'>per internal user</span>
                     </td>
                     <td>
                       <h3>
-                        {isYearly && "$119"}
-                        {!isYearly && "$139"}
+                        {isYearly && '$119'}
+                        {!isYearly && '$139'}
                       </h3>
-                      <span className="spantext">per internal user</span>
-                      <span className="spantext">5 User Minimum</span>
+                      <span className='spantext'>per internal user</span>
+                      <span className='spantext'>5 User Minimum</span>
                     </td>
                   </tr>
 
-                  <tr className="tablecolor">
-                    <td className="tablepadding">Access</td>
+                  <tr className='tablecolor'>
+                    <td className='tablepadding'>Access</td>
                     <td></td>
                     <td></td>
                     <td></td>
@@ -290,9 +266,8 @@ export default function NewIndex() {
                     <td>
                       <h4>Total clients</h4>
                       <p>
-                        A client user is any client of your business that has
-                        their own login access to your portal. Internal users
-                        (team members) are not considered client users.
+                        A client user is any client of your business that has their own login access to your portal.
+                        Internal users (team members) are not considered client users.
                       </p>
                     </td>
                     <td>
@@ -310,10 +285,9 @@ export default function NewIndex() {
                     <td>
                       <h4>Total storage</h4>
                       <p>
-                        File uploads in the Files module by any user contribute
-                        to your file storage limit. When you reach your limit,
-                        our team will get in touch and ask that you make space
-                        or upgrade your account.
+                        File uploads in the Files module by any user contribute to your file storage limit. When you
+                        reach your limit, our team will get in touch and ask that you make space or upgrade your
+                        account.
                       </p>
                     </td>
                     <td>
@@ -327,8 +301,8 @@ export default function NewIndex() {
                       {/* <span className="spanpadding">100</span> */}
                     </td>
                   </tr>
-                  <tr className="tablecolor">
-                    <td className="tablepadding">Features</td>
+                  <tr className='tablecolor'>
+                    <td className='tablepadding'>Features</td>
                     <td></td>
                     <td></td>
                     <td></td>
@@ -337,170 +311,94 @@ export default function NewIndex() {
                     <td>
                       <h4>Client management</h4>
                       <p>
-                        Client management functionality lets you create, invite,
-                        organize, and manage client information.
+                        Client management functionality lets you create, invite, organize, and manage client
+                        information.
                       </p>
                     </td>
                     <td>
-                      <Image
-                        src="/images/checkmark.svg"
-                        alt="main-logo"
-                        height={20}
-                        width={20}
-                      />
+                      <Image src='/images/checkmark.svg' alt='main-logo' height={20} width={20} />
                     </td>
                     <td>
-                      <Image
-                        src="/images/checkmark.svg"
-                        alt="main-logo"
-                        height={20}
-                        width={20}
-                      />
+                      <Image src='/images/checkmark.svg' alt='main-logo' height={20} width={20} />
                     </td>
                     <td>
-                      <Image
-                        src="/images/checkmark.svg"
-                        alt="main-logo"
-                        height={20}
-                        width={20}
-                      />
+                      <Image src='/images/checkmark.svg' alt='main-logo' height={20} width={20} />
                     </td>
                   </tr>
                   <tr>
                     <td>
                       <h4>Custom fields</h4>
                       <p>
-                        With custom fields, you can add and track custom
-                        properties for your clients. For example, you can track
-                        locations, addresses, or birthdays.
+                        With custom fields, you can add and track custom properties for your clients. For example, you
+                        can track locations, addresses, or birthdays.
                       </p>
                     </td>
                     <td>
-                      <Image
-                        src="/images/checkmark.svg"
-                        alt="main-logo"
-                        height={20}
-                        width={20}
-                      />
+                      <Image src='/images/checkmark.svg' alt='main-logo' height={20} width={20} />
                     </td>
                     <td>
-                      <Image
-                        src="/images/checkmark.svg"
-                        alt="main-logo"
-                        height={20}
-                        width={20}
-                      />
+                      <Image src='/images/checkmark.svg' alt='main-logo' height={20} width={20} />
                     </td>
                     <td>
-                      <Image
-                        src="/images/checkmark.svg"
-                        alt="main-logo"
-                        height={20}
-                        width={20}
-                      />
+                      <Image src='/images/checkmark.svg' alt='main-logo' height={20} width={20} />
                     </td>
                   </tr>
                   <tr>
                     <td>
                       <h4>Team collaboration</h4>
                       <p>
-                        Assign a lead and one or more assignees to each of your
-                        clients. This lets you stay organized and gives you full
-                        control over which team member can access which client.
+                        Assign a lead and one or more assignees to each of your clients. This lets you stay organized
+                        and gives you full control over which team member can access which client.
                       </p>
                     </td>
                     <td>
-                      <Image
-                        src="/images/checkmark.svg"
-                        alt="main-logo"
-                        height={20}
-                        width={20}
-                      />
+                      <Image src='/images/checkmark.svg' alt='main-logo' height={20} width={20} />
                     </td>
                     <td>
-                      <Image
-                        src="/images/checkmark.svg"
-                        alt="main-logo"
-                        height={20}
-                        width={20}
-                      />
+                      <Image src='/images/checkmark.svg' alt='main-logo' height={20} width={20} />
                     </td>
                     <td>
-                      <Image
-                        src="/images/checkmark.svg"
-                        alt="main-logo"
-                        height={20}
-                        width={20}
-                      />
+                      <Image src='/images/checkmark.svg' alt='main-logo' height={20} width={20} />
                     </td>
                   </tr>
                   <tr>
                     <td>
                       <h4>Customization</h4>
                       <p>
-                        Customizations include the ability to upload you brand
-                        assets, design your theme, set up a custom log in
-                        screen, and more.
+                        Customizations include the ability to upload you brand assets, design your theme, set up a
+                        custom log in screen, and more.
                       </p>
                     </td>
                     <td>
-                      <Image
-                        src="/images/checkmark.svg"
-                        alt="main-logo"
-                        height={20}
-                        width={20}
-                      />
+                      <Image src='/images/checkmark.svg' alt='main-logo' height={20} width={20} />
                     </td>
                     <td>
-                      <Image
-                        src="/images/checkmark.svg"
-                        alt="main-logo"
-                        height={20}
-                        width={20}
-                      />
+                      <Image src='/images/checkmark.svg' alt='main-logo' height={20} width={20} />
                     </td>
                     <td>
-                      <Image
-                        src="/images/checkmark.svg"
-                        alt="main-logo"
-                        height={20}
-                        width={20}
-                      />
+                      <Image src='/images/checkmark.svg' alt='main-logo' height={20} width={20} />
                     </td>
                   </tr>
                   <tr>
                     <td>
                       <h4>Automations & Zapier</h4>
                       <p>
-                        Use Portal API and Zapier triggers to set up automations
-                        that streamline the experience for your clients.
+                        Use Portal API and Zapier triggers to set up automations that streamline the experience for your
+                        clients.
                       </p>
                     </td>
                     <td></td>
                     <td>
-                      <Image
-                        src="/images/checkmark.svg"
-                        alt="main-logo"
-                        height={20}
-                        width={20}
-                      />
+                      <Image src='/images/checkmark.svg' alt='main-logo' height={20} width={20} />
                     </td>
                     <td>
-                      <Image
-                        src="/images/checkmark.svg"
-                        alt="main-logo"
-                        height={20}
-                        width={20}
-                      />
+                      <Image src='/images/checkmark.svg' alt='main-logo' height={20} width={20} />
                     </td>
                   </tr>
                   <tr>
                     <td>
                       <h4>API Access</h4>
-                      <p>
-                        Use our REST API and Webhooks to set up automations and
-                        connect other tools.
-                      </p>
+                      <p>Use our REST API and Webhooks to set up automations and connect other tools.</p>
                     </td>
                     <td>
                       <span></span>
@@ -516,11 +414,9 @@ export default function NewIndex() {
                     <td>
                       <h4>White labeling</h4>
                       <p>
-                        With a custom domain you can host your portal on your
-                        own URL. With a custom email domain you can send client
-                        email notifications from your own email. Powered by
-                        Portal is a small badge that shows in the client
-                        experience and can be removed on the Advanced plan.
+                        With a custom domain you can host your portal on your own URL. With a custom email domain you
+                        can send client email notifications from your own email. Powered by Portal is a small badge that
+                        shows in the client experience and can be removed on the Advanced plan.
                       </p>
                     </td>
                     <td>
@@ -529,22 +425,20 @@ export default function NewIndex() {
                     <td>
                       <span>Custom domain</span>
 
-                      <span className="spanpadding">Custom email domain</span>
+                      <span className='spanpadding'>Custom email domain</span>
                     </td>
                     <td>
                       <span>Custom domain</span>
-                      <span className="spanpadding">Custom email domain</span>
-                      <span className="spanpadding">
-                        Remove ‘Powered by Copilot’
-                      </span>
+                      <span className='spanpadding'>Custom email domain</span>
+                      <span className='spanpadding'>Remove ‘Powered by Copilot’</span>
                     </td>
                   </tr>
                   <tr>
                     <td>
                       <h4>HIPAA compliance with BAA</h4>
                       <p>
-                        If you're a covered entity or business associate subject
-                        to HIPAA, contact our team to enter into a BAA.
+                        If you're a covered entity or business associate subject to HIPAA, contact our team to enter
+                        into a BAA.
                       </p>
                     </td>
                     <td>
@@ -554,40 +448,29 @@ export default function NewIndex() {
                       <span></span>
                     </td>
                     <td>
-                      <Image
-                        src="/images/checkmark.svg"
-                        alt="main-logo"
-                        height={20}
-                        width={20}
-                      />
+                      <Image src='/images/checkmark.svg' alt='main-logo' height={20} width={20} />
                     </td>
                   </tr>
                   <tr>
                     <td>
                       <h4>Custom roles & permissions</h4>
                       <p>
-                        Create custom roles for your team if you want full
-                        control over what functionality each internal user can
-                        access in your portal.
+                        Create custom roles for your team if you want full control over what functionality each internal
+                        user can access in your portal.
                       </p>
                     </td>
                     <td></td>
                     <td></td>
                     <td>
                       <ImageWrap>
-                        <Image
-                          src="/images/checkmark.svg"
-                          alt="main-logo"
-                          height={20}
-                          width={20}
-                        />
-                        <p className="imagretext">Coming Soon</p>
+                        <Image src='/images/checkmark.svg' alt='main-logo' height={20} width={20} />
+                        <p className='imagretext'>Coming Soon</p>
                       </ImageWrap>
                     </td>
                   </tr>
 
-                  <tr className="tablecolor">
-                    <td className="tablepadding">Copilot Apps</td>
+                  <tr className='tablecolor'>
+                    <td className='tablepadding'>Copilot Apps</td>
                     <td></td>
                     <td></td>
                     <td></td>
@@ -596,45 +479,27 @@ export default function NewIndex() {
                     <td>
                       <h4>Messaging</h4>
                       <p>
-                        Securely communicate with clients in an integrated chat
-                        experience. Clients can send messages in your portal or
-                        reply to messaging email notifications in a seamless
-                        experience.
+                        Securely communicate with clients in an integrated chat experience. Clients can send messages in
+                        your portal or reply to messaging email notifications in a seamless experience.
                       </p>
                     </td>
                     <td>
-                      <Image
-                        src="/images/checkmark.svg"
-                        alt="main-logo"
-                        height={20}
-                        width={20}
-                      />
+                      <Image src='/images/checkmark.svg' alt='main-logo' height={20} width={20} />
                     </td>
                     <td>
-                      <Image
-                        src="/images/checkmark.svg"
-                        alt="main-logo"
-                        height={20}
-                        width={20}
-                      />
+                      <Image src='/images/checkmark.svg' alt='main-logo' height={20} width={20} />
                     </td>
                     <td>
-                      <Image
-                        src="/images/checkmark.svg"
-                        alt="main-logo"
-                        height={20}
-                        width={20}
-                      />
+                      <Image src='/images/checkmark.svg' alt='main-logo' height={20} width={20} />
                     </td>
                   </tr>
                   <tr>
                     <td>
                       <h4>Billing</h4>
                       <p>
-                        Create one-time invoices and recurring subscriptions in
-                        your portal. Give clients a way to seamlessly check out,
-                        pay via credit card or ACH, access invoices, and manage
-                        payment methods. Syncs with QuickBooks.
+                        Create one-time invoices and recurring subscriptions in your portal. Give clients a way to
+                        seamlessly check out, pay via credit card or ACH, access invoices, and manage payment methods.
+                        Syncs with QuickBooks.
                       </p>
                       {/* <LearnLink>
                         <Link href="/">
@@ -653,168 +518,84 @@ export default function NewIndex() {
                       </LearnLink> */}
                     </td>
                     <td>
-                      <Image
-                        src="/images/checkmark.svg"
-                        alt="main-logo"
-                        height={20}
-                        width={20}
-                      />
+                      <Image src='/images/checkmark.svg' alt='main-logo' height={20} width={20} />
                     </td>
                     <td>
-                      <Image
-                        src="/images/checkmark.svg"
-                        alt="main-logo"
-                        height={20}
-                        width={20}
-                      />
+                      <Image src='/images/checkmark.svg' alt='main-logo' height={20} width={20} />
                     </td>
                     <td>
-                      <Image
-                        src="/images/checkmark.svg"
-                        alt="main-logo"
-                        height={20}
-                        width={20}
-                      />
+                      <Image src='/images/checkmark.svg' alt='main-logo' height={20} width={20} />
                     </td>
                   </tr>
                   <tr>
                     <td>
                       <h4>Files</h4>
                       <p>
-                        Upload files, add links, and stay organized with
-                        folders. Advanced controls let you specify whether
-                        clients have the same controls or more limited access.
+                        Upload files, add links, and stay organized with folders. Advanced controls let you specify
+                        whether clients have the same controls or more limited access.
                       </p>
                     </td>
                     <td>
-                      <Image
-                        src="/images/checkmark.svg"
-                        alt="main-logo"
-                        height={20}
-                        width={20}
-                      />
+                      <Image src='/images/checkmark.svg' alt='main-logo' height={20} width={20} />
                     </td>
                     <td>
-                      <Image
-                        src="/images/checkmark.svg"
-                        alt="main-logo"
-                        height={20}
-                        width={20}
-                      />
+                      <Image src='/images/checkmark.svg' alt='main-logo' height={20} width={20} />
                     </td>
                     <td>
-                      <Image
-                        src="/images/checkmark.svg"
-                        alt="main-logo"
-                        height={20}
-                        width={20}
-                      />
+                      <Image src='/images/checkmark.svg' alt='main-logo' height={20} width={20} />
                     </td>
                   </tr>
                   <tr>
                     <td>
                       <h4>Contracts</h4>
-                      <p>
-                        Upload PDFs and request eSignatures directly in your
-                        portal.
-                      </p>
+                      <p>Upload PDFs and request eSignatures directly in your portal.</p>
                     </td>
                     <td>
-                      <Image
-                        src="/images/checkmark.svg"
-                        alt="main-logo"
-                        height={20}
-                        width={20}
-                      />
+                      <Image src='/images/checkmark.svg' alt='main-logo' height={20} width={20} />
                     </td>
                     <td>
-                      <Image
-                        src="/images/checkmark.svg"
-                        alt="main-logo"
-                        height={20}
-                        width={20}
-                      />
+                      <Image src='/images/checkmark.svg' alt='main-logo' height={20} width={20} />
                     </td>
                     <td>
-                      <Image
-                        src="/images/checkmark.svg"
-                        alt="main-logo"
-                        height={20}
-                        width={20}
-                      />
+                      <Image src='/images/checkmark.svg' alt='main-logo' height={20} width={20} />
                     </td>
                   </tr>
                   <tr>
                     <td>
                       <h4>Forms</h4>
-                      <p>
-                        Streamline the client onboarding experience and data
-                        intake with reusable forms.
-                      </p>
+                      <p>Streamline the client onboarding experience and data intake with reusable forms.</p>
                     </td>
                     <td>
-                      <Image
-                        src="/images/checkmark.svg"
-                        alt="main-logo"
-                        height={20}
-                        width={20}
-                      />
+                      <Image src='/images/checkmark.svg' alt='main-logo' height={20} width={20} />
                     </td>
                     <td>
-                      <Image
-                        src="/images/checkmark.svg"
-                        alt="main-logo"
-                        height={20}
-                        width={20}
-                      />
+                      <Image src='/images/checkmark.svg' alt='main-logo' height={20} width={20} />
                     </td>
                     <td>
-                      <Image
-                        src="/images/checkmark.svg"
-                        alt="main-logo"
-                        height={20}
-                        width={20}
-                      />
+                      <Image src='/images/checkmark.svg' alt='main-logo' height={20} width={20} />
                     </td>
                   </tr>
                   <tr>
                     <td>
                       <h4>Knowledge base</h4>
                       <p>
-                        Create a knowledge base for your clients to reduce
-                        manual support time. With a powerful article editor, use
-                        rich text, images, videos, and embeds to create content.
-                        Use tags and custom visibility controls to organize
-                        articles and indicate which client can see which content
+                        Create a knowledge base for your clients to reduce manual support time. With a powerful article
+                        editor, use rich text, images, videos, and embeds to create content. Use tags and custom
+                        visibility controls to organize articles and indicate which client can see which content
                       </p>
                     </td>
                     <td>
-                      <Image
-                        src="/images/checkmark.svg"
-                        alt="main-logo"
-                        height={20}
-                        width={20}
-                      />
+                      <Image src='/images/checkmark.svg' alt='main-logo' height={20} width={20} />
                     </td>
                     <td>
-                      <Image
-                        src="/images/checkmark.svg"
-                        alt="main-logo"
-                        height={20}
-                        width={20}
-                      />
+                      <Image src='/images/checkmark.svg' alt='main-logo' height={20} width={20} />
                     </td>
                     <td>
-                      <Image
-                        src="/images/checkmark.svg"
-                        alt="main-logo"
-                        height={20}
-                        width={20}
-                      />
+                      <Image src='/images/checkmark.svg' alt='main-logo' height={20} width={20} />
                     </td>
                   </tr>
-                  <tr className="tablecolor">
-                    <td className="tablepadding">Apps</td>
+                  <tr className='tablecolor'>
+                    <td className='tablepadding'>Apps</td>
                     <td></td>
                     <td></td>
                     <td></td>
@@ -824,27 +605,16 @@ export default function NewIndex() {
                     <td>
                       <h4>Partner Apps</h4>
                       <p>
-                        Embed products like Airtable, ClickUp, Calendly, Google
-                        Data Studio, and 1000s of others in your portal and give
-                        clients a true one-stop shop experience.
+                        Embed products like Airtable, ClickUp, Calendly, Google Data Studio, and 1000s of others in your
+                        portal and give clients a true one-stop shop experience.
                       </p>
                     </td>
                     <td></td>
                     <td>
-                      <Image
-                        src="/images/checkmark.svg"
-                        alt="main-logo"
-                        height={20}
-                        width={20}
-                      />
+                      <Image src='/images/checkmark.svg' alt='main-logo' height={20} width={20} />
                     </td>
                     <td>
-                      <Image
-                        src="/images/checkmark.svg"
-                        alt="main-logo"
-                        height={20}
-                        width={20}
-                      />
+                      <Image src='/images/checkmark.svg' alt='main-logo' height={20} width={20} />
                     </td>
                   </tr>
 
@@ -852,81 +622,36 @@ export default function NewIndex() {
                     <td>
                       <h4>Data Integration Apps</h4>
                       <p>
-                        Connect products like QuickBooks and Google Analytics so
-                        that data can flow from Copilot into an external system
-                        or the other way around.
+                        Connect products like QuickBooks and Google Analytics so that data can flow from Copilot into an
+                        external system or the other way around.
                       </p>
                     </td>
                     <td></td>
                     <td>
-                      <Image
-                        src="/images/checkmark.svg"
-                        alt="main-logo"
-                        height={20}
-                        width={20}
-                      />
+                      <Image src='/images/checkmark.svg' alt='main-logo' height={20} width={20} />
                     </td>
                     <td>
-                      <Image
-                        src="/images/checkmark.svg"
-                        alt="main-logo"
-                        height={20}
-                        width={20}
-                      />
+                      <Image src='/images/checkmark.svg' alt='main-logo' height={20} width={20} />
                     </td>
                   </tr>
-                  <tr></tr>
-                  <tr>
-                    <td>
-                      <h4>Data Integration Apps</h4>
-                      <p>
-                        Connect products like QuickBooks and Google Analytics so
-                        that data can flow from Copilot into an external system
-                        or the other way around.
-                      </p>
-                    </td>
-                    <td></td>
-                    <td>
-                      <Image
-                        src="/images/checkmark.svg"
-                        alt="main-logo"
-                        height={20}
-                        width={20}
-                      />
-                    </td>
-                    <td>
-                      <Image
-                        src="/images/checkmark.svg"
-                        alt="main-logo"
-                        height={20}
-                        width={20}
-                      />
-                    </td>
-                  </tr>
-                  <tr></tr>
+
                   <tr>
                     <td>
                       <h4>Custom Apps</h4>
                       <p>
-                        A custom app is a web application that can be embedded
-                        into your portal and receives information about the
-                        current user or company. You can render custom content
-                        automatically depending on the client that is signed in.
+                        A custom app is a web application that can be embedded into your portal and receives information
+                        about the current user or company. You can render custom content automatically depending on the
+                        client that is signed in.
                       </p>
                     </td>
                     <td></td>
                     <td></td>
                     <td>
-                      <Image
-                        src="/images/checkmark.svg"
-                        alt="main-logo"
-                        height={20}
-                        width={20}
-                      />
+                      <Image src='/images/checkmark.svg' alt='main-logo' height={20} width={20} />
                     </td>
                   </tr>
-                  <tr className="tablecolor">
-                    <td className="tablepadding">Payment processing fees</td>
+                  <tr className='tablecolor'>
+                    <td className='tablepadding'>Payment processing fees</td>
                     <td></td>
                     <td></td>
                     <td></td>
@@ -936,9 +661,8 @@ export default function NewIndex() {
                     <td>
                       <h4>Credit cards</h4>
                       <p>
-                        Payment processing fee for credit cards. You can control
-                        whether you want to absorb payment processing fees or
-                        pass them on to your client.
+                        Payment processing fee for credit cards. You can control whether you want to absorb payment
+                        processing fees or pass them on to your client.
                       </p>
                     </td>
                     <td>
@@ -956,11 +680,9 @@ export default function NewIndex() {
                     <td>
                       <h4>ACH</h4>
                       <p>
-                        Payment processing fee for ACH Debit. You can control
-                        whether you want to absorb payment processing fees or
-                        pass them on to your client. Instant ACH powered by
-                        Plaid and traditional ACH with micro-deposit
-                        verification are both supported.
+                        Payment processing fee for ACH Debit. You can control whether you want to absorb payment
+                        processing fees or pass them on to your client. Instant ACH powered by Plaid and traditional ACH
+                        with micro-deposit verification are both supported.
                       </p>
                     </td>
                     <td>
@@ -974,24 +696,16 @@ export default function NewIndex() {
                     </td>
                   </tr>
 
-                  <tr className="tablecolor">
-                    <td className="tablepadding">
-                      Additional Payment processing fees
-                    </td>
+                  <tr className='tablecolor'>
+                    <td className='tablepadding'>Additional Payment processing fees</td>
                     <td></td>
                     <td></td>
                     <td></td>
                   </tr>
                   <tr>
                     <td>
-                      <h4>
-                        Payments for invoices generated by a recurring
-                        subscription
-                      </h4>
-                      <p>
-                        Payments for invoices that are generated by a
-                        subscription may incur an additional fee.
-                      </p>
+                      <h4>Payments for invoices generated by a recurring subscription</h4>
+                      <p>Payments for invoices that are generated by a subscription may incur an additional fee.</p>
                     </td>
                     <td>
                       <span>+1%</span>
@@ -1006,9 +720,7 @@ export default function NewIndex() {
                   <tr>
                     <td>
                       <h4>International credit cards</h4>
-                      <p>
-                        International credit cards incur an additional 1% fee.
-                      </p>
+                      <p>International credit cards incur an additional 1% fee.</p>
                     </td>
                     <td>
                       <span>+1%</span>
@@ -1023,10 +735,7 @@ export default function NewIndex() {
                   <tr>
                     <td>
                       <h4>Currency conversion required</h4>
-                      <p>
-                        Credit card payments that require currency conversion
-                        incur an additional 1% fee.
-                      </p>
+                      <p>Credit card payments that require currency conversion incur an additional 1% fee.</p>
                     </td>
                     <td>
                       <span>+1%</span>
@@ -1038,8 +747,8 @@ export default function NewIndex() {
                       <span>+1%</span>
                     </td>
                   </tr>
-                  <tr className="tablecolor">
-                    <td className="tablepadding">Support</td>
+                  <tr className='tablecolor'>
+                    <td className='tablepadding'>Support</td>
                     <td></td>
                     <td></td>
                     <td></td>
@@ -1047,78 +756,43 @@ export default function NewIndex() {
                   <tr>
                     <td>
                       <h4>Email and community support</h4>
-                      <p>
-                        Receive support from our Slack community and get answers
-                        from our support team.
-                      </p>
+                      <p>Receive support from our Slack community and get answers from our support team.</p>
                     </td>
                     <td>
-                      <Image
-                        src="/images/checkmark.svg"
-                        alt="main-logo"
-                        height={20}
-                        width={20}
-                      />
+                      <Image src='/images/checkmark.svg' alt='main-logo' height={20} width={20} />
                     </td>
                     <td>
-                      <Image
-                        src="/images/checkmark.svg"
-                        alt="main-logo"
-                        height={20}
-                        width={20}
-                      />
+                      <Image src='/images/checkmark.svg' alt='main-logo' height={20} width={20} />
                     </td>
                     <td>
-                      <Image
-                        src="/images/checkmark.svg"
-                        alt="main-logo"
-                        height={20}
-                        width={20}
-                      />
+                      <Image src='/images/checkmark.svg' alt='main-logo' height={20} width={20} />
                     </td>
                   </tr>
                   <tr>
                     <td>
                       <h4>Priority support</h4>
-                      <p>
-                        Receive elevated support from our priority support team.
-                      </p>
+                      <p>Receive elevated support from our priority support team.</p>
                     </td>
                     <td></td>
                     <td>
-                      <Image
-                        src="/images/checkmark.svg"
-                        alt="main-logo"
-                        height={20}
-                        width={20}
-                      />
+                      <Image src='/images/checkmark.svg' alt='main-logo' height={20} width={20} />
                     </td>
                     <td>
-                      <Image
-                        src="/images/checkmark.svg"
-                        alt="main-logo"
-                        height={20}
-                        width={20}
-                      />
+                      <Image src='/images/checkmark.svg' alt='main-logo' height={20} width={20} />
                     </td>
                   </tr>
                   <tr>
                     <td>
                       <h4>Dedicated expert</h4>
                       <p>
-                        Meet 1:1 with an expert to help you set up your portal,
-                        migrate data, set up workflow automations, and more.
+                        Meet 1:1 with an expert to help you set up your portal, migrate data, set up workflow
+                        automations, and more.
                       </p>
                     </td>
                     <td></td>
                     <td></td>
                     <td>
-                      <Image
-                        src="/images/checkmark.svg"
-                        alt="main-logo"
-                        height={20}
-                        width={20}
-                      />
+                      <Image src='/images/checkmark.svg' alt='main-logo' height={20} width={20} />
                     </td>
                   </tr>
                 </tbody>
@@ -1126,30 +800,20 @@ export default function NewIndex() {
             </PriceTable>
             <PriceImage>
               <PriceImageLeft>
-                <Image
-                  src="/images/logoplus.svg"
-                  alt="main-logo"
-                  height={40}
-                  width={252}
-                />
+                <Image src='/images/logoplus.svg' alt='main-logo' height={40} width={252} />
                 <h3>
                   Starting at $2<span>,</span>000 USD/month
                 </h3>
                 <p>
-                  For large businesses with custom requirements, enterprise
-                  compliance, advanced reporting needs, and more.
+                  For large businesses with custom requirements, enterprise compliance, advanced reporting needs, and
+                  more.
                 </p>
                 <SecondryButton>
-                  <Link href="#">Learn More</Link>
+                  <Link href='#'>Learn More</Link>
                 </SecondryButton>
               </PriceImageLeft>
               <PricePlusImage>
-                <Image
-                  src="/images/price.png"
-                  alt="plus-image"
-                  width={421}
-                  height={361}
-                />
+                <Image src='/images/price.png' alt='plus-image' width={421} height={361} />
               </PricePlusImage>
             </PriceImage>
           </Container>

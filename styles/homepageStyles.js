@@ -535,7 +535,7 @@ const TabRow = styled.div`
           color: ${props.textColor};
         `}
       ${(props) =>
-        props.bgColor &&
+        props.backColor &&
         css`
           background-color: ${props.bgColor};
         `}
@@ -858,7 +858,7 @@ const HelpLeft = styled.div`
   h3 {
     /* max-width: 657px; */
     /* width: 100%; */
-    ${Heading3};
+    ${Heading3}
     color: ${({ theme }) => theme.colors.title};
     margin: 0 0 40px 0;
     span {
