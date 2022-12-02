@@ -108,12 +108,13 @@ const CardMain = styled.div`
 `;
 const FeatureCard = styled.div`
   background-color: ${({ theme }) => theme.colors.whitecolor};
-
+  border: 1px solid #01011d;
   border-radius: 4px;
   overflow: hidden;
   max-width: 100%;
   width: 100%;
   transition: all 0.3s;
+  position: relative;
   /* :hover {
     border: 1.5px solid #01011d;
     box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.1);
