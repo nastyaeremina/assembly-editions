@@ -93,6 +93,7 @@ const tabStyle = ({ $active, $disabled, $theme, $textColor }) => ({
   // color: $active ? '#fff' : '#757575',
   backgroundColor: $active ? MODULE_COLOR_LIST[activeKey]?.bgColor : 'inherit',
   color: $active ? MODULE_COLOR_LIST[activeKey]?.fontColor : '#757575',
+  // eslint-disable-next-line no-dupe-keys
   backgroundColor: $active ? '#120800' : 'inherit',
   'border-radius': '40px',
   padding: '7px 20px'
