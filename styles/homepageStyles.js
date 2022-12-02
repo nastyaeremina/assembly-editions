@@ -893,6 +893,7 @@ const HelpLeftSub = styled.div`
     margin: 0;
     color: ${({ theme }) => theme.colors.primary};
     cursor: pointer;
+    transition: none;
     :hover .HoverArrow__linePath {
       opacity: 1;
       fill: none;
