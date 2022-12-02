@@ -896,6 +896,7 @@ const HelpLeftSub = styled.div`
     :hover .HoverArrow__linePath {
       opacity: 1;
       fill: none;
+      fill: black;
     }
     :hover .HoverArrow__tipPath {
       transform: translateX(2px);
@@ -910,7 +911,6 @@ const HelpLeftSub = styled.div`
   .HoverArrow__linePath {
     opacity: 0;
     fill: none;
-    transition: opacity var(--hoverTransition, var(--arrowHoverTransition));
   }
   .HoverArrow {
     stroke-width: 2px;
