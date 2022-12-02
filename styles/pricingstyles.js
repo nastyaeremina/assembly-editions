@@ -1,4 +1,4 @@
-import styled, { css } from "styled-components";
+import styled, { css } from 'styled-components';
 import {
   Body2,
   Body3,
@@ -10,8 +10,8 @@ import {
   Heading3,
   Heading4,
   Label,
-  TableText,
-} from "./styles";
+  TableText
+} from './styles';
 const HeroSection = styled.div`
   padding: 180px 0 100px 0;
   text-align: center;
@@ -52,9 +52,10 @@ const YearlyButton = styled.div`
     color: ${({ theme }) => theme.colors.lightgray};
     letter-spacing: 0.01em;
     ${Label};
-  }&.active{
+  }
+  &.active {
     background-color: ${({ theme }) => theme.colors.greenlight};
-    button{
+    button {
       color: ${({ theme }) => theme.colors.black};
     }
   }
@@ -66,9 +67,10 @@ const MonthlyButton = styled.div`
     color: ${({ theme }) => theme.colors.lightgray};
     ${Label};
     letter-spacing: 0.01em;
-  }&.active{
+  }
+  &.active {
     background-color: ${({ theme }) => theme.colors.greenlight};
-    button{
+    button {
       color: ${({ theme }) => theme.colors.black};
     }
   }
@@ -178,7 +180,7 @@ const PriceWrap = styled.div`
     letter-spacing: 0.02em;
     margin: 0;
     /* align-self: end; */
-    max-width: 114px;
+    max-width: 115px;
     width: 100%;
   }
 `;
@@ -230,7 +232,7 @@ const PlanButton = styled.div`
 const PriceTable = styled.div`
   padding: 100px 0;
   table {
-    display:none;
+    display: none;
     width: 100%;
     border-spacing: 0;
     .tableBorder {
@@ -314,9 +316,9 @@ const PriceTable = styled.div`
         color: ${({ theme }) => theme.colors.greenmiddark};
         margin: 0;
       }
-    }&.active
-    {
-      display:block;
+    }
+    &.active {
+      display: block;
     }
   }
 `;
@@ -395,7 +397,10 @@ const Pricefaq = styled.div`
   }
   margin: 0 0 60px 0;
 `;
-const PriceText = styled.div``;
+const PriceText = styled.div`
+  max-width: 115px;
+  width: 100%;
+`;
 const BulletImage = styled.div`
   padding: 5px 10px;
   margin-top: 7px;
@@ -445,5 +450,5 @@ export {
   Pricefaq,
   PriceText,
   BulletImage,
-  PricePlusImage,
+  PricePlusImage
 };
