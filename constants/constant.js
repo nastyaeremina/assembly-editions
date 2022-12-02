@@ -94,7 +94,7 @@ export const NAVBAR_COLOR_LIST = [
 
   {
     bgColor: 'rgba(0, 22, 14, 0.8)',
-    borderBottomColor: '#003F27',
+    borderBottomColor: '#E3FFEE',
     fontColor: '#E3FFEE',
     buttonColor: '#003F27',
     primaryColor: '#09AA6C'
