@@ -41,7 +41,7 @@ const SliderWrap = styled.div`
   .mydiv:hover .zoom {
     transform: scale(1.11);
     @media only screen and (max-width: 991px) {
-      transform: none;
+      transform: none !important;
       transition: transform 0.3s;
     }
   }

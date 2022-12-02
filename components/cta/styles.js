@@ -1,17 +1,11 @@
-import styled from "styled-components";
-import { Heading, Heading2, MobileH2 } from "../../styles/styles";
+import styled from 'styled-components';
+import { Heading, Heading2, MobileH2 } from '../../styles/styles';
 
 const CtaInner = styled.div`
-  /* background-image: url("/images/ctabg.svg");
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-  text-align: center; */
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-
   text-align: center;
   h2 {
     color: ${({ theme }) => theme.colors.whiteColor};
@@ -21,7 +15,11 @@ const CtaInner = styled.div`
     max-width: 708px;
     width: 100%;
     @media only screen and (max-width: 991px) {
-      ${MobileH2}
+      font-style: normal;
+      font-weight: 400;
+      font-size: 42px;
+      line-height: 40px;
+      padding-bottom: 28px;
     }
     span {
       color: ${({ theme }) => theme.colors.primary};
@@ -53,6 +51,13 @@ const CtaBtn = styled.div`
   display: flex;
   justify-content: center;
   gap: 16px;
+  @media only screen and (max-width: 991px) {
+    .paddingbtn {
+      a {
+        padding: 6px 24px;
+      }
+    }
+  }
   @media only screen and (max-width: 749px) {
     flex-direction: column;
     .paddingbtn {
@@ -121,49 +126,68 @@ const CtaImage = styled.div`
   .leftcta {
     position: absolute;
     left: 0;
-    top: 50px;
+    top: 50%;
+    transform: translate(0%, -50%);
     @media only screen and (max-width: 991px) {
       display: none;
     }
   }
   .rightcta {
     position: absolute;
-    top: 50px;
+    top: 50%;
     right: 0;
+    transform: translate(0%, -50%);
     @media only screen and (max-width: 991px) {
       display: none;
     }
   }
-  .ctaleft {
-    position: absolute;
-    left: 0;
-    top: 10px;
+  .ctalefttab {
     display: none;
-
     @media only screen and (max-width: 991px) {
       display: block;
-      max-height: 390px;
-      height: 100%;
+      position: absolute;
+      left: 0;
+      top: 50%;
+      transform: translate(0%, -50%);
+    }
+    @media only screen and (max-width: 749px) {
+      display: none;
+    }
+  }
+  .ctarighttab {
+    display: none;
+    @media only screen and (max-width: 991px) {
+      display: block;
+      position: absolute;
+      right: 0;
+      top: 50%;
+      transform: translate(0%, -50%);
+    }
+    @media only screen and (max-width: 749px) {
+      display: none;
+    }
+  }
+  .ctaleft {
+    display: none;
+    @media only screen and (max-width: 749px) {
+      display: block;
+      position: absolute;
+      left: 0;
+      top: 50%;
+      transform: translate(0%, -50%);
     }
   }
   .ctaright {
-    position: absolute;
-    top: 10px;
-    right: 0;
     display: none;
-    @media only screen and (max-width: 991px) {
+    @media only screen and (max-width: 749px) {
       display: block;
+      position: absolute;
+      right: 0;
+      top: 50%;
+      transform: translate(0%, -50%);
     }
   }
 `;
-export {
-  CtaInner,
-  CtaLeft,
-  CtaRight,
-  SectionHeading,
-  CtaBtn,
-  CtaAnimation,
-  CtaMain,
-  CtaSection,
-  CtaImage,
-};
+const Background = styled.div``;
+
+export { CtaInner, CtaLeft, CtaRight, SectionHeading, CtaBtn, CtaAnimation, CtaMain, CtaSection, CtaImage, Background };

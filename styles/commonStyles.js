@@ -1,4 +1,4 @@
-import styled, { css } from "styled-components";
+import styled, { css } from 'styled-components';
 import {
   ButtonText,
   HeaderFont,
@@ -10,8 +10,8 @@ import {
   Body2,
   Body3,
   MbButtonText,
-  MbPrimaryBtn,
-} from "./styles";
+  MbPrimaryBtn
+} from './styles';
 
 const Container = styled.div`
   width: 100%;
@@ -77,7 +77,7 @@ const FcfeatureWrap = styled.div`
   padding: 80px 0;
   margin-top: 50px;
   background-color: ${({ theme }) => theme.colors.greendark};
-  background-image: url("/images/ctabg.svg");
+  background-image: url('/images/ctabg.svg');
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -133,6 +133,12 @@ const PrimaryButton = styled.div`
     border: 1px solid #09aa6c;
     :hover {
       background-color: ${({ theme }) => theme.colors.primary};
+    }
+  }
+  @media only screen and (max-width: 991px) {
+    a {
+      ${HeaderFont};
+      padding: 6px 24px;
     }
   }
   @media only screen and (max-width: 749px) {
@@ -194,6 +200,10 @@ const CtaButton = styled.div`
     transition: all 300ms;
     :hover {
       background-color: ${({ theme }) => theme.colors.gainsboro};
+    }
+    @media only screen and (max-width: 991px) {
+      ${HeaderFont};
+      padding: 6px 24px;
     }
     @media only screen and (max-width: 749px) {
       text-align: center;
@@ -291,14 +301,8 @@ const LinearBg = styled.div`
   z-index: -1;
   width: 100%;
   height: 100%;
-  background: linear-gradient(
-      180deg,
-      hsla(0, 0%, 100%, 0),
-      hsla(0, 0%, 100%, 0) 78%,
-      hsla(0, 0%, 100%, 0.5) 91%,
-      #fff
-    ),
-    url("/images/blogdetail_linearbg.webp");
+  background: linear-gradient(180deg, hsla(0, 0%, 100%, 0), hsla(0, 0%, 100%, 0) 78%, hsla(0, 0%, 100%, 0.5) 91%, #fff),
+    url('/images/blogdetail_linearbg.webp');
   background-position: 0 0, 50% 50%;
   background-size: auto, cover;
   background-repeat: repeat, no-repeat;
@@ -431,7 +435,7 @@ const RichTextBlock = styled.div`
       margin-bottom: 0;
       padding: 0 0 0 16px;
       color: ${({ theme }) => theme.colors.textColor};
-      background-image: url("/images/list-circle.svg");
+      background-image: url('/images/list-circle.svg');
       background-repeat: no-repeat;
       background-position: 0 12px;
     }
@@ -566,7 +570,7 @@ const SearchInput = styled.input`
 const SearchIcon = styled.input`
   height: 24px;
   width: 24px;
-  background-image: url("/images/search.svg");
+  background-image: url('/images/search.svg');
   background-repeat: no-repeat;
   background-position: center;
   position: absolute;
@@ -719,5 +723,5 @@ export {
   SolutionTopSection,
   HeroCommonSection,
   GreenButton,
-  TransparenBlack,
+  TransparenBlack
 };
