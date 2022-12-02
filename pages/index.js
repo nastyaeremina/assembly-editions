@@ -445,6 +445,15 @@ export default function Home() {
                               class='HoverArrow__linePath'
                             />
                           </svg>
+                          <svg width='8' height='14' viewBox='0 0 8 14' fill='none' class='mobilearrow'>
+                            <path
+                              d='M2 3L6 7L2 11'
+                              stroke='#09AA6C'
+                              stroke-width='1.85714'
+                              stroke-linecap='round'
+                              stroke-linejoin='round'
+                            />
+                          </svg>
                         </a>
                       </HelpLink>
                     </HelpLeftSub>
@@ -468,6 +477,15 @@ export default function Home() {
                               stroke-linecap='round'
                               stroke-linejoin='round'
                               class='HoverArrow__linePath'
+                            />
+                          </svg>
+                          <svg width='8' height='14' viewBox='0 0 8 14' fill='none' class='mobilearrow'>
+                            <path
+                              d='M2 3L6 7L2 11'
+                              stroke='#09AA6C'
+                              stroke-width='1.85714'
+                              stroke-linecap='round'
+                              stroke-linejoin='round'
                             />
                           </svg>
                         </a>
@@ -501,6 +519,15 @@ export default function Home() {
                                 class='HoverArrow__linePath'
                               />
                             </svg>
+                            <svg width='8' height='14' viewBox='0 0 8 14' fill='none' class='mobilearrow'>
+                              <path
+                                d='M2 3L6 7L2 11'
+                                stroke='#09AA6C'
+                                stroke-width='1.85714'
+                                stroke-linecap='round'
+                                stroke-linejoin='round'
+                              />
+                            </svg>
                           </a>
                         </HelpLink>
                       </HelpLeftSub>
@@ -524,6 +551,15 @@ export default function Home() {
                                 stroke-linecap='round'
                                 stroke-linejoin='round'
                                 class='HoverArrow__linePath'
+                              />
+                            </svg>
+                            <svg width='8' height='14' viewBox='0 0 8 14' fill='none' class='mobilearrow'>
+                              <path
+                                d='M2 3L6 7L2 11'
+                                stroke='#09AA6C'
+                                stroke-width='1.85714'
+                                stroke-linecap='round'
+                                stroke-linejoin='round'
                               />
                             </svg>
                           </a>

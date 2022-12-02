@@ -15,7 +15,8 @@ import {
   MobileH3,
   MbBody3,
   MbBody4,
-  HeaderFont
+  HeaderFont,
+  MobileH4
 } from './styles';
 
 const HomeMain = styled.div`
@@ -869,7 +870,7 @@ const HelpLeft = styled.div`
     padding: 30px;
   }
   @media only screen and (max-width: 749px) {
-    padding: 20px;
+    padding: 20px 20px 28px 20px;
     max-width: 100%;
     h3 {
       max-width: 100%;
@@ -877,6 +878,7 @@ const HelpLeft = styled.div`
     }
     display: block;
   }
+
   span {
     color: ${({ theme }) => theme.colors.primary};
   }
@@ -898,13 +900,23 @@ const HelpLeftSub = styled.div`
       opacity: 1;
       fill: none;
       fill: black;
+      @media only screen and (max-width: 749px) {
+        opacity: 0;
+      }
     }
     :hover .HoverArrow__tipPath {
       transform: translateX(2px);
+      @media only screen and (max-width: 749px) {
+        transform: none;
+      }
     }
   }
+
   .learn-link:hover {
     color: black;
+    @media only screen and (max-width: 749px) {
+      color: green;
+    }
   }
   .learn-link svg path {
     transition: all 300ms ease;
@@ -927,6 +939,16 @@ const HelpLeftSub = styled.div`
     --arrowSpacing: 5px;
     --arrowHoverTransition: 150ms cubic-bezier(0.215, 0.61, 0.355, 1);
     --arrowHoverOffset: translateX(3px);
+    @media only screen and (max-width: 749px) {
+      display: none;
+    }
+  }
+  .mobilearrow {
+    display: none;
+    @media only screen and (max-width: 749px) {
+      position: relative;
+      display: block;
+    }
   }
   h4 {
     ${Heading4};
@@ -940,7 +962,7 @@ const HelpLeftSub = styled.div`
   }
   @media only screen and (max-width: 749px) {
     h4 {
-      ${Heading4};
+      ${MobileH4};
       color: ${({ theme }) => theme.colors.title};
       margin: 0 0 12px 0;
     }
@@ -951,6 +973,9 @@ const HelpLeftSub = styled.div`
     }
     a {
       ${HeaderFont};
+      display: flex;
+      align-items: center;
+      gap: 4px;
     }
   }
 `;

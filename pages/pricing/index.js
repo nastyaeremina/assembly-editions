@@ -805,8 +805,7 @@ export default function NewIndex() {
                   Starting at $2<span>,</span>000 USD/month
                 </h3>
                 <p>
-                  For large businesses with custom requirements, enterprise compliance, advanced reporting needs, and
-                  more.
+                  For businesses with custom requirements, enterprise compliance, advanced reporting needs, and more.
                 </p>
                 <SecondryButton>
                   <Link href='#'>Learn More</Link>
