@@ -727,6 +727,6 @@ export {
   SolutionTopSection,
   HeroCommonSection,
   GreenButton,
-  TransparenBlack
+  TransparenBlack,
   BulletImage
 };
