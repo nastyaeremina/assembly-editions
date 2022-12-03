@@ -215,8 +215,12 @@ export default function Navbar({ BlogDetails, isModule, headerIndex, isEnterPric
                       </MenuWrap>
                     </ListLi>
                   </InnerList>
-                  <LineMenuImg className='img-line'>
-                    <Image src='/images/featurelinemenu.svg' alt='line-icon' width={92} height={30} />
+                  <LineMenuImg className='img-line' lineColor={colorList?.lineColor}>
+                    <svg width='93' height='30' viewBox='0 0 93 30' fill='none' xmlns='http://www.w3.org/2000/svg'>
+                      <line x1='20.5' y1='-2.18557e-08' x2='20.5' y2='30' stroke='#00160E' />
+                      <line x1='20' y1='7.5' x2='92' y2='7.50001' stroke='#00160E' />
+                      <line x1='92.5' y1='-2.18557e-08' x2='92.5' y2='8' stroke='#00160E' />
+                    </svg>
                   </LineMenuImg>
                 </SpanLink>
                 {/* <SpanLink
@@ -336,8 +340,12 @@ export default function Navbar({ BlogDetails, isModule, headerIndex, isEnterPric
                       </MenuWrap>
                     </ListLi>
                   </InnerList>
-                  <LineMenuImg className='img-line'>
-                    <Image src='/images/companyline.svg' alt='line-icon' width={100} height={30} />
+                  <LineMenuImg className='img-line' lineColor={colorList?.lineColor}>
+                    <svg width='101' height='30' viewBox='0 0 101 30' fill='none' xmlns='http://www.w3.org/2000/svg'>
+                      <line x1='20.5' y1='-2.18557e-08' x2='20.5' y2='30' stroke='#00160E' />
+                      <line x1='20' y1='7.5' x2='100' y2='7.50001' stroke='#00160E' />
+                      <line x1='100.5' y1='-2.18557e-08' x2='100.5' y2='8' stroke='#00160E' />
+                    </svg>
                   </LineMenuImg>
                 </SpanLink>
                 <SpanLink
@@ -531,8 +539,12 @@ export default function Navbar({ BlogDetails, isModule, headerIndex, isEnterPric
                       </MenuWrap>
                     </ListLi>
                   </InnerList>
-                  <LineMenuImg className='img-line'>
-                    <Image src='/images/resourceline.svg' alt='line-icon' width={108} height={30} />
+                  <LineMenuImg className='img-line' lineColor={colorList?.lineColor}>
+                    <svg width='108' height='30' viewBox='0 0 108 30' fill='none' xmlns='http://www.w3.org/2000/svg'>
+                      <line x1='20.5' y1='-2.18557e-08' x2='20.5' y2='30' stroke='#00160E' />
+                      <line x1='20' y1='7.5' x2='107' y2='7.50001' stroke='#00160E' />
+                      <line x1='107.5' y1='-2.18557e-08' x2='107.5' y2='8' stroke='#00160E' />
+                    </svg>
                   </LineMenuImg>
                 </SpanLink>
                 <SpanMobileLink
