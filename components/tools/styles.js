@@ -12,15 +12,10 @@ const ToolMain = styled.div`
   }
 
   span {
-    ${(props) =>
-      props.moduleColor
-        ? css`
-        color: ${props.moduleColor};}
-      `
-        : css`
-            color: ${({ theme }) => theme.colors.primary};
-          `}
-`;
+    color: ${({ theme }) => theme.colors.primary};
+  }
+  `
+  ;
 const ModuleSection = styled.div`
   margin-top: 40px;
   border: 1px solid #120800;

@@ -6,9 +6,6 @@ import { Provider as StyletronProvider } from "styletron-react";
 import { styletron } from "../styletron";
 
 import SEO from "../next-seo.config";
-import { useCallback, useEffect } from "react";
-import UserPreferenceSingleton from "../helpers/UserPreferenceSingleton";
-import { getTabGroupPost } from "../lib/contentful-tabs";
 
 const GlobalStyle = createGlobalStyle`
   html {
