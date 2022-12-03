@@ -47,7 +47,8 @@ import {
   BtnView,
   HomeMain,
   ImageHover,
-  HelpImg
+  HelpImg,
+  IconWrap
 } from '../styles/homepageStyles';
 import BusinessSlider from '../components/businessSlider/businessslider';
 import ExtensionSlider from '../components/extensionslider/extensionslider';
@@ -202,9 +203,11 @@ export default function Home() {
                     <Tab title='Messaging' className='ml0'>
                       <ContainWrap>
                         <LeftDetail>
-                          <IconSvg>
-                            <Image src='/images/msgicon.svg' width={64} height={60} alt='msg-icon' />
-                          </IconSvg>
+                          <IconWrap>
+                            <IconSvg>
+                              <Image src='/images/msgtab.svg' width={44} height={44} alt='msg-icon' />
+                            </IconSvg>
+                          </IconWrap>
                           <h4>Messaging</h4>
                           <p>
                             Let clients securely and seamlessly message you from your portal. And give your team the

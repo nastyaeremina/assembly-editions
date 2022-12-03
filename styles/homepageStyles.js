@@ -596,17 +596,53 @@ const TabBox = styled.div`
     }
   }
 `;
-const IconSvg = styled.div`
+const IconWrap = styled.div`
   position: relative;
   margin-bottom: 28px;
   ::after {
     content: '';
     position: absolute;
     border-top: 1px solid #000000;
-    max-width: 241px;
+    max-width: 242px;
     width: 100%;
     top: 50%;
   }
+  @media only screen and (max-width: 749px) {
+    display: none;
+  }
+`;
+const IconSvg = styled.div`
+  display: inline-block;
+  width: 100%;
+  position: relative;
+  padding: 8px 10px;
+  width: 64px;
+  height: 60px;
+  ::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 10px;
+    border-top: 1px solid #00160e;
+    border-left: 1px solid #00160e;
+    border-bottom: 1px solid #00160e;
+    border-radius: 4px 0px 0 4px;
+  }
+  ::before {
+    content: '';
+    position: absolute;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    width: 10px;
+    border-top: 1px solid #00160e;
+    border-right: 1px solid #00160e;
+    border-bottom: 1px solid #00160e;
+    border-radius: 0px 4px 4px 0px;
+  }
+
   @media only screen and (max-width: 749px) {
     display: none;
   }
@@ -1128,5 +1164,6 @@ export {
   IconViewblank,
   BtnView,
   ImageHover,
-  HelpImg
+  HelpImg,
+  IconWrap
 };
