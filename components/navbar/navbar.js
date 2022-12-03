@@ -160,7 +160,7 @@ export default function Navbar({ BlogDetails, isModule, headerIndex, isEnterPric
                   )}
                   <InnerList features className='innerlist'>
                     <ListLi>
-                      <MenuWrap msghover href='/modules/message'>
+                      <MenuWrap msghover href='/features/message'>
                         <LeftImg>
                           <Image src='/images/menumsg.svg' alt='msg-icon' width={32} height={32} />
                         </LeftImg>
@@ -171,7 +171,7 @@ export default function Navbar({ BlogDetails, isModule, headerIndex, isEnterPric
                       </MenuWrap>
                     </ListLi>
                     <ListLi>
-                      <MenuWrap billhover href='/modules/billing'>
+                      <MenuWrap billhover href='/features/billing'>
                         <LeftImg>
                           <Image src='/images/billmenuicon.svg' alt='bill-icon' width={32} height={32} />
                         </LeftImg>
@@ -182,7 +182,7 @@ export default function Navbar({ BlogDetails, isModule, headerIndex, isEnterPric
                       </MenuWrap>
                     </ListLi>
                     <ListLi>
-                      <MenuWrap filehover href='/modules/file'>
+                      <MenuWrap filehover href='/features/file'>
                         <LeftImg>
                           <Image src='/images/filemenuicon.svg' alt='file-icon' width={32} height={32} />
                         </LeftImg>
@@ -193,7 +193,7 @@ export default function Navbar({ BlogDetails, isModule, headerIndex, isEnterPric
                       </MenuWrap>
                     </ListLi>
                     <ListLi>
-                      <MenuWrap formhover href='/modules/form'>
+                      <MenuWrap formhover href='/features/form'>
                         <LeftImg>
                           <Image src='/images/formmenuicon.svg' alt='form-icon' width={32} height={32} />
                         </LeftImg>
@@ -204,7 +204,7 @@ export default function Navbar({ BlogDetails, isModule, headerIndex, isEnterPric
                       </MenuWrap>
                     </ListLi>
                     <ListLi>
-                      <MenuWrap helphover href='/modules/knowledge'>
+                      <MenuWrap helphover href='/features/knowledge'>
                         <LeftImg>
                           <Image src='/images/deskmenuicon.svg' alt='desk-icon' width={32} height={32} />
                         </LeftImg>

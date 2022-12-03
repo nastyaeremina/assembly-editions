@@ -214,7 +214,7 @@ export default function Home() {
                             ability to centralize client communication and stay organized.{' '}
                           </p>
                           <SecondryButton>
-                            <Link href='https://copilot-release.vercel.app/modules/message'>Learn More</Link>
+                            <Link href='https://copilot-release.vercel.app/features/message'>Learn More</Link>
                           </SecondryButton>
                         </LeftDetail>
                         <RightDetail>
@@ -235,7 +235,7 @@ export default function Home() {
                             ability to centralize client communication and stay organized.
                           </p>
                           <SecondryButton>
-                            <Link href='https://copilot-release.vercel.app/modules/billing'>Learn More</Link>
+                            <Link href='https://copilot-release.vercel.app/features/billing'>Learn More</Link>
                           </SecondryButton>
                         </LeftDetail>
                         <RightDetail>
@@ -257,7 +257,7 @@ export default function Home() {
                             ability to centralize client communication and stay organized.
                           </p>
                           <SecondryButton>
-                            <Link href='https://copilot-release.vercel.app/modules/file'>Learn More</Link>
+                            <Link href='https://copilot-release.vercel.app/features/file'>Learn More</Link>
                           </SecondryButton>
                         </LeftDetail>
                         <RightDetail>
@@ -279,7 +279,7 @@ export default function Home() {
                             ability to centralize client communication and stay organized.
                           </p>
                           <SecondryButton>
-                            <Link href='https://copilot-release.vercel.app/modules/form'>Learn More</Link>
+                            <Link href='https://copilot-release.vercel.app/features/form'>Learn More</Link>
                           </SecondryButton>
                         </LeftDetail>
                         <RightDetail>
@@ -300,7 +300,7 @@ export default function Home() {
                             ability to centralize client communication and stay organized.
                           </p>
                           <SecondryButton>
-                            <Link href='https://copilot-release.vercel.app/modules/knowledge'>Learn More</Link>
+                            <Link href='https://copilot-release.vercel.app/features/knowledge'>Learn More</Link>
                           </SecondryButton>
                         </LeftDetail>
                         <RightDetail>
