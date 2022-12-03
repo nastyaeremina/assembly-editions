@@ -1,52 +1,38 @@
 import styled from 'styled-components';
-import { Heading, Heading2, MobileH2 } from '../../styles/styles';
+import { Heading, Heading2 } from '../../styles/styles';
 
 const CtaInner = styled.div`
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
   text-align: center;
   h2 {
     color: ${({ theme }) => theme.colors.whiteColor};
     ${Heading2};
-    padding-bottom: 40px;
+    padding-bottom: 50px;
     margin: 0 auto;
     max-width: 708px;
     width: 100%;
     @media only screen and (max-width: 991px) {
       font-style: normal;
       font-weight: 400;
+      font-size: 60px;
+      line-height: 62px;
+      padding-bottom: 28px;
+      max-width: 524px;
+    }
+    @media only screen and (max-width: 749px) {
+      font-style: normal;
+      font-weight: 400;
       font-size: 42px;
       line-height: 40px;
       padding-bottom: 28px;
+      max-width: 188px;
     }
     span {
       color: ${({ theme }) => theme.colors.primary};
       /* display: block; */
     }
   }
-  @media only screen and (max-width: 749px) {
-    h2 {
-      font-weight: 400;
-      font-size: 44px;
-      line-height: 42px;
-      max-width: 260px;
-    }
-  }
 `;
-const CtaLeft = styled.div`
-  width: 100%;
-  max-width: 70%;
-  @media only screen and (max-width: 768px) {
-    max-width: 100%;
-  }
-`;
-const SectionHeading = styled.h2`
-  margin: 0;
-  ${Heading}
-  color: ${({ theme }) => theme.colors.whiteColor};
-`;
+
 const CtaBtn = styled.div`
   display: flex;
   justify-content: center;
@@ -65,43 +51,6 @@ const CtaBtn = styled.div`
     }
   }
 `;
-const CtaRight = styled.div`
-  width: 100%;
-  max-width: 30%;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  button {
-    :first-child {
-      margin-bottom: 20px;
-    }
-  }
-  @media only screen and (max-width: 768px) {
-    max-width: 100%;
-    margin-top: 24px;
-    flex-direction: row;
-    align-items: flex-start;
-    button {
-      :first-child {
-        margin-bottom: 0;
-        margin-right: 16px;
-      }
-    }
-  }
-  @media only screen and (max-width: 479px) {
-    flex-direction: column;
-    button {
-      width: 100%;
-      a {
-        width: 100%;
-      }
-      :first-child {
-        margin-bottom: 12px;
-        margin-right: 0;
-      }
-    }
-  }
-`;
 const CtaAnimation = styled.div`
   /* padding-top: 50px; */
   position: relative;
@@ -115,79 +64,65 @@ const CtaAnimation = styled.div`
     height: 100%;
   }
 `;
-const CtaMain = styled.div`
-  position: absolute;
-`;
-const CtaSection = styled.div``;
-const CtaImage = styled.div`
-  /* position: absolute;
-  top: 50px;
-  left: 231px; */
-  .leftcta {
-    position: absolute;
-    left: 0;
-    top: 50%;
-    transform: translate(0%, -50%);
-    @media only screen and (max-width: 991px) {
-      display: none;
-    }
-  }
-  .rightcta {
-    position: absolute;
-    top: 50%;
-    right: 0;
-    transform: translate(0%, -50%);
-    @media only screen and (max-width: 991px) {
-      display: none;
-    }
-  }
-  .ctalefttab {
-    display: none;
-    @media only screen and (max-width: 991px) {
-      display: block;
-      position: absolute;
-      left: 0;
-      top: 50%;
-      transform: translate(0%, -50%);
-    }
-    @media only screen and (max-width: 749px) {
-      display: none;
-    }
-  }
-  .ctarighttab {
-    display: none;
-    @media only screen and (max-width: 991px) {
-      display: block;
-      position: absolute;
-      right: 0;
-      top: 50%;
-      transform: translate(0%, -50%);
-    }
-    @media only screen and (max-width: 749px) {
-      display: none;
-    }
-  }
-  .ctaleft {
-    display: none;
-    @media only screen and (max-width: 749px) {
-      display: block;
-      position: absolute;
-      left: 0;
-      top: 50%;
-      transform: translate(0%, -50%);
-    }
-  }
-  .ctaright {
-    display: none;
-    @media only screen and (max-width: 749px) {
-      display: block;
-      position: absolute;
-      right: 0;
-      top: 50%;
-      transform: translate(0%, -50%);
-    }
-  }
-`;
-const Background = styled.div``;
 
-export { CtaInner, CtaLeft, CtaRight, SectionHeading, CtaBtn, CtaAnimation, CtaMain, CtaSection, CtaImage, Background };
+const LeftImg = styled.div`
+  position: relative;
+  ::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    border-top: 1px dashed #ffffff;
+    right: 100%;
+    width: 100vw;
+  }
+  .mobileshow {
+    display: none;
+    @media only screen and (max-width: 749px) {
+      display: block;
+    }
+  }
+  .mobilehide {
+    @media only screen and (max-width: 749px) {
+      display: none;
+    }
+  }
+`;
+const CtaWrap = styled.div`
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+`;
+const MainCta = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  width: 100%;
+`;
+const RightImg = styled.div`
+  position: relative;
+  ::after {
+    content: '';
+    position: absolute;
+    width: 100vw;
+    left: 100%;
+    top: 50%;
+    border-top: 1px dashed #ffffff;
+  }
+  .mobileshow {
+    display: none;
+    @media only screen and (max-width: 749px) {
+      display: block;
+    }
+  }
+  .mobilehide {
+    @media only screen and (max-width: 749px) {
+      display: none;
+    }
+  }
+`;
+export { CtaInner, CtaBtn, CtaAnimation, CtaWrap, LeftImg, MainCta, RightImg };
