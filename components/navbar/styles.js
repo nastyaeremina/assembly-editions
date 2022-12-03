@@ -1,4 +1,5 @@
 import styled, { css } from 'styled-components';
+import Link from 'next/link';
 import { HeaderFont, Body2, Body5, FooterText, Body4, MbButtonText } from '../../styles/styles';
 
 const NavbarWrapper = styled.div`
@@ -548,7 +549,7 @@ const OverLayBlock = styled.div`
       height: calc(100vh - 76px);
     `}
 `;
-const MenuWrap = styled.a`
+const MenuWrap = styled(Link)`
   display: flex;
   align-items: center;
   padding: 12px 20px;
