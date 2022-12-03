@@ -26,6 +26,14 @@ export const FUNCTION_LIST = {
   FORMS: 3,
   HELPDESK: 4
 };
+
+export const HOME_MODULE_LIST = {
+  Messaging: 0,
+  Billing: 1,
+  Files: 2,
+  Forms: 3,
+  Helpdesk: 4
+};
 export const MODULE_COLOR_LIST = [
   { bgColor: '#120800', fontColor: '#ffffff' },
   { bgColor: '#01292C', fontColor: '#E0FBFD' },
@@ -39,8 +47,7 @@ export const NAVBAR_COLOR_LIST = [
     borderBottomColor: '#CCCCD0',
     fontColor: '#131313',
     buttonColor: '#000000',
-    primaryColor: '#09AA6C',
-    lineColor: '#00160E'
+    primaryColor: '#09AA6C'
   },
 
   {
@@ -48,56 +55,49 @@ export const NAVBAR_COLOR_LIST = [
     borderBottomColor: '#85664D',
     fontColor: '#F3F3F2',
     buttonColor: '#D7B79E',
-    primaryColor: '#D7B79E',
-    lineColor: '#FFF6F0'
+    primaryColor: '#D7B79E'
   },
   {
     bgColor: 'rgba(1, 1, 29, 0.8)',
     borderBottomColor: '#3D3FBE',
     fontColor: '#F3F3F2',
     buttonColor: '#989AF2',
-    primaryColor: '#989AF2',
-    lineColor: '#EFEEFF'
+    primaryColor: '#989AF2'
   },
   {
     bgColor: 'rgba(1, 41, 44, 0.8)',
     borderBottomColor: '#03888F',
     fontColor: '#F3F3F2',
     buttonColor: '#00AFB9',
-    primaryColor: '#00AFB9',
-    lineColor: '#E0FBFD'
+    primaryColor: '#00AFB9'
   },
   {
     bgColor: 'rgba(23, 21, 0, 0.8)',
     borderBottomColor: '#958602',
     fontColor: '#F3F3F2',
     buttonColor: '#F3DA1A',
-    primaryColor: '#F3DA1A',
-    lineColor: '#FDFBEC'
+    primaryColor: '#F3DA1A'
   },
   {
     bgColor: 'rgba(28, 12, 0, 0.8)',
     borderBottomColor: '#CF650D',
     fontColor: '#F3F3F2',
     buttonColor: '#FD8C2E',
-    primaryColor: '#FD8C2E',
-    lineColor: '#FFEDDE'
+    primaryColor: '#FD8C2E'
   },
   {
     bgColor: 'rgba(39, 0, 10, 0.8)',
     borderBottomColor: '#B8294B',
     fontColor: '#F3F3F2',
     buttonColor: '#F35B80',
-    primaryColor: '#F35B80',
-    lineColor: '#FFEFF3'
+    primaryColor: '#F35B80'
   },
   {
     bgColor: 'rgba(253, 253, 251, 0.8)',
     borderBottomColor: '#CCCCD0',
     fontColor: '#131313',
     buttonColor: '#000000',
-    primaryColor: '#09AA6C',
-    lineColor: '#00160E'
+    primaryColor: '#09AA6C'
   },
 
   {
@@ -105,8 +105,7 @@ export const NAVBAR_COLOR_LIST = [
     borderBottomColor: '#003F27',
     fontColor: '#E3FFEE',
     buttonColor: '#003F27',
-    primaryColor: '#09AA6C',
-    lineColor: '#E3FFEE'
+    primaryColor: '#09AA6C'
   }
 ];
 export const MODULE_IMAGE_LIST = [
@@ -133,3 +132,5 @@ export const APPS_TYPE = {
   PARTNER_APP: "Partner App",
   DATA_INTEGRATION: "Data Integration"
 }
+
+export const HOME_FEATURES_TAB_ID = "6R0hkm1PSDEGOmel7Q6wva"

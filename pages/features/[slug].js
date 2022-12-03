@@ -26,8 +26,9 @@ import Client from "../../components/client/client";
 import { Container } from "../../styles/commonStyles";
 import { HEADER_LIST, MUDULE_LIST } from "../../constants/constant";
 import { useMemo } from "react";
+import { getTabPosts } from "../../lib/contentful-tabs";
 
-export default function Modules({ module }) {
+export default function Modules({ module, moduleDetails }) {
   const renderHeroSection = useMemo(() => {
     switch (module) {
       case MUDULE_LIST.BILLING:
@@ -212,8 +213,11 @@ export default function Modules({ module }) {
 }
 
 export async function getServerSideProps({ params, preview = false }) {
+  const allPosts = (await getTabPosts(preview)) ?? [];
+  const moduleDetails = allPosts?.filter((item) => item?.name.toLowerCase() === params?.slug)
+
   return {
-    props: { preview, module: params?.slug },
+    props: { preview, module: params?.slug, moduleDetails },
   };
 }
 

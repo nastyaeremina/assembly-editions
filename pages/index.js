@@ -53,22 +53,40 @@ import {
 import BusinessSlider from '../components/businessSlider/businessslider';
 import ExtensionSlider from '../components/extensionslider/extensionslider';
 import CTA from '../components/cta/cta';
-import { HEADER_LIST, MODULE_COLOR_LIST } from '../constants/constant';
-import React, { useCallback, useMemo } from 'react';
+import { HEADER_LIST, HOME_FEATURES_TAB_ID, HOME_MODULE_LIST, MODULE_COLOR_LIST } from '../constants/constant';
+import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import classNames from 'classnames';
+import { getTabGroupById, getTabGroupPost } from '../lib/contentful-tabs';
+import { isEmpty } from '../helpers/helpers';
 
-function TabOverride({ children, ...rest }) {
+function TabOverride(rest) {
+  const { $active, id } = rest;
+  const fontColor = MODULE_COLOR_LIST[HOME_MODULE_LIST[rest?.children]]?.fontColor
+  const bgColor = MODULE_COLOR_LIST[HOME_MODULE_LIST[rest?.children]]?.bgColor
+
+  const newRest = {
+    ...rest,
+    bgColor: bgColor,
+    fontColor: fontColor,
+  };
   return (
-    <StyledTab {...rest}>
-      <LabelMedium
+    <StyledTab {...newRest}>
+      {< LabelMedium
         overrides={{
           Block: {
-            style: { color: 'inherit', ':hover': { color: 'inherit' } }
+            style: {
+              color: 'inherit',
+              ':hover': { color: 'inherit' }
+              // color: $active ? MODULE_COLOR_LIST[HOME_MODULE_LIST[rest?.children]]?.fontColor : 'inherit',
+              // backgroundColor: $active ? MODULE_COLOR_LIST[HOME_MODULE_LIST[rest?.children]]?.bgColor : 'inherit', ':hover': { color: 'inherit' }
+            }
           }
         }}>
-        {children}
-      </LabelMedium>
-    </StyledTab>
+
+        {rest?.children}
+
+      </ LabelMedium>}
+    </StyledTab >
   );
 }
 
@@ -87,15 +105,17 @@ const tabContentStyle = ({ $theme }) => ({
   borderTopColor: $theme.colors.mono600,
   borderBottomColor: $theme.colors.mono600
 });
-
+console.log("module", MODULE_COLOR_LIST[HOME_MODULE_LIST['Messaging']]?.bgColor);
 let activeKey = 0;
-const tabStyle = ({ $active, $disabled, $theme, $textColor }) => ({
-  // outlineColor: $theme.colors.white,
-  // color: $active ? '#fff' : '#757575',
+const tabStyle = ({ $active, $disabled, $theme, bgColor, fontColor }) => ({
   backgroundColor: $active ? MODULE_COLOR_LIST[activeKey]?.bgColor : 'inherit',
   color: $active ? MODULE_COLOR_LIST[activeKey]?.fontColor : '#757575',
+  // outlineColor: $theme.colors.white,
+  // color: $active ? fontColor && fontColor : '#757575',
+  // backgroundColor: $active ? bgColor && bgColor : 'inherit',
+
+
   // eslint-disable-next-line no-dupe-keys
-  backgroundColor: $active ? '#120800' : 'inherit',
   'border-radius': '40px',
   padding: '7px 20px'
   // ':hover': $active
@@ -107,7 +127,8 @@ const tabStyle = ({ $active, $disabled, $theme, $textColor }) => ({
   //       color: '#000'
   //     }
 });
-export default function Home() {
+export default function Home({ allPosts }) {
+
   // const [activeKey, setActiveKey] = React.useState(0);
   const setActiveKey = useCallback((value) => {
     activeKey = value;
@@ -120,6 +141,35 @@ export default function Home() {
   //   Keys.MESSAGING === activeKey,
   //   Keys.BILLING === activeKey
   // );
+
+  const tablistview = useMemo(() => {
+    if (isEmpty(allPosts)) return null
+    return allPosts?.map((item, index) => {
+      return (
+        <Tab title={item?.name} className={index === 0 ? 'ml0' : 'ml0'} key={index} id={item?.name}>
+          <ContainWrap>
+            <LeftDetail>
+              <IconWrap>
+                <IconSvg>
+                  <Image src={item?.icon?.url} width={44} height={44} alt='msg-icon' />
+                </IconSvg>
+              </IconWrap>
+              <h4>{item?.name}</h4>
+              <p>
+                {item?.description}
+              </p>
+              <SecondryButton>
+                <Link href={`features/${item?.slug}`}>Learn More</Link>
+              </SecondryButton>
+            </LeftDetail>
+            <RightDetail>
+              <Image src={item?.image?.url} width={881.76} height={550.63} alt='msg-screen' />
+            </RightDetail>
+          </ContainWrap>
+        </Tab>)
+
+    })
+  }, [allPosts])
 
   return (
     <>
@@ -200,7 +250,7 @@ export default function Home() {
                       },
                       Tab: { component: TabOverride, style: tabStyle }
                     }}>
-                    <Tab title='Messaging' className='ml0'>
+                    {/* <Tab title='Messaging' className='ml0'>
                       <ContainWrap>
                         <LeftDetail>
                           <IconWrap>
@@ -221,9 +271,9 @@ export default function Home() {
                           <Image src='/images/msgscreen.png' width={881.76} height={550.63} alt='msg-screen' />
                         </RightDetail>
                       </ContainWrap>
-                    </Tab>
-                    <Tab title='Billing'>
-                      {/* <div>{content[Number(activeKey)]}</div> */}
+                    </Tab> */}
+                    {tablistview}
+                    {/* <Tab title='Billing'>
                       <ContainWrap>
                         <LeftDetail>
                           <IconSvg>
@@ -244,8 +294,7 @@ export default function Home() {
                       </ContainWrap>
                     </Tab>
                     <Tab title='Files'>
-                      {/* <div>{content[Number(activeKey)]}</div>
-                       */}
+
                       <ContainWrap>
                         <LeftDetail>
                           <IconSvg>
@@ -266,8 +315,7 @@ export default function Home() {
                       </ContainWrap>
                     </Tab>
                     <Tab title='Forms'>
-                      {/* <div>{content[Number(activeKey)]}</div>
-                       */}
+
                       <ContainWrap>
                         <LeftDetail>
                           <IconSvg>
@@ -288,7 +336,6 @@ export default function Home() {
                       </ContainWrap>
                     </Tab>
                     <Tab title='Helpdesk'>
-                      {/* <div>{content[Number(activeKey)]}</div> */}
                       <ContainWrap>
                         <LeftDetail>
                           <IconSvg>
@@ -307,7 +354,7 @@ export default function Home() {
                           <Image src='/images/clientscreen.png' width={881} height={550} alt='form-screen' />
                         </RightDetail>
                       </ContainWrap>
-                    </Tab>
+                    </Tab> */}
                   </StatefulTabs>
                 </TabRow>
               </BottomFunction>
@@ -582,4 +629,15 @@ export default function Home() {
       </Layout>
     </>
   );
+}
+
+export async function getServerSideProps({ preview = false }) {
+
+  const allPosts = (await getTabGroupById(HOME_FEATURES_TAB_ID, preview)) ?? [];
+  return {
+    props: {
+      allPosts,
+
+    },
+  };
 }
