@@ -120,3 +120,7 @@ export const MONTH_LIST = [
   'November',
   'December'
 ];
+export const APPS_TYPE = {
+  PARTNER_APP: "Partner App",
+  DATA_INTEGRATION: "Data Integration"
+}
