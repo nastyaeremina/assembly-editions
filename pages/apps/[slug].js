@@ -26,7 +26,8 @@ import Image from 'next/image';
 import {
   getAllDataIntegrationAppWithSlug,
   getAllPartnerApps,
-  getAllPartnerAppsWithSlug
+  getAllPartnerAppsWithSlug,
+  getPartnerAppDetail
 } from '../../lib/contentful-partnerApps';
 import { useMemo } from 'react';
 import { isEmpty } from '../../helpers/helpers';
@@ -99,7 +100,7 @@ export default function AppsDetail({ appDetail, relatedApps }) {
                 <Image src={appDetail?.preview?.url} alt='bill-icon' width={869} height={543} layout={'fixed'} />
               </DetailWrap>
               <DetailRight>
-                <RightWrap>
+                {!isEmpty(appDetail?.appType) && <RightWrap>
                   <Image
                     src='/images/linesmall.svg'
                     alt='bill-icon'
@@ -111,11 +112,11 @@ export default function AppsDetail({ appDetail, relatedApps }) {
                   <DetailTxt>
                     <p>Type</p>
                     <HelpWrap>
-                      <span>App</span>
+                      <span>{appDetail?.appType}</span>
                       <Image src='/images/help.svg' alt='bill-icon' width={20} height={20} layout={'fixed'} />
                     </HelpWrap>
                   </DetailTxt>
-                </RightWrap>
+                </RightWrap>}
                 {!isEmpty(appDetail?.website) && (
                   <RightWrap>
                     <Image
@@ -170,16 +171,20 @@ export default function AppsDetail({ appDetail, relatedApps }) {
 }
 
 export async function getServerSideProps({ params, preview = false }) {
-  const allPosts = (await getAllPartnerApps(preview)) ?? [];
-  const appDetail = allPosts?.filter((item) => item?.slug === params?.slug)?.[0];
-  const categoryList = appDetail?.partnerAppCategoriesCollection?.items?.map((item) => item?.slug);
-  const relatedApps = allPosts
-    ?.filter(
-      (item) =>
-        item?.partnerAppCategoriesCollection?.items?.some((element) => categoryList.includes(element?.slug)) &&
-        item?.slug !== params?.slug
-    )
-    ?.slice(0, 4);
+  const appDetail = (await getPartnerAppDetail(params?.slug, preview)) ?? {};
+  let relatedApps = []
+  if (!isEmpty(appDetail)) {
+
+    const allPosts = (await getAllPartnerApps(appDetail?.appType, preview)) ?? [];
+    const categoryList = appDetail?.partnerAppCategoriesCollection?.items?.map((item) => item?.slug);
+    relatedApps = allPosts
+      ?.filter(
+        (item) =>
+          item?.partnerAppCategoriesCollection && item?.partnerAppCategoriesCollection?.items?.some((element) => categoryList.includes(element?.slug)) &&
+          item?.slug !== params?.slug
+      )
+      ?.slice(0, 4);
+  }
   return {
     props: { appDetail, relatedApps }
   };

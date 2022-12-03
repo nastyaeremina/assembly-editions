@@ -40,15 +40,14 @@ import CTA from "../../components/cta/cta";
 import Image from "next/image";
 import FAQ from "../../components/faq/faq";
 import {
-  getAllDataIntegrationApp,
   getAllParrtnerAppsCategories,
   getAllPartnerApps,
-  getFeaturedPartnerAppsContent,
 } from "../../lib/contentful-partnerApps";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { isEmpty } from "../../helpers/helpers";
+import { APPS_TYPE } from "../../constants/constant";
 
-export default function Extensions({
+export default function Apps({
   featuredApps,
   allCategoryWithPost,
   dataIntegrationApps,
@@ -257,11 +256,11 @@ export default function Extensions({
 }
 
 export async function getServerSideProps({ preview = false }) {
-  const allPosts = (await getAllPartnerApps(preview)) ?? [];
+  const allPosts = (await getAllPartnerApps(APPS_TYPE.PARTNER_APP, preview)) ?? [];
   const allCategory = (await getAllParrtnerAppsCategories(preview)) ?? [];
-  const dataIntegrationApps = (await getAllDataIntegrationApp(preview)) ?? [];
+  const dataIntegrationApps = (await getAllPartnerApps(APPS_TYPE.DATA_INTEGRATION, preview)) ?? [];
 
-  const featuredApps = allPosts?.filter((item) => item?.isFeatured === true);
+  const featuredApps = allPosts?.filter((item) => item?.isFeatured === true && item?.appType === APPS_TYPE.PARTNER_APP);
 
   let allCategoryWithPost = [];
 
@@ -283,3 +282,4 @@ export async function getServerSideProps({ preview = false }) {
     },
   };
 }
+
