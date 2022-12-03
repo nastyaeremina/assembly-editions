@@ -1,8 +1,8 @@
-import Layout from "/components/layout";
-import Link from "next/link";
-import { NextSeo } from "next-seo";
-import { getAllBlogs } from "../../lib/contentful-blogs";
-import Navbar from "../../components/navbar/navbar";
+import Layout from '/components/layout';
+import Link from 'next/link';
+import { NextSeo } from 'next-seo';
+import { getAllBlogs } from '../../lib/contentful-blogs';
+import Navbar from '../../components/navbar/navbar';
 import {
   HeroSection,
   FeatureSection,
@@ -30,34 +30,25 @@ import {
   BuildAppsDetail,
   OtherWrap,
   CardMain,
-} from "../../styles/appsStyles";
-import {
-  Container,
-  PrimaryButton,
-  SecondryButton,
-} from "../../styles/commonStyles";
-import CTA from "../../components/cta/cta";
-import Image from "next/image";
-import FAQ from "../../components/faq/faq";
-import {
-  getAllParrtnerAppsCategories,
-  getAllPartnerApps,
-} from "../../lib/contentful-partnerApps";
-import { useCallback, useEffect, useMemo, useState } from "react";
-import { isEmpty } from "../../helpers/helpers";
-import { APPS_TYPE } from "../../constants/constant";
+  MainBg,
+  ImgView
+} from '../../styles/appsStyles';
+import { Container, PrimaryButton, SecondryButton } from '../../styles/commonStyles';
+import CTA from '../../components/cta/cta';
+import Image from 'next/image';
+import FAQ from '../../components/faq/faq';
+import { getAllParrtnerAppsCategories, getAllPartnerApps } from '../../lib/contentful-partnerApps';
+import { useCallback, useEffect, useMemo, useState } from 'react';
+import { isEmpty } from '../../helpers/helpers';
+import { APPS_TYPE } from '../../constants/constant';
 
-export default function Apps({
-  featuredApps,
-  allCategoryWithPost,
-  dataIntegrationApps,
-}) {
+export default function Apps({ featuredApps, allCategoryWithPost, dataIntegrationApps }) {
   const [selected_category, setSelected_category] = useState();
   useEffect(() => {
-    if (typeof window !== "undefined") {
+    if (typeof window !== 'undefined') {
       console.log(window.location);
       let hash = window.location.hash;
-      let result = hash.replace(/#/g, "");
+      let result = hash.replace(/#/g, '');
       setSelected_category(result);
     }
   }, []);
@@ -69,12 +60,7 @@ export default function Apps({
           <FeatureCard key={`featuredview_index_${index}`}>
             <Link href={`/apps/${item?.slug}`}>
               <FeatureImg>
-                <Image
-                  src={item?.logo?.url}
-                  alt="main-logo"
-                  width={236}
-                  height={56}
-                />
+                <Image src={item?.logo?.url} alt='main-logo' width={236} height={56} objectFit='contain' />
               </FeatureImg>
               <CardText>
                 <h4>{item?.name}</h4>
@@ -100,8 +86,7 @@ export default function Apps({
             href={`#${item?.category?.slug}`}
             onClick={() => {
               setSelected_category(item?.category?.slug);
-            }}
-          >
+            }}>
             {item?.category?.name}
           </Link>
         </Catagoryitem>
@@ -116,13 +101,9 @@ export default function Apps({
         <CardSub key={`partnerappview_index${index}`}>
           <Link href={`/apps/${item?.slug}`}>
             <CardInfo>
-              <Image
-                src={item?.icon?.url}
-                alt="red-icon"
-                width={35}
-                height={35}
-                layout={"fixed"}
-              />
+              <ImgView>
+                <Image src={item?.icon?.url} alt='red-icon' width={35} height={35} layout={'fixed'} />
+              </ImgView>
               <h4>{item?.name}</h4>
             </CardInfo>
             <p>{item?.description}</p>
@@ -136,10 +117,7 @@ export default function Apps({
     if (isEmpty(allCategoryWithPost)) return null;
     return allCategoryWithPost?.map((item, index) => {
       return (
-        <ExtensionsSection
-          id={item?.category?.slug}
-          key={`allCategoryappsview_index_${index}`}
-        >
+        <ExtensionsSection id={item?.category?.slug} key={`allCategoryappsview_index_${index}`}>
           <h3>{item?.category?.name}</h3>
           <ExtensionCard>{renderPartnerAppsView(item?.list)}</ExtensionCard>
         </ExtensionsSection>
@@ -155,101 +133,92 @@ export default function Apps({
   return (
     <>
       <NextSeo
-        title="copilot blogs to keep you up with the  Sales Tactics!"
-        description="Sale is a prominent part of any business & nothing can be better than getting tried tactics for it. So get all that you want to know about sales from our Blogs."
+        title='copilot blogs to keep you up with the  Sales Tactics!'
+        description='Sale is a prominent part of any business & nothing can be better than getting tried tactics for it. So get all that you want to know about sales from our Blogs.'
       />
       <Layout>
-        <Navbar />
-        <HeroSection>
-          <Container>
-            <h2>App Directory</h2>
-            <p>Try Copilot free for 14 days, no credit card required</p>
-            <PrimaryButton>
-              <Link href="https://dashboard.copilot.com/onboarding">
-                Start Trial
-              </Link>
-            </PrimaryButton>
-          </Container>
-        </HeroSection>
-        <FeatureSection>
-          <Container>
-            <FeatureWrap>
-              <FeatureLeft>
-                <LeftWrap>
-                  <InputWrap>
-                    <Image
-                      src="/images/searchicon.svg"
-                      alt="search-icon"
-                      width={20}
-                      height={20}
-                    />
-                    <Input placeholder="Find an app" />
-                  </InputWrap>
-                  <Catagory>
-                    <h4>Partner Apps</h4>
-                    <Catagoryitem>
-                      <Link href={"#Brief-Section"}>Featured</Link>
-                    </Catagoryitem>
-                    {renderCategoryList}
-                  </Catagory>
-                  <OtherWrap>
-                    <h4>Other</h4>
-                    <Catagoryitem>
-                      <Link href={"#Integrations-Section"}>
-                        Data Integrations
-                      </Link>
-                    </Catagoryitem>
-                    <Catagoryitem>
-                      <Link href={"#custome-apps"}>Custom Apps</Link>
-                    </Catagoryitem>
-                  </OtherWrap>
-                </LeftWrap>
-              </FeatureLeft>
+        <MainBg>
+          <Navbar />
+          <HeroSection>
+            <Container>
+              <h2>App Directory</h2>
+              <p>Try Copilot free for 14 days, no credit card required</p>
+              <PrimaryButton>
+                <Link href='https://dashboard.copilot.com/onboarding'>Start Trial</Link>
+              </PrimaryButton>
+            </Container>
+          </HeroSection>
+          <FeatureSection>
+            <Container>
+              <FeatureWrap>
+                <FeatureLeft>
+                  <LeftWrap>
+                    <InputWrap>
+                      <Image src='/images/searchicon.svg' alt='search-icon' width={20} height={20} />
+                      <Input placeholder='Find an app' />
+                    </InputWrap>
+                    <Catagory>
+                      <h4>Partner Apps</h4>
+                      <Catagoryitem>
+                        <Link href={'#Brief-Section'}>Featured</Link>
+                      </Catagoryitem>
+                      {renderCategoryList}
+                    </Catagory>
+                    <OtherWrap>
+                      <h4>Other</h4>
+                      <Catagoryitem>
+                        <Link href={'#Integrations-Section'}>Data Integrations</Link>
+                      </Catagoryitem>
+                      <Catagoryitem>
+                        <Link href={'#custome-apps'}>Custom Apps</Link>
+                      </Catagoryitem>
+                    </OtherWrap>
+                  </LeftWrap>
+                </FeatureLeft>
 
-              <FeatureRight>
-                {!isEmpty(featuredApps) && (
-                  <Featured id="Brief-Section">
-                    <h3>Featured</h3>
-                    <FeatureMenu>{renderFeaturedView}</FeatureMenu>
-                  </Featured>
-                )}
-                {renderAllCategoryAppsView}
+                <FeatureRight>
+                  {!isEmpty(featuredApps) && (
+                    <Featured id='Brief-Section'>
+                      <h3>Featured</h3>
+                      <FeatureMenu>{renderFeaturedView}</FeatureMenu>
+                    </Featured>
+                  )}
+                  {renderAllCategoryAppsView}
 
-                {!isEmpty(dataIntegrationApps) && (
-                  <ExtensionsSection id="Integrations-Section">
+                  {!isEmpty(dataIntegrationApps) && (
+                    <ExtensionsSection id='Integrations-Section'>
+                      <AppsTitle>
+                        <h3>Data Integrations</h3>
+                        <p>Integrations</p>
+                      </AppsTitle>
+                      <ExtensionCard>{renderDataIntegrationApps}</ExtensionCard>
+                    </ExtensionsSection>
+                  )}
+                  <ExtensionsSection id='custome-apps'>
                     <AppsTitle>
-                      <h3>Data Integrations</h3>
-                      <p>Integrations</p>
+                      <h3>Custom Apps</h3>
                     </AppsTitle>
-                    <ExtensionCard>{renderDataIntegrationApps}</ExtensionCard>
+                    <BuildWrap>
+                      <BuildAppsDetail>
+                        <h5>Build your own app</h5>
+                        <p>
+                          A custom app is a web application that can be embedded into your portal and receives
+                          information about the current user or company. With that capability you can render custom
+                          content automatically depending on the user that is currently signed in.
+                        </p>
+                        <SecondryButton>
+                          <Link href='/'>Read API docs</Link>
+                        </SecondryButton>
+                      </BuildAppsDetail>
+                    </BuildWrap>
                   </ExtensionsSection>
-                )}
-                <ExtensionsSection id="custome-apps">
-                  <AppsTitle>
-                    <h3>Custom Apps</h3>
-                  </AppsTitle>
-                  <BuildWrap>
-                    <BuildAppsDetail>
-                      <h5>Build your own app</h5>
-                      <p>
-                        A custom app is a web application that can be embedded
-                        into your portal and receives information about the
-                        current user or company. With that capability you can
-                        render custom content automatically depending on the
-                        user that is currently signed in.
-                      </p>
-                      <SecondryButton>
-                        <Link href="/">Read API docs</Link>
-                      </SecondryButton>
-                    </BuildAppsDetail>
-                  </BuildWrap>
-                </ExtensionsSection>
-              </FeatureRight>
-            </FeatureWrap>
-          </Container>
-        </FeatureSection>
-        <FAQ />
-        <CTA />
+                </FeatureRight>
+              </FeatureWrap>
+            </Container>
+          </FeatureSection>
+          <FAQ />
+          <CTA />
+        </MainBg>
       </Layout>
     </>
   );
@@ -266,20 +235,16 @@ export async function getServerSideProps({ preview = false }) {
 
   allCategory?.forEach((item) => {
     const filterList = allPosts?.filter((element) =>
-      element?.partnerAppCategoriesCollection?.items?.some(
-        (category) => category?.slug === item?.slug
-      )
+      element?.partnerAppCategoriesCollection?.items?.some((category) => category?.slug === item?.slug)
     );
-    if (!isEmpty(filterList))
-      allCategoryWithPost?.push({ category: item, list: filterList });
+    if (!isEmpty(filterList)) allCategoryWithPost?.push({ category: item, list: filterList });
   });
 
   return {
     props: {
       featuredApps,
       allCategoryWithPost,
-      dataIntegrationApps,
-    },
+      dataIntegrationApps
+    }
   };
 }
-
