@@ -1,21 +1,32 @@
 import Link from 'next/link';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import Image from 'next/image';
 import { CtaButton, PrimaryButton } from '../../styles/commonStyles';
 import { Gradient } from '../../public/js/Gradient.js';
-import { CtaInner, CtaBtn, CtaAnimation, CtaWrap, LeftImg, MainCta, RightImg } from './styles';
+import { isEmpty } from '../../helpers/helpers';
+import { HEADER_LIST, NAVBAR_COLOR_LIST } from '../../constants/constant';
+import {
+  CtaInner,
+  CtaBtn,
+  CtaAnimation,
+  CtaWrap,
+  LeftImg,
+  MainCta,
+  RightImg
+} from './styles';
 
 
 export default function CTA({ moduleName, colorList }) {
+
   useEffect(() => {
     const gradient = new Gradient();
     gradient.initGradient('#gradient-canvas');
   }, []);
-  console.log("colorList", colorList);
+
   return (
     <>
       <CtaAnimation>
-        <canvas id='gradient-canvas' data-transition-in className={moduleName} />
+        <canvas id='gradient-canvas' data-transition-in className={moduleName ? moduleName : 'entrance'} />
         <CtaWrap>
           <MainCta>
             <LeftImg>
@@ -25,13 +36,13 @@ export default function CTA({ moduleName, colorList }) {
             <CtaInner>
               <h2>Start, run, and grow your business</h2>
               <CtaBtn>
-                <PrimaryButton textColor={colorList?.lightColor}
-                  backgroundColor={colorList?.primaryColor}>
+                <PrimaryButton textColor={colorList?.lightColor ? colorList?.lightColor : NAVBAR_COLOR_LIST[HEADER_LIST.ENTERPRICE].lightColor}
+                  backgroundColor={colorList?.primaryColor ? colorList?.primaryColor : NAVBAR_COLOR_LIST[HEADER_LIST.ENTERPRICE].primaryColor}>
                   <Link className='paddingbtn' href='https://dashboard.copilot.com/onboarding'>
                     Start Trial
                   </Link>
                 </PrimaryButton>
-                <CtaButton textColor={colorList?.lightColor}>
+                <CtaButton textColor={colorList?.lightColor ? colorList?.lightColor : NAVBAR_COLOR_LIST[HEADER_LIST.ENTERPRICE].lightColor}>
                   <Link href='/book-demo'>Book Demo</Link>
                 </CtaButton>
               </CtaBtn>

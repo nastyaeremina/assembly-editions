@@ -350,7 +350,7 @@ th {
   -webkit-filter: blur(50px);
   filter: blur(50px);
 }
-.entrance_cta {
+.entrance {
   --gradient-color-1: #09aa6c;
   --gradient-color-2: #00160e;
   --gradient-color-3: #003f27;
