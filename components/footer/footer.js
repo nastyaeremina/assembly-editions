@@ -235,7 +235,6 @@ export default function Footer({ isEnterPrice }) {
                     <Link href='/features/files-app'>Files</Link>
                     <Link href='/features/forms-app'>Forms</Link>
                     <Link href='/features/helpdesk-app'>Helpdesk</Link>
-                    <Link href='/features/contract'>Contracts</Link>
                     <Link href='/apps'>Apps</Link>
                   </FooterMenuList>
                 </FooterMenu>
@@ -284,7 +283,6 @@ export default function Footer({ isEnterPrice }) {
                     <Link href='/features/files-app'>Files</Link>
                     <Link href='/features/forms-app'>Forms</Link>
                     <Link href='/features/helpdesk-app'>Helpdesk</Link>
-                    <Link href='/features/contract'>Contracts</Link>
                     <Link href='/apps'>Apps</Link>
                   </FooterMenuList>
                 </FooterMenu>
