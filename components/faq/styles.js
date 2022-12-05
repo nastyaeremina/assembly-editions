@@ -2,7 +2,7 @@ import styled, { css } from 'styled-components';
 import { Body1, Heading, Heading2, Heading3, Heading4 } from '../../styles/styles';
 
 const FaqSection = styled.div`
-  padding: 100px 0 50px;
+  padding: 100px 0 60px 0;
   ${(props) =>
     props.enterprise &&
     css`
@@ -10,6 +10,9 @@ const FaqSection = styled.div`
       background-color: ${({ theme }) => theme.colors.greenlight};
     `}
   .ak:last-child {
+    border-bottom: none;
+  }
+  .c2:last-child {
     border-bottom: none;
   }
 `;
