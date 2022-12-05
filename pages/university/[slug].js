@@ -1,7 +1,7 @@
-import Layout from "/components/layout";
-import Link from "next/link";
-import { NextSeo } from "next-seo";
-import Navbar from "../../components/navbar/navbar";
+import Layout from '/components/layout';
+import Link from 'next/link';
+import { NextSeo } from 'next-seo';
+import Navbar from '../../components/navbar/navbar';
 import {
   DetailVideoMain,
   DetailVideoHero,
@@ -10,40 +10,28 @@ import {
   VideoImage,
   VIdeoWrap,
   UniversityVideo,
-  FeatureCard,
-} from "../../styles/universityStyles";
-import { Container } from "../../styles/commonStyles";
-import Image from "next/image";
+  FeatureCard
+} from '../../styles/universityStyles';
+import { Container } from '../../styles/commonStyles';
+import Image from 'next/image';
 import {
   getAllUniversityVideos,
   getAllUniversityVideoWithSlug,
-  getUniversityVideoDetail,
-} from "../../lib/contentful-universityVideos";
-import { isEmpty } from "../../helpers/helpers";
-import { useMemo } from "react";
+  getUniversityVideoDetail
+} from '../../lib/contentful-universityVideos';
+import { isEmpty } from '../../helpers/helpers';
+import { useMemo } from 'react';
 
-export default function UniversityDetail({
-  relatedVideos,
-  universityVideoDetail,
-}) {
-  console.log("relatedApps", relatedVideos);
+export default function UniversityDetail({ relatedVideos, universityVideoDetail }) {
+  console.log('relatedApps', relatedVideos);
 
   const renderRelatedVideosView = useMemo(() => {
     if (isEmpty(relatedVideos)) return null;
     return relatedVideos?.map((item, index) => {
       return (
-        <Link
-          href={`/university/${item?.slug}`}
-          key={`relatedvideos_index_${index}`}
-        >
+        <Link href={`/university/${item?.slug}`} key={`relatedvideos_index_${index}`}>
           <FeatureCard>
-            <Image
-              src={item?.thumbnail?.url}
-              alt="video"
-              width={270}
-              height={152}
-              layout={"fixed"}
-            />
+            <Image src={item?.thumbnail?.url} alt='video' width={270} height={152} layout={'fixed'} />
           </FeatureCard>
         </Link>
       );
@@ -53,23 +41,17 @@ export default function UniversityDetail({
   return (
     <>
       <NextSeo
-        title="copilot blogs to keep you up with the  Sales Tactics!"
-        description="Sale is a prominent part of any business & nothing can be better than getting tried tactics for it. So get all that you want to know about sales from our Blogs."
+        title='copilot blogs to keep you up with the  Sales Tactics!'
+        description='Sale is a prominent part of any business & nothing can be better than getting tried tactics for it. So get all that you want to know about sales from our Blogs.'
       />
       <Layout>
         <Navbar />
         <DetailVideoMain>
           <Container>
             <DetailVideoHero>
-              <Link href="/university">
+              <Link href='/university'>
                 <Backlink>
-                  <Image
-                    src="/images/leftarrow.svg"
-                    alt="leftarrow"
-                    width={12}
-                    height={12}
-                    layout={"fixed"}
-                  />
+                  <Image src='/images/leftarrow.svg' alt='leftarrow' width={12} height={12} layout={'fixed'} />
                   <p>Back to Univeristy</p>
                 </Backlink>
               </Link>
@@ -80,18 +62,18 @@ export default function UniversityDetail({
                 <VideoImage>
                   <Image
                     src={universityVideoDetail?.thumbnail?.url}
-                    alt="video"
+                    alt='video'
                     width={1224}
                     height={689}
-                    layout={"fixed"}
+                    layout={'fixed'}
                   />
                   <Image
-                    src="/images/youtube.svg"
-                    alt="video"
+                    src='/images/youtube.svg'
+                    alt='video'
                     width={196}
                     height={196}
-                    layout={"fixed"}
-                    className="mainimage"
+                    layout={'fixed'}
+                    className='mainimage'
                   />
                 </VideoImage>
               </Link>
@@ -123,18 +105,16 @@ export async function getServerSideProps({ params, preview = false }) {
     else page++;
   } while (data?.length !== 0);
 
-  const universityVideoDetail =
-    (await getUniversityVideoDetail(params?.slug)) || {};
+  const universityVideoDetail = (await getUniversityVideoDetail(params?.slug)) || {};
 
   const relatedVideos = allPosts
     ?.filter(
       (item) =>
-        item?.videoCategory === universityVideoDetail?.videoCategory &&
-        item?.slug !== universityVideoDetail?.slug
+        item?.videoCategory === universityVideoDetail?.videoCategory && item?.slug !== universityVideoDetail?.slug
     )
     ?.slice(0, 4);
   return {
-    props: { universityVideoDetail, relatedVideos },
+    props: { universityVideoDetail, relatedVideos }
   };
 }
 
@@ -143,6 +123,6 @@ export async function getServerSidePaths() {
   return {
     paths: allPosts?.map((slug) => `${slug}`) ?? [],
 
-    fallback: true,
+    fallback: true
   };
 }

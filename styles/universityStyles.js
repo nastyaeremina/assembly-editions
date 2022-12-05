@@ -1,15 +1,5 @@
-import styled, { css } from "styled-components";
-import {
-  Body2,
-  Body4,
-  Body5,
-  Heading2,
-  Heading3,
-  Heading4,
-  Heading5,
-  LinkTxt,
-  Value,
-} from "./styles";
+import styled, { css } from 'styled-components';
+import { Body2, Body4, Body5, Heading2, Heading3, Heading4, Heading5, LinkTxt, Value } from './styles';
 const UniversitySection = styled.div`
   padding-top: 80px;
   padding-bottom: 100px;
@@ -46,7 +36,7 @@ const InputWrap = styled.div`
   position: relative;
   img {
     position: absolute;
-    top: 18px;
+    top: 15px;
     left: 20px;
   }
 `;
@@ -54,13 +44,29 @@ const Input = styled.input`
   ${Value};
   color: ${({ theme }) => theme.colors.title};
   letter-spacing: 0.01em;
-  padding: 11px 80px 11px 56px;
-  border: 1px solid #ccccd0;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 26px;
+  padding: 11px 20px 11px 55px;
+  border: 1.5px solid #bebebf;
   border-radius: 48px;
   width: 306px;
   outline: 0;
+  transition: 0.3s all;
   ::placeholder {
     color: ${({ theme }) => theme.colors.lightgray};
+  }
+  :hover {
+    border: 1.5px solid #ccccd0;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.07);
+  }
+  :active {
+    border: 1.5px solid #131313;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.07);
+  }
+  :focus {
+    border: 1.5px solid #131313;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.07);
   }
 `;
 const Catagory = styled.ul`
@@ -96,6 +102,7 @@ const Catagoryitem = styled.li`
   }
 `;
 const FeatureRight = styled.div`
+  margin-top: -40px;
   position: relative;
   h3 {
     ${Heading4};
@@ -119,6 +126,8 @@ const FeatureMenu = styled.div`
 `;
 const FeatureCard = styled.div`
   border-radius: 4px;
+  max-height: 152px;
+  height: 100%;
 `;
 const ExtensionsSection = styled.div`
   padding-top: 40px;
@@ -170,7 +179,8 @@ const Backlink = styled.div`
 `;
 const VideoImage = styled.div`
   position: relative;
-  padding-bottom: 40px;
+  max-height: 689px;
+  height: 100%;
 `;
 const VideoSection = styled.div`
   padding-bottom: 100px;
@@ -182,7 +192,7 @@ const VideoSection = styled.div`
   p {
     ${Body2};
     color: ${({ theme }) => theme.colors.body};
-    margin: 0;
+    margin: 40px 0 0 0;
   }
 `;
 const VIdeoWrap = styled.div`
@@ -221,5 +231,5 @@ export {
   VideoSection,
   VideoImage,
   VIdeoWrap,
-  UniversityVideo,
+  UniversityVideo
 };
