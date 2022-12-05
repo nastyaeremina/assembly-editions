@@ -44,7 +44,7 @@ export default function Client({ currentModule }) {
 
                 <HelpLeftSub>
                   <HelpLink className='icon-link'>
-                    <Link href='/features/billing' className='learn-link mb0'>
+                    <Link href='/features/billing-app' className='learn-link mb0'>
                       Billling
                       <svg class='HoverArrow' width='10' height='10' viewBox='0 0 10 10' aria-hidden='true'>
                         <g fill-rule='evenodd'>
@@ -77,7 +77,7 @@ export default function Client({ currentModule }) {
                 />
                 <HelpLeftSub>
                   <HelpLink className='icon-link'>
-                    <Link href='/features/file' className='learn-link mb0'>
+                    <Link href='/features/files-app' className='learn-link mb0'>
                       Files
                       <svg class='HoverArrow' width='10' height='10' viewBox='0 0 10 10' aria-hidden='true'>
                         <g fill-rule='evenodd'>
@@ -110,7 +110,7 @@ export default function Client({ currentModule }) {
                 />
                 <HelpLeftSub>
                   <HelpLink className='icon-link'>
-                    <Link href='/features/form' className='learn-link mb0'>
+                    <Link href='/features/forms-app' className='learn-link mb0'>
                       Forms
                       <svg class='HoverArrow' width='10' height='10' viewBox='0 0 10 10' aria-hidden='true'>
                         <g fill-rule='evenodd'>
@@ -145,7 +145,7 @@ export default function Client({ currentModule }) {
                 </ImageWrapper>
                 <HelpLeftSub>
                   <HelpLink className='icon-link'>
-                    <Link href='/features/knowledge' className='learn-link mb0'>
+                    <Link href='/features/helpdesk-app' className='learn-link mb0'>
                       Helpdesk
                       <svg class='HoverArrow' width='10' height='10' viewBox='0 0 10 10' aria-hidden='true'>
                         <g fill-rule='evenodd'>

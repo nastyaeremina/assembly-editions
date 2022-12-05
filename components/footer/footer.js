@@ -230,11 +230,11 @@ export default function Footer({ isEnterPrice }) {
                 <FooterMenu isEnterPrice={isEnterPrice}>
                   <p>Features</p>
                   <FooterMenuList isEnterPrice={isEnterPrice}>
-                    <Link href='/features/message'>Messaging</Link>
-                    <Link href='/features/billing'>Billing</Link>
-                    <Link href='/features/file'>Files</Link>
-                    <Link href='/features/form'>Forms</Link>
-                    <Link href='/features/knowledge'>Helpdesk</Link>
+                    <Link href='/features/messaging-app'>Messaging</Link>
+                    <Link href='/features/billing-app'>Billing</Link>
+                    <Link href='/features/files-app'>Files</Link>
+                    <Link href='/features/forms-app'>Forms</Link>
+                    <Link href='/features/helpdesk-app'>Helpdesk</Link>
                     <Link href='/features/contract'>Contracts</Link>
                     <Link href='/apps'>Apps</Link>
                   </FooterMenuList>
@@ -279,11 +279,11 @@ export default function Footer({ isEnterPrice }) {
                 <FooterMenu isEnterPrice={isEnterPrice}>
                   <p>Features</p>
                   <FooterMenuList isEnterPrice={isEnterPrice}>
-                    <Link href='/features/message'>Messaging</Link>
-                    <Link href='/features/billing'>Billing</Link>
-                    <Link href='/features/file'>Files</Link>
-                    <Link href='/features/form'>Forms</Link>
-                    <Link href='/features/knowledge'>Helpdesk</Link>
+                    <Link href='/features/messaging-app'>Messaging</Link>
+                    <Link href='/features/billing-app'>Billing</Link>
+                    <Link href='/features/files-app'>Files</Link>
+                    <Link href='/features/forms-app'>Forms</Link>
+                    <Link href='/features/helpdesk-app'>Helpdesk</Link>
                     <Link href='/features/contract'>Contracts</Link>
                     <Link href='/apps'>Apps</Link>
                   </FooterMenuList>
