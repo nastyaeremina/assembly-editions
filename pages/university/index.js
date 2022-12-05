@@ -1,7 +1,7 @@
-import Layout from "/components/layout";
-import Link from "next/link";
-import { NextSeo } from "next-seo";
-import Navbar from "../../components/navbar/navbar";
+import Layout from '/components/layout';
+import Link from 'next/link';
+import { NextSeo } from 'next-seo';
+import Navbar from '../../components/navbar/navbar';
 import {
   UniversitySection,
   UniversityHero,
@@ -18,21 +18,21 @@ import {
   FeatureCard,
   ExtensionsSection,
   SchedulingApps,
-  ExtensionCard,
-} from "../../styles/universityStyles";
-import { Container } from "../../styles/commonStyles";
-import Image from "next/image";
-import { useCallback, useEffect, useMemo, useState } from "react";
-import { getAllUniversityVideos } from "../../lib/contentful-universityVideos";
-import { isEmpty } from "../../helpers/helpers";
-import slugify from "slugify";
+  ExtensionCard
+} from '../../styles/universityStyles';
+import { Container } from '../../styles/commonStyles';
+import Image from 'next/image';
+import { useCallback, useEffect, useMemo, useState } from 'react';
+import { getAllUniversityVideos } from '../../lib/contentful-universityVideos';
+import { isEmpty } from '../../helpers/helpers';
+import slugify from 'slugify';
 
 let selected_categry = null;
 export default function University({ universityVideosList }) {
   // const [selected_categry, useSelected_categry] = useState(null);
   const handleScroll = useCallback(() => {
     if (!selected_categry) return;
-    console.log("selected_categry", selected_categry);
+    console.log('selected_categry', selected_categry);
     selected_categry = null;
   }, []);
 
@@ -51,8 +51,7 @@ export default function University({ universityVideosList }) {
           key={`rendercategoryitem_index_${index}`}
           onClick={() => {
             onClickCategories(slugify(item?.category));
-          }}
-        >
+          }}>
           <Link href={`#${slugify(item?.category)}`}>{item?.category}</Link>
         </Catagoryitem>
       );
@@ -63,18 +62,9 @@ export default function University({ universityVideosList }) {
     if (isEmpty(videoList)) return null;
     return videoList?.map((item, index) => {
       return (
-        <Link
-          href={`/university/${item?.slug}`}
-          key={`universityvideos_index_${index}`}
-        >
+        <Link href={`/university/${item?.slug}`} key={`universityvideos_index_${index}`}>
           <FeatureCard>
-            <Image
-              src={item?.thumbnail?.url}
-              alt="video"
-              width={270}
-              height={152}
-              layout={"fixed"}
-            />
+            <Image src={item?.thumbnail?.url} alt='video' width={270} height={152} layout={'fixed'} />
           </FeatureCard>
         </Link>
       );
@@ -89,8 +79,7 @@ export default function University({ universityVideosList }) {
           id={slugify(item?.category)}
           key={`renderuniversityvideoslistiten_index_${index}`}
           isSelected={slugify(item?.category) === selected_categry}
-          isNotFirst={index !== 0}
-        >
+          isNotFirst={index !== 0}>
           <h3>{item?.category}</h3>
           <FeatureMenu>{renderUniversityVideosView(item?.list)}</FeatureMenu>
         </ExtensionsSection>
@@ -102,8 +91,8 @@ export default function University({ universityVideosList }) {
   return (
     <>
       <NextSeo
-        title="copilot blogs to keep you up with the  Sales Tactics!"
-        description="Sale is a prominent part of any business & nothing can be better than getting tried tactics for it. So get all that you want to know about sales from our Blogs."
+        title='copilot blogs to keep you up with the  Sales Tactics!'
+        description='Sale is a prominent part of any business & nothing can be better than getting tried tactics for it. So get all that you want to know about sales from our Blogs.'
       />
       <Layout>
         <Navbar />
@@ -112,36 +101,26 @@ export default function University({ universityVideosList }) {
             <UniversityHero>
               <h2>Copilot University</h2>
               <p>
-                Search from our library of lessons covering everything from
-                initial setup and customization to Partner Apps and automations.
+                Search from our library of lessons covering everything from initial setup and customization to Partner
+                Apps and automations.
               </p>
             </UniversityHero>
             <FeatureWrap>
               <FeatureLeft>
                 <LeftWrap>
                   <InputWrap>
-                    <Image
-                      src="/images/searchicon.svg"
-                      alt="search-icon"
-                      width={20}
-                      height={20}
-                    />
-                    <Input placeholder="Find a video..." />
+                    <Image src='/images/searchicon.svg' alt='search-icon' width={20} height={20} />
+                    <Input placeholder='Find a video...' />
                   </InputWrap>
                   {!isEmpty(universityVideosList) && (
                     <Catagory>
                       <h4>Categories</h4>
                       <Catagoryitem>
                         <Link
-                          href={`#${slugify(
-                            universityVideosList?.[0]?.category
-                          )}`}
+                          href={`#${slugify(universityVideosList?.[0]?.category)}`}
                           onClick={() => {
-                            onClickCategories(
-                              slugify(universityVideosList?.[0]?.category)
-                            );
-                          }}
-                        >
+                            onClickCategories(slugify(universityVideosList?.[0]?.category));
+                          }}>
                           All
                         </Link>
                       </Catagoryitem>
@@ -171,26 +150,24 @@ export async function getServerSideProps({ preview = false }) {
     // eslint-disable-next-line no-plusplus
     else page++;
   } while (data?.length !== 0);
-  console.log("allPosts", allPosts);
+  console.log('allPosts', allPosts);
 
   let newList = [];
   allPosts?.forEach((item) => {
-    const index = newList?.findIndex(
-      (x) => x?.category === item?.videoCategory
-    );
+    const index = newList?.findIndex((x) => x?.category === item?.videoCategory);
     if (index !== -1) {
       newList[index]?.list?.push(item);
     } else {
       const newItem = {
         category: item?.videoCategory,
-        list: [item],
+        list: [item]
       };
       newList?.push(newItem);
     }
   });
-  console.log("newList", newList);
+  console.log('newList', newList);
 
   return {
-    props: { universityVideosList: newList },
+    props: { universityVideosList: newList }
   };
 }
