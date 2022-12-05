@@ -126,14 +126,22 @@ const PrimaryButton = styled.div`
     letter-spacing: 0.02em;
     padding: 11px 32px;
     border-radius: 26px;
-    background-color: ${({ theme }) => theme.colors.primary};
-    color: ${({ theme }) => theme.colors.whiteColor};
+    ${(props) =>
+    props.textColor &&
+    css`
+        color: ${props.textColor};
+      `}
+    ${(props) =>
+    props.backgroundColor &&
+    css`
+        background-color: ${props.backgroundColor};
+        border: 1px solid${props.backgroundColor};
+        :hover {
+          background-color: ${props.backgroundColor};
+        }
+      `}
     text-decoration: none;
-    transition: all 300ms;
-    border: 1px solid #09aa6c;
-    :hover {
-      background-color: ${({ theme }) => theme.colors.primary};
-    }
+    transition: all 300ms;    
   }
   @media only screen and (max-width: 991px) {
     a {
@@ -192,15 +200,19 @@ const CtaButton = styled.div`
     ${ButtonText}
     display: inline-block;
     padding: 11px 32px;
-    border: 1px solid ${({ theme }) => theme.colors.greenlight};
+    ${(props) =>
+    props.textColor &&
+    css`
+        border: 1px solid ${props.textColor};
+        color: ${props.textColor};
+
+      `}
+    
     border-radius: 48px;
-    color: ${({ theme }) => theme.colors.greenlight};
     letter-spacing: 0.02em;
     text-decoration: none;
     transition: all 300ms;
-    :hover {
-      background-color: ${({ theme }) => theme.colors.gainsboro};
-    }
+   
     @media only screen and (max-width: 991px) {
       ${HeaderFont};
       padding: 6px 24px;
@@ -220,13 +232,13 @@ const BlackButton = styled.div`
     padding: 8px 32px;
     border-radius: 48px;
     ${(props) =>
-      props.textColor &&
-      css`
+    props.textColor &&
+    css`
         color: ${props.textColor};
       `}
     ${(props) =>
-      props.backgroundColor &&
-      css`
+    props.backgroundColor &&
+    css`
         background-color: ${props.backgroundColor};
       `}
     /* background-color: ${({ theme }) => theme.colors.black}; */
