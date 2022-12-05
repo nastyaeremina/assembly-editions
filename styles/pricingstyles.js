@@ -231,20 +231,42 @@ const PlanButton = styled.div`
 `;
 const PriceTable = styled.div`
   padding: 100px 0;
+  display: block;
+  overflow: hidden;
+  transition: height 400ms ease 0s, padding 400ms ease 0s, margin 400ms ease 0s;
+
   table {
     display: none;
     width: 100%;
     border-spacing: 0;
+    transition: height 400ms ease 0s, padding 400ms ease 0s, margin 400ms ease 0s;
     .tableBorder {
       border: none;
-      background-color: transparent;
+      background-color: #fff;
       width: 624px;
+    }
+    .bordercolor {
+      background-color: ${({ theme }) => theme.colors.greendark};
+      border-right-color: 1px solid #00160e;
+      td {
+        color: ${({ theme }) => theme.colors.greenlight};
+        border-right-color: ${({ theme }) => theme.colors.greenlight};
+      }
     }
     .radius {
       border-radius: 4px 0px 0px 0px;
+      overflow: hidden;
+      border-collapse: collapse;
+      position: relative;
+      left: -0.5px;
+      /* position: relative;
+      left: -0.5px; */
     }
     .rightradius {
-      border-radius: 0px 4px 0px 0px;
+      border-top-right-radius: 4px;
+      border-right: none;
+      /* position: relative;
+      right: -0.5px; */
     }
     .tablecolor {
       background-color: ${({ theme }) => theme.colors.greenlight};

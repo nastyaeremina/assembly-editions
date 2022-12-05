@@ -222,11 +222,11 @@ export default function NewIndex() {
             <PriceTable>
               <table className={!isShowFeature && 'active'}>
                 <thead>
-                  <tr>
-                    <td className='tableBorder'></td>
-                    <td className='radius'>Starter</td>
-                    <td>Professional</td>
-                    <td className='rightradius'>Advanced</td>
+                  <tr className='bordercolor'>
+                    <th className='tableBorder'></th>
+                    <th className='radius'>Starter</th>
+                    <th>Professional</th>
+                    <th className='rightradius'>Advanced</th>
                   </tr>
                 </thead>
                 <tbody>

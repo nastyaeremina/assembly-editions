@@ -1,11 +1,5 @@
-import styled, { css } from "styled-components";
-import {
-  Body1,
-  Heading,
-  Heading2,
-  Heading3,
-  Heading4,
-} from "../../styles/styles";
+import styled, { css } from 'styled-components';
+import { Body1, Heading, Heading2, Heading3, Heading4 } from '../../styles/styles';
 
 const FaqSection = styled.div`
   padding: 100px 0 50px;
@@ -15,6 +9,9 @@ const FaqSection = styled.div`
       padding: 100px 0;
       background-color: ${({ theme }) => theme.colors.greenlight};
     `}
+  .ak:last-child {
+    border-bottom: none;
+  }
 `;
 const FaqTitle = styled.div`
   h3 {
@@ -42,8 +39,8 @@ const FaqWrap = styled.div`
   }
 
   .faq-list .faq-heading::before {
-    content: "";
-    background-image: url("/images/plusicon.svg");
+    content: '';
+    background-image: url('/images/plusicon.svg');
     background-position: center;
     background-repeat: no-repeat;
     background-size: contain;
@@ -56,8 +53,8 @@ const FaqWrap = styled.div`
   }
 
   .faq-list .the-active .faq-heading::before {
-    content: "";
-    background-image: url("/images/minusicon.svg");
+    content: '';
+    background-image: url('/images/minusicon.svg');
     background-position: center;
     background-repeat: no-repeat;
     background-size: contain;
