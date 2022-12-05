@@ -117,7 +117,7 @@ export default function FAQ({ enterprise }) {
               size — from small agencies to large law firms — use Portal building blocks to productize their business
               and provide clients a streamlined experience.
             </CustomPanel>
-            <CustomPanel title='How much does Copilot+ cost ?'>
+            <CustomPanel title='How much does Copilot+ cost ?' className='bordernone'>
               Copilot is a technology company that builds infrastructure for the services economy. Businesses of every
               size — from small agencies to large law firms — use Portal building blocks to productize their business
               and provide clients a streamlined experience.
