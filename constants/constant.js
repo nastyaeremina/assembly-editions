@@ -164,3 +164,4 @@ export const APPS_TYPE = {
 };
 
 export const HOME_FEATURES_TAB_ID = '6R0hkm1PSDEGOmel7Q6wva';
+export const FEATURES_MESSAG_TAB_ID = '2DgpDztGKBN2eo2rKNQ67p'
