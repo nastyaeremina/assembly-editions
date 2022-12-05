@@ -1,12 +1,5 @@
-import styled from "styled-components";
-import {
-  Body3,
-  Body4,
-  Body6,
-  Heading3,
-  Heading4,
-  SliderTxt,
-} from "../../../styles/styles";
+import styled from 'styled-components';
+import { Body3, Body4, Body6, Heading3, Heading4, SliderTxt } from '../../../styles/styles';
 
 const ExploreSection = styled.div`
   padding: 50px 0;
@@ -94,8 +87,8 @@ const LastSection = styled.div`
   margin-top: 50px;
   position: relative;
   ::before {
-    content: "";
-    background-image: url("/images/signbg.svg");
+    content: '';
+    background-image: url('/images/signbg.svg');
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -121,12 +114,58 @@ const SignImgView = styled.div`
   img {
     max-height: 725px;
     height: 100%;
+    max-width: 100%;
   }
 `;
 const ActiveTab = styled.div`
   position: absolute;
   top: 100%;
 `;
+const BtnWrap = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  .tooltip {
+    position: relative;
+    display: inline-block;
+  }
+  .tooltip .tooltiptext {
+    visibility: hidden;
+    opacity: 0;
+    width: 834px;
+    border-radius: 6px;
+    padding: 24px 32px;
+    ${Body4};
+    background-color: ${({ theme }) => theme.colors.greendark};
+    color: ${({ theme }) => theme.colors.greenlight};
+    /* Position the tooltip */
+    position: absolute;
+    z-index: 2;
+    top: 40px;
+    left: 0;
+    margin-left: -54px;
+    box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.25);
+    border-radius: 4px;
+  }
+  .tooltip:hover .tooltiptext {
+    visibility: visible;
+    opacity: 1;
+    ::after {
+      content: '';
+      position: absolute;
+      width: 46px;
+      border-top: 2px solid #00160e;
+      transform: rotate(90deg);
+      top: 0;
+      left: 42px;
+      z-index: -1;
+    }
+  }
+`;
+const IconView = styled.div`
+  cursor: pointer;
+`;
+const Tooltip = styled.div``;
 export {
   ExploreSection,
   TopView,
@@ -140,4 +179,7 @@ export {
   SignBox,
   SignImgView,
   ActiveTab,
+  BtnWrap,
+  IconView,
+  Tooltip
 };

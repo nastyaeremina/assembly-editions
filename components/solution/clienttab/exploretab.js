@@ -1,6 +1,6 @@
-import Image from "next/image";
-import Link from "next/link";
-import { Container, SecondryButton } from "../../../styles/commonStyles";
+import Image from 'next/image';
+import Link from 'next/link';
+import { Container, SecondryButton } from '../../../styles/commonStyles';
 import {
   ExploreSection,
   TopView,
@@ -14,7 +14,10 @@ import {
   SignBox,
   SignImgView,
   ActiveTab,
-} from "./styles";
+  BtnWrap,
+  IconView,
+  Tooltip
+} from './styles';
 
 export default function ExploreTab() {
   return (
@@ -26,22 +29,23 @@ export default function ExploreTab() {
               Explore the client experience<span>.</span>
             </h3>
             <p>
-              Provide clients a uniform experience with on-brand design,
-              combined in-product notifications, and consistent email
-              notifications. And with modularily built-in, start with just one
-              module and add more when the time is right.
+              Provide clients a uniform experience with on-brand design, combined in-product notifications, and
+              consistent email notifications. And with modularily built-in, start with just one module and add more when
+              the time is right.
             </p>
-            <SecondryButton>
-              <Link href="#">
-                Create client account in a demo portal
-                <Image
-                  src="/images/helpicon.svg"
-                  alt="main-logo"
-                  width={22}
-                  height={22}
-                />
-              </Link>
-            </SecondryButton>
+            <BtnWrap>
+              <SecondryButton>
+                <Link href='#'>Create client account in a demo portal</Link>
+              </SecondryButton>
+              <IconView className='tooltip'>
+                <Image src='/images/helpicon.svg' alt='main-logo' width={22} height={22} />
+                <Tooltip className='tooltiptext'>
+                  If you’d like to see what the user experience can be like for your clients, you can create a client
+                  account in a demo portal we have set up. We’ve customized this demo portal to highlight some of the
+                  features that are most relevant.
+                </Tooltip>
+              </IconView>
+            </BtnWrap>
           </TopView>
         </Container>
         <BottomSection>
@@ -49,22 +53,14 @@ export default function ExploreTab() {
             <SignatureSection>
               <LeftWrap>
                 <h4>eSignatures</h4>
-                <p>
-                  A delightful eSignature experience omg there are two lines and
-                  woah here comes the third line
-                </p>
+                <p>A delightful eSignature experience omg there are two lines and woah here comes the third line</p>
               </LeftWrap>
               <RightWrap>
                 <TabWrap>
-                  <TabView className="activetab">
+                  <TabView className='activetab'>
                     <span>01</span>
                     <ActiveTab>
-                      <Image
-                        src="/images/verticalline.svg"
-                        alt="line-icon"
-                        width={1}
-                        height={51}
-                      />
+                      <Image src='/images/verticalline.svg' alt='line-icon' width={1} height={51} />
                     </ActiveTab>
                   </TabView>
                   <TabView>
@@ -82,12 +78,7 @@ export default function ExploreTab() {
           <Container>
             <SignBox>
               <SignImgView>
-                <Image
-                  src="/images/esignature.png"
-                  alt="main-logo"
-                  width={1154}
-                  height={725}
-                />
+                <Image src='/images/esignature.png' alt='main-logo' width={1154} height={725} />
               </SignImgView>
             </SignBox>
           </Container>
