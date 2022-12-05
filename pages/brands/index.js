@@ -18,7 +18,8 @@ import {
   ColorSection,
   BlockSub,
   BlockLight,
-  BrandMain
+  BrandMain,
+  ImgWrap
 } from '../../styles/brandStyles';
 
 export default function Brand() {
@@ -54,20 +55,24 @@ export default function Brand() {
                 also acceptable, preferably using the brand colors below.
               </p>
               <BrandImage>
-                <BrandImageLeft className='effect-goliath'>
-                  <Image src='/images/logo.svg' alt='logo' width={405} height={90} layout={'fixed'} />
-                  <HoverSection className='hover-name'>
-                    <p>Download</p>
-                    <Image src='/images/download.svg' alt='download' width={20} height={20} layout={'fixed'} />
-                  </HoverSection>
-                </BrandImageLeft>
-                <BrandImageRight className='effect-goliath'>
-                  <Image src='/images/blacklogo.svg' alt='logo' width={405} height={90} layout={'fixed'} />
-                  <BlackHover className='hover-name'>
-                    <p>Download</p>
-                    <Image src='/images/whitedownload.svg' alt='download' width={20} height={20} layout={'fixed'} />
-                  </BlackHover>
-                </BrandImageRight>
+                <ImgWrap>
+                  <BrandImageLeft className='effect-goliath'>
+                    <Image src='/images/logo.svg' alt='logo' width={405} height={90} layout={'fixed'} />
+                    <HoverSection className='hover-name'>
+                      <p>Download</p>
+                      <Image src='/images/download.svg' alt='download' width={20} height={20} layout={'fixed'} />
+                    </HoverSection>
+                  </BrandImageLeft>
+                </ImgWrap>
+                <ImgWrap>
+                  <BrandImageRight className='effect-goliath'>
+                    <Image src='/images/blacklogo.svg' alt='logo' width={405} height={90} layout={'fixed'} />
+                    <BlackHover className='hover-name'>
+                      <p>Download</p>
+                      <Image src='/images/whitedownload.svg' alt='download' width={20} height={20} layout={'fixed'} />
+                    </BlackHover>
+                  </BrandImageRight>
+                </ImgWrap>
               </BrandImage>
             </BrandName>
             <BrandName>
@@ -77,20 +82,24 @@ export default function Brand() {
                 with good judgment for your audience, as the Copilot wordmark has a stronger brand recognition.
               </p>
               <BrandImage>
-                <BrandImageLeft className='effect-goliath'>
-                  <Image src='/images/smalllogo.svg' alt='logo' width={133} height={90} layout={'fixed'} />
-                  <HoverSection className='hover-name'>
-                    <p>Download</p>
-                    <Image src='/images/download.svg' alt='download' width={20} height={20} layout={'fixed'} />
-                  </HoverSection>
-                </BrandImageLeft>
-                <BrandImageRight className='effect-goliath'>
-                  <Image src='/images/blacklogo.svg' alt='logo' width={405} height={90} layout={'fixed'} />
-                  <BlackHover className='hover-name'>
-                    <p>Download</p>
-                    <Image src='/images/whitedownload.svg' alt='download' width={20} height={20} layout={'fixed'} />
-                  </BlackHover>
-                </BrandImageRight>
+                <ImgWrap>
+                  <BrandImageLeft className='effect-goliath'>
+                    <Image src='/images/smalllogo.svg' alt='logo' width={133} height={90} layout={'fixed'} />
+                    <HoverSection className='hover-name'>
+                      <p>Download</p>
+                      <Image src='/images/download.svg' alt='download' width={20} height={20} layout={'fixed'} />
+                    </HoverSection>
+                  </BrandImageLeft>
+                </ImgWrap>
+                <ImgWrap>
+                  <BrandImageRight className='effect-goliath'>
+                    <Image src='/images/blacklogo.svg' alt='logo' width={405} height={90} layout={'fixed'} />
+                    <BlackHover className='hover-name'>
+                      <p>Download</p>
+                      <Image src='/images/whitedownload.svg' alt='download' width={20} height={20} layout={'fixed'} />
+                    </BlackHover>
+                  </BrandImageRight>
+                </ImgWrap>
               </BrandImage>
             </BrandName>
             <BrandName>
@@ -100,20 +109,24 @@ export default function Brand() {
                 it is acceptable to use this stylized icon with an appropriate corner radius.
               </p>
               <BrandImage>
-                <CompanyIcon className='effect-goliath'>
-                  <Image src='/images/primarylogo.svg' alt='logo' width={186} height={186} layout={'fixed'} />
-                  <HoverLink className='hover-name'>
-                    <p>Download</p>
-                    <Image src='/images/whitedownload.svg' alt='download' width={20} height={20} layout={'fixed'} />
-                  </HoverLink>
-                </CompanyIcon>
-                <CompanyIcon className='effect-goliath'>
-                  <Image src='/images/primarylogo2.svg' alt='logo' width={200} height={200} layout={'fixed'} />
-                  <HoverLink className='hover-name'>
-                    <p>Download</p>
-                    <Image src='/images/whitedownload.svg' alt='download' width={20} height={20} layout={'fixed'} />
-                  </HoverLink>
-                </CompanyIcon>
+                <ImgWrap>
+                  <CompanyIcon className='effect-goliath'>
+                    <Image src='/images/primarylogo.svg' alt='logo' width={200} height={200} layout={'fixed'} />
+                    <HoverLink className='hover-name'>
+                      <p>Download</p>
+                      <Image src='/images/whitedownload.svg' alt='download' width={20} height={20} layout={'fixed'} />
+                    </HoverLink>
+                  </CompanyIcon>
+                </ImgWrap>
+                <ImgWrap>
+                  <CompanyIcon className='effect-goliath'>
+                    <Image src='/images/primarylogo2.svg' alt='logo' width={200} height={200} layout={'fixed'} />
+                    <HoverLink className='hover-name'>
+                      <p>Download</p>
+                      <Image src='/images/whitedownload.svg' alt='download' width={20} height={20} layout={'fixed'} />
+                    </HoverLink>
+                  </CompanyIcon>
+                </ImgWrap>
               </BrandImage>
             </BrandName>
             <BrandName>

@@ -40,16 +40,17 @@ const BrandImage = styled.div`
     display: none;
   }
   .effect-goliath {
-    cursor: pointer;
+    /* cursor: pointer;
     overflow: hidden;
-    position: relative;
+    position: relative; */
+    cursor: pointer;
   }
   .hover-name {
     transform: translate3d(0, 70px, 0);
   }
   .effect-goliath:hover .hover-name {
-    -webkit-transform: translate3d(0, 0, 0);
-    transform: translate3d(0, 0, 0);
+    -webkit-transform: translate3d(0, 2px, 0);
+    transform: translate3d(0, 2px, 0);
     transition: transform 0.35s;
     img {
       transform: translate3d(0, 0px, 0);
@@ -208,6 +209,11 @@ const BlockLight = styled.div`
     ${Body2}
   }
 `;
+const ImgWrap = styled.div`
+  width: 100%;
+  overflow: hidden;
+  border-radius: 4px;
+`;
 export {
   BrandHeroSection,
   BrandName,
@@ -222,5 +228,6 @@ export {
   Block1,
   BlockSub,
   BlockLight,
-  BrandMain
+  BrandMain,
+  ImgWrap
 };
