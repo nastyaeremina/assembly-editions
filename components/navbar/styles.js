@@ -113,7 +113,6 @@ const LineMenuImg = styled.div`
   left: -10px;
   bottom: -27px;
   display: none;
-
   ${(props) =>
     props.lineColor &&
     css`
