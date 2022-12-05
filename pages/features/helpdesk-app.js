@@ -24,9 +24,11 @@ import Content from "../../components/content/content";
 import Quote from "../../components/quote/quote";
 import Client from "../../components/client/client";
 import { Container } from "../../styles/commonStyles";
-import { HEADER_LIST, MODULE_GRADIENT_IMAGE_LIST, MUDULE_LIST, NAVBAR_COLOR_LIST } from "../../constants/constant";
+import { FEATURES_HELPDESK_TAB_ID, HEADER_LIST, HOME_MODULE_LIST, MODULE_COLOR_LIST, MODULE_GRADIENT_IMAGE_LIST, MUDULE_LIST, NAVBAR_COLOR_LIST } from "../../constants/constant";
 import { useMemo } from "react";
 import { getTabPosts } from "../../lib/contentful-tabs";
+import { BottomFunction } from "../../components/content/styles";
+import TabView from "../../components/tab/tab";
 
 const CURRENT_MODULE = MUDULE_LIST.HELPDESK
 export default function MessagingApp({ module, moduleDetails }) {
@@ -67,6 +69,11 @@ export default function MessagingApp({ module, moduleDetails }) {
             <Layout>
                 {renderHeroSection}
                 <Content />
+                <Container>
+                    <BottomFunction>
+                        <TabView tabId={FEATURES_HELPDESK_TAB_ID} bgColor={MODULE_COLOR_LIST[HOME_MODULE_LIST['Helpdesk']]?.bgColor} textColor={MODULE_COLOR_LIST[HOME_MODULE_LIST['Helpdesk']]?.fontColor} />
+                    </BottomFunction>
+                </Container>
                 <Tools />
                 <Quote gradientImage={MODULE_GRADIENT_IMAGE_LIST[CURRENT_MODULE]} />
                 <Client currentModule={CURRENT_MODULE} />
