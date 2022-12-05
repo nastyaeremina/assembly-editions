@@ -59,6 +59,7 @@ import classNames from 'classnames';
 import { getTabGroupById } from '../lib/contentful-tabs';
 import { isEmpty } from '../helpers/helpers';
 import TabView from '../components/tab/tab';
+import Button from '../components/button/button';
 
 
 
@@ -83,6 +84,7 @@ export default function Home({ allPosts }) {
                 payments, file-sharing, help centers, custom app access, and more.
               </Para>
               <HeroBtnBlock>
+                <Button bgColor={'#09AA6C'} fontColor={'#fff'} borderColor={'#09AA6C'} text={'Start Trial'} href={'https://dashboard.copilot.com/onboarding'} />
                 <PrimaryButton>
                   <Link href='https://dashboard.copilot.com/onboarding'>Start Trial</Link>
                 </PrimaryButton>
