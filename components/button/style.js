@@ -2,8 +2,10 @@ import styled, { css } from "styled-components";
 import { ButtonText, HeaderFont, MbPrimaryBtn } from "../../styles/styles";
 
 const ButtonContainer = styled.div`
-overflow:hiden;
+
   a {
+    position:relative;
+    overflow: hidden;
     ${ButtonText}
     display: inline-block;
     letter-spacing: 0.02em;
@@ -33,7 +35,27 @@ overflow:hiden;
       `}
     text-decoration: none;
     transition: all 300ms;
+    --y: calc((var(--cursor-y) * 1px));
+    --x: calc((var(--cursor-x) * 1px));
+    &::before{
+      content: "";
+      opecity:0;
+      pointer-events: none;
+      user-select: none;
+      position: absolute;
+      inset: 0px;
+      border-radius: inherit;
+      opacity: var(--border-shine-opacity);
+      transition: opacity 400ms ease 0s;
+      will-change: background, opacity;
+      background: radial-gradient(80px circle at var(--x) var(--y),#000,transparent 40%);
+      filter: blur(25px);
+    }
+    &:hover::before{
+      opecity:1;
+    }
   }
+
   @media only screen and (max-width: 991px) {
     a {
       ${HeaderFont};
@@ -49,7 +71,7 @@ overflow:hiden;
 `;
 
 const Blur = styled.div`
-    position: fixed;
+  position: absolute  ;
 	pointer-events: none;
 	width: 80px;
 	height: 80px;
