@@ -1,18 +1,11 @@
-import styled from "styled-components";
-import {
-  Body3,
-  Body4,
-  Body6,
-  CardTxt,
-  HeaderFont,
-  Heading3,
-  Heading4,
-} from "../../styles/styles";
+import styled from 'styled-components';
+import { Body3, Body4, Body6, CardTxt, HeaderFont, Heading3, Heading4 } from '../../styles/styles';
 const MainSection = styled.div`
   max-width: 540px;
   width: 100%;
   padding: 40px 80px;
-  background-color: ${({ theme }) => theme.colors.bgcolor}; ;
+  background-color: ${({ theme }) => theme.colors.bgcolor};
+  overflow: auto;
 `;
 const LastText = styled.div`
   text-align: center;
@@ -294,5 +287,5 @@ export {
   Swiper,
   SwiperSlide,
   ImageText,
-  TextWrapper,
+  TextWrapper
 };
