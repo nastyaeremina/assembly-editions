@@ -5,16 +5,17 @@ import { CtaButton, PrimaryButton } from '../../styles/commonStyles';
 import { Gradient } from '../../public/js/Gradient.js';
 import { CtaInner, CtaBtn, CtaAnimation, CtaWrap, LeftImg, MainCta, RightImg } from './styles';
 
-export default function CTA() {
+
+export default function CTA({ moduleName, colorList }) {
   useEffect(() => {
     const gradient = new Gradient();
     gradient.initGradient('#gradient-canvas');
   }, []);
-
+  console.log("colorList", colorList);
   return (
     <>
       <CtaAnimation>
-        <canvas id='gradient-canvas' data-transition-in />
+        <canvas id='gradient-canvas' data-transition-in className={moduleName} />
         <CtaWrap>
           <MainCta>
             <LeftImg>
@@ -24,12 +25,13 @@ export default function CTA() {
             <CtaInner>
               <h2>Start, run, and grow your business</h2>
               <CtaBtn>
-                <PrimaryButton>
+                <PrimaryButton textColor={colorList?.lightColor}
+                  backgroundColor={colorList?.primaryColor}>
                   <Link className='paddingbtn' href='https://dashboard.copilot.com/onboarding'>
                     Start Trial
                   </Link>
                 </PrimaryButton>
-                <CtaButton>
+                <CtaButton textColor={colorList?.lightColor}>
                   <Link href='/book-demo'>Book Demo</Link>
                 </CtaButton>
               </CtaBtn>
