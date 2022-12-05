@@ -4,7 +4,7 @@ export const HEADER_LIST = {
   FILES: 2,
   BILLING: 3,
   FORMS: 4,
-  KNOWLEDGE: 5,
+  HELPDESK: 5,
   CONTRACT: 6,
   HOME: 7,
   ENTERPRICE: 8
@@ -16,7 +16,8 @@ export const MUDULE_LIST = {
   FILES: 'file',
   FORMS: 'form',
   KNOWLEDGE: 'knowledge',
-  MESSAGING: 'message'
+  MESSAGING: 'message',
+  HELPDESK: 'helpdesk'
 };
 
 export const FUNCTION_LIST = {
@@ -60,6 +61,7 @@ export const NAVBAR_COLOR_LIST = [
     buttonColor: '#000000',
     primaryColor: '#09AA6C',
     lineColor: '#00160E'
+
   },
 
   {
@@ -68,7 +70,8 @@ export const NAVBAR_COLOR_LIST = [
     fontColor: '#F3F3F2',
     buttonColor: '#D7B79E',
     primaryColor: '#D7B79E',
-    lineColor: '#FFF6F0'
+    lineColor: '#FFF6F0',
+    lightColor: '#FFF7F0',
   },
   {
     bgColor: 'rgba(1, 1, 29, 0.8)',
@@ -76,7 +79,8 @@ export const NAVBAR_COLOR_LIST = [
     fontColor: '#F3F3F2',
     buttonColor: '#989AF2',
     primaryColor: '#989AF2',
-    lineColor: '#EFEEFF'
+    lineColor: '#EFEEFF',
+    lightColor: '#EFEEFF',
   },
   {
     bgColor: 'rgba(1, 41, 44, 0.8)',
@@ -84,7 +88,8 @@ export const NAVBAR_COLOR_LIST = [
     fontColor: '#F3F3F2',
     buttonColor: '#00AFB9',
     primaryColor: '#00AFB9',
-    lineColor: '#E0FBFD'
+    lineColor: '#E0FBFD',
+    lightColor: '#E0FBFD',
   },
   {
     bgColor: 'rgba(23, 21, 0, 0.8)',
@@ -92,7 +97,8 @@ export const NAVBAR_COLOR_LIST = [
     fontColor: '#F3F3F2',
     buttonColor: '#F3DA1A',
     primaryColor: '#F3DA1A',
-    lineColor: '#FDFBEC'
+    lineColor: '#FDFBEC',
+    lightColor: '#FDFBEC',
   },
   {
     bgColor: 'rgba(28, 12, 0, 0.8)',
@@ -100,7 +106,8 @@ export const NAVBAR_COLOR_LIST = [
     fontColor: '#F3F3F2',
     buttonColor: '#FD8C2E',
     primaryColor: '#FD8C2E',
-    lineColor: '#FFEDDE'
+    lineColor: '#FFEDDE',
+    lightColor: '#FFEDDE',
   },
   {
     bgColor: 'rgba(39, 0, 10, 0.8)',
@@ -108,7 +115,8 @@ export const NAVBAR_COLOR_LIST = [
     fontColor: '#F3F3F2',
     buttonColor: '#F35B80',
     primaryColor: '#F35B80',
-    lineColor: '#FFEFF3'
+    lineColor: '#FFEFF3',
+    lightColor: '#FFEFF3',
   },
   {
     bgColor: 'rgba(253, 253, 251, 0.8)',
@@ -116,7 +124,8 @@ export const NAVBAR_COLOR_LIST = [
     fontColor: '#131313',
     buttonColor: '#000000',
     primaryColor: '#09AA6C',
-    lineColor: '#00160E'
+    lineColor: '#00160E',
+    lightColor: '',
   },
 
   {
@@ -125,7 +134,8 @@ export const NAVBAR_COLOR_LIST = [
     fontColor: '#E3FFEE',
     buttonColor: '#003F27',
     primaryColor: '#09AA6C',
-    lineColor: '#E3FFEE'
+    lineColor: '#E3FFEE',
+    lightColor: '#E3FFEE',
   }
 ];
 export const MODULE_IMAGE_LIST = [
