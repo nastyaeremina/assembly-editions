@@ -24,7 +24,8 @@ export const FUNCTION_LIST = {
   BILLING: 1,
   FILES: 2,
   FORMS: 3,
-  HELPDESK: 4
+  HELPDESK: 4,
+  CONTRACT: 5,
 };
 
 export const HOME_MODULE_LIST = {
@@ -34,6 +35,7 @@ export const HOME_MODULE_LIST = {
   Forms: 3,
   Helpdesk: 4
 };
+
 export const MODULE_COLOR_LIST = [
   { bgColor: '#120800', fontColor: '#ffffff' },
   { bgColor: '#01292C', fontColor: '#E0FBFD' },
@@ -41,6 +43,16 @@ export const MODULE_COLOR_LIST = [
   { bgColor: '#171500', fontColor: '#FDFBEC' },
   { bgColor: '#1C0C00', fontColor: '#FFEDDE' }
 ];
+
+export const MODULE_GRADIENT_IMAGE_LIST = {
+  message: "/images/message_gradient.svg",
+  billing: "/images/billing_gradient.svg",
+  file: "/images/files_gradient.svg",
+  form: "/images/forms_gradient.svg",
+  knowledge: "/images/helpdesk_gradient.svg",
+  contract: "/images/contract_gradient.svg",
+
+}
 export const NAVBAR_COLOR_LIST = [
   {
     bgColor: 'rgba(255, 255, 253, 0.8)',

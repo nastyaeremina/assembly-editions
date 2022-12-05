@@ -24,7 +24,7 @@ import Content from "../../components/content/content";
 import Quote from "../../components/quote/quote";
 import Client from "../../components/client/client";
 import { Container } from "../../styles/commonStyles";
-import { HEADER_LIST, MUDULE_LIST } from "../../constants/constant";
+import { HEADER_LIST, MODULE_GRADIENT_IMAGE_LIST, MUDULE_LIST } from "../../constants/constant";
 import { useMemo } from "react";
 import { getTabPosts } from "../../lib/contentful-tabs";
 
@@ -194,6 +194,9 @@ export default function Modules({ module, moduleDetails }) {
     }
   }, [module]);
 
+  const renderQuoteView = useMemo(() => {
+
+  }, [])
   return (
     <>
       <NextSeo
@@ -204,7 +207,7 @@ export default function Modules({ module, moduleDetails }) {
         {renderHeroSection}
         <Content />
         <Tools moduleColor={"#D7B79E"} />
-        <Quote />
+        <Quote gradientImage={MODULE_GRADIENT_IMAGE_LIST[module]} />
         <Client />
         <CTA />
       </Layout>
