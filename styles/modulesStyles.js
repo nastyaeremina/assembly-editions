@@ -10,6 +10,7 @@ const MsgHeroSection = styled.div`
   }
   .msgheropadding {
     padding: 227px 0 178px 0;
+    gap: 11px;
   }
   .filepadding {
     padding: 266px 0 206px 0;
