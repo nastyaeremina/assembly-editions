@@ -1,5 +1,5 @@
-import styled from "styled-components";
-import { Heading2 } from "./styles";
+import styled from 'styled-components';
+import { Heading2 } from './styles';
 
 const MsgHeroSection = styled.div`
   background-color: ${({ theme }) => theme.colors.browndark};
@@ -13,6 +13,7 @@ const MsgHeroSection = styled.div`
   }
   .filepadding {
     padding: 266px 0 206px 0;
+    gap: 55px;
   }
   .billpadding {
     padding: 264px 0 206px 0;
@@ -45,6 +46,9 @@ const FormMain = styled.div`
   .formtext {
     color: ${({ theme }) => theme.colors.yellowlight};
   }
+  .gap {
+    gap: 50px;
+  }
 `;
 const BillMain = styled.div`
   background-color: ${({ theme }) => theme.colors.bluedark};
@@ -58,6 +62,9 @@ const FileMain = styled.div`
   background-color: ${({ theme }) => theme.colors.purpledark};
   text-align: center;
   padding: 266px 0 206px 0;
+  .filepadding {
+    gap: 55px;
+  }
 `;
 const MessegeItem = styled.div`
   display: flex;
@@ -82,12 +89,10 @@ const HeroSub = styled.div`
   }
   .fileimage {
     position: absolute;
-    right: -21px;
+    right: -17px;
   }
   .messsegeimg {
-    position: absolute;
-    left: -5px;
-    margin-top: 10px;
+    gap: 11px;
   }
 
   span {
@@ -165,7 +170,7 @@ const FormHero = styled.div`
   }
   .formimage {
     position: absolute;
-    left: -26px;
+    left: -32px;
   }
   span {
     ${Heading2};
@@ -207,7 +212,7 @@ const BillWrap = styled.div`
 const FormWrap = styled.div`
   display: flex;
   align-items: center;
-  gap: 52px;
+  gap: 50px;
 
   span {
     color: ${({ theme }) => theme.colors.yellowprimary};
@@ -267,6 +272,16 @@ const ContractWrap = styled.div`
     color: ${({ theme }) => theme.colors.magentalight};
   }
 `;
+const ImageWrap = styled.div`
+  position: absolute;
+  left: -5.3px;
+  top: 12px;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+`;
+const BottomFunction = styled.div``;
 export {
   MsgHeroSection,
   HeroSub,
@@ -284,4 +299,6 @@ export {
   FormMain,
   BillMain,
   FileMain,
+  ImageWrap,
+  BottomFunction
 };

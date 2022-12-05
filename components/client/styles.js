@@ -87,7 +87,48 @@ const ModuleCard = styled.div`
   padding: 36px;
   border: 1px solid #01292c;
   border-radius: 4px;
+  display: block;
   /* transition: all 5s ease; */
+  .learn-link,
+  .learn-link svg path {
+    transition: all 300ms ease;
+  }
+
+  .learn-link:hover {
+    color: black;
+  }
+  .learn-link svg path {
+    transition: all 300ms ease;
+  }
+  .HoverArrow__linePath {
+    opacity: 0;
+    fill: none;
+  }
+  .HoverArrow {
+    stroke-width: 2px;
+    fill: none;
+    stroke: currentColor;
+    position: relative;
+    /* top: 1px; */
+    margin-left: var(--arrowSpacing);
+    stroke-width: 2px;
+    fill: none;
+    stroke: currentColor;
+    margin-left: 8px;
+  }
+  a {
+    color: ${({ theme }) => theme.colors.title};
+    cursor: pointer;
+    display: block;
+    ${LinkTxt};
+    :hover .HoverArrow__linePath {
+      opacity: 1;
+      fill: none;
+    }
+    :hover .HoverArrow__tipPath {
+      transform: translateX(4px);
+    }
+  }
   .hide {
     display: none;
   }
@@ -186,23 +227,30 @@ const BlockWrap = styled.div`
   }
 `;
 const HelpLeftSub = styled.div`
+  h4 {
+    ${Heading4};
+    color: ${({ theme }) => theme.colors.title};
+    margin: 0 0 12px 0;
+  }
+  p {
+    ${Body4};
+    margin: 0 0 20px 0;
+    color: ${({ theme }) => theme.colors.bodycolor};
+  }
+`;
+const ImageWrapper = styled.div`
+  max-height: 165px;
+  height: 100%;
+`;
+const HelpLink = styled.div`
+  display: block;
+  margin-top: 40px;
+  text-align: left;
   .learn-link,
   .learn-link svg path {
     transition: all 300ms ease;
   }
-  a {
-    color: ${({ theme }) => theme.colors.title};
-    cursor: pointer;
-    display: block;
-    ${LinkTxt};
-    :hover .HoverArrow__linePath {
-      opacity: 1;
-      fill: none;
-    }
-    :hover .HoverArrow__tipPath {
-      transform: translateX(4px);
-    }
-  }
+
   .learn-link:hover {
     color: black;
   }
@@ -225,22 +273,19 @@ const HelpLeftSub = styled.div`
     stroke: currentColor;
     margin-left: 8px;
   }
-  h4 {
-    ${Heading4};
+  a {
     color: ${({ theme }) => theme.colors.title};
-    margin: 0 0 12px 0;
+    cursor: pointer;
+    display: block;
+    ${LinkTxt};
+    :hover .HoverArrow__linePath {
+      opacity: 1;
+      fill: none;
+    }
+    :hover .HoverArrow__tipPath {
+      transform: translateX(4px);
+    }
   }
-  p {
-    ${Body4};
-    margin: 0 0 20px 0;
-    color: ${({ theme }) => theme.colors.bodycolor};
-  }
-`;
-const ImageWrapper = styled.div``;
-const HelpLink = styled.div`
-  display: block;
-  margin-top: 40px;
-  text-align: left;
 `;
 export {
   ClientMain,

@@ -25,26 +25,27 @@ export default function Client({ currentModule }) {
           <CardSection>
             {currentModule !== MUDULE_LIST.BILLING && (
               <ModuleCard className='mydiv'>
-                <Image
-                  src='/images/bill.svg'
-                  alt='red-icon'
-                  width={220}
-                  height={165}
-                  layout={'fixed'}
-                  className='show'
-                />
-                <Image
-                  src='/images/billhover.svg'
-                  alt='red-icon'
-                  width={220}
-                  height={165}
-                  layout={'fixed'}
-                  className='hide'
-                />
-
-                <HelpLeftSub>
-                  <HelpLink className='icon-link'>
-                    <Link href='/features/billing-app' className='learn-link mb0'>
+                <Link href='/features/billing-app' className='learn-link mb0'>
+                  <ImageWrapper>
+                    <Image
+                      src='/images/bill.svg'
+                      alt='red-icon'
+                      width={220}
+                      height={165}
+                      layout={'fixed'}
+                      className='show'
+                    />
+                    <Image
+                      src='/images/billhover.svg'
+                      alt='red-icon'
+                      width={220}
+                      height={165}
+                      layout={'fixed'}
+                      className='hide'
+                    />
+                  </ImageWrapper>
+                  <HelpLeftSub>
+                    <HelpLink className='icon-link'>
                       Billling
                       <svg class='HoverArrow' width='10' height='10' viewBox='0 0 10 10' aria-hidden='true'>
                         <g fill-rule='evenodd'>
@@ -52,32 +53,34 @@ export default function Client({ currentModule }) {
                           <path class='HoverArrow__tipPath' d='M1 1l4 4-4 4'></path>
                         </g>
                       </svg>
-                    </Link>
-                  </HelpLink>
-                </HelpLeftSub>
+                    </HelpLink>
+                  </HelpLeftSub>
+                </Link>
               </ModuleCard>
             )}
             {currentModule !== MUDULE_LIST.FILES && (
               <ModuleCard className='mydiv file'>
-                <Image
-                  src='/images/file.svg'
-                  alt='red-icon'
-                  width={220}
-                  height={165}
-                  layout={'fixed'}
-                  className='show'
-                />
-                <Image
-                  src='/images/filehover.svg'
-                  alt='red-icon'
-                  width={220}
-                  height={165}
-                  layout={'fixed'}
-                  className='hide'
-                />
-                <HelpLeftSub>
-                  <HelpLink className='icon-link'>
-                    <Link href='/features/files-app' className='learn-link mb0'>
+                <Link href='/features/files-app' className='learn-link mb0'>
+                  <ImageWrapper>
+                    <Image
+                      src='/images/file.svg'
+                      alt='red-icon'
+                      width={220}
+                      height={165}
+                      layout={'fixed'}
+                      className='show'
+                    />
+                    <Image
+                      src='/images/filehover.svg'
+                      alt='red-icon'
+                      width={220}
+                      height={165}
+                      layout={'fixed'}
+                      className='hide'
+                    />
+                  </ImageWrapper>
+                  <HelpLeftSub>
+                    <HelpLink className='icon-link'>
                       Files
                       <svg class='HoverArrow' width='10' height='10' viewBox='0 0 10 10' aria-hidden='true'>
                         <g fill-rule='evenodd'>
@@ -85,32 +88,34 @@ export default function Client({ currentModule }) {
                           <path class='HoverArrow__tipPath' d='M1 1l4 4-4 4'></path>
                         </g>
                       </svg>
-                    </Link>
-                  </HelpLink>
-                </HelpLeftSub>
+                    </HelpLink>
+                  </HelpLeftSub>
+                </Link>
               </ModuleCard>
             )}
             {currentModule !== MUDULE_LIST.FORMS && (
               <ModuleCard className='mydiv form'>
-                <Image
-                  src='/images/form.svg'
-                  alt='red-icon'
-                  width={220}
-                  height={165}
-                  layout={'fixed'}
-                  className='show'
-                />
-                <Image
-                  src='/images/formhover.svg'
-                  alt='red-icon'
-                  width={220}
-                  height={165}
-                  layout={'fixed'}
-                  className='hide'
-                />
-                <HelpLeftSub>
-                  <HelpLink className='icon-link'>
-                    <Link href='/features/forms-app' className='learn-link mb0'>
+                <Link href='/features/forms-app' className='learn-link mb0'>
+                  <ImageWrapper>
+                    <Image
+                      src='/images/form.svg'
+                      alt='red-icon'
+                      width={220}
+                      height={165}
+                      layout={'fixed'}
+                      className='show'
+                    />
+                    <Image
+                      src='/images/formhover.svg'
+                      alt='red-icon'
+                      width={220}
+                      height={165}
+                      layout={'fixed'}
+                      className='hide'
+                    />
+                  </ImageWrapper>
+                  <HelpLeftSub>
+                    <HelpLink className='icon-link'>
                       Forms
                       <svg class='HoverArrow' width='10' height='10' viewBox='0 0 10 10' aria-hidden='true'>
                         <g fill-rule='evenodd'>
@@ -118,34 +123,34 @@ export default function Client({ currentModule }) {
                           <path class='HoverArrow__tipPath' d='M1 1l4 4-4 4'></path>
                         </g>
                       </svg>
-                    </Link>
-                  </HelpLink>
-                </HelpLeftSub>
+                    </HelpLink>
+                  </HelpLeftSub>
+                </Link>
               </ModuleCard>
             )}
             {currentModule !== MUDULE_LIST.HELPDESK && (
               <ModuleCard className='mydiv Helpdesk'>
-                <ImageWrapper>
-                  <Image
-                    src='/images/base.svg'
-                    alt='red-icon'
-                    width={220}
-                    height={165}
-                    layout={'fixed'}
-                    className='show'
-                  />
-                  <Image
-                    src='/images/basehover.svg'
-                    alt='red-icon'
-                    width={220}
-                    height={165}
-                    layout={'fixed'}
-                    className='hide'
-                  />
-                </ImageWrapper>
-                <HelpLeftSub>
-                  <HelpLink className='icon-link'>
-                    <Link href='/features/helpdesk-app' className='learn-link mb0'>
+                <Link href='/features/helpdesk-app' className='learn-link mb0'>
+                  <ImageWrapper>
+                    <Image
+                      src='/images/base.svg'
+                      alt='red-icon'
+                      width={220}
+                      height={165}
+                      layout={'fixed'}
+                      className='show'
+                    />
+                    <Image
+                      src='/images/basehover.svg'
+                      alt='red-icon'
+                      width={220}
+                      height={165}
+                      layout={'fixed'}
+                      className='hide'
+                    />
+                  </ImageWrapper>
+                  <HelpLeftSub>
+                    <HelpLink className='icon-link'>
                       Helpdesk
                       <svg class='HoverArrow' width='10' height='10' viewBox='0 0 10 10' aria-hidden='true'>
                         <g fill-rule='evenodd'>
@@ -153,32 +158,34 @@ export default function Client({ currentModule }) {
                           <path class='HoverArrow__tipPath' d='M1 1l4 4-4 4'></path>
                         </g>
                       </svg>
-                    </Link>
-                  </HelpLink>
-                </HelpLeftSub>
+                    </HelpLink>
+                  </HelpLeftSub>
+                </Link>
               </ModuleCard>
             )}
             {currentModule !== MUDULE_LIST.MESSAGING && (
               <ModuleCard className='mydiv message'>
-                <Image
-                  src='/images/Messageicon.svg'
-                  alt='red-icon'
-                  width={220}
-                  height={165}
-                  layout={'fixed'}
-                  className='show'
-                />
-                <Image
-                  src='/images/messagehover.svg'
-                  alt='red-icon'
-                  width={220}
-                  height={165}
-                  layout={'fixed'}
-                  className='hide'
-                />
-                <HelpLeftSub>
-                  <HelpLink className='icon-link'>
-                    <Link href='/features/messaging-app' className='learn-link mb0'>
+                <Link href='/features/messaging-app' className='learn-link mb0'>
+                  <ImageWrapper>
+                    <Image
+                      src='/images/Messageicon.svg'
+                      alt='red-icon'
+                      width={220}
+                      height={165}
+                      layout={'fixed'}
+                      className='show'
+                    />
+                    <Image
+                      src='/images/messagehover.svg'
+                      alt='red-icon'
+                      width={220}
+                      height={165}
+                      layout={'fixed'}
+                      className='hide'
+                    />
+                  </ImageWrapper>
+                  <HelpLeftSub>
+                    <HelpLink className='icon-link'>
                       Messaging
                       <svg class='HoverArrow' width='10' height='10' viewBox='0 0 10 10' aria-hidden='true'>
                         <g fill-rule='evenodd'>
@@ -186,9 +193,9 @@ export default function Client({ currentModule }) {
                           <path class='HoverArrow__tipPath' d='M1 1l4 4-4 4'></path>
                         </g>
                       </svg>
-                    </Link>
-                  </HelpLink>
-                </HelpLeftSub>
+                    </HelpLink>
+                  </HelpLeftSub>
+                </Link>
               </ModuleCard>
             )}
           </CardSection>
