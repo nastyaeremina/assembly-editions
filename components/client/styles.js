@@ -1,5 +1,5 @@
-import styled from "styled-components";
-import { Body1, Body4, Heading3, Heading4, LinkTxt } from "../../styles/styles";
+import styled from 'styled-components';
+import { Body1, Body4, Heading3, Heading4, LinkTxt } from '../../styles/styles';
 const ClientMain = styled.div`
   padding: 50px 0;
 `;
@@ -28,7 +28,7 @@ const CardSection = styled.div`
   }
 
   .mydiv:hover {
-    background-image: url("/images/billhoverbg.svg");
+    background-image: url('/images/billhoverbg.svg');
     background-repeat: no-repeat;
     background-size: cover;
     a {
@@ -43,10 +43,10 @@ const CardSection = styled.div`
   .form {
     border: 1px solid #171500;
   }
-  .base {
+  .Helpdesk {
     border: 1px solid #1c0c00;
   }
-  .contact {
+  .message {
     border: 1px solid #27000a;
   }
   .file:hover .hide {
@@ -57,7 +57,7 @@ const CardSection = styled.div`
   }
 
   .file:hover {
-    background-image: url("/images/hoverfile.svg");
+    background-image: url('/images/hoverfile.svg');
     background-repeat: no-repeat;
     background-size: cover;
     a {
@@ -65,26 +65,26 @@ const CardSection = styled.div`
     }
   }
   .form:hover {
-    background-image: url("/images/hoverform.svg");
+    background-image: url('/images/hoverform.svg');
     a {
       color: ${({ theme }) => theme.colors.yellowlight};
     }
   }
-  .base:hover {
-    background-image: url("/images/hoverbase.svg");
+  .Helpdesk:hover {
+    background-image: url('/images/hoverbase.svg');
     a {
       color: ${({ theme }) => theme.colors.orangelight};
     }
   }
-  .contact:hover {
-    background-image: url("/images/hovercontact.svg");
+  .message:hover {
+    background-image: url('/images/hovermessage.svg');
     a {
-      color: ${({ theme }) => theme.colors.magentalight};
+      color: ${({ theme }) => theme.colors.brownlight};
     }
   }
 `;
 const ModuleCard = styled.div`
-  padding: 24px 20px;
+  padding: 36px;
   border: 1px solid #01292c;
   border-radius: 4px;
   /* transition: all 5s ease; */
@@ -132,7 +132,7 @@ const BlockSection = styled.div`
     height: 100%;
   }
   :hover {
-    background-image: url("/images/hoverblock.svg");
+    background-image: url('/images/hoverblock.svg');
     background-repeat: no-repeat;
     background-size: cover;
     a {
@@ -194,6 +194,7 @@ const HelpLeftSub = styled.div`
     color: ${({ theme }) => theme.colors.title};
     cursor: pointer;
     display: block;
+    ${LinkTxt};
     :hover .HoverArrow__linePath {
       opacity: 1;
       fill: none;
@@ -252,5 +253,5 @@ export {
   BlockWrap,
   HelpLeftSub,
   ImageWrapper,
-  HelpLink,
+  HelpLink
 };
