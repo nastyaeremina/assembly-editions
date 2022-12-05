@@ -38,7 +38,7 @@ export const HOME_MODULE_LIST = {
 };
 
 export const MODULE_COLOR_LIST = [
-  { bgColor: '#120800', fontColor: '#ffffff' },
+  { bgColor: '#120800', fontColor: '#FFF7F0' },
   { bgColor: '#01292C', fontColor: '#E0FBFD' },
   { bgColor: '#01011D', fontColor: '#EFEEFF' },
   { bgColor: '#171500', fontColor: '#FDFBEC' },
