@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { Container } from "../../styles/commonStyles";
+import TabView from "../tab/tab";
 import {
   ContentMain,
   BottomFunction,
@@ -31,7 +32,8 @@ export default function Content() {
           </p>
         </TopFunctionWrap>
         <BottomFunction>
-          <TabRow>
+          <TabView />
+          {/* <TabRow>
             <TabBox>
               <Link href={"#"} className="activetab">
                 Create invoices
@@ -69,7 +71,7 @@ export default function Content() {
                 alt="msg-screen"
               />
             </RightDetail>
-          </ContainWrap>
+          </ContainWrap> */}
         </BottomFunction>
       </Container>
     </ContentMain>
