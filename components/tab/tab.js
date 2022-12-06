@@ -10,17 +10,18 @@ import { Container, SecondryButton } from '../../styles/commonStyles'
 import { ContainWrap, IconSvg, IconWrap, LeftDetail, RightDetail, TabRow } from '../../styles/homepageStyles'
 
 
-export default function TabView({ tabId, bgColor, textColor, isHome }) {
+export default function TabView({ tabId, bgColor, textColor, isHome, tabData }) {
     const [allPosts, setAppPosts] = useState([])
     const loadData = useCallback(async () => {
         const posts = (await getTabGroupById(tabId)) ?? [];
+
         setAppPosts(posts)
     }, [tabId])
 
     useEffect(() => {
-        loadData()
-    }, [loadData])
-    console.log("allPosts", allPosts);
+        if (!isEmpty(tabData)) setAppPosts(tabData)
+        else loadData()
+    }, [loadData, tabData])
     function TabOverride(rest) {
         // const { $active, id } = rest;
         // const fontColor = MODULE_COLOR_LIST[HOME_MODULE_LIST[rest?.children]]?.fontColor

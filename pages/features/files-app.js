@@ -24,12 +24,15 @@ import Content from '../../components/content/content';
 import Quote from '../../components/quote/quote';
 import Client from '../../components/client/client';
 import { Container } from '../../styles/commonStyles';
-import { HEADER_LIST, MODULE_GRADIENT_IMAGE_LIST, MUDULE_LIST, NAVBAR_COLOR_LIST } from '../../constants/constant';
+import { FEATURES_FILES_ID, HEADER_LIST, HOME_MODULE_LIST, MODULE_COLOR_LIST, MODULE_GRADIENT_IMAGE_LIST, MUDULE_LIST, NAVBAR_COLOR_LIST } from '../../constants/constant';
 import { useMemo } from 'react';
 import { getTabPosts } from '../../lib/contentful-tabs';
+import { getFeatureById } from '../../lib/contentful-features';
+import { BottomFunction } from '../../components/content/styles';
+import TabView from '../../components/tab/tab';
 
 const CURRENT_MODULE = MUDULE_LIST.FILES;
-export default function MessagingApp({ module, moduleDetails }) {
+export default function MessagingApp({ details }) {
   const renderHeroSection = useMemo(() => {
     return (
       <>
@@ -65,6 +68,15 @@ export default function MessagingApp({ module, moduleDetails }) {
       <Layout>
         {renderHeroSection}
         <Content />
+        <Container>
+          <BottomFunction>
+            <TabView
+              tabData={details?.clientFeaturesCollection?.items || []}
+              bgColor={MODULE_COLOR_LIST[HOME_MODULE_LIST['Files']]?.bgColor}
+              textColor={MODULE_COLOR_LIST[HOME_MODULE_LIST['Files']]?.fontColor}
+            />
+          </BottomFunction>
+        </Container>
         <Tools />
         <Quote gradientImage={MODULE_GRADIENT_IMAGE_LIST[CURRENT_MODULE]} />
         <Client currentModule={CURRENT_MODULE} />
@@ -74,11 +86,9 @@ export default function MessagingApp({ module, moduleDetails }) {
   );
 }
 
-// export async function getServerSideProps({ params, preview = false }) {
-//     const allPosts = (await getTabPosts(preview)) ?? [];
-//     const moduleDetails = allPosts?.filter((item) => item?.name.toLowerCase() === params?.slug)
-
-//     return {
-//         props: { preview, module: params?.slug, moduleDetails },
-//     };
-// }
+export async function getServerSideProps({ preview = false }) {
+  const details = (await getFeatureById(FEATURES_FILES_ID, preview)) ?? [];
+  return {
+    props: { details },
+  };
+}
