@@ -1,5 +1,5 @@
-import styled from "styled-components";
-import { Body2, Heading2 } from "../../../styles/styles";
+import styled from 'styled-components';
+import { Body2, Heading2 } from '../../../styles/styles';
 
 const HeroSection = styled.div`
   padding: 180px 0 0 0;
@@ -38,31 +38,14 @@ const ImageView = styled.div`
   padding-bottom: 174px;
   z-index: 2;
 `;
-const LineIcon = styled.div`
-  position: absolute;
-  z-index: -1;
-  right: 35px;
-  bottom: -26px;
-`;
 const MobileImg = styled.div`
   display: inline-flex;
   position: absolute;
   left: 0;
   top: 152px;
   left: -103px;
-  box-shadow: 0px 15px 64px rgba(0, 0, 0, 0.15),
-    0px 0px 15.6171px rgba(0, 0, 0, 0.08),
+  box-shadow: 0px 15px 64px rgba(0, 0, 0, 0.15), 0px 0px 15.6171px rgba(0, 0, 0, 0.08),
     inset 0px 0px 6.24685px rgba(0, 0, 0, 0.16);
   border-radius: 21.0831px;
 `;
-export {
-  HeroSection,
-  SolutionWrap,
-  LeftWrap,
-  RightWrap,
-  TextSection,
-  BtnWrap,
-  ImageView,
-  LineIcon,
-  MobileImg,
-};
+export { HeroSection, SolutionWrap, LeftWrap, RightWrap, TextSection, BtnWrap, ImageView, MobileImg };
