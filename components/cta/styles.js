@@ -39,9 +39,7 @@ const CtaBtn = styled.div`
   gap: 16px;
   @media only screen and (max-width: 991px) {
     .paddingbtn {
-      a {
-        padding: 6px 24px;
-      }
+      padding: 6px 24px;
     }
   }
   @media only screen and (max-width: 749px) {

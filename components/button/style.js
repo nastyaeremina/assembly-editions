@@ -1,10 +1,9 @@
-import styled, { css } from "styled-components";
-import { ButtonText, HeaderFont, MbPrimaryBtn } from "../../styles/styles";
+import styled, { css } from 'styled-components';
+import { ButtonText, HeaderFont, MbPrimaryBtn } from '../../styles/styles';
 
 const ButtonContainer = styled.div`
-
   a {
-    position:relative;
+    position: relative;
     overflow: hidden;
     ${ButtonText}
     display: inline-block;
@@ -12,34 +11,34 @@ const ButtonContainer = styled.div`
     padding: 11px 32px;
     border-radius: 26px;
     ${(props) =>
-        props.fontColor &&
-        css`
+      props.fontColor &&
+      css`
         color: ${props.fontColor};
       `}
     ${(props) =>
-        props.backgroundColor &&
-        css`
+      props.backgroundColor &&
+      css`
         background-color: ${props.backgroundColor};
       `}
       ${(props) =>
-        props.hoverColor &&
-        css`
-        :hover{
-            background-color: ${props.hoverColor};
+      props.hoverColor &&
+      css`
+        :hover {
+          background-color: ${props.hoverColor};
         }
       `}
       ${(props) =>
-        props.borderColor &&
-        css`
-          border: 1px solid ${props.borderColor};
+      props.borderColor &&
+      css`
+        border: 1px solid ${props.borderColor};
       `}
     text-decoration: none;
     transition: all 300ms;
     --y: calc((var(--cursor-y) * 1px));
     --x: calc((var(--cursor-x) * 1px));
-    &::before{
-      content: "";
-      opecity:0;
+    &::before {
+      content: '';
+      opecity: 0;
       pointer-events: none;
       user-select: none;
       position: absolute;
@@ -48,18 +47,17 @@ const ButtonContainer = styled.div`
       opacity: var(--border-shine-opacity);
       transition: opacity 400ms ease 0s;
       will-change: background, opacity;
-      background: radial-gradient(80px circle at var(--x) var(--y),#000,transparent 40%);
+      background: radial-gradient(80px circle at var(--x) var(--y), #000, transparent 40%);
       filter: blur(25px);
     }
-    &:hover::before{
-      opecity:1;
+    &:hover::before {
+      opecity: 1;
     }
   }
 
   @media only screen and (max-width: 991px) {
     a {
-      ${HeaderFont};
-      padding: 6px 24px;
+      padding: 11px 32px;
     }
   }
   @media only screen and (max-width: 749px) {
@@ -71,22 +69,22 @@ const ButtonContainer = styled.div`
 `;
 
 const Blur = styled.div`
-  position: absolute  ;
-	pointer-events: none;
-	width: 80px;
-	height: 80px;
-	border-radius: 50%;
-	margin-top: -40px;
-	margin-left: -40px;
-	background: #ff9999;
-	font-size: 18px;
-	letter-spacing: 0.05em;
-	color: #fff;
-    ${(props) =>
-        props.position &&
-        css`
-          transform: translate( ${props.position.left}px , ${props.position.top}px );
-      `}
-`
+  position: absolute;
+  pointer-events: none;
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  margin-top: -40px;
+  margin-left: -40px;
+  background: #ff9999;
+  font-size: 18px;
+  letter-spacing: 0.05em;
+  color: #fff;
+  ${(props) =>
+    props.position &&
+    css`
+      transform: translate(${props.position.left}px, ${props.position.top}px);
+    `}
+`;
 
-export { ButtonContainer, Blur }
+export { ButtonContainer, Blur };
