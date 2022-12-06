@@ -36,6 +36,7 @@ const Mainss = styled.div`
   border: 1px solid #000000;
   border-radius: 4px;
   background: #ffffff;
+  overflow: hidden;
 `;
 const QuoteTxt = styled.div`
   display: flex;
@@ -70,9 +71,13 @@ const QuoteLine = styled.div`
   right: -1px;
 `;
 const QuoteImg = styled.div`
-  max-height: 404px;
   position: relative;
-  height: 100%;
-  left: -1px; ;
+  left: -1px;
+  border-right: 1px solid #000;
+  margin-top: -1px;
+  img {
+    border-radius: 2px 0 0 2px;
+    height: 100%;
+  }
 `;
 export { QuoteMain, Mainss, QuoteTxt, QuoteSubTxt, QuoteTop, QuoteLine, QuoteImg };
