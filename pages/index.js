@@ -7,7 +7,6 @@ import Navbar from '../components/navbar/navbar';
 import { StatefulTabs, Tab, StyledTab } from 'baseui/tabs';
 import { LabelMedium } from 'baseui/typography';
 import { Container, PrimaryButton, SecondryButton } from '../styles/commonStyles';
-import {Helmet} from "react-helmet";
 
 
 import {
@@ -69,7 +68,7 @@ export default function Home({ allPosts }) {
 
   return (
     <>
-      
+
       <NextSeo
         title='Copilot - It’s all about connection'
         description='copilot offers client portal software solution to manage sales reporting, management, marketing, improve customer relationships and more. Get the best free CRM system for your business.'
@@ -402,14 +401,6 @@ export default function Home({ allPosts }) {
         </HomeMain>
         <CTA />
       </Layout>
-      <Helmet>
-        <script>
-         {`function myFunction(e){
-          e.target.style.setProperty("--cursor-x", (e.clientX - e.target.offsetLeft));
-          e.target.style.setProperty("--cursor-y", (e.clientY - e.target.offsetTop - document.body.getBoundingClientRect().top ));
-          }`} 
-        </script>
-      </Helmet>
     </>
   );
 }
