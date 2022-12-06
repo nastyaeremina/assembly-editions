@@ -2,7 +2,7 @@ import { NextSeo } from 'next-seo';
 import Image from 'next/image';
 import Link from 'next/link';
 import copy from "copy-to-clipboard";
-import { useCallback } from 'react';
+import { useCallback, useMemo, useState } from 'react';
 import Layout from '../../components/layout';
 import Navbar from '../../components/navbar/navbar';
 import { Container, PrimaryButton } from '../../styles/commonStyles';
@@ -26,9 +26,55 @@ import {
 
 export default function Brand() {
 
-  const onCopyToClipboard = useCallback((value) => {
-    copy(value);
-  }, []);
+  const [copy1, setCopy1] = useState('Copy')
+  const [copy2, setCopy2] = useState('Copy')
+  const [copy3, setCopy3] = useState('Copy')
+
+  const copyBlock1 = useMemo(() => {
+    return <Block1>
+      <BlockSub onClick={() => {
+        copy('#09AA6C');
+        setCopy1('Copied!')
+        const interval = setInterval(() => {
+          setCopy1('Copy')
+        }, 5000);
+      }}>
+        <p>{copy1}</p>
+        <span>#09AA6C</span>
+      </BlockSub>
+    </Block1>
+  }, [copy1])
+
+  const copyBlock2 = useMemo(() => {
+    return <Block1 className='block2color'>
+      <BlockSub onClick={() => {
+        copy('#E3FFEE');
+        setCopy2('Copied!')
+        const interval = setInterval(() => {
+          setCopy2('Copy')
+        }, 5000);
+      }}>
+        <p>{copy2}</p>
+        <span>#E3FFEE</span>
+      </BlockSub>
+    </Block1>
+  }, [copy2])
+
+  const copyBlock3 = useMemo(() => {
+    return <Block1 className='block3color'>
+      <BlockLight onClick={() => {
+        copy('#00160E');
+        setCopy3('Copied!')
+        const interval = setInterval(() => {
+          setCopy3('Copy')
+        }, 5000);
+      }}>
+        <p>{copy3}</p>
+        <span>#00160E</span>
+      </BlockLight>
+    </Block1>
+  }, [copy3])
+
   return (
     <>
       <NextSeo
@@ -43,7 +89,7 @@ export default function Brand() {
               <h2>Copilot Brand Guidelines</h2>
               <p>Resources for presenting the Copilot brand consistently and professionally.</p>
               <PrimaryButton>
-                <Link href='#' >Download Brand Assets</Link>
+                <a href='images/Copilot_Block_Assets.zip' download>Download Brand Assets</a>
               </PrimaryButton>
             </BrandHeroSection>
             <BrandName>
@@ -151,26 +197,12 @@ export default function Brand() {
               <h4>Colors</h4>
               <p>Copilot’s primary brand color is a cool green that’s been slightly desaturated and darkened. </p>
               <ColorSection>
-                <Block1>
-                  <BlockSub onClick={() => onCopyToClipboard('#09AA6C')}>
-                    <p>Copy</p>
-                    <span>#09AA6C</span>
-                  </BlockSub>
-                </Block1>
+                {copyBlock1}
+                {copyBlock2}
+                {copyBlock3}
 
-                <Block1 className='block2color'>
-                  <BlockSub onClick={() => onCopyToClipboard('#E3FFEE')}>
-                    <p>Copy</p>
-                    <span>#E3FFEE</span>
-                  </BlockSub>
-                </Block1>
 
-                <Block1 className='block3color'>
-                  <BlockLight onClick={() => onCopyToClipboard('#00160E')}>
-                    <p>Copy</p>
-                    <span>#00160E</span>
-                  </BlockLight>
-                </Block1>
+
               </ColorSection>
             </BrandName>
           </Container>
