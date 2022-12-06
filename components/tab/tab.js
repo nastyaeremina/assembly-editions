@@ -11,7 +11,6 @@ import { ContainWrap, IconSvg, IconWrap, LeftDetail, RightDetail, TabRow } from 
 
 
 export default function TabView({ tabId, bgColor, textColor, isHome }) {
-    console.log("bgColor", bgColor, textColor);
     const [allPosts, setAppPosts] = useState([])
     const loadData = useCallback(async () => {
         const posts = (await getTabGroupById(tabId)) ?? [];
@@ -21,7 +20,7 @@ export default function TabView({ tabId, bgColor, textColor, isHome }) {
     useEffect(() => {
         loadData()
     }, [loadData])
-
+    console.log("allPosts", allPosts);
     function TabOverride(rest) {
         // const { $active, id } = rest;
         // const fontColor = MODULE_COLOR_LIST[HOME_MODULE_LIST[rest?.children]]?.fontColor
@@ -87,7 +86,7 @@ export default function TabView({ tabId, bgColor, textColor, isHome }) {
         if (isEmpty(allPosts)) return null
         return allPosts?.map((item, index) => {
             return (
-                <Tab title={item?.name} className={index === 0 ? 'ml0' : 'ml0'} key={index} id={item?.name}>
+                <Tab title={item?.title} className={index === 0 ? 'ml0' : 'ml0'} key={index} id={item?.title}>
                     <ContainWrap>
                         <LeftDetail>
                             <h4>{item?.subTitle}</h4>
@@ -111,9 +110,11 @@ export default function TabView({ tabId, bgColor, textColor, isHome }) {
 
     const homeTablistview = useMemo(() => {
         if (isEmpty(allPosts)) return null
+
         return allPosts?.map((item, index) => {
+            const link = item?.link?.split('copilot.com/')?.[1]
             return (
-                <Tab title={item?.name} className={index === 0 ? 'ml0' : 'ml0'} key={index} id={item?.name}>
+                <Tab title={item?.title} className={index === 0 ? 'ml0' : 'ml0'} key={index} id={item?.title}>
                     <ContainWrap>
                         <LeftDetail>
                             <IconWrap>
@@ -121,12 +122,12 @@ export default function TabView({ tabId, bgColor, textColor, isHome }) {
                                     <Image src={item?.icon?.url} width={44} height={44} alt='msg-icon' />
                                 </IconSvg>
                             </IconWrap>
-                            <h4>{item?.name}</h4>
+                            <h4>{item?.title}</h4>
                             <p>
                                 {item?.description}
                             </p>
                             <SecondryButton>
-                                <Link href={`features/${item?.slug}`}>Learn More</Link>
+                                <Link href={`${link}`}>Learn More</Link>
                             </SecondryButton>
                         </LeftDetail>
                         <RightDetail>
