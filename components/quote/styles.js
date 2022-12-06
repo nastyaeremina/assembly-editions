@@ -1,8 +1,8 @@
-import styled, { css } from "styled-components";
-import { Body4, ButtonText, Quote } from "../../styles/styles";
+import styled, { css } from 'styled-components';
+import { Body4, ButtonText, Quote } from '../../styles/styles';
 
 const QuoteMain = styled.div`
-${(props) =>
+  ${(props) =>
     props.gradientImage &&
     css`
       background-image: url(${props.gradientImage});
@@ -70,7 +70,9 @@ const QuoteLine = styled.div`
   right: -1px;
 `;
 const QuoteImg = styled.div`
-max-height: 404px;
-
+  max-height: 404px;
+  position: relative;
+  height: 100%;
+  left: -1px; ;
 `;
 export { QuoteMain, Mainss, QuoteTxt, QuoteSubTxt, QuoteTop, QuoteLine, QuoteImg };

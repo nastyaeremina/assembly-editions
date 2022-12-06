@@ -206,7 +206,17 @@ export default function Client({ currentModule }) {
               width={185}
               height={145}
               // layout={"fixed"}
+              className='show'
             />
+            <Image
+              src='/images/blockhover.svg'
+              alt='red-icon'
+              width={185}
+              height={145}
+              // layout={"fixed"}
+              className='hide'
+            />
+
             <BlockText>
               <h3>
                 Embed products you already use to unify your interactions with clients, giving them an experience that’s

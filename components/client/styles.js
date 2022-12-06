@@ -88,6 +88,7 @@ const ModuleCard = styled.div`
   border: 1px solid #01292c;
   border-radius: 4px;
   display: block;
+  cursor: pointer;
   /* transition: all 5s ease; */
   .learn-link,
   .learn-link svg path {
@@ -182,6 +183,12 @@ const BlockSection = styled.div`
     h3 {
       color: ${({ theme }) => theme.colors.greenlight};
     }
+    .hide {
+      display: block;
+    }
+    .show {
+      display: none;
+    }
   }
   :hover .HoverArrow__linePath {
     opacity: 1;
@@ -189,6 +196,9 @@ const BlockSection = styled.div`
   }
   :hover .HoverArrow__tipPath {
     transform: translateX(4px);
+  }
+  .hide {
+    display: none;
   }
 `;
 const BlockText = styled.div`
@@ -202,6 +212,9 @@ const BlockText = styled.div`
   }
   .hidden {
     display: none;
+  }
+  .learn-link:hover {
+    color: #e3ffee !important;
   }
 `;
 const BlockWrap = styled.div`
