@@ -390,6 +390,42 @@ const DetailTxt = styled.div`
     color: ${({ theme }) => theme.colors.primary};
     ${Body4};
   }
+  .tooltip {
+    position: relative;
+    display: inline-block;
+  }
+  .tooltip .tooltiptext {
+    visibility: hidden;
+    opacity: 0;
+    width: 834px;
+    border-radius: 6px;
+    padding: 24px 32px;
+    ${Body4};
+    background-color: ${({ theme }) => theme.colors.greendark};
+    color: ${({ theme }) => theme.colors.greenlight};
+    /* Position the tooltip */
+    position: absolute;
+    z-index: 2;
+    top: 40px;
+    left: 0;
+    margin-left: -54px;
+    box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.25);
+    border-radius: 4px;
+  }
+  .tooltip:hover .tooltiptext {
+    visibility: visible;
+    opacity: 1;
+    ::after {
+      content: '';
+      position: absolute;
+      width: 46px;
+      border-top: 2px solid #00160e;
+      transform: rotate(90deg);
+      top: 0;
+      left: 42px;
+      z-index: -1;
+    }
+  }
 `;
 const HelpWrap = styled.div`
   display: flex;
@@ -399,6 +435,7 @@ const RightTxt = styled.div`
   background-color: ${({ theme }) => theme.colors.greenlight};
   padding: 7px 20px;
   margin-top: 12px;
+  display: inline-block;
   h4 {
     ${Label};
     color: ${({ theme }) => theme.colors.primary};
@@ -410,7 +447,7 @@ const LeftImage = styled.div`
   padding-top: 10px;
 `;
 const AppWrap = styled.div`
-  padding-bottom: 50px;
+  padding-bottom: 100px;
   h3 {
     ${Heading3};
     margin: 0;
@@ -437,6 +474,7 @@ const ImageWrap = styled.div`
   box-shadow: 0px 0px 25.4474px rgba(0, 0, 0, 0.07);
   border-radius: 5px;
 `;
+const Tooltip = styled.div``;
 export {
   HeroSection,
   FeatureSection,
@@ -481,5 +519,6 @@ export {
   CardMain,
   MainBg,
   ImgView,
-  ImageWrap
+  ImageWrap,
+  Tooltip
 };
