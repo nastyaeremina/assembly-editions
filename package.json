@@ -20,6 +20,7 @@
     "baseui": "^12.2.0",
     "classnames": "^2.3.2",
     "contentful": "^9.1.18",
+    "copy-to-clipboard": "^3.3.3",
     "cross-env": "7.0.3",
     "eslint": "8.26.0",
     "eslint-config-next": "13.0.1",

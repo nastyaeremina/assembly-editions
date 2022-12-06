@@ -125,7 +125,7 @@ export default function Navbar({ BlogDetails, isModule, headerIndex, isEnterPric
   };
 
   const Navigation = () => {
-    console.log('isOpenFeatureSubMenu', isOpenFeatureSubMenu);
+    // console.log('isOpenFeatureSubMenu', isOpenFeatureSubMenu);
     return (
       <>
         <NavMenu BlogDetails={BlogDetails} isOpenMobileMenu={isOpenMobileMenu} mobile={mobile}>
