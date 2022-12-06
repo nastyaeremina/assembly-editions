@@ -24,14 +24,15 @@ import Content from "../../components/content/content";
 import Quote from "../../components/quote/quote";
 import Client from "../../components/client/client";
 import { Container } from "../../styles/commonStyles";
-import { FEATURES_BILLING_TAB_ID, HEADER_LIST, HOME_MODULE_LIST, MODULE_COLOR_LIST, MODULE_GRADIENT_IMAGE_LIST, MUDULE_LIST, NAVBAR_COLOR_LIST } from "../../constants/constant";
+import { FEATURES_BILLING_ID, FEATURES_BILLING_TAB_ID, HEADER_LIST, HOME_MODULE_LIST, MODULE_COLOR_LIST, MODULE_GRADIENT_IMAGE_LIST, MUDULE_LIST, NAVBAR_COLOR_LIST } from "../../constants/constant";
 import { useMemo } from "react";
 import { getTabPosts } from "../../lib/contentful-tabs";
 import { BottomFunction } from "../../components/content/styles";
 import TabView from "../../components/tab/tab";
+import { getFeatureById } from "../../lib/contentful-features";
 
 const CURRENT_MODULE = MUDULE_LIST.BILLING
-export default function MessagingApp({ module, moduleDetails }) {
+export default function MessagingApp({ details }) {
     const renderHeroSection = useMemo(() => {
         return (
             <>
@@ -70,7 +71,11 @@ export default function MessagingApp({ module, moduleDetails }) {
                 <Content />
                 <Container>
                     <BottomFunction>
-                        <TabView tabId={FEATURES_BILLING_TAB_ID} bgColor={MODULE_COLOR_LIST[HOME_MODULE_LIST['Billing']]?.bgColor} textColor={MODULE_COLOR_LIST[HOME_MODULE_LIST['Billing']]?.fontColor} />
+                        <TabView
+                            tabId={FEATURES_BILLING_TAB_ID}
+                            tabData={details?.clientFeaturesCollection?.items || []}
+                            bgColor={MODULE_COLOR_LIST[HOME_MODULE_LIST['Billing']]?.bgColor}
+                            textColor={MODULE_COLOR_LIST[HOME_MODULE_LIST['Billing']]?.fontColor} />
                     </BottomFunction>
                 </Container>
                 <Tools />
@@ -82,11 +87,9 @@ export default function MessagingApp({ module, moduleDetails }) {
     );
 }
 
-// export async function getServerSideProps({ params, preview = false }) {
-//     const allPosts = (await getTabPosts(preview)) ?? [];
-//     const moduleDetails = allPosts?.filter((item) => item?.name.toLowerCase() === params?.slug)
-
-//     return {
-//         props: { preview, module: params?.slug, moduleDetails },
-//     };
-// }
+export async function getServerSideProps({ preview = false }) {
+    const details = (await getFeatureById(FEATURES_BILLING_ID, preview)) ?? [];
+    return {
+        props: { details },
+    };
+}

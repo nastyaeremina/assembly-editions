@@ -10,6 +10,7 @@ import Quote from '../../components/quote/quote';
 import Client from '../../components/client/client';
 import { Container } from '../../styles/commonStyles';
 import {
+  FEATURES_MESSAG_ID,
   FEATURES_MESSAG_TAB_ID,
   HEADER_LIST,
   HOME_MODULE_LIST,
@@ -21,9 +22,11 @@ import {
 import { useMemo } from 'react';
 import { BottomFunction } from '../../components/content/styles';
 import TabView from '../../components/tab/tab';
+import { getFeatureById } from '../../lib/contentful-features';
 
 const CURRENT_MODULE = MUDULE_LIST.MESSAGING;
-export default function MessagingApp({ module, moduleDetails }) {
+export default function MessagingApp({ details }) {
+
   const renderHeroSection = useMemo(() => {
     return (
       <>
@@ -72,6 +75,7 @@ export default function MessagingApp({ module, moduleDetails }) {
           <BottomFunction>
             <TabView
               tabId={FEATURES_MESSAG_TAB_ID}
+              tabData={details?.clientFeaturesCollection?.items || []}
               bgColor={MODULE_COLOR_LIST[HOME_MODULE_LIST['Messaging']]?.bgColor}
               textColor={MODULE_COLOR_LIST[HOME_MODULE_LIST['Messaging']]?.fontColor}
             />
@@ -86,11 +90,9 @@ export default function MessagingApp({ module, moduleDetails }) {
   );
 }
 
-// export async function getServerSideProps({ params, preview = false }) {
-//     const allPosts = (await getTabPosts(preview)) ?? [];
-//     const moduleDetails = allPosts?.filter((item) => item?.name.toLowerCase() === params?.slug)
-
-//     return {
-//         props: { preview, module: params?.slug, moduleDetails },
-//     };
-// }
+export async function getServerSideProps({ preview = false }) {
+  const details = (await getFeatureById(FEATURES_MESSAG_ID, preview)) ?? [];
+  return {
+    props: { details },
+  };
+}
