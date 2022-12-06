@@ -430,7 +430,13 @@ const ImgView = styled.div`
   max-width: 35px;
   max-height: 35px;
 `;
-
+const ImageWrap = styled.div`
+  display: block;
+  max-height: 543px;
+  height: 100%;
+  box-shadow: 0px 0px 25.4474px rgba(0, 0, 0, 0.07);
+  border-radius: 5px;
+`;
 export {
   HeroSection,
   FeatureSection,
@@ -474,5 +480,6 @@ export {
   CardSection,
   CardMain,
   MainBg,
-  ImgView
+  ImgView,
+  ImageWrap
 };
