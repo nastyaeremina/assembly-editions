@@ -23,6 +23,7 @@ import { useMemo } from 'react';
 import { BottomFunction } from '../../components/content/styles';
 import TabView from '../../components/tab/tab';
 import { getFeatureById } from '../../lib/contentful-features';
+import { isEmpty } from '../../helpers/helpers';
 
 const CURRENT_MODULE = MUDULE_LIST.MESSAGING;
 export default function MessagingApp({ details }) {
@@ -81,7 +82,8 @@ export default function MessagingApp({ details }) {
             />
           </BottomFunction>
         </Container>
-        <Tools />
+
+        {!isEmpty(details?.internalFeaturesCollection?.items) && <Tools data={details?.internalFeaturesCollection?.items} />}
         <Quote gradientImage={MODULE_GRADIENT_IMAGE_LIST[CURRENT_MODULE]} />
         <Client currentModule={CURRENT_MODULE} />
         <CTA moduleName={CURRENT_MODULE} colorList={NAVBAR_COLOR_LIST[HEADER_LIST.MESSAGING]} />

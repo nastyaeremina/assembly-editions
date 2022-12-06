@@ -30,6 +30,7 @@ import { getTabPosts } from "../../lib/contentful-tabs";
 import { BottomFunction } from "../../components/content/styles";
 import TabView from "../../components/tab/tab";
 import { getFeatureById } from "../../lib/contentful-features";
+import { isEmpty } from "../../helpers/helpers";
 
 const CURRENT_MODULE = MUDULE_LIST.BILLING
 export default function MessagingApp({ details }) {
@@ -78,7 +79,7 @@ export default function MessagingApp({ details }) {
                             textColor={MODULE_COLOR_LIST[HOME_MODULE_LIST['Billing']]?.fontColor} />
                     </BottomFunction>
                 </Container>
-                <Tools />
+                {!isEmpty(details?.internalFeaturesCollection?.items) && <Tools data={details?.internalFeaturesCollection?.items} />}
                 <Quote gradientImage={MODULE_GRADIENT_IMAGE_LIST[CURRENT_MODULE]} />
                 <Client currentModule={CURRENT_MODULE} />
                 <CTA moduleName={CURRENT_MODULE} colorList={NAVBAR_COLOR_LIST[HEADER_LIST.BILLING]} />
