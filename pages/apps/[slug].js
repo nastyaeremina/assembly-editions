@@ -19,7 +19,8 @@ import {
   CardText,
   CardEnd,
   FeatureCard,
-  ImageWrap
+  ImageWrap,
+  Tooltip
 } from '../../styles/appsStyles';
 import { Container, PrimaryButton } from '../../styles/commonStyles';
 import CTA from '../../components/cta/cta';
