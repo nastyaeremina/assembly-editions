@@ -11,26 +11,31 @@ const ButtonContainer = styled.div`
     letter-spacing: 0.02em;
     padding: 11px 32px;
     border-radius: 26px;
+    color: ${({ theme }) => theme.colors.primary};
+    /* :hover{
+            background-color: ${({ theme }) => theme.colors.primary};
+    } */
+    border: 1px solid ${({ theme }) => theme.colors.primary};
     ${(props) =>
-        props.fontColor &&
-        css`
+    props.fontColor &&
+    css`
         color: ${props.fontColor};
       `}
     ${(props) =>
-        props.backgroundColor &&
-        css`
+    props.backgroundColor &&
+    css`
         background-color: ${props.backgroundColor};
       `}
       ${(props) =>
-        props.hoverColor &&
-        css`
+    props.hoverColor &&
+    css`
         :hover{
             background-color: ${props.hoverColor};
         }
       `}
       ${(props) =>
-        props.borderColor &&
-        css`
+    props.borderColor &&
+    css`
           border: 1px solid ${props.borderColor};
       `}
     text-decoration: none;
@@ -39,7 +44,7 @@ const ButtonContainer = styled.div`
     --x: calc((var(--cursor-x) * 1px));
     &::before{
       content: "";
-      opecity:0;
+      opacity:0;
       pointer-events: none;
       user-select: none;
       position: absolute;
@@ -48,11 +53,11 @@ const ButtonContainer = styled.div`
       opacity: var(--border-shine-opacity);
       transition: opacity 400ms ease 0s;
       will-change: background, opacity;
-      background: radial-gradient(80px circle at var(--x) var(--y),#000,transparent 40%);
+      background: radial-gradient(80px circle at var(--x) var(--y),#09AA6C,transparent 40%);
       filter: blur(25px);
     }
     &:hover::before{
-      opecity:1;
+      opacity:1;
     }
   }
 
@@ -83,8 +88,8 @@ const Blur = styled.div`
 	letter-spacing: 0.05em;
 	color: #fff;
     ${(props) =>
-        props.position &&
-        css`
+    props.position &&
+    css`
           transform: translate( ${props.position.left}px , ${props.position.top}px );
       `}
 `
