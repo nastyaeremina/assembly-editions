@@ -66,9 +66,10 @@ const QuoteTop = styled.div`
   height: 407px;
 `;
 const QuoteLine = styled.div`
+  bottom: -103px;
   position: absolute;
-  bottom: -104px;
-  right: -1px;
+  left: 25%;
+  margin-left: -1px;
 `;
 const QuoteImg = styled.div`
   position: relative;

@@ -24,7 +24,15 @@ import Content from '../../components/content/content';
 import Quote from '../../components/quote/quote';
 import Client from '../../components/client/client';
 import { Container } from '../../styles/commonStyles';
-import { FEATURES_FORMS_ID, HEADER_LIST, HOME_MODULE_LIST, MODULE_COLOR_LIST, MODULE_GRADIENT_IMAGE_LIST, MUDULE_LIST, NAVBAR_COLOR_LIST } from '../../constants/constant';
+import {
+  FEATURES_FORMS_ID,
+  HEADER_LIST,
+  HOME_MODULE_LIST,
+  MODULE_COLOR_LIST,
+  MODULE_GRADIENT_IMAGE_LIST,
+  MUDULE_LIST,
+  NAVBAR_COLOR_LIST
+} from '../../constants/constant';
 import { useMemo } from 'react';
 import { getTabPosts } from '../../lib/contentful-tabs';
 import { BottomFunction } from '../../components/content/styles';
@@ -80,10 +88,22 @@ export default function MessagingApp({ details }) {
               bgColor={MODULE_COLOR_LIST[HOME_MODULE_LIST['Forms']]?.bgColor}
               textColor={MODULE_COLOR_LIST[HOME_MODULE_LIST['Forms']]?.fontColor}
             />
+            <Image
+              src='/images/borderline.svg'
+              alt='line-icon'
+              width={1}
+              height={250}
+              layout={'fixed'}
+              className='borderline'
+            />
           </BottomFunction>
         </Container>
-        {!isEmpty(details?.internalFeaturesCollection?.items) && <Tools data={details?.internalFeaturesCollection?.items} />}
-        {!isEmpty(details?.testimonial) && <Quote gradientImage={MODULE_GRADIENT_IMAGE_LIST[CURRENT_MODULE]} data={details?.testimonial} />}
+        {!isEmpty(details?.internalFeaturesCollection?.items) && (
+          <Tools data={details?.internalFeaturesCollection?.items} />
+        )}
+        {!isEmpty(details?.testimonial) && (
+          <Quote gradientImage={MODULE_GRADIENT_IMAGE_LIST[CURRENT_MODULE]} data={details?.testimonial} />
+        )}
         <Client currentModule={CURRENT_MODULE} />
         <CTA moduleName={CURRENT_MODULE} colorList={NAVBAR_COLOR_LIST[HEADER_LIST.FORMS]} />
       </Layout>
@@ -94,6 +114,6 @@ export default function MessagingApp({ details }) {
 export async function getServerSideProps({ preview = false }) {
   const details = (await getFeatureById(FEATURES_FORMS_ID, preview)) ?? [];
   return {
-    props: { details },
+    props: { details }
   };
 }

@@ -1,8 +1,7 @@
-import styled, { css } from "styled-components";
-import { Body4, Heading3, Heading4 } from "../../styles/styles";
+import styled, { css } from 'styled-components';
+import { Body4, Heading3, Heading4 } from '../../styles/styles';
 const ToolMain = styled.div`
   padding: 100px 0 50px 0;
-  /* position: relative; */
   h3 {
     max-width: 918px;
     width: 100%;
@@ -14,16 +13,17 @@ const ToolMain = styled.div`
   span {
     color: ${({ theme }) => theme.colors.primary};
   }
-  `
-  ;
+`;
 const ModuleSection = styled.div`
   margin-top: 40px;
   border: 1px solid #120800;
+  border-top: 0;
   border-radius: 4px;
   color: ${({ theme }) => theme.colors.white};
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
-  .moduleborder {
+  position: relative;
+  /* .moduleborder {
     border-top: 1px solid #120800;
     position: relative;
   }
@@ -37,11 +37,19 @@ const ModuleSection = styled.div`
     position: absolute;
     right: -1px;
     top: -251px;
-  }
+  } */
 `;
 const ModuleWrap = styled.div`
-  border-right: 1px solid #120800;
+  border: 1px solid #120800;
   padding: 28px 24px;
+  border-left: 0;
+  margin-bottom: -1px;
+  :nth-child(4) {
+    border-right: none;
+  }
+  :nth-child(8) {
+    border-right: none;
+  }
   h4 {
     ${Heading4};
     color: ${({ theme }) => theme.colors.title};

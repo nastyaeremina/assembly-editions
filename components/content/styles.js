@@ -1,7 +1,12 @@
-import styled from "styled-components";
-import { Body3, Body4, Heading3, Heading4, Label } from "../../styles/styles";
+import styled from 'styled-components';
+import { Body3, Body4, Heading3, Heading4, Label } from '../../styles/styles';
 const BottomFunction = styled.div`
   margin-top: 40px;
+  position: relative;
+  .borderline {
+    position: absolute;
+    right: 25%;
+  }
 `;
 const TabRow = styled.div`
   display: flex;
@@ -72,13 +77,4 @@ const TopFunctionWrap = styled.div`
 const ContentMain = styled.div`
   padding-top: 100px;
 `;
-export {
-  ContentMain,
-  BottomFunction,
-  TabRow,
-  TabBox,
-  ContainWrap,
-  LeftDetail,
-  TopFunctionWrap,
-  RightDetail,
-};
+export { ContentMain, BottomFunction, TabRow, TabBox, ContainWrap, LeftDetail, TopFunctionWrap, RightDetail };
