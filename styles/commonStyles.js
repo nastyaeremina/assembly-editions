@@ -151,8 +151,7 @@ const PrimaryButton = styled.div`
   }
   @media only screen and (max-width: 991px) {
     a {
-      ${HeaderFont};
-      padding: 6px 24px;
+      padding: 11px 32px;
     }
   }
   @media only screen and (max-width: 749px) {

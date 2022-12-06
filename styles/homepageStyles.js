@@ -395,6 +395,7 @@ const ReviewLogo = styled.div`
   justify-content: center;
   gap: 10px;
   display: inline-block;
+  max-height: 43px;
 `;
 const Reviewimage = styled.div`
   display: flex;
@@ -1058,6 +1059,7 @@ const ImageHover = styled.div`
   display: inline-block;
   cursor: pointer;
   position: relative;
+  max-height: 43px;
   .show {
     display: block;
     opacity: 1;
