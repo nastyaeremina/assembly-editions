@@ -301,6 +301,13 @@ const SignInSignUpBtn = styled.ul`
     align-items: center;
     justify-content: center;
   }
+  .hederbtn {
+    a {
+      padding: 8px 32px;
+      margin-left: 14px;
+      ${HeaderFont};
+    }
+  }
 `;
 const SignIn = styled.li`
   a {
