@@ -1059,7 +1059,20 @@ const ImageHover = styled.div`
   display: inline-block;
   cursor: pointer;
   position: relative;
-  max-height: 43px;
+  display: flex;
+  gap: 10px;
+  svg {
+    path {
+      transition: 0.3s;
+    }
+  }
+  :hover {
+    svg {
+      path {
+        fill: #ff492c;
+      }
+    }
+  }
   .show {
     display: block;
     opacity: 1;
@@ -1096,6 +1109,22 @@ const ImageHover = styled.div`
     -moz-animation: fadeIn ease 0.3s;
     -o-animation: fadeIn ease 0.3s;
     -ms-animation: fadeIn ease 3s;
+  }
+`;
+const LeftSvg = styled.div``;
+const RightWrap = styled.div`
+  display: flex;
+  flex-direction: column;
+  p {
+    font-family: 'Bagoss Standard';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 23px;
+    letter-spacing: 0.02em;
+    color: #6e847c;
+    margin: 0 0 0 0px;
+    padding-left: 3px;
   }
 `;
 export {
@@ -1167,5 +1196,7 @@ export {
   BtnView,
   ImageHover,
   HelpImg,
-  IconWrap
+  IconWrap,
+  LeftSvg,
+  RightWrap
 };
