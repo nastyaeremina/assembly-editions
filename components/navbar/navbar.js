@@ -49,6 +49,7 @@ import {
 import FeatureSubMenu from './featuresubmenu';
 import ResourcesSubMenu from './resourcessubmenu';
 import CompanySubMenu from './companysubmenu';
+import Button from '../button/button';
 
 export default function Navbar({ BlogDetails, isModule, headerIndex, isEnterPrice }) {
   const mobile = useMobileDevice();
@@ -569,11 +570,20 @@ export default function Navbar({ BlogDetails, isModule, headerIndex, isEnterPric
                   <SignIn textColor={colorList?.fontColor} hoverColor={colorList?.primaryColor}>
                     <Link href='/book-demo'>Book demo</Link>
                   </SignIn>
-                  <BlackButton
+                  {/* <BlackButton
                     textColor={isEnterPrice ? colorList?.fontColor : '#FFFFFF'}
                     backgroundColor={colorList?.buttonColor}>
                     <Link href='https://dashboard.copilot.com/onboarding'>Start Trial</Link>
-                  </BlackButton>
+                  </BlackButton> */}
+                  <Button
+                    bgColor={colorList?.buttonColor}
+                    fontColor={isEnterPrice ? colorList?.fontColor : '#FFFFFF'}
+                    text={'Start Trial'}
+                    borderColor={'transparent'}
+                    href={'https://dashboard.copilot.com/onboarding'}
+                    hoverColor={'rgba(255, 255, 255, 0.8)'}
+                    className='hederbtn'
+                  />
                 </>
               </SignInSignUpBtn>
             )}

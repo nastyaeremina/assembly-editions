@@ -3,10 +3,10 @@ import { ButtonText, HeaderFont, MbPrimaryBtn } from '../../styles/styles';
 
 const ButtonContainer = styled.div`
   a {
-    position: relative;
+    position: relative !important;
     overflow: hidden;
     ${ButtonText}
-    display: inline-block;
+    display: inline-flex;
     letter-spacing: 0.02em;
     padding: 11px 32px;
     border-radius: 26px;
@@ -21,13 +21,6 @@ const ButtonContainer = styled.div`
       props.backgroundColor &&
       css`
         background-color: ${props.backgroundColor};
-      `}
-      ${(props) =>
-      props.hoverColor &&
-      css`
-        :hover {
-          background-color: ${props.hoverColor};
-        }
       `}
       ${(props) =>
       props.borderColor &&
@@ -49,8 +42,13 @@ const ButtonContainer = styled.div`
       opacity: var(--border-shine-opacity);
       transition: opacity 400ms ease 0s;
       will-change: background, opacity;
-      background: radial-gradient(80px circle at var(--x) var(--y), #09aa6c, transparent 40%);
+      background: radial-gradient(80px circle at var(--x) var(--y), rgba(255, 255, 255, 0.8), transparent 40%);
       filter: blur(25px);
+      ${(props) =>
+        props.hoverColor &&
+        css`
+          background: radial-gradient(80px circle at var(--x) var(--y), ${props.hoverColor}, transparent 40%);
+        `}
     }
     &:hover::before {
       opacity: 1;

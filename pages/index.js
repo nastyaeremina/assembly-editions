@@ -8,7 +8,6 @@ import { StatefulTabs, Tab, StyledTab } from 'baseui/tabs';
 import { LabelMedium } from 'baseui/typography';
 import { Container, PrimaryButton, SecondryButton } from '../styles/commonStyles';
 
-
 import {
   HeroSection,
   HeroHeading,
@@ -62,13 +61,9 @@ import { isEmpty } from '../helpers/helpers';
 import TabView from '../components/tab/tab';
 import Button from '../components/button/button';
 
-
-
 export default function Home({ allPosts }) {
-
   return (
     <>
-
       <NextSeo
         title='Copilot - It’s all about connection'
         description='copilot offers client portal software solution to manage sales reporting, management, marketing, improve customer relationships and more. Get the best free CRM system for your business.'
@@ -86,10 +81,22 @@ export default function Home({ allPosts }) {
                 payments, file-sharing, help centers, custom app access, and more.
               </Para>
               <HeroBtnBlock>
-                <Button bgColor={'#09AA6C'} fontColor={'#fff'} borderColor={'#09AA6C'} text={'Start Trial'} href={'https://dashboard.copilot.com/onboarding'} />
-                <SecondryButton>
-                  <Link href='/book-demo'>Book Demo</Link>
-                </SecondryButton>
+                <Button
+                  bgColor={'#09AA6C'}
+                  fontColor={'#fff'}
+                  borderColor={'#09AA6C'}
+                  text={'Start Trial'}
+                  href={'https://dashboard.copilot.com/onboarding'}
+                  hoverColor={'rgba(255, 255, 255,0.8)'}
+                />
+                <Button
+                  bgColor={'transparent'}
+                  fontColor={'#000000'}
+                  borderColor={'#000000'}
+                  text={'Book Demo'}
+                  href={'/book-demo'}
+                  hoverColor={'rgba(0, 0, 0, 0.5)'}
+                />
               </HeroBtnBlock>
               <ReviewLogo>
                 <ImageHover>
@@ -146,9 +153,14 @@ export default function Home({ allPosts }) {
                   dashboards, and thousands more.
                 </p>
                 <BtnView>
-                  <SecondryButton>
-                    <Link href='https://copilot-release.vercel.app/apps'>Browse Apps</Link>
-                  </SecondryButton>
+                  <Button
+                    bgColor={'transparent'}
+                    fontColor={'#000000'}
+                    borderColor={'#000000'}
+                    text={'Browse Apps'}
+                    href={'https://copilot-release.vercel.app/apps'}
+                    hoverColor={'rgba(0, 0, 0, 0.5)'}
+                  />
                 </BtnView>
               </BusinessText>
             </Container>
@@ -406,12 +418,10 @@ export default function Home({ allPosts }) {
 }
 
 export async function getServerSideProps({ preview = false }) {
-
   const allPosts = (await getTabGroupById(HOME_FEATURES_TAB_ID, preview)) ?? [];
   return {
     props: {
-      allPosts,
-
-    },
+      allPosts
+    }
   };
 }

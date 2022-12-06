@@ -5,19 +5,10 @@ import { CtaButton, PrimaryButton } from '../../styles/commonStyles';
 import { Gradient } from '../../public/js/Gradient.js';
 import { isEmpty } from '../../helpers/helpers';
 import { HEADER_LIST, NAVBAR_COLOR_LIST } from '../../constants/constant';
-import {
-  CtaInner,
-  CtaBtn,
-  CtaAnimation,
-  CtaWrap,
-  LeftImg,
-  MainCta,
-  RightImg
-} from './styles';
-
+import { CtaInner, CtaBtn, CtaAnimation, CtaWrap, LeftImg, MainCta, RightImg } from './styles';
+import Button from '../button/button';
 
 export default function CTA({ moduleName, colorList }) {
-
   useEffect(() => {
     const gradient = new Gradient();
     gradient.initGradient('#gradient-canvas');
@@ -36,15 +27,46 @@ export default function CTA({ moduleName, colorList }) {
             <CtaInner>
               <h2>Start, run, and grow your business</h2>
               <CtaBtn>
-                <PrimaryButton textColor={colorList?.lightColor ? colorList?.lightColor : NAVBAR_COLOR_LIST[HEADER_LIST.ENTERPRICE].lightColor}
-                  backgroundColor={colorList?.primaryColor ? colorList?.primaryColor : NAVBAR_COLOR_LIST[HEADER_LIST.ENTERPRICE].primaryColor}>
+                {/* <PrimaryButton
+                  textColor={
+                    colorList?.lightColor ? colorList?.lightColor : NAVBAR_COLOR_LIST[HEADER_LIST.ENTERPRICE].lightColor
+                  }
+                  backgroundColor={
+                    colorList?.primaryColor
+                      ? colorList?.primaryColor
+                      : NAVBAR_COLOR_LIST[HEADER_LIST.ENTERPRICE].primaryColor
+                  }>
                   <Link className='paddingbtn' href='https://dashboard.copilot.com/onboarding'>
                     Start Trial
                   </Link>
-                </PrimaryButton>
-                <CtaButton textColor={colorList?.lightColor ? colorList?.lightColor : NAVBAR_COLOR_LIST[HEADER_LIST.ENTERPRICE].lightColor}>
-                  <Link href='/book-demo'>Book Demo</Link>
-                </CtaButton>
+                </PrimaryButton> */}
+                <Button
+                  className='paddingbtn'
+                  bgColor={
+                    colorList?.primaryColor
+                      ? colorList?.primaryColor
+                      : NAVBAR_COLOR_LIST[HEADER_LIST.ENTERPRICE].primaryColor
+                  }
+                  fontColor={
+                    colorList?.lightColor ? colorList?.lightColor : NAVBAR_COLOR_LIST[HEADER_LIST.ENTERPRICE].lightColor
+                  }
+                  borderColor={'transparent'}
+                  text={'Start Trial'}
+                  href={'https://dashboard.copilot.com/onboarding'}
+                  hoverColor={'red'}
+                />
+                <Button
+                  fontColor={
+                    colorList?.lightColor ? colorList?.lightColor : NAVBAR_COLOR_LIST[HEADER_LIST.ENTERPRICE].lightColor
+                  }
+                  borderColor={
+                    colorList?.lightColor ? colorList?.lightColor : NAVBAR_COLOR_LIST[HEADER_LIST.ENTERPRICE].lightColor
+                  }
+                  bgColor={'transparent'}
+                  text={'Book Demo'}
+                  href={'/book-demo'}
+                  hoverColor={'red'}
+                />
               </CtaBtn>
             </CtaInner>
             <RightImg>
