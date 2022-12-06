@@ -42,7 +42,7 @@ export default function Tools({ moduleColor, data }) {
         </p>
       </ModuleWrap>
     })
-  }, [data])
+  }, [classNameList, data])
 
   return (
     <ToolMain moduleColor={moduleColor}>

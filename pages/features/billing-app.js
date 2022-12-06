@@ -80,7 +80,7 @@ export default function MessagingApp({ details }) {
                     </BottomFunction>
                 </Container>
                 {!isEmpty(details?.internalFeaturesCollection?.items) && <Tools data={details?.internalFeaturesCollection?.items} />}
-                <Quote gradientImage={MODULE_GRADIENT_IMAGE_LIST[CURRENT_MODULE]} />
+                {!isEmpty(details?.testimonial) && <Quote gradientImage={MODULE_GRADIENT_IMAGE_LIST[CURRENT_MODULE]} data={details?.testimonial} />}
                 <Client currentModule={CURRENT_MODULE} />
                 <CTA moduleName={CURRENT_MODULE} colorList={NAVBAR_COLOR_LIST[HEADER_LIST.BILLING]} />
             </Layout>

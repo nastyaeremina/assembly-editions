@@ -50,7 +50,7 @@ export const MODULE_GRADIENT_IMAGE_LIST = {
   billing: '/images/billing_gradient.svg',
   file: '/images/files_gradient.svg',
   form: '/images/forms_gradient.svg',
-  knowledge: '/images/helpdesk_gradient.svg',
+  helpdesk: '/images/helpdesk_gradient.svg',
   contract: '/images/contract_gradient.svg'
 };
 export const NAVBAR_COLOR_LIST = [
