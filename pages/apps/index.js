@@ -207,7 +207,7 @@ export default function Apps({ featuredApps, allCategoryWithPost, dataIntegratio
                           content automatically depending on the user that is currently signed in.
                         </p>
                         <SecondryButton>
-                          <Link href='/'>Read API docs</Link>
+                          <Link href='https://docs.copilot.com/reference/introduction'>Read API docs</Link>
                         </SecondryButton>
                       </BuildAppsDetail>
                     </BuildWrap>

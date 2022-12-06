@@ -18,7 +18,8 @@ import {
   FeatureImg,
   CardText,
   CardEnd,
-  FeatureCard
+  FeatureCard,
+  ImageWrap
 } from '../../styles/appsStyles';
 import { Container, PrimaryButton } from '../../styles/commonStyles';
 import CTA from '../../components/cta/cta';
@@ -97,26 +98,30 @@ export default function AppsDetail({ appDetail, relatedApps }) {
           <Container>
             <DetailMain>
               <DetailWrap>
-                <Image src={appDetail?.preview?.url} alt='bill-icon' width={869} height={543} layout={'fixed'} />
+                <ImageWrap>
+                  <Image src={appDetail?.preview?.url} alt='bill-icon' width={869} height={543} layout={'fixed'} />
+                </ImageWrap>
               </DetailWrap>
               <DetailRight>
-                {!isEmpty(appDetail?.appType) && <RightWrap>
-                  <Image
-                    src='/images/linesmall.svg'
-                    alt='bill-icon'
-                    width={45}
-                    height={1}
-                    layout={'fixed'}
-                    className='mr10'
-                  />
-                  <DetailTxt>
-                    <p>Type</p>
-                    <HelpWrap>
-                      <span>{appDetail?.appType}</span>
-                      <Image src='/images/help.svg' alt='bill-icon' width={20} height={20} layout={'fixed'} />
-                    </HelpWrap>
-                  </DetailTxt>
-                </RightWrap>}
+                {!isEmpty(appDetail?.appType) && (
+                  <RightWrap>
+                    <Image
+                      src='/images/linesmall.svg'
+                      alt='bill-icon'
+                      width={45}
+                      height={1}
+                      layout={'fixed'}
+                      className='mr10'
+                    />
+                    <DetailTxt>
+                      <p>Type</p>
+                      <HelpWrap>
+                        <span>{appDetail?.appType}</span>
+                        <Image src='/images/help.svg' alt='bill-icon' width={20} height={20} layout={'fixed'} />
+                      </HelpWrap>
+                    </DetailTxt>
+                  </RightWrap>
+                )}
                 {!isEmpty(appDetail?.website) && (
                   <RightWrap>
                     <Image
@@ -172,15 +177,15 @@ export default function AppsDetail({ appDetail, relatedApps }) {
 
 export async function getServerSideProps({ params, preview = false }) {
   const appDetail = (await getPartnerAppDetail(params?.slug, preview)) ?? {};
-  let relatedApps = []
+  let relatedApps = [];
   if (!isEmpty(appDetail)) {
-
     const allPosts = (await getAllPartnerApps(appDetail?.appType, preview)) ?? [];
     const categoryList = appDetail?.partnerAppCategoriesCollection?.items?.map((item) => item?.slug);
     relatedApps = allPosts
       ?.filter(
         (item) =>
-          item?.partnerAppCategoriesCollection && item?.partnerAppCategoriesCollection?.items?.some((element) => categoryList.includes(element?.slug)) &&
+          item?.partnerAppCategoriesCollection &&
+          item?.partnerAppCategoriesCollection?.items?.some((element) => categoryList.includes(element?.slug)) &&
           item?.slug !== params?.slug
       )
       ?.slice(0, 4);
