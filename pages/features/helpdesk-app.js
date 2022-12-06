@@ -3,20 +3,9 @@ import Image from "next/image";
 import { NextSeo } from "next-seo";
 import Navbar from "../../components/navbar/navbar";
 import {
-    BillMain,
-    BillHeroSub,
     MessegeItem,
-    ContractHero,
     KnowHero,
-    ContractWrap,
-    FileMain,
-    HeroSub,
-    FileWrap,
-    FormMain,
-    FormHero,
-    FormWrap,
     KnowledgeHero,
-    MsgHeroSection,
 } from "../../styles/modulesStyles";
 import CTA from "../../components/cta/cta";
 import Tools from "../../components/tools/tool";
@@ -30,6 +19,7 @@ import { getTabPosts } from "../../lib/contentful-tabs";
 import { BottomFunction } from "../../components/content/styles";
 import TabView from "../../components/tab/tab";
 import { getFeatureById } from "../../lib/contentful-features";
+import { isEmpty } from "../../helpers/helpers";
 
 const CURRENT_MODULE = MUDULE_LIST.HELPDESK
 export default function MessagingApp({ details }) {
@@ -41,7 +31,6 @@ export default function MessagingApp({ details }) {
                     <Container>
                         <KnowHero>
                             <h2 className="basecolor">Create a </h2>
-
                             <MessegeItem>
                                 <span className="orengecolor">knowledge</span>
                                 <Image
@@ -78,7 +67,7 @@ export default function MessagingApp({ details }) {
                             bgColor={MODULE_COLOR_LIST[HOME_MODULE_LIST['Helpdesk']]?.bgColor} textColor={MODULE_COLOR_LIST[HOME_MODULE_LIST['Helpdesk']]?.fontColor} />
                     </BottomFunction>
                 </Container>
-                <Tools />
+                {!isEmpty(details?.internalFeaturesCollection?.items) && <Tools data={details?.internalFeaturesCollection?.items} />}
                 <Quote gradientImage={MODULE_GRADIENT_IMAGE_LIST[CURRENT_MODULE]} />
                 <Client currentModule={CURRENT_MODULE} />
                 <CTA moduleName={CURRENT_MODULE} colorList={NAVBAR_COLOR_LIST[HEADER_LIST.HELPDESK]} />

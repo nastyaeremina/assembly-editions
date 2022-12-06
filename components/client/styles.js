@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { Body1, Body4, Heading3, Heading4, LinkTxt } from '../../styles/styles';
 const ClientMain = styled.div`
-  padding: 50px 0;
+  padding: 50px 0 100px 0;
 `;
 const ClientHero = styled.div`
   text-align: center;
