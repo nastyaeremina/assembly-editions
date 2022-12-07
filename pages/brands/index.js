@@ -32,55 +32,64 @@ export default function Brand() {
 
   const copyBlock1 = useMemo(() => {
     return (
-      <Block1>
-        <BlockSub
-          onClick={() => {
-            copy('#09AA6C');
-            setCopy1('Copied!');
-            const interval = setInterval(() => {
-              setCopy1('Copy');
-            }, 5000);
-          }}>
-          <p>{copy1}</p>
-          <span>#09AA6C</span>
-        </BlockSub>
-      </Block1>
+      <ImgWrap>
+        <Block1 className='effect-goliath'>
+          <BlockSub
+            className='hover-name'
+            onClick={() => {
+              copy('#09AA6C');
+              setCopy1('Copied!');
+              const interval = setInterval(() => {
+                setCopy1('Copy');
+              }, 5000);
+            }}>
+            <p>{copy1}</p>
+            <span>#09AA6C</span>
+          </BlockSub>
+        </Block1>
+      </ImgWrap>
     );
   }, [copy1]);
 
   const copyBlock2 = useMemo(() => {
     return (
-      <Block1 className='block2color'>
-        <BlockSub
-          onClick={() => {
-            copy('#E3FFEE');
-            setCopy2('Copied!');
-            const interval = setInterval(() => {
-              setCopy2('Copy');
-            }, 5000);
-          }}>
-          <p>{copy2}</p>
-          <span>#E3FFEE</span>
-        </BlockSub>
-      </Block1>
+      <ImgWrap>
+        <Block1 className='block2color effect-goliath'>
+          <BlockSub
+            className='hover-name'
+            onClick={() => {
+              copy('#E3FFEE');
+              setCopy2('Copied!');
+              const interval = setInterval(() => {
+                setCopy2('Copy');
+              }, 5000);
+            }}>
+            <p>{copy2}</p>
+            <span>#E3FFEE</span>
+          </BlockSub>
+        </Block1>
+      </ImgWrap>
     );
   }, [copy2]);
 
   const copyBlock3 = useMemo(() => {
     return (
-      <Block1 className='block3color'>
-        <BlockLight
-          onClick={() => {
-            copy('#00160E');
-            setCopy3('Copied!');
-            const interval = setInterval(() => {
-              setCopy3('Copy');
-            }, 5000);
-          }}>
-          <p>{copy3}</p>
-          <span>#00160E</span>
-        </BlockLight>
-      </Block1>
+      <ImgWrap>
+        <Block1 className='block3color effect-goliath'>
+          <BlockLight
+            className='hover-name'
+            onClick={() => {
+              copy('#00160E');
+              setCopy3('Copied!');
+              const interval = setInterval(() => {
+                setCopy3('Copy');
+              }, 5000);
+            }}>
+            <p>{copy3}</p>
+            <span>#00160E</span>
+          </BlockLight>
+        </Block1>
+      </ImgWrap>
     );
   }, [copy3]);
 
@@ -158,7 +167,7 @@ export default function Brand() {
                 </ImgWrap>
                 <ImgWrap>
                   <BrandImageRight className='effect-goliath'>
-                    <Image src='/images/blacklogo.svg' alt='logo' width={405} height={90} layout={'fixed'} />
+                    <Image src='/images/brandlogo.svg' alt='logo' width={133} height={90} layout={'fixed'} />
                     <a href='/images/blacklogo.svg' download>
                       <BlackHover className='hover-name'>
                         <p>Download</p>
@@ -178,7 +187,9 @@ export default function Brand() {
               <BrandImage>
                 <ImgWrap>
                   <CompanyIcon className='effect-goliath'>
-                    <Image src='/images/primarylogo.svg' alt='logo' width={200} height={200} layout={'fixed'} />
+                    <div>
+                      <Image src='/images/primarylogo.svg' alt='logo' width={200} height={200} layout={'fixed'} />
+                    </div>
                     <a href='/images/primarylogo.svg' download>
                       <HoverLink className='hover-name'>
                         <p>Download</p>

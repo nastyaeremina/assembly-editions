@@ -61,6 +61,9 @@ const BrandImage = styled.div`
     backface-visibility: hidden;
     transition: transform 0.35s;
   }
+  p {
+    margin: 0;
+  }
 `;
 const BrandImageLeft = styled.div`
   padding: 160px 0;
@@ -164,6 +167,28 @@ const ColorSection = styled.div`
   .block3color {
     background-color: ${({ theme }) => theme.colors.greendark};
   }
+  .effect-goliath {
+    /* cursor: pointer;
+    overflow: hidden;
+    position: relative; */
+    cursor: pointer;
+  }
+  .hover-name {
+    transform: translate3d(0, 70px, 0);
+  }
+  .effect-goliath:hover .hover-name {
+    -webkit-transform: translate3d(0, 2px, 0);
+    transform: translate3d(0, 2px, 0);
+    transition: transform 0.35s;
+    img {
+      transform: translate3d(0, 0px, 0);
+      -webkit-transform: translate3d(0, 0, 0);
+    }
+  }
+  .hover-name {
+    backface-visibility: hidden;
+    transition: transform 0.35s;
+  }
 `;
 const Block1 = styled.div`
   height: 366px;
@@ -182,6 +207,14 @@ const BlockSub = styled.div`
   left: 0;
   display: flex;
   justify-content: space-between;
+
+  align-items: center;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  position: absolute;
+  text-align: center;
+  gap: 12px;
   p {
     ${ButtonText};
     color: ${({ theme }) => theme.colors.greenlight};
