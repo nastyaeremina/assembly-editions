@@ -71,6 +71,7 @@ const BrandImageLeft = styled.div`
   position: relative;
   display: inline-flex;
   justify-content: center;
+  margin-top: -2px;
 `;
 const HoverSection = styled.div`
   /* display: flex; */
@@ -133,6 +134,7 @@ const BrandImageRight = styled.div`
   position: relative;
   display: inline-flex;
   justify-content: center;
+  margin-top: -2px;
 `;
 const CompanyIcon = styled.div`
   padding: 112px 0;
@@ -212,7 +214,7 @@ const BlockLight = styled.div`
 const ImgWrap = styled.div`
   width: 100%;
   overflow: hidden;
-  border-radius: 4px;
+  /* border-radius: 4px; */
 `;
 export {
   BrandHeroSection,

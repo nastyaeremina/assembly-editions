@@ -1,7 +1,7 @@
 import { NextSeo } from 'next-seo';
 import Image from 'next/image';
 import Link from 'next/link';
-import copy from "copy-to-clipboard";
+import copy from 'copy-to-clipboard';
 import { useCallback, useMemo, useState } from 'react';
 import Layout from '../../components/layout';
 import Navbar from '../../components/navbar/navbar';
@@ -25,55 +25,63 @@ import {
 } from '../../styles/brandStyles';
 
 export default function Brand() {
-
-  const [copy1, setCopy1] = useState('Copy')
-  const [copy2, setCopy2] = useState('Copy')
-  const [copy3, setCopy3] = useState('Copy')
+  const [copy1, setCopy1] = useState('Copy');
+  const [copy2, setCopy2] = useState('Copy');
+  const [copy3, setCopy3] = useState('Copy');
 
   const copyBlock1 = useMemo(() => {
-    return <Block1>
-      <BlockSub onClick={() => {
-        copy('#09AA6C');
-        setCopy1('Copied!')
-        const interval = setInterval(() => {
-          setCopy1('Copy')
-        }, 5000);
-      }}>
-        <p>{copy1}</p>
-        <span>#09AA6C</span>
-      </BlockSub>
-    </Block1>
-  }, [copy1])
+    return (
+      <Block1>
+        <BlockSub
+          onClick={() => {
+            copy('#09AA6C');
+            setCopy1('Copied!');
+            const interval = setInterval(() => {
+              setCopy1('Copy');
+            }, 5000);
+          }}>
+          <p>{copy1}</p>
+          <span>#09AA6C</span>
+        </BlockSub>
+      </Block1>
+    );
+  }, [copy1]);
 
   const copyBlock2 = useMemo(() => {
-    return <Block1 className='block2color'>
-      <BlockSub onClick={() => {
-        copy('#E3FFEE');
-        setCopy2('Copied!')
-        const interval = setInterval(() => {
-          setCopy2('Copy')
-        }, 5000);
-      }}>
-        <p>{copy2}</p>
-        <span>#E3FFEE</span>
-      </BlockSub>
-    </Block1>
-  }, [copy2])
+    return (
+      <Block1 className='block2color'>
+        <BlockSub
+          onClick={() => {
+            copy('#E3FFEE');
+            setCopy2('Copied!');
+            const interval = setInterval(() => {
+              setCopy2('Copy');
+            }, 5000);
+          }}>
+          <p>{copy2}</p>
+          <span>#E3FFEE</span>
+        </BlockSub>
+      </Block1>
+    );
+  }, [copy2]);
 
   const copyBlock3 = useMemo(() => {
-    return <Block1 className='block3color'>
-      <BlockLight onClick={() => {
-        copy('#00160E');
-        setCopy3('Copied!')
-        const interval = setInterval(() => {
-          setCopy3('Copy')
-        }, 5000);
-      }}>
-        <p>{copy3}</p>
-        <span>#00160E</span>
-      </BlockLight>
-    </Block1>
-  }, [copy3])
+    return (
+      <Block1 className='block3color'>
+        <BlockLight
+          onClick={() => {
+            copy('#00160E');
+            setCopy3('Copied!');
+            const interval = setInterval(() => {
+              setCopy3('Copy');
+            }, 5000);
+          }}>
+          <p>{copy3}</p>
+          <span>#00160E</span>
+        </BlockLight>
+      </Block1>
+    );
+  }, [copy3]);
 
   return (
     <>
@@ -89,7 +97,9 @@ export default function Brand() {
               <h2>Copilot Brand Guidelines</h2>
               <p>Resources for presenting the Copilot brand consistently and professionally.</p>
               <PrimaryButton>
-                <a href='images/Copilot_Block_Assets.zip' download>Download Brand Assets</a>
+                <a href='images/Copilot_Block_Assets.zip' download>
+                  Download Brand Assets
+                </a>
               </PrimaryButton>
             </BrandHeroSection>
             <BrandName>
@@ -110,7 +120,7 @@ export default function Brand() {
                 <ImgWrap>
                   <BrandImageLeft className='effect-goliath'>
                     <Image src='/images/logo.svg' alt='logo' width={405} height={90} layout={'fixed'} />
-                    <a href="/images/logo.svg" download>
+                    <a href='/images/logo.svg' download>
                       <HoverSection className='hover-name'>
                         <p>Download</p>
                         <Image src='/images/download.svg' alt='download' width={20} height={20} layout={'fixed'} />
@@ -121,7 +131,7 @@ export default function Brand() {
                 <ImgWrap>
                   <BrandImageRight className='effect-goliath'>
                     <Image src='/images/blacklogo.svg' alt='logo' width={405} height={90} layout={'fixed'} />
-                    <a href="/images/blacklogo.svg" download>
+                    <a href='/images/blacklogo.svg' download>
                       <BlackHover className='hover-name'>
                         <p>Download</p>
                         <Image src='/images/whitedownload.svg' alt='download' width={20} height={20} layout={'fixed'} />
@@ -141,7 +151,7 @@ export default function Brand() {
                 <ImgWrap>
                   <BrandImageLeft className='effect-goliath'>
                     <Image src='/images/smalllogo.svg' alt='logo' width={133} height={90} layout={'fixed'} />
-                    <a href="/images/smalllogo.svg" download>
+                    <a href='/images/smalllogo.svg' download>
                       <HoverSection className='hover-name'>
                         <p>Download</p>
                         <Image src='/images/download.svg' alt='download' width={20} height={20} layout={'fixed'} />
@@ -152,7 +162,7 @@ export default function Brand() {
                 <ImgWrap>
                   <BrandImageRight className='effect-goliath'>
                     <Image src='/images/blacklogo.svg' alt='logo' width={405} height={90} layout={'fixed'} />
-                    <a href="/images/blacklogo.svg" download>
+                    <a href='/images/blacklogo.svg' download>
                       <BlackHover className='hover-name'>
                         <p>Download</p>
                         <Image src='/images/whitedownload.svg' alt='download' width={20} height={20} layout={'fixed'} />
@@ -172,7 +182,7 @@ export default function Brand() {
                 <ImgWrap>
                   <CompanyIcon className='effect-goliath'>
                     <Image src='/images/primarylogo.svg' alt='logo' width={200} height={200} layout={'fixed'} />
-                    <a href="/images/primarylogo.svg" download>
+                    <a href='/images/primarylogo.svg' download>
                       <HoverLink className='hover-name'>
                         <p>Download</p>
                         <Image src='/images/whitedownload.svg' alt='download' width={20} height={20} layout={'fixed'} />
@@ -183,7 +193,7 @@ export default function Brand() {
                 <ImgWrap>
                   <CompanyIcon className='effect-goliath'>
                     <Image src='/images/primarylogo2.svg' alt='logo' width={200} height={200} layout={'fixed'} />
-                    <a href="/images/primarylogo2.svg" download>
+                    <a href='/images/primarylogo2.svg' download>
                       <HoverLink className='hover-name'>
                         <p>Download</p>
                         <Image src='/images/whitedownload.svg' alt='download' width={20} height={20} layout={'fixed'} />
@@ -200,9 +210,6 @@ export default function Brand() {
                 {copyBlock1}
                 {copyBlock2}
                 {copyBlock3}
-
-
-
               </ColorSection>
             </BrandName>
           </Container>
