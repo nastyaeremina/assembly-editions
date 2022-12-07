@@ -20,6 +20,8 @@ import {
   CardEnd,
   FeatureCard,
   ImageWrap,
+  AppsDetailWrap,
+  FirstImg,
   Tooltip
 } from '../../styles/appsStyles';
 import { Container, PrimaryButton } from '../../styles/commonStyles';
@@ -33,6 +35,7 @@ import {
 } from '../../lib/contentful-partnerApps';
 import { useMemo } from 'react';
 import { isEmpty } from '../../helpers/helpers';
+import Button from '../../components/button/button';
 
 export default function AppsDetail({ appDetail, relatedApps }) {
   const renderRelatedAppView = useMemo(() => {
@@ -87,13 +90,17 @@ export default function AppsDetail({ appDetail, relatedApps }) {
           </Container>
           <AppDetailCard>
             <Container>
-              <Image src={appDetail?.logo?.url} alt='bill-icon' width={309} height={68} layout={'fixed'} />
-              <p>{appDetail?.description}</p>
-              <PrimaryButton>
-                <Link href={appDetail?.setupInstructionsLink ?? ''} target='_blank'>
-                  Setup instructions
-                </Link>
-              </PrimaryButton>
+              <AppsDetailWrap>
+                <FirstImg>
+                  <Image src={appDetail?.logo?.url} alt='bill-icon' width={309} height={68} layout={'fixed'} />
+                </FirstImg>
+                <p>{appDetail?.description}</p>
+                <Button
+                  text={'Setup instructions'}
+                  hoverColor={'rgba(255, 255, 255, 0.8)'}
+                  href={appDetail?.setupInstructionsLink ?? ''}
+                />
+              </AppsDetailWrap>
             </Container>
           </AppDetailCard>
           <Container>
@@ -103,6 +110,7 @@ export default function AppsDetail({ appDetail, relatedApps }) {
                   <Image src={appDetail?.preview?.url} alt='bill-icon' width={869} height={543} layout={'fixed'} />
                 </ImageWrap>
               </DetailWrap>
+
               <DetailRight>
                 {!isEmpty(appDetail?.appType) && (
                   <RightWrap>
@@ -169,7 +177,6 @@ export default function AppsDetail({ appDetail, relatedApps }) {
             )}
           </Container>
         </AppsDetailMain>
-
         <CTA />
       </Layout>
     </>

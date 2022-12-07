@@ -2,8 +2,9 @@ import styled, { css } from 'styled-components';
 import { Body2, Body4, Body5, CardTxt, Heading2, Heading3, Heading4, Heading5, Label, LinkTxt, Value } from './styles';
 const HeroSection = styled.div`
   padding-top: 180px;
+`;
+const AppsHeroWrap = styled.div`
   text-align: center;
-
   h2 {
     ${Heading2};
     color: ${({ theme }) => theme.colors.title};
@@ -25,6 +26,7 @@ const FeatureWrap = styled.div`
   display: flex;
   gap: 36px;
 `;
+const FirstImg = styled.div``;
 const Input = styled.input`
   ${Value};
   color: ${({ theme }) => theme.colors.title};
@@ -325,18 +327,11 @@ const DetailLink = styled.div`
   }
 `;
 const AppsDetailMain = styled.div`
-  padding-top: 40px;
-  margin-top: 80px;
+  padding-top: 120px;
 `;
 const AppDetailCard = styled.div`
   background-color: ${({ theme }) => theme.colors.background};
-  padding: 40px 0;
   margin-bottom: 40px;
-  p {
-    margin: 20px 0 32px 0;
-    ${Body2};
-    color: ${({ theme }) => theme.colors.body};
-  }
 `;
 const DetailWrap = styled.div`
   border: 1px solid #000000;
@@ -475,6 +470,14 @@ const ImageWrap = styled.div`
   border-radius: 5px;
 `;
 const Tooltip = styled.div``;
+const AppsDetailWrap = styled.div`
+  padding: 40px 0;
+  p {
+    margin: 20px 0 32px 0;
+    ${Body2};
+    color: ${({ theme }) => theme.colors.body};
+  }
+`;
 export {
   HeroSection,
   FeatureSection,
@@ -520,5 +523,8 @@ export {
   MainBg,
   ImgView,
   ImageWrap,
-  Tooltip
+  Tooltip,
+  AppsHeroWrap,
+  AppsDetailWrap,
+  FirstImg
 };

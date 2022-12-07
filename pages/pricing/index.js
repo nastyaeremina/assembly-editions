@@ -36,6 +36,7 @@ import {
 } from '../../styles/pricingstyles';
 import CTA from '../../components/cta/cta';
 import FAQ from '../../components/faq/faq';
+import Button from '../../components/button/button';
 
 export default function NewIndex() {
   const [isShowFeature, setShowFeature] = useState(true);
@@ -67,9 +68,11 @@ export default function NewIndex() {
               Create your portal<span>,</span> pick a plan later
             </h2>
             <p>Try Copilot free for 14 days, no credit card required</p>
-            <PrimaryButton>
-              <Link href='https://dashboard.copilot.com/onboarding'>Start Trial</Link>
-            </PrimaryButton>
+            <Button
+              text={'Start Trial'}
+              hoverColor={'rgba(255, 255, 255, 0.8)'}
+              href='https://dashboard.copilot.com/onboarding'
+            />
           </Container>
         </HeroSection>
         <PricingSection>
@@ -211,11 +214,17 @@ export default function NewIndex() {
                     </WrapSlide>
                   </PriceMenuLeft>
                 </PriceOption>
-                <PlanButton onClick={toggleShowFeature}>
-                  <button>
-                    {!isShowFeature && 'Hide plan details'}
-                    {isShowFeature && 'Show plan details'}
-                  </button>
+                <PlanButton>
+                  <Button
+                    isLink={false}
+                    onClick={toggleShowFeature}
+                    bgColor={'transparent'}
+                    fontColor={'#000000'}
+                    borderColor={'#000000'}
+                    text={isShowFeature ? 'Show plan details' : 'Hide plan details'}
+                    // href={'/book-demo'}
+                    hoverColor={'rgba(0, 0, 0, 0.5)'}
+                  />
                 </PlanButton>
               </PricingMenu>
             </PriceMenu>

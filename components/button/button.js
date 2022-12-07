@@ -13,17 +13,20 @@ export default function Button({
   fontColor = '#ffffff',
   href = '#',
   text,
-  className
+  className,
+  onClick,
+  isLink = true
 }) {
   return (
     <ButtonContainer
+      onClick={onClick}
       onMouseMove={(e) => myFunction(e)}
       backgroundColor={bgColor}
       hoverColor={hoverColor}
       borderColor={borderColor}
       fontColor={fontColor}
       className={className}>
-      <Link href={href}>{text}</Link>
+      {isLink ? <Link href={href}>{text}</Link> : <a>{text}</a>}
     </ButtonContainer>
   );
 }

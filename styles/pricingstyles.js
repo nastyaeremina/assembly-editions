@@ -1,4 +1,4 @@
-import styled, { css } from 'styled-components';
+import styled, { css, keyframes } from 'styled-components';
 import {
   Body2,
   Body3,
@@ -215,30 +215,29 @@ const PricePlanWrap = styled.li`
 `;
 const PlanPlanSub = styled.div``;
 const PlanButton = styled.div`
-  border: 1px solid #000000;
-  border-radius: 48px;
-  padding: 11px 0;
-  max-width: 322px;
   width: 100%;
   text-align: center;
   margin: 0 auto;
-  cursor: pointer;
-  button {
-    color: ${({ theme }) => theme.colors.black};
-    letter-spacing: 0.02em;
-    ${ButtonText};
+  a {
+    cursor: pointer;
   }
+`;
+const FadeIN = keyframes`
+ from { opacity: 0; }
+      to { opacity: 1; }
 `;
 const PriceTable = styled.div`
   padding: 100px 0;
   display: block;
   overflow: hidden;
   transition: height 400ms ease 0s, padding 400ms ease 0s, margin 400ms ease 0s;
+  animation: ${FadeIN} 1s;
 
   table {
     display: none;
     width: 100%;
     border-spacing: 0;
+    animation: ${FadeIN} 1s;
     transition: height 400ms ease 0s, padding 400ms ease 0s, margin 400ms ease 0s;
     border-collapse: separate;
     .tableBorder {

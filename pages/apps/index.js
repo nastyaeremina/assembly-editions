@@ -31,7 +31,8 @@ import {
   OtherWrap,
   CardMain,
   MainBg,
-  ImgView
+  ImgView,
+  AppsHeroWrap
 } from '../../styles/appsStyles';
 import { Container, PrimaryButton, SecondryButton } from '../../styles/commonStyles';
 import CTA from '../../components/cta/cta';
@@ -41,6 +42,7 @@ import { getAllParrtnerAppsCategories, getAllPartnerApps } from '../../lib/conte
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import { isEmpty } from '../../helpers/helpers';
 import { APPS_TYPE } from '../../constants/constant';
+import Button from '../../components/button/button';
 
 export default function Apps({ featuredApps, allCategoryWithPost, dataIntegrationApps }) {
   const [selected_category, setSelected_category] = useState();
@@ -141,11 +143,11 @@ export default function Apps({ featuredApps, allCategoryWithPost, dataIntegratio
           <Navbar />
           <HeroSection>
             <Container>
-              <h2>App Directory</h2>
-              <p>Try Copilot free for 14 days, no credit card required</p>
-              <PrimaryButton>
-                <Link href='https://dashboard.copilot.com/onboarding'>Start Trial</Link>
-              </PrimaryButton>
+              <AppsHeroWrap>
+                <h2>App Directory</h2>
+                <p>Try Copilot free for 14 days, no credit card required</p>
+                <Button text={'Start Trial'} href={'https://dashboard.copilot.com/onboarding'} />
+              </AppsHeroWrap>
             </Container>
           </HeroSection>
           <FeatureSection>
@@ -206,9 +208,14 @@ export default function Apps({ featuredApps, allCategoryWithPost, dataIntegratio
                           information about the current user or company. With that capability you can render custom
                           content automatically depending on the user that is currently signed in.
                         </p>
-                        <SecondryButton>
-                          <Link href='https://docs.copilot.com/reference/introduction'>Read API docs</Link>
-                        </SecondryButton>
+                        <Button
+                          bgColor={'transparent'}
+                          fontColor={'#000000'}
+                          borderColor={'#000000'}
+                          text={'Read API docs'}
+                          href={'https://docs.copilot.com/reference/introduction'}
+                          hoverColor={'rgba(0, 0, 0, 0.5)'}
+                        />
                       </BuildAppsDetail>
                     </BuildWrap>
                   </ExtensionsSection>
