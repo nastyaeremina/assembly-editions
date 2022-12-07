@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { Body1, Body4, Heading3, Heading4, LinkTxt } from '../../styles/styles';
 const ClientMain = styled.div`
-  padding: 50px 0 100px 0;
+  padding: 50px 0;
 `;
 const ClientHero = styled.div`
   text-align: center;
@@ -26,15 +26,14 @@ const CardSection = styled.div`
   .mydiv:hover .show {
     display: none;
   }
-
   .mydiv:hover {
     background-image: url('/images/billhoverbg.svg');
     background-repeat: no-repeat;
     background-size: cover;
     a {
       color: ${({ theme }) => theme.colors.bluelight};
-      position: relative;
-      top: 3px;
+      /* position: relative;
+      top: 3px; */
     }
   }
   .file {
@@ -55,7 +54,6 @@ const CardSection = styled.div`
   .file:hover .show {
     display: none;
   }
-
   .file:hover {
     background-image: url('/images/hoverfile.svg');
     background-repeat: no-repeat;
@@ -89,12 +87,17 @@ const ModuleCard = styled.div`
   border-radius: 4px;
   display: block;
   cursor: pointer;
+  height: 100%;
+  display: flex;
+  align-items: stretch;
   /* transition: all 5s ease; */
-  .learn-link,
+  .learn-link {
+    transition: all 300ms ease;
+    height: 100%;
+  }
   .learn-link svg path {
     transition: all 300ms ease;
   }
-
   .learn-link:hover {
     color: black;
   }
@@ -137,7 +140,12 @@ const ModuleCard = styled.div`
     display: block;
     color: white;
   }
-
+  :hover .icon-link {
+    transform: translateY(1px);
+  }
+  :hover .icon-message {
+    transform: translateY(0px);
+  }
   :hover .HoverArrow__linePath {
     opacity: 1;
     fill: none;
@@ -240,6 +248,8 @@ const BlockWrap = styled.div`
   }
 `;
 const HelpLeftSub = styled.div`
+  display: block;
+  margin-top: 40px;
   h4 {
     ${Heading4};
     color: ${({ theme }) => theme.colors.title};
@@ -254,16 +264,20 @@ const HelpLeftSub = styled.div`
 const ImageWrapper = styled.div`
   max-height: 165px;
   height: 100%;
+  width: 100%;
+  img {
+    max-width: 100%;
+  }
 `;
 const HelpLink = styled.div`
-  display: block;
-  margin-top: 40px;
   text-align: left;
-  .learn-link,
+  .learn-link {
+    transition: all 300ms ease;
+    height: 100%;
+  }
   .learn-link svg path {
     transition: all 300ms ease;
   }
-
   .learn-link:hover {
     color: black;
   }

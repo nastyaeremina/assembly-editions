@@ -84,14 +84,6 @@ export default function MessagingApp({ details }) {
               bgColor={MODULE_COLOR_LIST[HOME_MODULE_LIST['Files']]?.bgColor}
               textColor={MODULE_COLOR_LIST[HOME_MODULE_LIST['Files']]?.fontColor}
             />
-            <Image
-              src='/images/borderline.svg'
-              alt='line-icon'
-              width={1}
-              height={250}
-              layout={'fixed'}
-              className='borderline'
-            />
           </BottomFunction>
         </Container>
         {!isEmpty(details?.internalFeaturesCollection?.items) && (

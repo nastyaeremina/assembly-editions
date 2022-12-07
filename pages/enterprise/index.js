@@ -1,15 +1,12 @@
-import { NextSeo } from "next-seo";
-import Image from "next/image";
-import Link from "next/link";
-import FAQ from "../../components/faq/faq";
-import Layout from "../../components/layout";
-import Navbar from "../../components/navbar/navbar";
-import { HEADER_LIST } from "../../constants/constant";
-import {
-  Container,
-  GreenButton,
-  TransparenBlack,
-} from "../../styles/commonStyles";
+import { NextSeo } from 'next-seo';
+import Image from 'next/image';
+import Link from 'next/link';
+import Button from '../../components/button/button';
+import FAQ from '../../components/faq/faq';
+import Layout from '../../components/layout';
+import Navbar from '../../components/navbar/navbar';
+import { HEADER_LIST } from '../../constants/constant';
+import { Container, GreenButton, TransparenBlack } from '../../styles/commonStyles';
 import {
   EnterPriseHero,
   MainWrap,
@@ -41,14 +38,15 @@ import {
   BottomDay,
   LastLabel,
   BottomLast,
-} from "../../styles/enterpriseStyles";
+  BtnListtwo
+} from '../../styles/enterpriseStyles';
 
 export default function Enterprise() {
   return (
     <>
       <NextSeo
-        title="Create your portal, pick a plan later"
-        description="Try Copilot free for 14 days, no credit card required"
+        title='Create your portal, pick a plan later'
+        description='Try Copilot free for 14 days, no credit card required'
       />
       <Layout isEnterPrice={true}>
         <MainWrap>
@@ -59,14 +57,18 @@ export default function Enterprise() {
                 <TitleSec>
                   <h2>Designed for the most ambitious businesses </h2>
                   <p>
-                    Copilot Plus is a tailormade solution for businesses with
-                    custom requirements, enterprise-level compliance needs, more
-                    customizability, and support for white-label native apps.{" "}
+                    Copilot Plus is a tailormade solution for businesses with custom requirements, enterprise-level
+                    compliance needs, more customizability, and support for white-label native apps.{' '}
                   </p>
                   <BtnWrap>
-                    <GreenButton>
-                      <Link href="#">Let's talk </Link>
-                    </GreenButton>
+                    <Button
+                      bgColor={'transparent'}
+                      fontColor={'#E3FFEE'}
+                      borderColor={'#E3FFEE'}
+                      text={`Let's talk`}
+                      href={'#'}
+                      hoverColor={'rgba(227, 255, 238, 1)'}
+                    />
                   </BtnWrap>
                 </TitleSec>
               </LeftHero>
@@ -78,45 +80,31 @@ export default function Enterprise() {
                 <BoxView>
                   <DetailView>
                     <h4>Custom Features</h4>
-                    <p>
-                      Work with deployed Copilot engineers to add custom
-                      features and integrations.
-                    </p>
+                    <p>Work with deployed Copilot engineers to add custom features and integrations.</p>
                   </DetailView>
                 </BoxView>
                 <BoxView>
                   <DetailView>
                     <h4>Dedicated Support</h4>
-                    <p>
-                      A dedicated expert will be there to ensure a successful
-                      launch.
-                    </p>
+                    <p>A dedicated expert will be there to ensure a successful launch.</p>
                   </DetailView>
                 </BoxView>
                 <BoxView>
                   <DetailView>
                     <h4>Enterprise Compliance</h4>
-                    <p>
-                      Security audit compliance, payment via PO, custom TOS, and
-                      more.
-                    </p>
+                    <p>Security audit compliance, payment via PO, custom TOS, and more.</p>
                   </DetailView>
                 </BoxView>
-                <BoxView className="bordernone">
+                <BoxView className='bordernone'>
                   <DetailView>
                     <h4>Continuous Backup</h4>
-                    <p>
-                      Continuous backups and retention to Amazon S3 or
-                      elsewhere.
-                    </p>
+                    <p>Continuous backups and retention to Amazon S3 or elsewhere.</p>
                   </DetailView>
                 </BoxView>
-                <BoxView className="borderbottom">
+                <BoxView className='borderbottom'>
                   <DetailView>
                     <h4>99.9% Uptime SLAs</h4>
-                    <p>
-                      Guaranteed reliable performance with a 99.9% uptime SLA.
-                    </p>
+                    <p>Guaranteed reliable performance with a 99.9% uptime SLA.</p>
                   </DetailView>
                 </BoxView>
                 <BoxView>
@@ -128,10 +116,7 @@ export default function Enterprise() {
                 <BoxView>
                   <DetailView>
                     <h4>Advanced Reporting</h4>
-                    <p>
-                      Granular insights about how your team and clients are
-                      using Portal.
-                    </p>
+                    <p>Granular insights about how your team and clients are using Portal.</p>
                   </DetailView>
                 </BoxView>
                 <BoxView>
@@ -150,15 +135,19 @@ export default function Enterprise() {
             <Container>
               <PlusWrap>
                 <h3>Moving to Copilot Plus?</h3>
-                <p>
-                  95% of customer we work with go from first meeting to full
-                  deployment in less than 30 days.{" "}
-                </p>
+                <p>95% of customer we work with go from first meeting to full deployment in less than 30 days. </p>
                 <BtnList>
-                  <TransparenBlack>
-                    <Link href="#">Lets talk</Link>
-                  </TransparenBlack>
+                  <Button
+                    bgColor={'transparent'}
+                    fontColor={'#000000'}
+                    borderColor={'#000000'}
+                    text={'Lets talk'}
+                    hoverColor={'rgba(0, 0, 0, 0.5)'}
+                    href={'#'}
+                    className='afterline'
+                  />
                 </BtnList>
+                <BtnListtwo></BtnListtwo>
               </PlusWrap>
             </Container>
           </MovingSection>
@@ -192,8 +181,8 @@ export default function Enterprise() {
                     <BottomView>
                       <h4>Kickoff call</h4>
                       <p>
-                        Meet with a Copilot expert and deployed engineering team
-                        so that we can understand requirements a propose a plan.
+                        Meet with a Copilot expert and deployed engineering team so that we can understand requirements
+                        a propose a plan.
                       </p>
                     </BottomView>
                   </DayOne>
@@ -208,8 +197,8 @@ export default function Enterprise() {
                     <BottomView>
                       <h4>Soft launch</h4>
                       <p>
-                        We’ll work with you hand-in-hand to make sure the intial
-                        deployment to a subset of beta customers goes well.
+                        We’ll work with you hand-in-hand to make sure the intial deployment to a subset of beta
+                        customers goes well.
                       </p>
                     </BottomView>
                   </DaySecond>
@@ -221,10 +210,7 @@ export default function Enterprise() {
                 </LastLabel>
                 <BottomLast>
                   <h4>Full deployment</h4>
-                  <p>
-                    Once we’ve gone through a beta launch, we’ll have you have a
-                    successful full deployment.
-                  </p>
+                  <p>Once we’ve gone through a beta launch, we’ll have you have a successful full deployment.</p>
                 </BottomLast>
               </BottomDay>
             </Container>

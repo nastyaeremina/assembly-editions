@@ -56,7 +56,9 @@ export default function TabView({ tabId, bgColor, textColor, isHome }) {
   const tabBarStyle = ({ $theme }) => ({
     backgroundColor: '#fff',
     'margin-bottom': '20px',
-    'padding-left': '0px'
+    'padding-left': '0px',
+    paddingLeft: '0',
+    paddingRight: '0'
   });
   const tabContentStyle = ({ $theme }) => ({
     borderLeftWidth: '2px',
@@ -66,7 +68,11 @@ export default function TabView({ tabId, bgColor, textColor, isHome }) {
     borderLeftColor: $theme.colors.mono600,
     borderRightColor: $theme.colors.mono600,
     borderTopColor: $theme.colors.mono600,
-    borderBottomColor: $theme.colors.mono600
+    borderBottomColor: $theme.colors.mono600,
+    paddingBottom: '0',
+    paddingTop: '20px',
+    paddingLeft: '0',
+    paddingRight: '0'
   });
   let activeKey = 0;
   const tabStyle = ({ $active, $disabled, $theme }) => ({
@@ -78,7 +84,9 @@ export default function TabView({ tabId, bgColor, textColor, isHome }) {
 
     // eslint-disable-next-line no-dupe-keys
     'border-radius': '40px',
-    padding: '7px 20px'
+    padding: '7px 20px',
+    marginLeft: '0',
+    marginRight: '0'
   });
 
   const tablistview = useMemo(() => {

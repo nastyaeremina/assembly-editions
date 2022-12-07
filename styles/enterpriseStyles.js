@@ -138,16 +138,7 @@ const PlusWrap = styled.div`
     width: 100%;
   }
 `;
-const BtnList = styled.div`
-  position: relative;
-  ::before {
-    content: '';
-    height: 80px;
-    border-left: 1px dashed #00160e;
-    position: absolute;
-    top: 50px;
-  }
-`;
+const BtnList = styled.div``;
 const StepsSection = styled.div`
   padding-bottom: 100px;
 `;
@@ -311,6 +302,16 @@ const BottomLast = styled.div`
     margin: 12px 0 0;
   }
 `;
+const BtnListtwo = styled.div`
+  position: relative;
+  ::before {
+    content: '';
+    height: 80px;
+    border-left: 1px dashed #00160e;
+    position: absolute;
+    top: 0px;
+  }
+`;
 
 export {
   MainWrap,
@@ -344,5 +345,6 @@ export {
   LeftBottomView,
   BottomDay,
   LastLabel,
-  BottomLast
+  BottomLast,
+  BtnListtwo
 };
