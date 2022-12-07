@@ -8,7 +8,6 @@ import { StatefulTabs, Tab, StyledTab } from 'baseui/tabs';
 import { LabelMedium } from 'baseui/typography';
 import { Container, PrimaryButton, SecondryButton } from '../styles/commonStyles';
 
-
 import {
   HeroSection,
   HeroHeading,
@@ -49,6 +48,8 @@ import {
   HomeMain,
   ImageHover,
   HelpImg,
+  LeftSvg,
+  RightWrap,
   IconWrap
 } from '../styles/homepageStyles';
 import BusinessSlider from '../components/businessSlider/businessslider';
@@ -62,13 +63,9 @@ import { isEmpty } from '../helpers/helpers';
 import TabView from '../components/tab/tab';
 import Button from '../components/button/button';
 
-
-
 export default function Home({ allPosts }) {
-
   return (
     <>
-
       <NextSeo
         title='Copilot - It’s all about connection'
         description='copilot offers client portal software solution to manage sales reporting, management, marketing, improve customer relationships and more. Get the best free CRM system for your business.'
@@ -86,15 +83,71 @@ export default function Home({ allPosts }) {
                 payments, file-sharing, help centers, custom app access, and more.
               </Para>
               <HeroBtnBlock>
-                <Button bgColor={'#09AA6C'} fontColor={'#fff'} borderColor={'#09AA6C'} text={'Start Trial'} href={'https://dashboard.copilot.com/onboarding'} />
-                <SecondryButton>
-                  <Link href='/book-demo'>Book Demo</Link>
-                </SecondryButton>
+                <Button
+                  bgColor={'#09AA6C'}
+                  fontColor={'#fff'}
+                  borderColor={'#09AA6C'}
+                  text={'Start Trial'}
+                  href={'https://dashboard.copilot.com/onboarding'}
+                  hoverColor={'rgba(255, 255, 255,0.8)'}
+                />
+                <Button
+                  bgColor={'transparent'}
+                  fontColor={'#000000'}
+                  borderColor={'#000000'}
+                  text={'Book Demo'}
+                  href={'/book-demo'}
+                  hoverColor={'rgba(0, 0, 0, 0.5)'}
+                />
               </HeroBtnBlock>
               <ReviewLogo>
                 <ImageHover>
-                  <Image src='/images/hover.svg' width={171} height={43} alt='msg-icon' className='show' />
-                  <Image src='/images/hoverlogo.svg' width={171} height={43} alt='msg-icon' className='hide' />
+                  {/* <Image src='/images/hover.svg' width={171} height={43} alt='msg-icon' className='show' />
+                  <Image src='/images/hoverlogo.svg' width={171} height={43} alt='msg-icon' className='hide' /> */}
+                  <LeftSvg>
+                    <svg width='33' height='33' viewBox='0 0 33 33' fill='none' xmlns='http://www.w3.org/2000/svg'>
+                      <g clip-path='url(#clip0_322_132405)'>
+                        <path
+                          d='M23.3501 22.85C24.4741 24.8245 25.5856 26.7766 26.6963 28.7266C21.7781 32.5381 14.1263 32.9987 8.46188 28.6094C1.94333 23.5543 0.871947 14.9288 4.36188 8.71981C8.3758 1.57813 15.8872 -0.0012911 20.7234 1.15684C20.5926 1.44447 17.6961 7.52741 17.6961 7.52741C17.6961 7.52741 17.4671 7.54264 17.3375 7.54518C15.9081 7.60651 14.8434 7.94321 13.7022 8.54046C12.4502 9.20179 11.3772 10.1635 10.5772 11.3415C9.77707 12.5195 9.27419 13.8779 9.11248 15.2981C8.94374 16.7383 9.14048 18.1983 9.6841 19.5402C10.1437 20.6746 10.7939 21.6822 11.6656 22.5328C13.0027 23.839 14.5939 24.6477 16.4383 24.9155C18.185 25.1693 19.8647 24.918 21.4388 24.1173C22.0292 23.8174 22.5315 23.4862 23.1186 23.0319C23.1934 22.9829 23.2598 22.9207 23.3501 22.85Z'
+                          fill='#00160E'
+                        />
+                        <path
+                          d='M23.3617 5.53252C23.0763 5.24828 22.8118 4.98603 22.5486 4.72209C22.3914 4.56474 22.2402 4.40104 22.0793 4.2475C22.0216 4.19209 21.9539 4.11637 21.9539 4.11637C21.9539 4.11637 22.0087 3.99878 22.0321 3.95056C22.34 3.32497 22.8227 2.86772 23.3951 2.50395C24.0282 2.09865 24.7657 1.89242 25.5145 1.91135C26.4726 1.93039 27.3635 2.17191 28.1152 2.82246C28.6701 3.30255 28.9547 3.91165 29.0048 4.63876C29.0884 5.86541 28.587 6.80486 27.5912 7.46049C27.0062 7.84625 26.3753 8.14446 25.7426 8.49765C25.3937 8.69264 25.0954 8.86395 24.7544 9.21672C24.4544 9.57076 24.4398 9.90449 24.4398 9.90449L28.9722 9.89857V11.942H21.9761V11.7445C21.9493 10.7403 22.0651 9.79536 22.5193 8.88341C22.9372 8.04675 23.5865 7.43426 24.3666 6.96264C24.9675 6.59929 25.6002 6.29009 26.2023 5.92844C26.5738 5.70553 26.8362 5.37856 26.8341 4.90439C26.8341 4.49748 26.5416 4.13583 26.1237 4.02289C25.1384 3.75387 24.1356 4.1832 23.6141 5.096C23.538 5.22924 23.4603 5.36164 23.3617 5.53252ZM32.1287 20.6771L28.3091 13.9998H20.7505L16.9062 20.746H24.5204L28.2778 27.3915L32.1287 20.6771Z'
+                          fill='#00160E'
+                        />
+                      </g>
+                      <defs>
+                        <clipPath id='clip0_322_132405'>
+                          <rect width='32' height='33' fill='white' transform='translate(0.5)' />
+                        </clipPath>
+                      </defs>
+                    </svg>
+                  </LeftSvg>
+                  <RightWrap>
+                    <svg width='112' height='20' viewBox='0 0 112 20' fill='none' xmlns='http://www.w3.org/2000/svg'>
+                      <path
+                        d='M10.5 0L12.7451 6.90983H20.0106L14.1327 11.1803L16.3779 18.0902L10.5 13.8197L4.62215 18.0902L6.86729 11.1803L0.989435 6.90983H8.25486L10.5 0Z'
+                        fill='#00160E'
+                      />
+                      <path
+                        d='M33.5 0L35.7451 6.90983H43.0106L37.1327 11.1803L39.3779 18.0902L33.5 13.8197L27.6221 18.0902L29.8673 11.1803L23.9894 6.90983H31.2549L33.5 0Z'
+                        fill='#00160E'
+                      />
+                      <path
+                        d='M55.5 0L57.7451 6.90983H65.0106L59.1327 11.1803L61.3779 18.0902L55.5 13.8197L49.6221 18.0902L51.8673 11.1803L45.9894 6.90983H53.2549L55.5 0Z'
+                        fill='#00160E'
+                      />
+                      <path
+                        d='M78.5 0L80.7451 6.90983H88.0106L82.1327 11.1803L84.3779 18.0902L78.5 13.8197L72.6221 18.0902L74.8673 11.1803L68.9894 6.90983H76.2549L78.5 0Z'
+                        fill='#00160E'
+                      />
+                      <path
+                        d='M101.5 0L103.745 6.90983H111.011L105.133 11.1803L107.378 18.0902L101.5 13.8197L95.6221 18.0902L97.8673 11.1803L91.9894 6.90983H99.2549L101.5 0Z'
+                        fill='#00160E'
+                      />
+                    </svg>
+                    <p>Based on 100+ reviews</p>
+                  </RightWrap>
                 </ImageHover>
               </ReviewLogo>
             </Container>
@@ -146,9 +199,14 @@ export default function Home({ allPosts }) {
                   dashboards, and thousands more.
                 </p>
                 <BtnView>
-                  <SecondryButton>
-                    <Link href='https://copilot-release.vercel.app/apps'>Browse Apps</Link>
-                  </SecondryButton>
+                  <Button
+                    bgColor={'transparent'}
+                    fontColor={'#000000'}
+                    borderColor={'#000000'}
+                    text={'Browse Apps'}
+                    href={'https://copilot-release.vercel.app/apps'}
+                    hoverColor={'rgba(0, 0, 0, 0.5)'}
+                  />
                 </BtnView>
               </BusinessText>
             </Container>
@@ -406,12 +464,10 @@ export default function Home({ allPosts }) {
 }
 
 export async function getServerSideProps({ preview = false }) {
-
   const allPosts = (await getTabGroupById(HOME_FEATURES_TAB_ID, preview)) ?? [];
   return {
     props: {
-      allPosts,
-
-    },
+      allPosts
+    }
   };
 }

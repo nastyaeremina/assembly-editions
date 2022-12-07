@@ -50,7 +50,7 @@ export const MODULE_GRADIENT_IMAGE_LIST = {
   billing: '/images/billing_gradient.svg',
   file: '/images/files_gradient.svg',
   form: '/images/forms_gradient.svg',
-  knowledge: '/images/helpdesk_gradient.svg',
+  helpdesk: '/images/helpdesk_gradient.svg',
   contract: '/images/contract_gradient.svg'
 };
 export const NAVBAR_COLOR_LIST = [
@@ -169,3 +169,9 @@ export const FEATURES_BILLING_TAB_ID = '2iCYntWByiNtdj9Hkqzpeo'
 export const FEATURES_FILES_TAB_ID = '5xbH2EByTEWmPrtcSTWRdy'
 export const FEATURES_FORMS_TAB_ID = '3FflbItaKCbpfWnbHfFmIg'
 export const FEATURES_HELPDESK_TAB_ID = '4oQSJTMTBvBkHulyboUzLz'
+
+export const FEATURES_MESSAG_ID = '3j6okJbvtbNtRAXhtQC869'
+export const FEATURES_BILLING_ID = '2biTe250v3ZnEWb49koKtb'
+export const FEATURES_FILES_ID = '6glhfdfv9r7EMxEcyF3dQk'
+export const FEATURES_FORMS_ID = '660hOhF7kjJEyZIdEeKZyr'
+export const FEATURES_HELPDESK_ID = '1kQbm7K0BbqiTTTaAMsU4m'

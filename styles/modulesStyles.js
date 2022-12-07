@@ -283,6 +283,9 @@ const ImageWrap = styled.div`
   justify-content: flex-start;
 `;
 const BottomFunction = styled.div``;
+const BorderLine = styled.div`
+  position: relative;
+`;
 export {
   MsgHeroSection,
   HeroSub,
@@ -301,5 +304,6 @@ export {
   BillMain,
   FileMain,
   ImageWrap,
-  BottomFunction
+  BottomFunction,
+  BorderLine
 };

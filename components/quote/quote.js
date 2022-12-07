@@ -2,22 +2,21 @@ import Image from 'next/image';
 import { Container } from '../../styles/commonStyles';
 import { QuoteMain, Mainss, QuoteTxt, QuoteSubTxt, QuoteLine, QuoteImg } from './styles';
 
-export default function Quote({ gradientImage }) {
+export default function Quote({ gradientImage, data }) {
   return (
     <QuoteMain gradientImage={gradientImage}>
       <Container>
         <Mainss>
           <QuoteImg>
-            <Image src='/images/quote.png' alt='red-icon' width={413} height={405} layout={'fixed'} />
+            <Image src={data?.image?.url} alt='red-icon' width={413} height={405} layout={'fixed'} />
           </QuoteImg>
           <QuoteTxt>
             <h3>
-              “Our entire agency runs on Copilot. Everything from billing, messaging, file-sharing, forms, and more. We
-              never thought one tool could do this much.”
+              {data?.quote}
             </h3>
             <QuoteSubTxt>
-              <h4>Bill Barth</h4>
-              <p>President Boy</p>
+              <h4>{data?.name}</h4>
+              <p>{data?.role}</p>
             </QuoteSubTxt>
           </QuoteTxt>
         </Mainss>

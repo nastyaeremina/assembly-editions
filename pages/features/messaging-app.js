@@ -2,7 +2,7 @@ import Layout from '/components/layout';
 import Image from 'next/image';
 import { NextSeo } from 'next-seo';
 import Navbar from '../../components/navbar/navbar';
-import { HeroSub, MsgHeroSection } from '../../styles/modulesStyles';
+import { HeroSub, MsgHeroSection, BorderLine } from '../../styles/modulesStyles';
 import CTA from '../../components/cta/cta';
 import Tools from '../../components/tools/tool';
 import Content from '../../components/content/content';
@@ -10,6 +10,7 @@ import Quote from '../../components/quote/quote';
 import Client from '../../components/client/client';
 import { Container } from '../../styles/commonStyles';
 import {
+  FEATURES_MESSAG_ID,
   FEATURES_MESSAG_TAB_ID,
   HEADER_LIST,
   HOME_MODULE_LIST,
@@ -21,13 +22,16 @@ import {
 import { useMemo } from 'react';
 import { BottomFunction } from '../../components/content/styles';
 import TabView from '../../components/tab/tab';
+import { getFeatureById } from '../../lib/contentful-features';
+import { isEmpty } from '../../helpers/helpers';
 
 const CURRENT_MODULE = MUDULE_LIST.MESSAGING;
-export default function MessagingApp({ module, moduleDetails }) {
+export default function MessagingApp({ details }) {
   const renderHeroSection = useMemo(() => {
     return (
       <>
         <Navbar isModule={true} headerIndex={HEADER_LIST.MESSAGING} />
+
         <MsgHeroSection>
           <Container>
             <HeroSub className='msgheropadding'>
@@ -72,13 +76,27 @@ export default function MessagingApp({ module, moduleDetails }) {
           <BottomFunction>
             <TabView
               tabId={FEATURES_MESSAG_TAB_ID}
+              tabData={details?.clientFeaturesCollection?.items || []}
               bgColor={MODULE_COLOR_LIST[HOME_MODULE_LIST['Messaging']]?.bgColor}
               textColor={MODULE_COLOR_LIST[HOME_MODULE_LIST['Messaging']]?.fontColor}
             />
+            <Image
+              src='/images/borderline.svg'
+              alt='line-icon'
+              width={1}
+              height={250}
+              layout={'fixed'}
+              className='borderline'
+            />
           </BottomFunction>
         </Container>
-        <Tools />
-        <Quote gradientImage={MODULE_GRADIENT_IMAGE_LIST[CURRENT_MODULE]} />
+
+        {!isEmpty(details?.internalFeaturesCollection?.items) && (
+          <Tools data={details?.internalFeaturesCollection?.items} />
+        )}
+        {!isEmpty(details?.testimonial) && (
+          <Quote gradientImage={MODULE_GRADIENT_IMAGE_LIST[CURRENT_MODULE]} data={details?.testimonial} />
+        )}
         <Client currentModule={CURRENT_MODULE} />
         <CTA moduleName={CURRENT_MODULE} colorList={NAVBAR_COLOR_LIST[HEADER_LIST.MESSAGING]} />
       </Layout>
@@ -86,11 +104,9 @@ export default function MessagingApp({ module, moduleDetails }) {
   );
 }
 
-// export async function getServerSideProps({ params, preview = false }) {
-//     const allPosts = (await getTabPosts(preview)) ?? [];
-//     const moduleDetails = allPosts?.filter((item) => item?.name.toLowerCase() === params?.slug)
-
-//     return {
-//         props: { preview, module: params?.slug, moduleDetails },
-//     };
-// }
+export async function getServerSideProps({ preview = false }) {
+  const details = (await getFeatureById(FEATURES_MESSAG_ID, preview)) ?? [];
+  return {
+    props: { details }
+  };
+}
