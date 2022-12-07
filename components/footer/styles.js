@@ -1,12 +1,5 @@
-import styled, { css } from "styled-components";
-import {
-  Body4,
-  FooterText,
-  Heading2,
-  Body1,
-  Body2,
-  Body3,
-} from "../../styles/styles";
+import styled, { css } from 'styled-components';
+import { Body4, FooterText, Heading2, Body1, Body2, Body3 } from '../../styles/styles';
 
 const FooterSection = styled.div`
   background-color: ${({ theme }) => theme.colors.neutral};
@@ -342,5 +335,5 @@ export {
   FotterMenuLeft,
   FooterMenuList,
   FooterMobile,
-  FotterMenuMobile,
+  FotterMenuMobile
 };

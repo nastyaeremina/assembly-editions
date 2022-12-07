@@ -7,6 +7,7 @@ const ErrorMain = styled.div`
   align-items: center;
   height: 100vh;
   flex-direction: column;
+  height: calc(100vh - 250px);
   h3 {
     ${Heading3};
     margin: 0 0 16px 0;
