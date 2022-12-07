@@ -223,7 +223,7 @@ export default function NewIndex() {
               <table className={!isShowFeature && 'active'}>
                 <thead>
                   <tr className='bordercolor'>
-                    <th className='tableBorder'></th>
+                    <th colSpan={3} className='tableBorder'></th>
                     <th className='radius'>Starter</th>
                     <th>Professional</th>
                     <th className='rightradius'>Advanced</th>
@@ -231,7 +231,7 @@ export default function NewIndex() {
                 </thead>
                 <tbody>
                   <tr>
-                    <td className='tableBorder'></td>
+                    <td colSpan={3} className='tableBorder'></td>
                     <td>
                       <h3>
                         {isYearly && '$29'}
@@ -257,13 +257,15 @@ export default function NewIndex() {
                   </tr>
 
                   <tr className='tablecolor'>
-                    <td className='tablepadding'>Access</td>
+                    <td colSpan={3} className='tablepadding'>
+                      Access
+                    </td>
                     <td></td>
                     <td></td>
                     <td></td>
                   </tr>
                   <tr>
-                    <td>
+                    <td colSpan={3}>
                       <h4>Total clients</h4>
                       <p>
                         A client user is any client of your business that has their own login access to your portal.
@@ -282,7 +284,7 @@ export default function NewIndex() {
                     </td>
                   </tr>
                   <tr>
-                    <td>
+                    <td colSpan={3}>
                       <h4>Total storage</h4>
                       <p>
                         File uploads in the Files module by any user contribute to your file storage limit. When you
@@ -302,13 +304,15 @@ export default function NewIndex() {
                     </td>
                   </tr>
                   <tr className='tablecolor'>
-                    <td className='tablepadding'>Features</td>
+                    <td colSpan={3} className='tablepadding'>
+                      Features
+                    </td>
                     <td></td>
                     <td></td>
                     <td></td>
                   </tr>
                   <tr>
-                    <td>
+                    <td colSpan={3}>
                       <h4>Client management</h4>
                       <p>
                         Client management functionality lets you create, invite, organize, and manage client
@@ -326,7 +330,7 @@ export default function NewIndex() {
                     </td>
                   </tr>
                   <tr>
-                    <td>
+                    <td colSpan={3}>
                       <h4>Custom fields</h4>
                       <p>
                         With custom fields, you can add and track custom properties for your clients. For example, you
@@ -344,7 +348,7 @@ export default function NewIndex() {
                     </td>
                   </tr>
                   <tr>
-                    <td>
+                    <td colSpan={3}>
                       <h4>Team collaboration</h4>
                       <p>
                         Assign a lead and one or more assignees to each of your clients. This lets you stay organized
@@ -362,7 +366,7 @@ export default function NewIndex() {
                     </td>
                   </tr>
                   <tr>
-                    <td>
+                    <td colSpan={3}>
                       <h4>Customization</h4>
                       <p>
                         Customizations include the ability to upload you brand assets, design your theme, set up a
@@ -380,7 +384,7 @@ export default function NewIndex() {
                     </td>
                   </tr>
                   <tr>
-                    <td>
+                    <td colSpan={3}>
                       <h4>Automations & Zapier</h4>
                       <p>
                         Use Portal API and Zapier triggers to set up automations that streamline the experience for your
@@ -396,7 +400,7 @@ export default function NewIndex() {
                     </td>
                   </tr>
                   <tr>
-                    <td>
+                    <td colSpan={3}>
                       <h4>API Access</h4>
                       <p>Use our REST API and Webhooks to set up automations and connect other tools.</p>
                     </td>
@@ -411,7 +415,7 @@ export default function NewIndex() {
                     </td>
                   </tr>
                   <tr>
-                    <td>
+                    <td colSpan={3}>
                       <h4>White labeling</h4>
                       <p>
                         With a custom domain you can host your portal on your own URL. With a custom email domain you
@@ -434,7 +438,7 @@ export default function NewIndex() {
                     </td>
                   </tr>
                   <tr>
-                    <td>
+                    <td colSpan={3}>
                       <h4>HIPAA compliance with BAA</h4>
                       <p>
                         If you're a covered entity or business associate subject to HIPAA, contact our team to enter
@@ -452,7 +456,7 @@ export default function NewIndex() {
                     </td>
                   </tr>
                   <tr>
-                    <td>
+                    <td colSpan={3}>
                       <h4>Custom roles & permissions</h4>
                       <p>
                         Create custom roles for your team if you want full control over what functionality each internal
@@ -470,13 +474,15 @@ export default function NewIndex() {
                   </tr>
 
                   <tr className='tablecolor'>
-                    <td className='tablepadding'>Copilot Apps</td>
+                    <td colSpan={3} className='tablepadding'>
+                      Copilot Apps
+                    </td>
                     <td></td>
                     <td></td>
                     <td></td>
                   </tr>
                   <tr>
-                    <td>
+                    <td colSpan={3}>
                       <h4>Messaging</h4>
                       <p>
                         Securely communicate with clients in an integrated chat experience. Clients can send messages in
@@ -494,7 +500,7 @@ export default function NewIndex() {
                     </td>
                   </tr>
                   <tr>
-                    <td>
+                    <td colSpan={3}>
                       <h4>Billing</h4>
                       <p>
                         Create one-time invoices and recurring subscriptions in your portal. Give clients a way to
@@ -528,7 +534,7 @@ export default function NewIndex() {
                     </td>
                   </tr>
                   <tr>
-                    <td>
+                    <td colSpan={3}>
                       <h4>Files</h4>
                       <p>
                         Upload files, add links, and stay organized with folders. Advanced controls let you specify
@@ -546,7 +552,7 @@ export default function NewIndex() {
                     </td>
                   </tr>
                   <tr>
-                    <td>
+                    <td colSpan={3}>
                       <h4>Contracts</h4>
                       <p>Upload PDFs and request eSignatures directly in your portal.</p>
                     </td>
@@ -561,7 +567,7 @@ export default function NewIndex() {
                     </td>
                   </tr>
                   <tr>
-                    <td>
+                    <td colSpan={3}>
                       <h4>Forms</h4>
                       <p>Streamline the client onboarding experience and data intake with reusable forms.</p>
                     </td>
@@ -576,7 +582,7 @@ export default function NewIndex() {
                     </td>
                   </tr>
                   <tr>
-                    <td>
+                    <td colSpan={3}>
                       <h4>Knowledge base</h4>
                       <p>
                         Create a knowledge base for your clients to reduce manual support time. With a powerful article
@@ -595,14 +601,16 @@ export default function NewIndex() {
                     </td>
                   </tr>
                   <tr className='tablecolor'>
-                    <td className='tablepadding'>Apps</td>
+                    <td colSpan={3} className='tablepadding'>
+                      Apps
+                    </td>
                     <td></td>
                     <td></td>
                     <td></td>
                   </tr>
 
                   <tr>
-                    <td>
+                    <td colSpan={3}>
                       <h4>Partner Apps</h4>
                       <p>
                         Embed products like Airtable, ClickUp, Calendly, Google Data Studio, and 1000s of others in your
@@ -619,7 +627,7 @@ export default function NewIndex() {
                   </tr>
 
                   <tr>
-                    <td>
+                    <td colSpan={3}>
                       <h4>Data Integration Apps</h4>
                       <p>
                         Connect products like QuickBooks and Google Analytics so that data can flow from Copilot into an
@@ -636,7 +644,7 @@ export default function NewIndex() {
                   </tr>
 
                   <tr>
-                    <td>
+                    <td colSpan={3}>
                       <h4>Custom Apps</h4>
                       <p>
                         A custom app is a web application that can be embedded into your portal and receives information
@@ -651,14 +659,16 @@ export default function NewIndex() {
                     </td>
                   </tr>
                   <tr className='tablecolor'>
-                    <td className='tablepadding'>Payment processing fees</td>
+                    <td colSpan={3} className='tablepadding'>
+                      Payment processing fees
+                    </td>
                     <td></td>
                     <td></td>
                     <td></td>
                   </tr>
 
                   <tr>
-                    <td>
+                    <td colSpan={3}>
                       <h4>Credit cards</h4>
                       <p>
                         Payment processing fee for credit cards. You can control whether you want to absorb payment
@@ -677,7 +687,7 @@ export default function NewIndex() {
                     </td>
                   </tr>
                   <tr>
-                    <td>
+                    <td colSpan={3}>
                       <h4>ACH</h4>
                       <p>
                         Payment processing fee for ACH Debit. You can control whether you want to absorb payment
@@ -697,13 +707,15 @@ export default function NewIndex() {
                   </tr>
 
                   <tr className='tablecolor'>
-                    <td className='tablepadding'>Additional Payment processing fees</td>
+                    <td colSpan={3} className='tablepadding'>
+                      Additional Payment processing fees
+                    </td>
                     <td></td>
                     <td></td>
                     <td></td>
                   </tr>
                   <tr>
-                    <td>
+                    <td colSpan={3}>
                       <h4>Payments for invoices generated by a recurring subscription</h4>
                       <p>Payments for invoices that are generated by a subscription may incur an additional fee.</p>
                     </td>
@@ -718,7 +730,7 @@ export default function NewIndex() {
                     </td>
                   </tr>
                   <tr>
-                    <td>
+                    <td colSpan={3}>
                       <h4>International credit cards</h4>
                       <p>International credit cards incur an additional 1% fee.</p>
                     </td>
@@ -733,7 +745,7 @@ export default function NewIndex() {
                     </td>
                   </tr>
                   <tr>
-                    <td>
+                    <td colSpan={3}>
                       <h4>Currency conversion required</h4>
                       <p>Credit card payments that require currency conversion incur an additional 1% fee.</p>
                     </td>
@@ -748,13 +760,15 @@ export default function NewIndex() {
                     </td>
                   </tr>
                   <tr className='tablecolor'>
-                    <td className='tablepadding'>Support</td>
+                    <td colSpan={3} className='tablepadding'>
+                      Support
+                    </td>
                     <td></td>
                     <td></td>
                     <td></td>
                   </tr>
                   <tr>
-                    <td>
+                    <td colSpan={3}>
                       <h4>Email and community support</h4>
                       <p>Receive support from our Slack community and get answers from our support team.</p>
                     </td>
@@ -769,7 +783,7 @@ export default function NewIndex() {
                     </td>
                   </tr>
                   <tr>
-                    <td>
+                    <td colSpan={3}>
                       <h4>Priority support</h4>
                       <p>Receive elevated support from our priority support team.</p>
                     </td>
@@ -782,7 +796,7 @@ export default function NewIndex() {
                     </td>
                   </tr>
                   <tr>
-                    <td>
+                    <td colSpan={3}>
                       <h4>Dedicated expert</h4>
                       <p>
                         Meet 1:1 with an expert to help you set up your portal, migrate data, set up workflow
@@ -798,6 +812,7 @@ export default function NewIndex() {
                 </tbody>
               </table>
             </PriceTable>
+
             <PriceImage>
               <PriceImageLeft>
                 <Image src='/images/logoplus.svg' alt='main-logo' height={40} width={252} />
