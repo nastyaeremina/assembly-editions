@@ -240,14 +240,14 @@ const PriceTable = styled.div`
     width: 100%;
     border-spacing: 0;
     transition: height 400ms ease 0s, padding 400ms ease 0s, margin 400ms ease 0s;
+    border-collapse: separate;
     .tableBorder {
-      border: none;
+      /* border: none; */
       background-color: #fff;
-      width: 624px;
+      /* width: 624px; */
     }
     .bordercolor {
-      background-color: ${({ theme }) => theme.colors.greendark};
-      border-right-color: 1px solid #00160e;
+      /* background-color: ${({ theme }) => theme.colors.greendark}; */
       td {
         color: ${({ theme }) => theme.colors.greenlight};
         border-right-color: ${({ theme }) => theme.colors.greenlight};
@@ -255,18 +255,10 @@ const PriceTable = styled.div`
     }
     .radius {
       border-radius: 4px 0px 0px 0px;
-      overflow: hidden;
-      border-collapse: collapse;
-      position: relative;
-      left: -0.5px;
-      /* position: relative;
-      left: -0.5px; */
     }
     .rightradius {
       border-top-right-radius: 4px;
       border-right: none;
-      /* position: relative;
-      right: -0.5px; */
     }
     .tablecolor {
       background-color: ${({ theme }) => theme.colors.greenlight};
@@ -275,36 +267,34 @@ const PriceTable = styled.div`
       padding: 12px 20px;
     }
     .leftradius {
-      border-radius: 3px 0px 0px 0px;
+      border-radius: 4px 0px 0px 0px;
     }
     .tabletext {
-      ${TableText}
+      ${TableText};
       color: ${({ theme }) => theme.colors.greendark};
     }
-
     .subtext {
       ${FooterText};
       color: ${({ theme }) => theme.colors.darkgray};
     }
     th {
       ${Body3};
-      /* border-radius: 3px 0px 0px 0px; */
       background-color: ${({ theme }) => theme.colors.greendark};
-      letter-spacing: 0.02em;
       color: ${({ theme }) => theme.colors.greenlight};
+      letter-spacing: 0.02em;
       padding: 12px 20px;
       text-align: left;
       width: 200px;
       border-right: 1px solid #e3ffee;
     }
     td {
-      ${Body3}
-      padding: 16px 20px;
+      ${Body3};
       color: ${({ theme }) => theme.colors.title};
+      padding: 16px 20px;
       border: 1px solid #00160e;
       vertical-align: top;
       letter-spacing: 0.02em;
-
+      border-style: none solid solid none;
       span {
         ${Body5};
         color: ${({ theme }) => theme.colors.title};
@@ -317,31 +307,56 @@ const PriceTable = styled.div`
       }
       p {
         color: ${({ theme }) => theme.colors.body};
-        margin: 4px 0 0 0;
         ${Body5};
+        margin: 4px 0 0 0;
         letter-spacing: 0.02em;
       }
       h4 {
+        margin: 0;
         ${Body4};
         color: ${({ theme }) => theme.colors.title};
-        margin: 0;
       }
       .spanpadding {
         padding-top: 12px;
       }
       h3 {
-        color: ${({ theme }) => theme.colors.greendark};
-        ${TableText}
         margin: 0 0 4px 0;
+        color: ${({ theme }) => theme.colors.greendark};
+        ${TableText};
       }
       .imagretext {
         color: ${({ theme }) => theme.colors.greenmiddark};
         margin: 0;
       }
     }
-    &.active {
-      display: block;
+    tr {
+      &:nth-child(1) {
+        td {
+          &:nth-child(1) {
+            border-style: none;
+          }
+          &:nth-child(2) {
+            border-style: solid;
+          }
+        }
+      }
+      &:nth-child(2) {
+        td {
+          &:nth-child(1) {
+            border-top-left-radius: 4px;
+            border-style: solid;
+          }
+        }
+      }
+      td {
+        &:nth-child(1) {
+          border-style: none solid solid solid;
+        }
+      }
     }
+  }
+  table.active {
+    display: block;
   }
 `;
 const LearnLink = styled.div`
