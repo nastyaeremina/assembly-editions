@@ -35,6 +35,12 @@ const PrivacyContent = styled.div`
     ${Heading4};
     color: ${({ theme }) => theme.colors.title};
     margin: 0;
+    margin-bottom: -4px;
+  }
+  h5 {
+    ${Heading6};
+    color: ${({ theme }) => theme.colors.title};
+    margin: 30px 0 0 0;
   }
 `;
 const PrivacyData = styled.div`
@@ -83,6 +89,15 @@ const InfoLink = styled.div`
     }
   }
 `;
+const FooterSection = styled.div`
+  margin-top: 60px;
+  background-color: ${({ theme }) => theme.colors.footercolor};
+`;
+const FooterSub = styled.div`
+  padding: 40px 0;
+  display: flex;
+  gap: 40px;
+`;
 export {
   MainSection,
   PrivacuHero,
@@ -92,5 +107,7 @@ export {
   PrivacyContactData,
   ContentInfo,
   InfoWrap,
-  InfoLink
+  InfoLink,
+  FooterSection,
+  FooterSub
 };

@@ -13,6 +13,10 @@ const FooterSection = styled.div`
     padding: 50px 0;
   }
 `;
+const FooterSectionLegal = styled.div`
+  background-color: ${({ theme }) => theme.colors.neutral};
+  padding: 40px 0 40px 0;
+`;
 const FooterInnerBlock = styled.div`
   display: flex;
   gap: 36px;
@@ -311,6 +315,17 @@ const FotterMenuMobile = styled.div`
     padding-top: 30px;
   }
 `;
+const FooterSub = styled.div`
+  display: flex;
+  gap: 40px;
+  align-items: center;
+
+  p {
+    ${FooterText};
+    margin: 0;
+    color: ${({ theme }) => theme.colors.lightgray};
+  }
+`;
 export {
   FooterSection,
   FooterInnerBlock,
@@ -335,5 +350,7 @@ export {
   FotterMenuLeft,
   FooterMenuList,
   FooterMobile,
-  FotterMenuMobile
+  FotterMenuMobile,
+  FooterSectionLegal,
+  FooterSub
 };
