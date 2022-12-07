@@ -23,6 +23,7 @@ import {
   BrandMain,
   ImgWrap
 } from '../../styles/brandStyles';
+import Button from '../../components/button/button';
 
 export default function Brand() {
   const [copy1, setCopy1] = useState('Copy');
@@ -96,11 +97,7 @@ export default function Brand() {
             <BrandHeroSection>
               <h2>Copilot Brand Guidelines</h2>
               <p>Resources for presenting the Copilot brand consistently and professionally.</p>
-              <PrimaryButton>
-                <a href='images/Copilot_Block_Assets.zip' download>
-                  Download Brand Assets
-                </a>
-              </PrimaryButton>
+              <Button text={'Download Brand Assets'} href={'images/Copilot_Block_Assets.zip'} />
             </BrandHeroSection>
             <BrandName>
               <h4>Naming</h4>

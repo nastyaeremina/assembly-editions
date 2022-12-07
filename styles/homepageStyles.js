@@ -545,7 +545,6 @@ const TabRow = styled.div`
   }
   .ag {
     display: flex;
-    margin-left: -6px;
     overflow: auto;
     ::-webkit-scrollbar {
       display: none;
@@ -572,9 +571,6 @@ const TabRow = styled.div`
   }
   .bw {
     display: none;
-  }
-  .bl {
-    padding: 0;
   }
 `;
 const TabBox = styled.div`

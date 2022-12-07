@@ -1,7 +1,7 @@
-import Link from "next/link";
-import Image from "next/image";
-import { Container } from "../../styles/commonStyles";
-import TabView from "../tab/tab";
+import Link from 'next/link';
+import Image from 'next/image';
+import { Container } from '../../styles/commonStyles';
+import TabView from '../tab/tab';
 import {
   ContentMain,
   BottomFunction,
@@ -10,8 +10,8 @@ import {
   ContainWrap,
   LeftDetail,
   TopFunctionWrap,
-  RightDetail,
-} from "./styles";
+  RightDetail
+} from './styles';
 // import { RightDetail } from "../../styles/homepageStyles";
 
 export default function Content() {
@@ -25,13 +25,12 @@ export default function Content() {
             ready to go<span>.</span>
           </h3>
           <p>
-            Provide clients a uniform experience with on-brand design, combined
-            in-product notifications, and consistent email notifications. And
-            with modularily built-in, start with just one module and add more
-            when the time is right.
+            Provide clients a uniform experience with on-brand design, combined in-product notifications, and consistent
+            email notifications. And with modularily built-in, start with just one module and add more when the time is
+            right.
           </p>
         </TopFunctionWrap>
-        <BottomFunction>
+        <div>
           <TabView />
           {/* <TabRow>
             <TabBox>
@@ -72,7 +71,7 @@ export default function Content() {
               />
             </RightDetail>
           </ContainWrap> */}
-        </BottomFunction>
+        </div>
       </Container>
     </ContentMain>
   );

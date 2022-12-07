@@ -3,9 +3,13 @@ import { Body3, Body4, Heading3, Heading4, Label } from '../../styles/styles';
 const BottomFunction = styled.div`
   margin-top: 40px;
   position: relative;
-  .borderline {
+  ::after {
+    content: '';
     position: absolute;
-    right: 25%;
+    height: 250px;
+    right: calc(25% - 0px);
+    border-right: 1px solid #000900;
+    position: absolute;
   }
 `;
 const TabRow = styled.div`
