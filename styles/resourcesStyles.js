@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { Body4, Heading2, Heading4, Heading6 } from './styles';
+import { Body4, Heading2, Heading4, Heading6, LinkTxt } from './styles';
 const MainSection = styled.div``;
 const PrivacuHero = styled.div`
   background-color: ${({ theme }) => theme.colors.greendark};
@@ -55,4 +55,42 @@ const PrivacyData = styled.div`
   }
 `;
 const PrivacyContactData = styled.div``;
-export { MainSection, PrivacuHero, PostContent, PrivacyContent, PrivacyData, PrivacyContactData };
+const ContentInfo = styled.div`
+  padding: 28px 0 100px 0;
+`;
+const InfoWrap = styled.div`
+  padding: 40px 0;
+  border-bottom: 1px solid #000000;
+
+  h4 {
+    ${Heading4};
+    margin: 0;
+    color: ${({ theme }) => theme.colors.title};
+  }
+`;
+const InfoLink = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  padding-top: 30px;
+  row-gap: 16px;
+  a {
+    ${LinkTxt};
+    color: ${({ theme }) => theme.colors.primary};
+    display: block;
+    transition: all 300ms;
+    :hover {
+      color: ${({ theme }) => theme.colors.black};
+    }
+  }
+`;
+export {
+  MainSection,
+  PrivacuHero,
+  PostContent,
+  PrivacyContent,
+  PrivacyData,
+  PrivacyContactData,
+  ContentInfo,
+  InfoWrap,
+  InfoLink
+};
