@@ -1,0 +1,83 @@
+import styled from 'styled-components';
+import { Body4, Heading2, Heading3, Heading4, Heading6 } from './styles';
+const MainSection = styled.div`
+  padding-bottom: 60px;
+`;
+const PrivacuHero = styled.div`
+  background-color: ${({ theme }) => theme.colors.greendark};
+  padding: 152px 0 100px 0;
+  text-align: center;
+  h2 {
+    ${Heading2};
+    color: ${({ theme }) => theme.colors.greenlight};
+    margin: 0;
+  }
+`;
+const SubData = styled.div`
+  padding-top: 60px;
+  margin: 0;
+  p {
+    ${Body4};
+    color: ${({ theme }) => theme.colors.body};
+    margin: 0 0 10px 0;
+    :last-child {
+      margin-bottom: 0;
+    }
+  }
+  h4 {
+    ${Heading4};
+    color: ${({ theme }) => theme.colors.title};
+    margin: 0 0 12px 0;
+  }
+  h5 {
+    ${Heading6};
+    color: ${({ theme }) => theme.colors.title};
+    margin: 0 0 16px 0;
+  }
+  span {
+    ${Heading6};
+    color: ${({ theme }) => theme.colors.title};
+    margin-left: 13px;
+  }
+  .pt30 {
+    padding-top: 30px;
+  }
+  .margin {
+    margin: 0 0 12px 0;
+  }
+`;
+const Catagory = styled.ol`
+  padding: 0;
+  margin: 0;
+  padding-left: 24px;
+`;
+const SubHeading = styled.div`
+  display: flex;
+  gap: 4px;
+  h3 {
+    ${Heading4};
+    color: ${({ theme }) => theme.colors.title};
+    max-width: 43px;
+    width: 100%;
+    margin: 0 4px 0 0;
+  }
+`;
+const SubDataWrap = styled.li``;
+const SubCatagory = styled.li`
+  padding-top: 8px;
+  padding-left: 16px;
+  ${Body4};
+  color: ${({ theme }) => theme.colors.body};
+  ::marker {
+    unicode-bidi: isolate;
+    font-variant-numeric: tabular-nums;
+    text-transform: none;
+    text-indent: 0px !important;
+    text-align: start !important;
+    text-align-last: start !important;
+  }
+  :first-child {
+    padding-top: 0;
+  }
+`;
+export { PrivacuHero, MainSection, SubData, SubHeading, SubDataWrap, SubCatagory, Catagory };
