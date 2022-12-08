@@ -35,7 +35,7 @@ export default function Modern({ data }) {
             </HeadView>
             <BoxWrap>
               {BoxListView}
-              <BoxView>
+              {/* <BoxView>
                 <ImgIcon>
                   <Image src='/images/filemodule.svg' width={44} height={44} alt='file-icon' />
                 </ImgIcon>
@@ -47,7 +47,7 @@ export default function Modern({ data }) {
                   </p>
                 </DetailView>
               </BoxView>
-              {/* <BoxView>
+              <BoxView>
                 <ImgIcon>
                   <Image src='/images/setting-icon.svg' width={44} height={44} alt='setting-icon' />
                 </ImgIcon>

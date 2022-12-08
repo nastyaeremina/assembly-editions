@@ -1,5 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
+import { useCallback, useMemo, useState } from 'react';
+import { isEmpty } from '../../../helpers/helpers';
 import { Container, SecondryButton } from '../../../styles/commonStyles';
 import {
   ExploreSection,
@@ -19,7 +21,44 @@ import {
   Tooltip
 } from './styles';
 
-export default function ExploreTab() {
+export default function ExploreTab({ data }) {
+  const [selectedTabIbndex, setSelectedTabIbndex] = useState(0);
+
+  const onClickTab = useCallback((index) => {
+    setSelectedTabIbndex(index);
+  }, []);
+
+  const tabListView = useMemo(() => {
+    return data?.map((item, index) => {
+      return <TabView className={index === selectedTabIbndex ? 'activetab' : ""} key={`tablist_index_${index}`} onClick={() => onClickTab(index)}>
+        <span>{`${index < 9 ? "0" : ""}${index + 1}`}</span>
+        {index === selectedTabIbndex &&
+          <ActiveTab>
+            <Image src='/images/verticalline.svg' alt='line-icon' width={1} height={51} />
+          </ActiveTab>}
+      </TabView>
+    })
+  }, [data, onClickTab, selectedTabIbndex])
+
+  const tabDetailView = useMemo(() => {
+    if (isEmpty(data?.[selectedTabIbndex])) return null
+    return <LeftWrap>
+      <h4>{data?.[selectedTabIbndex]?.title}</h4>
+      <p>{data?.[selectedTabIbndex]?.description}</p>
+    </LeftWrap>
+  }, [data, selectedTabIbndex])
+
+  const tabImageView = useMemo(() => {
+    if (isEmpty(data?.[selectedTabIbndex]?.image?.url)) return null
+    return <Container>
+      <SignBox>
+        <SignImgView>
+          <Image src={data?.[selectedTabIbndex]?.image?.url} alt='main-logo' width={1154} height={725} />
+        </SignImgView>
+      </SignBox>
+    </Container>
+  }, [data, selectedTabIbndex])
+
   return (
     <>
       <ExploreSection>
@@ -51,13 +90,11 @@ export default function ExploreTab() {
         <BottomSection>
           <Container>
             <SignatureSection>
-              <LeftWrap>
-                <h4>eSignatures</h4>
-                <p>A delightful eSignature experience omg there are two lines and woah here comes the third line</p>
-              </LeftWrap>
+              {tabDetailView}
               <RightWrap>
                 <TabWrap>
-                  <TabView className='activetab'>
+                  {tabListView}
+                  {/* <TabView className='activetab'>
                     <span>01</span>
                     <ActiveTab>
                       <Image src='/images/verticalline.svg' alt='line-icon' width={1} height={51} />
@@ -68,20 +105,14 @@ export default function ExploreTab() {
                   </TabView>
                   <TabView>
                     <span>03</span>
-                  </TabView>
+                  </TabView> */}
                 </TabWrap>
               </RightWrap>
             </SignatureSection>
           </Container>
         </BottomSection>
         <LastSection>
-          <Container>
-            <SignBox>
-              <SignImgView>
-                <Image src='/images/esignature.png' alt='main-logo' width={1154} height={725} />
-              </SignImgView>
-            </SignBox>
-          </Container>
+          {tabImageView}
         </LastSection>
       </ExploreSection>
     </>

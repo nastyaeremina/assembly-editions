@@ -21,8 +21,8 @@ export default function MarketingAgency({ details }) {
                 <Navbar />
                 <SolutionHero title={details?.header} description={details?.body} />
                 {!isEmpty(details?.solutionValueCollection?.items) && <Modern data={details?.solutionValueCollection?.items} />}
-                <ExploreTab />
-                <Quote />
+                {!isEmpty(details?.clientExperienceCollection?.items) && <ExploreTab data={details?.clientExperienceCollection?.items} />}
+                {!isEmpty(details?.testimonial) && <Quote data={details?.testimonial} />}
                 <CTA />
             </Layout>
         </>
