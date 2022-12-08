@@ -1,5 +1,6 @@
-import styled from "styled-components";
-import { Body3, Body4, Body5 } from "../../styles/styles";
+import Link from 'next/link';
+import styled from 'styled-components';
+import { Body3, Body4, Body5 } from '../../styles/styles';
 
 const Slide = styled.div`
   a {
@@ -63,7 +64,7 @@ const WrapImage = styled.div`
     letter-spacing: 0.02em;
   }
 `;
-const SliderInner = styled.div`
+const SliderInner = styled(Link)`
   padding: 11px 15px;
   border: 1px solid #000000;
   border-radius: 4px;
@@ -71,6 +72,7 @@ const SliderInner = styled.div`
   width: 100%;
   max-width: 180px;
   margin: 0 40px;
+  cursor: pointer;
   /* p {
     ${Body5};
     color: ${({ theme }) => theme.colors.midiumgray};
@@ -80,7 +82,7 @@ const SliderInner = styled.div`
 `;
 const SliderSub = styled.div`
   display: flex;
-  gap: 8px;
+  gap: 12px;
   align-items: center;
   h4 {
     ${Body4};
