@@ -150,10 +150,11 @@ export default function Jobs({ jobList, jobImagesList, jobBlogPostList }) {
       if (!isEmpty(item?.author)) {
         authorList = item?.author.split(",");
       }
+      const link = item?.blogLink?.split('copilot.com/')?.[1]
       return (
         <TitleWrap key={`jobblogpostitem_index_${index}`}>
           <TeamLine>
-            <Link href={item?.blogLink ?? ""}>{item?.name}</Link>
+            <Link href={link ?? ""}>{item?.name}</Link>
             <p>{dateToMonthYear(item?.date)}</p>
           </TeamLine>
           {!isEmpty(authorList) && (
