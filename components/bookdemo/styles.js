@@ -1,11 +1,19 @@
 import styled from 'styled-components';
-import { Body3, Body4, Body6, CardTxt, HeaderFont, Heading3, Heading4 } from '../../styles/styles';
+import { Body3, Body4, Body6, CardTxt, HeaderFont, Heading3, Heading4, MbBody4, MobileH4 } from '../../styles/styles';
 const MainSection = styled.div`
-  max-width: 540px;
+  max-width: 50%;
   width: 100%;
   padding: 40px 80px;
   background-color: ${({ theme }) => theme.colors.bgcolor};
   overflow: auto;
+  @media only screen and (max-width: 768px) {
+    max-width: 100%;
+    padding: 28px 160px 22px;
+  }
+  @media only screen and (max-width: 500px) {
+    max-width: 100%;
+    padding: 28px 24px 22px;
+  }
 `;
 const LastText = styled.div`
   text-align: center;
@@ -14,11 +22,24 @@ const LastText = styled.div`
     color: ${({ theme }) => theme.colors.title};
     margin: 20px 0 0 0;
   }
+  @media only screen and (max-width: 768px) {
+    margin-top: 16px;
+  }
 `;
-const FormSection = styled.div`
+const FormSection = styled.form`
+  max-width: 380px;
+  margin: 0 auto;
   .btnposition {
     width: 100%;
     text-align: center;
+    a {
+      width: 100%;
+      text-align: center;
+      justify-content: center;
+    }
+  }
+  @media only screen and (max-width: 768px) {
+    max-width: 100%;
   }
 `;
 const FormTxt = styled.div`
@@ -33,6 +54,16 @@ const FormTxt = styled.div`
     color: ${({ theme }) => theme.colors.body};
     margin: 0;
   }
+  @media only screen and (max-width: 768px) {
+    padding: 48px 0 28px;
+    h4 {
+      ${MobileH4};
+      margin-bottom: 8px;
+    }
+    p {
+      ${MbBody4};
+    }
+  }
 `;
 const FormDetail = styled.div`
   padding-bottom: 40px;
@@ -46,10 +77,8 @@ const FormDetail = styled.div`
     color: ${({ theme }) => theme.colors.primary};
   }
   select {
-    height: 32px;
     margin-bottom: 20px;
-    padding-top: 5px;
-    padding-bottom: 5px;
+    padding: 7px 0;
     border: 1px solid #dfe1eb;
     border-radius: 4px;
     background-color: #fff;
@@ -57,6 +86,8 @@ const FormDetail = styled.div`
     background-position: 0 0;
     background-size: auto;
     background-repeat: repeat;
+    font-size: 12px;
+    line-height: 16px;
     outline: 0;
     appearance: none;
     width: 100%;
@@ -70,10 +101,10 @@ const FormDetail = styled.div`
   .wselect {
     display: block;
     width: 100%;
-    padding: 5px 12px;
-    font-size: 18px;
-    line-height: 26px;
-    color: ${({ theme }) => theme.colors.lightgray};
+    padding: 7px 12px;
+    font-size: 12px;
+    line-height: 16px;
+    color: ${({ theme }) => theme.colors.title};
     font-weight: 400px;
     /* vertical-align: middle; */
     background-color: #fff;
@@ -85,14 +116,15 @@ const FormDetail = styled.div`
   }
   textarea {
     width: 100%;
-    /* height: auto; */
     max-width: 100%;
+    height: auto;
     min-height: 32px;
     height: 32px;
-    padding: 8px 12px;
+    padding: 7px 12px;
     outline: 0;
     border: 1px solid #dfe1eb;
     overflow: hidden;
+    color: ${({ theme }) => theme.colors.title};
     :hover {
       border-color: ${({ theme }) => theme.colors.primary};
     }
@@ -100,24 +132,23 @@ const FormDetail = styled.div`
       border-color: ${({ theme }) => theme.colors.primary};
     }
   }
-  .inputtext {
-    height: 32px;
-    min-height: auto;
-    margin-bottom: 20px;
-    padding: 8px 12px;
-    border-radius: 4px;
-    font-size: 14px;
+
+  @media only screen and (max-width: 768px) {
+    padding-bottom: 28px;
   }
 `;
 
 const Input = styled.input`
-  padding: 8px 12px;
+  padding: 7px 12px;
   background-color: ${({ theme }) => theme.colors.whitecolor};
   border: 1px solid #ccccd0;
   border-radius: 4px;
   outline: 0;
   margin-bottom: 20px;
+  font-size: 12px;
+  line-height: 16px;
   width: 100%;
+  color: ${({ theme }) => theme.colors.title};
   :hover {
     border-color: ${({ theme }) => theme.colors.primary};
   }
@@ -131,13 +162,15 @@ const NameBlock = styled.div`
   .firstlable {
     width: 100%;
   }
+  @media only screen and (max-width: 768px) {
+    flex-direction: column;
+    gap: 0;
+  }
 `;
 const NameInfo = styled.div`
   .inputtext {
-    height: 32px;
-    min-height: auto;
     margin-bottom: 20px;
-    padding: 0 10px;
+    padding: 7px 10px;
     border-radius: 4px;
     font-size: 14px;
   }
@@ -274,6 +307,21 @@ const TextWrapper = styled.div`
     margin: 0;
   }
 `;
+const ImgWrap = styled.div`
+  display: inline-flex;
+  max-height: 24px;
+  @media only screen and (max-width: 768px) {
+    .desktop {
+      display: none;
+    }
+  }
+  .mbicon {
+    display: none;
+    @media only screen and (max-width: 768px) {
+      display: block;
+    }
+  }
+`;
 export {
   MainSection,
   FormSection,
@@ -287,5 +335,6 @@ export {
   Swiper,
   SwiperSlide,
   ImageText,
-  TextWrapper
+  TextWrapper,
+  ImgWrap
 };

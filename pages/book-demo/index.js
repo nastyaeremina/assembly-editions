@@ -20,7 +20,10 @@ export default function BookDemo() {
           <BgOverlay></BgOverlay>
           {/* <Image src='/images/bookdemo.png' alt='book-logo' width={900} height={900} /> */}
           <DemoContain>
-            <h3>“Here’s a quote from someone, its not a long quote but it does fit on 3 lines”</h3>
+            <h3>
+              “Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
+              dolore magna aliqua. Ut enim ad minim veniam”
+            </h3>
             <BottomName>
               <p>John Doe</p>
               <p>Founder at ABC Agency</p>
