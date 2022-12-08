@@ -93,7 +93,7 @@ export default function TabView({ tabId, bgColor, textColor, isHome }) {
     if (isEmpty(allPosts)) return null;
     return allPosts?.map((item, index) => {
       return (
-        <Tab title={item?.name} className={index === 0 ? 'ml0' : 'ml0'} key={index} id={item?.name}>
+        <Tab title={item?.title} className={index === 0 ? 'ml0' : 'ml0'} key={index} id={item?.title}>
           <ContainWrap>
             <LeftDetail>
               <h4>{item?.subTitle}</h4>
@@ -110,9 +110,11 @@ export default function TabView({ tabId, bgColor, textColor, isHome }) {
 
   const homeTablistview = useMemo(() => {
     if (isEmpty(allPosts)) return null;
+
     return allPosts?.map((item, index) => {
+      const link = item?.link?.split('copilot.com/')?.[1]
       return (
-        <Tab title={item?.name} className={index === 0 ? 'ml0' : 'ml0'} key={index} id={item?.name}>
+        <Tab title={item?.title} className={index === 0 ? 'ml0' : 'ml0'} key={index} id={item?.title}>
           <ContainWrap>
             <LeftDetail>
               <IconWrap>
@@ -120,14 +122,14 @@ export default function TabView({ tabId, bgColor, textColor, isHome }) {
                   <Image src={item?.icon?.url} width={44} height={44} alt='msg-icon' />
                 </IconSvg>
               </IconWrap>
-              <h4>{item?.name}</h4>
+              <h4>{item?.title}</h4>
               <p>{item?.description}</p>
               <Button
                 bgColor={'transparent'}
                 fontColor={'#000000'}
                 borderColor={'#000000'}
                 text={'Learn More'}
-                href={`features/${item?.slug}`}
+                href={link ?? ""}
                 hoverColor={'rgba(0, 0, 0, 0.5)'}
               />
             </LeftDetail>
