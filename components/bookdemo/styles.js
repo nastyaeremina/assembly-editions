@@ -1,5 +1,16 @@
 import styled from 'styled-components';
-import { Body3, Body4, Body6, CardTxt, HeaderFont, Heading3, Heading4, MbBody4, MobileH4 } from '../../styles/styles';
+import {
+  Body3,
+  Body4,
+  Body6,
+  CardTxt,
+  HeaderFont,
+  Heading3,
+  Heading4,
+  LinkTxt,
+  MbBody4,
+  MobileH4
+} from '../../styles/styles';
 const MainSection = styled.div`
   max-width: 50%;
   width: 100%;
@@ -10,20 +21,87 @@ const MainSection = styled.div`
     max-width: 100%;
     padding: 28px 160px 22px;
   }
-  @media only screen and (max-width: 500px) {
+  @media only screen and (max-width: 600px) {
     max-width: 100%;
     padding: 28px 24px 22px;
   }
 `;
 const LastText = styled.div`
   text-align: center;
-  p {
-    ${HeaderFont};
-    color: ${({ theme }) => theme.colors.title};
-    margin: 20px 0 0 0;
-  }
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  ${HeaderFont};
+  margin-top: 20px;
   @media only screen and (max-width: 768px) {
     margin-top: 16px;
+  }
+  .learn-link,
+  .learn-link svg path {
+    transition: all 300ms ease;
+  }
+  a {
+    ${HeaderFont};
+    margin: 0 0 0 5px;
+    color: ${({ theme }) => theme.colors.primary};
+    cursor: pointer;
+    transition: none;
+    display: flex;
+    align-items: center;
+    :hover .HoverArrow__linePath {
+      opacity: 1;
+      fill: none;
+      fill: black;
+      @media only screen and (max-width: 749px) {
+        opacity: 0;
+      }
+    }
+    :hover .HoverArrow__tipPath {
+      transform: translateX(2px);
+      @media only screen and (max-width: 749px) {
+        transform: none;
+      }
+    }
+  }
+
+  .learn-link:hover {
+    color: black;
+    @media only screen and (max-width: 749px) {
+      color: green;
+    }
+  }
+  .learn-link svg path {
+    transition: all 300ms ease;
+  }
+  .HoverArrow__linePath {
+    opacity: 0;
+    fill: none;
+  }
+  .HoverArrow {
+    stroke-width: 2px;
+    fill: none;
+    stroke: currentColor;
+    position: relative;
+    /* top: 1px; */
+    margin-left: var(--arrowSpacing);
+    stroke-width: 2px;
+    fill: none;
+    stroke: currentColor;
+    margin-left: 4px;
+    --arrowSpacing: 5px;
+    --arrowHoverTransition: 150ms cubic-bezier(0.215, 0.61, 0.355, 1);
+    --arrowHoverOffset: translateX(3px);
+    @media only screen and (max-width: 749px) {
+      display: none;
+    }
+  }
+  .mobilearrow {
+    display: none;
+    @media only screen and (max-width: 749px) {
+      position: relative;
+      display: inline-block;
+      margin-left: 5px;
+    }
   }
 `;
 const FormSection = styled.form`
@@ -112,7 +190,8 @@ const FormDetail = styled.div`
   }
   .sm {
     border-radius: 4px;
-    font-size: 14px;
+    font-size: 12px;
+    line-height: 16px;
   }
   textarea {
     width: 100%;
@@ -172,7 +251,6 @@ const NameInfo = styled.div`
     margin-bottom: 20px;
     padding: 7px 10px;
     border-radius: 4px;
-    font-size: 14px;
   }
 `;
 const SliderSection = styled.div`
@@ -322,6 +400,10 @@ const ImgWrap = styled.div`
     }
   }
 `;
+const HelpLink = styled.div`
+  display: flex;
+  align-items: center;
+`;
 export {
   MainSection,
   FormSection,
@@ -336,5 +418,6 @@ export {
   SwiperSlide,
   ImageText,
   TextWrapper,
-  ImgWrap
+  ImgWrap,
+  HelpLink
 };
