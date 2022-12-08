@@ -1,9 +1,21 @@
 import Image from 'next/image';
 import Link from 'next/link';
+import { useMemo } from 'react';
 import { Container, PrimaryButton, SecondryButton } from '../../../styles/commonStyles';
 import { HeroSection, SolutionWrap, LeftWrap, RightWrap, TextSection, BtnWrap, ImageView, MobileImg } from './styles';
 
-export default function SolutionHero() {
+export default function SolutionHero({ title, description }) {
+  const titleSplitList = title?.split(',')
+
+  const renderHeaderView = useMemo(() => {
+    const lastIndex = titleSplitList?.length - 1
+    return titleSplitList?.map((item, index) => {
+      return <>
+        {item}
+        {index !== lastIndex && <span>,</span>}
+      </>
+    })
+  }, [titleSplitList])
   return (
     <>
       <HeroSection>
@@ -12,11 +24,10 @@ export default function SolutionHero() {
             <LeftWrap>
               <TextSection>
                 <h2>
-                  Run a modern<span>,</span> tech-enabled agency
+                  {renderHeaderView}
                 </h2>
                 <p>
-                  Build your healthcare app in a fraction of the time with built-in HIPAA compliance, customizable
-                  modules to power messaging, intake forms, file-sharing, and eSignatures, and add fully.
+                  {description}
                 </p>
                 <BtnWrap>
                   <PrimaryButton>

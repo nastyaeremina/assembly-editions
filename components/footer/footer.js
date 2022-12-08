@@ -243,9 +243,9 @@ export default function Footer({ isEnterPrice }) {
                 <FooterMenu isEnterPrice={isEnterPrice}>
                   <p>Solutions</p>
                   <FooterMenuList isEnterPrice={isEnterPrice}>
-                    <Link href='/solution'>Accounting firms</Link>
-                    <Link href='#'>Marketing agencies</Link>
-                    <Link href='#'>Startups</Link>
+                    <Link href='/solutions/accounting-firms'>Accounting firms</Link>
+                    <Link href='/solutions/marketing-agencies'>Marketing agencies</Link>
+                    <Link href='/solutions/startups'>Startups</Link>
                   </FooterMenuList>
                   <FooterMenu className='padding' isEnterPrice={isEnterPrice}>
                     <p>Company</p>
@@ -289,9 +289,9 @@ export default function Footer({ isEnterPrice }) {
                 <FooterMenu className='padding' isEnterPrice={isEnterPrice}>
                   <p>Solutions</p>
                   <FooterMenuList isEnterPrice={isEnterPrice}>
-                    <Link href='/solution'>Accounting firms</Link>
-                    <Link href='#'>Marketing agencies</Link>
-                    <Link href='#'>Startups</Link>
+                    <Link href='/solutions/accounting-firms'>Accounting firms</Link>
+                    <Link href='/solutions/marketing-agencies'>Marketing agencies</Link>
+                    <Link href='/solutions/startups'>Startups</Link>
                   </FooterMenuList>
                 </FooterMenu>
               </FotterMenuMobile>
