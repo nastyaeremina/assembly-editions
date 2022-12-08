@@ -6,8 +6,12 @@ import ExploreTab from "../../components/solution/clienttab/exploretab";
 import Modern from "../../components/solution/modern/modern";
 import Quote from "../../components/solution/quote/quote";
 import SolutionHero from "../../components/solution/solutionhero/solutionhero";
+import { SOLUTION_ACCOUNTING_FIRMS_ID } from "../../constants/constant";
+import { isEmpty } from "../../helpers/helpers";
+import { getSolutionById } from "../../lib/contentful-solutions";
 
-export default function Solution() {
+export default function AccountingFirms({ details }) {
+  console.log("details", details);
   return (
     <>
       <NextSeo
@@ -16,12 +20,18 @@ export default function Solution() {
       />
       <Layout>
         <Navbar />
-        <SolutionHero />
-        <Modern />
+        <SolutionHero title={details?.header} description={details?.body} />
+        {!isEmpty(details?.solutionValueCollection?.items) && <Modern data={details?.solutionValueCollection?.items} />}
         <ExploreTab />
         <Quote />
         <CTA />
       </Layout>
     </>
   );
+}
+export async function getServerSideProps({ preview = false }) {
+  const details = (await getSolutionById(SOLUTION_ACCOUNTING_FIRMS_ID, preview)) ?? [];
+  return {
+    props: { details }
+  };
 }
