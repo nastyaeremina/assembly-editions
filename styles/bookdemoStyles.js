@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { Body4, Heading3 } from './styles';
+import { Body4, Heading3, Quote } from './styles';
 // import {} from "../../styles/styles";
 
 const BookSection = styled.div`
@@ -10,6 +10,7 @@ const BookSection = styled.div`
 `;
 const ImageSection = styled.div`
   width: 100%;
+  max-width: 50%;
   background-image: url('/images/bookdemo.png');
   background-position: center;
   background-size: cover;
@@ -23,22 +24,26 @@ const ImageSection = styled.div`
     max-width: 900px;
     width: 100%;
   } */
+  @media only screen and (max-width: 768px) {
+    display: none;
+  }
 `;
 const DemoContain = styled.div`
-  position: absolute;
-  max-width: 660px;
-  width: 100%;
-  left: 50%;
-  transform: translate(-50%, 0);
-  bottom: 60px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  height: 100%;
+  padding: 60px;
   h3 {
-    ${Heading3};
+    ${Quote};
     text-shadow: 0px 1px 3px rgba(0, 0, 0, 0.25);
     color: ${({ theme }) => theme.colors.whiteColor};
     margin: 0 0 24px;
-  }
-  @media only screen and (max-width: 1024px) {
-    max-width: 380px;
+    @media only screen and (max-width: 1024px) {
+      font-size: 21px;
+      line-height: 26px;
+    }
   }
 `;
 const BottomName = styled.div`
@@ -50,6 +55,10 @@ const BottomName = styled.div`
     ${Body4};
     color: ${({ theme }) => theme.colors.whiteColor};
     margin: 0;
+    @media only screen and (max-width: 1024px) {
+      font-size: 16px;
+      line-height: 20px;
+    }
   }
 `;
 const BgOverlay = styled.div`
