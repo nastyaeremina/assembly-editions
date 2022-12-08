@@ -18,7 +18,9 @@ import {
   FeatureCard,
   ExtensionsSection,
   SchedulingApps,
-  ExtensionCard
+  ExtensionCard,
+  Overlay,
+  HoverButton
 } from '../../styles/universityStyles';
 import { Container } from '../../styles/commonStyles';
 import Image from 'next/image';
@@ -65,6 +67,10 @@ export default function University({ universityVideosList }) {
         <Link href={`/university/${item?.slug}`} key={`universityvideos_index_${index}`}>
           <FeatureCard>
             <Image src={item?.thumbnail?.url} alt='video' width={270} height={152} layout={'fixed'} />
+            <Overlay className='hovericon'></Overlay>
+            <HoverButton className='hoveritem'>
+              <Image src='/images/hoveryoutube.svg' alt='main-logo' height={42} width={56} />
+            </HoverButton>
           </FeatureCard>
         </Link>
       );

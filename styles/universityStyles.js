@@ -128,6 +128,14 @@ const FeatureCard = styled.div`
   border-radius: 4px;
   max-height: 152px;
   height: 100%;
+  position: relative;
+  :hover .hovericon {
+    display: block;
+    background: rgba(0, 0, 0, 0.3);
+  }
+  :hover .hoveritem {
+    opacity: 1;
+  }
 `;
 const ExtensionsSection = styled.div`
   padding-top: 40px;
@@ -208,6 +216,34 @@ const UniversityVideo = styled.div`
   gap: 48px;
   padding-top: 40px;
 `;
+const Overlay = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0.4;
+  border-radius: 4px;
+  transition: background 0.3s ease;
+`;
+const HoverButton = styled.div`
+  position: absolute;
+
+  left: 105px;
+  top: 55px;
+  text-align: center;
+  opacity: 0;
+  transition: opacity 0.35s ease;
+`;
+const OverLay = styled.div`
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1;
+  background-color: rgba(25, 33, 46, 0.16);
+`;
 export {
   UniversitySection,
   UniversityHero,
@@ -231,5 +267,8 @@ export {
   VideoSection,
   VideoImage,
   VIdeoWrap,
-  UniversityVideo
+  UniversityVideo,
+  Overlay,
+  HoverButton,
+  OverLay
 };

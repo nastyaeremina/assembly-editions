@@ -10,7 +10,8 @@ import {
   VideoImage,
   VIdeoWrap,
   UniversityVideo,
-  FeatureCard
+  FeatureCard,
+  OverLay
 } from '../../styles/universityStyles';
 import { Container } from '../../styles/commonStyles';
 import Image from 'next/image';
@@ -76,6 +77,7 @@ export default function UniversityDetail({ relatedVideos, universityVideoDetail 
                     className='mainimage'
                   />
                 </VideoImage>
+                <OverLay></OverLay>
               </Link>
               <p>{universityVideoDetail?.description}</p>
             </VideoSection>
