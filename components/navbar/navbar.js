@@ -251,7 +251,7 @@ export default function Navbar({ BlogDetails, isModule, headerIndex, isEnterPric
                   )}
                   <InnerList company className='innerlist'>
                     <ListLi>
-                      <MenuWrap href='/enterprise'>
+                      <MenuWrap href='/copilot-plus'>
                         <LeftImg>
                           <svg
                             className='logo'

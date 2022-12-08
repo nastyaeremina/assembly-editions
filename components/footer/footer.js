@@ -250,7 +250,7 @@ export default function Footer({ isEnterPrice }) {
                   <FooterMenu className='padding' isEnterPrice={isEnterPrice}>
                     <p>Company</p>
                     <FooterMenuList isEnterPrice={isEnterPrice}>
-                      <Link href='/enterprise'>Enterprise</Link>
+                      <Link href='/copilot-plus'>Enterprise</Link>
                       <Link href='/pricing'>Pricing</Link>
                       <Link href='/jobs'>Jobs</Link>
                       <Link href='/brands'>Brand</Link>
@@ -299,7 +299,7 @@ export default function Footer({ isEnterPrice }) {
                 <FooterMenu isEnterPrice={isEnterPrice}>
                   <p>Company</p>
                   <FooterMenuList isEnterPrice={isEnterPrice}>
-                    <Link href='/enterprise'>Enterprise</Link>
+                    <Link href='/copilot-plus'>Enterprise</Link>
                     <Link href='/pricing'>Pricing</Link>
                     <Link href='/jobs'>Jobs</Link>
                     <Link href='/brands'>Brand</Link>
