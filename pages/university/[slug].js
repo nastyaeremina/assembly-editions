@@ -76,8 +76,8 @@ export default function UniversityDetail({ relatedVideos, universityVideoDetail 
                     layout={'fixed'}
                     className='mainimage'
                   />
+                  <OverLay></OverLay>
                 </VideoImage>
-                <OverLay></OverLay>
               </Link>
               <p>{universityVideoDetail?.description}</p>
             </VideoSection>

@@ -189,6 +189,9 @@ const VideoImage = styled.div`
   position: relative;
   max-height: 689px;
   height: 100%;
+  img {
+    border-radius: 8px;
+  }
 `;
 const VideoSection = styled.div`
   padding-bottom: 100px;
@@ -196,6 +199,7 @@ const VideoSection = styled.div`
     position: absolute;
     top: 34%;
     left: 42%;
+    z-index: 2;
   }
   p {
     ${Body2};
@@ -242,7 +246,9 @@ const OverLay = styled.div`
   right: 0;
   bottom: 0;
   z-index: 1;
-  background-color: rgba(25, 33, 46, 0.16);
+  background-color: black;
+  opacity: 0.4;
+  border-radius: 15px;
 `;
 export {
   UniversitySection,
