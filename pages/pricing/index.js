@@ -157,9 +157,7 @@ export default function NewIndex() {
                           </PricePlanWrap>
                           <PricePlanWrap>
                             <BulletImage></BulletImage>
-                            <p>
-                              Support for Partner Apps to connect products like Airtable, ClickUp, Calendly, and others
-                            </p>
+                            <p>Support for Partner Apps and Custom Apps</p>
                           </PricePlanWrap>
                         </PricePlan>
                       </PriceLeft>
@@ -199,10 +197,7 @@ export default function NewIndex() {
                             <BulletImage></BulletImage>
                             <p>HIPAA Compliance</p>
                           </PricePlanWrap>
-                          <PricePlanWrap>
-                            <BulletImage></BulletImage>
-                            <p>Support for Custom Apps</p>
-                          </PricePlanWrap>
+
                           <PricePlanWrap>
                             <BulletImage></BulletImage>
                             <p>Dedicated Copilot Expert</p>
@@ -261,7 +256,7 @@ export default function NewIndex() {
                         {!isYearly && '$139'}
                       </h3>
                       <span className='spantext'>per internal user</span>
-                      <span className='spantext'>5 User Minimum</span>
+                      <span className='spantext'>5 user minimum</span>
                     </td>
                   </tr>
 
@@ -662,7 +657,9 @@ export default function NewIndex() {
                       </p>
                     </td>
                     <td></td>
-                    <td></td>
+                    <td>
+                      <Image src='/images/checkmark.svg' alt='main-logo' height={20} width={20} />
+                    </td>
                     <td>
                       <Image src='/images/checkmark.svg' alt='main-logo' height={20} width={20} />
                     </td>
