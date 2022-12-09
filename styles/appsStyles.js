@@ -74,8 +74,8 @@ const Catagoryitem = styled.li`
     letter-spacing: 0.02em;
     color: ${({ theme }) => theme.colors.primary};
     ${(props) =>
-      props.isActive &&
-      css`
+    props.isActive &&
+    css`
         color: ${({ theme }) => theme.colors.title};
       `}
     margin: 0;
@@ -303,7 +303,7 @@ const BuildAppsDetail = styled.div`
     padding: 7px 31px;
   }
 `;
-const InputWrap = styled.div`
+const InputWrap = styled.form`
   position: relative;
   img {
     position: absolute;
