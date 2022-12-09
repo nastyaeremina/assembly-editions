@@ -13,9 +13,14 @@ import {
   Heading4,
   Label,
   LinkTxt,
+  MbBody2,
   MbBody3,
   MbBody4,
+  MbBody5,
+  MbPrimaryBtn,
+  MobileH2,
   MobileH3,
+  MobileH4,
   Name
 } from './styles';
 
@@ -24,6 +29,9 @@ const MainWrap = styled.div`
 `;
 const HeroJobSection = styled.div`
   padding: 100px 0 50px;
+  @media only screen and (max-width: 749px) {
+    padding: 96px 0 40px;
+  }
 `;
 const JobsWrap = styled.div`
   border-radius: 8px;
@@ -34,6 +42,35 @@ const JobsWrap = styled.div`
   padding-top: 80px;
   padding-left: 80px;
   padding-bottom: 141px;
+  @media only screen and (max-width: 991px) {
+    height: 470px;
+    background-image: linear-gradient(90deg, #000000 18.89%, rgba(0, 0, 0, 0) 82.84%), url('/images/jobsbgbig.jpg');
+    padding-top: 60px;
+    padding-left: 60px;
+    padding-bottom: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+  }
+  @media only screen and (max-width: 749px) {
+    display: none;
+  }
+`;
+const JobsMobi = styled.div`
+  display: none;
+  @media only screen and (max-width: 749px) {
+    display: block;
+    border-radius: 8px;
+    background-image: linear-gradient(180deg, #000000 51.28%, rgba(0, 0, 0, 0) 70.01%), url('/images/jobmobi.svg');
+    background-position: 0 0, 50% 50%;
+    background-size: auto, cover;
+    background-repeat: repeat, no-repeat;
+    padding: 0 24px;
+    padding-top: 50px;
+    padding-bottom: 304px;
+    height: 634px;
+    width: 100%;
+  }
 `;
 const UseCaseWrap = styled.div`
   width: 100%;
@@ -49,22 +86,70 @@ const UseCaseWrap = styled.div`
     margin: 20px 0 0;
     letter-spacing: 0.02em;
   }
+  @media only screen and (max-width: 991px) {
+    max-width: 251px;
+    h2 {
+      font-size: 36px;
+      line-height: 56px;
+    }
+    p {
+      font-size: 18px;
+      line-height: 24px;
+      letter-spacing: 0.02em;
+    }
+  }
+`;
+const UseCaseWrapMobi = styled.div`
+  text-align: center;
+  h2 {
+    ${MobileH2};
+    margin: 0;
+    color: ${({ theme }) => theme.colors.whiteColor};
+  }
+  p {
+    ${MbBody2};
+    color: ${({ theme }) => theme.colors.whiteColor};
+    margin: 20px 0 0;
+    letter-spacing: 0.02em;
+  }
 `;
 const CareerSection = styled.div`
   padding: 50px 0;
+  @media only screen and (max-width: 749px) {
+    padding: 40px 0;
+  }
 `;
 const CareerBlock = styled.div`
   display: flex;
   gap: 60px;
+  @media only screen and (max-width: 991px) {
+    gap: 30px;
+  }
+  @media only screen and (max-width: 749px) {
+    flex-wrap: wrap;
+    gap: 66px;
+  }
 `;
 const RoleBlock = styled.div`
   max-width: 612px;
   width: 100%;
+  @media only screen and (max-width: 991px) {
+    max-width: 50%;
+  }
+  @media only screen and (max-width: 749px) {
+    max-width: 100%;
+  }
 `;
 const TeamBlock = styled.div`
   /* padding-left: 30px; */
   max-width: 552px;
   width: 100%;
+  @media only screen and (max-width: 991px) {
+    max-width: 50%;
+  }
+  @media only screen and (max-width: 749px) {
+    max-width: 100%;
+  }
 `;
 const RoleWrap = styled.div`
   margin-bottom: 40px;
@@ -78,6 +163,20 @@ const RoleWrap = styled.div`
     color: ${({ theme }) => theme.colors.body};
     letter-spacing: 0.02em;
     margin: 0;
+  }
+  @media only screen and (max-width: 991px) {
+    h3 {
+      font-size: 26px;
+      line-height: 34px;
+    }
+  }
+  @media only screen and (max-width: 749px) {
+    h3 {
+      ${MobileH4};
+    }
+    p {
+      ${MbBody5};
+    }
   }
 `;
 const AboutWrap = styled.div`
@@ -101,6 +200,17 @@ const AboutWrap = styled.div`
       }
     }
   }
+  @media only screen and (max-width: 991px) {
+    h3 {
+      font-size: 26px;
+      line-height: 34px;
+    }
+  }
+  @media only screen and (max-width: 749px) {
+    h3 {
+      ${MobileH4}
+    }
+  }
 `;
 const JobDetailWrap = styled.div``;
 const JobView = styled.div`
@@ -109,6 +219,11 @@ const JobView = styled.div`
     margin: 0;
     ${HeaderFont};
     color: ${({ theme }) => theme.colors.title};
+  }
+  @media only screen and (max-width: 749px) {
+    h4 {
+      ${MbPrimaryBtn}
+    }
   }
 `;
 const RoleList = styled.div`
@@ -130,6 +245,9 @@ const RoleRow = styled.div`
     .bgdot {
       background-color: #000000;
     }
+  }
+  @media only screen and (max-width: 749px) {
+    margin-bottom: 2px;
   }
 `;
 const LeftRow = styled.div`
@@ -162,14 +280,31 @@ const TeamView = styled.div`
     color: ${({ theme }) => theme.colors.title};
     margin: 0;
   }
+  @media only screen and (max-width: 991px) {
+    h4 {
+      font-size: 26px;
+      line-height: 34px;
+    }
+  }
+  @media only screen and (max-width: 749px) {
+    h4 {
+      ${MobileH4};
+    }
+  }
 `;
 const TeamDetail = styled.div`
   margin-top: 20px;
+  @media only screen and (max-width: 749px) {
+    margin-top: 12px;
+  }
 `;
 const TitleWrap = styled.div`
   margin-bottom: 16px;
   :last-child {
     margin-bottom: 0;
+  }
+  @media only screen and (max-width: 749px) {
+    margin-bottom: 12px;
   }
 `;
 const TeamLine = styled.div`
@@ -188,6 +323,12 @@ const TeamLine = styled.div`
     ${FooterText};
     color: ${({ theme }) => theme.colors.lightgray};
     margin: 0;
+  }
+  @media only screen and (max-width: 749px) {
+    align-items: flex-start;
+    a {
+      max-width: 224px;
+    }
   }
 `;
 const NameView = styled.div`
@@ -293,6 +434,9 @@ const BenefitBox = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
   margin-top: 40px;
+  @media only screen and (max-width: 991px) {
+    grid-template-columns: 1fr 1fr;
+  }
 `;
 const BoxView = styled.div`
   padding: 28px 24px;
@@ -302,9 +446,24 @@ const BoxView = styled.div`
   :last-child {
     border-right: none;
   }
+  @media only screen and (max-width: 749px) {
+    padding: 20px 16px;
+  }
 `;
 const ImgIcon = styled.div`
   display: inline-flex;
+  .desktop {
+    display: block;
+    @media only screen and (max-width: 749px) {
+      display: none;
+    }
+  }
+  .mobiicon {
+    display: none;
+    @media only screen and (max-width: 749px) {
+      display: block;
+    }
+  }
 `;
 const DetailView = styled.div`
   h4 {
@@ -316,6 +475,16 @@ const DetailView = styled.div`
     ${Body4};
     margin: 12px 0 0;
     color: ${({ theme }) => theme.colors.body};
+  }
+  @media only screen and (max-width: 749px) {
+    h4 {
+      ${MobileH4};
+      margin: 12px 0 0 0;
+    }
+    p {
+      ${MbBody5};
+      margin: 8px 0 0;
+    }
   }
 `;
 const JObMain = styled.div`
@@ -590,5 +759,7 @@ export {
   DetailInnerSub,
   BulletImage,
   DetailRIghtText,
-  DetailPosition
+  DetailPosition,
+  JobsMobi,
+  UseCaseWrapMobi
 };
