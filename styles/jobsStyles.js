@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 import {
   Body1,
   Body2,
@@ -13,8 +13,11 @@ import {
   Heading4,
   Label,
   LinkTxt,
-  Name,
-} from "./styles";
+  MbBody3,
+  MbBody4,
+  MobileH3,
+  Name
+} from './styles';
 
 const MainWrap = styled.div`
   background: #fffffd;
@@ -24,12 +27,7 @@ const HeroJobSection = styled.div`
 `;
 const JobsWrap = styled.div`
   border-radius: 8px;
-  background-image: linear-gradient(
-      90deg,
-      #000000 18.89%,
-      rgba(0, 0, 0, 0) 82.84%
-    ),
-    url("/images/jobsbg.svg");
+  background-image: linear-gradient(90deg, #000000 18.89%, rgba(0, 0, 0, 0) 82.84%), url('/images/jobsbg.svg');
   background-position: 0 0, 50% 50%;
   background-size: auto, cover;
   background-repeat: repeat, no-repeat;
@@ -263,7 +261,7 @@ const RegionView = styled.div`
   position: relative;
   padding-top: 15px;
   ::after {
-    content: "";
+    content: '';
     position: absolute;
     -webkit-clip-path: polygon(49% 100%, 0 0, 100% 0);
     clip-path: polygon(49% 100%, 0 0, 100% 0);
@@ -324,6 +322,9 @@ const JObMain = styled.div`
   padding-top: 40px;
   margin-top: 80px;
   padding-bottom: 100px;
+  @media only screen and (max-width: 768px) {
+    padding-bottom: 80px;
+  }
 `;
 const DetailLink = styled.div`
   display: flex;
@@ -334,11 +335,17 @@ const DetailLink = styled.div`
     margin: 0;
     color: ${({ theme }) => theme.colors.lightgray};
   }
+  @media only screen and (max-width: 375px) {
+    gap: 4px;
+  }
 `;
 const JobDetail = styled.div`
   display: flex;
   padding-top: 28px;
   gap: 46px;
+  @media only screen and (max-width: 375px) {
+    flex-wrap: wrap;
+  }
 `;
 const DetailLeft = styled.div`
   max-width: 260px;
@@ -349,6 +356,17 @@ const DetailLeft = styled.div`
     ${Heading3};
     color: ${({ theme }) => theme.colors.title};
     margin: 0 0 24px 0;
+  }
+  @media only screen and (max-width: 768px) {
+    h3 {
+      font-size: 40px;
+      line-height: 46px;
+    }
+  }
+  @media only screen and (max-width: 469px) {
+    h3 {
+      ${MobileH3}
+    }
   }
 `;
 const DetailWrap = styled.div`
@@ -366,6 +384,15 @@ const DetailWrap = styled.div`
     margin: 0;
     color: ${({ theme }) => theme.colors.title};
   }
+  @media only screen and (max-width: 749px) {
+    padding-bottom: 16px;
+    p {
+      ${MbBody4};
+    }
+    span {
+      ${MbBody4};
+    }
+  }
 `;
 const ImageWrap = styled.div`
   display: flex;
@@ -377,7 +404,11 @@ const ImageWrap = styled.div`
     border-radius: 30px;
   }
 `;
-const DetailRight = styled.div``;
+const DetailRight = styled.div`
+  @media only screen and (max-width: 375px) {
+    padding-top: 34px;
+  }
+`;
 const DetailText = styled.ul`
   h4 {
     ${Heading4};
@@ -479,7 +510,7 @@ const DetailRIghtText = styled.div`
   li {
     position: relative;
     ::before {
-      content: "";
+      content: '';
       position: absolute;
       top: 7px;
       left: 0;
@@ -493,6 +524,17 @@ const DetailRIghtText = styled.div`
       font-weight: 400;
       font-size: 18px;
       color: #131313;
+    }
+  }
+  @media only screen and (max-width: 375px) {
+    p {
+      margin-top: 16px;
+      ${MbBody3}
+    }
+    li {
+      p {
+        ${MbBody4}
+      }
     }
   }
 `;
@@ -548,5 +590,5 @@ export {
   DetailInnerSub,
   BulletImage,
   DetailRIghtText,
-  DetailPosition,
+  DetailPosition
 };

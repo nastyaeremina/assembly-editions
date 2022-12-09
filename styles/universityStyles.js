@@ -131,7 +131,8 @@ const FeatureCard = styled.div`
   position: relative;
   :hover .hovericon {
     display: block;
-    background: rgba(0, 0, 0, 0.3);
+    opacity: 0.4;
+    background: #000000;
   }
   :hover .hoveritem {
     opacity: 1;
