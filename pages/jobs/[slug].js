@@ -1,16 +1,13 @@
-import { NextSeo } from "next-seo";
-import Image from "next/image";
-import Link from "next/link";
-import { useMemo } from "react";
-import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
-import Layout from "../../components/layout";
-import Navbar from "../../components/navbar/navbar";
-import { isEmpty } from "../../helpers/helpers";
-import {
-  getAllJobsWithSlug,
-  getJobDetails,
-} from "../../lib/contentful-jobsListing";
-import { Container, PrimaryButton } from "../../styles/commonStyles";
+import { NextSeo } from 'next-seo';
+import Image from 'next/image';
+import Link from 'next/link';
+import { useMemo } from 'react';
+import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
+import Layout from '../../components/layout';
+import Navbar from '../../components/navbar/navbar';
+import { isEmpty } from '../../helpers/helpers';
+import { getAllJobsWithSlug, getJobDetails } from '../../lib/contentful-jobsListing';
+import { Container, PrimaryButton } from '../../styles/commonStyles';
 import {
   JObMain,
   DetailLink,
@@ -25,8 +22,8 @@ import {
   DetailInnerSub,
   BulletImage,
   DetailRIghtText,
-  DetailPosition,
-} from "../../styles/jobsStyles";
+  DetailPosition
+} from '../../styles/jobsStyles';
 
 export default function JobsDetail({ jobDetail }) {
   const renderTeamMemberView = useMemo(() => {
@@ -34,14 +31,14 @@ export default function JobsDetail({ jobDetail }) {
     if (isEmpty(teamMemberList)) return null;
     return teamMemberList?.map((item, index) => {
       return (
-        <Link href={item?.profileLink ?? ""} key={`teammember_index_${index}`}>
+        <Link href={item?.profileLink ?? ''} key={`teammember_index_${index}`}>
           <Image
             src={item?.profilePicture?.url}
-            alt="bill-icon"
+            alt='bill-icon'
             width={30}
             height={30}
-            layout={"fixed"}
-            className="billimage"
+            layout={'fixed'}
+            className='billimage'
           />
         </Link>
       );
@@ -51,22 +48,16 @@ export default function JobsDetail({ jobDetail }) {
   return (
     <>
       <NextSeo
-        title="Create your portal, pick a plan later"
-        description="Try Copilot free for 14 days, no credit card required"
+        title='Create your portal, pick a plan later'
+        description='Try Copilot free for 14 days, no credit card required'
       />
       <Layout>
         <Navbar />
         <JObMain>
           <Container>
-            <Link href="/jobs">
+            <Link href='/jobs'>
               <DetailLink>
-                <Image
-                  src="/images/leftarrow.svg"
-                  alt="bill-icon"
-                  width={12}
-                  height={12}
-                  layout={"fixed"}
-                />
+                <Image src='/images/leftarrow.svg' alt='bill-icon' width={12} height={12} layout={'fixed'} />
                 <p>Back to all Apps</p>
               </DetailLink>
             </Link>
@@ -94,14 +85,12 @@ export default function JobsDetail({ jobDetail }) {
                     </DetailWrap>
                   )}
                   <PrimaryButton>
-                    <Link href={jobDetail?.applyLink ?? ""}>Apply now</Link>
+                    <Link href={jobDetail?.applyLink ?? ''}>Apply now</Link>
                   </PrimaryButton>
                 </DetailLeft>
               </DetailPosition>
               <DetailRight>
-                <DetailRIghtText>
-                  {documentToReactComponents(jobDetail?.jobDescription?.json)}
-                </DetailRIghtText>
+                <DetailRIghtText>{documentToReactComponents(jobDetail?.jobDescription?.json)}</DetailRIghtText>
               </DetailRight>
             </JobDetail>
           </Container>
@@ -115,7 +104,7 @@ export async function getServerSideProps({ params, preview = false }) {
   const jobDetail = (await getJobDetails(params?.slug)) || {};
 
   return {
-    props: { jobDetail },
+    props: { jobDetail }
   };
 }
 
@@ -124,6 +113,6 @@ export async function getServerSidePaths() {
   return {
     paths: allPosts?.map((slug) => `${slug}`) ?? [],
 
-    fallback: true,
+    fallback: true
   };
 }

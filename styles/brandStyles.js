@@ -75,6 +75,12 @@ const BrandImageLeft = styled.div`
   display: inline-flex;
   justify-content: center;
   margin-top: -2px;
+  img {
+    max-width: 405px;
+    width: 100%;
+    max-height: 90px;
+    height: 100%;
+  }
 `;
 const HoverSection = styled.div`
   /* display: flex; */
@@ -92,6 +98,10 @@ const HoverSection = styled.div`
   p {
     ${LinkTxt};
     color: ${({ theme }) => theme.colors.greendark};
+  }
+  img {
+    max-width: 20px;
+    max-height: 20px;
   }
 `;
 const HoverLink = styled.div`

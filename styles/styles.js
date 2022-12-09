@@ -236,7 +236,7 @@ const MbBody3 = css`
 const MbBody4 = css`
   font-weight: 400;
   font-size: 15px;
-  line-height: 20px;
+  line-height: 19px;
 `;
 const SliderTxt = css`
   font-weight: 500;
