@@ -1,7 +1,27 @@
 import styled, { css } from 'styled-components';
-import { Body2, Body4, Body5, CardTxt, Heading2, Heading3, Heading4, Heading5, Label, LinkTxt, Value } from './styles';
+import {
+  Body2,
+  Body4,
+  Body5,
+  CardTxt,
+  Heading2,
+  Heading3,
+  Heading4,
+  Heading5,
+  Label,
+  LinkTxt,
+  MbBody2,
+  MobileH2,
+  Value
+} from './styles';
 const HeroSection = styled.div`
   padding-top: 180px;
+  @media only screen and (max-width: 991px) {
+    padding-top: 160px;
+  }
+  @media only screen and (max-width: 749px) {
+    padding-top: 116px;
+  }
 `;
 const AppsHeroWrap = styled.div`
   text-align: center;
@@ -18,9 +38,20 @@ const AppsHeroWrap = styled.div`
     color: ${({ theme }) => theme.colors.body};
     letter-spacing: 0.02em;
   }
+  @media only screen and (max-width: 749px) {
+    h2 {
+      ${MobileH2};
+    }
+    p {
+      ${MbBody2};
+    }
+  }
 `;
 const FeatureSection = styled.div`
   padding-top: 100px;
+  @media only screen and (max-width: 991px) {
+    padding-top: 80px;
+  }
 `;
 const FeatureWrap = styled.div`
   display: flex;
@@ -74,8 +105,8 @@ const Catagoryitem = styled.li`
     letter-spacing: 0.02em;
     color: ${({ theme }) => theme.colors.primary};
     ${(props) =>
-    props.isActive &&
-    css`
+      props.isActive &&
+      css`
         color: ${({ theme }) => theme.colors.title};
       `}
     margin: 0;
@@ -102,6 +133,9 @@ const OtherWrap = styled.ul`
 `;
 const FeatureLeft = styled.div`
   position: relative;
+  @media only screen and (max-width: 991px) {
+    display: none;
+  }
 `;
 const FeatureRight = styled.div`
   h3 {
@@ -109,11 +143,23 @@ const FeatureRight = styled.div`
     color: ${({ theme }) => theme.colors.title};
     margin: 0 0 28px 0;
   }
+  @media only screen and (max-width: 749px) {
+    h3 {
+      margin: 0 0 24px 0;
+    }
+  }
 `;
 const FeatureMenu = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   gap: 36px;
+  @media only screen and (max-width: 991px) {
+    gap: 26px;
+  }
+  @media only screen and (max-width: 749px) {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
 `;
 const CardMain = styled.div`
   :hover {
@@ -195,6 +241,9 @@ const FeatureImg = styled.div`
   img {
     max-width: 100%;
   }
+  @media only screen and (max-width: 749px) {
+    justify-content: flex-start;
+  }
 `;
 const Featured = styled.div``;
 const ExtensionsSection = styled.div`
@@ -206,11 +255,33 @@ const ExtensionsSection = styled.div`
     margin: 0;
     letter-spacing: 0.02em;
   }
+  @media only screen and (max-width: 749px) {
+    /* display: none; */
+  }
+`;
+const ExtensionsLastSection = styled.div`
+  padding-top: 40px;
+  p {
+    ${Body5};
+    color: ${({ theme }) => theme.colors.title};
+    margin: 0;
+    letter-spacing: 0.02em;
+  }
+  @media only screen and (max-width: 749px) {
+    display: none;
+  }
 `;
 const ExtensionCard = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   gap: 36px;
+  @media only screen and (max-width: 991px) {
+    gap: 26px;
+  }
+  @media only screen and (max-width: 749px) {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
 `;
 const CardSub = styled.div`
   display: block;
@@ -276,6 +347,12 @@ const AppsTitle = styled.div`
     ${Body4};
     color: ${({ theme }) => theme.colors.title};
     margin-top: 12px;
+    @media only screen and (max-width: 749px) {
+      margin-top: 8px;
+    }
+  }
+  @media only screen and (max-width: 749px) {
+    margin-bottom: 24px;
   }
 `;
 const BuildWrap = styled.div`
@@ -526,5 +603,6 @@ export {
   Tooltip,
   AppsHeroWrap,
   AppsDetailWrap,
-  FirstImg
+  FirstImg,
+  ExtensionsLastSection
 };
