@@ -183,7 +183,7 @@ const Body6 = css`
   font-weight: 500;
   font-size: 9px;
   line-height: 12px;
-  letter-spacing: 0.01em;
+  letter-spacing: 0.02em;
 `;
 const Name = css`
   font-weight: 500;

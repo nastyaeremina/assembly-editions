@@ -828,14 +828,9 @@ export default function NewIndex() {
                 <p>
                   For businesses with custom requirements, enterprise compliance, advanced reporting needs, and more.
                 </p>
-                <Button
-                  bgColor={'transparent'}
-                  fontColor={'#000000'}
-                  borderColor={'#000000'}
-                  text={'Learn More'}
-                  href={'#'}
-                  hoverColor={'rgba(0, 0, 0, 0.5)'}
-                />
+                <SecondryButton>
+                  <Link href='/copilot-plus'>Learn More</Link>
+                </SecondryButton>
               </PriceImageLeft>
               <PricePlusImage>
                 <Image src='/images/price.png' alt='plus-image' width={421} height={361} />

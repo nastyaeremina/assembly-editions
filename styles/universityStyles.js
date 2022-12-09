@@ -27,6 +27,9 @@ const FeatureWrap = styled.div`
 `;
 const FeatureLeft = styled.div`
   position: relative;
+  @media only screen and (max-width: 768px) {
+    display: none;
+  }
 `;
 const LeftWrap = styled.div`
   position: sticky;
