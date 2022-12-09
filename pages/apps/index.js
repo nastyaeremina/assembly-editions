@@ -32,7 +32,8 @@ import {
   CardMain,
   MainBg,
   ImgView,
-  AppsHeroWrap
+  AppsHeroWrap,
+  ExtensionsLastSection
 } from '../../styles/appsStyles';
 import { Container, PrimaryButton, SecondryButton } from '../../styles/commonStyles';
 import CTA from '../../components/cta/cta';
@@ -46,7 +47,7 @@ import Button from '../../components/button/button';
 
 export default function Apps({ allPosts, featuredApps, allCategoryWithPost, dataIntegrationApps }) {
   const [selected_category, setSelected_category] = useState();
-  const [query, setQuery] = useState("");
+  const [query, setQuery] = useState('');
   const [searchResult, setSearchResult] = useState([]);
   const [isSearch, setIsSearch] = useState(false);
   useEffect(() => {
@@ -59,9 +60,7 @@ export default function Apps({ allPosts, featuredApps, allCategoryWithPost, data
 
   const searchQuery = useCallback(
     (value) => {
-      const result = allPosts?.filter((item) =>
-        item?.name?.toLowerCase().includes(value?.toLowerCase())
-      ) || [];
+      const result = allPosts?.filter((item) => item?.name?.toLowerCase().includes(value?.toLowerCase())) || [];
       if (result) setSearchResult(result);
     },
     [allPosts]
@@ -171,15 +170,19 @@ export default function Apps({ allPosts, featuredApps, allCategoryWithPost, data
 
   const renderResultView = useMemo(() => {
     if (!isEmpty(searchResult)) {
-      return (<Featured key={`searchview`}>
-        <h3> {`${searchResult?.length} Result for "${query}"`}</h3>
-        <FeatureMenu>{renderPartnerAppsView(searchResult)}</FeatureMenu>
-      </Featured>)
-    }
-    else return (<ExtensionsSection key={`searchEmptyview`}>
-      <h3> No Data Found</h3>
-    </ExtensionsSection>)
-  }, [query, renderPartnerAppsView, searchResult])
+      return (
+        <Featured key={`searchview`}>
+          <h3> {`${searchResult?.length} Result for "${query}"`}</h3>
+          <FeatureMenu>{renderPartnerAppsView(searchResult)}</FeatureMenu>
+        </Featured>
+      );
+    } else
+      return (
+        <ExtensionsSection key={`searchEmptyview`}>
+          <h3> No Data Found</h3>
+        </ExtensionsSection>
+      );
+  }, [query, renderPartnerAppsView, searchResult]);
 
   return (
     <>
@@ -206,9 +209,7 @@ export default function Apps({ allPosts, featuredApps, allCategoryWithPost, data
                   <LeftWrap>
                     <InputWrap onSubmit={onSubmitSeachQuery}>
                       <Image src='/images/searchicon.svg' alt='search-icon' width={20} height={20} />
-                      <Input placeholder='Find an app'
-                        value={query}
-                        onChange={onSeachQueryChange} type="search" />
+                      <Input placeholder='Find an app' value={query} onChange={onSeachQueryChange} type='search' />
                     </InputWrap>
                     <Catagory>
                       <h4>Partner Apps</h4>
@@ -228,7 +229,9 @@ export default function Apps({ allPosts, featuredApps, allCategoryWithPost, data
                     </OtherWrap>
                   </LeftWrap>
                 </FeatureLeft>
-                {isSearch ? <FeatureRight>{renderResultView}</FeatureRight> :
+                {isSearch ? (
+                  <FeatureRight>{renderResultView}</FeatureRight>
+                ) : (
                   <FeatureRight>
                     {!isEmpty(featuredApps) && (
                       <Featured id='Brief-Section'>
@@ -247,7 +250,7 @@ export default function Apps({ allPosts, featuredApps, allCategoryWithPost, data
                         <ExtensionCard>{renderDataIntegrationApps}</ExtensionCard>
                       </ExtensionsSection>
                     )}
-                    <ExtensionsSection id='custome-apps'>
+                    <ExtensionsLastSection id='custome-apps'>
                       <AppsTitle>
                         <h3>Custom Apps</h3>
                       </AppsTitle>
@@ -269,8 +272,9 @@ export default function Apps({ allPosts, featuredApps, allCategoryWithPost, data
                           />
                         </BuildAppsDetail>
                       </BuildWrap>
-                    </ExtensionsSection>
-                  </FeatureRight>}
+                    </ExtensionsLastSection>
+                  </FeatureRight>
+                )}
               </FeatureWrap>
             </Container>
           </FeatureSection>
@@ -303,7 +307,7 @@ export async function getServerSideProps({ preview = false }) {
       featuredApps,
       allCategoryWithPost,
       dataIntegrationApps,
-      allPosts: allPosts.concat(dataIntegrationApps),
+      allPosts: allPosts.concat(dataIntegrationApps)
     }
   };
 }
