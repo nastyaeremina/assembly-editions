@@ -244,6 +244,11 @@ const SliderTxt = css`
   line-height: 21px;
   letter-spacing: 0.01em;
 `;
+const MobileH1 = css`
+  font-weight: 400;
+  font-size: 60px;
+  line-height: 54px;
+`;
 export {
   Heading1,
   Heading2,
@@ -278,5 +283,6 @@ export {
   MobileH4,
   MbBody3,
   MbBody4,
-  SliderTxt
+  SliderTxt,
+  MobileH1
 };

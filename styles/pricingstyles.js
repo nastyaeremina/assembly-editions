@@ -10,6 +10,10 @@ import {
   Heading3,
   Heading4,
   Label,
+  MbBody3,
+  MobileH1,
+  MobileH2,
+  MobileH4,
   TableText
 } from './styles';
 const HeroSection = styled.div`
@@ -35,6 +39,31 @@ const HeroSection = styled.div`
     letter-spacing: 0.02em;
     margin: 20px 0 32px 0;
   }
+  @media only screen and (max-width: 991px) {
+    padding: 140px 0px 80px;
+  }
+  @media only screen and (max-width: 749px) {
+    h2 {
+      ${MobileH2};
+      color: ${({ theme }) => theme.colors.title};
+      margin: 0 0 40px 0;
+      max-width: 780px;
+      width: 100%;
+      margin: 0 auto;
+    }
+    span {
+      margin: 0;
+      color: ${({ theme }) => theme.colors.primary};
+      ${MobileH2}
+    }
+    p {
+      font-size: 17px;
+      line-height: 21px;
+      color: ${({ theme }) => theme.colors.body};
+      letter-spacing: 0.02em;
+      margin: 20px 0 32px 0;
+    }
+  }
 `;
 const HeroHeading = styled.div`
   text-align: center;
@@ -44,6 +73,9 @@ const PriceMenu = styled.div``;
 const PriceButton = styled.div`
   display: flex;
   padding-bottom: 32px;
+  @media only screen and (max-width: 749px) {
+    padding-bottom: 28px;
+  }
 `;
 const YearlyButton = styled.div`
   padding: 7px 20px;
@@ -122,6 +154,15 @@ const PriceOption = styled.div`
   gap: 40px;
   justify-content: space-between;
   padding-bottom: 40px;
+  @media only screen and (max-width: 991px) {
+    gap: 20px;
+  }
+  @media only screen and (max-width: 749px) {
+    flex-wrap: wrap;
+    gap: 40px;
+    padding-bottom: 0;
+    justify-content: center;
+  }
 `;
 
 const PriceMenuLeft = styled.div`
@@ -129,9 +170,9 @@ const PriceMenuLeft = styled.div`
   width: 100%;
 `;
 const RightBorder = styled.div`
-  border-top: 1px solid black;
-  border-right: 1px solid black;
-  border-bottom: 1px solid black;
+  border-top: 1px solid #003f27;
+  border-right: 1px solid #003f27;
+  border-bottom: 1px solid #003f27;
   width: 29px;
 
   display: block;
@@ -140,9 +181,9 @@ const RightBorder = styled.div`
   margin-left: -29px;
 `;
 const LeftBorder = styled.div`
-  border-top: 1px solid black;
-  border-left: 1px solid black;
-  border-bottom: 1px solid black;
+  border-top: 1px solid #003f27;
+  border-left: 1px solid #003f27;
+  border-bottom: 1px solid #003f27;
   width: 29px;
   border-bottom-left-radius: 4px;
   border-top-left-radius: 4px;
@@ -162,13 +203,32 @@ const PriceLeft = styled.div`
     letter-spacing: 0.02em;
     margin: 0 0 28px 0;
   }
+  @media only screen and (max-width: 991px) {
+    padding: 20px;
+    h4 {
+      font-size: 28px;
+      line-height: 34px;
+    }
+    p {
+      font-size: 16px;
+      line-height: 23px;
+    }
+  }
+  @media only screen and (max-width: 749px) {
+    padding: 40px 30px;
+    h4 {
+      ${MobileH4};
+    }
+    p {
+      ${MbBody3};
+    }
+  }
 `;
 const PriceWrap = styled.div`
   display: flex;
   gap: 12px;
   padding-bottom: 32px;
   border-bottom: 1px solid black;
-
   h2 {
     ${Heading2};
     color: ${({ theme }) => theme.colors.title};
@@ -182,6 +242,24 @@ const PriceWrap = styled.div`
     /* align-self: end; */
     max-width: 115px;
     width: 100%;
+  }
+  @media only screen and (max-width: 991px) {
+    h2 {
+      font-size: 45px;
+      line-height: 36px;
+    }
+    p {
+      font-size: 12px;
+      line-height: 14px;
+    }
+  }
+  @media only screen and (max-width: 749px) {
+    h2 {
+      ${MobileH1};
+    }
+    p {
+      ${Body5};
+    }
   }
 `;
 const PricePlan = styled.ul`
@@ -198,6 +276,17 @@ const PricePlan = styled.ul`
   p {
     color: ${({ theme }) => theme.colors.darkgray};
   }
+  @media only screen and (max-width: 991px) {
+    h4 {
+      font-size: 18px;
+      line-height: 20px;
+    }
+  }
+  @media only screen and (max-width: 749px) {
+    h4 {
+      ${Body2};
+    }
+  }
 `;
 const PricePlanWrap = styled.li`
   display: flex;
@@ -212,6 +301,15 @@ const PricePlanWrap = styled.li`
     /* max-width: 249px;
     width: 100%; */
   }
+  @media only screen and (max-width: 991px) {
+    p {
+      font-size: 16px;
+      line-height: 18px;
+    }
+  }
+  @media only screen and (max-width: 749px) {
+    ${Body4};
+  }
 `;
 const PlanPlanSub = styled.div``;
 const PlanButton = styled.div`
@@ -220,6 +318,9 @@ const PlanButton = styled.div`
   margin: 0 auto;
   a {
     cursor: pointer;
+  }
+  @media only screen and (max-width: 749px) {
+    display: none;
   }
 `;
 const FadeIN = keyframes`
@@ -232,7 +333,6 @@ const PriceTable = styled.div`
   overflow: hidden;
   transition: height 400ms ease 0s, padding 400ms ease 0s, margin 400ms ease 0s;
   animation: ${FadeIN} 1s;
-
   table {
     display: none;
     width: 100%;
@@ -357,6 +457,12 @@ const PriceTable = styled.div`
   table.active {
     display: block;
   }
+  @media only screen and (max-width: 991px) {
+    padding: 50px 0;
+  }
+  @media only screen and (max-width: 749px) {
+    display: none;
+  }
 `;
 const LearnLink = styled.div`
   padding-top: 8px;
@@ -401,6 +507,9 @@ const PriceImage = styled.div`
   display: flex;
   border: 1px solid #000000;
   border-radius: 4px;
+  @media only screen and (max-width: 749px) {
+    display: none;
+  }
 `;
 const PriceImageLeft = styled.div`
   padding: 40px;
@@ -425,6 +534,9 @@ const PriceImageLeft = styled.div`
     letter-spacing: 0.02em;
     ${Body3};
   }
+  @media only screen and (max-width: 991px) {
+    border-right: none;
+  }
 `;
 const Pricefaq = styled.div`
   h3 {
@@ -441,13 +553,16 @@ const BulletImage = styled.div`
   padding: 5px 10px;
   margin-top: 7px;
   background-color: ${({ theme }) => theme.colors.greenmidlight};
+  @media only screen and (max-width: 749px) {
+    padding: 4px 8px;
+  }
 `;
 const PricePlusImage = styled.div`
-  max-height: 361px;
-  height: 100%;
   img {
-    max-height: 361px;
     height: 100%;
+  }
+  @media only screen and (max-width: 991px) {
+    display: none;
   }
 `;
 export {

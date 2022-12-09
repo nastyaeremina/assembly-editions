@@ -37,13 +37,7 @@ const CtaBtn = styled.div`
   display: flex;
   justify-content: center;
   gap: 16px;
-  @media only screen and (max-width: 991px) {
-    .paddingbtn {
-      a {
-        padding: 6px 24px;
-      }
-    }
-  }
+
   @media only screen and (max-width: 749px) {
     flex-direction: column;
     .paddingbtn {

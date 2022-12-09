@@ -15,6 +15,27 @@ const FaqSection = styled.div`
   .c2:last-child {
     border-bottom: none;
   }
+  @media only screen and (max-width: 991px) {
+    padding: 80px 0;
+    .listtitle {
+      font-size: 28px !important;
+      line-height: 34px !important;
+    }
+    .listcaption {
+      font-size: 18px !important;
+      line-height: 22px !important;
+    }
+  }
+  @media only screen and (max-width: 749px) {
+    .listtitle {
+      font-size: 22px !important;
+      line-height: 23px !important;
+    }
+    .listcaption {
+      font-size: 16px !important;
+      line-height: 21px !important;
+    }
+  }
 `;
 const FaqTitle = styled.div`
   h3 {
@@ -23,6 +44,12 @@ const FaqTitle = styled.div`
     color: ${({ theme }) => theme.colors.title};
   }
   margin-bottom: 20px;
+  @media only screen and (max-width: 991px) {
+    h3 {
+      font-size: 50px;
+      line-height: 55px;
+    }
+  }
 `;
 const FaqWrap = styled.div`
   .faq-list {
