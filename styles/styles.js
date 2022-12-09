@@ -243,6 +243,11 @@ const MbBody4 = css`
   font-size: 15px;
   line-height: 19px;
 `;
+const MbBody5 = css`
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 18px;
+`;
 const SliderTxt = css`
   font-weight: 500;
   font-size: 16px;
@@ -290,5 +295,6 @@ export {
   MbBody4,
   SliderTxt,
   MobileH1,
-  MbBody2
+  MbBody2,
+  MbBody5
 };

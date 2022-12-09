@@ -1,19 +1,21 @@
-import { NextSeo } from "next-seo";
-import Image from "next/image";
-import Link from "next/link";
-import { useCallback, useMemo, useState } from "react";
-import CTA from "../../components/cta/cta";
-import FAQ from "../../components/faq/faq";
-import Layout from "../../components/layout";
-import Navbar from "../../components/navbar/navbar";
-import { dateToMonthYear, isEmpty } from "../../helpers/helpers";
-import { NO_OF_JOBS_PER_PAGE } from "../../lib/constants";
-import { getAllJobBlogPosts } from "../../lib/contentful-jobBlogPosts";
-import { getAllJobImages, getAllJobs } from "../../lib/contentful-jobsListing";
-import { Container } from "../../styles/commonStyles";
+import { NextSeo } from 'next-seo';
+import Image from 'next/image';
+import Link from 'next/link';
+import { useCallback, useMemo, useState } from 'react';
+import CTA from '../../components/cta/cta';
+import FAQ from '../../components/faq/faq';
+import Layout from '../../components/layout';
+import Navbar from '../../components/navbar/navbar';
+import { dateToMonthYear, isEmpty } from '../../helpers/helpers';
+import { NO_OF_JOBS_PER_PAGE } from '../../lib/constants';
+import { getAllJobBlogPosts } from '../../lib/contentful-jobBlogPosts';
+import { getAllJobImages, getAllJobs } from '../../lib/contentful-jobsListing';
+import { Container } from '../../styles/commonStyles';
 import {
   HeroJobSection,
   JobsWrap,
+  JobsMobi,
+  UseCaseWrapMobi,
   UseCaseWrap,
   CareerSection,
   CareerBlock,
@@ -46,8 +48,8 @@ import {
   BoxView,
   ImgIcon,
   DetailView,
-  MainWrap,
-} from "../../styles/jobsStyles";
+  MainWrap
+} from '../../styles/jobsStyles';
 
 export default function Jobs({ jobList, jobImagesList, jobBlogPostList }) {
   const [selectedImageIndex, setSelectedImageIndex] = useState(0);
@@ -65,7 +67,7 @@ export default function Jobs({ jobList, jobImagesList, jobBlogPostList }) {
               {item?.isRemote && <p>Remote</p>}
               {!isEmpty(item?.location) && item?.isRemote ? (
                 <>
-                  <Dot className="bgdot"></Dot>
+                  <Dot className='bgdot'></Dot>
                   <p>{item?.location}</p>
                 </>
               ) : (
@@ -95,7 +97,7 @@ export default function Jobs({ jobList, jobImagesList, jobBlogPostList }) {
     if (isEmpty(imageUrl)) return null;
     return (
       <ImgBorder>
-        <Image src={imageUrl} alt="red-icon" width={552} height={320} />
+        <Image src={imageUrl} alt='red-icon' width={552} height={320} />
       </ImgBorder>
     );
   }, [jobImagesList, selectedImageIndex]);
@@ -109,11 +111,10 @@ export default function Jobs({ jobList, jobImagesList, jobBlogPostList }) {
     return jobImagesList?.map((item, index) => {
       return (
         <TabView
-          className={index === selectedImageIndex ? "activetab" : ""}
+          className={index === selectedImageIndex ? 'activetab' : ''}
           key={`jobimagetabview_index_${index}`}
-          onClick={() => onClickImageTab(index)}
-        >
-          <span>{`${index < 9 ? "0" : ""}${index + 1}`}</span>
+          onClick={() => onClickImageTab(index)}>
+          <span>{`${index < 9 ? '0' : ''}${index + 1}`}</span>
           {index === selectedImageIndex && <ActiveTab></ActiveTab>}
         </TabView>
       );
@@ -133,10 +134,8 @@ export default function Jobs({ jobList, jobImagesList, jobBlogPostList }) {
     return authorList?.map((item, index) => {
       return (
         <>
-          {" "}
-          {index !== 0 && item?.trim().length !== 0 && (
-            <Dot key={`authorlistitemwithdot_index_${index}`}></Dot>
-          )}
+          {' '}
+          {index !== 0 && item?.trim().length !== 0 && <Dot key={`authorlistitemwithdot_index_${index}`}></Dot>}
           <p key={`authorlistitem_index_${index}`}> {item?.trim()}</p>
         </>
       );
@@ -148,18 +147,16 @@ export default function Jobs({ jobList, jobImagesList, jobBlogPostList }) {
     return jobBlogPostList?.map((item, index) => {
       let authorList = [];
       if (!isEmpty(item?.author)) {
-        authorList = item?.author.split(",");
+        authorList = item?.author.split(',');
       }
-      const link = item?.blogLink?.split('copilot.com/')?.[1]
+      const link = item?.blogLink?.split('copilot.com/')?.[1];
       return (
         <TitleWrap key={`jobblogpostitem_index_${index}`}>
           <TeamLine>
-            <Link href={link ?? ""}>{item?.name}</Link>
+            <Link href={link ?? ''}>{item?.name}</Link>
             <p>{dateToMonthYear(item?.date)}</p>
           </TeamLine>
-          {!isEmpty(authorList) && (
-            <NameView>{renderAuthorListView(authorList)}</NameView>
-          )}
+          {!isEmpty(authorList) && <NameView>{renderAuthorListView(authorList)}</NameView>}
         </TitleWrap>
       );
     });
@@ -168,8 +165,8 @@ export default function Jobs({ jobList, jobImagesList, jobBlogPostList }) {
   return (
     <>
       <NextSeo
-        title="Create your portal, pick a plan later"
-        description="Try Copilot free for 14 days, no credit card required"
+        title='Create your portal, pick a plan later'
+        description='Try Copilot free for 14 days, no credit card required'
       />
       <Layout>
         <Navbar />
@@ -180,13 +177,22 @@ export default function Jobs({ jobList, jobImagesList, jobBlogPostList }) {
                 <UseCaseWrap>
                   <h2>Work at Copilot</h2>
                   <p>
-                    We are reinventing how service businesses and clients work
-                    together. If we succeed, more businesses will be started and
-                    those that do will have a way to serve customers directly,
-                    under their own brand, without intermediaries in between.
+                    We are reinventing how service businesses and clients work together. If we succeed, more businesses
+                    will be started and those that do will have a way to serve customers directly, under their own
+                    brand, without intermediaries in between.
                   </p>
                 </UseCaseWrap>
               </JobsWrap>
+              <JobsMobi>
+                <UseCaseWrapMobi>
+                  <h2>Work at Copilot</h2>
+                  <p>
+                    We are reinventing how service businesses and clients work together. If we succeed, more businesses
+                    will be started and those that do will have a way to serve customers directly, under their own
+                    brand, without intermediaries in between.
+                  </p>
+                </UseCaseWrapMobi>
+              </JobsMobi>
             </Container>
           </HeroJobSection>
           <CareerSection>
@@ -196,29 +202,24 @@ export default function Jobs({ jobList, jobImagesList, jobBlogPostList }) {
                   <RoleWrap>
                     <h3>Roles</h3>
                     <p>
-                      We’re committed to an equitable recruiting process and an
-                      inclusive culture that welcomes individuals across all
-                      races, ages, abilities, sexualities, gender
-                      identities/expressions, ethnicities, nationalities, and
-                      class backgrounds.
+                      We’re committed to an equitable recruiting process and an inclusive culture that welcomes
+                      individuals across all races, ages, abilities, sexualities, gender identities/expressions,
+                      ethnicities, nationalities, and class backgrounds.
                     </p>
                   </RoleWrap>
-                  {!isEmpty(jobList) && (
-                    <JobDetailWrap>{renderJobsRolesListView}</JobDetailWrap>
-                  )}
+                  {!isEmpty(jobList) && <JobDetailWrap>{renderJobsRolesListView}</JobDetailWrap>}
                 </RoleBlock>
                 <TeamBlock>
                   <AboutWrap>
                     <h3>About us</h3>
                     <p>
                       Read about our mission, priorities,and investors
-                      <a href="#"> on our About page.</a> See what customers say
-                      about us <a href="#"> on our G2 page</a> or
-                      <a href="#"> join our community on Slack</a>. Go through
-                      <a href="#"> our self-serve flow</a> to try out the
-                      product or read about recent releases
-                      <a href="#">on our changelog</a>. Lastly,
-                      <a href="#"> email us</a> if you have any questions!
+                      <a href='#'> on our About page.</a> See what customers say about us{' '}
+                      <a href='#'> on our G2 page</a> or
+                      <a href='#'> join our community on Slack</a>. Go through
+                      <a href='#'> our self-serve flow</a> to try out the product or read about recent releases
+                      <a href='#'>on our changelog</a>. Lastly,
+                      <a href='#'> email us</a> if you have any questions!
                     </p>
                   </AboutWrap>
                   {!isEmpty(jobBlogPostList) && (
@@ -250,138 +251,94 @@ export default function Jobs({ jobList, jobImagesList, jobBlogPostList }) {
               <BenefitBox>
                 <BoxView>
                   <ImgIcon>
-                    <Image
-                      src="/images/equity.svg"
-                      width={44}
-                      height={44}
-                      alt="file-icon"
-                    />
+                    <Image src='/images/equity.svg' width={44} height={44} alt='file-icon' className='desktop' />
+                    <Image src='/images/equitymb.svg' width={24} height={24} alt='file-icon' className='mobiicon' />
                   </ImgIcon>
                   <DetailView>
                     <h4>Equity</h4>
-                    <p>
-                      We want you to reap the benefits of the upside you create
-                      in the company.
-                    </p>
+                    <p>We want you to reap the benefits of the upside you create in the company.</p>
                   </DetailView>
                 </BoxView>
                 <BoxView>
                   <ImgIcon>
-                    <Image
-                      src="/images/health.svg"
-                      width={44}
-                      height={44}
-                      alt="file-icon"
-                    />
+                    <Image src='/images/health.svg' width={44} height={44} alt='file-icon' className='desktop' />
+                    <Image src='/images/healthmobi.svg' width={24} height={24} alt='file-icon' className='mobiicon' />
                   </ImgIcon>
                   <DetailView>
                     <h4>Health insurance</h4>
-                    <p>
-                      Tier 1 Blue Cross plan with 100% coverage for you and 50%
-                      coverage for dependents.
-                    </p>
+                    <p>Tier 1 Blue Cross plan with 100% coverage for you and 50% coverage for dependents.</p>
                   </DetailView>
                 </BoxView>
                 <BoxView>
                   <ImgIcon>
-                    <Image
-                      src="/images/pto.svg"
-                      width={44}
-                      height={44}
-                      alt="file-icon"
-                    />
+                    <Image src='/images/pto.svg' width={44} height={44} alt='file-icon' className='desktop' />
+                    <Image src='/images/ptomobi.svg' width={24} height={24} alt='file-icon' className='mobiicon' />
                   </ImgIcon>
                   <DetailView>
                     <h4>Flexible PTO</h4>
-                    <p>
-                      We recommend ~20 days of vacation per year. You can take
-                      whatever days you want.
-                    </p>
+                    <p>We recommend ~20 days of vacation per year. You can take whatever days you want.</p>
                   </DetailView>
                 </BoxView>
                 <BoxView>
                   <ImgIcon>
-                    <Image
-                      src="/images/internet.svg"
-                      width={44}
-                      height={44}
-                      alt="file-icon"
-                    />
+                    <Image src='/images/internet.svg' width={44} height={44} alt='file-icon' className='desktop' />
+                    <Image src='/images/internetmobi.svg' width={24} height={24} alt='file-icon' className='mobiicon' />
                   </ImgIcon>
                   <DetailView>
                     <h4>International offsites</h4>
-                    <p>
-                      We do team off-sites twice per year. In July, we met up in
-                      Istanbul.
-                    </p>
+                    <p>We do team off-sites twice per year. In July, we met up in Istanbul.</p>
                   </DetailView>
                 </BoxView>
                 <BoxView>
                   <ImgIcon>
-                    <Image
-                      src="/images/sickicon.svg"
-                      width={44}
-                      height={44}
-                      alt="file-icon"
-                    />
+                    <Image src='/images/sickicon.svg' width={44} height={44} alt='file-icon' className='desktop' />
+                    <Image src='/images/sickiconmobi.svg' width={24} height={24} alt='file-icon' className='mobiicon' />
                   </ImgIcon>
                   <DetailView>
                     <h4>Sick leave</h4>
-                    <p>
-                      Take the time you need to recharge! We want everyone
-                      feeling their best at work.
-                    </p>
+                    <p>Take the time you need to recharge! We want everyone feeling their best at work.</p>
                   </DetailView>
                 </BoxView>
                 <BoxView>
                   <ImgIcon>
+                    <Image src='/images/leaveicon.svg' width={44} height={44} alt='file-icon' className='desktop' />
                     <Image
-                      src="/images/leaveicon.svg"
-                      width={44}
-                      height={44}
-                      alt="file-icon"
+                      src='/images/leaveiconmobi.svg'
+                      width={24}
+                      height={24}
+                      alt='file-icon'
+                      className='mobiicon'
                     />
                   </ImgIcon>
                   <DetailView>
                     <h4>Parental leave</h4>
-                    <p>
-                      6 weeks of paid and 6 weeks of unpaid leave within the
-                      first year after becoming a parent.
-                    </p>
+                    <p>6 weeks of paid and 6 weeks of unpaid leave within the first year after becoming a parent.</p>
                   </DetailView>
                 </BoxView>
                 <BoxView>
                   <ImgIcon>
-                    <Image
-                      src="/images/hardware.svg"
-                      width={44}
-                      height={44}
-                      alt="file-icon"
-                    />
+                    <Image src='/images/hardware.svg' width={44} height={44} alt='file-icon' className='desktop' />
+                    <Image src='/images/hardwaremobi.svg' width={24} height={24} alt='file-icon' className='mobiicon' />
                   </ImgIcon>
                   <DetailView>
                     <h4>Hardware</h4>
-                    <p>
-                      We’ll equip you with an M1 MacBook, 4K display, and
-                      anything else you need.
-                    </p>
+                    <p>We’ll equip you with an M1 MacBook, 4K display, and anything else you need.</p>
                   </DetailView>
                 </BoxView>
                 <BoxView>
                   <ImgIcon>
+                    <Image src='/images/education.svg' width={44} height={44} alt='file-icon' className='desktop' />
                     <Image
-                      src="/images/education.svg"
-                      width={44}
-                      height={44}
-                      alt="file-icon"
+                      src='/images/educationmobi.svg'
+                      width={24}
+                      height={24}
+                      alt='file-icon'
+                      className='mobiicon'
                     />
                   </ImgIcon>
                   <DetailView>
                     <h4>Education</h4>
-                    <p>
-                      Get reimbursed for relevant books, conferences, classes,
-                      and more.
-                    </p>
+                    <p>Get reimbursed for relevant books, conferences, classes, and more.</p>
                   </DetailView>
                 </BoxView>
               </BenefitBox>
@@ -419,13 +376,13 @@ export async function getServerSideProps({ preview = false }) {
     } else {
       const newItem = {
         department: item?.department,
-        list: [item],
+        list: [item]
       };
       newList?.push(newItem);
     }
   });
 
   return {
-    props: { jobList: newList, jobImagesList, jobBlogPostList },
+    props: { jobList: newList, jobImagesList, jobBlogPostList }
   };
 }
