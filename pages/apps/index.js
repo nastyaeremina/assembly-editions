@@ -44,16 +44,53 @@ import { isEmpty } from '../../helpers/helpers';
 import { APPS_TYPE } from '../../constants/constant';
 import Button from '../../components/button/button';
 
-export default function Apps({ featuredApps, allCategoryWithPost, dataIntegrationApps }) {
+export default function Apps({ allPosts, featuredApps, allCategoryWithPost, dataIntegrationApps }) {
   const [selected_category, setSelected_category] = useState();
+  const [query, setQuery] = useState("");
+  const [searchResult, setSearchResult] = useState([]);
+  const [isSearch, setIsSearch] = useState(false);
   useEffect(() => {
     if (typeof window !== 'undefined') {
-      console.log(window.location);
       let hash = window.location.hash;
       let result = hash.replace(/#/g, '');
       setSelected_category(result);
     }
   }, []);
+
+  const searchQuery = useCallback(
+    (value) => {
+      const result = allPosts?.filter((item) =>
+        item?.name?.toLowerCase().includes(value?.toLowerCase())
+      ) || [];
+      if (result) setSearchResult(result);
+    },
+    [allPosts]
+  );
+
+  const onSeachQueryChange = useCallback(
+    (e) => {
+      const value = e.target.value;
+      setQuery(value);
+      let timeout;
+
+      if (value) {
+        if (!isSearch) setIsSearch(true);
+        if (timeout) clearTimeout(timeout);
+        timeout = setTimeout(() => {
+          searchQuery(value);
+        }, 300);
+      } else {
+        if (isSearch) setIsSearch(false);
+        setSearchResult([]);
+      }
+    },
+    [isSearch, searchQuery]
+  );
+
+  const onSubmitSeachQuery = useCallback((e) => {
+    e.preventDefault();
+  }, []);
+
   const renderFeaturedView = useMemo(() => {
     if (isEmpty(featuredApps)) return null;
     return featuredApps?.map((item, index) => {
@@ -132,6 +169,18 @@ export default function Apps({ featuredApps, allCategoryWithPost, dataIntegratio
     return renderPartnerAppsView(dataIntegrationApps);
   }, [dataIntegrationApps, renderPartnerAppsView]);
 
+  const renderResultView = useMemo(() => {
+    if (!isEmpty(searchResult)) {
+      return (<Featured key={`searchview`}>
+        <h3> {`${searchResult?.length} Result for "${query}"`}</h3>
+        <FeatureMenu>{renderPartnerAppsView(searchResult)}</FeatureMenu>
+      </Featured>)
+    }
+    else return (<ExtensionsSection key={`searchEmptyview`}>
+      <h3> No Data Found</h3>
+    </ExtensionsSection>)
+  }, [query, renderPartnerAppsView, searchResult])
+
   return (
     <>
       <NextSeo
@@ -155,9 +204,11 @@ export default function Apps({ featuredApps, allCategoryWithPost, dataIntegratio
               <FeatureWrap>
                 <FeatureLeft>
                   <LeftWrap>
-                    <InputWrap>
+                    <InputWrap onSubmit={onSubmitSeachQuery}>
                       <Image src='/images/searchicon.svg' alt='search-icon' width={20} height={20} />
-                      <Input placeholder='Find an app' />
+                      <Input placeholder='Find an app'
+                        value={query}
+                        onChange={onSeachQueryChange} type="search" />
                     </InputWrap>
                     <Catagory>
                       <h4>Partner Apps</h4>
@@ -177,49 +228,49 @@ export default function Apps({ featuredApps, allCategoryWithPost, dataIntegratio
                     </OtherWrap>
                   </LeftWrap>
                 </FeatureLeft>
+                {isSearch ? <FeatureRight>{renderResultView}</FeatureRight> :
+                  <FeatureRight>
+                    {!isEmpty(featuredApps) && (
+                      <Featured id='Brief-Section'>
+                        <h3>Featured</h3>
+                        <FeatureMenu>{renderFeaturedView}</FeatureMenu>
+                      </Featured>
+                    )}
+                    {renderAllCategoryAppsView}
 
-                <FeatureRight>
-                  {!isEmpty(featuredApps) && (
-                    <Featured id='Brief-Section'>
-                      <h3>Featured</h3>
-                      <FeatureMenu>{renderFeaturedView}</FeatureMenu>
-                    </Featured>
-                  )}
-                  {renderAllCategoryAppsView}
-
-                  {!isEmpty(dataIntegrationApps) && (
-                    <ExtensionsSection id='Integrations-Section'>
+                    {!isEmpty(dataIntegrationApps) && (
+                      <ExtensionsSection id='Integrations-Section'>
+                        <AppsTitle>
+                          <h3>Data Integrations</h3>
+                          <p>Integrations</p>
+                        </AppsTitle>
+                        <ExtensionCard>{renderDataIntegrationApps}</ExtensionCard>
+                      </ExtensionsSection>
+                    )}
+                    <ExtensionsSection id='custome-apps'>
                       <AppsTitle>
-                        <h3>Data Integrations</h3>
-                        <p>Integrations</p>
+                        <h3>Custom Apps</h3>
                       </AppsTitle>
-                      <ExtensionCard>{renderDataIntegrationApps}</ExtensionCard>
+                      <BuildWrap>
+                        <BuildAppsDetail>
+                          <h5>Build your own app</h5>
+                          <p>
+                            A custom app is a web application that can be embedded into your portal and receives
+                            information about the current user or company. With that capability you can render custom
+                            content automatically depending on the user that is currently signed in.
+                          </p>
+                          <Button
+                            bgColor={'transparent'}
+                            fontColor={'#000000'}
+                            borderColor={'#000000'}
+                            text={'Read API docs'}
+                            href={'https://docs.copilot.com/reference/introduction'}
+                            hoverColor={'rgba(0, 0, 0, 0.5)'}
+                          />
+                        </BuildAppsDetail>
+                      </BuildWrap>
                     </ExtensionsSection>
-                  )}
-                  <ExtensionsSection id='custome-apps'>
-                    <AppsTitle>
-                      <h3>Custom Apps</h3>
-                    </AppsTitle>
-                    <BuildWrap>
-                      <BuildAppsDetail>
-                        <h5>Build your own app</h5>
-                        <p>
-                          A custom app is a web application that can be embedded into your portal and receives
-                          information about the current user or company. With that capability you can render custom
-                          content automatically depending on the user that is currently signed in.
-                        </p>
-                        <Button
-                          bgColor={'transparent'}
-                          fontColor={'#000000'}
-                          borderColor={'#000000'}
-                          text={'Read API docs'}
-                          href={'https://docs.copilot.com/reference/introduction'}
-                          hoverColor={'rgba(0, 0, 0, 0.5)'}
-                        />
-                      </BuildAppsDetail>
-                    </BuildWrap>
-                  </ExtensionsSection>
-                </FeatureRight>
+                  </FeatureRight>}
               </FeatureWrap>
             </Container>
           </FeatureSection>
@@ -251,7 +302,8 @@ export async function getServerSideProps({ preview = false }) {
     props: {
       featuredApps,
       allCategoryWithPost,
-      dataIntegrationApps
+      dataIntegrationApps,
+      allPosts: allPosts.concat(dataIntegrationApps),
     }
   };
 }
