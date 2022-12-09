@@ -1,11 +1,9 @@
 import Link from 'next/link';
 import * as React from 'react';
+import { useStyletron } from 'baseui';
 import { Accordion, Panel } from 'baseui/accordion';
 import { Container } from '../../styles/commonStyles';
-import { useStyletron } from 'baseui';
 import { FaqSection, FaqWrap, FaqTitle } from './styles';
-import PlusIcon from '../../public/images/PlusIcons.svg';
-import Plus from 'baseui/icon/plus';
 
 function CustomPanel(props) {
   return <Panel {...props} />;
@@ -35,6 +33,7 @@ export default function FAQ({ enterprise }) {
                   fontFamily: 'Bagoss',
                   fontWeight: '400',
                   backgroundColor: 'transparent'
+
                   // ":hover": {
                   //   color: "white",
                   // },
@@ -87,40 +86,60 @@ export default function FAQ({ enterprise }) {
                 })
               }
             }}>
-            <CustomPanel title='Who is Copilot intended for?'>
-              Copilot is a technology company that builds infrastructure for the services economy. Businesses of every
-              size — from small agencies to large law firms — use Portal building blocks to productize their business
-              and provide clients a streamlined experience.
+            <CustomPanel title={<div className='listtitle'>Who is Copilot intended for?</div>}>
+              <div className='listcaption'>
+                Copilot is a technology company that builds infrastructure for the services economy. Businesses of every
+                size — from small agencies to large law firms — use Portal building blocks to productize their business
+                and provide clients a streamlined experience.
+              </div>
             </CustomPanel>
-            <CustomPanel title='What’s the difference between a marketing site & copilot ?'>
-              Copilot is a technology company that builds infrastructure for the services economy. Businesses of every
-              size — from small agencies to large law firms — use Portal building blocks to productize their business
-              and provide clients a streamlined experience.
+            <CustomPanel
+              title={<div className='listtitle'>What’s the difference between a marketing site & copilot ?</div>}>
+              <div className='listcaption'>
+                Copilot is a technology company that builds infrastructure for the services economy. Businesses of every
+                size — from small agencies to large law firms — use Portal building blocks to productize their business
+                and provide clients a streamlined experience.
+              </div>
             </CustomPanel>
-            <CustomPanel title='How many users can you have ?'>
-              Copilot is a technology company that builds infrastructure for the services economy. Businesses of every
-              size — from small agencies to large law firms — use Portal building blocks to productize their business
-              and provide clients a streamlined experience.
+            <CustomPanel title={<div className='listtitle'>How many users can you have ?</div>}>
+              <div className='listcaption'>
+                Copilot is a technology company that builds infrastructure for the services economy. Businesses of every
+                size — from small agencies to large law firms — use Portal building blocks to productize their business
+                and provide clients a streamlined experience.
+              </div>
             </CustomPanel>
-            <CustomPanel title='Is Copilot secure ?  Where is my data stored ?'>
-              Copilot is a technology company that builds infrastructure for the services economy. Businesses of every
-              size — from small agencies to large law firms — use Portal building blocks to productize their business
-              and provide clients a streamlined experience.
+            <CustomPanel title={<div className='listtitle'>Is Copilot secure ? Where is my data stored ?</div>}>
+              <div className='listcaption'>
+                {' '}
+                Copilot is a technology company that builds infrastructure for the services economy. Businesses of every
+                size — from small agencies to large law firms — use Portal building blocks to productize their business
+                and provide clients a streamlined experience.
+              </div>
             </CustomPanel>
-            <CustomPanel title='How many users can you have ?'>
-              Copilot is a technology company that builds infrastructure for the services economy. Businesses of every
-              size — from small agencies to large law firms — use Portal building blocks to productize their business
-              and provide clients a streamlined experience.
+            <CustomPanel title={<div className='listtitle'>How many users can you have ?</div>}>
+              <div className='listcaption'>
+                {' '}
+                Copilot is a technology company that builds infrastructure for the services economy. Businesses of every
+                size — from small agencies to large law firms — use Portal building blocks to productize their business
+                and provide clients a streamlined experience.
+              </div>
             </CustomPanel>
-            <CustomPanel title='What’s the difference between a marketing site & copilot ?'>
-              Copilot is a technology company that builds infrastructure for the services economy. Businesses of every
-              size — from small agencies to large law firms — use Portal building blocks to productize their business
-              and provide clients a streamlined experience.
+            <CustomPanel
+              title={<div className='listtitle'>What’s the difference between a marketing site & copilot ?</div>}>
+              <div className='listcaption'>
+                {' '}
+                Copilot is a technology company that builds infrastructure for the services economy. Businesses of every
+                size — from small agencies to large law firms — use Portal building blocks to productize their business
+                and provide clients a streamlined experience.
+              </div>
             </CustomPanel>
-            <CustomPanel title='How much does Copilot+ cost ?' className='bordernone'>
-              Copilot is a technology company that builds infrastructure for the services economy. Businesses of every
-              size — from small agencies to large law firms — use Portal building blocks to productize their business
-              and provide clients a streamlined experience.
+            <CustomPanel title={<div className='listtitle'>How much does Copilot+ cost ?</div>} className='bordernone'>
+              <div className='listcaption'>
+                {' '}
+                Copilot is a technology company that builds infrastructure for the services economy. Businesses of every
+                size — from small agencies to large law firms — use Portal building blocks to productize their business
+                and provide clients a streamlined experience.
+              </div>
             </CustomPanel>
           </Accordion>
           {/* 
