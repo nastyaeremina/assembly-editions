@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { useCallback, useMemo, useState } from 'react';
 import { isEmpty } from '../../../helpers/helpers';
 import { Container, SecondryButton } from '../../../styles/commonStyles';
+import Button from '../../button/button';
 import {
   ExploreSection,
   TopView,
@@ -30,34 +31,44 @@ export default function ExploreTab({ data }) {
 
   const tabListView = useMemo(() => {
     return data?.map((item, index) => {
-      return <TabView className={index === selectedTabIbndex ? 'activetab' : ""} key={`tablist_index_${index}`} onClick={() => onClickTab(index)}>
-        <span>{`${index < 9 ? "0" : ""}${index + 1}`}</span>
-        {index === selectedTabIbndex &&
-          <ActiveTab>
-            <Image src='/images/verticalline.svg' alt='line-icon' width={1} height={51} />
-          </ActiveTab>}
-      </TabView>
-    })
-  }, [data, onClickTab, selectedTabIbndex])
+      return (
+        <TabView
+          className={index === selectedTabIbndex ? 'activetab' : ''}
+          key={`tablist_index_${index}`}
+          onClick={() => onClickTab(index)}>
+          <span>{`${index < 9 ? '0' : ''}${index + 1}`}</span>
+          {index === selectedTabIbndex && (
+            <ActiveTab>
+              <Image src='/images/verticalline.svg' alt='line-icon' width={1} height={51} />
+            </ActiveTab>
+          )}
+        </TabView>
+      );
+    });
+  }, [data, onClickTab, selectedTabIbndex]);
 
   const tabDetailView = useMemo(() => {
-    if (isEmpty(data?.[selectedTabIbndex])) return null
-    return <LeftWrap>
-      <h4>{data?.[selectedTabIbndex]?.title}</h4>
-      <p>{data?.[selectedTabIbndex]?.description}</p>
-    </LeftWrap>
-  }, [data, selectedTabIbndex])
+    if (isEmpty(data?.[selectedTabIbndex])) return null;
+    return (
+      <LeftWrap>
+        <h4>{data?.[selectedTabIbndex]?.title}</h4>
+        <p>{data?.[selectedTabIbndex]?.description}</p>
+      </LeftWrap>
+    );
+  }, [data, selectedTabIbndex]);
 
   const tabImageView = useMemo(() => {
-    if (isEmpty(data?.[selectedTabIbndex]?.image?.url)) return null
-    return <Container>
-      <SignBox>
-        <SignImgView>
-          <Image src={data?.[selectedTabIbndex]?.image?.url} alt='main-logo' width={1154} height={725} />
-        </SignImgView>
-      </SignBox>
-    </Container>
-  }, [data, selectedTabIbndex])
+    if (isEmpty(data?.[selectedTabIbndex]?.image?.url)) return null;
+    return (
+      <Container>
+        <SignBox>
+          <SignImgView>
+            <Image src={data?.[selectedTabIbndex]?.image?.url} alt='main-logo' width={1154} height={725} />
+          </SignImgView>
+        </SignBox>
+      </Container>
+    );
+  }, [data, selectedTabIbndex]);
 
   return (
     <>
@@ -73,9 +84,14 @@ export default function ExploreTab({ data }) {
               the time is right.
             </p>
             <BtnWrap>
-              <SecondryButton>
-                <Link href='#'>Create client account in a demo portal</Link>
-              </SecondryButton>
+              <Button
+                bgColor={'transparent'}
+                fontColor={'#000000'}
+                borderColor={'#000000'}
+                text={'Create client account in a demo portal'}
+                href={'#'}
+                hoverColor={'rgba(0, 0, 0, 0.5)'}
+              />
               <IconView className='tooltip'>
                 <Image src='/images/helpicon.svg' alt='main-logo' width={22} height={22} />
                 <Tooltip className='tooltiptext'>
@@ -111,9 +127,7 @@ export default function ExploreTab({ data }) {
             </SignatureSection>
           </Container>
         </BottomSection>
-        <LastSection>
-          {tabImageView}
-        </LastSection>
+        <LastSection>{tabImageView}</LastSection>
       </ExploreSection>
     </>
   );
