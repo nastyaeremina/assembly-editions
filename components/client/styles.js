@@ -101,17 +101,14 @@ const ModuleCard = styled.div`
   align-items: stretch;
   /* transition: all 5s ease; */
   .learn-link {
-    transition: all 300ms ease;
+    transition: transform 300ms ease;
     height: 100%;
   }
   .learn-link svg path {
-    transition: all 300ms ease;
+    transition: transform 300ms ease;
   }
   .learn-link:hover {
     color: black;
-  }
-  .learn-link svg path {
-    transition: all 300ms ease;
   }
   .HoverArrow__linePath {
     opacity: 0;
