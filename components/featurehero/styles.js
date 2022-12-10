@@ -48,7 +48,11 @@ const BLockImg = styled.div`
   border: 1px solid #f4d8c4;
   border-radius: 10px;
   cursor: pointer;
-  ::after {
+  .heroimage {
+    max-width: 570px;
+    width: 100%;
+  }
+  /* ::after {
     content: '';
     position: absolute;
     border-top: 1px solid #f4d8c4;
@@ -56,8 +60,13 @@ const BLockImg = styled.div`
     width: 100%;
     top: 50%;
     left: 100%;
-    @media only screen and (max-width: 1024px) {
-      max-width: 100%;
+  } */
+  @media only screen and (max-width: 1024px) {
+    max-width: 100%;
+    width: 100%;
+    ::after {
+      max-width: 25px;
+
       width: 100%;
     }
   }

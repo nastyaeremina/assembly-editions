@@ -6,7 +6,7 @@ export default function CompanySubMenu() {
       <NavMenu>
         <NavigationBlock>
           <MobileListLi>
-            <MenuMobileWrap href='/enterprise'>
+            <MenuMobileWrap href='/copilot-plus'>
               <LeftImg>
                 <svg
                   className='logo'
