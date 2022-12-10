@@ -125,7 +125,14 @@ export default function Brand() {
               <BrandImage>
                 <ImgWrap>
                   <BrandImageLeft className='effect-goliath'>
-                    <Image src='/images/logo.svg' alt='logo' width={405} height={90} layout={'fixed'} />
+                    <Image
+                      src='/images/logo.svg'
+                      alt='logo'
+                      width={405}
+                      height={90}
+                      layout={'fixed'}
+                      className='firsticon'
+                    />
                     <a href='/images/logo.svg' download>
                       <HoverSection className='hover-name'>
                         <p>Download</p>
@@ -136,7 +143,14 @@ export default function Brand() {
                 </ImgWrap>
                 <ImgWrap>
                   <BrandImageRight className='effect-goliath'>
-                    <Image src='/images/blacklogo.svg' alt='logo' width={405} height={90} layout={'fixed'} />
+                    <Image
+                      src='/images/blacklogo.svg'
+                      alt='logo'
+                      width={405}
+                      height={90}
+                      layout={'fixed'}
+                      className='firsticon'
+                    />
                     <a href='/images/blacklogo.svg' download>
                       <BlackHover className='hover-name'>
                         <p>Download</p>
@@ -156,7 +170,14 @@ export default function Brand() {
               <BrandImage>
                 <ImgWrap>
                   <BrandImageLeft className='effect-goliath'>
-                    <Image src='/images/smalllogo.svg' alt='logo' width={133} height={90} layout={'fixed'} />
+                    <Image
+                      src='/images/smalllogo.svg'
+                      alt='logo'
+                      width={133}
+                      height={90}
+                      layout={'fixed'}
+                      className='mobileicon'
+                    />
                     <a href='/images/smalllogo.svg' download>
                       <HoverSection className='hover-name'>
                         <p>Download</p>
@@ -167,7 +188,14 @@ export default function Brand() {
                 </ImgWrap>
                 <ImgWrap>
                   <BrandImageRight className='effect-goliath'>
-                    <Image src='/images/brandlogo.svg' alt='logo' width={133} height={90} layout={'fixed'} />
+                    <Image
+                      src='/images/brandlogo.svg'
+                      alt='logo'
+                      width={133}
+                      height={90}
+                      layout={'fixed'}
+                      className='mobileicon'
+                    />
                     <a href='/images/blacklogo.svg' download>
                       <BlackHover className='hover-name'>
                         <p>Download</p>
@@ -187,9 +215,15 @@ export default function Brand() {
               <BrandImage>
                 <ImgWrap>
                   <CompanyIcon className='effect-goliath'>
-                    <div>
-                      <Image src='/images/primarylogo.svg' alt='logo' width={200} height={200} layout={'fixed'} />
-                    </div>
+                    <Image
+                      src='/images/primarylogo.svg'
+                      alt='logo'
+                      width={200}
+                      height={200}
+                      layout={'fixed'}
+                      className='companyicon'
+                    />
+
                     <a href='/images/primarylogo.svg' download>
                       <HoverLink className='hover-name'>
                         <p>Download</p>
@@ -200,7 +234,14 @@ export default function Brand() {
                 </ImgWrap>
                 <ImgWrap>
                   <CompanyIcon className='effect-goliath'>
-                    <Image src='/images/primarylogo2.svg' alt='logo' width={200} height={200} layout={'fixed'} />
+                    <Image
+                      src='/images/primarylogo2.svg'
+                      alt='logo'
+                      width={200}
+                      height={200}
+                      layout={'fixed'}
+                      className='companyicon'
+                    />
                     <a href='/images/primarylogo2.svg' download>
                       <HoverLink className='hover-name'>
                         <p>Download</p>
