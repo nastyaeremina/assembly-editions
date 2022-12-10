@@ -1,7 +1,10 @@
 import styled from 'styled-components';
-import { Body2, Body3, ButtonText, Heading2, Heading4, LinkTxt } from './styles';
+import { Body2, Body3, ButtonText, Heading2, Heading4, LinkTxt, MbBody2, MbBody3, MobileH2, MobileH4 } from './styles';
 const BrandMain = styled.div`
   padding: 80px 0 50px 0;
+  @media only screen and (max-width: 376px) {
+    padding-bottom: 40px;
+  }
 `;
 const BrandHeroSection = styled.div`
   padding-top: 100px;
@@ -17,6 +20,15 @@ const BrandHeroSection = styled.div`
     color: ${({ theme }) => theme.colors.body};
     margin: 0 0 32px 0;
   }
+  @media only screen and (max-width: 769px) {
+    padding: 40px 0;
+    h2 {
+      ${MobileH2}
+    }
+    p {
+      ${MbBody2}
+    }
+  }
 `;
 const BrandName = styled.div`
   padding: 50px 0;
@@ -29,6 +41,15 @@ const BrandName = styled.div`
     margin: 0;
     color: ${({ theme }) => theme.colors.body};
     ${Body3};
+  }
+  @media only screen and (max-width: 376px) {
+    padding: 40px 0;
+    h4 {
+      ${MobileH4}
+    }
+    p {
+      ${MbBody3}
+    }
   }
 `;
 const BrandImage = styled.div`
@@ -47,11 +68,17 @@ const BrandImage = styled.div`
   }
   .hover-name {
     transform: translate3d(0, 70px, 0);
+    @media only screen and (max-width: 769px) {
+      transform: none;
+    }
   }
   .effect-goliath:hover .hover-name {
     -webkit-transform: translate3d(0, 2px, 0);
     transform: translate3d(0, 2px, 0);
     transition: transform 0.35s;
+    @media only screen and (max-width: 769px) {
+      transform: none;
+    }
     img {
       transform: translate3d(0, 0px, 0);
       -webkit-transform: translate3d(0, 0, 0);
@@ -63,6 +90,11 @@ const BrandImage = styled.div`
   }
   p {
     margin: 0;
+  }
+  @media only screen and (max-width: 769px) {
+    flex-wrap: wrap;
+    gap: 28px;
+    padding-top: 28px;
   }
 `;
 const BrandImageLeft = styled.div`
@@ -80,6 +112,18 @@ const BrandImageLeft = styled.div`
     width: 100%;
     max-height: 90px;
     height: 100%;
+  }
+  @media only screen and (max-width: 376px) {
+    padding: 90px 0;
+    .firsticon {
+      max-width: 225px;
+      width: 100%;
+    }
+    .mobileicon {
+      max-width: 75px;
+      height: 50px;
+      width: 100%;
+    }
   }
 `;
 const HoverSection = styled.div`
@@ -103,6 +147,22 @@ const HoverSection = styled.div`
     max-width: 20px;
     max-height: 20px;
   }
+  @media only screen and (max-width: 769px) {
+    right: -4px;
+    left: -4px;
+    bottom: -1px;
+  }
+  @media only screen and (max-width: 376px) {
+    padding: 9px 13px;
+    p {
+      font-size: 12px;
+      line-height: 14px;
+    }
+    img {
+      width: 12px;
+      height: 12px;
+    }
+  }
 `;
 const HoverLink = styled.div`
   padding: 17px 24px;
@@ -119,6 +179,17 @@ const HoverLink = styled.div`
   p {
     ${LinkTxt};
     color: ${({ theme }) => theme.colors.whiteColor};
+  }
+  @media only screen and (max-width: 376px) {
+    padding: 9px 13px;
+    img {
+      width: 12px;
+      height: 12px;
+    }
+    p {
+      font-size: 12px;
+      line-height: 14px;
+    }
   }
 `;
 const BlackHover = styled.div`
@@ -137,6 +208,17 @@ const BlackHover = styled.div`
     ${LinkTxt};
     color: ${({ theme }) => theme.colors.greenlight};
   }
+  @media only screen and (max-width: 376px) {
+    padding: 9px 13px;
+    img {
+      width: 12px;
+      height: 12px;
+    }
+    p {
+      font-size: 12px;
+      line-height: 14px;
+    }
+  }
 `;
 const BrandImageRight = styled.div`
   padding: 160px 0;
@@ -148,6 +230,19 @@ const BrandImageRight = styled.div`
   display: inline-flex;
   justify-content: center;
   margin-top: -2px;
+  @media only screen and (max-width: 376px) {
+    padding: 90px 0;
+    .firsticon {
+      max-width: 250px;
+      width: 100%;
+      height: 50px;
+    }
+    .mobileicon {
+      max-width: 75px;
+      height: 50px;
+      width: 100%;
+    }
+  }
 `;
 const CompanyIcon = styled.div`
   padding: 112px 0;
@@ -166,9 +261,17 @@ const CompanyIcon = styled.div`
     right: 0;
     left: 0;
   }
+  @media only screen and (max-width: 376px) {
+    padding: 62px 0;
+    .companyicon {
+      width: 103px;
+      height: 103px;
+    }
+  }
 `;
 const ColorSection = styled.div`
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
   gap: 63px;
   padding-top: 40px;
   .block2color {
@@ -185,6 +288,9 @@ const ColorSection = styled.div`
   }
   .hover-name {
     transform: translate3d(0, 70px, 0);
+    @media only screen and (max-width: 769px) {
+      transform: none;
+    }
   }
   .effect-goliath:hover .hover-name {
     -webkit-transform: translate3d(0, 2px, 0);
@@ -194,10 +300,23 @@ const ColorSection = styled.div`
       transform: translate3d(0, 0px, 0);
       -webkit-transform: translate3d(0, 0, 0);
     }
+    @media only screen and (max-width: 769px) {
+      transform: none;
+    }
   }
   .hover-name {
     backface-visibility: hidden;
     transition: transform 0.35s;
+  }
+  @media only screen and (max-width: 769px) {
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    padding-top: 28px;
+    border-radius: 10px;
+  }
+  @media only screen and (max-width: 376px) {
+    grid-template-columns: 1fr;
+    gap: 28px;
   }
 `;
 const Block1 = styled.div`
@@ -206,6 +325,10 @@ const Block1 = styled.div`
   background-color: ${({ theme }) => theme.colors.primary};
   border-radius: 10px;
   position: relative;
+  @media only screen and (max-width: 769px) {
+    height: 335px;
+    width: 100%;
+  }
 `;
 const BlockSub = styled.div`
   background-color: ${({ theme }) => theme.colors.greendark};
@@ -233,6 +356,17 @@ const BlockSub = styled.div`
     color: ${({ theme }) => theme.colors.greenlight};
     ${Body2};
     letter-spacing: 0;
+  }
+
+  @media only screen and (max-width: 376px) {
+    p {
+      font-size: 16px;
+      line-height: 23px;
+    }
+    span {
+      font-size: 19px;
+      line-height: 25px;
+    }
   }
 `;
 const BlockLight = styled.div`
