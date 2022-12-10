@@ -1,3 +1,5 @@
+import { theme } from '../pages/_app';
+
 export const HEADER_LIST = {
   DEFAULT: 0,
   MESSAGING: 1,
@@ -61,7 +63,6 @@ export const NAVBAR_COLOR_LIST = [
     buttonColor: '#000000',
     primaryColor: '#09AA6C',
     lineColor: '#00160E'
-
   },
 
   {
@@ -72,6 +73,7 @@ export const NAVBAR_COLOR_LIST = [
     primaryColor: '#D7B79E',
     lineColor: '#FFF6F0',
     lightColor: '#FFF7F0',
+    buttontextColor: theme.colors.brownlight
   },
   {
     bgColor: 'rgba(1, 1, 29, 0.8)',
@@ -80,7 +82,7 @@ export const NAVBAR_COLOR_LIST = [
     buttonColor: '#989AF2',
     primaryColor: '#989AF2',
     lineColor: '#EFEEFF',
-    lightColor: '#EFEEFF',
+    lightColor: '#EFEEFF'
   },
   {
     bgColor: 'rgba(1, 41, 44, 0.8)',
@@ -89,7 +91,7 @@ export const NAVBAR_COLOR_LIST = [
     buttonColor: '#00AFB9',
     primaryColor: '#00AFB9',
     lineColor: '#E0FBFD',
-    lightColor: '#E0FBFD',
+    lightColor: '#E0FBFD'
   },
   {
     bgColor: 'rgba(23, 21, 0, 0.8)',
@@ -98,7 +100,7 @@ export const NAVBAR_COLOR_LIST = [
     buttonColor: '#F3DA1A',
     primaryColor: '#F3DA1A',
     lineColor: '#FDFBEC',
-    lightColor: '#FDFBEC',
+    lightColor: '#FDFBEC'
   },
   {
     bgColor: 'rgba(28, 12, 0, 0.8)',
@@ -107,7 +109,7 @@ export const NAVBAR_COLOR_LIST = [
     buttonColor: '#FD8C2E',
     primaryColor: '#FD8C2E',
     lineColor: '#FFEDDE',
-    lightColor: '#FFEDDE',
+    lightColor: '#FFEDDE'
   },
   {
     bgColor: 'rgba(39, 0, 10, 0.8)',
@@ -116,7 +118,7 @@ export const NAVBAR_COLOR_LIST = [
     buttonColor: '#F35B80',
     primaryColor: '#F35B80',
     lineColor: '#FFEFF3',
-    lightColor: '#FFEFF3',
+    lightColor: '#FFEFF3'
   },
   {
     bgColor: 'rgba(253, 253, 251, 0.8)',
@@ -125,7 +127,7 @@ export const NAVBAR_COLOR_LIST = [
     buttonColor: '#000000',
     primaryColor: '#09AA6C',
     lineColor: '#00160E',
-    lightColor: '',
+    lightColor: ''
   },
 
   {
@@ -135,7 +137,7 @@ export const NAVBAR_COLOR_LIST = [
     buttonColor: '#003F27',
     primaryColor: '#09AA6C',
     lineColor: '#E3FFEE',
-    lightColor: '#E3FFEE',
+    lightColor: '#E3FFEE'
   }
 ];
 export const MODULE_IMAGE_LIST = [
@@ -164,18 +166,18 @@ export const APPS_TYPE = {
 };
 
 export const HOME_FEATURES_TAB_ID = '6R0hkm1PSDEGOmel7Q6wva';
-export const FEATURES_MESSAG_TAB_ID = '2DgpDztGKBN2eo2rKNQ67p'
-export const FEATURES_BILLING_TAB_ID = '2iCYntWByiNtdj9Hkqzpeo'
-export const FEATURES_FILES_TAB_ID = '5xbH2EByTEWmPrtcSTWRdy'
-export const FEATURES_FORMS_TAB_ID = '3FflbItaKCbpfWnbHfFmIg'
-export const FEATURES_HELPDESK_TAB_ID = '4oQSJTMTBvBkHulyboUzLz'
+export const FEATURES_MESSAG_TAB_ID = '2DgpDztGKBN2eo2rKNQ67p';
+export const FEATURES_BILLING_TAB_ID = '2iCYntWByiNtdj9Hkqzpeo';
+export const FEATURES_FILES_TAB_ID = '5xbH2EByTEWmPrtcSTWRdy';
+export const FEATURES_FORMS_TAB_ID = '3FflbItaKCbpfWnbHfFmIg';
+export const FEATURES_HELPDESK_TAB_ID = '4oQSJTMTBvBkHulyboUzLz';
 
-export const FEATURES_MESSAG_ID = '3j6okJbvtbNtRAXhtQC869'
-export const FEATURES_BILLING_ID = '2biTe250v3ZnEWb49koKtb'
-export const FEATURES_FILES_ID = '6glhfdfv9r7EMxEcyF3dQk'
-export const FEATURES_FORMS_ID = '660hOhF7kjJEyZIdEeKZyr'
-export const FEATURES_HELPDESK_ID = '1kQbm7K0BbqiTTTaAMsU4m'
+export const FEATURES_MESSAG_ID = '3j6okJbvtbNtRAXhtQC869';
+export const FEATURES_BILLING_ID = '2biTe250v3ZnEWb49koKtb';
+export const FEATURES_FILES_ID = '6glhfdfv9r7EMxEcyF3dQk';
+export const FEATURES_FORMS_ID = '660hOhF7kjJEyZIdEeKZyr';
+export const FEATURES_HELPDESK_ID = '1kQbm7K0BbqiTTTaAMsU4m';
 
-export const SOLUTION_ACCOUNTING_FIRMS_ID = '7nxVRnK4EKqk1szL17P9Kz'
-export const SOLUTION_MARKETING_AGENCY_ID = '6UVZmBKVKmPACUNLAYBn2s'
-export const SOLUTION_STARTUP_ID = '2XEKSuKkBKBc5Tz9x1Z4Rc'
+export const SOLUTION_ACCOUNTING_FIRMS_ID = '7nxVRnK4EKqk1szL17P9Kz';
+export const SOLUTION_MARKETING_AGENCY_ID = '6UVZmBKVKmPACUNLAYBn2s';
+export const SOLUTION_STARTUP_ID = '2XEKSuKkBKBc5Tz9x1Z4Rc';
