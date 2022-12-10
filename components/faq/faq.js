@@ -3,7 +3,7 @@ import * as React from 'react';
 import { useStyletron } from 'baseui';
 import { Accordion, Panel } from 'baseui/accordion';
 import { Container } from '../../styles/commonStyles';
-import { FaqSection, FaqWrap, FaqTitle } from './styles';
+import { FaqSection, FaqWrap, FaqTitle, FaqPanel } from './styles';
 
 function CustomPanel(props) {
   return <Panel {...props} />;
@@ -19,7 +19,7 @@ export default function FAQ({ enterprise }) {
             <h3 className='faqtitle'>Frequently Asked Questions</h3>
           </FaqTitle>
           <Accordion
-            onChange={({ expanded }) => console.log(expanded)}
+            onChange={({ expanded }) => console.log('expanded', expanded)}
             overrides={{
               Header: {
                 style: ({ $theme }) => ({
@@ -64,10 +64,10 @@ export default function FAQ({ enterprise }) {
                   borderBottomColor: '#131313',
                   overflow: 'hidden',
                   paddingBottom: '40px',
-                  transition: 'all 350ms ease-in-out',
-                  ':hover': {
-                    backgroundColor: 'rgba(5, 255, 0, 0.12)'
-                  }
+                  transition: 'all 350ms ease-in-out'
+                  // ':hover': {
+                  //   backgroundColor: 'rgba(5, 255, 0, 0.12)'
+                  // }
                 })
               },
               ToggleIcon: {
@@ -86,13 +86,19 @@ export default function FAQ({ enterprise }) {
                 })
               }
             }}>
-            <CustomPanel title={<div className='listtitle'>Who is Copilot intended for?</div>}>
-              <div className='listcaption'>
+            <CustomPanel
+              title={
+                <div className='listtitle' aria-expanded={true}>
+                  Who is Copilot intended for?
+                </div>
+              }>
+              <div className='listcaption' aria-expanded={true}>
                 Copilot is a technology company that builds infrastructure for the services economy. Businesses of every
                 size — from small agencies to large law firms — use Portal building blocks to productize their business
                 and provide clients a streamlined experience.
               </div>
             </CustomPanel>
+
             <CustomPanel
               title={<div className='listtitle'>What’s the difference between a marketing site & copilot ?</div>}>
               <div className='listcaption'>
