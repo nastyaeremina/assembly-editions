@@ -2,6 +2,15 @@ import styled from 'styled-components';
 import { Body1, Body4, Heading3, Heading4, LinkTxt } from '../../styles/styles';
 const ClientMain = styled.div`
   padding: 50px 0;
+  &::before {
+    position: absolute;
+    width: 0;
+    height: 0;
+    overflow: hidden;
+    z-index: -1;
+    content: url(/images/billhoverbg.svg) url(/images/hoverfile.svg) url(/images/hoverblock.svg)
+      url(/images/hoverform.svg) url(/images/hoverbase.svg) url(/images/hovermessage.svg);
+  }
 `;
 const ClientHero = styled.div`
   text-align: center;
