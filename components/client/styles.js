@@ -23,9 +23,9 @@ const ClientHero = styled.div`
   }
 `;
 const CardSection = styled.div`
-  display: flex;
+  display: grid;
   gap: 16px;
-  justify-content: space-between;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
   padding-bottom: 16px;
   padding-top: 40px;
   /* transition: all 0.5s ease; */
@@ -88,6 +88,9 @@ const CardSection = styled.div`
     a {
       color: ${({ theme }) => theme.colors.brownlight};
     }
+  }
+  @media only screen and (max-width: 376px) {
+    grid-template-columns: 1fr 1fr;
   }
 `;
 const ModuleCard = styled.div`

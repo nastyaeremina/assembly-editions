@@ -5,6 +5,9 @@ const FaqSection = styled.div`
   padding: 100px 0 60px 0;
   .ag {
     padding-bottom: 40px;
+    :last-child {
+      padding-bottom: 0;
+    }
   }
   .ao {
     padding-bottom: 0;
@@ -12,7 +15,7 @@ const FaqSection = styled.div`
   ${(props) =>
     props.enterprise &&
     css`
-      padding: 100px 0;
+      padding: 100px 0 60px 0;
       background-color: ${({ theme }) => theme.colors.greenlight};
     `}
   .ak:last-child {

@@ -34,7 +34,7 @@ export default function FeatureHero({ currentModule }) {
           </BlockLeft>
           <BlockRight>
             <BLockImg>
-              <Image src='/images/heroimage.png' alt='main-logo' height={392} width={570} className='' />
+              <Image src='/images/heroimage.png' alt='main-logo' height={392} width={570} className='heroimage' />
               <Image src='/images/videoiconblack.svg' alt='video-logo' height={76} width={76} className='icon' />
             </BLockImg>
           </BlockRight>
