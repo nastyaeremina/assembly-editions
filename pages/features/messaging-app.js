@@ -24,6 +24,7 @@ import { BottomFunction } from '../../components/content/styles';
 import TabView from '../../components/tab/tab';
 import { getFeatureById } from '../../lib/contentful-features';
 import { isEmpty } from '../../helpers/helpers';
+import FeatureHero from '../../components/featurehero/featurehero';
 
 const CURRENT_MODULE = MUDULE_LIST.MESSAGING;
 export default function MessagingApp({ details }) {
@@ -32,32 +33,21 @@ export default function MessagingApp({ details }) {
       <>
         <Navbar isModule={true} headerIndex={HEADER_LIST.MESSAGING} />
 
-        <MsgHeroSection>
-          <Container>
-            <HeroSub className='msgheropadding'>
-              <h2>Simplify client</h2>
-              <Image
-                src='/images/messagehero.svg'
-                alt='line-icon'
-                width={562}
-                height={141}
-                layout={'fixed'}
-                className='messsegeimg'
-              />
-              {/* <MessegeItem>
-                                <span> commnication</span>
-                                <Image
-                                    src="/images/messege.svg"
-                                    alt="line-icon"
-                                    width={147}
-                                    height={141}
-                                    layout={"fixed"}
-                                    className="messsegeimg"
-                                />
-                            </MessegeItem> */}
-            </HeroSub>
-          </Container>
-        </MsgHeroSection>
+        <FeatureHero currentModule={HEADER_LIST.MESSAGING} />
+        {/* <Container>
+          <HeroSub className='msgheropadding'>
+            <h2>Simplify client</h2>
+            <Image
+              src='/images/messagehero.svg'
+              alt='line-icon'
+              width={562}
+              height={141}
+              layout={'fixed'}
+              className='messsegeimg'
+            />
+          
+          </HeroSub>
+        </Container> */}
       </>
     );
   }, []);
