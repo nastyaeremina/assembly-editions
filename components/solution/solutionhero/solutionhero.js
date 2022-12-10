@@ -2,20 +2,33 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useMemo } from 'react';
 import { Container, PrimaryButton, SecondryButton } from '../../../styles/commonStyles';
-import { HeroSection, SolutionWrap, LeftWrap, RightWrap, TextSection, BtnWrap, ImageView, MobileImg } from './styles';
+import {
+  HeroSection,
+  SolutionWrap,
+  LeftWrap,
+  RightWrap,
+  TextSection,
+  BtnWrap,
+  ImageView,
+  MobileImg,
+  MobileView,
+  Mobilenew
+} from './styles';
 
 export default function SolutionHero({ title, description }) {
-  const titleSplitList = title?.split(',')
+  const titleSplitList = title?.split(',');
 
   const renderHeaderView = useMemo(() => {
-    const lastIndex = titleSplitList?.length - 1
+    const lastIndex = titleSplitList?.length - 1;
     return titleSplitList?.map((item, index) => {
-      return <>
-        {item}
-        {index !== lastIndex && <span>,</span>}
-      </>
-    })
-  }, [titleSplitList])
+      return (
+        <>
+          {item}
+          {index !== lastIndex && <span>,</span>}
+        </>
+      );
+    });
+  }, [titleSplitList]);
   return (
     <>
       <HeroSection>
@@ -23,12 +36,8 @@ export default function SolutionHero({ title, description }) {
           <SolutionWrap>
             <LeftWrap>
               <TextSection>
-                <h2>
-                  {renderHeaderView}
-                </h2>
-                <p>
-                  {description}
-                </p>
+                <h2>{renderHeaderView}</h2>
+                <p>{description}</p>
                 <BtnWrap>
                   <PrimaryButton>
                     <Link href='https://dashboard.copilot.com/onboarding'>Start Trial</Link>
@@ -43,6 +52,12 @@ export default function SolutionHero({ title, description }) {
                   <Image src='/images/mobilecline.png' alt='main-logo' width={310} height={655} />
                 </MobileImg>
               </ImageView>
+              <MobileView>
+                <Image src='/images/mobisolu.png' alt='main-logo' width={269} height={354} />
+                <Mobilenew>
+                  <Image src='/images/mobilsoluss.png' alt='main-logo' width={174} height={367} />
+                </Mobilenew>
+              </MobileView>
             </RightWrap>
           </SolutionWrap>
         </Container>
