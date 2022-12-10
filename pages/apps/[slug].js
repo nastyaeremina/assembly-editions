@@ -22,6 +22,7 @@ import {
   ImageWrap,
   AppsDetailWrap,
   FirstImg,
+  TooltipWrap,
   Tooltip
 } from '../../styles/appsStyles';
 import { Container, PrimaryButton } from '../../styles/commonStyles';
@@ -126,7 +127,20 @@ export default function AppsDetail({ appDetail, relatedApps }) {
                       <p>Type</p>
                       <HelpWrap>
                         <span>{appDetail?.appType}</span>
-                        <Image src='/images/help.svg' alt='bill-icon' width={20} height={20} layout={'fixed'} />
+                        <TooltipWrap className='tooltip'>
+                          <Image src='/images/help.svg' alt='bill-icon' width={20} height={20} layout={'fixed'} />
+                          <Tooltip className='tooltiptext'>
+                            <h5>Tooltip title</h5>
+                            <p>
+                              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tem por incididunt
+                              ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+                              ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
+                              reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
+                              sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id
+                              est laborum
+                            </p>
+                          </Tooltip>
+                        </TooltipWrap>
                       </HelpWrap>
                     </DetailTxt>
                   </RightWrap>

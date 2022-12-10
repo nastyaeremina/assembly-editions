@@ -462,6 +462,10 @@ const DetailTxt = styled.div`
     color: ${({ theme }) => theme.colors.primary};
     ${Body4};
   }
+`;
+const HelpWrap = styled.div`
+  display: flex;
+  gap: 12px;
   .tooltip {
     position: relative;
     display: inline-block;
@@ -469,7 +473,7 @@ const DetailTxt = styled.div`
   .tooltip .tooltiptext {
     visibility: hidden;
     opacity: 0;
-    width: 834px;
+    width: 769px;
     border-radius: 6px;
     padding: 24px 32px;
     ${Body4};
@@ -478,9 +482,9 @@ const DetailTxt = styled.div`
     /* Position the tooltip */
     position: absolute;
     z-index: 2;
-    top: 40px;
-    left: 0;
-    margin-left: -54px;
+    top: 42px;
+    right: 0;
+    margin-right: -54px;
     box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.25);
     border-radius: 4px;
   }
@@ -494,14 +498,10 @@ const DetailTxt = styled.div`
       border-top: 2px solid #00160e;
       transform: rotate(90deg);
       top: 0;
-      left: 42px;
+      right: 42px;
       z-index: -1;
     }
   }
-`;
-const HelpWrap = styled.div`
-  display: flex;
-  gap: 12px;
 `;
 const RightTxt = styled.div`
   background-color: ${({ theme }) => theme.colors.greenlight};
@@ -546,7 +546,21 @@ const ImageWrap = styled.div`
   box-shadow: 0px 0px 25.4474px rgba(0, 0, 0, 0.07);
   border-radius: 5px;
 `;
-const Tooltip = styled.div``;
+const TooltipWrap = styled.div`
+  cursor: pointer;
+`;
+const Tooltip = styled.div`
+  h5 {
+    ${Heading5};
+    margin: 0;
+    color: ${({ theme }) => theme.colors.greenlight};
+  }
+  p {
+    ${Body4};
+    margin: 8px 0 0;
+    color: ${({ theme }) => theme.colors.greenlight};
+  }
+`;
 const AppsDetailWrap = styled.div`
   padding: 40px 0;
   p {
@@ -604,5 +618,6 @@ export {
   AppsHeroWrap,
   AppsDetailWrap,
   FirstImg,
-  ExtensionsLastSection
+  ExtensionsLastSection,
+  TooltipWrap
 };
