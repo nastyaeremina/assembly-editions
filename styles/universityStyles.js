@@ -1,8 +1,23 @@
 import styled, { css } from 'styled-components';
-import { Body2, Body4, Body5, Heading2, Heading3, Heading4, Heading5, LinkTxt, Value } from './styles';
+import {
+  Body2,
+  Body4,
+  Body5,
+  Heading2,
+  Heading3,
+  Heading4,
+  Heading5,
+  LinkTxt,
+  MbBody2,
+  MobileH2,
+  Value
+} from './styles';
 const UniversitySection = styled.div`
   padding-top: 80px;
   padding-bottom: 100px;
+  @media only screen and (max-width: 749px) {
+    padding-top: 16px;
+  }
 `;
 const UniversityHero = styled.div`
   padding-top: 100px;
@@ -19,11 +34,29 @@ const UniversityHero = styled.div`
     margin: 0;
     ${Body2};
   }
+  @media only screen and (max-width: 749px) {
+    h2 {
+      ${MobileH2};
+      color: ${({ theme }) => theme.colors.title};
+      margin: 0 0 20px 0;
+    }
+    p {
+      color: ${({ theme }) => theme.colors.body};
+      margin: 0;
+      ${MbBody2};
+    }
+  }
 `;
 const FeatureWrap = styled.div`
   display: flex;
   gap: 36px;
   padding-top: 100px;
+  @media only screen and (max-width: 991px) {
+    width: 100%;
+  }
+  @media only screen and (max-width: 749px) {
+    padding-top: 80px;
+  }
 `;
 const FeatureLeft = styled.div`
   position: relative;
@@ -112,6 +145,9 @@ const FeatureRight = styled.div`
     color: ${({ theme }) => theme.colors.title};
     margin: 0 0 28px 0;
   }
+  @media only screen and (max-width: 991px) {
+    width: 100%;
+  }
 `;
 const Featured = styled.div`
   /* padding-top: 100px; */
@@ -126,6 +162,12 @@ const FeatureMenu = styled.div`
   grid-template-columns: 1fr 1fr 1fr;
   gap: 36px;
   row-gap: 28px;
+  @media only screen and (max-width: 991px) {
+    grid-template-columns: 1fr 1fr;
+  }
+  @media only screen and (max-width: 749px) {
+    grid-template-columns: 1fr;
+  }
 `;
 const FeatureCard = styled.div`
   border-radius: 4px;
@@ -140,6 +182,12 @@ const FeatureCard = styled.div`
   :hover .hoveritem {
     opacity: 1;
   }
+  @media only screen and (max-width: 991px) {
+    max-height: 100%;
+    img {
+      width: 100%;
+    }
+  }
 `;
 const ExtensionsSection = styled.div`
   padding-top: 40px;
@@ -153,11 +201,20 @@ const ExtensionsSection = styled.div`
     css`
       padding-top: 100px;
     `}
+    @media only screen and (max-width: 991px) {
+    width: 100%;
+  }
 `;
 const ExtensionCard = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   gap: 36px;
+  @media only screen and (max-width: 991px) {
+    grid-template-columns: 1fr 1fr;
+  }
+  @media only screen and (max-width: 749px) {
+    grid-template-columns: 1fr;
+  }
 `;
 const SchedulingApps = styled.div`
   padding-top: 40px;
@@ -237,11 +294,12 @@ const Overlay = styled.div`
 const HoverButton = styled.div`
   position: absolute;
 
-  left: 105px;
-  top: 55px;
+  left: 50%;
+  top: 50%;
   text-align: center;
   opacity: 0;
   transition: opacity 0.35s ease;
+  transform: translate(-50%, -50%);
 `;
 const OverLay = styled.div`
   position: absolute;
