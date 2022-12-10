@@ -37,6 +37,9 @@ const Mainss = styled.div`
   border-radius: 4px;
   background: #ffffff;
   overflow: hidden;
+  @media only screen and (max-width: 1024px) {
+    flex-wrap: wrap;
+  }
 `;
 const QuoteTxt = styled.div`
   display: flex;
