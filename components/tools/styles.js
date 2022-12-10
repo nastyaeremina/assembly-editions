@@ -23,6 +23,9 @@ const ModuleSection = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
   position: relative;
+  @media only screen and (max-width: 769px) {
+    grid-template-columns: 1fr 1fr;
+  }
   /* .moduleborder {
     border-top: 1px solid #120800;
     position: relative;

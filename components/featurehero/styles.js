@@ -7,6 +7,9 @@ const FeatureHeroSection = styled.div`
 const HeroBlock = styled.div`
   display: flex;
   gap: 60px;
+  @media only screen and (max-width: 769px) {
+    flex-wrap: wrap;
+  }
 `;
 const BlockLeft = styled.div`
   max-width: 552px;
@@ -53,6 +56,10 @@ const BLockImg = styled.div`
     width: 100%;
     top: 50%;
     left: 100%;
+    @media only screen and (max-width: 1024px) {
+      max-width: 100%;
+      width: 100%;
+    }
   }
   .icon {
     position: absolute;

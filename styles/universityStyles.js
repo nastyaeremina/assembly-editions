@@ -3,6 +3,7 @@ import {
   Body2,
   Body4,
   Body5,
+  HeaderFont,
   Heading2,
   Heading3,
   Heading4,
@@ -234,6 +235,9 @@ const DetailVideoHero = styled.div`
     color: ${({ theme }) => theme.colors.title};
     margin: 0;
   }
+  @media only screen and (max-width: 769px) {
+    padding-bottom: 28px;
+  }
 `;
 const Backlink = styled.div`
   display: flex;
@@ -245,6 +249,11 @@ const Backlink = styled.div`
     margin: 0;
     color: ${({ theme }) => theme.colors.lightgray};
   }
+  @media only screen and (max-width: 769px) {
+    p {
+      ${HeaderFont}
+    }
+  }
 `;
 const VideoImage = styled.div`
   position: relative;
@@ -252,20 +261,39 @@ const VideoImage = styled.div`
   height: 100%;
   img {
     border-radius: 8px;
+    max-width: 100%;
+  }
+  @media only screen and (max-width: 769px) {
+    img {
+      border-radius: 4px;
+    }
   }
 `;
 const VideoSection = styled.div`
   padding-bottom: 100px;
   .mainimage {
     position: absolute;
-    top: 34%;
-    left: 42%;
+    transform: translate(-50%, -50%);
+    top: 50%;
+    left: 50%;
     z-index: 2;
+    max-width: 100%;
+    @media only screen and (max-width: 769px) {
+      max-width: 80px;
+      width: 100%;
+    }
   }
   p {
     ${Body2};
     color: ${({ theme }) => theme.colors.body};
     margin: 40px 0 0 0;
+  }
+  @media only screen and (max-width: 769px) {
+    padding-bottom: 80px;
+    p {
+      margin-top: 28px;
+      ${MbBody2}
+    }
   }
 `;
 const VIdeoWrap = styled.div`
@@ -275,11 +303,22 @@ const VIdeoWrap = styled.div`
     color: ${({ theme }) => theme.colors.title};
     margin: 0;
   }
+  @media only screen and (max-width: 769px) {
+    padding-bottom: 80px;
+  }
 `;
 const UniversityVideo = styled.div`
-  display: flex;
+  display: grid;
   gap: 48px;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
   padding-top: 40px;
+  @media only screen and (max-width: 769px) {
+    grid-template-columns: 1fr 1fr;
+    padding-top: 28px;
+  }
+  @media only screen and (max-width: 376px) {
+    grid-template-columns: 1fr;
+  }
 `;
 const Overlay = styled.div`
   position: absolute;
@@ -310,7 +349,11 @@ const OverLay = styled.div`
   z-index: 1;
   background-color: black;
   opacity: 0.4;
-  border-radius: 15px;
+  border-radius: 8px;
+  @media only screen and (max-width: 769px) {
+    border-radius: 4px;
+    bottom: 3px;
+  }
 `;
 export {
   UniversitySection,
