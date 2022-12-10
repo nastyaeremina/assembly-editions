@@ -3,8 +3,11 @@ import { React } from 'react';
 import { ButtonContainer } from './style';
 
 function myFunction(e) {
-  e.target.style.setProperty('--cursor-x', e.clientX - e.target.offsetLeft);
-  e.target.style.setProperty('--cursor-y', e.clientY - e.target.offsetTop - document.body.getBoundingClientRect().top);
+  var rect = e.target.getBoundingClientRect();
+  var x = e.clientX - rect.left; //x position within the element.
+  var y = e.clientY - rect.top; //y position within the element.
+  e.target.style.setProperty('--cursor-x', x);
+  e.target.style.setProperty('--cursor-y', y);
 }
 export default function Button({
   bgColor = '#09AA6C',
@@ -20,13 +23,18 @@ export default function Button({
   return (
     <ButtonContainer
       onClick={onClick}
-      onMouseMove={(e) => myFunction(e)}
       backgroundColor={bgColor}
       hoverColor={hoverColor}
       borderColor={borderColor}
       fontColor={fontColor}
       className={className}>
-      {isLink ? <Link href={href}>{text}</Link> : <a>{text}</a>}
+      {isLink ? (
+        <Link onMouseMove={(e) => myFunction(e)} href={href}>
+          {text}
+        </Link>
+      ) : (
+        <a>{text}</a>
+      )}
     </ButtonContainer>
   );
 }
