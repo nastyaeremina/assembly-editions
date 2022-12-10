@@ -3,6 +3,12 @@ import { Body1, Heading, Heading2, Heading3, Heading4 } from '../../styles/style
 
 const FaqSection = styled.div`
   padding: 100px 0 60px 0;
+  .ag {
+    padding-bottom: 40px;
+  }
+  .ao {
+    padding-bottom: 0;
+  }
   ${(props) =>
     props.enterprise &&
     css`
