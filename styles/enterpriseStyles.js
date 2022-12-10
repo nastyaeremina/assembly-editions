@@ -1,5 +1,18 @@
 import styled from 'styled-components';
-import { Body2, Body4, CardTxt, Heading2, Heading3, Heading4, Label } from './styles';
+import {
+  Body2,
+  Body4,
+  CardTxt,
+  Heading2,
+  Heading3,
+  Heading4,
+  Label,
+  MbBody2,
+  MbBody4,
+  MbBody5,
+  MobileH2,
+  MobileH4
+} from './styles';
 
 const MainWrap = styled.div`
   background-color: ${({ theme }) => theme.colors.greendark};
@@ -13,6 +26,15 @@ const EnterPriseHero = styled.div`
   width: 100%;
   height: 100vw;
   background-color: linear-gradient(180deg, #00160e 0%, rgba(0, 22, 14, 0.8552) 79.69%, rgba(0, 22, 14, 0) 100%);
+  @media only screen and (max-width: 991px) {
+    padding-top: 100px;
+  }
+  @media only screen and (max-width: 749px) {
+    background-image: url('/images/entermobi.png');
+    height: calc(100vh - 150px);
+    background-position: center 285px;
+    background-size: contain;
+  }
 `;
 const LeftHero = styled.div`
   max-width: 712px;
@@ -31,6 +53,32 @@ const TitleSec = styled.div`
     color: ${({ theme }) => theme.colors.greenlight};
     margin: 20px 0 32px;
   }
+  @media only screen and (max-width: 991px) {
+    h2 {
+      font-size: 60px;
+      line-height: 70px;
+    }
+    p {
+      font-size: 22px;
+      line-height: 25px;
+      letter-spacing: 0.02em;
+      color: ${({ theme }) => theme.colors.greenlight};
+      margin: 20px 0 32px;
+      max-width: 500px;
+    }
+  }
+  @media only screen and (max-width: 749px) {
+    h2 {
+      ${MobileH2};
+    }
+    p {
+      ${MbBody2};
+      letter-spacing: 0.02em;
+      color: ${({ theme }) => theme.colors.greenlight};
+      margin: 20px 0 32px;
+      max-width: 297px;
+    }
+  }
 `;
 const BtnWrap = styled.div``;
 const BenefitsSection = styled.div`
@@ -45,6 +93,13 @@ const BenefitsSection = styled.div`
     top: -133px;
     background: linear-gradient(180deg, #00160e 0%, rgba(0, 22, 14, 0.8552) 79.69%, rgba(0, 22, 14, 0) 100%);
     transform: rotate(-180deg);
+    @media only screen and (max-width: 749px) {
+      height: 141px;
+      top: 0;
+    }
+  }
+  @media only screen and (max-width: 749px) {
+    padding-bottom: 116px;
   }
 `;
 const BenefitWrap = styled.div`
@@ -61,10 +116,27 @@ const BenefitBox = styled.div`
   position: relative;
   border-radius: 4px 4px 0px 4px;
   .bordernone {
-    border-right: none;
+    border-right: 1px solid #e3ffee;
+    border-top-right-radius: 4px;
   }
   .borderbottom {
-    border-bottom: none;
+    border-bottom: 1px solid #e3ffee;
+  }
+  @media only screen and (max-width: 991px) {
+    border-right: 0;
+    border-bottom: 0;
+    grid-template-columns: 1fr 1fr 1fr;
+
+    .bordernone {
+      border-right: 1px solid #e3ffee;
+    }
+    .borderbottom {
+      border-bottom: 1px solid #e3ffee;
+    }
+  }
+  @media only screen and (max-width: 749px) {
+    grid-template-columns: 1fr 1fr;
+    border-bottom-left-radius: 0px;
   }
 `;
 const BoxView = styled.div`
@@ -73,11 +145,26 @@ const BoxView = styled.div`
   border-bottom: 1px solid ${({ theme }) => theme.colors.greenlight};
   margin: -1px;
   display: flex;
-  height: 100%;
-  min-height: 265px;
-
+  padding-top: 80px;
   :last-child {
     border-right: none;
+  }
+  @media only screen and (max-width: 991px) {
+    :nth-child(3) {
+      border-top-right-radius: 4px;
+      border-right: 1px solid #e3ffee;
+      border-top-right-radius: 4px;
+    }
+  }
+  @media only screen and (max-width: 749px) {
+    padding: 16px;
+    padding-top: 50px;
+    :nth-child(2) {
+      border-top-right-radius: 4px;
+    }
+    :nth-child(7) {
+      border-bottom-left-radius: 0px;
+    }
   }
 `;
 const ImgIcon = styled.div`
@@ -103,6 +190,22 @@ const DetailView = styled.div`
     line-clamp: 3;
     -webkit-box-orient: vertical;
   }
+  @media only screen and (max-width: 749px) {
+    h4 {
+      ${MobileH4};
+    }
+    p {
+      ${MbBody5};
+      margin: 8px 0 0;
+      color: ${({ theme }) => theme.colors.greenlight};
+      overflow: hidden;
+      text-overflow: ellipsis;
+      display: -webkit-box;
+      -webkit-line-clamp: 3; /* number of lines to show */
+      line-clamp: 3;
+      -webkit-box-orient: vertical;
+    }
+  }
 `;
 const ComingUp = styled.div`
   position: absolute;
@@ -113,6 +216,14 @@ const ComingUp = styled.div`
   padding: 7px 24px;
   border: 1px solid ${({ theme }) => theme.colors.greenlight};
   border-radius: 0px 0px 4px 4px;
+  @media only screen and (max-width: 991px) {
+    right: 239px;
+    left: -1px;
+  }
+  @media only screen and (max-width: 749px) {
+    left: -1;
+    right: -1px;
+  }
 `;
 const SpanText = styled.span`
   ${CardTxt};
@@ -133,14 +244,31 @@ const PlusWrap = styled.div`
   p {
     margin: 20px auto 32px;
     ${Body2};
+    text-align: center;
     color: ${({ theme }) => theme.colors.body};
     max-width: 780px;
     width: 100%;
+  }
+  @media only screen and (max-width: 749px) {
+    padding: 45px 0;
+    h3 {
+      ${MobileH2};
+      color: ${({ theme }) => theme.colors.title};
+      margin: 0;
+    }
+    p {
+      ${MbBody2};
+      color: ${({ theme }) => theme.colors.body};
+      text-align: center;
+    }
   }
 `;
 const BtnList = styled.div``;
 const StepsSection = styled.div`
   padding-bottom: 100px;
+  @media only screen and (max-width: 749px) {
+    padding-bottom: 80px;
+  }
 `;
 
 const StepWrap = styled.div`
@@ -183,6 +311,9 @@ const TopView = styled.div`
     left: 0;
     top: 50%;
   }
+  @media only screen and (max-width: 749px) {
+    padding-left: 41px;
+  }
 `;
 const DayLabel = styled.div`
   background: #e3ffee;
@@ -212,9 +343,27 @@ const BottomView = styled.div`
     color: ${({ theme }) => theme.colors.greenlight};
     margin: 12px 0 0;
   }
+  @media only screen and (max-width: 749px) {
+    padding-left: 13px;
+    max-width: 100%;
+    margin-top: 13px;
+    h4 {
+      ${MobileH4};
+      color: ${({ theme }) => theme.colors.greenlight};
+      margin: 0;
+    }
+    p {
+      ${MbBody4};
+      color: ${({ theme }) => theme.colors.greenlight};
+      margin: 8px 0 0;
+    }
+  }
 `;
 const DaySecond = styled.div`
   margin-top: 328px;
+  @media only screen and (max-width: 749px) {
+    margin-top: 245px;
+  }
 `;
 const LeftBottomView = styled.div`
   padding-right: 55px;
@@ -229,6 +378,20 @@ const LeftBottomView = styled.div`
     ${Body4};
     color: ${({ theme }) => theme.colors.greenlight};
     margin: 12px 0 0;
+  }
+  @media only screen and (max-width: 749px) {
+    padding-right: 13px;
+    margin-top: 13px;
+    h4 {
+      ${MobileH4};
+      color: ${({ theme }) => theme.colors.greenlight};
+      margin: 0;
+    }
+    p {
+      ${MbBody4};
+      color: ${({ theme }) => theme.colors.greenlight};
+      margin: 8px 0 0;
+    }
   }
 `;
 const LeftTopView = styled.div`
@@ -252,6 +415,9 @@ const LeftTopView = styled.div`
     position: absolute;
     right: 0;
     top: 50%;
+  }
+  @media only screen and (max-width: 749px) {
+    padding-right: 41px;
   }
 `;
 const DayCenter = styled.div`
@@ -300,6 +466,20 @@ const BottomLast = styled.div`
     ${Body4};
     color: ${({ theme }) => theme.colors.greenlight};
     margin: 12px 0 0;
+  }
+  @media only screen and (max-width: 749px) {
+    max-width: 100%;
+    margin-top: 18px;
+    h4 {
+      ${MobileH4};
+      color: ${({ theme }) => theme.colors.greenlight};
+      margin: 0;
+    }
+    p {
+      ${MbBody4};
+      color: ${({ theme }) => theme.colors.greenlight};
+      margin: 8px 0 0;
+    }
   }
 `;
 const BtnListtwo = styled.div`
