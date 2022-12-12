@@ -12,22 +12,20 @@ export default function FeatureHero({ colorList, title, description, iconUrl }) 
       <Container>
         <HeroBlock>
           <BlockLeft textColor={colorList?.fontColor}>
-            <BlockLine lineColor={colorList?.borderColor} >
-              <BlockImage lineColor={colorList?.borderColor} >
+            <BlockLine lineColor={colorList?.borderColor}>
+              <BlockImage lineColor={colorList?.borderColor}>
                 <Image src={iconUrl} alt='main-logo' height={44} width={44} />
               </BlockImage>
             </BlockLine>
             <h2>{title}</h2>
-            <p>
-              {description}
-            </p>
+            <p>{description}</p>
             {/* <PrimaryButton>
               <a href='/'>Start Trial</a>
             </PrimaryButton> */}
             <Button
               bgColor={colorList?.buttonBgColor}
               borderColor={colorList?.buttonBgColor}
-              fontColor={theme.colors.whiteColor}
+              fontColor={colorList?.buttonFontColor}
               href='#'
               text={'Start Trial'}
             />

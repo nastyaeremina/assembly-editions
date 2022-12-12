@@ -39,6 +39,7 @@ import { getFeatureById } from '../../lib/contentful-features';
 import { BottomFunction } from '../../components/content/styles';
 import TabView from '../../components/tab/tab';
 import { isEmpty } from '../../helpers/helpers';
+import FeatureHero from '../../components/featurehero/featurehero';
 
 const CURRENT_MODULE = MUDULE_LIST.FILES;
 export default function MessagingApp({ details }) {
@@ -46,24 +47,14 @@ export default function MessagingApp({ details }) {
     return (
       <>
         <Navbar isModule={true} headerIndex={HEADER_LIST.FILES} />
-        <FileMain>
-          <Container>
-            <HeroSub className='filepadding'>
-              <h2 className='filetext'>Organize client</h2>
-              <FileWrap>
-                <p>files</p>
-                <Image
-                  src='/images/svg.svg'
-                  alt='-icon'
-                  width={216}
-                  height={239}
-                  layout={'fixed'}
-                  className='fileimage'
-                />
-              </FileWrap>
-            </HeroSub>
-          </Container>
-        </FileMain>
+        <FeatureHero
+          colorList={MODULE_COLOR_LIST[HOME_MODULE_LIST['Files']]}
+          title={'Files App'}
+          description={
+            'Make it easy to share files with clients, stay organized folders, and get contracts signed with eSignature requests.'
+          }
+          iconUrl={'/images/file-icon.svg'}
+        />
       </>
     );
   }, []);
