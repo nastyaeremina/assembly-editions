@@ -211,7 +211,7 @@ const MbBody1 = css`
 const MbPrimaryBtn = css`
   font-weight: 500;
   font-size: 15px;
-  line-height: 26px;
+  line-height: 24px;
 `;
 const MobileH2 = css`
   font-weight: 400;
