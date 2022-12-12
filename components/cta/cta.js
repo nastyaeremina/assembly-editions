@@ -53,7 +53,7 @@ export default function CTA({ moduleName, colorList }) {
                   borderColor={'transparent'}
                   text={'Start Trial'}
                   href={'https://dashboard.copilot.com/onboarding'}
-                  hoverColor={'red'}
+                  hoverColor={'white'}
                 />
                 <Button
                   fontColor={
@@ -65,7 +65,7 @@ export default function CTA({ moduleName, colorList }) {
                   bgColor={'transparent'}
                   text={'Book Demo'}
                   href={'/book-demo'}
-                  hoverColor={'red'}
+                  hoverColor={'white'}
                 />
               </CtaBtn>
             </CtaInner>
