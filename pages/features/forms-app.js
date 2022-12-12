@@ -39,6 +39,7 @@ import { BottomFunction } from '../../components/content/styles';
 import TabView from '../../components/tab/tab';
 import { getFeatureById } from '../../lib/contentful-features';
 import { isEmpty } from '../../helpers/helpers';
+import FeatureHero from '../../components/featurehero/featurehero';
 
 const CURRENT_MODULE = MUDULE_LIST.FORMS;
 export default function MessagingApp({ details }) {
@@ -46,28 +47,14 @@ export default function MessagingApp({ details }) {
     return (
       <>
         <Navbar isModule={true} headerIndex={HEADER_LIST.FORMS} />
-        <FormMain>
-          <Container>
-            <FormHero className='gap'>
-              <h2 className='formtext'>Streamline</h2>
-              <FormWrap>
-                <MessegeItem>
-                  <span className='formtxt'>form</span>
-
-                  <Image
-                    src='/images/formhero.svg'
-                    alt='bill-icon'
-                    width={232}
-                    height={222}
-                    layout={'fixed'}
-                    className='formimage'
-                  />
-                </MessegeItem>
-                <h2 className='formtext'>intake</h2>
-              </FormWrap>
-            </FormHero>
-          </Container>
-        </FormMain>
+        <FeatureHero
+          colorList={MODULE_COLOR_LIST[HOME_MODULE_LIST['Forms']]}
+          title={'Forms App'}
+          description={
+            'Collect client information seamlessly by creating customizable forms with 6 question types and sharing it with clients.'
+          }
+          iconUrl={'/images/form-icon.svg'}
+        />
       </>
     );
   }, []);

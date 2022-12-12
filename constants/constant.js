@@ -40,11 +40,41 @@ export const HOME_MODULE_LIST = {
 };
 
 export const MODULE_COLOR_LIST = [
-  { bgColor: '#120800', fontColor: '#FFF7F0' },
-  { bgColor: '#01292C', fontColor: '#E0FBFD' },
-  { bgColor: '#01011D', fontColor: '#EFEEFF' },
-  { bgColor: '#171500', fontColor: '#FDFBEC' },
-  { bgColor: '#1C0C00', fontColor: '#FFEDDE' }
+  {
+    bgColor: theme.colors.browndark,
+    fontColor: theme.colors.brownlight,
+    borderColor: theme.colors.brownmidlight,
+    buttonBgColor: theme.colors.brown,
+    buttonFontColor: theme.colors.whiteColor
+  },
+  {
+    bgColor: theme.colors.bluedark,
+    fontColor: theme.colors.bluelight,
+    borderColor: theme.colors.bluemidlight,
+    buttonBgColor: theme.colors.blueprimary,
+    buttonFontColor: theme.colors.whiteColor
+  },
+  {
+    bgColor: theme.colors.purpledark,
+    fontColor: theme.colors.purplelight,
+    borderColor: theme.colors.purplemidlight,
+    buttonBgColor: theme.colors.purpleprimary,
+    buttonFontColor: theme.colors.whiteColor
+  },
+  {
+    bgColor: theme.colors.yellowdark,
+    fontColor: theme.colors.yellowlight,
+    borderColor: theme.colors.yellowmidlight,
+    buttonBgColor: theme.colors.yellow,
+    buttonFontColor: theme.colors.yellowdark
+  },
+  {
+    bgColor: theme.colors.orangedark,
+    fontColor: theme.colors.orangelight,
+    borderColor: theme.colors.orangemidlight,
+    buttonBgColor: theme.colors.orangeprimary,
+    buttonFontColor: theme.colors.whiteColor
+  }
 ];
 
 export const MODULE_GRADIENT_IMAGE_LIST = {

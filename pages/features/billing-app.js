@@ -40,6 +40,7 @@ import { BottomFunction } from '../../components/content/styles';
 import TabView from '../../components/tab/tab';
 import { getFeatureById } from '../../lib/contentful-features';
 import { isEmpty } from '../../helpers/helpers';
+import FeatureHero from '../../components/featurehero/featurehero';
 
 const CURRENT_MODULE = MUDULE_LIST.BILLING;
 export default function MessagingApp({ details }) {
@@ -47,25 +48,14 @@ export default function MessagingApp({ details }) {
     return (
       <>
         <Navbar isModule={true} headerIndex={HEADER_LIST.BILLING} />
-        <BillMain>
-          <Container>
-            <BillHeroSub className='billpadding'>
-              <h2 className='headingcolor'>Seamless</h2>
-              <MessegeItem>
-                <span className='billtxt'>client</span>
-                <Image
-                  src='/images/billbg.svg'
-                  alt='bill-icon'
-                  width={222}
-                  height={284}
-                  layout={'fixed'}
-                  className='billimage'
-                />
-              </MessegeItem>
-              <h2 className='headingcolor'> checkout</h2>
-            </BillHeroSub>
-          </Container>
-        </BillMain>
+        <FeatureHero
+          colorList={MODULE_COLOR_LIST[HOME_MODULE_LIST['Billing']]}
+          title={'Billing App'}
+          description={
+            'Create branded invoices and subscriptions, and make it easy for client to pay, access invoices, and manage their payment credentials.'
+          }
+          iconUrl={'/images/bill-icon.svg'}
+        />
       </>
     );
   }, []);

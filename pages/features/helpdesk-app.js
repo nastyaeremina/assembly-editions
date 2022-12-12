@@ -25,6 +25,7 @@ import { BottomFunction } from '../../components/content/styles';
 import TabView from '../../components/tab/tab';
 import { getFeatureById } from '../../lib/contentful-features';
 import { isEmpty } from '../../helpers/helpers';
+import FeatureHero from '../../components/featurehero/featurehero';
 
 const CURRENT_MODULE = MUDULE_LIST.HELPDESK;
 export default function MessagingApp({ details }) {
@@ -32,25 +33,14 @@ export default function MessagingApp({ details }) {
     return (
       <>
         <Navbar isModule={true} headerIndex={HEADER_LIST.HELPDESK} />
-        <KnowledgeHero>
-          <Container>
-            <KnowHero>
-              <h2 className='basecolor'>Create a </h2>
-              <MessegeItem>
-                <span className='orengecolor'>knowledge</span>
-                <Image
-                  src='/images/know.svg'
-                  alt='bill-icon'
-                  width={200}
-                  height={246}
-                  layout={'fixed'}
-                  className='knowimage'
-                />
-              </MessegeItem>
-              <h2 className='basecolor'>repository</h2>
-            </KnowHero>
-          </Container>
-        </KnowledgeHero>
+        <FeatureHero
+          colorList={MODULE_COLOR_LIST[HOME_MODULE_LIST['Helpdesk']]}
+          title={'Helpdesk App'}
+          description={
+            'Create a help desk or knowledge base with text, image, videos, and embeds, and use custom visibility rules to share the right content with the right clients.'
+          }
+          iconUrl={'/images/helpdesk-icon.svg'}
+        />
       </>
     );
   }, []);

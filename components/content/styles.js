@@ -11,11 +11,11 @@ const BottomFunction = styled.div`
     border-right: 1px solid #000900;
     position: absolute;
   }
-  @media only screen and (max-width: 769px) {
+  /* @media only screen and (max-width: 769px) {
     ::after {
       border: none;
     }
-  }
+  } */
 `;
 const TabRow = styled.div`
   display: flex;

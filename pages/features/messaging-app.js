@@ -33,7 +33,14 @@ export default function MessagingApp({ details }) {
       <>
         <Navbar isModule={true} headerIndex={HEADER_LIST.MESSAGING} />
 
-        <FeatureHero currentModule={HEADER_LIST.MESSAGING} />
+        <FeatureHero
+          colorList={MODULE_COLOR_LIST[HOME_MODULE_LIST['Messaging']]}
+          title={'Messaging App'}
+          description={
+            'Make client communication secure and seamless, and never miss a message with comprehensive email notifications.'
+          }
+          iconUrl={'/images/module-icon.svg'}
+        />
         {/* <Container>
           <HeroSub className='msgheropadding'>
             <h2>Simplify client</h2>
