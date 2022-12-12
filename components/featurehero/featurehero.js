@@ -8,7 +8,7 @@ import { FeatureHeroSection, HeroBlock, BlockLeft, BlockRight, BlockImage, Block
 export default function FeatureHero({ colorList, title, description, iconUrl }) {
   // const colorList = NAVBAR_COLOR_LIST[currentModule];
   return (
-    <FeatureHeroSection>
+    <FeatureHeroSection backgroundColor={colorList?.bgColor}>
       <Container>
         <HeroBlock>
           <BlockLeft textColor={colorList?.fontColor}>

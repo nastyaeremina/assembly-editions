@@ -1,7 +1,12 @@
 import styled, { css } from 'styled-components';
 import { Body2, Heading2 } from '../../styles/styles';
 const FeatureHeroSection = styled.div`
-  background-color: ${({ theme }) => theme.colors.browndark};
+  ${(props) =>
+    props.backgroundColor &&
+    css`
+      background-color: ${props.backgroundColor};
+    `}
+  /* background-color: ${({ theme }) => theme.colors.browndark}; */
   padding-top: 140px;
   overflow: hidden;
 `;
