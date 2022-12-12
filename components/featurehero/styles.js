@@ -3,10 +3,12 @@ import { Body2, Heading2 } from '../../styles/styles';
 const FeatureHeroSection = styled.div`
   background-color: ${({ theme }) => theme.colors.browndark};
   padding-top: 140px;
+  overflow: hidden;
 `;
 const HeroBlock = styled.div`
   display: flex;
   gap: 60px;
+
   @media only screen and (max-width: 769px) {
     flex-wrap: wrap;
   }
@@ -36,10 +38,10 @@ const BlockLine = styled.div`
     content: '';
     position: absolute;
     border-top: 1px solid #f4d8c4;
-    max-width: 100%;
-    width: 100%;
+    max-width: 100vw;
+    width: 100vw;
     top: 50%;
-    left: -100%;
+    right: 100%;
   }
 `;
 const BLockImg = styled.div`
@@ -52,15 +54,15 @@ const BLockImg = styled.div`
     max-width: 570px;
     width: 100%;
   }
-  /* ::after {
+  ::after {
     content: '';
     position: absolute;
     border-top: 1px solid #f4d8c4;
-    max-width: 100%;
-    width: 100%;
+    max-width: 100vw;
+    width: 100vw;
     top: 50%;
     left: 100%;
-  } */
+  }
   @media only screen and (max-width: 1024px) {
     max-width: 100%;
     width: 100%;
