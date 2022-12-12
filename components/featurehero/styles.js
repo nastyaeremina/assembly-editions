@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { Body2, Heading2 } from '../../styles/styles';
 const FeatureHeroSection = styled.div`
   background-color: ${({ theme }) => theme.colors.browndark};
@@ -16,13 +16,23 @@ const HeroBlock = styled.div`
 const BlockLeft = styled.div`
   max-width: 552px;
   p {
-    color: ${({ theme }) => theme.colors.brownlight};
-    ${Body2};
+    ${(props) =>
+    props.textColor &&
+    css`
+        color: ${props.textColor};
+      `}
+    /* color: ${({ theme }) => theme.colors.brownlight}; */
+    ${Body2}
     margin: 0 0 32px 0;
   }
   h2 {
     margin: 41px 0 20px 0;
-    color: ${({ theme }) => theme.colors.brownlight};
+    ${(props) =>
+    props.textColor &&
+    css`
+        color: ${props.textColor};
+      `}
+    /* color: ${({ theme }) => theme.colors.brownlight}; */
     ${Heading2}
   }
 `;
@@ -37,7 +47,11 @@ const BlockLine = styled.div`
   ::after {
     content: '';
     position: absolute;
-    border-top: 1px solid #f4d8c4;
+    ${(props) =>
+    props.lineColor &&
+    css`
+      border-top: 1px solid ${props.lineColor};
+      `}
     max-width: 100vw;
     width: 100vw;
     top: 50%;
@@ -47,7 +61,11 @@ const BlockLine = styled.div`
 const BLockImg = styled.div`
   position: relative;
   padding: 20px;
-  border: 1px solid #f4d8c4;
+  ${(props) =>
+    props.lineColor &&
+    css`
+      border: 1px solid ${props.lineColor};
+      `}
   border-radius: 10px;
   cursor: pointer;
   .heroimage {
@@ -57,7 +75,12 @@ const BLockImg = styled.div`
   ::after {
     content: '';
     position: absolute;
-    border-top: 1px solid #f4d8c4;
+    ${(props) =>
+    props.lineColor &&
+    css`
+     border-top: 1px solid ${props.lineColor};
+      `}
+   
     max-width: 100vw;
     width: 100vw;
     top: 50%;
@@ -93,9 +116,14 @@ const BlockImage = styled.div`
     top: 0;
     bottom: 0;
     width: 10px;
-    border-top: 1px solid #f4d8c4;
-    border-left: 1px solid #f4d8c4;
-    border-bottom: 1px solid #f4d8c4;
+    ${(props) =>
+    props.lineColor &&
+    css`
+    border-top: 1px solid ${props.lineColor};
+    border-left: 1px solid ${props.lineColor};
+    border-bottom: 1px solid ${props.lineColor};
+      `}
+    
     border-radius: 4px 0px 0 4px;
   }
   ::before {
@@ -105,9 +133,14 @@ const BlockImage = styled.div`
     top: 0;
     bottom: 0;
     width: 10px;
-    border-top: 1px solid #f4d8c4;
-    border-right: 1px solid #f4d8c4;
-    border-bottom: 1px solid #f4d8c4;
+    ${(props) =>
+    props.lineColor &&
+    css`
+    border-top: 1px solid ${props.lineColor};
+    border-right: 1px solid ${props.lineColor};
+    border-bottom: 1px solid ${props.lineColor};
+      `}
+   
     border-radius: 0px 4px 4px 0px;
   }
   img {

@@ -40,11 +40,11 @@ export const HOME_MODULE_LIST = {
 };
 
 export const MODULE_COLOR_LIST = [
-  { bgColor: '#120800', fontColor: '#FFF7F0' },
-  { bgColor: '#01292C', fontColor: '#E0FBFD' },
-  { bgColor: '#01011D', fontColor: '#EFEEFF' },
-  { bgColor: '#171500', fontColor: '#FDFBEC' },
-  { bgColor: '#1C0C00', fontColor: '#FFEDDE' }
+  { bgColor: '#120800', fontColor: '#FFF7F0', borderColor: theme.colors.brownmidlight, buttonBgColor: theme.colors.brown, },
+  { bgColor: '#01292C', fontColor: '#E0FBFD', borderColor: theme.colors.brownmidlight, buttonBgColor: theme.colors.brown },
+  { bgColor: '#01011D', fontColor: '#EFEEFF', borderColor: theme.colors.brownmidlight, buttonBgColor: theme.colors.brown },
+  { bgColor: '#171500', fontColor: '#FDFBEC', borderColor: theme.colors.brownmidlight, buttonBgColor: theme.colors.brown },
+  { bgColor: '#1C0C00', fontColor: '#FFEDDE', borderColor: theme.colors.brownmidlight, buttonBgColor: theme.colors.brown }
 ];
 
 export const MODULE_GRADIENT_IMAGE_LIST = {
