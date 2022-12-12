@@ -17,7 +17,7 @@ const UniversitySection = styled.div`
   padding-top: 80px;
   padding-bottom: 100px;
   @media only screen and (max-width: 749px) {
-    padding-top: 16px;
+    padding-bottom: 80px;
   }
 `;
 const UniversityHero = styled.div`
@@ -168,6 +168,7 @@ const FeatureMenu = styled.div`
   }
   @media only screen and (max-width: 749px) {
     grid-template-columns: 1fr;
+    row-gap: 24px;
   }
 `;
 const FeatureCard = styled.div`
@@ -184,9 +185,18 @@ const FeatureCard = styled.div`
     opacity: 1;
   }
   @media only screen and (max-width: 991px) {
-    max-height: 100%;
+    max-height: 192px;
     img {
       width: 100%;
+      height: 100%;
+    }
+  }
+  @media only screen and (max-width: 769px) {
+    :hover .hovericon {
+      display: none;
+    }
+    :hover .hoveritem {
+      opacity: 0;
     }
   }
 `;
@@ -329,6 +339,10 @@ const Overlay = styled.div`
   opacity: 0.4;
   border-radius: 4px;
   transition: background 0.3s ease;
+  @media only screen and (max-width: 769px) {
+    max-height: 192px;
+    height: 100%;
+  }
 `;
 const HoverButton = styled.div`
   position: absolute;
