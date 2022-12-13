@@ -58,7 +58,7 @@ export default function JobsDetail({ jobDetail }) {
             <Link href='/jobs'>
               <DetailLink>
                 <Image src='/images/leftarrow.svg' alt='bill-icon' width={12} height={12} layout={'fixed'} />
-                <p>Back to all Apps</p>
+                <p>Back to all Jobs</p>
               </DetailLink>
             </Link>
 

@@ -53,6 +53,21 @@ export default function Client({ currentModule }) {
                           <path class='HoverArrow__tipPath' d='M1 1l4 4-4 4'></path>
                         </g>
                       </svg>
+                      <svg
+                        width='8'
+                        height='14'
+                        viewBox='0 0 8 14'
+                        fill='none'
+                        xmlns='http://www.w3.org/2000/svg'
+                        class='mobilearrow'>
+                        <path
+                          d='M2 3L6 7L2 11'
+                          stroke='#131313'
+                          stroke-width='1.85714'
+                          stroke-linecap='round'
+                          stroke-linejoin='round'
+                        />
+                      </svg>
                     </HelpLink>
                   </HelpLeftSub>
                 </Link>
@@ -87,6 +102,21 @@ export default function Client({ currentModule }) {
                           <path class='HoverArrow__linePath' d='M0 5h7'></path>
                           <path class='HoverArrow__tipPath' d='M1 1l4 4-4 4'></path>
                         </g>
+                      </svg>
+                      <svg
+                        width='8'
+                        height='14'
+                        viewBox='0 0 8 14'
+                        fill='none'
+                        xmlns='http://www.w3.org/2000/svg'
+                        class='mobilearrow'>
+                        <path
+                          d='M2 3L6 7L2 11'
+                          stroke='#131313'
+                          stroke-width='1.85714'
+                          stroke-linecap='round'
+                          stroke-linejoin='round'
+                        />
                       </svg>
                     </HelpLink>
                   </HelpLeftSub>
@@ -123,6 +153,21 @@ export default function Client({ currentModule }) {
                           <path class='HoverArrow__tipPath' d='M1 1l4 4-4 4'></path>
                         </g>
                       </svg>
+                      <svg
+                        width='8'
+                        height='14'
+                        viewBox='0 0 8 14'
+                        fill='none'
+                        xmlns='http://www.w3.org/2000/svg'
+                        class='mobilearrow'>
+                        <path
+                          d='M2 3L6 7L2 11'
+                          stroke='#131313'
+                          stroke-width='1.85714'
+                          stroke-linecap='round'
+                          stroke-linejoin='round'
+                        />
+                      </svg>
                     </HelpLink>
                   </HelpLeftSub>
                 </Link>
@@ -157,6 +202,21 @@ export default function Client({ currentModule }) {
                           <path class='HoverArrow__linePath' d='M0 5h7'></path>
                           <path class='HoverArrow__tipPath' d='M1 1l4 4-4 4'></path>
                         </g>
+                      </svg>
+                      <svg
+                        width='8'
+                        height='14'
+                        viewBox='0 0 8 14'
+                        fill='none'
+                        xmlns='http://www.w3.org/2000/svg'
+                        class='mobilearrow'>
+                        <path
+                          d='M2 3L6 7L2 11'
+                          stroke='#131313'
+                          stroke-width='1.85714'
+                          stroke-linecap='round'
+                          stroke-linejoin='round'
+                        />
                       </svg>
                     </HelpLink>
                   </HelpLeftSub>
@@ -193,6 +253,21 @@ export default function Client({ currentModule }) {
                           <path class='HoverArrow__tipPath' d='M1 1l4 4-4 4'></path>
                         </g>
                       </svg>
+                      <svg
+                        width='8'
+                        height='14'
+                        viewBox='0 0 8 14'
+                        fill='none'
+                        xmlns='http://www.w3.org/2000/svg'
+                        class='mobilearrow'>
+                        <path
+                          d='M2 3L6 7L2 11'
+                          stroke='#131313'
+                          stroke-width='1.85714'
+                          stroke-linecap='round'
+                          stroke-linejoin='round'
+                        />
+                      </svg>
                     </HelpLink>
                   </HelpLeftSub>
                 </Link>
@@ -224,13 +299,28 @@ export default function Client({ currentModule }) {
               </h3>
               <HelpLeftSub>
                 <HelpLink className='icon-link'>
-                  <a href='#' className='learn-link mb0'>
+                  <a href='#' className='learn-link center'>
                     Explore apps
                     <svg class='HoverArrow' width='10' height='10' viewBox='0 0 10 10' aria-hidden='true'>
                       <g fill-rule='evenodd'>
                         <path class='HoverArrow__linePath' d='M0 5h7'></path>
                         <path class='HoverArrow__tipPath' d='M1 1l4 4-4 4'></path>
                       </g>
+                    </svg>
+                    <svg
+                      width='8'
+                      height='14'
+                      viewBox='0 0 8 14'
+                      fill='none'
+                      xmlns='http://www.w3.org/2000/svg'
+                      class='mobilearrow'>
+                      <path
+                        d='M2 3L6 7L2 11'
+                        stroke='#131313'
+                        stroke-width='1.85714'
+                        stroke-linecap='round'
+                        stroke-linejoin='round'
+                      />
                     </svg>
                   </a>
                 </HelpLink>

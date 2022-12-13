@@ -78,7 +78,7 @@ export const MODULE_COLOR_LIST = [
 ];
 
 export const MODULE_GRADIENT_IMAGE_LIST = {
-  message: '/images/message_gradient.svg',
+  message: { fullScreen: '/images/message_gradient.svg', responsive: '/images/messagebg.svg' },
   billing: '/images/billing_gradient.svg',
   file: '/images/files_gradient.svg',
   form: '/images/forms_gradient.svg',

@@ -1,5 +1,5 @@
 import styled, { css } from 'styled-components';
-import { Body4, Heading3, Heading4 } from '../../styles/styles';
+import { Body4, Heading3, Heading4, MbBody5 } from '../../styles/styles';
 const ToolMain = styled.div`
   padding: 100px 0 50px 0;
   h3 {
@@ -13,6 +13,9 @@ const ToolMain = styled.div`
   span {
     color: ${({ theme }) => theme.colors.primary};
   }
+  @media only screen and (max-width: 769px) {
+    padding: 80px 0 40px 0;
+  }
 `;
 const ModuleSection = styled.div`
   margin-top: 40px;
@@ -25,6 +28,7 @@ const ModuleSection = styled.div`
   position: relative;
   @media only screen and (max-width: 769px) {
     grid-template-columns: 1fr 1fr;
+    border-right: none;
   }
   /* .moduleborder {
     border-top: 1px solid #120800;
@@ -70,6 +74,27 @@ const ModuleWrap = styled.div`
   }
   :last-child {
     border-right: 0;
+  }
+  @media only screen and (max-width: 769px) {
+    :nth-child(4) {
+      border-right: 1px solid #120800;
+    }
+    :nth-child(8) {
+      border-right: 1px solid #120800;
+    }
+  }
+  @media only screen and (max-width: 376px) {
+    padding: 20px 16px;
+    img {
+      width: 24px;
+      height: 24px;
+    }
+    h4 {
+      margin: 14px 0 8px 0;
+    }
+    p {
+      ${MbBody5}
+    }
   }
 `;
 export { ToolMain, ModuleSection, ModuleWrap };
