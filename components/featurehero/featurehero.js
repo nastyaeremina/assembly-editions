@@ -26,7 +26,7 @@ export default function FeatureHero({ colorList, title, description, iconUrl }) 
               bgColor={colorList?.buttonBgColor}
               borderColor={colorList?.buttonBgColor}
               fontColor={colorList?.buttonFontColor}
-              href='#'
+              href='https://dashboard.copilot.com/onboarding'
               text={'Start Trial'}
             />
           </BlockLeft>

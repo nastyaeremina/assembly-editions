@@ -7,7 +7,7 @@ export default function FeatureSubMenu() {
       <NavMenu>
         <NavigationBlock>
           <MobileListLi>
-            <MenuWrap msghover href='/features/message'>
+            <MenuWrap msghover href='/features/messaging-app'>
               <LeftImg>
                 <Image src='/images/menumsg.svg' alt='msg-icon' width={32} height={32} />
               </LeftImg>
@@ -18,7 +18,7 @@ export default function FeatureSubMenu() {
             </MenuWrap>
           </MobileListLi>
           <MobileListLi>
-            <MenuWrap billhover href='/features/billing'>
+            <MenuWrap billhover href='/features/billing-app'>
               <LeftImg>
                 <Image src='/images/billmenuicon.svg' alt='bill-icon' width={32} height={32} />
               </LeftImg>
@@ -29,7 +29,7 @@ export default function FeatureSubMenu() {
             </MenuWrap>
           </MobileListLi>
           <MobileListLi>
-            <MenuWrap filehover href='/features/file'>
+            <MenuWrap filehover href='/features/files-app'>
               <LeftImg>
                 <Image src='/images/filemenuicon.svg' alt='file-icon' width={32} height={32} />
               </LeftImg>
@@ -40,7 +40,18 @@ export default function FeatureSubMenu() {
             </MenuWrap>
           </MobileListLi>
           <MobileListLi>
-            <MenuWrap helphover href='/features/knowledge'>
+            <MenuWrap filehover href='/features/forms-app'>
+              <LeftImg>
+                <Image src='/images/formmenuicon.svg' alt='file-icon' width={32} height={32} />
+              </LeftImg>
+              <RightText>
+                <h5>Forms</h5>
+                <span>Streamline data collection</span>
+              </RightText>
+            </MenuWrap>
+          </MobileListLi>
+          <MobileListLi>
+            <MenuWrap helphover href='/features/helpdesk-app'>
               <LeftImg>
                 <Image src='/images/deskmenuicon.svg' alt='desk-icon' width={32} height={32} />
               </LeftImg>
