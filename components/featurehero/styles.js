@@ -1,5 +1,5 @@
 import styled, { css } from 'styled-components';
-import { Body2, Heading2 } from '../../styles/styles';
+import { Body2, Heading2, MbBody2, MobileH2 } from '../../styles/styles';
 const FeatureHeroSection = styled.div`
   ${(props) =>
     props.backgroundColor &&
@@ -9,6 +9,9 @@ const FeatureHeroSection = styled.div`
   /* background-color: ${({ theme }) => theme.colors.browndark}; */
   padding-top: 140px;
   overflow: hidden;
+  @media only screen and (max-width: 376px) {
+    padding-top: 116px;
+  }
 `;
 const HeroBlock = styled.div`
   display: flex;
@@ -16,6 +19,7 @@ const HeroBlock = styled.div`
 
   @media only screen and (max-width: 769px) {
     flex-wrap: wrap;
+    gap: 40px;
   }
 `;
 const BlockLeft = styled.div`
@@ -40,9 +44,24 @@ const BlockLeft = styled.div`
     /* color: ${({ theme }) => theme.colors.brownlight}; */
     ${Heading2}
   }
+  @media only screen and (max-width: 376px) {
+    h2 {
+      ${MobileH2}
+      margin-top: 30px;
+    }
+    p {
+      ${MbBody2}
+    }
+  }
 `;
 const BlockRight = styled.div`
   margin: 45px 0 100px 0;
+  @media only screen and (max-width: 769px) {
+    margin: 0 0 60px 32px;
+  }
+  @media only screen and (max-width: 376px) {
+    margin: 0 0 60px 25px;
+  }
 `;
 
 const BlockLine = styled.div`
@@ -91,7 +110,7 @@ const BLockImg = styled.div`
     top: 50%;
     left: 100%;
   }
-  @media only screen and (max-width: 1024px) {
+  /* @media only screen and (max-width: 1024px) {
     max-width: 100%;
     width: 100%;
     ::after {
@@ -99,7 +118,7 @@ const BLockImg = styled.div`
 
       width: 100%;
     }
-  }
+  } */
   .icon {
     position: absolute;
     transform: translate(-50%, -50%);
@@ -153,6 +172,14 @@ const BlockImage = styled.div`
     width: 100%;
     max-height: 44px;
     height: 100%;
+  }
+  @media only screen and (max-width: 376px) {
+    width: 50px;
+    height: 46px;
+    img {
+      width: 32px;
+      height: 32px;
+    }
   }
 `;
 export { FeatureHeroSection, HeroBlock, BlockLeft, BlockRight, BlockImage, BlockLine, BLockImg };

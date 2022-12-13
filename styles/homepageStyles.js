@@ -511,8 +511,8 @@ const BottomFunction = styled.div`
 const TabRow = styled.div`
   display: flex;
 
-  @media only screen and (max-width: 749px) {
-    overflow: auto;
+  @media only screen and (max-width: 376px) {
+    display: block;
   }
 
   .tabcss {
@@ -571,6 +571,10 @@ const TabRow = styled.div`
   }
   .bw {
     display: none;
+  }
+  .b8 {
+    font-size: 17px;
+    line-height: 21px;
   }
 `;
 const TabBox = styled.div`
@@ -683,7 +687,7 @@ const CenterBox = styled.div`
 `;
 const ContainWrap = styled.div`
   display: flex;
-  @media only screen and (max-width: 749px) {
+  @media only screen and (max-width: 769px) {
     flex-wrap: wrap;
     /* margin-top: 28px; */
   }
@@ -703,7 +707,7 @@ const LeftDetail = styled.div`
     color: ${({ theme }) => theme.colors.body};
     margin: 0 0 24px 0;
   }
-  @media only screen and (max-width: 749px) {
+  @media only screen and (max-width: 769px) {
     max-width: 100%;
     margin-right: 0;
     h4 {
@@ -716,6 +720,11 @@ const LeftDetail = styled.div`
       letter-spacing: 0.02em;
       color: ${({ theme }) => theme.colors.body};
       margin: 0 0 24px 0;
+    }
+    @media only screen and (max-width: 769px) {
+      p {
+        margin: 0;
+      }
     }
   }
 `;
@@ -974,6 +983,9 @@ const HelpLeftSub = styled.div`
     --arrowHoverOffset: translateX(3px);
     @media only screen and (max-width: 749px) {
       display: none;
+    }
+    @media only screen and (max-width: 376px) {
+      margin-left: 4px;
     }
   }
   .mobilearrow {

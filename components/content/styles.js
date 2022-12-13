@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { Body3, Body4, Heading3, Heading4, Label } from '../../styles/styles';
+import { Body3, Body4, Heading3, Heading4, Label, MbBody3 } from '../../styles/styles';
 const BottomFunction = styled.div`
   margin-top: 40px;
   position: relative;
@@ -11,11 +11,18 @@ const BottomFunction = styled.div`
     border-right: 1px solid #000900;
     position: absolute;
   }
-  /* @media only screen and (max-width: 769px) {
+  @media only screen and (max-width: 769px) {
+    margin-top: 28px;
     ::after {
       border: none;
     }
-  } */
+    .ak {
+      margin-bottom: 0;
+    }
+    .bh {
+      padding-top: 28px;
+    }
+  }
 `;
 const TabRow = styled.div`
   display: flex;
@@ -82,8 +89,20 @@ const TopFunctionWrap = styled.div`
     color: ${({ theme }) => theme.colors.body};
     margin: 0;
   }
+  @media only screen and (max-width: 376px) {
+    p {
+      ${MbBody3}
+    }
+  }
 `;
 const ContentMain = styled.div`
   padding-top: 100px;
+  .b8 {
+    font-size: 17px;
+    line-height: 21px;
+  }
+  @media only screen and (max-width: 769px) {
+    padding-top: 80px;
+  }
 `;
 export { ContentMain, BottomFunction, TabRow, TabBox, ContainWrap, LeftDetail, TopFunctionWrap, RightDetail };

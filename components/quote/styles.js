@@ -1,11 +1,11 @@
 import styled, { css } from 'styled-components';
-import { Body4, ButtonText, Quote } from '../../styles/styles';
+import { Body4, ButtonText, MobileH3, Quote } from '../../styles/styles';
 
 const QuoteMain = styled.div`
   ${(props) =>
     props.gradientImage &&
     css`
-      background-image: url(${props.gradientImage});
+      background-image: url(${props.gradientImage?.fullScreen});
     `}
   background-repeat: no-repeat;
   background-size: contain;
@@ -16,6 +16,14 @@ const QuoteMain = styled.div`
   background-position: 50% 50%;
   padding: 50px 0;
   position: relative;
+  @media only screen and (max-width: 749px) {
+    padding: 40px 0;
+    ${(props) =>
+      props.gradientImage &&
+      css`
+        background-image: url(${props.gradientImage?.responsive});
+      `}
+  }
   /* ::before{
   content: "";
     position: absolute;
@@ -37,7 +45,10 @@ const Mainss = styled.div`
   border-radius: 4px;
   background: #ffffff;
   overflow: hidden;
-  @media only screen and (max-width: 1024px) {
+  @media only screen and (max-width: 769px) {
+    gap: 0;
+  }
+  @media only screen and (max-width: 376px) {
     flex-wrap: wrap;
   }
 `;
@@ -51,6 +62,13 @@ const QuoteTxt = styled.div`
     margin: 0;
     color: ${({ theme }) => theme.colors.title};
   }
+  @media only screen and (max-width: 769px) {
+    padding: 30px 28px;
+    h3 {
+      ${MobileH3};
+      padding-bottom: 30px;
+    }
+  }
 `;
 const QuoteSubTxt = styled.div`
   h4 {
@@ -63,6 +81,16 @@ const QuoteSubTxt = styled.div`
     ${Body4};
     color: ${({ theme }) => theme.colors.body};
   }
+  @media only screen and (max-width: 769px) {
+    h4 {
+      font-size: 16px;
+      line-height: 24px;
+    }
+    p {
+      font-size: 16px;
+      line-height: 21px;
+    }
+  }
 `;
 const QuoteTop = styled.div`
   position: relative;
@@ -73,6 +101,12 @@ const QuoteLine = styled.div`
   position: absolute;
   left: 25%;
   margin-left: -1px;
+  @media only screen and (max-width: 769px) {
+    left: 50%;
+  }
+  @media only screen and (max-width: 376px) {
+    display: none;
+  }
 `;
 const QuoteImg = styled.div`
   position: relative;
@@ -82,6 +116,19 @@ const QuoteImg = styled.div`
   img {
     border-radius: 2px 0 0 2px;
     height: 100%;
+  }
+  @media only screen and (max-width: 769px) {
+    img {
+      width: 323px;
+    }
+  }
+  @media only screen and (max-width: 376px) {
+    border-right: 0;
+    border-bottom: 2px solid #000000;
+    left: 0;
+    img {
+      width: 100%;
+    }
   }
 `;
 export { QuoteMain, Mainss, QuoteTxt, QuoteSubTxt, QuoteTop, QuoteLine, QuoteImg };
