@@ -215,7 +215,7 @@ export default function Enterprise() {
               </BottomDay>
             </Container>
           </StepsSection>
-          <FAQ enterprise />
+          <FAQ enterprise contentID={'69O3U5pBty7DqueKYykMSz'} />
         </MainWrap>
       </Layout>
     </>

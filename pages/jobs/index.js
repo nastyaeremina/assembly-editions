@@ -345,7 +345,7 @@ export default function Jobs({ jobList, jobImagesList, jobBlogPostList }) {
             </Container>
           </BenefitsSection>
         </MainWrap>
-        <FAQ />
+        <FAQ contentID={'724Cny0Z9XBus7znacIxWs'} />
       </Layout>
     </>
   );

@@ -38,7 +38,7 @@ import CTA from '../../components/cta/cta';
 import FAQ from '../../components/faq/faq';
 import Button from '../../components/button/button';
 
-export default function NewIndex() {
+export default function NewIndex({faq}) {
   const [isShowFeature, setShowFeature] = useState(true);
   const [isYearly, Yearly] = useState(true);
 
@@ -838,9 +838,10 @@ export default function NewIndex() {
             </PriceImage>
           </Container>
         </PricingSection>
-        <FAQ />
+        <FAQ contentID={'7zdbfGOwwHXppWfH9yA8KI'} />
         <CTA />
       </Layout>
     </>
   );
 }
+

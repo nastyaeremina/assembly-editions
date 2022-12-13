@@ -59,11 +59,12 @@ import { HEADER_LIST, HOME_FEATURES_TAB_ID, HOME_MODULE_LIST, MODULE_COLOR_LIST 
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import classNames from 'classnames';
 import { getTabGroupById } from '../lib/contentful-tabs';
+import { getCommonContent } from '../lib/contentful-common';
 import { isEmpty } from '../helpers/helpers';
 import TabView from '../components/tab/tab';
 import Button from '../components/button/button';
 
-export default function Home({ allPosts }) {
+export default function Home({ allPosts, heroTitle, heroContent }) {
   return (
     <>
       <NextSeo
@@ -76,11 +77,10 @@ export default function Home({ allPosts }) {
           <HeroSection>
             <Container>
               <HeroHeading>
-                It’s all about connection<span>.</span>
+                {heroTitle}<span>.</span>
               </HeroHeading>
               <Para>
-                Give your customers a one-stop shop experience with a customer portal that streamlines messaging,
-                payments, file-sharing, help centers, custom app access, and more.
+                {heroContent}
               </Para>
               <HeroBtnBlock>
                 <Button
@@ -465,9 +465,14 @@ export default function Home({ allPosts }) {
 
 export async function getServerSideProps({ preview = false }) {
   const allPosts = (await getTabGroupById(HOME_FEATURES_TAB_ID, preview)) ?? [];
+  const heroTitle = (await getCommonContent('6fGCwD1wOK4Yw54nLvW1q4')) ?? "";
+  const heroContent = (await getCommonContent('14KZY3BYfPPoTz0apYe6xd')) ?? "";
+  
   return {
     props: {
-      allPosts
+      allPosts,
+      heroTitle,
+      heroContent
     }
   };
 }

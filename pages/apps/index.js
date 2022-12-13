@@ -278,7 +278,7 @@ export default function Apps({ allPosts, featuredApps, allCategoryWithPost, data
               </FeatureWrap>
             </Container>
           </FeatureSection>
-          <FAQ />
+          <FAQ contentID={'60k3aY2O1pQfCEbwSKqgsr'} />
           <CTA />
         </MainBg>
       </Layout>
