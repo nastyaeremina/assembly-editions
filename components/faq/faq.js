@@ -28,15 +28,16 @@ export default function FAQ({ enterprise, contentID }) {
     return allPosts?.map((item, index) => {
       return (
         <CustomPanel
-        title={
-          <div className='listtitle' aria-expanded={true}>
-            {item?.question}
+          title={
+            <div className='listtitle' aria-expanded={true}>
+              {item?.question}
+            </div>
+          }
+          key={`faqview_index_${index}`}>
+          <div className='listcaption' aria-expanded={true}>
+            {item?.answer}
           </div>
-        }>
-        <div className='listcaption' aria-expanded={true}>
-           {item?.answer}
-        </div>
-      </CustomPanel>
+        </CustomPanel>
       );
     });
   }, [allPosts]);
