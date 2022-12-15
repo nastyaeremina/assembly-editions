@@ -84,7 +84,7 @@ const WrapImage = styled.div`
     color: ${({ theme }) => theme.colors.body};
     letter-spacing: 0.02em;
     @media only screen and (max-width: 911px) {
-      padding-top: 20px;
+      padding-top: 8px;
       ${MbBody3};
     }
   }

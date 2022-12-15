@@ -445,6 +445,7 @@ const BusinessText = styled.div`
     max-width: 810px;
   }
   @media only screen and (max-width: 749px) {
+    padding-bottom: 32px;
     h2 {
       ${MobileH3};
       color: ${({ theme }) => theme.colors.greendark};
@@ -461,7 +462,9 @@ const Functionality = styled.div`
   }
   .ak {
     margin-bottom: 40px;
-    @media only screen and (max-width: 744px) {
+  }
+  @media only screen and (max-width: 749px) {
+    .ak {
       margin-bottom: 28px;
     }
   }
@@ -608,7 +611,7 @@ const IconWrap = styled.div`
     width: 100%;
     top: 50%;
   }
-  @media only screen and (max-width: 749px) {
+  @media only screen and (max-width: 768px) {
     display: none;
   }
 `;
@@ -644,7 +647,7 @@ const IconSvg = styled.div`
     border-radius: 0px 4px 4px 0px;
   }
 
-  @media only screen and (max-width: 749px) {
+  @media only screen and (max-width: 768px) {
     display: none;
   }
 `;
@@ -721,11 +724,6 @@ const LeftDetail = styled.div`
       color: ${({ theme }) => theme.colors.body};
       margin: 0 0 24px 0;
     }
-    @media only screen and (max-width: 769px) {
-      p {
-        margin: 0;
-      }
-    }
   }
 `;
 const RightDetail = styled.div`
@@ -735,7 +733,7 @@ const RightDetail = styled.div`
   width: 100%;
   background: transparent;
   position: relative;
-  @media only screen and (max-width: 749px) {
+  @media only screen and (max-width: 768px) {
     margin-top: 28px;
     padding: 5px 6px;
   }
@@ -788,7 +786,7 @@ const AutomateText = styled.div`
     max-width: 100%;
     margin-bottom: 0;
     p {
-      ${MbBody4};
+      ${MbBody3};
       letter-spacing: 0.02em;
       color: ${({ theme }) => theme.colors.body};
       margin: 0;
@@ -876,7 +874,7 @@ const LineIcon = styled.div`
 const HelpSection = styled.div`
   padding: 50px 0;
   @media only screen and (max-width: 749px) {
-    padding: 40px 0;
+    padding: 40px 0 80px;
   }
 `;
 const HelpMain = styled.div`
@@ -957,7 +955,7 @@ const HelpLeftSub = styled.div`
   .learn-link:hover {
     color: black;
     @media only screen and (max-width: 749px) {
-      color: green;
+      color: ${({ theme }) => theme.colors.primary};
     }
   }
   .learn-link svg path {
@@ -1027,7 +1025,6 @@ const HelpLeftSub = styled.div`
 const HelpImg = styled.div`
   margin-top: -1px;
   img {
-    max-width: 100%;
     display: block;
     height: 100%;
   }
@@ -1078,6 +1075,15 @@ const ImageHover = styled.div`
     svg {
       path {
         fill: #ff492c;
+      }
+    }
+  }
+  @media only screen and (max-width: 991px) {
+    :hover {
+      svg {
+        path {
+          fill: #00160e;
+        }
       }
     }
   }
