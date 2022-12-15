@@ -12,6 +12,7 @@ import MobileGreenLogos from '../../public/images/greenmblogo.svg';
 import { BlackButton, Container, PrimaryButton } from '../../styles/commonStyles';
 import { HEADER_LIST, NAVBAR_COLOR_LIST } from '../../constants/constant';
 import useMobileDevice from '../../hooks/useMobileDevice';
+import Button from '../button/button';
 import {
   NavbarWrapper,
   NavbarInner,
@@ -44,12 +45,12 @@ import {
   MobileText,
   SpanMobileLink,
   BackWrap,
-  SvgIcon
+  SvgIcon,
+  MobileTextLink
 } from './styles';
 import FeatureSubMenu from './featuresubmenu';
 import ResourcesSubMenu from './resourcessubmenu';
 import CompanySubMenu from './companysubmenu';
-import Button from '../button/button';
 
 export default function Navbar({ BlogDetails, isModule, headerIndex, isEnterPrice }) {
   const mobile = useMobileDevice();
@@ -60,6 +61,7 @@ export default function Navbar({ BlogDetails, isModule, headerIndex, isEnterPric
   const [isOpenResoursesSubMenu, setIsOpenResoursesSubMenu] = useState(false);
 
   const [colorList, setColorList] = useState(NAVBAR_COLOR_LIST[0]);
+  console.log('isOpenFeatureSubMenu', isOpenFeatureSubMenu);
 
   const closeSubMenu = useCallback(() => {
     if (isOpenFeatureSubMenu) {
@@ -143,7 +145,13 @@ export default function Navbar({ BlogDetails, isModule, headerIndex, isEnterPric
                   textColor={colorList?.fontColor}
                   hoverColor={colorList?.primaryColor}
                   className={router.pathname === '/pricing' ? 'active' : ''}>
-                  <Link href='/pricing'>Pricing</Link>
+                  {mobile ? (
+                    <MobileTextLink hoverColor={colorList?.primaryColor} href='/pricing'>
+                      Pricing
+                    </MobileTextLink>
+                  ) : (
+                    <Link href='/pricing'>Pricing</Link>
+                  )}
                 </SpanLink>
                 <SpanLink
                   className={router.pathname === '/modulebilling' ? 'active' : ''}
@@ -233,7 +241,13 @@ export default function Navbar({ BlogDetails, isModule, headerIndex, isEnterPric
                   textColor={colorList?.fontColor}
                   hoverColor={colorList?.primaryColor}
                   className={router.pathname === '/apps' ? 'active' : ''}>
-                  <Link href='/apps'>Apps</Link>
+                  {mobile ? (
+                    <MobileTextLink href='/apps' hoverColor={colorList?.primaryColor}>
+                      Apps
+                    </MobileTextLink>
+                  ) : (
+                    <Link href='/apps'>Pricing</Link>
+                  )}
                 </SpanLink>
                 <SpanLink
                   textColor={colorList?.fontColor}
@@ -589,7 +603,7 @@ export default function Navbar({ BlogDetails, isModule, headerIndex, isEnterPric
             )}
           </HeaderBtnGroup>
         </NavMenu>
-        <TrySalescampBlock BlogDetails={BlogDetails} mobile={mobile}>
+        <TrySalescampBlock BlogDetails={BlogDetails} mobile={mobile} isEnterPrice={isEnterPrice}>
           <PrimaryButton>
             <Link href='/'>Try copilot</Link>
           </PrimaryButton>
@@ -611,13 +625,31 @@ export default function Navbar({ BlogDetails, isModule, headerIndex, isEnterPric
             <Link href='/'>
               {isModule ? (
                 mobile ? (
-                  <SalescampLogo loading='lazy' width='96' height='21' src={MobileWhiteLogos.src} />
+                  isOpenResoursesSubMenu || isOpenCompanySubMenu || isOpenFeatureSubMenu ? (
+                    <BackWrap textColor={colorList?.fontColor} onClick={closeSubMenu}>
+                      <SvgIcon>
+                        <Image src='/images/moduleback.svg' width={10} height={10} alt='back-icon' />
+                      </SvgIcon>
+                      <span>Back</span>
+                    </BackWrap>
+                  ) : (
+                    <SalescampLogo loading='lazy' width='96' height='21' src={MobileWhiteLogos.src} />
+                  )
                 ) : (
                   <SalescampLogo loading='lazy' width='143' height='31' src={WhiteLogos.src} />
                 )
               ) : isEnterPrice ? (
                 mobile ? (
-                  <SalescampLogo loading='lazy' width='96' height='21' src={MobileGreenLogos.src} />
+                  isOpenResoursesSubMenu || isOpenCompanySubMenu || isOpenFeatureSubMenu ? (
+                    <BackWrap textColor={colorList?.fontColor} onClick={closeSubMenu}>
+                      <SvgIcon>
+                        <Image src='/images/moduleback.svg' width={10} height={10} alt='back-icon' />
+                      </SvgIcon>
+                      <span>Back</span>
+                    </BackWrap>
+                  ) : (
+                    <SalescampLogo loading='lazy' width='96' height='21' src={MobileGreenLogos.src} />
+                  )
                 ) : (
                   <SalescampLogo loading='lazy' width='143' height='31' src={GreenLogos.src} />
                 )
@@ -665,7 +697,9 @@ export default function Navbar({ BlogDetails, isModule, headerIndex, isEnterPric
                 <FirstLine
                   isOpenMobileMenu={isOpenMobileMenu}
                   BlogDetails={BlogDetails}
-                  isScrollPage={isScrollPage}></FirstLine>
+                  isEnterPrice={isEnterPrice}
+                  isScrollPage={isScrollPage}
+                  textColor={colorList?.fontColor}></FirstLine>
                 {/* <SecondLine
                 isOpenMobileMenu={isOpenMobileMenu}
                 BlogDetails={BlogDetails}
@@ -674,7 +708,9 @@ export default function Navbar({ BlogDetails, isModule, headerIndex, isEnterPric
                 <ThirdLine
                   isOpenMobileMenu={isOpenMobileMenu}
                   BlogDetails={BlogDetails}
-                  isScrollPage={isScrollPage}></ThirdLine>
+                  isEnterPrice={isEnterPrice}
+                  isScrollPage={isScrollPage}
+                  textColor={colorList?.fontColor}></ThirdLine>
               </MobileMenu>
             </MobileRight>
           </NavbarInner>

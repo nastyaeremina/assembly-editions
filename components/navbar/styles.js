@@ -196,8 +196,9 @@ const SpanMobileLink = styled.li`
     ${(props) =>
       props.textColor &&
       css`
-        color: ${props.textColor};
+        color: ${props.title};
       `}
+  }
     transition: all 300ms;
     cursor: pointer;
   }
@@ -232,7 +233,7 @@ const SpanMobileLink = styled.li`
       display: block;
       border-radius: 0px;
       margin: 0;
-    }
+      color:  ${({ theme }) => theme.colors.title}
   }
   :hover .innerlist,
   li {
@@ -476,7 +477,17 @@ const FirstLine = styled.span`
     props.BlogDetails &&
     props.isScrollPage &&
     css`
-      background-color: ${({ theme }) => theme.colors.darkColor};
+      background-color: ${({ theme }) => theme.colors.footercolor};
+    `}
+    ${(props) =>
+    props.isEnterPrice &&
+    css`
+      background-color: ${({ theme }) => theme.colors.greenlight};
+    `}
+    ${(props) =>
+    props.textColor &&
+    css`
+      background-color: ${props.textColor};
     `}
 `;
 const SecondLine = styled.span`
@@ -528,6 +539,16 @@ const ThirdLine = styled.span`
           background-color: ${({ theme }) => theme.colors.whiteColor};
         `
       : css``}
+      ${(props) =>
+    props.isEnterPrice &&
+    css`
+      background-color: ${({ theme }) => theme.colors.greenlight};
+    `}
+    ${(props) =>
+    props.textColor &&
+    css`
+      background-color: ${props.textColor};
+    `}
 `;
 
 const OverLayBlock = styled.div`
@@ -702,6 +723,21 @@ const MobileListLi = styled.li`
     }
   }
 `;
+const MobileTextLink = styled(Link)`
+  ${HeaderFont}
+  padding: 20px 24px;
+  color: #131313 !important;
+  -webkit-transition: all 300ms;
+  transition: all 300ms;
+  cursor: pointer;
+  :hover {
+    ${(props) =>
+      props.hoverColor &&
+      css`
+        color: ${props.hoverColor} !important;
+      `}
+  }
+`;
 const MobileText = styled.div`
   ${HeaderFont}
   padding: 20px 24px;
@@ -812,6 +848,11 @@ const BackWrap = styled.div`
   span {
     ${MbButtonText};
     color: ${({ theme }) => theme.colors.black};
+    ${(props) =>
+      props.textColor &&
+      css`
+        color: ${props.textColor};
+      `}
   }
 `;
 const SvgIcon = styled.div`
@@ -854,5 +895,6 @@ export {
   MobileText,
   SpanMobileLink,
   BackWrap,
-  SvgIcon
+  SvgIcon,
+  MobileTextLink
 };
