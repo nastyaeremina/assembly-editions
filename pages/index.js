@@ -77,11 +77,10 @@ export default function Home({ allPosts, heroTitle, heroContent }) {
           <HeroSection>
             <Container>
               <HeroHeading>
-                {heroTitle}<span>.</span>
+                {heroTitle}
+                <span>.</span>
               </HeroHeading>
-              <Para>
-                {heroContent}
-              </Para>
+              <Para>{heroContent}</Para>
               <HeroBtnBlock>
                 <Button
                   bgColor={'#09AA6C'}
@@ -465,9 +464,9 @@ export default function Home({ allPosts, heroTitle, heroContent }) {
 
 export async function getServerSideProps({ preview = false }) {
   const allPosts = (await getTabGroupById(HOME_FEATURES_TAB_ID, preview)) ?? [];
-  const heroTitle = (await getCommonContent('6fGCwD1wOK4Yw54nLvW1q4')) ?? "";
-  const heroContent = (await getCommonContent('14KZY3BYfPPoTz0apYe6xd')) ?? "";
-  
+  const heroTitle = (await getCommonContent('6fGCwD1wOK4Yw54nLvW1q4')) ?? '';
+  const heroContent = (await getCommonContent('14KZY3BYfPPoTz0apYe6xd')) ?? '';
+
   return {
     props: {
       allPosts,

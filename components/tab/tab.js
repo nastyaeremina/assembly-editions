@@ -70,7 +70,7 @@ export default function TabView({ tabId, bgColor, textColor, isHome }) {
     borderTopColor: $theme.colors.mono600,
     borderBottomColor: $theme.colors.mono600,
     paddingBottom: '0',
-    paddingTop: '20px',
+    paddingTop: '0px',
     paddingLeft: '0',
     paddingRight: '0'
   });
@@ -112,7 +112,7 @@ export default function TabView({ tabId, bgColor, textColor, isHome }) {
     if (isEmpty(allPosts)) return null;
 
     return allPosts?.map((item, index) => {
-      const link = item?.link?.split('copilot.com/')?.[1]
+      const link = item?.link?.split('copilot.com/')?.[1];
       return (
         <Tab title={item?.title} className={index === 0 ? 'ml0' : 'ml0'} key={index} id={item?.title}>
           <ContainWrap>
@@ -129,7 +129,7 @@ export default function TabView({ tabId, bgColor, textColor, isHome }) {
                 fontColor={'#000000'}
                 borderColor={'#000000'}
                 text={'Learn More'}
-                href={link ?? ""}
+                href={link ?? ''}
                 hoverColor={'rgba(0, 0, 0, 0.5)'}
               />
             </LeftDetail>
