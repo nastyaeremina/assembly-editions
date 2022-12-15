@@ -14,6 +14,13 @@ const FaqSection = styled.div`
   }
   .listcaption {
     padding-bottom: 40px;
+    padding-right: 72px;
+    @media only screen and (max-width: 991px) {
+      padding-right: 32px;
+    }
+    @media only screen and (max-width: 749px) {
+      padding-right: 0px;
+    }
   }
   ${(props) =>
     props.enterprise &&

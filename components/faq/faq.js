@@ -76,7 +76,7 @@ export default function FAQ({ enterprise, contentID }) {
                   backgroundColor: 'transparent',
                   paddingTop: '0',
                   paddingLeft: '0px',
-                  paddingRight: '72px',
+                  paddingRight: '0px',
                   paddingBottom: '40px',
                   color: '#4C4C4C',
                   fontSize: '24px',
