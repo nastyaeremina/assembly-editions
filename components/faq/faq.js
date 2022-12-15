@@ -1,11 +1,11 @@
 import Link from 'next/link';
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
-import { isEmpty } from '../../helpers/helpers';
 import { useStyletron } from 'baseui';
 import { Accordion, Panel } from 'baseui/accordion';
+import { isEmpty } from '../../helpers/helpers';
 import { Container } from '../../styles/commonStyles';
-import { FaqSection, FaqWrap, FaqTitle, FaqPanel } from './styles';
 import { getFAQs } from '../../lib/contentful-faq';
+import { FaqSection, FaqWrap, FaqTitle, FaqPanel } from './styles';
 
 function CustomPanel(props) {
   return <Panel {...props} />;
@@ -74,10 +74,10 @@ export default function FAQ({ enterprise, contentID }) {
               Content: {
                 style: ({ $theme }) => ({
                   backgroundColor: 'transparent',
-                  paddingTop: '20px',
-                  paddingBottom: '0px',
+                  paddingTop: '0',
                   paddingLeft: '0px',
-                  paddingRight: '72px',
+                  paddingRight: '0px',
+                  paddingBottom: '40px',
                   color: '#4C4C4C',
                   fontSize: '24px',
                   lineHeight: '31px',

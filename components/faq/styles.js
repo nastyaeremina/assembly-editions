@@ -12,6 +12,16 @@ const FaqSection = styled.div`
   .ao {
     padding-bottom: 0;
   }
+  .listcaption {
+    padding-bottom: 40px;
+    padding-right: 72px;
+    @media only screen and (max-width: 991px) {
+      padding-right: 32px;
+    }
+    @media only screen and (max-width: 749px) {
+      padding-right: 0px;
+    }
+  }
   ${(props) =>
     props.enterprise &&
     css`
@@ -25,7 +35,7 @@ const FaqSection = styled.div`
     border-bottom: none;
   }
   @media only screen and (max-width: 991px) {
-    padding: 80px 0;
+    padding: 80px 0 40px;
     .listtitle {
       font-size: 28px !important;
       line-height: 34px !important;
