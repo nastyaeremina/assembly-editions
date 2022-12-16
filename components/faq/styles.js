@@ -12,14 +12,17 @@ const FaqSection = styled.div`
   .ao {
     padding-bottom: 0;
   }
+  .listtitle {
+    margin-right: 30px;
+  }
   .listcaption {
     padding-bottom: 40px;
     padding-right: 72px;
     @media only screen and (max-width: 991px) {
-      padding-right: 32px;
+      padding-right: 70px;
     }
     @media only screen and (max-width: 749px) {
-      padding-right: 0px;
+      padding-right: 70px;
     }
   }
   ${(props) =>
