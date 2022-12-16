@@ -34,6 +34,7 @@ const EnterPriseHero = styled.div`
     height: calc(100vh - 150px);
     background-position: center 285px;
     background-size: contain;
+    padding-top: 116px;
   }
 `;
 const LeftHero = styled.div`

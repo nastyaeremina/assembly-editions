@@ -18,6 +18,7 @@ const UniversitySection = styled.div`
   padding-bottom: 100px;
   @media only screen and (max-width: 749px) {
     padding-bottom: 80px;
+    padding-top: 16px;
   }
 `;
 const UniversityHero = styled.div`

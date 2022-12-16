@@ -21,7 +21,7 @@ const BrandHeroSection = styled.div`
     margin: 0 0 32px 0;
   }
   @media only screen and (max-width: 769px) {
-    padding: 40px 0;
+    padding: 36px 0 40px;
     h2 {
       ${MobileH2}
     }

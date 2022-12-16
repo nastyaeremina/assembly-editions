@@ -43,6 +43,7 @@ const HeroSection = styled.div`
     padding: 140px 0px 80px;
   }
   @media only screen and (max-width: 749px) {
+    padding: 116px 0px 80px;
     h2 {
       ${MobileH2};
       color: ${({ theme }) => theme.colors.title};
