@@ -30,7 +30,7 @@ const MainWrap = styled.div`
 const HeroJobSection = styled.div`
   padding: 100px 0 50px;
   @media only screen and (max-width: 749px) {
-    padding: 96px 0 40px;
+    padding: 116px 0 40px;
   }
 `;
 const JobsWrap = styled.div`
