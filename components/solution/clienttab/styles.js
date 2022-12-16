@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { Body3, Body4, Body6, Heading3, Heading4, MbBody3, SliderTxt } from '../../../styles/styles';
+import { Body3, Body4, Body6, Heading3, Heading4, MbBody3, MbBody4, SliderTxt } from '../../../styles/styles';
 
 const ExploreSection = styled.div`
   padding: 50px 0;
@@ -37,6 +37,9 @@ const SignatureSection = styled.div`
   display: flex;
   align-items: flex-end;
   justify-content: space-between;
+  @media only screen and (max-width: 991px) {
+    flex-wrap: wrap;
+  }
   @media only screen and (max-width: 749px) {
     flex-wrap: wrap;
   }
@@ -54,6 +57,10 @@ const LeftWrap = styled.div`
     color: ${({ theme }) => theme.colors.body};
     margin: 0;
   }
+  @media only screen and (max-width: 991px) {
+    max-width: 100%;
+    margin-bottom: 40px;
+  }
   @media only screen and (max-width: 749px) {
     max-width: 100%;
     margin-bottom: 40px;
@@ -70,6 +77,9 @@ const LeftWrap = styled.div`
   }
 `;
 const RightWrap = styled.div`
+  @media only screen and (max-width: 991px) {
+    width: 100%;
+  }
   @media only screen and (max-width: 749px) {
     width: 100%;
   }
@@ -83,6 +93,9 @@ const TabWrap = styled.div`
     span {
       ${SliderTxt};
       color: ${({ theme }) => theme.colors.body};
+      @media only screen and (max-width: 991px) {
+        ${MbBody4}
+      }
     }
     border: 1.08px solid #4c4c4c;
     width: 72px;
@@ -92,9 +105,19 @@ const TabWrap = styled.div`
     align-items: center;
     justify-content: center;
   }
+  @media only screen and (max-width: 991px) {
+    width: 100%;
+    justify-content: flex-end;
+    gap: 20px;
+    .activetab {
+      width: 59px;
+      height: 59px;
+    }
+  }
   @media only screen and (max-width: 749px) {
     width: 100%;
-    justify-content: center;
+    justify-content: flex-end;
+    gap: 20px;
     .activetab {
       width: 57px;
       height: 57px;
@@ -107,6 +130,9 @@ const TabView = styled.div`
   span {
     ${SliderTxt};
     color: ${({ theme }) => theme.colors.border};
+    @media only screen and (max-width: 991px) {
+      ${MbBody4}
+    }
   }
   border: 1.08px solid #ccccd0;
   width: 72px;
@@ -123,6 +149,10 @@ const TabView = styled.div`
     border-top: 1px solid #000000;
     transform: rotate(90deg);
   } */
+  @media only screen and (max-width: 991px) {
+    width: 59px;
+    height: 59px;
+  }
   @media only screen and (max-width: 749px) {
     width: 57px;
     height: 57px;
@@ -151,11 +181,18 @@ const LastSection = styled.div`
       height: 100px;
     }
   }
+  @media only screen and (max-width: 991px) {
+    margin-top: 35px;
+  }
+  @media only screen and (max-width: 749px) {
+    margin-top: 35px;
+  }
 `;
 const SignBox = styled.div`
   border: 1px solid #131313;
   border-radius: 8px;
   padding: 35px;
+  background-color: #fffffd;
   @media only screen and (max-width: 991px) {
     padding: 25px;
   }
@@ -233,6 +270,9 @@ const IconView = styled.div`
     display: none;
   }
 `;
+const MainWrap = styled.div`
+  background-color: #fffffd;
+`;
 const Tooltip = styled.div``;
 export {
   ExploreSection,
@@ -249,5 +289,6 @@ export {
   ActiveTab,
   BtnWrap,
   IconView,
-  Tooltip
+  Tooltip,
+  MainWrap
 };
