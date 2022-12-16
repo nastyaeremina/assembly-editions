@@ -2,8 +2,11 @@ import styled from 'styled-components';
 import { Body4, ButtonText, HeaderFont, MbBody3, MobileH3, Quote } from '../../../styles/styles';
 
 const QuoteSection = styled.div`
-  padding: 50px 0;
+  padding: 50px 0 100px;
   overflow: hidden;
+  @media only screen and (max-width: 991px) {
+    padding: 40px 0 80px;
+  }
 `;
 
 const Mainss = styled.div`
@@ -11,6 +14,7 @@ const Mainss = styled.div`
   border: 1px solid #000000;
   border-radius: 4px;
   background: #ffffff;
+  overflow: hidden;
   @media only screen and (max-width: 991px) {
     overflow: hidden;
     flex-wrap: wrap;

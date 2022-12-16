@@ -36,8 +36,10 @@ const BoxWrap = styled.div`
   }
 `;
 const BoxView = styled.div`
-  padding: 27px 23px;
+  padding: 29px 25px;
   border-right: 1px solid #120800;
+  border-bottom: 1px solid #120800;
+  margin: -2px;
   :last-child {
     border-right: none;
   }
