@@ -246,7 +246,7 @@ export default function Navbar({ BlogDetails, isModule, headerIndex, isEnterPric
                       Apps
                     </MobileTextLink>
                   ) : (
-                    <Link href='/apps'>Pricing</Link>
+                    <Link href='/apps'>Apps</Link>
                   )}
                 </SpanLink>
                 <SpanLink
