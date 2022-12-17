@@ -6,24 +6,6 @@ import { SliderWrap, SliderInner, SliderSub, SliderLine } from './styles';
 import Link from 'next/link';
 
 const ExtensionSlider = ({ data }) => {
-  console.log('data', data);
-
-  // const slideView = useMemo(() => {
-  //   return data?.map((item, index) => {
-  //     return (
-  //       <Slide key={`slideview_index_${index}`}>
-  //         <WrapImage>
-  //           <Image
-  //             src="/images/slider.png"
-  //             alt="arrow-icon"
-  //             width={350}
-  //             height={350}
-  //           />
-  //         </WrapImage>
-  //       </Slide>
-  //     );
-  //   });
-  // }, [data]);
 
   const settings = {
     dots: false,
@@ -70,42 +52,16 @@ const ExtensionSlider = ({ data }) => {
       <SliderWrap>
         <SliderLine></SliderLine>
         <Slider {...settings}>
-          <SliderInner href='/apps/calendly'>
+        {data?.map((item,index) =>{
+            return <>
+            <SliderInner href={item?.website}>
             <SliderSub>
-              <Image src='/images/Favicon.svg' alt='red-icon' width={35} height={35} layout={'fixed'} />
-              <h4>Calendly</h4>
+              <Image src={item?.icon?.url} alt='red-icon' width={35} height={35} layout={'fixed'} />
+              <h4>{item?.name}</h4>
             </SliderSub>
           </SliderInner>
-          <SliderInner href='/apps/jotfrom'>
-            <SliderSub>
-              <Image src='/images/jotfrom.svg' alt='red-icon' width={35} height={35} layout={'fixed'} />
-              <h4>Jotform</h4>
-            </SliderSub>
-          </SliderInner>
-          <SliderInner href='/apps/airtable'>
-            <SliderSub>
-              <Image src='/images/airtable.svg' alt='red-icon' width={35} height={35} layout={'fixed'} />
-              <h4>Airtable</h4>
-            </SliderSub>
-          </SliderInner>
-          <SliderInner href='/apps/calendly'>
-            <SliderSub>
-              <Image src='/images/Favicon.svg' alt='red-icon' width={35} height={35} layout={'fixed'} />
-              <h4>Calendly</h4>
-            </SliderSub>
-          </SliderInner>
-          <SliderInner href='/apps/jotform'>
-            <SliderSub>
-              <Image src='/images/jotfrom.svg' alt='red-icon' width={35} height={35} layout={'fixed'} />
-              <h4>Jotform</h4>
-            </SliderSub>
-          </SliderInner>
-          <SliderInner href='/apps/airtable'>
-            <SliderSub>
-              <Image src='/images/airtable.svg' alt='red-icon' width={35} height={35} layout={'fixed'} />
-              <h4>Airtable</h4>
-            </SliderSub>
-          </SliderInner>
+       </>
+        })}
         </Slider>
       </SliderWrap>
     </>

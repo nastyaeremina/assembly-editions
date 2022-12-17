@@ -45,6 +45,9 @@ const SliderWrap = styled.div`
       transition: transform 0.3s;
     }
   }
+  .slick-slide{
+    height:610px;
+  }
 `;
 const WrapImage = styled.div`
   /* border: 1px solid black;

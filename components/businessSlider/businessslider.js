@@ -7,22 +7,7 @@ import { Slide, SliderWrap, WrapImage, LeftBorder, RightBorder, WrapSlide, Slide
 
 const BusinessSlider = ({ data }) => {
   console.log('data', data);
-  // const slideView = useMemo(() => {
-  //   return data?.map((item, index) => {
-  //     return (
-  //       <Slide key={`slideview_index_${index}`}>
-  //         <WrapImage>
-  //           <Image
-  //             src="/images/slider1.png"
-  //             alt="arrow-icon"
-  //             width={350}
-  //             height={350}
-  //           />
-  //         </WrapImage>
-  //       </Slide>
-  //     );
-  //   });
-  // }, [data]);
+  
 
   var settings = {
     mobileFirst: true,
@@ -74,51 +59,22 @@ const BusinessSlider = ({ data }) => {
   return (
     <>
       <SliderWrap>
-        <Slider {...settings}>
-          <WrapSlide className='mydiv'>
+      <Slider {...settings}>
+        {data?.map((item,index) =>{
+            return <>
+            <WrapSlide className='mydiv'>
             <LeftBorder className='hide'></LeftBorder>
             <WrapImage>
               <SlideImg>
-                <Image src='/images/slider1.png' alt='red-icon' className='zoom' width={350} height={350} />
+                <Image src={item?.image?.url} alt='red-icon' className='zoom' width={350} height={350} />
               </SlideImg>
-              <h4>Growth Agency</h4>
-              <p className='hide'>{`“We went from idea to launch in 2 weeks and spent < 5% of what an engineering team would have cost.”`}</p>
+              <h4>{item?.name}</h4>
+              <p className='hide'>{item?.quote}</p>
             </WrapImage>
             <RightBorder className='hide'> </RightBorder>
           </WrapSlide>
-          <WrapSlide className='mydiv'>
-            <LeftBorder className='hide'></LeftBorder>
-            <WrapImage>
-              <SlideImg>
-                <Image src='/images/slide2.png' alt='silde-icon' className='zoom' width={350} height={350} />
-              </SlideImg>
-              <h4>Virtual CFO</h4>
-              <p className='hide'>{`“We went from idea to launch in 2 weeks and spent < 5% of what an engineering team would have cost.”`}</p>
-            </WrapImage>
-            <RightBorder className='hide'> </RightBorder>
-          </WrapSlide>
-          <WrapSlide className='mydiv'>
-            <LeftBorder className='hide'></LeftBorder>
-            <WrapImage>
-              <SlideImg>
-                <Image src='/images/slide3.png' alt='silde-icon' className='zoom' width={350} height={350} />
-              </SlideImg>
-              <h4>Professional Services</h4>
-              <p className='hide'>{`“We went from idea to launch in 2 weeks and spent < 5% of what an engineering team would have cost.”`}</p>
-            </WrapImage>
-            <RightBorder className='hide'> </RightBorder>
-          </WrapSlide>
-          <WrapSlide className='mydiv'>
-            <LeftBorder className='hide'></LeftBorder>
-            <WrapImage>
-              <SlideImg>
-                <Image src='/images/slide3.png' alt='silde-icon' className='zoom' width={350} height={350} />
-              </SlideImg>
-              <h4>Event planning startup</h4>
-              <p className='hide'>{`“We went from idea to launch in 2 weeks and spent < 5% of what an engineering team would have cost.”`}</p>
-            </WrapImage>
-            <RightBorder className='hide'> </RightBorder>
-          </WrapSlide>
+       </>
+        })}
         </Slider>
       </SliderWrap>
     </>

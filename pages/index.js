@@ -58,13 +58,12 @@ import CTA from '../components/cta/cta';
 import { HEADER_LIST, HOME_FEATURES_TAB_ID, HOME_MODULE_LIST, MODULE_COLOR_LIST } from '../constants/constant';
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import classNames from 'classnames';
-import { getTabGroupById } from '../lib/contentful-tabs';
-import { getCommonContent } from '../lib/contentful-common';
+import { getHomeContent } from '../lib/contentful-home';
 import { isEmpty } from '../helpers/helpers';
 import TabView from '../components/tab/tab';
 import Button from '../components/button/button';
 
-export default function Home({ allPosts, heroTitle, heroContent }) {
+export default function Home({ content }) {
   return (
     <>
       <NextSeo
@@ -77,10 +76,10 @@ export default function Home({ allPosts, heroTitle, heroContent }) {
           <HeroSection>
             <Container>
               <HeroHeading>
-                {heroTitle}
+                {content.heroTitle}
                 <span>.</span>
               </HeroHeading>
-              <Para>{heroContent}</Para>
+              <Para>{content.heroBody}</Para>
               <HeroBtnBlock>
                 <Button
                   bgColor={'#09AA6C'}
@@ -166,7 +165,7 @@ export default function Home({ allPosts, heroTitle, heroContent }) {
                 </p>
               </BusinessText>
             </Container>
-            <BusinessSlider />
+            <BusinessSlider data={content?.testimonialsCollection?.items}/>
           </BusinessSection>
           <Functionality>
             <Container>
@@ -209,7 +208,7 @@ export default function Home({ allPosts, heroTitle, heroContent }) {
                 </BtnView>
               </BusinessText>
             </Container>
-            <ExtensionSlider />
+            <ExtensionSlider  data={content?.partnerAppsCollection?.items}/>
           </Extension>
           <AutomateSection>
             <Container>
@@ -462,16 +461,12 @@ export default function Home({ allPosts, heroTitle, heroContent }) {
   );
 }
 
-export async function getServerSideProps({ preview = false }) {
-  const allPosts = (await getTabGroupById(HOME_FEATURES_TAB_ID, preview)) ?? [];
-  const heroTitle = (await getCommonContent('6fGCwD1wOK4Yw54nLvW1q4')) ?? '';
-  const heroContent = (await getCommonContent('14KZY3BYfPPoTz0apYe6xd')) ?? '';
+export async function getStaticProps({ preview = false }) {
+  const content = (await getHomeContent()) ?? '';
 
   return {
     props: {
-      allPosts,
-      heroTitle,
-      heroContent
+      content
     }
   };
 }
