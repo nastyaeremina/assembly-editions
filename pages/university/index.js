@@ -28,6 +28,7 @@ import { useCallback, useEffect, useMemo, useState } from 'react';
 import { getAllUniversityVideos } from '../../lib/contentful-universityVideos';
 import { isEmpty } from '../../helpers/helpers';
 import slugify from 'slugify';
+import SEO from '../../components/seo';
 
 let selected_categry = null;
 export default function University({ universityVideosList }) {
@@ -96,10 +97,7 @@ export default function University({ universityVideosList }) {
 
   return (
     <>
-      <NextSeo
-        title='copilot blogs to keep you up with the  Sales Tactics!'
-        description='Sale is a prominent part of any business & nothing can be better than getting tried tactics for it. So get all that you want to know about sales from our Blogs.'
-      />
+      <SEO id={"2hMkBVQBYcMCmHLQyxzo8o"}></SEO>
       <Layout>
         <Navbar />
         <UniversitySection>

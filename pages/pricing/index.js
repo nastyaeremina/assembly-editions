@@ -6,6 +6,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import Layout from '../../components/layout';
 import Navbar from '../../components/navbar/navbar';
+import SEO from '../../components/seo';
 
 import { Container, PrimaryButton, SecondryButton } from '../../styles/commonStyles';
 import {
@@ -56,10 +57,7 @@ export default function NewIndex({faq}) {
 
   return (
     <>
-      <NextSeo
-        title='Create your portal, pick a plan later'
-        description='Try Copilot free for 14 days, no credit card required'
-      />
+      <SEO id={"yof0gWCYzq1DaLbKJTFqb"} />
       <Layout>
         <Navbar />
         <HeroSection>

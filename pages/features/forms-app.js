@@ -40,6 +40,7 @@ import TabView from '../../components/tab/tab';
 import { getFeatureById } from '../../lib/contentful-features';
 import { isEmpty } from '../../helpers/helpers';
 import FeatureHero from '../../components/featurehero/featurehero';
+import SEO from '../../components/seo';
 
 const CURRENT_MODULE = MUDULE_LIST.FORMS;
 export default function MessagingApp({ details }) {
@@ -61,10 +62,7 @@ export default function MessagingApp({ details }) {
 
   return (
     <>
-      <NextSeo
-        title='Copilot - It’s all about connection'
-        description='copilot offers client portal software solution to manage sales reporting, management, marketing, improve customer relationships and more. Get the best free CRM system for your business.'
-      />
+      <SEO id={"4iuBwNgVubAVYkNamRzudb"} />
       <Layout>
         {renderHeroSection}
         <Content />

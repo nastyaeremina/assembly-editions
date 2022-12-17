@@ -44,6 +44,7 @@ import { useCallback, useEffect, useMemo, useState } from 'react';
 import { isEmpty } from '../../helpers/helpers';
 import { APPS_TYPE } from '../../constants/constant';
 import Button from '../../components/button/button';
+import SEO from '../../components/seo';
 
 export default function Apps({ allPosts, featuredApps, allCategoryWithPost, dataIntegrationApps }) {
   const [selected_category, setSelected_category] = useState();
@@ -186,10 +187,7 @@ export default function Apps({ allPosts, featuredApps, allCategoryWithPost, data
 
   return (
     <>
-      <NextSeo
-        title='copilot blogs to keep you up with the  Sales Tactics!'
-        description='Sale is a prominent part of any business & nothing can be better than getting tried tactics for it. So get all that you want to know about sales from our Blogs.'
-      />
+      <SEO id={"1YuaTMgNnzacoBjygKg4nk"}></SEO>
       <Layout>
         <MainBg>
           <Navbar />

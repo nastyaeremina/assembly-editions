@@ -6,6 +6,7 @@ import CTA from '../../components/cta/cta';
 import FAQ from '../../components/faq/faq';
 import Layout from '../../components/layout';
 import Navbar from '../../components/navbar/navbar';
+import SEO from '../../components/seo';
 import { dateToMonthYear, isEmpty } from '../../helpers/helpers';
 import { NO_OF_JOBS_PER_PAGE } from '../../lib/constants';
 import { getAllJobBlogPosts } from '../../lib/contentful-jobBlogPosts';
@@ -164,10 +165,7 @@ export default function Jobs({ jobList, jobImagesList, jobBlogPostList }) {
 
   return (
     <>
-      <NextSeo
-        title='Create your portal, pick a plan later'
-        description='Try Copilot free for 14 days, no credit card required'
-      />
+      <SEO id={"3OxhA7Vy4csNLzaS9LUFF6"} />
       <Layout>
         <Navbar />
         <MainWrap>

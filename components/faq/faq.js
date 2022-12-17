@@ -15,7 +15,6 @@ export default function FAQ({ enterprise, contentID }) {
   const [allPosts, setAppPosts] = useState([]);
   const loadData = useCallback(async () => {
     const posts = (await getFAQs(contentID)) ?? [];
-    console.log(posts);
     setAppPosts(posts);
   }, [contentID]);
 

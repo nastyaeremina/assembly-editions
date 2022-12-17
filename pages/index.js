@@ -1,6 +1,5 @@
 import Layout from '/components/layout';
 import Image from 'next/image';
-import { NextSeo } from 'next-seo';
 import Link from 'next/link';
 import StarLogo from '../public/images/star5.svg';
 import Navbar from '../components/navbar/navbar';
@@ -62,14 +61,12 @@ import { getHomeContent } from '../lib/contentful-home';
 import { isEmpty } from '../helpers/helpers';
 import TabView from '../components/tab/tab';
 import Button from '../components/button/button';
+import SEO from '../components/seo';
 
 export default function Home({ content }) {
   return (
     <>
-      <NextSeo
-        title='Copilot - It’s all about connection'
-        description='copilot offers client portal software solution to manage sales reporting, management, marketing, improve customer relationships and more. Get the best free CRM system for your business.'
-      />
+      <SEO id={content?.seoMetadata?.sys?.id}></SEO>
       <Layout>
         <Navbar headerIndex={HEADER_LIST.HOME} isModule={false} />
         <HomeMain>
@@ -463,7 +460,6 @@ export default function Home({ content }) {
 
 export async function getStaticProps({ preview = false }) {
   const content = (await getHomeContent()) ?? '';
-
   return {
     props: {
       content

@@ -24,6 +24,7 @@ import {
   ImgWrap
 } from '../../styles/brandStyles';
 import Button from '../../components/button/button';
+import SEO from '../../components/seo';
 
 export default function Brand() {
   const [copy1, setCopy1] = useState('Copy');
@@ -95,10 +96,7 @@ export default function Brand() {
 
   return (
     <>
-      <NextSeo
-        title='Create your portal, pick a plan later'
-        description='Try Copilot free for 14 days, no credit card required'
-      />
+      <SEO id={"5SUY6L51crllldyZnYR7aA"} />
       <Layout>
         <Navbar />
         <BrandMain>

@@ -5,6 +5,7 @@ import Button from '../../components/button/button';
 import FAQ from '../../components/faq/faq';
 import Layout from '../../components/layout';
 import Navbar from '../../components/navbar/navbar';
+import SEO from '../../components/seo';
 import { HEADER_LIST } from '../../constants/constant';
 import { Container, GreenButton, TransparenBlack } from '../../styles/commonStyles';
 import {
@@ -44,10 +45,7 @@ import {
 export default function Enterprise() {
   return (
     <>
-      <NextSeo
-        title='Create your portal, pick a plan later'
-        description='Try Copilot free for 14 days, no credit card required'
-      />
+      <SEO id={"6p7v6zWrnGmgs9RVbm2xrk"} />
       <Layout isEnterPrice={true}>
         <MainWrap>
           <Navbar isEnterPrice={true} headerIndex={HEADER_LIST.ENTERPRICE} />
