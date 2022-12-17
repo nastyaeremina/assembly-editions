@@ -1,14 +1,13 @@
 // TODO: switch is not working
 
 import { useState, useCallback } from 'react';
-import { NextSeo } from 'next-seo';
 import Link from 'next/link';
 import Image from 'next/image';
 import Layout from '../../components/layout';
 import Navbar from '../../components/navbar/navbar';
 import SEO from '../../components/seo';
 
-import { Container, PrimaryButton, SecondryButton } from '../../styles/commonStyles';
+import { Container, SecondryButton } from '../../styles/commonStyles';
 import {
   HeroSection,
   PricingSection,
