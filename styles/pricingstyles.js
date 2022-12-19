@@ -309,7 +309,9 @@ const PricePlanWrap = styled.li`
     }
   }
   @media only screen and (max-width: 749px) {
-    ${Body4};
+    p {
+      ${Body4};
+    }
   }
 `;
 const PlanPlanSub = styled.div``;
