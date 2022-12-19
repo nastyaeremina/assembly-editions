@@ -6,7 +6,6 @@ import { SliderWrap, SliderInner, SliderSub, SliderLine } from './styles';
 import Link from 'next/link';
 
 const ExtensionSlider = ({ data }) => {
-
   const settings = {
     dots: false,
     infinite: true,
@@ -17,7 +16,6 @@ const ExtensionSlider = ({ data }) => {
     cssEase: 'linear',
     mobileFirst: true,
     adaptiveHeight: true,
-    infinite: true,
     autoplay: true,
     autoplaySpeed: 0,
     arrows: false,
@@ -52,16 +50,18 @@ const ExtensionSlider = ({ data }) => {
       <SliderWrap>
         <SliderLine></SliderLine>
         <Slider {...settings}>
-        {data?.map((item,index) =>{
-            return <>
-            <SliderInner href={item?.website}>
-            <SliderSub>
-              <Image src={item?.icon?.url} alt='red-icon' width={35} height={35} layout={'fixed'} />
-              <h4>{item?.name}</h4>
-            </SliderSub>
-          </SliderInner>
-       </>
-        })}
+          {data?.map((item, index) => {
+            return (
+              <>
+                <SliderInner href={item?.website}>
+                  <SliderSub>
+                    <Image src={item?.icon?.url} alt='red-icon' width={35} height={35} layout={'fixed'} />
+                    <h4>{item?.name}</h4>
+                  </SliderSub>
+                </SliderInner>
+              </>
+            );
+          })}
         </Slider>
       </SliderWrap>
     </>
