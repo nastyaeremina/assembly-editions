@@ -17,12 +17,15 @@ const NavbarWrapper = styled.div`
   align-items: center;
   transition: all 300ms ease-in-out;
   ${(props) =>
-    props.isScrollPage &&
     css`
       background: ${props.colorList?.bgColor};
-      backdrop-filter: blur(6px);
-      border-bottom: 1px solid ${props.colorList?.borderBottomColor};
+      border-bottom: 0px solid ${props.colorList?.borderBottomColor};
     `}
+  &&.scroll
+  {
+    backdrop-filter: blur(6px);
+    border-width:1px;
+  }
   @media only screen and (max-width: 991px) {
     padding: 16px 0;
   }

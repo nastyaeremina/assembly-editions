@@ -619,7 +619,7 @@ export default function Navbar({ BlogDetails, isModule, headerIndex, isEnterPric
 
   return (
     <>
-      <NavbarWrapper isScrollPage={isScrollPage} colorList={colorList}>
+      <NavbarWrapper className={isScrollPage ? "scroll": ""} isScrollPage={isScrollPage} colorList={colorList}>
         <Container>
           <NavbarInner>
             <Link href='/'>
