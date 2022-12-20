@@ -63,6 +63,7 @@ const CtaAnimation = styled.div`
 
 const LeftImg = styled.div`
   position: relative;
+  -webkit-mask-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAA5JREFUeNpiYGBgAAgwAAAEAAGbA+oJAAAAAElFTkSuQmCC);
   ::before {
     content: '';
     position: absolute;
@@ -70,7 +71,6 @@ const LeftImg = styled.div`
     border-top: 1px dashed #ffffff;
     right: 100%;
     width: 100vw;
-    border-radius: 50px !important;
   }
   .mobileshow {
     display: none;
