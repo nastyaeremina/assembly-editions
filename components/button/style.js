@@ -31,6 +31,7 @@ const ButtonContainer = styled.div`
     transition: all 300ms;
     --y: calc((var(--cursor-y) * 1px));
     --x: calc((var(--cursor-x) * 1px));
+    -webkit-mask-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAA5JREFUeNpiYGBgAAgwAAAEAAGbA+oJAAAAAElFTkSuQmCC);
     &::before {
       content: '';
       opacity: 0;
