@@ -1,6 +1,7 @@
 import { getSEOdata } from '../../lib/contentful-seo';
 import { NextSeo } from 'next-seo';
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
+import { GetServerSidePropsContext } from 'next';
 
 export default function SEO({ id }) {
     const [data, setData] = useState([]);

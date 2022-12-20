@@ -24,6 +24,8 @@ import {
 } from '../../lib/contentful-universityVideos';
 import { isEmpty } from '../../helpers/helpers';
 import { useMemo } from 'react';
+import LiteYouTubeEmbed from 'react-lite-youtube-embed';
+import 'react-lite-youtube-embed/dist/LiteYouTubeEmbed.css'
 
 export default function UniversityDetail({ relatedVideos, universityVideoDetail }) {
   console.log('relatedApps', relatedVideos);
@@ -65,26 +67,10 @@ export default function UniversityDetail({ relatedVideos, universityVideoDetail 
               <h3>{universityVideoDetail?.name}</h3>
             </DetailVideoHero>
             <VideoSection>
-              <Link href={universityVideoDetail?.videoLink}>
-                <VideoImage>
-                  <Image
-                    src={universityVideoDetail?.thumbnail?.url}
-                    alt='video'
-                    width={1224}
-                    height={689}
-                    layout={'fixed'}
-                  />
-                  <Image
-                    src='/images/youtube.svg'
-                    alt='video'
-                    width={196}
-                    height={196}
-                    layout={'fixed'}
-                    className='mainimage'
-                  />
-                  <OverLay></OverLay>
-                </VideoImage>
-              </Link>
+            <LiteYouTubeEmbed 
+                    id={universityVideoDetail?.videoLink}
+                    title="What’s new in Material Design for the web (Chrome Dev Summit 2019)"
+            />
               <p>{universityVideoDetail?.description}</p>
             </VideoSection>
             {!isEmpty(relatedVideos) && (
@@ -130,7 +116,6 @@ export async function getServerSidePaths() {
   const allPosts = (await getAllUniversityVideoWithSlug()) ?? [];
   return {
     paths: allPosts?.map((slug) => `${slug}`) ?? [],
-
     fallback: true
   };
 }

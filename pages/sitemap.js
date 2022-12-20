@@ -1,10 +1,10 @@
 import { NextSeo } from 'next-seo';
 import Image from 'next/image';
 import Link from 'next/link';
-import Layout from '../../components/layout';
-import Navbar from '../../components/navbar/navbar';
-import { HEADER_LIST } from '../../constants/constant';
-import { Container } from '../../styles/commonStyles';
+import Layout from '../components/layout';
+import Navbar from '../components/navbar/navbar';
+import { HEADER_LIST } from '../constants/constant';
+import { Container } from '../styles/commonStyles';
 import {
   MainSection,
   PrivacuHero,
@@ -12,7 +12,7 @@ import {
   InfoWrap,
   InfoLink,
   PrivacyContactData
-} from '../../styles/resourcesStyles';
+} from '../styles/resourcesStyles';
 
 export default function Privacy() {
   return (
