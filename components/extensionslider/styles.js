@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 import { Body3, Body4, Body5 } from '../../styles/styles';
 
 const Slide = styled.div`
@@ -90,16 +90,23 @@ const SliderSub = styled.div`
     color: ${({ theme }) => theme.colors.title};
   }
 `;
+const borderAnimation = keyframes`
+  100% {
+    background-position: 0px 0px, 300px 116px, 0px 150px, 216px 0px;
+  }
+  0% {
+    background-position: 300px 0px, 0px 116px, 0px 0px, 216px 150px;
+  }
+`;
 const SliderLine = styled.div`
-  -webkit-animation: lineboarderanimation 10s linear infinite;
-  animation: lineboarderanimation 10s linear infinite;
+  animation: ${borderAnimation} 4s linear infinite;
   background: linear-gradient(90deg, rgba(0, 0, 0, 1) 50%, transparent 0),
     linear-gradient(90deg, rgba(0, 0, 0, 1) 50%, transparent 0),
     linear-gradient(0deg, rgba(0, 0, 0, 1) 50%, transparent 0),
     linear-gradient(0deg, rgba(0, 0, 0, 1) 50%, transparent 0);
   background-position: 0 0, 200px 100px, 0 100px, 200px 0;
   background-repeat: repeat-x, repeat-x, repeat-y, repeat-y;
-  background-size: 7px 4px, 7px 4px, 7px 14px, 7px 14px;
+  background-size: 10px 4px, 10px 10px, 10px 14px, 10px 14px;
   bottom: 0;
   height: 1px;
   left: 5px;
@@ -109,4 +116,5 @@ const SliderLine = styled.div`
   top: 0;
   /* overflow: hidden; */
 `;
+
 export { Slide, SliderWrap, WrapImage, SliderInner, SliderSub, SliderLine };
