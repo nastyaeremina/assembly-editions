@@ -70,6 +70,7 @@ const LeftImg = styled.div`
     border-top: 1px dashed #ffffff;
     right: 100%;
     width: 100vw;
+    border-radius: 50px !important;
   }
   .mobileshow {
     display: none;
