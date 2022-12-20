@@ -18,6 +18,16 @@ export default function SEO({ id }) {
     <NextSeo
     title={data?.seoTitle}
     description={data?.description}
+    openGraph={{
+      type: 'website',
+      locale: 'en_IE',
+      site_name: 'SiteName',
+      images:[
+        {
+          url: data?.openGraphImage?.url
+        }
+      ]
+      }}
   /></>
   );
 }
