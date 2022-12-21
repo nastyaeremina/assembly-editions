@@ -45,8 +45,14 @@ const SliderWrap = styled.div`
       transition: transform 0.3s;
     }
   }
-  .slick-slide{
-    height:610px;
+  .slick-slide {
+    height: 580px;
+    @media only screen and (max-width: 991px) {
+      height: 500px;
+    }
+    @media only screen and (max-width: 749px) {
+      height: 500px;
+    }
   }
 `;
 const WrapImage = styled.div`
