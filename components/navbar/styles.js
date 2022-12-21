@@ -21,10 +21,9 @@ const NavbarWrapper = styled.div`
       background: ${props.colorList?.bgColor};
       border-bottom: 0px solid ${props.colorList?.borderBottomColor};
     `}
-  &&.scroll
-  {
+  &&.scroll {
     backdrop-filter: blur(6px);
-    border-width:1px;
+    border-width: 1px;
   }
   @media only screen and (max-width: 991px) {
     padding: 16px 0;
@@ -147,6 +146,13 @@ const SpanLink = styled.li`
         color: ${props.hoverColor};
       `}
   }
+  .hovernone:hover {
+    ${(props) =>
+      props.textColor &&
+      css`
+        color: ${props.textColor};
+      `}
+  }
   &.active {
     a {
       color: ${({ theme }) => theme.colors.primary};
@@ -202,9 +208,6 @@ const SpanMobileLink = styled.li`
         color: ${props.title};
       `}
   }
-    transition: all 300ms;
-    cursor: pointer;
-  }
   a:hover {
     ${(props) =>
       props.hoverColor &&
@@ -236,7 +239,8 @@ const SpanMobileLink = styled.li`
       display: block;
       border-radius: 0px;
       margin: 0;
-      color:  ${({ theme }) => theme.colors.title}
+      color: ${({ theme }) => theme.colors.title};
+    }
   }
   :hover .innerlist,
   li {
@@ -257,7 +261,7 @@ const SpanMobileLink = styled.li`
 `;
 const InnerList = styled.ul`
   position: absolute;
-  top: 48px;
+  top: 47px;
   left: -10px;
   padding: 8px 0;
   background: #fff;
