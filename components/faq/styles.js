@@ -5,6 +5,10 @@ const FaqSection = styled.div`
   padding: 100px 0 60px 0;
   .ag {
     padding-bottom: 40px;
+    transition: all cubic-bezier(0.39, 0.575, 0.565, 1);
+    &[aria-expanded='true'] {
+      padding-bottom: 20px;
+    }
     :last-child {
       padding-bottom: 0;
     }
@@ -71,6 +75,9 @@ const FaqTitle = styled.div`
       font-size: 50px;
       line-height: 55px;
     }
+  }
+  @media only screen and (max-width: 749px) {
+    margin-bottom: 0;
   }
 `;
 const FaqWrap = styled.div`
