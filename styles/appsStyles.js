@@ -4,6 +4,7 @@ import {
   Body4,
   Body5,
   CardTxt,
+  HeaderFont,
   Heading2,
   Heading3,
   Heading4,
@@ -57,7 +58,11 @@ const FeatureWrap = styled.div`
   display: flex;
   gap: 36px;
 `;
-const FirstImg = styled.div``;
+const FirstImg = styled.div`
+  img {
+    max-width: 100%;
+  }
+`;
 const Input = styled.input`
   ${Value};
   color: ${({ theme }) => theme.colors.title};
@@ -198,7 +203,7 @@ const FeatureCard = styled.div`
   } */
 `;
 const CardText = styled.div`
-  padding: 20px 16px 21px 16px;
+  padding: 20px 16px 46px 16px;
   border-top: 1px solid black;
   h4 {
     ${Body4};
@@ -224,6 +229,11 @@ const CardEnd = styled.div`
   padding: 6px 16px;
   border-top: 1px solid #01011d;
   border-radius: 0 0 4px 4px;
+  position: absolute;
+  top: auto;
+  bottom: 0;
+  left: 0;
+  right: 0;
   p {
     ${CardTxt};
     color: ${({ theme }) => theme.colors.purpledark};
@@ -401,10 +411,16 @@ const DetailLink = styled.div`
     ${LinkTxt};
     margin: 0;
     color: ${({ theme }) => theme.colors.lightgray};
+    @media only screen and (max-width: 749px) {
+      ${HeaderFont};
+    }
   }
 `;
 const AppsDetailMain = styled.div`
   padding-top: 120px;
+  @media only screen and (max-width: 749px) {
+    padding-top: 116px;
+  }
 `;
 const AppDetailCard = styled.div`
   background-color: ${({ theme }) => theme.colors.background};
@@ -425,10 +441,18 @@ const DetailWrap = styled.div`
     top: 247px;
     right: 0;
   }
+  @media only screen and (max-width: 749px) {
+    padding: 9px;
+  }
 `;
 const DetailMain = styled.div`
   display: flex;
   padding-bottom: 100px;
+  @media only screen and (max-width: 991px) {
+    flex-wrap: wrap;
+    flex-direction: column-reverse;
+    padding-bottom: 80px;
+  }
 `;
 const LinePostion = styled.div`
   position: absolute;
@@ -440,14 +464,25 @@ const DetailRight = styled.div`
   .mr10 {
     padding-top: 10px;
   }
+  @media only screen and (max-width: 991px) {
+    padding: 0 0;
+  }
 `;
 const RightWrap = styled.div`
   display: flex;
   gap: 10px;
   padding-bottom: 60px;
   align-items: flex-start;
+  @media only screen and (max-width: 991px) {
+    padding-bottom: 40px;
+    :last-child {
+      padding-bottom: 28px;
+    }
+  }
 `;
 const DetailTxt = styled.div`
+  display: flex;
+  flex-direction: column;
   p {
     ${Label};
     color: ${({ theme }) => theme.colors.lightgray};
@@ -469,6 +504,9 @@ const HelpWrap = styled.div`
   .tooltip {
     position: relative;
     display: inline-block;
+    @media only screen and (max-width: 749px) {
+      display: none;
+    }
   }
   .tooltip .tooltiptext {
     visibility: hidden;
@@ -487,6 +525,11 @@ const HelpWrap = styled.div`
     margin-right: -54px;
     box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.25);
     border-radius: 4px;
+    @media only screen and (max-width: 991px) {
+      width: 549px;
+      left: -45px;
+      right: 0;
+    }
   }
   .tooltip:hover .tooltiptext {
     visibility: visible;
@@ -500,14 +543,23 @@ const HelpWrap = styled.div`
       top: 0;
       right: 42px;
       z-index: -1;
+      @media only screen and (max-width: 991px) {
+        left: unset;
+        right: unset;
+      }
     }
   }
 `;
 const RightTxt = styled.div`
   background-color: ${({ theme }) => theme.colors.greenlight};
   padding: 7px 20px;
-  margin-top: 12px;
+  margin-bottom: 12px;
   display: inline-block;
+  border-radius: 4px;
+  width: fit-content;
+  :last-child {
+    margin-bottom: 0;
+  }
   h4 {
     ${Label};
     color: ${({ theme }) => theme.colors.primary};
@@ -525,12 +577,24 @@ const AppWrap = styled.div`
     margin: 0;
     color: ${({ theme }) => theme.colors.black};
   }
+  @media only screen and (max-width: 991px) {
+    padding-bottom: 80px;
+  }
 `;
 const CardSection = styled.div`
   padding-top: 50px;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
   grid-gap: 48px;
+  @media only screen and (max-width: 991px) {
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 26px;
+  }
+  @media only screen and (max-width: 749px) {
+    grid-template-columns: 1fr;
+    padding-top: 20px;
+    gap: 20px;
+  }
 `;
 const MainBg = styled.div`
   background-color: #fffffd;
@@ -545,6 +609,9 @@ const ImageWrap = styled.div`
   height: 100%;
   box-shadow: 0px 0px 25.4474px rgba(0, 0, 0, 0.07);
   border-radius: 5px;
+  img {
+    max-width: 100%;
+  }
 `;
 const TooltipWrap = styled.div`
   cursor: pointer;
@@ -567,6 +634,9 @@ const AppsDetailWrap = styled.div`
     margin: 20px 0 32px 0;
     ${Body2};
     color: ${({ theme }) => theme.colors.body};
+    @media only screen and (max-width: 749px) {
+      ${MbBody2};
+    }
   }
 `;
 export {

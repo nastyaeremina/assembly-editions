@@ -23,7 +23,8 @@ import {
   AppsDetailWrap,
   FirstImg,
   TooltipWrap,
-  Tooltip
+  Tooltip,
+  CardMain
 } from '../../styles/appsStyles';
 import { Container, PrimaryButton } from '../../styles/commonStyles';
 import CTA from '../../components/cta/cta';
@@ -43,20 +44,24 @@ export default function AppsDetail({ appDetail, relatedApps }) {
     if (isEmpty(relatedApps)) return null;
     return relatedApps?.map((item, index) => {
       return (
-        <FeatureCard key={`renderrelatedappsview_index_${index}`}>
-          <Link href={`/apps/${item?.slug}`}>
-            <FeatureImg>
-              <Image src={item?.logo?.url} alt='main-logo' width={236} height={56} />
-            </FeatureImg>
-            <CardText>
-              <h4>{item?.name}</h4>
-              <p>{item?.description}</p>
-            </CardText>
-            <CardEnd>
-              <p>{item?.partnerAppCategoriesCollection?.items[0]?.name}</p>
-            </CardEnd>
-          </Link>
-        </FeatureCard>
+        <>
+          <CardMain>
+            <FeatureCard key={`renderrelatedappsview_index_${index}`}>
+              <Link href={`/apps/${item?.slug}`}>
+                <FeatureImg>
+                  <Image src={item?.logo?.url} alt='main-logo' width={236} height={56} objectFit='contain' />
+                </FeatureImg>
+                <CardText>
+                  <h4>{item?.name}</h4>
+                  <p>{item?.description}</p>
+                </CardText>
+                <CardEnd>
+                  <p>{item?.partnerAppCategoriesCollection?.items[0]?.name}</p>
+                </CardEnd>
+              </Link>
+            </FeatureCard>
+          </CardMain>
+        </>
       );
     });
   }, [relatedApps]);
@@ -93,7 +98,7 @@ export default function AppsDetail({ appDetail, relatedApps }) {
             <Container>
               <AppsDetailWrap>
                 <FirstImg>
-                  <Image src={appDetail?.logo?.url} alt='bill-icon' width={309} height={68} layout={'fixed'} />
+                  <Image src={appDetail?.logo?.url} alt='bill-icon' width={309} height={68} />
                 </FirstImg>
                 <p>{appDetail?.description}</p>
                 <Button
