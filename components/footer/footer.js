@@ -269,7 +269,7 @@ export default function Footer({ isEnterPrice }) {
                     <Link href='/university'>Video Tutorials</Link>
                     <Link href='http://docs.copilot.com/'>API Reference</Link>
                     <Link href='https://status.copilot.com/'>System Status</Link>
-                    <Link href='/sitemap'>Sitemap</Link>
+                    <Link href='resources/sitemap'>Sitemap</Link>
                   </FooterMenuList>
                 </FooterMenu>
               </FotterMenuLeft>
@@ -316,7 +316,7 @@ export default function Footer({ isEnterPrice }) {
                     <Link href='/university'>Video Tutorials</Link>
                     <Link href='http://docs.copilot.com/'>API Reference</Link>
                     <Link href='https://status.copilot.com/'>System Status</Link>
-                    <Link href='/sitemap'>Sitemap</Link>
+                    <Link href='resources/sitemap'>Sitemap</Link>
                   </FooterMenuList>
                 </FooterMenu>
               </FotterMenuMobile>
