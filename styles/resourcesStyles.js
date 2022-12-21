@@ -76,6 +76,7 @@ const ContentInfo = styled.div`
 const InfoWrap = styled.div`
   padding: 40px 0;
   border-bottom: 1px solid #000000;
+
   h4 {
     ${Heading4};
     margin: 0;
@@ -92,8 +93,7 @@ const InfoLink = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
   padding-top: 30px;
-  gap: 26px;
-  grid-row-gap: 16px;
+  row-gap: 16px;
   a {
     ${LinkTxt};
     color: ${({ theme }) => theme.colors.primary};
