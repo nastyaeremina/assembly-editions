@@ -165,7 +165,9 @@ export default function Navbar({ BlogDetails, isModule, headerIndex, isEnterPric
                       Features
                     </MobileText>
                   ) : (
-                    <Link href='#'>Features</Link>
+                    <Link href='#' className='hovernone'>
+                      Features
+                    </Link>
                   )}
                   <InnerList features className='innerlist'>
                     <ListLi>
@@ -261,7 +263,9 @@ export default function Navbar({ BlogDetails, isModule, headerIndex, isEnterPric
                       Company
                     </MobileText>
                   ) : (
-                    <Link href='#'>Company</Link>
+                    <Link href='#' className='hovernone'>
+                      Company
+                    </Link>
                   )}
                   <InnerList company className='innerlist'>
                     <ListLi>
@@ -375,7 +379,9 @@ export default function Navbar({ BlogDetails, isModule, headerIndex, isEnterPric
                       Resources
                     </MobileText>
                   ) : (
-                    <Link href='#'>Resources</Link>
+                    <Link href='#' className='hovernone'>
+                      Resources
+                    </Link>
                   )}
                   <InnerList company className='innerlist'>
                     <ListLi>
@@ -619,7 +625,7 @@ export default function Navbar({ BlogDetails, isModule, headerIndex, isEnterPric
 
   return (
     <>
-      <NavbarWrapper className={isScrollPage ? "scroll": ""} isScrollPage={isScrollPage} colorList={colorList}>
+      <NavbarWrapper className={isScrollPage ? 'scroll' : ''} isScrollPage={isScrollPage} colorList={colorList}>
         <Container>
           <NavbarInner>
             <Link href='/'>
