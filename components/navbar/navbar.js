@@ -61,7 +61,8 @@ export default function Navbar({ BlogDetails, isModule, headerIndex, isEnterPric
   const [isOpenResoursesSubMenu, setIsOpenResoursesSubMenu] = useState(false);
 
   const [colorList, setColorList] = useState(NAVBAR_COLOR_LIST[0]);
-  console.log('isOpenFeatureSubMenu', isOpenFeatureSubMenu);
+
+  console.log('isOpenFeatureSubMenu', colorList);
 
   const closeSubMenu = useCallback(() => {
     if (isOpenFeatureSubMenu) {
@@ -597,7 +598,13 @@ export default function Navbar({ BlogDetails, isModule, headerIndex, isEnterPric
                   </BlackButton> */}
                   <Button
                     bgColor={colorList?.buttonColor}
-                    fontColor={isEnterPrice ? colorList?.fontColor : '#FFFFFF'}
+                    fontColor={
+                      isEnterPrice
+                        ? colorList?.fontColor
+                        : colorList?.buttontextColor
+                        ? colorList?.buttontextColor
+                        : '#FFFFFF'
+                    }
                     text={'Start Trial'}
                     borderColor={'transparent'}
                     href={'https://dashboard.copilot.com/onboarding'}

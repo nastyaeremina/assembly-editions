@@ -13,6 +13,7 @@ export default function CTA({ moduleName, colorList }) {
     const gradient = new Gradient();
     gradient.initGradient('#gradient-canvas');
   }, []);
+  console.log('moduleName', moduleName);
 
   return (
     <>
@@ -48,7 +49,11 @@ export default function CTA({ moduleName, colorList }) {
                       : NAVBAR_COLOR_LIST[HEADER_LIST.ENTERPRICE].primaryColor
                   }
                   fontColor={
-                    colorList?.lightColor ? colorList?.lightColor : NAVBAR_COLOR_LIST[HEADER_LIST.ENTERPRICE].lightColor
+                    moduleName === 'form'
+                      ? colorList?.buttontextColor
+                      : colorList?.lightColor
+                      ? colorList?.lightColor
+                      : NAVBAR_COLOR_LIST[HEADER_LIST.ENTERPRICE].lightColor
                   }
                   borderColor={'transparent'}
                   text={'Start Trial'}

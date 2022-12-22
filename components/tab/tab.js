@@ -39,8 +39,8 @@ export default function TabView({ tabId, bgColor, textColor, isHome }) {
             overrides={{
               Block: {
                 style: {
-                  color: 'inherit',
-                  ':hover': { color: 'inherit' }
+                  color: 'inherit'
+                  // ':hover': { color: '#131313;' }
                   // color: $active ? MODULE_COLOR_LIST[HOME_MODULE_LIST[rest?.children]]?.fontColor : 'inherit',
                   // backgroundColor: $active ? MODULE_COLOR_LIST[HOME_MODULE_LIST[rest?.children]]?.bgColor : 'inherit', ':hover': { color: 'inherit' }
                 }

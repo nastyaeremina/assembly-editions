@@ -97,7 +97,7 @@ const QuoteTop = styled.div`
   height: 407px;
 `;
 const QuoteLine = styled.div`
-  bottom: -103px;
+  bottom: -104px;
   position: absolute;
   left: 25%;
   margin-left: -1px;
