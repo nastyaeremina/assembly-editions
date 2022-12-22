@@ -58,7 +58,8 @@ export default function TabView({ tabId, bgColor, textColor, isHome }) {
     'margin-bottom': '20px',
     'padding-left': '0px',
     paddingLeft: '0',
-    paddingRight: '0'
+    paddingRight: '0',
+    backgroundColor: 'transparent'
   });
   const tabContentStyle = ({ $theme }) => ({
     borderLeftWidth: '2px',
@@ -131,6 +132,7 @@ export default function TabView({ tabId, bgColor, textColor, isHome }) {
                 text={'Learn More'}
                 href={link ?? ''}
                 hoverColor={'rgba(0, 0, 0, 0.5)'}
+                className='btnmobi'
               />
             </LeftDetail>
             <RightDetail>
