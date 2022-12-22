@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { Body2, Body3, ButtonText, Heading2, Heading4, LinkTxt, MbBody2, MbBody3, MobileH2, MobileH4 } from './styles';
 const BrandMain = styled.div`
   padding: 80px 0 50px 0;
-  @media only screen and (max-width: 376px) {
+  @media only screen and (max-width: 749px) {
     padding-bottom: 40px;
   }
 `;
@@ -42,7 +42,7 @@ const BrandName = styled.div`
     color: ${({ theme }) => theme.colors.body};
     ${Body3};
   }
-  @media only screen and (max-width: 376px) {
+  @media only screen and (max-width: 749px) {
     padding: 40px 0;
     h4 {
       ${MobileH4}
@@ -108,22 +108,34 @@ const BrandImageLeft = styled.div`
   justify-content: center;
   margin-top: -2px;
   img {
-    max-width: 405px;
+    /* max-width: 405px;
     width: 100%;
     max-height: 90px;
-    height: 100%;
+    height: 100%; */
   }
-  @media only screen and (max-width: 376px) {
-    padding: 90px 0;
-    .firsticon {
+  .firsticon {
+    display: block;
+    @media only screen and (max-width: 749px) {
+      display: none;
+    }
+  }
+  .mobileshow {
+    display: none;
+    @media only screen and (max-width: 749px) {
+      display: block;
+    }
+  }
+  @media only screen and (max-width: 749px) {
+    padding: 89px 0 88px;
+    /* .firsticon {
       max-width: 225px;
       width: 100%;
-    }
-    .mobileicon {
+    } */
+    /* .mobileicon {
       max-width: 75px;
       height: 50px;
       width: 100%;
-    }
+    } */
   }
 `;
 const HoverSection = styled.div`
@@ -147,20 +159,29 @@ const HoverSection = styled.div`
     max-width: 20px;
     max-height: 20px;
   }
-  @media only screen and (max-width: 769px) {
-    right: -4px;
-    left: -4px;
+  @media only screen and (max-width: 991px) {
+    right: -1px;
+    left: -1px;
     bottom: -1px;
   }
-  @media only screen and (max-width: 376px) {
-    padding: 9px 13px;
-    p {
-      font-size: 12px;
-      line-height: 14px;
+  @media only screen and (max-width: 749px) {
+    right: -1px;
+    left: -1px;
+    bottom: -1px;
+  }
+  @media only screen and (max-width: 749px) {
+    padding: 10px 13px;
+  }
+  .downdesk {
+    display: block;
+    @media only screen and (max-width: 749px) {
+      display: none;
     }
-    img {
-      width: 12px;
-      height: 12px;
+  }
+  .downmobi {
+    display: none;
+    @media only screen and (max-width: 749px) {
+      display: block;
     }
   }
 `;
@@ -180,15 +201,19 @@ const HoverLink = styled.div`
     ${LinkTxt};
     color: ${({ theme }) => theme.colors.whiteColor};
   }
-  @media only screen and (max-width: 376px) {
-    padding: 9px 13px;
-    img {
-      width: 12px;
-      height: 12px;
+  @media only screen and (max-width: 749px) {
+    padding: 10px 13px;
+  }
+  .downdesk {
+    display: block;
+    @media only screen and (max-width: 749px) {
+      display: none;
     }
-    p {
-      font-size: 12px;
-      line-height: 14px;
+  }
+  .downmobi {
+    display: none;
+    @media only screen and (max-width: 749px) {
+      display: block;
     }
   }
 `;
@@ -208,15 +233,19 @@ const BlackHover = styled.div`
     ${LinkTxt};
     color: ${({ theme }) => theme.colors.greenlight};
   }
-  @media only screen and (max-width: 376px) {
-    padding: 9px 13px;
-    img {
-      width: 12px;
-      height: 12px;
+  @media only screen and (max-width: 749px) {
+    padding: 10px 13px;
+  }
+  .downdesk {
+    display: block;
+    @media only screen and (max-width: 749px) {
+      display: none;
     }
-    p {
-      font-size: 12px;
-      line-height: 14px;
+  }
+  .downmobi {
+    display: none;
+    @media only screen and (max-width: 749px) {
+      display: block;
     }
   }
 `;
@@ -230,18 +259,20 @@ const BrandImageRight = styled.div`
   display: inline-flex;
   justify-content: center;
   margin-top: -2px;
-  @media only screen and (max-width: 376px) {
-    padding: 90px 0;
-    .firsticon {
-      max-width: 250px;
-      width: 100%;
-      height: 50px;
+  .firsticon {
+    display: block;
+    @media only screen and (max-width: 749px) {
+      display: none;
     }
-    .mobileicon {
-      max-width: 75px;
-      height: 50px;
-      width: 100%;
+  }
+  .mobileshow {
+    display: none;
+    @media only screen and (max-width: 749px) {
+      display: block;
     }
+  }
+  @media only screen and (max-width: 749px) {
+    padding: 89px 0 88px;
   }
 `;
 const CompanyIcon = styled.div`
@@ -261,12 +292,20 @@ const CompanyIcon = styled.div`
     right: 0;
     left: 0;
   }
-  @media only screen and (max-width: 376px) {
-    padding: 62px 0;
-    .companyicon {
-      width: 103px;
-      height: 103px;
+  .companyicon {
+    display: block;
+    @media only screen and (max-width: 749px) {
+      display: none;
     }
+  }
+  .companyiconmobi {
+    display: none;
+    @media only screen and (max-width: 749px) {
+      display: block;
+    }
+  }
+  @media only screen and (max-width: 749px) {
+    padding: 62px 0;
   }
 `;
 const ColorSection = styled.div`
@@ -308,13 +347,13 @@ const ColorSection = styled.div`
     backface-visibility: hidden;
     transition: transform 0.35s;
   }
-  @media only screen and (max-width: 769px) {
+  @media only screen and (max-width: 991px) {
     grid-template-columns: 1fr 1fr;
     gap: 40px;
     padding-top: 28px;
     border-radius: 10px;
   }
-  @media only screen and (max-width: 376px) {
+  @media only screen and (max-width: 749px) {
     grid-template-columns: 1fr;
     gap: 28px;
   }
