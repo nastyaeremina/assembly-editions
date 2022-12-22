@@ -865,7 +865,14 @@ const BackWrap = styled.div`
 const SvgIcon = styled.div`
   display: inline-flex;
 `;
-
+const TextView = styled.div`
+  ${HeaderFont};
+  margin: 0 14px;
+  color: #131313;
+  -webkit-transition: all 300ms;
+  transition: all 300ms;
+  cursor: pointer;
+`;
 export {
   NavbarWrapper,
   NavbarInner,
@@ -903,5 +910,6 @@ export {
   SpanMobileLink,
   BackWrap,
   SvgIcon,
-  MobileTextLink
+  MobileTextLink,
+  TextView
 };
