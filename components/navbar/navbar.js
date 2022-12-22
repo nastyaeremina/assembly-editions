@@ -46,7 +46,8 @@ import {
   SpanMobileLink,
   BackWrap,
   SvgIcon,
-  MobileTextLink
+  MobileTextLink,
+  TextView
 } from './styles';
 import FeatureSubMenu from './featuresubmenu';
 import ResourcesSubMenu from './resourcessubmenu';
@@ -166,9 +167,9 @@ export default function Navbar({ BlogDetails, isModule, headerIndex, isEnterPric
                       Features
                     </MobileText>
                   ) : (
-                    <Link href='#' className='hovernone'>
+                    <TextView href='#' className='hovernone'>
                       Features
-                    </Link>
+                    </TextView>
                   )}
                   <InnerList features className='innerlist'>
                     <ListLi>
@@ -264,9 +265,9 @@ export default function Navbar({ BlogDetails, isModule, headerIndex, isEnterPric
                       Company
                     </MobileText>
                   ) : (
-                    <Link href='#' className='hovernone'>
+                    <TextView href='#' className='hovernone'>
                       Company
-                    </Link>
+                    </TextView>
                   )}
                   <InnerList company className='innerlist'>
                     <ListLi>
@@ -380,9 +381,9 @@ export default function Navbar({ BlogDetails, isModule, headerIndex, isEnterPric
                       Resources
                     </MobileText>
                   ) : (
-                    <Link href='#' className='hovernone'>
+                    <TextView href='#' className='hovernone'>
                       Resources
-                    </Link>
+                    </TextView>
                   )}
                   <InnerList company className='innerlist'>
                     <ListLi>
