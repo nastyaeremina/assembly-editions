@@ -694,7 +694,7 @@ const CenterBox = styled.div`
 const ContainWrap = styled.div`
   display: flex;
   padding-top: 20px;
-  @media only screen and (max-width: 749px) {
+  @media only screen and (max-width: 991px) {
     flex-wrap: wrap;
     /* margin-top: 28px; */
     padding-top: 0;
@@ -715,6 +715,11 @@ const LeftDetail = styled.div`
     color: ${({ theme }) => theme.colors.body};
     margin: 0 0 24px 0;
   }
+  @media only screen and (max-width: 991px) {
+    .btnmobi {
+      margin-bottom: 24px;
+    }
+  }
   @media only screen and (max-width: 749px) {
     max-width: 100%;
     margin-right: 0;
@@ -728,6 +733,9 @@ const LeftDetail = styled.div`
       letter-spacing: 0.02em;
       color: ${({ theme }) => theme.colors.body};
       margin: 0 0 24px 0;
+    }
+    .btnmobi {
+      margin-bottom: 24px;
     }
   }
 `;
