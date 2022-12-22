@@ -299,7 +299,7 @@ export default function Client({ currentModule }) {
               </h3>
               <HelpLeftSub>
                 <HelpLink className='icon-link'>
-                  <a href='#' className='learn-link center'>
+                  <Link href='/apps' className='learn-link center'>
                     Explore apps
                     <svg class='HoverArrow' width='10' height='10' viewBox='0 0 10 10' aria-hidden='true'>
                       <g fill-rule='evenodd'>
@@ -322,7 +322,7 @@ export default function Client({ currentModule }) {
                         stroke-linejoin='round'
                       />
                     </svg>
-                  </a>
+                  </Link>
                 </HelpLink>
               </HelpLeftSub>
             </BlockText>

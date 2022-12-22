@@ -13,7 +13,7 @@ const ToolMain = styled.div`
   span {
     color: ${({ theme }) => theme.colors.primary};
   }
-  @media only screen and (max-width: 769px) {
+  @media only screen and (max-width: 749px) {
     padding: 80px 0 40px 0;
   }
 `;
@@ -26,7 +26,7 @@ const ModuleSection = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
   position: relative;
-  @media only screen and (max-width: 769px) {
+  @media only screen and (max-width: 768px) {
     grid-template-columns: 1fr 1fr;
     border-right: none;
   }
@@ -75,7 +75,7 @@ const ModuleWrap = styled.div`
   :last-child {
     border-right: 0;
   }
-  @media only screen and (max-width: 769px) {
+  @media only screen and (max-width: 768px) {
     :nth-child(4) {
       border-right: 1px solid #120800;
     }
@@ -83,7 +83,7 @@ const ModuleWrap = styled.div`
       border-right: 1px solid #120800;
     }
   }
-  @media only screen and (max-width: 376px) {
+  @media only screen and (max-width: 749px) {
     padding: 20px 16px;
     img {
       width: 24px;

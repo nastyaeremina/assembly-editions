@@ -514,7 +514,7 @@ const BottomFunction = styled.div`
 const TabRow = styled.div`
   display: flex;
 
-  @media only screen and (max-width: 376px) {
+  @media only screen and (max-width: 768px) {
     display: block;
   }
 
@@ -690,7 +690,7 @@ const CenterBox = styled.div`
 `;
 const ContainWrap = styled.div`
   display: flex;
-  @media only screen and (max-width: 769px) {
+  @media only screen and (max-width: 749px) {
     flex-wrap: wrap;
     /* margin-top: 28px; */
   }
@@ -710,7 +710,7 @@ const LeftDetail = styled.div`
     color: ${({ theme }) => theme.colors.body};
     margin: 0 0 24px 0;
   }
-  @media only screen and (max-width: 769px) {
+  @media only screen and (max-width: 749px) {
     max-width: 100%;
     margin-right: 0;
     h4 {
@@ -733,8 +733,8 @@ const RightDetail = styled.div`
   width: 100%;
   background: transparent;
   position: relative;
-  @media only screen and (max-width: 768px) {
-    margin-top: 28px;
+  @media only screen and (max-width: 749px) {
+    margin-top: 4px;
     padding: 5px 6px;
   }
   img {
