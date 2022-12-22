@@ -513,7 +513,6 @@ const BottomFunction = styled.div`
 `;
 const TabRow = styled.div`
   display: flex;
-
   @media only screen and (max-width: 768px) {
     display: block;
   }
@@ -555,7 +554,11 @@ const TabRow = styled.div`
   }
   .bd {
     :hover {
-      color: #757575;
+      ${(props) =>
+        props.textColor &&
+        css`
+          color: ${props.textColor};
+        `}
     }
   }
   /* .b7:hover {
@@ -690,9 +693,11 @@ const CenterBox = styled.div`
 `;
 const ContainWrap = styled.div`
   display: flex;
+  padding-top: 20px;
   @media only screen and (max-width: 749px) {
     flex-wrap: wrap;
     /* margin-top: 28px; */
+    padding-top: 0;
   }
 `;
 const LeftDetail = styled.div`

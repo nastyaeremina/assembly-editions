@@ -79,11 +79,11 @@ export const MODULE_COLOR_LIST = [
 
 export const MODULE_GRADIENT_IMAGE_LIST = {
   message: { fullScreen: '/images/message_gradient.svg', responsive: '/images/messagebg.svg' },
-  billing: '/images/billing_gradient.svg',
-  file: '/images/files_gradient.svg',
-  form: '/images/forms_gradient.svg',
-  helpdesk: '/images/helpdesk_gradient.svg',
-  contract: '/images/contract_gradient.svg'
+  billing: { fullScreen: '/images/billing_gradient.svg', responsive: '/images/billbgs.svg' },
+  file: { fullScreen: '/images/files_gradient.svg', responsive: '/images/filebg.svg' },
+  form: { fullScreen: '/images/forms_gradient.svg', responsive: '/images/formbg.svg' },
+  helpdesk: { fullScreen: '/images/helpdesk_gradient.svg', responsive: '/images/helpbg.svg' },
+  contract: { fullScreen: '/images/contract_gradient.svg', responsive: '/images/contractbg.svg' }
 };
 export const NAVBAR_COLOR_LIST = [
   {
@@ -102,8 +102,7 @@ export const NAVBAR_COLOR_LIST = [
     buttonColor: '#D7B79E',
     primaryColor: '#D7B79E',
     lineColor: '#FFF6F0',
-    lightColor: '#FFF7F0',
-    buttontextColor: theme.colors.brownlight
+    lightColor: '#FFF7F0'
   },
   {
     bgColor: 'rgba(1, 1, 29, 0.8)',
@@ -130,7 +129,8 @@ export const NAVBAR_COLOR_LIST = [
     buttonColor: '#F3DA1A',
     primaryColor: '#F3DA1A',
     lineColor: '#FDFBEC',
-    lightColor: '#FDFBEC'
+    lightColor: '#FDFBEC',
+    buttontextColor: theme.colors.yellowdark
   },
   {
     bgColor: 'rgba(28, 12, 0, 0.8)',
