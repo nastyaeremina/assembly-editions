@@ -421,6 +421,9 @@ const RegionView = styled.div`
 `;
 const BenefitsSection = styled.div`
   padding: 50px 0 0;
+  @media only screen and (max-width: 749px) {
+    padding-top: 40px;
+  }
 `;
 const BenefitWrap = styled.div`
   h4 {

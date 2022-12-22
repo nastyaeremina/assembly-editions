@@ -28,13 +28,15 @@ const EnterPriseHero = styled.div`
   background-color: linear-gradient(180deg, #00160e 0%, rgba(0, 22, 14, 0.8552) 79.69%, rgba(0, 22, 14, 0) 100%);
   @media only screen and (max-width: 991px) {
     padding-top: 100px;
+    min-height: 900px;
   }
   @media only screen and (max-width: 749px) {
     background-image: url('/images/entermobi.png');
-    height: calc(100vh - 150px);
     background-position: center 285px;
-    background-size: contain;
+    background-size: cover;
     padding-top: 116px;
+    height: 900px;
+    min-height: 900px;
   }
 `;
 const LeftHero = styled.div`
@@ -101,6 +103,7 @@ const BenefitsSection = styled.div`
   }
   @media only screen and (max-width: 749px) {
     padding-bottom: 116px;
+    margin-top: -10px;
   }
 `;
 const BenefitWrap = styled.div`
