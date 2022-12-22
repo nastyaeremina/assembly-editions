@@ -128,12 +128,13 @@ const BLockImg = styled.div`
   }
 `;
 const BlockImage = styled.div`
-  display: inline-block;
   width: 100%;
   position: relative;
-  padding: 8px 10px;
-  width: 64px;
-  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 96px;
+  height: 90px;
   ::after {
     content: '';
     position: absolute;
@@ -168,12 +169,7 @@ const BlockImage = styled.div`
 
     border-radius: 0px 4px 4px 0px;
   }
-  img {
-    max-width: 44px;
-    width: 100%;
-    max-height: 44px;
-    height: 100%;
-  }
+
   @media only screen and (max-width: 749px) {
     width: 50px;
     height: 46px;

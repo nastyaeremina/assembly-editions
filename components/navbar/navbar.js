@@ -167,7 +167,7 @@ export default function Navbar({ BlogDetails, isModule, headerIndex, isEnterPric
                       Features
                     </MobileText>
                   ) : (
-                    <TextView href='#' className='hovernone'>
+                    <TextView textColor={colorList?.fontColor} className='hovernone'>
                       Features
                     </TextView>
                   )}
@@ -265,7 +265,7 @@ export default function Navbar({ BlogDetails, isModule, headerIndex, isEnterPric
                       Company
                     </MobileText>
                   ) : (
-                    <TextView href='#' className='hovernone'>
+                    <TextView textColor={colorList?.fontColor} className='hovernone'>
                       Company
                     </TextView>
                   )}
@@ -381,7 +381,7 @@ export default function Navbar({ BlogDetails, isModule, headerIndex, isEnterPric
                       Resources
                     </MobileText>
                   ) : (
-                    <TextView href='#' className='hovernone'>
+                    <TextView textColor={colorList?.fontColor} className='hovernone'>
                       Resources
                     </TextView>
                   )}

@@ -14,7 +14,7 @@ export default function FeatureHero({ colorList, title, description, iconUrl }) 
           <BlockLeft textColor={colorList?.fontColor}>
             <BlockLine lineColor={colorList?.borderColor}>
               <BlockImage lineColor={colorList?.borderColor}>
-                <Image src={iconUrl} alt='main-logo' height={44} width={44} />
+                <Image src={iconUrl} alt='main-logo' height={66} width={66} />
               </BlockImage>
             </BlockLine>
             <h2>{title}</h2>
