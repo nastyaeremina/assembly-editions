@@ -24,6 +24,9 @@ const ClientHero = styled.div`
     color: ${({ theme }) => theme.colors.title};
     margin: 0 auto;
   }
+  @media only screen and (max-width: 749px) {
+    text-align: left;
+  }
 `;
 const CardSection = styled.div`
   display: grid;
@@ -34,13 +37,13 @@ const CardSection = styled.div`
   /* transition: all 0.5s ease; */
   .mydiv:hover .hide {
     display: block;
-    @media only screen and (max-width: 769px) {
+    @media only screen and (max-width: 749px) {
       display: none;
     }
   }
   .mydiv:hover .show {
     display: none;
-    @media only screen and (max-width: 769px) {
+    @media only screen and (max-width: 749px) {
       display: block;
     }
   }
@@ -53,17 +56,14 @@ const CardSection = styled.div`
       /* position: relative;
       top: 3px; */
     }
-    @media only screen and (max-width: 769px) {
+    @media only screen and (max-width: 749px) {
       background-image: none;
       a {
         color: ${({ theme }) => theme.colors.title};
       }
     }
   }
-  @media only screen and (max-width: 376px) {
-    .mydiv:hover {
-      background-color: red;
-    }
+  @media only screen and (max-width: 749px) {
   }
   .file {
     border: 1px solid #01011d;
@@ -79,13 +79,13 @@ const CardSection = styled.div`
   }
   .file:hover .hide {
     display: block;
-    @media only screen and (max-width: 769px) {
+    @media only screen and (max-width: 749px) {
       display: none;
     }
   }
   .file:hover .show {
     display: none;
-    @media only screen and (max-width: 769px) {
+    @media only screen and (max-width: 749px) {
       display: block;
     }
   }
@@ -96,7 +96,7 @@ const CardSection = styled.div`
     a {
       color: ${({ theme }) => theme.colors.purplelight};
     }
-    @media only screen and (max-width: 769px) {
+    @media only screen and (max-width: 991px) {
       background-image: none;
       a {
         color: ${({ theme }) => theme.colors.title};
@@ -108,7 +108,7 @@ const CardSection = styled.div`
     a {
       color: ${({ theme }) => theme.colors.yellowlight};
     }
-    @media only screen and (max-width: 769px) {
+    @media only screen and (max-width: 991px) {
       background-image: none;
       a {
         color: ${({ theme }) => theme.colors.title};
@@ -117,12 +117,12 @@ const CardSection = styled.div`
   }
   .Helpdesk:hover {
     background-image: url('/images/hoverbase.svg');
-    @media only screen and (max-width: 769px) {
+    @media only screen and (max-width: 991px) {
       background-image: none;
     }
     a {
       color: ${({ theme }) => theme.colors.orangelight};
-      @media only screen and (max-width: 769px) {
+      @media only screen and (max-width: 991px) {
         color: ${({ theme }) => theme.colors.title};
       }
     }
@@ -133,7 +133,7 @@ const CardSection = styled.div`
       color: ${({ theme }) => theme.colors.brownlight};
     }
   }
-  @media only screen and (max-width: 376px) {
+  @media only screen and (max-width: 749px) {
     grid-template-columns: 1fr 1fr;
     gap: 11px;
     row-gap: 16px;
@@ -178,14 +178,14 @@ const ModuleCard = styled.div`
     fill: none;
     stroke: currentColor;
     margin-left: 8px;
-    @media only screen and (max-width: 769px) {
+    @media only screen and (max-width: 991px) {
       display: none;
     }
   }
   .mobilearrow {
     display: none;
   }
-  @media only screen and (max-width: 769px) {
+  @media only screen and (max-width: 991px) {
     .mobilearrow {
       display: block;
       margin-left: 4px;
@@ -199,7 +199,7 @@ const ModuleCard = styled.div`
     :hover .HoverArrow__linePath {
       opacity: 1;
       fill: none;
-      @media only screen and (max-width: 769px) {
+      @media only screen and (max-width: 991px) {
         opacity: 0;
         margin-left: 4px;
       }
@@ -217,7 +217,7 @@ const ModuleCard = styled.div`
   }
   :hover .icon-link {
     transform: translateY(1px);
-    @media only screen and (max-width: 769px) {
+    @media only screen and (max-width: 991px) {
       transform: none;
     }
   }
@@ -227,18 +227,18 @@ const ModuleCard = styled.div`
   :hover .HoverArrow__linePath {
     opacity: 1;
     fill: none;
-    @media only screen and (max-width: 769px) {
+    @media only screen and (max-width: 991px) {
       opacity: 0;
       margin-left: 4px;
     }
   }
   :hover .HoverArrow__tipPath {
     transform: translateX(4px);
-    @media only screen and (max-width: 769px) {
+    @media only screen and (max-width: 991px) {
       transform: none;
     }
   }
-  @media only screen and (max-width: 769px) {
+  @media only screen and (max-width: 991px) {
     padding: 20px;
     a {
       font-size: 16px;
@@ -273,7 +273,7 @@ const BlockSection = styled.div`
     max-height: 145px;
     height: 100%;
   }
-  @media only screen and (max-width: 769px) {
+  @media only screen and (max-width: 749px) {
     padding: 30px 35px;
     gap: 40px;
 
@@ -281,40 +281,40 @@ const BlockSection = styled.div`
       max-width: 124px;
     }
   }
-  @media only screen and (max-width: 376px) {
+  @media only screen and (max-width: 749px) {
     flex-direction: column;
     gap: 0;
     padding: 20px;
-    max-width: 158px;
+    max-width: 48%;
   }
   :hover {
     background-image: url('/images/hoverblock.svg');
     background-repeat: no-repeat;
     background-size: cover;
-    @media only screen and (max-width: 769px) {
+    @media only screen and (max-width: 991px) {
       background-image: none;
     }
     a {
       color: ${({ theme }) => theme.colors.greenlight};
-      @media only screen and (max-width: 769px) {
+      @media only screen and (max-width: 991px) {
         color: ${({ theme }) => theme.colors.title};
       }
     }
     h3 {
       color: ${({ theme }) => theme.colors.greenlight};
-      @media only screen and (max-width: 769px) {
+      @media only screen and (max-width: 991px) {
         color: ${({ theme }) => theme.colors.title};
       }
     }
     .hide {
       display: block;
-      @media only screen and (max-width: 769px) {
+      @media only screen and (max-width: 749px) {
         display: none;
       }
     }
     .show {
       display: none;
-      @media only screen and (max-width: 769px) {
+      @media only screen and (max-width: 749px) {
         display: block;
       }
     }
@@ -346,17 +346,17 @@ const BlockText = styled.div`
   .learn-link:hover {
     color: #e3ffee;
 
-    @media only screen and (max-width: 769px) {
+    @media only screen and (max-width: 991px) {
       color: ${({ theme }) => theme.colors.title};
     }
   }
-  @media only screen and (max-width: 769px) {
+  @media only screen and (max-width: 991px) {
     h3 {
       font-size: 18px;
       line-height: 23px;
       margin-bottom: 0;
     }
-    @media only screen and (max-width: 376px) {
+    @media only screen and (max-width: 749px) {
       h3 {
         display: none;
       }
@@ -399,7 +399,7 @@ const HelpLeftSub = styled.div`
     color: ${({ theme }) => theme.colors.bodycolor};
   }
   @media only screen and (max-width: 769px) {
-    margin-top: 28px;
+    margin-top: 18px;
   }
 `;
 const ImageWrapper = styled.div`
@@ -416,7 +416,7 @@ const ImageWrapper = styled.div`
     max-height: 100px;
   }
   @media only screen and (max-width: 769px) {
-    max-height: 85px;
+    max-height: 105px;
   }
 `;
 const HelpLink = styled.div`

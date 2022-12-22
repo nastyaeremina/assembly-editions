@@ -9,7 +9,7 @@ const FeatureHeroSection = styled.div`
   /* background-color: ${({ theme }) => theme.colors.browndark}; */
   padding-top: 140px;
   overflow: hidden;
-  @media only screen and (max-width: 376px) {
+  @media only screen and (max-width: 749px) {
     padding-top: 116px;
   }
 `;
@@ -17,7 +17,7 @@ const HeroBlock = styled.div`
   display: flex;
   gap: 60px;
 
-  @media only screen and (max-width: 769px) {
+  @media only screen and (max-width: 768px) {
     flex-wrap: wrap;
     gap: 40px;
   }
@@ -44,7 +44,7 @@ const BlockLeft = styled.div`
     /* color: ${({ theme }) => theme.colors.brownlight}; */
     ${Heading2}
   }
-  @media only screen and (max-width: 376px) {
+  @media only screen and (max-width: 749px) {
     h2 {
       ${MobileH2}
       margin-top: 30px;
@@ -56,10 +56,8 @@ const BlockLeft = styled.div`
 `;
 const BlockRight = styled.div`
   margin: 45px 0 100px 0;
-  @media only screen and (max-width: 769px) {
-    margin: 0 0 60px 32px;
-  }
-  @media only screen and (max-width: 376px) {
+
+  @media only screen and (max-width: 768px) {
     margin: 0 0 60px 25px;
   }
 `;
@@ -125,6 +123,9 @@ const BLockImg = styled.div`
     top: 50%;
     left: 50%;
   }
+  @media only screen and (max-width: 768px) {
+    padding: 9px;
+  }
 `;
 const BlockImage = styled.div`
   display: inline-block;
@@ -173,7 +174,7 @@ const BlockImage = styled.div`
     max-height: 44px;
     height: 100%;
   }
-  @media only screen and (max-width: 376px) {
+  @media only screen and (max-width: 749px) {
     width: 50px;
     height: 46px;
     img {

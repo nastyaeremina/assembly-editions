@@ -16,7 +16,7 @@ const QuoteMain = styled.div`
   background-position: 50% 50%;
   padding: 50px 0;
   position: relative;
-  @media only screen and (max-width: 749px) {
+  @media only screen and (max-width: 768px) {
     padding: 40px 0;
     ${(props) =>
       props.gradientImage &&
@@ -45,10 +45,10 @@ const Mainss = styled.div`
   border-radius: 4px;
   background: #ffffff;
   overflow: hidden;
-  @media only screen and (max-width: 769px) {
+  @media only screen and (max-width: 768px) {
     gap: 0;
   }
-  @media only screen and (max-width: 376px) {
+  @media only screen and (max-width: 768px) {
     flex-wrap: wrap;
   }
 `;
@@ -62,7 +62,7 @@ const QuoteTxt = styled.div`
     margin: 0;
     color: ${({ theme }) => theme.colors.title};
   }
-  @media only screen and (max-width: 769px) {
+  @media only screen and (max-width: 768px) {
     padding: 30px 28px;
     h3 {
       ${MobileH3};
@@ -81,7 +81,7 @@ const QuoteSubTxt = styled.div`
     ${Body4};
     color: ${({ theme }) => theme.colors.body};
   }
-  @media only screen and (max-width: 769px) {
+  @media only screen and (max-width: 768px) {
     h4 {
       font-size: 16px;
       line-height: 24px;
@@ -101,10 +101,8 @@ const QuoteLine = styled.div`
   position: absolute;
   left: 25%;
   margin-left: -1px;
-  @media only screen and (max-width: 769px) {
+  @media only screen and (max-width: 768px) {
     left: 50%;
-  }
-  @media only screen and (max-width: 376px) {
     display: none;
   }
 `;
@@ -117,15 +115,11 @@ const QuoteImg = styled.div`
     border-radius: 2px 0 0 2px;
     height: 100%;
   }
-  @media only screen and (max-width: 769px) {
-    img {
-      width: 323px;
-    }
-  }
-  @media only screen and (max-width: 376px) {
+  @media only screen and (max-width: 768px) {
     border-right: 0;
     border-bottom: 2px solid #000000;
     left: 0;
+    width: 100%;
     img {
       width: 100%;
     }
