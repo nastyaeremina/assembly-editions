@@ -96,7 +96,7 @@ export default function Brand() {
 
   return (
     <>
-      <SEO id={"5SUY6L51crllldyZnYR7aA"} />
+      <SEO id={'5SUY6L51crllldyZnYR7aA'} />
       <Layout>
         <Navbar />
         <BrandMain>
@@ -131,10 +131,33 @@ export default function Brand() {
                       layout={'fixed'}
                       className='firsticon'
                     />
+                    <Image
+                      src='/images/brandmobi.svg'
+                      alt='logo'
+                      width={226}
+                      height={50}
+                      layout={'fixed'}
+                      className='mobileshow'
+                    />
                     <a href='/images/logo.svg' download>
                       <HoverSection className='hover-name'>
                         <p>Download</p>
-                        <Image src='/images/download.svg' alt='download' width={20} height={20} layout={'fixed'} />
+                        <Image
+                          src='/images/download.svg'
+                          alt='download'
+                          width={20}
+                          height={20}
+                          layout={'fixed'}
+                          className='downdesk'
+                        />
+                        <Image
+                          src='/images/mobidown.svg'
+                          alt='download'
+                          width={12}
+                          height={12}
+                          layout={'fixed'}
+                          className='downmobi'
+                        />
                       </HoverSection>
                     </a>
                   </BrandImageLeft>
@@ -149,10 +172,33 @@ export default function Brand() {
                       layout={'fixed'}
                       className='firsticon'
                     />
+                    <Image
+                      src='/images/logoblackbg.svg'
+                      alt='logo'
+                      width={226}
+                      height={50}
+                      layout={'fixed'}
+                      className='mobileshow'
+                    />
                     <a href='/images/blacklogo.svg' download>
                       <BlackHover className='hover-name'>
                         <p>Download</p>
-                        <Image src='/images/whitedownload.svg' alt='download' width={20} height={20} layout={'fixed'} />
+                        <Image
+                          src='/images/whitedownload.svg'
+                          alt='download'
+                          width={20}
+                          height={20}
+                          layout={'fixed'}
+                          className='downdesk'
+                        />
+                        <Image
+                          src='/images/lightdown.svg'
+                          alt='download'
+                          width={12}
+                          height={12}
+                          layout={'fixed'}
+                          className='downmobi'
+                        />
                       </BlackHover>
                     </a>
                   </BrandImageRight>
@@ -174,12 +220,35 @@ export default function Brand() {
                       width={133}
                       height={90}
                       layout={'fixed'}
-                      className='mobileicon'
+                      className='firsticon'
+                    />
+                    <Image
+                      src='/images/smalllogo.svg'
+                      alt='logo'
+                      width={74}
+                      height={50}
+                      layout={'fixed'}
+                      className='mobileshow'
                     />
                     <a href='/images/smalllogo.svg' download>
                       <HoverSection className='hover-name'>
                         <p>Download</p>
-                        <Image src='/images/download.svg' alt='download' width={20} height={20} layout={'fixed'} />
+                        <Image
+                          src='/images/download.svg'
+                          alt='download'
+                          width={20}
+                          height={20}
+                          layout={'fixed'}
+                          className='downdesk'
+                        />
+                        <Image
+                          src='/images/mobidown.svg'
+                          alt='download'
+                          width={12}
+                          height={12}
+                          layout={'fixed'}
+                          className='downmobi'
+                        />
                       </HoverSection>
                     </a>
                   </BrandImageLeft>
@@ -192,12 +261,35 @@ export default function Brand() {
                       width={133}
                       height={90}
                       layout={'fixed'}
-                      className='mobileicon'
+                      className='firsticon'
+                    />
+                    <Image
+                      src='/images/brandlogo.svg'
+                      alt='logo'
+                      width={74}
+                      height={50}
+                      layout={'fixed'}
+                      className='mobileshow'
                     />
                     <a href='/images/blacklogo.svg' download>
                       <BlackHover className='hover-name'>
                         <p>Download</p>
-                        <Image src='/images/whitedownload.svg' alt='download' width={20} height={20} layout={'fixed'} />
+                        <Image
+                          src='/images/whitedownload.svg'
+                          alt='download'
+                          width={20}
+                          height={20}
+                          layout={'fixed'}
+                          className='downdesk'
+                        />
+                        <Image
+                          src='/images/mobidownl.svg'
+                          alt='download'
+                          width={12}
+                          height={12}
+                          layout={'fixed'}
+                          className='downmobi'
+                        />
                       </BlackHover>
                     </a>
                   </BrandImageRight>
@@ -221,11 +313,34 @@ export default function Brand() {
                       layout={'fixed'}
                       className='companyicon'
                     />
+                    <Image
+                      src='/images/mobicom.svg'
+                      alt='logo'
+                      width={104}
+                      height={104}
+                      layout={'fixed'}
+                      className='companyiconmobi'
+                    />
 
                     <a href='/images/primarylogo.svg' download>
                       <HoverLink className='hover-name'>
                         <p>Download</p>
-                        <Image src='/images/whitedownload.svg' alt='download' width={20} height={20} layout={'fixed'} />
+                        <Image
+                          src='/images/whitedownload.svg'
+                          alt='download'
+                          width={20}
+                          height={20}
+                          layout={'fixed'}
+                          className='downdesk'
+                        />
+                        <Image
+                          src='/images/mobidownl.svg'
+                          alt='download'
+                          width={12}
+                          height={12}
+                          layout={'fixed'}
+                          className='downmobi'
+                        />
                       </HoverLink>
                     </a>
                   </CompanyIcon>
@@ -240,10 +355,33 @@ export default function Brand() {
                       layout={'fixed'}
                       className='companyicon'
                     />
+                    <Image
+                      src='/images/radiusmobi.svg'
+                      alt='logo'
+                      width={104}
+                      height={104}
+                      layout={'fixed'}
+                      className='companyiconmobi'
+                    />
                     <a href='/images/primarylogo2.svg' download>
                       <HoverLink className='hover-name'>
                         <p>Download</p>
-                        <Image src='/images/whitedownload.svg' alt='download' width={20} height={20} layout={'fixed'} />
+                        <Image
+                          src='/images/whitedownload.svg'
+                          alt='download'
+                          width={20}
+                          height={20}
+                          layout={'fixed'}
+                          className='downdesk'
+                        />
+                        <Image
+                          src='/images/mobidownl.svg'
+                          alt='download'
+                          width={12}
+                          height={12}
+                          layout={'fixed'}
+                          className='downmobi'
+                        />
                       </HoverLink>
                     </a>
                   </CompanyIcon>
