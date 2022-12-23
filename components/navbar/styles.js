@@ -867,8 +867,12 @@ const SvgIcon = styled.div`
 `;
 const TextView = styled.div`
   ${HeaderFont};
+  ${(props) =>
+    props.textColor &&
+    css`
+      color: ${props.textColor};
+    `}
   margin: 0 14px;
-  color: #131313;
   -webkit-transition: all 300ms;
   transition: all 300ms;
   cursor: pointer;
