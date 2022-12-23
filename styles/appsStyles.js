@@ -143,6 +143,9 @@ const FeatureLeft = styled.div`
   }
 `;
 const FeatureRight = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
   h3 {
     ${Heading4};
     color: ${({ theme }) => theme.colors.title};
@@ -257,8 +260,10 @@ const FeatureImg = styled.div`
 `;
 const Featured = styled.div``;
 const ExtensionsSection = styled.div`
+  width: 100%;
   padding-top: 40px;
-
+  display: flex;
+  flex-direction: column;
   p {
     ${Body5};
     color: ${({ theme }) => theme.colors.title};

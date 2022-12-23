@@ -45,6 +45,7 @@ import { isEmpty } from '../../helpers/helpers';
 import { APPS_TYPE } from '../../constants/constant';
 import Button from '../../components/button/button';
 import SEO from '../../components/seo';
+import AppError from '../../components/apperror/error';
 
 export default function Apps({ allPosts, featuredApps, allCategoryWithPost, dataIntegrationApps }) {
   const [selected_category, setSelected_category] = useState();
@@ -180,7 +181,7 @@ export default function Apps({ allPosts, featuredApps, allCategoryWithPost, data
     } else
       return (
         <ExtensionsSection key={`searchEmptyview`}>
-          <h3> No Data Found</h3>
+          <AppError />
         </ExtensionsSection>
       );
   }, [query, renderPartnerAppsView, searchResult]);
