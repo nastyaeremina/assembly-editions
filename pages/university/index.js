@@ -35,7 +35,6 @@ export default function University({ universityVideosList }) {
   // const [selected_categry, useSelected_categry] = useState(null);
   const handleScroll = useCallback(() => {
     if (!selected_categry) return;
-    console.log('selected_categry', selected_categry);
     selected_categry = null;
   }, []);
 
@@ -97,7 +96,7 @@ export default function University({ universityVideosList }) {
 
   return (
     <>
-      <SEO id={"2hMkBVQBYcMCmHLQyxzo8o"}></SEO>
+      <SEO id={'2hMkBVQBYcMCmHLQyxzo8o'}></SEO>
       <Layout>
         <Navbar />
         <UniversitySection>
@@ -154,7 +153,6 @@ export async function getServerSideProps({ preview = false }) {
     // eslint-disable-next-line no-plusplus
     else page++;
   } while (data?.length !== 0);
-  console.log('allPosts', allPosts);
 
   let newList = [];
   allPosts?.forEach((item) => {
@@ -169,7 +167,6 @@ export async function getServerSideProps({ preview = false }) {
       newList?.push(newItem);
     }
   });
-  console.log('newList', newList);
 
   return {
     props: { universityVideosList: newList }

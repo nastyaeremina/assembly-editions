@@ -5,15 +5,14 @@ import { CtaButton, PrimaryButton } from '../../styles/commonStyles';
 import { Gradient } from '../../public/js/Gradient.js';
 import { isEmpty } from '../../helpers/helpers';
 import { HEADER_LIST, NAVBAR_COLOR_LIST } from '../../constants/constant';
-import { CtaInner, CtaBtn, CtaAnimation, CtaWrap, LeftImg, MainCta, RightImg } from './styles';
 import Button from '../button/button';
+import { CtaInner, CtaBtn, CtaAnimation, CtaWrap, LeftImg, MainCta, RightImg } from './styles';
 
 export default function CTA({ moduleName, colorList }) {
   useEffect(() => {
     const gradient = new Gradient();
     gradient.initGradient('#gradient-canvas');
   }, []);
-  console.log('moduleName', moduleName);
 
   return (
     <>

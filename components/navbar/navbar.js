@@ -63,8 +63,6 @@ export default function Navbar({ BlogDetails, isModule, headerIndex, isEnterPric
 
   const [colorList, setColorList] = useState(NAVBAR_COLOR_LIST[0]);
 
-  console.log('isOpenFeatureSubMenu', colorList);
-
   const closeSubMenu = useCallback(() => {
     if (isOpenFeatureSubMenu) {
       setIsOpenFeatureSubMenu(false);
@@ -130,7 +128,6 @@ export default function Navbar({ BlogDetails, isModule, headerIndex, isEnterPric
   };
 
   const Navigation = () => {
-    // console.log('isOpenFeatureSubMenu', isOpenFeatureSubMenu);
     return (
       <>
         <NavMenu BlogDetails={BlogDetails} isOpenMobileMenu={isOpenMobileMenu} mobile={mobile}>
@@ -457,7 +454,7 @@ export default function Navbar({ BlogDetails, isModule, headerIndex, isEnterPric
                       </MenuWrap>
                     </ListLi>
                     <ListLi>
-                      <MenuWrap href='#'>
+                      <MenuWrap href='https://support.copilot.com/hc/en-us'>
                         <LeftImg>
                           <svg
                             width='17'
