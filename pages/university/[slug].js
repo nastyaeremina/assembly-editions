@@ -13,7 +13,8 @@ import {
   FeatureCard,
   OverLay,
   Overlay,
-  HoverButton
+  HoverButton,
+  YoutubeWrap
 } from '../../styles/universityStyles';
 import { Container } from '../../styles/commonStyles';
 import Image from 'next/image';
@@ -59,17 +60,22 @@ export default function UniversityDetail({ relatedVideos, universityVideoDetail 
               <Link href='/university'>
                 <Backlink>
                   <Image src='/images/leftarrow.svg' alt='leftarrow' width={12} height={12} layout={'fixed'} />
-                  <p>Back to Univeristy</p>
+                  <p>Back to University</p>
                 </Backlink>
               </Link>
               <h3>{universityVideoDetail?.name}</h3>
             </DetailVideoHero>
             <VideoSection>
-              <LiteYouTubeEmbed
-                id={universityVideoDetail?.videoLink}
-                title='What’s new in Material Design for the web (Chrome Dev Summit 2019)'
-              />
-              <p>{universityVideoDetail?.description}</p>
+              <YoutubeWrap>
+                <LiteYouTubeEmbed
+                  id={universityVideoDetail?.videoLink}
+                  title='What’s new in Material Design for the web (Chrome Dev Summit 2019)'
+                  iframeClass='ytbview'
+                  playerClass='icon-player'
+                />
+                {/* <OverLay></OverLay> */}
+              </YoutubeWrap>
+              {!isEmpty(universityVideoDetail?.description) && <p>{universityVideoDetail?.description}</p>}
             </VideoSection>
             {!isEmpty(relatedVideos) && (
               <VIdeoWrap>
