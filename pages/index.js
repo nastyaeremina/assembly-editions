@@ -63,6 +63,7 @@ import Button from '../components/button/button';
 import SEO from '../components/seo';
 
 export default function Home({ content }) {
+  console.log("featuresCollection", content?.featuresCollection);
   return (
     <>
       <SEO id={content?.seoMetadata?.sys?.id}></SEO>
@@ -177,7 +178,7 @@ export default function Home({ content }) {
                 </p>
               </TopFunctionWrap>
               <BottomFunction>
-                <TabView tabId={HOME_FEATURES_TAB_ID} isHome={true} />
+                <TabView tabId={HOME_FEATURES_TAB_ID} isHome={true} data={content?.featuresCollection?.items} />
               </BottomFunction>
             </Container>
           </Functionality>
