@@ -68,9 +68,13 @@ const MobileImg = styled.div`
   left: 0;
   top: 152px;
   left: -103px;
-  box-shadow: 0px 15px 64px rgba(0, 0, 0, 0.15), 0px 0px 15.6171px rgba(0, 0, 0, 0.08),
-    inset 0px 0px 6.24685px rgba(0, 0, 0, 0.16);
   border-radius: 21.0831px;
+  background: transparent;
+  img {
+    box-shadow: 0px 15px 64px rgba(0, 0, 0, 0.15), 0px 0px 15.6171px rgba(0, 0, 0, 0.08),
+      inset 0px 0px 6.24685px rgba(0, 0, 0, 0.16);
+    border-radius: 21px;
+  }
   @media only screen and (max-width: 991px) {
     left: 0;
   }
@@ -83,9 +87,15 @@ const Mobilenew = styled.div`
     left: 0;
     top: 80px;
     left: 0px;
-    box-shadow: 0px 15px 64px rgba(0, 0, 0, 0.15), 0px 0px 15.6171px rgba(0, 0, 0, 0.08),
-      inset 0px 0px 6.24685px rgba(0, 0, 0, 0.16);
+    /* box-shadow: 0px 15px 64px rgba(0, 0, 0, 0.15), 0px 0px 15.6171px rgba(0, 0, 0, 0.08),
+      inset 0px 0px 6.24685px rgba(0, 0, 0, 0.16); */
     border-radius: 21.0831px;
+    background: transparent;
+    img {
+      box-shadow: 0px 15px 64px rgba(0, 0, 0, 0.15), 0px 0px 15.6171px rgba(0, 0, 0, 0.08),
+        inset 0px 0px 6.24685px rgba(0, 0, 0, 0.16);
+      border-radius: 21px;
+    }
   }
 `;
 const MobileView = styled.div`
