@@ -26,14 +26,8 @@ import {
   SignIn,
   MobileMenu,
   FirstLine,
-  SecondLine,
   ThirdLine,
   OverLayBlock,
-  TrySalescampBlock,
-  DropDownLink,
-  DropdownMenu,
-  DropdownSpan,
-  DropDownToggle,
   InnerList,
   ListLi,
   LeftImg,
@@ -47,14 +41,14 @@ import {
   BackWrap,
   SvgIcon,
   MobileTextLink,
-  TextView
+  TextView,
 } from './styles';
 import FeatureSubMenu from './featuresubmenu';
 import ResourcesSubMenu from './resourcessubmenu';
 import CompanySubMenu from './companysubmenu';
 
-export default function Navbar({ BlogDetails, isModule, headerIndex, isEnterPrice }) {
-  const mobile = useMobileDevice();
+export default function Navbar({  isModule, headerIndex, isEnterPrice }) {
+  const mobile = useMobileDevice() ;
   const router = useRouter();
   const [isOpenMobileMenu, setIsOpenMobileMenu] = useState(false);
   const [isOpenFeatureSubMenu, setIsOpenFeatureSubMenu] = useState(false);
@@ -78,7 +72,7 @@ export default function Navbar({ BlogDetails, isModule, headerIndex, isEnterPric
     closeSubMenu();
   }, [closeSubMenu, isOpenMobileMenu]);
 
-  let isScrollPage;
+  let isScrollPage = false;
   const [clientWindowHeight, setClientWindowHeight] = useState('');
   const handleScroll = () => {
     setClientWindowHeight(window.scrollY);
@@ -95,79 +89,96 @@ export default function Navbar({ BlogDetails, isModule, headerIndex, isEnterPric
     isScrollPage = false;
   }
 
-  const DropDownList = () => {
-    return (
+  const MobileNavigation =() => {
+    return(
       <>
-        {mobile && (
-          <DropDownToggle>
-            <DropdownSpan>Resources</DropdownSpan>
-          </DropDownToggle>
-        )}
-        <DropdownMenu>
-          <DropDownLink className={router.pathname === '/blogs' ? 'active' : ''}>
-            <Link href='copilot.com/blog'>Blogs</Link>
-          </DropDownLink>
-          <DropDownLink className={router.pathname === '/updates' ? 'active' : ''}>
-            <Link href='/updates'>Updates</Link>
-          </DropDownLink>
-          <DropDownLink className={router.pathname === '/help' ? 'active' : ''}>
-            <Link href='/help'>Help Center</Link>
-          </DropDownLink>
-          <DropDownLink>
-            <Link href='/'>
-              Roadmap
-              {/* <a data-nolt="button"></a> */}
-            </Link>
-          </DropDownLink>
-          <DropDownLink className={router.pathname === '/free-sales-tools' ? 'active' : ''}>
-            <Link href='/free-sales-tools'>Sales Tools</Link>
-          </DropDownLink>
-        </DropdownMenu>
-      </>
-    );
-  };
-
+      <NavMenu>
+         <NavigationBlock>
+           {isOpenFeatureSubMenu ? (
+             <FeatureSubMenu />
+           ) : isOpenCompanySubMenu ? (
+             <CompanySubMenu />
+           ) : isOpenResoursesSubMenu ? (
+             <ResourcesSubMenu />
+           ) : (
+             <>
+               <SpanLink
+                 textColor={colorList?.fontColor}
+                 hoverColor={colorList?.primaryColor}
+                 className={router.pathname === '/pricing' ? 'active' : ''}>
+                   <MobileTextLink hoverColor={colorList?.primaryColor} href='/pricing'>
+                     Pricing
+                   </MobileTextLink>
+               </SpanLink>
+               <SpanLink
+                 textColor={colorList?.fontColor}
+                 hoverColor={colorList?.primaryColor}>
+                   <MobileText
+                     onClick={() => {
+                       setIsOpenFeatureSubMenu(true);
+                     }}>
+                     Features
+                   </MobileText>
+               </SpanLink>
+               <SpanLink
+                 textColor={colorList?.fontColor}
+                 hoverColor={colorList?.primaryColor}
+                 className={router.pathname === '/apps' ? 'active' : ''}>
+                   <MobileTextLink href='/apps' hoverColor={colorList?.primaryColor}>
+                     Apps
+                   </MobileTextLink>
+               </SpanLink>
+               <SpanLink
+                 textColor={colorList?.fontColor}
+                 hoverColor={colorList?.primaryColor}
+                 className={router.pathname === '/features' ? 'active' : ''}>
+                   <MobileText
+                     onClick={() => {
+                       setIsOpenCompanySubMenu(true);
+                     }}>
+                     Company
+                   </MobileText>
+               </SpanLink>
+               <SpanLink
+                 textColor={colorList?.fontColor}
+                 hoverColor={colorList?.primaryColor}
+                 className={router.pathname === '/features' ? 'active' : ''}>
+                   <MobileText
+                     onClick={() => {
+                       setIsOpenResoursesSubMenu(true);
+                     }}>
+                     Resources
+                   </MobileText>
+                 </SpanLink>
+               <SpanMobileLink
+                 textColor={colorList?.fontColor}
+                 hoverColor={colorList?.primaryColor}
+                 className={router.pathname === '/book-demo' ? 'active' : ''}>
+                 <Link href='/book-demo'>Book Demo</Link>
+               </SpanMobileLink>
+             </>
+           )}
+         </NavigationBlock>
+       </NavMenu>
+     </>
+    )
+  }
   const Navigation = () => {
     return (
-      <>
-        <NavMenu BlogDetails={BlogDetails} isOpenMobileMenu={isOpenMobileMenu} mobile={mobile}>
+        <NavMenu>
           <NavigationBlock>
-            {mobile && isOpenFeatureSubMenu ? (
-              <FeatureSubMenu />
-            ) : isOpenCompanySubMenu ? (
-              <CompanySubMenu />
-            ) : isOpenResoursesSubMenu ? (
-              <ResourcesSubMenu />
-            ) : (
-              <>
                 <SpanLink
                   textColor={colorList?.fontColor}
                   hoverColor={colorList?.primaryColor}
                   className={router.pathname === '/pricing' ? 'active' : ''}>
-                  {mobile ? (
-                    <MobileTextLink hoverColor={colorList?.primaryColor} href='/pricing'>
-                      Pricing
-                    </MobileTextLink>
-                  ) : (
                     <Link href='/pricing'>Pricing</Link>
-                  )}
                 </SpanLink>
                 <SpanLink
-                  className={router.pathname === '/modulebilling' ? 'active' : ''}
                   textColor={colorList?.fontColor}
                   hoverColor={colorList?.primaryColor}>
-                  {mobile ? (
-                    <MobileText
-                      onClick={() => {
-                        setIsOpenFeatureSubMenu(true);
-                      }}>
-                      Features
-                    </MobileText>
-                  ) : (
-                    <TextView textColor={colorList?.fontColor} className='hovernone'>
+                    <TextView href='#' className='hovernone'>
                       Features
                     </TextView>
-                  )}
                   <InnerList features className='innerlist'>
                     <ListLi>
                       <MenuWrap msghover href='/features/messaging-app'>
@@ -233,39 +244,19 @@ export default function Navbar({ BlogDetails, isModule, headerIndex, isEnterPric
                     </svg>
                   </LineMenuImg>
                 </SpanLink>
-                {/* <SpanLink
-              className={router.pathname === "/solution" ? "active" : ""}
-            >
-              <Link href="/solution">Solution</Link>
-            </SpanLink> */}
                 <SpanLink
                   textColor={colorList?.fontColor}
                   hoverColor={colorList?.primaryColor}
                   className={router.pathname === '/apps' ? 'active' : ''}>
-                  {mobile ? (
-                    <MobileTextLink href='/apps' hoverColor={colorList?.primaryColor}>
-                      Apps
-                    </MobileTextLink>
-                  ) : (
                     <Link href='/apps'>Apps</Link>
-                  )}
                 </SpanLink>
                 <SpanLink
                   textColor={colorList?.fontColor}
                   hoverColor={colorList?.primaryColor}
                   className={router.pathname === '/features' ? 'active' : ''}>
-                  {mobile ? (
-                    <MobileText
-                      onClick={() => {
-                        setIsOpenCompanySubMenu(true);
-                      }}>
-                      Company
-                    </MobileText>
-                  ) : (
-                    <TextView textColor={colorList?.fontColor} className='hovernone'>
+                    <TextView href='#' className='hovernone'>
                       Company
                     </TextView>
-                  )}
                   <InnerList company className='innerlist'>
                     <ListLi>
                       <MenuWrap href='/copilot-plus'>
@@ -370,18 +361,9 @@ export default function Navbar({ BlogDetails, isModule, headerIndex, isEnterPric
                   textColor={colorList?.fontColor}
                   hoverColor={colorList?.primaryColor}
                   className={router.pathname === '/features' ? 'active' : ''}>
-                  {mobile ? (
-                    <MobileText
-                      onClick={() => {
-                        setIsOpenResoursesSubMenu(true);
-                      }}>
-                      Resources
-                    </MobileText>
-                  ) : (
-                    <TextView textColor={colorList?.fontColor} className='hovernone'>
+                    <TextView href='#' className='hovernone'>
                       Resources
                     </TextView>
-                  )}
                   <InnerList company className='innerlist'>
                     <ListLi>
                       <MenuWrap href='http://copilot.com/blog'>
@@ -573,14 +555,8 @@ export default function Navbar({ BlogDetails, isModule, headerIndex, isEnterPric
                   className={router.pathname === '/book-demo' ? 'active' : ''}>
                   <Link href='/book-demo'>Book Demo</Link>
                 </SpanMobileLink>
-              </>
-            )}
-
-            {/* {mobile && <DropDownList />} */}
-            {/* <HorizontalLine></HorizontalLine> */}
           </NavigationBlock>
           <HeaderBtnGroup>
-            {!isOpenMobileMenu && (
               <SignInSignUpBtn>
                 <>
                   <SignIn textColor={colorList?.fontColor} hoverColor={colorList?.primaryColor}>
@@ -589,11 +565,6 @@ export default function Navbar({ BlogDetails, isModule, headerIndex, isEnterPric
                   <SignIn textColor={colorList?.fontColor} hoverColor={colorList?.primaryColor}>
                     <Link href='/book-demo'>Book demo</Link>
                   </SignIn>
-                  {/* <BlackButton
-                    textColor={isEnterPrice ? colorList?.fontColor : '#FFFFFF'}
-                    backgroundColor={colorList?.buttonColor}>
-                    <Link href='https://dashboard.copilot.com/onboarding'>Start Trial</Link>
-                  </BlackButton> */}
                   <Button
                     bgColor={colorList?.buttonColor}
                     fontColor={
@@ -611,15 +582,8 @@ export default function Navbar({ BlogDetails, isModule, headerIndex, isEnterPric
                   />
                 </>
               </SignInSignUpBtn>
-            )}
           </HeaderBtnGroup>
         </NavMenu>
-        <TrySalescampBlock BlogDetails={BlogDetails} mobile={mobile} isEnterPrice={isEnterPrice}>
-          <PrimaryButton>
-            <Link href='/'>Try copilot</Link>
-          </PrimaryButton>
-        </TrySalescampBlock>
-      </>
     );
   };
 
@@ -679,17 +643,18 @@ export default function Navbar({ BlogDetails, isModule, headerIndex, isEnterPric
                 <SalescampLogo loading='lazy' width='143' height='31' src={CopilotLogos.src} />
               )}
             </Link>
-            {mobile ? (
-              <OverLayBlock
-                onClick={() => {
-                  // setIsOpenMobileMenu(false);
-                }}
-                isScrollPage={isScrollPage}
-                isOpenMobileMenu={isOpenMobileMenu}>
-                <Navigation />
+            {isOpenMobileMenu? (
+              <OverLayBlock>
+                <MobileNavigation></MobileNavigation>
               </OverLayBlock>
             ) : (
-              <Navigation />
+              null
+            )}
+            
+            {!mobile ? (
+              <Navigation className="hide" />
+            ) : (
+              null
             )}
             <MobileRight>
               <SignInMobile>
@@ -707,18 +672,11 @@ export default function Navbar({ BlogDetails, isModule, headerIndex, isEnterPric
               <MobileMenu onClick={handleMobileMenu}>
                 <FirstLine
                   isOpenMobileMenu={isOpenMobileMenu}
-                  BlogDetails={BlogDetails}
                   isEnterPrice={isEnterPrice}
                   isScrollPage={isScrollPage}
                   textColor={colorList?.fontColor}></FirstLine>
-                {/* <SecondLine
-                isOpenMobileMenu={isOpenMobileMenu}
-                BlogDetails={BlogDetails}
-                isScrollPage={isScrollPage}
-              ></SecondLine> */}
                 <ThirdLine
                   isOpenMobileMenu={isOpenMobileMenu}
-                  BlogDetails={BlogDetails}
                   isEnterPrice={isEnterPrice}
                   isScrollPage={isScrollPage}
                   textColor={colorList?.fontColor}></ThirdLine>

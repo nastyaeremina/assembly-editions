@@ -127,7 +127,7 @@ const LineMenuImg = styled.div`
 `;
 const SpanLink = styled.li`
   position: relative;
-  transition: all 300ms;
+  transition: color 300ms;
   a {
     ${HeaderFont}
     margin: 0 14px;
@@ -136,7 +136,6 @@ const SpanLink = styled.li`
       css`
         color: ${props.textColor};
       `}
-    transition: all 300ms;
     cursor: pointer;
   }
   a:hover {
@@ -146,7 +145,7 @@ const SpanLink = styled.li`
         color: ${props.hoverColor};
       `}
   }
-  .hovernone:hover {
+  .hovernone {
     ${(props) =>
       props.textColor &&
       css`
@@ -565,23 +564,10 @@ const OverLayBlock = styled.div`
   right: 0;
   width: 100%;
   padding-top: 8px;
-  transition: all 200ms ease-in-out;
-  top: -100%;
-  ${(props) =>
-    props.isOpenMobileMenu &&
-    css`
-      top: 76px;
-      height: calc(100vh - 76px);
-      padding-top: 0;
-    `}
-  ${(props) =>
-    props.isOpenMobileMenu &&
-    props.isScrollPage &&
-    css`
-      top: 76px;
-      padding-top: 0;
-      height: calc(100vh - 76px);
-    `}
+  transition: color 200ms ease-in-out;
+  top: 76px;
+  height: calc(100vh - 76px);
+  padding-top: 0;
 `;
 const MenuWrap = styled(Link)`
   display: flex;

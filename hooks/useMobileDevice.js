@@ -4,8 +4,7 @@ const useIsomorphicLayoutEffect =
   typeof window !== "undefined" ? useLayoutEffect : useEffect;
 
 const useMobileDevice = () => {
-  const [isMobileDevice, setIsMobileDevice] = useState(false);
-
+  const [isMobileDevice, setIsMobileDevice] = useState(true);
   useIsomorphicLayoutEffect(() => {
     function updateSize() {
       const width = window.innerWidth;
@@ -19,7 +18,6 @@ const useMobileDevice = () => {
     updateSize();
     return () => window.removeEventListener("resize", updateSize);
   }, []);
-
   return isMobileDevice;
 };
 
