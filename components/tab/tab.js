@@ -10,13 +10,18 @@ import { Container, SecondryButton } from '../../styles/commonStyles';
 import { ContainWrap, IconSvg, IconWrap, LeftDetail, RightDetail, TabRow } from '../../styles/homepageStyles';
 import Button from '../button/button';
 
-export default function TabView({ tabId, bgColor, textColor, isHome }) {
-  console.log('bgColor', bgColor, textColor);
+export default function TabView({ tabId, bgColor, textColor, isHome, data }) {
   const [allPosts, setAppPosts] = useState([]);
+
   const loadData = useCallback(async () => {
-    const posts = (await getTabGroupById(tabId)) ?? [];
-    setAppPosts(posts);
-  }, [tabId]);
+    if (isEmpty(data)) {
+
+      const posts = (await getTabGroupById(tabId)) ?? [];
+      setAppPosts(posts);
+    } else {
+      setAppPosts(data)
+    }
+  }, [data, tabId]);
 
   useEffect(() => {
     loadData();
