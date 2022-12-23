@@ -217,12 +217,19 @@ const ActiveTab = styled.div`
   top: 101%;
 `;
 const BtnWrap = styled.div`
-  display: flex;
-  align-items: center;
-  gap: 8px;
   a {
     text-align: center;
     letter-spacing: 0;
+  }
+  @media only screen and (max-width: 749px) {
+    width: 100%;
+    a {
+      padding: 8px 28px;
+      border-radius: 48px;
+      text-align: center;
+      width: 100%;
+      justify-content: center;
+    }
   }
   .tooltip {
     position: relative;
