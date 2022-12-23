@@ -4,7 +4,7 @@ import { isEmpty } from '../../../helpers/helpers';
 import { Container } from '../../../styles/commonStyles';
 import { ModernSection, ModernWrap, HeadView, BoxWrap, BoxView, ImgIcon, DetailView } from './styles';
 
-export default function Modern({ data }) {
+export default function Modern({ data, title }) {
   const BoxListView = useMemo(() => {
     if (isEmpty(data)) return null;
     return data?.map((item, index) => {
@@ -30,7 +30,8 @@ export default function Modern({ data }) {
           <ModernWrap>
             <HeadView>
               <h3>
-                Your customers deserve a modern client experience<span>.</span>
+                {title}
+                <span>.</span>
               </h3>
             </HeadView>
             <BoxWrap>

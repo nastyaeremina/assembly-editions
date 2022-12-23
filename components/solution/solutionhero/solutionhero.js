@@ -15,7 +15,7 @@ import {
   Mobilenew
 } from './styles';
 
-export default function SolutionHero({ title, description }) {
+export default function SolutionHero({ title, description, mobileImage, webImage }) {
   const titleSplitList = title?.split(',');
 
   const renderHeaderView = useMemo(() => {
@@ -47,15 +47,15 @@ export default function SolutionHero({ title, description }) {
             </LeftWrap>
             <RightWrap>
               <ImageView>
-                <Image src='/images/placeimg.png' alt='main-logo' width={479} height={633} />
+                <Image src={webImage} alt='main-logo' width={479} height={633} />
                 <MobileImg>
-                  <Image src='/images/mobilecline.png' alt='main-logo' width={310} height={655} />
+                  <Image src={mobileImage} alt='main-logo' width={310} height={655} />
                 </MobileImg>
               </ImageView>
               <MobileView>
-                <Image src='/images/mobisolu.png' alt='main-logo' width={269} height={354} />
+                <Image src={webImage} alt='main-logo' width={269} height={354} />
                 <Mobilenew>
-                  <Image src='/images/mobilsoluss.png' alt='main-logo' width={174} height={367} />
+                  <Image src={mobileImage} alt='main-logo' width={174} height={367} />
                 </Mobilenew>
               </MobileView>
             </RightWrap>

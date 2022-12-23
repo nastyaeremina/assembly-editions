@@ -1,6 +1,9 @@
 import Link from 'next/link';
 import Image from 'next/image';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 import { Container } from '../../styles/commonStyles';
+import { getAllSolutionWithSlug } from '../../lib/contentful-solutions';
+import { isEmpty } from '../../helpers/helpers';
 import {
   FooterSection,
   FooterInnerBlock,
@@ -16,6 +19,29 @@ import {
 } from './styles';
 
 export default function Footer({ isEnterPrice }) {
+  const [solutionList, setSolutionList] = useState([])
+  const loadData = useCallback(async () => {
+    const data = await getAllSolutionWithSlug()
+    if (data) setSolutionList(data)
+  }, [])
+
+  useEffect(() => {
+    loadData()
+  }, [loadData])
+
+  const renderSolutionList = useMemo(() => {
+    if (isEmpty(solutionList)) return null
+    return (
+      <>
+        <p>Solutions</p>
+        <FooterMenuList isEnterPrice={isEnterPrice}>
+          {solutionList?.map((item, index) => {
+            return <Link href={`/solutions/${item?.slug}`} key={`solutionitem_index_${index}`}>{item?.name}</Link>
+          })}
+        </FooterMenuList>
+      </>
+    )
+  }, [isEnterPrice, solutionList])
   return (
     <>
       <FooterSection isEnterPrice={isEnterPrice}>
@@ -241,12 +267,13 @@ export default function Footer({ isEnterPrice }) {
               </FotterMenuLeft>
               <FotterMenuLeft>
                 <FooterMenu isEnterPrice={isEnterPrice}>
-                  <p>Solutions</p>
+                  {renderSolutionList}
+                  {/* <p>Solutions</p>
                   <FooterMenuList isEnterPrice={isEnterPrice}>
                     <Link href='/solutions/accounting-firms'>Accounting firms</Link>
                     <Link href='/solutions/marketing-agencies'>Marketing agencies</Link>
                     <Link href='/solutions/startups'>Startups</Link>
-                  </FooterMenuList>
+                  </FooterMenuList> */}
                   <FooterMenu className='padding' isEnterPrice={isEnterPrice}>
                     <p>Company</p>
                     <FooterMenuList isEnterPrice={isEnterPrice}>
@@ -288,12 +315,13 @@ export default function Footer({ isEnterPrice }) {
                   </FooterMenuList>
                 </FooterMenu>
                 <FooterMenu className='padding' isEnterPrice={isEnterPrice}>
-                  <p>Solutions</p>
+                  {renderSolutionList}
+                  {/* <p>Solutions</p>
                   <FooterMenuList isEnterPrice={isEnterPrice}>
                     <Link href='/solutions/accounting-firms'>Accounting firms</Link>
                     <Link href='/solutions/marketing-agencies'>Marketing agencies</Link>
                     <Link href='/solutions/startups'>Startups</Link>
-                  </FooterMenuList>
+                  </FooterMenuList> */}
                 </FooterMenu>
               </FotterMenuMobile>
               <FotterMenuMobile>
