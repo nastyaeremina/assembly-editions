@@ -1143,7 +1143,6 @@ const RightWrap = styled.div`
   display: flex;
   flex-direction: column;
   p {
-    font-family: 'Bagoss Standard';
     font-style: normal;
     font-weight: 400;
     font-size: 12px;
