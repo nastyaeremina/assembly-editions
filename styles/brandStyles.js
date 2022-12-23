@@ -73,8 +73,8 @@ const BrandImage = styled.div`
     }
   }
   .effect-goliath:hover .hover-name {
-    -webkit-transform: translate3d(0, 2px, 0);
-    transform: translate3d(0, 2px, 0);
+    -webkit-transform: translate3d(0, 0px, 0);
+    transform: translate3d(0, 0px, 0);
     transition: transform 0.35s;
     @media only screen and (max-width: 769px) {
       transform: none;
@@ -143,7 +143,7 @@ const HoverSection = styled.div`
   gap: 12px;
   background-color: ${({ theme }) => theme.colors.greenlight};
   padding: 17px 24px;
-  border-radius: 0px 0px 10px 10px;
+  border-radius: 0px 0px 7px 7px;
   display: flex;
   align-items: center;
   right: 0;
@@ -171,6 +171,11 @@ const HoverSection = styled.div`
   }
   @media only screen and (max-width: 749px) {
     padding: 10px 13px;
+    p {
+      font-weight: 500;
+      font-size: 12px;
+      line-height: 15px;
+    }
   }
   .downdesk {
     display: block;
@@ -187,7 +192,7 @@ const HoverSection = styled.div`
 `;
 const HoverLink = styled.div`
   padding: 17px 24px;
-  border-radius: 0px 0px 10px 10px;
+  border-radius: 0px 0px 7px 7px;
   display: flex;
   align-items: center;
   right: 0;
@@ -203,6 +208,11 @@ const HoverLink = styled.div`
   }
   @media only screen and (max-width: 749px) {
     padding: 10px 13px;
+    p {
+      font-weight: 500;
+      font-size: 12px;
+      line-height: 15px;
+    }
   }
   .downdesk {
     display: block;
@@ -221,7 +231,7 @@ const BlackHover = styled.div`
   gap: 12px;
   background-color: ${({ theme }) => theme.colors.greendark};
   padding: 17px 24px;
-  border-radius: 0px 0px 10px 10px;
+  border-radius: 0px 0px 7px 7px;
   display: flex;
   align-items: center;
   right: 0;
@@ -235,6 +245,11 @@ const BlackHover = styled.div`
   }
   @media only screen and (max-width: 749px) {
     padding: 10px 13px;
+    p {
+      font-weight: 500;
+      font-size: 12px;
+      line-height: 15px;
+    }
   }
   .downdesk {
     display: block;
@@ -332,8 +347,8 @@ const ColorSection = styled.div`
     }
   }
   .effect-goliath:hover .hover-name {
-    -webkit-transform: translate3d(0, 2px, 0);
-    transform: translate3d(0, 2px, 0);
+    -webkit-transform: translate3d(0, 0px, 0);
+    transform: translate3d(0, 0px, 0);
     transition: transform 0.35s;
     img {
       transform: translate3d(0, 0px, 0);
@@ -371,10 +386,10 @@ const Block1 = styled.div`
 `;
 const BlockSub = styled.div`
   background-color: ${({ theme }) => theme.colors.greendark};
-  border-radius: 0px 0px 10px 10px;
+  border-radius: 0px 0px 7px 7px;
   padding: 8px 20px;
   position: absolute;
-  bottom: -2px;
+  bottom: 0px;
   right: 0;
   left: 0;
   display: flex;
@@ -397,7 +412,7 @@ const BlockSub = styled.div`
     letter-spacing: 0;
   }
 
-  @media only screen and (max-width: 376px) {
+  @media only screen and (max-width: 749px) {
     p {
       font-size: 16px;
       line-height: 23px;
@@ -425,6 +440,16 @@ const BlockLight = styled.div`
   span {
     color: ${({ theme }) => theme.colors.greendark};
     ${Body2}
+  }
+  @media only screen and (max-width: 749px) {
+    p {
+      font-size: 16px;
+      line-height: 23px;
+    }
+    span {
+      font-size: 19px;
+      line-height: 25px;
+    }
   }
 `;
 const ImgWrap = styled.div`
