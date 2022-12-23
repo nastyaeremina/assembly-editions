@@ -79,9 +79,9 @@ export default function ExploreTab({ data }) {
               Explore the client experience<span>.</span>
             </h3>
             <p>
-              Provide clients a uniform experience with on-brand design, combined in-product notifications, and
-              consistent email notifications. And with modularily built-in, start with just one module and add more when
-              the time is right.
+              If you’d like to see what the user experience can be like for your clients, you can create a client
+              account in a demo portal we have set up. We’ve customized this demo portal to highlight some of the
+              features that are most relevant.
             </p>
             <BtnWrap>
               <Button
@@ -92,14 +92,6 @@ export default function ExploreTab({ data }) {
                 href={'#'}
                 hoverColor={'rgba(0, 0, 0, 0.5)'}
               />
-              <IconView className='tooltip'>
-                <Image src='/images/helpicon.svg' alt='main-logo' width={22} height={22} />
-                <Tooltip className='tooltiptext'>
-                  If you’d like to see what the user experience can be like for your clients, you can create a client
-                  account in a demo portal we have set up. We’ve customized this demo portal to highlight some of the
-                  features that are most relevant.
-                </Tooltip>
-              </IconView>
             </BtnWrap>
           </TopView>
         </Container>
