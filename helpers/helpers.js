@@ -21,3 +21,10 @@ export const dateToMonthYear = (date) => {
   var y = newDate.getUTCFullYear();
   return MONTH_LIST[m] + ', ' + y;
 };
+
+export function removeEmptyElement(array) {
+  const filtered = array.filter(function (el) {
+    return el !== null && el !== undefined;
+  });
+  return filtered
+}

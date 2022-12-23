@@ -1,0 +1,56 @@
+import { NextSeo } from 'next-seo';
+import CTA from '../../components/cta/cta';
+import Layout from '../../components/layout';
+import Navbar from '../../components/navbar/navbar';
+import ExploreTab from '../../components/solution/clienttab/exploretab';
+import Modern from '../../components/solution/modern/modern';
+import Quote from '../../components/solution/quote/quote';
+import SolutionHero from '../../components/solution/solutionhero/solutionhero';
+import { SOLUTION_ACCOUNTING_FIRMS_ID } from '../../constants/constant';
+import { isEmpty, removeEmptyElement } from '../../helpers/helpers';
+import { getAllSolutionWithSlug, getSolutionById, getSolutionBySlug } from '../../lib/contentful-solutions';
+import { MainWrap } from '../../components/solution/clienttab/styles';
+
+export default function Solution({ details }) {
+    return (
+        <>
+            <NextSeo
+                title='Create your portal, pick a plan later'
+                description='Try Copilot free for 14 days, no credit card required'
+            />
+            <Layout>
+                <Navbar />
+                <MainWrap>
+                    <SolutionHero title={details?.header} description={details?.body} mobileImage={details?.imageForeground?.url}
+                        webImage={details?.imageBackground?.url} />
+                    {!isEmpty(details?.solutionValueCollection?.items) && (
+                        <Modern
+                            data={details?.solutionValueCollection?.items}
+                            title={details?.sectionTitle}
+                        />
+                    )}
+                    {!isEmpty(details?.clientExperienceCollection?.items) && (
+                        <ExploreTab data={removeEmptyElement(details?.clientExperienceCollection?.items)} />
+                    )}
+                    {!isEmpty(details?.testimonial) && <Quote data={details?.testimonial} />}
+                </MainWrap>
+                <CTA />
+            </Layout>
+        </>
+    );
+}
+export async function getServerSideProps({ params, preview = false }) {
+    const details = (await getSolutionBySlug(params?.slug, preview)) ?? [];
+    return {
+        props: { details }
+    };
+}
+
+export async function getServerSidePaths() {
+    const allPosts = await getAllSolutionWithSlug()
+    return {
+        paths: allPosts?.map((item) => `${item?.slug}`) ?? [],
+
+        fallback: true
+    };
+}
