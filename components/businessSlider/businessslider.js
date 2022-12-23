@@ -7,18 +7,14 @@ import { Slide, SliderWrap, WrapImage, LeftBorder, RightBorder, WrapSlide, Slide
 
 const BusinessSlider = ({ data }) => {
   var settings = {
-    mobileFirst: true,
-    centerMode: false,
-    adaptiveHeight: true,
-    slidesToScroll: 2,
-    variableWidth: true,
-    infinite: true,
+    speed: 700,
     autoplay: true,
+    infinite: true,
     autoplaySpeed: 0,
-    arrows: false,
-    speed: 8000,
-    pauseOnHover: false,
     cssEase: 'linear',
+    slidesToShow: 3.5,
+    slidesToScroll: 0.1,
+    pauseOnHover: true,
     responsive: [
       {
         breakpoint: 1440,
@@ -29,7 +25,6 @@ const BusinessSlider = ({ data }) => {
       {
         breakpoint: 1000,
         settings: {
-          mobileFirst: true,
           slidesToShow: 2,
           centerMode: true,
           slidesToScroll: 1
@@ -38,17 +33,15 @@ const BusinessSlider = ({ data }) => {
       {
         breakpoint: 600,
         settings: {
-          mobileFirst: true,
           slidesToShow: 1,
           slidesToScroll: 1,
+          swipe:true,
           dots: true,
           centerMode: true,
           variableWidth: true,
-          infinite: false,
           autoplay: false,
-          autoplaySpeed: 0,
-          arrows: false,
-          speed: 0
+          speed: 300,
+          cssEase: 'cubic-bezier(0.420, 0.000, 0.580, 1.00)',
         }
       }
     ]
