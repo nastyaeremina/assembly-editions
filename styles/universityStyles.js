@@ -306,6 +306,67 @@ const VideoSection = styled.div`
       ${MbBody2}
     }
   }
+  .yt-lite {
+    border-radius: 4px;
+    transition: opacity 0.35s ease;
+    :hover {
+      ::before {
+        content: '';
+        background-color: #000000;
+        opacity: 0.4;
+        position: absolute;
+        left: 0;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        @media only screen and (max-width: 749px) {
+          display: none;
+        }
+      }
+      .icon-player {
+        background-image: url('/images/ytbicon.svg');
+        width: 137px;
+        height: 96px;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        opacity: 1;
+        @media only screen and (max-width: 749px) {
+          background-image: url('/images/mobileytb.svg');
+          width: 66px;
+          height: 46px;
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          opacity: 1;
+        }
+      }
+    }
+    @media only screen and (max-width: 749px) {
+      ::before {
+        content: '';
+        background-color: #000000;
+        opacity: 0.4;
+        position: absolute;
+        left: 0;
+        top: 0;
+        right: 0;
+        bottom: 0;
+      }
+      .icon-player {
+        background-image: url('/images/mobileytb.svg');
+        width: 66px;
+        height: 46px;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        opacity: 1;
+      }
+    }
+  }
 `;
 const VIdeoWrap = styled.div`
   padding-bottom: 100px;
@@ -370,6 +431,19 @@ const OverLay = styled.div`
     bottom: 3px;
   }
 `;
+const YoutubeWrap = styled.div`
+  /* position: relative; */
+  .icon-player {
+    background-image: url('/images/ytbicon.svg');
+    width: 137px;
+    height: 96px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 0;
+  }
+`;
 export {
   UniversitySection,
   UniversityHero,
@@ -396,5 +470,6 @@ export {
   UniversityVideo,
   Overlay,
   HoverButton,
-  OverLay
+  OverLay,
+  YoutubeWrap
 };
