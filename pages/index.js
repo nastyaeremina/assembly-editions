@@ -6,7 +6,6 @@ import Navbar from '../components/navbar/navbar';
 import { StatefulTabs, Tab, StyledTab } from 'baseui/tabs';
 import { LabelMedium } from 'baseui/typography';
 import { Container, PrimaryButton, SecondryButton } from '../styles/commonStyles';
-
 import {
   HeroSection,
   HeroHeading,
@@ -162,7 +161,7 @@ export default function Home({ content }) {
                 </p>
               </BusinessText>
             </Container>
-            <BusinessSlider data={content?.testimonialsCollection?.items}/>
+            <BusinessSlider data={content?.testimonialsCollection?.items} />
           </BusinessSection>
           <Functionality>
             <Container>
@@ -205,7 +204,7 @@ export default function Home({ content }) {
                 </BtnView>
               </BusinessText>
             </Container>
-            <ExtensionSlider  data={content?.partnerAppsCollection?.items}/>
+            <ExtensionSlider data={content?.partnerAppsCollection?.items} />
           </Extension>
           <AutomateSection>
             <Container>

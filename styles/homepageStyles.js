@@ -461,7 +461,7 @@ const Functionality = styled.div`
     padding: 40px 0;
   }
   .ak {
-    margin-bottom: 40px;
+    margin-bottom: 20px;
   }
   @media only screen and (max-width: 749px) {
     .ak {
@@ -716,6 +716,8 @@ const LeftDetail = styled.div`
     margin: 0 0 24px 0;
   }
   @media only screen and (max-width: 991px) {
+    max-width: 100%;
+    margin-right: 0;
     .btnmobi {
       margin-bottom: 24px;
     }
@@ -1042,6 +1044,7 @@ const HelpImg = styled.div`
     height: 100%;
   }
   @media only screen and (max-width: 991px) {
+    display: none;
     width: 100%;
     img {
       width: 100%;
