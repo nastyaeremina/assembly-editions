@@ -3,7 +3,6 @@ import { Body1, Body3, Body4, Heading3 } from '../../styles/styles';
 const AppMain = styled.div`
   text-align: center;
   margin: auto;
-  max-width: 381px;
   width: 100%;
   h4 {
     ${Body1};
