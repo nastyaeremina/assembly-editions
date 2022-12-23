@@ -141,7 +141,7 @@ export default function Apps({ allPosts, featuredApps, allCategoryWithPost, data
           <Link href={`/apps/${item?.slug}`}>
             <CardInfo>
               <ImgView>
-                <Image src={item?.icon?.url} alt='red-icon' width={35} height={35} layout={'fixed'} />
+                <Image src={item?.icon?.url} alt='red-icon' width={25} height={25} layout={'fixed'} />
               </ImgView>
               <h4>{item?.name}</h4>
             </CardInfo>
@@ -187,7 +187,7 @@ export default function Apps({ allPosts, featuredApps, allCategoryWithPost, data
 
   return (
     <>
-      <SEO id={"1YuaTMgNnzacoBjygKg4nk"}></SEO>
+      <SEO id={'1YuaTMgNnzacoBjygKg4nk'}></SEO>
       <Layout>
         <MainBg>
           <Navbar />

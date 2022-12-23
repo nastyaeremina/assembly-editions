@@ -308,6 +308,7 @@ const CardSub = styled.div`
     padding: 15px;
     -webkit-transition: all 0.2s ease-in-out;
     transition: all 0.2s ease-in-out;
+    height: 100%;
     :hover {
       border: 1px solid #000000;
       box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.1);
@@ -600,8 +601,13 @@ const MainBg = styled.div`
   background-color: #fffffd;
 `;
 const ImgView = styled.div`
-  max-width: 35px;
-  max-height: 35px;
+  width: 35px;
+  height: 35px;
+  border: 1px solid #e9e9ea;
+  border-radius: 70px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `;
 const ImageWrap = styled.div`
   display: block;
