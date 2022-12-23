@@ -91,6 +91,8 @@ const CtaWrap = styled.div`
   bottom: 0;
   display: flex;
   align-items: center;
+  -webkit-backdrop-filter: blur(50px);
+  backdrop-filter: blur(50px);
 `;
 const MainCta = styled.div`
   display: flex;

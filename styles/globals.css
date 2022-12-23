@@ -336,8 +336,6 @@ th {
   max-height: 512px;
   height: 100%;
   margin: -50px;
-  -webkit-filter: blur(50px);
-  filter: blur(50px);
 }
 
 .gradient-canvas_cta {
@@ -348,8 +346,6 @@ th {
   max-height: 512px;
   height: 100%;
   margin: -50px;
-  -webkit-filter: blur(50px);
-  filter: blur(50px);
 }
 .entrance {
   --gradient-color-1: #09aa6c;
