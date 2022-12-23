@@ -12,7 +12,6 @@ import { getSolutionById } from '../../lib/contentful-solutions';
 import { MainWrap } from '../../components/solution/clienttab/styles';
 
 export default function AccountingFirms({ details }) {
-  console.log('details', details);
   return (
     <>
       <NextSeo

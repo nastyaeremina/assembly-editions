@@ -26,7 +26,6 @@ export default function Tools({ moduleColor, data }) {
     if (isEmpty(data)) return null;
     return data?.map((item, index) => {
       const className = classNameList(index);
-      console.log('item', item);
       if (isEmpty(item)) return null;
       return (
         <ModuleWrap key={`toolslits_index_${index}`} className={className}>

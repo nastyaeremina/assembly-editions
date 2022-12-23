@@ -25,11 +25,9 @@ import {
 import { isEmpty } from '../../helpers/helpers';
 import { useMemo } from 'react';
 import LiteYouTubeEmbed from 'react-lite-youtube-embed';
-import 'react-lite-youtube-embed/dist/LiteYouTubeEmbed.css'
+import 'react-lite-youtube-embed/dist/LiteYouTubeEmbed.css';
 
 export default function UniversityDetail({ relatedVideos, universityVideoDetail }) {
-  console.log('relatedApps', relatedVideos);
-
   const renderRelatedVideosView = useMemo(() => {
     if (isEmpty(relatedVideos)) return null;
     return relatedVideos?.map((item, index) => {
@@ -67,10 +65,10 @@ export default function UniversityDetail({ relatedVideos, universityVideoDetail 
               <h3>{universityVideoDetail?.name}</h3>
             </DetailVideoHero>
             <VideoSection>
-            <LiteYouTubeEmbed 
-                    id={universityVideoDetail?.videoLink}
-                    title="What’s new in Material Design for the web (Chrome Dev Summit 2019)"
-            />
+              <LiteYouTubeEmbed
+                id={universityVideoDetail?.videoLink}
+                title='What’s new in Material Design for the web (Chrome Dev Summit 2019)'
+              />
               <p>{universityVideoDetail?.description}</p>
             </VideoSection>
             {!isEmpty(relatedVideos) && (

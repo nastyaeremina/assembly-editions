@@ -6,9 +6,6 @@ import 'slick-carousel/slick/slick-theme.css';
 import { Slide, SliderWrap, WrapImage, LeftBorder, RightBorder, WrapSlide, SlideImg } from './styles';
 
 const BusinessSlider = ({ data }) => {
-  console.log('data', data);
-  
-
   var settings = {
     mobileFirst: true,
     centerMode: false,
@@ -59,22 +56,24 @@ const BusinessSlider = ({ data }) => {
   return (
     <>
       <SliderWrap>
-      <Slider {...settings}>
-        {data?.map((item,index) =>{
-            return <>
-            <WrapSlide className='mydiv'>
-            <LeftBorder className='hide'></LeftBorder>
-            <WrapImage>
-              <SlideImg>
-                <Image src={item?.image?.url} alt='red-icon' className='zoom' width={350} height={350} />
-              </SlideImg>
-              <h4>{item?.name}</h4>
-              <p className='hide'>{item?.quote}</p>
-            </WrapImage>
-            <RightBorder className='hide'> </RightBorder>
-          </WrapSlide>
-       </>
-        })}
+        <Slider {...settings}>
+          {data?.map((item, index) => {
+            return (
+              <>
+                <WrapSlide className='mydiv'>
+                  <LeftBorder className='hide'></LeftBorder>
+                  <WrapImage>
+                    <SlideImg>
+                      <Image src={item?.image?.url} alt='red-icon' className='zoom' width={350} height={350} />
+                    </SlideImg>
+                    <h4>{item?.name}</h4>
+                    <p className='hide'>{item?.quote}</p>
+                  </WrapImage>
+                  <RightBorder className='hide'> </RightBorder>
+                </WrapSlide>
+              </>
+            );
+          })}
         </Slider>
       </SliderWrap>
     </>
