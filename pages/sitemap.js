@@ -1,9 +1,12 @@
 import { NextSeo } from 'next-seo';
 import Image from 'next/image';
 import Link from 'next/link';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 import Layout from '../components/layout';
 import Navbar from '../components/navbar/navbar';
-import { HEADER_LIST } from '../constants/constant';
+import { HEADER_LIST, SITEMAP_CONTENT_ID } from '../constants/constant';
+import { isEmpty, removeEmptyElement } from '../helpers/helpers';
+import { getSitemap } from '../lib/contentful-sitemap';
 import { Container } from '../styles/commonStyles';
 import {
   MainSection,
@@ -14,7 +17,46 @@ import {
   PrivacyContactData
 } from '../styles/resourcesStyles';
 
-export default function Privacy() {
+export default function Privacy({ content }) {
+  const [sitemap, setSitemap] = useState([])
+  console.log("content", content);
+  const loadData = useCallback(() => {
+    if (!isEmpty(content)) {
+      const list = content?.split('#')
+      list?.shift()
+      const contentList = []
+      list?.forEach(item => {
+
+        const newItemList = removeEmptyElement(item?.split("\n"))
+        let newItem = { title: newItemList?.[0], list: [] }
+        newItemList?.shift()
+        const mapList = []
+        newItemList?.forEach(element => {
+          const newObject = ne[1]?.split(/[\[\]\(\)]/)
+          mapList?.push({ name: newObject[1], url: newObject[3] })
+
+        })
+
+      })
+      console.log("list", newList);
+      const ne = removeEmptyElement(newList)
+      console.log("ne", ne);
+      const final = ne[1]?.split(/[\[\]\(\)]/)
+      console.log("final", final);
+    }
+  }, [content])
+
+  useEffect(() => {
+    loadData()
+  }, [loadData])
+
+  const renderSitemapView = useMemo(() => {
+    if (isEmpty(sitemap)) return null
+    return sitemap?.map((item, index) => {
+      return <></>
+    })
+  }, [sitemap])
+
   return (
     <>
       <NextSeo
@@ -100,4 +142,12 @@ export default function Privacy() {
       </Layout>
     </>
   );
+}
+export async function getStaticProps({ preview = false }) {
+  const content = (await getSitemap(SITEMAP_CONTENT_ID)) ?? '';
+  return {
+    props: {
+      content: content?.content
+    }
+  };
 }
