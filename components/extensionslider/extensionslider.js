@@ -7,21 +7,15 @@ import Link from 'next/link';
 
 const ExtensionSlider = ({ data }) => {
   const settings = {
-    dots: false,
-    infinite: true,
-    centerMode: false,
-    // speed: 500,
-    slidesToScroll: 1,
-    variableWidth: true,
-    cssEase: 'linear',
-    mobileFirst: true,
-    adaptiveHeight: true,
-    autoplay: true,
-    autoplaySpeed: 0,
-    arrows: false,
     speed: 6000,
+    autoplay: true,
+    infinite: true,
+    autoplaySpeed: 0,
+    cssEase: 'linear',
+    slidesToShow: 4.5,
+    slidesToScroll: 1,
     pauseOnHover: true,
-    FocusEvent: true,
+    variableWidth: true,
     responsive: [
       {
         breakpoint: 1440,
@@ -48,7 +42,6 @@ const ExtensionSlider = ({ data }) => {
   return (
     <>
       <SliderWrap>
-        <SliderLine></SliderLine>
         <Slider {...settings}>
           {data?.map((item, index) => {
             return (
@@ -59,6 +52,7 @@ const ExtensionSlider = ({ data }) => {
                     <h4>{item?.name}</h4>
                   </SliderSub>
                 </SliderInner>
+                <SliderLine></SliderLine>
               </>
             );
           })}

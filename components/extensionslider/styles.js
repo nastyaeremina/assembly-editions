@@ -65,20 +65,14 @@ const WrapImage = styled.div`
   }
 `;
 const SliderInner = styled(Link)`
-  padding: 11px 15px;
+  padding: 11px 20px 11px 15px;
   border: 1px solid #000000;
   border-radius: 4px;
   background-color: ${({ theme }) => theme.colors.whiteColor};
-  width: 100%;
-  max-width: 180px;
   margin: 0 40px;
   cursor: pointer;
-  /* p {
-    ${Body5};
-    color: ${({ theme }) => theme.colors.midiumgray};
-    letter-spacing: 0.02em;
-    margin: 0;
-  } */
+  position: relative;
+  z-index: 9999;
 `;
 const SliderSub = styled.div`
   display: flex;
@@ -99,7 +93,6 @@ const borderAnimation = keyframes`
   }
 `;
 const SliderLine = styled.div`
-  animation: ${borderAnimation} 4s linear infinite;
   background: linear-gradient(90deg, rgba(0, 0, 0, 1) 50%, transparent 0),
     linear-gradient(90deg, rgba(0, 0, 0, 1) 50%, transparent 0),
     linear-gradient(0deg, rgba(0, 0, 0, 1) 50%, transparent 0),
