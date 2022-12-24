@@ -12,14 +12,20 @@ const BusinessSlider = ({ data }) => {
     infinite: true,
     autoplaySpeed: 0,
     cssEase: 'linear',
-    slidesToShow: 3.5,
+    slidesToShow: 4.5,
     slidesToScroll: 0.1,
     pauseOnHover: true,
     responsive: [
       {
+        breakpoint: 1920,
+        settings: {
+          slidesToShow: 4.5
+        }
+      },
+      {
         breakpoint: 1440,
         settings: {
-          slidesToScroll: 2
+          slidesToShow: 3.5
         }
       },
       {
@@ -35,13 +41,13 @@ const BusinessSlider = ({ data }) => {
         settings: {
           slidesToShow: 1,
           slidesToScroll: 1,
-          swipe:true,
+          swipe: true,
           dots: true,
           centerMode: true,
           variableWidth: true,
           autoplay: false,
           speed: 300,
-          cssEase: 'cubic-bezier(0.420, 0.000, 0.580, 1.00)',
+          cssEase: 'cubic-bezier(0.420, 0.000, 0.580, 1.00)'
         }
       }
     ]
@@ -59,7 +65,7 @@ const BusinessSlider = ({ data }) => {
                     <SlideImg>
                       <Image src={item?.image?.url} alt='red-icon' className='zoom' width={350} height={350} />
                     </SlideImg>
-                    <h4>{item?.name}</h4>
+                    <h4>{item?.industry}</h4>
                     <p className='hide'>{item?.quote}</p>
                   </WrapImage>
                   <RightBorder className='hide'> </RightBorder>
