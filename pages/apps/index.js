@@ -212,18 +212,34 @@ export default function Apps({ allPosts, featuredApps, allCategoryWithPost, data
                     </InputWrap>
                     <Catagory>
                       <h4>Partner Apps</h4>
-                      <Catagoryitem>
+                      <Catagoryitem
+                        isActive={selected_category === 'Brief-Section'}
+                        onClick={() => {
+                          setSelected_category('Brief-Section');
+                        }}>
                         <Link href={'#Brief-Section'}>Featured</Link>
                       </Catagoryitem>
                       {renderCategoryList}
                     </Catagory>
                     <OtherWrap>
                       <h4>Other</h4>
-                      <Catagoryitem>
-                        <Link href={'#Integrations-Section'}>Data Integrations</Link>
+                      <Catagoryitem isActive={selected_category === 'Integrations-Section'}>
+                        <Link
+                          href={'#Integrations-Section'}
+                          onClick={() => {
+                            setSelected_category('Integrations-Section');
+                          }}>
+                          Data Integrations
+                        </Link>
                       </Catagoryitem>
-                      <Catagoryitem>
-                        <Link href={'#custome-apps'}>Custom Apps</Link>
+                      <Catagoryitem isActive={selected_category === 'custome-apps'}>
+                        <Link
+                          href={'#custome-apps'}
+                          onClick={() => {
+                            setSelected_category('custome-apps');
+                          }}>
+                          Custom Apps
+                        </Link>
                       </Catagoryitem>
                     </OtherWrap>
                   </LeftWrap>
