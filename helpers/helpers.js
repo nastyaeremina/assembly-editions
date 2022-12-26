@@ -24,7 +24,7 @@ export const dateToMonthYear = (date) => {
 
 export function removeEmptyElement(array) {
   const filtered = array.filter(function (el) {
-    return el !== null && el !== undefined;
+    return !isEmpty(el);
   });
   return filtered
 }
