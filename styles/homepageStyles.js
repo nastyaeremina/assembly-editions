@@ -179,7 +179,7 @@ const FeatureLinkBlock = styled.div``;
 
 const HeroSection = styled.div`
   width: 100%;
-  padding: 180px 0 50px 0;
+  padding: 224px 0 50px 0;
   text-align: center;
   /* background-image: url("/images/Frame-1-figma-1.webp"); */
   /* background-position: center;
@@ -187,7 +187,7 @@ const HeroSection = styled.div`
   background-repeat: no-repeat; */
   overflow: hidden;
   @media only screen and (max-width: 749px) {
-    padding: 120px 0 40px 0;
+    padding: 148px 0 40px 0;
   }
 `;
 

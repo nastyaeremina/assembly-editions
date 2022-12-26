@@ -3,7 +3,7 @@ import { Body4, Heading2, Heading4, Heading6, LinkTxt, MobileH2 } from './styles
 const MainSection = styled.div``;
 const PrivacuHero = styled.div`
   background-color: ${({ theme }) => theme.colors.greendark};
-  padding: 152px 0 100px 0;
+  padding: 196px 0 100px 0;
   text-align: center;
   h2 {
     ${Heading2};
@@ -11,7 +11,7 @@ const PrivacuHero = styled.div`
     margin: 0;
   }
   @media only screen and (max-width: 749px) {
-    padding: 116px 0 80px;
+    padding: 148px 0 80px;
     h2 {
       ${MobileH2};
     }
