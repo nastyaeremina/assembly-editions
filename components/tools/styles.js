@@ -76,11 +76,22 @@ const ModuleWrap = styled.div`
     border-right: 0;
   }
   @media only screen and (max-width: 768px) {
+    :nth-child(1) {
+      border-top-left-radius: 4px;
+    }
+    :nth-child(2) {
+      border-top-right-radius: 4px;
+    }
     :nth-child(4) {
       border-right: 1px solid #120800;
     }
+    :nth-child(7) {
+      border-bottom: 0;
+    }
     :nth-child(8) {
       border-right: 1px solid #120800;
+      border-bottom-right-radius: 4px;
+      border-bottom: 0;
     }
   }
   @media only screen and (max-width: 749px) {

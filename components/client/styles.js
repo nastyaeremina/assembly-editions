@@ -417,6 +417,7 @@ const ImageWrapper = styled.div`
   }
   @media only screen and (max-width: 769px) {
     max-height: 105px;
+    height: auto;
   }
 `;
 const HelpLink = styled.div`
