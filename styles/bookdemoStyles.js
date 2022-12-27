@@ -24,7 +24,7 @@ const ImageSection = styled.div`
     max-width: 900px;
     width: 100%;
   } */
-  @media only screen and (max-width: 768px) {
+  @media only screen and (max-width: 991px) {
     display: none;
   }
 `;

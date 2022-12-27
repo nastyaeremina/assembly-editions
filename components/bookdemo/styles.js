@@ -8,6 +8,7 @@ import {
   Heading3,
   Heading4,
   LinkTxt,
+  MbBody3,
   MbBody4,
   MobileH4
 } from '../../styles/styles';
@@ -17,7 +18,7 @@ const MainSection = styled.div`
   padding: 40px 80px;
   background-color: ${({ theme }) => theme.colors.bgcolor};
   overflow: auto;
-  @media only screen and (max-width: 768px) {
+  @media only screen and (max-width: 991px) {
     max-width: 100%;
     padding: 28px 160px 22px;
   }
@@ -33,7 +34,7 @@ const LastText = styled.div`
   justify-content: center;
   ${HeaderFont};
   margin-top: 20px;
-  @media only screen and (max-width: 768px) {
+  @media only screen and (max-width: 991px) {
     margin-top: 16px;
   }
   .learn-link,
@@ -404,6 +405,81 @@ const HelpLink = styled.div`
   display: flex;
   align-items: center;
 `;
+const SubmitSection = styled.div`
+  max-width: 504px;
+  width: 100%;
+  margin: 0 auto;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+`;
+const ThanksWrap = styled.div`
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+`;
+
+const CardView = styled.div`
+  background-color: ${({ theme }) => theme.colors.greenlight};
+  padding: 50px 0;
+  border-radius: 10px;
+  width: 100%;
+  @media only screen and (max-width: 749px) {
+    padding: 40px 0;
+  }
+`;
+const CardList = styled.div`
+  text-align: center;
+`;
+const ImgLine = styled.div``;
+const TextWrap = styled.div`
+  padding: 40px 20px;
+  h2 {
+    ${Heading3};
+    margin: 0 0 30px;
+    color: ${({ theme }) => theme.colors.black};
+  }
+  p {
+    ${Body3};
+    max-width: 335px;
+    margin: 16px auto 0;
+    display: inline-block;
+    color: ${({ theme }) => theme.colors.title};
+  }
+  a {
+    display: inline-block;
+    color: ${({ theme }) => theme.colors.title};
+    ${LinkTxt};
+    text-decoration: underline;
+  }
+  @media only screen and (max-width: 749px) {
+    padding: 30px 20px;
+    h2 {
+      margin: 0 0 20px;
+    }
+    p {
+      ${MbBody3};
+      max-width: 100%;
+      margin: 10px auto 0;
+      display: inline-block;
+      color: ${({ theme }) => theme.colors.title};
+    }
+    a {
+      ${MbBody3};
+      display: inline-block;
+    }
+  }
+`;
+const ContactText = styled.span`
+  display: block;
+  ${Body3};
+  color: ${({ theme }) => theme.colors.title};
+  @media only screen and (max-width: 749px) {
+    ${MbBody3};
+  }
+`;
 export {
   MainSection,
   FormSection,
@@ -419,5 +495,12 @@ export {
   ImageText,
   TextWrapper,
   ImgWrap,
-  HelpLink
+  ThanksWrap,
+  HelpLink,
+  SubmitSection,
+  CardView,
+  CardList,
+  ImgLine,
+  TextWrap,
+  ContactText
 };
