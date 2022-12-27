@@ -36,40 +36,62 @@ const PostContent = styled.div`
   }
 `;
 const PrivacyContent = styled.div`
-  padding-top: 60px;
   h4 {
     ${Heading4};
     color: ${({ theme }) => theme.colors.title};
-    margin: 0;
-    margin-bottom: -4px;
+    margin: 60px 0 12px 0;
   }
   h5 {
-    ${Heading5};
+    ${Heading6};
     color: ${({ theme }) => theme.colors.title};
-    margin: 30px 0 0 0;
+    margin: 0 0 16px 0;
   }
   h6 {
     ${Heading6};
     color: ${({ theme }) => theme.colors.title};
-    margin: 30px 0 0 0;
+    margin: 30px 0 16px 0;
   }
-  strong{
+  strong {
     ${Heading6};
     color: ${({ theme }) => theme.colors.title};
   }
-  li{
-     padding-left: 36px;
-  position: relative;
-  margin-top: 10px;
-  :before {
-    content: '';
-    position: absolute;
-    top: 7px;
-    left: 0;
-    width: 20px;
-    height: 10px;
-    background-color: #7ddaa0;
+  p {
+    ${Body4};
+    color: ${({ theme }) => theme.colors.body};
+    margin: 0 0 16px 0;
+    :last-child {
+      margin-bottom: 0;
+    }
+    strong {
+      color: ${({ theme }) => theme.colors.body};
+      ${Heading6};
+    }
   }
+  ul {
+    margin-bottom: 10px;
+    li {
+      padding-left: 36px;
+      position: relative;
+      ${Body4};
+      color: ${({ theme }) => theme.colors.body};
+      margin-bottom: 8px;
+      :last-child {
+        margin-bottom: 0;
+      }
+      strong {
+        color: ${({ theme }) => theme.colors.body};
+        ${Heading6};
+      }
+      :before {
+        content: '';
+        position: absolute;
+        top: 7px;
+        left: 0;
+        width: 20px;
+        height: 10px;
+        background-color: #7ddaa0;
+      }
+    }
   }
 `;
 const PrivacyData = styled.div`

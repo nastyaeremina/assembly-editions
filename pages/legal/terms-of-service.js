@@ -1,15 +1,15 @@
 import { NextSeo } from 'next-seo';
 import Image from 'next/image';
 import Link from 'next/link';
-import LegalFooter from '../../components/footer/legalfooter';
 import { ReactMarkdown } from 'react-markdown/lib/react-markdown';
+import LegalFooter from '../../components/footer/legalfooter';
 import Navbar from '../../components/navbar/navbar';
 import { HEADER_LIST, TERMS_OF_SERVICE_ID } from '../../constants/constant';
 import { getSitemap } from '../../lib/contentful-sitemap';
 import { Container } from '../../styles/commonStyles';
 import { PrivacuHero, MainSection, SubData, SubHeading, SubCatagory, Catagory } from '../../styles/legalStyles';
 
-export default function TermsOfService({content}) {
+export default function TermsOfService({ content }) {
   return (
     <>
       <NextSeo
