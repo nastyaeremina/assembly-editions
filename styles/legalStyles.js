@@ -29,7 +29,7 @@ const SubData = styled.div`
     color: ${({ theme }) => theme.colors.title};
     margin: 0 0 12px 0;
   }
-  h5 {
+  h6 {
     ${Heading6};
     color: ${({ theme }) => theme.colors.title};
     margin: 0 0 16px 0;
