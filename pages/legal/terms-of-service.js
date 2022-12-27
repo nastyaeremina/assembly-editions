@@ -7,7 +7,7 @@ import { HEADER_LIST } from '../../constants/constant';
 import { Container } from '../../styles/commonStyles';
 import { PrivacuHero, MainSection, SubData, SubHeading, SubCatagory, Catagory } from '../../styles/legalStyles';
 
-export default function Privacy() {
+export default function TermsOfService() {
   return (
     <>
       <NextSeo

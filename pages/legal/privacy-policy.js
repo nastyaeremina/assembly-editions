@@ -16,7 +16,7 @@ import {
   FooterSub
 } from '../../styles/resourcesStyles';
 
-export default function Privacy() {
+export default function PrivacyPolicy() {
   return (
     <>
       <NextSeo
