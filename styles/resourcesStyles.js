@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { Body4, Heading2, Heading4, Heading6, LinkTxt, MobileH2 } from './styles';
+import { Body4, Heading2, Heading4, Heading5, Heading6, LinkTxt, MobileH2 } from './styles';
 const MainSection = styled.div``;
 const PrivacuHero = styled.div`
   background-color: ${({ theme }) => theme.colors.greendark};
@@ -44,9 +44,32 @@ const PrivacyContent = styled.div`
     margin-bottom: -4px;
   }
   h5 {
+    ${Heading5};
+    color: ${({ theme }) => theme.colors.title};
+    margin: 30px 0 0 0;
+  }
+  h6 {
     ${Heading6};
     color: ${({ theme }) => theme.colors.title};
     margin: 30px 0 0 0;
+  }
+  strong{
+    ${Heading6};
+    color: ${({ theme }) => theme.colors.title};
+  }
+  li{
+     padding-left: 36px;
+  position: relative;
+  margin-top: 10px;
+  :before {
+    content: '';
+    position: absolute;
+    top: 7px;
+    left: 0;
+    width: 20px;
+    height: 10px;
+    background-color: #7ddaa0;
+  }
   }
 `;
 const PrivacyData = styled.div`

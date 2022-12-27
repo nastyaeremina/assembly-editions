@@ -10,7 +10,8 @@ import {
   Body2,
   Body3,
   MbButtonText,
-  MbPrimaryBtn
+  MbPrimaryBtn,
+  Heading6
 } from './styles';
 
 const Container = styled.div`
