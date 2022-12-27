@@ -13,6 +13,7 @@ function CustomPanel(props) {
 
 export default function FAQ({ enterprise, contentID }) {
   const [allPosts, setAppPosts] = useState([]);
+
   const loadData = useCallback(async () => {
     const posts = (await getFAQs(contentID)) ?? [];
     setAppPosts(posts);
@@ -26,16 +27,8 @@ export default function FAQ({ enterprise, contentID }) {
     if (isEmpty(allPosts)) return null;
     return allPosts?.map((item, index) => {
       return (
-        <CustomPanel
-          title={
-            <div className='listtitle' aria-expanded={true}>
-              {item?.question}
-            </div>
-          }
-          key={`faqview_index_${index}`}>
-          <div className='listcaption' aria-expanded={true}>
-            {item?.answer}
-          </div>
+        <CustomPanel title={<div className='listtitle'>{item?.question}</div>} key={`faqview_index_${index}`}>
+          <div className='listcaption'>{item?.answer}</div>
         </CustomPanel>
       );
     });
@@ -50,13 +43,13 @@ export default function FAQ({ enterprise, contentID }) {
             <h3 className='faqtitle'>Frequently Asked Questions</h3>
           </FaqTitle>
           <Accordion
-            onChange={({ expanded }) => console.log('expanded', expanded)}
+            onChange={({ expanded }) => {}}
             overrides={{
               Header: {
-                style: ({ $theme }) => ({
+                style: ({ $theme, $expanded }) => ({
                   color: '#131313',
                   paddingTop: '40px',
-                  paddingBottom: '0px',
+                  paddingBottom: $expanded ? '20px' : '40px',
                   paddingLeft: '0px',
                   paddingRight: '0px',
                   fontSize: '32px',
@@ -76,13 +69,14 @@ export default function FAQ({ enterprise, contentID }) {
                   paddingTop: '0',
                   paddingLeft: '0px',
                   paddingRight: '0px',
-                  paddingBottom: '40px',
+                  paddingBottom: '0px',
                   color: '#4C4C4C',
                   fontSize: '24px',
                   lineHeight: '31px',
                   fontFamily: 'Bagoss',
                   fontWeight: '400',
-                  letterSpacing: '0.02em'
+                  letterSpacing: '0.02em',
+                  transition: 'all cubic-bezier(0.39, 0.575, 0.565, 1);'
                 })
               },
               ContentAnimationContainer: {
