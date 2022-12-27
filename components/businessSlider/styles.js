@@ -18,7 +18,7 @@ const SliderWrap = styled.div`
     opacity: 1;
   }
   .slick-dots {
-    bottom: -40px;
+    bottom: -160px;
   }
   .slick-dots li {
     margin: 0;
@@ -52,6 +52,11 @@ const SliderWrap = styled.div`
     }
     @media only screen and (max-width: 749px) {
       height: 500px;
+    }
+  }
+  @media only screen and (max-width: 749px) {
+    .slick-slider {
+      height: 100vw;
     }
   }
 `;
