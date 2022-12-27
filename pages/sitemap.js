@@ -21,19 +21,21 @@ export default function Privacy({ content }) {
   const [sitemap, setSitemap] = useState([])
   const loadData = useCallback(() => {
     if (!isEmpty(content)) {
-      const list = content?.split('#')
+      const newContent="\n"+content
+      const list = newContent?.split('\n#')
       list?.shift()
       let sitemapList = []
       list?.forEach(item => {
 
         const newItemList = removeEmptyElement(item?.split("\n"))
+      
         const title =newItemList?.[0]
         newItemList?.shift()
         const mapList = []
         newItemList?.forEach(element => {
           const newObject = element?.split(/[\[\]\(\)]/)
-          const url= newObject[3]?.split('www.copilot.com')?.[1] || ""
-          mapList?.push({ name: newObject[1], url})
+          const url= newObject[3]?.split('www.copilot.com')?.[1] || newObject[3]
+          mapList?.push({ name: newObject[1], url,isExternal:url === newObject[3]})
 
         })
         sitemapList?.push(  { title , list: mapList})
@@ -53,7 +55,8 @@ export default function Privacy({ content }) {
       return <InfoWrap key={`sitemap_index_${index}`}>
       <h4>{item?.title}</h4>
       {!isEmpty(item?.list) &&  ( <InfoLink>
-        {item?.list?.map((listItem,listIndex)=>  <Link href={listItem?.url} key={`sitemap_list_index_${listIndex}`}>{listItem?.name}</Link> )}
+        {item?.list?.map((listItem,listIndex)=> {
+          return <Link href={listItem?.url} key={`sitemap_list_index_${listIndex}`} target={listItem?.isExternal ?'_blank':'_self'}>{listItem?.name}</Link>;} )}
       </InfoLink>)}
     </InfoWrap>
     })
