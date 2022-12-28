@@ -76,7 +76,7 @@ export default function FAQ({ enterprise, contentID }) {
                   fontFamily: 'Bagoss',
                   fontWeight: '400',
                   letterSpacing: '0.02em',
-                  transition: 'all cubic-bezier(0.39, 0.575, 0.565, 1);'
+                  transition: ' all 200ms ease-in-out;'
                 })
               },
               ContentAnimationContainer: {
