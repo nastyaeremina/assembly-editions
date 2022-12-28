@@ -21,7 +21,6 @@ const ModuleSection = styled.div`
   margin-top: 40px;
   border: 1px solid #120800;
   border-top: 0;
-  border-radius: 4px;
   color: ${({ theme }) => theme.colors.white};
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
