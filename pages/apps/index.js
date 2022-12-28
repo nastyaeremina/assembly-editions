@@ -33,7 +33,8 @@ import {
   MainBg,
   ImgView,
   AppsHeroWrap,
-  ExtensionsLastSection
+  ExtensionsLastSection,
+  AppHeader3
 } from '../../styles/appsStyles';
 import { Container, PrimaryButton, SecondryButton } from '../../styles/commonStyles';
 import CTA from '../../components/cta/cta';
@@ -158,7 +159,7 @@ export default function Apps({ allPosts, featuredApps, allCategoryWithPost, data
     return allCategoryWithPost?.map((item, index) => {
       return (
         <ExtensionsSection id={item?.category?.slug} key={`allCategoryappsview_index_${index}`}>
-          <h3>{item?.category?.name}</h3>
+          <AppHeader3>{item?.category?.name}</AppHeader3>
           <ExtensionCard>{renderPartnerAppsView(item?.list)}</ExtensionCard>
         </ExtensionsSection>
       );
@@ -250,7 +251,7 @@ export default function Apps({ allPosts, featuredApps, allCategoryWithPost, data
                   <FeatureRight>
                     {!isEmpty(featuredApps) && (
                       <Featured id='Brief-Section'>
-                        <h3>Featured</h3>
+                        <AppHeader3>Featured</AppHeader3>
                         <FeatureMenu>{renderFeaturedView}</FeatureMenu>
                       </Featured>
                     )}
@@ -259,7 +260,7 @@ export default function Apps({ allPosts, featuredApps, allCategoryWithPost, data
                     {!isEmpty(dataIntegrationApps) && (
                       <ExtensionsSection id='Integrations-Section'>
                         <AppsTitle>
-                          <h3>Data Integrations</h3>
+                          <AppHeader3>Data Integrations</AppHeader3>
                           <p>Integrations</p>
                         </AppsTitle>
                         <ExtensionCard>{renderDataIntegrationApps}</ExtensionCard>

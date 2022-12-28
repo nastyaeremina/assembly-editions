@@ -650,6 +650,16 @@ const AppsDetailWrap = styled.div`
     }
   }
 `;
+const AppHeader3 = styled.h3`
+&&::before{
+    display: block;
+    content: " ";
+    height: 83px;
+    margin-top: -83px;
+    visibility: hidden;
+}
+`;
+
 export {
   HeroSection,
   FeatureSection,
@@ -700,5 +710,6 @@ export {
   AppsDetailWrap,
   FirstImg,
   ExtensionsLastSection,
-  TooltipWrap
+  TooltipWrap,
+  AppHeader3
 };
