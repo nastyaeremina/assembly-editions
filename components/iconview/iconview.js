@@ -13,7 +13,7 @@ export default function Iconview() {
                 <IconWithoutView className="default-state"></IconWithoutView>
                 <Icon className="loading-state">
                     <div>
-                    <Image src='/images/Ellipse 1018.png' width={10} height={20} alt='process-icon' />
+                    <Image src='/images/Ellipse-1018.png' width={10} height={20} alt='process-icon' />
                     </div>
                 </Icon>
                 <Image className="done-state" src='/images/true-icon.svg' width={20} height={20} alt='link-icon' />
