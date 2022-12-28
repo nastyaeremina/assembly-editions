@@ -5,7 +5,14 @@ import { HeaderFont, Body2, Body5, FooterText, Body4, MbButtonText, MbPrimaryBtn
 const NavbarWrapper = styled.div`
   position: fixed;
   left: 0;
-  top: 44px;
+  ${(props) =>
+    props.isAnnouncebar ?
+    css`
+    top: 44px;
+    `:  css`
+    top: 0px;
+    `}
+ 
   right: 0;
   bottom: auto;
   z-index: 999;
@@ -27,7 +34,11 @@ const NavbarWrapper = styled.div`
   }
   @media only screen and (max-width: 991px) {
     padding: 16px 0;
-    top: 34px;
+    ${(props) =>
+      props.isAnnouncebar &&
+      css`
+      top: 34px;
+      `}
   }
 `;
 const NavbarInner = styled.div`

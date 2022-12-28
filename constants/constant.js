@@ -215,3 +215,4 @@ export const SOLUTION_STARTUP_ID = '2XEKSuKkBKBc5Tz9x1Z4Rc';
 export const SITEMAP_CONTENT_ID = '6X6ow3AYgMrEC6uVcPTEmX'
 export const TERMS_OF_SERVICE_ID ='4wBMUcC7Q60jpsCLQoJkpE';
 export const PRIVCY_POLICY_ID="46bwfuedc2NMOHEIj0AThy"
+export const TOP_BAR_CONTENT_ID="4dKbgVv11cTh8aJaZ8VBP1"
