@@ -61,6 +61,7 @@ import { isEmpty } from '../helpers/helpers';
 import TabView from '../components/tab/tab';
 import Button from '../components/button/button';
 import SEO from '../components/seo';
+import Iconview from '../components/iconview/iconview';
 
 export default function Home({ content }) {
   console.log("featuresCollection", content?.featuresCollection);
@@ -229,9 +230,7 @@ export default function Home({ content }) {
                       <h5>New client activated</h5>
                       <span>Company size &#60;= 50</span>
                     </CardTextView>
-                    <IconView>
-                      <Image src='/images/true-icon.svg' width={20} height={20} alt='link-icon' />
-                    </IconView>
+                    <Iconview/>
                     <LineIcon>
                       <Image src='/images/left-line.svg' width={65} height={130} alt='link-icon' />
                     </LineIcon>
@@ -244,9 +243,7 @@ export default function Home({ content }) {
                       <h5>Condition</h5>
                       <span>Company size &#60;= 50</span>
                     </CardTextView>
-                    <IconView>
-                      <Image src='/images/process-icon.svg' width={20} height={20} alt='process-icon' />
-                    </IconView>
+                    <Iconview/>
                     <LineIcon className='hr-icon'>
                       <Image src='/images/hr-line.svg' width={65} height={130} alt='hr-icon' />
                     </LineIcon>
@@ -260,7 +257,7 @@ export default function Home({ content }) {
                     <LineIcon>
                       <Image src='/images/lg2-icon.svg' width={65} height={130} alt='hr-icon' />
                     </LineIcon>
-                    <IconWithoutView></IconWithoutView>
+                    <Iconview/>
                   </CardItem>
                 </CardWrapper>
                 <CardWrapper>
@@ -270,7 +267,7 @@ export default function Home({ content }) {
                       <h5>Action</h5>
                       <span>Assign small business onboarding form</span>
                     </CardTextView>
-                    <IconWithoutView></IconWithoutView>
+                    <Iconview/>
                   </CardItem>
                   <CardItem>
                     <Image src='/images/msg-icon2.svg' width={35} height={35} alt='msg-icon' />
@@ -278,7 +275,7 @@ export default function Home({ content }) {
                       <h5>Action</h5>
                       <span>Send message with scheduling link</span>
                     </CardTextView>
-                    <IconWithoutView></IconWithoutView>
+                    <Iconview/>
                   </CardItem>
                   <CardItem>
                     <Image src='/images/salesforce-icon.svg' width={35} height={35} alt='sales-icon' />
@@ -286,7 +283,7 @@ export default function Home({ content }) {
                       <h5>Action</h5>
                       <span>Create lead in Salesforce</span>
                     </CardTextView>
-                    <IconWithoutView></IconWithoutView>
+                    <Iconview/>
                   </CardItem>
                 </CardWrapper>
               </BottomList>
