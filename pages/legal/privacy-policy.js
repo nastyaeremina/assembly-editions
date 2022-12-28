@@ -1,10 +1,12 @@
 import { NextSeo } from 'next-seo';
 import Image from 'next/image';
 import Link from 'next/link';
+import { ReactMarkdown } from 'react-markdown/lib/react-markdown';
 import LegalFooter from '../../components/footer/legalfooter';
 import Layout from '../../components/layout';
 import Navbar from '../../components/navbar/navbar';
-import { HEADER_LIST } from '../../constants/constant';
+import { HEADER_LIST, PRIVCY_POLICY_ID } from '../../constants/constant';
+import { getSitemap } from '../../lib/contentful-sitemap';
 import { BulletImage, Container, PrimaryButton } from '../../styles/commonStyles';
 import {
   MainSection,
@@ -16,14 +18,13 @@ import {
   FooterSub
 } from '../../styles/resourcesStyles';
 
-export default function Privacy() {
+export default function PrivacyPolicy({content}) {
   return (
     <>
       <NextSeo
         title='Create your portal, pick a plan later'
         description='Try Copilot free for 14 days, no credit card required'
       />
-      {/* <Layout> */}
       <Navbar isEnterPrice={true} headerIndex={HEADER_LIST.ENTERPRICE} />
       <MainSection>
         <PrivacuHero>
@@ -32,7 +33,13 @@ export default function Privacy() {
           </Container>
         </PrivacuHero>
         <PostContent>
-          <Container>
+        <Container>
+        <PrivacyContent>
+
+          <ReactMarkdown>{content}</ReactMarkdown>
+          </PrivacyContent>
+         </Container>
+          {/* <Container> 
             <p className='mr0'>Effective date: 11/23/2022</p>
             <PrivacyContent>
               <h4>1. Introduction</h4>
@@ -637,13 +644,21 @@ export default function Privacy() {
               <p>If you have any questions about this Privacy Policy, please contact us:</p>
               <p>By email: support@copilot.com.</p>
             </PrivacyContent>
-          </Container>
+          </Container> */}
         </PostContent>
       </MainSection>
       <FooterSection>
         <LegalFooter />
       </FooterSection>
-      {/* </Layout> */}
     </>
   );
+}
+
+export async function getStaticProps({ preview = false }) {
+  const content = (await getSitemap(PRIVCY_POLICY_ID)) ?? '';
+  return {
+    props: {
+      content: content?.content
+    }
+  };
 }

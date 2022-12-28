@@ -30,12 +30,14 @@ const SubData = styled.div`
   h4 {
     ${Heading4};
     color: ${({ theme }) => theme.colors.title};
-    margin: 0 0 12px 0;
+    margin: 60px 0 12px 0;
+    white-space: break-spaces;
   }
-  h5 {
+  h6 {
     ${Heading6};
     color: ${({ theme }) => theme.colors.title};
-    margin: 0 0 16px 0;
+    white-space: break-spaces;
+    margin: 30px 0 16px 0;
   }
   span {
     ${Heading6};
@@ -47,6 +49,19 @@ const SubData = styled.div`
   }
   .margin {
     margin: 0 0 12px 0;
+  }
+  ol {
+    padding-left: 34px;
+    margin: 0;
+    li {
+      ${Body4};
+      margin-bottom: 10px;
+      padding-left: 12px;
+      color: ${({ theme }) => theme.colors.body};
+      :last-child {
+        margin-bottom: 0;
+      }
+    }
   }
 `;
 const Catagory = styled.ol`

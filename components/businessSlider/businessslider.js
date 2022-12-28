@@ -32,7 +32,6 @@ const BusinessSlider = ({ data }) => {
         breakpoint: 1000,
         settings: {
           slidesToShow: 2,
-          centerMode: true,
           slidesToScroll: 1
         }
       },

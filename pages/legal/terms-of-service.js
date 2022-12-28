@@ -1,13 +1,15 @@
 import { NextSeo } from 'next-seo';
 import Image from 'next/image';
 import Link from 'next/link';
+import { ReactMarkdown } from 'react-markdown/lib/react-markdown';
 import LegalFooter from '../../components/footer/legalfooter';
 import Navbar from '../../components/navbar/navbar';
-import { HEADER_LIST } from '../../constants/constant';
+import { HEADER_LIST, TERMS_OF_SERVICE_ID } from '../../constants/constant';
+import { getSitemap } from '../../lib/contentful-sitemap';
 import { Container } from '../../styles/commonStyles';
 import { PrivacuHero, MainSection, SubData, SubHeading, SubCatagory, Catagory } from '../../styles/legalStyles';
 
-export default function Privacy() {
+export default function TermsOfService({ content }) {
   return (
     <>
       <NextSeo
@@ -23,6 +25,9 @@ export default function Privacy() {
           </Container>
         </PrivacuHero>
         <Container>
+          <SubData>{<ReactMarkdown>{content}</ReactMarkdown>}</SubData>
+        </Container>
+        {/* <Container>
           <SubData>
             <p>Effective date: 11/23/2022</p>
             <p>
@@ -530,11 +535,20 @@ export default function Privacy() {
               usage and disclosure of this personal information is governed by our Privacy Policy.
             </p>
           </SubData>
-        </Container>
+        </Container> */}
       </MainSection>
       <LegalFooter />
 
       {/* </Layout> */}
     </>
   );
+}
+
+export async function getStaticProps({ preview = false }) {
+  const content = (await getSitemap(TERMS_OF_SERVICE_ID)) ?? '';
+  return {
+    props: {
+      content: content?.content
+    }
+  };
 }

@@ -3,18 +3,25 @@ import { Body1, Heading, Heading2, Heading3, Heading4 } from '../../styles/style
 
 const FaqSection = styled.div`
   padding: 100px 0 60px 0;
-  .ag {
-    padding-bottom: 40px;
-    transition: all cubic-bezier(0.39, 0.575, 0.565, 1);
-    &[aria-expanded='true'] {
+  .cy {
+    /* padding-bottom: 40px; */
+    /* transition: all 0.3s ease-in-out; */
+    /* &[aria-expanded='true'] {
       padding-bottom: 20px;
-    }
-    :last-child {
+    } */
+    /* :last-child {
       padding-bottom: 0;
-    }
+    } */
   }
-  .ao {
+  /* .ao {
     padding-bottom: 0;
+  } */
+  li {
+    padding-bottom: 0;
+    /* transition: all 0.3s ease-in-out; */
+    :last-child {
+      border-bottom: 0;
+    }
   }
   .listtitle {
     margin-right: 30px;
