@@ -77,7 +77,6 @@ ul {
 }
 
 html {
-  font-family: sans-serif;
   -ms-text-size-adjust: 100%;
   -webkit-text-size-adjust: 100%;
   -moz-osx-font-smoothing: grayscale;
@@ -87,6 +86,7 @@ html {
 
 body {
   margin: 0;
+  font-family: 'Bagoss', Arial, sans-serif;
 }
 .tableUL {
   list-style: none;

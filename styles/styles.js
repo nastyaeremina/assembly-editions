@@ -4,7 +4,6 @@ const Heading1 = css`
   font-weight: 400;
   font-size: 150px;
   line-height: 135px;
-  font-family: ${({ theme }) => theme.fontfamily.Bagoss};
   @media only screen and (max-width: 991px) {
     font-size: 80px;
     line-height: 76px;
@@ -23,7 +22,6 @@ const Heading2 = css`
   font-weight: 400;
   font-size: 80px;
   line-height: 76px;
-  font-family: ${({ theme }) => theme.fontfamily.Bagoss};
   @media only screen and (max-width: 768px) {
     /* font-size: 36px;
     line-height: 42px; */
@@ -38,7 +36,6 @@ const Heading3 = css`
   font-weight: 400;
   font-size: 50px;
   line-height: 55px;
-  font-family: ${({ theme }) => theme.fontfamily.Bagoss};
   @media only screen and (max-width: 991px) {
     font-size: 44px;
     line-height: 50px;
@@ -53,7 +50,6 @@ const Heading4 = css`
   font-weight: 400;
   font-size: 32px;
   line-height: 34px;
-  font-family: ${({ theme }) => theme.fontfamily.Bagoss};
   @media only screen and (max-width: 479px) {
     font-size: 22px;
     line-height: 23px;
@@ -64,7 +60,6 @@ const Heading5 = css`
   font-weight: 500;
   font-size: 24px;
   line-height: 31px;
-  font-family: ${({ theme }) => theme.fontfamily.Bagoss};
   @media only screen and (max-width: 479px) {
     font-size: 18px;
     line-height: 22px;
@@ -75,81 +70,69 @@ const Heading6 = css`
   font-weight: 500;
   font-size: 18px;
   line-height: 24px;
-  font-family: ${({ theme }) => theme.fontfamily.Bagoss};
   @media only screen and (max-width: 479px) {
     font-size: 16px;
     line-height: 20px;
   }
 `;
 const Body1 = css`
-  font-family: ${({ theme }) => theme.fontfamily.Bagoss};
   font-weight: 400;
   font-size: 24px;
   line-height: 31px;
   letter-spacing: 0.02em;
 `;
 const Body2 = css`
-  font-family: ${({ theme }) => theme.fontfamily.Bagoss};
   font-weight: 400;
   font-size: 22px;
   line-height: 29px;
   letter-spacing: 0.02em;
 `;
 const Body3 = css`
-  font-family: ${({ theme }) => theme.fontfamily.Bagoss};
   font-weight: 400;
   font-size: 20px;
   line-height: 26px;
   letter-spacing: 0.02em;
 `;
 const Body4 = css`
-  font-family: ${({ theme }) => theme.fontfamily.Bagoss};
   font-weight: 400;
   font-size: 18px;
   line-height: 23px;
   letter-spacing: 0.02em;
 `;
 const Body5 = css`
-  font-family: ${({ theme }) => theme.fontfamily.Bagoss};
   font-weight: 400;
   font-size: 15px;
   line-height: 19px;
   letter-spacing: 0.02em;
 `;
 const Quote = css`
-  font-family: ${({ theme }) => theme.fontfamily.Bagoss};
   font-weight: 400;
   font-size: 40px;
   line-height: 48px;
 `;
 const HeaderFont = css`
-  font-family: ${({ theme }) => theme.fontfamily.Bagoss};
   font-weight: 500;
   font-size: 16px;
   line-height: 24px;
 `;
 const FooterText = css`
-  font-family: ${({ theme }) => theme.fontfamily.Bagoss};
   font-weight: 400;
   font-size: 13px;
   line-height: 17px;
 `;
 const ButtonText = css`
-  font-family: ${({ theme }) => theme.fontfamily.Bagoss};
   font-weight: 500;
   font-size: 18px;
   line-height: 26px;
   letter-spacing: 0.02em;
 `;
 const Label = css`
-  font-family: ${({ theme }) => theme.fontfamily.Bagoss};
   font-weight: 500;
   font-size: 17px;
   line-height: 21px;
   letter-spacing: 0.01em;
 `;
 const Caption = css`
-  font-family: ${({ theme }) => theme.fontfamily.Bagoss};
   font-weight: 400;
   font-size: 12px;
   line-height: 24px;
