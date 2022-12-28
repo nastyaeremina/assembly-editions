@@ -15,7 +15,6 @@ const NavbarWrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  transition: all 300ms ease-in-out;
   ${(props) =>
     css`
       background: ${props.colorList?.bgColor};
