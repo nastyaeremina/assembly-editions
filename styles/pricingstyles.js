@@ -17,7 +17,7 @@ import {
   TableText
 } from './styles';
 const HeroSection = styled.div`
-  padding: 180px 0 100px 0;
+  padding: 224px 0 100px 0;
   text-align: center;
   margin: 0 auto;
   h2 {
@@ -40,10 +40,10 @@ const HeroSection = styled.div`
     margin: 20px 0 32px 0;
   }
   @media only screen and (max-width: 991px) {
-    padding: 140px 0px 80px;
+    padding: 180px 0px 80px;
   }
   @media only screen and (max-width: 749px) {
-    padding: 116px 0px 80px;
+    padding: 150px 0px 80px;
     h2 {
       ${MobileH2};
       color: ${({ theme }) => theme.colors.title};

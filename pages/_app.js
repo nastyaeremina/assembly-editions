@@ -3,9 +3,11 @@ import '../styles/globals.css';
 import { DefaultSeo } from 'next-seo';
 import { ThemeProvider, createGlobalStyle } from 'styled-components';
 import { Provider as StyletronProvider } from 'styletron-react';
+import { useCallback, useEffect } from 'react';
 import { styletron } from '../styletron';
 
 import SEO from '../next-seo.config';
+import { getSitemap } from '../lib/contentful-sitemap';
 
 const GlobalStyle = createGlobalStyle`
   html {
@@ -83,15 +85,9 @@ export const theme = {
   }
 };
 
+
 export default function MyApp({ Component, pageProps }) {
-  // const lodData = useCallback(async () => {
-  //   await UserPreferenceSingleton.getInstance().setFeatures(allPosts)
-  // }, [allPosts])
-
-  // useEffect(() => {
-  //   lodData()
-  // }, [lodData])
-
+  
   return (
     <>
       <GlobalStyle />

@@ -16,12 +16,12 @@ import {
   Value
 } from './styles';
 const HeroSection = styled.div`
-  padding-top: 180px;
+  padding-top: 224px;
   @media only screen and (max-width: 991px) {
-    padding-top: 160px;
+    padding-top: 192px;
   }
   @media only screen and (max-width: 749px) {
-    padding-top: 116px;
+    padding-top: 150px;
   }
 `;
 const AppsHeroWrap = styled.div`
@@ -423,9 +423,9 @@ const DetailLink = styled.div`
   }
 `;
 const AppsDetailMain = styled.div`
-  padding-top: 120px;
+  padding-top: 164px;
   @media only screen and (max-width: 749px) {
-    padding-top: 116px;
+    padding-top: 148px;
   }
 `;
 const AppDetailCard = styled.div`
