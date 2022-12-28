@@ -48,7 +48,8 @@ import {
   HelpImg,
   LeftSvg,
   RightWrap,
-  IconWrap
+  IconWrap,
+  AnimatedIcon
 } from '../styles/homepageStyles';
 import BusinessSlider from '../components/businessSlider/businessslider';
 import ExtensionSlider from '../components/extensionslider/extensionslider';
@@ -61,10 +62,24 @@ import { isEmpty } from '../helpers/helpers';
 import TabView from '../components/tab/tab';
 import Button from '../components/button/button';
 import SEO from '../components/seo';
-import Iconview from '../components/iconview/iconview';
 
 export default function Home({ content }) {
   console.log("featuresCollection", content?.featuresCollection);
+
+  const addClass = ({ele,cssClass}) => {
+    const element = document.getElementsByClassName('card2');
+    console.log("anime",element);
+    element.classList.remove('defaul');
+    element.classList.remove('loading');
+    element.classList.remove('done');
+    element.classList.remove(cssClass);
+  };
+
+  useEffect(() => {
+    setTimeout({
+      // addClass({"card2","loading"})
+    }, 100)
+  },[]);
   return (
     <>
       <SEO id={content?.seoMetadata?.sys?.id}></SEO>
@@ -230,7 +245,7 @@ export default function Home({ content }) {
                       <h5>New client activated</h5>
                       <span>Company size &#60;= 50</span>
                     </CardTextView>
-                    <Iconview/>
+                    <AnimatedIcon className={"loading card1"}/>
                     <LineIcon>
                       <Image src='/images/left-line.svg' width={65} height={130} alt='link-icon' />
                     </LineIcon>
@@ -243,7 +258,7 @@ export default function Home({ content }) {
                       <h5>Condition</h5>
                       <span>Company size &#60;= 50</span>
                     </CardTextView>
-                    <Iconview/>
+                    <AnimatedIcon className={"default card2"}/>
                     <LineIcon className='hr-icon'>
                       <Image src='/images/hr-line.svg' width={65} height={130} alt='hr-icon' />
                     </LineIcon>
@@ -257,7 +272,7 @@ export default function Home({ content }) {
                     <LineIcon>
                       <Image src='/images/lg2-icon.svg' width={65} height={130} alt='hr-icon' />
                     </LineIcon>
-                    <Iconview/>
+                    <AnimatedIcon className={"default card3"}/>
                   </CardItem>
                 </CardWrapper>
                 <CardWrapper>
@@ -267,7 +282,7 @@ export default function Home({ content }) {
                       <h5>Action</h5>
                       <span>Assign small business onboarding form</span>
                     </CardTextView>
-                    <Iconview/>
+                    <AnimatedIcon className={"default card4"}/>
                   </CardItem>
                   <CardItem>
                     <Image src='/images/msg-icon2.svg' width={35} height={35} alt='msg-icon' />
@@ -275,7 +290,7 @@ export default function Home({ content }) {
                       <h5>Action</h5>
                       <span>Send message with scheduling link</span>
                     </CardTextView>
-                    <Iconview/>
+                    <AnimatedIcon className={"default card5"}/>
                   </CardItem>
                   <CardItem>
                     <Image src='/images/salesforce-icon.svg' width={35} height={35} alt='sales-icon' />
@@ -283,7 +298,7 @@ export default function Home({ content }) {
                       <h5>Action</h5>
                       <span>Create lead in Salesforce</span>
                     </CardTextView>
-                    <Iconview/>
+                    <AnimatedIcon className={"default card6"}/>
                   </CardItem>
                 </CardWrapper>
               </BottomList>

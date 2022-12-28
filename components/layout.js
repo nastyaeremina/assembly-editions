@@ -3,10 +3,6 @@ import Meta from "../components/meta";
 import Footer from "./footer/footer";
 
 export default function Layout({ children, isEnterPrice }) {
-  React.useEffect(() => {
-    window.Webflow && window.Webflow.destroy();
-    window.Webflow && window.Webflow.ready();
-  }, []);
   return (
     <>
       <Meta />

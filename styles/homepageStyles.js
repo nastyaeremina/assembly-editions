@@ -18,6 +18,7 @@ import {
   HeaderFont,
   MobileH4
 } from './styles';
+import Iconview from '../components/iconview/iconview';
 
 const HomeMain = styled.div`
   background-color: ${({ theme }) => theme.colors.bgpages};
@@ -1156,6 +1157,29 @@ const RightWrap = styled.div`
     padding-left: 3px;
   }
 `;
+
+const AnimatedIcon = styled(Iconview)`
+.default-state
+{
+  display:none;
+}
+&&.default .default-state{
+  display:block ;
+}
+.loading-state
+{
+  display:none;
+}
+&&.loading .loading-state{
+  display:block;
+}
+.done-state{
+  display:none;
+}
+&&.done .done-state{
+  display:block;
+}`;
+
 export {
   HomeMain,
   Scfeaturetitle,
@@ -1227,5 +1251,6 @@ export {
   HelpImg,
   IconWrap,
   LeftSvg,
-  RightWrap
+  RightWrap,
+  AnimatedIcon
 };
