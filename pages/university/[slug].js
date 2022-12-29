@@ -27,6 +27,7 @@ import { isEmpty } from '../../helpers/helpers';
 import { useMemo } from 'react';
 import LiteYouTubeEmbed from 'react-lite-youtube-embed';
 import 'react-lite-youtube-embed/dist/LiteYouTubeEmbed.css';
+import SEO from '../../components/seo';
 
 export default function UniversityDetail({ relatedVideos, universityVideoDetail }) {
   const renderRelatedVideosView = useMemo(() => {
@@ -48,10 +49,7 @@ export default function UniversityDetail({ relatedVideos, universityVideoDetail 
 
   return (
     <>
-      <NextSeo
-        title='copilot blogs to keep you up with the  Sales Tactics!'
-        description='Sale is a prominent part of any business & nothing can be better than getting tried tactics for it. So get all that you want to know about sales from our Blogs.'
-      />
+     <SEO seoData={{seoTitle:`Copilot Video Tutorial • ${universityVideoDetail?.name}` ,description:universityVideoDetail?.description}}/>
       <Layout>
         <Navbar />
         <DetailVideoMain>

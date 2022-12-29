@@ -1,20 +1,25 @@
-import { getSEOdata } from '../../lib/contentful-seo';
 import { NextSeo } from 'next-seo';
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { GetServerSidePropsContext } from 'next';
+import { getSEOdata } from '../../lib/contentful-seo';
+import { isEmpty } from '../../helpers/helpers';
 
-export default function SEO({ id }) {
+export default function SEO({ id,seoData }) {
     const [data, setData] = useState([]);
     const loadData = useCallback(async () => {
-      const posts = (await getSEOdata(id)) ?? [];
-      setData(posts);
-    }, [id]);
+      if(isEmpty(seoData)){
+
+        const posts = (await getSEOdata(id)) ?? [];
+        console.log("posts",posts);
+        setData(posts);
+      }else setData(seoData)
+    }, [id, seoData]);
   
     useEffect(() => {
       loadData();
     }, [loadData]);
-
-  return (
+    
+    return (
     <>
     <NextSeo
     title={data?.seoTitle}
@@ -23,7 +28,7 @@ export default function SEO({ id }) {
       type: 'website',
       locale: 'en_IE',
       site_name: 'SiteName',
-      images:[
+      images: isEmpty(data?.openGraphImage) ? []:[
         {
           url: data?.openGraphImage?.url
         }
