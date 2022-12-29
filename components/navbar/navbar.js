@@ -52,13 +52,7 @@ import ResourcesSubMenu from './resourcessubmenu';
 import CompanySubMenu from './companysubmenu';
 
 
-export var topbarData;
-export const onChangeTopbar =(value)=>{
-  console.log('value',value);
-  topbarData=value
-  console.log('valuetopbarData',topbarData);
 
-}
 export default function Navbar({ isModule, headerIndex, isEnterPrice }) {
   const mobile = useMobileDevice();
   const router = useRouter();
@@ -68,7 +62,7 @@ export default function Navbar({ isModule, headerIndex, isEnterPrice }) {
   const [isOpenResoursesSubMenu, setIsOpenResoursesSubMenu] = useState(false);
   const [topbarContent,setTopBarContent]=useState(undefined)
   const [colorList, setColorList] = useState(NAVBAR_COLOR_LIST[0]);
-  console.log("topbarContent",topbarContent);
+
   const closeSubMenu = useCallback(() => {
     if (isOpenFeatureSubMenu) {
       setIsOpenFeatureSubMenu(false);
@@ -94,14 +88,9 @@ export default function Navbar({ isModule, headerIndex, isEnterPrice }) {
   const loadData = useCallback(async () => {
       try {
         const data = (await getSitemap(TOP_BAR_CONTENT_ID)) ?? '';
-        console.log('====================================');
-        console.log("data======",data);
-        console.log('====================================');
+      
       if(!isEmpty(data?.content)){
-        
-console.log('====================================');
-console.log("data",data?.content);
-console.log('====================================');
+
         const contentList = data?.content?.split(/[\[\]\(\)]/)
         
         const item = {
