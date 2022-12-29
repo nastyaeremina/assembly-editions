@@ -7,6 +7,7 @@ import FAQ from '../../components/faq/faq';
 import Layout from '../../components/layout';
 import Navbar from '../../components/navbar/navbar';
 import SEO from '../../components/seo';
+import { JOB_SEO_ID } from '../../constants/constant';
 import { dateToMonthYear, isEmpty } from '../../helpers/helpers';
 import { NO_OF_JOBS_PER_PAGE } from '../../lib/constants';
 import { getAllJobBlogPosts } from '../../lib/contentful-jobBlogPosts';
@@ -165,7 +166,7 @@ export default function Jobs({ jobList, jobImagesList, jobBlogPostList }) {
 
   return (
     <>
-      <SEO id={"3OxhA7Vy4csNLzaS9LUFF6"} />
+      <SEO id={JOB_SEO_ID} />
       <Layout>
         <Navbar />
         <MainWrap>

@@ -38,6 +38,7 @@ import {
 import { useMemo } from 'react';
 import { isEmpty } from '../../helpers/helpers';
 import Button from '../../components/button/button';
+import SEO from '../../components/seo';
 
 export default function AppsDetail({ appDetail, relatedApps }) {
   const renderRelatedAppView = useMemo(() => {
@@ -79,10 +80,8 @@ export default function AppsDetail({ appDetail, relatedApps }) {
 
   return (
     <>
-      <NextSeo
-        title='copilot blogs to keep you up with the  Sales Tactics!'
-        description='Sale is a prominent part of any business & nothing can be better than getting tried tactics for it. So get all that you want to know about sales from our Blogs.'
-      />
+      <SEO seoData={{seoTitle:`Connect ${appDetail?.name} to Copilot in 2 minutes • Copilot` ,description:appDetail?.description}}/>
+
       <Layout>
         <Navbar />
         <AppsDetailMain>

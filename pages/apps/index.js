@@ -43,7 +43,7 @@ import FAQ from '../../components/faq/faq';
 import { getAllParrtnerAppsCategories, getAllPartnerApps } from '../../lib/contentful-partnerApps';
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import { isEmpty } from '../../helpers/helpers';
-import { APPS_TYPE } from '../../constants/constant';
+import { APPS_TYPE, APP_SEO_ID } from '../../constants/constant';
 import Button from '../../components/button/button';
 import SEO from '../../components/seo';
 import AppError from '../../components/apperror/error';
@@ -189,7 +189,7 @@ export default function Apps({ allPosts, featuredApps, allCategoryWithPost, data
 
   return (
     <>
-      <SEO id={'1YuaTMgNnzacoBjygKg4nk'}></SEO>
+      <SEO id={APP_SEO_ID}></SEO>
       <Layout>
         <MainBg>
           <Navbar />

@@ -24,6 +24,7 @@ import {
   DetailRIghtText,
   DetailPosition
 } from '../../styles/jobsStyles';
+import SEO from '../../components/seo';
 
 export default function JobsDetail({ jobDetail }) {
   const renderTeamMemberView = useMemo(() => {
@@ -47,10 +48,8 @@ export default function JobsDetail({ jobDetail }) {
 
   return (
     <>
-      <NextSeo
-        title='Create your portal, pick a plan later'
-        description='Try Copilot free for 14 days, no credit card required'
-      />
+      <SEO seoData={{seoTitle:`Copilot Jobs • ${jobDetail?.name}` ,description:`Join the Copilot team as a ${jobDetail?.name}.`}}/>
+
       <Layout>
         <Navbar />
         <JObMain>
