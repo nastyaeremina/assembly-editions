@@ -18,7 +18,7 @@ const SliderWrap = styled.div`
     opacity: 1;
   }
   .slick-dots {
-    bottom: -160px;
+    bottom: -130px;
   }
   .slick-dots li {
     margin: 0;
