@@ -959,6 +959,11 @@ const AnnounceBar = styled.div`
   }
 `;
 const HelpLink = styled.div``;
+
+const Dspace = styled.div`
+height: 44px;
+display: block;
+`;
 export {
   NavbarWrapper,
   NavbarInner,
@@ -1000,5 +1005,6 @@ export {
   TextView,
   TopBar,
   AnnounceBar,
-  HelpLink
+  HelpLink,
+  Dspace
 };

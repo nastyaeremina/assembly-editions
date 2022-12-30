@@ -45,7 +45,8 @@ import {
   TextView,
   TopBar,
   AnnounceBar,
-  HelpLink
+  HelpLink,
+  Dspace
 } from './styles';
 import FeatureSubMenu from './featuresubmenu';
 import ResourcesSubMenu from './resourcessubmenu';
@@ -572,7 +573,9 @@ export default function Navbar({ isModule, headerIndex, isEnterPrice }) {
 
   const renderTopBarView =useMemo(()=>{
     if(isEmpty(topbarContent)) return null
-    return <TopBar>
+    return <>
+   <div>
+    <TopBar>
     <Container>
       <AnnounceBar>
         <HelpLink className='icon-link'>
@@ -608,6 +611,9 @@ export default function Navbar({ isModule, headerIndex, isEnterPrice }) {
       </AnnounceBar>
     </Container>
   </TopBar>
+  <Dspace>test </Dspace>
+  </div>
+  </>
   },[topbarContent])
 
   return (
