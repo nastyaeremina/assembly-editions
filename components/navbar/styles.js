@@ -350,7 +350,7 @@ const SignIn = styled.li`
         `}
     }
   }
-  @media only screen and (max-width: 991px) {
+  @media only screen and (max-width: 748px) {
     a {
       ${MbButtonText};
     }
