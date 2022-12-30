@@ -916,7 +916,6 @@ const AnnounceBar = styled.div`
   }
 
   .learn-link:hover {
-    color: black;
     @media only screen and (max-width: 749px) {
       color: ${({ theme }) => theme.colors.whiteColor};
     }
