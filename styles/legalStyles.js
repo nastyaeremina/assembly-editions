@@ -5,12 +5,15 @@ const MainSection = styled.div`
 `;
 const PrivacuHero = styled.div`
   background-color: ${({ theme }) => theme.colors.greendark};
-  padding: 152px 0 100px 0;
+  padding: 196px 0 100px 0;
   text-align: center;
   h2 {
     ${Heading2};
     color: ${({ theme }) => theme.colors.greenlight};
     margin: 0;
+  }
+  @media only screen and (max-width: 749px) {
+    padding-top: 148px;
   }
 `;
 const SubData = styled.div`

@@ -7,10 +7,10 @@ const FeatureHeroSection = styled.div`
       background-color: ${props.backgroundColor};
     `}
   /* background-color: ${({ theme }) => theme.colors.browndark}; */
-  padding-top: 140px;
+  padding-top: 186px;
   overflow: hidden;
   @media only screen and (max-width: 749px) {
-    padding-top: 116px;
+    padding-top: 150px;
   }
 `;
 const HeroBlock = styled.div`

@@ -2,9 +2,9 @@ import styled from 'styled-components';
 import { Body2, Heading2, MobileH2 } from '../../../styles/styles';
 
 const HeroSection = styled.div`
-  padding: 180px 0 0 0;
+  padding: 224px 0 0 0;
   @media only screen and (max-width: 749px) {
-    padding-top: 116px;
+    padding-top: 148px;
   }
 `;
 const SolutionWrap = styled.div`

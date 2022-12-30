@@ -28,9 +28,9 @@ const MainWrap = styled.div`
   background: #fffffd;
 `;
 const HeroJobSection = styled.div`
-  padding: 100px 0 50px;
+  padding: 144px 0 50px;
   @media only screen and (max-width: 749px) {
-    padding: 116px 0 40px;
+    padding: 148px 0 40px;
   }
 `;
 const JobsWrap = styled.div`
@@ -491,10 +491,10 @@ const DetailView = styled.div`
   }
 `;
 const JObMain = styled.div`
-  padding-top: 40px;
-  margin-top: 80px;
+  padding-top: 164px;
   padding-bottom: 100px;
   @media only screen and (max-width: 768px) {
+    padding-top: 148px;
     padding-bottom: 80px;
   }
 `;
@@ -523,7 +523,7 @@ const DetailLeft = styled.div`
   max-width: 260px;
   width: 100%;
   position: sticky;
-  top: 100px;
+  top: 164px;
   h3 {
     ${Heading3};
     color: ${({ theme }) => theme.colors.title};
