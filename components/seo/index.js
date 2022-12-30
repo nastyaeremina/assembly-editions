@@ -8,9 +8,7 @@ export default function SEO({ id,seoData }) {
     const [data, setData] = useState([]);
     const loadData = useCallback(async () => {
       if(isEmpty(seoData)){
-
         const posts = (await getSEOdata(id)) ?? [];
-        console.log("posts",posts);
         setData(posts);
       }else setData(seoData)
     }, [id, seoData]);
