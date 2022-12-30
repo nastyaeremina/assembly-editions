@@ -165,7 +165,7 @@ const FormDetail = styled.div`
     background-position: 0 0;
     background-size: auto;
     background-repeat: repeat;
-    font-size: 12px;
+    font-size: 15px;
     line-height: 16px;
     outline: 0;
     appearance: none;
@@ -181,7 +181,7 @@ const FormDetail = styled.div`
     display: block;
     width: 100%;
     padding: 7px 12px;
-    font-size: 12px;
+    font-size: 15px;
     line-height: 16px;
     color: ${({ theme }) => theme.colors.title};
     font-weight: 400px;
@@ -191,7 +191,7 @@ const FormDetail = styled.div`
   }
   .sm {
     border-radius: 4px;
-    font-size: 12px;
+    font-size: 15px;
     line-height: 16px;
   }
   textarea {
@@ -212,9 +212,23 @@ const FormDetail = styled.div`
       border-color: ${({ theme }) => theme.colors.primary};
     }
   }
+  label
+  {
+    font-size:15px;
+    margin-bottom:8px;
+    font-weight: 500;
+    line-height: 24px;
+  }
 
   @media only screen and (max-width: 768px) {
     padding-bottom: 28px;
+    label
+    {
+      font-size:12px;
+      margin-bottom:6px;
+      font-weight: 500;
+      line-height: 16px;
+    }
   }
 `;
 
@@ -225,7 +239,7 @@ const Input = styled.input`
   border-radius: 4px;
   outline: 0;
   margin-bottom: 20px;
-  font-size: 12px;
+  font-size: 15px;
   line-height: 16px;
   width: 100%;
   color: ${({ theme }) => theme.colors.title};
