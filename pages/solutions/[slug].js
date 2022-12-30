@@ -15,8 +15,18 @@ export default function Solution({ details }) {
     return (
         <>
             <NextSeo
-                title='Create your portal, pick a plan later'
-                description='Try Copilot free for 14 days, no credit card required'
+                title={details?.seoMetadata?.seoTitle}
+                description={details?.seoMetadata?.description}
+                openGraph={{
+                    type: 'website',
+                    locale: 'en_IE',
+                    site_name: 'SiteName',
+                    images: isEmpty(details?.seoMetadata?.openGraphImage) ? [] : [
+                        {
+                            url: details?.seoMetadata?.openGraphImage?.url
+                        }
+                    ]
+                }}
             />
             <Layout>
                 <Navbar />
