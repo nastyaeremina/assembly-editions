@@ -5,17 +5,8 @@ import Referral from '../components/referral';
 import { useRouter } from 'next/router'
 import { useState, useEffect } from "react";
 
-export default function ReferralPage() {
-  const router = useRouter();
-  const [code, setCode] = useState((useRouter().query.code || "").toString());
-
-  useEffect(()=>{
-    if(router.query.code != null)
-    {
-      setCode(router.query.code)
-    }
-  },[router]);
-
+export default function ReferralPage({code}) {
+ 
   return (
     <>
       <NextSeo
@@ -29,3 +20,13 @@ export default function ReferralPage() {
     </>
   );
 }
+
+export async function getServerSideProps({query}) {
+  const code = query.code;
+  return {
+    props: {
+      code
+    }
+  };
+}
+
