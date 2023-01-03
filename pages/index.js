@@ -61,8 +61,20 @@ import { isEmpty } from '../helpers/helpers';
 import TabView from '../components/tab/tab';
 import Button from '../components/button/button';
 import SEO from '../components/seo';
+import Router from 'next/router';
 
-export default function Home({ content }) {
+export default function Home({ content, currentSession, host }) {
+  console.log('cook', currentSession)
+  
+  useEffect(()=>{
+    if(currentSession != "")
+    {
+      Router.push(`dashboard.${host}/portal/${currentSession}`)
+    }
+  },[]);
+
+
+
   return (
     <>
       <SEO id={content?.seoMetadata?.sys?.id}></SEO>
@@ -457,11 +469,15 @@ export default function Home({ content }) {
   );
 }
 
-export async function getStaticProps({ preview = false }) {
+
+
+export async function getServerSideProps(context) {
+  const currentSession = context.req.cookies['current-portal-session'] || "";
+  const host = context.req.headers.host;
   const content = (await getHomeContent()) ?? '';
   return {
     props: {
-      content
+      content, currentSession, host
     }
   };
 }
