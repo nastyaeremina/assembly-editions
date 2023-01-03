@@ -17,7 +17,7 @@ const HeroBlock = styled.div`
   display: flex;
   gap: 60px;
 
-  @media only screen and (max-width: 768px) {
+  @media only screen and (max-width: 996px) {
     flex-wrap: wrap;
     gap: 40px;
   }
