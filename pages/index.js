@@ -473,7 +473,7 @@ export default function Home({ content, currentSession, host }) {
 
 export async function getServerSideProps(context) {
   const currentSession = context.req.cookies['current-portal-session'] || "";
-  const host = context.req.headers.host.replace('www','');
+  const host = context.req.headers.host.replace('www.','');
   const content = (await getHomeContent()) ?? '';
   return {
     props: {
