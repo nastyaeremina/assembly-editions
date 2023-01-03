@@ -69,7 +69,7 @@ export default function Home({ content, currentSession, host }) {
   useEffect(()=>{
     if(currentSession != "")
     {
-      Router.push(`dashboard.${host}/portal/${currentSession}`)
+      Router.push(`https://dashboard.${host}/portal/${currentSession}`)
     }
   },[]);
 
