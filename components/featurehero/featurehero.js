@@ -3,7 +3,7 @@ import { Container, PrimaryButton } from '../../styles/commonStyles';
 import Button from '../button/button';
 import { NAVBAR_COLOR_LIST } from '../../constants/constant';
 import { theme } from '../../pages/_app';
-import { FeatureHeroSection, HeroBlock, BlockLeft, BlockRight, BlockImage, BlockLine, BLockImg } from './styles';
+import { FeatureHeroSection, HeroBlock, BlockLeft, BlockRight, BlockImage, BlockLine, BLockImg,FeatureImage } from './styles';
 import Head from "next/head";
 
 export default function FeatureHero({ colorList, title, description, iconUrl }) {
@@ -39,8 +39,8 @@ export default function FeatureHero({ colorList, title, description, iconUrl }) 
             />
           </BlockLeft>
           <BlockRight>
-            <BLockImg lineColor={colorList?.borderColor}>
-              <Image  rel="preload" src='/images/heroimage.png' alt='main-logo' height={392} width={570} className='heroimage' />
+            <BLockImg lineColor={colorList?.borderColor} >
+              <FeatureImage rel="preload" src='/images/heroimage.png' alt='main-logo' height={392} width={570} className='heroimage' />
               <Image  rel="preload" src='/images/videoiconblack.svg' alt='video-logo' height={76} width={76} className='icon' />
             </BLockImg>
           </BlockRight>

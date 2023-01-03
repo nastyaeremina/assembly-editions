@@ -1,4 +1,5 @@
 import styled, { css } from 'styled-components';
+import Image from 'next/image';
 import { Body2, Heading2, MbBody2, MobileH2 } from '../../styles/styles';
 const FeatureHeroSection = styled.div`
   ${(props) =>
@@ -179,4 +180,12 @@ const BlockImage = styled.div`
     }
   }
 `;
-export { FeatureHeroSection, HeroBlock, BlockLeft, BlockRight, BlockImage, BlockLine, BLockImg };
+const FeatureImage = styled(Image)`
+width: 570px;
+height: 392px;
+@media only screen and (max-width: 1200px) {
+  width: auto;
+  height: auto;
+}
+`
+export { FeatureHeroSection, HeroBlock, BlockLeft, BlockRight, BlockImage, BlockLine, BLockImg, FeatureImage };
