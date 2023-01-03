@@ -12,7 +12,7 @@ export default function ReferralPage() {
       />
       <Layout>
         <Navbar />
-        <Referral />
+        <Referral firstName="Marlon"/>
       </Layout>
     </>
   );

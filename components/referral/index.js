@@ -2,23 +2,22 @@ import Image from 'next/image';
 import { Container, PrimaryButton } from '../../styles/commonStyles';
 import { MainSection, HeroWrap, HeroLeft, HeroRight } from './styles';
 
-export default function Referral() {
+export default function Referral(props) {
   return (
     <MainSection>
       <Container>
         <HeroWrap>
           <HeroLeft>
-            <h2>Marlon has gifted you $100 in credit!</h2>
+            <h2>{props.firstName} has invited you to try Copilot</h2>
             <p>
-              Start with a 14-day free trial. You will receive your $100 credit once you move over to one of our paid
-              subscription plans.
+              Copilot is used by 1000s of modern services businesses. Get started below with a 14-day free trial. No credit card required.
             </p>
             <PrimaryButton>
-              <a href='#'>Sign up to claim your gift</a>
+              <a href='#'>Get started</a>
             </PrimaryButton>
           </HeroLeft>
           <HeroRight>
-            <Image src='/images/referral.svg' alt='line-icon' width={393} height={386} layout={'fixed'} />
+            <Image src='/images/referral.svg' alt='line-icon' width={393} height={386} />
           </HeroRight>
         </HeroWrap>
       </Container>
