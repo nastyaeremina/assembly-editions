@@ -199,17 +199,17 @@ const FAQAnsware = styled.div`
   div{
     ${Body1}
     color: ${({ theme }) => theme.colors.body};
-    padding:0 72px 40px 0;
-    margin-top:-20px;
+    padding:0 32px 40px 0;
   }
     opacity:0 ;
     max-height:0 ;
-    transition: all 0.2s ease-out;
+    transition: opacity 400ms ease-in-out 0s,max-height 400ms ease-in-out 0s;
     overflow:hidden ;
   &&.active{
     opacity:1 ;
     overflow:visible ;
     max-height:500px ;
+   
   }
 `
 export { FaqSection, FaqWrap, FaqTitle, DivFAQ,FAQAnsware };
