@@ -31,7 +31,15 @@ const NavbarWrapper = styled.div`
     backdrop-filter: blur(6px);
     border-width: 1px;
   }
-  @media only screen and (max-width: 991px) {
+  @media only screen and (max-width: 991px 748) {
+    padding: 24px 0;
+    ${(props) =>
+      props.isAnnouncebar &&
+      css`
+      top: 34px;
+      `}
+  }
+  @media only screen and (max-width: 748px) {
     padding: 16px 0;
     ${(props) =>
       props.isAnnouncebar &&
@@ -39,6 +47,7 @@ const NavbarWrapper = styled.div`
       top: 34px;
       `}
   }
+
 `;
 const NavbarInner = styled.div`
   display: flex;
