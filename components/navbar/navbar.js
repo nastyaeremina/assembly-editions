@@ -2,6 +2,7 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useState, useEffect, useCallback, useMemo } from 'react';
 import Image from 'next/image';
+import { useSelector } from 'react-redux';
 import CopilotLogos from '../../public/images/blacklogo.svg';
 import GreenLogos from '../../public/images/greenlogo.svg';
 import WhiteLogos from '../../public/images/whitelogo.svg';
@@ -52,18 +53,18 @@ import FeatureSubMenu from './featuresubmenu';
 import ResourcesSubMenu from './resourcessubmenu';
 import CompanySubMenu from './companysubmenu';
 
-
-
 export default function Navbar({ isModule, headerIndex, isEnterPrice }) {
+  const appSelector = useSelector((state) => state.app);
+  const { topbarContent } = appSelector;
+
   const mobile = useMobileDevice();
   const router = useRouter();
   const [isOpenMobileMenu, setIsOpenMobileMenu] = useState(false);
   const [isOpenFeatureSubMenu, setIsOpenFeatureSubMenu] = useState(false);
   const [isOpenCompanySubMenu, setIsOpenCompanySubMenu] = useState(false);
   const [isOpenResoursesSubMenu, setIsOpenResoursesSubMenu] = useState(false);
-  const [topbarContent,setTopBarContent]=useState(undefined)
+  // const [topbarContent,setTopBarContent]=useState(undefined)
   const [colorList, setColorList] = useState(NAVBAR_COLOR_LIST[0]);
-
   const closeSubMenu = useCallback(() => {
     if (isOpenFeatureSubMenu) {
       setIsOpenFeatureSubMenu(false);
@@ -76,7 +77,7 @@ export default function Navbar({ isModule, headerIndex, isEnterPrice }) {
 
   const handleMobileMenu = useCallback(() => {
     setIsOpenMobileMenu(!isOpenMobileMenu);
-    
+
     closeSubMenu();
   }, [closeSubMenu, isOpenMobileMenu]);
 
@@ -86,30 +87,30 @@ export default function Navbar({ isModule, headerIndex, isEnterPrice }) {
     setClientWindowHeight(window.scrollY);
   };
 
-  const loadData = useCallback(async () => {
-      try {
-        const data = (await getSitemap(TOP_BAR_CONTENT_ID)) ?? '';
-      
-      if(!isEmpty(data?.content)){
+  // const loadData = useCallback(async () => {
+  //     try {
+  //       const data = (await getSitemap(TOP_BAR_CONTENT_ID)) ?? '';
 
-        const contentList = data?.content?.split(/[\[\]\(\)]/)
-        
-        const item = {
-          title:contentList?.[1],
-          url:contentList?.[3]
-        }
-        setTopBarContent(item)
-      }
-      } catch (error) {
-        console.log("error",error);
-      }
-    }, [])
+  //     if(!isEmpty(data?.content)){
+
+  //       const contentList = data?.content?.split(/[\[\]\(\)]/)
+
+  //       const item = {
+  //         title:contentList?.[1],
+  //         url:contentList?.[3]
+  //       }
+  //       setTopBarContent(item)
+  //     }
+  //     } catch (error) {
+  //       console.log("error",error);
+  //     }
+  //   }, [])
   useEffect(() => {
-    loadData()
+    // loadData()
 
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
-  },[loadData]);
+  }, []);
 
   if (clientWindowHeight > 10) {
     isScrollPage = true;
@@ -571,55 +572,61 @@ export default function Navbar({ isModule, headerIndex, isEnterPrice }) {
     else setColorList(NAVBAR_COLOR_LIST[HEADER_LIST.DEFAULT]);
   }, [headerIndex]);
 
-  const renderTopBarView =useMemo(()=>{
-    if(isEmpty(topbarContent)) return null
-    return <>
-   <div>
-    <TopBar>
-    <Container>
-      <AnnounceBar>
-        <HelpLink className='icon-link'>
-          <Link href={topbarContent?.url} className='learn-link mb0' target={'_blank'}>
-            {topbarContent?.title}
-            <svg width='16' height='12' viewBox='0 0 16 12' fill='none' class='HoverArrow'>
-              <path
-                d='M5.7998 1.37109L10.4283 5.99958L5.7998 10.6281'
-                stroke-width='1.92854'
-                stroke-linecap='round'
-                stroke-linejoin='round'
-                class='HoverArrow__tipPath'
-              />
-              <path
-                d='M10.33 5.99951H1.5'
-                stroke-width='2'
-                stroke-linecap='round'
-                stroke-linejoin='round'
-                class='HoverArrow__linePath'
-              />
-            </svg>
-            <svg width='8' height='14' viewBox='0 0 8 14' fill='none' class='mobilearrow'>
-              <path
-                d='M2 3L6 7L2 11'
-                stroke='#ffffff'
-                stroke-width='1.85714'
-                stroke-linecap='round'
-                stroke-linejoin='round'
-              />
-            </svg>
-          </Link>
-        </HelpLink>
-      </AnnounceBar>
-    </Container>
-  </TopBar>
-  <Dspace>test </Dspace>
-  </div>
-  </>
-  },[topbarContent])
+  const renderTopBarView = useMemo(() => {
+    if (isEmpty(topbarContent)) return null;
+    return (
+      <>
+        <div>
+          <TopBar>
+            <Container>
+              <AnnounceBar>
+                <HelpLink className='icon-link'>
+                  <Link href={topbarContent?.url} className='learn-link mb0' target={'_blank'}>
+                    {topbarContent?.title}
+                    <svg width='16' height='12' viewBox='0 0 16 12' fill='none' class='HoverArrow'>
+                      <path
+                        d='M5.7998 1.37109L10.4283 5.99958L5.7998 10.6281'
+                        stroke-width='1.92854'
+                        stroke-linecap='round'
+                        stroke-linejoin='round'
+                        class='HoverArrow__tipPath'
+                      />
+                      <path
+                        d='M10.33 5.99951H1.5'
+                        stroke-width='2'
+                        stroke-linecap='round'
+                        stroke-linejoin='round'
+                        class='HoverArrow__linePath'
+                      />
+                    </svg>
+                    <svg width='8' height='14' viewBox='0 0 8 14' fill='none' class='mobilearrow'>
+                      <path
+                        d='M2 3L6 7L2 11'
+                        stroke='#ffffff'
+                        stroke-width='1.85714'
+                        stroke-linecap='round'
+                        stroke-linejoin='round'
+                      />
+                    </svg>
+                  </Link>
+                </HelpLink>
+              </AnnounceBar>
+            </Container>
+          </TopBar>
+          <Dspace>test </Dspace>
+        </div>
+      </>
+    );
+  }, [topbarContent]);
 
   return (
     <>
-    {renderTopBarView}
-      <NavbarWrapper className={isScrollPage ? 'scroll' : ''} isScrollPage={isScrollPage} colorList={colorList} isAnnouncebar={!isEmpty(topbarContent)}>
+      {renderTopBarView}
+      <NavbarWrapper
+        className={isScrollPage ? 'scroll' : ''}
+        isScrollPage={isScrollPage}
+        colorList={colorList}
+        isAnnouncebar={!isEmpty(topbarContent)}>
         <Container>
           <NavbarInner>
             <Link href='/'>
