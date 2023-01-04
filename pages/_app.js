@@ -89,7 +89,7 @@ export const theme = {
 
 export default function MyApp({ Component, pageProps }) {
   const loadData = useCallback(async () => {
-    const { appInit } = require('./services/appInitHelpers');
+    const appInit = require('./services/appInitHelpers');
     await store.dispatch(appInit());
   }, []);
 
