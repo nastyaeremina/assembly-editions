@@ -137,6 +137,11 @@ const Catagoryitem = styled.li`
     :active {
       color: ${({ theme }) => theme.colors.title};
     }
+    ${(props) =>
+      props.isActive &&
+      css`
+      color: ${({ theme }) => theme.colors.title};
+      `}
   }
 `;
 const FeatureRight = styled.div`

@@ -29,36 +29,44 @@ import { getAllUniversityVideos } from '../../lib/contentful-universityVideos';
 import { isEmpty } from '../../helpers/helpers';
 import slugify from 'slugify';
 import SEO from '../../components/seo';
+import { UNIVERSITY_VIDEO_CATEGORY } from '../../constants/constant';
 
-let selected_categry = null;
+let selected_category = null;
 export default function University({ universityVideosList }) {
-  // const [selected_categry, useSelected_categry] = useState(null);
+   const [selected_category, setSelected_categry] = useState(null);
+  // console.log("universityVideosList",universityVideosList);
   const handleScroll = useCallback(() => {
-    if (!selected_categry) return;
-    selected_categry = null;
-  }, []);
+    if (!selected_category) return;
+    setSelected_categry(null);
+  }, [selected_category]);
 
   const onClickCategories = useCallback((name) => {
-    selected_categry = name;
+    setSelected_categry( name);
     setTimeout(() => {
-      selected_categry = null;
+      setSelected_categry( null);
     }, 1000);
   }, []);
 
   const renderCategoryView = useMemo(() => {
     if (isEmpty(universityVideosList)) return null;
+    
     return universityVideosList?.map((item, index) => {
+      let isActive = slugify(item?.category) === selected_category;
       return (
         <Catagoryitem
           key={`rendercategoryitem_index_${index}`}
           onClick={() => {
             onClickCategories(slugify(item?.category));
-          }}>
-          <Link href={`#${slugify(item?.category)}`}>{item?.category}</Link>
+          }}
+          isActive={isActive} 
+          >
+          <Link href={`#${slugify(item?.category)}`} onClick={() => {
+            onClickCategories(slugify(item?.category));
+          }}>{item?.category}</Link>
         </Catagoryitem>
       );
     });
-  }, [onClickCategories, universityVideosList]);
+  }, [onClickCategories, universityVideosList,selected_category]);
 
   const renderUniversityVideosView = useCallback((videoList) => {
     if (isEmpty(videoList)) return null;
@@ -84,7 +92,7 @@ export default function University({ universityVideosList }) {
         <ExtensionsSection
           id={slugify(item?.category)}
           key={`renderuniversityvideoslistiten_index_${index}`}
-          isSelected={slugify(item?.category) === selected_categry}
+          isSelected={slugify(item?.category) === selected_category}
           isNotFirst={index !== 0}>
           <h3>{item?.category}</h3>
           <FeatureMenu>{renderUniversityVideosView(item?.list)}</FeatureMenu>
@@ -92,7 +100,7 @@ export default function University({ universityVideosList }) {
       );
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [renderUniversityVideosView, universityVideosList, selected_categry]);
+  }, [renderUniversityVideosView, universityVideosList, selected_category]);
 
   return (
     <>
@@ -118,11 +126,11 @@ export default function University({ universityVideosList }) {
                   {!isEmpty(universityVideosList) && (
                     <Catagory>
                       <h4>Categories</h4>
-                      <Catagoryitem>
+                      <Catagoryitem isActive={selected_category === 'all'}>
                         <Link
                           href={`#${slugify(universityVideosList?.[0]?.category)}`}
                           onClick={() => {
-                            onClickCategories(slugify(universityVideosList?.[0]?.category));
+                            onClickCategories('all');
                           }}>
                           All
                         </Link>
@@ -162,13 +170,16 @@ export async function getServerSideProps({ preview = false }) {
     } else {
       const newItem = {
         category: item?.videoCategory,
-        list: [item]
+        list: [item],
       };
       newList?.push(newItem);
     }
   });
 
+  const sortedCategory =UNIVERSITY_VIDEO_CATEGORY.reverse()
+  const newArray =newList?.sort((a,b)=>sortedCategory?.indexOf(a.category) -sortedCategory?.indexOf(b.category))?.reverse()
+
   return {
-    props: { universityVideosList: newList }
+    props: { universityVideosList: newArray }
   };
 }
