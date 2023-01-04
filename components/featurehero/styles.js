@@ -193,7 +193,7 @@ const VideoPlay = styled.div`
   background: rgba(0, 0, 0, 0.6);
   width:100%;
   height:100vh;
-  position:absolute;
+  position:fixed;
   z-index:9999;
   top:0;
   left:0;
