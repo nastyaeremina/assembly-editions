@@ -55,6 +55,7 @@ export default function MessagingApp({ details }) {
             'Collect client information seamlessly by creating customizable forms with 6 question types and sharing it with clients.'
           }
           iconUrl={'/images/form-icon.svg'}
+          videoId={details?.videoId}
         />
       </>
     );

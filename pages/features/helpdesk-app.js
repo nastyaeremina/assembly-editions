@@ -41,6 +41,7 @@ export default function MessagingApp({ details }) {
             'Create a help desk or knowledge base with text, image, videos, and embeds, and use custom visibility rules to share the right content with the right clients.'
           }
           iconUrl={'/images/helpdesk-icon.svg'}
+          videoId={details?.videoId}
         />
       </>
     );
