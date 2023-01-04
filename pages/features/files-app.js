@@ -55,6 +55,7 @@ export default function MessagingApp({ details }) {
             'Make it easy to share files with clients, stay organized folders, and get contracts signed with eSignature requests.'
           }
           iconUrl={'/images/file-icon.svg'}
+          videoId={details?.videoId}
         />
       </>
     );

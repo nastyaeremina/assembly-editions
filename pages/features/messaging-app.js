@@ -41,6 +41,7 @@ export default function MessagingApp({ details }) {
             'Make client communication secure and seamless, and never miss a message with comprehensive email notifications.'
           }
           iconUrl={'/images/module-icon.svg'}
+          videoId={details?.videoId}
         />
       </>
     );

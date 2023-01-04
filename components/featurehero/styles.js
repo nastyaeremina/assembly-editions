@@ -188,4 +188,27 @@ height: 392px;
   height: auto;
 }
 `
-export { FeatureHeroSection, HeroBlock, BlockLeft, BlockRight, BlockImage, BlockLine, BLockImg, FeatureImage };
+
+const VideoPlay = styled.div`
+  background: rgba(0, 0, 0, 0.6);
+  width:100%;
+  height:100vh;
+  position:absolute;
+  z-index:9999;
+  top:0;
+  left:0;
+  .play{
+    position:absolute;
+    top:25%;
+    right:25%;
+  }
+`;
+
+const VideoClose = styled.div`
+    position:absolute;
+    top:5%;
+    right:5%;
+    cursor:pointer;
+`;
+
+export { FeatureHeroSection, HeroBlock, BlockLeft, BlockRight, BlockImage, BlockLine, BLockImg, FeatureImage,VideoPlay,VideoClose };

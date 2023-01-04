@@ -56,10 +56,11 @@ export default function MessagingApp({ details }) {
             'Create branded invoices and subscriptions, and make it easy for client to pay, access invoices, and manage their payment credentials.'
           }
           iconUrl={'/images/bill-icon.svg'}
+          videoId={details?.videoId}
         />
       </>
     );
-  }, []);
+  }, [details?.videoId]);
 
   return (
     <>
