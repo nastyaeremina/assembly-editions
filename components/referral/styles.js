@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { Body2, Heading2 } from '../../styles/styles';
+import { Body2, Heading2, MobileH2, MbBody2 } from '../../styles/styles';
 const MainSection = styled.div``;
 const HeroWrap = styled.div`
   display: flex;
@@ -24,11 +24,17 @@ const HeroLeft = styled.div`
     ${Heading2};
     margin: 0;
     color: ${({ theme }) => theme.colors.black};
+    @media only screen and (max-width: 768px) {
+    ${MobileH2};
+  }
   }
   P {
     ${Body2};
     color: ${({ theme }) => theme.colors.body};
     margin: 20px 0 32px 0;
+    @media only screen and (max-width: 768px) {
+    ${MbBody2};
+  }
   }
 `;
 const HeroRight = styled.div``;
