@@ -36,7 +36,7 @@ const NavbarWrapper = styled.div`
     ${(props) =>
       props.isAnnouncebar &&
       css`
-      top: 34px;
+      top: 44px;
       `}
   }
 `;
