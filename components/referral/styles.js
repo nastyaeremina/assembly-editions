@@ -14,9 +14,11 @@ const HeroWrap = styled.div`
   }
   @media only screen and (max-width: 768px) {
     flex-wrap: wrap;
-    margin-top:56px;
+    margin-top:76px;
     margin-bottom:80px;
-    gap:0px;
+    gap:40px;
+    height:auto ;
+    padding-top: 40px;
   }
 `;
 const HeroLeft = styled.div`
@@ -37,5 +39,12 @@ const HeroLeft = styled.div`
   }
   }
 `;
-const HeroRight = styled.div``;
+const HeroRight = styled.div`
+    @media only screen and (max-width: 376px) {
+
+img{
+  width:264px;
+}
+    }
+`;
 export { MainSection, HeroWrap, HeroLeft, HeroRight };
