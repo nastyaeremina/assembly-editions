@@ -969,7 +969,7 @@ const AnnounceBar = styled.div`
 const HelpLink = styled.div``;
 
 const Dspace = styled.div`
-height: 44px;
+height: 34px;
 display: block;
 `;
 export {

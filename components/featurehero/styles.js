@@ -198,10 +198,20 @@ const VideoPlay = styled.div`
   top:0;
   left:0;
   .play{
-    position:absolute;
-    top:25%;
-    right:25%;
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, 50%);
+    max-width: 819px;
+    max-height: 461px;
+    width: 100%;
+    height: 100%;
   }
+  .iframecss{
+    max-width:819px ;
+    width:100% ;
+    max-height:461px ;
+    height:100% ;
+}
 `;
 
 const VideoClose = styled.div`
