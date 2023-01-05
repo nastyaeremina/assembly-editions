@@ -1159,26 +1159,120 @@ const RightWrap = styled.div`
 `;
 
 const AnimatedIcon = styled(Iconview)`
-.default-state
-{
-  display:none;
-}
-&&.default .default-state{
-  display:block ;
-}
-.loading-state
-{
-  display:none;
-}
-&&.loading .loading-state{
+.icon{
+  opacity:0;
   display:block;
+  position:absolute;
+  right:10px;
 }
-.done-state{
-  display:none;
+&&.card1 .default-state
+{
+  animation-name: example;
+  animation-duration: 5s;
 }
-&&.done .done-state{
-  display:block;
-}`;
+&&.card1 .loading-state
+{
+  animation-name: example;
+  animation-duration: 5s;
+  animation-delay: 5s;
+}
+&&.card1 .done-state{
+  animation-name: example;
+  animation-duration: 5s;
+  animation-iteration-count:infinite;
+  animation-delay: 10s;
+}
+&&.card2 .default-state
+{
+  animation-name: example;
+  animation-duration: 20s;
+}
+&&.card2 .loading-state
+{
+  animation-name: example;
+  animation-duration: 5s;
+  animation-delay: 20s;
+}
+&&.card2 .done-state{
+  animation-name: example;
+  animation-duration: 5s;
+  animation-iteration-count:infinite;
+  animation-delay: 25s;
+}
+&&.card4 .default-state
+{
+  animation-name: example;
+  animation-duration: 35s;
+}
+&&.card4 .loading-state
+{
+  animation-name: example;
+  animation-duration: 5s;
+  animation-delay: 35s;
+}
+&&.card4 .done-state{
+  animation-name: example;
+  animation-duration: 5s;
+  animation-iteration-count:infinite;
+  animation-delay: 40s;
+}
+&&.card3 .default-state
+{
+  animation-name: example;
+  animation-duration: 50s;
+}
+&&.card3 .loading-state
+{
+  animation-name: example;
+  animation-duration: 5s;
+  animation-delay: 50s;
+}
+&&.card3 .done-state{
+  animation-name: example;
+  animation-duration: 5s;
+  animation-iteration-count:infinite;
+  animation-delay: 55s;
+}
+&&.card5 .default-state
+{
+  animation-name: example;
+  animation-duration: 65s;
+}
+&&.card5 .loading-state
+{
+  animation-name: example;
+  animation-duration: 5s;
+  animation-delay: 65s;
+}
+&&.card5 .done-state{
+  animation-name: example;
+  animation-duration: 5s;
+  animation-iteration-count:infinite;
+  animation-delay: 70s;
+}
+&&.card6 .default-state
+{
+  animation-name: example;
+  animation-duration: 80s;
+}
+&&.card6 .loading-state
+{
+  animation-name: example;
+  animation-duration: 5s;
+  animation-delay: 80s;
+}
+&&.card6 .done-state{
+  animation-name: example;
+  animation-duration: 5s;
+  animation-iteration-count:infinite;
+  animation-delay: 85s;
+}
+@keyframes example {
+  0%  {opacity:1}
+  99% {opacity:1}
+  100% {opacity:0}
+}
+`;
 
 export {
   HomeMain,
