@@ -54,7 +54,7 @@ export default function FeatureHero({ colorList, title, description, iconUrl ,vi
                   iframeClass='ytbview'
                   playerClass='icon-player'
                 /> */}
-                <iframe width="819px" height="461px" src={`https://www.youtube.com/embed/${videoId}?autoplay=1`} title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" autoplay></iframe>
+                <iframe className='iframecss'  src={`https://www.youtube.com/embed/${videoId}?autoplay=1`} title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" autoplay></iframe>
                
               </div>
             </VideoPlay> : null}
