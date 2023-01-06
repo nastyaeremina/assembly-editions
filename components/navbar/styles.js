@@ -61,15 +61,6 @@ const NavbarInner = styled.div`
 `;
 const CopilotLogo = styled.img`
   cursor: pointer;
-  animation: 0.1s ease-out 0s 1 showLogo; 
-  @keyframes showLogo {
-    0% {
-      display:none;
-    }
-    100% {
-      display:block;
-    }
-  }
 `;
 const NavMenu = styled.div`
   display: flex;

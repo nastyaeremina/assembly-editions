@@ -626,7 +626,7 @@ export default function Navbar({ isModule, headerIndex, isEnterPrice }) {
         isAnnouncebar={!isEmpty(topbarContent)}>
         <Container>
           <NavbarInner>
-            <Link href='/'>
+            
               {isModule ? (
                 mobile ? (
                   isOpenResoursesSubMenu || isOpenCompanySubMenu || isOpenFeatureSubMenu ? (
@@ -637,10 +637,10 @@ export default function Navbar({ isModule, headerIndex, isEnterPrice }) {
                       <span>Back</span>
                     </BackWrap>
                   ) : (
-                    <CopilotLogo loading='lazy' width='96' height='21' src={MobileWhiteLogos.src} />
+                    <Link href='/'><CopilotLogo loading='lazy' width='96' height='21' src={MobileWhiteLogos.src} /></Link>
                   )
                 ) : (
-                  <CopilotLogo loading='lazy' width='143' height='31' src={WhiteLogos.src} />
+                  <Link href='/'><CopilotLogo loading='lazy' width='143' height='31' src={WhiteLogos.src} /></Link>
                 )
               ) : isEnterPrice ? (
                 mobile ? (
@@ -652,10 +652,10 @@ export default function Navbar({ isModule, headerIndex, isEnterPrice }) {
                       <span>Back</span>
                     </BackWrap>
                   ) : (
-                    <CopilotLogo loading='lazy' width='96' height='21' src={MobileGreenLogos.src} />
+                    <Link href='/'><CopilotLogo loading='lazy' width='96' height='21' src={MobileGreenLogos.src} /></Link>
                   )
                 ) : (
-                  <CopilotLogo loading='lazy' width='143' height='31' src={GreenLogos.src} />
+                  <Link href='/'><CopilotLogo loading='lazy' width='143' height='31' src={GreenLogos.src} /></Link>
                 )
               ) : mobile ? (
                 isOpenResoursesSubMenu || isOpenCompanySubMenu || isOpenFeatureSubMenu ? (
@@ -666,12 +666,12 @@ export default function Navbar({ isModule, headerIndex, isEnterPrice }) {
                     <span>Back</span>
                   </BackWrap>
                 ) : (
-                  <CopilotLogo loading='lazy' width='96' height='21' src={MobileBlackLogos.src} />
+                  <Link href='/'><CopilotLogo loading='lazy' width='96' height='21' src={MobileBlackLogos.src} /></Link>
                 )
               ) : (
-                <CopilotLogo loading='lazy' width='143' height='31' src={CopilotLogos.src} />
+                <Link href='/'><CopilotLogo loading='lazy' width='143' height='31' src={CopilotLogos.src} /> </Link>
               )}
-            </Link>
+           
             {isOpenMobileMenu ? (
               <OverLayBlock>
                 <MobileNavigation></MobileNavigation>
