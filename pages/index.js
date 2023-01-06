@@ -76,7 +76,7 @@ export default function Home({ content }) {
   };
 
   useEffect(() => {
-    setTimeout(()=>{
+    setTimeout(() => {
       //  addClass({card2,loading})
     }, 100)
   }, []);
@@ -248,7 +248,11 @@ export default function Home({ content }) {
                     </CardTextView>
                     <AnimatedIcon className={"done card1"} />
                     <LineIcon>
-                      <Image src='/images/left-line.svg' width={65} height={130} alt='link-icon' />
+                      <svg width="65" height="130" viewBox="0 0 65 130" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <line class="path path1" x1="0.5" y1="0.5" x2="64.5" y2="0.499994" stroke="black" stroke-linecap="round" stroke-dasharray="4 5" />
+                        <line class="path path3" x1="35.5" y1="129.5" x2="64.5" y2="129.5" stroke="black" stroke-linecap="round" stroke-dasharray="4 5" />
+                        <line class="path path4" x1="34.5" y1="129.5" x2="34.5" y2="0.5" stroke="black" stroke-linecap="round" stroke-dasharray="4 5" />
+                      </svg>
                     </LineIcon>
                   </CardItem>
                 </CardWrapper>
@@ -261,7 +265,9 @@ export default function Home({ content }) {
                     </CardTextView>
                     <AnimatedIcon className={"default card2"} />
                     <LineIcon className='hr-icon'>
-                      <Image src='/images/hr-line.svg' width={65} height={130} alt='hr-icon' />
+                      <svg width="64" height="1" viewBox="0 0 64 1" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <line class="path path2" x1="0.5" y1="0.5" x2="63.5" y2="0.500006" stroke="black" stroke-linecap="round" stroke-dasharray="4 5" />
+                      </svg>
                     </LineIcon>
                   </CardItem>
                   <CardItem>
@@ -271,7 +277,11 @@ export default function Home({ content }) {
                       <span>Company size &#62; 50</span>
                     </CardTextView>
                     <LineIcon>
-                      <Image src='/images/lg2-icon.svg' width={65} height={130} alt='hr-icon' />
+                      <svg width="65" height="130" viewBox="0 0 65 130" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <line class="path path5" x1="0.5" y1="0.5" x2="64.5" y2="0.499994" stroke="black" stroke-linecap="round" stroke-dasharray="4 5" />
+                        <line class="path path6" x1="35.5" y1="129.5" x2="64.5" y2="129.5" stroke="black" stroke-linecap="round" stroke-dasharray="4 5" />
+                        <line class="path path7" x1="34.5" y1="129.5" x2="34.5" y2="0.5" stroke="black" stroke-linecap="round" stroke-dasharray="4 5" />
+                      </svg>
                     </LineIcon>
                     <AnimatedIcon className={"default card3"} />
                   </CardItem>

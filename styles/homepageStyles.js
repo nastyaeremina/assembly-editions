@@ -886,6 +886,52 @@ const LineIcon = styled.div`
   top: 50%;
   right: 0;
   transform: translate(100%, 0);
+.path{
+  stroke-dasharray: 5;
+  opacity:0.3;
+}  
+.path1 {
+  animation: dash 2s linear infinite;
+  animation-delay:4.5s;
+}
+.path2 {
+  animation: dash 2s linear infinite;
+  animation-delay:9.5s;
+}
+.path3 {
+  animation: dash 2s linear infinite;
+  animation-delay:14.5s;
+}
+.path4{
+  animation: dash2 4s linear infinite;
+  animation-delay:14.5s;
+}
+.path5 {
+  animation: dash 2s linear infinite;
+  animation-delay:19.5s;
+}
+.path6 {
+  animation: dash 2s linear infinite;
+  animation-delay:24.5s;
+}
+.path7{
+  animation: dash2 4s linear infinite;
+  animation-delay:24.5s;
+}
+@keyframes dash{
+  from {
+    stroke-dashoffset: 100;
+  }
+  0% {opacity:1}
+  100%{opacity:1}
+}
+@keyframes dash2{
+  from {
+    stroke-dashoffset: 1000;
+  }
+  0% {opacity:1}
+  100%{opacity:1}
+}
 `;
 const HelpSection = styled.div`
   padding: 50px 0;
@@ -1165,112 +1211,111 @@ const AnimatedIcon = styled(Iconview)`
   position:absolute;
   right:10px;
 }
-&&.card1 .default-state
-{
-  animation-name: example;
-  animation-duration: 5s;
-}
 &&.card1 .loading-state
 {
   animation-name: example;
   animation-duration: 5s;
-  animation-delay: 5s;
 }
 &&.card1 .done-state{
-  animation-name: example;
+  animation-name: example1;
   animation-duration: 5s;
   animation-iteration-count:infinite;
-  animation-delay: 10s;
+  animation-delay: 4.5s;
 }
 &&.card2 .default-state
 {
   animation-name: example;
-  animation-duration: 20s;
+  animation-duration: 5s;
 }
 &&.card2 .loading-state
 {
   animation-name: example;
-  animation-duration: 5s;
-  animation-delay: 20s;
+  animation-duration: 5.5s;
+  animation-delay: 4.5s;
 }
 &&.card2 .done-state{
-  animation-name: example;
+  animation-name: example1;
   animation-duration: 5s;
   animation-iteration-count:infinite;
-  animation-delay: 25s;
+  animation-delay: 9.5s;
 }
 &&.card4 .default-state
 {
   animation-name: example;
-  animation-duration: 35s;
+  animation-duration: 10s;
 }
 &&.card4 .loading-state
 {
   animation-name: example;
-  animation-duration: 5s;
-  animation-delay: 35s;
+  animation-duration: 5.5s;
+  animation-delay: 9.5s;
 }
 &&.card4 .done-state{
-  animation-name: example;
+  animation-name: example1;
   animation-duration: 5s;
   animation-iteration-count:infinite;
-  animation-delay: 40s;
+  animation-delay: 14.5s;
 }
 &&.card3 .default-state
 {
   animation-name: example;
-  animation-duration: 50s;
+  animation-duration: 15s;
 }
 &&.card3 .loading-state
 {
   animation-name: example;
-  animation-duration: 5s;
-  animation-delay: 50s;
+  animation-duration: 5.5s;
+  animation-delay: 14.5s;
 }
 &&.card3 .done-state{
-  animation-name: example;
+  animation-name: example1;
   animation-duration: 5s;
   animation-iteration-count:infinite;
-  animation-delay: 55s;
+  animation-delay: 19.5s;
 }
 &&.card5 .default-state
 {
   animation-name: example;
-  animation-duration: 65s;
+  animation-duration: 20s;
 }
 &&.card5 .loading-state
 {
   animation-name: example;
-  animation-duration: 5s;
-  animation-delay: 65s;
+  animation-duration: 5.5s;
+  animation-delay: 19.5s;
 }
 &&.card5 .done-state{
-  animation-name: example;
+  animation-name: example1;
   animation-duration: 5s;
   animation-iteration-count:infinite;
-  animation-delay: 70s;
+  animation-delay: 24.5s;
 }
 &&.card6 .default-state
 {
   animation-name: example;
-  animation-duration: 80s;
+  animation-duration: 25s;
 }
 &&.card6 .loading-state
 {
   animation-name: example;
-  animation-duration: 5s;
-  animation-delay: 80s;
+  animation-duration: 5.5s;
+  animation-delay: 24.5s;
 }
 &&.card6 .done-state{
-  animation-name: example;
+  animation-name: example1;
   animation-duration: 5s;
   animation-iteration-count:infinite;
-  animation-delay: 85s;
+  animation-delay: 29.5s;
 }
 @keyframes example {
   0%  {opacity:1}
   99% {opacity:1}
   100% {opacity:0}
+}
+@keyframes example1 {
+  0%  {opacity:1}
+  99% {opacity:1}
+  100% {opacity:1}
 }
 `;
 
