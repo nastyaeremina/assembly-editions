@@ -7,9 +7,9 @@ const NavbarWrapper = styled.div`
   left: 0;
   ${(props) =>
     props.isAnnouncebar ?
-    css`
+      css`
     top: 44px;
-    `:  css`
+    `: css`
     top: 0px;
     `}
  
@@ -34,16 +34,16 @@ const NavbarWrapper = styled.div`
   @media only screen and (max-width: 991px 748) {
     padding: 24px 0;
     ${(props) =>
-      props.isAnnouncebar &&
-      css`
+    props.isAnnouncebar &&
+    css`
       top: 34px;
       `}
   }
   @media only screen and (max-width: 748px) {
     padding: 16px 0;
     ${(props) =>
-      props.isAnnouncebar &&
-      css`
+    props.isAnnouncebar &&
+    css`
       top: 34px;
       `}
   }
@@ -67,17 +67,6 @@ const NavMenu = styled.div`
   align-items: center;
   justify-content: space-between;
   width: 100%;
-  ${(props) =>
-    props.BlogDetails &&
-    css`
-      display: none;
-    `}
-  ${(props) =>
-    props.BlogDetails &&
-    props.mobile &&
-    css`
-      display: flex;
-    `}
   @media only screen and (max-width: 991px) {
     display: flex;
     flex-direction: column;
@@ -134,23 +123,23 @@ const SpanLink = styled.li`
     ${HeaderFont}
     margin: 0 14px;
     ${(props) =>
-      props.textColor &&
-      css`
+    props.textColor &&
+    css`
         color: ${props.textColor};
       `}
     cursor: pointer;
   }
   a:hover {
     ${(props) =>
-      props.hoverColor &&
-      css`
+    props.hoverColor &&
+    css`
         color: ${props.hoverColor};
       `}
   }
   .hovernone {
     ${(props) =>
-      props.textColor &&
-      css`
+    props.textColor &&
+    css`
         color: ${props.textColor};
       `}
   }
@@ -204,15 +193,15 @@ const SpanMobileLink = styled.li`
     ${HeaderFont}
     margin: 0 14px;
     ${(props) =>
-      props.textColor &&
-      css`
+    props.textColor &&
+    css`
         color: ${props.title};
       `}
   }
   a:hover {
     ${(props) =>
-      props.hoverColor &&
-      css`
+    props.hoverColor &&
+    css`
         color: ${props.hoverColor};
       `}
   }
@@ -326,8 +315,8 @@ const SignIn = styled.li`
     align-items: center;
     transition: all 300ms;
     ${(props) =>
-      props.textColor &&
-      css`
+    props.textColor &&
+    css`
         color: ${props.textColor};
       `}
     /* color: ${({ theme }) => theme.colors.title}; */
@@ -335,8 +324,8 @@ const SignIn = styled.li`
     text-decoration: none;
     :hover {
       ${(props) =>
-        props.hoverColor &&
-        css`
+    props.hoverColor &&
+    css`
           color: ${props.hoverColor};
         `}
     }
@@ -476,17 +465,6 @@ const FirstLine = styled.span`
     css`
       transform: translate3d(0px, 8px, 0px) rotateZ(45deg);
     `}
-  ${(props) =>
-    props.BlogDetails &&
-    css`
-      background-color: ${({ theme }) => theme.colors.whiteColor};
-    `}
-    ${(props) =>
-    props.BlogDetails &&
-    props.isScrollPage &&
-    css`
-      background-color: ${({ theme }) => theme.colors.footercolor};
-    `}
     ${(props) =>
     props.isEnterPrice &&
     css`
@@ -512,17 +490,6 @@ const SecondLine = styled.span`
     css`
       opacity: 0;
     `}
-  ${(props) =>
-    props.BlogDetails &&
-    css`
-      background-color: ${({ theme }) => theme.colors.whiteColor};
-    `}
-    ${(props) =>
-    props.BlogDetails &&
-    props.isScrollPage &&
-    css`
-      background-color: ${({ theme }) => theme.colors.darkColor};
-    `}
 `;
 const ThirdLine = styled.span`
   display: block;
@@ -536,27 +503,17 @@ const ThirdLine = styled.span`
     props.isOpenMobileMenu &&
     css`
       transform: translate3d(0px, -8px, 0px) rotateZ(-45deg);
-    `}
+  `}
   ${(props) =>
-    props.BlogDetails && props.isScrollPage
-      ? css`
-          background-color: ${({ theme }) => theme.colors.darkColor};
-        `
-      : props.BlogDetails
-      ? css`
-          background-color: ${({ theme }) => theme.colors.whiteColor};
-        `
-      : css``}
-      ${(props) =>
     props.isEnterPrice &&
     css`
       background-color: ${({ theme }) => theme.colors.greenlight};
-    `}
-    ${(props) =>
+  `}
+  ${(props) =>
     props.textColor &&
     css`
       background-color: ${props.textColor};
-    `}
+  `}
 `;
 
 const OverLayBlock = styled.div`
@@ -727,8 +684,8 @@ const MobileTextLink = styled(Link)`
   cursor: pointer;
   :hover {
     ${(props) =>
-      props.hoverColor &&
-      css`
+    props.hoverColor &&
+    css`
         color: ${props.hoverColor} !important;
       `}
   }
@@ -844,8 +801,8 @@ const BackWrap = styled.div`
     ${MbButtonText};
     color: ${({ theme }) => theme.colors.black};
     ${(props) =>
-      props.textColor &&
-      css`
+    props.textColor &&
+    css`
         color: ${props.textColor};
       `}
   }

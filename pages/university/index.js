@@ -126,15 +126,6 @@ export default function University({ universityVideosList }) {
                   {!isEmpty(universityVideosList) && (
                     <Catagory>
                       <h4>Categories</h4>
-                      <Catagoryitem isActive={selected_category === 'all'}>
-                        <Link
-                          href={`#${slugify(universityVideosList?.[0]?.category)}`}
-                          onClick={() => {
-                            onClickCategories('all');
-                          }}>
-                          All
-                        </Link>
-                      </Catagoryitem>
                       {renderCategoryView}
                     </Catagory>
                   )}

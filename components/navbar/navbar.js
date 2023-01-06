@@ -84,28 +84,7 @@ export default function Navbar({ isModule, headerIndex, isEnterPrice }) {
   const handleScroll = () => {
     setClientWindowHeight(window.scrollY);
   };
-
-  // const loadData = useCallback(async () => {
-  //     try {
-  //       const data = (await getSitemap(TOP_BAR_CONTENT_ID)) ?? '';
-
-  //     if(!isEmpty(data?.content)){
-
-  //       const contentList = data?.content?.split(/[\[\]\(\)]/)
-
-  //       const item = {
-  //         title:contentList?.[1],
-  //         url:contentList?.[3]
-  //       }
-  //       setTopBarContent(item)
-  //     }
-  //     } catch (error) {
-  //       console.log("error",error);
-  //     }
-  //   }, [])
   useEffect(() => {
-    // loadData()
-
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
@@ -621,7 +600,6 @@ export default function Navbar({ isModule, headerIndex, isEnterPrice }) {
       {renderTopBarView}
       <NavbarWrapper
         className={isScrollPage ? 'scroll' : ''}
-        isScrollPage={isScrollPage}
         colorList={colorList}
         isAnnouncebar={!isEmpty(topbarContent)}>
         <Container>
@@ -696,12 +674,10 @@ export default function Navbar({ isModule, headerIndex, isEnterPrice }) {
                 <FirstLine
                   isOpenMobileMenu={isOpenMobileMenu}
                   isEnterPrice={isEnterPrice}
-                  isScrollPage={isScrollPage}
                   textColor={colorList?.fontColor}></FirstLine>
                 <ThirdLine
                   isOpenMobileMenu={isOpenMobileMenu}
                   isEnterPrice={isEnterPrice}
-                  isScrollPage={isScrollPage}
                   textColor={colorList?.fontColor}></ThirdLine>
               </MobileMenu>
             </MobileRight>
