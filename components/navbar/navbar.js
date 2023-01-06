@@ -75,6 +75,15 @@ export default function Navbar({ isModule, headerIndex, isEnterPrice }) {
   }, [isOpenCompanySubMenu, isOpenFeatureSubMenu, isOpenResoursesSubMenu]);
 
   const handleMobileMenu = useCallback(() => {
+    const body = document.querySelector("body");
+    if(isOpenMobileMenu)
+    {
+      body.style.overflow = "auto";
+    }
+    else
+    {
+      body.style.overflow = "hidden";
+    }
     setIsOpenMobileMenu(!isOpenMobileMenu);
     closeSubMenu();
   }, [closeSubMenu, isOpenMobileMenu]);
@@ -85,8 +94,9 @@ export default function Navbar({ isModule, headerIndex, isEnterPrice }) {
     setClientWindowHeight(window.scrollY);
   };
   useEffect(() => {
+    const body = document.querySelector("body");
+    body.style.overflow = "auto";
     window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   if (clientWindowHeight > 10) {
@@ -604,7 +614,6 @@ export default function Navbar({ isModule, headerIndex, isEnterPrice }) {
         isAnnouncebar={!isEmpty(topbarContent)}>
         <Container>
           <NavbarInner>
-            
               {isModule ? (
                 mobile ? (
                   isOpenResoursesSubMenu || isOpenCompanySubMenu || isOpenFeatureSubMenu ? (
