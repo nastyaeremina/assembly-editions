@@ -33,6 +33,7 @@ export default class MyDocument extends Document {
       <Html>
         <Head>
         <Script
+        id="google-tag-manager"
         strategy="afterInteractive"
         dangerouslySetInnerHTML={{
           __html: `

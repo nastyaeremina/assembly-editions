@@ -18,7 +18,6 @@ import Button from '../button/button';
 import {
   NavbarWrapper,
   NavbarInner,
-  SalescampLogo,
   CopilotLogo,
   NavMenu,
   NavigationBlock,
@@ -77,7 +76,6 @@ export default function Navbar({ isModule, headerIndex, isEnterPrice }) {
 
   const handleMobileMenu = useCallback(() => {
     setIsOpenMobileMenu(!isOpenMobileMenu);
-
     closeSubMenu();
   }, [closeSubMenu, isOpenMobileMenu]);
 
@@ -613,7 +611,6 @@ export default function Navbar({ isModule, headerIndex, isEnterPrice }) {
               </AnnounceBar>
             </Container>
           </TopBar>
-          <Dspace>test </Dspace>
         </div>
       </>
     );
@@ -640,10 +637,10 @@ export default function Navbar({ isModule, headerIndex, isEnterPrice }) {
                       <span>Back</span>
                     </BackWrap>
                   ) : (
-                    <SalescampLogo loading='lazy' width='96' height='21' src={MobileWhiteLogos.src} />
+                    <CopilotLogo loading='lazy' width='96' height='21' src={MobileWhiteLogos.src} />
                   )
                 ) : (
-                  <SalescampLogo loading='lazy' width='143' height='31' src={WhiteLogos.src} />
+                  <CopilotLogo loading='lazy' width='143' height='31' src={WhiteLogos.src} />
                 )
               ) : isEnterPrice ? (
                 mobile ? (
@@ -655,10 +652,10 @@ export default function Navbar({ isModule, headerIndex, isEnterPrice }) {
                       <span>Back</span>
                     </BackWrap>
                   ) : (
-                    <SalescampLogo loading='lazy' width='96' height='21' src={MobileGreenLogos.src} />
+                    <CopilotLogo loading='lazy' width='96' height='21' src={MobileGreenLogos.src} />
                   )
                 ) : (
-                  <SalescampLogo loading='lazy' width='143' height='31' src={GreenLogos.src} />
+                  <CopilotLogo loading='lazy' width='143' height='31' src={GreenLogos.src} />
                 )
               ) : mobile ? (
                 isOpenResoursesSubMenu || isOpenCompanySubMenu || isOpenFeatureSubMenu ? (
@@ -669,10 +666,10 @@ export default function Navbar({ isModule, headerIndex, isEnterPrice }) {
                     <span>Back</span>
                   </BackWrap>
                 ) : (
-                  <SalescampLogo loading='lazy' width='96' height='21' src={MobileBlackLogos.src} />
+                  <CopilotLogo loading='lazy' width='96' height='21' src={MobileBlackLogos.src} />
                 )
               ) : (
-                <SalescampLogo loading='lazy' width='143' height='31' src={CopilotLogos.src} />
+                <CopilotLogo loading='lazy' width='143' height='31' src={CopilotLogos.src} />
               )}
             </Link>
             {isOpenMobileMenu ? (

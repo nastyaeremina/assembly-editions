@@ -59,27 +59,16 @@ const NavbarInner = styled.div`
     gap: unset;
   }
 `;
-const SalescampLogo = styled.img`
-  cursor: pointer;
-`;
 const CopilotLogo = styled.img`
   cursor: pointer;
-`;
-const TrySalescampBlock = styled.div`
-  display: none;
-  ${(props) =>
-    props.BlogDetails &&
-    css`
-      display: block;
-    `}
-  ${(props) =>
-    props.BlogDetails &&
-    props.mobile &&
-    css`
-      display: none;
-    `}
-    @media only screen and (max-width: 991px) {
-    display: none;
+  animation: 0.1s ease-out 0s 1 showLogo; 
+  @keyframes showLogo {
+    0% {
+      display:none;
+    }
+    100% {
+      display:block;
+    }
   }
 `;
 const NavMenu = styled.div`
@@ -87,16 +76,6 @@ const NavMenu = styled.div`
   align-items: center;
   justify-content: space-between;
   width: 100%;
-  @media only screen and (max-width: 991px) {
-    flex-direction: column;
-    padding: 12px;
-    position: absolute;
-    left: 16px;
-    right: 16px;
-    background-color: ${({ theme }) => theme.colors.whiteColor};
-    box-shadow: var(--shadowColor);
-    border-radius: 0px;
-  }
   ${(props) =>
     props.BlogDetails &&
     css`
@@ -108,13 +87,25 @@ const NavMenu = styled.div`
     css`
       display: flex;
     `}
-    @media only screen and (max-width: 991px) {
+  @media only screen and (max-width: 991px) {
     display: flex;
+    flex-direction: column;
+    padding: 12px;
+    position: absolute;
     left: 0;
     right: 0;
     padding: 0;
     background: #fdfdfb;
     box-shadow: 0px 4px 24px rgba(0, 0, 0, 0.7);
+    animation: 0.2s ease-out 0s 1 slideInFromTop; 
+  }
+  @keyframes slideInFromTop {
+    0% {
+      transform: translateY(-100%);
+    }
+    100% {
+      transform: translateY(0);
+    }
   }
 `;
 const NavigationBlock = styled.ul`
@@ -975,7 +966,6 @@ display: block;
 export {
   NavbarWrapper,
   NavbarInner,
-  SalescampLogo,
   NavMenu,
   NavigationBlock,
   SpanLink,
@@ -993,7 +983,6 @@ export {
   SecondLine,
   FirstLine,
   OverLayBlock,
-  TrySalescampBlock,
   CopilotLogo,
   InnerList,
   ListLi,
