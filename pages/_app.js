@@ -1,11 +1,15 @@
 /* eslint-disable max-len */
 import '../styles/globals.css';
 import { DefaultSeo } from 'next-seo';
+import { Provider } from 'react-redux';
 import { ThemeProvider, createGlobalStyle } from 'styled-components';
 import { Provider as StyletronProvider } from 'styletron-react';
+import { useCallback, useEffect } from 'react';
+import store from '../store/store';
 import { styletron } from '../styletron';
 
 import SEO from '../next-seo.config';
+import { getSitemap } from '../lib/contentful-sitemap';
 
 const GlobalStyle = createGlobalStyle`
   html {
@@ -84,23 +88,26 @@ export const theme = {
 };
 
 export default function MyApp({ Component, pageProps }) {
-  // const lodData = useCallback(async () => {
-  //   await UserPreferenceSingleton.getInstance().setFeatures(allPosts)
-  // }, [allPosts])
+  const loadData = useCallback(async () => {
+    const { appInit } = require('../services/appInitHelpers');
+    await store.dispatch(appInit());
+  }, []);
 
-  // useEffect(() => {
-  //   lodData()
-  // }, [lodData])
+  useEffect(() => {
+    loadData();
+  }, [loadData]);
 
   return (
     <>
-      <GlobalStyle />
-      <StyletronProvider value={styletron}>
-        <ThemeProvider theme={theme}>
-          <DefaultSeo {...SEO} />
-          <Component {...pageProps} />
-        </ThemeProvider>
-      </StyletronProvider>
+      <Provider store={store}>
+        <GlobalStyle />
+        <StyletronProvider value={styletron}>
+          <ThemeProvider theme={theme}>
+            <DefaultSeo {...SEO} />
+            <Component {...pageProps} />
+          </ThemeProvider>
+        </StyletronProvider>
+      </Provider>
     </>
   );
 }

@@ -41,21 +41,8 @@ export default function MessagingApp({ details }) {
             'Make client communication secure and seamless, and never miss a message with comprehensive email notifications.'
           }
           iconUrl={'/images/module-icon.svg'}
+          videoId={details?.videoId}
         />
-        {/* <Container>
-          <HeroSub className='msgheropadding'>
-            <h2>Simplify client</h2>
-            <Image
-              src='/images/messagehero.svg'
-              alt='line-icon'
-              width={562}
-              height={141}
-              layout={'fixed'}
-              className='messsegeimg'
-            />
-          
-          </HeroSub>
-        </Container> */}
       </>
     );
   }, []);

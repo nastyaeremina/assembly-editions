@@ -33,7 +33,8 @@ import {
   MainBg,
   ImgView,
   AppsHeroWrap,
-  ExtensionsLastSection
+  ExtensionsLastSection,
+  AppHeader3
 } from '../../styles/appsStyles';
 import { Container, PrimaryButton, SecondryButton } from '../../styles/commonStyles';
 import CTA from '../../components/cta/cta';
@@ -42,7 +43,7 @@ import FAQ from '../../components/faq/faq';
 import { getAllParrtnerAppsCategories, getAllPartnerApps } from '../../lib/contentful-partnerApps';
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import { isEmpty } from '../../helpers/helpers';
-import { APPS_TYPE } from '../../constants/constant';
+import { APPS_TYPE, APP_SEO_ID } from '../../constants/constant';
 import Button from '../../components/button/button';
 import SEO from '../../components/seo';
 import AppError from '../../components/apperror/error';
@@ -158,7 +159,7 @@ export default function Apps({ allPosts, featuredApps, allCategoryWithPost, data
     return allCategoryWithPost?.map((item, index) => {
       return (
         <ExtensionsSection id={item?.category?.slug} key={`allCategoryappsview_index_${index}`}>
-          <h3>{item?.category?.name}</h3>
+          <AppHeader3>{item?.category?.name}</AppHeader3>
           <ExtensionCard>{renderPartnerAppsView(item?.list)}</ExtensionCard>
         </ExtensionsSection>
       );
@@ -188,7 +189,7 @@ export default function Apps({ allPosts, featuredApps, allCategoryWithPost, data
 
   return (
     <>
-      <SEO id={'1YuaTMgNnzacoBjygKg4nk'}></SEO>
+      <SEO id={APP_SEO_ID}></SEO>
       <Layout>
         <MainBg>
           <Navbar />
@@ -250,7 +251,7 @@ export default function Apps({ allPosts, featuredApps, allCategoryWithPost, data
                   <FeatureRight>
                     {!isEmpty(featuredApps) && (
                       <Featured id='Brief-Section'>
-                        <h3>Featured</h3>
+                        <AppHeader3>Featured</AppHeader3>
                         <FeatureMenu>{renderFeaturedView}</FeatureMenu>
                       </Featured>
                     )}
@@ -259,7 +260,7 @@ export default function Apps({ allPosts, featuredApps, allCategoryWithPost, data
                     {!isEmpty(dataIntegrationApps) && (
                       <ExtensionsSection id='Integrations-Section'>
                         <AppsTitle>
-                          <h3>Data Integrations</h3>
+                          <AppHeader3>Data Integrations</AppHeader3>
                           <p>Integrations</p>
                         </AppsTitle>
                         <ExtensionCard>{renderDataIntegrationApps}</ExtensionCard>

@@ -62,25 +62,9 @@ import { isEmpty } from '../helpers/helpers';
 import TabView from '../components/tab/tab';
 import Button from '../components/button/button';
 import SEO from '../components/seo';
+import Router from 'next/router';
 
 export default function Home({ content }) {
-  console.log("featuresCollection", content?.featuresCollection);
-
-  const addClass = ({ ele, cssClass }) => {
-    const element = document.getElementsByClassName('card2');
-    console.log("anime", element);
-    element.classList.remove('defaul');
-    element.classList.remove('loading');
-    element.classList.remove('done');
-    element.classList.remove(cssClass);
-  };
-
-  useEffect(() => {
-    setTimeout(() => {
-      //  addClass({card2,loading})
-    }, 100)
-  }, []);
-
   return (
     <>
       <SEO id={content?.seoMetadata?.sys?.id}></SEO>
@@ -114,8 +98,6 @@ export default function Home({ content }) {
               </HeroBtnBlock>
               <ReviewLogo>
                 <ImageHover>
-                  {/* <Image src='/images/hover.svg' width={171} height={43} alt='msg-icon' className='show' />
-                  <Image src='/images/hoverlogo.svg' width={171} height={43} alt='msg-icon' className='hide' /> */}
                   <LeftSvg>
                     <svg width='33' height='33' viewBox='0 0 33 33' fill='none' xmlns='http://www.w3.org/2000/svg'>
                       <g clip-path='url(#clip0_322_132405)'>
@@ -481,7 +463,21 @@ export default function Home({ content }) {
   );
 }
 
-export async function getStaticProps({ preview = false }) {
+
+
+export async function getServerSideProps(context) {
+  const currentSession = context.req.cookies['current-portal-session'];
+  const host = context.req.headers.host.replace('www.','');
+
+  if (currentSession) {
+    return {
+      redirect: {
+        destination: `https://dashboard.${host}/portal/${currentSession}`,
+        permanent: false,
+      },
+    }
+  }
+
   const content = (await getHomeContent()) ?? '';
   return {
     props: {

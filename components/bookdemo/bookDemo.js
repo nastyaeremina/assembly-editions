@@ -63,7 +63,6 @@ export default function BookDemoForm() {
             </ImgWrap>
           </Link>
           <FormTxt>
-            <h4>Let’s talk</h4>
             <p>Speak to a Copilot expert to learn more and experience a demo.</p>
           </FormTxt>
           <FormDetail>

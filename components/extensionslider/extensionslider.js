@@ -46,7 +46,7 @@ const ExtensionSlider = ({ data }) => {
           {data?.map((item, index) => {
             return (
               <>
-                <SliderInner href={item?.website}>
+                <SliderInner href={'/apps/'+item?.slug}>
                   <SliderSub>
                     <Image src={item?.icon?.url} alt='red-icon' width={35} height={35} layout={'fixed'} />
                     <h4>{item?.name}</h4>

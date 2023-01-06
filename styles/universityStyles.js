@@ -14,11 +14,11 @@ import {
   Value
 } from './styles';
 const UniversitySection = styled.div`
-  padding-top: 80px;
+  padding-top: 124px;
   padding-bottom: 100px;
   @media only screen and (max-width: 749px) {
     padding-bottom: 80px;
-    padding-top: 16px;
+    padding-top: 48px;
   }
 `;
 const UniversityHero = styled.div`
@@ -68,7 +68,7 @@ const FeatureLeft = styled.div`
 `;
 const LeftWrap = styled.div`
   position: sticky;
-  top: 95px;
+  top: 148px;
 `;
 const InputWrap = styled.div`
   position: relative;
@@ -137,6 +137,11 @@ const Catagoryitem = styled.li`
     :active {
       color: ${({ theme }) => theme.colors.title};
     }
+    ${(props) =>
+      props.isActive &&
+      css`
+      color: ${({ theme }) => theme.colors.title};
+      `}
   }
 `;
 const FeatureRight = styled.div`

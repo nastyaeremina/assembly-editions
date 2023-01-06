@@ -18,7 +18,7 @@ const MainWrap = styled.div`
   background-color: ${({ theme }) => theme.colors.greendark};
 `;
 const EnterPriseHero = styled.div`
-  padding: 160px 0 0 0;
+  padding: 204px 0 0 0;
   background-image: url('/images/enterpriceone.png');
   background-position: center 80px;
   background-repeat: no-repeat;
@@ -27,14 +27,14 @@ const EnterPriseHero = styled.div`
   height: 100vw;
   background-color: linear-gradient(180deg, #00160e 0%, rgba(0, 22, 14, 0.8552) 79.69%, rgba(0, 22, 14, 0) 100%);
   @media only screen and (max-width: 991px) {
-    padding-top: 100px;
+    padding-top: 158px;
     min-height: 900px;
   }
   @media only screen and (max-width: 749px) {
     background-image: url('/images/entermobi.png');
     background-position: center 285px;
     background-size: cover;
-    padding-top: 116px;
+    padding-top: 158px;
     height: 900px;
     min-height: 900px;
   }

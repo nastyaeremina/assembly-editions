@@ -6,14 +6,13 @@ import Link from 'next/link';
 import { BookSection, ImageSection, DemoContain, BottomName, BgOverlay } from '../../styles/bookdemoStyles';
 import BookDemoForm from '../../components/bookdemo/bookDemo';
 import Slider from '../../components/bookdemo/slider';
+import SEO from '../../components/seo';
+import { BOOK_DEMO_SEO_ID } from '../../constants/constant';
 
 export default function BookDemo() {
   return (
     <>
-      <NextSeo
-        title='Copilot - It’s all about connection'
-        description='copilot offers client portal software solution to manage sales reporting, management, marketing, improve customer relationships and more. Get the best free CRM system for your business.'
-      />
+      <SEO id={BOOK_DEMO_SEO_ID}></SEO>
       <BookSection>
         <BookDemoForm />
         <ImageSection>

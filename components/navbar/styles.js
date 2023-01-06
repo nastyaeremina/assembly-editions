@@ -1,11 +1,18 @@
 import styled, { css } from 'styled-components';
 import Link from 'next/link';
-import { HeaderFont, Body2, Body5, FooterText, Body4, MbButtonText } from '../../styles/styles';
+import { HeaderFont, Body2, Body5, FooterText, Body4, MbButtonText, MbPrimaryBtn } from '../../styles/styles';
 
 const NavbarWrapper = styled.div`
   position: fixed;
   left: 0;
-  top: 0;
+  ${(props) =>
+    props.isAnnouncebar ?
+    css`
+    top: 44px;
+    `:  css`
+    top: 0px;
+    `}
+ 
   right: 0;
   bottom: auto;
   z-index: 999;
@@ -15,7 +22,6 @@ const NavbarWrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  transition: all 300ms ease-in-out;
   ${(props) =>
     css`
       background: ${props.colorList?.bgColor};
@@ -25,9 +31,23 @@ const NavbarWrapper = styled.div`
     backdrop-filter: blur(6px);
     border-width: 1px;
   }
-  @media only screen and (max-width: 991px) {
-    padding: 16px 0;
+  @media only screen and (max-width: 991px 748) {
+    padding: 24px 0;
+    ${(props) =>
+      props.isAnnouncebar &&
+      css`
+      top: 34px;
+      `}
   }
+  @media only screen and (max-width: 748px) {
+    padding: 16px 0;
+    ${(props) =>
+      props.isAnnouncebar &&
+      css`
+      top: 44px;
+      `}
+  }
+
 `;
 const NavbarInner = styled.div`
   display: flex;
@@ -339,7 +359,7 @@ const SignIn = styled.li`
         `}
     }
   }
-  @media only screen and (max-width: 991px) {
+  @media only screen and (max-width: 748px) {
     a {
       ${MbButtonText};
     }
@@ -863,6 +883,95 @@ const TextView = styled.div`
   transition: all 300ms;
   cursor: pointer;
 `;
+const TopBar = styled.div`
+  background-color: ${({ theme }) => theme.colors.primary};
+  width: 100%;
+  position: fixed;
+  z-index: 9999;
+`;
+const AnnounceBar = styled.div`
+  padding: 10px 0;
+  text-align: center;
+  .learn-link,
+  .learn-link svg path {
+    transition: all 300ms ease;
+  }
+  a {
+    ${MbPrimaryBtn};
+    margin: 0;
+    color: ${({ theme }) => theme.colors.whiteColor};
+    cursor: pointer;
+    transition: none;
+    @media only screen and (max-width: 749px) {
+      ${MbButtonText};
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    :hover .HoverArrow__linePath {
+      opacity: 1;
+      fill: none;
+      fill: black;
+      @media only screen and (max-width: 749px) {
+        opacity: 0;
+      }
+    }
+    :hover .HoverArrow__tipPath {
+      transform: translateX(2px);
+      @media only screen and (max-width: 749px) {
+        transform: none;
+      }
+    }
+  }
+
+  .learn-link:hover {
+    @media only screen and (max-width: 749px) {
+      color: ${({ theme }) => theme.colors.whiteColor};
+    }
+  }
+  .learn-link svg path {
+    transition: all 300ms ease;
+  }
+  .HoverArrow__linePath {
+    opacity: 0;
+    fill: none;
+  }
+  .HoverArrow {
+    stroke-width: 2px;
+    fill: none;
+    stroke: currentColor;
+    position: relative;
+    /* top: 1px; */
+    margin-left: var(--arrowSpacing);
+    stroke-width: 2px;
+    fill: none;
+    stroke: currentColor;
+    margin-left: 4px;
+    --arrowSpacing: 5px;
+    --arrowHoverTransition: 150ms cubic-bezier(0.215, 0.61, 0.355, 1);
+    --arrowHoverOffset: translateX(3px);
+    @media only screen and (max-width: 749px) {
+      display: none;
+    }
+    @media only screen and (max-width: 376px) {
+      margin-left: 4px;
+    }
+  }
+  .mobilearrow {
+    display: none;
+    @media only screen and (max-width: 749px) {
+      position: relative;
+      display: inline-block;
+      margin-left: 4px;
+    }
+  }
+`;
+const HelpLink = styled.div``;
+
+const Dspace = styled.div`
+height: 34px;
+display: block;
+`;
 export {
   NavbarWrapper,
   NavbarInner,
@@ -901,5 +1010,9 @@ export {
   BackWrap,
   SvgIcon,
   MobileTextLink,
-  TextView
+  TextView,
+  TopBar,
+  AnnounceBar,
+  HelpLink,
+  Dspace
 };

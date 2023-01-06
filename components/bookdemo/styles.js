@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import {
   Body3,
   Body4,
+  Body5,
   Body6,
   CardTxt,
   HeaderFont,
@@ -106,7 +107,7 @@ const LastText = styled.div`
   }
 `;
 const FormSection = styled.form`
-  max-width: 380px;
+  max-width: 370px;
   margin: 0 auto;
   .btnposition {
     width: 100%;
@@ -122,14 +123,14 @@ const FormSection = styled.form`
   }
 `;
 const FormTxt = styled.div`
-  padding: 40px 0;
+  padding: 30px 0;
   h4 {
     ${Heading4};
     color: ${({ theme }) => theme.colors.title};
     margin: 0 0 12px 0;
   }
   p {
-    ${Body4};
+    ${Body5};
     color: ${({ theme }) => theme.colors.body};
     margin: 0;
   }
@@ -145,7 +146,7 @@ const FormTxt = styled.div`
   }
 `;
 const FormDetail = styled.div`
-  padding-bottom: 40px;
+  padding-bottom: 30px;
   label {
     display: block;
     ${CardTxt};
@@ -165,7 +166,7 @@ const FormDetail = styled.div`
     background-position: 0 0;
     background-size: auto;
     background-repeat: repeat;
-    font-size: 12px;
+    font-size: 15px;
     line-height: 16px;
     outline: 0;
     appearance: none;
@@ -181,7 +182,7 @@ const FormDetail = styled.div`
     display: block;
     width: 100%;
     padding: 7px 12px;
-    font-size: 12px;
+    font-size: 15px;
     line-height: 16px;
     color: ${({ theme }) => theme.colors.title};
     font-weight: 400px;
@@ -191,7 +192,7 @@ const FormDetail = styled.div`
   }
   .sm {
     border-radius: 4px;
-    font-size: 12px;
+    font-size: 15px;
     line-height: 16px;
   }
   textarea {
@@ -212,9 +213,23 @@ const FormDetail = styled.div`
       border-color: ${({ theme }) => theme.colors.primary};
     }
   }
+  label
+  {
+    font-size:15px;
+    margin-bottom:2px;
+    font-weight: 500;
+    line-height: 24px;
+  }
 
   @media only screen and (max-width: 768px) {
     padding-bottom: 28px;
+    label
+    {
+      font-size:12px;
+      margin-bottom:6px;
+      font-weight: 500;
+      line-height: 16px;
+    }
   }
 `;
 
@@ -225,7 +240,7 @@ const Input = styled.input`
   border-radius: 4px;
   outline: 0;
   margin-bottom: 20px;
-  font-size: 12px;
+  font-size: 15px;
   line-height: 16px;
   width: 100%;
   color: ${({ theme }) => theme.colors.title};
@@ -250,7 +265,7 @@ const NameBlock = styled.div`
 const NameInfo = styled.div`
   .inputtext {
     margin-bottom: 20px;
-    padding: 7px 10px;
+    padding: 8px 12px;
     border-radius: 4px;
   }
 `;

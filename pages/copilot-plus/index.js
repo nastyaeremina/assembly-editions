@@ -6,7 +6,7 @@ import FAQ from '../../components/faq/faq';
 import Layout from '../../components/layout';
 import Navbar from '../../components/navbar/navbar';
 import SEO from '../../components/seo';
-import { HEADER_LIST } from '../../constants/constant';
+import { ENTERPRICE_SEO_ID, HEADER_LIST } from '../../constants/constant';
 import { Container, GreenButton, TransparenBlack } from '../../styles/commonStyles';
 import {
   EnterPriseHero,
@@ -45,7 +45,7 @@ import {
 export default function Enterprise() {
   return (
     <>
-      <SEO id={"6p7v6zWrnGmgs9RVbm2xrk"} />
+      <SEO id={ENTERPRICE_SEO_ID} />
       <Layout isEnterPrice={true}>
         <MainWrap>
           <Navbar isEnterPrice={true} headerIndex={HEADER_LIST.ENTERPRICE} />

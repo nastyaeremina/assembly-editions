@@ -1,9 +1,10 @@
 import styled from 'styled-components';
 import { Body2, Body3, ButtonText, Heading2, Heading4, LinkTxt, MbBody2, MbBody3, MobileH2, MobileH4 } from './styles';
 const BrandMain = styled.div`
-  padding: 80px 0 50px 0;
+  padding: 124px 0 50px 0;
   @media only screen and (max-width: 749px) {
     padding-bottom: 40px;
+    padding-top: 112px;
   }
 `;
 const BrandHeroSection = styled.div`

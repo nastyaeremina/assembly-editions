@@ -25,6 +25,7 @@ import {
 } from '../../styles/brandStyles';
 import Button from '../../components/button/button';
 import SEO from '../../components/seo';
+import { BRAND_SEO_ID } from '../../constants/constant';
 
 export default function Brand() {
   const [copy1, setCopy1] = useState('Copy');
@@ -96,7 +97,7 @@ export default function Brand() {
 
   return (
     <>
-      <SEO id={'5SUY6L51crllldyZnYR7aA'} />
+      <SEO id={BRAND_SEO_ID} />
       <Layout>
         <Navbar />
         <BrandMain>
