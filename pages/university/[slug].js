@@ -49,7 +49,12 @@ export default function UniversityDetail({ relatedVideos, universityVideoDetail 
 
   return (
     <>
-     <SEO seoData={{seoTitle:`Copilot Video Tutorial • ${universityVideoDetail?.name}` ,description:universityVideoDetail?.description}}/>
+      <SEO
+        seoData={{
+          seoTitle: `Copilot Video Tutorial • ${universityVideoDetail?.name}`,
+          description: universityVideoDetail?.description
+        }}
+      />
       <Layout>
         <Navbar />
         <DetailVideoMain>
@@ -87,7 +92,7 @@ export default function UniversityDetail({ relatedVideos, universityVideoDetail 
     </>
   );
 }
-export async function getServerSideProps({ params, preview = false }) {
+export async function getStaticProps({ params, preview = false }) {
   let allPosts = [];
   let data = [];
   let page = 0;
@@ -114,10 +119,10 @@ export async function getServerSideProps({ params, preview = false }) {
   };
 }
 
-export async function getServerSidePaths() {
+export async function getStaticPaths() {
   const allPosts = (await getAllUniversityVideoWithSlug()) ?? [];
   return {
-    paths: allPosts?.map((slug) => `${slug}`) ?? [],
+    paths: allPosts?.map(({ slug }) => `/university/${slug}`) ?? [],
     fallback: true
   };
 }
