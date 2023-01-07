@@ -49,7 +49,7 @@ export default function MessagingApp({ details }) {
 
   return (
     <>
-      <SEO id={"3oNabM5iJI6OdftOBOzWTh"} />
+      <SEO id={'3oNabM5iJI6OdftOBOzWTh'} />
       <Layout>
         {renderHeroSection}
 
@@ -78,7 +78,7 @@ export default function MessagingApp({ details }) {
   );
 }
 
-export async function getServerSideProps({ preview = false }) {
+export async function getStaticProps({ preview = false }) {
   const details = (await getFeatureById(FEATURES_MESSAG_ID, preview)) ?? [];
   return {
     props: { details }

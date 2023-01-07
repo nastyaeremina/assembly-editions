@@ -33,7 +33,7 @@ import { UNIVERSITY_VIDEO_CATEGORY } from '../../constants/constant';
 
 let selected_category = null;
 export default function University({ universityVideosList }) {
-   const [selected_category, setSelected_categry] = useState(null);
+  const [selected_category, setSelected_categry] = useState(null);
   // console.log("universityVideosList",universityVideosList);
   const handleScroll = useCallback(() => {
     if (!selected_category) return;
@@ -41,15 +41,15 @@ export default function University({ universityVideosList }) {
   }, [selected_category]);
 
   const onClickCategories = useCallback((name) => {
-    setSelected_categry( name);
+    setSelected_categry(name);
     setTimeout(() => {
-      setSelected_categry( null);
+      setSelected_categry(null);
     }, 1000);
   }, []);
 
   const renderCategoryView = useMemo(() => {
     if (isEmpty(universityVideosList)) return null;
-    
+
     return universityVideosList?.map((item, index) => {
       let isActive = slugify(item?.category) === selected_category;
       return (
@@ -58,15 +58,18 @@ export default function University({ universityVideosList }) {
           onClick={() => {
             onClickCategories(slugify(item?.category));
           }}
-          isActive={isActive} 
-          >
-          <Link href={`#${slugify(item?.category)}`} onClick={() => {
-            onClickCategories(slugify(item?.category));
-          }}>{item?.category}</Link>
+          isActive={isActive}>
+          <Link
+            href={`#${slugify(item?.category)}`}
+            onClick={() => {
+              onClickCategories(slugify(item?.category));
+            }}>
+            {item?.category}
+          </Link>
         </Catagoryitem>
       );
     });
-  }, [onClickCategories, universityVideosList,selected_category]);
+  }, [onClickCategories, universityVideosList, selected_category]);
 
   const renderUniversityVideosView = useCallback((videoList) => {
     if (isEmpty(videoList)) return null;
@@ -139,7 +142,7 @@ export default function University({ universityVideosList }) {
     </>
   );
 }
-export async function getServerSideProps({ preview = false }) {
+export async function getStaticProps({ preview = false }) {
   let allPosts = [];
   let data = [];
   let page = 0;
@@ -161,14 +164,16 @@ export async function getServerSideProps({ preview = false }) {
     } else {
       const newItem = {
         category: item?.videoCategory,
-        list: [item],
+        list: [item]
       };
       newList?.push(newItem);
     }
   });
 
-  const sortedCategory =UNIVERSITY_VIDEO_CATEGORY.reverse()
-  const newArray =newList?.sort((a,b)=>sortedCategory?.indexOf(a.category) -sortedCategory?.indexOf(b.category))?.reverse()
+  const sortedCategory = UNIVERSITY_VIDEO_CATEGORY.reverse();
+  const newArray = newList
+    ?.sort((a, b) => sortedCategory?.indexOf(a.category) - sortedCategory?.indexOf(b.category))
+    ?.reverse();
 
   return {
     props: { universityVideosList: newArray }
