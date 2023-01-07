@@ -7,7 +7,6 @@ const FeatureHeroSection = styled.div`
     css`
       background-color: ${props.backgroundColor};
     `}
-  /* background-color: ${({ theme }) => theme.colors.browndark}; */
   padding-top: 186px;
   overflow: hidden;
   @media only screen and (max-width: 749px) {
@@ -31,7 +30,6 @@ const BlockLeft = styled.div`
       css`
         color: ${props.textColor};
       `}
-    /* color: ${({ theme }) => theme.colors.brownlight}; */
     ${Body2}
     margin: 0 0 32px 0;
   }
@@ -42,7 +40,6 @@ const BlockLeft = styled.div`
       css`
         color: ${props.textColor};
       `}
-    /* color: ${({ theme }) => theme.colors.brownlight}; */
     ${Heading2}
   }
   @media only screen and (max-width: 749px) {
@@ -109,15 +106,6 @@ const BLockImg = styled.div`
     top: 50%;
     left: 100%;
   }
-  /* @media only screen and (max-width: 1024px) {
-    max-width: 100%;
-    width: 100%;
-    ::after {
-      max-width: 25px;
-
-      width: 100%;
-    }
-  } */
   .icon {
     position: absolute;
     transform: translate(-50%, -50%);

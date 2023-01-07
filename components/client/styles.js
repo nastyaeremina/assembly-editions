@@ -160,9 +160,7 @@ const ModuleCard = styled.div`
   .learn-link svg path {
     transition: transform 300ms ease;
   }
-  /* .learn-link:hover {
-    color: black;
-  } */
+
   .HoverArrow__linePath {
     opacity: 0;
     fill: none;
@@ -172,7 +170,6 @@ const ModuleCard = styled.div`
     fill: none;
     stroke: currentColor;
     position: relative;
-    /* top: 1px; */
     margin-left: var(--arrowSpacing);
     stroke-width: 2px;
     fill: none;
@@ -461,7 +458,6 @@ const HelpLink = styled.div`
     fill: none;
     stroke: currentColor;
     position: relative;
-    /* top: 1px; */
     margin-left: var(--arrowSpacing);
     stroke-width: 2px;
     fill: none;

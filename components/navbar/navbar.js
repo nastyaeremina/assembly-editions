@@ -62,7 +62,6 @@ export default function Navbar({ isModule, headerIndex, isEnterPrice }) {
   const [isOpenFeatureSubMenu, setIsOpenFeatureSubMenu] = useState(false);
   const [isOpenCompanySubMenu, setIsOpenCompanySubMenu] = useState(false);
   const [isOpenResoursesSubMenu, setIsOpenResoursesSubMenu] = useState(false);
-  // const [topbarContent,setTopBarContent]=useState(undefined)
   const [colorList, setColorList] = useState(NAVBAR_COLOR_LIST[0]);
   const closeSubMenu = useCallback(() => {
     if (isOpenFeatureSubMenu) {
@@ -329,7 +328,6 @@ export default function Navbar({ isModule, headerIndex, isEnterPrice }) {
                     <svg width='16' height='16' viewBox='0 0 16 16' fill='none' xmlns='http://www.w3.org/2000/svg'>
                       <mask
                         id='mask0_1874_104897'
-                        // style="mask-type:alpha"
                         maskUnits='userSpaceOnUse'
                         x='0'
                         y='0'

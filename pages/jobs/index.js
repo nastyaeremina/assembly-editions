@@ -1,8 +1,6 @@
-import { NextSeo } from 'next-seo';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useCallback, useMemo, useState } from 'react';
-import CTA from '../../components/cta/cta';
 import FAQ from '../../components/faq/faq';
 import Layout from '../../components/layout';
 import Navbar from '../../components/navbar/navbar';

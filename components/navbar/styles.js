@@ -724,19 +724,11 @@ const MenuMobileWrap = styled.a`
         fill: #00160e;
       }
     }
-    /* .brand {
-      g {
-        path {
-          fill: #e3ffee;
-        }
-      }
-    } */
+ 
     h6 {
       color: ${({ theme }) => theme.colors.greenlight};
     }
   }
-  //hover style for features list
-
   ${(props) =>
     props.msghover &&
     css`

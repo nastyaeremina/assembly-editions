@@ -1,5 +1,5 @@
 import styled, { css } from 'styled-components';
-import { ButtonText, HeaderFont, MbPrimaryBtn } from '../../styles/styles';
+import { ButtonText, MbPrimaryBtn } from '../../styles/styles';
 
 const ButtonContainer = styled.div`
   a {

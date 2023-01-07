@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { Body3, Body4, Body6, Heading3, Heading4, MbBody3, MbBody4, SliderTxt } from '../../../styles/styles';
+import { Body3, Body4, Heading3, Heading4, MbBody3, MbBody4, SliderTxt } from '../../../styles/styles';
 
 const ExploreSection = styled.div`
   padding: 50px 0;
@@ -141,14 +141,6 @@ const TabView = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  /* ::after {
-    content: '';
-    position: absolute;
-    width: 51px;
-    top: 100%;
-    border-top: 1px solid #000000;
-    transform: rotate(90deg);
-  } */
   @media only screen and (max-width: 991px) {
     width: 59px;
     height: 59px;

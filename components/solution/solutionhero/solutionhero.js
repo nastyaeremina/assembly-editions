@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { useMemo } from 'react';
-import { Container, PrimaryButton, SecondryButton } from '../../../styles/commonStyles';
+import { Container, PrimaryButton } from '../../../styles/commonStyles';
 import {
   HeroSection,
   SolutionWrap,

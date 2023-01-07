@@ -17,32 +17,10 @@ const Slide = styled.div`
 const SliderWrap = styled.div`
   overflow: hidden;
   position: relative;
-  /* ::before {
-    content: "";
-    width: 100%;
-    background-image: url("/images/backimage.svg");
-    background-size: contain;
-    background-repeat: no-repeat;
-    position: absolute;
-    left: 0;
-    right: 0;
-    top: 50%;
-    border-top: 1px dashed #000000;
-  } */
 `;
 const WrapImage = styled.div`
-  /* border: 1px solid black;
-  border-image: 1
-    linear-gradient(
-      to right,
-      transparent 200px,
-      black 0,
-      black calc(100% - 15px),
-      transparent 0
-    ); */
   max-width: 350px;
   width: 100%;
-  /* position: relative; */
   padding: 22px 0;
   margin: 0 22px;
   display: flex;
@@ -107,7 +85,6 @@ const SliderLine = styled.div`
   position: absolute;
   right: 5px;
   top: 0;
-  /* overflow: hidden; */
 `;
 
 export { Slide, SliderWrap, WrapImage, SliderInner, SliderSub, SliderLine };

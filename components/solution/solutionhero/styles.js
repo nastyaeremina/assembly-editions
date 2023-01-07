@@ -87,8 +87,6 @@ const Mobilenew = styled.div`
     left: 0;
     top: 80px;
     left: 0px;
-    /* box-shadow: 0px 15px 64px rgba(0, 0, 0, 0.15), 0px 0px 15.6171px rgba(0, 0, 0, 0.08),
-      inset 0px 0px 6.24685px rgba(0, 0, 0, 0.16); */
     border-radius: 21.0831px;
     background: transparent;
     img {

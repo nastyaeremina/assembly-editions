@@ -69,33 +69,6 @@ const Catagory = styled.ol`
   margin: 0;
   padding-left: 24px;
 `;
-const SubHeading = styled.div`
-  display: flex;
-  gap: 4px;
-  h3 {
-    ${Heading4};
-    color: ${({ theme }) => theme.colors.title};
-    max-width: 43px;
-    width: 100%;
-    margin: 0 4px 0 0;
-  }
-`;
 const SubDataWrap = styled.li``;
-const SubCatagory = styled.li`
-  padding-top: 8px;
-  padding-left: 16px;
-  ${Body4};
-  color: ${({ theme }) => theme.colors.body};
-  ::marker {
-    unicode-bidi: isolate;
-    font-variant-numeric: tabular-nums;
-    text-transform: none;
-    text-indent: 0px !important;
-    text-align: start !important;
-    text-align-last: start !important;
-  }
-  :first-child {
-    padding-top: 0;
-  }
-`;
-export { PrivacuHero, MainSection, SubData, SubHeading, SubDataWrap, SubCatagory, Catagory };
+
+export { PrivacuHero, MainSection, SubData,  SubDataWrap,  Catagory };

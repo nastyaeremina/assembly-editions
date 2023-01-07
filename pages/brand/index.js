@@ -1,11 +1,9 @@
-import { NextSeo } from 'next-seo';
 import Image from 'next/image';
-import Link from 'next/link';
 import copy from 'copy-to-clipboard';
-import { useCallback, useMemo, useState } from 'react';
+import {  useMemo, useState } from 'react';
 import Layout from '../../components/layout';
 import Navbar from '../../components/navbar/navbar';
-import { Container, PrimaryButton } from '../../styles/commonStyles';
+import { Container } from '../../styles/commonStyles';
 import {
   BrandHeroSection,
   BrandName,
