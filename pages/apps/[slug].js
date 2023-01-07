@@ -80,7 +80,12 @@ export default function AppsDetail({ appDetail, relatedApps }) {
 
   return (
     <>
-      <SEO seoData={{seoTitle:`Connect ${appDetail?.name} to Copilot in 2 minutes • Copilot` ,description:appDetail?.description}}/>
+      <SEO
+        seoData={{
+          seoTitle: `Connect ${appDetail?.name} to Copilot in 2 minutes • Copilot`,
+          description: appDetail?.description
+        }}
+      />
 
       <Layout>
         <Navbar />
@@ -201,8 +206,10 @@ export default function AppsDetail({ appDetail, relatedApps }) {
   );
 }
 
-export async function getServerSideProps({ params, preview = false }) {
+export async function getStaticProps({ params, preview = false }) {
   const appDetail = (await getPartnerAppDetail(params?.slug, preview)) ?? {};
+  const allPosts = (await getAllPartnerAppsWithSlug()) ?? [];
+
   let relatedApps = [];
   if (!isEmpty(appDetail)) {
     const allPosts = (await getAllPartnerApps(appDetail?.appType, preview)) ?? [];
@@ -221,10 +228,10 @@ export async function getServerSideProps({ params, preview = false }) {
   };
 }
 
-export async function getServerSidePaths() {
+export async function getStaticPaths() {
   const allPosts = (await getAllPartnerAppsWithSlug()) ?? [];
   return {
-    paths: allPosts?.map((slug) => `${slug}`) ?? [],
+    paths: allPosts?.map(({ slug }) => `/apps/${slug}`) ?? [],
 
     fallback: true
   };
