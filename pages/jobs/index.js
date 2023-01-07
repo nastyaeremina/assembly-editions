@@ -350,7 +350,7 @@ export default function Jobs({ jobList, jobImagesList, jobBlogPostList }) {
   );
 }
 
-export async function getServerSideProps({ preview = false }) {
+export async function getStaticProps({ preview = false }) {
   const jobImagesList = (await getAllJobImages(preview)) ?? [];
   const jobBlogPostList = (await getAllJobBlogPosts(preview)) ?? [];
 

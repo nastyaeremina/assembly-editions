@@ -12,18 +12,20 @@ export default function ReferralPage({code}) {
       />
       <Layout>
         <Navbar />
-        <Referral firstName={code.split("_")[0]} url={'https://dashboard.copilot.com/onboarding?referred=' + code.split("_")[1]}/>
+        <Referral
+          firstName={code?.split('_')?.[0] || 'Someone'}
+          url={'https://dashboard.copilot.com/onboarding?referred=' + code?.split('_')?.[1]}
+        />
       </Layout>
     </>
   );
 }
 
-export async function getServerSideProps({query}) {
-  const code = query.code;
+export async function getServerSideProps({ query }) {
+  const code = query?.code || null;
   return {
     props: {
       code
     }
   };
 }
-
