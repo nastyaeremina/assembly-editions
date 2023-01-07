@@ -1,5 +1,4 @@
 import { NextSeo } from 'next-seo';
-import Image from 'next/image';
 import Link from 'next/link';
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import Layout from '../components/layout';
@@ -14,7 +13,6 @@ import {
   ContentInfo,
   InfoWrap,
   InfoLink,
-  PrivacyContactData
 } from '../styles/resourcesStyles';
 
 export default function Privacy({ content }) {

@@ -1,30 +1,20 @@
+import React  from 'react';
 import Layout from '/components/layout';
 import Image from 'next/image';
 import Link from 'next/link';
-import StarLogo from '../public/images/star5.svg';
 import Navbar from '../components/navbar/navbar';
-import { StatefulTabs, Tab, StyledTab } from 'baseui/tabs';
-import { LabelMedium } from 'baseui/typography';
-import { Container, PrimaryButton, SecondryButton } from '../styles/commonStyles';
+import { Container } from '../styles/commonStyles';
 import {
   HeroSection,
   HeroHeading,
   Para,
   HeroBtnBlock,
   ReviewLogo,
-  Reviewimage,
-  ReviewRight,
   BusinessSection,
   BusinessText,
   Functionality,
   TopFunctionWrap,
   BottomFunction,
-  TabRow,
-  IconSvg,
-  TabBox,
-  ContainWrap,
-  LeftDetail,
-  RightDetail,
   Extension,
   AutomateSection,
   AutomateText,
@@ -32,8 +22,6 @@ import {
   CardWrapper,
   CardItem,
   CardTextView,
-  IconView,
-  IconWithoutView,
   LineIcon,
   HelpSection,
   HelpMain,
@@ -48,21 +36,16 @@ import {
   HelpImg,
   LeftSvg,
   RightWrap,
-  IconWrap,
   AnimatedIcon
 } from '../styles/homepageStyles';
 import BusinessSlider from '../components/businessSlider/businessslider';
 import ExtensionSlider from '../components/extensionslider/extensionslider';
 import CTA from '../components/cta/cta';
 import { HEADER_LIST, HOME_FEATURES_TAB_ID, HOME_MODULE_LIST, MODULE_COLOR_LIST } from '../constants/constant';
-import React, { useCallback, useEffect, useMemo, useState } from 'react';
-import classNames from 'classnames';
 import { getHomeContent } from '../lib/contentful-home';
-import { isEmpty } from '../helpers/helpers';
 import TabView from '../components/tab/tab';
 import Button from '../components/button/button';
 import SEO from '../components/seo';
-import Router from 'next/router';
 
 export default function Home({ content }) {
   return (
@@ -462,8 +445,6 @@ export default function Home({ content }) {
     </>
   );
 }
-
-
 
 export async function getServerSideProps(context) {
   const currentSession = context.req.cookies['current-portal-session'];
