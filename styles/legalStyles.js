@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { Body4, Heading2, Heading3, Heading4, Heading6 } from './styles';
+import { Body4, Heading2, Heading4, Heading6 } from './styles';
 const MainSection = styled.div`
   padding-bottom: 60px;
 `;

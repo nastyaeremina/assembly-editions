@@ -1,8 +1,6 @@
 import styled, { css } from 'styled-components';
 import {
   Body2,
-  Body4,
-  Body5,
   HeaderFont,
   Heading2,
   Heading3,
@@ -157,7 +155,6 @@ const FeatureRight = styled.div`
   }
 `;
 const Featured = styled.div`
-  /* padding-top: 100px; */
   ${(props) =>
     props.isSelected &&
     css`
@@ -437,7 +434,6 @@ const OverLay = styled.div`
   }
 `;
 const YoutubeWrap = styled.div`
-  /* position: relative; */
   .icon-player {
     background-image: url('/images/ytbicon.svg');
     width: 137px;

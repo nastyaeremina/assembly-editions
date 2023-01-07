@@ -7,11 +7,7 @@ import { Provider as StyletronProvider } from 'styletron-react';
 import { useCallback, useEffect } from 'react';
 import store from '../store/store';
 import { styletron } from '../styletron';
-import Script from "next/script";
 import SEO from '../next-seo.config';
-import { GTM_ID, pageview } from "../lib/gtm";
-import Head from 'next/head'
-import { getSitemap } from '../lib/contentful-sitemap';
 
 const GlobalStyle = createGlobalStyle`
   html {

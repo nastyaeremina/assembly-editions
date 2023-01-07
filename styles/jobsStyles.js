@@ -141,7 +141,6 @@ const RoleBlock = styled.div`
   }
 `;
 const TeamBlock = styled.div`
-  /* padding-left: 30px; */
   max-width: 552px;
   width: 100%;
   @media only screen and (max-width: 991px) {
@@ -629,9 +628,6 @@ const DetailInnerSub = styled.li`
     ${Body4};
     color: ${({ theme }) => theme.colors.body};
     margin: 0 0 16px 0;
-    /* :last-child{
-    margin: 0;
-  } */
     span {
       color: ${({ theme }) => theme.colors.title};
     }

@@ -1,8 +1,7 @@
 import Document, {Html, Head, NextScript, Main } from "next/document";
 import { ServerStyleSheet } from "styled-components";
-import App from "next/app";
 import Script from "next/script";
-import { GTM_ID, pageview } from "../lib/gtm";
+import { GTM_ID} from "../lib/gtm";
 export default class MyDocument extends Document {
   static async getInitialProps(ctx) {
     const sheet = new ServerStyleSheet();
