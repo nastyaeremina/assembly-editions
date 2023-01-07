@@ -280,7 +280,6 @@ export default function Client({ currentModule }) {
               alt='red-icon'
               width={185}
               height={145}
-              // layout={"fixed"}
               className='show'
             />
             <Image
@@ -288,7 +287,6 @@ export default function Client({ currentModule }) {
               alt='red-icon'
               width={185}
               height={145}
-              // layout={"fixed"}
               className='hide'
             />
 

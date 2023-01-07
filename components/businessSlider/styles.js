@@ -61,18 +61,8 @@ const SliderWrap = styled.div`
   }
 `;
 const WrapImage = styled.div`
-  /* border: 1px solid black;
-  border-image: 1
-    linear-gradient(
-      to right,
-      transparent 200px,
-      black 0,
-      black calc(100% - 15px),
-      transparent 0
-    ); */
   max-width: 350px;
   width: 100%;
-  /* position: relative; */
   padding: 22px 0;
   display: flex;
   align-items: center;

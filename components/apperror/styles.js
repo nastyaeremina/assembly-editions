@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { Body1, Body3, Body4, Heading3 } from '../../styles/styles';
+import { Body1,  Body4 } from '../../styles/styles';
 const AppMain = styled.div`
   text-align: center;
   margin: auto;

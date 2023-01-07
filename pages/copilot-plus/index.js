@@ -1,13 +1,10 @@
-import { NextSeo } from 'next-seo';
-import Image from 'next/image';
-import Link from 'next/link';
 import Button from '../../components/button/button';
 import FAQ from '../../components/faq/faq';
 import Layout from '../../components/layout';
 import Navbar from '../../components/navbar/navbar';
 import SEO from '../../components/seo';
 import { ENTERPRICE_SEO_ID, HEADER_LIST } from '../../constants/constant';
-import { Container, GreenButton, TransparenBlack } from '../../styles/commonStyles';
+import { Container } from '../../styles/commonStyles';
 import {
   EnterPriseHero,
   MainWrap,

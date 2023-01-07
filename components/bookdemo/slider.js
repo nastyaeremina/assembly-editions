@@ -1,13 +1,10 @@
-import Link from "next/link";
 import Image from "next/image";
-import { PrimaryButton } from "../../styles/commonStyles";
-import { SliderSection, ImageText, TextWrapper } from "./styles";
-import { ImageSection } from "../../styles/bookdemoStyles";
 import { Swiper, SwiperSlide } from "swiper/react";
+import { useMemo } from "react";
 import { Pagination } from "swiper";
+import { SliderSection, ImageText, TextWrapper } from "./styles";
 import "swiper/css";
 import "swiper/css/pagination";
-import { useMemo } from "react";
 export default function Slider() {
   const pagination = {
     clickable: true,
@@ -24,7 +21,6 @@ export default function Slider() {
           className="swiperslide ImageSection"
           key={`sliderItem_index_${index}`}
         >
-          {/* Slide {item} */}
           <Image
             src="/images/demoimage.png"
             width={900}
@@ -44,7 +40,7 @@ export default function Slider() {
         </SwiperSlide>
       );
     });
-  }, []);
+  }, [slide]);
 
   return (
     <>

@@ -102,18 +102,6 @@ export default function ExploreTab({ data }) {
               <RightWrap>
                 <TabWrap>
                   {tabListView}
-                  {/* <TabView className='activetab'>
-                    <span>01</span>
-                    <ActiveTab>
-                      <Image src='/images/verticalline.svg' alt='line-icon' width={1} height={51} />
-                    </ActiveTab>
-                  </TabView>
-                  <TabView>
-                    <span>02</span>
-                  </TabView>
-                  <TabView>
-                    <span>03</span>
-                  </TabView> */}
                 </TabWrap>
               </RightWrap>
             </SignatureSection>

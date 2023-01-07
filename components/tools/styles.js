@@ -29,21 +29,6 @@ const ModuleSection = styled.div`
     grid-template-columns: 1fr 1fr;
     border-right: none;
   }
-  /* .moduleborder {
-    border-top: 1px solid #120800;
-    position: relative;
-  }
-  .borderright {
-    border-right: 0;
-  }
-  .bigborder {
-    position: relative;
-  }
-  .borderposition {
-    position: absolute;
-    right: -1px;
-    top: -251px;
-  } */
 `;
 const ModuleWrap = styled.div`
   border: 1px solid #120800;
