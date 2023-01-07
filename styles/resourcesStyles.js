@@ -111,7 +111,6 @@ const PrivacyData = styled.div`
     background-color: #7ddaa0;
   }
 `;
-const PrivacyContactData = styled.div``;
 const ContentInfo = styled.div`
   padding: 28px 0 100px 0;
   @media only screen and (max-width: 749px) {
@@ -171,7 +170,6 @@ export {
   PostContent,
   PrivacyContent,
   PrivacyData,
-  PrivacyContactData,
   ContentInfo,
   InfoWrap,
   InfoLink,

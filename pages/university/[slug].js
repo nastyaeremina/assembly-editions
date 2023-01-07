@@ -1,17 +1,14 @@
 import Layout from '/components/layout';
 import Link from 'next/link';
-import { NextSeo } from 'next-seo';
 import Navbar from '../../components/navbar/navbar';
 import {
   DetailVideoMain,
   DetailVideoHero,
   Backlink,
   VideoSection,
-  VideoImage,
   VIdeoWrap,
   UniversityVideo,
   FeatureCard,
-  OverLay,
   Overlay,
   HoverButton,
   YoutubeWrap
@@ -76,7 +73,6 @@ export default function UniversityDetail({ relatedVideos, universityVideoDetail 
                   iframeClass='ytbview'
                   playerClass='icon-player'
                 />
-                {/* <OverLay></OverLay> */}
               </YoutubeWrap>
               {!isEmpty(universityVideoDetail?.description) && <p>{universityVideoDetail?.description}</p>}
             </VideoSection>

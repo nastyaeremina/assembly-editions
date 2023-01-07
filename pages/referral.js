@@ -2,10 +2,8 @@ import { NextSeo } from 'next-seo';
 import Layout from '../components/layout';
 import Navbar from '../components/navbar/navbar';
 import Referral from '../components/referral';
-import { useRouter } from 'next/router';
-import { useState, useEffect } from 'react';
 
-export default function ReferralPage({ code }) {
+export default function ReferralPage({code}) {
   return (
     <>
       <NextSeo
