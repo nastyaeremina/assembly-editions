@@ -2,22 +2,6 @@ import Layout from '/components/layout';
 import Image from 'next/image';
 import { NextSeo } from 'next-seo';
 import Navbar from '../../components/navbar/navbar';
-import {
-  BillMain,
-  BillHeroSub,
-  MessegeItem,
-  ContractHero,
-  KnowHero,
-  ContractWrap,
-  FileMain,
-  HeroSub,
-  FileWrap,
-  FormMain,
-  FormHero,
-  FormWrap,
-  KnowledgeHero,
-  MsgHeroSection
-} from '../../styles/modulesStyles';
 import CTA from '../../components/cta/cta';
 import Tools from '../../components/tools/tool';
 import Content from '../../components/content/content';
@@ -59,7 +43,7 @@ export default function MessagingApp({ details }) {
         />
       </>
     );
-  }, []);
+  }, [details?.videoId]);
 
   return (
     <>

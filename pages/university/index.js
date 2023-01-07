@@ -1,6 +1,5 @@
 import Layout from '/components/layout';
 import Link from 'next/link';
-import { NextSeo } from 'next-seo';
 import Navbar from '../../components/navbar/navbar';
 import {
   UniversitySection,
@@ -13,7 +12,6 @@ import {
   Catagory,
   Input,
   FeatureRight,
-  Featured,
   FeatureMenu,
   FeatureCard,
   ExtensionsSection,
@@ -24,7 +22,7 @@ import {
 } from '../../styles/universityStyles';
 import { Container } from '../../styles/commonStyles';
 import Image from 'next/image';
-import { useCallback, useEffect, useMemo, useState } from 'react';
+import { useCallback, useMemo, useState } from 'react';
 import { getAllUniversityVideos } from '../../lib/contentful-universityVideos';
 import { isEmpty } from '../../helpers/helpers';
 import slugify from 'slugify';
@@ -34,7 +32,6 @@ import { UNIVERSITY_VIDEO_CATEGORY } from '../../constants/constant';
 let selected_category = null;
 export default function University({ universityVideosList }) {
   const [selected_category, setSelected_categry] = useState(null);
-  // console.log("universityVideosList",universityVideosList);
   const handleScroll = useCallback(() => {
     if (!selected_category) return;
     setSelected_categry(null);

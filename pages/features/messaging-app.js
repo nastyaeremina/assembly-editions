@@ -1,8 +1,5 @@
 import Layout from '/components/layout';
-import Image from 'next/image';
-import { NextSeo } from 'next-seo';
 import Navbar from '../../components/navbar/navbar';
-import { HeroSub, MsgHeroSection, BorderLine } from '../../styles/modulesStyles';
 import CTA from '../../components/cta/cta';
 import Tools from '../../components/tools/tool';
 import Content from '../../components/content/content';
@@ -45,7 +42,7 @@ export default function MessagingApp({ details }) {
         />
       </>
     );
-  }, []);
+  }, [details?.videoId]);
 
   return (
     <>

@@ -1,10 +1,10 @@
 import React from "react";
+import Image from "next/image";
 import {
     IconView,
     IconWithoutView,
     Icon
 } from "./styles";
-import Image from "next/image";
 
 export default function Iconview({className}) {
     return (

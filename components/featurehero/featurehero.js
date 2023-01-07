@@ -1,15 +1,11 @@
 import Image from 'next/image';
 import React, { useState } from 'react';
 import Head from "next/head";
-import LiteYouTubeEmbed from 'react-lite-youtube-embed';
-import { Container, PrimaryButton } from '../../styles/commonStyles';
+import { Container } from '../../styles/commonStyles';
 import Button from '../button/button';
-import { NAVBAR_COLOR_LIST } from '../../constants/constant';
-import { theme } from '../../pages/_app';
 import { FeatureHeroSection, HeroBlock, BlockLeft, BlockRight, BlockImage, BlockLine, BLockImg, FeatureImage, VideoPlay, VideoClose } from './styles';
 
 export default function FeatureHero({ colorList, title, description, iconUrl ,videoId}) {
-  // const colorList = NAVBAR_COLOR_LIST[currentModule];
   const [isOpen, setIsOpen] = useState(false);
   const onClick = () => {
     setIsOpen(!isOpen);
@@ -48,12 +44,7 @@ export default function FeatureHero({ colorList, title, description, iconUrl ,vi
                 </svg>
               </VideoClose>
               <div className='play'>
-                {/* <LiteYouTubeEmbed
-                  id={"uirRaVjRsf4"}
-                  title='What’s new in Material Design for the web (Chrome Dev Summit 2019)'
-                  iframeClass='ytbview'
-                  playerClass='icon-player'
-                /> */}
+              
                 <iframe className='iframecss'  src={`https://www.youtube.com/embed/${videoId}?autoplay=1`} title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" autoplay></iframe>
                
               </div>
