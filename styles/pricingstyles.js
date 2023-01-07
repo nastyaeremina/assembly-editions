@@ -240,7 +240,6 @@ const PriceWrap = styled.div`
     color: ${({ theme }) => theme.colors.lightgray};
     letter-spacing: 0.02em;
     margin: 0;
-    /* align-self: end; */
     max-width: 115px;
     width: 100%;
   }
@@ -299,8 +298,6 @@ const PricePlanWrap = styled.li`
     letter-spacing: 0.02em;
     ${Body4};
     margin: 0;
-    /* max-width: 249px;
-    width: 100%; */
   }
   @media only screen and (max-width: 991px) {
     p {
@@ -344,12 +341,9 @@ const PriceTable = styled.div`
     transition: height 400ms ease 0s, padding 400ms ease 0s, margin 400ms ease 0s;
     border-collapse: separate;
     .tableBorder {
-      /* border: none; */
       background-color: #fff;
-      /* width: 624px; */
     }
     .bordercolor {
-      /* background-color: ${({ theme }) => theme.colors.greendark}; */
       td {
         color: ${({ theme }) => theme.colors.greenlight};
         border-right-color: ${({ theme }) => theme.colors.greenlight};

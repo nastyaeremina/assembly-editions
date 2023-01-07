@@ -1,6 +1,5 @@
 import styled from 'styled-components';
-import { Body4, Heading3, Quote } from './styles';
-// import {} from "../../styles/styles";
+import { Body4, Quote } from './styles';
 
 const BookSection = styled.div`
   display: flex;
@@ -16,14 +15,6 @@ const ImageSection = styled.div`
   background-size: cover;
   background-repeat: no-repeat;
   position: relative;
-  /* height: 900px; */
-  /* background-size: contain;
-  background-repeat: no-repeat; */
-  /* padding: 120px 0 60px; */
-  /* img {
-    max-width: 900px;
-    width: 100%;
-  } */
   @media only screen and (max-width: 991px) {
     display: none;
   }

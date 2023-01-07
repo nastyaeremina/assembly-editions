@@ -11,7 +11,6 @@ import {
   Body3,
   MbButtonText,
   MbPrimaryBtn,
-  Heading6
 } from './styles';
 
 const Container = styled.div`
@@ -194,7 +193,6 @@ const GreenButton = styled.div`
     border: 1px solid ${({ theme }) => theme.colors.greenlight};
     border-radius: 48px;
     background-color: transparent;
-    /* box-shadow: 1px 0 3px 0 rgb(0 0 0 / 12%); */
     color: ${({ theme }) => theme.colors.greenlight};
     letter-spacing: 0.02em;
     text-decoration: none;
@@ -246,8 +244,6 @@ const BlackButton = styled.div`
       css`
         background-color: ${props.backgroundColor};
       `}
-    /* background-color: ${({ theme }) => theme.colors.black}; */
-    /* color: ${({ theme }) => theme.colors.neutral}; */
     text-decoration: none;
     transition: all 300ms;
   }

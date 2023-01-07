@@ -6,9 +6,8 @@ import ExploreTab from '../../components/solution/clienttab/exploretab';
 import Modern from '../../components/solution/modern/modern';
 import Quote from '../../components/solution/quote/quote';
 import SolutionHero from '../../components/solution/solutionhero/solutionhero';
-import { SOLUTION_ACCOUNTING_FIRMS_ID } from '../../constants/constant';
 import { isEmpty, removeEmptyElement } from '../../helpers/helpers';
-import { getAllSolutionWithSlug, getSolutionById, getSolutionBySlug } from '../../lib/contentful-solutions';
+import { getAllSolutionWithSlug, getSolutionBySlug } from '../../lib/contentful-solutions';
 import { MainWrap } from '../../components/solution/clienttab/styles';
 
 export default function Solution({ details }) {

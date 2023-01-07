@@ -42,7 +42,6 @@ const EnterPriseHero = styled.div`
 const LeftHero = styled.div`
   max-width: 712px;
   width: 100%;
-  /* padding-bottom: 895px; */
 `;
 const TitleSec = styled.div`
   h2 {

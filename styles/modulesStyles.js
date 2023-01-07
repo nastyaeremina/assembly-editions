@@ -99,7 +99,6 @@ const BillHeroSub = styled.div`
   }
 `;
 const FormHero = styled.div`
-  /* padding:90px 0 153px 0; */
   text-align: center;
   display: flex;
   justify-content: center;
@@ -126,7 +125,6 @@ const FormHero = styled.div`
   h2 {
     ${Heading2};
     color: ${({ theme }) => theme.colors.brownlight};
-    /* margin:45px 0 16px 0; */
     margin: 0;
   }
   p {
@@ -203,7 +201,6 @@ const KnowHero = styled.div`
   h2 {
     ${Heading2};
     color: ${({ theme }) => theme.colors.brownlight};
-    /* margin:45px 0 16px 0; */
     margin: 0;
   }
 `;
