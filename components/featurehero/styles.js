@@ -59,7 +59,7 @@ const BlockRight = styled.div`
   margin: 45px 0 100px 0;
 
   @media only screen and (max-width: 768px) {
-    margin: 0 0 60px 25px;
+    margin: 0 auto 60px;
   }
 `;
 
