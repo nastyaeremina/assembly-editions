@@ -208,8 +208,8 @@ export default function Home({ content }) {
                   <CardItem>
                     <Image src='/images/linkicon.svg' width={35} height={35} alt='link-icon' />
                     <CardTextView>
-                      <h5>New client activated</h5>
-                      <span>Company size &#60;= 50</span>
+                      <h5>Trigger</h5>
+                      <span>New client activated</span>
                     </CardTextView>
                     <AnimatedIcon className={"done card1"} />
                     <LineIcon>
