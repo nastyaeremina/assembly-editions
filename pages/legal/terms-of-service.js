@@ -1,8 +1,8 @@
-import { NextSeo } from 'next-seo';
 import { ReactMarkdown } from 'react-markdown/lib/react-markdown';
 import LegalFooter from '../../components/footer/legalfooter';
 import Navbar from '../../components/navbar/navbar';
-import { HEADER_LIST, TERMS_OF_SERVICE_ID } from '../../constants/constant';
+import SEO from '../../components/seo';
+import { HEADER_LIST, TERMS_OF_SERVICE_ID, TERMS_OF_SERVICE_SEO_ID } from '../../constants/constant';
 import { getSitemap } from '../../lib/contentful-sitemap';
 import { Container } from '../../styles/commonStyles';
 import { PrivacuHero, MainSection, SubData } from '../../styles/legalStyles';
@@ -10,10 +10,7 @@ import { PrivacuHero, MainSection, SubData } from '../../styles/legalStyles';
 export default function TermsOfService({ content }) {
   return (
     <>
-      <NextSeo
-        title='Create your portal, pick a plan later'
-        description='Try Copilot free for 14 days, no credit card required'
-      />
+      <SEO id={TERMS_OF_SERVICE_SEO_ID} />
       <Navbar isEnterPrice={true} headerIndex={HEADER_LIST.ENTERPRICE} />
       <MainSection>
         <PrivacuHero>

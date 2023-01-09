@@ -1,8 +1,8 @@
-import { NextSeo } from 'next-seo';
 import { ReactMarkdown } from 'react-markdown/lib/react-markdown';
 import LegalFooter from '../../components/footer/legalfooter';
 import Navbar from '../../components/navbar/navbar';
-import { HEADER_LIST, PRIVCY_POLICY_ID } from '../../constants/constant';
+import SEO from '../../components/seo';
+import { HEADER_LIST, PRIVACY_POLICY_SEO_ID, PRIVCY_POLICY_ID } from '../../constants/constant';
 import { getSitemap } from '../../lib/contentful-sitemap';
 import { BulletImage, Container, PrimaryButton } from '../../styles/commonStyles';
 import {
@@ -11,16 +11,13 @@ import {
   PostContent,
   PrivacyContent,
   PrivacyData,
-  FooterSection,
+  FooterSection
 } from '../../styles/resourcesStyles';
 
-export default function PrivacyPolicy({content}) {
+export default function PrivacyPolicy({ content }) {
   return (
     <>
-      <NextSeo
-        title='Create your portal, pick a plan later'
-        description='Try Copilot free for 14 days, no credit card required'
-      />
+      <SEO id={PRIVACY_POLICY_SEO_ID} />
       <Navbar isEnterPrice={true} headerIndex={HEADER_LIST.ENTERPRICE} />
       <MainSection>
         <PrivacuHero>
@@ -29,11 +26,11 @@ export default function PrivacyPolicy({content}) {
           </Container>
         </PrivacuHero>
         <PostContent>
-        <Container>
-        <PrivacyContent>
-          <ReactMarkdown>{content}</ReactMarkdown>
-          </PrivacyContent>
-         </Container>
+          <Container>
+            <PrivacyContent>
+              <ReactMarkdown>{content}</ReactMarkdown>
+            </PrivacyContent>
+          </Container>
         </PostContent>
       </MainSection>
       <FooterSection>
