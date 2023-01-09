@@ -58,7 +58,7 @@ export default function Footer({ isEnterPrice }) {
 
               <p>The new standard for modern services business.</p>
               <FooterSocialList>
-                <Link href='https://twitter.com/copilot'>
+                <Link href='https://twitter.com/copilot' aria-label={"Twitter"}>
                   <FooterSocialItem isEnterPrice={isEnterPrice}>
                     {isEnterPrice ? (
                       <svg width='24' height='24' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'>
@@ -91,7 +91,7 @@ export default function Footer({ isEnterPrice }) {
                     )}
                   </FooterSocialItem>
                 </Link>
-                <Link href='https://www.facebook.com/copilotplatforms'>
+                <Link href='https://www.facebook.com/copilotplatforms' aria-label={"Facebook"}>
                   <FooterSocialItem isEnterPrice={isEnterPrice}>
                     {isEnterPrice ? (
                       <svg width='24' height='24' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'>
@@ -124,7 +124,7 @@ export default function Footer({ isEnterPrice }) {
                     )}
                   </FooterSocialItem>
                 </Link>
-                <Link href='https://www.linkedin.com/company/copilotplatforms/'>
+                <Link href='https://www.linkedin.com/company/copilotplatforms/' aria-label={"Linkedin"}>
                   <FooterSocialItem isEnterPrice={isEnterPrice}>
                     {isEnterPrice ? (
                       <svg width='24' height='24' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'>
@@ -167,7 +167,7 @@ export default function Footer({ isEnterPrice }) {
                     )}
                   </FooterSocialItem>
                 </Link>
-                <Link href='https://www.youtube.com/channel/UCTeLqsY5Z0Hh7i-7iFQlpxA'>
+                <Link href='https://www.youtube.com/channel/UCTeLqsY5Z0Hh7i-7iFQlpxA' aria-label={"Youtube"}>
                   <FooterSocialItem isEnterPrice={isEnterPrice}>
                     {isEnterPrice ? (
                       <svg width='24' height='24' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'>
@@ -200,7 +200,7 @@ export default function Footer({ isEnterPrice }) {
                     )}
                   </FooterSocialItem>
                 </Link>
-                <Link href='https://www.instagram.com/copilotplatforms/'>
+                <Link href='https://www.instagram.com/copilotplatforms/' aria-label={"Instagram"}>
                   <FooterSocialItem isEnterPrice={isEnterPrice}>
                     {isEnterPrice ? (
                       <svg width='24' height='24' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'>
