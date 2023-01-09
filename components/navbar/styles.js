@@ -63,7 +63,7 @@ const CopilotLogo = styled.img`
   cursor: pointer;
 `;
 const NavMenu = styled.div`
-  display: flex;
+  display: none;
   align-items: center;
   justify-content: space-between;
   width: 100%;
@@ -81,10 +81,12 @@ const NavMenu = styled.div`
   }
   @keyframes slideInFromTop {
     0% {
-      transform: translateY(-100%);
+      opacity:0;
+      visibility: hidden;
     }
     100% {
-      transform: translateY(0);
+      visibility: visible;
+      opacity:1;
     }
   }
 `;
