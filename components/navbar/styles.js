@@ -822,6 +822,7 @@ const TopBar = styled.div`
   z-index: 9999;
 `;
 const AnnounceBar = styled.div`
+  top:0;
   padding: 10px 0;
   text-align: center;
   .learn-link,
