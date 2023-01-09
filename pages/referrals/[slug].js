@@ -1,8 +1,9 @@
-import { NextSeo } from 'next-seo';
 import { useEffect, useState } from 'react';
 import Layout from '../../components/layout';
 import Navbar from '../../components/navbar/navbar';
 import Referral from '../../components/referral';
+import SEO from '../../components/seo';
+import { REFERRAL_SEO_ID } from '../../constants/constant';
 import { isEmpty } from '../../helpers/helpers';
 
 export default function ReferralPage({ code }) {
@@ -25,10 +26,7 @@ export default function ReferralPage({ code }) {
 
   return (
     <>
-      <NextSeo
-        title='Create your portal, pick a plan later'
-        description='Try Copilot free for 14 days, no credit card required'
-      />
+      <SEO id={REFERRAL_SEO_ID} />
       <Layout>
         <Navbar />
         <Referral
