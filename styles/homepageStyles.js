@@ -877,23 +877,23 @@ const LineIcon = styled.div`
 }
 .path3 {
   animation: dash 2s linear infinite;
-  animation-delay:14.5s;
+  animation-delay:4.5s;
 }
 .path4{
-  animation: dash2 4s linear infinite;
-  animation-delay:14.5s;
+  animation: dash 2s reverse linear infinite;
+  animation-delay:4.5s;
 }
 .path5 {
   animation: dash 2s linear infinite;
-  animation-delay:19.5s;
+  animation-delay:9.5s;
 }
 .path6 {
   animation: dash 2s linear infinite;
-  animation-delay:24.5s;
+  animation-delay:9.5s;
 }
 .path7{
-  animation: dash2 4s linear infinite;
-  animation-delay:24.5s;
+  animation: dash 2s reverse linear infinite;
+  animation-delay:9.5s;
 }
 @keyframes dash{
   from {
@@ -902,13 +902,13 @@ const LineIcon = styled.div`
   0% {opacity:1}
   100%{opacity:1}
 }
-@keyframes dash2{
+/* @keyframes dash2{
   from {
-    stroke-dashoffset: 1000;
+    stroke-dashoffset: 100;
   }
   0% {opacity:1}
   100%{opacity:1}
-}
+} */
 `;
 const HelpSection = styled.div`
   padding: 50px 0;
@@ -1233,13 +1233,13 @@ const AnimatedIcon = styled(Iconview)`
 {
   animation-name: example;
   animation-duration: 5.5s;
-  animation-delay: 14.5s;
+  animation-delay: 4.5s;
 }
 &&.card3 .done-state{
   animation-name: example1;
   animation-duration: 5s;
   animation-iteration-count:infinite;
-  animation-delay: 19.5s;
+  animation-delay: 9.5s;
 }
 &&.card5 .default-state
 {
@@ -1250,13 +1250,13 @@ const AnimatedIcon = styled(Iconview)`
 {
   animation-name: example;
   animation-duration: 5.5s;
-  animation-delay: 19.5s;
+  animation-delay: 9.5s;
 }
 &&.card5 .done-state{
   animation-name: example1;
   animation-duration: 5s;
   animation-iteration-count:infinite;
-  animation-delay: 24.5s;
+  animation-delay: 14.5s;
 }
 &&.card6 .default-state
 {
@@ -1267,13 +1267,13 @@ const AnimatedIcon = styled(Iconview)`
 {
   animation-name: example;
   animation-duration: 5.5s;
-  animation-delay: 24.5s;
+  animation-delay: 9.5s;
 }
 &&.card6 .done-state{
   animation-name: example1;
   animation-duration: 5s;
   animation-iteration-count:infinite;
-  animation-delay: 29.5s;
+  animation-delay: 14.5s;
 }
 @keyframes example {
   0%  {opacity:1}

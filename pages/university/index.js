@@ -18,7 +18,8 @@ import {
   SchedulingApps,
   ExtensionCard,
   Overlay,
-  HoverButton
+  HoverButton,
+  EmptySection
 } from '../../styles/universityStyles';
 import { Container } from '../../styles/commonStyles';
 import Image from 'next/image';
@@ -28,10 +29,15 @@ import { isEmpty } from '../../helpers/helpers';
 import slugify from 'slugify';
 import SEO from '../../components/seo';
 import { UNIVERSITY_VIDEO_CATEGORY } from '../../constants/constant';
+import AppError from '../../components/apperror/error';
 
 let selected_category = null;
-export default function University({ universityVideosList }) {
+export default function University({ universityVideosList, allPosts }) {
   const [selected_category, setSelected_categry] = useState(null);
+  const [query, setQuery] = useState('');
+  const [searchResult, setSearchResult] = useState([]);
+  const [isSearch, setIsSearch] = useState(false);
+
   const handleScroll = useCallback(() => {
     if (!selected_category) return;
     setSelected_categry(null);
@@ -102,6 +108,54 @@ export default function University({ universityVideosList }) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [renderUniversityVideosView, universityVideosList, selected_category]);
 
+  const onSubmitSeachQuery = useCallback((e) => {
+    e.preventDefault();
+  }, []);
+
+  const searchQuery = useCallback(
+    (value) => {
+      const result = allPosts?.filter((item) => item?.name?.toLowerCase().includes(value?.toLowerCase())) || [];
+      if (result) setSearchResult(result);
+    },
+    [allPosts]
+  );
+
+  const onSeachQueryChange = useCallback(
+    (e) => {
+      const value = e.target.value;
+      setQuery(value);
+      let timeout;
+
+      if (value) {
+        if (!isSearch) setIsSearch(true);
+        if (timeout) clearTimeout(timeout);
+        timeout = setTimeout(() => {
+          searchQuery(value);
+        }, 300);
+      } else {
+        if (isSearch) setIsSearch(false);
+        setSearchResult([]);
+      }
+    },
+    [isSearch, searchQuery]
+  );
+
+  const renderResultView = useMemo(() => {
+    if (!isEmpty(searchResult)) {
+      return (
+        <ExtensionsSection key={`serchresult_view`}>
+          <h3> {`${searchResult?.length} Result for "${query}"`}</h3>
+          <FeatureMenu>{renderUniversityVideosView(searchResult)}</FeatureMenu>
+        </ExtensionsSection>
+      );
+    } else
+      return (
+        <EmptySection key={`searchEmptyview`}>
+          <AppError query={query} />
+        </EmptySection>
+      );
+  }, [query, renderUniversityVideosView, searchResult]);
+
   return (
     <>
       <SEO id={'2hMkBVQBYcMCmHLQyxzo8o'}></SEO>
@@ -119,10 +173,14 @@ export default function University({ universityVideosList }) {
             <FeatureWrap>
               <FeatureLeft>
                 <LeftWrap>
-                  <InputWrap>
+                  <InputWrap onSubmit={onSubmitSeachQuery}>
+                    <Image src='/images/searchicon.svg' alt='search-icon' width={20} height={20} />
+                    <Input placeholder='Find a video...' value={query} onChange={onSeachQueryChange} type='search' />
+                  </InputWrap>
+                  {/* <InputWrap>
                     <Image src='/images/searchicon.svg' alt='search-icon' width={20} height={20} />
                     <Input placeholder='Find a video...' />
-                  </InputWrap>
+                  </InputWrap> */}
                   {!isEmpty(universityVideosList) && (
                     <Catagory>
                       <h4>Categories</h4>
@@ -131,7 +189,11 @@ export default function University({ universityVideosList }) {
                   )}
                 </LeftWrap>
               </FeatureLeft>
-              <FeatureRight>{renderUniversityVideosListView}</FeatureRight>
+              {isSearch ? (
+                <FeatureRight>{renderResultView}</FeatureRight>
+              ) : (
+                <FeatureRight>{renderUniversityVideosListView}</FeatureRight>
+              )}
             </FeatureWrap>
           </Container>
         </UniversitySection>
@@ -173,6 +235,6 @@ export async function getStaticProps({ preview = false }) {
     ?.reverse();
 
   return {
-    props: { universityVideosList: newArray }
+    props: { universityVideosList: newArray, allPosts }
   };
 }
