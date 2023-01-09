@@ -63,12 +63,11 @@ const CopilotLogo = styled.img`
   cursor: pointer;
 `;
 const NavMenu = styled.div`
-  display: none;
+  display: flex;
   align-items: center;
   justify-content: space-between;
   width: 100%;
-  @media only screen and (max-width: 991px) {
-    display: flex;
+  @media only screen and (max-width: 991px) { 
     flex-direction: column;
     padding: 12px;
     position: absolute;
