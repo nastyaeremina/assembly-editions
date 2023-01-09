@@ -18,13 +18,33 @@ const BusinessSlider = ({ data }) => {
       {
         breakpoint: 1920,
         settings: {
-          slidesToShow: 4.5
+          slidesToShow: 4.1
+        }
+      },
+      {
+        breakpoint: 1600,
+        settings: {
+          slidesToShow: 3.6
         }
       },
       {
         breakpoint: 1440,
         settings: {
-          slidesToShow: 3.5
+          slidesToShow: 3.1
+        }
+      },
+      {
+        breakpoint: 1200,
+        settings: {
+          slidesToShow: 2.6,
+          slidesToScroll: 1
+        }
+      },
+      {
+        breakpoint: 1100,
+        settings: {
+          slidesToShow: 2.5,
+          slidesToScroll: 1
         }
       },
       {
