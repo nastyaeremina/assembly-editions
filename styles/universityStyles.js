@@ -1,6 +1,7 @@
 import styled, { css } from 'styled-components';
 import {
   Body2,
+  Body5,
   HeaderFont,
   Heading2,
   Heading3,
@@ -138,7 +139,7 @@ const Catagoryitem = styled.li`
     ${(props) =>
       props.isActive &&
       css`
-      color: ${({ theme }) => theme.colors.title};
+        color: ${({ theme }) => theme.colors.title};
       `}
   }
 `;
@@ -445,6 +446,22 @@ const YoutubeWrap = styled.div`
     opacity: 0;
   }
 `;
+
+const EmptySection = styled.div`
+  width: 100%;
+  padding-top: 40px;
+  display: flex;
+  flex-direction: column;
+  p {
+    ${Body5};
+    color: ${({ theme }) => theme.colors.title};
+    margin: 0;
+    letter-spacing: 0.02em;
+  }
+  @media only screen and (max-width: 749px) {
+    /* display: none; */
+  }
+`;
 export {
   UniversitySection,
   UniversityHero,
@@ -472,5 +489,6 @@ export {
   Overlay,
   HoverButton,
   OverLay,
-  YoutubeWrap
+  YoutubeWrap,
+  EmptySection
 };
