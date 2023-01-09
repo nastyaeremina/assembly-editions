@@ -816,13 +816,13 @@ const TextView = styled.div`
   cursor: pointer;
 `;
 const TopBar = styled.div`
+  top:0;
   background-color: ${({ theme }) => theme.colors.primary};
   width: 100%;
   position: fixed;
   z-index: 9999;
 `;
 const AnnounceBar = styled.div`
-  top:0;
   padding: 10px 0;
   text-align: center;
   .learn-link,
