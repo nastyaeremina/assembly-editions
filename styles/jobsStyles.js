@@ -508,13 +508,16 @@ const DetailLink = styled.div`
   }
   @media only screen and (max-width: 375px) {
     gap: 4px;
+    p{
+      ${HeaderFont}
+    }
   }
 `;
 const JobDetail = styled.div`
   display: flex;
   padding-top: 28px;
   gap: 46px;
-  @media only screen and (max-width: 375px) {
+  @media only screen and (max-width: 767px) {
     flex-wrap: wrap;
   }
 `;
@@ -533,10 +536,13 @@ const DetailLeft = styled.div`
       font-size: 40px;
       line-height: 46px;
     }
+    width:100% ;
+    max-width:100% ;
   }
   @media only screen and (max-width: 469px) {
     h3 {
       ${MobileH3}
+    margin: 0 0 16px 0;
     }
   }
 `;
@@ -568,8 +574,11 @@ const DetailWrap = styled.div`
 const ImageWrap = styled.div`
   display: flex;
   gap: 4px;
-  padding-bottom: 11px;
-  img {
+  padding-bottom: 12px;
+  a{
+  width:30px;
+  height:30px ;
+}  img {
     width: 30px;
     height: 30px;
     border-radius: 30px;
@@ -656,6 +665,7 @@ const DetailRIghtText = styled.div`
 
   b {
     font-weight: 400;
+    color: ${({ theme }) => theme.colors.title};
   }
 
   p {
@@ -691,7 +701,7 @@ const DetailRIghtText = styled.div`
       margin-top: 7px;
       font-weight: 400;
       font-size: 18px;
-      color: #131313;
+      color: ${({ theme }) => theme.colors.body};
     }
   }
   @media only screen and (max-width: 375px) {
