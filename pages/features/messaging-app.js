@@ -1,8 +1,5 @@
 import Layout from '/components/layout';
-import Image from 'next/image';
-import { NextSeo } from 'next-seo';
 import Navbar from '../../components/navbar/navbar';
-import { HeroSub, MsgHeroSection, BorderLine } from '../../styles/modulesStyles';
 import CTA from '../../components/cta/cta';
 import Tools from '../../components/tools/tool';
 import Content from '../../components/content/content';
@@ -45,11 +42,11 @@ export default function MessagingApp({ details }) {
         />
       </>
     );
-  }, []);
+  }, [details?.videoId]);
 
   return (
     <>
-      <SEO id={"3oNabM5iJI6OdftOBOzWTh"} />
+      <SEO id={'3oNabM5iJI6OdftOBOzWTh'} />
       <Layout>
         {renderHeroSection}
 
@@ -78,7 +75,7 @@ export default function MessagingApp({ details }) {
   );
 }
 
-export async function getServerSideProps({ preview = false }) {
+export async function getStaticProps({ preview = false }) {
   const details = (await getFeatureById(FEATURES_MESSAG_ID, preview)) ?? [];
   return {
     props: { details }

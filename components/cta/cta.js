@@ -1,9 +1,6 @@
-import Link from 'next/link';
-import { useEffect, useState } from 'react';
+import { useEffect} from 'react';
 import Image from 'next/image';
-import { CtaButton, PrimaryButton } from '../../styles/commonStyles';
 import { Gradient } from '../../public/js/Gradient.js';
-import { isEmpty } from '../../helpers/helpers';
 import { HEADER_LIST, NAVBAR_COLOR_LIST } from '../../constants/constant';
 import Button from '../button/button';
 import { CtaInner, CtaBtn, CtaAnimation, CtaWrap, LeftImg, MainCta, RightImg } from './styles';
@@ -27,19 +24,6 @@ export default function CTA({ moduleName, colorList }) {
             <CtaInner>
               <h2>Start, run, and grow your business</h2>
               <CtaBtn>
-                {/* <PrimaryButton
-                  textColor={
-                    colorList?.lightColor ? colorList?.lightColor : NAVBAR_COLOR_LIST[HEADER_LIST.ENTERPRICE].lightColor
-                  }
-                  backgroundColor={
-                    colorList?.primaryColor
-                      ? colorList?.primaryColor
-                      : NAVBAR_COLOR_LIST[HEADER_LIST.ENTERPRICE].primaryColor
-                  }>
-                  <Link className='paddingbtn' href='https://dashboard.copilot.com/onboarding'>
-                    Start Trial
-                  </Link>
-                </PrimaryButton> */}
                 <Button
                   className='paddingbtn'
                   bgColor={

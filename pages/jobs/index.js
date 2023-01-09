@@ -1,8 +1,6 @@
-import { NextSeo } from 'next-seo';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useCallback, useMemo, useState } from 'react';
-import CTA from '../../components/cta/cta';
 import FAQ from '../../components/faq/faq';
 import Layout from '../../components/layout';
 import Navbar from '../../components/navbar/navbar';
@@ -350,7 +348,7 @@ export default function Jobs({ jobList, jobImagesList, jobBlogPostList }) {
   );
 }
 
-export async function getServerSideProps({ preview = false }) {
+export async function getStaticProps({ preview = false }) {
   const jobImagesList = (await getAllJobImages(preview)) ?? [];
   const jobBlogPostList = (await getAllJobBlogPosts(preview)) ?? [];
 

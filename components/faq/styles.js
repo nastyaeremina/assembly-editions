@@ -1,25 +1,10 @@
-import { Body } from 'baseui/toast/styled-components';
 import styled, { css } from 'styled-components';
-import { Body1, Heading, Heading2, Heading3, Heading4 } from '../../styles/styles';
+import { Body1,  Heading3, Heading4 } from '../../styles/styles';
 
 const FaqSection = styled.div`
   padding: 100px 0 60px 0;
-  .cy {
-    /* padding-bottom: 40px; */
-    /* transition: all 0.3s ease-in-out; */
-    /* &[aria-expanded='true'] {
-      padding-bottom: 20px;
-    } */
-    /* :last-child {
-      padding-bottom: 0;
-    } */
-  }
-  /* .ao {
-    padding-bottom: 0;
-  } */
   li {
     padding-bottom: 0;
-    /* transition: all 0.3s ease-in-out; */
     :last-child {
       border-bottom: 0;
     }

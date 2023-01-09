@@ -268,19 +268,13 @@ export default function Footer({ isEnterPrice }) {
               <FotterMenuLeft>
                 <FooterMenu isEnterPrice={isEnterPrice}>
                   {renderSolutionList}
-                  {/* <p>Solutions</p>
-                  <FooterMenuList isEnterPrice={isEnterPrice}>
-                    <Link href='/solutions/accounting-firms'>Accounting firms</Link>
-                    <Link href='/solutions/marketing-agencies'>Marketing agencies</Link>
-                    <Link href='/solutions/startups'>Startups</Link>
-                  </FooterMenuList> */}
                   <FooterMenu className='padding' isEnterPrice={isEnterPrice}>
                     <p>Company</p>
                     <FooterMenuList isEnterPrice={isEnterPrice}>
                       <Link href='/copilot-plus'>Enterprise</Link>
                       <Link href='/pricing'>Pricing</Link>
                       <Link href='/jobs'>Jobs</Link>
-                      <Link href='/brands'>Brand</Link>
+                      <Link href='/brand'>Brand</Link>
                     </FooterMenuList>
                   </FooterMenu>
                 </FooterMenu>
@@ -316,12 +310,6 @@ export default function Footer({ isEnterPrice }) {
                 </FooterMenu>
                 <FooterMenu className='padding' isEnterPrice={isEnterPrice}>
                   {renderSolutionList}
-                  {/* <p>Solutions</p>
-                  <FooterMenuList isEnterPrice={isEnterPrice}>
-                    <Link href='/solutions/accounting-firms'>Accounting firms</Link>
-                    <Link href='/solutions/marketing-agencies'>Marketing agencies</Link>
-                    <Link href='/solutions/startups'>Startups</Link>
-                  </FooterMenuList> */}
                 </FooterMenu>
               </FotterMenuMobile>
               <FotterMenuMobile>
@@ -331,7 +319,7 @@ export default function Footer({ isEnterPrice }) {
                     <Link href='/copilot-plus'>Enterprise</Link>
                     <Link href='/pricing'>Pricing</Link>
                     <Link href='/jobs'>Jobs</Link>
-                    <Link href='/brands'>Brand</Link>
+                    <Link href='/brand'>Brand</Link>
                   </FooterMenuList>
                 </FooterMenu>
                 <FooterMenu className='padding' isEnterPrice={isEnterPrice}>

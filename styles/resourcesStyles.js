@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { Body4, Heading2, Heading4, Heading5, Heading6, LinkTxt, MobileH2 } from './styles';
+import { Body4, Heading2, Heading4, Heading6, LinkTxt, MobileH2 } from './styles';
 const MainSection = styled.div``;
 const PrivacuHero = styled.div`
   background-color: ${({ theme }) => theme.colors.greendark};
@@ -111,7 +111,6 @@ const PrivacyData = styled.div`
     background-color: #7ddaa0;
   }
 `;
-const PrivacyContactData = styled.div``;
 const ContentInfo = styled.div`
   padding: 28px 0 100px 0;
   @media only screen and (max-width: 749px) {
@@ -171,7 +170,6 @@ export {
   PostContent,
   PrivacyContent,
   PrivacyData,
-  PrivacyContactData,
   ContentInfo,
   InfoWrap,
   InfoLink,

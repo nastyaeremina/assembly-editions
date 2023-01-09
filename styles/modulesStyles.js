@@ -1,25 +1,6 @@
 import styled from 'styled-components';
 import { Heading2 } from './styles';
 
-const MsgHeroSection = styled.div`
-  background-color: ${({ theme }) => theme.colors.browndark};
-  text-align: center;
-  .gap {
-    gap: 52px;
-    padding: 235px 0;
-  }
-  .msgheropadding {
-    padding: 227px 0 178px 0;
-    gap: 11px;
-  }
-  .filepadding {
-    padding: 266px 0 206px 0;
-    gap: 55px;
-  }
-  .billpadding {
-    padding: 264px 0 206px 0;
-  }
-`;
 const KnowledgeHero = styled.div`
   background-color: ${({ theme }) => theme.colors.orangedark};
   text-align: center;
@@ -79,44 +60,6 @@ const MessegeItem = styled.div`
     margin: 0;
   }
 `;
-const HeroSub = styled.div`
-  text-align: center;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 20px;
-  .filetext {
-    color: ${({ theme }) => theme.colors.purplelight};
-  }
-  .fileimage {
-    position: absolute;
-    right: -17px;
-  }
-  .messsegeimg {
-    gap: 11px;
-  }
-
-  span {
-    ${Heading2};
-    color: ${({ theme }) => theme.colors.brownlight};
-    display: flex;
-    align-items: center;
-    margin: 0;
-  }
-  h2 {
-    ${Heading2};
-    color: ${({ theme }) => theme.colors.brownlight};
-    /* margin:45px 0 16px 0; */
-    margin: 0;
-  }
-  p {
-    display: flex;
-    ${Heading2};
-    color: ${({ theme }) => theme.colors.purplemidlight};
-    margin: 0;
-    align-items: center;
-  }
-`;
 const BillHeroSub = styled.div`
   text-align: center;
   display: flex;
@@ -156,7 +99,6 @@ const BillHeroSub = styled.div`
   }
 `;
 const FormHero = styled.div`
-  /* padding:90px 0 153px 0; */
   text-align: center;
   display: flex;
   justify-content: center;
@@ -183,7 +125,6 @@ const FormHero = styled.div`
   h2 {
     ${Heading2};
     color: ${({ theme }) => theme.colors.brownlight};
-    /* margin:45px 0 16px 0; */
     margin: 0;
   }
   p {
@@ -260,7 +201,6 @@ const KnowHero = styled.div`
   h2 {
     ${Heading2};
     color: ${({ theme }) => theme.colors.brownlight};
-    /* margin:45px 0 16px 0; */
     margin: 0;
   }
 `;
@@ -283,12 +223,8 @@ const ImageWrap = styled.div`
   justify-content: flex-start;
 `;
 const BottomFunction = styled.div``;
-const BorderLine = styled.div`
-  position: relative;
-`;
+
 export {
-  MsgHeroSection,
-  HeroSub,
   HeroTop,
   MessegeItem,
   BillHeroSub,
@@ -305,5 +241,4 @@ export {
   FileMain,
   ImageWrap,
   BottomFunction,
-  BorderLine
 };

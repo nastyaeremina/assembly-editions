@@ -48,10 +48,12 @@ export default function NewIndex({faq}) {
 
   const setYearly = useCallback(() => {
     Yearly(true);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [true]);
 
   const setMonthly = useCallback(() => {
     Yearly(false);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [false]);
 
   return (
@@ -214,7 +216,6 @@ export default function NewIndex({faq}) {
                     fontColor={'#000000'}
                     borderColor={'#000000'}
                     text={isShowFeature ? 'Show plan details' : 'Hide plan details'}
-                    // href={'/book-demo'}
                     hoverColor={'rgba(0, 0, 0, 0.5)'}
                   />
                 </PlanButton>
@@ -281,7 +282,6 @@ export default function NewIndex({faq}) {
                     </td>
                     <td>
                       <span>20,000</span>
-                      {/* <span className="spanpadding">100</span> */}
                     </td>
                   </tr>
                   <tr>
@@ -301,7 +301,6 @@ export default function NewIndex({faq}) {
                     </td>
                     <td>
                       <span>20TB</span>
-                      {/* <span className="spanpadding">100</span> */}
                     </td>
                   </tr>
                   <tr className='tablecolor'>
@@ -508,21 +507,6 @@ export default function NewIndex({faq}) {
                         seamlessly check out, pay via credit card or ACH, access invoices, and manage payment methods.
                         Syncs with QuickBooks.
                       </p>
-                      {/* <LearnLink>
-                        <Link href="/">
-                         
-                            Learn More
-                            <ImgMargin>
-                              <Image
-                                src="/images/right.svg"
-                                alt="main-logo"
-                                height={9}
-                                width={6}
-                              />
-                            </ImgMargin>
-                      
-                        </Link>
-                      </LearnLink> */}
                     </td>
                     <td>
                       <Image src='/images/checkmark.svg' alt='main-logo' height={20} width={20} />
@@ -686,7 +670,6 @@ export default function NewIndex({faq}) {
                     </td>
                     <td>
                       <span>3.1% + $0.30</span>
-                      {/* <span className="spanpadding">100</span> */}
                     </td>
                   </tr>
                   <tr>

@@ -18,7 +18,6 @@ import Button from '../button/button';
 import {
   NavbarWrapper,
   NavbarInner,
-  SalescampLogo,
   CopilotLogo,
   NavMenu,
   NavigationBlock,
@@ -63,7 +62,6 @@ export default function Navbar({ isModule, headerIndex, isEnterPrice }) {
   const [isOpenFeatureSubMenu, setIsOpenFeatureSubMenu] = useState(false);
   const [isOpenCompanySubMenu, setIsOpenCompanySubMenu] = useState(false);
   const [isOpenResoursesSubMenu, setIsOpenResoursesSubMenu] = useState(false);
-  // const [topbarContent,setTopBarContent]=useState(undefined)
   const [colorList, setColorList] = useState(NAVBAR_COLOR_LIST[0]);
   const closeSubMenu = useCallback(() => {
     if (isOpenFeatureSubMenu) {
@@ -76,8 +74,16 @@ export default function Navbar({ isModule, headerIndex, isEnterPrice }) {
   }, [isOpenCompanySubMenu, isOpenFeatureSubMenu, isOpenResoursesSubMenu]);
 
   const handleMobileMenu = useCallback(() => {
+    const body = document.querySelector("body");
+    if(isOpenMobileMenu)
+    {
+      body.style.overflow = "auto";
+    }
+    else
+    {
+      body.style.overflow = "hidden";
+    }
     setIsOpenMobileMenu(!isOpenMobileMenu);
-
     closeSubMenu();
   }, [closeSubMenu, isOpenMobileMenu]);
 
@@ -86,30 +92,10 @@ export default function Navbar({ isModule, headerIndex, isEnterPrice }) {
   const handleScroll = () => {
     setClientWindowHeight(window.scrollY);
   };
-
-  // const loadData = useCallback(async () => {
-  //     try {
-  //       const data = (await getSitemap(TOP_BAR_CONTENT_ID)) ?? '';
-
-  //     if(!isEmpty(data?.content)){
-
-  //       const contentList = data?.content?.split(/[\[\]\(\)]/)
-
-  //       const item = {
-  //         title:contentList?.[1],
-  //         url:contentList?.[3]
-  //       }
-  //       setTopBarContent(item)
-  //     }
-  //     } catch (error) {
-  //       console.log("error",error);
-  //     }
-  //   }, [])
   useEffect(() => {
-    // loadData()
-
+    const body = document.querySelector("body");
+    body.style.overflow = "auto";
     window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   if (clientWindowHeight > 10) {
@@ -337,12 +323,11 @@ export default function Navbar({ isModule, headerIndex, isEnterPrice }) {
                 </MenuWrap>
               </ListLi>
               <ListLi>
-                <MenuWrap href='/brands'>
+                <MenuWrap href='/brand'>
                   <LeftImg>
                     <svg width='16' height='16' viewBox='0 0 16 16' fill='none' xmlns='http://www.w3.org/2000/svg'>
                       <mask
                         id='mask0_1874_104897'
-                        // style="mask-type:alpha"
                         maskUnits='userSpaceOnUse'
                         x='0'
                         y='0'
@@ -613,7 +598,6 @@ export default function Navbar({ isModule, headerIndex, isEnterPrice }) {
               </AnnounceBar>
             </Container>
           </TopBar>
-          <Dspace>test </Dspace>
         </div>
       </>
     );
@@ -624,12 +608,10 @@ export default function Navbar({ isModule, headerIndex, isEnterPrice }) {
       {renderTopBarView}
       <NavbarWrapper
         className={isScrollPage ? 'scroll' : ''}
-        isScrollPage={isScrollPage}
         colorList={colorList}
         isAnnouncebar={!isEmpty(topbarContent)}>
         <Container>
           <NavbarInner>
-            <Link href='/'>
               {isModule ? (
                 mobile ? (
                   isOpenResoursesSubMenu || isOpenCompanySubMenu || isOpenFeatureSubMenu ? (
@@ -640,10 +622,10 @@ export default function Navbar({ isModule, headerIndex, isEnterPrice }) {
                       <span>Back</span>
                     </BackWrap>
                   ) : (
-                    <SalescampLogo loading='lazy' width='96' height='21' src={MobileWhiteLogos.src} />
+                    <Link href='/'><CopilotLogo loading='lazy' width='96' height='21' src={MobileWhiteLogos.src} /></Link>
                   )
                 ) : (
-                  <SalescampLogo loading='lazy' width='143' height='31' src={WhiteLogos.src} />
+                  <Link href='/'><CopilotLogo loading='lazy' width='143' height='31' src={WhiteLogos.src} /></Link>
                 )
               ) : isEnterPrice ? (
                 mobile ? (
@@ -655,10 +637,10 @@ export default function Navbar({ isModule, headerIndex, isEnterPrice }) {
                       <span>Back</span>
                     </BackWrap>
                   ) : (
-                    <SalescampLogo loading='lazy' width='96' height='21' src={MobileGreenLogos.src} />
+                    <Link href='/'><CopilotLogo loading='lazy' width='96' height='21' src={MobileGreenLogos.src} /></Link>
                   )
                 ) : (
-                  <SalescampLogo loading='lazy' width='143' height='31' src={GreenLogos.src} />
+                  <Link href='/'><CopilotLogo loading='lazy' width='143' height='31' src={GreenLogos.src} /></Link>
                 )
               ) : mobile ? (
                 isOpenResoursesSubMenu || isOpenCompanySubMenu || isOpenFeatureSubMenu ? (
@@ -669,12 +651,12 @@ export default function Navbar({ isModule, headerIndex, isEnterPrice }) {
                     <span>Back</span>
                   </BackWrap>
                 ) : (
-                  <SalescampLogo loading='lazy' width='96' height='21' src={MobileBlackLogos.src} />
+                  <Link href='/'><CopilotLogo loading='lazy' width='96' height='21' src={MobileBlackLogos.src} /></Link>
                 )
               ) : (
-                <SalescampLogo loading='lazy' width='143' height='31' src={CopilotLogos.src} />
+                <Link href='/'><CopilotLogo loading='lazy' width='143' height='31' src={CopilotLogos.src} /> </Link>
               )}
-            </Link>
+           
             {isOpenMobileMenu ? (
               <OverLayBlock>
                 <MobileNavigation></MobileNavigation>
@@ -699,12 +681,10 @@ export default function Navbar({ isModule, headerIndex, isEnterPrice }) {
                 <FirstLine
                   isOpenMobileMenu={isOpenMobileMenu}
                   isEnterPrice={isEnterPrice}
-                  isScrollPage={isScrollPage}
                   textColor={colorList?.fontColor}></FirstLine>
                 <ThirdLine
                   isOpenMobileMenu={isOpenMobileMenu}
                   isEnterPrice={isEnterPrice}
-                  isScrollPage={isScrollPage}
                   textColor={colorList?.fontColor}></ThirdLine>
               </MobileMenu>
             </MobileRight>

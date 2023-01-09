@@ -182,7 +182,7 @@ export default function Apps({ allPosts, featuredApps, allCategoryWithPost, data
     } else
       return (
         <ExtensionsSection key={`searchEmptyview`}>
-          <AppError />
+          <AppError query={query} />
         </ExtensionsSection>
       );
   }, [query, renderPartnerAppsView, searchResult]);
@@ -302,7 +302,7 @@ export default function Apps({ allPosts, featuredApps, allCategoryWithPost, data
   );
 }
 
-export async function getServerSideProps({ preview = false }) {
+export async function getStaticProps({ preview = false }) {
   const allPosts = (await getAllPartnerApps(APPS_TYPE.PARTNER_APP, preview)) ?? [];
   const allCategory = (await getAllParrtnerAppsCategories(preview)) ?? [];
   const dataIntegrationApps = (await getAllPartnerApps(APPS_TYPE.DATA_INTEGRATION, preview)) ?? [];

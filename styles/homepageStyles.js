@@ -1,4 +1,5 @@
 import styled, { css } from 'styled-components';
+import Iconview from '../components/iconview/iconview';
 import {
   Body1,
   Body3,
@@ -18,7 +19,6 @@ import {
   HeaderFont,
   MobileH4
 } from './styles';
-import Iconview from '../components/iconview/iconview';
 
 const HomeMain = styled.div`
   background-color: ${({ theme }) => theme.colors.bgpages};
@@ -176,35 +176,15 @@ const FeatureItem = styled.li`
     padding: 0;
   }
 `;
-const FeatureLinkBlock = styled.div``;
 
 const HeroSection = styled.div`
   width: 100%;
   padding: 224px 0 50px 0;
   text-align: center;
-  /* background-image: url("/images/Frame-1-figma-1.webp"); */
-  /* background-position: center;
-  background-size: cover;
-  background-repeat: no-repeat; */
   overflow: hidden;
   @media only screen and (max-width: 749px) {
     padding: 148px 0 40px 0;
   }
-`;
-
-const HeroMainBlock = styled.div`
-  /* display: flex;
-  align-items: center;
-  margin-bottom: 100px;
-  @media only screen and (max-width: 991px) {
-    flex-direction: column;
-  }
-  @media only screen and (max-width: 768px) {
-    margin-bottom: 60px;
-  }
-  @media only screen and (max-width: 991px) {
-    margin-bottom: 40px;
-  } */
 `;
 
 const HeroLeft = styled.div`
@@ -535,13 +515,13 @@ const TabRow = styled.div`
     }
     .b4 {
       ${(props) =>
-        props.textColor &&
-        css`
+    props.textColor &&
+    css`
           color: ${props.textColor};
         `}
       ${(props) =>
-        props.backColor &&
-        css`
+    props.backColor &&
+    css`
           background-color: ${props.bgColor};
         `}
     }
@@ -556,15 +536,12 @@ const TabRow = styled.div`
   .bd {
     :hover {
       ${(props) =>
-        props.textColor &&
-        css`
+    props.textColor &&
+    css`
           color: ${props.textColor};
         `}
     }
   }
-  /* .b7:hover {
-    background-color: rgb(18, 8, 0);
-  } */
   .ml0 {
   }
   .tabsecond {
@@ -955,12 +932,7 @@ const HelpMain = styled.div`
 `;
 const HelpLeft = styled.div`
   padding: 60px;
-  /* max-width: 779px;
-  width: 100%; */
-
   h3 {
-    /* max-width: 657px; */
-    /* width: 100%; */
     ${Heading3}
     color: ${({ theme }) => theme.colors.title};
     margin: 0 0 40px 0;
@@ -1032,7 +1004,6 @@ const HelpLeftSub = styled.div`
     fill: none;
     stroke: currentColor;
     position: relative;
-    /* top: 1px; */
     margin-left: var(--arrowSpacing);
     stroke-width: 2px;
     fill: none;
@@ -1161,11 +1132,9 @@ const ImageHover = styled.div`
     -ms-animation: fadeIn ease 3s;
   }
   :hover .show {
-    /* display: none; */
     opacity: 0;
   }
   :hover .hide {
-    /* display: block; */
     opacity: 1;
     position: absolute;
     top: 0;
@@ -1174,7 +1143,6 @@ const ImageHover = styled.div`
     visibility: visible;
   }
   .hide {
-    /* display: none; */
     opacity: 0;
     position: absolute;
     top: 0;
@@ -1326,13 +1294,11 @@ export {
   SectionHeading,
   FeatureBlock,
   FeatureItem,
-  FeatureLinkBlock,
   FeatureImg,
   FeatureCardTitle,
   LearnMoreLink,
   FeatureWrapBlock,
   HeroSection,
-  HeroMainBlock,
   HeroLeft,
   HeroHeading,
   Para,

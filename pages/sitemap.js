@@ -1,73 +1,72 @@
 import { NextSeo } from 'next-seo';
-import Image from 'next/image';
 import Link from 'next/link';
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import Layout from '../components/layout';
 import Navbar from '../components/navbar/navbar';
-import { HEADER_LIST, SITEMAP_CONTENT_ID } from '../constants/constant';
+import SEO from '../components/seo';
+import { HEADER_LIST, SITEMAP_CONTENT_ID, SITEMAP_SEO_ID } from '../constants/constant';
 import { isEmpty, removeEmptyElement } from '../helpers/helpers';
 import { getSitemap } from '../lib/contentful-sitemap';
 import { Container } from '../styles/commonStyles';
-import {
-  MainSection,
-  PrivacuHero,
-  ContentInfo,
-  InfoWrap,
-  InfoLink,
-  PrivacyContactData
-} from '../styles/resourcesStyles';
+import { MainSection, PrivacuHero, ContentInfo, InfoWrap, InfoLink } from '../styles/resourcesStyles';
 
 export default function Privacy({ content }) {
-  const [sitemap, setSitemap] = useState([])
+  const [sitemap, setSitemap] = useState([]);
   const loadData = useCallback(() => {
     if (!isEmpty(content)) {
-      const newContent="\n"+content
-      const list = newContent?.split('\n#')
-      list?.shift()
-      let sitemapList = []
-      list?.forEach(item => {
+      const newContent = '\n' + content;
+      const list = newContent?.split('\n#');
+      list?.shift();
+      let sitemapList = [];
+      list?.forEach((item) => {
+        const newItemList = removeEmptyElement(item?.split('\n'));
 
-        const newItemList = removeEmptyElement(item?.split("\n"))
-      
-        const title =newItemList?.[0]
-        newItemList?.shift()
-        const mapList = []
-        newItemList?.forEach(element => {
-          const newObject = element?.split(/[\[\]\(\)]/)
-          const url= newObject[3]?.split('www.copilot.com')?.[1] || newObject[3]
-          mapList?.push({ name: newObject[1], url,isExternal:url === newObject[3]})
-
-        })
-        sitemapList?.push(  { title , list: mapList})
-        setSitemap(sitemapList)
-      })
-     
+        const title = newItemList?.[0];
+        newItemList?.shift();
+        const mapList = [];
+        newItemList?.forEach((element) => {
+          const newObject = element?.split(/[\[\]\(\)]/);
+          const url = newObject[3]?.split('www.copilot.com')?.[1] || newObject[3];
+          mapList?.push({ name: newObject[1], url, isExternal: url === newObject[3] });
+        });
+        sitemapList?.push({ title, list: mapList });
+        setSitemap(sitemapList);
+      });
     }
-  }, [content])
+  }, [content]);
 
   useEffect(() => {
-    loadData()
-  }, [loadData])
+    loadData();
+  }, [loadData]);
 
   const renderSitemapView = useMemo(() => {
-    if (isEmpty(sitemap)) return null
+    if (isEmpty(sitemap)) return null;
     return sitemap?.map((item, index) => {
-      return <InfoWrap key={`sitemap_index_${index}`}>
-      <h4>{item?.title}</h4>
-      {!isEmpty(item?.list) &&  ( <InfoLink>
-        {item?.list?.map((listItem,listIndex)=> {
-          return <Link href={listItem?.url} key={`sitemap_list_index_${listIndex}`} target={listItem?.isExternal ?'_blank':'_self'}>{listItem?.name}</Link>;} )}
-      </InfoLink>)}
-    </InfoWrap>
-    })
-  }, [sitemap])
+      return (
+        <InfoWrap key={`sitemap_index_${index}`}>
+          <h4>{item?.title}</h4>
+          {!isEmpty(item?.list) && (
+            <InfoLink>
+              {item?.list?.map((listItem, listIndex) => {
+                return (
+                  <Link
+                    href={listItem?.url}
+                    key={`sitemap_list_index_${listIndex}`}
+                    target={listItem?.isExternal ? '_blank' : '_self'}>
+                    {listItem?.name}
+                  </Link>
+                );
+              })}
+            </InfoLink>
+          )}
+        </InfoWrap>
+      );
+    });
+  }, [sitemap]);
 
   return (
     <>
-      <NextSeo
-        title='Create your portal, pick a plan later'
-        description='Try Copilot free for 14 days, no credit card required'
-      />
+      <SEO id={SITEMAP_SEO_ID} />
       <Layout>
         <Navbar isEnterPrice={true} headerIndex={HEADER_LIST.ENTERPRICE} />
         <MainSection>
@@ -77,15 +76,14 @@ export default function Privacy({ content }) {
             </Container>
           </PrivacuHero>
           <ContentInfo>
-            <Container>
-              {renderSitemapView}
-            </Container>
+            <Container>{renderSitemapView}</Container>
           </ContentInfo>
         </MainSection>
       </Layout>
     </>
   );
 }
+
 export async function getStaticProps({ preview = false }) {
   const content = (await getSitemap(SITEMAP_CONTENT_ID)) ?? '';
   return {

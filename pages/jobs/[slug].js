@@ -1,4 +1,3 @@
-import { NextSeo } from 'next-seo';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useMemo } from 'react';
@@ -16,11 +15,6 @@ import {
   DetailWrap,
   ImageWrap,
   DetailRight,
-  DetailText,
-  DeatilTextSub,
-  DetailInner,
-  DetailInnerSub,
-  BulletImage,
   DetailRIghtText,
   DetailPosition
 } from '../../styles/jobsStyles';
@@ -48,7 +42,12 @@ export default function JobsDetail({ jobDetail }) {
 
   return (
     <>
-      <SEO seoData={{seoTitle:`Copilot Jobs • ${jobDetail?.name}` ,description:`Join the Copilot team as a ${jobDetail?.name}.`}}/>
+      <SEO
+        seoData={{
+          seoTitle: `Copilot Jobs • ${jobDetail?.name}`,
+          description: `Join the Copilot team as a ${jobDetail?.name}.`
+        }}
+      />
 
       <Layout>
         <Navbar />
@@ -99,7 +98,7 @@ export default function JobsDetail({ jobDetail }) {
   );
 }
 
-export async function getServerSideProps({ params, preview = false }) {
+export async function getStaticProps({ params, preview = false }) {
   const jobDetail = (await getJobDetails(params?.slug)) || {};
 
   return {
@@ -107,10 +106,10 @@ export async function getServerSideProps({ params, preview = false }) {
   };
 }
 
-export async function getServerSidePaths() {
+export async function getStaticPaths() {
   const allPosts = (await getAllJobsWithSlug()) ?? [];
   return {
-    paths: allPosts?.map((slug) => `${slug}`) ?? [],
+    paths: allPosts?.map(({ slug }) => `/jobs/${slug}`) ?? [],
 
     fallback: true
   };

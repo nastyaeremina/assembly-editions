@@ -7,9 +7,7 @@ import { Provider as StyletronProvider } from 'styletron-react';
 import { useCallback, useEffect } from 'react';
 import store from '../store/store';
 import { styletron } from '../styletron';
-
 import SEO from '../next-seo.config';
-import { getSitemap } from '../lib/contentful-sitemap';
 
 const GlobalStyle = createGlobalStyle`
   html {
@@ -96,7 +94,6 @@ export default function MyApp({ Component, pageProps }) {
   useEffect(() => {
     loadData();
   }, [loadData]);
-
   return (
     <>
       <Provider store={store}>

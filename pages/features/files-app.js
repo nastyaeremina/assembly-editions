@@ -2,22 +2,6 @@ import Layout from '/components/layout';
 import Image from 'next/image';
 import { NextSeo } from 'next-seo';
 import Navbar from '../../components/navbar/navbar';
-import {
-  BillMain,
-  BillHeroSub,
-  MessegeItem,
-  ContractHero,
-  KnowHero,
-  ContractWrap,
-  FileMain,
-  HeroSub,
-  FileWrap,
-  FormMain,
-  FormHero,
-  FormWrap,
-  KnowledgeHero,
-  MsgHeroSection
-} from '../../styles/modulesStyles';
 import CTA from '../../components/cta/cta';
 import Tools from '../../components/tools/tool';
 import Content from '../../components/content/content';
@@ -59,11 +43,11 @@ export default function MessagingApp({ details }) {
         />
       </>
     );
-  }, []);
+  }, [details?.videoId]);
 
   return (
     <>
-      <SEO id={"4HCfvde1roSplxIYh7Ab3Y"} />
+      <SEO id={'4HCfvde1roSplxIYh7Ab3Y'} />
       <Layout>
         {renderHeroSection}
         <Content />
@@ -89,7 +73,7 @@ export default function MessagingApp({ details }) {
   );
 }
 
-export async function getServerSideProps({ preview = false }) {
+export async function getStaticProps({ preview = false }) {
   const details = (await getFeatureById(FEATURES_FILES_ID, preview)) ?? [];
   return {
     props: { details }

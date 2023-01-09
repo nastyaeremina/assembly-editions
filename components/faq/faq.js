@@ -1,11 +1,10 @@
-import Link from 'next/link';
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { useStyletron } from 'baseui';
-import { Accordion, Panel } from 'baseui/accordion';
+import {  Panel } from 'baseui/accordion';
 import { isEmpty } from '../../helpers/helpers';
 import { Container } from '../../styles/commonStyles';
 import { getFAQs } from '../../lib/contentful-faq';
-import { FaqSection, FaqWrap, FaqTitle, FaqPanel, DivFAQ, FAQAnsware } from './styles';
+import { FaqSection, FaqTitle, DivFAQ, FAQAnsware } from './styles';
 
 function CustomPanel(props) {
   return <Panel {...props} />;

@@ -1,8 +1,5 @@
 import Layout from '/components/layout';
-import Image from 'next/image';
-import { NextSeo } from 'next-seo';
 import Navbar from '../../components/navbar/navbar';
-import { MessegeItem, KnowHero, KnowledgeHero } from '../../styles/modulesStyles';
 import CTA from '../../components/cta/cta';
 import Tools from '../../components/tools/tool';
 import Content from '../../components/content/content';
@@ -20,7 +17,6 @@ import {
   NAVBAR_COLOR_LIST
 } from '../../constants/constant';
 import { useMemo } from 'react';
-import { getTabPosts } from '../../lib/contentful-tabs';
 import { BottomFunction } from '../../components/content/styles';
 import TabView from '../../components/tab/tab';
 import { getFeatureById } from '../../lib/contentful-features';
@@ -45,11 +41,11 @@ export default function MessagingApp({ details }) {
         />
       </>
     );
-  }, []);
+  }, [details?.videoId]);
 
   return (
     <>
-      <SEO id={"nauZdYlDqK8LKHYJdkcnt"} />
+      <SEO id={'nauZdYlDqK8LKHYJdkcnt'} />
       <Layout>
         {renderHeroSection}
         <Content />
@@ -76,7 +72,7 @@ export default function MessagingApp({ details }) {
   );
 }
 
-export async function getServerSideProps({ preview = false }) {
+export async function getStaticProps({ preview = false }) {
   const details = (await getFeatureById(FEATURES_HELPDESK_ID, preview)) ?? [];
   return {
     props: { details }

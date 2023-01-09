@@ -7,9 +7,9 @@ const NavbarWrapper = styled.div`
   left: 0;
   ${(props) =>
     props.isAnnouncebar ?
-    css`
+      css`
     top: 44px;
-    `:  css`
+    `: css`
     top: 0px;
     `}
  
@@ -34,17 +34,17 @@ const NavbarWrapper = styled.div`
   @media only screen and (max-width: 991px 748) {
     padding: 24px 0;
     ${(props) =>
-      props.isAnnouncebar &&
-      css`
+    props.isAnnouncebar &&
+    css`
       top: 34px;
       `}
   }
   @media only screen and (max-width: 748px) {
     padding: 16px 0;
     ${(props) =>
-      props.isAnnouncebar &&
-      css`
-      top: 44px;
+    props.isAnnouncebar &&
+    css`
+      top: 34px;
       `}
   }
 
@@ -59,62 +59,34 @@ const NavbarInner = styled.div`
     gap: unset;
   }
 `;
-const SalescampLogo = styled.img`
-  cursor: pointer;
-`;
 const CopilotLogo = styled.img`
   cursor: pointer;
-`;
-const TrySalescampBlock = styled.div`
-  display: none;
-  ${(props) =>
-    props.BlogDetails &&
-    css`
-      display: block;
-    `}
-  ${(props) =>
-    props.BlogDetails &&
-    props.mobile &&
-    css`
-      display: none;
-    `}
-    @media only screen and (max-width: 991px) {
-    display: none;
-  }
 `;
 const NavMenu = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
   width: 100%;
-  @media only screen and (max-width: 991px) {
+  @media only screen and (max-width: 991px) { 
     flex-direction: column;
     padding: 12px;
     position: absolute;
-    left: 16px;
-    right: 16px;
-    background-color: ${({ theme }) => theme.colors.whiteColor};
-    box-shadow: var(--shadowColor);
-    border-radius: 0px;
-  }
-  ${(props) =>
-    props.BlogDetails &&
-    css`
-      display: none;
-    `}
-  ${(props) =>
-    props.BlogDetails &&
-    props.mobile &&
-    css`
-      display: flex;
-    `}
-    @media only screen and (max-width: 991px) {
-    display: flex;
     left: 0;
     right: 0;
     padding: 0;
     background: #fdfdfb;
     box-shadow: 0px 4px 24px rgba(0, 0, 0, 0.7);
+    animation: 0.2s ease-out 0s 1 slideInFromTop; 
+  }
+  @keyframes slideInFromTop {
+    0% {
+      opacity:0;
+      visibility: hidden;
+    }
+    100% {
+      visibility: visible;
+      opacity:1;
+    }
   }
 `;
 const NavigationBlock = styled.ul`
@@ -152,23 +124,23 @@ const SpanLink = styled.li`
     ${HeaderFont}
     margin: 0 14px;
     ${(props) =>
-      props.textColor &&
-      css`
+    props.textColor &&
+    css`
         color: ${props.textColor};
       `}
     cursor: pointer;
   }
   a:hover {
     ${(props) =>
-      props.hoverColor &&
-      css`
+    props.hoverColor &&
+    css`
         color: ${props.hoverColor};
       `}
   }
   .hovernone {
     ${(props) =>
-      props.textColor &&
-      css`
+    props.textColor &&
+    css`
         color: ${props.textColor};
       `}
   }
@@ -222,15 +194,15 @@ const SpanMobileLink = styled.li`
     ${HeaderFont}
     margin: 0 14px;
     ${(props) =>
-      props.textColor &&
-      css`
+    props.textColor &&
+    css`
         color: ${props.title};
       `}
   }
   a:hover {
     ${(props) =>
-      props.hoverColor &&
-      css`
+    props.hoverColor &&
+    css`
         color: ${props.hoverColor};
       `}
   }
@@ -344,8 +316,8 @@ const SignIn = styled.li`
     align-items: center;
     transition: all 300ms;
     ${(props) =>
-      props.textColor &&
-      css`
+    props.textColor &&
+    css`
         color: ${props.textColor};
       `}
     /* color: ${({ theme }) => theme.colors.title}; */
@@ -353,8 +325,8 @@ const SignIn = styled.li`
     text-decoration: none;
     :hover {
       ${(props) =>
-        props.hoverColor &&
-        css`
+    props.hoverColor &&
+    css`
           color: ${props.hoverColor};
         `}
     }
@@ -494,17 +466,6 @@ const FirstLine = styled.span`
     css`
       transform: translate3d(0px, 8px, 0px) rotateZ(45deg);
     `}
-  ${(props) =>
-    props.BlogDetails &&
-    css`
-      background-color: ${({ theme }) => theme.colors.whiteColor};
-    `}
-    ${(props) =>
-    props.BlogDetails &&
-    props.isScrollPage &&
-    css`
-      background-color: ${({ theme }) => theme.colors.footercolor};
-    `}
     ${(props) =>
     props.isEnterPrice &&
     css`
@@ -530,17 +491,6 @@ const SecondLine = styled.span`
     css`
       opacity: 0;
     `}
-  ${(props) =>
-    props.BlogDetails &&
-    css`
-      background-color: ${({ theme }) => theme.colors.whiteColor};
-    `}
-    ${(props) =>
-    props.BlogDetails &&
-    props.isScrollPage &&
-    css`
-      background-color: ${({ theme }) => theme.colors.darkColor};
-    `}
 `;
 const ThirdLine = styled.span`
   display: block;
@@ -554,27 +504,17 @@ const ThirdLine = styled.span`
     props.isOpenMobileMenu &&
     css`
       transform: translate3d(0px, -8px, 0px) rotateZ(-45deg);
-    `}
+  `}
   ${(props) =>
-    props.BlogDetails && props.isScrollPage
-      ? css`
-          background-color: ${({ theme }) => theme.colors.darkColor};
-        `
-      : props.BlogDetails
-      ? css`
-          background-color: ${({ theme }) => theme.colors.whiteColor};
-        `
-      : css``}
-      ${(props) =>
     props.isEnterPrice &&
     css`
       background-color: ${({ theme }) => theme.colors.greenlight};
-    `}
-    ${(props) =>
+  `}
+  ${(props) =>
     props.textColor &&
     css`
       background-color: ${props.textColor};
-    `}
+  `}
 `;
 
 const OverLayBlock = styled.div`
@@ -745,8 +685,8 @@ const MobileTextLink = styled(Link)`
   cursor: pointer;
   :hover {
     ${(props) =>
-      props.hoverColor &&
-      css`
+    props.hoverColor &&
+    css`
         color: ${props.hoverColor} !important;
       `}
   }
@@ -785,19 +725,11 @@ const MenuMobileWrap = styled.a`
         fill: #00160e;
       }
     }
-    /* .brand {
-      g {
-        path {
-          fill: #e3ffee;
-        }
-      }
-    } */
+ 
     h6 {
       color: ${({ theme }) => theme.colors.greenlight};
     }
   }
-  //hover style for features list
-
   ${(props) =>
     props.msghover &&
     css`
@@ -862,8 +794,8 @@ const BackWrap = styled.div`
     ${MbButtonText};
     color: ${({ theme }) => theme.colors.black};
     ${(props) =>
-      props.textColor &&
-      css`
+    props.textColor &&
+    css`
         color: ${props.textColor};
       `}
   }
@@ -959,6 +891,7 @@ const AnnounceBar = styled.div`
   }
   .mobilearrow {
     display: none;
+    
     @media only screen and (max-width: 749px) {
       position: relative;
       display: inline-block;
@@ -975,7 +908,6 @@ display: block;
 export {
   NavbarWrapper,
   NavbarInner,
-  SalescampLogo,
   NavMenu,
   NavigationBlock,
   SpanLink,
@@ -993,7 +925,6 @@ export {
   SecondLine,
   FirstLine,
   OverLayBlock,
-  TrySalescampBlock,
   CopilotLogo,
   InnerList,
   ListLi,

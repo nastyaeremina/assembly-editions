@@ -48,7 +48,6 @@ const CtaBtn = styled.div`
   }
 `;
 const CtaAnimation = styled.div`
-  /* padding-top: 50px; */
   position: relative;
   top: 0;
   bottom: 0;

@@ -62,9 +62,6 @@ const BrandImage = styled.div`
     display: none;
   }
   .effect-goliath {
-    /* cursor: pointer;
-    overflow: hidden;
-    position: relative; */
     cursor: pointer;
   }
   .hover-name {
@@ -108,12 +105,6 @@ const BrandImageLeft = styled.div`
   display: inline-flex;
   justify-content: center;
   margin-top: -2px;
-  img {
-    /* max-width: 405px;
-    width: 100%;
-    max-height: 90px;
-    height: 100%; */
-  }
   .firsticon {
     display: block;
     @media only screen and (max-width: 749px) {
@@ -128,19 +119,9 @@ const BrandImageLeft = styled.div`
   }
   @media only screen and (max-width: 749px) {
     padding: 89px 0 88px;
-    /* .firsticon {
-      max-width: 225px;
-      width: 100%;
-    } */
-    /* .mobileicon {
-      max-width: 75px;
-      height: 50px;
-      width: 100%;
-    } */
   }
 `;
 const HoverSection = styled.div`
-  /* display: flex; */
   gap: 12px;
   background-color: ${({ theme }) => theme.colors.greenlight};
   padding: 17px 24px;
@@ -336,9 +317,6 @@ const ColorSection = styled.div`
     background-color: ${({ theme }) => theme.colors.greendark};
   }
   .effect-goliath {
-    /* cursor: pointer;
-    overflow: hidden;
-    position: relative; */
     cursor: pointer;
   }
   .hover-name {
@@ -456,7 +434,6 @@ const BlockLight = styled.div`
 const ImgWrap = styled.div`
   width: 100%;
   overflow: hidden;
-  /* border-radius: 4px; */
 `;
 export {
   BrandHeroSection,

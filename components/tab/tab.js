@@ -1,12 +1,9 @@
 import { StatefulTabs, StyledTab, Tab } from 'baseui/tabs';
 import { LabelMedium } from 'baseui/typography';
 import Image from 'next/image';
-import Link from 'next/link';
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
-import { FEATURES_MESSAG_TAB_ID, HOME_MODULE_LIST, MODULE_COLOR_LIST } from '../../constants/constant';
 import { isEmpty } from '../../helpers/helpers';
 import { getTabGroupById } from '../../lib/contentful-tabs';
-import { Container, SecondryButton } from '../../styles/commonStyles';
 import { ContainWrap, IconSvg, IconWrap, LeftDetail, RightDetail, TabRow } from '../../styles/homepageStyles';
 import Button from '../button/button';
 
@@ -28,15 +25,6 @@ export default function TabView({ tabId, bgColor, textColor, isHome, data }) {
   }, [loadData]);
 
   function TabOverride(rest) {
-    // const { $active, id } = rest;
-    // const fontColor = MODULE_COLOR_LIST[HOME_MODULE_LIST[rest?.children]]?.fontColor
-    // const bgColor = MODULE_COLOR_LIST[HOME_MODULE_LIST[rest?.children]]?.bgColor
-
-    // const newRest = {
-    //     ...rest,
-    //     bgColor: bgColor,
-    //     fontColor: fontColor,
-    // };
     return (
       <StyledTab {...rest}>
         {
@@ -45,9 +33,6 @@ export default function TabView({ tabId, bgColor, textColor, isHome, data }) {
               Block: {
                 style: {
                   color: 'inherit'
-                  // ':hover': { color: '#131313;' }
-                  // color: $active ? MODULE_COLOR_LIST[HOME_MODULE_LIST[rest?.children]]?.fontColor : 'inherit',
-                  // backgroundColor: $active ? MODULE_COLOR_LIST[HOME_MODULE_LIST[rest?.children]]?.bgColor : 'inherit', ':hover': { color: 'inherit' }
                 }
               }
             }}>
@@ -84,11 +69,6 @@ export default function TabView({ tabId, bgColor, textColor, isHome, data }) {
   const tabStyle = ({ $active, $disabled, $theme }) => ({
     backgroundColor: $active ? (bgColor ? bgColor : '#120800') : 'inherit',
     color: $active ? (textColor ? textColor : '#fff') : '#757575',
-    // outlineColor: $theme.colors.white,
-    // color: $active ? fontColor && fontColor : '#757575',
-    // backgroundColor: $active ? bgColor && bgColor : 'inherit',
-
-    // eslint-disable-next-line no-dupe-keys
     'border-radius': '40px',
     padding: '7px 20px',
     marginLeft: '0',

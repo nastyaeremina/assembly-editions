@@ -24,19 +24,6 @@ const QuoteMain = styled.div`
         background-image: url(${props.gradientImage?.responsive});
       `}
   }
-  /* ::before{
-  content: "";
-    position: absolute;
-    border: 1px solid #120800;
-    width: 100px;
-    transform: rotate(90deg);
-    top: 0;
-    left: 306px;
-}
-::before{
-  border: 1px solid #120800;
-transform: rotate(90deg);
-} */
 `;
 const Mainss = styled.div`
   display: flex;

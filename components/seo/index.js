@@ -1,6 +1,5 @@
 import { NextSeo } from 'next-seo';
-import React, { useCallback, useEffect, useMemo, useState } from 'react';
-import { GetServerSidePropsContext } from 'next';
+import React, { useCallback, useEffect, useState } from 'react';
 import { getSEOdata } from '../../lib/contentful-seo';
 import { isEmpty } from '../../helpers/helpers';
 
