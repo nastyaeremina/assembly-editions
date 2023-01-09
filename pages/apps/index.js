@@ -182,7 +182,7 @@ export default function Apps({ allPosts, featuredApps, allCategoryWithPost, data
     } else
       return (
         <ExtensionsSection key={`searchEmptyview`}>
-          <AppError />
+          <AppError query={query} />
         </ExtensionsSection>
       );
   }, [query, renderPartnerAppsView, searchResult]);
