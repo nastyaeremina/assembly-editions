@@ -4,46 +4,29 @@ import Navbar from '../../components/navbar/navbar';
 import Referral from '../../components/referral';
 import SEO from '../../components/seo';
 import { REFERRAL_SEO_ID } from '../../constants/constant';
-import { isEmpty } from '../../helpers/helpers';
 
-export default function ReferralPage({ code }) {
-  const [hostname, sethostName] = useState('');
-  const [firstName, setFirstName] = useState('Someone');
-  const [referralcode, setReferralcode] = useState('');
-
-  useEffect(() => {
-    const codeList = code?.split('_');
-    if (!isEmpty(codeList)) {
-      setFirstName(codeList?.[0]);
-      setReferralcode(codeList?.[1]);
-    }
-    if (window !== undefined) {
-      const host = window.location.host;
-      const newhost = host?.replace('www.', '');
-      sethostName(newhost);
-    }
-  }, [code]);
-
+export default function ReferralPage({ code, host }) {
   return (
     <>
       <SEO id={REFERRAL_SEO_ID} />
       <Layout>
         <Navbar />
         <Referral
-          firstName={firstName || 'Someone'}
-          url={`https://dashboard.${hostname}/onboarding?referred=${referralcode}`}
+          firstName={code?.split('_')?.[0] || 'Someone'}
+          url={`https://dashboard.${host}/onboarding?referred=${code?.split('_')?.[1]}`}
         />
       </Layout>
     </>
   );
 }
 
-export async function getServerSideProps({ params }) {
-  console.log('query', params);
-  const code = params?.slug || null;
+export async function getServerSideProps(context) {
+  const code = context?.params?.slug || null;
+  const host = context.req.headers.host.replace('www.', '');
   return {
     props: {
-      code
+      code,
+      host
     }
   };
 }
