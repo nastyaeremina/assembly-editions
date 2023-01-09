@@ -18,7 +18,8 @@ export default function Button({
   text,
   className,
   onClick,
-  isLink = true
+  isLink = true,
+  type
 }) {
   return (
     <ButtonContainer
