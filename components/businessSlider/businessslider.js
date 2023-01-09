@@ -16,6 +16,24 @@ const BusinessSlider = ({ data }) => {
     pauseOnHover: true,
     responsive: [
       {
+        breakpoint: 3600,
+        settings: {
+          slidesToShow: 7.5
+        }
+      },
+      {
+        breakpoint: 3400,
+        settings: {
+          slidesToShow: 7
+        }
+      },
+      {
+        breakpoint: 3200,
+        settings: {
+          slidesToShow: 6.5
+        }
+      },
+      {
         breakpoint: 3000,
         settings: {
           slidesToShow: 6.5
