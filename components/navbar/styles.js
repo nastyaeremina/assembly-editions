@@ -891,6 +891,7 @@ const AnnounceBar = styled.div`
   }
   .mobilearrow {
     display: none;
+    
     @media only screen and (max-width: 749px) {
       position: relative;
       display: inline-block;
