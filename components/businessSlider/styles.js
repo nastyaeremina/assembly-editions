@@ -36,10 +36,13 @@ const SliderWrap = styled.div`
     color: black;
   }
   .zoom {
-    transition: transform 0.3s;
+    transition: all 0.3s ease-in-out;
   }
   .mydiv:hover .zoom {
-    transform: scale(1.11);
+    transform: scale(1);
+    margin-top:-25px;
+    height:400px;
+    width:400px;
     @media only screen and (max-width: 991px) {
       transform: none !important;
       transition: transform 0.3s;
@@ -61,17 +64,17 @@ const SliderWrap = styled.div`
   }
 `;
 const WrapImage = styled.div`
-  max-width: 350px;
+  max-width: 435px;
   width: 100%;
   padding: 22px 0;
+  margin-top:20px;
   display: flex;
   align-items: center;
   flex-direction: column;
   transition: 0.3s;
-
   h4 {
     text-align: center;
-    padding-top: 36px;
+    padding-top: 43px;
     ${Body3};
     margin: 0;
     color: ${({ theme }) => theme.colors.title};
@@ -81,6 +84,7 @@ const WrapImage = styled.div`
     }
   }
   p {
+    width:400px;
     ${Body5};
     padding-top: 8px;
     text-align: center;
@@ -124,6 +128,7 @@ const RightBorder = styled.div`
   }
 `;
 const WrapSlide = styled.div`
+  width:450px;
   display: flex !important;
   align-items: stretch;
   padding: 0 5px;
@@ -140,7 +145,7 @@ const WrapSlide = styled.div`
   }
 `;
 const SlideImg = styled.div`
-  max-height: 350px;
+  max-height:354px;
   img {
     border-radius: 4px;
     height: 100%;

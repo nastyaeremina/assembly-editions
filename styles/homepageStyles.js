@@ -437,7 +437,7 @@ const BusinessText = styled.div`
   }
 `;
 const Functionality = styled.div`
-  padding: 50px 0 50px;
+  padding: 0px 0 50px;
   @media only screen and (max-width: 749px) {
     padding: 40px 0;
   }

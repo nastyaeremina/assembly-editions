@@ -7,11 +7,11 @@ import { SliderWrap, WrapImage, LeftBorder, RightBorder, WrapSlide, SlideImg } f
 const BusinessSlider = ({ data }) => {
   var settings = {
     speed: 700,
-    autoplay: true,
+    autoplay: false,
     infinite: true,
     autoplaySpeed: 0,
     cssEase: 'linear',
-    slidesToShow: 4.5,
+    slidesToShow: 4.1,
     slidesToScroll: 0.1,
     pauseOnHover: true,
     responsive: [
@@ -54,14 +54,14 @@ const BusinessSlider = ({ data }) => {
     <>
       <SliderWrap>
         <Slider {...settings}>
-          {data?.map((item, index) => {
+          {data?.map((item, index) => { 
             return (
               <>
                 <WrapSlide className='mydiv'>
                   <LeftBorder className='hide'></LeftBorder>
                   <WrapImage>
                     <SlideImg>
-                      <Image src={item?.image?.url} alt='red-icon' className='zoom' width={350} height={350} />
+                      <Image src={`${item?.image?.url}?w=354&h=354&fit=thumb`} alt='red-icon' className='zoom' width={354} height={354} />
                     </SlideImg>
                     <h4>{item?.industry}</h4>
                     <p className='hide'>{item?.quote}</p>
