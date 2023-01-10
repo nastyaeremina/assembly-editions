@@ -2,8 +2,8 @@ import styled from 'styled-components';
 import React from 'react';
 
 const Error = styled.div`
-  margin-left: 6px;
-  margin-top: 6px;
+  margin: 6px auto;
+  text-align: center;
   &.statusText {
     color: #f51a1a;
     font-size: 14px;
