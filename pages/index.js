@@ -80,7 +80,7 @@ export default function Home({ content }) {
                 />
               </HeroBtnBlock>
               <ReviewLogo>
-                <ImageHover>
+                <ImageHover href="https://www.g2.com/products/copilotplatforms/reviews" target="_blank">
                   <LeftSvg>
                     <svg width='33' height='33' viewBox='0 0 33 33' fill='none' xmlns='http://www.w3.org/2000/svg'>
                       <g clip-path='url(#clip0_322_132405)'>
