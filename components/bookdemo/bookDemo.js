@@ -1,8 +1,6 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { useCallback, useEffect, useState } from 'react';
-import { submit } from 'dom7';
-import { Field, Form, Formik } from 'formik';
 import Script from 'next/script';
 import { useDispatch, useSelector } from 'react-redux';
 import { checkValidation, sendEmail } from '../../services/bookDemoService';
@@ -74,7 +72,20 @@ export default function BookDemoForm() {
       if (!checkInput) {
         return;
       } else {
-        sendEmail(bookDemoData);
+        // sendEmail(bookDemoData);
+        fetch('/api/contact', {
+          method: 'POST',
+          headers: {
+            Accept: 'application/json, text/plain, */*',
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(bookDemoData)
+        }).then((res) => {
+          console.log('Response received');
+          if (res.status === 200) {
+            console.log('Response succeeded!');
+          }
+        });
         if (['1', '5', '10']?.includes(bookDemoData?.companySize)) {
           setIsSubmit(true);
         } else showHideChiliPiper();
@@ -319,7 +330,6 @@ export default function BookDemoForm() {
                 value={bookDemoData?.objectives}
                 onChange={(e) => onChangeInfo('objectives', e.target.value)}></textarea>
             </FormDetail>
-            {/* <input type='submit' className='btnposition' onClick={onSubmit} value={'Let’s talk'} /> */}
             {renderErrors()}
 
             <Button text={'Let’s talk'} className='btnposition' type={'submit'} onClick={onSubmit} />
