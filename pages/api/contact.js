@@ -1,5 +1,5 @@
 // eslint-disable-next-line import/no-anonymous-default-export
-export default function (req, res) {
+export default async function (req, res) {
   require('dotenv').config();
   const nodemailer = require('nodemailer');
 
@@ -31,7 +31,8 @@ export default function (req, res) {
       auth: {
         user: process.env.DEMO_EMAIL_SMTP_ID,
         pass: process.env.DEMO_EMAIL_SMTP_PASS
-      }
+      },
+      secure: true,
     });
 
     const mailData = {
@@ -42,10 +43,19 @@ export default function (req, res) {
       html: messageBody
     };
 
-    transporter.sendMail(mailData, function (err, info) {
-      if (err) console.log(err);
-      else console.log(info);
-    });
+  
+await new Promise((resolve, reject) => {
+  // send mail
+  transporter.sendMail(mailData, (err, info) => {
+      if (err) {
+          console.error(err);
+          reject(err);
+      } else {
+          console.log(info);
+          resolve(info);
+      }
+  });
+});
     console.log('req.body', req.body);
   } catch (e) {
     console.log('Error : ', e);
