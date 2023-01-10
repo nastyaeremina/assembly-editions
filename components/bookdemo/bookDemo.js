@@ -1,8 +1,14 @@
 import Link from 'next/link';
 import Image from 'next/image';
-import { useCallback, useState } from 'react';
-import { sendEmail } from '../../services/bookDemoService';
+import { useCallback, useEffect, useState } from 'react';
+import { submit } from 'dom7';
+import { Field, Form, Formik } from 'formik';
+import { useDispatch, useSelector } from 'react-redux';
+import { checkValidation, sendEmail } from '../../services/bookDemoService';
+import { setformValidationError, updateBookDemoItem } from '../../actions/bookDemoActions';
+import { INDUSTRY_ARRAY } from '../../constants/constant';
 import Button from '../button/button';
+import Validation from '../Validation/validation';
 import {
   MainSection,
   FormSection,
@@ -22,57 +28,50 @@ import {
   ContactText,
   ThanksWrap
 } from './styles';
-import { submit } from 'dom7';
-import { Field, Form, Formik } from 'formik';
 
 export default function BookDemoForm() {
+  const bookDemoSelector = useSelector((state) => state.bookDemo);
+  const { validationError, bookDemoData } = bookDemoSelector;
   const [isSubmit, setIsSubmit] = useState(false);
-  const [firstName, setFirstName] = useState('');
-  const [lastName, setLastName] = useState('');
-  const [workEmail, setWorkEmail] = useState('');
-  const [companyName, setCompanyName] = useState('');
 
-  const [findUs, setFindUs] = useState('');
-  const [industry, setIndustry] = useState('');
-  const [industryName, setIndustryName] = useState('');
-  const [intrestedBusiness, setIntrestedBusiness] = useState();
-  const [companySize, setCompanySize] = useState(0);
-  const [objectives, setObjectives] = useState('');
+  const dispatch = useDispatch();
 
-  const industryArray = ['consulting', 'technology', 'marketing'];
-
-  const onSubmit = useCallback(
-    (e) => {
-      e.preventDefault();
-      const item = {
-        firstName,
-        lastName,
-        email: workEmail,
-        companyName,
-        howDidYouFindUs: findUs,
-        industry,
-        industry_other: industryName,
-        youInerestedBusiness: intrestedBusiness,
-        companySize,
-        objectives
-      };
-      sendEmail(item);
-      setIsSubmit(true);
+  const onChangeInfo = useCallback(
+    (propsName, value) => {
+      dispatch(updateBookDemoItem({ propsName, value }));
     },
-    [
-      companyName,
-      companySize,
-      findUs,
-      firstName,
-      industry,
-      industryName,
-      intrestedBusiness,
-      lastName,
-      objectives,
-      workEmail
-    ]
+    [dispatch]
   );
 
+  const onChangeIndustry = useCallback(() => {
+    onChangeInfo('industry_other', '');
+    onChangeInfo('youInerestedBusiness', '');
+  }, [onChangeInfo]);
+
+  const onSubmit = useCallback(
+    async (e) => {
+      e.preventDefault();
+      dispatch(setformValidationError(''));
+      const checkInput = await dispatch(checkValidation(bookDemoData));
+      if (!checkInput) {
+        return;
+      } else {
+        sendEmail(bookDemoData);
+        setIsSubmit(true);
+      }
+    },
+    [bookDemoData, dispatch]
+  );
+
+  useEffect(() => {
+    return () => {
+      dispatch(setformValidationError(null));
+    };
+  }, [dispatch]);
+
+  const renderErrors = () => {
+    return <Validation error={validationError} />;
+  };
   return (
     <MainSection>
       {isSubmit ? (
@@ -127,9 +126,9 @@ export default function BookDemoForm() {
                 <Input
                   type='text'
                   className='inputtext'
-                  value={firstName}
+                  value={bookDemoData?.firstName}
                   id={`First-Name-`}
-                  onChange={(e) => setFirstName(e.target.value)}
+                  onChange={(e) => onChangeInfo('firstName', e.target.value)}
                   required={true}
                 />
               </NameInfo>
@@ -141,8 +140,8 @@ export default function BookDemoForm() {
                   type='text'
                   id='lastName'
                   className='inputtext'
-                  value={lastName}
-                  onChange={(e) => setLastName(e.target.value)}
+                  value={bookDemoData?.lastName}
+                  onChange={(e) => onChangeInfo('lastName', e.target.value)}
                   required
                 />
               </NameInfo>
@@ -158,8 +157,8 @@ export default function BookDemoForm() {
               id='Email'
               required=''
               className='inputtext'
-              value={workEmail}
-              onChange={(e) => setWorkEmail(e.target.value)}
+              value={bookDemoData?.email}
+              onChange={(e) => onChangeInfo('email', e.target.value)}
             />
             <label for='Last-Name-'>
               Comany name <span>*</span>
@@ -169,8 +168,8 @@ export default function BookDemoForm() {
               placeholder=''
               required=''
               className='inputtext'
-              value={companyName}
-              onChange={(e) => setCompanyName(e.target.value)}
+              value={bookDemoData?.companyName}
+              onChange={(e) => onChangeInfo('companyName', e.target.value)}
             />
             <label for='Last-Name-'>
               How did you find us? <span>*</span>
@@ -181,7 +180,7 @@ export default function BookDemoForm() {
               data-name='How did you find us?'
               required=''
               class='wselect'
-              onChange={(e) => setFindUs(e.target.value)}>
+              onChange={(e) => onChangeInfo('howDidYouFindUs', e.target.value)}>
               <option value=''></option>
               <option value='linkedin'>LinkedIn</option>
               <option value='google'>Google</option>
@@ -203,7 +202,10 @@ export default function BookDemoForm() {
               data-name='What industry are you in?'
               required=''
               class='wselect'
-              onChange={(e) => setIndustry(e.target.value)}>
+              onChange={(e) => {
+                onChangeInfo('industry', e.target.value);
+                onChangeIndustry();
+              }}>
               <option value=''></option>
               <option value='accounting_and_bookkeeping'>Accounting and bookkeeping</option>
               <option value='construction'>Construction</option>
@@ -223,7 +225,7 @@ export default function BookDemoForm() {
               <option value='technology'>Technology</option>
               <option value='other'>Other</option>
             </select>
-            {industry === 'other' && (
+            {bookDemoData?.industry === 'other' && (
               <>
                 <label for='Industry-Name-'>
                   Enter your Industry<span>*</span>
@@ -233,12 +235,12 @@ export default function BookDemoForm() {
                   placeholder=''
                   required=''
                   className='inputtext'
-                  value={industryName}
-                  onChange={(e) => setIndustryName(e.target.value)}
+                  value={bookDemoData?.industry_other}
+                  onChange={(e) => onChangeInfo('industry_other', e.target.value)}
                 />
               </>
             )}
-            {industryArray?.includes(industry) && (
+            {INDUSTRY_ARRAY?.includes(bookDemoData?.industry) && (
               <>
                 <label for='Last-Name-'>
                   Are you interested in Portal for your own business or are you contacting us on behalf of a client?{' '}
@@ -250,7 +252,7 @@ export default function BookDemoForm() {
                   data-name='Are-you-interested-in-Portal-for-your-own-business-or-are-you-contacting-us-on-behalf-of-a-client?'
                   required=''
                   class='wselect'
-                  onChange={(e) => setIntrestedBusiness(e.target.value)}>
+                  onChange={(e) => onChangeInfo('youInerestedBusiness', e.target.value)}>
                   <option value=''>Please Select...</option>
                   <option value='I’m interested in Portal for my own business.'>
                     I’m interested in Portal for my own business.
@@ -271,7 +273,7 @@ export default function BookDemoForm() {
               data-name='How large is your company?'
               required=''
               class='wselect'
-              onChange={(e) => setCompanySize(e.target.value)}>
+              onChange={(e) => onChangeInfo('companySize', e.target.value)}>
               <option value=''>select option...</option>
               <option value='1'>Just me</option>
               <option value='5'>2 - 5</option>
@@ -291,11 +293,13 @@ export default function BookDemoForm() {
               placeholder=''
               required=''
               class='sm'
-              onChange={(e) => setObjectives(e.target.value)}></textarea>
+              value={bookDemoData?.objectives}
+              onChange={(e) => onChangeInfo('objectives', e.target.value)}></textarea>
           </FormDetail>
-          <input type='submit' className='btnposition' onClick={onSubmit} value={'Let’s talk'} />
+          {/* <input type='submit' className='btnposition' onClick={onSubmit} value={'Let’s talk'} /> */}
+          {renderErrors()}
 
-          {/* <Button text={'Let’s talk'} className='btnposition' type={'submit'} onClick={onSubmit} /> */}
+          <Button text={'Let’s talk'} className='btnposition' type={'submit'} onClick={onSubmit} />
           <LastText>
             <span>or</span>
             <HelpLink className='icon-link'>
