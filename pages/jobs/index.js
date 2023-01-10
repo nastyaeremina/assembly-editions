@@ -150,7 +150,7 @@ export default function Jobs({ jobList, jobImagesList, jobBlogPostList, seoData 
       if (!isEmpty(item?.author)) {
         authorList = item?.author.split(',');
       }
-      const link = item?.blogLink?.split('copilot.com/')?.[1];
+      const link = item?.blogLink; //?.split('copilot.com/')?.[1];
       return (
         <TitleWrap key={`jobblogpostitem_index_${index}`}>
           <TeamLine>
