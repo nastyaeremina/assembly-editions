@@ -4,6 +4,7 @@ import Layout from '../../components/layout';
 import Navbar from '../../components/navbar/navbar';
 import SEO from '../../components/seo';
 import { ENTERPRICE_SEO_ID, HEADER_LIST } from '../../constants/constant';
+import { getSEOdata } from '../../lib/contentful-seo';
 import { Container } from '../../styles/commonStyles';
 import {
   EnterPriseHero,
@@ -39,10 +40,10 @@ import {
   BtnListtwo
 } from '../../styles/enterpriseStyles';
 
-export default function Enterprise() {
+export default function Enterprise({ seoData }) {
   return (
     <>
-      <SEO id={ENTERPRICE_SEO_ID} />
+      <SEO id={ENTERPRICE_SEO_ID} seoData={seoData} />
       <Layout isEnterPrice={true}>
         <MainWrap>
           <Navbar isEnterPrice={true} headerIndex={HEADER_LIST.ENTERPRICE} />
@@ -215,4 +216,13 @@ export default function Enterprise() {
       </Layout>
     </>
   );
+}
+export async function getStaticProps({ preview = false }) {
+  const seoData = (await getSEOdata(ENTERPRICE_SEO_ID)) ?? [];
+
+  return {
+    props: {
+      seoData
+    }
+  };
 }

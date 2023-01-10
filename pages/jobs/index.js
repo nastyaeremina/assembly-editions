@@ -10,6 +10,7 @@ import { dateToMonthYear, isEmpty } from '../../helpers/helpers';
 import { NO_OF_JOBS_PER_PAGE } from '../../lib/constants';
 import { getAllJobBlogPosts } from '../../lib/contentful-jobBlogPosts';
 import { getAllJobImages, getAllJobs } from '../../lib/contentful-jobsListing';
+import { getSEOdata } from '../../lib/contentful-seo';
 import { Container } from '../../styles/commonStyles';
 import {
   HeroJobSection,
@@ -51,7 +52,7 @@ import {
   MainWrap
 } from '../../styles/jobsStyles';
 
-export default function Jobs({ jobList, jobImagesList, jobBlogPostList }) {
+export default function Jobs({ jobList, jobImagesList, jobBlogPostList, seoData }) {
   const [selectedImageIndex, setSelectedImageIndex] = useState(0);
 
   const renderJobsListingView = useCallback((list) => {
@@ -164,7 +165,7 @@ export default function Jobs({ jobList, jobImagesList, jobBlogPostList }) {
 
   return (
     <>
-      <SEO id={JOB_SEO_ID} />
+      <SEO id={JOB_SEO_ID} seoData={seoData} />
       <Layout>
         <Navbar />
         <MainWrap>
@@ -351,6 +352,7 @@ export default function Jobs({ jobList, jobImagesList, jobBlogPostList }) {
 export async function getStaticProps({ preview = false }) {
   const jobImagesList = (await getAllJobImages(preview)) ?? [];
   const jobBlogPostList = (await getAllJobBlogPosts(preview)) ?? [];
+  const seoData = (await getSEOdata(JOB_SEO_ID)) ?? [];
 
   let allPosts = [];
   let data = [];
@@ -380,6 +382,6 @@ export async function getStaticProps({ preview = false }) {
   });
 
   return {
-    props: { jobList: newList, jobImagesList, jobBlogPostList }
+    props: { jobList: newList, jobImagesList, jobBlogPostList, seoData }
   };
 }

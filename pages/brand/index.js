@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import copy from 'copy-to-clipboard';
-import {  useMemo, useState } from 'react';
+import { useMemo, useState } from 'react';
 import Layout from '../../components/layout';
 import Navbar from '../../components/navbar/navbar';
 import { Container } from '../../styles/commonStyles';
@@ -24,8 +24,9 @@ import {
 import Button from '../../components/button/button';
 import SEO from '../../components/seo';
 import { BRAND_SEO_ID } from '../../constants/constant';
+import { getSEOdata } from '../../lib/contentful-seo';
 
-export default function Brand() {
+export default function Brand({ seoData }) {
   const [copy1, setCopy1] = useState('Copy');
   const [copy2, setCopy2] = useState('Copy');
   const [copy3, setCopy3] = useState('Copy');
@@ -95,7 +96,7 @@ export default function Brand() {
 
   return (
     <>
-      <SEO id={BRAND_SEO_ID} />
+      <SEO id={BRAND_SEO_ID} seoData={seoData} />
       <Layout>
         <Navbar />
         <BrandMain>
@@ -401,4 +402,14 @@ export default function Brand() {
       </Layout>
     </>
   );
+}
+
+export async function getStaticProps({ preview = false }) {
+  const seoData = (await getSEOdata(BRAND_SEO_ID)) ?? [];
+
+  return {
+    props: {
+      seoData
+    }
+  };
 }

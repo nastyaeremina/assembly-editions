@@ -37,8 +37,9 @@ import {
 import CTA from '../../components/cta/cta';
 import FAQ from '../../components/faq/faq';
 import Button from '../../components/button/button';
+import { getSEOdata } from '../../lib/contentful-seo';
 
-export default function NewIndex({faq}) {
+export default function NewIndex({ faq, seoData }) {
   const [isShowFeature, setShowFeature] = useState(true);
   const [isYearly, Yearly] = useState(true);
 
@@ -48,17 +49,17 @@ export default function NewIndex({faq}) {
 
   const setYearly = useCallback(() => {
     Yearly(true);
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [true]);
 
   const setMonthly = useCallback(() => {
     Yearly(false);
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [false]);
 
   return (
     <>
-      <SEO id={"yof0gWCYzq1DaLbKJTFqb"} />
+      <SEO id={'yof0gWCYzq1DaLbKJTFqb'} seoData={seoData} />
       <Layout>
         <Navbar />
         <HeroSection>
@@ -824,4 +825,12 @@ export default function NewIndex({faq}) {
     </>
   );
 }
+export async function getStaticProps({ preview = false }) {
+  const seoData = (await getSEOdata('yof0gWCYzq1DaLbKJTFqb')) ?? [];
 
+  return {
+    props: {
+      seoData
+    }
+  };
+}

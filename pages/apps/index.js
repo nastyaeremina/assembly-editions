@@ -47,8 +47,9 @@ import { APPS_TYPE, APP_SEO_ID } from '../../constants/constant';
 import Button from '../../components/button/button';
 import SEO from '../../components/seo';
 import AppError from '../../components/apperror/error';
+import { getSEOdata } from '../../lib/contentful-seo';
 
-export default function Apps({ allPosts, featuredApps, allCategoryWithPost, dataIntegrationApps }) {
+export default function Apps({ allPosts, featuredApps, allCategoryWithPost, dataIntegrationApps, seoData }) {
   const [selected_category, setSelected_category] = useState();
   const [query, setQuery] = useState('');
   const [searchResult, setSearchResult] = useState([]);
@@ -189,7 +190,7 @@ export default function Apps({ allPosts, featuredApps, allCategoryWithPost, data
 
   return (
     <>
-      <SEO id={APP_SEO_ID}></SEO>
+      <SEO id={APP_SEO_ID} seoData={seoData}></SEO>
       <Layout>
         <MainBg>
           <Navbar />
@@ -306,6 +307,7 @@ export async function getStaticProps({ preview = false }) {
   const allPosts = (await getAllPartnerApps(APPS_TYPE.PARTNER_APP, preview)) ?? [];
   const allCategory = (await getAllParrtnerAppsCategories(preview)) ?? [];
   const dataIntegrationApps = (await getAllPartnerApps(APPS_TYPE.DATA_INTEGRATION, preview)) ?? [];
+  const seoData = (await getSEOdata(APP_SEO_ID)) ?? [];
 
   const featuredApps = allPosts?.filter((item) => item?.isFeatured === true && item?.appType === APPS_TYPE.PARTNER_APP);
 
@@ -323,7 +325,8 @@ export async function getStaticProps({ preview = false }) {
       featuredApps,
       allCategoryWithPost,
       dataIntegrationApps,
-      allPosts: allPosts.concat(dataIntegrationApps)
+      allPosts: allPosts.concat(dataIntegrationApps),
+      seoData
     }
   };
 }

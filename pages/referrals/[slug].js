@@ -13,7 +13,7 @@ export default function ReferralPage({ code, host }) {
         <Navbar />
         <Referral
           firstName={code?.split('_')?.[0] || 'Someone'}
-          url={`https://dashboard.${host}/onboarding?referred=${code?.replace(code?.split('_')?.[0]+'_','')}`}
+          url={`https://dashboard.${host}/onboarding?referred=${code?.replace(code?.split('_')?.[0] + '_', '')}`}
         />
       </Layout>
     </>
