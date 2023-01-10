@@ -1,19 +1,19 @@
 /** @type {import('next').NextConfig} */
-const purgecss = require("@fullhuman/postcss-purgecss");
+const purgecss = require('@fullhuman/postcss-purgecss');
 
 const nextConfig = {
   reactStrictMode: true,
   compiler: {
-    styledComponents: true,
+    styledComponents: true
   },
   plugins: [
     purgecss({
-      content: ["./**/*.html"],
-    }),
+      content: ['./**/*.html']
+    })
   ],
   images: {
-    domains: ["images.ctfassets.net"],
-  },
+    domains: ['images.ctfassets.net']
+  }
 };
 
 module.exports = nextConfig;
