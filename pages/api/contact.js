@@ -38,6 +38,7 @@ export default async function (req, res) {
     const mailData = {
       from: process.env.DEMO_EMAIL_FROM,
       to: process.env.DEMO_EMAIL_TO,
+      replyTo : req.body?.email,
       subject: 'Following up on your Copilot sales form submission',
       text: 'HELLO',
       html: messageBody
