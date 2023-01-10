@@ -38,10 +38,10 @@ export default function (req, res) {
 
     const mailData = {
       from: 'formsubmission@copilot.com',
-      to: req.body?.email,
+      to: 'krupalinakrani99@gmail.com',
       subject: 'Following up on your Copilot sales form submission',
       text: 'HELLO',
-      html: messageBody
+      html: 'Hellol=='
     };
 
     transporter.sendMail(mailData, function (err, info) {
