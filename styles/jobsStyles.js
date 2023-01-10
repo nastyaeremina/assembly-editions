@@ -525,7 +525,8 @@ const DetailLeft = styled.div`
   max-width: 260px;
   width: 100%;
   position: sticky;
-  top: 164px;
+  top: 120px;
+  margin-top:-44px;
   h3 {
     ${Heading3};
     color: ${({ theme }) => theme.colors.title};
@@ -585,6 +586,7 @@ const ImageWrap = styled.div`
   }
 `;
 const DetailRight = styled.div`
+  margin-top:10px;
   @media only screen and (max-width: 375px) {
     padding-top: 34px;
   }
