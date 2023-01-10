@@ -204,6 +204,8 @@ export const UNIVERSITY_VIDEO_CATEGORY = [
   'Quick Tips'
 ];
 
+export const INDUSTRY_ARRAY = ['consulting', 'technology', 'marketing'];
+
 export const HOME_FEATURES_TAB_ID = '6R0hkm1PSDEGOmel7Q6wva';
 export const FEATURES_MESSAG_TAB_ID = '2DgpDztGKBN2eo2rKNQ67p';
 export const FEATURES_BILLING_TAB_ID = '2iCYntWByiNtdj9Hkqzpeo';

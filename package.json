@@ -23,11 +23,13 @@
     "contentful": "^9.1.18",
     "copy-to-clipboard": "^3.3.3",
     "cross-env": "7.0.3",
+    "dotenv": "^16.0.3",
     "eslint": "8.26.0",
     "eslint-config-next": "13.0.1",
     "next": "latest",
     "next-seo": "^5.1.0",
     "next-sitemap": "^3.1.25",
+    "nodemailer": "^6.8.0",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-lite-youtube-embed": "^2.3.52",
@@ -63,5 +65,10 @@
     "stylelint-config-recommended": "^9.0.0",
     "stylelint-config-styled-components": "^0.1.1",
     "stylelint-processor-styled-components": "^1.10.0"
+  },
+  "browser": {
+    "fs": false,
+    "path": false,
+    "os": false
   }
 }
