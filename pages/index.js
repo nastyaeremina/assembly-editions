@@ -1,4 +1,4 @@
-import React  from 'react';
+import React from 'react';
 import Layout from '/components/layout';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -46,6 +46,7 @@ import { getHomeContent } from '../lib/contentful-home';
 import TabView from '../components/tab/tab';
 import Button from '../components/button/button';
 import SEO from '../components/seo';
+import { getSEOdata } from '../lib/contentful-seo';
 
 export default function Home({ content }) {
   return (
@@ -80,7 +81,7 @@ export default function Home({ content }) {
                 />
               </HeroBtnBlock>
               <ReviewLogo>
-                <ImageHover href="https://www.g2.com/products/copilotplatforms/reviews" target="_blank">
+                <ImageHover href='https://www.g2.com/products/copilotplatforms/reviews' target='_blank'>
                   <LeftSvg>
                     <svg width='33' height='33' viewBox='0 0 33 33' fill='none' xmlns='http://www.w3.org/2000/svg'>
                       <g clip-path='url(#clip0_322_132405)'>
@@ -211,12 +212,39 @@ export default function Home({ content }) {
                       <h5>Trigger</h5>
                       <span>New client activated</span>
                     </CardTextView>
-                    <AnimatedIcon className={"done card1"} />
+                    <AnimatedIcon className={'done card1'} />
                     <LineIcon>
-                      <svg width="65" height="130" viewBox="0 0 65 130" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <line class="path path1" x1="0.5" y1="0.5" x2="64.5" y2="0.499994" stroke="black" stroke-linecap="round" stroke-dasharray="4 5" />
-                        <line class="path path3" x1="35.5" y1="129.5" x2="64.5" y2="129.5" stroke="black" stroke-linecap="round" stroke-dasharray="4 5" />
-                        <line class="path path4" x1="34.5" y1="129.5" x2="34.5" y2="0.5" stroke="black" stroke-linecap="round" stroke-dasharray="4 5" />
+                      <svg width='65' height='130' viewBox='0 0 65 130' fill='none' xmlns='http://www.w3.org/2000/svg'>
+                        <line
+                          class='path path1'
+                          x1='0.5'
+                          y1='0.5'
+                          x2='64.5'
+                          y2='0.499994'
+                          stroke='black'
+                          stroke-linecap='round'
+                          stroke-dasharray='4 5'
+                        />
+                        <line
+                          class='path path3'
+                          x1='35.5'
+                          y1='129.5'
+                          x2='64.5'
+                          y2='129.5'
+                          stroke='black'
+                          stroke-linecap='round'
+                          stroke-dasharray='4 5'
+                        />
+                        <line
+                          class='path path4'
+                          x1='34.5'
+                          y1='129.5'
+                          x2='34.5'
+                          y2='0.5'
+                          stroke='black'
+                          stroke-linecap='round'
+                          stroke-dasharray='4 5'
+                        />
                       </svg>
                     </LineIcon>
                   </CardItem>
@@ -228,10 +256,19 @@ export default function Home({ content }) {
                       <h5>Condition</h5>
                       <span>Company size &#60;= 50</span>
                     </CardTextView>
-                    <AnimatedIcon className={"default card2"} />
+                    <AnimatedIcon className={'default card2'} />
                     <LineIcon className='hr-icon'>
-                      <svg width="64" height="1" viewBox="0 0 64 1" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <line class="path path2" x1="0.5" y1="0.5" x2="63.5" y2="0.500006" stroke="black" stroke-linecap="round" stroke-dasharray="4 5" />
+                      <svg width='64' height='1' viewBox='0 0 64 1' fill='none' xmlns='http://www.w3.org/2000/svg'>
+                        <line
+                          class='path path2'
+                          x1='0.5'
+                          y1='0.5'
+                          x2='63.5'
+                          y2='0.500006'
+                          stroke='black'
+                          stroke-linecap='round'
+                          stroke-dasharray='4 5'
+                        />
                       </svg>
                     </LineIcon>
                   </CardItem>
@@ -242,13 +279,40 @@ export default function Home({ content }) {
                       <span>Company size &#62; 50</span>
                     </CardTextView>
                     <LineIcon>
-                      <svg width="65" height="130" viewBox="0 0 65 130" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <line class="path path5" x1="0.5" y1="0.5" x2="64.5" y2="0.499994" stroke="black" stroke-linecap="round" stroke-dasharray="4 5" />
-                        <line class="path path6" x1="35.5" y1="129.5" x2="64.5" y2="129.5" stroke="black" stroke-linecap="round" stroke-dasharray="4 5" />
-                        <line class="path path7" x1="34.5" y1="129.5" x2="34.5" y2="0.5" stroke="black" stroke-linecap="round" stroke-dasharray="4 5" />
+                      <svg width='65' height='130' viewBox='0 0 65 130' fill='none' xmlns='http://www.w3.org/2000/svg'>
+                        <line
+                          class='path path5'
+                          x1='0.5'
+                          y1='0.5'
+                          x2='64.5'
+                          y2='0.499994'
+                          stroke='black'
+                          stroke-linecap='round'
+                          stroke-dasharray='4 5'
+                        />
+                        <line
+                          class='path path6'
+                          x1='35.5'
+                          y1='129.5'
+                          x2='64.5'
+                          y2='129.5'
+                          stroke='black'
+                          stroke-linecap='round'
+                          stroke-dasharray='4 5'
+                        />
+                        <line
+                          class='path path7'
+                          x1='34.5'
+                          y1='129.5'
+                          x2='34.5'
+                          y2='0.5'
+                          stroke='black'
+                          stroke-linecap='round'
+                          stroke-dasharray='4 5'
+                        />
                       </svg>
                     </LineIcon>
-                    <AnimatedIcon className={"default card3"} />
+                    <AnimatedIcon className={'default card3'} />
                   </CardItem>
                 </CardWrapper>
                 <CardWrapper>
@@ -258,7 +322,7 @@ export default function Home({ content }) {
                       <h5>Action</h5>
                       <span>Assign small business onboarding form</span>
                     </CardTextView>
-                    <AnimatedIcon className={"default card4"} />
+                    <AnimatedIcon className={'default card4'} />
                   </CardItem>
                   <CardItem>
                     <Image src='/images/msg-icon2.svg' width={35} height={35} alt='msg-icon' />
@@ -266,7 +330,7 @@ export default function Home({ content }) {
                       <h5>Action</h5>
                       <span>Send message with scheduling link</span>
                     </CardTextView>
-                    <AnimatedIcon className={"default card5"} />
+                    <AnimatedIcon className={'default card5'} />
                   </CardItem>
                   <CardItem>
                     <Image src='/images/salesforce-icon.svg' width={35} height={35} alt='sales-icon' />
@@ -274,7 +338,7 @@ export default function Home({ content }) {
                       <h5>Action</h5>
                       <span>Create lead in Salesforce</span>
                     </CardTextView>
-                    <AnimatedIcon className={"default card6"} />
+                    <AnimatedIcon className={'default card6'} />
                   </CardItem>
                 </CardWrapper>
               </BottomList>
@@ -448,15 +512,15 @@ export default function Home({ content }) {
 
 export async function getServerSideProps(context) {
   const currentSession = context.req.cookies['current-portal-session'];
-  const host = context.req.headers.host.replace('www.','');
+  const host = context.req.headers.host.replace('www.', '');
 
   if (currentSession) {
     return {
       redirect: {
         destination: `https://dashboard.${host}/portal/${currentSession}`,
-        permanent: false,
-      },
-    }
+        permanent: false
+      }
+    };
   }
 
   const content = (await getHomeContent()) ?? '';
@@ -466,3 +530,13 @@ export async function getServerSideProps(context) {
     }
   };
 }
+// export async function getStaticProps({ preview = false }) {
+//   const seoData = (await getSEOdata(SITEMAP_SEO_ID)) ?? [];
+
+//   return {
+//     props: {
+//       content: content?.content,
+//       seoData
+//     }
+//   };
+// }

@@ -25,9 +25,10 @@ import TabView from '../../components/tab/tab';
 import { isEmpty } from '../../helpers/helpers';
 import FeatureHero from '../../components/featurehero/featurehero';
 import SEO from '../../components/seo';
+import { getSEOdata } from '../../lib/contentful-seo';
 
 const CURRENT_MODULE = MUDULE_LIST.FILES;
-export default function MessagingApp({ details }) {
+export default function MessagingApp({ details, seoData }) {
   const renderHeroSection = useMemo(() => {
     return (
       <>
@@ -47,7 +48,7 @@ export default function MessagingApp({ details }) {
 
   return (
     <>
-      <SEO id={'4HCfvde1roSplxIYh7Ab3Y'} />
+      <SEO id={'4HCfvde1roSplxIYh7Ab3Y'} seoData={seoData} />
       <Layout>
         {renderHeroSection}
         <Content />
@@ -75,7 +76,9 @@ export default function MessagingApp({ details }) {
 
 export async function getStaticProps({ preview = false }) {
   const details = (await getFeatureById(FEATURES_FILES_ID, preview)) ?? [];
+  const seoData = (await getSEOdata('4HCfvde1roSplxIYh7Ab3Y')) ?? [];
+
   return {
-    props: { details }
+    props: { details, seoData }
   };
 }

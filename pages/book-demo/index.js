@@ -2,11 +2,12 @@ import { BookSection, ImageSection, DemoContain, BottomName, BgOverlay } from '.
 import BookDemoForm from '../../components/bookdemo/bookDemo';
 import SEO from '../../components/seo';
 import { BOOK_DEMO_SEO_ID } from '../../constants/constant';
+import { getSEOdata } from '../../lib/contentful-seo';
 
-export default function BookDemo() {
+export default function BookDemo({ seoData }) {
   return (
     <>
-      <SEO id={BOOK_DEMO_SEO_ID}></SEO>
+      <SEO id={BOOK_DEMO_SEO_ID} seoData={seoData}></SEO>
       <BookSection>
         <BookDemoForm />
         <ImageSection>
@@ -25,4 +26,13 @@ export default function BookDemo() {
       </BookSection>
     </>
   );
+}
+export async function getStaticProps({ preview = false }) {
+  const seoData = (await getSEOdata(BOOK_DEMO_SEO_ID)) ?? [];
+
+  return {
+    props: {
+      seoData
+    }
+  };
 }

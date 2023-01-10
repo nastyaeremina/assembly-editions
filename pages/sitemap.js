@@ -6,11 +6,13 @@ import Navbar from '../components/navbar/navbar';
 import SEO from '../components/seo';
 import { HEADER_LIST, SITEMAP_CONTENT_ID, SITEMAP_SEO_ID } from '../constants/constant';
 import { isEmpty, removeEmptyElement } from '../helpers/helpers';
+import { getSEOdata } from '../lib/contentful-seo';
 import { getSitemap } from '../lib/contentful-sitemap';
 import { Container } from '../styles/commonStyles';
 import { MainSection, PrivacuHero, ContentInfo, InfoWrap, InfoLink } from '../styles/resourcesStyles';
 
-export default function Privacy({ content }) {
+export default function Privacy({ content, seoData }) {
+  console.log('seoData', seoData);
   const [sitemap, setSitemap] = useState([]);
   const loadData = useCallback(() => {
     if (!isEmpty(content)) {
@@ -66,7 +68,7 @@ export default function Privacy({ content }) {
 
   return (
     <>
-      <SEO id={SITEMAP_SEO_ID} />
+      <SEO id={SITEMAP_SEO_ID} seoData={seoData} />
       <Layout>
         <Navbar isEnterPrice={true} headerIndex={HEADER_LIST.ENTERPRICE} />
         <MainSection>
@@ -86,9 +88,12 @@ export default function Privacy({ content }) {
 
 export async function getStaticProps({ preview = false }) {
   const content = (await getSitemap(SITEMAP_CONTENT_ID)) ?? '';
+  const seoData = (await getSEOdata(SITEMAP_SEO_ID)) ?? [];
+
   return {
     props: {
-      content: content?.content
+      content: content?.content,
+      seoData
     }
   };
 }

@@ -3,14 +3,15 @@ import LegalFooter from '../../components/footer/legalfooter';
 import Navbar from '../../components/navbar/navbar';
 import SEO from '../../components/seo';
 import { HEADER_LIST, TERMS_OF_SERVICE_ID, TERMS_OF_SERVICE_SEO_ID } from '../../constants/constant';
+import { getSEOdata } from '../../lib/contentful-seo';
 import { getSitemap } from '../../lib/contentful-sitemap';
 import { Container } from '../../styles/commonStyles';
 import { PrivacuHero, MainSection, SubData } from '../../styles/legalStyles';
 
-export default function TermsOfService({ content }) {
+export default function TermsOfService({ content, seoData }) {
   return (
     <>
-      <SEO id={TERMS_OF_SERVICE_SEO_ID} />
+      <SEO id={TERMS_OF_SERVICE_SEO_ID} seoData={seoData} />
       <Navbar isEnterPrice={true} headerIndex={HEADER_LIST.ENTERPRICE} />
       <MainSection>
         <PrivacuHero>
@@ -29,9 +30,12 @@ export default function TermsOfService({ content }) {
 
 export async function getStaticProps({ preview = false }) {
   const content = (await getSitemap(TERMS_OF_SERVICE_ID)) ?? '';
+  const seoData = (await getSEOdata(TERMS_OF_SERVICE_SEO_ID)) ?? [];
+
   return {
     props: {
-      content: content?.content
+      content: content?.content,
+      seoData
     }
   };
 }

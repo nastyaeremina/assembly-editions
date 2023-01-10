@@ -3,6 +3,7 @@ import LegalFooter from '../../components/footer/legalfooter';
 import Navbar from '../../components/navbar/navbar';
 import SEO from '../../components/seo';
 import { HEADER_LIST, PRIVACY_POLICY_SEO_ID, PRIVCY_POLICY_ID } from '../../constants/constant';
+import { getSEOdata } from '../../lib/contentful-seo';
 import { getSitemap } from '../../lib/contentful-sitemap';
 import { BulletImage, Container, PrimaryButton } from '../../styles/commonStyles';
 import {
@@ -14,10 +15,10 @@ import {
   FooterSection
 } from '../../styles/resourcesStyles';
 
-export default function PrivacyPolicy({ content }) {
+export default function PrivacyPolicy({ content, seoData }) {
   return (
     <>
-      <SEO id={PRIVACY_POLICY_SEO_ID} />
+      <SEO id={PRIVACY_POLICY_SEO_ID} seoData={seoData} />
       <Navbar isEnterPrice={true} headerIndex={HEADER_LIST.ENTERPRICE} />
       <MainSection>
         <PrivacuHero>
@@ -42,9 +43,12 @@ export default function PrivacyPolicy({ content }) {
 
 export async function getStaticProps({ preview = false }) {
   const content = (await getSitemap(PRIVCY_POLICY_ID)) ?? '';
+  const seoData = (await getSEOdata(PRIVACY_POLICY_SEO_ID)) ?? [];
+
   return {
     props: {
-      content: content?.content
+      content: content?.content,
+      seoData
     }
   };
 }

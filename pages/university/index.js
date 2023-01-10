@@ -30,9 +30,10 @@ import slugify from 'slugify';
 import SEO from '../../components/seo';
 import { UNIVERSITY_VIDEO_CATEGORY } from '../../constants/constant';
 import AppError from '../../components/apperror/error';
+import { getSEOdata } from '../../lib/contentful-seo';
 
 let selected_category = null;
-export default function University({ universityVideosList, allPosts }) {
+export default function University({ universityVideosList, allPosts, seoData }) {
   const [selected_category, setSelected_categry] = useState(null);
   const [query, setQuery] = useState('');
   const [searchResult, setSearchResult] = useState([]);
@@ -158,7 +159,7 @@ export default function University({ universityVideosList, allPosts }) {
 
   return (
     <>
-      <SEO id={'2hMkBVQBYcMCmHLQyxzo8o'}></SEO>
+      <SEO id={'2hMkBVQBYcMCmHLQyxzo8o'} seoData={seoData}></SEO>
       <Layout>
         <Navbar />
         <UniversitySection>
@@ -202,6 +203,8 @@ export default function University({ universityVideosList, allPosts }) {
   );
 }
 export async function getStaticProps({ preview = false }) {
+  const seoData = (await getSEOdata('2hMkBVQBYcMCmHLQyxzo8o')) ?? [];
+
   let allPosts = [];
   let data = [];
   let page = 0;
@@ -235,6 +238,6 @@ export async function getStaticProps({ preview = false }) {
     ?.reverse();
 
   return {
-    props: { universityVideosList: newArray, allPosts }
+    props: { universityVideosList: newArray, allPosts, seoData }
   };
 }

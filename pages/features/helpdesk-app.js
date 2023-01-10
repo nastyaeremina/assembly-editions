@@ -23,9 +23,10 @@ import { getFeatureById } from '../../lib/contentful-features';
 import { isEmpty } from '../../helpers/helpers';
 import FeatureHero from '../../components/featurehero/featurehero';
 import SEO from '../../components/seo';
+import { getSEOdata } from '../../lib/contentful-seo';
 
 const CURRENT_MODULE = MUDULE_LIST.HELPDESK;
-export default function MessagingApp({ details }) {
+export default function MessagingApp({ details, seoData }) {
   const renderHeroSection = useMemo(() => {
     return (
       <>
@@ -45,7 +46,7 @@ export default function MessagingApp({ details }) {
 
   return (
     <>
-      <SEO id={'nauZdYlDqK8LKHYJdkcnt'} />
+      <SEO id={'nauZdYlDqK8LKHYJdkcnt'} seoData={seoData} />
       <Layout>
         {renderHeroSection}
         <Content />
@@ -74,6 +75,8 @@ export default function MessagingApp({ details }) {
 
 export async function getStaticProps({ preview = false }) {
   const details = (await getFeatureById(FEATURES_HELPDESK_ID, preview)) ?? [];
+  const seoData = (await getSEOdata('nauZdYlDqK8LKHYJdkcnt')) ?? [];
+
   return {
     props: { details }
   };
