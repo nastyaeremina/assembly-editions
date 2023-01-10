@@ -18,7 +18,8 @@ export default function Button({
   text,
   className,
   onClick,
-  isLink = true
+  isLink = true,
+  target = '_self'
 }) {
   return (
     <ButtonContainer
@@ -29,7 +30,7 @@ export default function Button({
       fontColor={fontColor}
       className={className}>
       {isLink ? (
-        <Link onMouseMove={(e) => myFunction(e)} href={href}>
+        <Link onMouseMove={(e) => myFunction(e)} href={href} target={target}>
           {text}
         </Link>
       ) : (

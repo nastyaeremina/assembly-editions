@@ -42,7 +42,10 @@ export default function Solution({ details }) {
             <Modern data={details?.solutionValueCollection?.items} title={details?.sectionTitle} />
           )}
           {!isEmpty(details?.clientExperienceCollection?.items) && (
-            <ExploreTab data={removeEmptyElement(details?.clientExperienceCollection?.items)} />
+            <ExploreTab
+              data={removeEmptyElement(details?.clientExperienceCollection?.items)}
+              demoUrl={details?.demoPortalUrl}
+            />
           )}
           {!isEmpty(details?.testimonial) && <Quote data={details?.testimonial} />}
         </MainWrap>
