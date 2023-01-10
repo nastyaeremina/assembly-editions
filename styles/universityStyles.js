@@ -260,8 +260,8 @@ const Backlink = styled.div`
   align-items: center;
   padding-bottom: 28px;
   p {
-    ${LinkTxt};
-    margin: 0;
+  ${LinkTxt};
+    margin-top: 20px;
     color: ${({ theme }) => theme.colors.lightgray};
   }
   @media only screen and (max-width: 769px) {

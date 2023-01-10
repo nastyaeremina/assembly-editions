@@ -46,7 +46,8 @@ import {
   TopBar,
   AnnounceBar,
   HelpLink,
-  Dspace
+  Dspace,
+
 } from './styles';
 import FeatureSubMenu from './featuresubmenu';
 import ResourcesSubMenu from './resourcessubmenu';
@@ -562,6 +563,7 @@ export default function Navbar({ isModule, headerIndex, isEnterPrice }) {
     return (
       <>
         <div>
+          <Dspace></Dspace>
           <TopBar>
             <Container>
               <AnnounceBar>
