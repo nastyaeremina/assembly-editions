@@ -23,6 +23,7 @@
     "contentful": "^9.1.18",
     "copy-to-clipboard": "^3.3.3",
     "cross-env": "7.0.3",
+    "dotenv": "^16.0.3",
     "eslint": "8.26.0",
     "eslint-config-next": "13.0.1",
     "next": "latest",

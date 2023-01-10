@@ -5,43 +5,41 @@ export default function (req, res) {
 
   try {
     const messageBody = (
-      <div>
+      `<div>
         <p>You have received a new form submission!</p>
-        <br />
-        <br />
-        <p> First Name: {req.body?.firstName}</p>
-        <p>Last Name: {req.body?.lastName}</p>
-        <p>Email: {req.body?.email}</p>
-        <p>Company name: {req.body?.companyName}</p>
-        <p>How did you find us?: {req.body?.howDidYouFindUs}</p>
-        <p>What industry are you in?: {req.body?.industry}</p>
-        <p>Enter Your Industry: {req.body?.industry_other}</p>
+        <br/>
+        <br/>
+        <h4>information</h4>
+        <p><b>First Name:</b> ${req.body?.firstName}</p>
+        <p><b>Last Name:</b> ${req.body?.lastName}</p>
+        <p><b>Email:</b> ${req.body?.email}</p>
+        <p><b>Company name:</b> ${req.body?.companyName}</p>
+        <p><b>How did you find us?:</b> ${req.body?.howDidYouFindUs}</p>
+        <p><b>What industry are you in?:</b> ${req.body?.industry} ${req.body?.industry_other}</p>
         <p>
-          Are you interested in Portal for your own business or are you contacting us on behalf of a client?:{' '}
-          {req.body?.youInerestedBusiness}
+        <b>Are you interested in Portal for your own business or are you contacting us on behalf of a client?:</b> ${req.body?.youInerestedBusiness}
         </p>
-        <p>How large is your company?: {req.body?.companySize}</p>
-        <p>What should we know about your situation or objectives?: {req.body?.objectives}</p>
+        <p><b>How large is your company?:</b> ${req.body?.companySize}</p>
+        <p><b>What should we know about your situation or objectives?:</b> ${req.body?.objectives}</p>
         <p>Source: Book a demo</p>
-      </div>
+      </div>`
     );
 
     const transporter = nodemailer.createTransport({
-      host: 'email-smtp.us-west-2.amazonaws.com',
-      port: 587,
+      host: process.env.DEMO_EMAIL_HOST,
+      port: process.env.DEMO_EMAIL_PORT,
       auth: {
-        user: 'AKIAQJQGUNGIZ2NKQIPK',
-        pass: 'BM8RJK3KRhlzf6T3GLjGhp4g9ps/xPT7umGN52jJzXpL'
-      },
-      secure: true
+        user: process.env.DEMO_EMAIL_SMTP_ID,
+        pass: process.env.DEMO_EMAIL_SMTP_PASS
+      }
     });
 
     const mailData = {
-      from: 'formsubmission@copilot.com',
-      to: 'krupalinakrani99@gmail.com',
+      from: process.env.DEMO_EMAIL_FROM,
+      to: process.env.DEMO_EMAIL_TO,
       subject: 'Following up on your Copilot sales form submission',
       text: 'HELLO',
-      html: 'Hellol=='
+      html: messageBody
     };
 
     transporter.sendMail(mailData, function (err, info) {
