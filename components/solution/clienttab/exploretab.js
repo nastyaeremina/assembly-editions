@@ -22,7 +22,7 @@ import {
   Tooltip
 } from './styles';
 
-export default function ExploreTab({ data }) {
+export default function ExploreTab({ data, demoUrl }) {
   const [selectedTabIbndex, setSelectedTabIbndex] = useState(0);
 
   const onClickTab = useCallback((index) => {
@@ -83,16 +83,19 @@ export default function ExploreTab({ data }) {
               account in a demo portal we have set up. We’ve customized this demo portal to highlight some of the
               features that are most relevant.
             </p>
-            <BtnWrap>
-              <Button
-                bgColor={'transparent'}
-                fontColor={'#000000'}
-                borderColor={'#000000'}
-                text={'Create client account in a demo portal'}
-                href={'#'}
-                hoverColor={'rgba(0, 0, 0, 0.5)'}
-              />
-            </BtnWrap>
+            {demoUrl && (
+              <BtnWrap>
+                <Button
+                  bgColor={'transparent'}
+                  fontColor={'#000000'}
+                  borderColor={'#000000'}
+                  text={'Create client account in a demo portal'}
+                  href={demoUrl}
+                  hoverColor={'rgba(0, 0, 0, 0.5)'}
+                  target={'_blank'}
+                />
+              </BtnWrap>
+            )}
           </TopView>
         </Container>
         <BottomSection>
@@ -100,9 +103,7 @@ export default function ExploreTab({ data }) {
             <SignatureSection>
               {tabDetailView}
               <RightWrap>
-                <TabWrap>
-                  {tabListView}
-                </TabWrap>
+                <TabWrap>{tabListView}</TabWrap>
               </RightWrap>
             </SignatureSection>
           </Container>
