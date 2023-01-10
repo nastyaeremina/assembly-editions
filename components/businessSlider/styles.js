@@ -50,16 +50,13 @@ const SliderWrap = styled.div`
   }
   .slick-slide {
     height: 580px;
-    @media only screen and (max-width: 991px) {
-      height: 500px;
-    }
     @media only screen and (max-width: 749px) {
       height: 500px;
     }
   }
   @media only screen and (max-width: 749px) {
     .slick-slider {
-      height: 100vw;
+      
     }
   }
 `;

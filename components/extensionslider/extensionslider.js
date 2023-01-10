@@ -49,7 +49,7 @@ const ExtensionSlider = ({ data }) => {
                 <SliderInner href={'/apps/'+item?.slug}>
                   <SliderSub>
                     <Image src={item?.icon?.url} alt='red-icon' width={35} height={35} layout={'fixed'} />
-                    <h4>{item?.name}</h4>
+                    <p>{item?.name}</p>
                   </SliderSub>
                 </SliderInner>
                 <SliderLine></SliderLine>

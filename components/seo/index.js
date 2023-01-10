@@ -3,34 +3,37 @@ import React, { useCallback, useEffect, useState } from 'react';
 import { getSEOdata } from '../../lib/contentful-seo';
 import { isEmpty } from '../../helpers/helpers';
 
-export default function SEO({ id,seoData }) {
-    const [data, setData] = useState([]);
-    const loadData = useCallback(async () => {
-      if(isEmpty(seoData)){
-        const posts = (await getSEOdata(id)) ?? [];
-        setData(posts);
-      }else setData(seoData)
-    }, [id, seoData]);
-  
-    useEffect(() => {
-      loadData();
-    }, [loadData]);
-    
-    return (
+export default function SEO({ id, seoData }) {
+  const [data, setData] = useState([]);
+  const loadData = useCallback(async () => {
+    if (isEmpty(seoData)) {
+      const posts = (await getSEOdata(id)) ?? [];
+      setData(posts);
+    } else setData(seoData);
+  }, [id, seoData]);
+
+  useEffect(() => {
+    loadData();
+  }, [loadData]);
+
+  return (
     <>
-    <NextSeo
-    title={data?.seoTitle}
-    description={data?.description}
-    openGraph={{
-      type: 'website',
-      locale: 'en_IE',
-      site_name: 'SiteName',
-      images: isEmpty(data?.openGraphImage) ? []:[
-        {
-          url: data?.openGraphImage?.url
-        }
-      ]
-      }}
-  /></>
+      <NextSeo
+        title={data?.seoTitle}
+        description={data?.description}
+        openGraph={{
+          type: 'website',
+          locale: 'en_IE',
+          site_name: 'SiteName',
+          images: isEmpty(data?.openGraphImage)
+            ? []
+            : [
+                {
+                  url: data?.openGraphImage?.url
+                }
+              ]
+        }}
+      />
+    </>
   );
 }

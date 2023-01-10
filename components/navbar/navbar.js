@@ -622,10 +622,10 @@ export default function Navbar({ isModule, headerIndex, isEnterPrice }) {
                       <span>Back</span>
                     </BackWrap>
                   ) : (
-                    <Link href='/'><CopilotLogo loading='lazy' width='96' height='21' src={MobileWhiteLogos.src} /></Link>
+                    <Link href='/' aria-label={"Navigate to Home"}><CopilotLogo  alt="copilot logo" loading='lazy' width='96' height='21' src={MobileWhiteLogos.src} /></Link>
                   )
                 ) : (
-                  <Link href='/'><CopilotLogo loading='lazy' width='143' height='31' src={WhiteLogos.src} /></Link>
+                  <Link href='/' aria-label={"Navigate to Home"}><CopilotLogo alt="copilot logo" loading='lazy' width='143' height='31' src={WhiteLogos.src} /></Link>
                 )
               ) : isEnterPrice ? (
                 mobile ? (
@@ -637,10 +637,10 @@ export default function Navbar({ isModule, headerIndex, isEnterPrice }) {
                       <span>Back</span>
                     </BackWrap>
                   ) : (
-                    <Link href='/'><CopilotLogo loading='lazy' width='96' height='21' src={MobileGreenLogos.src} /></Link>
+                    <Link href='/' aria-label={"Navigate to Home"}><CopilotLogo alt="copilot logo" loading='lazy' width='96' height='21' src={MobileGreenLogos.src} /></Link>
                   )
                 ) : (
-                  <Link href='/'><CopilotLogo loading='lazy' width='143' height='31' src={GreenLogos.src} /></Link>
+                  <Link href='/' aria-label={"Navigate to Home"}><CopilotLogo alt="copilot logo" loading='lazy' width='143' height='31' src={GreenLogos.src} /></Link>
                 )
               ) : mobile ? (
                 isOpenResoursesSubMenu || isOpenCompanySubMenu || isOpenFeatureSubMenu ? (
@@ -651,10 +651,10 @@ export default function Navbar({ isModule, headerIndex, isEnterPrice }) {
                     <span>Back</span>
                   </BackWrap>
                 ) : (
-                  <Link href='/'><CopilotLogo loading='lazy' width='96' height='21' src={MobileBlackLogos.src} /></Link>
+                  <Link href='/' aria-label={"Navigate to Home"}><CopilotLogo alt="copilot logo" loading='lazy' width='96' height='21' src={MobileBlackLogos.src} /></Link>
                 )
               ) : (
-                <Link href='/'><CopilotLogo loading='lazy' width='143' height='31' src={CopilotLogos.src} /> </Link>
+                <Link href='/' aria-label={"Navigate to Home"}><CopilotLogo alt="copilot logo" loading='lazy' width='143' height='31' src={CopilotLogos.src} /> </Link>
               )}
            
             {isOpenMobileMenu ? (

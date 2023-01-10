@@ -56,7 +56,7 @@ const SliderSub = styled.div`
   display: flex;
   gap: 12px;
   align-items: center;
-  h4 {
+  p{
     ${Body4};
     margin: 0;
     color: ${({ theme }) => theme.colors.title};

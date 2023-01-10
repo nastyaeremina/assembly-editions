@@ -868,32 +868,46 @@ const LineIcon = styled.div`
   opacity:0.3;
 }  
 .path1 {
-  animation: dash 2s linear infinite;
+  animation-name: dash ;
   animation-delay:4.5s;
+  animation-duration:5.5s;
+  animation-timing-function:linear;
 }
 .path2 {
-  animation: dash 2s linear infinite;
+  animation-name: dash ;
   animation-delay:9.5s;
+  animation-duration:5.5s;
+  animation-timing-function:linear;
 }
 .path3 {
-  animation: dash 2s linear infinite;
+  animation-name: dash ;
   animation-delay:4.5s;
+  animation-duration:5.5s;
+  animation-timing-function:linear;
 }
 .path4{
-  animation: dash 2s reverse linear infinite;
+  animation-name: dash ;
+  animation-direction:reverse;
   animation-delay:4.5s;
+  animation-duration:5.5s;
+  animation-timing-function:linear;
 }
 .path5 {
-  animation: dash 2s linear infinite;
+  animation-name: dash ;
   animation-delay:9.5s;
+  animation-duration:5.5s;
+  animation-timing-function:linear;
 }
 .path6 {
-  animation: dash 2s linear infinite;
+  animation-name: dash;
   animation-delay:9.5s;
+  animation-duration:5.5s;
 }
 .path7{
-  animation: dash 2s reverse linear infinite;
+  animation-name: dash;
+  animation-direction:reverse;
   animation-delay:9.5s;
+  animation-duration:5.5s;
 }
 @keyframes dash{
   from {
@@ -902,13 +916,6 @@ const LineIcon = styled.div`
   0% {opacity:1}
   100%{opacity:1}
 }
-/* @keyframes dash2{
-  from {
-    stroke-dashoffset: 100;
-  }
-  0% {opacity:1}
-  100%{opacity:1}
-} */
 `;
 const HelpSection = styled.div`
   padding: 50px 0;

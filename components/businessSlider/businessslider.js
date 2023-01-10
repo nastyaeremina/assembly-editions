@@ -7,7 +7,7 @@ import { SliderWrap, WrapImage, LeftBorder, RightBorder, WrapSlide, SlideImg } f
 const BusinessSlider = ({ data }) => {
   var settings = {
     speed: 700,
-    autoplay: false,
+    autoplay: true,
     infinite: true,
     autoplaySpeed: 0,
     cssEase: 'linear',
@@ -16,26 +16,97 @@ const BusinessSlider = ({ data }) => {
     pauseOnHover: true,
     responsive: [
       {
+        breakpoint: 3600,
+        settings: {
+          slidesToShow: 7.5
+        }
+      },
+      {
+        breakpoint: 3400,
+        settings: {
+          slidesToShow: 7
+        }
+      },
+      {
+        breakpoint: 3200,
+        settings: {
+          slidesToShow: 6.5
+        }
+      },
+      {
+        breakpoint: 3000,
+        settings: {
+          slidesToShow: 6.5
+        }
+      },
+      {
+        breakpoint: 2800,
+        settings: {
+          slidesToShow: 6
+        }
+      },
+      {
+        breakpoint: 2600,
+        settings: {
+          slidesToShow: 5.5
+        }
+      },
+      {
+        breakpoint: 2400,
+        settings: {
+          slidesToShow: 5
+        }
+      },
+      {
+        breakpoint: 2100,
+        settings: {
+          slidesToShow: 4.4
+        }
+      },
+      {
         breakpoint: 1920,
         settings: {
-          slidesToShow: 4.5
+          slidesToShow: 4.1
+        }
+      },
+      {
+        breakpoint: 1750,
+        settings: {
+          slidesToShow: 3.8
+        }
+      },
+      {
+        breakpoint: 1600,
+        settings: {
+          slidesToShow: 3.6
         }
       },
       {
         breakpoint: 1440,
         settings: {
-          slidesToShow: 3.5
+          slidesToShow: 3.1
+        }
+      },
+      {
+        breakpoint: 1280,
+        settings: {
+          slidesToShow: 2.6,
+        }
+      },
+      {
+        breakpoint: 1100,
+        settings: {
+          slidesToShow: 2.1,
         }
       },
       {
         breakpoint: 1000,
         settings: {
           slidesToShow: 2,
-          slidesToScroll: 1
         }
       },
       {
-        breakpoint: 600,
+        breakpoint: 720,
         settings: {
           slidesToShow: 1,
           slidesToScroll: 1,
@@ -55,6 +126,23 @@ const BusinessSlider = ({ data }) => {
       <SliderWrap>
         <Slider {...settings}>
           {data?.map((item, index) => { 
+            return (
+              <>
+                <WrapSlide className='mydiv'>
+                  <LeftBorder className='hide'></LeftBorder>
+                  <WrapImage>
+                    <SlideImg>
+                      <Image src={`${item?.image?.url}?w=354&h=354&fit=thumb`} alt='red-icon' className='zoom' width={354} height={354} />
+                    </SlideImg>
+                    <h4>{item?.industry}</h4>
+                    <p className='hide'>{item?.quote}</p>
+                  </WrapImage>
+                  <RightBorder className='hide'> </RightBorder>
+                </WrapSlide>
+              </>
+            );
+          })}
+             {data?.map((item, index) => { 
             return (
               <>
                 <WrapSlide className='mydiv'>

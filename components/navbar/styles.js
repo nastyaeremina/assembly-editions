@@ -816,6 +816,7 @@ const TextView = styled.div`
   cursor: pointer;
 `;
 const TopBar = styled.div`
+  top:0;
   background-color: ${({ theme }) => theme.colors.primary};
   width: 100%;
   position: fixed;
