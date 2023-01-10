@@ -586,7 +586,7 @@ const ImageWrap = styled.div`
   }
 `;
 const DetailRight = styled.div`
-  margin-top:10px;
+margin-top:10px;
   @media only screen and (max-width: 375px) {
     padding-top: 34px;
   }

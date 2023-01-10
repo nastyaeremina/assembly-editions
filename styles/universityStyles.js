@@ -144,6 +144,7 @@ const Catagoryitem = styled.li`
   }
 `;
 const FeatureRight = styled.div`
+  width:100%;
   margin-top: -40px;
   position: relative;
   h3 {
@@ -455,7 +456,6 @@ const EmptySection = styled.div`
   p {
     ${Body5};
     color: ${({ theme }) => theme.colors.title};
-    margin: 0;
     letter-spacing: 0.02em;
   }
   @media only screen and (max-width: 749px) {
