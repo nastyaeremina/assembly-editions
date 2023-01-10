@@ -38,7 +38,7 @@ export default function (req, res) {
 
     const mailData = {
       from: 'krupalinakrani99@gmail.com',
-      to: 'nakranikrupali992gmail.com',
+      to: 'nakranikrupali99gmail.com',
       subject: 'Following up on your Copilot sales form submission',
       text: 'HELLO',
       html: messageBody
