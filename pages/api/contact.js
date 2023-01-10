@@ -31,7 +31,8 @@ export default function (req, res) {
       auth: {
         user: process.env.DEMO_EMAIL_SMTP_ID,
         pass: process.env.DEMO_EMAIL_SMTP_PASS
-      }
+      },
+      secure: true
     });
 
     const mailData = {
