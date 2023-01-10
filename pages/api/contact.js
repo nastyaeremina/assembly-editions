@@ -44,10 +44,10 @@ export default function (req, res) {
       html: messageBody
     };
 
-    // transporter.sendMail(mailData, function (err, info) {
-    //   if (err) console.log(err);
-    //   else console.log(info);
-    // });
+    transporter.sendMail(mailData, function (err, info) {
+      if (err) console.log(err);
+      else console.log(info);
+    });
     console.log('req.body', req.body);
   } catch (e) {
     console.log('Error : ', e);
