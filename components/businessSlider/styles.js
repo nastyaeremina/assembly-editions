@@ -18,7 +18,7 @@ const SliderWrap = styled.div`
     opacity: 1;
   }
   .slick-dots {
-    bottom: -130px;
+    bottom: -80px;
   }
   .slick-dots li {
     margin: 0;
@@ -39,13 +39,13 @@ const SliderWrap = styled.div`
     transition: all 0.3s ease-in-out;
   }
   .mydiv:hover .zoom {
+    @media only screen and (min-width: 765px) {
     transform: scale(1);
     margin-top:-25px;
     height:400px;
     width:400px;
-    @media only screen and (max-width: 991px) {
-      transform: none !important;
-      transition: transform 0.3s;
+    transform: none !important;
+    transition: transform 0.3s;
     }
   }
   .slick-slide {
@@ -55,8 +55,8 @@ const SliderWrap = styled.div`
     }
   }
   @media only screen and (max-width: 749px) {
-    .slick-slider {
-      
+    .slick-list {
+      height: 494px;
     }
   }
 `;
