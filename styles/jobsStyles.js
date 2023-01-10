@@ -501,6 +501,7 @@ const DetailLink = styled.div`
   display: flex;
   gap: 8px;
   align-items: center;
+  margin-bottom:28px;
   p {
     ${LinkTxt};
     margin: 0;
@@ -515,7 +516,6 @@ const DetailLink = styled.div`
 `;
 const JobDetail = styled.div`
   display: flex;
-  padding-top: 28px;
   gap: 46px;
   @media only screen and (max-width: 767px) {
     flex-wrap: wrap;

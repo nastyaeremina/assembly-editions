@@ -53,16 +53,15 @@ export default function JobsDetail({ jobDetail }) {
         <Navbar />
         <JObMain>
           <Container>
-            <Link href='/jobs'>
-              <DetailLink>
-                <Image src='/images/leftarrow.svg' alt='bill-icon' width={12} height={12} layout={'fixed'} />
-                <p>Back to all Jobs</p>
-              </DetailLink>
-            </Link>
-
             <JobDetail>
               <DetailPosition>
                 <DetailLeft>
+                  <Link href='/jobs'>
+                    <DetailLink>
+                      <Image src='/images/leftarrow.svg' alt='bill-icon' width={12} height={12} layout={'fixed'} />
+                      <p>Back to all Jobs</p>
+                    </DetailLink>
+                  </Link>
                   <h3>{jobDetail?.name}</h3>
                   {!isEmpty(jobDetail?.department) && (
                     <DetailWrap>
