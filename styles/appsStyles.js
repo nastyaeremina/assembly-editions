@@ -146,6 +146,7 @@ const FeatureRight = styled.div`
   width: 100%;
   display: flex;
   flex-direction: column;
+  justify-content:center;
   h3 {
     ${Heading4};
     color: ${({ theme }) => theme.colors.title};
@@ -267,7 +268,6 @@ const ExtensionsSection = styled.div`
   p {
     ${Body5};
     color: ${({ theme }) => theme.colors.title};
-    margin: 0;
     letter-spacing: 0.02em;
   }
   @media only screen and (max-width: 749px) {
