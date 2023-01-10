@@ -27,18 +27,18 @@ export default function (req, res) {
     );
 
     const transporter = nodemailer.createTransport({
-      host: 'smtp.mailtrap.io',
-      port: 2525,
+      host: 'email-smtp.us-west-2.amazonaws.com',
+      port: 587,
       auth: {
-        user: 'ec12651e6f1121',
-        pass: '8111784b47a2a7'
+        user: 'AKIAQJQGUNGIZ2NKQIPK',
+        pass: 'BM8RJK3KRhlzf6T3GLjGhp4g9ps/xPT7umGN52jJzXpL'
       },
       secure: true
     });
 
     const mailData = {
-      from: 'krupalinakrani99@gmail.com',
-      to: 'nakranikrupali99gmail.com',
+      from: 'formsubmission@copilot.com',
+      to: req.body?.email,
       subject: 'Following up on your Copilot sales form submission',
       text: 'HELLO',
       html: messageBody
