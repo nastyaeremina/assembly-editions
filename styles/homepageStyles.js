@@ -1095,7 +1095,7 @@ const HelpMargin = styled.div`
 const BtnView = styled.div`
   margin-top: 28px;
 `;
-const ImageHover = styled.div`
+const ImageHover = styled.a`
   transition: 300ms all ease-in-out;
   animation: fadeIn ease 0.3s;
   -webkit-animation: fadeIn ease 0.3s;
