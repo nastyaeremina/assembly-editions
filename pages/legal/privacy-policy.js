@@ -18,7 +18,7 @@ import {
 export default function PrivacyPolicy({ content, seoData }) {
   return (
     <>
-      <SEO id={PRIVACY_POLICY_SEO_ID} seoData={seoData} />
+      <SEO seoData={seoData} />
       <Navbar isEnterPrice={true} headerIndex={HEADER_LIST.ENTERPRICE} />
       <MainSection>
         <PrivacuHero>

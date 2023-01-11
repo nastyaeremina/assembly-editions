@@ -8,7 +8,6 @@ import Client from '../../components/client/client';
 import { Container } from '../../styles/commonStyles';
 import {
   FEATURES_MESSAG_ID,
-  FEATURES_MESSAG_TAB_ID,
   HEADER_LIST,
   HOME_MODULE_LIST,
   MODULE_COLOR_LIST,
@@ -47,7 +46,7 @@ export default function MessagingApp({ details, seoData }) {
 
   return (
     <>
-      <SEO id={'3oNabM5iJI6OdftOBOzWTh'} seoData={seoData} />
+      <SEO seoData={seoData} />
       <Layout>
         {renderHeroSection}
 
@@ -55,7 +54,6 @@ export default function MessagingApp({ details, seoData }) {
         <Container>
           <BottomFunction>
             <TabView
-              tabId={FEATURES_MESSAG_TAB_ID}
               tabData={details?.clientFeaturesCollection?.items || []}
               bgColor={MODULE_COLOR_LIST[HOME_MODULE_LIST['Messaging']]?.bgColor}
               textColor={MODULE_COLOR_LIST[HOME_MODULE_LIST['Messaging']]?.fontColor}

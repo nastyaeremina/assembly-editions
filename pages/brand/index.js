@@ -96,7 +96,7 @@ export default function Brand({ seoData }) {
 
   return (
     <>
-      <SEO id={BRAND_SEO_ID} seoData={seoData} />
+      <SEO seoData={seoData} />
       <Layout>
         <Navbar />
         <BrandMain>
@@ -104,7 +104,7 @@ export default function Brand({ seoData }) {
             <BrandHeroSection>
               <h2>Copilot Brand Guidelines</h2>
               <p>Resources for presenting the Copilot brand consistently and professionally.</p>
-              <Button text={'Download Brand Assets'} href={'images/Copilot_Block_Assets.zip'} />
+              <Button text={'Download Brand Assets'} href={'images/Copilot_Brand_Assets.zip'} />
             </BrandHeroSection>
             <BrandName>
               <h4>Naming</h4>
@@ -139,7 +139,7 @@ export default function Brand({ seoData }) {
                       layout={'fixed'}
                       className='mobileshow'
                     />
-                    <a href='/images/logo.svg' download>
+                    <a href='/images/Copilot_Wordmark_LightGreen.png' download>
                       <HoverSection className='hover-name'>
                         <p>Download</p>
                         <Image
@@ -180,7 +180,7 @@ export default function Brand({ seoData }) {
                       layout={'fixed'}
                       className='mobileshow'
                     />
-                    <a href='/images/blacklogo.svg' download>
+                    <a href='/images/Copilot_Wordmark_DarkGreen.png' download>
                       <BlackHover className='hover-name'>
                         <p>Download</p>
                         <Image
@@ -230,7 +230,7 @@ export default function Brand({ seoData }) {
                       layout={'fixed'}
                       className='mobileshow'
                     />
-                    <a href='/images/smalllogo.svg' download>
+                    <a href='/images/Copilot_Symbol_Light-Green.png' download>
                       <HoverSection className='hover-name'>
                         <p>Download</p>
                         <Image
@@ -271,7 +271,7 @@ export default function Brand({ seoData }) {
                       layout={'fixed'}
                       className='mobileshow'
                     />
-                    <a href='/images/blacklogo.svg' download>
+                    <a href='/images/Copilot_Symbol_Dark-Green.png' download>
                       <BlackHover className='hover-name'>
                         <p>Download</p>
                         <Image
@@ -322,7 +322,7 @@ export default function Brand({ seoData }) {
                       className='companyiconmobi'
                     />
 
-                    <a href='/images/primarylogo.svg' download>
+                    <a href='/images/Copilot_Icon_Square.png' download>
                       <HoverLink className='hover-name'>
                         <p>Download</p>
                         <Image
@@ -363,7 +363,7 @@ export default function Brand({ seoData }) {
                       layout={'fixed'}
                       className='companyiconmobi'
                     />
-                    <a href='/images/primarylogo2.svg' download>
+                    <a href='/images/Copilot_Icon_Circle.png' download>
                       <HoverLink className='hover-name'>
                         <p>Download</p>
                         <Image

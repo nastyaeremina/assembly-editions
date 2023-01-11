@@ -1,9 +1,6 @@
 import { Container } from '../../styles/commonStyles';
 import TabView from '../tab/tab';
-import {
-  ContentMain,
-  TopFunctionWrap,
-} from './styles';
+import { ContentMain, TopFunctionWrap } from './styles';
 
 export default function Content() {
   return (

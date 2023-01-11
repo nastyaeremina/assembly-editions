@@ -165,7 +165,7 @@ export default function Jobs({ jobList, jobImagesList, jobBlogPostList, seoData 
 
   return (
     <>
-      <SEO id={JOB_SEO_ID} seoData={seoData} />
+      <SEO seoData={seoData} />
       <Layout>
         <Navbar />
         <MainWrap>

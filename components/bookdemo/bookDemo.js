@@ -47,7 +47,7 @@ export default function BookDemoForm() {
     onChangeInfo('industry_other', '');
     onChangeInfo('youInerestedBusiness', '');
   }, [onChangeInfo]);
-console.log("validationError",validationError);
+
   const showHideChiliPiper = useCallback(() => {
     function q(a) {
       return function () {
@@ -162,9 +162,8 @@ console.log("validationError",validationError);
                     onChange={(e) => onChangeInfo('firstName', e.target.value)}
                     required={true}
                   />
-                { validationError?.name === 'firstName'&& <Validation error={validationError?.message} />}
+                  {validationError?.name === 'firstName' && <Validation error={validationError?.message} />}
                 </NameInfo>
-               
 
                 <NameInfo className='firstlable'>
                   <label for='lastName'>
@@ -178,8 +177,7 @@ console.log("validationError",validationError);
                     onChange={(e) => onChangeInfo('lastName', e.target.value)}
                     required
                   />
-                { validationError?.name === 'lastName'&& <Validation error={validationError?.message} />}
-
+                  {validationError?.name === 'lastName' && <Validation error={validationError?.message} />}
                 </NameInfo>
               </NameBlock>
               <label for='Last-Name-'>
@@ -196,7 +194,7 @@ console.log("validationError",validationError);
                 value={bookDemoData?.email}
                 onChange={(e) => onChangeInfo('email', e.target.value)}
               />
-              { validationError?.name === 'email'&& <Validation error={validationError?.message} />}
+              {validationError?.name === 'email' && <Validation error={validationError?.message} />}
 
               <label for='Last-Name-'>
                 Comany name <span>*</span>
@@ -209,7 +207,7 @@ console.log("validationError",validationError);
                 value={bookDemoData?.companyName}
                 onChange={(e) => onChangeInfo('companyName', e.target.value)}
               />
-              { validationError?.name === 'companyName'&& <Validation error={validationError?.message} />}
+              {validationError?.name === 'companyName' && <Validation error={validationError?.message} />}
               <label for='Last-Name-'>
                 How did you find us? <span>*</span>
               </label>
@@ -232,7 +230,7 @@ console.log("validationError",validationError);
                 <option value='product_hunt'>Product Hunt</option>
                 <option value='other'>Other</option>
               </select>
-              { validationError?.name === 'howDidYouFindUs'&& <Validation error={validationError?.message} />}
+              {validationError?.name === 'howDidYouFindUs' && <Validation error={validationError?.message} />}
               <label for='Last-Name-'>
                 What industry are you in? <span>*</span>
               </label>
@@ -265,7 +263,7 @@ console.log("validationError",validationError);
                 <option value='technology'>Technology</option>
                 <option value='other'>Other</option>
               </select>
-              { validationError?.name === 'industry'&& <Validation error={validationError?.message} />}
+              {validationError?.name === 'industry' && <Validation error={validationError?.message} />}
               {bookDemoData?.industry === 'other' && (
                 <>
                   <label for='Industry-Name-'>
@@ -279,7 +277,7 @@ console.log("validationError",validationError);
                     value={bookDemoData?.industry_other}
                     onChange={(e) => onChangeInfo('industry_other', e.target.value)}
                   />
-                  { validationError?.name === 'industry_other'&& <Validation error={validationError?.message} />}
+                  {validationError?.name === 'industry_other' && <Validation error={validationError?.message} />}
                 </>
               )}
               {INDUSTRY_ARRAY?.includes(bookDemoData?.industry) && (
@@ -303,7 +301,7 @@ console.log("validationError",validationError);
                       I’m interested in Portal for my clients.
                     </option>
                   </select>
-                  { validationError?.name === 'youInerestedBusiness'&& <Validation error={validationError?.message} />}
+                  {validationError?.name === 'youInerestedBusiness' && <Validation error={validationError?.message} />}
                 </>
               )}
 
@@ -325,7 +323,7 @@ console.log("validationError",validationError);
                 <option value='100'>51 - 100</option>
                 <option value='100+'>100+</option>
               </select>
-              { validationError?.name === 'companySize'&& <Validation error={validationError?.message} />}
+              {validationError?.name === 'companySize' && <Validation error={validationError?.message} />}
               <label for='Last-Name-'>
                 What should we know about your situation or objectives? <span>*</span>
               </label>
@@ -338,8 +336,9 @@ console.log("validationError",validationError);
                 required=''
                 class='sm'
                 value={bookDemoData?.objectives}
-                onChange={(e) => onChangeInfo('objectives', e.target.value)} />
-                { validationError?.name === 'objectives'&& <Validation isLast={true} error={validationError?.message} />}
+                onChange={(e) => onChangeInfo('objectives', e.target.value)}
+              />
+              {validationError?.name === 'objectives' && <Validation isLast={true} error={validationError?.message} />}
             </FormDetail>
 
             <Button text={'Let’s talk'} className='btnposition' type={'submit'} onClick={onSubmit} />

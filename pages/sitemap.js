@@ -12,7 +12,6 @@ import { Container } from '../styles/commonStyles';
 import { MainSection, PrivacuHero, ContentInfo, InfoWrap, InfoLink } from '../styles/resourcesStyles';
 
 export default function Privacy({ content, seoData }) {
-  console.log('seoData', seoData);
   const [sitemap, setSitemap] = useState([]);
   const loadData = useCallback(() => {
     if (!isEmpty(content)) {
@@ -68,7 +67,7 @@ export default function Privacy({ content, seoData }) {
 
   return (
     <>
-      <SEO id={SITEMAP_SEO_ID} seoData={seoData} />
+      <SEO seoData={seoData} />
       <Layout>
         <Navbar isEnterPrice={true} headerIndex={HEADER_LIST.ENTERPRICE} />
         <MainSection>

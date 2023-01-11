@@ -8,7 +8,6 @@ import Client from '../../components/client/client';
 import { Container } from '../../styles/commonStyles';
 import {
   FEATURES_HELPDESK_ID,
-  FEATURES_HELPDESK_TAB_ID,
   HEADER_LIST,
   HOME_MODULE_LIST,
   MODULE_COLOR_LIST,
@@ -46,14 +45,13 @@ export default function MessagingApp({ details, seoData }) {
 
   return (
     <>
-      <SEO id={'nauZdYlDqK8LKHYJdkcnt'} seoData={seoData} />
+      <SEO seoData={seoData} />
       <Layout>
         {renderHeroSection}
         <Content />
         <Container>
           <BottomFunction>
             <TabView
-              tabId={FEATURES_HELPDESK_TAB_ID}
               tabData={details?.clientFeaturesCollection?.items || []}
               bgColor={MODULE_COLOR_LIST[HOME_MODULE_LIST['Helpdesk']]?.bgColor}
               textColor={MODULE_COLOR_LIST[HOME_MODULE_LIST['Helpdesk']]?.fontColor}
@@ -78,6 +76,6 @@ export async function getStaticProps({ preview = false }) {
   const seoData = (await getSEOdata('nauZdYlDqK8LKHYJdkcnt')) ?? [];
 
   return {
-    props: { details }
+    props: { details, seoData }
   };
 }
