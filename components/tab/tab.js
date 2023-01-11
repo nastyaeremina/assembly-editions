@@ -55,7 +55,9 @@ export default function TabView({ bgColor, textColor, isHome, tabData: allPosts 
     'border-radius': '40px',
     padding: '7px 20px',
     marginLeft: '0',
-    marginRight: '0'
+    marginRight: '0',
+    'text-overflow': 'ellipsis',
+    'white-space': 'nowrap'
   });
 
   const tablistview = useMemo(() => {
