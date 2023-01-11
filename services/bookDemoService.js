@@ -62,43 +62,43 @@ import { isEmail } from '../helpers/helpers';
 export const checkValidation = (payload) => (dispatch) => {
   let valid = true;
   if (!payload) {
-    dispatch(setformValidationError('Fist name is Required', dispatch));
+    dispatch(setformValidationError({name:'firstName',message:'First name is Required'}));
     valid = false;
   } else if (!payload?.firstName || payload?.firstName?.trim() === '') {
-    dispatch(setformValidationError('Fist name is Required', dispatch));
+    dispatch(setformValidationError({name:'firstName',message:'Fist name is Required'}));
     valid = false;
   } else if (!payload?.lastName || payload?.lastName?.trim() === '') {
-    dispatch(setformValidationError('Last name is Required', dispatch));
+    dispatch(setformValidationError({name:'lastName',message:'Last name is Required'}));
     valid = false;
   } else if (!payload?.email || payload?.email?.trim() === '') {
-    dispatch(setformValidationError('Email is required', dispatch));
+    dispatch(setformValidationError({name:'email',message:'Email is required'}));
     valid = false;
   } else if (isEmail(payload?.email) === false) {
-    dispatch(setformValidationError('Please enter a valid email address', dispatch));
+    dispatch(setformValidationError({name:'email',message:'Please enter a valid email address'}));
     valid = false;
   } else if (!payload?.companyName || payload?.companyName?.trim() === '') {
-    dispatch(setformValidationError('Company name is Required', dispatch));
+    dispatch(setformValidationError({name:'companyName',message:'Company name is Required'}));
     valid = false;
   } else if (!payload?.howDidYouFindUs || payload?.howDidYouFindUs?.trim() === '') {
-    dispatch(setformValidationError('Please select how to find us', dispatch));
+    dispatch(setformValidationError({name:'howDidYouFindUs',message:'Please select how to find us'}));
     valid = false;
   } else if (!payload?.industry || payload?.industry?.trim() === '') {
-    dispatch(setformValidationError('Please select industry', dispatch));
+    dispatch(setformValidationError({name:'industry',message:'Please select industry'}));
     valid = false;
   } else if (payload?.industry === 'other' && (!payload?.industry_other || payload?.industry_other?.trim() === '')) {
-    dispatch(setformValidationError('Industry Name is required', dispatch));
+    dispatch(setformValidationError({name:'industry_other',message:'Industry Name is required'}));
     valid = false;
   } else if (
     INDUSTRY_ARRAY?.includes(payload?.industry) &&
     (!payload?.youInerestedBusiness || payload?.youInerestedBusiness?.trim() === '')
   ) {
-    dispatch(setformValidationError('Please select your interested business', dispatch));
+    dispatch(setformValidationError({name:'youInerestedBusiness',message:'Please select your interested business'}));
     valid = false;
   } else if (!payload?.companySize || payload?.companySize?.trim() === '') {
-    dispatch(setformValidationError('Please select Company size', dispatch));
+    dispatch(setformValidationError({name:'companySize',message:'Please select Company size'}));
     valid = false;
   } else if (!payload?.objectives || payload?.objectives?.trim() === '') {
-    dispatch(setformValidationError('objectives is required', dispatch));
+    dispatch(setformValidationError({name:'objectives',message:'objectives is required'}));
     valid = false;
   }
   return valid;
