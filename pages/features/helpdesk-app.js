@@ -76,6 +76,6 @@ export async function getStaticProps({ preview = false }) {
   const seoData = (await getSEOdata('nauZdYlDqK8LKHYJdkcnt')) ?? [];
 
   return {
-    props: { details }
+    props: { details, seoData }
   };
 }

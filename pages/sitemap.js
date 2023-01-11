@@ -12,7 +12,6 @@ import { Container } from '../styles/commonStyles';
 import { MainSection, PrivacuHero, ContentInfo, InfoWrap, InfoLink } from '../styles/resourcesStyles';
 
 export default function Privacy({ content, seoData }) {
-  console.log('seoData', seoData);
   const [sitemap, setSitemap] = useState([]);
   const loadData = useCallback(() => {
     if (!isEmpty(content)) {
