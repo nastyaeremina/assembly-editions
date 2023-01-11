@@ -25,7 +25,8 @@ import {
   ImgLine,
   TextWrap,
   ContactText,
-  ThanksWrap
+  ThanksWrap,
+  ValidationForm
 } from './styles';
 
 export default function BookDemoForm() {
@@ -46,7 +47,7 @@ export default function BookDemoForm() {
     onChangeInfo('industry_other', '');
     onChangeInfo('youInerestedBusiness', '');
   }, [onChangeInfo]);
-
+console.log("validationError",validationError);
   const showHideChiliPiper = useCallback(() => {
     function q(a) {
       return function () {
@@ -99,10 +100,6 @@ export default function BookDemoForm() {
       dispatch(setformValidationError(null));
     };
   }, [dispatch]);
-
-  const renderErrors = () => {
-    return <Validation error={validationError} />;
-  };
 
   return (
     <>
@@ -165,7 +162,10 @@ export default function BookDemoForm() {
                     onChange={(e) => onChangeInfo('firstName', e.target.value)}
                     required={true}
                   />
+                { validationError?.name === 'firstName'&& <Validation error={validationError?.message} />}
                 </NameInfo>
+               
+
                 <NameInfo className='firstlable'>
                   <label for='lastName'>
                     Last name <span>*</span>
@@ -178,6 +178,8 @@ export default function BookDemoForm() {
                     onChange={(e) => onChangeInfo('lastName', e.target.value)}
                     required
                   />
+                { validationError?.name === 'lastName'&& <Validation error={validationError?.message} />}
+
                 </NameInfo>
               </NameBlock>
               <label for='Last-Name-'>
@@ -194,6 +196,8 @@ export default function BookDemoForm() {
                 value={bookDemoData?.email}
                 onChange={(e) => onChangeInfo('email', e.target.value)}
               />
+              { validationError?.name === 'email'&& <Validation error={validationError?.message} />}
+
               <label for='Last-Name-'>
                 Comany name <span>*</span>
               </label>
@@ -205,6 +209,7 @@ export default function BookDemoForm() {
                 value={bookDemoData?.companyName}
                 onChange={(e) => onChangeInfo('companyName', e.target.value)}
               />
+              { validationError?.name === 'companyName'&& <Validation error={validationError?.message} />}
               <label for='Last-Name-'>
                 How did you find us? <span>*</span>
               </label>
@@ -227,6 +232,7 @@ export default function BookDemoForm() {
                 <option value='product_hunt'>Product Hunt</option>
                 <option value='other'>Other</option>
               </select>
+              { validationError?.name === 'howDidYouFindUs'&& <Validation error={validationError?.message} />}
               <label for='Last-Name-'>
                 What industry are you in? <span>*</span>
               </label>
@@ -259,6 +265,7 @@ export default function BookDemoForm() {
                 <option value='technology'>Technology</option>
                 <option value='other'>Other</option>
               </select>
+              { validationError?.name === 'industry'&& <Validation error={validationError?.message} />}
               {bookDemoData?.industry === 'other' && (
                 <>
                   <label for='Industry-Name-'>
@@ -272,6 +279,7 @@ export default function BookDemoForm() {
                     value={bookDemoData?.industry_other}
                     onChange={(e) => onChangeInfo('industry_other', e.target.value)}
                   />
+                  { validationError?.name === 'industry_other'&& <Validation error={validationError?.message} />}
                 </>
               )}
               {INDUSTRY_ARRAY?.includes(bookDemoData?.industry) && (
@@ -295,6 +303,7 @@ export default function BookDemoForm() {
                       I’m interested in Portal for my clients.
                     </option>
                   </select>
+                  { validationError?.name === 'youInerestedBusiness'&& <Validation error={validationError?.message} />}
                 </>
               )}
 
@@ -308,7 +317,7 @@ export default function BookDemoForm() {
                 required=''
                 class='wselect'
                 onChange={(e) => onChangeInfo('companySize', e.target.value)}>
-                <option value=''>select option...</option>
+                <option value=''>Select Option...</option>
                 <option value='1'>Just me</option>
                 <option value='5'>2 - 5</option>
                 <option value='10'>6 - 10</option>
@@ -316,6 +325,7 @@ export default function BookDemoForm() {
                 <option value='100'>51 - 100</option>
                 <option value='100+'>100+</option>
               </select>
+              { validationError?.name === 'companySize'&& <Validation error={validationError?.message} />}
               <label for='Last-Name-'>
                 What should we know about your situation or objectives? <span>*</span>
               </label>
@@ -328,9 +338,9 @@ export default function BookDemoForm() {
                 required=''
                 class='sm'
                 value={bookDemoData?.objectives}
-                onChange={(e) => onChangeInfo('objectives', e.target.value)}></textarea>
+                onChange={(e) => onChangeInfo('objectives', e.target.value)} />
+                { validationError?.name === 'objectives'&& <Validation isLast={true} error={validationError?.message} />}
             </FormDetail>
-            {renderErrors()}
 
             <Button text={'Let’s talk'} className='btnposition' type={'submit'} onClick={onSubmit} />
             <LastText>

@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import {
   Body3,
   Body4,
@@ -182,8 +182,9 @@ const FormDetail = styled.div`
     display: block;
     width: 100%;
     padding: 7px 12px;
-    font-size: 15px;
-    line-height: 16px;
+    font-size: 12px;
+    line-height: 14px;
+    letter-spacing:0.02em;
     color: ${({ theme }) => theme.colors.title};
     font-weight: 400px;
     /* vertical-align: middle; */
@@ -240,8 +241,8 @@ const Input = styled.input`
   border-radius: 4px;
   outline: 0;
   margin-bottom: 20px;
-  font-size: 15px;
-  line-height: 16px;
+  font-size: 12px;
+  line-height: 14px;
   width: 100%;
   color: ${({ theme }) => theme.colors.title};
   :hover {
@@ -250,6 +251,28 @@ const Input = styled.input`
   :focus {
     border-color: ${({ theme }) => theme.colors.primary};
   }
+`;
+const ValidationForm = styled.div`
+  display:flex;
+  margin-top:-18px;
+  margin-bottom:20px;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 14px;
+  letter-spacing: 0.02em;
+  color: #FF5644;
+  svg{
+    display:inline-flex;
+    margin-right:4px;
+    justify-content:center;
+  }
+  ${(props) =>
+      props.isLast &&
+      css`
+ margin-top:2px;
+ margin-bottom:0px;     
+  `}
+ 
 `;
 const NameBlock = styled.div`
   display: flex;
@@ -501,6 +524,7 @@ export {
   FormTxt,
   FormDetail,
   Input,
+  ValidationForm,
   NameBlock,
   NameInfo,
   LastText,
