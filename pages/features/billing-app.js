@@ -42,7 +42,7 @@ export default function MessagingApp({ details, seoData }) {
       </>
     );
   }, [details?.videoId]);
-  console.log('details?.clientFeaturesCollection?.items', details?.clientFeaturesCollection?.items);
+
   return (
     <>
       <SEO seoData={seoData} />
