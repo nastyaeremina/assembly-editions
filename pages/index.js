@@ -356,7 +356,9 @@ export default function Home({ content }) {
                       <h4>Our Community</h4>
                       <p>Meet our team and a community of businesses that run on Copilot. Requires a Slack account.</p>
                       <HelpLink className='icon-link'>
-                        <a href='https://copilot-release.vercel.app/jobs' className='learn-link mb0'>
+                        <a
+                          href='https://join.slack.com/t/copilotcommunity/shared_invite/zt-q6stzfgx-vBf7LBtbKFv63W4n_Otx4w'
+                          className='learn-link mb0'>
                           Join Community
                           <svg width='16' height='12' viewBox='0 0 16 12' fill='none' class='HoverArrow'>
                             <path
