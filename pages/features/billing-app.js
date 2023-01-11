@@ -8,7 +8,6 @@ import Client from '../../components/client/client';
 import { Container } from '../../styles/commonStyles';
 import {
   FEATURES_BILLING_ID,
-  FEATURES_BILLING_TAB_ID,
   HEADER_LIST,
   HOME_MODULE_LIST,
   MODULE_COLOR_LIST,
@@ -43,7 +42,7 @@ export default function MessagingApp({ details, seoData }) {
       </>
     );
   }, [details?.videoId]);
-
+  console.log('details?.clientFeaturesCollection?.items', details?.clientFeaturesCollection?.items);
   return (
     <>
       <SEO id={'3S0VyxjFOZh9FIFlk3sNCy'} seoData={seoData} />
@@ -53,7 +52,6 @@ export default function MessagingApp({ details, seoData }) {
         <Container>
           <BottomFunction>
             <TabView
-              tabId={FEATURES_BILLING_TAB_ID}
               tabData={details?.clientFeaturesCollection?.items || []}
               bgColor={MODULE_COLOR_LIST[HOME_MODULE_LIST['Billing']]?.bgColor}
               textColor={MODULE_COLOR_LIST[HOME_MODULE_LIST['Billing']]?.fontColor}

@@ -41,7 +41,7 @@ import {
 import BusinessSlider from '../components/businessSlider/businessslider';
 import ExtensionSlider from '../components/extensionslider/extensionslider';
 import CTA from '../components/cta/cta';
-import { HEADER_LIST, HOME_FEATURES_TAB_ID, HOME_MODULE_LIST, MODULE_COLOR_LIST } from '../constants/constant';
+import { HEADER_LIST } from '../constants/constant';
 import { getHomeContent } from '../lib/contentful-home';
 import TabView from '../components/tab/tab';
 import Button from '../components/button/button';
@@ -161,7 +161,7 @@ export default function Home({ content }) {
                 </p>
               </TopFunctionWrap>
               <BottomFunction>
-                <TabView tabId={HOME_FEATURES_TAB_ID} isHome={true} data={content?.featuresCollection?.items} />
+                <TabView isHome={true} tabData={content?.featuresCollection?.items} />
               </BottomFunction>
             </Container>
           </Functionality>
