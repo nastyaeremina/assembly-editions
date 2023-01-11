@@ -59,7 +59,7 @@ export default function NewIndex({ faq, seoData }) {
 
   return (
     <>
-      <SEO id={'yof0gWCYzq1DaLbKJTFqb'} seoData={seoData} />
+      <SEO seoData={seoData} />
       <Layout>
         <Navbar />
         <HeroSection>

@@ -11,7 +11,7 @@ import { PrivacuHero, MainSection, SubData } from '../../styles/legalStyles';
 export default function TermsOfService({ content, seoData }) {
   return (
     <>
-      <SEO id={TERMS_OF_SERVICE_SEO_ID} seoData={seoData} />
+      <SEO seoData={seoData} />
       <Navbar isEnterPrice={true} headerIndex={HEADER_LIST.ENTERPRICE} />
       <MainSection>
         <PrivacuHero>

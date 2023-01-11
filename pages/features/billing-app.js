@@ -45,7 +45,7 @@ export default function MessagingApp({ details, seoData }) {
   console.log('details?.clientFeaturesCollection?.items', details?.clientFeaturesCollection?.items);
   return (
     <>
-      <SEO id={'3S0VyxjFOZh9FIFlk3sNCy'} seoData={seoData} />
+      <SEO seoData={seoData} />
       <Layout>
         {renderHeroSection}
         <Content />

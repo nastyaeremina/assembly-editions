@@ -48,10 +48,10 @@ import Button from '../components/button/button';
 import SEO from '../components/seo';
 import { getSEOdata } from '../lib/contentful-seo';
 
-export default function Home({ content }) {
+export default function Home({ content, seoData }) {
   return (
     <>
-      <SEO id={content?.seoMetadata?.sys?.id}></SEO>
+      <SEO seoData={seoData}></SEO>
       <Layout>
         <Navbar headerIndex={HEADER_LIST.HOME} isModule={false} />
         <HomeMain>
@@ -526,18 +526,21 @@ export async function getServerSideProps(context) {
   }
 
   const content = (await getHomeContent()) ?? '';
+  const seoData = (await getSEOdata(content?.seoMetadata?.sys?.id)) ?? [];
   return {
     props: {
-      content
+      content,
+      seoData
     }
   };
 }
-// export async function getStaticProps({ preview = false }) {
-//   const seoData = (await getSEOdata(SITEMAP_SEO_ID)) ?? [];
 
+// export async function getStaticProps() {
+//   const content = (await getHomeContent()) ?? '';
+//   const seoData = (await getSEOdata(content?.seoMetadata?.sys?.id)) ?? [];
 //   return {
 //     props: {
-//       content: content?.content,
+//       content,
 //       seoData
 //     }
 //   };

@@ -96,7 +96,7 @@ export default function Brand({ seoData }) {
 
   return (
     <>
-      <SEO id={BRAND_SEO_ID} seoData={seoData} />
+      <SEO seoData={seoData} />
       <Layout>
         <Navbar />
         <BrandMain>

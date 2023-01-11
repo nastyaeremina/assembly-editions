@@ -190,7 +190,7 @@ export default function Apps({ allPosts, featuredApps, allCategoryWithPost, data
 
   return (
     <>
-      <SEO id={APP_SEO_ID} seoData={seoData}></SEO>
+      <SEO seoData={seoData}></SEO>
       <Layout>
         <MainBg>
           <Navbar />
