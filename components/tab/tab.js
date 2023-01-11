@@ -1,29 +1,12 @@
 import { StatefulTabs, StyledTab, Tab } from 'baseui/tabs';
 import { LabelMedium } from 'baseui/typography';
 import Image from 'next/image';
-import React, { useCallback, useEffect, useMemo, useState } from 'react';
+import React, { useMemo } from 'react';
 import { isEmpty } from '../../helpers/helpers';
-import { getTabGroupById } from '../../lib/contentful-tabs';
 import { ContainWrap, IconSvg, IconWrap, LeftDetail, RightDetail, TabRow } from '../../styles/homepageStyles';
 import Button from '../button/button';
 
-export default function TabView({ tabId, bgColor, textColor, isHome, data }) {
-  const [allPosts, setAppPosts] = useState([]);
-
-  const loadData = useCallback(async () => {
-    if (isEmpty(data)) {
-
-      const posts = (await getTabGroupById(tabId)) ?? [];
-      setAppPosts(posts);
-    } else {
-      setAppPosts(data)
-    }
-  }, [data, tabId]);
-
-  useEffect(() => {
-    loadData();
-  }, [loadData]);
-
+export default function TabView({ bgColor, textColor, isHome, tabData: allPosts }) {
   function TabOverride(rest) {
     return (
       <StyledTab {...rest}>

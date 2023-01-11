@@ -206,13 +206,6 @@ export const UNIVERSITY_VIDEO_CATEGORY = [
 
 export const INDUSTRY_ARRAY = ['consulting', 'technology', 'marketing'];
 
-export const HOME_FEATURES_TAB_ID = '6R0hkm1PSDEGOmel7Q6wva';
-export const FEATURES_MESSAG_TAB_ID = '2DgpDztGKBN2eo2rKNQ67p';
-export const FEATURES_BILLING_TAB_ID = '2iCYntWByiNtdj9Hkqzpeo';
-export const FEATURES_FILES_TAB_ID = '5xbH2EByTEWmPrtcSTWRdy';
-export const FEATURES_FORMS_TAB_ID = '3FflbItaKCbpfWnbHfFmIg';
-export const FEATURES_HELPDESK_TAB_ID = '4oQSJTMTBvBkHulyboUzLz';
-
 export const FEATURES_MESSAG_ID = '3j6okJbvtbNtRAXhtQC869';
 export const FEATURES_BILLING_ID = '2biTe250v3ZnEWb49koKtb';
 export const FEATURES_FILES_ID = '6glhfdfv9r7EMxEcyF3dQk';

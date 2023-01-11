@@ -8,7 +8,6 @@ import Client from '../../components/client/client';
 import { Container } from '../../styles/commonStyles';
 import {
   FEATURES_HELPDESK_ID,
-  FEATURES_HELPDESK_TAB_ID,
   HEADER_LIST,
   HOME_MODULE_LIST,
   MODULE_COLOR_LIST,
@@ -53,7 +52,6 @@ export default function MessagingApp({ details, seoData }) {
         <Container>
           <BottomFunction>
             <TabView
-              tabId={FEATURES_HELPDESK_TAB_ID}
               tabData={details?.clientFeaturesCollection?.items || []}
               bgColor={MODULE_COLOR_LIST[HOME_MODULE_LIST['Helpdesk']]?.bgColor}
               textColor={MODULE_COLOR_LIST[HOME_MODULE_LIST['Helpdesk']]?.fontColor}
