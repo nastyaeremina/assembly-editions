@@ -4,7 +4,7 @@ import { Body4, Quote } from './styles';
 const BookSection = styled.div`
   display: flex;
   width: 100%;
-  height: 100vh;
+  height: 100%;
   overflow: hidden;
 `;
 const ImageSection = styled.div`
