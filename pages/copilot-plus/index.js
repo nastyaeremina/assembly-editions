@@ -43,7 +43,7 @@ import {
 export default function Enterprise({ seoData }) {
   return (
     <>
-      <SEO id={ENTERPRICE_SEO_ID} seoData={seoData} />
+      <SEO seoData={seoData} />
       <Layout isEnterPrice={true}>
         <MainWrap>
           <Navbar isEnterPrice={true} headerIndex={HEADER_LIST.ENTERPRICE} />

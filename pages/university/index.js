@@ -159,7 +159,7 @@ export default function University({ universityVideosList, allPosts, seoData }) 
 
   return (
     <>
-      <SEO id={'2hMkBVQBYcMCmHLQyxzo8o'} seoData={seoData}></SEO>
+      <SEO seoData={seoData}></SEO>
       <Layout>
         <Navbar />
         <UniversitySection>

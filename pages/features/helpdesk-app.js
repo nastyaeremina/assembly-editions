@@ -45,7 +45,7 @@ export default function MessagingApp({ details, seoData }) {
 
   return (
     <>
-      <SEO id={'nauZdYlDqK8LKHYJdkcnt'} seoData={seoData} />
+      <SEO seoData={seoData} />
       <Layout>
         {renderHeroSection}
         <Content />

@@ -7,7 +7,7 @@ import { getSEOdata } from '../../lib/contentful-seo';
 export default function BookDemo({ seoData }) {
   return (
     <>
-      <SEO id={BOOK_DEMO_SEO_ID} seoData={seoData}></SEO>
+      <SEO seoData={seoData}></SEO>
       <BookSection>
         <BookDemoForm />
         <ImageSection>

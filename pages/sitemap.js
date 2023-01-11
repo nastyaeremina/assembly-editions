@@ -68,7 +68,7 @@ export default function Privacy({ content, seoData }) {
 
   return (
     <>
-      <SEO id={SITEMAP_SEO_ID} seoData={seoData} />
+      <SEO seoData={seoData} />
       <Layout>
         <Navbar isEnterPrice={true} headerIndex={HEADER_LIST.ENTERPRICE} />
         <MainSection>
