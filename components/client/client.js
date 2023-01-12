@@ -292,13 +292,12 @@ export default function Client({ currentModule }) {
 
             <BlockText>
               <h3>
-                Embed products you already use to unify your interactions with clients, giving them an experience that’s
-                proven to imrpove retention
+              Embed products like Airtable, Calendly, Jotform, and Custom Apps to streamline the client experience even more.
               </h3>
               <HelpLeftSub>
                 <HelpLink className='icon-link'>
                   <Link href='/apps' className='learn-link center'>
-                    Explore apps
+                    Explore Apps
                     <svg class='HoverArrow' width='10' height='10' viewBox='0 0 10 10' aria-hidden='true'>
                       <g fill-rule='evenodd'>
                         <path class='HoverArrow__linePath' d='M0 5h7'></path>
