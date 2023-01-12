@@ -289,7 +289,7 @@ export default function NewIndex({ faq, seoData }) {
                     <td colSpan={3}>
                       <h4>Total storage</h4>
                       <p>
-                        File uploads in the Files module by any user contribute to your file storage limit. When you
+                        File uploads in the Files App by any user contribute to your file storage limit. When you
                         reach your limit, our team will get in touch and ask that you make space or upgrade your
                         account.
                       </p>

@@ -14,7 +14,7 @@ export default function Content() {
           </h3>
           <p>
             Provide clients a uniform experience with on-brand design, combined in-product notifications, and consistent
-            email notifications. And with modularity built-in, start with just one module, and add more when the time is
+            email notifications. And with modularity built-in, start with just one App, and add more when the time is
             right.
           </p>
         </TopFunctionWrap>
