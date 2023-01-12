@@ -152,7 +152,7 @@ export default function BookDemoForm() {
               <NameBlock>
                 <NameInfo className='firstlable'>
                   <label for='First-Name-'>
-                    First Name <span>*</span>
+                    First name <span>*</span>
                   </label>
                   <Input
                     type='text'
