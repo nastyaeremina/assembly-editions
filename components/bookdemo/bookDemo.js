@@ -96,6 +96,8 @@ export default function BookDemoForm() {
   );
 
   useEffect(() => {
+    const body = document.querySelector("body");
+    body.style.overflow = "auto";
     return () => {
       dispatch(setformValidationError(null));
     };
