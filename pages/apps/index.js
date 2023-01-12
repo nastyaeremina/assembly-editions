@@ -276,7 +276,7 @@ export default function Apps({ allPosts, featuredApps, allCategoryWithPost, data
                           <h5>Build your own app</h5>
                           <p>
                             A custom app is a web application that can be embedded into your portal and receives
-                            information about the current user or company. With that capability you can render custom
+                            information about the current user or company. With this capability, you can render custom
                             content automatically depending on the user that is currently signed in.
                           </p>
                           <Button
