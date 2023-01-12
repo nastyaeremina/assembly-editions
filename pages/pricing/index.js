@@ -171,7 +171,7 @@ export default function NewIndex({ faq, seoData }) {
 
                       <PriceLeft>
                         <h4>Advanced</h4>
-                        <p>Level up further with a fully white-label experience and enterprise compliance</p>
+                        <p>Level up further with a a fully white-label experience and dedicated expert</p>
                         <PriceWrap>
                           <h2>
                             {isYearly && '$119'}
@@ -289,7 +289,7 @@ export default function NewIndex({ faq, seoData }) {
                     <td colSpan={3}>
                       <h4>Total storage</h4>
                       <p>
-                        File uploads in the Files module by any user contribute to your file storage limit. When you
+                        File uploads in the Files App by any user contribute to your file storage limit. When you
                         reach your limit, our team will get in touch and ask that you make space or upgrade your
                         account.
                       </p>
@@ -388,7 +388,7 @@ export default function NewIndex({ faq, seoData }) {
                     <td colSpan={3}>
                       <h4>Automations & Zapier</h4>
                       <p>
-                        Use Portal API and Zapier triggers to set up automations that streamline the experience for your
+                        Use Copilot API and Zapier triggers to set up automations that streamline the experience for your
                         clients.
                       </p>
                     </td>
@@ -417,10 +417,10 @@ export default function NewIndex({ faq, seoData }) {
                   </tr>
                   <tr>
                     <td colSpan={3}>
-                      <h4>White labeling</h4>
+                      <h4>White-labeling</h4>
                       <p>
-                        With a custom domain you can host your portal on your own URL. With a custom email domain you
-                        can send client email notifications from your own email. Powered by Portal is a small badge that
+                        With a custom domain, you can host your portal on your own URL. With a custom email domain, you
+                        can send client email notifications from your own email. Powered by Copilot is a small badge that
                         shows in the client experience and can be removed on the Advanced plan.
                       </p>
                     </td>

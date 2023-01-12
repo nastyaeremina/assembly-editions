@@ -34,7 +34,7 @@ export default function MessagingApp({ details, seoData }) {
           colorList={MODULE_COLOR_LIST[HOME_MODULE_LIST['Billing']]}
           title={'Billing App'}
           description={
-            'Create branded invoices and subscriptions, and make it easy for client to pay, access invoices, and manage their payment credentials.'
+            'Create branded invoices and subscriptions and make it easy for client to pay, access invoices, and manage their payment credentials.'
           }
           iconUrl={'/images/bill-icon.svg'}
           videoId={details?.videoId}

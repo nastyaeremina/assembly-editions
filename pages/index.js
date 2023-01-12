@@ -156,7 +156,7 @@ export default function Home({ content, seoData }) {
                 </h3>
                 <p>
                   Provide clients a uniform experience with on-brand design, combined in-product notifications, and
-                  consistent email notifications. And with modularily built-in, start with just one module and add more
+                  consistent email notifications. And with modularity built-in, start with just one App, and add more
                   when the time is right.
                 </p>
               </TopFunctionWrap>
@@ -349,7 +349,7 @@ export default function Home({ content, seoData }) {
               <HelpMain>
                 <HelpLeft>
                   <h3>
-                    The support you need<span>,</span> when you need it
+                    The support you need<span>,</span> when you need it<span>.</span>
                   </h3>
                   <HelpWrap>
                     <HelpLeftSub>

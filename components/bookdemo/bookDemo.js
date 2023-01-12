@@ -152,7 +152,7 @@ export default function BookDemoForm() {
               <NameBlock>
                 <NameInfo className='firstlable'>
                   <label for='First-Name-'>
-                    First Name <span>*</span>
+                    First name <span>*</span>
                   </label>
                   <Input
                     type='text'
@@ -218,7 +218,7 @@ export default function BookDemoForm() {
                 required=''
                 class='wselect'
                 onChange={(e) => onChangeInfo('howDidYouFindUs', e.target.value)}>
-                <option value=''>Please Select...</option>
+                <option value=''>Please select...</option>
                 <option value='linkedin'>LinkedIn</option>
                 <option value='google'>Google</option>
                 <option value='reddit'>Reddit</option>
@@ -244,7 +244,7 @@ export default function BookDemoForm() {
                   onChangeInfo('industry', e.target.value);
                   onChangeIndustry();
                 }}>
-                <option value=''>Please Select...</option>
+                <option value=''>Please select...</option>
                 <option value='accounting_and_bookkeeping'>Accounting and bookkeeping</option>
                 <option value='construction'>Construction</option>
                 <option value='consulting'>Consulting</option>
@@ -315,7 +315,7 @@ export default function BookDemoForm() {
                 required=''
                 class='wselect'
                 onChange={(e) => onChangeInfo('companySize', e.target.value)}>
-                <option value=''>Select Option...</option>
+                <option value=''>Please select...</option>
                 <option value='1'>Just me</option>
                 <option value='5'>2 - 5</option>
                 <option value='10'>6 - 10</option>
