@@ -349,7 +349,7 @@ export default function Home({ content, seoData }) {
               <HelpMain>
                 <HelpLeft>
                   <h3>
-                    The support you need<span>,</span> when you need it
+                    The support you need<span>,</span> when you need it<span>.</span>
                   </h3>
                   <HelpWrap>
                     <HelpLeftSub>
