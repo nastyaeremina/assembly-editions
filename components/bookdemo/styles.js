@@ -20,6 +20,8 @@ const MainSection = styled.div`
   background-color: ${({ theme }) => theme.colors.bgcolor};
   overflow: auto;
   @media only screen and (max-width: 991px) {
+    height:100%;
+    margin-bottom:50px;
     max-width: 100%;
     padding: 28px 160px 22px;
   }
