@@ -14,12 +14,12 @@ export default function BookDemo({ seoData }) {
           <BgOverlay></BgOverlay>
           <DemoContain>
             <h3>
-              “Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
-              dolore magna aliqua. Ut enim ad minim veniam”
+              “Copilot is the ultimate sidekick for us. It lets us streamline client communication, manage projects, and create a special 
+              on-brand experience for our clients. The platform is user-friendly, easy to set up, and the support team is always there to help.”
             </h3>
             <BottomName>
-              <p>John Doe</p>
-              <p>Founder at ABC Agency</p>
+              <p>Joshua Brueckner</p>
+              <p>Trulytell</p>
             </BottomName>
           </DemoContain>
         </ImageSection>
