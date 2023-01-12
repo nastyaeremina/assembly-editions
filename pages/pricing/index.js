@@ -419,7 +419,7 @@ export default function NewIndex({ faq, seoData }) {
                     <td colSpan={3}>
                       <h4>White-labeling</h4>
                       <p>
-                        With a custom domain you can host your portal on your own URL. With a custom email domain you
+                        With a custom domain, you can host your portal on your own URL. With a custom email domain, you
                         can send client email notifications from your own email. Powered by Copilot is a small badge that
                         shows in the client experience and can be removed on the Advanced plan.
                       </p>
