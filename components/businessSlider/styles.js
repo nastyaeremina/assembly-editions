@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { Body3, Body5, MbBody3 } from '../../styles/styles';
+import { Body3, Body5, MbBody3,MbBody5 } from '../../styles/styles';
 
 const Slide = styled.div`
   a {
@@ -18,7 +18,7 @@ const SliderWrap = styled.div`
     opacity: 1;
   }
   .slick-dots {
-    bottom: -80px;
+    bottom: -50px;
   }
   .slick-dots li {
     margin: 0;
@@ -74,7 +74,7 @@ const WrapImage = styled.div`
     padding-top: 43px;
     ${Body3};
     margin: 0;
-    color: ${({ theme }) => theme.colors.title};
+    color: #131313;
     @media only screen and (max-width: 911px) {
       padding-top: 20px;
       ${MbBody3};
@@ -86,11 +86,11 @@ const WrapImage = styled.div`
     padding-top: 8px;
     text-align: center;
     margin: 0;
-    color: ${({ theme }) => theme.colors.body};
+    color: #4C4C4C;
     letter-spacing: 0.02em;
     @media only screen and (max-width: 911px) {
       padding-top: 8px;
-      ${MbBody3};
+      ${MbBody5};
     }
   }
   @media only screen and (max-width: 911px) {

@@ -397,7 +397,7 @@ const BusinessSection = styled.div`
   padding: 50px 0 50px;
   overflow: hidden;
   @media only screen and (max-width: 749px) {
-    padding: 40px 0 160px;
+    padding: 40px 0 100px;
   }
 `;
 const BusinessText = styled.div`
