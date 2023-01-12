@@ -132,7 +132,7 @@ const BusinessSlider = ({ data }) => {
                   <LeftBorder className='hide'></LeftBorder>
                   <WrapImage>
                     <SlideImg>
-                      <Image src={`${item?.image?.url}?w=354&h=354&fit=thumb`} alt='red-icon' className='zoom' width={354} height={354} />
+                      <Image src={`${item?.image?.url}?w=800&h=800&fit=thumb`} alt='red-icon' className='zoom' width={354} height={354} />
                     </SlideImg>
                     <h4>{item?.industry}</h4>
                     <p className='hide'>{item?.quote}</p>
@@ -149,7 +149,7 @@ const BusinessSlider = ({ data }) => {
                   <LeftBorder className='hide'></LeftBorder>
                   <WrapImage>
                     <SlideImg>
-                      <Image src={`${item?.image?.url}?w=354&h=354&fit=thumb`} alt='red-icon' className='zoom' width={354} height={354} />
+                      <Image src={`${item?.image?.url}?w=800&h=800&fit=thumb`} alt='red-icon' className='zoom' width={354} height={354} />
                     </SlideImg>
                     <h4>{item?.industry}</h4>
                     <p className='hide'>{item?.quote}</p>
