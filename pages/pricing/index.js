@@ -171,7 +171,7 @@ export default function NewIndex({ faq, seoData }) {
 
                       <PriceLeft>
                         <h4>Advanced</h4>
-                        <p>Level up further with a fully white-label experience and enterprise compliance</p>
+                        <p>Level up further with a a fully white-label experience and dedicated expert</p>
                         <PriceWrap>
                           <h2>
                             {isYearly && '$119'}
