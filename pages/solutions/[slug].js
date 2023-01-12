@@ -19,7 +19,7 @@ export default function Solution({ details }) {
         openGraph={{
           type: 'website',
           locale: 'en_IE',
-          site_name: 'SiteName',
+          site_name: 'copilot.com',
           images: isEmpty(details?.seoMetadata?.openGraphImage)
             ? []
             : [

@@ -13,7 +13,7 @@ export default function SEO({ seoData }) {
         openGraph={{
           type: 'website',
           locale: 'en_IE',
-          site_name: 'SiteName',
+          site_name: 'copilot.com',
           images: isEmpty(seoData?.openGraphImage)
             ? []
             : [
