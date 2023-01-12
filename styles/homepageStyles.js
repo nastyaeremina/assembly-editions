@@ -482,6 +482,10 @@ const TopFunctionWrap = styled.div`
 `;
 const BottomFunction = styled.div`
   margin-top: 40px;
+  .am{
+  font-family: 'Bagoss';
+  letter-spacing: 0.02em;
+}
   .af {
     width: 100%;
   }
