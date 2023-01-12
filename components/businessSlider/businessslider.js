@@ -142,23 +142,7 @@ const BusinessSlider = ({ data }) => {
               </>
             );
           })}
-             {data?.map((item, index) => { 
-            return (
-              <>
-                <WrapSlide className='mydiv'>
-                  <LeftBorder className='hide'></LeftBorder>
-                  <WrapImage>
-                    <SlideImg>
-                      <Image src={`${item?.image?.url}?w=800&h=800&fit=thumb`} alt='red-icon' className='zoom' width={354} height={354} />
-                    </SlideImg>
-                    <h4>{item?.industry}</h4>
-                    <p className='hide'>{item?.quote}</p>
-                  </WrapImage>
-                  <RightBorder className='hide'> </RightBorder>
-                </WrapSlide>
-              </>
-            );
-          })}
+
         </Slider>
       </SliderWrap>
     </>
