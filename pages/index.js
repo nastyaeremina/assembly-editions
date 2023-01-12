@@ -512,19 +512,7 @@ export default function Home({ content, seoData }) {
   );
 }
 
-export async function getServerSideProps(context) {
-  const currentSession = context.req.cookies['current-portal-session'];
-  const host = context.req.headers.host.replace('www.', '');
-
-  if (currentSession) {
-    return {
-      redirect: {
-        destination: `https://dashboard.${host}/portal/${currentSession}`,
-        permanent: false
-      }
-    };
-  }
-
+export async function getStaticProps(context) {
   const content = (await getHomeContent()) ?? '';
   const seoData = (await getSEOdata(content?.seoMetadata?.sys?.id)) ?? [];
   return {
