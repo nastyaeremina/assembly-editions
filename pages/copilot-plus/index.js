@@ -112,7 +112,7 @@ export default function Enterprise({ seoData }) {
                 <BoxView>
                   <DetailView>
                     <h4>Advanced Reporting</h4>
-                    <p>Granular insights about how your team and clients are using Portal.</p>
+                    <p>Granular insights about how your team and clients are using Copilot.</p>
                   </DetailView>
                 </BoxView>
                 <BoxView>
@@ -122,7 +122,7 @@ export default function Enterprise({ seoData }) {
                   </DetailView>
                 </BoxView>
                 <ComingUp>
-                  <SpanText>Coming 2023</SpanText>
+                  <SpanText>Late 2023</SpanText>
                 </ComingUp>
               </BenefitBox>
             </Container>
