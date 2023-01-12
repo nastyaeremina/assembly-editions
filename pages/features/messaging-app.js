@@ -33,10 +33,9 @@ export default function MessagingApp({ details, seoData }) {
 
         <FeatureHero
           colorList={MODULE_COLOR_LIST[HOME_MODULE_LIST['Messaging']]}
-          title={'Messaging App'}
-          description={
-            'Make client communication secure and seamless, and never miss a message with comprehensive email notifications.'
-          }
+          title={details?.header}
+          heroImage={details?.heroImage?.url}
+          description={details?.body}
           iconUrl={'/images/module-icon.svg'}
           videoId={details?.videoId}
         />

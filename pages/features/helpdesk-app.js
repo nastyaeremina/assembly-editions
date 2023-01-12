@@ -32,10 +32,9 @@ export default function MessagingApp({ details, seoData }) {
         <Navbar isModule={true} headerIndex={HEADER_LIST.HELPDESK} />
         <FeatureHero
           colorList={MODULE_COLOR_LIST[HOME_MODULE_LIST['Helpdesk']]}
-          title={'Helpdesk App'}
-          description={
-            'Create a help desk or knowledge base with text, images, videos, and embeds. Use custom visibility rules to share the right content with the right clients.'
-          }
+          title={details?.header}
+          heroImage={details?.heroImage?.url}
+          description={details?.body}
           iconUrl={'/images/helpdesk-icon.svg'}
           videoId={details?.videoId}
         />

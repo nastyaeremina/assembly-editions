@@ -32,10 +32,9 @@ export default function MessagingApp({ details, seoData }) {
         <Navbar isModule={true} headerIndex={HEADER_LIST.FORMS} />
         <FeatureHero
           colorList={MODULE_COLOR_LIST[HOME_MODULE_LIST['Forms']]}
-          title={'Forms App'}
-          description={
-            'Collect client information seamlessly by creating customizable forms with 6 question types and sharing it with clients.'
-          }
+          title={details?.header}
+          heroImage={details?.heroImage?.url}
+          description={details?.body}
           iconUrl={'/images/form-icon.svg'}
           videoId={details?.videoId}
         />

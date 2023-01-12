@@ -32,10 +32,9 @@ export default function MessagingApp({ details, seoData }) {
         <Navbar isModule={true} headerIndex={HEADER_LIST.BILLING} />
         <FeatureHero
           colorList={MODULE_COLOR_LIST[HOME_MODULE_LIST['Billing']]}
-          title={'Billing App'}
-          description={
-            'Create branded invoices and subscriptions and make it easy for client to pay, access invoices, and manage their payment credentials.'
-          }
+          title={details?.header}
+          heroImage={details?.heroImage?.url}
+          description={details?.body}
           iconUrl={'/images/bill-icon.svg'}
           videoId={details?.videoId}
         />
