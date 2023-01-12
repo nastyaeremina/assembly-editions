@@ -48,6 +48,7 @@ export default function TabView({ bgColor, textColor, isHome, tabData: allPosts 
     paddingLeft: '0',
     paddingRight: '0'
   });
+
   let activeKey = 0;
   const tabStyle = ({ $active, $disabled, $theme }) => ({
     backgroundColor: $active ? (bgColor ? bgColor : '#120800') : 'inherit',
@@ -64,7 +65,7 @@ export default function TabView({ bgColor, textColor, isHome, tabData: allPosts 
     if (isEmpty(allPosts)) return null;
     return allPosts?.map((item, index) => {
       return (
-        <Tab title={item?.title} className={index === 0 ? 'ml0' : 'ml0'} key={index} id={item?.title}>
+        <Tab title={item?.title} className={'ml0'} key={index} id={item?.title}>
           <ContainWrap>
             <LeftDetail>
               <h4>{item?.subTitle}</h4>
@@ -85,7 +86,7 @@ export default function TabView({ bgColor, textColor, isHome, tabData: allPosts 
     return allPosts?.map((item, index) => {
       const link = item?.link?.split('copilot.com/')?.[1];
       return (
-        <Tab title={item?.title} className={index === 0 ? 'ml0' : 'ml0'} key={index} id={item?.title}>
+        <Tab title={item?.title} className={'ml0'} key={index} id={item?.title}>
           <ContainWrap>
             <LeftDetail>
               <IconWrap>

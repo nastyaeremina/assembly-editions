@@ -3,8 +3,10 @@ import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import { SliderWrap, WrapImage, LeftBorder, RightBorder, WrapSlide, SlideImg } from './styles';
+import useMobileDevice from '../../hooks/useMobileDevice';
 
 const BusinessSlider = ({ data }) => {
+  const mobile = useMobileDevice();
   var settings = {
     speed: 700,
     autoplay: true,
@@ -30,13 +32,7 @@ const BusinessSlider = ({ data }) => {
       {
         breakpoint: 3200,
         settings: {
-          slidesToShow: 6.5
-        }
-      },
-      {
-        breakpoint: 3000,
-        settings: {
-          slidesToShow: 6.5
+          slidesToShow: 6
         }
       },
       {
@@ -132,7 +128,7 @@ const BusinessSlider = ({ data }) => {
                   <LeftBorder className='hide'></LeftBorder>
                   <WrapImage>
                     <SlideImg>
-                      <Image src={`${item?.image?.url}?w=354&h=354&fit=thumb`} alt='red-icon' className='zoom' width={354} height={354} />
+                      <Image src={`${item?.image?.url}?w=800&h=800&fit=thumb`} alt='red-icon' className='zoom' width={354} height={354} />
                     </SlideImg>
                     <h4>{item?.industry}</h4>
                     <p className='hide'>{item?.quote}</p>
@@ -142,23 +138,27 @@ const BusinessSlider = ({ data }) => {
               </>
             );
           })}
-             {data?.map((item, index) => { 
-            return (
-              <>
-                <WrapSlide className='mydiv'>
-                  <LeftBorder className='hide'></LeftBorder>
-                  <WrapImage>
-                    <SlideImg>
-                      <Image src={`${item?.image?.url}?w=354&h=354&fit=thumb`} alt='red-icon' className='zoom' width={354} height={354} />
-                    </SlideImg>
-                    <h4>{item?.industry}</h4>
-                    <p className='hide'>{item?.quote}</p>
-                  </WrapImage>
-                  <RightBorder className='hide'> </RightBorder>
-                </WrapSlide>
-              </>
-            );
-          })}
+          {
+            mobile?(null):(
+              data?.map((item, index) => { 
+                return (
+                  <>
+                    <WrapSlide className='mydiv'>
+                      <LeftBorder className='hide'></LeftBorder>
+                      <WrapImage>
+                        <SlideImg>
+                          <Image src={`${item?.image?.url}?w=800&h=800&fit=thumb`} alt='red-icon' className='zoom' width={354} height={354} />
+                        </SlideImg>
+                        <h4>{item?.industry}</h4>
+                        <p className='hide'>{item?.quote}</p>
+                      </WrapImage>
+                      <RightBorder className='hide'> </RightBorder>
+                    </WrapSlide>
+                  </>
+                );
+              })
+            )
+          }
         </Slider>
       </SliderWrap>
     </>
