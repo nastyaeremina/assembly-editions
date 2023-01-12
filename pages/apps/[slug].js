@@ -139,14 +139,10 @@ export default function AppsDetail({ appDetail, relatedApps }) {
                         <TooltipWrap className='tooltip'>
                           <Image src='/images/help.svg' alt='bill-icon' width={20} height={20} layout={'fixed'} />
                           <Tooltip className='tooltiptext'>
-                            <h5>Tooltip title</h5>
+                            <h5>{appDetail?.appType}</h5>
                             <p>
-                              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tem por incididunt
-                              ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
-                              ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
-                              reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
-                              sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id
-                              est laborum
+                            Partner Apps are products from other companies like Airtable and Calendly that you can embed into your 
+                            portal so that clients can access them in one place.
                             </p>
                           </Tooltip>
                         </TooltipWrap>
