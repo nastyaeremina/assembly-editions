@@ -388,7 +388,7 @@ export default function NewIndex({ faq, seoData }) {
                     <td colSpan={3}>
                       <h4>Automations & Zapier</h4>
                       <p>
-                        Use Portal API and Zapier triggers to set up automations that streamline the experience for your
+                        Use Copilot API and Zapier triggers to set up automations that streamline the experience for your
                         clients.
                       </p>
                     </td>
