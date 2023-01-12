@@ -46,7 +46,7 @@ export default function Client({ currentModule }) {
                   </ImageWrapper>
                   <HelpLeftSub>
                     <HelpLink className='icon-link'>
-                      Billling
+                      Billing
                       <svg className='HoverArrow' width='10' height='10' viewBox='0 0 10 10' aria-hidden='true'>
                         <g fill-rule='evenodd'>
                           <path class='HoverArrow__linePath' d='M0 5h7'></path>
