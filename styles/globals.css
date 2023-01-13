@@ -1,26 +1,392 @@
-html,
-body {
-  padding: 0;
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+@font-face {
+  font-family: 'Bagoss';
+  src: url('../public/fonts/BagossStandard-Thin.otf') format('opentype'),
+    url('../public/fonts/BagossStandard-ThinItalic.otf') format('opentype');
+  font-weight: 100;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Bagoss';
+  src: url('../public/fonts/BagossStandard-Light.otf') format('opentype'),
+    url('../public/fonts/BagossStandard-LightItalic.otf') format('opentype');
+  font-weight: 300;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Bagoss';
+  src: url('../public/fonts/BagossStandard-Regular.otf') format('opentype'),
+    url('../public/fonts/BagossStandard-RegularItalic.otf') format('opentype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Bagoss';
+  src: url('../public/fonts/BagossStandard-Medium.otf') format('opentype'),
+    url('../public/fonts/BagossStandard-MediumItalic.otf') format('opentype');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Bagoss';
+  src: url('../public/fonts/BagossStandard-SemiBold.otf') format('opentype'),
+    url('../public/fonts/BagossStandard-SemiBoldItalic.otf') format('opentype');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Bagoss';
+  src: url('../public/fonts/BagossStandard-Bold.otf') format('opentype'),
+    url('../public/fonts/BagossStandard-BoldItalic.otf') format('opentype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Everett';
+  src: url('../public/fonts/Everett-Medium.otf') format('opentype');
+  font-weight: 500;
+  font-display: swap;
 }
 
-a {
-  color: inherit;
-  text-decoration: none;
+*,
+::after,
+::before {
+  box-sizing: border-box;
 }
-
 * {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
   box-sizing: border-box;
 }
 
-@media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
+a {
+  text-decoration: none;
+  font-family: 'Bagoss';
+  display: block;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+html {
+  -ms-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  scroll-padding-top: 80px;
+}
+
+body {
+  margin: 0;
+  font-family: 'Bagoss', Arial, sans-serif;
+}
+.tableUL {
+  list-style: none;
+  padding: 0;
+  margin: 30px 0 0 0;
+}
+@media only screen and (max-width: 479px) {
+  .tableUL {
+    margin: 20px 0 0 0;
   }
-  body {
-    color: white;
-    background: black;
+}
+
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+main,
+menu,
+nav,
+section,
+summary {
+  display: block;
+}
+
+audio,
+canvas,
+progress,
+video {
+  display: inline-block;
+  vertical-align: baseline;
+}
+
+audio:not([controls]) {
+  display: none;
+  height: 0;
+}
+
+[hidden],
+template {
+  display: none;
+}
+
+a {
+  background-color: transparent;
+  transition: all 300ms;
+  outline: 0;
+}
+
+a:active,
+a:hover {
+  outline: 0;
+}
+
+abbr[title] {
+  border-bottom: 1px dotted;
+}
+
+b,
+strong {
+  font-weight: bold;
+}
+
+dfn {
+  font-style: italic;
+}
+
+h1 {
+  font-size: 2em;
+  margin: 0.67em 0;
+}
+
+mark {
+  background: #ff0;
+  color: #000;
+}
+
+small {
+  font-size: 80%;
+}
+
+sub,
+sup {
+  font-size: 75%;
+  line-height: 0;
+  position: relative;
+  vertical-align: baseline;
+}
+sup {
+  top: -0.5em;
+}
+sub {
+  bottom: -0.25em;
+}
+
+img {
+  border: 0;
+  height: auto;
+}
+
+svg:not(:root) {
+  overflow: hidden;
+}
+
+figure {
+  margin: 1em 40px;
+}
+
+hr {
+  box-sizing: content-box;
+  height: 0;
+}
+
+pre {
+  overflow: auto;
+}
+
+code,
+kbd,
+pre,
+samp {
+  font-family: monospace, monospace;
+  font-size: 1em;
+}
+
+button,
+input,
+optgroup,
+select,
+textarea {
+  color: inherit;
+  font: inherit;
+  margin: 0;
+}
+
+button {
+  background-color: transparent;
+  border: 0px solid transparent;
+  padding: 0;
+  overflow: visible;
+}
+
+button,
+select {
+  text-transform: none;
+}
+
+button,
+html input[type='button'],
+input[type='reset'] {
+  -webkit-appearance: button;
+  cursor: pointer;
+}
+
+button[disabled],
+html input[disabled] {
+  cursor: default;
+}
+
+button::-moz-focus-inner,
+input::-moz-focus-inner {
+  border: 0;
+  padding: 0;
+}
+
+input {
+  line-height: normal;
+}
+
+input[type='checkbox'],
+input[type='radio'] {
+  box-sizing: border-box;
+  padding: 0;
+}
+
+input[type='number']::-webkit-inner-spin-button,
+input[type='number']::-webkit-outer-spin-button {
+  height: auto;
+}
+
+input[type='search'] {
+  -webkit-appearance: none;
+}
+
+input[type='submit'] {
+  background-color: transparent;
+  border: 0px solid transparent;
+}
+
+input[type='search']::-webkit-search-cancel-button,
+input[type='search']::-webkit-search-decoration {
+  -webkit-appearance: none;
+}
+
+fieldset {
+  border: 1px solid #c0c0c0;
+  margin: 0 2px;
+  padding: 0.35em 0.625em 0.75em;
+}
+
+legend {
+  border: 0;
+  padding: 0;
+}
+
+textarea {
+  overflow: auto;
+}
+
+optgroup {
+  font-weight: bold;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+td,
+th {
+  padding: 0;
+}
+
+@-webkit-keyframes lineboarderanimation {
+  0% {
+    background-position: 0 0, 300px 116px, 0 150px, 216px 0;
+  }
+  to {
+    background-position: 300px 0, 0 116px, 0 0, 216px 150px;
+  }
+}
+@keyframes lineboarderanimation {
+  0% {
+    background-position: 0 0, 300px 116px, 0 150px, 216px 0;
+  }
+  to {
+    background-position: 300px 0, 0 116px, 0 0, 216px 150px;
+  }
+}
+
+#gradient-canvas {
+  /* max-width: 1440px; */
+  overflow: hidden;
+  width: 120%;
+  position: relative;
+  max-height: 512px;
+  height: 100%;
+  margin: -50px;
+}
+
+.gradient-canvas_cta {
+  /* max-width: 1440px; */
+  overflow: hidden;
+  width: 120%;
+  position: relative;
+  max-height: 512px;
+  height: 100%;
+  margin: -50px;
+}
+.entrance {
+  --gradient-color-1: #09aa6c;
+  --gradient-color-2: #00160e;
+  --gradient-color-3: #003f27;
+  --gradient-color-4: #7ddaa0;
+}
+.message {
+  --gradient-color-1: #d7b79e;
+  --gradient-color-2: #120800;
+  --gradient-color-3: #85664d;
+  --gradient-color-4: #f4d8c4;
+}
+.billing {
+  --gradient-color-1: #00afb9;
+  --gradient-color-2: #01292c;
+  --gradient-color-3: #03888f;
+  --gradient-color-4: #7adce1;
+}
+.file {
+  --gradient-color-1: #989af2;
+  --gradient-color-2: #01011d;
+  --gradient-color-3: #3d3fbe;
+  --gradient-color-4: #b6b6ec;
+}
+.form {
+  --gradient-color-1: #f3da1a;
+  --gradient-color-2: #171500;
+  --gradient-color-3: #958602;
+  --gradient-color-4: #f4e77e;
+}
+.helpdesk {
+  --gradient-color-1: #fd8c2e;
+  --gradient-color-2: #1c0c00;
+  --gradient-color-3: #cf650d;
+  --gradient-color-4: #ffa55b;
+}
+@media only screen and (max-width: 749px) {
+  #gradient-canvas {
+    /* max-width: 1440px; */
+    max-height: 564px;
   }
 }
