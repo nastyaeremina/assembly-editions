@@ -43,7 +43,7 @@ export default function MessagingApp({ details, seoData }) {
         />
       </>
     );
-  }, [details?.videoId]);
+  }, [details?.body, details?.header, details?.heroImage?.url, details?.videoId]);
 
   return (
     <>
