@@ -182,6 +182,7 @@ const FormDetail = styled.div`
   .wselect {
     display: block;
     width: 100%;
+    height:32px;
     padding: 7px 12px;
     font-size: 12px;
     line-height: 14px;
@@ -194,15 +195,15 @@ const FormDetail = styled.div`
   }
   .sm {
     border-radius: 4px;
-    font-size: 15px;
-    line-height: 16px;
+    font-size: 12px;
+    line-height: 14px;
   }
   textarea {
     width: 100%;
     max-width: 100%;
     height: auto;
     min-height: 32px;
-    height: 32px;
+    /* height: 32px; */
     padding: 7px 12px;
     outline: 0;
     border: 1px solid #dfe1eb;
@@ -241,6 +242,7 @@ const Input = styled.input`
   border: 1px solid #ccccd0;
   border-radius: 4px;
   outline: 0;
+  height:32px;
   margin-bottom: 20px;
   font-size: 12px;
   line-height: 14px;

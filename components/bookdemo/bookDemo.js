@@ -337,6 +337,7 @@ export default function BookDemoForm() {
                 placeholder=''
                 required=''
                 class='sm'
+                rows={3}
                 value={bookDemoData?.objectives}
                 onChange={(e) => onChangeInfo('objectives', e.target.value)}
               />
