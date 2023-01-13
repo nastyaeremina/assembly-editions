@@ -397,7 +397,7 @@ const BusinessSection = styled.div`
   padding: 50px 0 50px;
   overflow: hidden;
   @media only screen and (max-width: 749px) {
-    padding: 40px 0 160px;
+    padding: 40px 0 100px;
   }
 `;
 const BusinessText = styled.div`
@@ -482,6 +482,10 @@ const TopFunctionWrap = styled.div`
 `;
 const BottomFunction = styled.div`
   margin-top: 40px;
+  .am{
+  font-family: 'Bagoss';
+  letter-spacing: 0.02em;
+}
   .af {
     width: 100%;
   }
@@ -515,13 +519,13 @@ const TabRow = styled.div`
     }
     .b4 {
       ${(props) =>
-    props.textColor &&
-    css`
+        props.textColor &&
+        css`
           color: ${props.textColor};
         `}
       ${(props) =>
-    props.backColor &&
-    css`
+        props.backColor &&
+        css`
           background-color: ${props.bgColor};
         `}
     }
@@ -536,8 +540,8 @@ const TabRow = styled.div`
   .bd {
     :hover {
       ${(props) =>
-    props.textColor &&
-    css`
+        props.textColor &&
+        css`
           color: ${props.textColor};
         `}
     }
@@ -553,9 +557,7 @@ const TabRow = styled.div`
   .c1 {
     display: none;
   }
-  .bw {
-    display: none;
-  }
+
   .b8 {
     font-size: 17px;
     line-height: 21px;
@@ -863,59 +865,63 @@ const LineIcon = styled.div`
   top: 50%;
   right: 0;
   transform: translate(100%, 0);
-.path{
-  stroke-dasharray: 5;
-  opacity:0.3;
-}  
-.path1 {
-  animation-name: dash ;
-  animation-delay:4.5s;
-  animation-duration:5.5s;
-  animation-timing-function:linear;
-}
-.path2 {
-  animation-name: dash ;
-  animation-delay:9.5s;
-  animation-duration:5.5s;
-  animation-timing-function:linear;
-}
-.path3 {
-  animation-name: dash ;
-  animation-delay:4.5s;
-  animation-duration:5.5s;
-  animation-timing-function:linear;
-}
-.path4{
-  animation-name: dash ;
-  animation-direction:reverse;
-  animation-delay:4.5s;
-  animation-duration:5.5s;
-  animation-timing-function:linear;
-}
-.path5 {
-  animation-name: dash ;
-  animation-delay:9.5s;
-  animation-duration:5.5s;
-  animation-timing-function:linear;
-}
-.path6 {
-  animation-name: dash;
-  animation-delay:9.5s;
-  animation-duration:5.5s;
-}
-.path7{
-  animation-name: dash;
-  animation-direction:reverse;
-  animation-delay:9.5s;
-  animation-duration:5.5s;
-}
-@keyframes dash{
-  from {
-    stroke-dashoffset: 100;
+  .path {
+    stroke-dasharray: 5;
+    opacity: 0.3;
   }
-  0% {opacity:1}
-  100%{opacity:1}
-}
+  .path1 {
+    animation-name: dash;
+    animation-delay: 4.5s;
+    animation-duration: 5.5s;
+    animation-timing-function: linear;
+  }
+  .path2 {
+    animation-name: dash;
+    animation-delay: 9.5s;
+    animation-duration: 5.5s;
+    animation-timing-function: linear;
+  }
+  .path3 {
+    animation-name: dash;
+    animation-delay: 4.5s;
+    animation-duration: 5.5s;
+    animation-timing-function: linear;
+  }
+  .path4 {
+    animation-name: dash;
+    animation-direction: reverse;
+    animation-delay: 4.5s;
+    animation-duration: 5.5s;
+    animation-timing-function: linear;
+  }
+  .path5 {
+    animation-name: dash;
+    animation-delay: 9.5s;
+    animation-duration: 5.5s;
+    animation-timing-function: linear;
+  }
+  .path6 {
+    animation-name: dash;
+    animation-delay: 9.5s;
+    animation-duration: 5.5s;
+  }
+  .path7 {
+    animation-name: dash;
+    animation-direction: reverse;
+    animation-delay: 9.5s;
+    animation-duration: 5.5s;
+  }
+  @keyframes dash {
+    from {
+      stroke-dashoffset: 100;
+    }
+    0% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
 `;
 const HelpSection = styled.div`
   padding: 50px 0;
@@ -1180,118 +1186,119 @@ const RightWrap = styled.div`
 `;
 
 const AnimatedIcon = styled(Iconview)`
-.icon{
-  opacity:0;
-  display:block;
-  position:absolute;
-  right:10px;
-}
-&&.card1 .loading-state
-{
-  animation-name: example;
-  animation-duration: 5s;
-}
-&&.card1 .done-state{
-  animation-name: example1;
-  animation-duration: 5s;
-  animation-iteration-count:infinite;
-  animation-delay: 4.5s;
-}
-&&.card2 .default-state
-{
-  animation-name: example;
-  animation-duration: 5s;
-}
-&&.card2 .loading-state
-{
-  animation-name: example;
-  animation-duration: 5.5s;
-  animation-delay: 4.5s;
-}
-&&.card2 .done-state{
-  animation-name: example1;
-  animation-duration: 5s;
-  animation-iteration-count:infinite;
-  animation-delay: 9.5s;
-}
-&&.card4 .default-state
-{
-  animation-name: example;
-  animation-duration: 10s;
-}
-&&.card4 .loading-state
-{
-  animation-name: example;
-  animation-duration: 5.5s;
-  animation-delay: 9.5s;
-}
-&&.card4 .done-state{
-  animation-name: example1;
-  animation-duration: 5s;
-  animation-iteration-count:infinite;
-  animation-delay: 14.5s;
-}
-&&.card3 .default-state
-{
-  animation-name: example;
-  animation-duration: 15s;
-}
-&&.card3 .loading-state
-{
-  animation-name: example;
-  animation-duration: 5.5s;
-  animation-delay: 4.5s;
-}
-&&.card3 .done-state{
-  animation-name: example1;
-  animation-duration: 5s;
-  animation-iteration-count:infinite;
-  animation-delay: 9.5s;
-}
-&&.card5 .default-state
-{
-  animation-name: example;
-  animation-duration: 20s;
-}
-&&.card5 .loading-state
-{
-  animation-name: example;
-  animation-duration: 5.5s;
-  animation-delay: 9.5s;
-}
-&&.card5 .done-state{
-  animation-name: example1;
-  animation-duration: 5s;
-  animation-iteration-count:infinite;
-  animation-delay: 14.5s;
-}
-&&.card6 .default-state
-{
-  animation-name: example;
-  animation-duration: 25s;
-}
-&&.card6 .loading-state
-{
-  animation-name: example;
-  animation-duration: 5.5s;
-  animation-delay: 9.5s;
-}
-&&.card6 .done-state{
-  animation-name: example1;
-  animation-duration: 5s;
-  animation-iteration-count:infinite;
-  animation-delay: 14.5s;
-}
-@keyframes example {
-  0%  {opacity:1}
-  99% {opacity:1}
-  100% {opacity:0}
-}
-@keyframes example1 {
-  0%  {opacity:1}
-  99% {opacity:1}
-  100% {opacity:1}
-}
+  .icon {
+    opacity: 0;
+    display: block;
+    position: absolute;
+    right: 10px;
+  }
+  &&.card1 .loading-state {
+    animation-name: example;
+    animation-duration: 5s;
+  }
+  &&.card1 .done-state {
+    animation-name: example1;
+    animation-duration: 5s;
+    animation-iteration-count: infinite;
+    animation-delay: 4.5s;
+  }
+  &&.card2 .default-state {
+    animation-name: example;
+    animation-duration: 5s;
+  }
+  &&.card2 .loading-state {
+    animation-name: example;
+    animation-duration: 5.5s;
+    animation-delay: 4.5s;
+  }
+  &&.card2 .done-state {
+    animation-name: example1;
+    animation-duration: 5s;
+    animation-iteration-count: infinite;
+    animation-delay: 9.5s;
+  }
+  &&.card4 .default-state {
+    animation-name: example;
+    animation-duration: 10s;
+  }
+  &&.card4 .loading-state {
+    animation-name: example;
+    animation-duration: 5.5s;
+    animation-delay: 9.5s;
+  }
+  &&.card4 .done-state {
+    animation-name: example1;
+    animation-duration: 5s;
+    animation-iteration-count: infinite;
+    animation-delay: 14.5s;
+  }
+  &&.card3 .default-state {
+    animation-name: example;
+    animation-duration: 15s;
+  }
+  &&.card3 .loading-state {
+    animation-name: example;
+    animation-duration: 5.5s;
+    animation-delay: 4.5s;
+  }
+  &&.card3 .done-state {
+    animation-name: example1;
+    animation-duration: 5s;
+    animation-iteration-count: infinite;
+    animation-delay: 9.5s;
+  }
+  &&.card5 .default-state {
+    animation-name: example;
+    animation-duration: 20s;
+  }
+  &&.card5 .loading-state {
+    animation-name: example;
+    animation-duration: 5.5s;
+    animation-delay: 9.5s;
+  }
+  &&.card5 .done-state {
+    animation-name: example1;
+    animation-duration: 5s;
+    animation-iteration-count: infinite;
+    animation-delay: 14.5s;
+  }
+  &&.card6 .default-state {
+    animation-name: example;
+    animation-duration: 25s;
+  }
+  &&.card6 .loading-state {
+    animation-name: example;
+    animation-duration: 5.5s;
+    animation-delay: 9.5s;
+  }
+  &&.card6 .done-state {
+    animation-name: example1;
+    animation-duration: 5s;
+    animation-iteration-count: infinite;
+    animation-delay: 14.5s;
+  }
+  @keyframes example {
+    0% {
+      opacity: 1;
+    }
+    99% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 0;
+    }
+  }
+  @keyframes example1 {
+    0% {
+      opacity: 1;
+    }
+    99% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
 `;
 
 export {

@@ -62,13 +62,13 @@ import { isEmail } from '../helpers/helpers';
 export const checkValidation = (payload) => (dispatch) => {
   let valid = true;
   if (!payload) {
-    dispatch(setformValidationError({name:'firstName',message:'First name is Required'}));
+    dispatch(setformValidationError({name:'firstName',message:'First name is required'}));
     valid = false;
   } else if (!payload?.firstName || payload?.firstName?.trim() === '') {
-    dispatch(setformValidationError({name:'firstName',message:'Fist name is Required'}));
+    dispatch(setformValidationError({name:'firstName',message:'First name is required'}));
     valid = false;
   } else if (!payload?.lastName || payload?.lastName?.trim() === '') {
-    dispatch(setformValidationError({name:'lastName',message:'Last name is Required'}));
+    dispatch(setformValidationError({name:'lastName',message:'Last name is required'}));
     valid = false;
   } else if (!payload?.email || payload?.email?.trim() === '') {
     dispatch(setformValidationError({name:'email',message:'Email is required'}));
@@ -77,7 +77,7 @@ export const checkValidation = (payload) => (dispatch) => {
     dispatch(setformValidationError({name:'email',message:'Please enter a valid email address'}));
     valid = false;
   } else if (!payload?.companyName || payload?.companyName?.trim() === '') {
-    dispatch(setformValidationError({name:'companyName',message:'Company name is Required'}));
+    dispatch(setformValidationError({name:'companyName',message:'Company name is required'}));
     valid = false;
   } else if (!payload?.howDidYouFindUs || payload?.howDidYouFindUs?.trim() === '') {
     dispatch(setformValidationError({name:'howDidYouFindUs',message:'Please select how to find us'}));

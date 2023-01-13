@@ -35,10 +35,9 @@ export default function MessagingApp({ details, seoData }) {
         <Navbar isModule={true} headerIndex={HEADER_LIST.FILES} />
         <FeatureHero
           colorList={MODULE_COLOR_LIST[HOME_MODULE_LIST['Files']]}
-          title={'Files App'}
-          description={
-            'Make it easy to share files with clients, stay organized folders, and get contracts signed with eSignature requests.'
-          }
+          title={details?.header}
+          heroImage={details?.heroImage?.url}
+          description={details?.body}
           iconUrl={'/images/file-icon.svg'}
           videoId={details?.videoId}
         />

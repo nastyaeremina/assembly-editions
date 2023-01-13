@@ -110,8 +110,7 @@ export default function Brand({ seoData }) {
               <h4>Naming</h4>
               <p>
                 “Copilot” is a single word that is always spelled with a capital “C”, lowercase “p”, and without a dash.
-                It is the brand name of our company and product. The company legal name is Copilot Platforms Inc. On
-                social media, you can refer to us with #copilot.
+                It is the brand name of our company and product. The company legal name is Copilot Platforms Inc.
               </p>
             </BrandName>
             <BrandName>

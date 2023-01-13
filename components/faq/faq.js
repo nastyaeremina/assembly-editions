@@ -1,14 +1,10 @@
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { useStyletron } from 'baseui';
-import {  Panel } from 'baseui/accordion';
 import { isEmpty } from '../../helpers/helpers';
 import { Container } from '../../styles/commonStyles';
 import { getFAQs } from '../../lib/contentful-faq';
 import { FaqSection, FaqTitle, DivFAQ, FAQAnsware } from './styles';
 
-function CustomPanel(props) {
-  return <Panel {...props} />;
-}
 
 export default function FAQ({ enterprise, contentID }) {
   const [allPosts, setAppPosts] = useState([]);

@@ -3,6 +3,10 @@ import { Body3, Body4, Heading3, Heading4, Label, MbBody3 } from '../../styles/s
 const BottomFunction = styled.div`
   margin-top: 40px;
   position: relative;
+  .am{
+  font-family: 'Bagoss';
+  letter-spacing: 0.02em;
+}
   ::after {
     content: '';
     position: absolute;

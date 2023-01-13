@@ -211,13 +211,13 @@ export default function Jobs({ jobList, jobImagesList, jobBlogPostList, seoData 
                   <AboutWrap>
                     <h3>About us</h3>
                     <p>
-                      Read about our mission, priorities,and investors
-                      <a href='#'> on our About page.</a> See what customers say about us{' '}
-                      <a href='#'> on our G2 page</a> or
-                      <a href='#'> join our community on Slack</a>. Go through
-                      <a href='#'> our self-serve flow</a> to try out the product or read about recent releases
-                      <a href='#'>on our changelog</a>. Lastly,
-                      <a href='#'> email us</a> if you have any questions!
+                      Read about our mission and plans on our
+                      <a href='https://www.copilot.com/blog/introducing-copilot-1-0-and-announcing-our-series-a/'> announcement blog post. </a> 
+                      Get a feel for our product by{' '}
+                      <a href='https://dashboard.copilot.com/onboarding/'>starting a trial</a> or by
+                      <a href='https://copilot.com/university'> watching one of our many videos</a>. And finally, meet our team by
+                      <a href='https://join.slack.com/t/copilotcommunity/shared_invite/zt-1n20si8rq-1XFS8OK~KUcU_cYjieLtoA'> joining our Slack community</a> or
+                      <a href="mailto:team@copilot.com"> sending us an email</a>.
                     </p>
                   </AboutWrap>
                   {!isEmpty(jobBlogPostList) && (

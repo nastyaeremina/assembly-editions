@@ -5,9 +5,8 @@ const BookSection = styled.div`
   display: flex;
   width: 100%;
   height: 100vh;
-  overflow: hidden;
   @media only screen and (max-width: 991px) {
-    height:100%;
+    height: auto;
   }
 `;
 const ImageSection = styled.div`
