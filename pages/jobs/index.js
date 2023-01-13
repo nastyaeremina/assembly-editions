@@ -216,7 +216,7 @@ export default function Jobs({ jobList, jobImagesList, jobBlogPostList, seoData 
                       Get a feel for our product by{' '}
                       <a href='https://dashboard.copilot.com/onboarding/'>starting a trial</a> or by
                       <a href='https://copilot.com/university'> watching one of our many videos</a>. And finally, meet our team by
-                      <a href='https://join.slack.com/t/copilotcommunity/shared_invite/zt-1n20si8rq-1XFS8OK~KUcU_cYjieLtoA'> joining our Slack community</a> or
+                      <a href='https://join.slack.com/t/copilotcommunity/shared_invite/zt-1n4u6dr8m-Bm_8Jnmq6_RoY1ySq~yVcQ'> joining our Slack community</a> or
                       <a href="mailto:team@copilot.com"> sending us an email</a>.
                     </p>
                   </AboutWrap>
