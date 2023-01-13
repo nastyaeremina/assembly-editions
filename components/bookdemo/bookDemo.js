@@ -33,6 +33,7 @@ export default function BookDemoForm() {
   const bookDemoSelector = useSelector((state) => state.bookDemo);
   const { validationError, bookDemoData } = bookDemoSelector;
   const [isSubmit, setIsSubmit] = useState(false);
+  var leadvalue = [{firstname: "Sanjay", lastname: "Makasana", email:"sanjay@pixer.io"}];
 
   const dispatch = useDispatch();
 
@@ -161,6 +162,7 @@ export default function BookDemoForm() {
                     className='inputtext'
                     value={bookDemoData?.firstName}
                     id={`First-Name-`}
+                    name={'First-Name'}
                     onChange={(e) => onChangeInfo('firstName', e.target.value)}
                     required={true}
                   />
@@ -175,6 +177,7 @@ export default function BookDemoForm() {
                     type='text'
                     id='lastName'
                     className='inputtext'
+                    name={'Last-Name'}
                     value={bookDemoData?.lastName}
                     onChange={(e) => onChangeInfo('lastName', e.target.value)}
                     required
@@ -182,7 +185,7 @@ export default function BookDemoForm() {
                   {validationError?.name === 'lastName' && <Validation error={validationError?.message} />}
                 </NameInfo>
               </NameBlock>
-              <label for='Last-Name-'>
+              <label for='Email'>
                 Work email <span>*</span>
               </label>
               <Input
@@ -198,11 +201,12 @@ export default function BookDemoForm() {
               />
               {validationError?.name === 'email' && <Validation error={validationError?.message} />}
 
-              <label for='Last-Name-'>
+              <label for='Company'>
                 Comany name <span>*</span>
               </label>
               <Input
                 type='text'
+                name={'Company  '}
                 placeholder=''
                 required=''
                 className='inputtext'
