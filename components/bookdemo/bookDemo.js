@@ -33,7 +33,6 @@ export default function BookDemoForm() {
   const bookDemoSelector = useSelector((state) => state.bookDemo);
   const { validationError, bookDemoData } = bookDemoSelector;
   const [isSubmit, setIsSubmit] = useState(false);
-  var leadvalue = [{firstname: "Sanjay", lastname: "Makasana", email:"sanjay@pixer.io"}];
 
   const dispatch = useDispatch();
 
@@ -75,22 +74,25 @@ export default function BookDemoForm() {
         return;
       } else {
         // sendEmail(bookDemoData);
-        fetch('/api/contact', {
-          method: 'POST',
-          headers: {
-            Accept: 'application/json, text/plain, */*',
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify(bookDemoData)
-        }).then((res) => {
-          console.log('Response received');
-          if (res.status === 200) {
-            console.log('Response succeeded!');
-          }
-        });
         if (['1', '5', '10']?.includes(bookDemoData?.companySize)) {
+          fetch('/api/contact', {
+            method: 'POST',
+            headers: {
+              Accept: 'application/json, text/plain, */*',
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(bookDemoData)
+          }).then((res) => {
+            console.log('Response received');
+            if (res.status === 200) {
+              console.log('Response succeeded!');
+            }
+          });
           setIsSubmit(true);
-        } else showHideChiliPiper();
+        }
+        else {
+          showHideChiliPiper();
+        }
       }
     },
     [bookDemoData, dispatch, showHideChiliPiper]
