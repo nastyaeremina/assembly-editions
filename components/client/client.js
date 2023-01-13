@@ -274,6 +274,7 @@ export default function Client({ currentModule }) {
               </ModuleCard>
             )}
           </CardSection>
+          <Link href='/apps' className='learn-link center'>
           <BlockSection>
             <Image
               src='/images/block.svg'
@@ -324,6 +325,7 @@ export default function Client({ currentModule }) {
               </HelpLeftSub>
             </BlockText>
           </BlockSection>
+        </Link>
         </ClientHero>
       </Container>
     </ClientMain>
