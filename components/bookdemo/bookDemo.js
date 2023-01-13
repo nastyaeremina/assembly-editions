@@ -129,7 +129,7 @@ export default function BookDemoForm() {
                     <ContactText>A Copilot expert will contact you soon.</ContactText>
                     <p>
                       In the mean time, you can start a free trial{' '}
-                      <Link href='https://start.joinportal.com/onboarding' target={'_blank'}>
+                      <Link href='https://dashboard.copilot.com/onboarding' target={'_blank'}>
                         here
                       </Link>
                       .
