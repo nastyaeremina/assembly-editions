@@ -2,8 +2,8 @@ import Image from 'next/image';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
-import { SliderWrap, WrapImage, LeftBorder, RightBorder, WrapSlide, SlideImg } from './styles';
 import useMobileDevice from '../../hooks/useMobileDevice';
+import { SliderWrap, WrapImage, LeftBorder, RightBorder, WrapSlide, SlideImg } from './styles';
 
 const BusinessSlider = ({ data }) => {
   const mobile = useMobileDevice();

@@ -91,6 +91,8 @@ const WrapImage = styled.div`
     @media only screen and (max-width: 911px) {
       padding-top: 8px;
       ${MbBody5};
+      max-width:327px;
+      width:100%;
     }
   }
   @media only screen and (max-width: 911px) {
