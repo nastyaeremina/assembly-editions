@@ -671,10 +671,10 @@ const CenterBox = styled.div`
 `;
 const ContainWrap = styled.div`
   display: flex;
-  padding-top: 20px;
+  padding-top: 40px;
   @media only screen and (max-width: 991px) {
     flex-wrap: wrap;
-    /* margin-top: 28px; */
+    margin-top: 28px;
     padding-top: 0;
   }
 `;
