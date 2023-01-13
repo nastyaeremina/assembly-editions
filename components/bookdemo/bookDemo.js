@@ -206,7 +206,7 @@ export default function BookDemoForm() {
               </label>
               <Input
                 type='text'
-                name={'Company  '}
+                name={'Company-name'}
                 placeholder=''
                 required=''
                 className='inputtext'
