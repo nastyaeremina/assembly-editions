@@ -357,7 +357,7 @@ export default function Home({ content, seoData }) {
                       <p>Meet our team and a community of businesses that run on Copilot. Requires a Slack account.</p>
                       <HelpLink className='icon-link'>
                         <a
-                          href='https://join.slack.com/t/copilotcommunity/shared_invite/zt-q6stzfgx-vBf7LBtbKFv63W4n_Otx4w'
+                          href='https://join.slack.com/t/copilotcommunity/shared_invite/zt-1n4u6dr8m-Bm_8Jnmq6_RoY1ySq~yVcQ'
                           className='learn-link mb0'>
                           Join Community
                           <svg width='16' height='12' viewBox='0 0 16 12' fill='none' class='HoverArrow'>
