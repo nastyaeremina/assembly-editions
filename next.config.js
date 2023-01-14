@@ -14,22 +14,22 @@ const nextConfig = {
   images: {
     domains: ['images.ctfassets.net']
   },
-  async redirects() {
-    return [
-      {
-        source: "/",
-        has: [
-          {
-            type: 'cookie',
-            key: 'current-portal-session',
-            value: '(?<sessionid>.*)',
-          }
-        ],
-        destination: 'https://dashboard.copilot.com',
-        permanent: false,
-      }
-    ];
-  },
+  // async redirects() {
+  //   return [
+  //     {
+  //       source: "/",
+  //       has: [
+  //         {
+  //           type: 'cookie',
+  //           key: 'current-portal-session',
+  //           value: '(?<sessionid>.*)',
+  //         }
+  //       ],
+  //       destination: 'https://dashboard.copilot.com',
+  //       permanent: false,
+  //     }
+  //   ];
+  // },
 };
 
 module.exports = nextConfig;
