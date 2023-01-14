@@ -432,7 +432,7 @@ export default function Home({ content, seoData }) {
                           more.
                         </p>
                         <HelpLink className='icon-link'>
-                          <a href='https://copilot-release.vercel.app/university' className='learn-link mb0'>
+                          <a href='https://copilot.com/university' className='learn-link mb0'>
                             Watch videos
                             <svg width='16' height='12' viewBox='0 0 16 12' fill='none' class='HoverArrow'>
                               <path
