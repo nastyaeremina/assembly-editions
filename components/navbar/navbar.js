@@ -670,7 +670,7 @@ export default function Navbar({ isModule, headerIndex, isEnterPrice }) {
               <SignInMobile>
                 <>
                   <SignIn textColor={colorList?.fontColor} hoverColor={colorList?.primaryColor}>
-                    <Link href='https://dashboard.copilot.com/login?step=signIn'>Login</Link>
+                    <Link href='https://dashboard.copilot.com/onboarding/login'>Login</Link>
                   </SignIn>
                   <BlackButton
                     textColor={isModule ? colorList?.fontColor : '#FFFFFF'}
