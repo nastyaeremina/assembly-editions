@@ -526,7 +526,7 @@ export default function Navbar({ isModule, headerIndex, isEnterPrice }) {
           <SignInSignUpBtn>
             <>
               <SignIn textColor={colorList?.fontColor} hoverColor={colorList?.primaryColor}>
-                <Link href='https://dashboard.copilot.com/login?step=signIn'>Login</Link>
+                <Link href='https://dashboard.copilot.com/onboarding/login'>Login</Link>
               </SignIn>
               <SignIn textColor={colorList?.fontColor} hoverColor={colorList?.primaryColor}>
                 <Link href='/book-demo'>Book demo</Link>
