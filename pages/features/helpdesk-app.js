@@ -47,7 +47,7 @@ export default function MessagingApp({ details, seoData }) {
       <SEO seoData={seoData} />
       <Layout>
         {renderHeroSection}
-        <Content />
+        {details?.section1Header && <Content title={details?.section1Header} description={details?.section1Body} />}
         <Container>
           <BottomFunction>
             <TabView
@@ -58,12 +58,12 @@ export default function MessagingApp({ details, seoData }) {
           </BottomFunction>
         </Container>
         {!isEmpty(details?.internalFeaturesCollection?.items) && (
-          <Tools data={details?.internalFeaturesCollection?.items} />
+          <Tools data={details?.internalFeaturesCollection?.items} title={details?.section2Header} />
         )}
         {!isEmpty(details?.testimonial) && (
           <Quote gradientImage={MODULE_GRADIENT_IMAGE_LIST[CURRENT_MODULE]} data={details?.testimonial} />
         )}
-        <Client currentModule={CURRENT_MODULE} />
+        <Client currentModule={CURRENT_MODULE} title={details?.section3Header} />
         <CTA moduleName={CURRENT_MODULE} colorList={NAVBAR_COLOR_LIST[HEADER_LIST.HELPDESK]} />
       </Layout>
     </>

@@ -1,22 +1,33 @@
+import { useMemo } from 'react';
+import { textSeprateandJoinWithSpecialChar } from '../../helpers/helpers';
 import { Container } from '../../styles/commonStyles';
 import TabView from '../tab/tab';
 import { ContentMain, TopFunctionWrap } from './styles';
 
-export default function Content() {
+export default function Content({ title, description }) {
+  const titleSplitList = title?.split(',');
+
+  const renderHeaderView = useMemo(() => {
+    const lastIndex = titleSplitList?.length - 1;
+    return titleSplitList?.map((item, index) => {
+      return (
+        <>
+          {item}
+          {index !== lastIndex && <span>,</span>}
+        </>
+      );
+    });
+  }, [titleSplitList]);
+
   return (
     <ContentMain>
       <Container>
         <TopFunctionWrap>
           <h3>
-            Powerful out-of-the box functionality<span>,</span>
-            <br />
-            ready to go<span>.</span>
+            {renderHeaderView}
+            <span>.</span>
           </h3>
-          <p>
-            Provide clients a uniform experience with on-brand design, combined in-product notifications, and consistent
-            email notifications. And with modularity built-in, start with just one App, and add more when the time is
-            right.
-          </p>
+          <p>{description}</p>
         </TopFunctionWrap>
         <div>
           <TabView />
