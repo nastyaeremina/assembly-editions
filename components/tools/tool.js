@@ -5,7 +5,7 @@ import { QuoteLine } from '../quote/styles';
 import { Container } from '../../styles/commonStyles';
 import { ToolMain, ModuleSection, ModuleWrap } from './styles';
 
-export default function Tools({ moduleColor, data }) {
+export default function Tools({ moduleColor, data, title }) {
   const classNameList = useCallback((index) => {
     switch (index) {
       default:
@@ -27,12 +27,24 @@ export default function Tools({ moduleColor, data }) {
     });
   }, [classNameList, data]);
 
+  const titleSplitList = title?.split(',');
+
+  const renderHeaderView = useMemo(() => {
+    const lastIndex = titleSplitList?.length - 1;
+    return titleSplitList?.map((item, index) => {
+      return (
+        <>
+          {item}
+          {index !== lastIndex && <span>,</span>}
+        </>
+      );
+    });
+  }, [titleSplitList]);
+
   return (
     <ToolMain moduleColor={moduleColor}>
       <Container>
-        <h3>
-          Give your team all the tools it needs for invoicing<span>,</span> subscriptions<span>,</span> and more
-        </h3>
+        <h3>{renderHeaderView}</h3>
         <ModuleSection>
           {toolsListView}
           <QuoteLine>
