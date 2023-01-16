@@ -16,12 +16,12 @@ import {
   HelpLink
 } from './styles';
 
-export default function Client({ currentModule }) {
+export default function Client({ currentModule, title }) {
   return (
     <ClientMain>
       <Container>
         <ClientHero>
-          <h3>Go beyond billing and streamline the client experience further</h3>
+          {title && <h3>{title}</h3>}
           <CardSection>
             {currentModule !== MUDULE_LIST.BILLING && (
               <ModuleCard className='mydiv'>
@@ -275,57 +275,46 @@ export default function Client({ currentModule }) {
             )}
           </CardSection>
           <Link href='/apps' className='learn-link center'>
-          <BlockSection>
-            <Image
-              src='/images/block.svg'
-              alt='red-icon'
-              width={185}
-              height={145}
-              className='show'
-            />
-            <Image
-              src='/images/blockhover.svg'
-              alt='red-icon'
-              width={185}
-              height={145}
-              className='hide'
-            />
+            <BlockSection>
+              <Image src='/images/block.svg' alt='red-icon' width={185} height={145} className='show' />
+              <Image src='/images/blockhover.svg' alt='red-icon' width={185} height={145} className='hide' />
 
-            <BlockText>
-              <h3>
-              Embed products like Airtable, Calendly, Jotform, and Custom Apps to streamline the client experience even more.
-              </h3>
-              <HelpLeftSub>
-                <HelpLink className='icon-link'>
-                  <Link href='/apps' className='learn-link center'>
-                    Explore Apps
-                    <svg class='HoverArrow' width='10' height='10' viewBox='0 0 10 10' aria-hidden='true'>
-                      <g fill-rule='evenodd'>
-                        <path class='HoverArrow__linePath' d='M0 5h7'></path>
-                        <path class='HoverArrow__tipPath' d='M1 1l4 4-4 4'></path>
-                      </g>
-                    </svg>
-                    <svg
-                      width='8'
-                      height='14'
-                      viewBox='0 0 8 14'
-                      fill='none'
-                      xmlns='http://www.w3.org/2000/svg'
-                      class='mobilearrow'>
-                      <path
-                        d='M2 3L6 7L2 11'
-                        stroke='#131313'
-                        stroke-width='1.85714'
-                        stroke-linecap='round'
-                        stroke-linejoin='round'
-                      />
-                    </svg>
-                  </Link>
-                </HelpLink>
-              </HelpLeftSub>
-            </BlockText>
-          </BlockSection>
-        </Link>
+              <BlockText>
+                <h3>
+                  Embed products like Airtable, Calendly, Jotform, and Custom Apps to streamline the client experience
+                  even more.
+                </h3>
+                <HelpLeftSub>
+                  <HelpLink className='icon-link'>
+                    <Link href='/apps' className='learn-link center'>
+                      Explore Apps
+                      <svg class='HoverArrow' width='10' height='10' viewBox='0 0 10 10' aria-hidden='true'>
+                        <g fill-rule='evenodd'>
+                          <path class='HoverArrow__linePath' d='M0 5h7'></path>
+                          <path class='HoverArrow__tipPath' d='M1 1l4 4-4 4'></path>
+                        </g>
+                      </svg>
+                      <svg
+                        width='8'
+                        height='14'
+                        viewBox='0 0 8 14'
+                        fill='none'
+                        xmlns='http://www.w3.org/2000/svg'
+                        class='mobilearrow'>
+                        <path
+                          d='M2 3L6 7L2 11'
+                          stroke='#131313'
+                          stroke-width='1.85714'
+                          stroke-linecap='round'
+                          stroke-linejoin='round'
+                        />
+                      </svg>
+                    </Link>
+                  </HelpLink>
+                </HelpLeftSub>
+              </BlockText>
+            </BlockSection>
+          </Link>
         </ClientHero>
       </Container>
     </ClientMain>

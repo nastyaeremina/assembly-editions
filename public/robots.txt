@@ -1,0 +1,10 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://www.copilot.com
+
+# Sitemaps
+Sitemap: https://www.copilot.com/sitemap.xml
+Sitemap: https://www.copilot.com/server-sitemap.xml

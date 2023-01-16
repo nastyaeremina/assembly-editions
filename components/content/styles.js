@@ -93,7 +93,7 @@ const TopFunctionWrap = styled.div`
     color: ${({ theme }) => theme.colors.body};
     margin: 0;
   }
-  @media only screen and (max-width: 376px) {
+  @media only screen and (max-width: 426px) {
     p {
       ${MbBody3}
     }
