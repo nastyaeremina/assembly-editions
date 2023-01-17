@@ -215,7 +215,7 @@ const ModuleCard = styled.div`
   :hover .icon-link {
     transform: translateY(1px);
     @media only screen and (max-width: 991px) {
-      transform: translateY(5.5px);;
+      transform: none
     }
   }
   :hover .icon-message {
@@ -405,6 +405,7 @@ const ImageWrapper = styled.div`
   width: 100%;
   img {
     max-width: 100%;
+    height: 100%;
   }
   @media only screen and (max-width: 1025px) {
     max-height: 124px;
@@ -413,8 +414,9 @@ const ImageWrapper = styled.div`
     max-height: 100px;
   }
   @media only screen and (max-width: 769px) {
-    max-height: 105px;
-    height: auto;
+        max-height: 105px;
+    height: 105px;
+    min-height: 105px;
   }
 `;
 const HelpLink = styled.div`
