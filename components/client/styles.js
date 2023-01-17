@@ -215,7 +215,7 @@ const ModuleCard = styled.div`
   :hover .icon-link {
     transform: translateY(1px);
     @media only screen and (max-width: 991px) {
-      transform: none;
+      transform: translateY(5.5px);;
     }
   }
   :hover .icon-message {
