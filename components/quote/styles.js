@@ -104,11 +104,12 @@ const QuoteImg = styled.div`
   }
   @media only screen and (max-width: 768px) {
     border-right: 0;
-    border-bottom: 2px solid #000000;
+    border-bottom: 1px solid #000000;
     left: 0;
     width: 100%;
     img {
       width: 100%;
+      border-radius: 2px 2px 0 0;
     }
   }
 `;
