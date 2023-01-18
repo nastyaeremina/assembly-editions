@@ -1,5 +1,5 @@
 import styled, { css } from 'styled-components';
-import { Body1,  Heading3, Heading4 } from '../../styles/styles';
+import { Body1,  Heading3, Heading4, MbBody3 } from '../../styles/styles';
 
 const FaqSection = styled.div`
   padding: 100px 0 60px 0;
@@ -166,6 +166,12 @@ const DivFAQ = styled.div`
   .accordion-content{
    
   }
+  @media only screen and (max-width: 426px){
+    svg{
+      height:24px;
+      width:24px;
+    }
+  }
   svg path
   {
     transition: all 0.2s ease;
@@ -185,6 +191,9 @@ const FAQAnsware = styled.div`
     ${Body1}
     color: ${({ theme }) => theme.colors.body};
     padding:0 32px 40px 0;
+     @media only screen and (max-width: 426px){
+      ${MbBody3}
+  }
   }
     opacity:0 ;
     max-height:0 ;
@@ -194,7 +203,7 @@ const FAQAnsware = styled.div`
     opacity:1 ;
     overflow:visible ;
     max-height:500px ;
-   
+
   }
 `
 export { FaqSection, FaqWrap, FaqTitle, DivFAQ,FAQAnsware };
