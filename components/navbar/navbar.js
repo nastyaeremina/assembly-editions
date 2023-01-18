@@ -46,12 +46,20 @@ import {
   TopBar,
   AnnounceBar,
   HelpLink,
-  Dspace,
-
+  Dspace
 } from './styles';
 import FeatureSubMenu from './featuresubmenu';
 import ResourcesSubMenu from './resourcessubmenu';
 import CompanySubMenu from './companysubmenu';
+import {
+  BLOG_LINK,
+  COPILOT_DASHBOARD_LINK,
+  COPILOT_ONBORADING_LINK,
+  COPILOT_SECURITY_LINK,
+  COPILOT_SYSTEM_STATUS_LINK,
+  COPILOT_UPDATE_LINK,
+  HELP_CENTER_LINK
+} from '../../constants/externalLinks';
 
 export default function Navbar({ isModule, headerIndex, isEnterPrice }) {
   const appSelector = useSelector((state) => state.app);
@@ -75,14 +83,11 @@ export default function Navbar({ isModule, headerIndex, isEnterPrice }) {
   }, [isOpenCompanySubMenu, isOpenFeatureSubMenu, isOpenResoursesSubMenu]);
 
   const handleMobileMenu = useCallback(() => {
-    const body = document.querySelector("body");
-    if(isOpenMobileMenu)
-    {
-      body.style.overflow = "auto";
-    }
-    else
-    {
-      body.style.overflow = "hidden";
+    const body = document.querySelector('body');
+    if (isOpenMobileMenu) {
+      body.style.overflow = 'auto';
+    } else {
+      body.style.overflow = 'hidden';
     }
     setIsOpenMobileMenu(!isOpenMobileMenu);
     closeSubMenu();
@@ -94,8 +99,8 @@ export default function Navbar({ isModule, headerIndex, isEnterPrice }) {
     setClientWindowHeight(window.scrollY);
   };
   useEffect(() => {
-    const body = document.querySelector("body");
-    body.style.overflow = "auto";
+    const body = document.querySelector('body');
+    body.style.overflow = 'auto';
     window.addEventListener('scroll', handleScroll);
   }, []);
 
@@ -327,13 +332,7 @@ export default function Navbar({ isModule, headerIndex, isEnterPrice }) {
                 <MenuWrap href='/brand'>
                   <LeftImg>
                     <svg width='16' height='16' viewBox='0 0 16 16' fill='none' xmlns='http://www.w3.org/2000/svg'>
-                      <mask
-                        id='mask0_1874_104897'
-                        maskUnits='userSpaceOnUse'
-                        x='0'
-                        y='0'
-                        width='16'
-                        height='16'>
+                      <mask id='mask0_1874_104897' maskUnits='userSpaceOnUse' x='0' y='0' width='16' height='16'>
                         <path d='M16 0H0V16H16V0Z' fill='white' />
                       </mask>
                       <g mask='url(#mask0_1874_104897)'>
@@ -367,7 +366,7 @@ export default function Navbar({ isModule, headerIndex, isEnterPrice }) {
             </TextView>
             <InnerList company className='innerlist'>
               <ListLi>
-                <MenuWrap href='http://copilot.com/blog'>
+                <MenuWrap href={BLOG_LINK}>
                   <LeftImg>
                     <svg width='16' height='16' viewBox='0 0 16 16' fill='none' xmlns='http://www.w3.org/2000/svg'>
                       <mask id='mask0_1874_104899' maskUnits='userSpaceOnUse' x='0' y='0' width='16' height='16'>
@@ -387,7 +386,7 @@ export default function Navbar({ isModule, headerIndex, isEnterPrice }) {
                 </MenuWrap>
               </ListLi>
               <ListLi>
-                <MenuWrap href='http://security.copilot.com'>
+                <MenuWrap href={COPILOT_SECURITY_LINK}>
                   <LeftImg>
                     <svg width='16' height='16' viewBox='0 0 16 16' fill='none' xmlns='http://www.w3.org/2000/svg'>
                       <mask id='mask0_1874_104901' maskUnits='userSpaceOnUse' x='0' y='0' width='16' height='16'>
@@ -407,7 +406,7 @@ export default function Navbar({ isModule, headerIndex, isEnterPrice }) {
                 </MenuWrap>
               </ListLi>
               <ListLi>
-                <MenuWrap href='http://copilot.com/updates'>
+                <MenuWrap href={COPILOT_UPDATE_LINK}>
                   <LeftImg>
                     <svg width='16' height='16' viewBox='0 0 16 16' fill='none' xmlns='http://www.w3.org/2000/svg'>
                       <path
@@ -422,7 +421,7 @@ export default function Navbar({ isModule, headerIndex, isEnterPrice }) {
                 </MenuWrap>
               </ListLi>
               <ListLi>
-                <MenuWrap href='https://support.copilot.com/hc/en-us'>
+                <MenuWrap href={HELP_CENTER_LINK}>
                   <LeftImg>
                     <svg width='17' height='16' viewBox='0 0 17 16' fill='none' xmlns='http://www.w3.org/2000/svg'>
                       <path
@@ -484,7 +483,7 @@ export default function Navbar({ isModule, headerIndex, isEnterPrice }) {
                 </MenuWrap>
               </ListLi>
               <ListLi>
-                <MenuWrap href='https://status.copilot.com/'>
+                <MenuWrap href={COPILOT_SYSTEM_STATUS_LINK}>
                   <LeftImg>
                     <svg width='17' height='16' viewBox='0 0 17 16' fill='none' xmlns='http://www.w3.org/2000/svg'>
                       <path
@@ -526,7 +525,7 @@ export default function Navbar({ isModule, headerIndex, isEnterPrice }) {
           <SignInSignUpBtn>
             <>
               <SignIn textColor={colorList?.fontColor} hoverColor={colorList?.primaryColor}>
-                <Link href='https://dashboard.copilot.com'>Login</Link>
+                <Link href={COPILOT_DASHBOARD_LINK}>Login</Link>
               </SignIn>
               <SignIn textColor={colorList?.fontColor} hoverColor={colorList?.primaryColor}>
                 <Link href='/book-demo'>Book demo</Link>
@@ -542,7 +541,7 @@ export default function Navbar({ isModule, headerIndex, isEnterPrice }) {
                 }
                 text={'Start Trial'}
                 borderColor={'transparent'}
-                href={'https://dashboard.copilot.com/onboarding'}
+                href={COPILOT_ONBORADING_LINK}
                 hoverColor={'rgba(255, 255, 255, 0.8)'}
                 className='hederbtn'
               />
@@ -614,51 +613,63 @@ export default function Navbar({ isModule, headerIndex, isEnterPrice }) {
         isAnnouncebar={!isEmpty(topbarContent)}>
         <Container>
           <NavbarInner>
-              {isModule ? (
-                mobile ? (
-                  isOpenResoursesSubMenu || isOpenCompanySubMenu || isOpenFeatureSubMenu ? (
-                    <BackWrap textColor={colorList?.fontColor} onClick={closeSubMenu}>
-                      <SvgIcon>
-                        <Image src='/images/moduleback.svg' width={10} height={10} alt='back-icon' />
-                      </SvgIcon>
-                      <span>Back</span>
-                    </BackWrap>
-                  ) : (
-                    <Link href='/' aria-label={"Navigate to Home"}><CopilotLogo  alt="copilot logo" loading='lazy' width='96' height='21' src={MobileWhiteLogos.src} /></Link>
-                  )
-                ) : (
-                  <Link href='/' aria-label={"Navigate to Home"}><CopilotLogo alt="copilot logo" loading='lazy' width='143' height='31' src={WhiteLogos.src} /></Link>
-                )
-              ) : isEnterPrice ? (
-                mobile ? (
-                  isOpenResoursesSubMenu || isOpenCompanySubMenu || isOpenFeatureSubMenu ? (
-                    <BackWrap textColor={colorList?.fontColor} onClick={closeSubMenu}>
-                      <SvgIcon>
-                        <Image src='/images/moduleback.svg' width={10} height={10} alt='back-icon' />
-                      </SvgIcon>
-                      <span>Back</span>
-                    </BackWrap>
-                  ) : (
-                    <Link href='/' aria-label={"Navigate to Home"}><CopilotLogo alt="copilot logo" loading='lazy' width='96' height='21' src={MobileGreenLogos.src} /></Link>
-                  )
-                ) : (
-                  <Link href='/' aria-label={"Navigate to Home"}><CopilotLogo alt="copilot logo" loading='lazy' width='143' height='31' src={GreenLogos.src} /></Link>
-                )
-              ) : mobile ? (
+            {isModule ? (
+              mobile ? (
                 isOpenResoursesSubMenu || isOpenCompanySubMenu || isOpenFeatureSubMenu ? (
-                  <BackWrap onClick={closeSubMenu}>
+                  <BackWrap textColor={colorList?.fontColor} onClick={closeSubMenu}>
                     <SvgIcon>
-                      <Image src='/images/iconback.svg' width={10} height={10} alt='back-icon' />
+                      <Image src='/images/moduleback.svg' width={10} height={10} alt='back-icon' />
                     </SvgIcon>
                     <span>Back</span>
                   </BackWrap>
                 ) : (
-                  <Link href='/' aria-label={"Navigate to Home"}><CopilotLogo alt="copilot logo" loading='lazy' width='96' height='21' src={MobileBlackLogos.src} /></Link>
+                  <Link href='/' aria-label={'Navigate to Home'}>
+                    <CopilotLogo alt='copilot logo' loading='lazy' width='96' height='21' src={MobileWhiteLogos.src} />
+                  </Link>
                 )
               ) : (
-                <Link href='/' aria-label={"Navigate to Home"}><CopilotLogo alt="copilot logo" loading='lazy' width='143' height='31' src={CopilotLogos.src} /> </Link>
-              )}
-           
+                <Link href='/' aria-label={'Navigate to Home'}>
+                  <CopilotLogo alt='copilot logo' loading='lazy' width='143' height='31' src={WhiteLogos.src} />
+                </Link>
+              )
+            ) : isEnterPrice ? (
+              mobile ? (
+                isOpenResoursesSubMenu || isOpenCompanySubMenu || isOpenFeatureSubMenu ? (
+                  <BackWrap textColor={colorList?.fontColor} onClick={closeSubMenu}>
+                    <SvgIcon>
+                      <Image src='/images/moduleback.svg' width={10} height={10} alt='back-icon' />
+                    </SvgIcon>
+                    <span>Back</span>
+                  </BackWrap>
+                ) : (
+                  <Link href='/' aria-label={'Navigate to Home'}>
+                    <CopilotLogo alt='copilot logo' loading='lazy' width='96' height='21' src={MobileGreenLogos.src} />
+                  </Link>
+                )
+              ) : (
+                <Link href='/' aria-label={'Navigate to Home'}>
+                  <CopilotLogo alt='copilot logo' loading='lazy' width='143' height='31' src={GreenLogos.src} />
+                </Link>
+              )
+            ) : mobile ? (
+              isOpenResoursesSubMenu || isOpenCompanySubMenu || isOpenFeatureSubMenu ? (
+                <BackWrap onClick={closeSubMenu}>
+                  <SvgIcon>
+                    <Image src='/images/iconback.svg' width={10} height={10} alt='back-icon' />
+                  </SvgIcon>
+                  <span>Back</span>
+                </BackWrap>
+              ) : (
+                <Link href='/' aria-label={'Navigate to Home'}>
+                  <CopilotLogo alt='copilot logo' loading='lazy' width='96' height='21' src={MobileBlackLogos.src} />
+                </Link>
+              )
+            ) : (
+              <Link href='/' aria-label={'Navigate to Home'}>
+                <CopilotLogo alt='copilot logo' loading='lazy' width='143' height='31' src={CopilotLogos.src} />{' '}
+              </Link>
+            )}
+
             {isOpenMobileMenu ? (
               <OverLayBlock>
                 <MobileNavigation></MobileNavigation>
@@ -670,12 +681,12 @@ export default function Navbar({ isModule, headerIndex, isEnterPrice }) {
               <SignInMobile>
                 <>
                   <SignIn textColor={colorList?.fontColor} hoverColor={colorList?.primaryColor}>
-                    <Link href='https://dashboard.copilot.com'>Login</Link>
+                    <Link href={COPILOT_DASHBOARD_LINK}>Login</Link>
                   </SignIn>
                   <BlackButton
                     textColor={isModule ? colorList?.fontColor : '#FFFFFF'}
                     backgroundColor={colorList?.buttonColor}>
-                    <Link href='https://dashboard.copilot.com/onboarding'>Start Trial</Link>
+                    <Link href={COPILOT_ONBORADING_LINK}>Start Trial</Link>
                   </BlackButton>
                 </>
               </SignInMobile>

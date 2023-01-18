@@ -28,6 +28,7 @@ import {
   ThanksWrap,
   ValidationForm
 } from './styles';
+import { COPILOT_ONBORADING_LINK } from '../../constants/externalLinks';
 
 export default function BookDemoForm() {
   const bookDemoSelector = useSelector((state) => state.bookDemo);
@@ -129,7 +130,7 @@ export default function BookDemoForm() {
                     <ContactText>A Copilot expert will contact you soon.</ContactText>
                     <p>
                       In the mean time, you can start a free trial{' '}
-                      <Link href='https://dashboard.copilot.com/onboarding' target={'_blank'}>
+                      <Link href={COPILOT_ONBORADING_LINK} target={'_blank'}>
                         here
                       </Link>
                       .
@@ -354,7 +355,7 @@ export default function BookDemoForm() {
             <LastText>
               <span>or</span>
               <HelpLink className='icon-link'>
-                <Link href='https://dashboard.copilot.com/onboarding' className='learn-link mb0'>
+                <Link href={COPILOT_ONBORADING_LINK} className='learn-link mb0'>
                   start your 14-day free trial
                   <svg width='16' height='12' viewBox='0 0 16 12' fill='none' class='HoverArrow'>
                     <path

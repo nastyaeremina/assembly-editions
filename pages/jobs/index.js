@@ -6,6 +6,7 @@ import Layout from '../../components/layout';
 import Navbar from '../../components/navbar/navbar';
 import SEO from '../../components/seo';
 import { JOB_SEO_ID } from '../../constants/constant';
+import { COPILOT_JOIN_COMMUNITY_LINK, COPILOT_ONBORADING_LINK } from '../../constants/externalLinks';
 import { dateToMonthYear, isEmpty } from '../../helpers/helpers';
 import { NO_OF_JOBS_PER_PAGE } from '../../lib/constants';
 import { getAllJobBlogPosts } from '../../lib/contentful-jobBlogPosts';
@@ -212,12 +213,19 @@ export default function Jobs({ jobList, jobImagesList, jobBlogPostList, seoData 
                     <h3>About us</h3>
                     <p>
                       Read about our mission and plans on our
-                      <a href='https://www.copilot.com/blog/introducing-copilot-1-0-and-announcing-our-series-a/'> announcement blog post. </a> 
-                      Get a feel for our product by{' '}
-                      <a href='https://dashboard.copilot.com/onboarding/'>starting a trial</a> or by
-                      <a href='https://copilot.com/university'> watching one of our many videos</a>. And finally, meet our team by
-                      <a href='https://join.slack.com/t/copilotcommunity/shared_invite/zt-1n4u6dr8m-Bm_8Jnmq6_RoY1ySq~yVcQ'> joining our Slack community</a> or
-                      <a href="mailto:team@copilot.com"> sending us an email</a>.
+                      <a href='https://www.copilot.com/blog/introducing-copilot-1-0-and-announcing-our-series-a/'>
+                        {' '}
+                        announcement blog post.{' '}
+                      </a>
+                      Get a feel for our product by <a href={COPILOT_ONBORADING_LINK}>starting a trial</a> or by
+                      <a href='https://copilot.com/university'> watching one of our many videos</a>. And finally, meet
+                      our team by
+                      <a href={COPILOT_JOIN_COMMUNITY_LINK}>
+                        {' '}
+                        joining our Slack community
+                      </a>{' '}
+                      or
+                      <a href='mailto:team@copilot.com'> sending us an email</a>.
                     </p>
                   </AboutWrap>
                   {!isEmpty(jobBlogPostList) && (
