@@ -182,7 +182,7 @@ export default function Apps({ allPosts, featuredApps, allCategoryWithPost, data
       );
     } else
       return (
-        <ExtensionsSection key={`searchEmptyview`}>
+        <ExtensionsSection key={`searchEmptyview`} >
           <AppError query={query} />
         </ExtensionsSection>
       );
@@ -247,7 +247,7 @@ export default function Apps({ allPosts, featuredApps, allCategoryWithPost, data
                   </LeftWrap>
                 </FeatureLeft>
                 {isSearch ? (
-                  <FeatureRight>{renderResultView}</FeatureRight>
+                  <FeatureRight isSearch={!isEmpty(searchResult)}>{renderResultView}</FeatureRight>
                 ) : (
                   <FeatureRight>
                     {!isEmpty(featuredApps) && (
