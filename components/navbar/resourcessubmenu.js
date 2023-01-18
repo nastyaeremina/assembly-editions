@@ -1,3 +1,10 @@
+import {
+  BLOG_LINK,
+  COPILOT_SECURITY_LINK,
+  COPILOT_SYSTEM_STATUS_LINK,
+  COPILOT_UPDATE_LINK,
+  HELP_CENTER_LINK
+} from '../../constants/externalLinks';
 import { NavigationBlock, NavMenu, MobileListLi, MenuMobileWrap, LeftImg, RightText } from './styles';
 
 export default function ResourcesSubMenu() {
@@ -6,7 +13,7 @@ export default function ResourcesSubMenu() {
       <NavMenu>
         <NavigationBlock>
           <MobileListLi>
-            <MenuMobileWrap href='http://copilot.com/blog'>
+            <MenuMobileWrap href={BLOG_LINK}>
               <LeftImg>
                 <svg width='16' height='16' viewBox='0 0 16 16' fill='none' xmlns='http://www.w3.org/2000/svg'>
                   <mask id='mask0_1874_104899' maskUnits='userSpaceOnUse' x='0' y='0' width='16' height='16'>
@@ -26,7 +33,7 @@ export default function ResourcesSubMenu() {
             </MenuMobileWrap>
           </MobileListLi>
           <MobileListLi>
-            <MenuMobileWrap href='http://security.copilot.com'>
+            <MenuMobileWrap href={COPILOT_SECURITY_LINK}>
               <LeftImg>
                 <svg width='16' height='16' viewBox='0 0 16 16' fill='none' xmlns='http://www.w3.org/2000/svg'>
                   <mask id='mask0_1874_104901' maskUnits='userSpaceOnUse' x='0' y='0' width='16' height='16'>
@@ -46,7 +53,7 @@ export default function ResourcesSubMenu() {
             </MenuMobileWrap>
           </MobileListLi>
           <MobileListLi>
-            <MenuMobileWrap href='http://copilot.com/updates'>
+            <MenuMobileWrap href={COPILOT_UPDATE_LINK}>
               <LeftImg>
                 <svg width='16' height='16' viewBox='0 0 16 16' fill='none' xmlns='http://www.w3.org/2000/svg'>
                   <path
@@ -61,7 +68,7 @@ export default function ResourcesSubMenu() {
             </MenuMobileWrap>
           </MobileListLi>
           <MobileListLi>
-            <MenuMobileWrap href='https://support.copilot.com/'>
+            <MenuMobileWrap href={HELP_CENTER_LINK}>
               <LeftImg>
                 <svg width='17' height='16' viewBox='0 0 17 16' fill='none' xmlns='http://www.w3.org/2000/svg'>
                   <path
@@ -123,7 +130,7 @@ export default function ResourcesSubMenu() {
             </MenuMobileWrap>
           </MobileListLi>
           <MobileListLi>
-            <MenuMobileWrap href='https://status.copilot.com/'>
+            <MenuMobileWrap href={COPILOT_SYSTEM_STATUS_LINK}>
               <LeftImg>
                 <svg width='17' height='16' viewBox='0 0 17 16' fill='none' xmlns='http://www.w3.org/2000/svg'>
                   <path
