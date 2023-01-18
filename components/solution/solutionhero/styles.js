@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { Body2, Heading2, MobileH2 } from '../../../styles/styles';
+import { Body2, Heading2, MbBody2, MobileH2 } from '../../../styles/styles';
 
 const HeroSection = styled.div`
   padding: 224px 0 0 0;
@@ -45,6 +45,9 @@ const TextSection = styled.div`
   @media only screen and (max-width: 749px) {
     h2 {
       ${MobileH2};
+    }
+    p{
+      ${MbBody2}
     }
   }
 `;

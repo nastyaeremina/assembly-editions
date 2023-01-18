@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { Body3, Body4, Heading3, Heading4, MbBody3, MbBody4, SliderTxt } from '../../../styles/styles';
+import { Body3, Body4, Body5, Heading3, Heading4, MbBody3, MbBody4, SliderTxt } from '../../../styles/styles';
 
 const ExploreSection = styled.div`
   padding: 50px 0;
@@ -70,7 +70,7 @@ const LeftWrap = styled.div`
       color: ${({ theme }) => theme.colors.title};
     }
     p {
-      ${Body4};
+      ${Body5};
       color: ${({ theme }) => theme.colors.body};
       margin: 0;
     }
@@ -98,8 +98,12 @@ const TabWrap = styled.div`
       }
     }
     border: 1.08px solid #4c4c4c;
-    width: 72px;
-    height: 72px;
+    width: 100%;
+      max-width: 72px;
+      min-width: 72px;
+      height: 100%;
+      min-height: 72px;
+      max-height: 72px;
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -110,8 +114,12 @@ const TabWrap = styled.div`
     justify-content: flex-end;
     gap: 20px;
     .activetab {
-      width: 59px;
-      height: 59px;
+      width: 100%;
+      max-width: 59px;
+      min-width: 59px;
+      height: 100%;
+      min-height: 59px;
+      max-height: 59px;
     }
   }
   @media only screen and (max-width: 749px) {
@@ -119,8 +127,13 @@ const TabWrap = styled.div`
     justify-content: flex-end;
     gap: 20px;
     .activetab {
-      width: 57px;
-      height: 57px;
+      border:1px solid #4c4c4c;
+      width: 100%;
+      max-width: 57px;
+      min-width: 57px;
+      height: 100%;
+      min-height: 57px;
+      max-height: 57px;
     }
   }
 `;
@@ -135,19 +148,32 @@ const TabView = styled.div`
     }
   }
   border: 1.08px solid #ccccd0;
-  width: 72px;
-  height: 72px;
+  width: 100%;
+      max-width: 72px;
+      min-width: 72px;
+      height: 100%;
+      min-height: 72px;
+      max-height: 72px;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
   @media only screen and (max-width: 991px) {
-    width: 59px;
-    height: 59px;
+     width: 100%;
+      max-width: 59px;
+      min-width: 59px;
+      height: 100%;
+      min-height: 59px;
+      max-height: 59px;
   }
   @media only screen and (max-width: 749px) {
-    width: 57px;
-    height: 57px;
+    border: 1px solid #ccccd0;
+    width: 100%;
+      max-width: 57px;
+      min-width: 57px;
+      height: 100%;
+      min-height: 57px;
+      max-height: 57px;
   }
 `;
 const LastSection = styled.div`
@@ -215,6 +241,7 @@ const BtnWrap = styled.div`
   }
   @media only screen and (max-width: 749px) {
     width: 100%;
+    white-space: nowrap;
     a {
       padding: 8px 28px;
       border-radius: 48px;
