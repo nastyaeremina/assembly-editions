@@ -48,6 +48,7 @@ import Button from '../../components/button/button';
 import SEO from '../../components/seo';
 import AppError from '../../components/apperror/error';
 import { getSEOdata } from '../../lib/contentful-seo';
+import { COPILOT_ONBORADING_LINK, COPILOT_REFERENCE_API_LINK } from '../../constants/externalLinks';
 
 export default function Apps({ allPosts, featuredApps, allCategoryWithPost, dataIntegrationApps, seoData }) {
   const [selected_category, setSelected_category] = useState();
@@ -182,7 +183,7 @@ export default function Apps({ allPosts, featuredApps, allCategoryWithPost, data
       );
     } else
       return (
-        <ExtensionsSection key={`searchEmptyview`}>
+        <ExtensionsSection key={`searchEmptyview`} >
           <AppError query={query} />
         </ExtensionsSection>
       );
@@ -199,7 +200,7 @@ export default function Apps({ allPosts, featuredApps, allCategoryWithPost, data
               <AppsHeroWrap>
                 <h2>App Directory</h2>
                 <p>Try Copilot free for 14 days, no credit card required</p>
-                <Button text={'Start Trial'} href={'https://dashboard.copilot.com/onboarding'} />
+                <Button text={'Start Trial'} href={COPILOT_ONBORADING_LINK} />
               </AppsHeroWrap>
             </Container>
           </HeroSection>
@@ -247,7 +248,7 @@ export default function Apps({ allPosts, featuredApps, allCategoryWithPost, data
                   </LeftWrap>
                 </FeatureLeft>
                 {isSearch ? (
-                  <FeatureRight>{renderResultView}</FeatureRight>
+                  <FeatureRight isSearch={!isEmpty(searchResult)}>{renderResultView}</FeatureRight>
                 ) : (
                   <FeatureRight>
                     {!isEmpty(featuredApps) && (
@@ -284,7 +285,7 @@ export default function Apps({ allPosts, featuredApps, allCategoryWithPost, data
                             fontColor={'#000000'}
                             borderColor={'#000000'}
                             text={'Read API docs'}
-                            href={'https://docs.copilot.com/reference/introduction'}
+                            href={COPILOT_REFERENCE_API_LINK}
                             hoverColor={'rgba(0, 0, 0, 0.5)'}
                           />
                         </BuildAppsDetail>

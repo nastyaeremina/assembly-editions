@@ -47,6 +47,14 @@ import TabView from '../components/tab/tab';
 import Button from '../components/button/button';
 import SEO from '../components/seo';
 import { getSEOdata } from '../lib/contentful-seo';
+import {
+  BLOG_LINK,
+  COPILOT_JOIN_COMMUNITY_LINK,
+  COPILOT_ONBORADING_LINK,
+  COPILOT_REFERENCE_API_LINK,
+  HELP_CENTER_LINK,
+  ZAPIER_LINK
+} from '../constants/externalLinks';
 
 export default function Home({ content, seoData }) {
   return (
@@ -68,7 +76,7 @@ export default function Home({ content, seoData }) {
                   fontColor={'#fff'}
                   borderColor={'#09AA6C'}
                   text={'Start Trial'}
-                  href={'https://dashboard.copilot.com/onboarding'}
+                  href={COPILOT_ONBORADING_LINK}
                   hoverColor={'rgba(255, 255, 255,0.8)'}
                 />
                 <Button
@@ -182,7 +190,7 @@ export default function Home({ content, seoData }) {
                     fontColor={'#000000'}
                     borderColor={'#000000'}
                     text={'Browse Apps'}
-                    href={'https://copilot-release.vercel.app/apps'}
+                    href={'/apps'}
                     hoverColor={'rgba(0, 0, 0, 0.5)'}
                   />
                 </BtnView>
@@ -199,9 +207,8 @@ export default function Home({ content, seoData }) {
                 <p>
                   Automate workflows inside your portal and connect external tools as well. For example, for new clients
                   assign an onboarding form, send out a customized welcome message, set up a default folder structure,
-                  and create a lead in Salesforce. Use{' '}
-                  <Link href='https://zapier.com/apps/copilot/integrations'> Zapier </Link> for easy setup or our{' '}
-                  <Link href='https://docs.copilot.com/reference/introduction'>API</Link> for full control.
+                  and create a lead in Salesforce. Use <Link href={ZAPIER_LINK}> Zapier </Link> for easy setup or our{' '}
+                  <Link href={COPILOT_REFERENCE_API_LINK}>API</Link> for full control.
                 </p>
               </AutomateText>
               <BottomList>
@@ -356,9 +363,7 @@ export default function Home({ content, seoData }) {
                       <h4>Our Community</h4>
                       <p>Meet our team and a community of businesses that run on Copilot. Requires a Slack account.</p>
                       <HelpLink className='icon-link'>
-                        <a
-                          href='https://join.slack.com/t/copilotcommunity/shared_invite/zt-1n4u6dr8m-Bm_8Jnmq6_RoY1ySq~yVcQ'
-                          className='learn-link mb0'>
+                        <a href={COPILOT_JOIN_COMMUNITY_LINK} className='learn-link mb0'>
                           Join Community
                           <svg width='16' height='12' viewBox='0 0 16 12' fill='none' class='HoverArrow'>
                             <path
@@ -392,7 +397,7 @@ export default function Home({ content, seoData }) {
                       <h4>Copilot Blog</h4>
                       <p>Read about company announcements, new features, customer spotlights, and more.</p>
                       <HelpLink className='icon-link'>
-                        <a href='http://copilot.com/blog' className='learn-link mb0'>
+                        <a href={BLOG_LINK} className='learn-link mb0'>
                           Read Blog
                           <svg width='16' height='12' viewBox='0 0 16 12' fill='none' class='HoverArrow'>
                             <path
@@ -466,7 +471,7 @@ export default function Home({ content, seoData }) {
                         <h4>Help Center</h4>
                         <p>Read answers to the most common questions, learn best practices, and contact our team.</p>
                         <HelpLink className='icon-link'>
-                          <a href='https://support.copilot.com/hc/en-us' className='learn-link mb0'>
+                          <a href={HELP_CENTER_LINK} className='learn-link mb0'>
                             Get help
                             <svg width='16' height='12' viewBox='0 0 16 12' fill='none' class='HoverArrow'>
                               <path

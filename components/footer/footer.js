@@ -17,31 +17,47 @@ import {
   FooterMobile,
   FotterMenuMobile
 } from './styles';
+import {
+  BLOG_LINK,
+  COPILOT_FACEBOOK_LINK,
+  COPILOT_INSTAGRAM_LINK,
+  COPILOT_LINKEDIN_LINK,
+  COPILOT_SECURITY_LINK,
+  COPILOT_SYSTEM_STATUS_LINK,
+  COPILOT_TWITTER_LINK,
+  COPILOT_UPDATE_LINK,
+  COPILOT_YOUTUBE_CHANNEL_LINK,
+  HELP_CENTER_LINK
+} from '../../constants/externalLinks';
 
 export default function Footer({ isEnterPrice }) {
-  const [solutionList, setSolutionList] = useState([])
+  const [solutionList, setSolutionList] = useState([]);
   const loadData = useCallback(async () => {
-    const data = await getAllSolutionWithSlug()
-    if (data) setSolutionList(data)
-  }, [])
+    const data = await getAllSolutionWithSlug();
+    if (data) setSolutionList(data);
+  }, []);
 
   useEffect(() => {
-    loadData()
-  }, [loadData])
+    loadData();
+  }, [loadData]);
 
   const renderSolutionList = useMemo(() => {
-    if (isEmpty(solutionList)) return null
+    if (isEmpty(solutionList)) return null;
     return (
       <>
         <p>Solutions</p>
         <FooterMenuList isEnterPrice={isEnterPrice}>
           {solutionList?.map((item, index) => {
-            return <Link href={`/solutions/${item?.slug}`} key={`solutionitem_index_${index}`}>{item?.name}</Link>
+            return (
+              <Link href={`/solutions/${item?.slug}`} key={`solutionitem_index_${index}`}>
+                {item?.name}
+              </Link>
+            );
           })}
         </FooterMenuList>
       </>
-    )
-  }, [isEnterPrice, solutionList])
+    );
+  }, [isEnterPrice, solutionList]);
   return (
     <>
       <FooterSection isEnterPrice={isEnterPrice}>
@@ -58,7 +74,7 @@ export default function Footer({ isEnterPrice }) {
 
               <p>The new standard for modern services business.</p>
               <FooterSocialList>
-                <Link href='https://twitter.com/copilot' aria-label={"Twitter"}>
+                <Link href={COPILOT_TWITTER_LINK} aria-label={'Twitter'}>
                   <FooterSocialItem isEnterPrice={isEnterPrice}>
                     {isEnterPrice ? (
                       <svg width='24' height='24' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'>
@@ -91,7 +107,7 @@ export default function Footer({ isEnterPrice }) {
                     )}
                   </FooterSocialItem>
                 </Link>
-                <Link href='https://www.facebook.com/copilotplatforms' aria-label={"Facebook"}>
+                <Link href={COPILOT_FACEBOOK_LINK} aria-label={'Facebook'}>
                   <FooterSocialItem isEnterPrice={isEnterPrice}>
                     {isEnterPrice ? (
                       <svg width='24' height='24' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'>
@@ -124,7 +140,7 @@ export default function Footer({ isEnterPrice }) {
                     )}
                   </FooterSocialItem>
                 </Link>
-                <Link href='https://www.linkedin.com/company/copilotplatforms/' aria-label={"Linkedin"}>
+                <Link href={COPILOT_LINKEDIN_LINK} aria-label={'Linkedin'}>
                   <FooterSocialItem isEnterPrice={isEnterPrice}>
                     {isEnterPrice ? (
                       <svg width='24' height='24' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'>
@@ -167,7 +183,7 @@ export default function Footer({ isEnterPrice }) {
                     )}
                   </FooterSocialItem>
                 </Link>
-                <Link href='https://www.youtube.com/channel/UCTeLqsY5Z0Hh7i-7iFQlpxA' aria-label={"Youtube"}>
+                <Link href={COPILOT_YOUTUBE_CHANNEL_LINK} aria-label={'Youtube'}>
                   <FooterSocialItem isEnterPrice={isEnterPrice}>
                     {isEnterPrice ? (
                       <svg width='24' height='24' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'>
@@ -200,7 +216,7 @@ export default function Footer({ isEnterPrice }) {
                     )}
                   </FooterSocialItem>
                 </Link>
-                <Link href='https://www.instagram.com/copilotplatforms/' aria-label={"Instagram"}>
+                <Link href={COPILOT_INSTAGRAM_LINK} aria-label={'Instagram'}>
                   <FooterSocialItem isEnterPrice={isEnterPrice}>
                     {isEnterPrice ? (
                       <svg width='24' height='24' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'>
@@ -283,13 +299,13 @@ export default function Footer({ isEnterPrice }) {
                 <FooterMenu isEnterPrice={isEnterPrice}>
                   <p>Resources</p>
                   <FooterMenuList isEnterPrice={isEnterPrice}>
-                    <Link href='http://copilot.com/blog'>Blog</Link>
-                    <Link href='http://security.copilot.com'>Security</Link>
-                    <Link href='http://copilot.com/updates'>What’s New</Link>
-                    <Link href='#'>Help Center</Link>
+                    <Link href={BLOG_LINK}>Blog</Link>
+                    <Link href={COPILOT_SECURITY_LINK}>Security</Link>
+                    <Link href={COPILOT_UPDATE_LINK}>What’s New</Link>
+                    <Link href={HELP_CENTER_LINK}>Help Center</Link>
                     <Link href='/university'>Video Tutorials</Link>
                     <Link href='http://docs.copilot.com/'>API Reference</Link>
-                    <Link href='https://status.copilot.com/'>System Status</Link>
+                    <Link href={COPILOT_SYSTEM_STATUS_LINK}>System Status</Link>
                     <Link href='/sitemap'>Sitemap</Link>
                   </FooterMenuList>
                 </FooterMenu>
@@ -325,13 +341,13 @@ export default function Footer({ isEnterPrice }) {
                 <FooterMenu className='padding' isEnterPrice={isEnterPrice}>
                   <p>Resources</p>
                   <FooterMenuList isEnterPrice={isEnterPrice}>
-                    <Link href='http://copilot.com/blog'>Blog</Link>
-                    <Link href='http://security.copilot.com'>Security</Link>
-                    <Link href='http://copilot.com/updates'>What’s New</Link>
+                    <Link href={BLOG_LINK}>Blog</Link>
+                    <Link href={COPILOT_SECURITY_LINK}>Security</Link>
+                    <Link href={COPILOT_UPDATE_LINK}>What’s New</Link>
                     <Link href='#'>Help Center</Link>
                     <Link href='/university'>Video Tutorials</Link>
                     <Link href='http://docs.copilot.com/'>API Reference</Link>
-                    <Link href='https://status.copilot.com/'>System Status</Link>
+                    <Link href={COPILOT_SYSTEM_STATUS_LINK}>System Status</Link>
                     <Link href='/sitemap'>Sitemap</Link>
                   </FooterMenuList>
                 </FooterMenu>

@@ -110,8 +110,8 @@ const Catagoryitem = styled.li`
     letter-spacing: 0.02em;
     color: ${({ theme }) => theme.colors.primary};
     ${(props) =>
-      props.isActive &&
-      css`
+    props.isActive &&
+    css`
         color: ${({ theme }) => theme.colors.title};
       `}
     margin: 0;
@@ -146,7 +146,11 @@ const FeatureRight = styled.div`
   width: 100%;
   display: flex;
   flex-direction: column;
-  justify-content:center;
+  ${(props) =>
+    !props.isSearch &&
+    css`
+        justify-content:center;     
+  `}
   h3 {
     ${Heading4};
     color: ${({ theme }) => theme.colors.title};
