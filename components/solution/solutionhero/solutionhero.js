@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { useMemo } from 'react';
+import { COPILOT_ONBORADING_LINK } from '../../../constants/externalLinks';
 import { Container, PrimaryButton } from '../../../styles/commonStyles';
 import {
   HeroSection,
@@ -40,7 +41,7 @@ export default function SolutionHero({ title, description, mobileImage, webImage
                 <p>{description}</p>
                 <BtnWrap>
                   <PrimaryButton>
-                    <Link href='https://dashboard.copilot.com/onboarding'>Start Trial</Link>
+                    <Link href={COPILOT_ONBORADING_LINK}>Start Trial</Link>
                   </PrimaryButton>
                 </BtnWrap>
               </TextSection>
