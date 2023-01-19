@@ -1,9 +1,10 @@
-import { useEffect} from 'react';
+import { useEffect } from 'react';
 import Image from 'next/image';
 import { Gradient } from '../../public/js/Gradient.js';
 import { HEADER_LIST, NAVBAR_COLOR_LIST } from '../../constants/constant';
 import Button from '../button/button';
 import { CtaInner, CtaBtn, CtaAnimation, CtaWrap, LeftImg, MainCta, RightImg } from './styles';
+import { COPILOT_ONBORADING_LINK } from '../../constants/externalLinks.js';
 
 export default function CTA({ moduleName, colorList }) {
   useEffect(() => {
@@ -40,7 +41,7 @@ export default function CTA({ moduleName, colorList }) {
                   }
                   borderColor={'transparent'}
                   text={'Start Trial'}
-                  href={'https://dashboard.copilot.com/onboarding'}
+                  href={COPILOT_ONBORADING_LINK}
                   hoverColor={'white'}
                 />
                 <Button

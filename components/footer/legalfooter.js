@@ -1,4 +1,11 @@
 import Link from 'next/link';
+import {
+  COPILOT_FACEBOOK_LINK,
+  COPILOT_INSTAGRAM_LINK,
+  COPILOT_LINKEDIN_LINK,
+  COPILOT_TWITTER_LINK,
+  COPILOT_YOUTUBE_CHANNEL_LINK
+} from '../../constants/externalLinks';
 import { Container } from '../../styles/commonStyles';
 import { FooterSectionLegal, FooterSocialItem, FooterSocialList, FooterSub } from './styles';
 
@@ -10,7 +17,7 @@ export default function LegalFooter({ isEnterPrice }) {
           <FooterSub>
             <p>Copilot Resources © 2022 </p>
             <FooterSocialList>
-              <Link href='https://twitter.com/copilot'>
+              <Link href={COPILOT_TWITTER_LINK}>
                 <FooterSocialItem isEnterPrice={isEnterPrice}>
                   {isEnterPrice ? (
                     <svg width='24' height='24' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'>
@@ -43,7 +50,7 @@ export default function LegalFooter({ isEnterPrice }) {
                   )}
                 </FooterSocialItem>
               </Link>
-              <Link href='https://www.facebook.com/copilotplatforms'>
+              <Link href={COPILOT_FACEBOOK_LINK}>
                 <FooterSocialItem isEnterPrice={isEnterPrice}>
                   {isEnterPrice ? (
                     <svg width='24' height='24' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'>
@@ -76,7 +83,7 @@ export default function LegalFooter({ isEnterPrice }) {
                   )}
                 </FooterSocialItem>
               </Link>
-              <Link href='https://www.linkedin.com/company/copilotplatforms/'>
+              <Link href={COPILOT_LINKEDIN_LINK}>
                 <FooterSocialItem isEnterPrice={isEnterPrice}>
                   {isEnterPrice ? (
                     <svg width='24' height='24' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'>
@@ -119,7 +126,7 @@ export default function LegalFooter({ isEnterPrice }) {
                   )}
                 </FooterSocialItem>
               </Link>
-              <Link href='https://www.youtube.com/channel/UCTeLqsY5Z0Hh7i-7iFQlpxA'>
+              <Link href={COPILOT_YOUTUBE_CHANNEL_LINK}>
                 <FooterSocialItem isEnterPrice={isEnterPrice}>
                   {isEnterPrice ? (
                     <svg width='24' height='24' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'>
@@ -152,7 +159,7 @@ export default function LegalFooter({ isEnterPrice }) {
                   )}
                 </FooterSocialItem>
               </Link>
-              <Link href='https://www.instagram.com/copilotplatforms/'>
+              <Link href={COPILOT_INSTAGRAM_LINK}>
                 <FooterSocialItem isEnterPrice={isEnterPrice}>
                   {isEnterPrice ? (
                     <svg width='24' height='24' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'>

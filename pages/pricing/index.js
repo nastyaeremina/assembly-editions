@@ -38,6 +38,7 @@ import CTA from '../../components/cta/cta';
 import FAQ from '../../components/faq/faq';
 import Button from '../../components/button/button';
 import { getSEOdata } from '../../lib/contentful-seo';
+import { COPILOT_ONBORADING_LINK } from '../../constants/externalLinks';
 
 export default function NewIndex({ faq, seoData }) {
   const [isShowFeature, setShowFeature] = useState(true);
@@ -68,11 +69,7 @@ export default function NewIndex({ faq, seoData }) {
               Create your portal<span>,</span> pick a plan later
             </h2>
             <p>Try Copilot free for 14 days, no credit card required</p>
-            <Button
-              text={'Start Trial'}
-              hoverColor={'rgba(255, 255, 255, 0.8)'}
-              href='https://dashboard.copilot.com/onboarding'
-            />
+            <Button text={'Start Trial'} hoverColor={'rgba(255, 255, 255, 0.8)'} href={COPILOT_ONBORADING_LINK} />
           </Container>
         </HeroSection>
         <PricingSection>
@@ -289,9 +286,8 @@ export default function NewIndex({ faq, seoData }) {
                     <td colSpan={3}>
                       <h4>Total storage</h4>
                       <p>
-                        File uploads in the Files App by any user contribute to your file storage limit. When you
-                        reach your limit, our team will get in touch and ask that you make space or upgrade your
-                        account.
+                        File uploads in the Files App by any user contribute to your file storage limit. When you reach
+                        your limit, our team will get in touch and ask that you make space or upgrade your account.
                       </p>
                     </td>
                     <td>
@@ -388,8 +384,8 @@ export default function NewIndex({ faq, seoData }) {
                     <td colSpan={3}>
                       <h4>Automations & Zapier</h4>
                       <p>
-                        Use Copilot API and Zapier triggers to set up automations that streamline the experience for your
-                        clients.
+                        Use Copilot API and Zapier triggers to set up automations that streamline the experience for
+                        your clients.
                       </p>
                     </td>
                     <td></td>
@@ -420,8 +416,8 @@ export default function NewIndex({ faq, seoData }) {
                       <h4>White-labeling</h4>
                       <p>
                         With a custom domain, you can host your portal on your own URL. With a custom email domain, you
-                        can send client email notifications from your own email. Powered by Copilot is a small badge that
-                        shows in the client experience and can be removed on the Advanced plan.
+                        can send client email notifications from your own email. Powered by Copilot is a small badge
+                        that shows in the client experience and can be removed on the Advanced plan.
                       </p>
                     </td>
                     <td>

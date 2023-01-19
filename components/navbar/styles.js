@@ -144,9 +144,20 @@ const SpanLink = styled.li`
         color: ${props.textColor};
       `}
   }
+  .hovernone:hover {
+    ${(props) =>
+    props.hoverColor &&
+    css`
+        color: ${props.hoverColor};
+      `}
+  }
   &.active {
     a {
-      color: ${({ theme }) => theme.colors.primary};
+      ${(props) =>
+    props.hoverColor &&
+    css`
+        color: ${props.hoverColor};
+      `}
     }
   }
 
