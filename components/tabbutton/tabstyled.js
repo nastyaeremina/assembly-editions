@@ -21,7 +21,8 @@ const Tabbutton = styled.div`
     padding-left: 0px;
     display:flex;
     @media (max-width: 768px) {
-      /* width: 90%; */
+      margin: 0 -24px;
+      padding: 0 24px;
       overflow:auto;
       display:flex;
     }
