@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import Image from 'next/image';
+import { isEmpty } from '../../helpers/helpers';
 import { MUDULE_LIST } from '../../constants/constant';
 import { Container } from '../../styles/commonStyles';
 import {
@@ -17,11 +18,19 @@ import {
 } from './styles';
 
 export default function Client({ currentModule, title }) {
+  const titleSplitList = title?.split(',');
+  const seprateWithDotList = titleSplitList?.join(`<span>,</span>`)?.split('.');
+  const finalTitle = seprateWithDotList?.join(`<span>.</span>`);
+
   return (
     <ClientMain>
       <Container>
         <ClientHero>
-          {title && <h3>{title}</h3>}
+          {!isEmpty(title) && (
+            <h3>
+              <div dangerouslySetInnerHTML={{ __html: finalTitle }} />
+            </h3>
+          )}
           <CardSection>
             {currentModule !== MUDULE_LIST.BILLING && (
               <ModuleCard className='mydiv'>

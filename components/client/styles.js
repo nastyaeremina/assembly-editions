@@ -23,6 +23,9 @@ const ClientHero = styled.div`
     ${Heading3};
     color: ${({ theme }) => theme.colors.title};
     margin: 0 auto;
+    span {
+      color: ${({ theme }) => theme.colors.primary};
+    }
   }
   @media only screen and (max-width: 749px) {
     text-align: left;

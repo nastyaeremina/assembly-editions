@@ -6,26 +6,15 @@ import { ContentMain, TopFunctionWrap } from './styles';
 
 export default function Content({ title, description }) {
   const titleSplitList = title?.split(',');
-
-  const renderHeaderView = useMemo(() => {
-    const lastIndex = titleSplitList?.length - 1;
-    return titleSplitList?.map((item, index) => {
-      return (
-        <>
-          {item}
-          {index !== lastIndex && <span>,</span>}
-        </>
-      );
-    });
-  }, [titleSplitList]);
+  const seprateWithDotList = titleSplitList?.join(`<span>,</span>`)?.split('.');
+  const finalTitle = seprateWithDotList?.join(`<span>.</span>`);
 
   return (
     <ContentMain>
       <Container>
         <TopFunctionWrap>
           <h3>
-            {renderHeaderView}
-            <span>.</span>
+            <div dangerouslySetInnerHTML={{ __html: finalTitle }} />
           </h3>
           <p>{description}</p>
         </TopFunctionWrap>
