@@ -6,6 +6,10 @@ import { Container } from '../../styles/commonStyles';
 import { ToolMain, ModuleSection, ModuleWrap } from './styles';
 
 export default function Tools({ moduleColor, data, title }) {
+  const titleSplitList = title?.split(',');
+  const seprateWithDotList = titleSplitList?.join(`<span>,</span>`)?.split('.');
+  const finalTitle = seprateWithDotList?.join(`<span>.</span>`);
+
   const classNameList = useCallback((index) => {
     switch (index) {
       default:
@@ -27,24 +31,12 @@ export default function Tools({ moduleColor, data, title }) {
     });
   }, [classNameList, data]);
 
-  const titleSplitList = title?.split(',');
-
-  const renderHeaderView = useMemo(() => {
-    const lastIndex = titleSplitList?.length - 1;
-    return titleSplitList?.map((item, index) => {
-      return (
-        <>
-          {item}
-          {index !== lastIndex && <span>,</span>}
-        </>
-      );
-    });
-  }, [titleSplitList]);
-
   return (
     <ToolMain moduleColor={moduleColor}>
       <Container>
-        <h3>{renderHeaderView}</h3>
+        <h3>
+          <div dangerouslySetInnerHTML={{ __html: finalTitle }} />
+        </h3>
         <ModuleSection>
           {toolsListView}
           <QuoteLine>

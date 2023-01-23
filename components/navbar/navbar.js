@@ -192,10 +192,10 @@ export default function Navbar({ isModule, headerIndex, isEnterPrice }) {
             className={router.pathname === '/pricing' ? 'active' : ''}>
             <Link href='/pricing'>Pricing</Link>
           </SpanLink>
-          <SpanLink textColor={colorList?.fontColor} hoverColor={colorList?.primaryColor}>
-            <TextView href='#' className='hovernone'>
+          <SpanLink textColor={colorList?.fontColor} hoverColor={colorList?.primaryColor} className={router.pathname.startsWith('/features') ? 'active' : ''}>
+            <Link href='#' className='hovernone'>
               Features
-            </TextView>
+            </Link>
             <InnerList features className='innerlist'>
               <ListLi>
                 <MenuWrap msghover href='/features/messaging-app'>
@@ -270,10 +270,10 @@ export default function Navbar({ isModule, headerIndex, isEnterPrice }) {
           <SpanLink
             textColor={colorList?.fontColor}
             hoverColor={colorList?.primaryColor}
-            className={router.pathname === '/features' ? 'active' : ''}>
-            <TextView href='#' className='hovernone'>
+            className={router.pathname.startsWith('/jobs') || router.pathname.startsWith('/brand') || router.pathname.startsWith('/copilot-plus') ? 'active' : ''}>
+            <Link href='#' className='hovernone'>
               Company
-            </TextView>
+            </Link>
             <InnerList company className='innerlist'>
               <ListLi>
                 <MenuWrap href='/copilot-plus'>
@@ -360,10 +360,10 @@ export default function Navbar({ isModule, headerIndex, isEnterPrice }) {
           <SpanLink
             textColor={colorList?.fontColor}
             hoverColor={colorList?.primaryColor}
-            className={router.pathname === '/features' ? 'active' : ''}>
-            <TextView href='#' className='hovernone'>
+            className={router.pathname.startsWith('/university') ? 'active' : ''}>
+            <Link href='#' className='hovernone'>
               Resources
-            </TextView>
+            </Link>
             <InnerList company className='innerlist'>
               <ListLi>
                 <MenuWrap href={BLOG_LINK}>
