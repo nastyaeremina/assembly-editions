@@ -209,28 +209,9 @@ export default function Jobs({ jobList, jobImagesList, jobBlogPostList, seoData 
                   {!isEmpty(jobList) && <JobDetailWrap>{renderJobsRolesListView}</JobDetailWrap>}
                 </RoleBlock>
                 <TeamBlock>
-                  <AboutWrap>
-                    <h3>About us</h3>
-                    <p>
-                      Read about our mission and plans on our
-                      <a href='https://www.copilot.com/blog/introducing-copilot-1-0-and-announcing-our-series-a/'>
-                        {' '}
-                        announcement blog post.{' '}
-                      </a>
-                      Get a feel for our product by <a href={COPILOT_ONBORADING_LINK}>starting a trial</a> or by
-                      <a href='https://copilot.com/university'> watching one of our many videos</a>. And finally, meet
-                      our team by
-                      <a href={COPILOT_JOIN_COMMUNITY_LINK}>
-                        {' '}
-                        joining our Slack community
-                      </a>{' '}
-                      or
-                      <a href='mailto:team@copilot.com'> sending us an email</a>.
-                    </p>
-                  </AboutWrap>
                   {!isEmpty(jobBlogPostList) && (
                     <TeamView>
-                      <h4>Writing from the team</h4>
+                      <h4>Team writing & media</h4>
                       <TeamDetail>{renderJobBlogPostView}</TeamDetail>
                     </TeamView>
                   )}
