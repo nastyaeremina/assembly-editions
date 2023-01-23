@@ -141,8 +141,8 @@ export default function AppsDetail({ appDetail, relatedApps }) {
                           <Tooltip className='tooltiptext'>
                             <h5>{appDetail?.appType}</h5>
                             <p>
-                            Partner Apps are products from other companies like Airtable and Calendly that you can embed into your 
-                            portal so that clients can access them in one place.
+                              Partner Apps are products from other companies like Airtable and Calendly that you can
+                              embed into your portal so that clients can access them in one place.
                             </p>
                           </Tooltip>
                         </TooltipWrap>
@@ -163,7 +163,13 @@ export default function AppsDetail({ appDetail, relatedApps }) {
                     <DetailTxt>
                       <p>Website</p>
 
-                      <Link href={`https://${appDetail?.website}`} target='_blank'>
+                      <Link
+                        href={
+                          appDetail?.website.startsWith('http://') || appDetail?.website.startsWith('https://')
+                            ? appDetail?.website
+                            : `https://${appDetail?.website}`
+                        }
+                        target='_blank'>
                         {appDetail?.website}
                       </Link>
                     </DetailTxt>
