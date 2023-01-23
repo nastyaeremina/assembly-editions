@@ -273,7 +273,6 @@ const Dot = styled.div`
   margin: 0 8px;
 `;
 const TeamView = styled.div`
-  margin-top: 40px;
   h4 {
     ${Heading4};
     color: ${({ theme }) => theme.colors.title};
