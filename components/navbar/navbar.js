@@ -192,7 +192,7 @@ export default function Navbar({ isModule, headerIndex, isEnterPrice }) {
             className={router.pathname === '/pricing' ? 'active' : ''}>
             <Link href='/pricing'>Pricing</Link>
           </SpanLink>
-          <SpanLink textColor={colorList?.fontColor} hoverColor={colorList?.primaryColor} className={router.pathname.startsWith('/features') ? 'active' : ''}>
+          <SpanLink textColor={colorList?.fontColor} hoverColor={colorList?.primaryColor} >
             <Link href='#' className='hovernone'>
               Features
             </Link>
@@ -270,7 +270,7 @@ export default function Navbar({ isModule, headerIndex, isEnterPrice }) {
           <SpanLink
             textColor={colorList?.fontColor}
             hoverColor={colorList?.primaryColor}
-            className={router.pathname.startsWith('/jobs') || router.pathname.startsWith('/brand') || router.pathname.startsWith('/copilot-plus') ? 'active' : ''}>
+            className={router.pathname === '/features' ? 'active' : ''}>
             <Link href='#' className='hovernone'>
               Company
             </Link>
@@ -360,7 +360,7 @@ export default function Navbar({ isModule, headerIndex, isEnterPrice }) {
           <SpanLink
             textColor={colorList?.fontColor}
             hoverColor={colorList?.primaryColor}
-            className={router.pathname.startsWith('/university') ? 'active' : ''}>
+            className={router.pathname === '/features' ? 'active' : ''}>
             <Link href='#' className='hovernone'>
               Resources
             </Link>
