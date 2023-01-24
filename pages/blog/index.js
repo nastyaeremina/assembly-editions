@@ -1,12 +1,12 @@
+import Link from "next/link";
+import Image from "next/image";
 import Layout from "../../components/layout";
 import BlogNavbar from "../../components/navbar/blognavbar";
 import Navbar from "../../components/navbar/navbar";
 import { Container, SecondryButton } from "../../styles/commonStyles";
-import { BlogList, FirstBlog, Last, Lastpra, LastSection, Left, Leftside, Par, PostDetail, Right, Rightside, Textarea } from "./styles";
+import { BlogList, FirstBlog, Last, Lastpra, LastSection, Left, Leftside, Par, PostDetail, Right, Rightside, Textarea } from "../../styles/blogstyles";
 import FirstIMG from "../../public/images/1.svg";
-import Image from "next/image";
 import Blogcard from "../../components/Blogcard";
-import Link from "next/link";
 
 export default function Blog() {
     return (
@@ -15,7 +15,7 @@ export default function Blog() {
             <Layout>
                 <Container>
                     <FirstBlog>
-                        <Image src={FirstIMG} className='image' />
+                        <Image src={FirstIMG} className='image' alt="blog"/>
                         <Textarea>
                             <h1>How to get team building right</h1>
                             <PostDetail>Apr 28, 2022
@@ -27,9 +27,9 @@ export default function Blog() {
                         </Textarea>
                         <Last><p>Guides</p></Last>
                     </FirstBlog>
-                    <Blogcard name='Portal Is Now HIPAA Compliant' date='Apr 28, 2022' read='2 min read' desc='Portal is now HIPAA-compliant, which means healthcare startups and healthcare consulting firms can now use our client portal software for their business operations without worrying about data privacy breaches for their patients...'/>
-                    <Blogcard name='How to Hold an Effective International Off-site as a Series A Startup' date='Sep 3, 2022' read='6 min read' desc='In July 2022, we held the first offsite with our team of 15. A month has passed and we have now had enough time to reflect and collect feedback on what we did right, what we did wrong, and what we’ll do differently next time...'/>
-                    <Blogcard name='Why I Joined Portal to Lead Sales' date='Aug 22, 2022' read='4 min read' desc='The 4 Ps are People, Product, Potential, and… Purpose.  Purpose is the new addition, and I think it is the most important.  So let’s break down why I joined...'/>
+                    <Blogcard name='Portal Is Now HIPAA Compliant' date='Apr 28, 2022' read='2 min read' desc='Portal is now HIPAA-compliant, which means healthcare startups and healthcare consulting firms can now use our client portal software for their business operations without worrying about data privacy breaches for their patients...' />
+                    <Blogcard name='How to Hold an Effective International Off-site as a Series A Startup' date='Sep 3, 2022' read='6 min read' desc='In July 2022, we held the first offsite with our team of 15. A month has passed and we have now had enough time to reflect and collect feedback on what we did right, what we did wrong, and what we’ll do differently next time...' />
+                    <Blogcard name='Why I Joined Portal to Lead Sales' date='Aug 22, 2022' read='4 min read' desc='The 4 Ps are People, Product, Potential, and… Purpose.  Purpose is the new addition, and I think it is the most important.  So let’s break down why I joined...' />
                     <LastSection>
                         <Left>
                             <h1>Sign up for our newsletter</h1>

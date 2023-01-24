@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { Body4, Body5, FooterText, Heading4, MbBody4, MbBody5, MbButtonText } from "../../styles/styles";
+import { Body4, Body5, FooterText, Heading4, MbBody4, MbBody5, MbButtonText } from "./styles";
 
 const FirstBlog = styled.div`
     border: 1px solid #01011D;
