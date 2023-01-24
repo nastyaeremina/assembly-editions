@@ -35,7 +35,7 @@ const HeroJobSection = styled.div`
 `;
 const JobsWrap = styled.div`
   border-radius: 8px;
-  background-image: linear-gradient(90deg, #000000 18.89%, rgba(0, 0, 0, 0) 82.84%), url('/images/jobsbg.svg');
+  background-image: linear-gradient(90deg, #000000 18.89%, rgba(0, 0, 0, 0) 82.84%), url('/images/jobImage.png');
   background-position: 0 0, 50% 50%;
   background-size: auto, cover;
   background-repeat: repeat, no-repeat;

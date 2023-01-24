@@ -366,7 +366,7 @@ export default function Navbar({ isModule, headerIndex, isEnterPrice }) {
             </Link>
             <InnerList company className='innerlist'>
               <ListLi>
-                <MenuWrap href={BLOG_LINK}>
+                <MenuWrap href={'/blog'}>
                   <LeftImg>
                     <svg width='16' height='16' viewBox='0 0 16 16' fill='none' xmlns='http://www.w3.org/2000/svg'>
                       <mask id='mask0_1874_104899' maskUnits='userSpaceOnUse' x='0' y='0' width='16' height='16'>
@@ -536,8 +536,8 @@ export default function Navbar({ isModule, headerIndex, isEnterPrice }) {
                   isEnterPrice
                     ? colorList?.fontColor
                     : colorList?.buttontextColor
-                    ? colorList?.buttontextColor
-                    : '#FFFFFF'
+                      ? colorList?.buttontextColor
+                      : '#FFFFFF'
                 }
                 text={'Start Trial'}
                 borderColor={'transparent'}
