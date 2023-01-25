@@ -686,7 +686,7 @@ export default function Navbar({ isModule, headerIndex, isEnterPrice }) {
                   <BlackButton
                     textColor={isModule ? colorList?.fontColor : '#FFFFFF'}
                     backgroundColor={colorList?.buttonColor}>
-                    <Link href={COPILOT_ONBORADING_LINK}>Start Trial</Link>
+                    <Link href={COPILOT_ONBORADING_LINK}>Start trial</Link>
                   </BlackButton>
                 </>
               </SignInMobile>
