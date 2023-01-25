@@ -41,7 +41,7 @@ export default function SolutionHero({ title, description, mobileImage, webImage
                 <p>{description}</p>
                 <BtnWrap>
                   <PrimaryButton>
-                    <Link href={COPILOT_ONBORADING_LINK}>Start Trial</Link>
+                    <Link href={COPILOT_ONBORADING_LINK}>Start trial</Link>
                   </PrimaryButton>
                 </BtnWrap>
               </TextSection>

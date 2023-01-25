@@ -31,10 +31,11 @@ export default function Button({
       className={className}>
       {isLink ? (
         <Link onMouseMove={(e) => myFunction(e)} href={href} target={target}>
-          {text}
+          {text[0].toUpperCase() + text.substring(1).toLowerCase()}
         </Link>
       ) : (
-        <a>{text}</a>
+        <a>{text[0].toUpperCase() + text.substring(1).toLowerCase()}
+        </a>
       )}
     </ButtonContainer>
   );
