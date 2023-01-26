@@ -299,7 +299,7 @@ export default function Footer({ isEnterPrice }) {
                 <FooterMenu isEnterPrice={isEnterPrice}>
                   <p>Resources</p>
                   <FooterMenuList isEnterPrice={isEnterPrice}>
-                    <Link href={BLOG_LINK}>Blog</Link>
+                    <Link href='/blog'>Blog</Link>
                     <Link href={COPILOT_SECURITY_LINK}>Security</Link>
                     <Link href={COPILOT_UPDATE_LINK}>What’s New</Link>
                     <Link href={HELP_CENTER_LINK}>Help Center</Link>
