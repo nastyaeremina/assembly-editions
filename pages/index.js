@@ -364,7 +364,7 @@ export default function Home({ content, seoData }) {
                       <p>Meet our team and a community of businesses that run on Copilot. Requires a Slack account.</p>
                       <HelpLink className='icon-link'>
                         <a href={COPILOT_JOIN_COMMUNITY_LINK} className='learn-link mb0'>
-                          Join Community
+                          Join community
                           <svg width='16' height='12' viewBox='0 0 16 12' fill='none' class='HoverArrow'>
                             <path
                               d='M5.7998 1.37109L10.4283 5.99958L5.7998 10.6281'
@@ -398,7 +398,7 @@ export default function Home({ content, seoData }) {
                       <p>Read about company announcements, new features, customer spotlights, and more.</p>
                       <HelpLink className='icon-link'>
                         <a href={BLOG_LINK} className='learn-link mb0'>
-                          Read Blog
+                          Read blog
                           <svg width='16' height='12' viewBox='0 0 16 12' fill='none' class='HoverArrow'>
                             <path
                               d='M5.7998 1.37109L10.4283 5.99958L5.7998 10.6281'

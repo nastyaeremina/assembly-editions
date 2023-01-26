@@ -1,0 +1,120 @@
+import Image from "next/image";
+import { useState } from "react";
+import Link from "next/link";
+import Layout from "../../components/layout";
+import blogimage from "../../public/images/ii.png";
+import BlogNavbar from "../../components/navbar/blognavbar";
+import { Container } from "../../styles/commonStyles";
+import { Backlink, BlogImage, BlogTime, Content, Desc, DetailHero, Details, Icon, LastSection, Left, Leftsec, Leftside, Post, Right, ShareButton, Table, TableHeading, Textcontent } from "../../styles/blogstyles";
+
+export default function Blogdetail() {
+    const [isShowData, setShowData] = useState(true)
+    return (
+        <>
+            <Layout>
+                <BlogNavbar />
+                <Container>
+                    <Details>
+                        <DetailHero>
+                            <Link href='/blog'>
+                                <Backlink>
+                                    <Image src='/images/leftarrow.svg' alt='leftarrow' width={12} height={12} layout={'fixed'} />
+                                    <p>Back to Blog Home</p>
+                                </Backlink>
+                            </Link>
+                            <h3>Portal is Now HIPAA Compliant</h3>
+                        </DetailHero>
+                        <BlogImage>
+                            <Image src={blogimage} alt="blogdetail" className="image" />
+                        </BlogImage>
+                        <BlogTime>
+                            <Post>Sep 03, 2022
+                                <svg width="3" height="3" viewBox="0 0 3 3" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <circle cx="1.5" cy="1.5" r="1.5" fill="#757575" />
+                                </svg>
+                                <li>6 min read</li></Post>
+                            Marlon Misra
+                        </BlogTime>
+                        <Table>
+                            <TableHeading onClick={() => setShowData(!isShowData)}>Table of contents<p>[<span>{isShowData ? 'Hide' : 'Show'}</span>]</p></TableHeading>
+                            {isShowData && <ol>
+                                <li>Introduction</li>
+                                <li>Hipaa explained</li>
+                                <li>Benefits</li>
+                                <li>Summary</li>
+                            </ol>}
+                        </Table>
+                        <Desc>
+                            Portal is now HIPAA-compliant, which means healthcare startups and healthcare consulting firms can now use our client portal software for their business operations without worrying about data privacy breaches for their patients. Our client collaboration portal allows you to easily productize your healthcare services and deliver streamlined customer experiences to your clients.
+                            <p>Portal’s comprehensive HIPAA audit was carried out by Insight Assurance LLC, a licensed accounting firm registered with the <span>American Institute of Certified Public Accountants (AICPA)</span>. Read on to learn more about HIPAA and how it benefits Portal users.</p>
+                        </Desc>
+
+                        <Content>
+                            <h1>HIPAA explained</h1>
+                            <Textcontent>
+                                The Health Insurance Portability and Accountability Act (HIPAA) is a United States federal legislation regarding data privacy and security for sensitive medical information and was passed into law by President Bill Clinton on Aug. 21, 1996.
+                            </Textcontent>
+                            <p>The law consists of five sections or titles :</p>
+                            <ol>
+                                <li><span>HIPAA Health Insurance Reform</span> prevents the loss of health insurance coverage for people who've lost their jobs, changed jobs, or have pre-existing medical conditions.</li>
+                                <li><span>HIPAA Health Insurance Reform</span> prevents the loss of health insurance coverage for people who've lost their jobs, changed jobs, or have pre-existing medical conditions.</li>
+                                <li><span>HIPAA Health Insurance Reform</span> prevents the loss of health insurance coverage for people who've lost their jobs, changed jobs, or have pre-existing medical conditions.</li>
+                                <li><span>HIPAA Health Insurance Reform</span> prevents the loss of health insurance coverage for people who've lost their jobs, changed jobs, or have pre-existing medical conditions.</li>
+                            </ol>
+                        </Content>
+                    </Details>
+
+                    <ShareButton>
+                        <p>Share this post</p>
+                        <Icon>
+                            <div>
+                                <svg width="18" height="16" viewBox="0 0 18 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M8.74003 4.5571L8.77904 5.20048L8.12875 5.1217C5.76165 4.8197 3.6937 3.79553 1.93789 2.07546L1.0795 1.22198L0.858395 1.85224C0.39018 3.25719 0.689318 4.74092 1.66477 5.73883C2.18501 6.2903 2.06795 6.36909 1.17054 6.04083C0.858396 5.93578 0.58527 5.857 0.559258 5.89639C0.468216 5.98831 0.78036 7.18317 1.02747 7.65586C1.36563 8.31238 2.05495 8.95577 2.80929 9.33655L3.44659 9.63855L2.69224 9.65168C1.9639 9.65168 1.93789 9.66481 2.01593 9.94055C2.27605 10.794 3.30352 11.7 4.44805 12.0939L5.25442 12.3697L4.5521 12.7898C3.51162 13.3938 2.28905 13.7352 1.06649 13.7615C0.481222 13.7746 0 13.8271 0 13.8665C0 13.9978 1.58673 14.7331 2.51016 15.022C5.28043 15.8755 8.57095 15.5078 11.0421 14.0504C12.7979 13.0131 14.5537 10.9516 15.3731 8.95577C15.8153 7.89221 16.2575 5.94891 16.2575 5.01666C16.2575 4.41266 16.2965 4.33388 17.0248 3.61171C17.454 3.19154 17.8572 2.73197 17.9353 2.60067C18.0653 2.35119 18.0523 2.35119 17.389 2.57441C16.2835 2.96832 16.1274 2.9158 16.6737 2.32493C17.0769 1.90476 17.5581 1.1432 17.5581 0.919983C17.5581 0.880592 17.363 0.946244 17.1419 1.06442C16.9078 1.19572 16.3876 1.39268 15.9974 1.51085L15.295 1.73407L14.6578 1.30076C14.3066 1.06442 13.8124 0.80181 13.5522 0.723027C12.8889 0.539202 11.8745 0.565463 11.2762 0.775549C9.65045 1.36642 8.62297 2.88954 8.74003 4.5571Z" fill="white" />
+                                </svg>
+                            </div>
+                            <div>
+                                <svg width="10" height="18" viewBox="0 0 10 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M8.94102 10.0485L9.43689 6.81553H6.33495V4.71845C6.33495 3.83374 6.76748 2.97087 8.1568 2.97087H9.56796V0.218447C9.56796 0.218447 8.28786 0 7.06456 0C4.50874 0 2.83981 1.54879 2.83981 4.35146V6.81553H0V10.0485H2.83981V17.8646C3.40995 17.9541 3.9932 18 4.58738 18C5.18155 18 5.76481 17.9541 6.33495 17.8646V10.0485H8.94102Z" fill="white" />
+                                </svg>
+                            </div>
+                            <div>
+                                <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M4.08781 5.9873H0.230469V17.577H4.08781V5.9873Z" fill="white" />
+                                    <path d="M4.33949 2.40179C4.31446 1.26543 3.50184 0.399902 2.18226 0.399902C0.862691 0.399902 0 1.26543 0 2.40179C0 3.51462 0.837193 4.40506 2.13219 4.40506H2.15684C3.50184 4.40506 4.33949 3.51462 4.33949 2.40179Z" fill="white" />
+                                    <path d="M17.9986 10.9315C17.9986 7.37166 16.0956 5.71484 13.5573 5.71484C11.5093 5.71484 10.5924 6.83975 10.0805 7.62889V5.9873H6.22266C6.2735 7.07482 6.22266 17.577 6.22266 17.577H10.0805V11.1044C10.0805 10.758 10.1055 10.4125 10.2075 10.1645C10.4863 9.47247 11.121 8.75602 12.1867 8.75602C13.5831 8.75602 14.1412 9.81877 14.1412 11.3762V17.5767H17.9984L17.9986 10.9315Z" fill="white" />
+                                </svg>
+                            </div>
+                        </Icon>
+                    </ShareButton>
+                    <LastSection>
+                        <Leftsec>
+                            <h1>Thanks for Subscribe !</h1>
+                            <p>Thank you for subscribing to our newsletter! We are so excited to welcome you. As a Copilot subscriber, you will get all news and uodates related to copilot on your mail.</p>
+                        </Leftsec>
+                        <Right>
+                            <svg width="264" height="264" viewBox="0 0 264 264" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <g clip-path="url(#clip0_6660_27079)">
+                                    <path d="M0 0H260.838C262.584 0 264 1.41553 264 3.16168V260.838C264 262.584 262.584 264 260.838 264H0V0Z" fill="#00160E" />
+                                    <path d="M0 -3.16168H320.91C322.656 -3.16168 324.072 -1.74615 324.072 -5.24521e-06V305.626C324.072 307.372 322.656 308.788 320.91 308.788H0V-3.16168Z" fill="#00160E" />
+                                    <path d="M133.244 93.2696C141.68 93.25 149.888 95.9888 156.626 101.075L149.833 107.863C144.939 104.534 139.16 102.75 133.244 102.75C127.329 102.75 121.55 104.53 116.655 107.863L109.855 101.075C116.593 95.9848 124.805 93.2461 133.244 93.2696Z" fill="#E3FFEE" />
+                                    <path d="M133.246 161.575C126.834 161.595 120.589 159.501 115.48 155.616L108.723 162.369C115.663 167.991 124.322 171.059 133.246 171.059C142.171 171.059 150.829 167.991 157.774 162.369L151.017 155.616C145.907 159.501 139.663 161.595 133.246 161.575Z" fill="#E3FFEE" />
+                                    <path d="M103.815 132.144C103.795 125.735 105.885 119.499 109.762 114.405L103.021 107.656C97.5548 114.389 94.4952 122.762 94.3348 131.44C94.1744 140.118 96.917 148.6 102.128 155.533L108.932 148.737C105.583 143.854 103.799 138.064 103.819 132.14L103.815 132.144Z" fill="#E3FFEE" />
+                                    <path d="M84.9846 132.145C84.9533 120.732 88.9988 109.687 96.3935 101.001L89.6679 94.2754C80.6848 104.577 75.6572 117.747 75.485 131.425C75.3129 145.103 80.0118 158.394 88.7367 168.914L95.4779 162.173C88.6545 153.659 84.9533 143.06 84.9807 132.145H84.9846Z" fill="#E3FFEE" />
+                                    <path d="M188.885 132.144C188.901 118.219 183.865 104.76 174.714 94.2784L167.988 101.004C175.195 109.514 179.229 120.265 179.397 131.424C179.565 142.582 175.864 153.455 168.919 162.18L175.629 168.96C184.206 158.62 188.889 145.591 188.865 132.148H188.885V132.144Z" fill="#E3FFEE" />
+                                </g>
+                                <path d="M0.39521 0.39521H260.838C262.366 0.39521 263.605 1.6338 263.605 3.16168V260.838C263.605 262.366 262.366 263.605 260.838 263.605H0.39521V0.39521Z" stroke="black" stroke-width="0.790419" />
+                                <defs>
+                                    <clipPath id="clip0_6660_27079">
+                                        <path d="M0 0H260.838C262.584 0 264 1.41553 264 3.16168V260.838C264 262.584 262.584 264 260.838 264H0V0Z" fill="white" />
+                                    </clipPath>
+                                </defs>
+                            </svg>
+
+                        </Right>
+
+                    </LastSection>
+                </Container>
+            </Layout>
+        </>
+    )
+}

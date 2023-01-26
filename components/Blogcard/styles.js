@@ -5,6 +5,7 @@ const BlogDetail = styled.div`
     display:flex;
     max-width:880px;
     width:100%;
+    cursor: pointer;
     margin:auto;
     margin-top:28px;
     margin-bottom:28px;
