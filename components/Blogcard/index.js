@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import { Par, PostDetail, Textarea } from '../../pages/blog/styles';
+import { Par, PostDetail, Textarea } from '../../styles/blogstyles';
 import First from '../../public/images/2.svg';
 import { Container } from '../../styles/commonStyles';
 import { BlogDetail, Bottom, Desc, Heading, Leftside, Rightside, Text } from "./styles";
@@ -7,11 +7,11 @@ import { BlogDetail, Bottom, Desc, Heading, Leftside, Rightside, Text } from "./
 export default function Blogcard(props) {
     return (
         <>
-        <BlogDetail>
-            <Leftside>
-                <Image src={First} className='image'/>
-            </Leftside>
-            <Rightside>
+            <BlogDetail>
+                <Leftside>
+                    <Image src={First} className='image' alt='blog'/>
+                </Leftside>
+                <Rightside>
                     <Textarea>
                         <h1>{props.name}</h1>
                         <PostDetail>{props.date}
@@ -21,11 +21,11 @@ export default function Blogcard(props) {
                             <li>{props.read}</li></PostDetail>
                         <Par>{props.desc}</Par>
                     </Textarea>
-                <Bottom>
+                    <Bottom>
                         Announcements
-                </Bottom>
-            </Rightside>
-        </BlogDetail>
+                    </Bottom>
+                </Rightside>
+            </BlogDetail>
         </>
     )
 }
