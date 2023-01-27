@@ -11,6 +11,7 @@ const BlogDetail = styled.div`
     margin-bottom:28px;
     border:1px solid #01011D;
     border-radius:4px;
+    overflow:hidden;
     @media only screen and (max-width: 749px){
         flex-wrap:wrap;
     }
@@ -31,8 +32,7 @@ border-right:1px solid #01011D;
 padding:0;
 margin:0;
 overflow:hidden;
-max-width:266px;
-width:100%;
+width:360px;
 .image{
     object-fit:cover;
     border-radius:4px 0px 0px 4px; 
@@ -54,7 +54,7 @@ const Rightside = styled.div`
 display:flex;
 justify-content: space-between ;
 flex-direction:column;
-
+width:100%;
 `
 const Text = styled.div`
     margin:20px 25px 0px 25px;
@@ -72,6 +72,9 @@ const Bottom = styled.div`
     border-bottom-right-radius:4px;
     @media only screen and (max-width: 749px){
         border-bottom-left-radius:4px;
+    }
+    span{
+        margin-left:10px;
     }
 `
 export { BlogDetail, Leftside, Rightside, Text, Heading, Desc, Bottom }
