@@ -68,7 +68,7 @@ export default function Blogdetail({ blogDetail, tags }) {
               <h3>{blogDetail?.title}</h3>
             </DetailHero>
             <BlogImage>
-              <Image src={blogimage} alt='blogdetail' className='image' />
+              <Image src={blogDetail?.feature_image} alt='blogdetail' className='image' width={880} height={496}/>
             </BlogImage>
             <BlogTime>
               <Post>

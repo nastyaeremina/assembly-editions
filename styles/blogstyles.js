@@ -329,6 +329,12 @@ const Content = styled.div`
         @media only screen and (max-width:426px){
             ${MbBody4}
         }
+        img{
+            width:100%;
+        }
+        iframe{
+            width:100%;
+        }
     h2{
         ${Heading4}
         color: ${({ theme }) => theme.colors.title};
