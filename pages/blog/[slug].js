@@ -28,9 +28,9 @@ import {
   TableHeading,
   Textcontent
 } from '../../styles/blogstyles';
-import { getAllAuthorWithSlug, getAllBlogWithSlug, getBlogDetail } from '../../lib/blog-content';
+import { getAllAuthorWithSlug, getAllBlogWithSlug, getAllTagWithSlug, getBlogDetail } from '../../lib/blog-content';
 
-export default function Blogdetail({ blogDetail }) {
+export default function Blogdetail({ blogDetail, tags }) {
   const [isShowData, setShowData] = useState(true);
   const router = useRouter();
   const renderTableData = useMemo(() => {
@@ -47,8 +47,13 @@ export default function Blogdetail({ blogDetail }) {
     }
   }, []);
 
+  const renderNavbar = useMemo(() => {
+    return <BlogNavbar tagData={tags} />;
+  }, [tags]);
+
   return (
     <>
+      {renderNavbar}
       <Layout>
         <BlogNavbar />
         <Container>
@@ -225,8 +230,10 @@ export default function Blogdetail({ blogDetail }) {
 }
 export async function getStaticProps({ params, preview = false }) {
   const blogDetail = (await getBlogDetail(params?.slug)) ?? [];
+  const tags = (await getAllTagWithSlug()) ?? [];
+  const finalTagList = tags?.filter((tag) => tag?.name?.trim()?.[0] !== '#');
   return {
-    props: { blogDetail }
+    props: { blogDetail, tags: finalTagList }
   };
 }
 
