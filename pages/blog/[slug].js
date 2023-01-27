@@ -3,6 +3,14 @@ import { useEffect, useMemo, useState } from 'react';
 import moment from 'moment';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
+import {
+  FacebookIcon,
+  FacebookShareButton,
+  LinkedinIcon,
+  LinkedinShareButton,
+  TwitterIcon,
+  TwitterShareButton
+} from 'next-share';
 
 import Layout from '../../components/layout';
 import blogimage from '../../public/images/ii.png';
@@ -29,7 +37,6 @@ import {
   Textcontent
 } from '../../styles/blogstyles';
 import { getAllAuthorWithSlug, getAllBlogWithSlug, getBlogDetail } from '../../lib/blog-content';
-import { FacebookIcon, FacebookShareButton, LinkedinIcon, LinkedinShareButton, TwitterIcon, TwitterShareButton } from 'next-share';
 
 export default function Blogdetail({ blogDetail }) {
   const [isShowData, setShowData] = useState(true);
@@ -46,6 +53,10 @@ export default function Blogdetail({ blogDetail }) {
         );
       });
     }
+  }, []);
+
+  const currentPath = useMemo(() => {
+    if (typeof window === 'object') return window.location.href;
   }, []);
 
   return (
@@ -132,10 +143,7 @@ export default function Blogdetail({ blogDetail }) {
           <ShareButton>
             <p>Share this post</p>
             <Icon>
-              <TwitterShareButton
-                url={'https://github.com/next-share'}
-                title={'next-share is a social share buttons for your next React apps.'}
-              >
+              <TwitterShareButton url={currentPath} title={blogDetail?.title}>
                 <div>
                   <svg width='18' height='16' viewBox='0 0 18 16' fill='none' xmlns='http://www.w3.org/2000/svg'>
                     <path
@@ -145,22 +153,18 @@ export default function Blogdetail({ blogDetail }) {
                   </svg>
                 </div>
               </TwitterShareButton>
-              <FacebookShareButton
-                url={'https://github.com/next-share'}
-                quote={'next-share is a social share buttons for your next React apps.'}
-                hashtag={'#nextshare'}
-              >
-              <div>                
+              <FacebookShareButton url={currentPath} title={blogDetail?.title}>
+                <div>
                   <svg width='10' height='18' viewBox='0 0 10 18' fill='none' xmlns='http://www.w3.org/2000/svg'>
                     <path
                       d='M8.94102 10.0485L9.43689 6.81553H6.33495V4.71845C6.33495 3.83374 6.76748 2.97087 8.1568 2.97087H9.56796V0.218447C9.56796 0.218447 8.28786 0 7.06456 0C4.50874 0 2.83981 1.54879 2.83981 4.35146V6.81553H0V10.0485H2.83981V17.8646C3.40995 17.9541 3.9932 18 4.58738 18C5.18155 18 5.76481 17.9541 6.33495 17.8646V10.0485H8.94102Z'
                       fill='white'
                     />
                   </svg>
-              </div>
+                </div>
               </FacebookShareButton>
-                <LinkedinShareButton url={'https://github.com/next-share'}>
-              <div>
+              <LinkedinShareButton url={currentPath} title={blogDetail?.title}>
+                <div>
                   <svg width='18' height='18' viewBox='0 0 18 18' fill='none' xmlns='http://www.w3.org/2000/svg'>
                     <path d='M4.08781 5.9873H0.230469V17.577H4.08781V5.9873Z' fill='white' />
                     <path
@@ -172,8 +176,8 @@ export default function Blogdetail({ blogDetail }) {
                       fill='white'
                     />
                   </svg>
-              </div>
-                </LinkedinShareButton>
+                </div>
+              </LinkedinShareButton>
             </Icon>
           </ShareButton>
           <LastSection>
