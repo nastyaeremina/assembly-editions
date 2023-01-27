@@ -12,8 +12,8 @@ const nextConfig = {
     })
   ],
   images: {
-    domains: ['images.ctfassets.net']
-  },
+    domains: ['images.ctfassets.net', 'copilot-blog.ghost.io', 'images.unsplash.com']
+  }
   // async redirects() {
   //   return [
   //     {
