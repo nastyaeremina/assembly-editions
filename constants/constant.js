@@ -233,3 +233,4 @@ export const SITEMAP_SEO_ID = '7iY7qo4zZ7Xqq59OjCPIGa';
 export const REFERRAL_SEO_ID = '79HJSAQBRSRNr1hhwkiRVo';
 export const PRIVACY_POLICY_SEO_ID = '7iilnHUwBUwRiOvWxzXLLL';
 export const TERMS_OF_SERVICE_SEO_ID = '3J02XDQyE4K0CpkCTUzdlO';
+export const BLOG_SEO_ID = '5uevyUUR3vsf0TtqwOBrXb';
