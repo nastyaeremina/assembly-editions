@@ -2,6 +2,7 @@ import { useCallback, useEffect, useMemo, useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import moment from 'moment';
+import { useRouter } from 'next/router';
 import Layout from '../../components/layout';
 import BlogNavbar from '../../components/navbar/blognavbar';
 import Navbar from '../../components/navbar/navbar';
@@ -29,6 +30,7 @@ import SubscribeModel from '../../components/SubscribeModel';
 
 export default function Blog({ seoData, allPosts }) {
     const [isOpen, setIsOpen] = useState();
+    const router = useRouter();
 
     const onOpenModel = useCallback(() => {
         setIsOpen(true);
@@ -45,7 +47,7 @@ export default function Blog({ seoData, allPosts }) {
 
         if (featuredBlogIndex === -1) return null;
         return (
-            <FirstBlog onClick={onOpenModel}>
+            <FirstBlog onClick={() => router.push(`/blog/${item?.slug}`)}>
                 <Image src={item?.feature_image} className='image' alt='blog' width={880} height={354} />
                 <Textarea>
                     <h1>{item?.title}</h1>
@@ -67,7 +69,7 @@ export default function Blog({ seoData, allPosts }) {
                 )}
             </FirstBlog>
         );
-    }, [allPosts, onOpenModel]);
+    }, [allPosts, router]);
 
     const renderData = useMemo(() => {
         if (isEmpty(allPosts)) return null;
@@ -84,6 +86,7 @@ export default function Blog({ seoData, allPosts }) {
                     desc={item?.excerpt}
                     image={item?.feature_image}
                     tags={finalTagList}
+                    slug={item?.slug}
                 />
             );
         });
