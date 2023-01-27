@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import { useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import moment from 'moment';
 import Link from 'next/link';
 import Layout from '../../components/layout';
@@ -30,6 +30,20 @@ import { getAllBlogWithSlug, getBlogDetail } from '../../lib/blog-content';
 
 export default function Blogdetail({ blogDetail }) {
   const [isShowData, setShowData] = useState(true);
+
+  const renderTableData = useMemo(() => {
+    if (typeof window === 'object') {
+      var all_headings = window.document.querySelectorAll('h2');
+      const newList = Array.from(all_headings);
+      return newList?.map((item, index) => {
+        return (
+          <li key={`tableDataHeading_index_${index}`}>
+            <Link href={`#${item?.id}`}>{item?.innerText?.replace(/^[0-9]./, '')}</Link>
+          </li>
+        );
+      });
+    }
+  }, []);
 
   return (
     <>
@@ -66,14 +80,7 @@ export default function Blogdetail({ blogDetail }) {
                   [<span>{isShowData ? 'Hide' : 'Show'}</span>]
                 </p>
               </TableHeading>
-              {isShowData && (
-                <ol>
-                  <li>Introduction</li>
-                  <li>Hipaa explained</li>
-                  <li>Benefits</li>
-                  <li>Summary</li>
-                </ol>
-              )}
+              {isShowData && <ol>{renderTableData}</ol>}
             </Table>
             {/* <Desc>
               Portal is now HIPAA-compliant, which means healthcare startups and healthcare consulting firms can now use
