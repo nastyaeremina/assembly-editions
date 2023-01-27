@@ -2,6 +2,8 @@ import Image from 'next/image';
 import { useEffect, useMemo, useState } from 'react';
 import moment from 'moment';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
+
 import Layout from '../../components/layout';
 import blogimage from '../../public/images/ii.png';
 import BlogNavbar from '../../components/navbar/blognavbar';
@@ -26,11 +28,11 @@ import {
   TableHeading,
   Textcontent
 } from '../../styles/blogstyles';
-import { getAllBlogWithSlug, getBlogDetail } from '../../lib/blog-content';
+import { getAllAuthorWithSlug, getAllBlogWithSlug, getBlogDetail } from '../../lib/blog-content';
 
 export default function Blogdetail({ blogDetail }) {
   const [isShowData, setShowData] = useState(true);
-
+  const router = useRouter();
   const renderTableData = useMemo(() => {
     if (typeof window === 'object') {
       var all_headings = window.document.querySelectorAll('h2');
@@ -71,7 +73,9 @@ export default function Blogdetail({ blogDetail }) {
                 </svg>
                 {blogDetail?.reading_time && <li>{`${blogDetail?.reading_time} min read`}</li>}
               </Post>
-              {blogDetail?.primary_author?.name}
+              <span onClick={() => router.push(`/blog/author/${blogDetail?.authors?.[0]?.slug}`)}>
+                {blogDetail?.authors?.[0]?.name}
+              </span>
             </BlogTime>
             <Table>
               <TableHeading onClick={() => setShowData(!isShowData)}>
