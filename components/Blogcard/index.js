@@ -1,5 +1,6 @@
 import Image from 'next/image';
 import { useMemo } from 'react';
+import { useRouter } from 'next/router';
 import { Par, PostDetail, Textarea } from '../../styles/blogstyles';
 import First from '../../public/images/2.svg';
 import { isEmpty } from '../../helpers/helpers';
@@ -7,15 +8,18 @@ import { Container } from '../../styles/commonStyles';
 import { BlogDetail, Bottom, Desc, Heading, Leftside, Rightside, Text } from './styles';
 
 export default function Blogcard(props) {
+  const router = useRouter();
+
   const tagListReder = useMemo(() => {
     if (isEmpty(props?.tags)) return null;
     return props?.tags?.map((item, index) => {
       return <span key={`tag_list_index_${index}`}>{item?.name}</span>;
     });
   }, [props?.tags]);
+
   return (
     <>
-      <BlogDetail>
+      <BlogDetail onClick={() => router.push(`/blog/${props?.slug}`)}>
         <Leftside>
           <Image src={props?.image} width={266} height={266} className='image' alt='blog' />
         </Leftside>
