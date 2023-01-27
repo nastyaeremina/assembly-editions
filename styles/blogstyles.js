@@ -361,8 +361,7 @@ const Icon = styled.div`
     display:flex;
     justify-content:space-between;
     div{
-        max-width:36px;
-        width:100%;
+        width:36px;
         height:36px;
         display:flex;
         align-items:center;
@@ -374,8 +373,7 @@ const Icon = styled.div`
             background-color:#09AA6C;
         }
          @media only screen and (max-width:426px){
-            max-width:30px;
-            width:100%;
+            width:30px;
             height:30px;
          }
     }
