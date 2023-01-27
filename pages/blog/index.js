@@ -52,7 +52,9 @@ export default function Blog({ seoData, allPosts }) {
         if (featuredBlogIndex === -1) return null;
         return (
             <FirstBlog onClick={() => router.push(`/blog/${item?.slug}`)}>
+                <div>
                 <Image src={item?.feature_image} className='image' alt='blog' width={880} height={354} />
+                </div>
                 <Textarea>
                     <h1>{item?.title}</h1>
                     <PostDetail>

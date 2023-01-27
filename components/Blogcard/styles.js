@@ -18,6 +18,10 @@ const BlogDetail = styled.div`
         h1{
             color: ${({ theme }) => theme.colors.title};
         }
+        .image{
+            transform: scale(1.1);
+             transition: transform .2s;
+        }
     }
 `
 const Leftside = styled.div`
@@ -26,6 +30,9 @@ align-items : stretch ;
 border-right:1px solid #01011D;
 padding:0;
 margin:0;
+overflow:hidden;
+max-width:266px;
+width:100%;
 .image{
     object-fit:cover;
     border-radius:4px 0px 0px 4px; 

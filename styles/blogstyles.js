@@ -8,6 +8,9 @@ const FirstBlog = styled.div`
     width:100%;
     margin: 120px auto 0px;
     cursor: pointer;
+    div{
+        overflow:hidden;
+    }
     .image{
         height:auto;
         max-width:100%;
@@ -22,6 +25,10 @@ const FirstBlog = styled.div`
     :hover{
         h1{
         color: ${({ theme }) => theme.colors.title};
+        }
+        .image{
+            transform: scale(1.1);
+             transition: transform .2s;
         }
     }
 `;
@@ -50,6 +57,10 @@ const PostDetail = styled.div`
     }
 `
 const Par = styled.div`
+    display:-webkit-box;
+    overflow:hidden;
+    -webkit-box-orient:vertical;
+    -webkit-line-clamp:4;
     ${Body5}
     margin-top:16px;
     color: ${({ theme }) => theme.colors.body};
