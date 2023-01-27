@@ -254,10 +254,17 @@ const Table = styled.div`
         }
         li{
             margin:12px 0 0;
+            a{
+                display:inline-block;
+                color: ${({ theme }) => theme.colors.primary};
+                :hover{
+                    color: ${({ theme }) => theme.colors.title};
+                }
+            }
         }
         li:hover{
             cursor:pointer;
-        color: ${({ theme }) => theme.colors.title};
+            color: ${({ theme }) => theme.colors.title};
         }
     }
 
@@ -322,7 +329,7 @@ const Content = styled.div`
         @media only screen and (max-width:426px){
             ${MbBody4}
         }
-    h1{
+    h2{
         ${Heading4}
         color: ${({ theme }) => theme.colors.title};
         margin-bottom:12px;
@@ -330,13 +337,47 @@ const Content = styled.div`
             ${MobileH4}
          }
     }
+    h3{
+        ${Heading4}
+        color: ${({ theme }) => theme.colors.title};
+        margin-bottom:12px;
+         @media only screen and (max-width:426px){
+            ${MobileH4}
+         }
+         strong{
+            ${Heading4}
+        color: ${({ theme }) => theme.colors.title};
+         }
+    }
     p{
+        ${Body4}
+        color: ${({ theme }) => theme.colors.body};
         margin:10px 0;
+        strong{
+            ${Body4}
+            color: ${({ theme }) => theme.colors.primary};
+        }
+        a{
+            display:inline-block;
+           ${Body4}
+        color: ${({ theme }) => theme.colors.primary};
+        :hover{
+            color: ${({ theme }) => theme.colors.title};
+        } 
+        }
     }
     ol{
         padding-left:20px;
         li{
             margin-top:8px;
+            a{
+                display:inline-block;
+                ${Body4}
+                color: ${({ theme }) => theme.colors.primary};
+            :hover{
+                color: ${({ theme }) => theme.colors.title};
+        } 
+            }
         }
         li::marker{
             font-weight: 500;
