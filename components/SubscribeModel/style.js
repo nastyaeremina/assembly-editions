@@ -50,6 +50,9 @@ const Logo = styled.div`
         margin-top:13px;
         margin-bottom:30px;
     }
+    .last-step{
+        margin-top:50px;
+    }
 `
 
 const Form = styled.div`

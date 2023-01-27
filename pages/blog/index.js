@@ -27,9 +27,12 @@ import { getSEOdata } from '../../lib/contentful-seo';
 import { getBlogPosts } from '../../lib/blog-content';
 import { isEmpty } from '../../helpers/helpers';
 import SubscribeModel from '../../components/SubscribeModel';
+import { BlogSubscribe, Logo, Premium, Button, Model } from '../../components/SubscribeModel/style';
+// import Button from '../../components/button/button';
 
 export default function Blog({ seoData, allPosts }) {
     const [isOpen, setIsOpen] = useState();
+    const [issubscribe, setIsSubscribe] = useState(false);
     const router = useRouter();
 
     const onOpenModel = useCallback(() => {
@@ -38,6 +41,7 @@ export default function Blog({ seoData, allPosts }) {
 
     const onrequestCloseModel = useCallback(() => {
         setIsOpen(false);
+        setIsSubscribe(true);
     }, []);
 
     const renderFeaturedBlog = useMemo(() => {
@@ -106,7 +110,7 @@ export default function Blog({ seoData, allPosts }) {
                                 Subscribe below to receive our newsletter. We’ll email you about important announcements, product
                                 updates, and guides relevant to your industry
                             </p>
-                            <SecondryButton>
+                            <SecondryButton onClick={onOpenModel}>
                                 <Link href='#'>Subscribe</Link>
                             </SecondryButton>
                         </Left>
@@ -160,6 +164,26 @@ export default function Blog({ seoData, allPosts }) {
                     </LastSection>
                 </Container>
                 {isOpen && <SubscribeModel onRequestClose={onrequestCloseModel} />}
+                {issubscribe ?
+                <Model>
+                    <BlogSubscribe >
+                        <Premium>
+                            <Logo>
+                                <svg width="100" height="100" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" className="last-step">
+                                    <path d="M12.5 29.1668C12.5 26.9567 13.378 24.8371 14.9408 23.2743C16.5036 21.7115 18.6232 20.8335 20.8333 20.8335H79.1667C81.3768 20.8335 83.4964 21.7115 85.0592 23.2743C86.622 24.8371 87.5 26.9567 87.5 29.1668V70.8335C87.5 73.0436 86.622 75.1632 85.0592 76.726C83.4964 78.2889 81.3768 79.1668 79.1667 79.1668H20.8333C18.6232 79.1668 16.5036 78.2889 14.9408 76.726C13.378 75.1632 12.5 73.0436 12.5 70.8335V29.1668Z" stroke="#09AA6C" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" />
+                                    <path d="M12.5 29.1665L50 54.1665L87.5 29.1665" stroke="#09AA6C" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" />
+                                </svg>
+                                <p>
+                                    Now check your email!
+                                </p>
+                            </Logo>
+                            <h2>
+                                To complete sign up, click the confirmation link in your inbox. If it doesn’t arrive within 3 minutes, check your spam folder!
+                                <Button onClick={() => { setIsSubscribe(false) }}><a href="#">Close</a></Button>
+                            </h2>
+                        </Premium>
+                    </BlogSubscribe> 
+                    </Model>: ''}
 
             </Layout>
         </>
