@@ -380,6 +380,8 @@ const Icon = styled.div`
          }
     }
 `
+const OverLayDiv = styled.div`position:absolute; top:0;bottom:0;left:0;right:0`;
+
 const Leftsec = styled.div`
 margin:72px 40px auto 40px;
 text-align:center;
@@ -406,7 +408,6 @@ p{
         margin:40px 24px;
     }
 `
-
 export {
     FirstBlog,
     Textarea,
@@ -433,5 +434,6 @@ export {
     Textcontent,
     ShareButton,
     Icon,
-    Leftsec
+    Leftsec,
+    OverLayDiv
 };
