@@ -7,6 +7,7 @@ import { Container } from '../../../styles/commonStyles';
 import Blogcard from '../../../components/Blogcard';
 import { getAllAuthorWithSlug, getAllTagWithSlug, getAuthorDetail, getBlogByAuthor } from '../../../lib/blog-content';
 import { isEmpty } from '../../../helpers/helpers';
+import { MainContent } from '../../../styles/blogstyles';
 
 export default function Author({ allPosts, tags, authorDetail }) {
   const renderData = useMemo(() => {
@@ -73,9 +74,11 @@ export default function Author({ allPosts, tags, authorDetail }) {
   return (
     <>
       {renderSeoData}
-      {renderNavbar}
       <Layout>
+      {renderNavbar}
+      <MainContent>
         <Container>{renderData}</Container>
+        </MainContent>
       </Layout>
     </>
   );
