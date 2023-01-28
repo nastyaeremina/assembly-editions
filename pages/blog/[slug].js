@@ -106,9 +106,8 @@ export default function Blogdetail({ blogDetail, tags }) {
   return (
     <>
       {renderSeoData}
-      {renderNavbar}
       <Layout>
-        <BlogNavbar />
+      {renderNavbar}
         <Container>
           <Details>
             <DetailHero>
