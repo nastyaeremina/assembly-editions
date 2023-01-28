@@ -3,6 +3,7 @@ import { useEffect, useMemo, useState } from 'react';
 import moment from 'moment';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
+import { NextSeo } from 'next-seo';
 import {
   FacebookIcon,
   FacebookShareButton,
@@ -11,7 +12,6 @@ import {
   TwitterIcon,
   TwitterShareButton
 } from 'next-share';
-
 import Layout from '../../components/layout';
 import blogimage from '../../public/images/ii.png';
 import BlogNavbar from '../../components/navbar/blognavbar';
@@ -37,6 +37,7 @@ import {
   Textcontent
 } from '../../styles/blogstyles';
 import { getAllAuthorWithSlug, getAllBlogWithSlug, getAllTagWithSlug, getBlogDetail } from '../../lib/blog-content';
+import { isEmpty } from '../../helpers/helpers';
 
 export default function Blogdetail({ blogDetail, tags }) {
   const [isShowData, setShowData] = useState(true);
@@ -63,8 +64,42 @@ export default function Blogdetail({ blogDetail, tags }) {
     return <BlogNavbar tagData={tags} />;
   }, [tags]);
 
+  const renderSeoData = useMemo(() => {
+    let og_title = blogDetail?.title;
+    let og_des = blogDetail?.meta_description;
+    let og_image = blogDetail?.feature_image;
+    if (!isEmpty(blogDetail?.og_title)) og_title = blogDetail?.og_title;
+    else if (!isEmpty(blogDetail?.meta_title)) og_title = blogDetail?.meta_title;
+
+    if (!isEmpty(blogDetail?.og_description)) og_des = blogDetail?.og_description;
+    if (!isEmpty(blogDetail?.og_image)) og_image = blogDetail?.og_image;
+
+    return (
+      <NextSeo
+        title={blogDetail?.meta_title ?? blogDetail?.title}
+        description={blogDetail?.meta_description}
+        openGraph={{
+          type: 'website',
+          locale: 'en_IE',
+          site_name: 'copilot.com',
+          title: { og_title },
+          description: { og_des },
+          images: og_image
+        }}
+      />
+    );
+  }, [
+    blogDetail?.feature_image,
+    blogDetail?.meta_description,
+    blogDetail?.meta_title,
+    blogDetail?.og_description,
+    blogDetail?.og_image,
+    blogDetail?.og_title,
+    blogDetail?.title
+  ]);
   return (
     <>
+      {renderSeoData}
       {renderNavbar}
       <Layout>
         <BlogNavbar />

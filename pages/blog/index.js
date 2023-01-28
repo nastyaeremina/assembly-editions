@@ -28,6 +28,8 @@ import { getAllTagWithSlug, getBlogPosts } from '../../lib/blog-content';
 import { isEmpty } from '../../helpers/helpers';
 import SubscribeModel from '../../components/SubscribeModel';
 import { BlogSubscribe, Logo, Premium, Button, Model } from '../../components/SubscribeModel/style';
+import { BLOG_SEO_ID } from '../../constants/constant';
+import SEO from '../../components/seo';
 // import Button from '../../components/button/button';
 
 export default function Blog({ seoData, allPosts, tags }) {
@@ -104,6 +106,7 @@ export default function Blog({ seoData, allPosts, tags }) {
 
   return (
     <>
+      <SEO seoData={seoData} />
       {renderNavbar}
       <Layout>
         <Container>
@@ -220,8 +223,7 @@ export default function Blog({ seoData, allPosts, tags }) {
   );
 }
 export async function getStaticProps({ preview = false }) {
-  // const seoData = (await getSEOdata(BOOK_DEMO_SEO_ID)) ?? [];
-  const seoData = [];
+  const seoData = (await getSEOdata(BLOG_SEO_ID)) ?? [];
   const allPosts = (await getBlogPosts()) ?? [];
   const tags = (await getAllTagWithSlug()) ?? [];
   const finalTagList = tags?.filter((tag) => tag?.name?.trim()?.[0] !== '#');
