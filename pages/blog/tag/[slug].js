@@ -7,7 +7,6 @@ import { Container } from '../../../styles/commonStyles';
 import Blogcard from '../../../components/Blogcard';
 import { getAllTagWithSlug, getBlogByTag, getTagDetail } from '../../../lib/blog-content';
 import { isEmpty } from '../../../helpers/helpers';
-// import Button from '../../components/button/button';
 
 export default function Tag({ allPosts, tags, tagDetail }) {
   const renderData = useMemo(() => {
@@ -49,8 +48,8 @@ export default function Tag({ allPosts, tags, tagDetail }) {
           type: 'website',
           locale: 'en_IE',
           site_name: 'copilot.com',
-          title: { og_title },
-          description: { og_des },
+          title: og_title,
+          description: og_des,
           images: isEmpty(tagDetail?.og_image)
             ? []
             : [

@@ -48,8 +48,8 @@ export default function Author({ allPosts, tags, authorDetail }) {
           type: 'website',
           locale: 'en_IE',
           site_name: 'copilot.com',
-          title: { og_title },
-          description: { og_des },
+          title: og_title,
+          description: og_des,
           images: isEmpty(authorDetail?.og_image)
             ? []
             : [
