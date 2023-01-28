@@ -20,7 +20,9 @@ import {
   PostDetail,
   Right,
   Rightside,
-  Textarea
+  Text,
+  Textarea,
+  Top
 } from '../../styles/blogstyles';
 import Blogcard from '../../components/Blogcard';
 import { getSEOdata } from '../../lib/contentful-seo';
@@ -54,10 +56,10 @@ export default function Blog({ seoData, allPosts, tags }) {
     if (featuredBlogIndex === -1) return null;
     return (
       <FirstBlog onClick={() => router.push(`/blog/${item?.slug}`)}>
-        <div>
+        <Top>
           <Image src={item?.feature_image} className='image' alt='blog' width={880} height={354} />
-        </div>
-        <Textarea>
+        </Top>
+        <Text>
           <h1>{item?.title}</h1>
           <PostDetail>
             {moment(new Date(item?.published_at)).format('MMM DD, YYYY')}
@@ -67,7 +69,7 @@ export default function Blog({ seoData, allPosts, tags }) {
             <li>{`${item?.reading_time} min read`}</li>
           </PostDetail>
           <Par>{item?.excerpt}</Par>
-        </Textarea>
+        </Text>
         {!isEmpty(finalTagList) && (
           <Last>
             {finalTagList?.map((item, index) => {
