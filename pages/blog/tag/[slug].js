@@ -7,9 +7,8 @@ import { Container } from '../../../styles/commonStyles';
 import Blogcard from '../../../components/Blogcard';
 import { getAllTagWithSlug, getBlogByTag, getTagDetail } from '../../../lib/blog-content';
 import { isEmpty } from '../../../helpers/helpers';
-// import Button from '../../components/button/button';
 
-export default function Tag({ allPosts, tags, tagDetail }) {
+export default function Tag({ allPosts, tags, seoData }) {
   const renderData = useMemo(() => {
     if (isEmpty(allPosts)) return null;
     return allPosts?.map((item, index) => {
@@ -36,40 +35,27 @@ export default function Tag({ allPosts, tags, tagDetail }) {
   }, [tags]);
 
   const renderSeoData = useMemo(() => {
-    const title = `${tagDetail?.name} - Copilot Blog`;
-    const og_title = tagDetail?.og_title ?? tagDetail?.meta_title ?? title;
-    const og_des = tagDetail?.meta_description ?? tagDetail?.description;
-    const og_image = tagDetail?.feature_image;
-
     return (
       <NextSeo
-        title={tagDetail?.meta_title ?? title}
-        description={tagDetail?.meta_description ?? tagDetail?.description}
+        title={seoData?.title}
+        description={seoData?.description}
         openGraph={{
           type: 'website',
           locale: 'en_IE',
           site_name: 'copilot.com',
-          title: { og_title },
-          description: { og_des },
-          images: isEmpty(tagDetail?.og_image)
+          title: seoData?.og_title,
+          description: seoData?.og_des,
+          images: isEmpty(seoData?.og_image)
             ? []
             : [
                 {
-                  url: og_image
+                  url: seoData?.og_image
                 }
               ]
         }}
       />
     );
-  }, [
-    tagDetail?.description,
-    tagDetail?.feature_image,
-    tagDetail?.meta_description,
-    tagDetail?.meta_title,
-    tagDetail?.name,
-    tagDetail?.og_image,
-    tagDetail?.og_title
-  ]);
+  }, [seoData?.description, seoData?.og_des, seoData?.og_image, seoData?.og_title, seoData?.title]);
 
   return (
     <>
@@ -86,11 +72,23 @@ export async function getStaticProps({ params, preview = false }) {
   const tagDetail = (await getTagDetail(params?.slug)) ?? {};
   const tags = (await getAllTagWithSlug()) ?? [];
   const finalTagList = tags?.filter((tag) => tag?.name?.trim()?.[0] !== '#');
+  const title = tagDetail?.meta_title ?? `${tagDetail?.name} - Copilot Blog`;
+  const og_title = tagDetail?.og_title ?? tagDetail?.meta_title ?? title;
+  const og_des = tagDetail?.meta_description ?? tagDetail?.description;
+  const og_image = tagDetail?.feature_image;
+  const description = tagDetail?.meta_description ?? tagDetail?.description;
+  const seoData = {
+    title,
+    og_title,
+    og_des,
+    og_image,
+    description
+  };
   return {
     props: {
       allPosts,
       tags: finalTagList,
-      tagDetail
+      seoData
     }
   };
 }
