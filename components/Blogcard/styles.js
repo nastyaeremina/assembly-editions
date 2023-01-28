@@ -35,11 +35,11 @@ overflow:hidden;
 width:360px;
 .image{
     object-fit:cover;
-    border-radius:4px 0px 0px 4px; 
+    border-radius:3px 0px 0px 3px; 
     @media only screen and (max-width: 749px){
     border-right:none;
     display:flex;
-    border-radius:4px 4px 0px 0px ;
+    border-radius:3px 3px 0px 0px ;
     width:100%;
     height:250px;
 }
@@ -55,6 +55,7 @@ display:flex;
 justify-content: space-between ;
 flex-direction:column;
 width:100%;
+gap:20px;
 `
 const Text = styled.div`
     margin:20px 25px 0px 25px;
@@ -69,12 +70,13 @@ const Bottom = styled.div`
     padding:8px 25px;
     /* margin-top:30px; */
     border-top:1px solid #01011D;
-    border-bottom-right-radius:4px;
+    border-bottom-right-radius:3px;
     @media only screen and (max-width: 749px){
-        border-bottom-left-radius:4px;
+        border-bottom-left-radius:3px;
+        padding:8px 16px;
     }
     span{
-        margin-left:10px;
+        margin-right:10px;
     }
 `
 export { BlogDetail, Leftside, Rightside, Text, Heading, Desc, Bottom }
