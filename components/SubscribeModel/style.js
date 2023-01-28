@@ -16,9 +16,12 @@ const BlogSubscribe = styled.div`
     border: 1px solid #131313;
     border-radius: 5px;
     background-color:#FFFFFF;
-    margin: 242px auto;
     max-width:520px;
     width:100%;
+    position:absolute;
+    top:50%;
+    transform:translate(-50%, -50%);
+    left:50%;
 `
 
 const Premium = styled.div`
