@@ -413,7 +413,7 @@ const LeftWrap = styled.div`
   top: 95px;
 `;
 const DetailLink = styled.div`
-  display: flex;
+  display: inline-flex;
   gap: 8px;
   align-items: center;
   padding-bottom: 28px;
@@ -425,6 +425,14 @@ const DetailLink = styled.div`
       ${HeaderFont};
     }
   }
+  :hover{
+    p{
+        color: ${({ theme }) => theme.colors.title};
+    }
+    svg path{
+        stroke: ${({ theme }) => theme.colors.title};
+    }
+}
 `;
 const AppsDetailMain = styled.div`
   padding-top: 164px;

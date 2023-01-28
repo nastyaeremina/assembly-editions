@@ -188,7 +188,7 @@ align-items : stretch ;
 `
 
 const Backlink = styled.div`
-  display: flex;
+  display: inline-flex;
   gap: 8px;
   align-items: center;
   padding-bottom: 28px;
@@ -196,7 +196,15 @@ const Backlink = styled.div`
   ${LinkTxt};
     margin: 0px;
     color: ${({ theme }) => theme.colors.lightgray};
-  }
+}
+:hover{
+    p{
+        color: ${({ theme }) => theme.colors.title};
+    }
+    svg path{
+        stroke: ${({ theme }) => theme.colors.title};
+    }
+}
   @media only screen and (max-width: 769px) {
     p {
       ${HeaderFont}
