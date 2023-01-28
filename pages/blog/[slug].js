@@ -46,6 +46,7 @@ export default function Blogdetail({ blogDetail, tags }) {
   const [isShowData, setShowData] = useState(true);
   const [isOpen, setIsOpen] = useState();
   const [issubscribe, setIsSubscribe] = useState(false);
+  const router = useRouter();
 
   const onOpenModel = useCallback(() => {
     setIsOpen(true);
@@ -54,20 +55,19 @@ export default function Blogdetail({ blogDetail, tags }) {
     setIsOpen(false);
     setIsSubscribe(true);
   }, []);
-  const router = useRouter();
+
   const renderTableData = useMemo(() => {
-    if (typeof window === 'object') {
-      var all_headings = window.document.querySelectorAll('h2');
-      const newList = Array.from(all_headings);
-      return newList?.map((item, index) => {
-        return (
-          <li key={`tableDataHeading_index_${index}`}>
-            <Link href={`#${item?.id}`}>{item?.innerText?.replace(/^[0-9]./, '')}</Link>
-          </li>
-        );
-      });
-    }
-  }, []);
+    const newList = blogDetail?.html.match(/(?<=<h2 id\=\s*)\S.*?(?=\s*<\/h2|$)/gs);
+
+    return newList?.map((item, index) => {
+      const headingList = item?.split('>');
+      return (
+        <li key={`tableDataHeading_index_${index}`}>
+          <Link href={`#${headingList?.[0]?.replace(/['"]+/g, '')}`}>{headingList?.[1]?.replace(/^[0-9]./, '')}</Link>
+        </li>
+      );
+    });
+  }, [blogDetail?.html]);
 
   const currentPath = useMemo(() => {
     if (typeof window === 'object') return window.location.href;
@@ -100,10 +100,10 @@ export default function Blogdetail({ blogDetail, tags }) {
           images: isEmpty(og_image)
             ? []
             : [
-              {
-                url: og_image
-              }
-            ]
+                {
+                  url: og_image
+                }
+              ]
         }}
       />
     );
@@ -128,8 +128,14 @@ export default function Blogdetail({ blogDetail, tags }) {
                 <Link href='/blog'>
                   <Backlink>
                     {/* <Image src='/images/leftarrow.svg' alt='leftarrow' width={12} height={12} layout={'fixed'} /> */}
-                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <path d="M8.42969 1.37109L3.8012 5.99958L8.42969 10.6281" stroke="#757575" stroke-width="1.92854" stroke-linecap="round" stroke-linejoin="round" />
+                    <svg width='12' height='12' viewBox='0 0 12 12' fill='none' xmlns='http://www.w3.org/2000/svg'>
+                      <path
+                        d='M8.42969 1.37109L3.8012 5.99958L8.42969 10.6281'
+                        stroke='#757575'
+                        stroke-width='1.92854'
+                        stroke-linecap='round'
+                        stroke-linejoin='round'
+                      />
                     </svg>
                     <p>Back to Blog</p>
                   </Backlink>
@@ -151,15 +157,17 @@ export default function Blogdetail({ blogDetail, tags }) {
                   {blogDetail?.authors?.[0]?.name}
                 </span>
               </BlogTime>
-              <Table>
-                <TableHeading onClick={() => setShowData(!isShowData)}>
-                  Table of contents
-                  <p>
-                    [<span>{isShowData ? 'Hide' : 'Show'}</span>]
-                  </p>
-                </TableHeading>
-                {isShowData && <ol>{renderTableData}</ol>}
-              </Table>
+              {blogDetail?.custom_template !== 'custom-no-toc' && (
+                <Table>
+                  <TableHeading onClick={() => setShowData(!isShowData)}>
+                    Table of contents
+                    <p>
+                      [<span>{isShowData ? 'Hide' : 'Show'}</span>]
+                    </p>
+                  </TableHeading>
+                  {isShowData && <ol>{renderTableData}</ol>}
+                </Table>
+              )}
               {/* <Desc>
               Portal is now HIPAA-compliant, which means healthcare startups and healthcare consulting firms can now use
               our client portal software for their business operations without worrying about data privacy breaches for
