@@ -19,7 +19,7 @@ const FirstBlog = styled.div`
         }
     }
     @media only screen and (max-width: 749px){
-        margin: 96px auto 0px;
+        margin: 0px auto 0px;
     }
     :hover{
         h1{
@@ -276,8 +276,10 @@ const Table = styled.div`
     border: 1px solid #000000;
     border-radius: 4px;
     padding: 30px 25px;
+    margin-bottom:40px;
     @media only screen and (max-width:426px){
         padding: 20px 16px;
+        margin-bottom:28px;
     }
     ol{
         margin-top:8px;
@@ -369,18 +371,36 @@ const Content = styled.div`
         @media only screen and (max-width:426px){
             ${MbBody4}
         }
+    figure{
+        margin:0px;
         img{
             width:100%;
         }
         iframe{
             width:100%;
+            height:496px;
+            @media only screen and (max-width:426px){
+                height:180px;
+         }
         }
+    }
+    ul{
+        list-style-type: disc;
+        margin-left:15px;
+    }
     h2{
         ${Heading4}
         color: ${({ theme }) => theme.colors.title};
         margin-bottom:12px;
          @media only screen and (max-width:426px){
             ${MobileH4}
+         }
+          strong{
+            ${Heading4}
+            color: ${({ theme }) => theme.colors.title};
+        @media only screen and (max-width:426px){
+            ${MobileH4}
+         }
          }
     }
     h3{
@@ -393,20 +413,32 @@ const Content = styled.div`
          strong{
             ${Heading4}
         color: ${({ theme }) => theme.colors.title};
+        @media only screen and (max-width:426px){
+            ${MobileH4}
+         }
          }
     }
     p{
         ${Body4}
         color: ${({ theme }) => theme.colors.body};
         margin:10px 0;
+        @media only screen and (max-width:426px){
+            ${MbBody4}
+         }
         strong{
             ${Body4}
             color: ${({ theme }) => theme.colors.primary};
+        @media only screen and (max-width:426px){
+            ${MbBody4}
+         }
         }
         a{
             display:inline-block;
-           ${Body4}
-        color: ${({ theme }) => theme.colors.primary};
+            ${Body4}
+            color: ${({ theme }) => theme.colors.primary};
+        @media only screen and (max-width:426px){
+                ${MbBody4}
+        }
         :hover{
             color: ${({ theme }) => theme.colors.title};
         } 

@@ -22,6 +22,9 @@ const BlogSubscribe = styled.div`
     top:50%;
     transform:translate(-50%, -50%);
     left:50%;
+    @media only screen and (max-width:426px){
+        width:327px;
+    }
 `
 
 const Premium = styled.div`
@@ -33,6 +36,9 @@ const Premium = styled.div`
         ${MbBody5}
         color: ${({ theme }) => theme.colors.body};
         padding-bottom:50px;
+        @media only screen and (max-width:426px){
+            padding:0px 28px 32px;
+         }
     }
 `
 const CloseModel = styled.div`
@@ -55,11 +61,17 @@ const Logo = styled.div`
     }
     .last-step{
         margin-top:50px;
+        @media only screen and (max-width:426px){
+            margin-top:32px;
+         }
     }
 `
 
 const Form = styled.div`
-padding:0 50px 50px; 
+padding:0 50px 50px;
+@media only screen and (max-width:426px){
+           padding:0 28px 32px;
+         } 
 label{
     margin-bottom:15px;
     ${MbButtonText}
@@ -95,6 +107,7 @@ const Input = styled.input`
 
 const Button = styled.div`
     margin-top:32px;
+    text-align:center;
   a {
     max-width:426px;
     margin:auto;
@@ -108,6 +121,10 @@ const Button = styled.div`
     background-color: ${({ theme }) => theme.colors.primary};
     color: ${({ theme }) => theme.colors.whiteColor};
     border: 1px solid #09aa6c;
+     @media only screen and (max-width:426px){
+            padding:8px 32px;
+            width:auto;
+         }
     :hover {
         background-color: ${({ theme }) => theme.colors.primary};
     }
