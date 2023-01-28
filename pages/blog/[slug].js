@@ -82,8 +82,8 @@ export default function Blogdetail({ blogDetail, tags }) {
           type: 'website',
           locale: 'en_IE',
           site_name: 'copilot.com',
-          title: { og_title },
-          description: { og_des },
+          title: og_title,
+          description: og_des,
           images: isEmpty(og_image)
             ? []
             : [
