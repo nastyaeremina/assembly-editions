@@ -35,15 +35,15 @@ export default function Tag({ allPosts, tags, tagDetail }) {
   }, [tags]);
 
   const renderSeoData = useMemo(() => {
-    const title = `${tagDetail?.name} - Copilot Blog`;
+    const title = tagDetail?.meta_title ?? `${tagDetail?.name} - Copilot Blog`;
     const og_title = tagDetail?.og_title ?? tagDetail?.meta_title ?? title;
     const og_des = tagDetail?.meta_description ?? tagDetail?.description;
     const og_image = tagDetail?.feature_image;
-
+    const description = tagDetail?.meta_description ?? tagDetail?.description;
     return (
       <NextSeo
-        title={tagDetail?.meta_title ?? title}
-        description={tagDetail?.meta_description ?? tagDetail?.description}
+        title={title}
+        description={description}
         openGraph={{
           type: 'website',
           locale: 'en_IE',
