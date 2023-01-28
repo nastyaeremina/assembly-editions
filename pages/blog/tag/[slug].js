@@ -4,10 +4,11 @@ import Layout from '../../../components/layout';
 import BlogNavbar from '../../../components/navbar/blognavbar';
 import { Container } from '../../../styles/commonStyles';
 import Blogcard from '../../../components/Blogcard';
-import { getAllAuthorWithSlug, getAllTagWithSlug, getBlogByAuthor } from '../../../lib/blog-content';
+import { getAllTagWithSlug, getBlogByTag } from '../../../lib/blog-content';
 import { isEmpty } from '../../../helpers/helpers';
+// import Button from '../../components/button/button';
 
-export default function Author({ seoData, allPosts, tags }) {
+export default function Tag({ seoData, allPosts, tags }) {
   const renderData = useMemo(() => {
     if (isEmpty(allPosts)) return null;
     return allPosts?.map((item, index) => {
@@ -44,7 +45,7 @@ export default function Author({ seoData, allPosts, tags }) {
 export async function getStaticProps({ params, preview = false }) {
   // const seoData = (await getSEOdata(BOOK_DEMO_SEO_ID)) ?? [];
   const seoData = [];
-  const allPosts = (await getBlogByAuthor(params?.slug)) ?? [];
+  const allPosts = (await getBlogByTag(params?.slug)) ?? [];
   const tags = (await getAllTagWithSlug()) ?? [];
   const finalTagList = tags?.filter((tag) => tag?.name?.trim()?.[0] !== '#');
   return {
@@ -56,9 +57,9 @@ export async function getStaticProps({ params, preview = false }) {
   };
 }
 export async function getStaticPaths() {
-  const allPosts = (await getAllAuthorWithSlug()) ?? [];
+  const allPosts = (await getAllTagWithSlug()) ?? [];
   return {
-    paths: allPosts?.map(({ slug }) => `/blog/author/${slug}`) ?? [],
+    paths: allPosts?.map(({ slug }) => `/blog/tag/${slug}`) ?? [],
 
     fallback: true
   };
