@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import { useEffect, useMemo, useState } from 'react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 import moment from 'moment';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
@@ -15,7 +15,7 @@ import {
 import Layout from '../../components/layout';
 import blogimage from '../../public/images/ii.png';
 import BlogNavbar from '../../components/navbar/blognavbar';
-import { Container } from '../../styles/commonStyles';
+import { Container, SecondryButton } from '../../styles/commonStyles';
 import {
   Backlink,
   BlogImage,
@@ -39,9 +39,21 @@ import {
 } from '../../styles/blogstyles';
 import { getAllAuthorWithSlug, getAllBlogWithSlug, getAllTagWithSlug, getBlogDetail } from '../../lib/blog-content';
 import { isEmpty } from '../../helpers/helpers';
+import SubscribeModel from '../../components/SubscribeModel';
+import { BlogSubscribe, Button, Logo, Model, Premium } from '../../components/SubscribeModel/style';
 
 export default function Blogdetail({ blogDetail, tags }) {
   const [isShowData, setShowData] = useState(true);
+  const [isOpen, setIsOpen] = useState();
+  const [issubscribe, setIsSubscribe] = useState(false);
+
+  const onOpenModel = useCallback(() => {
+    setIsOpen(true);
+  }, []);
+  const onrequestCloseModel = useCallback(() => {
+    setIsOpen(false);
+    setIsSubscribe(true);
+  }, []);
   const router = useRouter();
   const renderTableData = useMemo(() => {
     if (typeof window === 'object') {
@@ -231,13 +243,16 @@ export default function Blogdetail({ blogDetail, tags }) {
               </Icon>
             </ShareButton>
             <LastSection>
-              <Leftsec>
-                <h1>Thanks for Subscribe !</h1>
+              <Left>
+                <h1>Sign up for our newsletter</h1>
                 <p>
-                  Thank you for subscribing to our newsletter! We are so excited to welcome you. As a Copilot subscriber,
-                  you will get all news and uodates related to copilot on your mail.
+                  Subscribe below to receive our newsletter. We’ll email you about important announcements, product
+                  updates, and guides relevant to your industry
                 </p>
-              </Leftsec>
+                <SecondryButton onClick={onOpenModel}>
+                  <Link href='#'>Subscribe</Link>
+                </SecondryButton>
+              </Left>
               <Right>
                 <svg width='264' height='264' viewBox='0 0 264 264' fill='none' xmlns='http://www.w3.org/2000/svg'>
                   <g clip-path='url(#clip0_6660_27079)'>
@@ -288,6 +303,52 @@ export default function Blogdetail({ blogDetail, tags }) {
             </LastSection>
           </Container>
         </MainContent>
+        {isOpen && <SubscribeModel onRequestClose={onrequestCloseModel} />}
+        {issubscribe ? (
+          <Model>
+            <BlogSubscribe>
+              <Premium>
+                <Logo>
+                  <svg
+                    width='100'
+                    height='100'
+                    viewBox='0 0 100 100'
+                    fill='none'
+                    xmlns='http://www.w3.org/2000/svg'
+                    className='last-step'>
+                    <path
+                      d='M12.5 29.1668C12.5 26.9567 13.378 24.8371 14.9408 23.2743C16.5036 21.7115 18.6232 20.8335 20.8333 20.8335H79.1667C81.3768 20.8335 83.4964 21.7115 85.0592 23.2743C86.622 24.8371 87.5 26.9567 87.5 29.1668V70.8335C87.5 73.0436 86.622 75.1632 85.0592 76.726C83.4964 78.2889 81.3768 79.1668 79.1667 79.1668H20.8333C18.6232 79.1668 16.5036 78.2889 14.9408 76.726C13.378 75.1632 12.5 73.0436 12.5 70.8335V29.1668Z'
+                      stroke='#09AA6C'
+                      stroke-width='4'
+                      stroke-linecap='round'
+                      stroke-linejoin='round'
+                    />
+                    <path
+                      d='M12.5 29.1665L50 54.1665L87.5 29.1665'
+                      stroke='#09AA6C'
+                      stroke-width='4'
+                      stroke-linecap='round'
+                      stroke-linejoin='round'
+                    />
+                  </svg>
+                  <p>Now check your email!</p>
+                </Logo>
+                <h2>
+                  To complete sign up, click the confirmation link in your inbox. If it doesn’t arrive within 3 minutes,
+                  check your spam folder!
+                  <Button
+                    onClick={() => {
+                      setIsSubscribe(false);
+                    }}>
+                    <a href='#'>Close</a>
+                  </Button>
+                </h2>
+              </Premium>
+            </BlogSubscribe>
+          </Model>
+        ) : (
+          ''
+        )}
       </Layout>
     </>
   );
