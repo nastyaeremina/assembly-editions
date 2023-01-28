@@ -84,7 +84,13 @@ export default function Blogdetail({ blogDetail, tags }) {
           site_name: 'copilot.com',
           title: { og_title },
           description: { og_des },
-          images: [og_image]
+          images: isEmpty(og_image)
+            ? []
+            : [
+                {
+                  url: og_image
+                }
+              ]
         }}
       />
     );
