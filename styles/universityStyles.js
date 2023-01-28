@@ -255,10 +255,18 @@ const DetailVideoHero = styled.div`
   }
 `;
 const Backlink = styled.div`
-  display: flex;
+  display: inline-flex;
   gap: 8px;
   align-items: center;
   padding-bottom: 28px;
+  :hover{
+    p{
+        color: ${({ theme }) => theme.colors.title};
+    }
+    svg path{
+        stroke: ${({ theme }) => theme.colors.title};
+    }
+}
   p {
   ${LinkTxt};
     margin-top: 20px;
