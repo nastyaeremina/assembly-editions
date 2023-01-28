@@ -8,14 +8,13 @@ const FirstBlog = styled.div`
     width:100%;
     margin: 120px auto 0px;
     cursor: pointer;
-    div{
-        overflow:hidden;
-    }
     .image{
-        height:auto;
+        height:354px;
+        object-fit:cover;
         max-width:100%;
+        border-radius:3px 3px 0px 0px;
         @media only screen and (max-width:749px){
-            height:250px;
+            height:248px;
             object-fit:cover;
         }
     }
@@ -32,9 +31,37 @@ const FirstBlog = styled.div`
         }
     }
 `;
-
+const Top = styled.div`
+object-fit:cover;
+height:354px;
+overflow:hidden;
+border-radius:3px 3px 0px 0px;
+@media only screen and (max-width:749px){
+    height:248px;
+}
+`
+const Text = styled.div`
+    margin:20px 25px;
+    @media only screen and (max-width:749px){
+        margin:20px 16px;
+    }
+    h1{
+        ${Body4}
+        color: ${({ theme }) => theme.colors.primary};
+        margin-bottom:4px;
+        margin-top:0px;
+        @media only screen and (max-width:749px){
+            ${MbBody4}
+        }
+    }
+`
 const Textarea = styled.div`
     margin:20px 25px;
+    margin-bottom:0px;
+     @media only screen and (max-width:749px){
+        margin:20px 16px;
+        margin-bottom:0px;
+    }
     h1{
         ${Body4}
         color: ${({ theme }) => theme.colors.primary};
@@ -66,6 +93,7 @@ const Par = styled.div`
     color: ${({ theme }) => theme.colors.body};
     @media only screen and (max-width:749px){
         ${MbBody5}
+        margin-top:8px;
     }
 `
 
@@ -74,6 +102,9 @@ const Last = styled.div`
     border-radius: 0px 0px 4px 4px;
     background-color: ${({ theme }) => theme.colors.greenlight};
     padding:8px 25px;
+     @media only screen and (max-width:749px){
+        padding:8px 16px;
+    }
     p{
         ${MbButtonText}
         margin:0px;
@@ -205,6 +236,7 @@ display:flex;
 .image{
     height:auto;
     max-width:100%;
+    object-fit:cover;
 }
 @media only screen and (max-width:426px){
     height:248px;
@@ -474,6 +506,8 @@ p{
 `
 export {
     FirstBlog,
+    Top,
+    Text,
     Textarea,
     PostDetail,
     Par,

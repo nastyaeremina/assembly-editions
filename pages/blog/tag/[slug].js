@@ -1,14 +1,15 @@
 import { useMemo } from 'react';
 import moment from 'moment';
+import { NextSeo } from 'next-seo';
 import Layout from '../../../components/layout';
 import BlogNavbar from '../../../components/navbar/blognavbar';
 import { Container } from '../../../styles/commonStyles';
 import Blogcard from '../../../components/Blogcard';
-import { getAllTagWithSlug, getBlogByTag } from '../../../lib/blog-content';
+import { getAllTagWithSlug, getBlogByTag, getTagDetail } from '../../../lib/blog-content';
 import { isEmpty } from '../../../helpers/helpers';
 // import Button from '../../components/button/button';
 
-export default function Tag({ seoData, allPosts, tags }) {
+export default function Tag({ allPosts, tags, tagDetail }) {
   const renderData = useMemo(() => {
     if (isEmpty(allPosts)) return null;
     return allPosts?.map((item, index) => {
@@ -33,8 +34,46 @@ export default function Tag({ seoData, allPosts, tags }) {
   const renderNavbar = useMemo(() => {
     return <BlogNavbar tagData={tags} />;
   }, [tags]);
+
+  const renderSeoData = useMemo(() => {
+    const title = `${tagDetail?.name} - Copilot Blog`;
+    const og_title = tagDetail?.og_title ?? tagDetail?.meta_title ?? title;
+    const og_des = tagDetail?.meta_description ?? tagDetail?.description;
+    const og_image = tagDetail?.feature_image;
+
+    return (
+      <NextSeo
+        title={tagDetail?.meta_title ?? title}
+        description={tagDetail?.meta_description ?? tagDetail?.description}
+        openGraph={{
+          type: 'website',
+          locale: 'en_IE',
+          site_name: 'copilot.com',
+          title: { og_title },
+          description: { og_des },
+          images: isEmpty(tagDetail?.og_image)
+            ? []
+            : [
+                {
+                  url: og_image
+                }
+              ]
+        }}
+      />
+    );
+  }, [
+    tagDetail?.description,
+    tagDetail?.feature_image,
+    tagDetail?.meta_description,
+    tagDetail?.meta_title,
+    tagDetail?.name,
+    tagDetail?.og_image,
+    tagDetail?.og_title
+  ]);
+
   return (
     <>
+      {renderSeoData}
       {renderNavbar}
       <Layout>
         <Container>{renderData}</Container>
@@ -43,16 +82,15 @@ export default function Tag({ seoData, allPosts, tags }) {
   );
 }
 export async function getStaticProps({ params, preview = false }) {
-  // const seoData = (await getSEOdata(BOOK_DEMO_SEO_ID)) ?? [];
-  const seoData = [];
   const allPosts = (await getBlogByTag(params?.slug)) ?? [];
+  const tagDetail = (await getTagDetail(params?.slug)) ?? {};
   const tags = (await getAllTagWithSlug()) ?? [];
   const finalTagList = tags?.filter((tag) => tag?.name?.trim()?.[0] !== '#');
   return {
     props: {
-      seoData,
       allPosts,
-      tags: finalTagList
+      tags: finalTagList,
+      tagDetail
     }
   };
 }
