@@ -84,7 +84,13 @@ export default function Blogdetail({ blogDetail, tags }) {
           site_name: 'copilot.com',
           title: { og_title },
           description: { og_des },
-          images: og_image
+          images: isEmpty(og_image)
+            ? []
+            : [
+                {
+                  url: og_image
+                }
+              ]
         }}
       />
     );
@@ -115,7 +121,7 @@ export default function Blogdetail({ blogDetail, tags }) {
               <h3>{blogDetail?.title}</h3>
             </DetailHero>
             <BlogImage>
-              <Image src={blogDetail?.feature_image} alt='blogdetail' className='image' width={880} height={496}/>
+              <Image src={blogDetail?.feature_image} alt='blogdetail' className='image' width={880} height={496} />
             </BlogImage>
             <BlogTime>
               <Post>
