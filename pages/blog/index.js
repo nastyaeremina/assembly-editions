@@ -15,6 +15,7 @@ import {
   LastSection,
   Left,
   Leftside,
+  MainContent,
   OverLayDiv,
   Par,
   PostDetail,
@@ -109,8 +110,9 @@ export default function Blog({ seoData, allPosts, tags }) {
   return (
     <>
       <SEO seoData={seoData} />
-      {renderNavbar}
       <Layout>
+      {renderNavbar}
+        <MainContent>
         <Container>
           {renderFeaturedBlog}
           {renderData}
@@ -174,6 +176,7 @@ export default function Blog({ seoData, allPosts, tags }) {
             </Right>
           </LastSection>
         </Container>
+        </MainContent>
         {isOpen && <SubscribeModel onRequestClose={onrequestCloseModel} />}
         {issubscribe ? (
           <Model>

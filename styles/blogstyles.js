@@ -6,7 +6,7 @@ const FirstBlog = styled.div`
     border-radius:4px;
     max-width: 882px;
     width:100%;
-    margin: 120px auto 0px;
+    margin:auto;
     cursor: pointer;
     .image{
         height:354px;
@@ -213,8 +213,8 @@ const Backlink = styled.div`
 `;
 
 const DetailHero = styled.div`
-padding: 100px 0 40px;
-margin-top:20px;    
+padding: 0px 0 40px;
+/* margin-top:20px;     */
   h3 {
     ${Heading3};
     color: ${({ theme }) => theme.colors.title};
@@ -504,6 +504,13 @@ p{
         margin:40px 24px;
     }
 `
+
+const MainContent = styled.div`
+padding-top:120px;
+@media only screen and (max-width:768px){
+    padding-top:115px;
+}
+`
 export {
     FirstBlog,
     Top,
@@ -533,5 +540,6 @@ export {
     ShareButton,
     Icon,
     Leftsec,
-    OverLayDiv
+    OverLayDiv,
+    MainContent
 };
