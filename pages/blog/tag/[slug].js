@@ -7,6 +7,7 @@ import { Container } from '../../../styles/commonStyles';
 import Blogcard from '../../../components/Blogcard';
 import { getAllTagWithSlug, getBlogByTag, getTagDetail } from '../../../lib/blog-content';
 import { isEmpty } from '../../../helpers/helpers';
+import { MainContent } from '../../../styles/blogstyles';
 
 export default function Tag({ allPosts, tags, seoData }) {
   const renderData = useMemo(() => {
@@ -60,9 +61,11 @@ export default function Tag({ allPosts, tags, seoData }) {
   return (
     <>
       {renderSeoData}
-      {renderNavbar}
       <Layout>
+      {renderNavbar}
+        <MainContent>
         <Container>{renderData}</Container>
+        </MainContent>
       </Layout>
     </>
   );
