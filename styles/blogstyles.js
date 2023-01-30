@@ -377,6 +377,8 @@ const Content = styled.div`
             width:100%;
         }
         iframe{
+            border-radius:0.375rem;
+            border:1px solid black;
             width:100%;
             height:496px;
             @media only screen and (max-width:426px){
@@ -387,6 +389,25 @@ const Content = styled.div`
     ul{
         list-style-type: disc;
         margin-left:15px;
+        li{
+            margin-top:8px;
+            a{
+                display:inline-block;
+                ${Body4}
+                color: ${({ theme }) => theme.colors.primary};
+            :hover{
+                color: ${({ theme }) => theme.colors.title};
+        } 
+            }
+        }
+        li::marker{
+            font-weight: 500;
+            color: ${({ theme }) => theme.colors.title};
+        }
+        span{
+            font-weight: 500;
+            color: ${({ theme }) => theme.colors.title};
+        }
     }
     h2{
         ${Heading4}
