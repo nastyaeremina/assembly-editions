@@ -297,7 +297,7 @@ const Table = styled.div`
         li{
             margin:12px 0 0;
             a{
-                display:inline-block;
+                display:contents;
                 color: ${({ theme }) => theme.colors.primary};
                 :hover{
                     color: ${({ theme }) => theme.colors.title};
@@ -366,11 +366,15 @@ width:100%;
 const Content = styled.div`
         max-width:880px;
         width:100%;
+            font-feature-settings: normal;
         ${Body4}
         color: ${({ theme }) => theme.colors.body};
         @media only screen and (max-width:426px){
             ${MbBody4}
         }
+    strong{
+            font-weight: 600;
+         }
     figure{
         margin:0px;
         img{
@@ -386,6 +390,17 @@ const Content = styled.div`
          }
         }
     }
+    a{
+            display:inline-block;
+            ${Body4}
+            color: ${({ theme }) => theme.colors.primary};
+        @media only screen and (max-width:426px){
+                ${MbBody4}
+        }
+        :hover{
+            color: ${({ theme }) => theme.colors.title};
+        } 
+        }
     ul{
         list-style-type: disc;
         margin-left:15px;
@@ -401,8 +416,7 @@ const Content = styled.div`
             }
         }
         li::marker{
-            font-weight: 500;
-            color: ${({ theme }) => theme.colors.title};
+            color: ${({ theme }) => theme.colors.body};
         }
         span{
             font-weight: 500;
@@ -410,60 +424,31 @@ const Content = styled.div`
         }
     }
     h2{
-        ${Heading4}
-        color: ${({ theme }) => theme.colors.title};
-        margin-bottom:12px;
-         @media only screen and (max-width:426px){
-            ${MobileH4}
-         }
-          strong{
-            ${Heading4}
-            color: ${({ theme }) => theme.colors.title};
-        @media only screen and (max-width:426px){
-            ${MobileH4}
-         }
-         }
+            font-size: 22px;
+            line-height: 130%;
+            margin-top: -4rem;
+            padding-top: 6rem;
+            color:  rgb(19,19,19); 
+            font-weight: 400;
     }
     h3{
-        ${Heading4}
-        color: ${({ theme }) => theme.colors.title};
-        margin-bottom:12px;
-         @media only screen and (max-width:426px){
-            ${MobileH4}
-         }
-         strong{
-            ${Heading4}
-        color: ${({ theme }) => theme.colors.title};
-        @media only screen and (max-width:426px){
-            ${MobileH4}
-         }
-         }
+        font-size: 1.25rem;
+        line-height: 1.75rem;
+        margin-bottom: 1rem;
+        margin-top: 2rem;
+        font-weight: 400;
+        color:  rgb(19,19,19); 
     }
     p{
-        ${Body4}
         color: ${({ theme }) => theme.colors.body};
-        margin:10px 0;
-        @media only screen and (max-width:426px){
-            ${MbBody4}
+        margin-bottom: 1rem;
+        margin-top: 1rem;
+        font-size: 1.125rem;
+        line-height: 1.75rem;
+         @media only screen and (max-width:426px){
+            font-size: 15px;
+                line-height: 130%;
          }
-        strong{
-            ${Body4}
-            color: ${({ theme }) => theme.colors.primary};
-        @media only screen and (max-width:426px){
-            ${MbBody4}
-         }
-        }
-        a{
-            display:inline-block;
-            ${Body4}
-            color: ${({ theme }) => theme.colors.primary};
-        @media only screen and (max-width:426px){
-                ${MbBody4}
-        }
-        :hover{
-            color: ${({ theme }) => theme.colors.title};
-        } 
-        }
     }
     ol{
         padding-left:20px;
@@ -479,8 +464,7 @@ const Content = styled.div`
             }
         }
         li::marker{
-            font-weight: 500;
-            color: ${({ theme }) => theme.colors.title};
+            color: ${({ theme }) => theme.colors.body};
         }
         span{
             font-weight: 500;
