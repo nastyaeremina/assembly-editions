@@ -77,11 +77,6 @@ label{
     ${MbButtonText}
     color: ${({ theme }) => theme.colors.subtitle};
 }
-/* .form{
-    margin-bottom:24px;
-    padding:8px 12px;
-    background: #FFFFFF;
-} */
 `
 
 const Input = styled.input`
