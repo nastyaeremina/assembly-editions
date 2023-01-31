@@ -7,7 +7,7 @@ import Layout from '../../components/layout';
 import Navbar from '../../components/navbar/navbar';
 import SEO from '../../components/seo';
 import { UPDATES_SEO_ID } from '../../constants/constant';
-import { COPILOT_UPDATE_LINK } from '../../constants/externalLinks';
+import { COPILOT_UPDATE_LINK, UPDATE_SUBSCRIBE_LINK } from '../../constants/externalLinks';
 import { isEmpty } from '../../helpers/helpers';
 import { getSEOdata } from '../../lib/contentful-seo';
 import { getUpdatesPosts } from '../../lib/updates-content';
@@ -47,7 +47,7 @@ export default function Updates({ seoData, allPosts }) {
                   fontColor={'#000000'}
                   borderColor={'#000000'}
                   text={'Subscribe to updates'}
-                  href={COPILOT_UPDATE_LINK}
+                  href={UPDATE_SUBSCRIBE_LINK}
                   hoverColor={'rgba(0, 0, 0, 0.5)'}
                 />
             </UpdateSubscribe>

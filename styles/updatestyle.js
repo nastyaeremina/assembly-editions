@@ -45,7 +45,22 @@ const Detail = styled.div`
         margin-top:12px;
     }
 `
+const DetailSlug = styled.div`
+    display:flex;
+    margin-top:28px;
+    margin-bottom:100px;
+    justify-content:space-between;
+    @media only screen and (max-width:768px){
+        display:flex;
+        flex-direction:column;
+        margin-top:12px;
+    }
+`
+
 const UpdateDate = styled(Link)`
+    position: sticky;
+    top: 150px;
+    height:40px;
     ${ButtonText}
     color: ${({ theme }) => theme.colors.title};
     :hover{
@@ -54,6 +69,8 @@ const UpdateDate = styled(Link)`
         @media only screen and (max-width:768px){
             ${MbPrimaryBtn}
             margin-bottom:20px;
+            position:relative;
+            top: 0;
         }
 `
 const UpdateDetail = styled.div`
@@ -82,7 +99,7 @@ const UpdateDetail = styled.div`
             font-style: italic;
     } 
     strong{
-        font-weight: 700;
+        font-weight: 600;
     }
 a{
         display:inline-block;
@@ -144,5 +161,6 @@ export {
     UpdateDes,
     Detail,
     UpdateDate,
-    UpdateDetail
+    UpdateDetail,
+    DetailSlug
 }
