@@ -5,6 +5,17 @@ import { Container } from '../../styles/commonStyles';
 import { getAllSolutionWithSlug } from '../../lib/contentful-solutions';
 import { isEmpty } from '../../helpers/helpers';
 import {
+  BLOG_LINK,
+  COPILOT_FACEBOOK_LINK,
+  COPILOT_INSTAGRAM_LINK,
+  COPILOT_LINKEDIN_LINK,
+  COPILOT_SECURITY_LINK,
+  COPILOT_SYSTEM_STATUS_LINK,
+  COPILOT_TWITTER_LINK,
+  COPILOT_YOUTUBE_CHANNEL_LINK,
+  HELP_CENTER_LINK
+} from '../../constants/externalLinks';
+import {
   FooterSection,
   FooterInnerBlock,
   FooterSocialItem,
@@ -17,18 +28,6 @@ import {
   FooterMobile,
   FotterMenuMobile
 } from './styles';
-import {
-  BLOG_LINK,
-  COPILOT_FACEBOOK_LINK,
-  COPILOT_INSTAGRAM_LINK,
-  COPILOT_LINKEDIN_LINK,
-  COPILOT_SECURITY_LINK,
-  COPILOT_SYSTEM_STATUS_LINK,
-  COPILOT_TWITTER_LINK,
-  COPILOT_UPDATE_LINK,
-  COPILOT_YOUTUBE_CHANNEL_LINK,
-  HELP_CENTER_LINK
-} from '../../constants/externalLinks';
 
 export default function Footer({ isEnterPrice }) {
   const [solutionList, setSolutionList] = useState([]);
@@ -301,7 +300,7 @@ export default function Footer({ isEnterPrice }) {
                   <FooterMenuList isEnterPrice={isEnterPrice}>
                     <Link href='/blog'>Blog</Link>
                     <Link href={COPILOT_SECURITY_LINK}>Security</Link>
-                    <Link href={COPILOT_UPDATE_LINK}>What’s New</Link>
+                    <Link href={'/updates'}>What’s New</Link>
                     <Link href={HELP_CENTER_LINK}>Help Center</Link>
                     <Link href='/university'>Video Tutorials</Link>
                     <Link href='http://docs.copilot.com/'>API Reference</Link>
@@ -343,7 +342,7 @@ export default function Footer({ isEnterPrice }) {
                   <FooterMenuList isEnterPrice={isEnterPrice}>
                     <Link href={BLOG_LINK}>Blog</Link>
                     <Link href={COPILOT_SECURITY_LINK}>Security</Link>
-                    <Link href={COPILOT_UPDATE_LINK}>What’s New</Link>
+                    <Link href={'/updates'}>What’s New</Link>
                     <Link href='#'>Help Center</Link>
                     <Link href='/university'>Video Tutorials</Link>
                     <Link href='http://docs.copilot.com/'>API Reference</Link>

@@ -16,12 +16,10 @@ import { getSitemap } from '../../lib/contentful-sitemap';
 import { isEmpty } from '../../helpers/helpers';
 import Button from '../button/button';
 import {
-  BLOG_LINK,
   COPILOT_DASHBOARD_LINK,
   COPILOT_ONBORADING_LINK,
   COPILOT_SECURITY_LINK,
   COPILOT_SYSTEM_STATUS_LINK,
-  COPILOT_UPDATE_LINK,
   HELP_CENTER_LINK
 } from '../../constants/externalLinks';
 import {
@@ -186,12 +184,10 @@ export default function Navbar({ isModule, headerIndex, isEnterPrice }) {
     return (
       <NavMenu>
         <NavigationBlock>
-          <SpanLink
-            textColor={colorList?.fontColor}
-            hoverColor={colorList?.primaryColor}>
+          <SpanLink textColor={colorList?.fontColor} hoverColor={colorList?.primaryColor}>
             <Link href='/pricing'>Pricing</Link>
           </SpanLink>
-          <SpanLink textColor={colorList?.fontColor} hoverColor={colorList?.primaryColor} >
+          <SpanLink textColor={colorList?.fontColor} hoverColor={colorList?.primaryColor}>
             <Link href='#' className='hovernone'>
               Features
             </Link>
@@ -260,14 +256,10 @@ export default function Navbar({ isModule, headerIndex, isEnterPrice }) {
               </svg>
             </LineMenuImg>
           </SpanLink>
-          <SpanLink
-            textColor={colorList?.fontColor}
-            hoverColor={colorList?.primaryColor}>
+          <SpanLink textColor={colorList?.fontColor} hoverColor={colorList?.primaryColor}>
             <Link href='/apps'>Apps</Link>
           </SpanLink>
-          <SpanLink
-            textColor={colorList?.fontColor}
-            hoverColor={colorList?.primaryColor}>
+          <SpanLink textColor={colorList?.fontColor} hoverColor={colorList?.primaryColor}>
             <Link href='#' className='hovernone'>
               Company
             </Link>
@@ -354,9 +346,7 @@ export default function Navbar({ isModule, headerIndex, isEnterPrice }) {
               </svg>
             </LineMenuImg>
           </SpanLink>
-          <SpanLink
-            textColor={colorList?.fontColor}
-            hoverColor={colorList?.primaryColor}>
+          <SpanLink textColor={colorList?.fontColor} hoverColor={colorList?.primaryColor}>
             <Link href='#' className='hovernone'>
               Resources
             </Link>
@@ -402,7 +392,7 @@ export default function Navbar({ isModule, headerIndex, isEnterPrice }) {
                 </MenuWrap>
               </ListLi>
               <ListLi>
-                <MenuWrap href={COPILOT_UPDATE_LINK}>
+                <MenuWrap href={'/updates'}>
                   <LeftImg>
                     <svg width='16' height='16' viewBox='0 0 16 16' fill='none' xmlns='http://www.w3.org/2000/svg'>
                       <path
@@ -532,8 +522,8 @@ export default function Navbar({ isModule, headerIndex, isEnterPrice }) {
                   isEnterPrice
                     ? colorList?.fontColor
                     : colorList?.buttontextColor
-                      ? colorList?.buttontextColor
-                      : '#FFFFFF'
+                    ? colorList?.buttontextColor
+                    : '#FFFFFF'
                 }
                 text={'Start Trial'}
                 borderColor={'transparent'}

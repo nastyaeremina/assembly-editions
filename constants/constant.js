@@ -234,3 +234,4 @@ export const REFERRAL_SEO_ID = '79HJSAQBRSRNr1hhwkiRVo';
 export const PRIVACY_POLICY_SEO_ID = '7iilnHUwBUwRiOvWxzXLLL';
 export const TERMS_OF_SERVICE_SEO_ID = '3J02XDQyE4K0CpkCTUzdlO';
 export const BLOG_SEO_ID = '5uevyUUR3vsf0TtqwOBrXb';
+export const UPDATES_SEO_ID = '';
