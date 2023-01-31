@@ -1,4 +1,5 @@
 import moment from 'moment';
+import Link from 'next/link';
 import { useMemo } from 'react';
 import CTA from '../../components/cta/cta';
 import Layout from '../../components/layout';
@@ -21,7 +22,7 @@ export default function Updates({ seoData, allPosts }) {
             <path d='M14 0L7 7L0 0H14Z' fill='black' />
           </svg>
           <Detail>
-            <UpdateDate> {moment(new Date(item?.published_at)).format('MMMM D, YYYY')}</UpdateDate>
+            <UpdateDate href={'/updates/' + item?.slug}>{moment(new Date(item?.published_at)).format('MMMM D, YYYY')}</UpdateDate>
             <UpdateDetail dangerouslySetInnerHTML={{ __html: item?.html }}></UpdateDetail>
           </Detail>
         </UpdateDes>

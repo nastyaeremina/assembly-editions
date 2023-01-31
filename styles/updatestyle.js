@@ -1,3 +1,4 @@
+import Link from "next/link";
 import styled from "styled-components";
 import { Body3, Body4, ButtonText, Heading3, Heading4, MbBody3, MbBody4, MbPrimaryBtn } from "./styles";
 
@@ -44,7 +45,7 @@ const Detail = styled.div`
         margin-top:12px;
     }
 `
-const UpdateDate = styled.div`
+const UpdateDate = styled(Link)`
     ${ButtonText}
     color: ${({ theme }) => theme.colors.title};
     :hover{
