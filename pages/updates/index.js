@@ -4,12 +4,9 @@ import CTA from '../../components/cta/cta';
 import Layout from '../../components/layout';
 import Navbar from '../../components/navbar/navbar';
 import { UPDATES_SEO_ID } from '../../constants/constant';
-import { COPILOT_UPDATES_GHOST_API_URL, COPILOT_UPDATES_GHOST_CONTENT_API } from '../../constants/environment';
 import { isEmpty } from '../../helpers/helpers';
-import { getBlogPosts } from '../../lib/blog-content';
 import { getSEOdata } from '../../lib/contentful-seo';
 import { getUpdatesPosts } from '../../lib/updates-content';
-import { MainContent } from '../../styles/blogstyles';
 import { Container, SecondryButton } from '../../styles/commonStyles';
 import { Detail, UpadtePage, UpdateDate, UpdateDes, UpdateDetail, UpdateSubscribe } from '../../styles/updatestyle';
 
