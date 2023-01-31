@@ -3,10 +3,10 @@ import { useCallback, useEffect, useMemo, useState } from 'react';
 import moment from 'moment';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import { NextSeo } from 'next-seo';
 import Layout from '../../components/layout';
 import BlogNavbar from '../../components/navbar/blognavbar';
 import { Container, SecondryButton } from '../../styles/commonStyles';
+import { NextSeo } from 'next-seo';
 import {
   Backlink,
   DetailHero,
@@ -21,6 +21,10 @@ export default function Updatedetail({ updateDetails }) {
 
   return (
     <>
+      <NextSeo
+        title={updateDetails?.title}
+        description={updateDetails?.meta_description}
+      />
       <Layout>
         <Navbar isModule={false} />
         <MainContent>
