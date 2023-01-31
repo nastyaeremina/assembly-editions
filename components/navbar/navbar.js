@@ -16,6 +16,15 @@ import { getSitemap } from '../../lib/contentful-sitemap';
 import { isEmpty } from '../../helpers/helpers';
 import Button from '../button/button';
 import {
+  BLOG_LINK,
+  COPILOT_DASHBOARD_LINK,
+  COPILOT_ONBORADING_LINK,
+  COPILOT_SECURITY_LINK,
+  COPILOT_SYSTEM_STATUS_LINK,
+  COPILOT_UPDATE_LINK,
+  HELP_CENTER_LINK
+} from '../../constants/externalLinks';
+import {
   NavbarWrapper,
   NavbarInner,
   CopilotLogo,
@@ -51,15 +60,6 @@ import {
 import FeatureSubMenu from './featuresubmenu';
 import ResourcesSubMenu from './resourcessubmenu';
 import CompanySubMenu from './companysubmenu';
-import {
-  BLOG_LINK,
-  COPILOT_DASHBOARD_LINK,
-  COPILOT_ONBORADING_LINK,
-  COPILOT_SECURITY_LINK,
-  COPILOT_SYSTEM_STATUS_LINK,
-  COPILOT_UPDATE_LINK,
-  HELP_CENTER_LINK
-} from '../../constants/externalLinks';
 
 export default function Navbar({ isModule, headerIndex, isEnterPrice }) {
   const appSelector = useSelector((state) => state.app);
@@ -188,8 +188,7 @@ export default function Navbar({ isModule, headerIndex, isEnterPrice }) {
         <NavigationBlock>
           <SpanLink
             textColor={colorList?.fontColor}
-            hoverColor={colorList?.primaryColor}
-            className={router.pathname === '/pricing' ? 'active' : ''}>
+            hoverColor={colorList?.primaryColor}>
             <Link href='/pricing'>Pricing</Link>
           </SpanLink>
           <SpanLink textColor={colorList?.fontColor} hoverColor={colorList?.primaryColor} >
@@ -263,14 +262,12 @@ export default function Navbar({ isModule, headerIndex, isEnterPrice }) {
           </SpanLink>
           <SpanLink
             textColor={colorList?.fontColor}
-            hoverColor={colorList?.primaryColor}
-            className={router.pathname === '/apps' ? 'active' : ''}>
+            hoverColor={colorList?.primaryColor}>
             <Link href='/apps'>Apps</Link>
           </SpanLink>
           <SpanLink
             textColor={colorList?.fontColor}
-            hoverColor={colorList?.primaryColor}
-            className={router.pathname === '/features' ? 'active' : ''}>
+            hoverColor={colorList?.primaryColor}>
             <Link href='#' className='hovernone'>
               Company
             </Link>
@@ -359,8 +356,7 @@ export default function Navbar({ isModule, headerIndex, isEnterPrice }) {
           </SpanLink>
           <SpanLink
             textColor={colorList?.fontColor}
-            hoverColor={colorList?.primaryColor}
-            className={router.pathname === '/features' ? 'active' : ''}>
+            hoverColor={colorList?.primaryColor}>
             <Link href='#' className='hovernone'>
               Resources
             </Link>

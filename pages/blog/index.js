@@ -23,7 +23,7 @@ import {
   Rightside,
   Text,
   Textarea,
-  Top
+  Top 
 } from '../../styles/blogstyles';
 import Blogcard from '../../components/Blogcard';
 import { getSEOdata } from '../../lib/contentful-seo';
