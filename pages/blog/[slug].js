@@ -58,7 +58,7 @@ export default function Blogdetail({ blogDetail, tags }) {
 
   const renderTableData = useMemo(() => {
     const newList = blogDetail?.html.match(/(?:<h2 id\=\s*)\S.*?(?=\s*<\/h2|$)/gs);
-
+    console.log('newList', newList);
     return newList?.map((item, index) => {
       const headingList = item?.split('>');
       return (
