@@ -37,7 +37,7 @@ import {
   TableHeading,
   Textcontent
 } from '../../styles/blogstyles';
-import { getAllAuthorWithSlug, getAllBlogWithSlug, getAllTagWithSlug, getBlogDetail } from '../../lib/blog-content';
+import { getAllTagWithSlug, getBlogDetail } from '../../lib/blog-content';
 import { isEmpty } from '../../helpers/helpers';
 import SubscribeModel from '../../components/SubscribeModel';
 import { BlogSubscribe, Button, Logo, Model, Premium } from '../../components/SubscribeModel/style';
@@ -57,8 +57,7 @@ export default function Blogdetail({ blogDetail, tags }) {
   }, []);
 
   const renderTableData = useMemo(() => {
-    const newList = blogDetail?.html.match(/(?:<h2 id\=\s*)\S.*?(?=\s*<\/h2|$)/gs);
-    console.log('newList', newList);
+    const newList = blogDetail?.html?.match(/(?:<h2 id\=\s*)\S.*?(?=\s*<\/h2|$)/gs);
     return newList?.map((item, index) => {
       const headingList = item?.split('>');
       return (
@@ -116,6 +115,7 @@ export default function Blogdetail({ blogDetail, tags }) {
     blogDetail?.og_title,
     blogDetail?.title
   ]);
+
   return (
     <>
       {renderSeoData}
@@ -168,46 +168,8 @@ export default function Blogdetail({ blogDetail, tags }) {
                   {isShowData && <ol>{renderTableData}</ol>}
                 </Table>
               )}
-              {/* <Desc>
-              Portal is now HIPAA-compliant, which means healthcare startups and healthcare consulting firms can now use
-              our client portal software for their business operations without worrying about data privacy breaches for
-              their patients. Our client collaboration portal allows you to easily productize your healthcare services
-              and deliver streamlined customer experiences to your clients.
-              <p>
-                Portal’s comprehensive HIPAA audit was carried out by Insight Assurance LLC, a licensed accounting firm
-                registered with the <span>American Institute of Certified Public Accountants (AICPA)</span>. Read on to
-                learn more about HIPAA and how it benefits Portal users.
-              </p>
-            </Desc> */}
-              {/* {blogDetail?.html} */}
+
               <Content dangerouslySetInnerHTML={{ __html: blogDetail?.html }} />
-              {/* <Content>
-              <h1>HIPAA explained</h1>
-              <Textcontent>
-                The Health Insurance Portability and Accountability Act (HIPAA) is a United States federal legislation
-                regarding data privacy and security for sensitive medical information and was passed into law by
-                President Bill Clinton on Aug. 21, 1996.
-              </Textcontent>
-              <p>The law consists of five sections or titles :</p>
-              <ol>
-                <li>
-                  <span>HIPAA Health Insurance Reform</span> prevents the loss of health insurance coverage for people
-                  who've lost their jobs, changed jobs, or have pre-existing medical conditions.
-                </li>
-                <li>
-                  <span>HIPAA Health Insurance Reform</span> prevents the loss of health insurance coverage for people
-                  who've lost their jobs, changed jobs, or have pre-existing medical conditions.
-                </li>
-                <li>
-                  <span>HIPAA Health Insurance Reform</span> prevents the loss of health insurance coverage for people
-                  who've lost their jobs, changed jobs, or have pre-existing medical conditions.
-                </li>
-                <li>
-                  <span>HIPAA Health Insurance Reform</span> prevents the loss of health insurance coverage for people
-                  who've lost their jobs, changed jobs, or have pre-existing medical conditions.
-                </li>
-              </ol>
-            </Content> */}
             </Details>
 
             <ShareButton>
@@ -371,7 +333,7 @@ export async function getStaticProps({ params, preview = false }) {
 }
 
 export async function getStaticPaths() {
-  const allPosts = (await getAllBlogWithSlug()) ?? [];
+  const allPosts = [];
   return {
     paths: allPosts?.map(({ slug }) => `/blog/${slug}`) ?? [],
 
