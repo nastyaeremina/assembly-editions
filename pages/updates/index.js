@@ -3,6 +3,7 @@ import { useMemo } from 'react';
 import CTA from '../../components/cta/cta';
 import Layout from '../../components/layout';
 import Navbar from '../../components/navbar/navbar';
+import SEO from '../../components/seo';
 import { UPDATES_SEO_ID } from '../../constants/constant';
 import { isEmpty } from '../../helpers/helpers';
 import { getSEOdata } from '../../lib/contentful-seo';
@@ -30,6 +31,7 @@ export default function Updates({ seoData, allPosts }) {
 
   return (
     <>
+      <SEO seoData={seoData} />
       <Layout>
         <Navbar />
         <UpadtePage>
