@@ -806,7 +806,7 @@ export default function NewIndex({ faq, seoData }) {
                   For businesses with custom requirements, enterprise compliance, advanced reporting needs, and more.
                 </p>
                 <SecondryButton>
-                  <Link href='/copilot-plus'>Learn More</Link>
+                  <Link href='/copilot-plus'>Learn more</Link>
                 </SecondryButton>
               </PriceImageLeft>
               <PricePlusImage>

@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { checkValidation, sendEmail } from '../../services/bookDemoService';
 import { setformValidationError, updateBookDemoItem } from '../../actions/bookDemoActions';
 import { INDUSTRY_ARRAY } from '../../constants/constant';
+import { COPILOT_ONBORADING_LINK } from '../../constants/externalLinks';
 import Button from '../button/button';
 import Validation from '../Validation/validation';
 import {
@@ -28,7 +29,6 @@ import {
   ThanksWrap,
   ValidationForm
 } from './styles';
-import { COPILOT_ONBORADING_LINK } from '../../constants/externalLinks';
 
 export default function BookDemoForm() {
   const bookDemoSelector = useSelector((state) => state.bookDemo);

@@ -16,6 +16,13 @@ import { getSitemap } from '../../lib/contentful-sitemap';
 import { isEmpty } from '../../helpers/helpers';
 import Button from '../button/button';
 import {
+  COPILOT_DASHBOARD_LINK,
+  COPILOT_ONBORADING_LINK,
+  COPILOT_SECURITY_LINK,
+  COPILOT_SYSTEM_STATUS_LINK,
+  HELP_CENTER_LINK
+} from '../../constants/externalLinks';
+import {
   NavbarWrapper,
   NavbarInner,
   CopilotLogo,
@@ -51,15 +58,6 @@ import {
 import FeatureSubMenu from './featuresubmenu';
 import ResourcesSubMenu from './resourcessubmenu';
 import CompanySubMenu from './companysubmenu';
-import {
-  BLOG_LINK,
-  COPILOT_DASHBOARD_LINK,
-  COPILOT_ONBORADING_LINK,
-  COPILOT_SECURITY_LINK,
-  COPILOT_SYSTEM_STATUS_LINK,
-  COPILOT_UPDATE_LINK,
-  HELP_CENTER_LINK
-} from '../../constants/externalLinks';
 
 export default function Navbar({ isModule, headerIndex, isEnterPrice }) {
   const appSelector = useSelector((state) => state.app);
@@ -186,13 +184,10 @@ export default function Navbar({ isModule, headerIndex, isEnterPrice }) {
     return (
       <NavMenu>
         <NavigationBlock>
-          <SpanLink
-            textColor={colorList?.fontColor}
-            hoverColor={colorList?.primaryColor}
-            className={router.pathname === '/pricing' ? 'active' : ''}>
+          <SpanLink textColor={colorList?.fontColor} hoverColor={colorList?.primaryColor}>
             <Link href='/pricing'>Pricing</Link>
           </SpanLink>
-          <SpanLink textColor={colorList?.fontColor} hoverColor={colorList?.primaryColor} className={router.pathname.startsWith('/features') ? 'active' : ''}>
+          <SpanLink textColor={colorList?.fontColor} hoverColor={colorList?.primaryColor}>
             <Link href='#' className='hovernone'>
               Features
             </Link>
@@ -261,16 +256,10 @@ export default function Navbar({ isModule, headerIndex, isEnterPrice }) {
               </svg>
             </LineMenuImg>
           </SpanLink>
-          <SpanLink
-            textColor={colorList?.fontColor}
-            hoverColor={colorList?.primaryColor}
-            className={router.pathname === '/apps' ? 'active' : ''}>
+          <SpanLink textColor={colorList?.fontColor} hoverColor={colorList?.primaryColor}>
             <Link href='/apps'>Apps</Link>
           </SpanLink>
-          <SpanLink
-            textColor={colorList?.fontColor}
-            hoverColor={colorList?.primaryColor}
-            className={router.pathname.startsWith('/jobs') || router.pathname.startsWith('/brand') || router.pathname.startsWith('/copilot-plus') ? 'active' : ''}>
+          <SpanLink textColor={colorList?.fontColor} hoverColor={colorList?.primaryColor}>
             <Link href='#' className='hovernone'>
               Company
             </Link>
@@ -357,16 +346,13 @@ export default function Navbar({ isModule, headerIndex, isEnterPrice }) {
               </svg>
             </LineMenuImg>
           </SpanLink>
-          <SpanLink
-            textColor={colorList?.fontColor}
-            hoverColor={colorList?.primaryColor}
-            className={router.pathname.startsWith('/university') ? 'active' : ''}>
+          <SpanLink textColor={colorList?.fontColor} hoverColor={colorList?.primaryColor}>
             <Link href='#' className='hovernone'>
               Resources
             </Link>
             <InnerList company className='innerlist'>
               <ListLi>
-                <MenuWrap href={BLOG_LINK}>
+                <MenuWrap href={'/blog'}>
                   <LeftImg>
                     <svg width='16' height='16' viewBox='0 0 16 16' fill='none' xmlns='http://www.w3.org/2000/svg'>
                       <mask id='mask0_1874_104899' maskUnits='userSpaceOnUse' x='0' y='0' width='16' height='16'>
@@ -406,7 +392,7 @@ export default function Navbar({ isModule, headerIndex, isEnterPrice }) {
                 </MenuWrap>
               </ListLi>
               <ListLi>
-                <MenuWrap href={COPILOT_UPDATE_LINK}>
+                <MenuWrap href={'/updates'}>
                   <LeftImg>
                     <svg width='16' height='16' viewBox='0 0 16 16' fill='none' xmlns='http://www.w3.org/2000/svg'>
                       <path
@@ -525,7 +511,7 @@ export default function Navbar({ isModule, headerIndex, isEnterPrice }) {
           <SignInSignUpBtn>
             <>
               <SignIn textColor={colorList?.fontColor} hoverColor={colorList?.primaryColor}>
-                <Link href={COPILOT_DASHBOARD_LINK}>Login</Link>
+                <Link href={COPILOT_DASHBOARD_LINK}>Log in</Link>
               </SignIn>
               <SignIn textColor={colorList?.fontColor} hoverColor={colorList?.primaryColor}>
                 <Link href='/book-demo'>Book demo</Link>
@@ -681,12 +667,12 @@ export default function Navbar({ isModule, headerIndex, isEnterPrice }) {
               <SignInMobile>
                 <>
                   <SignIn textColor={colorList?.fontColor} hoverColor={colorList?.primaryColor}>
-                    <Link href={COPILOT_DASHBOARD_LINK}>Login</Link>
+                    <Link href={COPILOT_DASHBOARD_LINK}>Log in</Link>
                   </SignIn>
                   <BlackButton
                     textColor={isModule ? colorList?.fontColor : '#FFFFFF'}
                     backgroundColor={colorList?.buttonColor}>
-                    <Link href={COPILOT_ONBORADING_LINK}>Start Trial</Link>
+                    <Link href={COPILOT_ONBORADING_LINK}>Start trial</Link>
                   </BlackButton>
                 </>
               </SignInMobile>

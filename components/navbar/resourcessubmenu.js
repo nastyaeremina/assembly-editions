@@ -1,10 +1,4 @@
-import {
-  BLOG_LINK,
-  COPILOT_SECURITY_LINK,
-  COPILOT_SYSTEM_STATUS_LINK,
-  COPILOT_UPDATE_LINK,
-  HELP_CENTER_LINK
-} from '../../constants/externalLinks';
+import { COPILOT_SECURITY_LINK, COPILOT_SYSTEM_STATUS_LINK, HELP_CENTER_LINK } from '../../constants/externalLinks';
 import { NavigationBlock, NavMenu, MobileListLi, MenuMobileWrap, LeftImg, RightText } from './styles';
 
 export default function ResourcesSubMenu() {
@@ -13,7 +7,7 @@ export default function ResourcesSubMenu() {
       <NavMenu>
         <NavigationBlock>
           <MobileListLi>
-            <MenuMobileWrap href={BLOG_LINK}>
+            <MenuMobileWrap href={'/blog'}>
               <LeftImg>
                 <svg width='16' height='16' viewBox='0 0 16 16' fill='none' xmlns='http://www.w3.org/2000/svg'>
                   <mask id='mask0_1874_104899' maskUnits='userSpaceOnUse' x='0' y='0' width='16' height='16'>
@@ -53,7 +47,7 @@ export default function ResourcesSubMenu() {
             </MenuMobileWrap>
           </MobileListLi>
           <MobileListLi>
-            <MenuMobileWrap href={COPILOT_UPDATE_LINK}>
+            <MenuMobileWrap href={'/updates'}>
               <LeftImg>
                 <svg width='16' height='16' viewBox='0 0 16 16' fill='none' xmlns='http://www.w3.org/2000/svg'>
                   <path

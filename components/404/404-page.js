@@ -12,7 +12,7 @@ export default function ErrorPage() {
           <h3>404</h3>
           <p>We can’t seem to find the page you are looking for </p>
           <PrimaryButton>
-            <a href='/'>Back to Home</a>
+            <a href='/'>Back to home</a>
           </PrimaryButton>
         </ErrorMain>
       </Container>

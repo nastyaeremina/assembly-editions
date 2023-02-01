@@ -14,3 +14,4 @@ export const COPILOT_JOIN_COMMUNITY_LINK =
   'https://join.slack.com/t/copilotcommunity/shared_invite/zt-1n4u6dr8m-Bm_8Jnmq6_RoY1ySq~yVcQ';
 export const COPILOT_SECURITY_LINK = 'https://security.copilot.com/';
 export const COPILOT_UPDATE_LINK = 'https://copilot.com/updates';
+export const UPDATE_SUBSCRIBE_LINK = 'https://twitter.com/intent/user?screen_name=copilot';

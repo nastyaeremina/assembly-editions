@@ -33,8 +33,8 @@ const ButtonContainer = styled.div`
     --x: calc((var(--cursor-x) * 1px));
     -webkit-mask-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAA5JREFUeNpiYGBgAAgwAAAEAAGbA+oJAAAAAElFTkSuQmCC);
     &::before {
+      display:none;
       content: '';
-      opacity: 0;
       pointer-events: none;
       user-select: none;
       position: absolute;
@@ -52,7 +52,7 @@ const ButtonContainer = styled.div`
         `}
     }
     &:hover::before {
-      opacity: 1;
+      display:block;
     }
   }
 
