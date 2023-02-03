@@ -79,6 +79,7 @@ export default function Blog({ seoData, allPosts, tags }) {
         </FirstBlog>
       );
     });
+
   }, [allPosts, router]);
 
   const renderData = useMemo(() => {

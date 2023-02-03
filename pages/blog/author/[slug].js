@@ -76,6 +76,7 @@ export default function Author({ allPosts, tags, authorDetail }) {
         {renderNavbar}
         <MainContent>
           <Container>{renderData}</Container>
+
         </MainContent>
       </Layout>
     </>
