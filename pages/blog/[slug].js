@@ -62,7 +62,7 @@ export default function Blogdetail({ blogDetail, tags }) {
       const headingList = item?.split('>');
       return (
         <li key={`tableDataHeading_index_${index}`}>
-          <Link href={`#${headingList?.[0]?.replace(/['"]+/g, '')}`}>{headingList?.[1]?.replace(/^[0-9]./, '')}</Link>
+          <Link href={`#${headingList?.[0]?.replace(/['"]+/g, '').replace('<h2 id=', '')}`}>{headingList?.[1]?.replace(/^[0-9]./, '')}</Link>
         </li>
       );
     });
