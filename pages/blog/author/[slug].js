@@ -13,8 +13,6 @@ export default function Author({ allPosts, tags, authorDetail }) {
   const renderData = useMemo(() => {
     if (isEmpty(allPosts)) return null;
     return allPosts?.map((item, index) => {
-      if (item?.featured) return null;
-
       const finalTagList = item?.tags?.filter((tag) => tag?.name?.trim()?.[0] !== '#');
       return (
         <Blogcard
@@ -75,9 +73,9 @@ export default function Author({ allPosts, tags, authorDetail }) {
     <>
       {renderSeoData}
       <Layout>
-      {renderNavbar}
-      <MainContent>
-        <Container>{renderData}</Container>
+        {renderNavbar}
+        <MainContent>
+          <Container>{renderData}</Container>
         </MainContent>
       </Layout>
     </>
