@@ -13,8 +13,6 @@ export default function Tag({ allPosts, tags, seoData }) {
   const renderData = useMemo(() => {
     if (isEmpty(allPosts)) return null;
     return allPosts?.map((item, index) => {
-      if (item?.featured) return null;
-
       const finalTagList = item?.tags?.filter((tag) => tag?.name?.trim()?.[0] !== '#');
       return (
         <Blogcard
@@ -62,9 +60,9 @@ export default function Tag({ allPosts, tags, seoData }) {
     <>
       {renderSeoData}
       <Layout>
-      {renderNavbar}
+        {renderNavbar}
         <MainContent>
-        <Container>{renderData}</Container>
+          <Container>{renderData}</Container>
         </MainContent>
       </Layout>
     </>
