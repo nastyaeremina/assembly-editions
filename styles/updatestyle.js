@@ -12,6 +12,7 @@ padding-bottom:100px;
 `
 
 const UpdateSubscribe = styled.div`
+margin-bottom:40px;
 h1{
     ${Heading3}
     color: ${({ theme }) => theme.colors.title};
@@ -29,7 +30,6 @@ p{
 `
 
 const UpdateDes = styled.div`
-    margin-top:40px;
     border-top: 1px solid #000000;
 svg{
     position:absolute;
@@ -140,6 +140,7 @@ ul{
     list-style-image:url("./images/Bullet.svg");
     padding-left:25px;
     margin-top:12px;
+    margin-bottom:40px;
     li{
         font-size: 18px;
         line-height: 24px;    
