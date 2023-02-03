@@ -7,6 +7,7 @@ const FirstBlog = styled.div`
     max-width: 882px;
     width:100%;
     margin:auto;
+    margin-bottom:28px;
     cursor: pointer;
     .image{
         height:354px;
