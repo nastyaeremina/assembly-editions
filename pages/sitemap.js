@@ -88,7 +88,7 @@ export default function Privacy({ content, seoData }) {
 export async function getStaticProps({ preview = false }) {
   const content = (await getSitemap(SITEMAP_CONTENT_ID)) ?? '';
   const seoData = (await getSEOdata(SITEMAP_SEO_ID)) ?? [];
-
+  seoData.canonical="https://www.copilot.com/sitemap";
   return {
     props: {
       content: content?.content,

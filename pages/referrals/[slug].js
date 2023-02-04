@@ -25,7 +25,7 @@ export async function getServerSideProps(context) {
   const code = context?.params?.slug || null;
   const host = context.req.headers.host.replace('www.', '');
   const seoData = (await getSEOdata(REFERRAL_SEO_ID)) ?? [];
-
+  seoData.canonical="https://www.copilot.com/referrals";
   return {
     props: {
       code,

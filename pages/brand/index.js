@@ -405,7 +405,7 @@ export default function Brand({ seoData }) {
 
 export async function getStaticProps({ preview = false }) {
   const seoData = (await getSEOdata(BRAND_SEO_ID)) ?? [];
-
+  seoData.canonical="https://www.copilot.com/brand";
   return {
     props: {
       seoData

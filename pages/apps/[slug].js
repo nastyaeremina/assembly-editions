@@ -83,7 +83,8 @@ export default function AppsDetail({ appDetail, relatedApps }) {
       <SEO
         seoData={{
           seoTitle: `Connect ${appDetail?.name} to Copilot in 2 minutes • Copilot`,
-          description: appDetail?.description
+          description: appDetail?.description,
+          canonical: "https://www.copilot.com/apps/"+appDetail.slug
         }}
       />
 

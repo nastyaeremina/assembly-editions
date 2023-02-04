@@ -342,7 +342,7 @@ export async function getStaticProps({ preview = false }) {
   const jobImagesList = (await getAllJobImages(preview)) ?? [];
   const jobBlogPostList = (await getAllJobBlogPosts(preview)) ?? [];
   const seoData = (await getSEOdata(JOB_SEO_ID)) ?? [];
-
+  seoData.canonical="https://www.copilot.com/jobs";
   let allPosts = [];
   let data = [];
   let page = 0;

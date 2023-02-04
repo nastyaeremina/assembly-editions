@@ -49,7 +49,8 @@ export default function UniversityDetail({ relatedVideos, universityVideoDetail 
       <SEO
         seoData={{
           seoTitle: `Copilot Video Tutorial • ${universityVideoDetail?.name}`,
-          description: universityVideoDetail?.description
+          description: universityVideoDetail?.description,
+          canonical: "https://www.copilot.com/university/"+universityVideoDetail?.slug
         }}
       />
       <Layout>

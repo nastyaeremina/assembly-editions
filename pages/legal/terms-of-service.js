@@ -31,7 +31,7 @@ export default function TermsOfService({ content, seoData }) {
 export async function getStaticProps({ preview = false }) {
   const content = (await getSitemap(TERMS_OF_SERVICE_ID)) ?? '';
   const seoData = (await getSEOdata(TERMS_OF_SERVICE_SEO_ID)) ?? [];
-
+  seoData.canonical="https://www.copilot.com/terms-of-service";
   return {
     props: {
       content: content?.content,

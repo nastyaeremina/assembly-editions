@@ -76,7 +76,7 @@ export default function MessagingApp({ details, seoData }) {
 export async function getStaticProps({ preview = false }) {
   const details = (await getFeatureById(FEATURES_MESSAG_ID, preview)) ?? [];
   const seoData = (await getSEOdata('3oNabM5iJI6OdftOBOzWTh')) ?? [];
-
+  seoData.canonical="https://www.copilot.com/features/messaging-app";
   return {
     props: { details, seoData }
   };

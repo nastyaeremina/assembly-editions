@@ -16,6 +16,7 @@ export default function Solution({ details }) {
       <NextSeo
         title={details?.seoMetadata?.seoTitle}
         description={details?.seoMetadata?.description}
+        canonical={"https://www.copilot.com/solutions/"+details?.slug}
         openGraph={{
           type: 'website',
           locale: 'en_IE',

@@ -92,6 +92,7 @@ export default function Blogdetail({ blogDetail, tags }) {
       <NextSeo
         title={blogDetail?.meta_title ?? blogDetail?.title}
         description={blogDetail?.meta_description}
+        canonical={"https://www.copilot.com/blog/"+blogDetail?.slug}
         openGraph={{
           type: 'website',
           locale: 'en_IE',

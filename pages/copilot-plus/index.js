@@ -219,7 +219,7 @@ export default function Enterprise({ seoData }) {
 }
 export async function getStaticProps({ preview = false }) {
   const seoData = (await getSEOdata(ENTERPRICE_SEO_ID)) ?? [];
-
+  seoData.canonical="https://www.copilot.com/copilot-plus";
   return {
     props: {
       seoData

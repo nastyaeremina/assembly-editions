@@ -309,7 +309,7 @@ export async function getStaticProps({ preview = false }) {
   const allCategory = (await getAllParrtnerAppsCategories(preview)) ?? [];
   const dataIntegrationApps = (await getAllPartnerApps(APPS_TYPE.DATA_INTEGRATION, preview)) ?? [];
   const seoData = (await getSEOdata(APP_SEO_ID)) ?? [];
-
+  seoData.canonical="https://www.copilot.com/apps";
   const featuredApps = allPosts?.filter((item) => item?.isFeatured === true && item?.appType === APPS_TYPE.PARTNER_APP);
 
   let allCategoryWithPost = [];
@@ -320,7 +320,7 @@ export async function getStaticProps({ preview = false }) {
     );
     if (!isEmpty(filterList)) allCategoryWithPost?.push({ category: item, list: filterList });
   });
-
+ 
   return {
     props: {
       featuredApps,

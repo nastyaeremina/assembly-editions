@@ -204,6 +204,7 @@ export default function University({ universityVideosList, allPosts, seoData }) 
 }
 export async function getStaticProps({ preview = false }) {
   const seoData = (await getSEOdata('2hMkBVQBYcMCmHLQyxzo8o')) ?? [];
+  seoData.canonical="https://www.copilot.com/university";
 
   let allPosts = [];
   let data = [];

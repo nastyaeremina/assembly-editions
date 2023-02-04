@@ -73,6 +73,7 @@ export default function MessagingApp({ details, seoData }) {
 export async function getStaticProps({ preview = false }) {
   const details = (await getFeatureById(FEATURES_FORMS_ID, preview)) ?? [];
   const seoData = (await getSEOdata('4iuBwNgVubAVYkNamRzudb')) ?? [];
+  seoData.canonical="https://www.copilot.com/features/forms-app";
 
   return {
     props: { details, seoData }

@@ -11,7 +11,9 @@ import { DetailSlug, UpdateDate, UpdateDes, UpdateDetail } from '../../styles/up
 export default function Updatedetail({ updateDetails }) {
   return (
     <>
-      <NextSeo title={updateDetails?.title} description={updateDetails?.meta_description} />
+      <NextSeo title={updateDetails?.title} description={updateDetails?.meta_description}
+      canonical={"https://www.copilot.com/updates/"+updateDetails?.slug}
+      />
       <Layout>
         <Navbar isModule={false} />
         <MainContent>

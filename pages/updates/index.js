@@ -64,6 +64,7 @@ export default function Updates({ seoData, allPosts }) {
 export async function getStaticProps({ preview = false }) {
   const seoData = (await getSEOdata(UPDATES_SEO_ID)) ?? [];
   const allPosts = (await getUpdatesPosts()) ?? [];
+  seoData.canonical="https://www.copilot.com/updates";
 
   return {
     props: {

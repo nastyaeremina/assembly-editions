@@ -520,6 +520,7 @@ export default function Home({ content, seoData }) {
 export async function getStaticProps(context) {
   const content = (await getHomeContent()) ?? '';
   const seoData = (await getSEOdata(content?.seoMetadata?.sys?.id)) ?? [];
+  seoData.canonical="https://www.copilot.com/";
   return {
     props: {
       content,
@@ -528,13 +529,3 @@ export async function getStaticProps(context) {
   };
 }
 
-// export async function getStaticProps() {
-//   const content = (await getHomeContent()) ?? '';
-//   const seoData = (await getSEOdata(content?.seoMetadata?.sys?.id)) ?? [];
-//   return {
-//     props: {
-//       content,
-//       seoData
-//     }
-//   };
-// }

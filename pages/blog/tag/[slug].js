@@ -38,6 +38,7 @@ export default function Tag({ allPosts, tags, seoData }) {
       <NextSeo
         title={seoData?.title}
         description={seoData?.description}
+        canonical = {seoData.canonical}
         openGraph={{
           type: 'website',
           locale: 'en_IE',
@@ -78,12 +79,14 @@ export async function getStaticProps({ params, preview = false }) {
   const og_des = tagDetail?.meta_description ?? tagDetail?.description;
   const og_image = tagDetail?.feature_image;
   const description = tagDetail?.meta_description ?? tagDetail?.description;
+  const canonical="https://www.copilot.com/blog/tag/"+tagDetail?.slug;
   const seoData = {
     title,
     og_title,
     og_des,
     og_image,
-    description
+    description,
+    canonical
   };
   return {
     props: {
@@ -97,7 +100,6 @@ export async function getStaticPaths() {
   const allPosts = (await getAllTagWithSlug()) ?? [];
   return {
     paths: allPosts?.map(({ slug }) => `/blog/tag/${slug}`) ?? [],
-
     fallback: true
   };
 }

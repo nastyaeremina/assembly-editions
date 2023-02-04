@@ -45,7 +45,8 @@ export default function JobsDetail({ jobDetail }) {
       <SEO
         seoData={{
           seoTitle: `Copilot Jobs • ${jobDetail?.name}`,
-          description: `Join the Copilot team as a ${jobDetail?.name}.`
+          description: `Join the Copilot team as a ${jobDetail?.name}.`,
+          canonical:"https://www.copilot.com/jobs/"+jobDetail?.slug
         }}
       />
 

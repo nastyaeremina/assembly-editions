@@ -44,7 +44,7 @@ export default function PrivacyPolicy({ content, seoData }) {
 export async function getStaticProps({ preview = false }) {
   const content = (await getSitemap(PRIVCY_POLICY_ID)) ?? '';
   const seoData = (await getSEOdata(PRIVACY_POLICY_SEO_ID)) ?? [];
-
+  seoData.canonical="https://www.copilot.com/privacy-policy";
   return {
     props: {
       content: content?.content,

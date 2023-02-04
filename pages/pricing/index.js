@@ -823,7 +823,7 @@ export default function NewIndex({ faq, seoData }) {
 }
 export async function getStaticProps({ preview = false }) {
   const seoData = (await getSEOdata('yof0gWCYzq1DaLbKJTFqb')) ?? [];
-
+  seoData.canonical="https://www.copilot.com/pricing";
   return {
     props: {
       seoData

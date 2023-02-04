@@ -9,6 +9,7 @@ export default function SEO({ seoData }) {
     <>
       <NextSeo
         title={seoData?.seoTitle}
+        canonical={seoData?.canonical}
         description={seoData?.description}
         openGraph={{
           type: 'website',

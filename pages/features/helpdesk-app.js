@@ -73,7 +73,7 @@ export default function MessagingApp({ details, seoData }) {
 export async function getStaticProps({ preview = false }) {
   const details = (await getFeatureById(FEATURES_HELPDESK_ID, preview)) ?? [];
   const seoData = (await getSEOdata('nauZdYlDqK8LKHYJdkcnt')) ?? [];
-
+  seoData.canonical="https://www.copilot.com/features/helpdesk-app";
   return {
     props: { details, seoData }
   };

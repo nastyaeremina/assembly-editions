@@ -43,6 +43,7 @@ export default function Author({ allPosts, tags, authorDetail }) {
       <NextSeo
         title={authorDetail?.meta_title ?? title}
         description={authorDetail?.meta_description ?? authorDetail?.description}
+        canonical={"https://www.copilot.com/blog/author/"+authorDetail?.slug}
         openGraph={{
           type: 'website',
           locale: 'en_IE',

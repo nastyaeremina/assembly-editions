@@ -29,7 +29,7 @@ export default function BookDemo({ seoData }) {
 }
 export async function getStaticProps({ preview = false }) {
   const seoData = (await getSEOdata(BOOK_DEMO_SEO_ID)) ?? [];
-
+  seoData.canonical="https://www.copilot.com/book-demo";
   return {
     props: {
       seoData
