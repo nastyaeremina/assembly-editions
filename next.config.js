@@ -1,6 +1,5 @@
 /** @type {import('next').NextConfig} */
 const purgecss = require('@fullhuman/postcss-purgecss');
-
 const nextConfig = {
   reactStrictMode: true,
   compiler: {
@@ -13,23 +12,53 @@ const nextConfig = {
   ],
   images: {
     domains: ['images.ctfassets.net', 'copilot-blog.ghost.io', 'images.unsplash.com']
+  },
+  async redirects() {
+    const query = `query {
+      redirectCollection {
+      items {
+        name
+        oldPath
+        redirectToPath
+        permanent
+      }
+    }
+  }`;
+    const data = async function fetchGraphQL(preview = false) {
+      return fetch(`https://graphql.contentful.com/content/v1/spaces/${process.env.CONTENTFUL_SPACE_ID}`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${
+            preview ? 'ZgkVOC33Z2rxYcGzUwVEKRr05h59HfY4Yo8Q14Y4oN8' : 'SzwToPTvkUQeo7liE28HvSTV1n-q_2ckxZ4KUpwsdA0'
+          }`
+        },
+        body: JSON.stringify({ query })
+      }).then((response) => response.json());
+    };
+    const postData = (await data()) ?? [];
+    console.log(postData);
+    if (postData.length === 0) {
+      return [];
+    }
+    const allPost = postData?.data?.redirectCollection?.items;
+    return allPost?.map((item, index) => {
+      if (item?.redirectToPath.includes('https://') || item?.redirectToPath.includes('http://')) {
+        return {
+          source: item?.oldPath,
+          destination: item?.redirectToPath,
+          permanent: item?.permanent,
+          basePath: false
+        };
+      } else {
+        return {
+          source: item?.oldPath,
+          destination: item?.redirectToPath,
+          permanent: item?.permanent
+        };
+      }
+    });
   }
-  // async redirects() {
-  //   return [
-  //     {
-  //       source: "/",
-  //       has: [
-  //         {
-  //           type: 'cookie',
-  //           key: 'current-portal-session',
-  //           value: '(?<sessionid>.*)',
-  //         }
-  //       ],
-  //       destination: 'https://dashboard.copilot.com',
-  //       permanent: false,
-  //     }
-  //   ];
-  // },
 };
 
 module.exports = nextConfig;

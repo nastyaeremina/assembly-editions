@@ -24,7 +24,9 @@ export default function Updates({ seoData, allPosts }) {
             <path d='M14 0L7 7L0 0H14Z' fill='black' />
           </svg>
           <Detail>
-            <UpdateDate href={'/updates/' + item?.slug}>{moment(new Date(item?.published_at)).format('MMMM D, YYYY')}</UpdateDate>
+            <UpdateDate href={'/updates/' + item?.slug}>
+              {moment(new Date(item?.published_at)).format('MMMM D, YYYY')}
+            </UpdateDate>
             <UpdateDetail dangerouslySetInnerHTML={{ __html: item?.html }}></UpdateDetail>
           </Detail>
         </UpdateDes>
@@ -43,13 +45,13 @@ export default function Updates({ seoData, allPosts }) {
               <h1>Updates</h1>
               <p>New updates and improvements to Copilot.</p>
               <Button
-                  bgColor={'transparent'}
-                  fontColor={'#000000'}
-                  borderColor={'#000000'}
-                  text={'Subscribe to updates'}
-                  href={UPDATE_SUBSCRIBE_LINK}
-                  hoverColor={'rgba(0, 0, 0, 0.5)'}
-                />
+                bgColor={'transparent'}
+                fontColor={'#000000'}
+                borderColor={'#000000'}
+                text={'Subscribe to updates'}
+                href={UPDATE_SUBSCRIBE_LINK}
+                hoverColor={'rgba(0, 0, 0, 0.5)'}
+              />
             </UpdateSubscribe>
             {renderPosts}
           </Container>
