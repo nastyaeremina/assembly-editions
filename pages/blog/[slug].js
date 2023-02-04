@@ -37,7 +37,7 @@ import {
   TableHeading,
   Textcontent
 } from '../../styles/blogstyles';
-import { getAllTagWithSlug, getBlogDetail } from '../../lib/blog-content';
+import { getAllBlogWithSlug, getAllTagWithSlug, getBlogDetail } from '../../lib/blog-content';
 import { isEmpty } from '../../helpers/helpers';
 import SubscribeModel from '../../components/SubscribeModel';
 import { BlogSubscribe, Button, Logo, Model, Premium } from '../../components/SubscribeModel/style';
@@ -62,7 +62,9 @@ export default function Blogdetail({ blogDetail, tags }) {
       const headingList = item?.split('>');
       return (
         <li key={`tableDataHeading_index_${index}`}>
-          <Link href={`#${headingList?.[0]?.replace(/['"]+/g, '').replace('<h2 id=', '')}`}>{headingList?.[1]?.replace(/^[0-9]./, '')}</Link>
+          <Link href={`#${headingList?.[0]?.replace(/['"]+/g, '').replace('<h2 id=', '')}`}>
+            {headingList?.[1]?.replace(/^[0-9]./, '')}
+          </Link>
         </li>
       );
     });
@@ -333,10 +335,9 @@ export async function getStaticProps({ params, preview = false }) {
 }
 
 export async function getStaticPaths() {
-  const allPosts = [];
+  const allPosts = (await getAllBlogWithSlug()) ?? [];
   return {
     paths: allPosts?.map(({ slug }) => `/blog/${slug}`) ?? [],
-
     fallback: true
   };
 }
