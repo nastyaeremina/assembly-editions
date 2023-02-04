@@ -36,8 +36,11 @@ const nextConfig = {
         body: JSON.stringify({ query })
       }).then((response) => response.json());
     };
-
     const postData = (await data()) ?? [];
+    console.log(postData);
+    if (postData.length === 0) {
+      return [];
+    }
     const allPost = postData?.data?.redirectCollection?.items;
     return allPost?.map((item, index) => {
       if (item?.redirectToPath.includes('https://') || item?.redirectToPath.includes('http://')) {
