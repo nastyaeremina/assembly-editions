@@ -51,6 +51,7 @@ const SliderInner = styled(Link)`
   cursor: pointer;
   position: relative;
   z-index: 9999;
+  height:59px;
 `;
 const SliderSub = styled.div`
   display: flex;
