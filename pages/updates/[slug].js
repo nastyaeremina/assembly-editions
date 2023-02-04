@@ -1,30 +1,17 @@
-import Image from 'next/image';
-import { useCallback, useEffect, useMemo, useState } from 'react';
 import moment from 'moment';
 import Link from 'next/link';
-import { useRouter } from 'next/router';
-import Layout from '../../components/layout';
-import BlogNavbar from '../../components/navbar/blognavbar';
-import { Container, SecondryButton } from '../../styles/commonStyles';
 import { NextSeo } from 'next-seo';
-import {
-  Backlink,
-  DetailHero,
-  MainContent,
-} from '../../styles/blogstyles';
-import { isEmpty } from '../../helpers/helpers';
-import { getUpdateDetail, getUpdatesPosts } from '../../lib/updates-content';
+import Layout from '../../components/layout';
+import { Container } from '../../styles/commonStyles';
+import { Backlink, MainContent } from '../../styles/blogstyles';
+import { getUpdateDetail, getUpdatesWithSlug } from '../../lib/updates-content';
 import Navbar from '../../components/navbar/navbar';
 import { DetailSlug, UpdateDate, UpdateDes, UpdateDetail } from '../../styles/updatestyle';
 
 export default function Updatedetail({ updateDetails }) {
-
   return (
     <>
-      <NextSeo
-        title={updateDetails?.title}
-        description={updateDetails?.meta_description}
-      />
+      <NextSeo title={updateDetails?.title} description={updateDetails?.meta_description} />
       <Layout>
         <Navbar isModule={false} />
         <MainContent>
@@ -48,13 +35,12 @@ export default function Updatedetail({ updateDetails }) {
                 <path d='M14 0L7 7L0 0H14Z' fill='black' />
               </svg>
               <DetailSlug>
-                <UpdateDate href="#">{moment(new Date(updateDetails?.published_at)).format('MMMM D, YYYY')}</UpdateDate>
+                <UpdateDate href='#'>{moment(new Date(updateDetails?.published_at)).format('MMMM D, YYYY')}</UpdateDate>
                 <UpdateDetail dangerouslySetInnerHTML={{ __html: updateDetails?.html }}></UpdateDetail>
               </DetailSlug>
             </UpdateDes>
           </Container>
         </MainContent>
-
       </Layout>
     </>
   );
@@ -67,7 +53,7 @@ export async function getStaticProps({ params, preview = false }) {
 }
 
 export async function getStaticPaths() {
-  const updateDetails = (await getUpdatesPosts()) ?? [];
+  const updateDetails = (await getUpdatesWithSlug()) ?? [];
   return {
     paths: updateDetails?.map(({ slug }) => `/updates/${slug}`) ?? [],
     fallback: true
