@@ -38,7 +38,7 @@ export default function Tag({ allPosts, tags, seoData }) {
       <NextSeo
         title={seoData?.title}
         description={seoData?.description}
-        canonical = {seoData.canonical}
+        canonical={seoData?.canonical ?? null}
         openGraph={{
           type: 'website',
           locale: 'en_IE',
@@ -79,7 +79,7 @@ export async function getStaticProps({ params, preview = false }) {
   const og_des = tagDetail?.meta_description ?? tagDetail?.description;
   const og_image = tagDetail?.feature_image;
   const description = tagDetail?.meta_description ?? tagDetail?.description;
-  const canonical="https://www.copilot.com/blog/tag/"+tagDetail?.slug;
+  const canonical = 'https://www.copilot.com/blog/tag/' + tagDetail?.slug;
   const seoData = {
     title,
     og_title,
@@ -98,8 +98,10 @@ export async function getStaticProps({ params, preview = false }) {
 }
 export async function getStaticPaths() {
   const allPosts = (await getAllTagWithSlug()) ?? [];
+  const filterList = allPosts.filter((item) => !item?.name?.startsWith('#'));
+
   return {
-    paths: allPosts?.map(({ slug }) => `/blog/tag/${slug}`) ?? [],
+    paths: filterList?.map(({ slug }) => `/blog/tag/${slug}`) ?? [],
     fallback: true
   };
 }
