@@ -55,7 +55,7 @@ export default function Tag({ allPosts, tags, seoData }) {
         }}
       />
     );
-  }, [seoData?.description, seoData?.og_des, seoData?.og_image, seoData?.og_title, seoData?.title]);
+  }, [seoData?.canonical, seoData?.description, seoData?.og_des, seoData?.og_image, seoData?.og_title, seoData?.title]);
 
   return (
     <>
