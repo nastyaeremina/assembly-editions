@@ -38,7 +38,7 @@ export default function Tag({ allPosts, tags, seoData }) {
       <NextSeo
         title={seoData?.title}
         description={seoData?.description}
-        canonical={seoData.canonical}
+        canonical={seoData?.canonical ?? null}
         openGraph={{
           type: 'website',
           locale: 'en_IE',
@@ -55,7 +55,7 @@ export default function Tag({ allPosts, tags, seoData }) {
         }}
       />
     );
-  }, [seoData.canonical, seoData?.description, seoData?.og_des, seoData?.og_image, seoData?.og_title, seoData?.title]);
+  }, [seoData?.canonical, seoData?.description, seoData?.og_des, seoData?.og_image, seoData?.og_title, seoData?.title]);
 
   return (
     <>
@@ -98,8 +98,10 @@ export async function getStaticProps({ params, preview = false }) {
 }
 export async function getStaticPaths() {
   const allPosts = (await getAllTagWithSlug()) ?? [];
+  const filterList = allPosts.filter((item) => !item?.name?.startsWith('#'));
+
   return {
-    paths: allPosts?.map(({ slug }) => `/blog/tag/${slug}`) ?? [],
+    paths: filterList?.map(({ slug }) => `/blog/tag/${slug}`) ?? [],
     fallback: true
   };
 }
