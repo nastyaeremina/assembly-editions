@@ -42,22 +42,24 @@ const nextConfig = {
       return [];
     }
     const allPost = postData?.data?.redirectCollection?.items;
-    return allPost?.map((item, index) => {
-      if (item?.redirectToPath.includes('https://') || item?.redirectToPath.includes('http://')) {
-        return {
-          source: item?.oldPath,
-          destination: item?.redirectToPath,
-          permanent: item?.permanent,
-          basePath: false
-        };
-      } else {
-        return {
-          source: item?.oldPath,
-          destination: item?.redirectToPath,
-          permanent: item?.permanent
-        };
-      }
-    });
+    return (
+      allPost?.map((item, index) => {
+        if (item?.redirectToPath.includes('https://') || item?.redirectToPath.includes('http://')) {
+          return {
+            source: item?.oldPath,
+            destination: item?.redirectToPath,
+            permanent: item?.permanent,
+            basePath: false
+          };
+        } else {
+          return {
+            source: item?.oldPath,
+            destination: item?.redirectToPath,
+            permanent: item?.permanent
+          };
+        }
+      }) ?? []
+    );
   }
 };
 
