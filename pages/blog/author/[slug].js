@@ -43,7 +43,7 @@ export default function Author({ allPosts, tags, authorDetail }) {
       <NextSeo
         title={authorDetail?.meta_title ?? title}
         description={authorDetail?.meta_description ?? authorDetail?.description}
-        canonical={"https://www.copilot.com/blog/author/"+authorDetail?.slug}
+        canonical={'https://www.copilot.com/blog/author/' + authorDetail?.slug}
         openGraph={{
           type: 'website',
           locale: 'en_IE',
@@ -67,7 +67,8 @@ export default function Author({ allPosts, tags, authorDetail }) {
     authorDetail?.meta_title,
     authorDetail?.name,
     authorDetail?.og_image,
-    authorDetail?.og_title
+    authorDetail?.og_title,
+    authorDetail?.slug
   ]);
 
   return (
@@ -77,7 +78,6 @@ export default function Author({ allPosts, tags, authorDetail }) {
         {renderNavbar}
         <MainContent>
           <Container>{renderData}</Container>
-
         </MainContent>
       </Layout>
     </>

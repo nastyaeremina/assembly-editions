@@ -38,7 +38,7 @@ export default function Tag({ allPosts, tags, seoData }) {
       <NextSeo
         title={seoData?.title}
         description={seoData?.description}
-        canonical = {seoData.canonical}
+        canonical={seoData.canonical}
         openGraph={{
           type: 'website',
           locale: 'en_IE',
@@ -55,7 +55,7 @@ export default function Tag({ allPosts, tags, seoData }) {
         }}
       />
     );
-  }, [seoData?.description, seoData?.og_des, seoData?.og_image, seoData?.og_title, seoData?.title]);
+  }, [seoData.canonical, seoData?.description, seoData?.og_des, seoData?.og_image, seoData?.og_title, seoData?.title]);
 
   return (
     <>
@@ -79,7 +79,7 @@ export async function getStaticProps({ params, preview = false }) {
   const og_des = tagDetail?.meta_description ?? tagDetail?.description;
   const og_image = tagDetail?.feature_image;
   const description = tagDetail?.meta_description ?? tagDetail?.description;
-  const canonical="https://www.copilot.com/blog/tag/"+tagDetail?.slug;
+  const canonical = 'https://www.copilot.com/blog/tag/' + tagDetail?.slug;
   const seoData = {
     title,
     og_title,
