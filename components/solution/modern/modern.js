@@ -5,6 +5,10 @@ import { Container } from '../../../styles/commonStyles';
 import { ModernSection, ModernWrap, HeadView, BoxWrap, BoxView, ImgIcon, DetailView } from './styles';
 
 export default function Modern({ data, title }) {
+  const titleSplitList = title?.split(',');
+  const seprateWithDotList = titleSplitList?.join(`<span>,</span>`)?.split('.');
+  const finalTitle = seprateWithDotList?.join(`<span>.</span>`);
+
   const BoxListView = useMemo(() => {
     if (isEmpty(data)) return null;
     return data?.map((item, index) => {
@@ -30,13 +34,10 @@ export default function Modern({ data, title }) {
           <ModernWrap>
             <HeadView>
               <h3>
-                {title}
-                <span>.</span>
+                <div dangerouslySetInnerHTML={{ __html: finalTitle }} />
               </h3>
             </HeadView>
-            <BoxWrap>
-              {BoxListView}
-            </BoxWrap>
+            <BoxWrap>{BoxListView}</BoxWrap>
           </ModernWrap>
         </Container>
       </ModernSection>
