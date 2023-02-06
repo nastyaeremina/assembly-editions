@@ -1,6 +1,5 @@
 import Layout from '/components/layout';
 import Link from 'next/link';
-import { NextSeo } from 'next-seo';
 import Navbar from '../../components/navbar/navbar';
 import {
   DetailLink,
@@ -29,12 +28,7 @@ import {
 import { Container, PrimaryButton } from '../../styles/commonStyles';
 import CTA from '../../components/cta/cta';
 import Image from 'next/image';
-import {
-  getAllDataIntegrationAppWithSlug,
-  getAllPartnerApps,
-  getAllPartnerAppsWithSlug,
-  getPartnerAppDetail
-} from '../../lib/contentful-partnerApps';
+import { getAllPartnerApps, getAllPartnerAppsWithSlug, getPartnerAppDetail } from '../../lib/contentful-partnerApps';
 import { useMemo } from 'react';
 import { isEmpty } from '../../helpers/helpers';
 import Button from '../../components/button/button';
@@ -84,7 +78,7 @@ export default function AppsDetail({ appDetail, relatedApps }) {
         seoData={{
           seoTitle: `Connect ${appDetail?.name} to Copilot in 2 minutes • Copilot`,
           description: appDetail?.description,
-          canonical: "https://www.copilot.com/apps/"+appDetail.slug
+          canonical: 'https://www.copilot.com/apps/' + appDetail?.slug
         }}
       />
 
@@ -95,8 +89,14 @@ export default function AppsDetail({ appDetail, relatedApps }) {
             <Link href='/apps'>
               <DetailLink>
                 {/* <Image src='/images/leftarrow.svg' alt='bill-icon' width={12} height={12} layout={'fixed'} /> */}
-                <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M8.42969 1.37109L3.8012 5.99958L8.42969 10.6281" stroke="#757575" stroke-width="1.92854" stroke-linecap="round" stroke-linejoin="round" />
+                <svg width='12' height='12' viewBox='0 0 12 12' fill='none' xmlns='http://www.w3.org/2000/svg'>
+                  <path
+                    d='M8.42969 1.37109L3.8012 5.99958L8.42969 10.6281'
+                    stroke='#757575'
+                    stroke-width='1.92854'
+                    stroke-linecap='round'
+                    stroke-linejoin='round'
+                  />
                 </svg>
                 <p>Back to all Apps</p>
               </DetailLink>
