@@ -18,18 +18,9 @@ import {
 
 export default function SolutionHero({ title, description, mobileImage, webImage }) {
   const titleSplitList = title?.split(',');
+  const seprateWithDotList = titleSplitList?.join(`<span>,</span>`)?.split('.');
+  const finalTitle = seprateWithDotList?.join(`<span>.</span>`);
 
-  const renderHeaderView = useMemo(() => {
-    const lastIndex = titleSplitList?.length - 1;
-    return titleSplitList?.map((item, index) => {
-      return (
-        <>
-          {item}
-          {index !== lastIndex && <span>,</span>}
-        </>
-      );
-    });
-  }, [titleSplitList]);
   return (
     <>
       <HeroSection>
@@ -37,7 +28,9 @@ export default function SolutionHero({ title, description, mobileImage, webImage
           <SolutionWrap>
             <LeftWrap>
               <TextSection>
-                <h2>{renderHeaderView}</h2>
+                <h2>
+                  <div dangerouslySetInnerHTML={{ __html: finalTitle }} />
+                </h2>
                 <p>{description}</p>
                 <BtnWrap>
                   <PrimaryButton>
