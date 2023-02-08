@@ -233,7 +233,7 @@ export default function Home({ content, seoData }) {
                           stroke-dasharray='4 5'
                         />
                         <line
-                          class='path path3'
+                          class='path path1'
                           x1='35.5'
                           y1='129.5'
                           x2='64.5'
@@ -243,7 +243,7 @@ export default function Home({ content, seoData }) {
                           stroke-dasharray='4 5'
                         />
                         <line
-                          class='path path4'
+                          class='path path3'
                           x1='34.5'
                           y1='129.5'
                           x2='34.5'
@@ -288,7 +288,7 @@ export default function Home({ content, seoData }) {
                     <LineIcon>
                       <svg width='65' height='130' viewBox='0 0 65 130' fill='none' xmlns='http://www.w3.org/2000/svg'>
                         <line
-                          class='path path5'
+                          class='path path2'
                           x1='0.5'
                           y1='0.5'
                           x2='64.5'
@@ -298,7 +298,7 @@ export default function Home({ content, seoData }) {
                           stroke-dasharray='4 5'
                         />
                         <line
-                          class='path path6'
+                          class='path path2'
                           x1='35.5'
                           y1='129.5'
                           x2='64.5'
@@ -308,7 +308,7 @@ export default function Home({ content, seoData }) {
                           stroke-dasharray='4 5'
                         />
                         <line
-                          class='path path7'
+                          class='path path4'
                           x1='34.5'
                           y1='129.5'
                           x2='34.5'
@@ -319,7 +319,7 @@ export default function Home({ content, seoData }) {
                         />
                       </svg>
                     </LineIcon>
-                    <AnimatedIcon className={'default card3'} />
+                    <AnimatedIcon className={'default card2'} />
                   </CardItem>
                 </CardWrapper>
                 <CardWrapper>
@@ -329,7 +329,7 @@ export default function Home({ content, seoData }) {
                       <h5>Action</h5>
                       <span>Assign small business onboarding form</span>
                     </CardTextView>
-                    <AnimatedIcon className={'default card4'} />
+                    <AnimatedIcon className={'default card3'} />
                   </CardItem>
                   <CardItem>
                     <Image src='/images/msg-icon2.svg' width={35} height={35} alt='msg-icon' />
@@ -337,7 +337,7 @@ export default function Home({ content, seoData }) {
                       <h5>Action</h5>
                       <span>Send message with scheduling link</span>
                     </CardTextView>
-                    <AnimatedIcon className={'default card5'} />
+                    <AnimatedIcon className={'default card3'} />
                   </CardItem>
                   <CardItem>
                     <Image src='/images/salesforce-icon.svg' width={35} height={35} alt='sales-icon' />
@@ -345,7 +345,7 @@ export default function Home({ content, seoData }) {
                       <h5>Action</h5>
                       <span>Create lead in Salesforce</span>
                     </CardTextView>
-                    <AnimatedIcon className={'default card6'} />
+                    <AnimatedIcon className={'default card3'} />
                   </CardItem>
                 </CardWrapper>
               </BottomList>
@@ -520,7 +520,7 @@ export default function Home({ content, seoData }) {
 export async function getStaticProps(context) {
   const content = (await getHomeContent()) ?? '';
   const seoData = (await getSEOdata(content?.seoMetadata?.sys?.id)) ?? [];
-  seoData.canonical="https://www.copilot.com/";
+  seoData.canonical = "https://www.copilot.com/";
   return {
     props: {
       content,

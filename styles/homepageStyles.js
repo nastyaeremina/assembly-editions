@@ -519,13 +519,13 @@ const TabRow = styled.div`
     }
     .b4 {
       ${(props) =>
-        props.textColor &&
-        css`
+    props.textColor &&
+    css`
           color: ${props.textColor};
         `}
       ${(props) =>
-        props.backColor &&
-        css`
+    props.backColor &&
+    css`
           background-color: ${props.bgColor};
         `}
     }
@@ -540,8 +540,8 @@ const TabRow = styled.div`
   .bd {
     :hover {
       ${(props) =>
-        props.textColor &&
-        css`
+    props.textColor &&
+    css`
           color: ${props.textColor};
         `}
     }
@@ -866,60 +866,68 @@ const LineIcon = styled.div`
   right: 0;
   transform: translate(100%, 0);
   .path {
-    stroke-dasharray: 5;
     opacity: 0.3;
+    animation-duration: 15s;
   }
   .path1 {
     animation-name: dash;
-    animation-delay: 4.5s;
-    animation-duration: 5.5s;
     animation-timing-function: linear;
   }
   .path2 {
-    animation-name: dash;
-    animation-delay: 9.5s;
-    animation-duration: 5.5s;
+    animation-name: dash2;
+    /* animation-delay: 6.5s; */
     animation-timing-function: linear;
   }
   .path3 {
     animation-name: dash;
-    animation-delay: 4.5s;
-    animation-duration: 5.5s;
     animation-timing-function: linear;
   }
   .path4 {
-    animation-name: dash;
+    animation-name: dash2;
+    /* animation-delay: 9s; */
     animation-direction: reverse;
-    animation-delay: 4.5s;
-    animation-duration: 5.5s;
     animation-timing-function: linear;
-  }
-  .path5 {
-    animation-name: dash;
-    animation-delay: 9.5s;
-    animation-duration: 5.5s;
-    animation-timing-function: linear;
-  }
-  .path6 {
-    animation-name: dash;
-    animation-delay: 9.5s;
-    animation-duration: 5.5s;
-  }
-  .path7 {
-    animation-name: dash;
-    animation-direction: reverse;
-    animation-delay: 9.5s;
-    animation-duration: 5.5s;
   }
   @keyframes dash {
-    from {
-      stroke-dashoffset: 100;
-    }
     0% {
-      opacity: 1;
+    stroke-dashoffset: 0;
+    opacity: 0.3;
     }
-    100% {
-      opacity: 1;
+    30% {
+    stroke-dashoffset: 0;
+    opacity: 0.3;
+    }
+    31%{
+      stroke-dashoffset: 100;
+      opacity:1;
+    }
+    60%{
+      stroke-dashoffset: 100;
+      opacity:1;
+    }
+    61%{
+      stroke-dashoffset: 0;
+    opacity: 0.3;
+    }
+    100%{
+      stroke-dashoffset: 0;
+      opacity: 0.3;
+    }
+  }
+    @keyframes dash2 {
+    0% {
+     opacity: .3;
+    }
+    90% {
+      opacity: 0.3;
+      stroke-dashoffset: 0;
+    }
+    91%{
+      stroke-dashoffset: 100;
+      opacity:1;
+    }
+    100%{
+      opacity:1;
     }
   }
 `;
@@ -1186,119 +1194,86 @@ const RightWrap = styled.div`
 `;
 
 const AnimatedIcon = styled(Iconview)`
-  .icon {
-    opacity: 0;
-    display: block;
-    position: absolute;
-    right: 10px;
-  }
-  &&.card1 .loading-state {
-    animation-name: example;
-    animation-duration: 5s;
-  }
-  &&.card1 .done-state {
-    animation-name: example1;
-    animation-duration: 5s;
-    animation-iteration-count: infinite;
-    animation-delay: 4.5s;
-  }
-  &&.card2 .default-state {
-    animation-name: example;
-    animation-duration: 5s;
-  }
-  &&.card2 .loading-state {
-    animation-name: example;
-    animation-duration: 5.5s;
-    animation-delay: 4.5s;
-  }
-  &&.card2 .done-state {
-    animation-name: example1;
-    animation-duration: 5s;
-    animation-iteration-count: infinite;
-    animation-delay: 9.5s;
-  }
-  &&.card4 .default-state {
-    animation-name: example;
-    animation-duration: 10s;
-  }
-  &&.card4 .loading-state {
-    animation-name: example;
-    animation-duration: 5.5s;
-    animation-delay: 9.5s;
-  }
-  &&.card4 .done-state {
-    animation-name: example1;
-    animation-duration: 5s;
-    animation-iteration-count: infinite;
-    animation-delay: 14.5s;
-  }
-  &&.card3 .default-state {
-    animation-name: example;
-    animation-duration: 15s;
-  }
-  &&.card3 .loading-state {
-    animation-name: example;
-    animation-duration: 5.5s;
-    animation-delay: 4.5s;
-  }
-  &&.card3 .done-state {
-    animation-name: example1;
-    animation-duration: 5s;
-    animation-iteration-count: infinite;
-    animation-delay: 9.5s;
-  }
-  &&.card5 .default-state {
-    animation-name: example;
-    animation-duration: 20s;
-  }
-  &&.card5 .loading-state {
-    animation-name: example;
-    animation-duration: 5.5s;
-    animation-delay: 9.5s;
-  }
-  &&.card5 .done-state {
-    animation-name: example1;
-    animation-duration: 5s;
-    animation-iteration-count: infinite;
-    animation-delay: 14.5s;
-  }
-  &&.card6 .default-state {
-    animation-name: example;
-    animation-duration: 25s;
-  }
-  &&.card6 .loading-state {
-    animation-name: example;
-    animation-duration: 5.5s;
-    animation-delay: 9.5s;
-  }
-  &&.card6 .done-state {
-    animation-name: example1;
-    animation-duration: 5s;
-    animation-iteration-count: infinite;
-    animation-delay: 14.5s;
-  }
-  @keyframes example {
-    0% {
-      opacity: 1;
-    }
-    99% {
-      opacity: 1;
-    }
-    100% {
-      opacity: 0;
-    }
-  }
-  @keyframes example1 {
-    0% {
-      opacity: 1;
-    }
-    99% {
-      opacity: 1;
-    }
-    100% {
-      opacity: 1;
-    }
-  }
+.icon{
+  opacity:0;
+  display:block;
+  position:absolute;
+  right:10px;
+}
+.default-state{
+  opacity:1 ;
+}
+.loading-state
+{
+  animation-duration: 15s;
+  animation-iteration-count:infinite;
+} 
+.done-state
+{
+  animation-duration: 15s;
+  animation-iteration-count:infinite;
+} 
+&&.card1 .loading-state
+{
+  animation-name: example1;
+}
+&&.card1 .done-state{
+  animation-name: example2;
+}
+&&.card2 .loading-state
+{
+  animation-name: example3;
+}
+&&.card2 .done-state{
+  animation-name: example4;
+}
+&&.card3 .loading-state
+{
+  animation-name: example5;
+}
+&&.card3 .done-state{
+  animation-name: example6;
+}
+@keyframes example1 {
+  0%  {opacity:1}
+  30% {opacity:1}
+  31% {opacity:0}
+  100% {opacity:0}
+}
+@keyframes example2 {
+  0%  {opacity:0}
+  30% {opacity:0}
+  31% {opacity:1}
+  100% {opacity:1}
+}
+@keyframes example3 {
+  0%  {opacity:0}
+  30% {opacity:0}
+  31%{opacity:1}
+  60% {opacity:1}
+  61% {opacity:0}
+  100% {opacity:0}
+}
+@keyframes example4 {
+  0%  {opacity:0}
+  60% {opacity:0}
+  61% {opacity:1}
+  100% {opacity:1}
+}
+@keyframes example5 {
+  0%  {opacity:0}
+  60% {opacity:0}
+  61%{opacity:1}
+  90% {opacity:1}
+  91% {opacity:0}
+  100% {opacity:0}
+}
+@keyframes example6 {
+  0%  {opacity:0}
+  90% {opacity:0}
+  91% {opacity:1}
+  100% {opacity:1}
+}
 `;
 
 export {
