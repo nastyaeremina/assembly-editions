@@ -227,22 +227,21 @@ padding: 0px 0 40px;
 `;
 
 const BlogImage = styled.div`
-max-width:880px;
-width:100%;
-/* height:496px; */
-border: 1px solid #000000;
-border-radius: 4px;
-overflow:hidden;
-display:flex;
-.image{
-    height:auto;
-    max-width:100%;
-    object-fit:cover;
-}
-@media only screen and (max-width:426px){
-    height:248px;
-}
-`
+  max-width: 880px;
+  width: 100%;
+  overflow: hidden;
+  display: flex;
+  .image {
+    height: auto;
+    max-width: 100%;
+    object-fit: cover;
+    border-radius: 8px;
+    border: 1px solid #dfe1f4;
+  }
+  @media only screen and (max-width: 426px) {
+    height: 248px;
+  }
+`;
 const BlogTime = styled.div`
     ${Body4}
     max-width:880px;
@@ -365,114 +364,116 @@ width:100%;
 `
 
 const Content = styled.div`
-        max-width:880px;
-        width:100%;
-            font-feature-settings: normal;
+  max-width: 880px;
+  width: 100%;
+  font-feature-settings: normal;
+  ${Body4}
+  color: ${({ theme }) => theme.colors.body};
+  @media only screen and (max-width: 426px) {
+    ${MbBody4}
+  }
+  strong {
+    font-weight: 600;
+  }
+  figure {
+    margin: 0px;
+    img {
+      width: 100%;
+      border-radius: 8px;
+      border: 1px solid #dfe1f4;
+    }
+    iframe {
+      border-radius: 0.375rem;
+      border: 1px solid black;
+      width: 100%;
+      height: 496px;
+      @media only screen and (max-width: 426px) {
+        height: 180px;
+      }
+    }
+  }
+  a {
+    display: inline-block;
+    ${Body4}
+    color: ${({ theme }) => theme.colors.primary};
+    @media only screen and (max-width: 426px) {
+      ${MbBody4}
+    }
+    :hover {
+      color: ${({ theme }) => theme.colors.title};
+    }
+  }
+  ul {
+    list-style-type: disc;
+    margin-left: 15px;
+    li {
+      margin-top: 8px;
+      a {
+        display: inline-block;
         ${Body4}
-        color: ${({ theme }) => theme.colors.body};
-        @media only screen and (max-width:426px){
-            ${MbBody4}
+        color: ${({ theme }) => theme.colors.primary};
+        :hover {
+          color: ${({ theme }) => theme.colors.title};
         }
-    strong{
-            font-weight: 600;
-         }
-    figure{
-        margin:0px;
-        img{
-            width:100%;
-        }
-        iframe{
-            border-radius:0.375rem;
-            border:1px solid black;
-            width:100%;
-            height:496px;
-            @media only screen and (max-width:426px){
-                height:180px;
-         }
-        }
+      }
     }
-    a{
-            display:inline-block;
-            ${Body4}
-            color: ${({ theme }) => theme.colors.primary};
-        @media only screen and (max-width:426px){
-                ${MbBody4}
-        }
-        :hover{
-            color: ${({ theme }) => theme.colors.title};
-        } 
-        }
-    ul{
-        list-style-type: disc;
-        margin-left:15px;
-        li{
-            margin-top:8px;
-            a{
-                display:inline-block;
-                ${Body4}
-                color: ${({ theme }) => theme.colors.primary};
-            :hover{
-                color: ${({ theme }) => theme.colors.title};
-        } 
-            }
-        }
-        li::marker{
-            color: ${({ theme }) => theme.colors.body};
-        }
-        span{
-            font-weight: 500;
-            color: ${({ theme }) => theme.colors.title};
-        }
+    li::marker {
+      color: ${({ theme }) => theme.colors.body};
     }
-    h2{
-            font-size: 22px;
-            line-height: 130%;
-            margin-top: -4rem;
-            padding-top: 6rem;
-            color:  rgb(19,19,19); 
-            font-weight: 400;
+    span {
+      font-weight: 500;
+      color: ${({ theme }) => theme.colors.title};
     }
-    h3{
-        font-size: 1.25rem;
-        line-height: 1.75rem;
-        margin-bottom: 1rem;
-        margin-top: 2rem;
-        font-weight: 400;
-        color:  rgb(19,19,19); 
+  }
+  h2 {
+    font-size: 22px;
+    line-height: 130%;
+    margin-top: -4rem;
+    padding-top: 6rem;
+    color: rgb(19, 19, 19);
+    font-weight: 400;
+  }
+  h3 {
+    font-size: 1.25rem;
+    line-height: 1.75rem;
+    margin-bottom: 1rem;
+    margin-top: 2rem;
+    font-weight: 400;
+    color: rgb(19, 19, 19);
+  }
+  p {
+    color: ${({ theme }) => theme.colors.body};
+    margin-bottom: 1rem;
+    margin-top: 1rem;
+    font-size: 1.125rem;
+    line-height: 1.75rem;
+    @media only screen and (max-width: 426px) {
+      font-size: 15px;
+      line-height: 130%;
     }
-    p{
-        color: ${({ theme }) => theme.colors.body};
-        margin-bottom: 1rem;
-        margin-top: 1rem;
-        font-size: 1.125rem;
-        line-height: 1.75rem;
-         @media only screen and (max-width:426px){
-            font-size: 15px;
-                line-height: 130%;
-         }
-    }
-    ol{
-        padding-left:20px;
-        li{
-            margin-top:8px;
-            a{
-                display:inline-block;
-                ${Body4}
-                color: ${({ theme }) => theme.colors.primary};
-            :hover{
-                color: ${({ theme }) => theme.colors.title};
-        } 
-            }
+  }
+  ol {
+    padding-left: 20px;
+    li {
+      margin-top: 8px;
+      a {
+        display: inline-block;
+        ${Body4}
+        color: ${({ theme }) => theme.colors.primary};
+        :hover {
+          color: ${({ theme }) => theme.colors.title};
         }
-        li::marker{
-            color: ${({ theme }) => theme.colors.body};
-        }
-        span{
-            font-weight: 500;
-            color: ${({ theme }) => theme.colors.title};
-        }
+      }
     }
-`
+    li::marker {
+      color: ${({ theme }) => theme.colors.body};
+    }
+    span {
+      font-weight: 500;
+      color: ${({ theme }) => theme.colors.title};
+    }
+  }
+`;
 
 const Textcontent = styled.div`
         ${Body4}
