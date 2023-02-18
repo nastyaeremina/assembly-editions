@@ -2,7 +2,7 @@ import styled, { css } from 'styled-components';
 import { Body4, Heading3, Heading4, MbBody5 } from '../../styles/styles';
 const ToolMain = styled.div`
   padding: 100px 0 50px 0;
-  h3 {
+  h2 {
     max-width: 918px;
     width: 100%;
     margin: 0;
@@ -42,7 +42,7 @@ const ModuleWrap = styled.div`
   :nth-child(8) {
     border-right: none;
   }
-  h4 {
+  h3 {
     ${Heading4};
     color: ${({ theme }) => theme.colors.title};
     margin: 28px 0 12px 0;
@@ -85,7 +85,7 @@ const ModuleWrap = styled.div`
       width: 24px;
       height: 24px;
     }
-    h4 {
+    h3 {
       margin: 14px 0 8px 0;
     }
     p {

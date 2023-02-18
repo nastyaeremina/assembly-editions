@@ -17,7 +17,7 @@ const ClientMain = styled.div`
 `;
 const ClientHero = styled.div`
   text-align: center;
-  h3 {
+  h2 {
     max-width: 920px;
     width: 100%;
     ${Heading3};

@@ -67,7 +67,7 @@ export default function UniversityDetail({ relatedVideos, universityVideoDetail 
                   <p>Back to University</p>
                 </Backlink>
               </Link>
-              <h3>{universityVideoDetail?.name}</h3>
+              <h1>{universityVideoDetail?.name}</h1>
             </DetailVideoHero>
             <VideoSection>
               <YoutubeWrap>
@@ -82,7 +82,7 @@ export default function UniversityDetail({ relatedVideos, universityVideoDetail 
             </VideoSection>
             {!isEmpty(relatedVideos) && (
               <VIdeoWrap>
-                <h3>Related videos</h3>
+                <h2>Related videos</h2>
                 <UniversityVideo>{renderRelatedVideosView}</UniversityVideo>
               </VIdeoWrap>
             )}

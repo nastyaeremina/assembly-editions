@@ -11,7 +11,7 @@ const ExploreSection = styled.div`
 const TopView = styled.div`
   width: 100%;
   max-width: 811px;
-  h3 {
+  h2 {
     ${Heading3};
     color: ${({ theme }) => theme.colors.title};
     margin: 0;
@@ -47,7 +47,7 @@ const SignatureSection = styled.div`
 const LeftWrap = styled.div`
   max-width: 612px;
   width: 100%;
-  h4 {
+  h3 {
     ${Heading4};
     margin: 0 0 12px;
     color: ${({ theme }) => theme.colors.title};
@@ -64,7 +64,7 @@ const LeftWrap = styled.div`
   @media only screen and (max-width: 749px) {
     max-width: 100%;
     margin-bottom: 40px;
-    h4 {
+    h3 {
       ${Heading4};
       margin: 0 0 12px;
       color: ${({ theme }) => theme.colors.title};

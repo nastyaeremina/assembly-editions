@@ -13,9 +13,9 @@ export default function Content({ title, description }) {
     <ContentMain>
       <Container>
         <TopFunctionWrap>
-          <h3>
+          <h2>
             <div dangerouslySetInnerHTML={{ __html: finalTitle }} />
-          </h3>
+          </h2>
           <p>{description}</p>
         </TopFunctionWrap>
         <div>

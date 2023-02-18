@@ -101,7 +101,7 @@ export default function University({ universityVideosList, allPosts, seoData }) 
           key={`renderuniversityvideoslistiten_index_${index}`}
           isSelected={slugify(item?.category) === selected_category}
           isNotFirst={index !== 0}>
-          <h3>{item?.category}</h3>
+          <h2>{item?.category}</h2>
           <FeatureMenu>{renderUniversityVideosView(item?.list)}</FeatureMenu>
         </ExtensionsSection>
       );
@@ -165,7 +165,7 @@ export default function University({ universityVideosList, allPosts, seoData }) 
         <UniversitySection>
           <Container>
             <UniversityHero>
-              <h2>Copilot University</h2>
+              <h1>Copilot University</h1>
               <p>
                 Search from our library of lessons covering everything from initial setup and customization to Partner
                 Apps and automations.

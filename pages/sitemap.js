@@ -45,7 +45,7 @@ export default function Privacy({ content, seoData }) {
     return sitemap?.map((item, index) => {
       return (
         <InfoWrap key={`sitemap_index_${index}`}>
-          <h4>{item?.title}</h4>
+          <h2>{item?.title}</h2>
           {!isEmpty(item?.list) && (
             <InfoLink>
               {item?.list?.map((listItem, listIndex) => {
@@ -73,7 +73,7 @@ export default function Privacy({ content, seoData }) {
         <MainSection>
           <PrivacuHero>
             <Container>
-              <h2>Sitemap</h2>
+              <h1>Sitemap</h1>
             </Container>
           </PrivacuHero>
           <ContentInfo>

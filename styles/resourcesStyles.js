@@ -5,14 +5,14 @@ const PrivacuHero = styled.div`
   background-color: ${({ theme }) => theme.colors.greendark};
   padding: 196px 0 100px 0;
   text-align: center;
-  h2 {
+  h1 {
     ${Heading2};
     color: ${({ theme }) => theme.colors.greenlight};
     margin: 0;
   }
   @media only screen and (max-width: 749px) {
     padding: 148px 0 80px;
-    h2 {
+    h1 {
       ${MobileH2};
     }
   }
@@ -121,13 +121,13 @@ const InfoWrap = styled.div`
   padding: 40px 0;
   border-bottom: 1px solid #000000;
 
-  h4 {
+  h2 {
     ${Heading4};
     margin: 0;
     color: ${({ theme }) => theme.colors.title};
   }
   @media only screen and (max-width: 749px) {
-    h4 {
+    h2 {
       font-size: 32px;
       line-height: 34px;
     }

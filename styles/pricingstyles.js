@@ -20,7 +20,7 @@ const HeroSection = styled.div`
   padding: 224px 0 100px 0;
   text-align: center;
   margin: 0 auto;
-  h2 {
+  h1 {
     ${Heading2};
     color: ${({ theme }) => theme.colors.title};
     margin: 0 0 40px 0;
@@ -44,7 +44,7 @@ const HeroSection = styled.div`
   }
   @media only screen and (max-width: 749px) {
     padding: 150px 0px 80px;
-    h2 {
+    h1 {
       ${MobileH2};
       color: ${({ theme }) => theme.colors.title};
       margin: 0 0 40px 0;
@@ -193,7 +193,7 @@ const LeftBorder = styled.div`
 `;
 const PriceLeft = styled.div`
   padding: 40px 30px;
-  h4 {
+  h2 {
     ${Heading4};
     color: ${({ theme }) => theme.colors.title};
     margin: 0 0 12px 0;
@@ -206,7 +206,7 @@ const PriceLeft = styled.div`
   }
   @media only screen and (max-width: 991px) {
     padding: 20px;
-    h4 {
+    h2 {
       font-size: 28px;
       line-height: 34px;
     }
@@ -230,7 +230,7 @@ const PriceWrap = styled.div`
   gap: 12px;
   padding-bottom: 32px;
   border-bottom: 1px solid black;
-  h2 {
+  span {
     ${Heading2};
     color: ${({ theme }) => theme.colors.title};
     margin: 0;
@@ -244,7 +244,7 @@ const PriceWrap = styled.div`
     width: 100%;
   }
   @media only screen and (max-width: 991px) {
-    h2 {
+    span {
       font-size: 45px;
       line-height: 36px;
     }
@@ -254,7 +254,7 @@ const PriceWrap = styled.div`
     }
   }
   @media only screen and (max-width: 749px) {
-    h2 {
+    span {
       ${MobileH1};
     }
     p {
@@ -267,7 +267,7 @@ const PricePlan = styled.ul`
   max-width: 285px;
   width: 100%;
   margin: 0 auto;
-  h4 {
+  h3 {
     color: ${({ theme }) => theme.colors.title};
     ${Body2};
     margin: 0 0 20px 0;
@@ -277,13 +277,13 @@ const PricePlan = styled.ul`
     color: ${({ theme }) => theme.colors.darkgray};
   }
   @media only screen and (max-width: 991px) {
-    h4 {
+    h3 {
       font-size: 18px;
       line-height: 20px;
     }
   }
   @media only screen and (max-width: 749px) {
-    h4 {
+    h3 {
       ${Body2};
     }
   }
@@ -516,7 +516,7 @@ const PriceImageLeft = styled.div`
   img {
     display: block;
   }
-  h3 {
+  h2 {
     margin: 40px 0 0 0;
     ${Heading3};
     color: ${({ theme }) => theme.colors.title};
@@ -536,7 +536,7 @@ const PriceImageLeft = styled.div`
   }
 `;
 const Pricefaq = styled.div`
-  h3 {
+  h2 {
     ${Heading3};
     color: ${({ theme }) => theme.colors.title};
   }

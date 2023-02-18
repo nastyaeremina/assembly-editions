@@ -28,9 +28,9 @@ export default function SolutionHero({ title, description, mobileImage, webImage
           <SolutionWrap>
             <LeftWrap>
               <TextSection>
-                <h2>
+                <h1>
                   <div dangerouslySetInnerHTML={{ __html: finalTitle }} />
-                </h2>
+                </h1>
                 <p>{description}</p>
                 <BtnWrap>
                   <PrimaryButton>

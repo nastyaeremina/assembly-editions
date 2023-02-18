@@ -65,9 +65,9 @@ export default function NewIndex({ faq, seoData }) {
         <Navbar />
         <HeroSection>
           <Container>
-            <h2>
+            <h1>
               Create your portal<span>,</span> pick a plan later
-            </h2>
+            </h1>
             <p>Try Copilot free for 14 days, no credit card required</p>
             <Button text={'Start Trial'} hoverColor={'rgba(255, 255, 255, 0.8)'} href={COPILOT_ONBORADING_LINK} />
           </Container>
@@ -91,17 +91,17 @@ export default function NewIndex({ faq, seoData }) {
                     <WrapSlide>
                       <LeftBorder></LeftBorder>
                       <PriceLeft>
-                        <h4>Starter</h4>
+                        <h2>Starter</h2>
                         <p>Everything you need to run a modern services business</p>
                         <PriceWrap>
-                          <h2>
+                          <span>
                             {isYearly && '$29'}
                             {!isYearly && '$39'}
-                          </h2>
+                          </span>
                           <p>per internal user per month</p>
                         </PriceWrap>
                         <PricePlan>
-                          <h4>All Starter plans include</h4>
+                          <h3>All Starter plans include</h3>
                           <PricePlanWrap>
                             <BulletImage></BulletImage>
                             <p>Up to 100 clients and 10GB of storage</p>
@@ -129,17 +129,17 @@ export default function NewIndex({ faq, seoData }) {
                       <LeftBorder></LeftBorder>
 
                       <PriceLeft>
-                        <h4>Professional</h4>
+                        <h2>Professional</h2>
                         <p>Level up with more clients, custom domains, automations, and apps</p>
                         <PriceWrap>
-                          <h2>
+                          <span>
                             {isYearly && '$69'}
                             {!isYearly && '$89'}
-                          </h2>
+                          </span>
                           <p>per internal user per month</p>
                         </PriceWrap>
                         <PricePlan>
-                          <h4>Everything in Starter</h4>
+                          <h3>Everything in Starter</h3>
                           <PricePlanWrap>
                             <BulletImage></BulletImage>
                             <p>Up to 2,000 clients and 2TB of storage</p>
@@ -167,13 +167,13 @@ export default function NewIndex({ faq, seoData }) {
                       <LeftBorder></LeftBorder>
 
                       <PriceLeft>
-                        <h4>Advanced</h4>
+                        <h2>Advanced</h2>
                         <p>Level up further with a a fully white-label experience and dedicated expert</p>
                         <PriceWrap>
-                          <h2>
+                          <span>
                             {isYearly && '$119'}
                             {!isYearly && '$139'}
-                          </h2>
+                          </span>
                           <PriceText>
                             <p>per internal user</p>
                             <p>per month</p>
@@ -181,7 +181,7 @@ export default function NewIndex({ faq, seoData }) {
                           </PriceText>
                         </PriceWrap>
                         <PricePlan>
-                          <h4>Everything in Professional</h4>
+                          <h3>Everything in Professional</h3>
                           <PricePlanWrap>
                             <BulletImage></BulletImage>
                             <p>Up to 20,000 clients and 20TB of storage</p>
@@ -799,9 +799,9 @@ export default function NewIndex({ faq, seoData }) {
             <PriceImage>
               <PriceImageLeft>
                 <Image src='/images/logoplus.svg' alt='main-logo' height={40} width={252} />
-                <h3>
+                <h2>
                   Starting at $2<span>,</span>000 USD/month
-                </h3>
+                </h2>
                 <p>
                   For businesses with custom requirements, enterprise compliance, advanced reporting needs, and more.
                 </p>
