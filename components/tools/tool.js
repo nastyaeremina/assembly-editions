@@ -24,7 +24,7 @@ export default function Tools({ moduleColor, data, title }) {
       return (
         <ModuleWrap key={`toolslits_index_${index}`} className={className}>
           {item?.image?.url && <Image src={item?.image?.url} alt='red-icon' width={44} height={44} layout={'fixed'} />}
-          <h4>{item?.title}</h4>
+          <h3>{item?.title}</h3>
           <p>{item?.description}</p>
         </ModuleWrap>
       );
@@ -34,9 +34,9 @@ export default function Tools({ moduleColor, data, title }) {
   return (
     <ToolMain moduleColor={moduleColor}>
       <Container>
-        <h3>
+        <h2>
           <div dangerouslySetInnerHTML={{ __html: finalTitle }} />
-        </h3>
+        </h2>
         <ModuleSection>
           {toolsListView}
           <QuoteLine>

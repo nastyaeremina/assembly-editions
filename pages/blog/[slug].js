@@ -143,7 +143,7 @@ export default function Blogdetail({ blogDetail, tags }) {
                     <p>Back to Blog</p>
                   </Backlink>
                 </Link>
-                <h3>{blogDetail?.title}</h3>
+                <h1>{blogDetail?.title}</h1>
               </DetailHero>
               <BlogImage>
                 <Image src={blogDetail?.feature_image} alt='blogdetail' className='image' width={880} height={496} />

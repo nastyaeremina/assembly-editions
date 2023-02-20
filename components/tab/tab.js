@@ -37,7 +37,7 @@ export default function TabView({ bgColor, textColor, isHome, tabData: allPosts 
                           <Image src={item?.icon?.url} width={44} height={44} alt='msg-icon' />
                         </IconSvg>
                       </IconWrap>}
-                      <h4>{item?.title}</h4>
+                      <h3>{item?.title}</h3>
                       <p>{item?.description}</p>
                     {link&& <Button
                         bgColor={'transparent'}

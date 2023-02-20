@@ -26,7 +26,7 @@ const HeroSection = styled.div`
 `;
 const AppsHeroWrap = styled.div`
   text-align: center;
-  h2 {
+  h1 {
     ${Heading2};
     color: ${({ theme }) => theme.colors.title};
     margin: 0 auto;
@@ -40,7 +40,7 @@ const AppsHeroWrap = styled.div`
     letter-spacing: 0.02em;
   }
   @media only screen and (max-width: 749px) {
-    h2 {
+    h1 {
       ${MobileH2};
     }
     p {
@@ -151,13 +151,13 @@ const FeatureRight = styled.div`
     css`
         justify-content:center;     
   `}
-  h3 {
+  h2 {
     ${Heading4};
     color: ${({ theme }) => theme.colors.title};
     margin: 0 0 28px 0;
   }
   @media only screen and (max-width: 749px) {
-    h3 {
+    h2 {
       margin: 0 0 24px 0;
     }
   }
@@ -213,7 +213,7 @@ const FeatureCard = styled.div`
 const CardText = styled.div`
   padding: 20px 16px 46px 16px;
   border-top: 1px solid black;
-  h4 {
+  h3 {
     ${Body4};
     color: ${({ theme }) => theme.colors.title};
     letter-spacing: 0.02em;
@@ -346,7 +346,7 @@ const CardInfo = styled.div`
   img {
     max-width: 100%;
   }
-  h4 {
+  h3 {
     color: ${({ theme }) => theme.colors.title};
     ${Body4}
     letter-spacing: 0.02em;
@@ -382,7 +382,7 @@ const BuildWrap = styled.div`
   padding: 27px;
 `;
 const BuildAppsDetail = styled.div`
-  h5 {
+  h3 {
     ${Body4};
     color: ${({ theme }) => theme.colors.black};
     margin: 0;
@@ -590,7 +590,7 @@ const LeftImage = styled.div`
 `;
 const AppWrap = styled.div`
   padding-bottom: 100px;
-  h3 {
+  h2 {
     ${Heading3};
     margin: 0;
     color: ${({ theme }) => theme.colors.black};
@@ -662,7 +662,9 @@ const AppsDetailWrap = styled.div`
     }
   }
 `;
-const AppHeader3 = styled.h3`
+const AppHeader3 = styled.h2`
+  ${Heading4}
+  margin-top: 0;
 &&::before{
     display: block;
     content: " ";

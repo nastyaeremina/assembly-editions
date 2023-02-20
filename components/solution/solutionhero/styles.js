@@ -27,7 +27,7 @@ const RightWrap = styled.div`
   }
 `;
 const TextSection = styled.div`
-  h2 {
+  h1 {
     ${Heading2};
     color: ${({ theme }) => theme.colors.title};
     margin: 0;
@@ -43,7 +43,7 @@ const TextSection = styled.div`
     margin: 20px 0 32px;
   }
   @media only screen and (max-width: 749px) {
-    h2 {
+    h1 {
       ${MobileH2};
     }
     p{

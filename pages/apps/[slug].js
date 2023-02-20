@@ -47,7 +47,7 @@ export default function AppsDetail({ appDetail, relatedApps }) {
                   <Image src={item?.logo?.url} alt='main-logo' width={236} height={56} objectFit='contain' />
                 </FeatureImg>
                 <CardText>
-                  <h4>{item?.name}</h4>
+                  <h3>{item?.name}</h3>
                   <p>{item?.description}</p>
                 </CardText>
                 <CardEnd>
@@ -200,7 +200,7 @@ export default function AppsDetail({ appDetail, relatedApps }) {
             </DetailMain>
             {!isEmpty(relatedApps) && (
               <AppWrap>
-                <h3>Related apps</h3>
+                <h2>Related apps</h2>
                 <CardSection>{renderRelatedAppView}</CardSection>
               </AppWrap>
             )}

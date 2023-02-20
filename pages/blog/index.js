@@ -59,7 +59,7 @@ export default function Blog({ seoData, allPosts, tags }) {
             <Image src={item?.feature_image} className='image' alt='blog' width={880} height={354} />
           </Top>
           <Text>
-            <h1>{item?.title}</h1>
+            <h2>{item?.title}</h2>
             <PostDetail>
               {moment(new Date(item?.published_at)).format('MMM DD, YYYY')}
               <svg width='3' height='3' viewBox='0 0 3 3' fill='none' xmlns='http://www.w3.org/2000/svg'>
@@ -118,7 +118,7 @@ export default function Blog({ seoData, allPosts, tags }) {
             {renderData}
             <LastSection>
               <Left>
-                <h1>Sign up for our newsletter</h1>
+                <h2>Sign up for our newsletter</h2>
                 <p>
                   Subscribe below to receive our newsletter. We’ll email you about important announcements, product
                   updates, and guides relevant to your industry

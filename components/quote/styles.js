@@ -44,22 +44,23 @@ const QuoteTxt = styled.div`
   flex-direction: column;
   justify-content: space-between;
   padding: 40px 40px 40px 0;
-  h3 {
+  p {
     ${Quote};
     margin: 0;
     color: ${({ theme }) => theme.colors.title};
   }
   @media only screen and (max-width: 768px) {
     padding: 30px 28px;
-    h3 {
+    p {
       ${MobileH3};
       padding-bottom: 30px;
     }
   }
 `;
 const QuoteSubTxt = styled.div`
-  h4 {
+  span {
     margin: 0 0 5px 0;
+    display: block;
     ${ButtonText};
     color: ${({ theme }) => theme.colors.title};
   }
@@ -69,7 +70,7 @@ const QuoteSubTxt = styled.div`
     color: ${({ theme }) => theme.colors.body};
   }
   @media only screen and (max-width: 768px) {
-    h4 {
+    span {
       font-size: 16px;
       line-height: 24px;
     }

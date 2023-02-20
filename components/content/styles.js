@@ -80,7 +80,7 @@ const RightDetail = styled.div`
 const TopFunctionWrap = styled.div`
   width: 100%;
   max-width: 1020px;
-  h3 {
+  h2 {
     margin: 0 0 16px 0;
     ${Heading3};
     color: ${({ theme }) => theme.colors.title};

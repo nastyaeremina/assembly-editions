@@ -27,9 +27,9 @@ export default function Client({ currentModule, title }) {
       <Container>
         <ClientHero>
           {!isEmpty(title) && (
-            <h3>
+            <h2>
               <div dangerouslySetInnerHTML={{ __html: finalTitle }} />
-            </h3>
+            </h2>
           )}
           <CardSection>
             {currentModule !== MUDULE_LIST.BILLING && (

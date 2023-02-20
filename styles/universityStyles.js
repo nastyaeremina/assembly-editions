@@ -25,7 +25,7 @@ const UniversityHero = styled.div`
   text-align: center;
   max-width: 780px;
   margin: 0 auto;
-  h2 {
+  h1 {
     ${Heading2};
     color: ${({ theme }) => theme.colors.title};
     margin: 0 0 20px 0;
@@ -36,7 +36,7 @@ const UniversityHero = styled.div`
     ${Body2};
   }
   @media only screen and (max-width: 749px) {
-    h2 {
+    h1 {
       ${MobileH2};
       color: ${({ theme }) => theme.colors.title};
       margin: 0 0 20px 0;
@@ -147,7 +147,7 @@ const FeatureRight = styled.div`
   width:100%;
   margin-top: -40px;
   position: relative;
-  h3 {
+  h2 {
     ${Heading4};
     color: ${({ theme }) => theme.colors.title};
     margin: 0 0 28px 0;
@@ -245,7 +245,7 @@ const DetailVideoMain = styled.div`
 `;
 const DetailVideoHero = styled.div`
   padding: 40px 0;
-  h3 {
+  h1 {
     ${Heading3};
     color: ${({ theme }) => theme.colors.title};
     margin: 0;
@@ -382,7 +382,7 @@ const VideoSection = styled.div`
 `;
 const VIdeoWrap = styled.div`
   padding-bottom: 100px;
-  h3 {
+  h2 {
     ${Heading3};
     color: ${({ theme }) => theme.colors.title};
     margin: 0;

@@ -51,7 +51,7 @@ export default function ExploreTab({ data, demoUrl }) {
     if (isEmpty(data?.[selectedTabIbndex])) return null;
     return (
       <LeftWrap>
-        <h4>{data?.[selectedTabIbndex]?.title}</h4>
+        <h3>{data?.[selectedTabIbndex]?.title}</h3>
         <p>{data?.[selectedTabIbndex]?.description}</p>
       </LeftWrap>
     );
@@ -75,9 +75,9 @@ export default function ExploreTab({ data, demoUrl }) {
       <ExploreSection>
         <Container>
           <TopView>
-            <h3>
+            <h2>
               Explore the client experience<span>.</span>
-            </h3>
+            </h2>
             <p>
               If you’d like to see what the user experience can be like for your clients, you can create a client
               account in a demo portal we have set up. We’ve customized this demo portal to highlight some of the

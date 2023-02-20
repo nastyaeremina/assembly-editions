@@ -7,7 +7,7 @@ const PrivacuHero = styled.div`
   background-color: ${({ theme }) => theme.colors.greendark};
   padding: 196px 0 100px 0;
   text-align: center;
-  h2 {
+  h1 {
     ${Heading2};
     color: ${({ theme }) => theme.colors.greenlight};
     margin: 0;

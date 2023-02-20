@@ -87,7 +87,7 @@ export default function Jobs({ jobList, jobImagesList, jobBlogPostList, seoData 
     return jobList?.map((item, index) => {
       return (
         <JobView key={`jobsroleslist_index_${index}`}>
-          <h4>{item?.department}</h4>
+          <h3>{item?.department}</h3>
           <RoleList>{renderJobsListingView(item?.list)}</RoleList>
         </JobView>
       );
@@ -174,7 +174,7 @@ export default function Jobs({ jobList, jobImagesList, jobBlogPostList, seoData 
             <Container>
               <JobsWrap>
                 <UseCaseWrap>
-                  <h2>Work at Copilot</h2>
+                  <h1>Work at Copilot</h1>
                   <p>
                     We are reinventing how service businesses and clients work together. If we succeed, more businesses
                     will be started and those that do will have a way to serve customers directly, under their own
@@ -184,7 +184,7 @@ export default function Jobs({ jobList, jobImagesList, jobBlogPostList, seoData 
               </JobsWrap>
               <JobsMobi>
                 <UseCaseWrapMobi>
-                  <h2>Work at Copilot</h2>
+                  <h1>Work at Copilot</h1>
                   <p>
                     We are reinventing how service businesses and clients work together. If we succeed, more businesses
                     will be started and those that do will have a way to serve customers directly, under their own
@@ -199,7 +199,7 @@ export default function Jobs({ jobList, jobImagesList, jobBlogPostList, seoData 
               <CareerBlock>
                 <RoleBlock>
                   <RoleWrap>
-                    <h3>Roles</h3>
+                    <h2>Roles</h2>
                     <p>
                       We’re committed to an equitable recruiting process and an inclusive culture that welcomes
                       individuals across all races, ages, abilities, sexualities, gender identities/expressions,
@@ -211,7 +211,7 @@ export default function Jobs({ jobList, jobImagesList, jobBlogPostList, seoData 
                 <TeamBlock>
                   {!isEmpty(jobBlogPostList) && (
                     <TeamView>
-                      <h4>Team writing & media</h4>
+                      <h2>Team writing & media</h2>
                       <TeamDetail>{renderJobBlogPostView}</TeamDetail>
                     </TeamView>
                   )}
@@ -233,7 +233,7 @@ export default function Jobs({ jobList, jobImagesList, jobBlogPostList, seoData 
           <BenefitsSection>
             <Container>
               <BenefitWrap>
-                <h4>Benefits</h4>
+                <h2>Benefits</h2>
               </BenefitWrap>
               <BenefitBox>
                 <BoxView>
@@ -242,7 +242,7 @@ export default function Jobs({ jobList, jobImagesList, jobBlogPostList, seoData 
                     <Image src='/images/equitymb.svg' width={24} height={24} alt='file-icon' className='mobiicon' />
                   </ImgIcon>
                   <DetailView>
-                    <h4>Equity</h4>
+                    <h3>Equity</h3>
                     <p>We want you to reap the benefits of the upside you create in the company.</p>
                   </DetailView>
                 </BoxView>
@@ -252,7 +252,7 @@ export default function Jobs({ jobList, jobImagesList, jobBlogPostList, seoData 
                     <Image src='/images/healthmobi.svg' width={24} height={24} alt='file-icon' className='mobiicon' />
                   </ImgIcon>
                   <DetailView>
-                    <h4>Health insurance</h4>
+                    <h3>Health insurance</h3>
                     <p>Tier 1 Blue Cross plan with 100% coverage for you and 50% coverage for dependents.</p>
                   </DetailView>
                 </BoxView>
@@ -262,7 +262,7 @@ export default function Jobs({ jobList, jobImagesList, jobBlogPostList, seoData 
                     <Image src='/images/ptomobi.svg' width={24} height={24} alt='file-icon' className='mobiicon' />
                   </ImgIcon>
                   <DetailView>
-                    <h4>Flexible PTO</h4>
+                    <h3>Flexible PTO</h3>
                     <p>We recommend ~20 days of vacation per year. You can take whatever days you want.</p>
                   </DetailView>
                 </BoxView>
@@ -272,7 +272,7 @@ export default function Jobs({ jobList, jobImagesList, jobBlogPostList, seoData 
                     <Image src='/images/internetmobi.svg' width={24} height={24} alt='file-icon' className='mobiicon' />
                   </ImgIcon>
                   <DetailView>
-                    <h4>International offsites</h4>
+                    <h3>International offsites</h3>
                     <p>We do team off-sites twice per year. In July, we met up in Istanbul.</p>
                   </DetailView>
                 </BoxView>
@@ -282,7 +282,7 @@ export default function Jobs({ jobList, jobImagesList, jobBlogPostList, seoData 
                     <Image src='/images/sickiconmobi.svg' width={24} height={24} alt='file-icon' className='mobiicon' />
                   </ImgIcon>
                   <DetailView>
-                    <h4>Sick leave</h4>
+                    <h3>Sick leave</h3>
                     <p>Take the time you need to recharge! We want everyone feeling their best at work.</p>
                   </DetailView>
                 </BoxView>
@@ -298,7 +298,7 @@ export default function Jobs({ jobList, jobImagesList, jobBlogPostList, seoData 
                     />
                   </ImgIcon>
                   <DetailView>
-                    <h4>Parental leave</h4>
+                    <h3>Parental leave</h3>
                     <p>6 weeks of paid and 6 weeks of unpaid leave within the first year after becoming a parent.</p>
                   </DetailView>
                 </BoxView>
@@ -308,7 +308,7 @@ export default function Jobs({ jobList, jobImagesList, jobBlogPostList, seoData 
                     <Image src='/images/hardwaremobi.svg' width={24} height={24} alt='file-icon' className='mobiicon' />
                   </ImgIcon>
                   <DetailView>
-                    <h4>Hardware</h4>
+                    <h3>Hardware</h3>
                     <p>We’ll equip you with an M1 MacBook, 4K display, and anything else you need.</p>
                   </DetailView>
                 </BoxView>
@@ -324,7 +324,7 @@ export default function Jobs({ jobList, jobImagesList, jobBlogPostList, seoData 
                     />
                   </ImgIcon>
                   <DetailView>
-                    <h4>Education</h4>
+                    <h3>Education</h3>
                     <p>Get reimbursed for relevant books, conferences, classes, and more.</p>
                   </DetailView>
                 </BoxView>
