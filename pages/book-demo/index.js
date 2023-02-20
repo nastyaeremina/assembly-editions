@@ -13,10 +13,10 @@ export default function BookDemo({ seoData }) {
         <ImageSection>
           <BgOverlay></BgOverlay>
           <DemoContain>
-            <h3>
+            <h2>
               “Copilot is the ultimate sidekick for us. It lets us streamline client communication, manage projects, and create a special 
               on-brand experience for our clients. The platform is user-friendly, easy to set up, and the support team is always there to help.”
-            </h3>
+            </h2>
             <BottomName>
               <p>Joshua Brueckner</p>
               <p>Trulytell</p>

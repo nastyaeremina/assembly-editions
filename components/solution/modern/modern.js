@@ -19,7 +19,7 @@ export default function Modern({ data, title }) {
             <Image src={item?.image?.url} width={24} height={24} alt='file-icon' className='mobile' />
           </ImgIcon>
           <DetailView>
-            <h4>{item?.title}</h4>
+            <h3>{item?.title}</h3>
             <p>{item?.description}</p>
           </DetailView>
         </BoxView>
@@ -33,9 +33,9 @@ export default function Modern({ data, title }) {
         <Container>
           <ModernWrap>
             <HeadView>
-              <h3>
+              <h2>
                 <div dangerouslySetInnerHTML={{ __html: finalTitle }} />
-              </h3>
+              </h2>
             </HeadView>
             <BoxWrap>{BoxListView}</BoxWrap>
           </ModernWrap>

@@ -55,7 +55,7 @@ export default function FAQ({ enterprise, contentID }) {
       <FaqSection enterprise={enterprise}>
         <Container>
           <FaqTitle>
-            <h3 className='faqtitle'>Frequently Asked Questions</h3>
+            <h2 className='faqtitle'>Frequently Asked Questions</h2>
           </FaqTitle>
           
             {faqView}

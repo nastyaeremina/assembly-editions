@@ -75,7 +75,7 @@ const JobsMobi = styled.div`
 const UseCaseWrap = styled.div`
   width: 100%;
   max-width: 580px;
-  h2 {
+  h1 {
     ${Heading2};
     margin: 0;
     color: ${({ theme }) => theme.colors.whiteColor};
@@ -88,7 +88,7 @@ const UseCaseWrap = styled.div`
   }
   @media only screen and (max-width: 991px) {
     max-width: 251px;
-    h2 {
+    h1 {
       font-size: 36px;
       line-height: 56px;
     }
@@ -101,7 +101,7 @@ const UseCaseWrap = styled.div`
 `;
 const UseCaseWrapMobi = styled.div`
   text-align: center;
-  h2 {
+  h1 {
     ${MobileH2};
     margin: 0;
     color: ${({ theme }) => theme.colors.whiteColor};
@@ -152,7 +152,7 @@ const TeamBlock = styled.div`
 `;
 const RoleWrap = styled.div`
   margin-bottom: 40px;
-  h3 {
+  h2 {
     ${Heading4};
     color: ${({ theme }) => theme.colors.title};
     margin: 0 0 12px 0;
@@ -164,13 +164,13 @@ const RoleWrap = styled.div`
     margin: 0;
   }
   @media only screen and (max-width: 991px) {
-    h3 {
+    h2 {
       font-size: 26px;
       line-height: 34px;
     }
   }
   @media only screen and (max-width: 749px) {
-    h3 {
+    h2 {
       ${MobileH4};
     }
     p {
@@ -214,13 +214,13 @@ const AboutWrap = styled.div`
 const JobDetailWrap = styled.div``;
 const JobView = styled.div`
   margin-bottom: 14px;
-  h4 {
+  h3 {
     margin: 0;
     ${HeaderFont};
     color: ${({ theme }) => theme.colors.title};
   }
   @media only screen and (max-width: 749px) {
-    h4 {
+    h3 {
       ${MbPrimaryBtn}
     }
   }
@@ -273,19 +273,19 @@ const Dot = styled.div`
   margin: 0 8px;
 `;
 const TeamView = styled.div`
-  h4 {
+  h2 {
     ${Heading4};
     color: ${({ theme }) => theme.colors.title};
     margin: 0;
   }
   @media only screen and (max-width: 991px) {
-    h4 {
+    h2 {
       font-size: 26px;
       line-height: 34px;
     }
   }
   @media only screen and (max-width: 749px) {
-    h4 {
+    h2 {
       ${MobileH4};
     }
   }
@@ -424,7 +424,7 @@ const BenefitsSection = styled.div`
   }
 `;
 const BenefitWrap = styled.div`
-  h4 {
+  h2 {
     margin: 0;
     ${Heading3};
     color: ${({ theme }) => theme.colors.title};
@@ -467,7 +467,7 @@ const ImgIcon = styled.div`
   }
 `;
 const DetailView = styled.div`
-  h4 {
+  h3 {
     ${Body1};
     margin: 20px 0 0 0;
     color: ${({ theme }) => theme.colors.title};
@@ -478,7 +478,7 @@ const DetailView = styled.div`
     color: ${({ theme }) => theme.colors.body};
   }
   @media only screen and (max-width: 749px) {
-    h4 {
+    h3 {
       ${MobileH4};
       margin: 12px 0 0 0;
     }

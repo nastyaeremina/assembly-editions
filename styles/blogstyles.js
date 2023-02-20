@@ -46,7 +46,7 @@ const Text = styled.div`
     @media only screen and (max-width:749px){
         margin:20px 16px;
     }
-    h1{
+    h2{
         ${Body4}
         color: ${({ theme }) => theme.colors.primary};
         margin-bottom:4px;
@@ -63,7 +63,7 @@ const Textarea = styled.div`
         margin:20px 16px;
         margin-bottom:0px;
     }
-    h1{
+    h2{
         ${Body4}
         color: ${({ theme }) => theme.colors.primary};
         margin-bottom:4px;
@@ -161,7 +161,7 @@ margin:100px auto;
 
 const Left = styled.div`
 margin:50px 40px auto 40px;
-h1{
+h2{
     ${Heading4}
     margin-top:0px;
     margin-bottom:12px;
@@ -216,7 +216,7 @@ const Backlink = styled.div`
 const DetailHero = styled.div`
 padding: 0px 0 40px;
 /* margin-top:20px;     */
-  h3 {
+  h1 {
     ${Heading3};
     color: ${({ theme }) => theme.colors.title};
     margin: 0;

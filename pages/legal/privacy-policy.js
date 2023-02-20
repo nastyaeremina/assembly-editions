@@ -23,7 +23,7 @@ export default function PrivacyPolicy({ content, seoData }) {
       <MainSection>
         <PrivacuHero>
           <Container>
-            <h2>Privacy Policy</h2>
+            <h1>Privacy Policy</h1>
           </Container>
         </PrivacuHero>
         <PostContent>

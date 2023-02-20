@@ -11,7 +11,7 @@ const BrandHeroSection = styled.div`
   padding-top: 100px;
   padding-bottom: 50px;
   text-align: center;
-  h2 {
+  h1 {
     ${Heading2};
     color: ${({ theme }) => theme.colors.title};
     margin: 0 0 20px 0;
@@ -23,7 +23,7 @@ const BrandHeroSection = styled.div`
   }
   @media only screen and (max-width: 769px) {
     padding: 36px 0 40px;
-    h2 {
+    h1 {
       ${MobileH2}
     }
     p {
@@ -33,7 +33,7 @@ const BrandHeroSection = styled.div`
 `;
 const BrandName = styled.div`
   padding: 50px 0;
-  h4 {
+  h2 {
     ${Heading4};
     color: ${({ theme }) => theme.colors.title};
     margin: 0 0 12px 0;
@@ -45,7 +45,7 @@ const BrandName = styled.div`
   }
   @media only screen and (max-width: 749px) {
     padding: 40px 0;
-    h4 {
+    h2 {
       ${MobileH4}
     }
     p {

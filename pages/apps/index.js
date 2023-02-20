@@ -106,7 +106,7 @@ export default function Apps({ allPosts, featuredApps, allCategoryWithPost, data
                 <Image src={item?.logo?.url} alt='main-logo' width={236} height={56} objectFit='contain' />
               </FeatureImg>
               <CardText>
-                <h4>{item?.name}</h4>
+                <h3>{item?.name}</h3>
                 <p>{item?.description}</p>
               </CardText>
               <CardEnd>
@@ -147,7 +147,7 @@ export default function Apps({ allPosts, featuredApps, allCategoryWithPost, data
               <ImgView>
                 <Image src={item?.icon?.url} alt='red-icon' width={25} height={25} layout={'fixed'} />
               </ImgView>
-              <h4>{item?.name}</h4>
+              <h3>{item?.name}</h3>
             </CardInfo>
             <p>{item?.description}</p>
           </Link>
@@ -177,13 +177,13 @@ export default function Apps({ allPosts, featuredApps, allCategoryWithPost, data
     if (!isEmpty(searchResult)) {
       return (
         <Featured key={`searchview`}>
-          <h3> {`${searchResult?.length} Result for "${query}"`}</h3>
+          <h2> {`${searchResult?.length} Result for "${query}"`}</h2>
           <FeatureMenu>{renderPartnerAppsView(searchResult)}</FeatureMenu>
         </Featured>
       );
     } else
       return (
-        <ExtensionsSection key={`searchEmptyview`} >
+        <ExtensionsSection key={`searchEmptyview`}>
           <AppError query={query} />
         </ExtensionsSection>
       );
@@ -198,7 +198,7 @@ export default function Apps({ allPosts, featuredApps, allCategoryWithPost, data
           <HeroSection>
             <Container>
               <AppsHeroWrap>
-                <h2>App Directory</h2>
+                <h1>App Directory</h1>
                 <p>Try Copilot free for 14 days, no credit card required</p>
                 <Button text={'Start Trial'} href={COPILOT_ONBORADING_LINK} />
               </AppsHeroWrap>
@@ -274,7 +274,7 @@ export default function Apps({ allPosts, featuredApps, allCategoryWithPost, data
                       </AppsTitle>
                       <BuildWrap>
                         <BuildAppsDetail>
-                          <h5>Build your own app</h5>
+                          <h3>Build your own app</h3>
                           <p>
                             A custom app is a web application that can be embedded into your portal and receives
                             information about the current user or company. With this capability, you can render custom
@@ -309,7 +309,7 @@ export async function getStaticProps({ preview = false }) {
   const allCategory = (await getAllParrtnerAppsCategories(preview)) ?? [];
   const dataIntegrationApps = (await getAllPartnerApps(APPS_TYPE.DATA_INTEGRATION, preview)) ?? [];
   const seoData = (await getSEOdata(APP_SEO_ID)) ?? [];
-  seoData.canonical="https://www.copilot.com/apps";
+  seoData.canonical = 'https://www.copilot.com/apps';
   const featuredApps = allPosts?.filter((item) => item?.isFeatured === true && item?.appType === APPS_TYPE.PARTNER_APP);
 
   let allCategoryWithPost = [];
@@ -320,7 +320,7 @@ export async function getStaticProps({ preview = false }) {
     );
     if (!isEmpty(filterList)) allCategoryWithPost?.push({ category: item, list: filterList });
   });
- 
+
   return {
     props: {
       featuredApps,

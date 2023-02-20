@@ -456,7 +456,7 @@ const TopFunctionWrap = styled.div`
   .titlewrap {
     max-width: 820px;
   }
-  h3 {
+  h2 {
     margin: 0 0 16px 0;
     ${Heading3};
     color: ${({ theme }) => theme.colors.title};
@@ -684,7 +684,7 @@ const LeftDetail = styled.div`
   width: 100%;
   max-width: 278px;
   margin-right: 28px;
-  h4 {
+  h3 {
     margin: 0 0 12px 0;
     ${Heading4};
     color: ${({ theme }) => theme.colors.title};
@@ -705,7 +705,7 @@ const LeftDetail = styled.div`
   @media only screen and (max-width: 749px) {
     max-width: 100%;
     margin-right: 0;
-    h4 {
+    h3 {
       margin: 0 0 8px 0;
       ${Heading4};
       color: ${({ theme }) => theme.colors.title};
@@ -831,7 +831,7 @@ const CardItem = styled.div`
 `;
 const CardTextView = styled.div`
   margin-left: 15px;
-  h5 {
+  p {
     margin: 0 0 4px 0;
     ${Body4};
     color: ${({ theme }) => theme.colors.title};
@@ -953,7 +953,7 @@ const HelpMain = styled.div`
 `;
 const HelpLeft = styled.div`
   padding: 60px;
-  h3 {
+  h2 {
     ${Heading3}
     color: ${({ theme }) => theme.colors.title};
     margin: 0 0 40px 0;
@@ -967,7 +967,7 @@ const HelpLeft = styled.div`
   @media only screen and (max-width: 749px) {
     padding: 20px 20px 28px 20px;
     max-width: 100%;
-    h3 {
+    h2 {
       max-width: 100%;
       margin-bottom: 28px;
     }
@@ -1047,7 +1047,7 @@ const HelpLeftSub = styled.div`
       display: block;
     }
   }
-  h4 {
+  h3 {
     ${Heading4};
     color: ${({ theme }) => theme.colors.title};
     margin: 0 0 12px 0;
@@ -1058,7 +1058,7 @@ const HelpLeftSub = styled.div`
     color: ${({ theme }) => theme.colors.bodycolor};
   }
   @media only screen and (max-width: 749px) {
-    h4 {
+    h3 {
       ${MobileH4};
       color: ${({ theme }) => theme.colors.title};
       margin: 0 0 12px 0;

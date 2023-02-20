@@ -25,7 +25,7 @@ export default function Blogcard(props) {
         </Leftside>
         <Rightside>
           <Textarea>
-            <h1>{props?.name}</h1>
+            <h2>{props?.name}</h2>
             <PostDetail>
               {props?.date}
               <svg width='3' height='3' viewBox='0 0 3 3' fill='none' xmlns='http://www.w3.org/2000/svg'>

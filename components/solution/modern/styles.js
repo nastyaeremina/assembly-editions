@@ -12,7 +12,7 @@ const HeadView = styled.div`
   max-width: 918px;
   width: 100%;
   margin-bottom: 40px;
-  h3 {
+  h2 {
     ${Heading3};
     color: ${({ theme }) => theme.colors.title};
     margin: 0;
@@ -66,7 +66,7 @@ const ImgIcon = styled.div`
   }
 `;
 const DetailView = styled.div`
-  h4 {
+  h3 {
     ${Heading4};
     margin: 28px 0 0;
     color: ${({ theme }) => theme.colors.title};
@@ -77,7 +77,7 @@ const DetailView = styled.div`
     color: ${({ theme }) => theme.colors.body};
   }
   @media only screen and (max-width: 749px) {
-    h4 {
+    h3 {
       ${Heading4};
       margin: 12px 0 0;
     }

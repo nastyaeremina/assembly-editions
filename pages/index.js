@@ -158,10 +158,10 @@ export default function Home({ content, seoData }) {
           <Functionality>
             <Container>
               <TopFunctionWrap>
-                <h3 className='titlewrap'>
+                <h2 className='titlewrap'>
                   Powerful out-of-the box functionality<span>, </span>
                   ready to go<span>.</span>
-                </h3>
+                </h2>
                 <p>
                   Provide clients a uniform experience with on-brand design, combined in-product notifications, and
                   consistent email notifications. And with modularity built-in, start with just one App, and add more
@@ -216,7 +216,7 @@ export default function Home({ content, seoData }) {
                   <CardItem>
                     <Image src='/images/linkicon.svg' width={35} height={35} alt='link-icon' />
                     <CardTextView>
-                      <h5>Trigger</h5>
+                      <p>Trigger</p>
                       <span>New client activated</span>
                     </CardTextView>
                     <AnimatedIcon className={'done card1'} />
@@ -260,7 +260,7 @@ export default function Home({ content, seoData }) {
                   <CardItem>
                     <Image src='/images/linkicon.svg' width={35} height={35} alt='link-icon' />
                     <CardTextView>
-                      <h5>Condition</h5>
+                      <p>Condition</p>
                       <span>Company size &#60;= 50</span>
                     </CardTextView>
                     <AnimatedIcon className={'default card2'} />
@@ -282,7 +282,7 @@ export default function Home({ content, seoData }) {
                   <CardItem>
                     <Image src='/images/linkicon.svg' width={35} height={35} alt='link-icon' />
                     <CardTextView>
-                      <h5>Condition</h5>
+                      <p>Condition</p>
                       <span>Company size &#62; 50</span>
                     </CardTextView>
                     <LineIcon>
@@ -326,7 +326,7 @@ export default function Home({ content, seoData }) {
                   <CardItem>
                     <Image src='/images/action-icon.svg' width={35} height={35} alt='action-icon' />
                     <CardTextView>
-                      <h5>Action</h5>
+                      <p>Action</p>
                       <span>Assign small business onboarding form</span>
                     </CardTextView>
                     <AnimatedIcon className={'default card3'} />
@@ -334,7 +334,7 @@ export default function Home({ content, seoData }) {
                   <CardItem>
                     <Image src='/images/msg-icon2.svg' width={35} height={35} alt='msg-icon' />
                     <CardTextView>
-                      <h5>Action</h5>
+                      <p>Action</p>
                       <span>Send message with scheduling link</span>
                     </CardTextView>
                     <AnimatedIcon className={'default card3'} />
@@ -342,7 +342,7 @@ export default function Home({ content, seoData }) {
                   <CardItem>
                     <Image src='/images/salesforce-icon.svg' width={35} height={35} alt='sales-icon' />
                     <CardTextView>
-                      <h5>Action</h5>
+                      <p>Action</p>
                       <span>Create lead in Salesforce</span>
                     </CardTextView>
                     <AnimatedIcon className={'default card3'} />
@@ -355,12 +355,12 @@ export default function Home({ content, seoData }) {
             <Container>
               <HelpMain>
                 <HelpLeft>
-                  <h3>
+                  <h2>
                     The support you need<span>,</span> when you need it<span>.</span>
-                  </h3>
+                  </h2>
                   <HelpWrap>
                     <HelpLeftSub>
-                      <h4>Our Community</h4>
+                      <h3>Our Community</h3>
                       <p>Meet our team and a community of businesses that run on Copilot. Requires a Slack account.</p>
                       <HelpLink className='icon-link'>
                         <a href={COPILOT_JOIN_COMMUNITY_LINK} className='learn-link mb0'>
@@ -394,7 +394,7 @@ export default function Home({ content, seoData }) {
                       </HelpLink>
                     </HelpLeftSub>
                     <HelpLeftSub>
-                      <h4>Copilot Blog</h4>
+                      <h3>Copilot Blog</h3>
                       <p>Read about company announcements, new features, customer spotlights, and more.</p>
                       <HelpLink className='icon-link'>
                         <a href={BLOG_LINK} className='learn-link mb0'>
@@ -431,7 +431,7 @@ export default function Home({ content, seoData }) {
                   <HelpMargin>
                     <HelpWrap>
                       <HelpLeftSub>
-                        <h4>Copilot University</h4>
+                        <h3>Copilot University</h3>
                         <p>
                           Watch video tutorials that cover getting set up, configuring your portal, best practices, and
                           more.
@@ -468,7 +468,7 @@ export default function Home({ content, seoData }) {
                         </HelpLink>
                       </HelpLeftSub>
                       <HelpLeftSub>
-                        <h4>Help Center</h4>
+                        <h3>Help Center</h3>
                         <p>Read answers to the most common questions, learn best practices, and contact our team.</p>
                         <HelpLink className='icon-link'>
                           <a href={HELP_CENTER_LINK} className='learn-link mb0'>
