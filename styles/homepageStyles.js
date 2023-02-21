@@ -756,6 +756,9 @@ const AutomateText = styled.div`
   max-width: 975px;
   width: 100%;
   margin-bottom: 40px;
+  .active:hover {
+    color: ${({ theme }) => theme.colors.title};
+  }
   h2 {
     ${Heading3};
     margin: 0;
