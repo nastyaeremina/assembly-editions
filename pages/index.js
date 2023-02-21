@@ -207,8 +207,16 @@ export default function Home({ content, seoData }) {
                 <p>
                   Automate workflows inside your portal and connect external tools as well. For example, for new clients
                   assign an onboarding form, send out a customized welcome message, set up a default folder structure,
-                  and create a lead in Salesforce. Use <Link href={ZAPIER_LINK}> Zapier </Link> for easy setup or our{' '}
-                  <Link href={COPILOT_REFERENCE_API_LINK}>API</Link> for full control.
+                  and create a lead in Salesforce. Use{' '}
+                  <Link href={ZAPIER_LINK} className='active'>
+                    {' '}
+                    Zapier{' '}
+                  </Link>{' '}
+                  for easy setup or our{' '}
+                  <Link href={COPILOT_REFERENCE_API_LINK} className='active'>
+                    API
+                  </Link>{' '}
+                  for full control.
                 </p>
               </AutomateText>
               <BottomList>
