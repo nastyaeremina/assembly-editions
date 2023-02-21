@@ -21,6 +21,9 @@ const SolutionWrap = styled.div`
 `;
 const LeftWrap = styled.div``;
 const RightWrap = styled.div`
+  .comparison-img {
+    padding-bottom: 0px;
+  }
   @media only screen and (max-width: 991px) {
     width: 100%;
     text-align: right;
