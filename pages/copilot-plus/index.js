@@ -131,7 +131,7 @@ export default function Enterprise({ seoData }) {
             <Container>
               <PlusWrap>
                 <h2>Moving to Copilot Plus?</h2>
-                <p>95% of customer we work with go from first meeting to full deployment in less than 30 days. </p>
+                <p>95% of customers we work with go from first meeting to full deployment in less than 30 days. </p>
                 <BtnList>
                   <Button
                     bgColor={'transparent'}
@@ -161,7 +161,10 @@ export default function Enterprise({ seoData }) {
                     </LeftTopView>
                     <LeftBottomView>
                       <h3>Migration plan</h3>
-                      <p>Our team and our expert network will work with</p>
+                      <p>
+                        Our team will work with you to create a migration plan that minimizes downtime and ensures a
+                        smooth transition for your clients.
+                      </p>
                     </LeftBottomView>
                   </DayCenter>
                 </LeftStep>
@@ -206,7 +209,7 @@ export default function Enterprise({ seoData }) {
                 </LastLabel>
                 <BottomLast>
                   <h3>Full deployment</h3>
-                  <p>Once we’ve gone through a beta launch, we’ll have you have a successful full deployment.</p>
+                  <p>Once we’re past the soft launch phase, we’ll work closely with you team on the full deployment.</p>
                 </BottomLast>
               </BottomDay>
             </Container>
