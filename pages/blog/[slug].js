@@ -217,7 +217,7 @@ export default function Blogdetail({ blogDetail, tags }) {
             </ShareButton>
             <LastSection>
               <Left>
-                <h1>Sign up for our newsletter</h1>
+                <h2>Sign up for our newsletter</h2>
                 <p>
                   Subscribe below to receive our newsletter. We’ll email you about important announcements, product
                   updates, and guides relevant to your industry
