@@ -447,6 +447,16 @@ const Content = styled.div`
       font-weight: 400;
     }
   }
+  h4 {
+    font-size: 24px;
+    font-weight: 400;
+    line-height: 31px;
+    letter-spacing: 0.02em;
+    color: #131313;
+    strong {
+      font-weight: 400;
+    }
+  }
   p {
     color: ${({ theme }) => theme.colors.body};
     margin-bottom: 1rem;
