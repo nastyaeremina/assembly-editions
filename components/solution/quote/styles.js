@@ -1,11 +1,22 @@
 import styled from 'styled-components';
+import css from 'styled-jsx/css';
 import { Body4, ButtonText, HeaderFont, MbBody3, MobileH3, Quote } from '../../../styles/styles';
 
 const QuoteSection = styled.div`
   padding: 50px 0 100px;
+  ${(props) =>
+    props.isComparison &&
+    css`
+      padding: 100px 0 0px;
+    `}
   overflow: hidden;
   @media only screen and (max-width: 991px) {
     padding: 40px 0 80px;
+    ${(props) =>
+      props.isComparison &&
+      css`
+        padding: 80px 0 0px;
+      `}
   }
 `;
 

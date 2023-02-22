@@ -6,6 +6,7 @@ import { getAllSolutionWithSlug } from '../../lib/contentful-solutions';
 import { getAllUniversityVideoWithSlug } from '../../lib/contentful-universityVideos';
 import { getAllAuthorWithSlug, getAllBlogWithSlug, getAllTagWithSlug } from '../../lib/blog-content';
 import { getUpdatesPosts, getUpdatesWithSlug } from '../../lib/updates-content';
+import { getAllComparisonWithSlug } from '../../lib/contentful-comparison';
 
 export async function getServerSideProps(ctx) {
   const appsPost = (await getAllPartnerAppsWithSlug()) ?? []; // appa
@@ -16,6 +17,7 @@ export async function getServerSideProps(ctx) {
   const updatesPost = (await getUpdatesWithSlug()) ?? []; //updates
   const authorPost = (await getAllAuthorWithSlug()) ?? []; // blog/author
   const tagPost = (await getAllTagWithSlug()) ?? []; // blog/tag
+  const comparisonPost = (await getAllComparisonWithSlug()) ?? []; // /comparison
 
   const appsPostsPathList = appsPost?.map((item) => `apps/${item?.slug}`);
   const jobsPostsPathList = jobPosts?.map((item) => `jobs/${item?.slug}`);
@@ -25,6 +27,7 @@ export async function getServerSideProps(ctx) {
   const updatesPostsPathList = updatesPost?.map((item) => `updates/${item?.slug}`);
   const authorPostsPathList = authorPost?.map((item) => `blog/author/${item?.slug}`);
   const tagPostsPathList = tagPost?.map((item) => `blog/tag/${item?.slug}`);
+  const comparisonPostsPathList = comparisonPost?.map((item) => `comparison/${item?.slug}`);
 
   const finalList = appsPostsPathList?.concat(
     jobsPostsPathList,
@@ -33,7 +36,8 @@ export async function getServerSideProps(ctx) {
     blogPostsPathList,
     updatesPostsPathList,
     authorPostsPathList,
-    tagPostsPathList
+    tagPostsPathList,
+    comparisonPostsPathList
   );
   return getServerSideSitemapIndex(
     ctx,

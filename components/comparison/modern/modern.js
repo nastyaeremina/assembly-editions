@@ -1,38 +1,53 @@
-import Image from "next/image";
-import { Container } from "../../../styles/commonStyles";
-import { BoxView, BoxWrap, DetailView, HeadView, ImgIcon, ModernSection, ModernWrap } from "../../solution/modern/styles";
+import Image from 'next/image';
+import { useMemo } from 'react';
+import { Container } from '../../../styles/commonStyles';
+import {
+  BoxView,
+  BoxWrap,
+  DetailView,
+  HeadView,
+  ImgIcon,
+  ModernSection,
+  ModernWrap
+} from '../../solution/modern/styles';
 import comparison from '../../../public/images/comparison.png';
+import { isEmpty } from '../../../helpers/helpers';
 
-export default function Modern() {
-    // const BoxListView = useMemo(() => {
-    //   if (isEmpty(data)) return null;
-    //   return data?.map((item, index) => {
-    //     return (
-    //       <BoxView key={`boxview_index_${index}`}>
-    //         <ImgIcon>
-    //           <Image src={item?.image?.url} width={44} height={44} alt='file-icon' className='desktop' />
-    //           <Image src={item?.image?.url} width={24} height={24} alt='file-icon' className='mobile' />
-    //         </ImgIcon>
-    //         <DetailView>
-    //           <h4>{item?.title}</h4>
-    //           <p>{item?.description}</p>
-    //         </DetailView>
-    //       </BoxView>
-    //     );
-    //   });
-    // }, [data]);
+export default function Modern({ title, data }) {
+  const renderBoxListView = useMemo(() => {
+    if (isEmpty(data)) return null;
+    return data?.map((item, index) => {
+      return (
+        <BoxView key={`boxview_index_${index}`}>
+          <ImgIcon>
+            <Image src={item?.image?.url} width={44} height={44} alt='file-icon' className='desktop' />
+            <Image src={item?.image?.url} width={24} height={24} alt='file-icon' className='mobile' />
+          </ImgIcon>
+          <DetailView>
+            <h3>{item?.title}</h3>
+            <p>{item?.description}</p>
+          </DetailView>
+        </BoxView>
+      );
+    });
+  }, [data]);
   return (
     <>
       <ModernSection>
         <Container>
           <ModernWrap>
             <HeadView>
-              <h2>
-                <div>Meet the modern Suitedash alternative that will delight your customers.</div>
-              </h2>
+              {!isEmpty(title) && (
+                <h2>
+                  <div>{title}</div>
+                </h2>
+              )}
             </HeadView>
-            <BoxWrap>
-              <BoxView>
+
+            {!isEmpty(data) && (
+              <BoxWrap>
+                {renderBoxListView}
+                {/* <BoxView>
                 <ImgIcon>
                   <Image src={comparison} width={44} height={44} alt='file-icon' className='desktop' />
                   <Image src={comparison} width={24} height={24} alt='file-icon' className='mobile' />
@@ -83,8 +98,9 @@ export default function Modern() {
                     you reach your goals.
                   </p>
                 </DetailView>
-              </BoxView>
-            </BoxWrap>
+              </BoxView> */}
+              </BoxWrap>
+            )}
           </ModernWrap>
         </Container>
       </ModernSection>

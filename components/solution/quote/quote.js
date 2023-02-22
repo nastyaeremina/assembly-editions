@@ -2,10 +2,10 @@ import Image from 'next/image';
 import { Container } from '../../../styles/commonStyles';
 import { QuoteSection, Mainss, QuoteTxt, QuoteSubTxt, ImageWrap } from './styles';
 
-export default function Quote({ data }) {
+export default function Quote({ data, isComparison = false }) {
   return (
     <>
-      <QuoteSection>
+      <QuoteSection isComparison={isComparison}>
         <Container>
           <Mainss>
             <ImageWrap>
