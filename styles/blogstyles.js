@@ -23,7 +23,7 @@ const FirstBlog = styled.div`
         margin: 0px auto 0px;
     }
     :hover{
-        h1{
+        h2{
         color: ${({ theme }) => theme.colors.title};
         }
         .image{
@@ -426,20 +426,26 @@ const Content = styled.div`
     }
   }
   h2 {
-    font-size: 22px;
-    line-height: 130%;
+    font-size: 50px;
+    line-height: 55px;
     margin-top: -4rem;
     padding-top: 6rem;
-    color: rgb(19, 19, 19);
+    color: #131313;
     font-weight: 400;
+    strong {
+      font-weight: 400;
+    }
   }
   h3 {
-    font-size: 1.25rem;
-    line-height: 1.75rem;
+    font-size: 32px;
+    line-height: 105%;
     margin-bottom: 1rem;
     margin-top: 2rem;
     font-weight: 400;
-    color: rgb(19, 19, 19);
+    color: #131313;
+    strong {
+      font-weight: 400;
+    }
   }
   p {
     color: ${({ theme }) => theme.colors.body};
@@ -484,7 +490,7 @@ const Textcontent = styled.div`
 `
 
 const ShareButton = styled.div`
-    margin:40px auto 0;
+    margin:80px auto 0;
     max-width:156px;
     width:100%;
     text-align:center;
