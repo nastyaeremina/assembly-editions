@@ -16,7 +16,7 @@ export default function TermsOfService({ content, seoData }) {
       <MainSection>
         <PrivacuHero>
           <Container>
-            <h2>Terms of Service</h2>
+            <h1>Terms of Service</h1>
           </Container>
         </PrivacuHero>
         <Container>

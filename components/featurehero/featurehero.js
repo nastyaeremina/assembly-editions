@@ -39,7 +39,7 @@ export default function FeatureHero({ colorList, title, description, iconUrl, vi
                   <Image rel='preload' src={iconUrl} alt='main-logo' height={66} width={66} />
                 </BlockImage>
               </BlockLine>
-              <h2>{title}</h2>
+              <h1>{title}</h1>
               <p>{description}</p>
               <Button
                 bgColor={colorList?.buttonBgColor}

@@ -44,7 +44,7 @@ const LeftHero = styled.div`
   width: 100%;
 `;
 const TitleSec = styled.div`
-  h2 {
+  h1 {
     ${Heading2};
     color: ${({ theme }) => theme.colors.greenlight};
     margin: 0;
@@ -56,7 +56,7 @@ const TitleSec = styled.div`
     margin: 20px 0 32px;
   }
   @media only screen and (max-width: 991px) {
-    h2 {
+    h1 {
       font-size: 60px;
       line-height: 70px;
     }
@@ -70,7 +70,7 @@ const TitleSec = styled.div`
     }
   }
   @media only screen and (max-width: 749px) {
-    h2 {
+    h1 {
       ${MobileH2};
     }
     p {
@@ -177,7 +177,7 @@ const DetailView = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-  h4 {
+  h2 {
     ${Heading4};
     margin: 0px 0 0 0;
     color: ${({ theme }) => theme.colors.greenlight};
@@ -194,7 +194,7 @@ const DetailView = styled.div`
     -webkit-box-orient: vertical;
   }
   @media only screen and (max-width: 749px) {
-    h4 {
+    h2 {
       ${MobileH4};
     }
     p {
@@ -239,7 +239,7 @@ const MovingSection = styled.div`
 const PlusWrap = styled.div`
   padding: 80px 0;
   text-align: center;
-  h3 {
+  h2 {
     ${Heading2};
     color: ${({ theme }) => theme.colors.title};
     margin: 0;
@@ -254,7 +254,7 @@ const PlusWrap = styled.div`
   }
   @media only screen and (max-width: 749px) {
     padding: 45px 0;
-    h3 {
+    h2 {
       ${MobileH2};
       color: ${({ theme }) => theme.colors.title};
       margin: 0;
@@ -336,7 +336,7 @@ const BottomView = styled.div`
   margin-top: 25px;
   max-width: 555px;
   width: 100%;
-  h4 {
+  h3 {
     ${Heading4};
     color: ${({ theme }) => theme.colors.greenlight};
     margin: 0;
@@ -350,7 +350,7 @@ const BottomView = styled.div`
     padding-left: 13px;
     max-width: 100%;
     margin-top: 13px;
-    h4 {
+    h3 {
       ${MobileH4};
       color: ${({ theme }) => theme.colors.greenlight};
       margin: 0;
@@ -372,7 +372,7 @@ const LeftBottomView = styled.div`
   padding-right: 55px;
   margin-top: 25px;
   width: 100%;
-  h4 {
+  h3 {
     ${Heading4};
     color: ${({ theme }) => theme.colors.greenlight};
     margin: 0;
@@ -385,7 +385,7 @@ const LeftBottomView = styled.div`
   @media only screen and (max-width: 749px) {
     padding-right: 13px;
     margin-top: 13px;
-    h4 {
+    h3 {
       ${MobileH4};
       color: ${({ theme }) => theme.colors.greenlight};
       margin: 0;
@@ -460,7 +460,7 @@ const BottomLast = styled.div`
   width: 100%;
   max-width: 562px;
   margin: 25px auto 0;
-  h4 {
+  h3 {
     ${Heading4};
     color: ${({ theme }) => theme.colors.greenlight};
     margin: 0;
@@ -473,7 +473,7 @@ const BottomLast = styled.div`
   @media only screen and (max-width: 749px) {
     max-width: 100%;
     margin-top: 18px;
-    h4 {
+    h3 {
       ${MobileH4};
       color: ${({ theme }) => theme.colors.greenlight};
       margin: 0;

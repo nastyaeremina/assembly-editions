@@ -33,7 +33,7 @@ const BlockLeft = styled.div`
     ${Body2}
     margin: 0 0 32px 0;
   }
-  h2 {
+  h1 {
     margin: 41px 0 20px 0;
     ${(props) =>
       props.textColor &&
@@ -43,7 +43,7 @@ const BlockLeft = styled.div`
     ${Heading2}
   }
   @media only screen and (max-width: 749px) {
-    h2 {
+    h1 {
       ${MobileH2}
       margin-top: 30px;
     }

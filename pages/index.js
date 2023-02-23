@@ -158,10 +158,10 @@ export default function Home({ content, seoData }) {
           <Functionality>
             <Container>
               <TopFunctionWrap>
-                <h3 className='titlewrap'>
+                <h2 className='titlewrap'>
                   Powerful out-of-the box functionality<span>, </span>
                   ready to go<span>.</span>
-                </h3>
+                </h2>
                 <p>
                   Provide clients a uniform experience with on-brand design, combined in-product notifications, and
                   consistent email notifications. And with modularity built-in, start with just one App, and add more
@@ -207,8 +207,16 @@ export default function Home({ content, seoData }) {
                 <p>
                   Automate workflows inside your portal and connect external tools as well. For example, for new clients
                   assign an onboarding form, send out a customized welcome message, set up a default folder structure,
-                  and create a lead in Salesforce. Use <Link href={ZAPIER_LINK}> Zapier </Link> for easy setup or our{' '}
-                  <Link href={COPILOT_REFERENCE_API_LINK}>API</Link> for full control.
+                  and create a lead in Salesforce. Use{' '}
+                  <Link href={ZAPIER_LINK} className='active'>
+                    {' '}
+                    Zapier{' '}
+                  </Link>{' '}
+                  for easy setup or our{' '}
+                  <Link href={COPILOT_REFERENCE_API_LINK} className='active'>
+                    API
+                  </Link>{' '}
+                  for full control.
                 </p>
               </AutomateText>
               <BottomList>
@@ -216,7 +224,7 @@ export default function Home({ content, seoData }) {
                   <CardItem>
                     <Image src='/images/linkicon.svg' width={35} height={35} alt='link-icon' />
                     <CardTextView>
-                      <h5>Trigger</h5>
+                      <p>Trigger</p>
                       <span>New client activated</span>
                     </CardTextView>
                     <AnimatedIcon className={'done card1'} />
@@ -233,7 +241,7 @@ export default function Home({ content, seoData }) {
                           stroke-dasharray='4 5'
                         />
                         <line
-                          class='path path3'
+                          class='path path1'
                           x1='35.5'
                           y1='129.5'
                           x2='64.5'
@@ -243,7 +251,7 @@ export default function Home({ content, seoData }) {
                           stroke-dasharray='4 5'
                         />
                         <line
-                          class='path path4'
+                          class='path path3'
                           x1='34.5'
                           y1='129.5'
                           x2='34.5'
@@ -260,7 +268,7 @@ export default function Home({ content, seoData }) {
                   <CardItem>
                     <Image src='/images/linkicon.svg' width={35} height={35} alt='link-icon' />
                     <CardTextView>
-                      <h5>Condition</h5>
+                      <p>Condition</p>
                       <span>Company size &#60;= 50</span>
                     </CardTextView>
                     <AnimatedIcon className={'default card2'} />
@@ -282,13 +290,13 @@ export default function Home({ content, seoData }) {
                   <CardItem>
                     <Image src='/images/linkicon.svg' width={35} height={35} alt='link-icon' />
                     <CardTextView>
-                      <h5>Condition</h5>
+                      <p>Condition</p>
                       <span>Company size &#62; 50</span>
                     </CardTextView>
                     <LineIcon>
                       <svg width='65' height='130' viewBox='0 0 65 130' fill='none' xmlns='http://www.w3.org/2000/svg'>
                         <line
-                          class='path path5'
+                          class='path path2'
                           x1='0.5'
                           y1='0.5'
                           x2='64.5'
@@ -298,7 +306,7 @@ export default function Home({ content, seoData }) {
                           stroke-dasharray='4 5'
                         />
                         <line
-                          class='path path6'
+                          class='path path2'
                           x1='35.5'
                           y1='129.5'
                           x2='64.5'
@@ -308,7 +316,7 @@ export default function Home({ content, seoData }) {
                           stroke-dasharray='4 5'
                         />
                         <line
-                          class='path path7'
+                          class='path path4'
                           x1='34.5'
                           y1='129.5'
                           x2='34.5'
@@ -319,33 +327,33 @@ export default function Home({ content, seoData }) {
                         />
                       </svg>
                     </LineIcon>
-                    <AnimatedIcon className={'default card3'} />
+                    <AnimatedIcon className={'default card2'} />
                   </CardItem>
                 </CardWrapper>
                 <CardWrapper>
                   <CardItem>
                     <Image src='/images/action-icon.svg' width={35} height={35} alt='action-icon' />
                     <CardTextView>
-                      <h5>Action</h5>
+                      <p>Action</p>
                       <span>Assign small business onboarding form</span>
                     </CardTextView>
-                    <AnimatedIcon className={'default card4'} />
+                    <AnimatedIcon className={'default card3'} />
                   </CardItem>
                   <CardItem>
                     <Image src='/images/msg-icon2.svg' width={35} height={35} alt='msg-icon' />
                     <CardTextView>
-                      <h5>Action</h5>
+                      <p>Action</p>
                       <span>Send message with scheduling link</span>
                     </CardTextView>
-                    <AnimatedIcon className={'default card5'} />
+                    <AnimatedIcon className={'default card3'} />
                   </CardItem>
                   <CardItem>
                     <Image src='/images/salesforce-icon.svg' width={35} height={35} alt='sales-icon' />
                     <CardTextView>
-                      <h5>Action</h5>
+                      <p>Action</p>
                       <span>Create lead in Salesforce</span>
                     </CardTextView>
-                    <AnimatedIcon className={'default card6'} />
+                    <AnimatedIcon className={'default card3'} />
                   </CardItem>
                 </CardWrapper>
               </BottomList>
@@ -355,12 +363,12 @@ export default function Home({ content, seoData }) {
             <Container>
               <HelpMain>
                 <HelpLeft>
-                  <h3>
+                  <h2>
                     The support you need<span>,</span> when you need it<span>.</span>
-                  </h3>
+                  </h2>
                   <HelpWrap>
                     <HelpLeftSub>
-                      <h4>Our Community</h4>
+                      <h3>Our Community</h3>
                       <p>Meet our team and a community of businesses that run on Copilot. Requires a Slack account.</p>
                       <HelpLink className='icon-link'>
                         <a href={COPILOT_JOIN_COMMUNITY_LINK} className='learn-link mb0'>
@@ -394,7 +402,7 @@ export default function Home({ content, seoData }) {
                       </HelpLink>
                     </HelpLeftSub>
                     <HelpLeftSub>
-                      <h4>Copilot Blog</h4>
+                      <h3>Copilot Blog</h3>
                       <p>Read about company announcements, new features, customer spotlights, and more.</p>
                       <HelpLink className='icon-link'>
                         <a href={BLOG_LINK} className='learn-link mb0'>
@@ -431,7 +439,7 @@ export default function Home({ content, seoData }) {
                   <HelpMargin>
                     <HelpWrap>
                       <HelpLeftSub>
-                        <h4>Copilot University</h4>
+                        <h3>Copilot University</h3>
                         <p>
                           Watch video tutorials that cover getting set up, configuring your portal, best practices, and
                           more.
@@ -468,7 +476,7 @@ export default function Home({ content, seoData }) {
                         </HelpLink>
                       </HelpLeftSub>
                       <HelpLeftSub>
-                        <h4>Help Center</h4>
+                        <h3>Help Center</h3>
                         <p>Read answers to the most common questions, learn best practices, and contact our team.</p>
                         <HelpLink className='icon-link'>
                           <a href={HELP_CENTER_LINK} className='learn-link mb0'>
@@ -520,7 +528,7 @@ export default function Home({ content, seoData }) {
 export async function getStaticProps(context) {
   const content = (await getHomeContent()) ?? '';
   const seoData = (await getSEOdata(content?.seoMetadata?.sys?.id)) ?? [];
-  seoData.canonical="https://www.copilot.com/";
+  seoData.canonical = "https://www.copilot.com/";
   return {
     props: {
       content,

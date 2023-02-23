@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { Body1, Body4, Body5, FooterText, HeaderFont, Heading3, Heading4, LinkTxt, MbBody1, MbBody4, MbBody5, MbButtonText, MobileH4 } from "./styles";
+import { Body1, Body3, Body4, Body5, FooterText, HeaderFont, Heading3, Heading4, LinkTxt, MbBody1, MbBody3, MbBody4, MbBody5, MbButtonText, MobileH2, MobileH3, MobileH4 } from "./styles";
 
 const FirstBlog = styled.div`
     border: 1px solid #01011D;
@@ -23,7 +23,7 @@ const FirstBlog = styled.div`
         margin: 0px auto 0px;
     }
     :hover{
-        h1{
+        h2{
         color: ${({ theme }) => theme.colors.title};
         }
         .image{
@@ -46,7 +46,7 @@ const Text = styled.div`
     @media only screen and (max-width:749px){
         margin:20px 16px;
     }
-    h1{
+    h2{
         ${Body4}
         color: ${({ theme }) => theme.colors.primary};
         margin-bottom:4px;
@@ -63,7 +63,7 @@ const Textarea = styled.div`
         margin:20px 16px;
         margin-bottom:0px;
     }
-    h1{
+    h2{
         ${Body4}
         color: ${({ theme }) => theme.colors.primary};
         margin-bottom:4px;
@@ -161,7 +161,7 @@ margin:100px auto;
 
 const Left = styled.div`
 margin:50px 40px auto 40px;
-h1{
+h2{
     ${Heading4}
     margin-top:0px;
     margin-bottom:12px;
@@ -214,35 +214,37 @@ const Backlink = styled.div`
 `;
 
 const DetailHero = styled.div`
-padding: 0px 0 40px;
-/* margin-top:20px;     */
-  h3 {
+  padding: 0px 0 40px;
+  /* margin-top:20px;     */
+  h1 {
     ${Heading3};
     color: ${({ theme }) => theme.colors.title};
     margin: 0;
+    @media only screen and (max-width: 769px) {
+      ${MobileH2}
+    }
   }
   @media only screen and (max-width: 769px) {
-    padding-bottom: 20px;
+    padding-bottom: 28px;
   }
 `;
 
 const BlogImage = styled.div`
-max-width:880px;
-width:100%;
-/* height:496px; */
-border: 1px solid #000000;
-border-radius: 4px;
-overflow:hidden;
-display:flex;
-.image{
-    height:auto;
-    max-width:100%;
-    object-fit:cover;
-}
-@media only screen and (max-width:426px){
-    height:248px;
-}
-`
+  max-width: 880px;
+  width: 100%;
+  overflow: hidden;
+  display: flex;
+  .image {
+    height: auto;
+    max-width: 100%;
+    object-fit: cover;
+    border-radius: 8px;
+    border: 1px solid #dfe1f4;
+  }
+  @media only screen and (max-width: 426px) {
+    height: 248px;
+  }
+`;
 const BlogTime = styled.div`
     ${Body4}
     max-width:880px;
@@ -365,114 +367,147 @@ width:100%;
 `
 
 const Content = styled.div`
-        max-width:880px;
-        width:100%;
-            font-feature-settings: normal;
-        ${Body4}
-        color: ${({ theme }) => theme.colors.body};
-        @media only screen and (max-width:426px){
-            ${MbBody4}
-        }
-    strong{
-            font-weight: 600;
-         }
-    figure{
-        margin:0px;
-        img{
-            width:100%;
-        }
-        iframe{
-            border-radius:0.375rem;
-            border:1px solid black;
-            width:100%;
-            height:496px;
-            @media only screen and (max-width:426px){
-                height:180px;
-         }
-        }
+  max-width: 880px;
+  width: 100%;
+  font-feature-settings: normal;
+  ${Body3}
+  color: ${({ theme }) => theme.colors.body};
+  @media only screen and (max-width: 426px) {
+    ${MbBody3}
+  }
+  strong {
+    font-weight: 600;
+  }
+  figure {
+    margin: 0px;
+    img {
+      width: 100%;
+      border-radius: 8px;
+      border: 1px solid #dfe1f4;
     }
-    a{
-            display:inline-block;
-            ${Body4}
-            color: ${({ theme }) => theme.colors.primary};
-        @media only screen and (max-width:426px){
-                ${MbBody4}
-        }
-        :hover{
-            color: ${({ theme }) => theme.colors.title};
-        } 
-        }
-    ul{
-        list-style-type: disc;
-        margin-left:15px;
-        li{
-            margin-top:8px;
-            a{
-                display:inline-block;
-                ${Body4}
-                color: ${({ theme }) => theme.colors.primary};
-            :hover{
-                color: ${({ theme }) => theme.colors.title};
-        } 
-            }
-        }
-        li::marker{
-            color: ${({ theme }) => theme.colors.body};
-        }
-        span{
-            font-weight: 500;
-            color: ${({ theme }) => theme.colors.title};
-        }
+    iframe {
+      border-radius: 0.375rem;
+      border: 1px solid black;
+      width: 100%;
+      height: 496px;
+      @media only screen and (max-width: 426px) {
+        height: 180px;
+      }
     }
-    h2{
-            font-size: 22px;
-            line-height: 130%;
-            margin-top: -4rem;
-            padding-top: 6rem;
-            color:  rgb(19,19,19); 
-            font-weight: 400;
+  }
+  a {
+    display: inline-block;
+    ${Body3}
+    color: ${({ theme }) => theme.colors.primary};
+    @media only screen and (max-width: 426px) {
+      ${MbBody3}
     }
-    h3{
-        font-size: 1.25rem;
-        line-height: 1.75rem;
-        margin-bottom: 1rem;
-        margin-top: 2rem;
-        font-weight: 400;
-        color:  rgb(19,19,19); 
+    :hover {
+      color: ${({ theme }) => theme.colors.title};
     }
-    p{
-        color: ${({ theme }) => theme.colors.body};
-        margin-bottom: 1rem;
-        margin-top: 1rem;
-        font-size: 1.125rem;
-        line-height: 1.75rem;
-         @media only screen and (max-width:426px){
-            font-size: 15px;
-                line-height: 130%;
-         }
-    }
-    ol{
-        padding-left:20px;
-        li{
-            margin-top:8px;
-            a{
-                display:inline-block;
-                ${Body4}
-                color: ${({ theme }) => theme.colors.primary};
-            :hover{
-                color: ${({ theme }) => theme.colors.title};
-        } 
-            }
+  }
+  ul {
+    list-style-type: disc;
+    margin-left: 15px;
+    li {
+      margin-top: 8px;
+      a {
+        display: inline-block;
+        ${Body3}
+        color: ${({ theme }) => theme.colors.primary};
+        :hover {
+          color: ${({ theme }) => theme.colors.title};
         }
-        li::marker{
-            color: ${({ theme }) => theme.colors.body};
-        }
-        span{
-            font-weight: 500;
-            color: ${({ theme }) => theme.colors.title};
-        }
+      }
     }
-`
+    li::marker {
+      color: ${({ theme }) => theme.colors.body};
+    }
+    span {
+      font-weight: 500;
+      color: ${({ theme }) => theme.colors.title};
+    }
+  }
+  h2 {
+    font-size: 50px;
+    line-height: 55px;
+    margin-top: -4rem;
+    padding-top: 6rem;
+    color: #131313;
+    font-weight: 400;
+    strong {
+      font-weight: 400;
+    }
+    @media only screen and (max-width: 991px) {
+      ${MobileH2}
+    }
+    @media only screen and (max-width: 479px) {
+      ${MobileH3}
+    }
+  }
+  h3 {
+    font-size: 32px;
+    line-height: 105%;
+    margin-bottom: 1rem;
+    margin-top: 2rem;
+    font-weight: 400;
+    color: #131313;
+    strong {
+      font-weight: 400;
+    }
+    @media only screen and (max-width: 479px) {
+      ${MobileH4}
+    }
+  }
+  h4 {
+    font-size: 24px;
+    font-weight: 400;
+    line-height: 31px;
+    letter-spacing: 0.02em;
+    color: #131313;
+    strong {
+      font-weight: 400;
+    }
+    @media only screen and (max-width: 479px) {
+      ${Body3}
+    }
+  }
+  p {
+    color: ${({ theme }) => theme.colors.body};
+    margin-bottom: 1rem;
+    margin-top: 1rem;
+    ${Body3}
+    @media only screen and (max-width: 426px) {
+      font-size: 15px;
+      line-height: 130%;
+    }
+    strong {
+      font-weight: 500;
+      color: ${({ theme }) => theme.colors.title};
+    }
+  }
+  ol {
+    padding-left: 20px;
+    li {
+      margin-top: 8px;
+      a {
+        display: inline-block;
+        ${Body3}
+        color: ${({ theme }) => theme.colors.primary};
+        :hover {
+          color: ${({ theme }) => theme.colors.title};
+        }
+      }
+    }
+    li::marker {
+      color: ${({ theme }) => theme.colors.body};
+    }
+    span {
+      font-weight: 500;
+      color: ${({ theme }) => theme.colors.title};
+    }
+  }
+`;
 
 const Textcontent = styled.div`
         ${Body4}
@@ -483,7 +518,7 @@ const Textcontent = styled.div`
 `
 
 const ShareButton = styled.div`
-    margin:40px auto 0;
+    margin:80px auto 0;
     max-width:156px;
     width:100%;
     text-align:center;

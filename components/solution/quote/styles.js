@@ -1,11 +1,22 @@
 import styled from 'styled-components';
+import css from 'styled-jsx/css';
 import { Body4, ButtonText, HeaderFont, MbBody3, MobileH3, Quote } from '../../../styles/styles';
 
 const QuoteSection = styled.div`
   padding: 50px 0 100px;
+  ${(props) =>
+    props.isComparison &&
+    css`
+      padding: 100px 0 0px;
+    `}
   overflow: hidden;
   @media only screen and (max-width: 991px) {
     padding: 40px 0 80px;
+    ${(props) =>
+      props.isComparison &&
+      css`
+        padding: 80px 0 0px;
+      `}
   }
 `;
 
@@ -25,14 +36,14 @@ const QuoteTxt = styled.div`
   flex-direction: column;
   justify-content: space-between;
   padding: 40px;
-  h3 {
+  p {
     ${Quote};
     margin: 0px 0 30px 0;
     color: ${({ theme }) => theme.colors.title};
   }
   @media only screen and (max-width: 749px) {
     padding: 30px;
-    h3 {
+    p {
       ${MobileH3};
       margin: 0px 0 30px 0;
       color: ${({ theme }) => theme.colors.title};
@@ -40,7 +51,8 @@ const QuoteTxt = styled.div`
   }
 `;
 const QuoteSubTxt = styled.div`
-  h4 {
+  span {
+    display: block;
     margin: 0 0 5px 0;
     ${ButtonText};
     color: ${({ theme }) => theme.colors.title};
@@ -51,7 +63,7 @@ const QuoteSubTxt = styled.div`
     color: ${({ theme }) => theme.colors.body};
   }
   @media only screen and (max-width: 749px) {
-    h4 {
+    span {
       margin: 0 0 0 0;
       ${HeaderFont};
       color: ${({ theme }) => theme.colors.title};

@@ -1,26 +1,21 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import { useMemo } from 'react';
-import { COPILOT_ONBORADING_LINK } from '../../../constants/externalLinks';
 import { Container, PrimaryButton } from '../../../styles/commonStyles';
 import {
-  HeroSection,
-  SolutionWrap,
-  LeftWrap,
-  RightWrap,
-  TextSection,
   BtnWrap,
+  HeroSection,
   ImageView,
+  LeftWrap,
   MobileImg,
+  Mobilenew,
   MobileView,
-  Mobilenew
-} from './styles';
+  RightWrap,
+  SolutionWrap,
+  TextSection
+} from '../../solution/solutionhero/styles';
+import { COPILOT_ONBORADING_LINK } from '../../../constants/externalLinks';
 
-export default function SolutionHero({ title, description, mobileImage, webImage }) {
-  const titleSplitList = title?.split(',');
-  const seprateWithDotList = titleSplitList?.join(`<span>,</span>`)?.split('.');
-  const finalTitle = seprateWithDotList?.join(`<span>.</span>`);
-
+export default function ComparisonHero({ title, description, image }) {
   return (
     <>
       <HeroSection>
@@ -29,7 +24,7 @@ export default function SolutionHero({ title, description, mobileImage, webImage
             <LeftWrap>
               <TextSection>
                 <h1>
-                  <div dangerouslySetInnerHTML={{ __html: finalTitle }} />
+                  <div>{title}</div>
                 </h1>
                 <p>{description}</p>
                 <BtnWrap>
@@ -40,17 +35,17 @@ export default function SolutionHero({ title, description, mobileImage, webImage
               </TextSection>
             </LeftWrap>
             <RightWrap>
-              <ImageView>
-                <Image src={webImage} alt='main-logo' width={479} height={633} />
-                <MobileImg>
+              <ImageView className='comparison-img'>
+                <Image src={image} alt='main-logo' width={378} height={328} />
+                {/* <MobileImg>
                   <Image src={mobileImage} alt='main-logo' width={310} height={655} />
-                </MobileImg>
+                </MobileImg> */}
               </ImageView>
-              <MobileView>
-                <Image src={webImage} alt='main-logo' width={269} height={354} />
-                <Mobilenew>
+              <MobileView className='comparison-img'>
+                <Image src={image} alt='main-logo' width={327} height={284} />
+                {/* <Mobilenew>
                   <Image src={mobileImage} alt='main-logo' width={174} height={367} />
-                </Mobilenew>
+                </Mobilenew> */}
               </MobileView>
             </RightWrap>
           </SolutionWrap>

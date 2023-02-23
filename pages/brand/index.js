@@ -102,19 +102,19 @@ export default function Brand({ seoData }) {
         <BrandMain>
           <Container>
             <BrandHeroSection>
-              <h2>Copilot Brand Guidelines</h2>
+              <h1>Copilot Brand Guidelines</h1>
               <p>Resources for presenting the Copilot brand consistently and professionally.</p>
               <Button text={'Download Brand Assets'} href={'images/Copilot_Brand_Assets.zip'} />
             </BrandHeroSection>
             <BrandName>
-              <h4>Naming</h4>
+              <h2>Naming</h2>
               <p>
                 “Copilot” is a single word that is always spelled with a capital “C”, lowercase “p”, and without a dash.
                 It is the brand name of our company and product. The company legal name is Copilot Platforms Inc.
               </p>
             </BrandName>
             <BrandName>
-              <h4>Wordmark</h4>
+              <h2>Wordmark</h2>
               <p>
                 The Copilot wordmark should be used in all references to Copilot as space allows. Monochrome usage is
                 also acceptable, preferably using the brand colors below.
@@ -205,7 +205,7 @@ export default function Brand({ seoData }) {
               </BrandImage>
             </BrandName>
             <BrandName>
-              <h4>Logo</h4>
+              <h2>Logo</h2>
               <p>
                 For tight layouts or logo-only grids, the Coplilot logomark is a concise way to refer to Copilot. Use
                 with good judgment for your audience, as the Copilot wordmark has a stronger brand recognition.
@@ -296,7 +296,7 @@ export default function Brand({ seoData }) {
               </BrandImage>
             </BrandName>
             <BrandName>
-              <h4>Company icon</h4>
+              <h2>Company icon</h2>
               <p>
                 When referring to Copilot as a company, such as on social media, or where a “chip” design is required,
                 it is acceptable to use this stylized icon with an appropriate corner radius.
@@ -388,7 +388,7 @@ export default function Brand({ seoData }) {
               </BrandImage>
             </BrandName>
             <BrandName>
-              <h4>Colors</h4>
+              <h2>Colors</h2>
               <p>Copilot’s primary brand color is a cool green that’s been slightly desaturated and darkened. </p>
               <ColorSection>
                 {copyBlock1}

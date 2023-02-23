@@ -21,13 +21,16 @@ const SolutionWrap = styled.div`
 `;
 const LeftWrap = styled.div``;
 const RightWrap = styled.div`
+  .comparison-img {
+    padding-bottom: 0px;
+  }
   @media only screen and (max-width: 991px) {
     width: 100%;
     text-align: right;
   }
 `;
 const TextSection = styled.div`
-  h2 {
+  h1 {
     ${Heading2};
     color: ${({ theme }) => theme.colors.title};
     margin: 0;
@@ -43,7 +46,7 @@ const TextSection = styled.div`
     margin: 20px 0 32px;
   }
   @media only screen and (max-width: 749px) {
-    h2 {
+    h1 {
       ${MobileH2};
     }
     p{

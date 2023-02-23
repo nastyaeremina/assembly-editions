@@ -57,14 +57,14 @@ const FaqSection = styled.div`
   }
 `;
 const FaqTitle = styled.div`
-  h3 {
+  h2 {
     ${Heading3};
     margin: 0;
     color: ${({ theme }) => theme.colors.title};
   }
   margin-bottom: 20px;
   @media only screen and (max-width: 991px) {
-    h3 {
+    h2 {
       font-size: 50px;
       line-height: 55px;
     }

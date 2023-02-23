@@ -16,7 +16,7 @@ const BlogDetail = styled.div`
         flex-wrap:wrap;
     }
     :hover{
-        h1{
+        h2{
             color: ${({ theme }) => theme.colors.title};
         }
         .image{

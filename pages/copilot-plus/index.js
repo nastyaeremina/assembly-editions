@@ -51,7 +51,7 @@ export default function Enterprise({ seoData }) {
             <Container>
               <LeftHero>
                 <TitleSec>
-                  <h2>Designed for the most ambitious businesses </h2>
+                  <h1>Designed for the most ambitious businesses </h1>
                   <p>
                     Copilot Plus is a tailormade solution for businesses with custom requirements, enterprise-level
                     compliance needs, more customizability, and support for white-label native apps.{' '}
@@ -75,49 +75,49 @@ export default function Enterprise({ seoData }) {
               <BenefitBox>
                 <BoxView>
                   <DetailView>
-                    <h4>Custom Features</h4>
+                    <h2>Custom Features</h2>
                     <p>Work with deployed Copilot engineers to add custom features and integrations.</p>
                   </DetailView>
                 </BoxView>
                 <BoxView>
                   <DetailView>
-                    <h4>Dedicated Support</h4>
+                    <h2>Dedicated Support</h2>
                     <p>A dedicated expert will be there to ensure a successful launch.</p>
                   </DetailView>
                 </BoxView>
                 <BoxView>
                   <DetailView>
-                    <h4>Enterprise Compliance</h4>
+                    <h2>Enterprise Compliance</h2>
                     <p>Security audit compliance, payment via PO, custom TOS, and more.</p>
                   </DetailView>
                 </BoxView>
                 <BoxView className='bordernone'>
                   <DetailView>
-                    <h4>Continuous Backup</h4>
+                    <h2>Continuous Backup</h2>
                     <p>Continuous backups and retention to Amazon S3 or elsewhere.</p>
                   </DetailView>
                 </BoxView>
                 <BoxView className='borderbottom'>
                   <DetailView>
-                    <h4>99.9% Uptime SLAs</h4>
+                    <h2>99.9% Uptime SLAs</h2>
                     <p>Guaranteed reliable performance with a 99.9% uptime SLA.</p>
                   </DetailView>
                 </BoxView>
                 <BoxView>
                   <DetailView>
-                    <h4>Custom Payment Processing Rates</h4>
+                    <h2>Custom Payment Processing Rates</h2>
                     <p>Custom payment processing rates</p>
                   </DetailView>
                 </BoxView>
                 <BoxView>
                   <DetailView>
-                    <h4>Advanced Reporting</h4>
+                    <h2>Advanced Reporting</h2>
                     <p>Granular insights about how your team and clients are using Copilot.</p>
                   </DetailView>
                 </BoxView>
                 <BoxView>
                   <DetailView>
-                    <h4>Native Mobile Apps</h4>
+                    <h2>Native Mobile Apps</h2>
                     <p>Get access to white-label native mobile apps.</p>
                   </DetailView>
                 </BoxView>
@@ -130,8 +130,8 @@ export default function Enterprise({ seoData }) {
           <MovingSection>
             <Container>
               <PlusWrap>
-                <h3>Moving to Copilot Plus?</h3>
-                <p>95% of customer we work with go from first meeting to full deployment in less than 30 days. </p>
+                <h2>Moving to Copilot Plus?</h2>
+                <p>95% of customers we work with go from first meeting to full deployment in less than 30 days. </p>
                 <BtnList>
                   <Button
                     bgColor={'transparent'}
@@ -160,8 +160,11 @@ export default function Enterprise({ seoData }) {
                       </DayLabel>
                     </LeftTopView>
                     <LeftBottomView>
-                      <h4>Migration plan</h4>
-                      <p>Our team and our expert network will work with</p>
+                      <h3>Migration plan</h3>
+                      <p>
+                        Our team will work with you to create a migration plan that minimizes downtime and ensures a
+                        smooth transition for your clients.
+                      </p>
                     </LeftBottomView>
                   </DayCenter>
                 </LeftStep>
@@ -175,7 +178,7 @@ export default function Enterprise({ seoData }) {
                       </DayLabel>
                     </TopView>
                     <BottomView>
-                      <h4>Kickoff call</h4>
+                      <h3>Kickoff call</h3>
                       <p>
                         Meet with a Copilot expert and deployed engineering team so that we can understand requirements
                         a propose a plan.
@@ -191,7 +194,7 @@ export default function Enterprise({ seoData }) {
                       </DayLabel>
                     </TopView>
                     <BottomView>
-                      <h4>Soft launch</h4>
+                      <h3>Soft launch</h3>
                       <p>
                         We’ll work with you hand-in-hand to make sure the intial deployment to a subset of beta
                         customers goes well.
@@ -205,8 +208,8 @@ export default function Enterprise({ seoData }) {
                   <span>Day 30</span>
                 </LastLabel>
                 <BottomLast>
-                  <h4>Full deployment</h4>
-                  <p>Once we’ve gone through a beta launch, we’ll have you have a successful full deployment.</p>
+                  <h3>Full deployment</h3>
+                  <p>Once we’re past the soft launch phase, we’ll work closely with you team on the full deployment.</p>
                 </BottomLast>
               </BottomDay>
             </Container>
