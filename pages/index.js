@@ -36,7 +36,10 @@ import {
   HelpImg,
   LeftSvg,
   RightWrap,
-  AnimatedIcon
+  AnimatedIcon,
+  Line1,
+  Line,
+  Line2
 } from '../styles/homepageStyles';
 import BusinessSlider from '../components/businessSlider/businessslider';
 import ExtensionSlider from '../components/extensionslider/extensionslider';
@@ -228,7 +231,18 @@ export default function Home({ content, seoData }) {
                       <span>New client activated</span>
                     </CardTextView>
                     <AnimatedIcon className={'done card1'} />
-                    <LineIcon>
+                    <Line>
+                      <Line1>
+                        <p />
+                      </Line1>
+                      <Line1 isAnimationline2={true}>
+                        <p />
+                      </Line1>
+                      <Line1 isAnimationline3={true}>
+                        <p />
+                      </Line1>
+                    </Line>
+                    {/* <LineIcon>
                       <svg width='65' height='130' viewBox='0 0 65 130' fill='none' xmlns='http://www.w3.org/2000/svg'>
                         <line
                           class='path path1'
@@ -261,7 +275,7 @@ export default function Home({ content, seoData }) {
                           stroke-dasharray='4 5'
                         />
                       </svg>
-                    </LineIcon>
+                    </LineIcon> */}
                   </CardItem>
                 </CardWrapper>
                 <CardWrapper>
@@ -272,7 +286,12 @@ export default function Home({ content, seoData }) {
                       <span>Company size &#60;= 50</span>
                     </CardTextView>
                     <AnimatedIcon className={'default card2'} />
-                    <LineIcon className='hr-icon'>
+                    <Line>
+                      <Line2>
+                        <p />
+                      </Line2>
+                    </Line>
+                    {/* <LineIcon className='hr-icon'>
                       <svg width='64' height='1' viewBox='0 0 64 1' fill='none' xmlns='http://www.w3.org/2000/svg'>
                         <line
                           class='path path2'
@@ -285,7 +304,7 @@ export default function Home({ content, seoData }) {
                           stroke-dasharray='4 5'
                         />
                       </svg>
-                    </LineIcon>
+                    </LineIcon> */}
                   </CardItem>
                   <CardItem>
                     <Image src='/images/linkicon.svg' width={35} height={35} alt='link-icon' />
@@ -293,7 +312,18 @@ export default function Home({ content, seoData }) {
                       <p>Condition</p>
                       <span>Company size &#62; 50</span>
                     </CardTextView>
-                    <LineIcon>
+                    <Line>
+                      <Line2>
+                        <p />
+                      </Line2>
+                      <Line2 isAnimationline2={true}>
+                        <p />
+                      </Line2>
+                      <Line2 isAnimationline3={true}>
+                        <p />
+                      </Line2>
+                    </Line>
+                    {/* <LineIcon>
                       <svg width='65' height='130' viewBox='0 0 65 130' fill='none' xmlns='http://www.w3.org/2000/svg'>
                         <line
                           class='path path2'
@@ -326,7 +356,7 @@ export default function Home({ content, seoData }) {
                           stroke-dasharray='4 5'
                         />
                       </svg>
-                    </LineIcon>
+                    </LineIcon> */}
                     <AnimatedIcon className={'default card2'} />
                   </CardItem>
                 </CardWrapper>
