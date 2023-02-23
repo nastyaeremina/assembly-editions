@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { Body1, Body4, Body5, FooterText, HeaderFont, Heading3, Heading4, LinkTxt, MbBody1, MbBody4, MbBody5, MbButtonText, MobileH4 } from "./styles";
+import { Body1, Body3, Body4, Body5, FooterText, HeaderFont, Heading3, Heading4, LinkTxt, MbBody1, MbBody3, MbBody4, MbBody5, MbButtonText, MobileH2, MobileH3, MobileH4 } from "./styles";
 
 const FirstBlog = styled.div`
     border: 1px solid #01011D;
@@ -214,15 +214,18 @@ const Backlink = styled.div`
 `;
 
 const DetailHero = styled.div`
-padding: 0px 0 40px;
-/* margin-top:20px;     */
+  padding: 0px 0 40px;
+  /* margin-top:20px;     */
   h1 {
     ${Heading3};
     color: ${({ theme }) => theme.colors.title};
     margin: 0;
+    @media only screen and (max-width: 769px) {
+      ${MobileH2}
+    }
   }
   @media only screen and (max-width: 769px) {
-    padding-bottom: 20px;
+    padding-bottom: 28px;
   }
 `;
 
@@ -367,10 +370,10 @@ const Content = styled.div`
   max-width: 880px;
   width: 100%;
   font-feature-settings: normal;
-  ${Body4}
+  ${Body3}
   color: ${({ theme }) => theme.colors.body};
   @media only screen and (max-width: 426px) {
-    ${MbBody4}
+    ${MbBody3}
   }
   strong {
     font-weight: 600;
@@ -394,10 +397,10 @@ const Content = styled.div`
   }
   a {
     display: inline-block;
-    ${Body4}
+    ${Body3}
     color: ${({ theme }) => theme.colors.primary};
     @media only screen and (max-width: 426px) {
-      ${MbBody4}
+      ${MbBody3}
     }
     :hover {
       color: ${({ theme }) => theme.colors.title};
@@ -410,7 +413,7 @@ const Content = styled.div`
       margin-top: 8px;
       a {
         display: inline-block;
-        ${Body4}
+        ${Body3}
         color: ${({ theme }) => theme.colors.primary};
         :hover {
           color: ${({ theme }) => theme.colors.title};
@@ -435,6 +438,12 @@ const Content = styled.div`
     strong {
       font-weight: 400;
     }
+    @media only screen and (max-width: 991px) {
+      ${MobileH2}
+    }
+    @media only screen and (max-width: 479px) {
+      ${MobileH3}
+    }
   }
   h3 {
     font-size: 32px;
@@ -446,6 +455,9 @@ const Content = styled.div`
     strong {
       font-weight: 400;
     }
+    @media only screen and (max-width: 479px) {
+      ${MobileH4}
+    }
   }
   h4 {
     font-size: 24px;
@@ -456,16 +468,22 @@ const Content = styled.div`
     strong {
       font-weight: 400;
     }
+    @media only screen and (max-width: 479px) {
+      ${Body3}
+    }
   }
   p {
     color: ${({ theme }) => theme.colors.body};
     margin-bottom: 1rem;
     margin-top: 1rem;
-    font-size: 1.125rem;
-    line-height: 1.75rem;
+    ${Body3}
     @media only screen and (max-width: 426px) {
       font-size: 15px;
       line-height: 130%;
+    }
+    strong {
+      font-weight: 500;
+      color: ${({ theme }) => theme.colors.title};
     }
   }
   ol {
@@ -474,7 +492,7 @@ const Content = styled.div`
       margin-top: 8px;
       a {
         display: inline-block;
-        ${Body4}
+        ${Body3}
         color: ${({ theme }) => theme.colors.primary};
         :hover {
           color: ${({ theme }) => theme.colors.title};
