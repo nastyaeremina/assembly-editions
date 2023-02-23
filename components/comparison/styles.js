@@ -33,7 +33,7 @@ const ComparisonTable = styled.div`
   table {
     border-collapse: separate;
     width: 100%;
-    @media only screen and (max-width: 426px) {
+    @media only screen and (max-width: 450px) {
       display: none;
     }
     .radius {
@@ -242,7 +242,7 @@ const Comparisontabledata = styled.div`
 `
 const MobileViewTable = styled.div`
   display: none;
-  @media only screen and (max-width: 426px){
+  @media only screen and (max-width: 450px){
     display:block;
   }
 `;
