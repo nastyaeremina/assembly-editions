@@ -67,7 +67,7 @@ export default function Comparison({ postDetail: details, seoData }) {
     return details?.g2GroupCollection?.items?.map((item, index) => {
       return (
         <G2text key={`g2groupcollection_${index}`}>
-          <h3>{item?.title}</h3>
+          <h3>{item?.name}</h3>
           <G2progressbar>
             <Processdata>
               <span>{item?.copilotValue}</span>
@@ -88,7 +88,7 @@ export default function Comparison({ postDetail: details, seoData }) {
       return (
         <tr key={`g2comparisonrow_${index}`}>
           <td colSpan={3} className='leftside'>
-            {item?.title}
+            {item?.name}
           </td>
           <td>
             {item?.copilotValue?.toLowerCase() === 'yes' ? (
@@ -118,16 +118,16 @@ export default function Comparison({ postDetail: details, seoData }) {
       if (isEmpty(details?.comparisonTableCollection?.items)) return null;
       return details?.comparisonTableCollection?.items?.map((item, index) => {
         const value = isCopilot ? item?.copilotValue : item?.partnerValue;
-        const isUpdateTilte = value?.toLowerCase() !== 'yes' && value.toLowerCase() !== 'no';
+        const isUpdateTilte = value?.toLowerCase() !== 'yes' && value?.toLowerCase() !== 'no';
 
         return (
           <Details key={`g2comparisonrow_${index}`}>
             <Image
-              src={value?.toLowerCase() === 'limited' || value.toLowerCase() === 'no' ? cancelmark : checkmark}
+              src={value?.toLowerCase() === 'limited' || value?.toLowerCase() === 'no' ? cancelmark : checkmark}
               alt='check-mark'
               className='mobilecheckmark'
             />
-            <p>{isUpdateTilte ? `${value} ${item?.title}` : item?.title}</p>
+            <p>{isUpdateTilte ? `${value} ${item?.name}` : item?.name}</p>
           </Details>
         );
       });
