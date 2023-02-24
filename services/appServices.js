@@ -6,15 +6,17 @@ import { getSitemap } from '../lib/contentful-sitemap';
 export const getTopBarContent = () => async (dispatch) => {
   try {
     dispatch(setAppLoading(true));
-    const topbarData = await fetch(`/api/getCommonContent`, {
-      method: 'GET',
-      headers: {
-        Accept: 'application/json, text/plain, */*',
-        'Content-Type': 'application/json'
-      }
-    });
-    const topbarContent = await topbarData.json();
-    const data = topbarContent?.data;
+    const data = (await getSitemap(TOP_BAR_CONTENT_ID)) ?? '';
+
+    // const topbarData = await fetch(`/api/getCommonContent`, {
+    //   method: 'GET',
+    //   headers: {
+    //     Accept: 'application/json, text/plain, */*',
+    //     'Content-Type': 'application/json'
+    //   }
+    // });
+    // const topbarContent = await topbarData.json();
+    // const data = topbarContent?.data;
 
     if (!isEmpty(data?.content)) {
       const contentList = data?.content?.split(/[\[\]\(\)]/);
