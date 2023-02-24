@@ -28,7 +28,7 @@ const DemoContain = styled.div`
   justify-content: flex-end;
   height: 100%;
   padding: 60px;
-  h2 {
+  p {
     ${Quote};
     text-shadow: 0px 1px 3px rgba(0, 0, 0, 0.25);
     color: ${({ theme }) => theme.colors.whiteColor};

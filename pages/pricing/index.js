@@ -233,24 +233,24 @@ export default function NewIndex({ faq, seoData }) {
                   <tr>
                     <td colSpan={3} className='tableBorder'></td>
                     <td>
-                      <h3>
+                      <p className='amount'>
                         {isYearly && '$29'}
                         {!isYearly && '$39'}
-                      </h3>
+                      </p>
                       <span className='spantext'>per internal user</span>
                     </td>
                     <td>
-                      <h3>
+                      <p className='amount'>
                         {isYearly && '$69'}
                         {!isYearly && '$89'}
-                      </h3>
+                      </p>
                       <span className='spantext'>per internal user</span>
                     </td>
                     <td>
-                      <h3>
+                      <p className='amount'>
                         {isYearly && '$119'}
                         {!isYearly && '$139'}
-                      </h3>
+                      </p>
                       <span className='spantext'>per internal user</span>
                       <span className='spantext'>5 user minimum</span>
                     </td>
