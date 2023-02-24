@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { Body1, Body3, Body4, Body5, FooterText, HeaderFont, Heading3, Heading4, LinkTxt, MbBody1, MbBody3, MbBody4, MbBody5, MbButtonText, MobileH2, MobileH3, MobileH4 } from "./styles";
+import { Body1, Body3, Body4, Body5, FooterText, HeaderFont, Heading2, Heading3, Heading4, LinkTxt, MbBody1, MbBody3, MbBody4, MbBody5, MbButtonText, MobileH2, MobileH3, MobileH4 } from "./styles";
 
 const FirstBlog = styled.div`
     border: 1px solid #01011D;
@@ -217,7 +217,7 @@ const DetailHero = styled.div`
   padding: 0px 0 40px;
   /* margin-top:20px;     */
   h1 {
-    ${Heading3};
+    ${Heading2};
     color: ${({ theme }) => theme.colors.title};
     margin: 0;
     @media only screen and (max-width: 769px) {
@@ -240,8 +240,12 @@ const BlogImage = styled.div`
     object-fit: cover;
     border-radius: 8px;
     border: 1px solid #dfe1f4;
+    @media only screen and (max-width: 450px) {
+      height: 248px;
+      object-fit: cover;
+    }
   }
-  @media only screen and (max-width: 426px) {
+  @media only screen and (max-width: 450px) {
     height: 248px;
   }
 `;
@@ -254,7 +258,7 @@ const BlogTime = styled.div`
     margin-top:20px;
     margin-bottom:40px;
     color: ${({ theme }) => theme.colors.lightgray};
-    @media only screen and (max-width:426px){
+    @media only screen and (max-width:450px){
         ${MbBody4}
         margin-top:16px;
         margin-bottom:28px;
@@ -266,7 +270,7 @@ const Post = styled.div`
     color: ${({ theme }) => theme.colors.lightgray};
     gap:8px;
     align-items:center;
-     @media only screen and (max-width:426px){
+     @media only screen and (max-width:450px){
         ${MbBody4}
      }
     li{
@@ -280,7 +284,7 @@ const Table = styled.div`
     border-radius: 4px;
     padding: 30px 25px;
     margin-bottom:40px;
-    @media only screen and (max-width:426px){
+    @media only screen and (max-width:450px){
         padding: 20px 16px;
         margin-bottom:28px;
     }
@@ -292,7 +296,7 @@ const Table = styled.div`
         padding-left:0px;
         list-style-position:inside;
         color: ${({ theme }) => theme.colors.primary};
-        @media only screen and (max-width:426px){
+        @media only screen and (max-width:450px){
             margin-top:4px;
             margin-bottom:0px;
             ${MbBody4}
@@ -321,13 +325,13 @@ const TableHeading = styled.div`
     display:flex;
     gap:8px;
     align-items:center;
-     @media only screen and (max-width:426px){
+     @media only screen and (max-width:450px){
          ${MbBody1}
     }
     p{
         ${Body4}
         margin:0px;
-        @media only screen and (max-width:426px){
+        @media only screen and (max-width:450px){
             ${MbButtonText}
         }
         :hover{
@@ -343,7 +347,7 @@ const Desc = styled.div`
 max-width:880px;
 width:100%;
 margin:40px 0;
- @media only screen and (max-width:426px){
+ @media only screen and (max-width:450px){
     margin:28px 0;
     ${MbBody4}
  }
@@ -352,7 +356,7 @@ margin:40px 0;
         P{
             margin-top:10px;
             margin-bottom:40px;
-             @media only screen and (max-width:426px){
+             @media only screen and (max-width:450px){
                 margin-bottom:28px;
              }
         }
@@ -372,7 +376,7 @@ const Content = styled.div`
   font-feature-settings: normal;
   ${Body3}
   color: ${({ theme }) => theme.colors.body};
-  @media only screen and (max-width: 426px) {
+  @media only screen and (max-width: 450px) {
     ${MbBody3}
   }
   strong {
@@ -390,7 +394,7 @@ const Content = styled.div`
       border: 1px solid black;
       width: 100%;
       height: 496px;
-      @media only screen and (max-width: 426px) {
+      @media only screen and (max-width: 450px) {
         height: 180px;
       }
     }
@@ -399,7 +403,7 @@ const Content = styled.div`
     display: inline-block;
     ${Body3}
     color: ${({ theme }) => theme.colors.primary};
-    @media only screen and (max-width: 426px) {
+    @media only screen and (max-width: 450px) {
       ${MbBody3}
     }
     :hover {
@@ -477,7 +481,7 @@ const Content = styled.div`
     margin-bottom: 1rem;
     margin-top: 1rem;
     ${Body3}
-    @media only screen and (max-width: 426px) {
+    @media only screen and (max-width: 450px) {
       font-size: 15px;
       line-height: 130%;
     }
@@ -512,7 +516,7 @@ const Content = styled.div`
 const Textcontent = styled.div`
         ${Body4}
         color: ${({ theme }) => theme.colors.body};
-         @media only screen and (max-width:426px){
+         @media only screen and (max-width:450px){
             ${MbBody4}
         }
 `
@@ -522,7 +526,7 @@ const ShareButton = styled.div`
     max-width:156px;
     width:100%;
     text-align:center;
-     @media only screen and (max-width:426px){
+     @media only screen and (max-width:450px){
             ${MbBody4}
             max-width:122px;
             width:100%;
@@ -543,7 +547,7 @@ const Icon = styled.div`
             cursor: pointer;
             background-color:#09AA6C;
         }
-         @media only screen and (max-width:426px){
+         @media only screen and (max-width:450px){
             width:30px;
             height:30px;
          }
@@ -559,7 +563,7 @@ h1{
     margin-top:0px;
     margin-bottom:12px;
     color: ${({ theme }) => theme.colors.black};
-     @media only screen and (max-width:426px){
+     @media only screen and (max-width:450px){
             ${MobileH4}
         }
 }
@@ -568,7 +572,7 @@ p{
     margin-bottom:40px;
     margin-top:30px;
     color: ${({ theme }) => theme.colors.body};
-     @media only screen and (max-width:426px){
+     @media only screen and (max-width:450px){
             margin-bottom:0px;
             ${Body5}
         }
