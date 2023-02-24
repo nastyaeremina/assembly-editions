@@ -67,7 +67,7 @@ export default function Comparison({ postDetail: details, seoData }) {
     return details?.g2GroupCollection?.items?.map((item, index) => {
       return (
         <G2text key={`g2groupcollection_${index}`}>
-          <h3>{item?.title}</h3>
+          <h3>{item?.name}</h3>
           <G2progressbar>
             <Processdata>
               <span>{item?.copilotValue}</span>
@@ -88,7 +88,7 @@ export default function Comparison({ postDetail: details, seoData }) {
       return (
         <tr key={`g2comparisonrow_${index}`}>
           <td colSpan={3} className='leftside'>
-            {item?.title}
+            {item?.name}
           </td>
           <td>
             {item?.copilotValue?.toLowerCase() === 'yes' ? (
@@ -127,7 +127,7 @@ export default function Comparison({ postDetail: details, seoData }) {
               alt='check-mark'
               className='mobilecheckmark'
             />
-            <p>{isUpdateTilte ? `${value} ${item?.title}` : item?.title}</p>
+            <p>{isUpdateTilte ? `${value} ${item?.name}` : item?.name}</p>
           </Details>
         );
       });
