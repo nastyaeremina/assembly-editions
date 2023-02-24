@@ -415,7 +415,7 @@ const PriceTable = styled.div`
       .spanpadding {
         padding-top: 12px;
       }
-      h3 {
+      .amount {
         margin: 0 0 4px 0;
         color: ${({ theme }) => theme.colors.greendark};
         ${TableText};

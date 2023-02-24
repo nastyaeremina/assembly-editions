@@ -118,12 +118,12 @@ export default function Comparison({ postDetail: details, seoData }) {
       if (isEmpty(details?.comparisonTableCollection?.items)) return null;
       return details?.comparisonTableCollection?.items?.map((item, index) => {
         const value = isCopilot ? item?.copilotValue : item?.partnerValue;
-        const isUpdateTilte = value?.toLowerCase() !== 'yes' && value.toLowerCase() !== 'no';
+        const isUpdateTilte = value?.toLowerCase() !== 'yes' && value?.toLowerCase() !== 'no';
 
         return (
           <Details key={`g2comparisonrow_${index}`}>
             <Image
-              src={value?.toLowerCase() === 'limited' || value.toLowerCase() === 'no' ? cancelmark : checkmark}
+              src={value?.toLowerCase() === 'limited' || value?.toLowerCase() === 'no' ? cancelmark : checkmark}
               alt='check-mark'
               className='mobilecheckmark'
             />
