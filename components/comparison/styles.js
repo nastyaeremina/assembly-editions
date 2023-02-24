@@ -19,7 +19,7 @@ const ComparisonTable = styled.div`
     ${Heading3}
     color: ${({ theme }) => theme.colors.title};
     padding-bottom: 40px;
-    @media only screen and (max-width: 425px) {
+    @media only screen and (max-width: 426px) {
       padding-top: 40px;
     }
   }
@@ -33,7 +33,7 @@ const ComparisonTable = styled.div`
   table {
     border-collapse: separate;
     width: 100%;
-    @media only screen and (max-width: 425px) {
+    @media only screen and (max-width: 450px) {
       display: none;
     }
     .radius {
@@ -98,7 +98,7 @@ const G2section = styled.div`
     ${Heading3}
     color: ${({ theme }) => theme.colors.title};
     padding-bottom: 40px;
-    @media only screen and (max-width: 425px) {
+    @media only screen and (max-width: 426px) {
       padding-top:80px;
     }
   }
@@ -108,7 +108,7 @@ const G2group = styled.div`
   justify-content: flex-end;
   gap: 24px;
   padding-bottom: 32px;
-  @media only screen and (max-width: 425px) {
+  @media only screen and (max-width: 426px) {
     justify-content: flex-end;
     gap: 12px;
     padding-bottom: 28px;
@@ -132,7 +132,7 @@ const Groupdetail = styled.div`
       height: 18px;
     }
   }
-  @media only screen and (max-width: 425px) {
+  @media only screen and (max-width: 426px) {
     gap: 6px;
     svg {
       width: 10px;
@@ -147,7 +147,7 @@ const Groupdetail = styled.div`
     ${Body3}
     margin:0;
     color: ${({ theme }) => theme.colors.title};
-    @media only screen and (max-width: 425px) {
+    @media only screen and (max-width: 426px) {
       ${Body5}
     }
   }
@@ -162,7 +162,7 @@ const G2criteria = styled.div`
   @media only screen and (max-width: 768px) {
     grid-template-columns: 1fr;
   }
-  @media only screen and (max-width: 425px) {
+  @media only screen and (max-width: 426px) {
     gap: 40px;
   }
 `;
@@ -208,6 +208,8 @@ const ComparisonHide = styled.div`
   background: #ffffff;
 `;
 const Headingpart = styled.div`
+  display:flex;
+  justify-content:center;
   padding: 20px 68px;
   border-bottom: 1px solid #00160e;
   h2 {
@@ -240,7 +242,7 @@ const Comparisontabledata = styled.div`
 `
 const MobileViewTable = styled.div`
   display: none;
-  @media only screen and (max-width: 425px){
+  @media only screen and (max-width: 450px){
     display:block;
   }
 `;

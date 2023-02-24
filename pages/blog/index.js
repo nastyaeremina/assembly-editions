@@ -79,7 +79,6 @@ export default function Blog({ seoData, allPosts, tags }) {
         </FirstBlog>
       );
     });
-
   }, [allPosts, router]);
 
   const renderData = useMemo(() => {
@@ -229,7 +228,7 @@ export default function Blog({ seoData, allPosts, tags }) {
 }
 export async function getStaticProps({ preview = false }) {
   const seoData = (await getSEOdata(BLOG_SEO_ID)) ?? [];
-  seoData.canonical="https://www.copilot.com/blog";
+  seoData.canonical = 'https://www.copilot.com/blog';
   const allPosts = (await getBlogPosts()) ?? [];
   const tags = (await getAllTagWithSlug()) ?? [];
   const finalTagList = tags?.filter((tag) => tag?.name?.trim()?.[0] !== '#');
