@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { Body1, Body3, Body4, Body5, FooterText, HeaderFont, Heading2, Heading3, Heading4, LinkTxt, MbBody1, MbBody3, MbBody4, MbBody5, MbButtonText, MobileH2, MobileH3, MobileH4 } from "./styles";
 
+
 const FirstBlog = styled.div`
     border: 1px solid #01011D;
     border-radius:4px;
