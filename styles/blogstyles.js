@@ -251,20 +251,24 @@ const BlogImage = styled.div`
   }
 `;
 const BlogTime = styled.div`
-    ${Body4}
-    max-width:880px;
-    width:100%;
-    display:flex;
-    justify-content:space-between;
-    margin-top:20px;
-    margin-bottom:40px;
-    color: ${({ theme }) => theme.colors.lightgray};
-    @media only screen and (max-width:450px){
-        ${MbBody4}
-        margin-top:16px;
-        margin-bottom:28px;
-    }
-`
+  ${Body4}
+  max-width:880px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+  margin-bottom: 40px;
+  color: ${({ theme }) => theme.colors.lightgray};
+  @media only screen and (max-width: 450px) {
+    ${MbBody4}
+    margin-top:16px;
+    margin-bottom: 28px;
+  }
+  span:hover {
+    color: ${({ theme }) => theme.colors.title};
+    cursor: pointer;
+  }
+`;
 const Post = styled.div`
     ${Body4}
     display:flex;
