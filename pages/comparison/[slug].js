@@ -67,7 +67,7 @@ export default function Comparison({ postDetail: details, seoData }) {
     return details?.g2GroupCollection?.items?.map((item, index) => {
       return (
         <G2text key={`g2groupcollection_${index}`}>
-          <h3>{item?.name}</h3></h3>
+          <h3>{item?.name}</h3>
           <G2progressbar>
             <Processdata>
               <span>{item?.copilotValue}</span>
