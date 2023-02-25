@@ -381,7 +381,7 @@ const Content = styled.div`
     ${MbBody3}
   }
   strong {
-    font-weight: 600;
+    font-weight: 500;
   }
   figure {
     margin: 0px;
@@ -416,10 +416,17 @@ const Content = styled.div`
     margin-left: 15px;
     li {
       margin-top: 8px;
+      strong {
+        font-weight: 500;
+        color: ${({ theme }) => theme.colors.title};
+      }
       a {
         display: inline-block;
         ${Body3}
         color: ${({ theme }) => theme.colors.primary};
+        @media only screen and (max-width: 450px) {
+          ${MbBody3}
+        }
         :hover {
           color: ${({ theme }) => theme.colors.title};
         }
@@ -495,10 +502,17 @@ const Content = styled.div`
     padding-left: 20px;
     li {
       margin-top: 8px;
+      strong {
+        font-weight: 500;
+        color: ${({ theme }) => theme.colors.title};
+      }
       a {
         display: inline-block;
         ${Body3}
         color: ${({ theme }) => theme.colors.primary};
+        @media only screen and (max-width: 450px) {
+          ${MbBody3}
+        }
         :hover {
           color: ${({ theme }) => theme.colors.title};
         }
