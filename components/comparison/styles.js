@@ -15,12 +15,12 @@ const ComparisonTable = styled.div`
   }
   h2 {
     margin: 0;
-    padding-top: 50px;
+    padding-top: 100px;
     ${Heading3}
     color: ${({ theme }) => theme.colors.title};
     padding-bottom: 40px;
     @media only screen and (max-width: 426px) {
-      padding-top: 40px;
+      padding-top: 80px;
     }
   }
   .secondheading {
@@ -94,12 +94,12 @@ const ComparisonTable = styled.div`
 const G2section = styled.div`
   h2 {
     margin: 0;
-    padding-top: 100px;
+    padding-top: 50px;
     ${Heading3}
     color: ${({ theme }) => theme.colors.title};
     padding-bottom: 40px;
     @media only screen and (max-width: 426px) {
-      padding-top:80px;
+      padding-top:40px;
     }
   }
 `;
