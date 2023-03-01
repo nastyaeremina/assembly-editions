@@ -123,11 +123,11 @@ export default function Comparison({ postDetail: details, seoData }) {
         return (
           <Details key={`g2comparisonrow_${index}`}>
             <Image
-              src={value?.toLowerCase() === 'limited' || value?.toLowerCase() === 'no' ? cancelmark : checkmark}
+              src={isEmpty(value) || value?.toLowerCase() === 'no' ? cancelmark : checkmark}
               alt='check-mark'
               className='mobilecheckmark'
             />
-            <p>{isUpdateTilte ? `${value} ${item?.name}` : item?.name}</p>
+            <p>{isUpdateTilte && !isEmpty(value) ? `${value} ${item?.name}` : item?.name}</p>
           </Details>
         );
       });
