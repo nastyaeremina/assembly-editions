@@ -146,35 +146,6 @@ export default function Comparison({ postDetail: details, seoData }) {
             <Modern title={details?.section1Header} data={details?.solutionValueCollection?.items} />
           )}
           <Container>
-            <ComparisonTable>
-              <h2>{details?.section2Header}</h2>
-              <table>
-                <thead>
-                  <tr>
-                    <th colSpan={3} className='leftheader'></th>
-                    <th className='radius'>
-                      <CopilotLogo alt='copilot logo' loading='lazy' width='188' height='40' src={CopilotLogos.src} />
-                    </th>
-                    <th className='secondheading'>{details?.compititorName}</th>
-                  </tr>
-                </thead>
-                <tbody>{renderTableData}</tbody>
-              </table>
-              <MobileViewTable>
-                <ComparisonHide>
-                  <Headingpart>
-                    <CopilotLogo alt='copilot logo' loading='lazy' width='188' height='40' src={CopilotLogos.src} />
-                  </Headingpart>
-                  <Comparisontabledata>{renderTableContentMobileView(true)}</Comparisontabledata>
-                </ComparisonHide>
-                <ComparisonHide className='mobilesecondtable'>
-                  <Headingpart>
-                    <h2>{details?.compititorName}</h2>
-                  </Headingpart>
-                  <Comparisontabledata>{renderTableContentMobileView()}</Comparisontabledata>
-                </ComparisonHide>
-              </MobileViewTable>
-            </ComparisonTable>
             {!isEmpty(details?.g2GroupCollection?.items) && (
               <G2section>
                 <h2>What do customer say on G2?</h2>
@@ -216,6 +187,35 @@ export default function Comparison({ postDetail: details, seoData }) {
                 <G2criteria>{g2ComparisonGroupView}</G2criteria>
               </G2section>
             )}
+            <ComparisonTable>
+              <h2>{details?.section2Header}</h2>
+              <table>
+                <thead>
+                  <tr>
+                    <th colSpan={3} className='leftheader'></th>
+                    <th className='radius'>
+                      <CopilotLogo alt='copilot logo' loading='lazy' width='188' height='40' src={CopilotLogos.src} />
+                    </th>
+                    <th className='secondheading'>{details?.compititorName}</th>
+                  </tr>
+                </thead>
+                <tbody>{renderTableData}</tbody>
+              </table>
+              <MobileViewTable>
+                <ComparisonHide>
+                  <Headingpart>
+                    <CopilotLogo alt='copilot logo' loading='lazy' width='188' height='40' src={CopilotLogos.src} />
+                  </Headingpart>
+                  <Comparisontabledata>{renderTableContentMobileView(true)}</Comparisontabledata>
+                </ComparisonHide>
+                <ComparisonHide className='mobilesecondtable'>
+                  <Headingpart>
+                    <h2>{details?.compititorName}</h2>
+                  </Headingpart>
+                  <Comparisontabledata>{renderTableContentMobileView()}</Comparisontabledata>
+                </ComparisonHide>
+              </MobileViewTable>
+            </ComparisonTable>
           </Container>
           {!isEmpty(details?.testimonial) && <Quote data={details?.testimonial} isComparison />}
           <FAQ contentID={details?.faq?.sys?.id} />
