@@ -1332,11 +1332,11 @@ const AnimatedIcon = styled(Iconview)`
 const Line1 = styled.div`
   position: absolute;
   width: 100%;
-  top: -14px;
-  transform: rotate(180deg);
   background: linear-gradient(90deg, black 50%, transparent 50%);
   background-repeat: repeat-x;
   background-size: 10px 1px;
+  background-position: 0 0;
+  opacity: 0.3;
   animation: dash 15s linear infinite;
   ${(props) =>
     props.isAnimationline2 &&
@@ -1344,39 +1344,47 @@ const Line1 = styled.div`
       width: 125px;
       top: 56px;
       left: auto;
-      right: -38px;
-      transform: rotate(-90deg);
+      right: -23px;
+      transform: rotate(90deg);
     `}
   ${(props) =>
     props.isAnimationline3 &&
     css`
       width: 50%;
-      bottom: 0;
+      bottom: -15px;
       right: 0;
     `}
   @keyframes dash {
     0% {
-      background-position: 100% 0%;
+      background-position: 0 0;
     }
     30% {
-      background-position: 100% 0%;
+      background-position: 0 0;
+      opacity: 0.3;
     }
     31% {
-      background-position: none;
+      opacity: 1;
+    }
+    59% {
+      opacity: 1;
+    }
+    60% {
+      background-position: 100px 0;
+      opacity: 0.3;
     }
     100% {
-      background-position: none;
+      background-position: 100px 0;
     }
   }
 `;
 const Line2 = styled.div`
   position: absolute;
   width: 100%;
-  top: -14px;
-  transform: rotate(180deg);
   background: linear-gradient(90deg, black 50%, transparent 50%);
   background-repeat: repeat-x;
   background-size: 10px 1px;
+  background-position: 0 0;
+  opacity: 0.3;
   animation: dash2 15s linear infinite;
   ${(props) =>
     props.isAnimationline2 &&
@@ -1384,28 +1392,39 @@ const Line2 = styled.div`
       width: 125px;
       top: 56px;
       left: auto;
-      right: -38px;
-      transform: rotate(-90deg);
+      right: -23px;
+      transform: rotate(90deg);
     `}
   ${(props) =>
     props.isAnimationline3 &&
     css`
       width: 50%;
-      bottom: 0;
+      bottom: -15px;
       right: 0;
     `}
   @keyframes dash2 {
     0% {
-      background-position: 100% 0%;
+      background-position: 0 0;
     }
     30% {
-      background-position: 100% 0%;
+      background-position: 0 0;
     }
-    31% {
-      background-position: none;
+    60% {
+      background-position: 0 0;
+      opacity: 0.3;
+    }
+    61% {
+      opacity: 1;
+    }
+    89% {
+      opacity: 1;
+    }
+    90% {
+      background-position: 100px 0;
+      opacity: 0.3;
     }
     100% {
-      background-position: none;
+      background-position: 100px 0;
     }
   }
 `;
