@@ -482,10 +482,10 @@ const TopFunctionWrap = styled.div`
 `;
 const BottomFunction = styled.div`
   margin-top: 40px;
-  .am{
-  font-family: 'Bagoss';
-  letter-spacing: 0.02em;
-}
+  .am {
+    font-family: 'Bagoss';
+    letter-spacing: 0.02em;
+  }
   .af {
     width: 100%;
   }
@@ -519,13 +519,13 @@ const TabRow = styled.div`
     }
     .b4 {
       ${(props) =>
-    props.textColor &&
-    css`
+        props.textColor &&
+        css`
           color: ${props.textColor};
         `}
       ${(props) =>
-    props.backColor &&
-    css`
+        props.backColor &&
+        css`
           background-color: ${props.bgColor};
         `}
     }
@@ -540,8 +540,8 @@ const TabRow = styled.div`
   .bd {
     :hover {
       ${(props) =>
-    props.textColor &&
-    css`
+        props.textColor &&
+        css`
           color: ${props.textColor};
         `}
     }
@@ -893,44 +893,44 @@ const LineIcon = styled.div`
   }
   @keyframes dash {
     0% {
-    stroke-dashoffset: 0;
-    opacity: 0.3;
+      stroke-dashoffset: 0;
+      opacity: 0.3;
     }
     30% {
-    stroke-dashoffset: 0;
-    opacity: 0.3;
-    }
-    31%{
-      stroke-dashoffset: 100;
-      opacity:1;
-    }
-    60%{
-      stroke-dashoffset: 100;
-      opacity:1;
-    }
-    61%{
       stroke-dashoffset: 0;
-    opacity: 0.3;
+      opacity: 0.3;
     }
-    100%{
+    31% {
+      stroke-dashoffset: 100;
+      opacity: 1;
+    }
+    60% {
+      stroke-dashoffset: 100;
+      opacity: 1;
+    }
+    61% {
+      stroke-dashoffset: 0;
+      opacity: 0.3;
+    }
+    100% {
       stroke-dashoffset: 0;
       opacity: 0.3;
     }
   }
-    @keyframes dash2 {
+  @keyframes dash2 {
     0% {
-     opacity: .3;
+      opacity: 0.3;
     }
     90% {
       opacity: 0.3;
       stroke-dashoffset: 0;
     }
-    91%{
+    91% {
       stroke-dashoffset: 100;
-      opacity:1;
+      opacity: 1;
     }
-    100%{
-      opacity:1;
+    100% {
+      opacity: 1;
     }
   }
 `;
@@ -1197,88 +1197,246 @@ const RightWrap = styled.div`
 `;
 
 const AnimatedIcon = styled(Iconview)`
-.icon{
-  opacity:0;
-  display:block;
-  position:absolute;
-  right:10px;
-}
-.default-state{
-  opacity:1 ;
-}
-.loading-state
-{
-  animation-duration: 15s;
-  animation-iteration-count:infinite;
-} 
-.done-state
-{
-  animation-duration: 15s;
-  animation-iteration-count:infinite;
-} 
-&&.card1 .loading-state
-{
-  animation-name: example1;
-}
-&&.card1 .done-state{
-  animation-name: example2;
-}
-&&.card2 .loading-state
-{
-  animation-name: example3;
-}
-&&.card2 .done-state{
-  animation-name: example4;
-}
-&&.card3 .loading-state
-{
-  animation-name: example5;
-}
-&&.card3 .done-state{
-  animation-name: example6;
-}
-@keyframes example1 {
-  0%  {opacity:1}
-  30% {opacity:1}
-  31% {opacity:0}
-  100% {opacity:0}
-}
-@keyframes example2 {
-  0%  {opacity:0}
-  30% {opacity:0}
-  31% {opacity:1}
-  100% {opacity:1}
-}
-@keyframes example3 {
-  0%  {opacity:0}
-  30% {opacity:0}
-  31%{opacity:1}
-  60% {opacity:1}
-  61% {opacity:0}
-  100% {opacity:0}
-}
-@keyframes example4 {
-  0%  {opacity:0}
-  60% {opacity:0}
-  61% {opacity:1}
-  100% {opacity:1}
-}
-@keyframes example5 {
-  0%  {opacity:0}
-  60% {opacity:0}
-  61%{opacity:1}
-  90% {opacity:1}
-  91% {opacity:0}
-  100% {opacity:0}
-}
-@keyframes example6 {
-  0%  {opacity:0}
-  90% {opacity:0}
-  91% {opacity:1}
-  100% {opacity:1}
-}
+  .icon {
+    opacity: 0;
+    display: block;
+    position: absolute;
+    right: 10px;
+  }
+  .default-state {
+    opacity: 1;
+  }
+  .loading-state {
+    animation-duration: 15s;
+    animation-iteration-count: infinite;
+  }
+  .done-state {
+    animation-duration: 15s;
+    animation-iteration-count: infinite;
+  }
+  &&.card1 .loading-state {
+    animation-name: example1;
+  }
+  &&.card1 .done-state {
+    animation-name: example2;
+  }
+  &&.card2 .loading-state {
+    animation-name: example3;
+  }
+  &&.card2 .done-state {
+    animation-name: example4;
+  }
+  &&.card3 .loading-state {
+    animation-name: example5;
+  }
+  &&.card3 .done-state {
+    animation-name: example6;
+  }
+  @keyframes example1 {
+    0% {
+      opacity: 1;
+    }
+    30% {
+      opacity: 1;
+    }
+    31% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 0;
+    }
+  }
+  @keyframes example2 {
+    0% {
+      opacity: 0;
+    }
+    30% {
+      opacity: 0;
+    }
+    31% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+  @keyframes example3 {
+    0% {
+      opacity: 0;
+    }
+    30% {
+      opacity: 0;
+    }
+    31% {
+      opacity: 1;
+    }
+    60% {
+      opacity: 1;
+    }
+    61% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 0;
+    }
+  }
+  @keyframes example4 {
+    0% {
+      opacity: 0;
+    }
+    60% {
+      opacity: 0;
+    }
+    61% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+  @keyframes example5 {
+    0% {
+      opacity: 0;
+    }
+    60% {
+      opacity: 0;
+    }
+    61% {
+      opacity: 1;
+    }
+    90% {
+      opacity: 1;
+    }
+    91% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 0;
+    }
+  }
+  @keyframes example6 {
+    0% {
+      opacity: 0;
+    }
+    90% {
+      opacity: 0;
+    }
+    91% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
 `;
-
+const Line1 = styled.div`
+  position: absolute;
+  width: 100%;
+  background: linear-gradient(90deg, black 50%, transparent 50%);
+  background-repeat: repeat-x;
+  background-size: 10px 1px;
+  background-position: 0 0;
+  opacity: 0.3;
+  animation: dash 15s linear infinite;
+  ${(props) =>
+    props.isAnimationline2 &&
+    css`
+      width: 125px;
+      top: 56px;
+      left: auto;
+      right: -23px;
+      transform: rotate(90deg);
+    `}
+  ${(props) =>
+    props.isAnimationline3 &&
+    css`
+      width: 50%;
+      bottom: -15px;
+      right: 0;
+    `}
+  @keyframes dash {
+    0% {
+      background-position: 0 0;
+    }
+    30% {
+      background-position: 0 0;
+      opacity: 0.3;
+    }
+    31% {
+      opacity: 1;
+    }
+    59% {
+      opacity: 1;
+    }
+    60% {
+      background-position: 100px 0;
+      opacity: 0.3;
+    }
+    100% {
+      background-position: 100px 0;
+    }
+  }
+`;
+const Line2 = styled.div`
+  position: absolute;
+  width: 100%;
+  background: linear-gradient(90deg, black 50%, transparent 50%);
+  background-repeat: repeat-x;
+  background-size: 10px 1px;
+  background-position: 0 0;
+  opacity: 0.3;
+  animation: dash2 15s linear infinite;
+  ${(props) =>
+    props.isAnimationline2 &&
+    css`
+      width: 125px;
+      top: 56px;
+      left: auto;
+      right: -23px;
+      transform: rotate(90deg);
+    `}
+  ${(props) =>
+    props.isAnimationline3 &&
+    css`
+      width: 50%;
+      bottom: -15px;
+      right: 0;
+    `}
+  @keyframes dash2 {
+    0% {
+      background-position: 0 0;
+    }
+    30% {
+      background-position: 0 0;
+    }
+    60% {
+      background-position: 0 0;
+      opacity: 0.3;
+    }
+    61% {
+      opacity: 1;
+    }
+    89% {
+      opacity: 1;
+    }
+    90% {
+      background-position: 100px 0;
+      opacity: 0.3;
+    }
+    100% {
+      background-position: 100px 0;
+    }
+  }
+`;
+const Line = styled.div`
+  width: 65px;
+  height: 120px;
+  overflow: hidden;
+  position: absolute;
+  left: auto;
+  right: -65px;
+  top: 40px;
+`;
 export {
   HomeMain,
   Scfeaturetitle,
@@ -1349,5 +1507,8 @@ export {
   IconWrap,
   LeftSvg,
   RightWrap,
-  AnimatedIcon
+  AnimatedIcon,
+  Line1,
+  Line2,
+  Line
 };
