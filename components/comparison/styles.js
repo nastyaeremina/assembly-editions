@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { Body2, Body3, Body4, Body5, Heading2, Heading3, Heading4, Heading6, Quote } from '../../styles/styles';
+import { Body2, Body3, Body4, Body5, Heading2, Heading3, Heading4, Heading6, MbBody3, Quote } from '../../styles/styles';
 
 const QuoteSection = styled.div`
   padding: 100px 0 0px;
@@ -19,8 +19,17 @@ const ComparisonTable = styled.div`
     ${Heading3}
     color: ${({ theme }) => theme.colors.title};
     padding-bottom: 40px;
-    @media only screen and (max-width: 426px) {
-      padding-top: 80px;
+    @media only screen and (max-width: 450px) {
+      padding-top: 40px;
+    }
+  }
+  p {
+    ${Body3}
+    color: ${({ theme }) => theme.colors.body};
+    margin-top: -24px;
+    margin-bottom: 40px;
+    @media only screen and (max-width: 450px) {
+      ${MbBody3}
     }
   }
   .secondheading {
@@ -29,6 +38,7 @@ const ComparisonTable = styled.div`
     border-width: 1px;
     /* border-right: none; */
     ${Quote}
+    position: relative;
   }
   table {
     border-collapse: separate;
@@ -51,7 +61,7 @@ const ComparisonTable = styled.div`
       color: ${({ theme }) => theme.colors.title};
     }
     th {
-      padding: 26px 90px;
+      padding: 26px 25px;
       border-color: black;
       text-align: center;
       @media only screen and (max-width: 1024px) {
@@ -210,8 +220,9 @@ const ComparisonHide = styled.div`
 const Headingpart = styled.div`
   display:flex;
   justify-content:center;
-  padding: 20px 68px;
+  padding: 20px 20px;
   border-bottom: 1px solid #00160e;
+  position: relative;
   h2 {
     font-weight: 400;
     font-size: 32px;
@@ -246,6 +257,101 @@ const MobileViewTable = styled.div`
     display:block;
   }
 `;
+const Carditem = styled.div`
+  width: 366px;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #00160e;
+  @media only screen and (max-width: 768px) {
+    width: 327px;
+    .mobilecard{
+      width:203px;
+      height:44px;
+    }
+  }
+`;
+const CardLogo = styled.div`
+  background-color: #00160e;
+  height: 183px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  @media only screen and (max-width: 768px) {
+    height: 150px;
+  }
+`;
+const ComparisonLogo = styled.div`
+  background-color: #fff;
+  height: 183px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  @media only screen and (max-width: 768px) {
+    height: 150px;
+  }
+`;
+const Allcard = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  gap: 63px;
+  padding-top: 100px;
+  @media only screen and (max-width: 450px) {
+    gap:40px;
+    justify-content:center;
+    padding-bottom:40px;
+  }
+`;
+const TableDropdown = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  border: 1px solid #ccccd0;
+  border-radius: 4px;
+  cursor: pointer;
+  :focus{
+    border: 1px solid black;
+  }
+  p {
+    ${Body4}
+    margin:0;
+    padding: 12px 20px;
+  }
+  .dropdownicon {
+    margin-right: 20px;
+  }
+`;
+const Dropdownbox = styled.div`
+  width: calc(100% - 50px);
+  border: 1px solid #00160e;
+  box-shadow: 0px 8px 24px rgba(0, 0, 0, 0.15);
+  border-radius: 4px;
+  background: #ffffff;
+  position: absolute;
+  padding: 8px;
+  z-index: 9999;
+  ${Body4}
+  margin-top:10px;
+  @media only screen and (max-width: 1024px) {
+    width: calc(100% - 40px);
+  }
+  @media only screen and (max-width: 450px) {
+    margin-top: 58px;
+  }
+`;
+const Comparisonname = styled.div`
+  width:100%;
+  padding: 4px 8px;
+  text-align:left;
+  :hover {
+    background-color: #e3ffee;
+    border-radius: 3px;
+  }
+  :active {
+    color: ${({ theme }) => theme.colors.primary};
+    background-color: #fff;
+  }
+`;
 export {
   QuoteSection,
   ComparisonTable,
@@ -260,5 +366,12 @@ export {
   Headingpart,
   Details,
   Comparisontabledata,
-  MobileViewTable
+  MobileViewTable,
+  Carditem,
+  CardLogo,
+  ComparisonLogo,
+  Allcard,
+  TableDropdown,
+  Dropdownbox,
+  Comparisonname
 };
