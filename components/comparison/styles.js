@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { Body2, Body3, Body4, Body5, Heading2, Heading3, Heading4, Heading6, MbBody3, Quote } from '../../styles/styles';
 
 const QuoteSection = styled.div`
@@ -309,9 +309,11 @@ const TableDropdown = styled.div`
   border: 1px solid #ccccd0;
   border-radius: 4px;
   cursor: pointer;
-  :focus{
-    border: 1px solid black;
-  }
+  ${(props) =>
+    props.isFocus &&
+    css`
+      border: 1px solid black;
+    `}
   p {
     ${Body4}
     margin:0;
@@ -329,7 +331,7 @@ const Dropdownbox = styled.div`
   background: #ffffff;
   position: absolute;
   padding: 8px;
-  z-index: 9999;
+  z-index: 99;
   ${Body4}
   margin-top:10px;
   @media only screen and (max-width: 1024px) {
@@ -340,17 +342,19 @@ const Dropdownbox = styled.div`
   }
 `;
 const Comparisonname = styled.div`
-  width:100%;
+  width: 100%;
   padding: 4px 8px;
-  text-align:left;
+  text-align: left;
   :hover {
     background-color: #e3ffee;
     border-radius: 3px;
   }
-  :active {
-    color: ${({ theme }) => theme.colors.primary};
-    background-color: #fff;
-  }
+  ${(props) =>
+    props.isActive &&
+    css`
+      color: ${({ theme }) => theme.colors.primary};
+      background-color: #fff;
+    `}
 `;
 export {
   QuoteSection,

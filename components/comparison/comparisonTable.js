@@ -31,11 +31,14 @@ export default function ComparisonTableView({ data, src, slug }) {
 
   const renderCompitiorList = useMemo(() => {
     return data?.map((item, index) => (
-      <Comparisonname key={`competitor_index_${index}`} onClick={() => onClickCompetitor(data[index])}>
+      <Comparisonname
+        isActive={currentCompititor?.compititorName === item?.compititorName}
+        key={`competitor_index_${index}`}
+        onClick={() => onClickCompetitor(data[index])}>
         {item?.compititorName}
       </Comparisonname>
     ));
-  }, [data, onClickCompetitor]);
+  }, [currentCompititor?.compititorName, data, onClickCompetitor]);
 
   const renderTableData = useMemo(() => {
     return currentCompititor?.comparisonTableCollection?.items?.map((item, index) => {
@@ -103,7 +106,7 @@ export default function ComparisonTableView({ data, src, slug }) {
                 <CopilotLogo alt='copilot logo' loading='lazy' width='188' height='40' src={CopilotLogos.src} />
               </th>
               <th className='secondheading'>
-                <TableDropdown onClick={onclick}>
+                <TableDropdown onClick={onclick} isFocus={isOpen}>
                   <p>{currentCompititor?.compititorName}</p>
                   <Image
                     src='/images/dropdownarrow.svg'
