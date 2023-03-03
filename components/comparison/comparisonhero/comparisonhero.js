@@ -23,10 +23,12 @@ export default function ComparisonHero({ title, description, image }) {
           <SolutionWrap>
             <LeftWrap>
               <TextSection>
-                <h1>
-                  <div>{title}</div>
-                </h1>
-                <p>{description}</p>
+                {title && (
+                  <h1>
+                    <div>{title}</div>
+                  </h1>
+                )}
+                {description && <p>{description}</p>}
                 <BtnWrap>
                   <PrimaryButton>
                     <Link href={COPILOT_ONBORADING_LINK}>Start trial</Link>

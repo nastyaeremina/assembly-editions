@@ -6,7 +6,11 @@ import Layout from '../../components/layout';
 import Navbar from '../../components/navbar/navbar';
 import { MainWrap } from '../../components/solution/clienttab/styles';
 import { Container } from '../../styles/commonStyles';
-import { getAllCompetitor, getAllCompetitorComparisonDetail } from '../../lib/contentful-comparison';
+import {
+  getAllCompetitor,
+  getAllCompetitorComparisonDetail,
+  getMasterComparisonDetail
+} from '../../lib/contentful-comparison';
 import { isEmpty } from '../../helpers/helpers';
 import Quote from '../../components/solution/quote/quote';
 import SEO from '../../components/seo';
@@ -23,10 +27,8 @@ export default function Comparison({ featuredCompetitorList, comparisonList, det
         <Navbar />
         <MainWrap>
           <ComparisonHero
-            title={'Compare Copilot to alternatives'}
-            description={
-              'Learn how Copilot stacks up against competing tools when it comes to pricing, features, support, security, and more.'
-            }
+            title={details?.title}
+            description={details?.description}
             image={
               'https://images.ctfassets.net/l41zuz9np7js/3tCWcW1AwmKcbgrX3eN3Om/3d9324f730b08c4e24e9baf092c6acc0/suitedash.png'
             }
@@ -35,7 +37,7 @@ export default function Comparison({ featuredCompetitorList, comparisonList, det
             {!isEmpty(featuredCompetitorList) && <Cardsection data={featuredCompetitorList} />}
             {!isEmpty(comparisonList) && <ComparisonTableView data={comparisonList} />}
           </Container>
-          {!isEmpty(details?.testimonial) && <Quote data={details?.testimonial} isComparison />}
+          {!isEmpty(details?.testimonial) && <Quote data={details?.testimonial} isMasterComparison />}
           {/* <FAQ contentID={details?.faq?.sys?.id} /> */}
           <CTA />
         </MainWrap>
@@ -46,10 +48,10 @@ export default function Comparison({ featuredCompetitorList, comparisonList, det
 
 export async function getStaticProps({ params, preview = false }) {
   const featuredCompetitorList = (await getAllCompetitor()) ?? [];
-
+  const details = (await getMasterComparisonDetail()) ?? [];
   const comparisonList = (await getAllCompetitorComparisonDetail()) ?? [];
-  const seoData = (await getSEOdata(COMPARISON_SEO_ID)) ?? [];
+  const seoData = details?.seoMetadata ?? {};
   return {
-    props: { featuredCompetitorList, comparisonList, seoData }
+    props: { featuredCompetitorList, comparisonList, details, seoData }
   };
 }

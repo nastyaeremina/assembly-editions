@@ -9,6 +9,11 @@ const QuoteSection = styled.div`
     css`
       padding: 100px 0 0px;
     `}
+  ${(props) =>
+    props.isMasterComparison &&
+    css`
+      padding: 100px 0 100px;
+    `}
   overflow: hidden;
   @media only screen and (max-width: 991px) {
     padding: 40px 0 80px;
