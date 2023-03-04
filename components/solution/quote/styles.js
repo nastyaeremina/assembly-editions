@@ -22,6 +22,11 @@ const QuoteSection = styled.div`
       css`
         padding: 80px 0 0px;
       `}
+    ${(props) =>
+      props.isMasterComparison &&
+      css`
+        padding: 80px 0 80px;
+      `}
   }
 `;
 
