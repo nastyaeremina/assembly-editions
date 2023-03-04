@@ -728,6 +728,7 @@ const RightDetail = styled.div`
   width: 100%;
   background: transparent;
   position: relative;
+  cursor: pointer;
   @media only screen and (max-width: 749px) {
     margin-top: 4px;
     padding: 5px 6px;
@@ -1436,6 +1437,42 @@ const Line = styled.div`
   left: auto;
   right: -65px;
   top: 40px;
+`
+const ZoomImage = styled.div`
+  background: rgba(0, 0, 0, 0.8);
+  width: 100%;
+  height: 100vh;
+  position: fixed;
+  z-index: 9999;
+  top: 0;
+  left: 0;
+  p {
+    font-weight: 500;
+    font-size: 13px;
+    line-height: 24px;
+    letter-spacing: 0.02;
+    color: #ffffff;
+    margin: 0;
+    position: absolute;
+    top: 5%;
+    right: 5%;
+    z-index: 1;
+  }
+`;
+const ImageDiv = styled.div`
+  .onzoom {
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    left: 50%;
+    border-radius: 5px;
+    z-index: 1;
+    @media only screen and (max-width: 768px) {
+      width: 100%;
+      max-width: 90%;
+      height:auto;
+    }
+  }
 `;
 export {
   HomeMain,
@@ -1510,5 +1547,7 @@ export {
   AnimatedIcon,
   Line1,
   Line2,
-  Line
+  Line,
+  ZoomImage,
+  ImageDiv
 };

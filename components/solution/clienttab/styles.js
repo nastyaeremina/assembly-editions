@@ -211,6 +211,7 @@ const SignBox = styled.div`
   border-radius: 8px;
   padding: 35px;
   background-color: #fffffd;
+  cursor:pointer;
   @media only screen and (max-width: 991px) {
     padding: 25px;
   }

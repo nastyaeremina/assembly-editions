@@ -4,6 +4,7 @@ import { useCallback, useMemo, useState } from 'react';
 import { isEmpty } from '../../../helpers/helpers';
 import { Container, SecondryButton } from '../../../styles/commonStyles';
 import Button from '../../button/button';
+import ZoomImg from '../../zoomImage';
 import {
   ExploreSection,
   TopView,
@@ -63,7 +64,8 @@ export default function ExploreTab({ data, demoUrl }) {
       <Container>
         <SignBox>
           <SignImgView>
-            <Image src={data?.[selectedTabIbndex]?.image?.url} alt='main-logo' width={1154} height={725} />
+            {/* <Image src={data?.[selectedTabIbndex]?.image?.url} alt='main-logo' width={1154} height={725} /> */}
+            <ZoomImg src={data?.[selectedTabIbndex]?.image?.url} alt='main-logo' width={1154} height={725} />
           </SignImgView>
         </SignBox>
       </Container>
