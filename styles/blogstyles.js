@@ -20,6 +20,7 @@ import {
   MobileH4
 } from './styles';
 
+
 const FirstBlog = styled.div`
   border: 1px solid #01011d;
   border-radius: 4px;
