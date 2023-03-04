@@ -318,6 +318,8 @@ const TableDropdown = styled.div`
     ${Body4}
     margin:0;
     padding: 12px 20px;
+    width:150px;
+    text-align:left;
   }
   .dropdownicon {
     margin-right: 20px;
