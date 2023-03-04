@@ -25,7 +25,6 @@ export default function TabView({ bgColor, textColor, isHome, tabData: allPosts 
   const [activeTab, setActiveTab] = useState(0);
 
   const [isOpen, setIsOpen] = useState(false);
-  const [isZoom, setIsZoom] = useState(false);
 
   const onClick = () => {
     setIsOpen(!isOpen);
@@ -79,31 +78,8 @@ export default function TabView({ bgColor, textColor, isHome, tabData: allPosts 
                       )}
                     </LeftDetail>
                     <RightDetail onClick={onClick}>
-                      {/* <Zoom> */}
-                      {/* <Image src={item?.image?.url} width={881.76} height={550.63} alt='msg-screen' /> */}
                       <ZoomImg src={item?.image?.url} width={881.76} height={550.63} alt='msg-screen' />
-                      {/* </Zoom> */}
                     </RightDetail>
-                    {/* {isOpen ? (
-                      <>
-                        <ZoomImage>
-                          <p onClick={onClick}>Close</p>
-                          <ImageDiv>
-                            <Image
-                              src={item?.image?.url}
-                              width={881.76}
-                              height={550.63}
-                              alt='msg-screen'
-                              className={classNames('onzoom', { extrazoom: isZoom })}
-                              onClick={() => {
-                                setIsZoom(!isZoom);
-                              }}
-                            />
-                          </ImageDiv>
-                          <OverLayDiv onClick={onClick}></OverLayDiv>
-                        </ZoomImage>
-                      </>
-                    ) : null}  */}
                   </ContainWrap>
                 </TabContent>
               </>
