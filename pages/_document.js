@@ -5,6 +5,7 @@ import Script from 'next/script';
 import { GTM_ID } from '../lib/gtm';
 import { getCustomeCode } from '../lib/contentful-staticCode';
 import { isEmpty } from '../helpers/helpers';
+
 export default class MyDocument extends Document {
   static async getInitialProps(ctx) {
     const sheet = new ServerStyleSheet();
