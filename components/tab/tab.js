@@ -1,7 +1,6 @@
 import { StatefulTabs, StyledTab, Tab } from 'baseui/tabs';
 import { LabelMedium } from 'baseui/typography';
 import Image from 'next/image';
-import Zoom from 'react-medium-image-zoom';
 import classNames from 'classnames';
 import React, { useMemo, useState } from 'react';
 import {
