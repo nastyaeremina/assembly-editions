@@ -303,6 +303,7 @@ export default function Footer({ isEnterPrice }) {
                     <Link href={'/updates'}>What’s New</Link>
                     <Link href={HELP_CENTER_LINK}>Help Center</Link>
                     <Link href='/university'>Video Tutorials</Link>
+                    <Link href='/comparison'>Compare</Link>
                     <Link href='http://docs.copilot.com/'>API Reference</Link>
                     <Link href={COPILOT_SYSTEM_STATUS_LINK}>System Status</Link>
                     <Link href='/sitemap'>Sitemap</Link>
@@ -343,8 +344,9 @@ export default function Footer({ isEnterPrice }) {
                     <Link href={BLOG_LINK}>Blog</Link>
                     <Link href={COPILOT_SECURITY_LINK}>Security</Link>
                     <Link href={'/updates'}>What’s New</Link>
-                    <Link href='#'>Help Center</Link>
+                    <Link href={HELP_CENTER_LINK}>Help Center</Link>
                     <Link href='/university'>Video Tutorials</Link>
+                    <Link href='/comparison'>Compare</Link>
                     <Link href='http://docs.copilot.com/'>API Reference</Link>
                     <Link href={COPILOT_SYSTEM_STATUS_LINK}>System Status</Link>
                     <Link href='/sitemap'>Sitemap</Link>
