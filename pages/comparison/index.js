@@ -26,13 +26,7 @@ export default function Comparison({ featuredCompetitorList, comparisonList, det
       <Layout>
         <Navbar />
         <MainWrap>
-          <ComparisonHero
-            title={details?.title}
-            description={details?.description}
-            image={
-              'https://images.ctfassets.net/l41zuz9np7js/3tCWcW1AwmKcbgrX3eN3Om/3d9324f730b08c4e24e9baf092c6acc0/suitedash.png'
-            }
-          />
+          <ComparisonHero title={details?.title} description={details?.description} image={details?.image?.url} />
           <Container>
             {!isEmpty(featuredCompetitorList) && <Cardsection data={featuredCompetitorList} />}
             {!isEmpty(comparisonList) && <ComparisonTableView data={comparisonList} />}
