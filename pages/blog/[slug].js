@@ -3,7 +3,7 @@ import { useCallback, useEffect, useMemo, useState } from 'react';
 import moment from 'moment';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import { NextSeo } from 'next-seo';
+import { ArticleJsonLd, NextSeo } from 'next-seo';
 import {
   FacebookIcon,
   FacebookShareButton,
@@ -92,7 +92,7 @@ export default function Blogdetail({ blogDetail, tags }) {
       <NextSeo
         title={blogDetail?.meta_title ?? blogDetail?.title}
         description={blogDetail?.meta_description}
-        canonical={"https://www.copilot.com/blog/"+blogDetail?.slug}
+        canonical={'https://www.copilot.com/blog/' + blogDetail?.slug}
         openGraph={{
           type: 'website',
           locale: 'en_IE',
@@ -116,12 +116,36 @@ export default function Blogdetail({ blogDetail, tags }) {
     blogDetail?.og_description,
     blogDetail?.og_image,
     blogDetail?.og_title,
+    blogDetail?.slug,
     blogDetail?.title
   ]);
+  const authorData = useMemo(() => {
+    if (isEmpty(blogDetail?.authors)) return [];
+    return blogDetail?.authors?.map((item) => {
+      return {
+        type: 'Person',
+        name: item?.name,
+        url: item?.url
+      };
+    });
+  }, [blogDetail?.authors]);
 
   return (
     <>
       {renderSeoData}
+      <ArticleJsonLd
+        type='Article'
+        authorName={authorData}
+        url={`https://www.copilot.com/blog/${blogDetail?.slug}/`}
+        images={[blogDetail?.feature_image]}
+        title={blogDetail?.title}
+        description={blogDetail?.excerpt}
+        publisherName='Copilot'
+        publisherLogo='https://www.copilot.com/blog/assets/images/logo-copilot.svg?v=d96fa6b44d'
+        datePublished={blogDetail?.created_at}
+        dateModified={blogDetail?.updated_at}
+      />
+
       <Layout>
         {renderNavbar}
         <MainContent>
