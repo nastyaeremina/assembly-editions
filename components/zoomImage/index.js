@@ -19,7 +19,7 @@ export default function ZoomImg(src, width, height, alt) {
           <ZoomImage>
             <p onClick={onClick}>Close</p>
             <ImageDiv>
-              <Image src={src} width={'80%'} alt='msg-screen' className='onzoom' />
+              <Image src={src} alt='msg-screen' className='onzoom' />
             </ImageDiv>
             <OverLayDiv onClick={onClick}></OverLayDiv>
           </ZoomImage>
