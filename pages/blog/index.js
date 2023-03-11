@@ -28,7 +28,7 @@ import {
 } from '../../styles/blogstyles';
 import Blogcard from '../../components/Blogcard';
 import { getSEOdata } from '../../lib/contentful-seo';
-import { getAllTagWithSlug, getBlogPosts } from '../../lib/blog-content';
+import { getAllTagWithSlug } from '../../lib/blog-content';
 import { isEmpty } from '../../helpers/helpers';
 import SubscribeModel from '../../components/SubscribeModel';
 import { BlogSubscribe, Logo, Premium, Button, Model } from '../../components/SubscribeModel/style';
