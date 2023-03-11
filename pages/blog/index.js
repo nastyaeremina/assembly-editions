@@ -3,6 +3,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import moment from 'moment';
 import { useRouter } from 'next/router';
+import { OrganizationJsonLd } from 'next-seo';
 import Layout from '../../components/layout';
 import BlogNavbar from '../../components/navbar/blognavbar';
 import Navbar from '../../components/navbar/navbar';
@@ -109,6 +110,19 @@ export default function Blog({ seoData, allPosts, tags }) {
   return (
     <>
       <SEO seoData={seoData} />
+      <OrganizationJsonLd
+        type={'Organization'}
+        name='Copilot'
+        url='https://www.copilot.com'
+        logo='https://www.copilot.com/_next/static/media/blacklogo.370e156c.svg'
+        sameAs={[
+          'https://twitter.com/copilot',
+          'https://www.linkedin.com/company/copilotplatforms/',
+          'https://www.youtube.com/@copilotplatforms',
+          'https://www.facebook.com/copilotplatforms',
+          'https://www.instagram.com/copilotplatforms/'
+        ]}
+      />
       <Layout>
         {renderNavbar}
         <MainContent>

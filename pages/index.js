@@ -2,6 +2,7 @@ import React from 'react';
 import Layout from '/components/layout';
 import Image from 'next/image';
 import Link from 'next/link';
+import { OrganizationJsonLd } from 'next-seo';
 import Navbar from '../components/navbar/navbar';
 import { Container } from '../styles/commonStyles';
 import {
@@ -63,6 +64,19 @@ export default function Home({ content, seoData }) {
   return (
     <>
       <SEO seoData={seoData}></SEO>
+      <OrganizationJsonLd
+        type={'Organization'}
+        name='Copilot'
+        url='https://www.copilot.com'
+        logo='https://www.copilot.com/_next/static/media/blacklogo.370e156c.svg'
+        sameAs={[
+          'https://twitter.com/copilot',
+          'https://www.linkedin.com/company/copilotplatforms/',
+          'https://www.youtube.com/@copilotplatforms',
+          'https://www.facebook.com/copilotplatforms',
+          'https://www.instagram.com/copilotplatforms/'
+        ]}
+      />
       <Layout>
         <Navbar headerIndex={HEADER_LIST.HOME} isModule={false} />
         <HomeMain>
@@ -558,7 +572,7 @@ export default function Home({ content, seoData }) {
 export async function getStaticProps(context) {
   const content = (await getHomeContent()) ?? '';
   const seoData = (await getSEOdata(content?.seoMetadata?.sys?.id)) ?? [];
-  seoData.canonical = "https://www.copilot.com/";
+  seoData.canonical = 'https://www.copilot.com/';
   return {
     props: {
       content,
@@ -566,4 +580,3 @@ export async function getStaticProps(context) {
     }
   };
 }
-
