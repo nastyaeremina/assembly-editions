@@ -128,7 +128,7 @@ export default function Blog({ seoData, allPosts, tags }) {
         <MainContent>
           <Container>
             {renderFeaturedBlog}
-            {renderData}
+            {/* {renderData} */}
             <LastSection>
               <Left>
                 <h2>Sign up for our newsletter</h2>
