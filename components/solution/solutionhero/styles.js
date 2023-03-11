@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { Body2, Heading2, MbBody2, MobileH2 } from '../../../styles/styles';
 
 const HeroSection = styled.div`
@@ -10,19 +10,49 @@ const HeroSection = styled.div`
 const SolutionWrap = styled.div`
   display: flex;
   gap: 163px;
+  ${(props) =>
+    props.isWeeklycontainer &&
+    css`
+      gap: 60px;
+      padding-bottom: 100px;
+    `}
   @media only screen and (max-width: 991px) {
     flex-wrap: wrap;
     gap: 60px;
     width: 100%;
   }
-  @media only screen and (max-width: 749px) {
+  @media only screen and (max-width: 768px) {
     gap: 40px;
+    ${(props) =>
+      props.isWeeklycontainer &&
+      css`
+        padding-bottom: 80px;
+      `}
+  }
+  .weeklydemo-form {
+    position: relative;
+    width: 100%;
+    border: 1px solid #00160e;
+    padding: 28px 28px 40px;
+    @media only screen and (max-width: 768px) {
+      padding: 18px 18px 30px;
+    }
+  }
+  .message-card {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: ${({ theme }) => theme.colors.greenlight};
   }
 `;
 const LeftWrap = styled.div``;
 const RightWrap = styled.div`
   .comparison-img {
     padding-bottom: 0px;
+    @media only screen and (max-width: 991px) {
+      display: block;
+      text-align: left;
+    }
   }
   @media only screen and (max-width: 991px) {
     width: 100%;
