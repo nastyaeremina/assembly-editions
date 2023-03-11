@@ -19,7 +19,8 @@ export default function Button({
   className,
   onClick,
   isLink = true,
-  target = '_self'
+  target = '_self',
+  type = 'button'
 }) {
   return (
     <ButtonContainer
@@ -29,13 +30,16 @@ export default function Button({
       borderColor={borderColor}
       fontColor={fontColor}
       className={className}>
-      {isLink ? (
+      {type === 'submit' ? (
+        <button type={'submit'} onClick={onClick}>
+          {text}
+        </button>
+      ) : isLink ? (
         <Link onMouseMove={(e) => myFunction(e)} href={href} target={target}>
           {text[0].toUpperCase() + text.substring(1).toLowerCase()}
         </Link>
       ) : (
-        <a>{text[0].toUpperCase() + text.substring(1).toLowerCase()}
-        </a>
+        <a>{text[0].toUpperCase() + text.substring(1).toLowerCase()}</a>
       )}
     </ButtonContainer>
   );

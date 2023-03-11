@@ -19,8 +19,8 @@ const MainSection = styled.div`
   padding: 40px 80px;
   background-color: ${({ theme }) => theme.colors.bgcolor};
   @media only screen and (max-width: 991px) {
-    height:100%;
-    margin-bottom:50px;
+    height: 100%;
+    margin-bottom: 50px;
     max-width: 100%;
     padding: 28px 160px 22px;
   }
@@ -148,6 +148,11 @@ const FormTxt = styled.div`
 `;
 const FormDetail = styled.div`
   padding-bottom: 30px;
+  ${(props) =>
+    props.isWeeklyform &&
+    css`
+      padding-bottom: 20px;
+    `}
   label {
     display: block;
     ${CardTxt};
@@ -182,11 +187,11 @@ const FormDetail = styled.div`
   .wselect {
     display: block;
     width: 100%;
-    height:32px;
+    height: 32px;
     padding: 7px 12px;
     font-size: 12px;
     line-height: 14px;
-    letter-spacing:0.02em;
+    letter-spacing: 0.02em;
     color: ${({ theme }) => theme.colors.title};
     font-weight: 400px;
     /* vertical-align: middle; */
@@ -216,20 +221,23 @@ const FormDetail = styled.div`
       border-color: ${({ theme }) => theme.colors.primary};
     }
   }
-  label
-  {
-    font-size:15px;
-    margin-bottom:2px;
+  label {
+    font-size: 15px;
+    margin-bottom: 2px;
     font-weight: 500;
     line-height: 24px;
   }
 
   @media only screen and (max-width: 768px) {
     padding-bottom: 28px;
-    label
-    {
-      font-size:12px;
-      margin-bottom:6px;
+    ${(props) =>
+      props.isWeeklyform &&
+      css`
+        padding-bottom: 8px;
+      `}
+    label {
+      font-size: 12px;
+      margin-bottom: 6px;
       font-weight: 500;
       line-height: 16px;
     }
@@ -242,7 +250,7 @@ const Input = styled.input`
   border: 1px solid #ccccd0;
   border-radius: 4px;
   outline: 0;
-  height:32px;
+  height: 32px;
   margin-bottom: 20px;
   font-size: 12px;
   line-height: 14px;
@@ -256,26 +264,25 @@ const Input = styled.input`
   }
 `;
 const ValidationForm = styled.div`
-  display:flex;
-  margin-top:-18px;
-  margin-bottom:20px;
+  display: flex;
+  margin-top: -18px;
+  margin-bottom: 20px;
   font-weight: 400;
   font-size: 12px;
   line-height: 14px;
   letter-spacing: 0.02em;
-  color: #FF5644;
-  svg{
-    display:inline-flex;
-    margin-right:4px;
-    justify-content:center;
+  color: #ff5644;
+  svg {
+    display: inline-flex;
+    margin-right: 4px;
+    justify-content: center;
   }
   ${(props) =>
-      props.isLast &&
-      css`
- margin-top:2px;
- margin-bottom:0px;     
-  `}
- 
+    props.isLast &&
+    css`
+      margin-top: 2px;
+      margin-bottom: 0px;
+    `}
 `;
 const NameBlock = styled.div`
   display: flex;
