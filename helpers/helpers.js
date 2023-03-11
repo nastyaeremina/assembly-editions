@@ -40,3 +40,10 @@ export function removeEmptyElement(array) {
   });
   return filtered;
 }
+
+export function separateSpecialChar(title) {
+  const titleSplitList = title?.split(',');
+  const seprateWithDotList = titleSplitList?.join(`<span>,</span>`)?.split('.');
+  const finalTitle = seprateWithDotList?.join(`<span>.</span>`);
+  return finalTitle;
+}
