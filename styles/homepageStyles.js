@@ -1457,6 +1457,9 @@ const ZoomImage = styled.div`
     top: 5%;
     right: 5%;
     z-index: 1;
+    @media only screen and (min-width: 2160px) {
+      font-size: 1vw;
+    }
   }
 `;
 const ImageDiv = styled.div`
@@ -1467,10 +1470,13 @@ const ImageDiv = styled.div`
     left: 50%;
     border-radius: 5px;
     z-index: 1;
+    max-width:75%;
+    max-height: 75%;
     @media only screen and (max-width: 768px) {
       width: 100%;
       max-width: 90%;
       height:auto;
+      /* max-height:75%; */
     }
   }
 `;
