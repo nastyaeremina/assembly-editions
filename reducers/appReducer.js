@@ -6,7 +6,12 @@ const topBarContentReducer = createReducer({
   initialState: {},
   actionType: Actions.SET_TOP_BAR_CONTENT
 });
+const CTAContentReducer = createReducer({
+  initialState: null,
+  actionType: Actions.SET_CTA_CONTENT
+});
 
 export default combineReducers({
-  topbarContent: topBarContentReducer
+  topbarContent: topBarContentReducer,
+  ctaContent: CTAContentReducer
 });
