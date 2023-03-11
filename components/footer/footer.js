@@ -33,7 +33,10 @@ export default function Footer({ isEnterPrice }) {
   const [solutionList, setSolutionList] = useState([]);
   const loadData = useCallback(async () => {
     const data = await getAllSolutionWithSlug();
-    if (data) setSolutionList(data);
+    if (data) {
+      const newList = data?.filter((item) => item?.showFooter);
+      setSolutionList(newList);
+    }
   }, []);
 
   useEffect(() => {

@@ -3,6 +3,9 @@ export const APP_SET_LOADING = 'APP_SET_LOADING';
 //Top bar
 export const SET_TOP_BAR_CONTENT = 'SET_TOP_BAR_CONTENT';
 
+//CTA
+export const SET_CTA_CONTENT = 'SET_CTA_CONTENT';
+
 //BOOKDEMO
 export const SET_BOOK_DEMO_LOADER = 'SET_BOOK_DEMO_LOADER';
 export const SET_BOOK_DEMO_ITEM = 'SET_BOOK_DEMO_ITEM';

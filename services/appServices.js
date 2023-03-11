@@ -1,5 +1,5 @@
-import { setAppLoading, setTopBarContent } from '../actions/appActions';
-import { TOP_BAR_CONTENT_ID } from '../constants/constant';
+import { setAppLoading, setCTAContent, setTopBarContent } from '../actions/appActions';
+import { CTA_CONTENT_ID, TOP_BAR_CONTENT_ID } from '../constants/constant';
 import { isEmpty } from '../helpers/helpers';
 import { getSitemap } from '../lib/contentful-sitemap';
 
@@ -27,6 +27,23 @@ export const getTopBarContent = () => async (dispatch) => {
       };
       dispatch(setTopBarContent(item));
       return item;
+    }
+    return null;
+  } catch (e) {
+    console.log('Error : ', e);
+    return false;
+  } finally {
+    dispatch(setAppLoading(false));
+  }
+};
+
+export const getCTAContent = () => async (dispatch) => {
+  try {
+    dispatch(setAppLoading(true));
+    const data = (await getSitemap(CTA_CONTENT_ID)) ?? {};
+    if (!isEmpty(data?.content)) {
+      dispatch(setCTAContent(data?.content));
+      return data?.content;
     }
     return null;
   } catch (e) {
