@@ -59,6 +59,8 @@ import {
   HELP_CENTER_LINK,
   ZAPIER_LINK
 } from '../constants/externalLinks';
+import { separateSpecialChar } from '../helpers/helpers';
+import { ReactMarkdown } from 'react-markdown/lib/react-markdown';
 
 export default function Home({ content, seoData }) {
   return (
@@ -159,15 +161,9 @@ export default function Home({ content, seoData }) {
             <Container>
               <BusinessText>
                 <h2>
-                  Discover why thousands of entrepreneurs choose Copilot to start
-                  <span>, </span>
-                  run<span>,</span> and grow their business<span>.</span>
+                  <div dangerouslySetInnerHTML={{ __html: separateSpecialChar(content?.heading1) }} />
                 </h2>
-                <p>
-                  Tech-enabled service businesses of all types — marketing agencies, accounting firms, law firms, and
-                  100s of others — run on Copilot to provide clients a branded, unified, and delightful experience on
-                  web and mobile.
-                </p>
+                <ReactMarkdown>{content?.body1}</ReactMarkdown>
               </BusinessText>
             </Container>
             <BusinessSlider data={content?.testimonialsCollection?.items} />
@@ -176,14 +172,9 @@ export default function Home({ content, seoData }) {
             <Container>
               <TopFunctionWrap>
                 <h2 className='titlewrap'>
-                  Powerful out-of-the box functionality<span>, </span>
-                  ready to go<span>.</span>
+                  <div dangerouslySetInnerHTML={{ __html: separateSpecialChar(content?.heading2) }} />
                 </h2>
-                <p>
-                  Provide clients a uniform experience with on-brand design, combined in-product notifications, and
-                  consistent email notifications. And with modularity built-in, start with just one App, and add more
-                  when the time is right.
-                </p>
+                <ReactMarkdown>{content?.body2}</ReactMarkdown>
               </TopFunctionWrap>
               <BottomFunction>
                 <TabView isHome={true} tabData={content?.featuresCollection?.items} />
@@ -194,13 +185,11 @@ export default function Home({ content, seoData }) {
             <Container>
               <BusinessText>
                 <h2>
-                  Go even further with Partner Apps<span>.</span>
+                  <div dangerouslySetInnerHTML={{ __html: separateSpecialChar(content?.heading3) }} />
                 </h2>
-                <p className='app-dec'>
-                  Streamline the client experience even more by connecting products you already use and surface them in
-                  the client experience — Calendly for scheduling, Airtable project trackers, Google Data Studio
-                  dashboards, and thousands more.
-                </p>
+                <div className='app-dec'>
+                  <ReactMarkdown>{content?.body3}</ReactMarkdown>
+                </div>
                 <BtnView>
                   <Button
                     bgColor={'transparent'}
@@ -219,22 +208,9 @@ export default function Home({ content, seoData }) {
             <Container>
               <AutomateText>
                 <h2>
-                  Automate your firm<span>.</span>
+                  <div dangerouslySetInnerHTML={{ __html: separateSpecialChar(content?.heading4) }} />
                 </h2>
-                <p>
-                  Automate workflows inside your portal and connect external tools as well. For example, for new clients
-                  assign an onboarding form, send out a customized welcome message, set up a default folder structure,
-                  and create a lead in Salesforce. Use{' '}
-                  <Link href={ZAPIER_LINK} className='active'>
-                    {' '}
-                    Zapier{' '}
-                  </Link>{' '}
-                  for easy setup or our{' '}
-                  <Link href={COPILOT_REFERENCE_API_LINK} className='active'>
-                    API
-                  </Link>{' '}
-                  for full control.
-                </p>
+                <ReactMarkdown>{content?.body4}</ReactMarkdown>
               </AutomateText>
               <BottomList>
                 <CardWrapper>
