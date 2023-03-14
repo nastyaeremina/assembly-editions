@@ -1,14 +1,16 @@
-import React, {useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import Layout from '/components/layout';
 import Image from 'next/image';
 import Link from 'next/link';
-import { COOKIE_NAME } from '../lib/constants'
-import { useGa } from '../lib/useGa'
+import { COOKIE_NAME } from '../../lib/constants'
+import { useGa } from '../../lib/useGa'
 import Cookies from 'js-cookie'
 import { ReactMarkdown } from 'react-markdown/lib/react-markdown';
 import { OrganizationJsonLd } from 'next-seo';
-import Navbar from '../components/navbar/navbar';
-import { Container } from '../styles/commonStyles';
+import Navbar from '../../components/navbar/navbar';
+import { Container } from '../../styles/commonStyles';
+
+import { getCurrentExperiment } from '../../lib/optimize'
 import {
   BusinessSection,
   BusinessText,
@@ -36,44 +38,27 @@ import {
   Line1,
   Line,
   Line2
-} from '../styles/homepageStyles';
-import BusinessSlider from '../components/businessSlider/businessslider';
-import ExtensionSlider from '../components/extensionslider/extensionslider';
-import CTA from '../components/cta/cta';
+} from '../../styles/homepageStyles';
+import BusinessSlider from '../../components/businessSlider/businessslider';
+import ExtensionSlider from '../../components/extensionslider/extensionslider';
+import CTA from '../../components/cta/cta';
 import {
   HEADER_LIST,
   HOME_CLIENT_CONTENT_ID,
   HOME_CONTENT_ID,
   HOME_HYBIRD_CONTENT_ID,
   HOME_INTERNAL_CONTENT_ID
-} from '../constants/constant';
-import { getHomeContent } from '../lib/contentful-home';
-import TabView from '../components/tab/tab';
-import Button from '../components/button/button';
-import SEO from '../components/seo';
-import { getSEOdata } from '../lib/contentful-seo';
-import { BLOG_LINK, COPILOT_JOIN_COMMUNITY_LINK, HELP_CENTER_LINK } from '../constants/externalLinks';
-import { separateSpecialChar } from '../helpers/helpers';
-import HomeHeroSection from '../components/Home/herosection/hybrid';
+} from '../../constants/constant';
+import { getHomeContent } from '../../lib/contentful-home';
+import TabView from '../../components/tab/tab';
+import Button from '../../components/button/button';
+import SEO from '../../components/seo';
+import { getSEOdata } from '../../lib/contentful-seo';
+import { BLOG_LINK, COPILOT_JOIN_COMMUNITY_LINK, HELP_CENTER_LINK } from '../../constants/externalLinks';
+import { separateSpecialChar } from '../../helpers/helpers';
+import HomeHeroSection from '../../components/Home/herosection/hybrid';
 
-export default function Home({ content, seoData, hybirdContent, clientContent, internalContent }) {
-  const ga = useGa()
-  const [cookie, setCookie] = useState('')
-  const removeCookie = () => {
-    Cookies.remove(COOKIE_NAME)
-    window.location.reload()
-  }
-
-  useEffect(() => {
-    setCookie(Cookies.get(COOKIE_NAME))
-  }, [])
-
-  useEffect(() => {
-    if (ga && cookie) {
-      ga('set', 'exp', cookie)
-    }
-  }, [ga, cookie])
-  
+export default function Home({ content, seoData, internalContent, clientContent, experiment, variant }) {
   return (
     <>
       <SEO seoData={seoData}></SEO>
@@ -96,14 +81,20 @@ export default function Home({ content, seoData, hybirdContent, clientContent, i
           {/* old hero section */}
           {/* <DefaultHeroSection title={content.heroTitle} body={content.heroBody} /> */}
           {/* hybird */}
-          <HomeHeroSection
-            title={hybirdContent?.heroTitle}
-            body={hybirdContent?.heroBody}
-            image1={hybirdContent?.heroImage1?.url}
-            image2={hybirdContent?.heroImage2?.url}
-            leftImageTitle={hybirdContent?.heroImage1?.title}
-            rightImageTitle={hybirdContent?.heroImage2?.title}
-          />
+          {variant.id == 1 ?
+            <HomeHeroSection
+              title={internalContent?.heroTitle}
+              body={internalContent?.heroBody}
+              image1={internalContent?.heroImage1?.url}
+            /> : null
+          }
+          {variant.id == 2 ?
+            <HomeHeroSection
+              title={clientContent?.heroTitle}
+              body={clientContent?.heroBody}
+              image1={clientContent?.heroImage1?.url}
+            /> : null
+          }
           <BusinessSection>
             <Container>
               <BusinessText>
@@ -410,7 +401,10 @@ export default function Home({ content, seoData, hybirdContent, clientContent, i
   );
 }
 
-export async function getStaticProps(context) {
+export async function getStaticProps({params}) {
+  const experiment = getCurrentExperiment()
+  const [, variantId] = params.variant.split('.')
+
   const content = (await getHomeContent(HOME_CONTENT_ID)) ?? '';
   const hybirdContent = (await getHomeContent(HOME_HYBIRD_CONTENT_ID)) ?? '';
   const clientContent = (await getHomeContent(HOME_CLIENT_CONTENT_ID)) ?? '';
@@ -424,7 +418,19 @@ export async function getStaticProps(context) {
       hybirdContent,
       clientContent,
       internalContent,
-      seoData
+      seoData,
+      experiment: { name: experiment.name },
+      variant: experiment.variants.find((v) => String(v.id) === variantId),
     }
   };
+}
+
+export async function getStaticPaths() {
+  const experiment = getCurrentExperiment()
+  return {
+    paths: experiment.variants.map((v) => ({
+      params: { variant: `${experiment.id}.${v.id}` },
+    })),
+    fallback: false,
+  }
 }

@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react';
 import Layout from '/components/layout';
 import Image from 'next/image';
 import Link from 'next/link';
+import Script from 'next/script'
 import { COOKIE_NAME } from '../lib/constants'
 import { useGa } from '../lib/useGa'
 import Cookies from 'js-cookie'
@@ -76,6 +77,7 @@ export default function Home({ content, seoData, hybirdContent, clientContent, i
   
   return (
     <>
+     <Script src={`https://www.googleoptimize.com/optimize.js?id=OPT-N9JGS3M`} />
       <SEO seoData={seoData}></SEO>
       <OrganizationJsonLd
         type={'Organization'}
@@ -104,6 +106,17 @@ export default function Home({ content, seoData, hybirdContent, clientContent, i
             leftImageTitle={hybirdContent?.heroImage1?.title}
             rightImageTitle={hybirdContent?.heroImage2?.title}
           />
+            <HomeHeroSection
+              title={internalContent?.heroTitle}
+              body={internalContent?.heroBody}
+              image1={internalContent?.heroImage1?.url}
+            /> 
+            <HomeHeroSection
+              title={clientContent?.heroTitle}
+              body={clientContent?.heroBody}
+              image1={clientContent?.heroImage1?.url}
+            /> 
+          
           <BusinessSection>
             <Container>
               <BusinessText>

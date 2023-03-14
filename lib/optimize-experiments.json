@@ -1,0 +1,23 @@
+[
+  {
+    "name": "Green button sells more 2",
+    "id": "VKNBA3HpQW2YOWbgSy6hZA",
+    "variants": [
+      {
+        "name": "original",
+        "id": 0,
+        "weight": 33.3333
+      },
+      {
+        "name": "Variant 1",
+        "id": 1,
+        "weight": 33.3333
+      },
+      {
+        "name": "Variant 2",
+        "id": 2,
+        "weight": 33.3333
+      }
+    ]
+  }
+]
