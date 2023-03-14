@@ -237,3 +237,4 @@ export const TERMS_OF_SERVICE_SEO_ID = '3J02XDQyE4K0CpkCTUzdlO';
 export const BLOG_SEO_ID = '5uevyUUR3vsf0TtqwOBrXb';
 export const UPDATES_SEO_ID = '1qZerw40iK099KKnfz5Mv7';
 export const COMPARISON_SEO_ID = '3twHO4lBpRkH68Lh1ihdRy';
+export const WEEKLYDEMO_SEO_ID = '18U3TJnD547OkxGWWgtrLC';

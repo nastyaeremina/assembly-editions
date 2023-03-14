@@ -4,6 +4,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { ReactMarkdown } from 'react-markdown/lib/react-markdown';
 import { OrganizationJsonLd } from 'next-seo';
+import { ReactMarkdown } from 'react-markdown/lib/react-markdown';
 import Navbar from '../components/navbar/navbar';
 import { Container } from '../styles/commonStyles';
 import {
@@ -45,14 +46,6 @@ import SEO from '../components/seo';
 import { getSEOdata } from '../lib/contentful-seo';
 import { BLOG_LINK, COPILOT_JOIN_COMMUNITY_LINK, HELP_CENTER_LINK } from '../constants/externalLinks';
 import { separateSpecialChar } from '../helpers/helpers';
-import HybridHeroSection from '../components/Home/herosection/hybrid';
-import DefaultHeroSection from '../components/Home/herosection/default';
-import internal from '../public/images/internal.png';
-import client from '../public/images/client.png';
-import hybridleft from '../public/images/hybridleft.png';
-import hybridright from '../public/images/hybridright.png';
-import InternalHeroSection from '../components/Home/herosection/internal';
-import ClientHeroSection from '../components/Home/herosection/client';
 import HomeHeroSection from '../components/Home/home';
 
 export default function Home({ content, seoData }) {
