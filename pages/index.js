@@ -51,7 +51,9 @@ import internal from '../public/images/internal.png';
 import client from '../public/images/client.png';
 import hybridleft from '../public/images/hybridleft.png';
 import hybridright from '../public/images/hybridright.png';
-import HomeHeroSection from '../components/Home/herosection/hybrid';
+import InternalHeroSection from '../components/Home/herosection/internal';
+import ClientHeroSection from '../components/Home/herosection/client';
+import HomeHeroSection from '../components/Home/home';
 
 export default function Home({ content, seoData }) {
   return (
@@ -73,18 +75,9 @@ export default function Home({ content, seoData }) {
       <Layout>
         <Navbar headerIndex={HEADER_LIST.ENTERPRICE} isModule={false} isEnterPrice={true} />
         <HomeMain>
-            {/* old hero section */}
+          {/* old hero section */}
           {/* <DefaultHeroSection title={content.heroTitle} body={content.heroBody} /> */}
-          
-          {/* hybrid, client and internal hero section components */}
-          <HomeHeroSection
-            title={content.heroTitle}
-            body={content.heroBody}
-            image1={hybridleft}
-            image2={''}
-            leftImageTitle={'Everything in one place for your team'}
-            rightImageTitle={'A modern portal for your clients'}
-          />
+          <HomeHeroSection />
           <BusinessSection>
             <Container>
               <BusinessText>
