@@ -37,7 +37,13 @@ import {
 import BusinessSlider from '../components/businessSlider/businessslider';
 import ExtensionSlider from '../components/extensionslider/extensionslider';
 import CTA from '../components/cta/cta';
-import { HEADER_LIST } from '../constants/constant';
+import {
+  HEADER_LIST,
+  HOME_CLIENT_CONTENT_ID,
+  HOME_CONTENT_ID,
+  HOME_HYBIRD_CONTENT_ID,
+  HOME_INTERNAL_CONTENT_ID
+} from '../constants/constant';
 import { getHomeContent } from '../lib/contentful-home';
 import TabView from '../components/tab/tab';
 import Button from '../components/button/button';
@@ -45,13 +51,9 @@ import SEO from '../components/seo';
 import { getSEOdata } from '../lib/contentful-seo';
 import { BLOG_LINK, COPILOT_JOIN_COMMUNITY_LINK, HELP_CENTER_LINK } from '../constants/externalLinks';
 import { separateSpecialChar } from '../helpers/helpers';
-import internal from '../public/images/internal.png';
-import client from '../public/images/client.png';
-import hybridleft from '../public/images/hybridleft.png';
-import hybridright from '../public/images/hybridright.png';
 import HomeHeroSection from '../components/Home/herosection/hybrid';
 
-export default function Home({ content, seoData }) {
+export default function Home({ content, seoData, hybirdContent, clientContent, internalContent }) {
   return (
     <>
       <SEO seoData={seoData}></SEO>
@@ -73,29 +75,24 @@ export default function Home({ content, seoData }) {
         <HomeMain>
           {/* old hero section */}
           {/* <DefaultHeroSection title={content.heroTitle} body={content.heroBody} /> */}
+          {/* hybird */}
           <HomeHeroSection
-            title={'Upgrade your service business & client experience'}
-            body={
-              'Message clients, send invoices, organize files, send eSig requests, share forms, and more. Give your clients everything they need in a branded client portal.'
-            }
-            image1={hybridleft}
-            image2={hybridright}
-            leftImageTitle={'Everything in one place for your team'}
-            rightImageTitle={'A modern portal for your clients'}
+            title={hybirdContent?.heroTitle}
+            body={hybirdContent?.heroBody}
+            image1={hybirdContent?.heroImage1?.url}
+            image2={hybirdContent?.heroImage2?.url}
+            leftImageTitle={hybirdContent?.heroImage1?.title}
+            rightImageTitle={hybirdContent?.heroImage2?.title}
           />
           <HomeHeroSection
-            title={'One app to run your service business'}
-            body={
-              'Message clients, open invoices, organize files, send eSignature requests, share forms, create help desks, use custom apps, and more. '
-            }
-            image1={internal}
+            title={internalContent?.heroTitle}
+            body={internalContent?.heroBody}
+            image1={internalContent?.heroImage1?.url}
           />
           <HomeHeroSection
-            title={'The client portal from the future'}
-            body={
-              'Give your clients a one-stop shop experience with a portal that streamlines messaging, payments, file-sharing, help centers, custom app access, and more.'
-            }
-            image1={client}
+            title={clientContent?.heroTitle}
+            body={clientContent?.heroBody}
+            image1={clientContent?.heroImage1?.url}
           />
           <BusinessSection>
             <Container>
@@ -404,12 +401,19 @@ export default function Home({ content, seoData }) {
 }
 
 export async function getStaticProps(context) {
-  const content = (await getHomeContent()) ?? '';
+  const content = (await getHomeContent(HOME_CONTENT_ID)) ?? '';
+  const hybirdContent = (await getHomeContent(HOME_HYBIRD_CONTENT_ID)) ?? '';
+  const clientContent = (await getHomeContent(HOME_CLIENT_CONTENT_ID)) ?? '';
+  const internalContent = (await getHomeContent(HOME_INTERNAL_CONTENT_ID)) ?? '';
+
   const seoData = (await getSEOdata(content?.seoMetadata?.sys?.id)) ?? [];
   seoData.canonical = 'https://www.copilot.com/';
   return {
     props: {
       content,
+      hybirdContent,
+      clientContent,
+      internalContent,
       seoData
     }
   };
