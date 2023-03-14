@@ -124,10 +124,12 @@ export default function HomeHeroSection({ title, body, image1, image2, leftImage
           />
         </HeroBtnBlock>
         {isEmpty(image2) ? (
+          // client and internal section image
           <MainImage>
             <Image src={image1} alt='internal' className='heromain-image' />
           </MainImage>
         ) : (
+          // hybrid section image
           <Hero>
             <LeftHeading>{leftImageTitle}</LeftHeading>
             <RightHeading>{rightImageTitle}</RightHeading>

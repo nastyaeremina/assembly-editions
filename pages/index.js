@@ -73,12 +73,15 @@ export default function Home({ content, seoData }) {
       <Layout>
         <Navbar headerIndex={HEADER_LIST.ENTERPRICE} isModule={false} isEnterPrice={true} />
         <HomeMain>
+            {/* old hero section */}
           {/* <DefaultHeroSection title={content.heroTitle} body={content.heroBody} /> */}
+          
+          {/* hybrid, client and internal hero section components */}
           <HomeHeroSection
             title={content.heroTitle}
             body={content.heroBody}
             image1={hybridleft}
-            image2={hybridright}
+            image2={''}
             leftImageTitle={'Everything in one place for your team'}
             rightImageTitle={'A modern portal for your clients'}
           />
