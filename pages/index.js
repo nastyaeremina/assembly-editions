@@ -4,7 +4,6 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { ReactMarkdown } from 'react-markdown/lib/react-markdown';
 import { OrganizationJsonLd } from 'next-seo';
-import { ReactMarkdown } from 'react-markdown/lib/react-markdown';
 import Navbar from '../components/navbar/navbar';
 import { Container } from '../styles/commonStyles';
 import {
