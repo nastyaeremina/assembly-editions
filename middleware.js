@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server'
-import { blockedIp } from 'lib/rules/ip'
+import { blockedIp } from './lib/rules/ip'
 
 export async function middleware(req) {
   // Return 403 if the IP is blocked
