@@ -168,9 +168,9 @@ export default function HomeHeroSection({ title, body, image1, image2, leftImage
               </svg>
             </HeroLine>
             <Image src={bgleft} alt='bgleft' className='bgleft' />
-            <Image src={image1} alt='hybridleft' className='hybridleft' width={100} height={100} />
+            <Image src={image1} alt='hybridleft' className='hybridleft' width={768} height={415} />
             <Image src={bgright} alt='bgright' className='bgright' />
-            <Image src={image2} alt='hybridright' className='hybridright' width={100} height={100} />
+            <Image src={image2} alt='hybridright' className='hybridright' width={300} height={415} />
           </Hero>
         )}
       </Container>
