@@ -2,22 +2,33 @@ import Image from 'next/image';
 import React from 'react';
 import { Container } from '../../../styles/commonStyles';
 import Button from '../../button/button';
-import { Hero, HeroBtnBlock, HeroHeading, HeroImage, HeroLine, HeroSection, ImageHover, LeftHeading, Para, ReviewLogo, RightHeading, RightWrap } from '../styles';
+import {
+  Hero,
+  HeroBtnBlock,
+  HeroHeading,
+  HeroImage,
+  HeroLine,
+  HeroSection,
+  ImageHover,
+  LeftHeading,
+  MainImage,
+  Para,
+  ReviewLogo,
+  RightHeading,
+  RightWrap
+} from '../styles';
 import bgleft from '../../../public/images/bgleft.png';
 import bgright from '../../../public/images/bgright.png';
 import hybridleft from '../../../public/images/hybridleft.png';
 import hybridright from '../../../public/images/hybridright.png';
+import { isEmpty } from '../../../helpers/helpers';
 
-
-export default function HybridHeroSection() {
+export default function HomeHeroSection({ title, body, image1, image2, leftImageTitle, rightImageTitle }) {
   return (
     <HeroSection>
       <Container>
-        <HeroHeading>Upgrade your service business & client experience</HeroHeading>
-        <Para>
-          Message clients, send invoices, organize files, send eSig requests, share forms, and more. Give your clients
-          everything they need in a branded client portal.
-        </Para>
+        <HeroHeading>{title}</HeroHeading>
+        <Para>{body}</Para>
 
         <ReviewLogo>
           <ImageHover href='https://www.g2.com/products/copilotplatforms/reviews' target='_blank'>
@@ -108,61 +119,63 @@ export default function HybridHeroSection() {
             fontColor={'#00160E'}
             borderColor={'#E3FFEE'}
             text={'Try for free'}
-            href={'/book-demo'}
+            href={'#'}
             hoverColor={'rgba(0, 0, 0, 0.5)'}
           />
         </HeroBtnBlock>
-        <Hero>
-          {/* <HeroImage> */}
-          <LeftHeading>Everything in one place for your team</LeftHeading>
-          <RightHeading>A modern portal for your clients</RightHeading>
+        {isEmpty(image2) ? (
+          <MainImage>
+            <Image src={image1} alt='internal' className='heromain-image' />
+          </MainImage>
+        ) : (
+          <Hero>
+            <LeftHeading>{leftImageTitle}</LeftHeading>
+            <RightHeading>{rightImageTitle}</RightHeading>
 
-          <HeroLine>
-            <svg
-              className='first-line'
-              width='1150'
-              height='1'
-              viewBox='0 0 1150 1'
-              fill='none'
-              xmlns='http://www.w3.org/2000/svg'>
-              <line x1='-24' y1='0.5' x2='1150' y2='0.499909' stroke='#E3FFEE' />
-            </svg>
-            <svg
-              className='second-line'
-              width='300'
-              height='1'
-              viewBox='0 0 300 1'
-              fill='none'
-              xmlns='http://www.w3.org/2000/svg'>
-              <line x1='-24' y1='0.5' x2='300' y2='0.499909' stroke='#E3FFEE' />
-            </svg>
-            <svg
-              className='third-line'
-              width='300'
-              height='1'
-              viewBox='0 0 300 1'
-              fill='none'
-              xmlns='http://www.w3.org/2000/svg'>
-              <line x1='-24' y1='0.5' x2='300' y2='0.499909' stroke='#E3FFEE' />
-            </svg>
-            <svg
-              className='last-line'
-              width='1000'
-              height='1'
-              viewBox='0 0 1000 1'
-              fill='none'
-              xmlns='http://www.w3.org/2000/svg'>
-              <line x1='-24' y1='0.5' x2='1000' y2='0.499909' stroke='#E3FFEE' />
-            </svg>
-          </HeroLine>
-          <Image src={bgleft} alt='bgleft' className='bgleft' />
-          <Image src={hybridleft} alt='hybridleft' className='hybridleft' />
-          {/* </HeroImage> */}
-          {/* <HeroImage> */}
-          <Image src={bgright} alt='bgright' className='bgright' />
-          <Image src={hybridright} alt='hybridright' className='hybridright' />
-          {/* </HeroImage> */}
-        </Hero>
+            <HeroLine>
+              <svg
+                className='first-line'
+                width='1150'
+                height='1'
+                viewBox='0 0 1150 1'
+                fill='none'
+                xmlns='http://www.w3.org/2000/svg'>
+                <line x1='-24' y1='0.5' x2='1150' y2='0.499909' stroke='#E3FFEE' />
+              </svg>
+              <svg
+                className='second-line'
+                width='300'
+                height='1'
+                viewBox='0 0 300 1'
+                fill='none'
+                xmlns='http://www.w3.org/2000/svg'>
+                <line x1='-24' y1='0.5' x2='300' y2='0.499909' stroke='#E3FFEE' />
+              </svg>
+              <svg
+                className='third-line'
+                width='300'
+                height='1'
+                viewBox='0 0 300 1'
+                fill='none'
+                xmlns='http://www.w3.org/2000/svg'>
+                <line x1='-24' y1='0.5' x2='300' y2='0.499909' stroke='#E3FFEE' />
+              </svg>
+              <svg
+                className='last-line'
+                width='1000'
+                height='1'
+                viewBox='0 0 1000 1'
+                fill='none'
+                xmlns='http://www.w3.org/2000/svg'>
+                <line x1='-24' y1='0.5' x2='1000' y2='0.499909' stroke='#E3FFEE' />
+              </svg>
+            </HeroLine>
+            <Image src={bgleft} alt='bgleft' className='bgleft' />
+            <Image src={image1} alt='hybridleft' className='hybridleft' />
+            <Image src={bgright} alt='bgright' className='bgright' />
+            <Image src={image2} alt='hybridright' className='hybridright' />
+          </Hero>
+        )}
       </Container>
     </HeroSection>
   );

@@ -172,10 +172,15 @@ const HeroBtnBlock = styled.div`
 
 const MainImage = styled.div`
   width: 100%;
+  filter: drop-shadow(0px 4.68797px 157.047px rgba(9, 170, 108, 0.55));
   .heromain-image {
-    max-width: 1172px;
+    max-width: 1000px;
     width: 100%;
+    max-height: 500px;
+    height: 100%;
     margin-bottom: -4px;
+    margin-top: 100px;
+    border-radius: 7px 7px 0 0;
   }
   @media only screen and (max-width: 768px) {
     display: none;
@@ -185,16 +190,18 @@ const MainImage = styled.div`
 const Hero = styled.div`
   display: flex;
   @media only screen and (max-width: 768px) {
-    display:none;
+    display: none;
   }
   .bgleft {
-    /* position: relative; */
     z-index: 1;
   }
   .hybridleft {
     position: absolute;
     max-width: 560px;
     width: 100%;
+    max-height: 267px;
+    height: 100%;
+    border-radius: 7px 7px 0 0;
     margin-top: 117px;
     margin-left: 92px;
     z-index: 2;
@@ -202,6 +209,8 @@ const Hero = styled.div`
       position: absolute;
       max-width: 442px;
       width: 100%;
+      max-height: 210px;
+      height: 100%;
       margin-top: 96px;
       margin-left: 76px;
       z-index: 2;
@@ -215,8 +224,9 @@ const Hero = styled.div`
     position: absolute;
     max-width: 230px;
     width: 100%;
-    /* right:140px; */
-    /* margin-right:198px; */
+    max-height: 267px;
+    height: 100%;
+    border-radius: 7px 7px 0 0;
     margin-left: 890px;
     margin-top: 117px;
     z-index: 2;
@@ -224,6 +234,8 @@ const Hero = styled.div`
       position: absolute;
       max-width: 181px;
       width: 100%;
+      max-height: 210px;
+      height: 100%;
       margin-left: 710px;
       margin-top: 96px;
       z-index: 2;

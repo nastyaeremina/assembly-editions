@@ -43,16 +43,15 @@ import TabView from '../components/tab/tab';
 import Button from '../components/button/button';
 import SEO from '../components/seo';
 import { getSEOdata } from '../lib/contentful-seo';
-import {
-  BLOG_LINK,
-  COPILOT_JOIN_COMMUNITY_LINK,
-  HELP_CENTER_LINK,
-} from '../constants/externalLinks';
+import { BLOG_LINK, COPILOT_JOIN_COMMUNITY_LINK, HELP_CENTER_LINK } from '../constants/externalLinks';
 import { separateSpecialChar } from '../helpers/helpers';
-import InternalHeroSection from '../components/Home/herosection/internal';
-import ClientHeroSection from '../components/Home/herosection/client';
 import HybridHeroSection from '../components/Home/herosection/hybrid';
 import DefaultHeroSection from '../components/Home/herosection/default';
+import internal from '../public/images/internal.png';
+import client from '../public/images/client.png';
+import hybridleft from '../public/images/hybridleft.png';
+import hybridright from '../public/images/hybridright.png';
+import HomeHeroSection from '../components/Home/herosection/hybrid';
 
 export default function Home({ content, seoData }) {
   return (
@@ -72,10 +71,17 @@ export default function Home({ content, seoData }) {
         ]}
       />
       <Layout>
-        <Navbar headerIndex={HEADER_LIST.HOME} isModule={false} />
+        <Navbar headerIndex={HEADER_LIST.ENTERPRICE} isModule={false} isEnterPrice={true} />
         <HomeMain>
           {/* <DefaultHeroSection title={content.heroTitle} body={content.heroBody} /> */}
-          <HybridHeroSection />
+          <HomeHeroSection
+            title={content.heroTitle}
+            body={content.heroBody}
+            image1={hybridleft}
+            image2={hybridright}
+            leftImageTitle={'Everything in one place for your team'}
+            rightImageTitle={'A modern portal for your clients'}
+          />
           <BusinessSection>
             <Container>
               <BusinessText>
