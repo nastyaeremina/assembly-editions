@@ -3,6 +3,7 @@ import Layout from '/components/layout';
 import Image from 'next/image';
 import Link from 'next/link';
 import { OrganizationJsonLd } from 'next-seo';
+import { ReactMarkdown } from 'react-markdown/lib/react-markdown';
 import Navbar from '../components/navbar/navbar';
 import { Container } from '../styles/commonStyles';
 import {
@@ -60,7 +61,6 @@ import {
   ZAPIER_LINK
 } from '../constants/externalLinks';
 import { separateSpecialChar } from '../helpers/helpers';
-import { ReactMarkdown } from 'react-markdown/lib/react-markdown';
 
 export default function Home({ content, seoData }) {
   return (
