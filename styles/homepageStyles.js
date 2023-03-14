@@ -396,7 +396,7 @@ const ReviewRight = styled.div`
 const BusinessSection = styled.div`
   padding: 100px 0 50px;
   overflow: hidden;
-  @media only screen and (max-width: 749px) {
+  @media only screen and (max-width: 768px) {
     padding: 80px 0 100px;
   }
 `;

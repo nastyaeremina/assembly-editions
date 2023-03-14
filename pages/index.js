@@ -45,7 +45,11 @@ import SEO from '../components/seo';
 import { getSEOdata } from '../lib/contentful-seo';
 import { BLOG_LINK, COPILOT_JOIN_COMMUNITY_LINK, HELP_CENTER_LINK } from '../constants/externalLinks';
 import { separateSpecialChar } from '../helpers/helpers';
-import HomeHeroSection from '../components/Home/home';
+import internal from '../public/images/internal.png';
+import client from '../public/images/client.png';
+import hybridleft from '../public/images/hybridleft.png';
+import hybridright from '../public/images/hybridright.png';
+import HomeHeroSection from '../components/Home/herosection/hybrid';
 
 export default function Home({ content, seoData }) {
   return (
@@ -69,7 +73,30 @@ export default function Home({ content, seoData }) {
         <HomeMain>
           {/* old hero section */}
           {/* <DefaultHeroSection title={content.heroTitle} body={content.heroBody} /> */}
-          <HomeHeroSection />
+          <HomeHeroSection
+            title={'Upgrade your service business & client experience'}
+            body={
+              'Message clients, send invoices, organize files, send eSig requests, share forms, and more. Give your clients everything they need in a branded client portal.'
+            }
+            image1={hybridleft}
+            image2={hybridright}
+            leftImageTitle={'Everything in one place for your team'}
+            rightImageTitle={'A modern portal for your clients'}
+          />
+          <HomeHeroSection
+            title={'One app to run your service business'}
+            body={
+              'Message clients, open invoices, organize files, send eSignature requests, share forms, create help desks, use custom apps, and more. '
+            }
+            image1={internal}
+          />
+          <HomeHeroSection
+            title={'The client portal from the future'}
+            body={
+              'Give your clients a one-stop shop experience with a portal that streamlines messaging, payments, file-sharing, help centers, custom app access, and more.'
+            }
+            image1={client}
+          />
           <BusinessSection>
             <Container>
               <BusinessText>

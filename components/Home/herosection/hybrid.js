@@ -6,7 +6,6 @@ import {
   Hero,
   HeroBtnBlock,
   HeroHeading,
-  HeroImage,
   HeroLine,
   HeroSection,
   ImageHover,
@@ -19,11 +18,9 @@ import {
 } from '../styles';
 import bgleft from '../../../public/images/bgleft.png';
 import bgright from '../../../public/images/bgright.png';
-import hybridleft from '../../../public/images/hybridleft.png';
-import hybridright from '../../../public/images/hybridright.png';
 import { isEmpty } from '../../../helpers/helpers';
 
-export default function HybridHeroSection({ title, body, image1, image2, leftImageTitle, rightImageTitle }) {
+export default function HomeHeroSection({ title, body, image1, image2, leftImageTitle, rightImageTitle }) {
   return (
     <HeroSection>
       <Container>
@@ -123,6 +120,11 @@ export default function HybridHeroSection({ title, body, image1, image2, leftIma
             hoverColor={'rgba(0, 0, 0, 0.5)'}
           />
         </HeroBtnBlock>
+        {isEmpty(image2) ? (
+          <MainImage>
+            <Image src={image1} alt='internal' className='heromain-image' />
+          </MainImage>
+        ) : (
           <Hero>
             <LeftHeading>{leftImageTitle}</LeftHeading>
             <RightHeading>{rightImageTitle}</RightHeading>
@@ -170,6 +172,7 @@ export default function HybridHeroSection({ title, body, image1, image2, leftIma
             <Image src={bgright} alt='bgright' className='bgright' />
             <Image src={image2} alt='hybridright' className='hybridright' />
           </Hero>
+        )}
       </Container>
     </HeroSection>
   );
