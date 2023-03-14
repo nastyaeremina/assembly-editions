@@ -4,7 +4,7 @@ import { Body1, Body2, Body5, FooterText, Heading2, Heading3, MbBody1, MobileH2 
 const HeroSection = styled.div`
   width: 100%;
   padding: 224px 0 0px 0;
-  margin-bottom: 50px;
+  /* margin-bottom: 50px; */
   text-align: center;
   overflow: hidden;
   background-color: ${({ theme }) => theme.colors.greendark};
@@ -12,7 +12,7 @@ const HeroSection = styled.div`
     padding: 148px 0 0px 0;
   }
   @media only screen and (max-width: 768px) {
-    margin-bottom: 40px;
+    /* margin-bottom: 40px; */
   }
 `;
 
