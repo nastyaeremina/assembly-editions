@@ -127,7 +127,15 @@ export default function WeeklyHero() {
                   </ImgLine>
                 </Card>
               ) : (
-                <WeeklyDemoForm />
+                <iframe
+                  width='100%'
+                  title='weekly-demo'
+                  height='480'
+                  frameborder='0'
+                  // eslint-disable-next-line react/style-prop-object
+                  style={{ overflow: 'hidden' }}
+                  src='https://app.livestorm.co/p/3646fef7-f43b-4c20-a6d4-1b1c9c2ef665/form'></iframe>
+                // <WeeklyDemoForm />
               )}
             </ImageView>
           </RightWrap>
