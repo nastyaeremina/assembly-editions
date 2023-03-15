@@ -27,7 +27,8 @@ import {
   Speakers,
   TextSection,
   TextWrap,
-  Time
+  Time,
+  FormHeading3
 } from './styles';
 
 export default function WeeklyHero() {
@@ -38,7 +39,7 @@ export default function WeeklyHero() {
         <SolutionWrap isWeeklycontainer={true}>
           <LeftWrap>
             <Time>
-              <p>Every Thursday at 10 a.m. EST</p>
+              <p>Every Thursday 1 p.m. EST</p>
             </Time>
             <TextSection>
               <h1>
@@ -127,14 +128,16 @@ export default function WeeklyHero() {
                   </ImgLine>
                 </Card>
               ) : (
+                <>
+                <FormHeading3>Join us Live</FormHeading3>
                 <iframe
                   width='100%'
                   title='weekly-demo'
-                  height='480'
+                  height='1070'
                   frameborder='0'
                   // eslint-disable-next-line react/style-prop-object
                   style={{ overflow: 'hidden' }}
-                  src='https://app.livestorm.co/p/3646fef7-f43b-4c20-a6d4-1b1c9c2ef665/form'></iframe>
+                  src='https://app.livestorm.co/p/3646fef7-f43b-4c20-a6d4-1b1c9c2ef665/form'></iframe></>
                 // <WeeklyDemoForm />
               )}
             </ImageView>

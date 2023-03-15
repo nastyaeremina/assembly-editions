@@ -98,7 +98,7 @@ const SpeakerProfile = styled.div`
 const Profiledetail = styled.div`
   position: absolute;
   width: max-content;
-  top: 95px;
+  top: 60px;
   left: -14px;
   padding: 24px 32px;
   background-color: ${({ theme }) => theme.colors.greendark};
@@ -173,7 +173,7 @@ const TextWrap = styled.div`
 `;
 const Line = styled.div`
   position:absolute;
-  bottom:96%;
+  bottom:63%;
 `
 const MobileProfile = styled.div`
   display: none;
@@ -189,6 +189,13 @@ const MobileProfile = styled.div`
     ${FooterText}
     color: ${({ theme }) => theme.colors.body};
   }
+`;
+const FormHeading3 =styled.div`
+font-style: normal;
+font-weight: 400;
+font-size: 32px;
+line-height: 105%;
+margin-bottom:20px;
 `;
 export {
   Time,
@@ -206,5 +213,6 @@ export {
   Card,
   TextWrap,
   Line,
-  MobileProfile
+  MobileProfile,
+  FormHeading3
 };
