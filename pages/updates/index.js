@@ -67,8 +67,17 @@ export default function Updates({ seoData, allPosts }) {
                 bgColor={'transparent'}
                 fontColor={'#000000'}
                 borderColor={'#000000'}
+                text={'Previous page'}
+                href={'#'}
+                hoverColor={'rgba(0, 0, 0, 0.5)'}
+                className={'pagination-button'}
+              />
+              <Button
+                bgColor={'transparent'}
+                fontColor={'#000000'}
+                borderColor={'#000000'}
                 text={'Next Page'}
-                href={`/updates/page/2`}
+                href={'#'}
                 hoverColor={'rgba(0, 0, 0, 0.5)'}
                 className={'pagination-button'}
               />
@@ -82,7 +91,7 @@ export default function Updates({ seoData, allPosts }) {
 }
 export async function getStaticProps({ preview = false }) {
   const seoData = (await getSEOdata(UPDATES_SEO_ID)) ?? [];
-  const allPosts = (await getUpdatesPosts({ page: 1 })) ?? [];
+  const allPosts = (await getUpdatesPosts()) ?? [];
   seoData.canonical = 'https://www.copilot.com/updates';
 
   return {
