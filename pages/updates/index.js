@@ -12,7 +12,15 @@ import { isEmpty } from '../../helpers/helpers';
 import { getSEOdata } from '../../lib/contentful-seo';
 import { getUpdatesPosts } from '../../lib/updates-content';
 import { Container, SecondryButton } from '../../styles/commonStyles';
-import { Detail, UpadtePage, UpdateDate, UpdateDes, UpdateDetail, UpdateSubscribe } from '../../styles/updatestyle';
+import {
+  Detail,
+  Pagination,
+  UpadtePage,
+  UpdateDate,
+  UpdateDes,
+  UpdateDetail,
+  UpdateSubscribe
+} from '../../styles/updatestyle';
 
 export default function Updates({ seoData, allPosts }) {
   const renderPosts = useMemo(() => {
@@ -54,6 +62,26 @@ export default function Updates({ seoData, allPosts }) {
               />
             </UpdateSubscribe>
             {renderPosts}
+            <Pagination>
+              <Button
+                bgColor={'transparent'}
+                fontColor={'#000000'}
+                borderColor={'#000000'}
+                text={'Previous page'}
+                href={'#'}
+                hoverColor={'rgba(0, 0, 0, 0.5)'}
+                className={'pagination-button'}
+              />
+              <Button
+                bgColor={'transparent'}
+                fontColor={'#000000'}
+                borderColor={'#000000'}
+                text={'Next Page'}
+                href={'#'}
+                hoverColor={'rgba(0, 0, 0, 0.5)'}
+                className={'pagination-button'}
+              />
+            </Pagination>
           </Container>
         </UpadtePage>
         <CTA />
@@ -64,7 +92,7 @@ export default function Updates({ seoData, allPosts }) {
 export async function getStaticProps({ preview = false }) {
   const seoData = (await getSEOdata(UPDATES_SEO_ID)) ?? [];
   const allPosts = (await getUpdatesPosts()) ?? [];
-  seoData.canonical="https://www.copilot.com/updates";
+  seoData.canonical = 'https://www.copilot.com/updates';
 
   return {
     props: {
