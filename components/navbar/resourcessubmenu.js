@@ -23,7 +23,7 @@ export default function ResourcesSubMenu() {
           <MobileListLi>
             <LastDroplist Mobilemenu>
               <Last className='icon-link'>
-                <a href={BLOG_LINK} className='learn-link mb0'>
+                <a href={'/blog'} className='learn-link mb0'>
                   Read our blog
                   <svg width='16' height='12' viewBox='0 0 16 12' fill='none' class='HoverArrow'>
                     <path
