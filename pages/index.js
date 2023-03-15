@@ -66,6 +66,7 @@ export default function Home({ content, seoData, hybirdContent, clientContent, i
 
   useEffect(() => {
     setCookie(Cookies.get(COOKIE_NAME))
+    window.analytics.identify({ab_home_hero:'Hybrid Focus'});
   }, [])
 
   useEffect(() => {
