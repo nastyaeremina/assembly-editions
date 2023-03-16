@@ -1,6 +1,7 @@
 import React from 'react';
 import Layout from '../../components/layout';
 import Navbar from '../../components/navbar/navbar';
+
 import SEO from '../../components/seo';
 import { Container } from '../../components/weeklyhero/styles';
 import WeeklyHero from '../../components/weeklyhero/weeklyhero';
