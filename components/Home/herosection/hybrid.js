@@ -2,6 +2,7 @@ import Image from 'next/image';
 import React from 'react';
 import { Container } from '../../../styles/commonStyles';
 import Button from '../../button/button';
+import { COPILOT_ONBORADING_LINK } from '../../../constants/externalLinks';
 import {
   Hero,
   HeroBtnBlock,
@@ -116,7 +117,7 @@ export default function HomeHeroSection({ title, body, image1, image2, leftImage
             fontColor={'#00160E'}
             borderColor={'#E3FFEE'}
             text={'Try for free'}
-            href={'#'}
+            href={COPILOT_ONBORADING_LINK}
             hoverColor={'rgba(0, 0, 0, 0.5)'}
           />
         </HeroBtnBlock>
