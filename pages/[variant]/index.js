@@ -95,8 +95,7 @@ export default function Home({ content, seoData, internalContent, clientContent,
                 title={internalContent?.heroTitle}
                 body={internalContent?.heroBody}
                 image1={internalContent?.heroImage1?.url}
-              />{' '}
-              <h1>version 1</h1>
+              />
             </>
           ) : null}
           {variant.id === 2 ? (
