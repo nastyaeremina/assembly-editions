@@ -205,6 +205,10 @@ export const UNIVERSITY_VIDEO_CATEGORY = [
 ];
 
 export const INDUSTRY_ARRAY = ['consulting', 'technology', 'marketing'];
+export const HOME_CONTENT_ID = '1cPG7VsMO1XCahxAnz3rne';
+export const HOME_HYBIRD_CONTENT_ID = '1w6IZ3ILFiLQAbCmjHQX6Q';
+export const HOME_INTERNAL_CONTENT_ID = '2XZ0KqhzxydyrIOQtIi2rv';
+export const HOME_CLIENT_CONTENT_ID = '58ZcfzgUaFZoKtfHcplGZE';
 
 export const FEATURES_MESSAG_ID = '3j6okJbvtbNtRAXhtQC869';
 export const FEATURES_BILLING_ID = '2biTe250v3ZnEWb49koKtb';
