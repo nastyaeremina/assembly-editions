@@ -197,6 +197,7 @@ font-size: 32px;
 line-height: 105%;
 margin-bottom:20px;
 `;
+
 export {
   Time,
   TextSection,

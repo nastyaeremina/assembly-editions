@@ -2,10 +2,12 @@ import React, {useState, useEffect} from 'react';
 import Layout from '/components/layout';
 import Image from 'next/image';
 import Link from 'next/link';
+
 import { COOKIE_NAME } from '../lib/constants'
 import { useGa } from '../lib/useGa'
 import Cookies from 'js-cookie'
 import { ReactMarkdown } from 'react-markdown/lib/react-markdown';
+
 import { OrganizationJsonLd } from 'next-seo';
 import Navbar from '../components/navbar/navbar';
 import { Container } from '../styles/commonStyles';
@@ -52,6 +54,7 @@ import TabView from '../components/tab/tab';
 import Button from '../components/button/button';
 import SEO from '../components/seo';
 import { getSEOdata } from '../lib/contentful-seo';
+
 import { BLOG_LINK, COPILOT_JOIN_COMMUNITY_LINK, HELP_CENTER_LINK } from '../constants/externalLinks';
 import { separateSpecialChar } from '../helpers/helpers';
 import HomeHeroSection from '../components/Home/herosection/hybrid';

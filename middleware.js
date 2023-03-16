@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server'
 import { blockedIp } from './lib/rules/ip'
+
 export const config = {
   matcher: ['/'],
 }
