@@ -2,15 +2,15 @@ import React, { useState, useEffect } from 'react';
 import Layout from '/components/layout';
 import Image from 'next/image';
 import Link from 'next/link';
-import { COOKIE_NAME } from '../../lib/constants'
-import { useGa } from '../../lib/useGa'
-import Cookies from 'js-cookie'
+import { COOKIE_NAME } from '../../lib/constants';
+import { useGa } from '../../lib/useGa';
+import Cookies from 'js-cookie';
 import { ReactMarkdown } from 'react-markdown/lib/react-markdown';
 import { OrganizationJsonLd } from 'next-seo';
 import Navbar from '../../components/navbar/navbar';
 import { Container } from '../../styles/commonStyles';
 
-import { getCurrentExperiment } from '../../lib/optimize'
+import { getCurrentExperiment } from '../../lib/optimize';
 import {
   BusinessSection,
   BusinessText,
@@ -60,14 +60,12 @@ import HomeHeroSection from '../../components/Home/herosection/hybrid';
 
 export default function Home({ content, seoData, internalContent, clientContent, experiment, variant }) {
   useEffect(() => {
-    if (variant.id == 1) {
+    if (variant.id === 1) {
       window.analytics.identify({ ab_home_hero: 'Internal Focus' });
-    }
-    else if (variant.id == 2) {
+    } else if (variant.id === 2) {
       window.analytics.identify({ ab_home_hero: 'Client Focus' });
     }
-  }, [])
-
+  }, []);
 
   return (
     <>
@@ -91,22 +89,23 @@ export default function Home({ content, seoData, internalContent, clientContent,
           {/* old hero section */}
           {/* <DefaultHeroSection title={content.heroTitle} body={content.heroBody} /> */}
           {/* hybird */}
-          {variant.id == 1 ?
-          <>
-         
-            <HomeHeroSection
-              title={internalContent?.heroTitle}
-              body={internalContent?.heroBody}
-              image1={internalContent?.heroImage1?.url}
-            />  <h1>version 1</h1></> : null
-          }
-          {variant.id == 2 ?
+          {variant.id === 1 ? (
+            <>
+              <HomeHeroSection
+                title={internalContent?.heroTitle}
+                body={internalContent?.heroBody}
+                image1={internalContent?.heroImage1?.url}
+              />{' '}
+              <h1>version 1</h1>
+            </>
+          ) : null}
+          {variant.id === 2 ? (
             <HomeHeroSection
               title={clientContent?.heroTitle}
               body={clientContent?.heroBody}
               image1={clientContent?.heroImage1?.url}
-            /> : null
-          }
+            />
+          ) : null}
           <BusinessSection>
             <Container>
               <BusinessText>
@@ -414,8 +413,8 @@ export default function Home({ content, seoData, internalContent, clientContent,
 }
 
 export async function getStaticProps({ params }) {
-  const experiment = getCurrentExperiment()
-  const [, variantId] = params.variant.split('.')
+  const experiment = getCurrentExperiment();
+  const [, variantId] = params.variant.split('.');
 
   const content = (await getHomeContent(HOME_CONTENT_ID)) ?? '';
   const hybirdContent = (await getHomeContent(HOME_HYBIRD_CONTENT_ID)) ?? '';
@@ -432,17 +431,17 @@ export async function getStaticProps({ params }) {
       internalContent,
       seoData,
       experiment: { name: experiment.name },
-      variant: experiment.variants.find((v) => String(v.id) === variantId),
+      variant: experiment.variants.find((v) => String(v.id) === variantId)
     }
   };
 }
 
 export async function getStaticPaths() {
-  const experiment = getCurrentExperiment()
+  const experiment = getCurrentExperiment();
   return {
     paths: experiment.variants.map((v) => ({
-      params: { variant: `${experiment.id}.${v.id}` },
+      params: { variant: `${experiment.id}.${v.id}` }
     })),
-    fallback: false,
-  }
+    fallback: false
+  };
 }
