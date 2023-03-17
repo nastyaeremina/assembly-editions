@@ -129,11 +129,10 @@ export default function WeeklyHero() {
                 </Card>
               ) : (
                 <>
-                <FormHeading3>Join us Live</FormHeading3>
                 <iframe
                   width='100%'
                   title='weekly-demo'
-                  height='1070'
+                  height='900'
                   frameborder='0'
                   // eslint-disable-next-line react/style-prop-object
                   style={{ overflow: 'hidden' }}
