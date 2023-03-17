@@ -62,6 +62,7 @@ import {
   LastDroplist,
   FeatureMenu
 } from './styles';
+import { HelpLink as LastLink } from '../../styles/homepageStyles';
 import FeatureSubMenu from './featuresubmenu';
 import ResourcesSubMenu from './resourcessubmenu';
 import CompanySubMenu from './companysubmenu';
@@ -617,6 +618,26 @@ export default function Navbar({ isModule, headerIndex, isEnterPrice }) {
                       </RightText>
                     </MenuWrap>
                   </ListLi>
+                  {/* <ListLi>
+                  <MenuWrap href={'/blog'}>
+                    <LeftImg>
+                      <svg width='16' height='16' viewBox='0 0 16 16' fill='none' xmlns='http://www.w3.org/2000/svg'>
+                        <mask id='mask0_1874_104899' maskUnits='userSpaceOnUse' x='0' y='0' width='16' height='16'>
+                          <path d='M16 0H0V16H16V0Z' fill='white' />
+                        </mask>
+                        <g mask='url(#mask0_1874_104899)'>
+                          <path
+                            d='M12 14.2C12.2652 14.2 12.5196 14.3054 12.7071 14.4929C12.8946 14.6804 13 14.9348 13 15.2C13 15.4652 12.8946 15.7196 12.7071 15.9071C12.5196 16.0946 12.2652 16.2 12 16.2H4C3.73478 16.2 3.48043 16.0946 3.29289 15.9071C3.10536 15.7196 3 15.4652 3 15.2C3 14.9348 3.10536 14.6804 3.29289 14.4929C3.48043 14.3054 3.73478 14.2 4 14.2H12ZM8.5 0L13 7.2L11.29 13.2H4.7L3 7.2L7.5 0V6.29C7.16639 6.40795 6.88522 6.64003 6.70618 6.94524C6.52715 7.25045 6.46177 7.60912 6.5216 7.95787C6.58144 8.30661 6.76264 8.62298 7.03317 8.85105C7.3037 9.07912 7.64616 9.20421 8 9.20421C8.35384 9.20421 8.6963 9.07912 8.96683 8.85105C9.23736 8.62298 9.41856 8.30661 9.4784 7.95787C9.53823 7.60912 9.47285 7.25045 9.29382 6.94524C9.11478 6.64003 8.83361 6.40795 8.5 6.29V0Z'
+                            fill='#7DDAA0'
+                          />
+                        </g>
+                      </svg>
+                    </LeftImg>
+                    <RightText resourcetext>
+                      <h6>Blog</h6>
+                    </RightText>
+                  </MenuWrap>
+                </ListLi> */}
                 </Listleft>
                 <Listright>
                   <ListLi>
@@ -686,9 +707,35 @@ export default function Navbar({ isModule, headerIndex, isEnterPrice }) {
                   </ListLi>
                 </Listright>
               </Drop>
+              {/* <LastDroplist>
+                <Last className='icon-link'>
+                  <p>Read our blog</p>
+                  <svg class='HoverArrow' width='10' height='10' viewBox='0 0 10 10' aria-hidden='true'>
+                    <g fill-rule='evenodd'>
+                      <path class='HoverArrow__linePath' d='M0 5h7'></path>
+                      <path class='HoverArrow__tipPath' d='M1 1l4 4-4 4'></path>
+                    </g>
+                  </svg>
+                  <svg
+                    width='8'
+                    height='14'
+                    viewBox='0 0 8 14'
+                    fill='none'
+                    xmlns='http://www.w3.org/2000/svg'
+                    class='mobilearrow'>
+                    <path
+                      d='M2 3L6 7L2 11'
+                      stroke='#131313'
+                      stroke-width='1.85714'
+                      stroke-linecap='round'
+                      stroke-linejoin='round'
+                    />
+                  </svg>
+                </Last>
+              </LastDroplist> */}
               <LastDroplist>
                 <Last className='icon-link'>
-                  <a href={'/blog'} className='learn-link mb0'>
+                  <a href={BLOG_LINK} className='learn-link mb0'>
                     Read our blog
                     <svg width='16' height='12' viewBox='0 0 16 12' fill='none' class='HoverArrow'>
                       <path
@@ -706,6 +753,15 @@ export default function Navbar({ isModule, headerIndex, isEnterPrice }) {
                         class='HoverArrow__linePath'
                       />
                     </svg>
+                    {/* <svg width='8' height='12' viewBox='0 0 8 12' fill='none' class='mobilearrow'>
+                      <path
+                        d='M2 3L6 7L2 11'
+                        stroke='#09AA6C'
+                        stroke-width='1.85714'
+                        stroke-linecap='round'
+                        stroke-linejoin='round'
+                      />
+                    </svg> */}
                   </a>
                 </Last>
               </LastDroplist>

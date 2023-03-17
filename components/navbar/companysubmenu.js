@@ -31,7 +31,7 @@ export default function CompanySubMenu() {
             </LastDroplist>
           </MobileListLi>
           <MobileListLi>
-            <MenuMobileWrap href='#'>
+            <MenuMobileWrap href='/copilot-plus'>
               <LeftImg>
                 <svg width='20' height='20' viewBox='0 0 20 20' fill='none' xmlns='http://www.w3.org/2000/svg'>
                   <rect width='20' height='20' rx='10' fill='#7DDAA0' />
@@ -71,7 +71,7 @@ export default function CompanySubMenu() {
             </MenuMobileWrap>
           </MobileListLi>
           <MobileListLi>
-            <MenuMobileWrap href='#'>
+            <MenuMobileWrap href='/jobs'>
               <LeftImg>
                 <svg width='20' height='20' viewBox='0 0 20 20' fill='none' xmlns='http://www.w3.org/2000/svg'>
                   <rect width='20' height='20' rx='10' fill='#7DDAA0' />
@@ -94,7 +94,7 @@ export default function CompanySubMenu() {
             </MenuMobileWrap>
           </MobileListLi>
           <MobileListLi>
-            <MenuMobileWrap href='#'>
+            <MenuMobileWrap href='/brand'>
               <LeftImg>
                 <svg width='20' height='20' viewBox='0 0 20 20' fill='none' xmlns='http://www.w3.org/2000/svg'>
                   <rect width='20' height='20' rx='10' fill='#7DDAA0' />
@@ -136,7 +136,7 @@ export default function CompanySubMenu() {
             </MenuMobileWrap>
           </MobileListLi>
           <MobileListLi>
-            <MenuMobileWrap href='#'>
+            <MenuMobileWrap href='/brand'>
               <LeftImg>
                 <svg width='20' height='20' viewBox='0 0 20 20' fill='none' xmlns='http://www.w3.org/2000/svg'>
                   <rect width='20' height='20' rx='10' fill='#7DDAA0' />
@@ -178,7 +178,7 @@ export default function CompanySubMenu() {
             </MenuMobileWrap>
           </MobileListLi>
           <MobileListLi>
-            <MenuMobileWrap href='#'>
+            <MenuMobileWrap href='/brand'>
               <LeftImg>
                 <svg width='20' height='20' viewBox='0 0 20 20' fill='none' xmlns='http://www.w3.org/2000/svg'>
                   <rect width='20' height='20' rx='10' fill='#7DDAA0' />
@@ -196,7 +196,7 @@ export default function CompanySubMenu() {
             </MenuMobileWrap>
           </MobileListLi>
           <MobileListLi>
-            <MenuMobileWrap href='#'>
+            <MenuMobileWrap href='/brand'>
               <LeftImg>
                 <svg width='20' height='20' viewBox='0 0 20 20' fill='none' xmlns='http://www.w3.org/2000/svg'>
                   <rect width='20' height='20' rx='10' fill='#7DDAA0' />
