@@ -288,11 +288,11 @@ export default function Home({ content, seoData, internalContent, clientContent,
                       </HelpLink>
                     </HelpLeftSub>
                     <HelpLeftSub>
-                      <h3>Copilot Blog</h3>
-                      <p>Read about company announcements, new features, customer spotlights, and more.</p>
+                      <h3>Weekly Live Demo</h3>
+                      <p>Join our team as we take you on a tour of the Copilot platform in a 20-minute demo followed by a live Q&A.</p>
                       <HelpLink className='icon-link'>
-                        <a href={BLOG_LINK} className='learn-link mb0'>
-                          Read blog
+                        <a href='https://copilot.com/weekly-demo' className='learn-link mb0'>
+                          Register
                           <svg width='16' height='12' viewBox='0 0 16 12' fill='none' class='HoverArrow'>
                             <path
                               d='M5.7998 1.37109L10.4283 5.99958L5.7998 10.6281'
