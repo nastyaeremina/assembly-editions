@@ -1,6 +1,6 @@
 import styled, { css } from 'styled-components';
 import Link from 'next/link';
-import { HeaderFont, Body2, Body5, FooterText, Body4, MbButtonText, MbPrimaryBtn, LinkTxt } from '../../styles/styles';
+import { HeaderFont, Body2, Body5, FooterText, Body4, MbButtonText, MbPrimaryBtn } from '../../styles/styles';
 
 const NavbarWrapper = styled.div`
   position: fixed;
@@ -124,47 +124,43 @@ const SpanLink = styled.li`
     ${HeaderFont}
     margin: 0 14px;
     ${(props) =>
-      props.textColor &&
-      css`
+    props.textColor &&
+    css`
         color: ${props.textColor};
       `}
     cursor: pointer;
   }
   a:hover {
     ${(props) =>
-      props.hoverColor &&
-      css`
+    props.hoverColor &&
+    css`
         color: ${props.hoverColor};
       `}
   }
   .hovernone {
     ${(props) =>
-      props.textColor &&
-      css`
+    props.textColor &&
+    css`
         color: ${props.textColor};
       `}
   }
   .hovernone:hover {
     ${(props) =>
-      props.hoverColor &&
-      css`
+    props.hoverColor &&
+    css`
         color: ${props.hoverColor};
       `}
   }
   &.active {
     a {
       ${(props) =>
-        props.hoverColor &&
-        css`
-          color: ${props.hoverColor};
-        `}
+    props.hoverColor &&
+    css`
+        color: ${props.hoverColor};
+      `}
     }
   }
-  :hover .dropdownlist{
-    display:flex;
-    min-width:400px;
-    width:100%;
-  } 
+
   @media only screen and (max-width: 991px) {
     margin-bottom: 0px;
     width: 100%;
@@ -187,6 +183,7 @@ const SpanLink = styled.li`
   :hover .innerlist,
   li {
     display: block;
+
     @media only screen and (max-width: 991px) {
       display: none;
     }
@@ -268,6 +265,7 @@ const InnerList = styled.ul`
   position: absolute;
   top: 47px;
   left: -10px;
+  padding: 8px 0;
   background: #fff;
   box-shadow: 0px 8px 30px #ddd;
   z-index: 90;
@@ -286,43 +284,13 @@ const InnerList = styled.ul`
     props.company &&
     css`
       width: 100%;
-      min-width: 400px;
-      background-color: #ffffff;
-      border: 1px solid #00160e;
-      box-shadow: 0px 8px 24px rgba(0, 0, 0, 0.35);
-    `}
-    ${(props) =>
-    props.solution &&
-    css`
-      width: 100%;
-      min-width: 480px;
+      min-width: 200px;
       background-color: #ffffff;
       border: 1px solid #00160e;
       box-shadow: 0px 8px 24px rgba(0, 0, 0, 0.35);
     `}
 `;
 const ListLi = styled.li``;
-const Listleft = styled.div`
-  max-width: 200px;
-  width: 100%;
-  padding: 8px 0;
-  border-right: 1px solid #00160e;
-  ${(props) =>
-    props.solutionleft &&
-    css`
-      max-width: 240px;
-    `}
-`;
-const Listright = styled.div`
-  max-width: 200px;
-  width: 100%;
-  padding: 8px 0;
-  ${(props) =>
-    props.solutionright &&
-    css`
-      max-width: 240px;
-    `}
-`;
 const HeaderBtnGroup = styled.div`
   @media only screen and (max-width: 991px) {
     width: 100%;
@@ -584,11 +552,11 @@ const MenuWrap = styled(Link)`
   }
   :hover {
     background-color: ${({ theme }) => theme.colors.greendark};
-    /* svg {
+    svg {
       path {
         fill: #e3ffee;
       }
-    } */
+    }
     .logo {
       circle {
         fill: #e3ffee;
@@ -768,7 +736,7 @@ const MenuMobileWrap = styled.a`
         fill: #00160e;
       }
     }
-
+ 
     h6 {
       color: ${({ theme }) => theme.colors.greenlight};
     }
@@ -949,100 +917,6 @@ const Dspace = styled.div`
 height: 34px;
 display: block;
 `;
-
-const Drop = styled.div`
-    display:flex;
-    min-width:400px;
-    width:100%;
-`
-const Last = styled.div`
-  display:flex;
-  align-items:center;
-`;
-
-const LastDroplist = styled.div`
-  border-top: 1px solid #00160e;
-  padding: 12px 20px;
-  @media only screen and (max-width: 991px) {
-    ${(props) =>
-      props.Mobilemenu &&
-      css`
-        padding: 12px 24px;
-        border-top: none;
-      `}
-  }
-
-  .learn-link,
-  .learn-link svg path {
-    transition: all 300ms ease;
-  }
-  a {
-    ${MbPrimaryBtn};
-    margin: 0;
-    color: ${({ theme }) => theme.colors.title};
-    cursor: pointer;
-    transition: none;
-    :hover .HoverArrow__linePath {
-      opacity: 1;
-      fill: none;
-      fill: black;
-      /* @media only screen and (max-width: 749px) {
-        opacity: 0;
-      } */
-    }
-    :hover .HoverArrow__tipPath {
-      transform: translateX(2px);
-      /* @media only screen and (max-width: 749px) {
-        transform: none;
-      } */
-    }
-  }
-
-  .learn-link:hover {
-    color: black;
-    /* @media only screen and (max-width: 749px) {
-      color: ${({ theme }) => theme.colors.primary};
-    } */
-  }
-  .learn-link svg path {
-    transition: all 300ms ease;
-  }
-  .HoverArrow__linePath {
-    opacity: 0;
-    fill: none;
-  }
-  .HoverArrow {
-    stroke-width: 2px;
-    fill: none;
-    stroke: currentColor;
-    position: relative;
-    margin-left: var(--arrowSpacing);
-    stroke-width: 2px;
-    fill: none;
-    stroke: currentColor;
-    margin-left: 8px;
-    --arrowSpacing: 5px;
-    --arrowHoverTransition: 150ms cubic-bezier(0.215, 0.61, 0.355, 1);
-    --arrowHoverOffset: translateX(3px);
-    /* @media only screen and (max-width: 749px) {
-      display: none;
-    } */
-    /* @media only screen and (max-width: 376px) {
-      margin-left: 4px;
-    } */
-  }
-  .mobilearrow {
-    display: none;
-    /* @media only screen and (max-width: 749px) {
-      position: relative;
-      display: block;
-    } */
-  }
-`;
-
-const FeatureMenu = styled.div`
-  padding:8px 0;
-`
 export {
   NavbarWrapper,
   NavbarInner,
@@ -1083,11 +957,5 @@ export {
   TopBar,
   AnnounceBar,
   HelpLink,
-  Dspace,
-  Listleft,
-  Listright,
-  Drop,
-  Last,
-  LastDroplist,
-  FeatureMenu
+  Dspace
 };
