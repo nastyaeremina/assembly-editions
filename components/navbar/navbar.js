@@ -498,7 +498,7 @@ export default function Navbar({ isModule, headerIndex, isEnterPrice }) {
               <LastDroplist>
                 <Last className='icon-link'>
                   <a href={'#'} className='learn-link mb0'>
-                    Our Customers
+                    View All Solutions
                     <svg width='16' height='12' viewBox='0 0 16 12' fill='none' class='HoverArrow'>
                       <path
                         d='M5.7998 1.37109L10.4283 5.99958L5.7998 10.6281'
