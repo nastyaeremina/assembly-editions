@@ -4,7 +4,7 @@ import { QuoteMain, Mainss, QuoteTxt, QuoteSubTxt, QuoteLine, QuoteImg } from '.
 
 export default function Quote({ gradientImage, data }) {
   return (
-    <QuoteMain gradientImage={gradientImage}>
+    <QuoteMain gradientImage={gradientImage} caseStudies={true}>
       <Container>
         <Mainss>
           <QuoteImg>

@@ -23,7 +23,17 @@ const QuoteMain = styled.div`
       css`
         background-image: url(${props.gradientImage?.responsive});
       `}
+    ${(props) =>
+      props.caseStudies &&
+      css`
+        padding: 80px 0;
+      `}
   }
+  ${(props) =>
+    props.caseStudies &&
+    css`
+      padding: 100px 0;
+    `}
 `;
 const Mainss = styled.div`
   display: flex;
