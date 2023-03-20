@@ -1,6 +1,6 @@
 import Link from "next/link";
 import styled from "styled-components";
-import { Body3, Body4, ButtonText, Heading3, Heading4, MbBody3, MbBody4, MbPrimaryBtn } from "./styles";
+import { Body3, Body4, ButtonText, HeaderFont, Heading3, Heading4, MbBody3, MbBody4, MbPrimaryBtn } from "./styles";
 
 const UpadtePage = styled.div`
 padding-top: 180px;
@@ -156,12 +156,17 @@ ul{
     }
 }
 `
-export {
-    UpadtePage,
-    UpdateSubscribe,
-    UpdateDes,
-    Detail,
-    UpdateDate,
-    UpdateDetail,
-    DetailSlug
-}
+const Pagination = styled.div`
+  display: flex;
+  justify-content: center;
+  gap: 13px;
+  padding-top:20px ;
+  .pagination-button {
+    a {
+      ${HeaderFont}
+      color: ${({ theme }) => theme.colors.black};
+      padding:8px 32px;
+    }
+  }
+`;
+export { UpadtePage, UpdateSubscribe, UpdateDes, Detail, UpdateDate, UpdateDetail, DetailSlug, Pagination };

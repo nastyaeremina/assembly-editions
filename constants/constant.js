@@ -203,7 +203,7 @@ export const UNIVERSITY_VIDEO_CATEGORY = [
   'Industry Courses',
   'Quick Tips'
 ];
-
+export const PER_UPDATE_PAGE_POST = 10;
 export const INDUSTRY_ARRAY = ['consulting', 'technology', 'marketing'];
 export const HOME_CONTENT_ID = '1cPG7VsMO1XCahxAnz3rne';
 export const HOME_HYBIRD_CONTENT_ID = '1w6IZ3ILFiLQAbCmjHQX6Q';
