@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import Button from '../../components/button/button';
 import CustomerTestimonial from '../../components/customer/testimonials';
 import CustomerFeedBack from '../../components/feedback/customerfeedback';
@@ -8,8 +8,30 @@ import { Container } from '../../styles/commonStyles';
 import { Heading, HeroBtnBlock, HeroHeading, HeroSection, Para, LastSection } from '../../styles/customerstyles';
 import logo1 from '../../public/images/logo1.png';
 import logo2 from '../../public/images/logo2.png';
+import { getSEOdata } from '../../lib/contentful-seo';
+import { CUSTOMER_SEO_ID, ENTERPRICE_SEO_ID } from '../../constants/constant';
+import { getAllFeaturedCaseStudies, getAllFeaturedTestimonial } from '../../lib/contentful-testimonial';
+import { convertHighlights, isEmpty } from '../../helpers/helpers';
 
-export default function Customer() {
+export default function Customer({ testimonialPosts, casestudiesPosts }) {
+  const casestudiesView = useMemo(() => {
+    if (isEmpty(casestudiesPosts)) return null;
+    return casestudiesPosts?.map((item, index) => {
+      return (
+        <CustomerTestimonial
+          key={`casestudy_index_${index}`}
+          logo={item?.customerLogo?.imageAsset?.url}
+          body={item?.description}
+          highlightsData={item?.highlights}
+          satisfaction={'+25%'}
+          rate={'-10%'}
+          retention={'+25%'}
+          slug={item?.slug}
+        />
+      );
+    });
+  }, [casestudiesPosts]);
+
   return (
     <>
       <Layout>
@@ -33,31 +55,25 @@ export default function Customer() {
             </HeroBtnBlock>
           </Container>
         </HeroSection>
-        <CustomerFeedBack />
+        {!isEmpty(testimonialPosts) && <CustomerFeedBack data={testimonialPosts} />}
         <Container>
           <Heading>How Copilot helps businesses succeed</Heading>
         </Container>
-        <LastSection>
-          <CustomerTestimonial
-            logo={logo1}
-            body={
-              'With Copilot, Provantage Capital was able to grow lol obviously. We did them good. Case study case study lorem ipsum dolor sit amet.'
-            }
-            satisfaction={'+25%'}
-            rate={'-10%'}
-            retention={'+25%'}
-          />
-          <CustomerTestimonial
-            logo={logo2}
-            body={
-              'With Copilot, Tangent Capital was able to grow lol obviously. We did them good. Case study Nullam eu ligula felis. Donec quam leo, ultricies eget posuere vitae, hendrerit eu sapien. In vestibulum posuere dolor, in commodo eros finibus sed.'
-            }
-            satisfaction={'+250%'}
-            rate={'-1000%'}
-            retention={'+2500%'}
-          />
-        </LastSection>
+        {!isEmpty(casestudiesPosts) && <LastSection>{casestudiesView}</LastSection>}
       </Layout>
     </>
   );
+}
+export async function getStaticProps({ preview = false }) {
+  const seoData = (await getSEOdata(CUSTOMER_SEO_ID)) ?? [];
+  const testimonialPosts = (await getAllFeaturedTestimonial()) ?? [];
+  const casestudiesPosts = (await getAllFeaturedCaseStudies()) ?? [];
+
+  return {
+    props: {
+      seoData,
+      testimonialPosts,
+      casestudiesPosts
+    }
+  };
 }
