@@ -25,6 +25,7 @@ export default class MyDocument extends Document {
       return {
         ...initialProps,
         data: newData,
+        mode: process.env.NODE_ENV,
         styles: (
           <>
             {initialProps.styles}
@@ -40,7 +41,9 @@ export default class MyDocument extends Document {
     return (
       <Html>
         <Head>
-          {!isEmpty(this?.props?.data?.header?.code) && parse(this?.props?.data?.header?.code)}
+          {!isEmpty(this?.props?.data?.header?.code) &&
+            this?.props?.mode === 'production' &&
+            parse(this?.props?.data?.header?.code)}
           <Script
             id='google-tag-manager'
             strategy='afterInteractive'
@@ -56,7 +59,9 @@ export default class MyDocument extends Document {
           />
         </Head>
         <body>
-          {!isEmpty(this?.props?.data?.afterBody?.code) && parse(this?.props?.data?.afterBody?.code)}
+          {!isEmpty(this?.props?.data?.afterBody?.code) &&
+            this?.props?.mode === 'production' &&
+            parse(this?.props?.data?.afterBody?.code)}
           <Main />
           <NextScript />
           <noscript
@@ -64,7 +69,9 @@ export default class MyDocument extends Document {
               __html: `<iframe src="https://www.googletagmanager.com/ns.html?id=GTM-${GTM_ID}" height="0" width="0" style="display: none; visibility: hidden;" />`
             }}
           />
-          {!isEmpty(this?.props?.data?.beforeBody?.code) && parse(this?.props?.data?.beforeBody?.code)}
+          {!isEmpty(this?.props?.data?.beforeBody?.code) &&
+            this?.props?.mode === 'production' &&
+            parse(this?.props?.data?.beforeBody?.code)}
         </body>
       </Html>
     );

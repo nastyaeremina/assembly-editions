@@ -414,7 +414,7 @@ const SwiperSlide = styled.div`
 const ImageText = styled.div`
   position: absolute;
   max-width: 660px;
-  width: 100%;
+  width: 500%;
   text-align: left;
   bottom: 172px;
   h3 {
