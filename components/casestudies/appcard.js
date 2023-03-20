@@ -1,13 +1,13 @@
 import Image from 'next/image';
-import React from 'react'
+import React from 'react';
 import { Last, LastDroplist } from '../../styles/casestudiestyles';
 
-export default function AppCard({ name, applogo }) {
+export default function AppCard({ name, applogo, url }) {
   return (
     <LastDroplist>
       <Image src={applogo} alt='msg-icon' width={20} height={20} />
       <Last className='icon-link'>
-        <a href={'#'} className='learn-link mb0'>
+        <a href={`${url}`} className='learn-link mb0'>
           {name}
           <svg width='16' height='12' viewBox='0 0 16 12' fill='none' class='HoverArrow'>
             <path
