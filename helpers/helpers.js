@@ -47,3 +47,15 @@ export function separateSpecialChar(title) {
   const finalTitle = seprateWithDotList?.join(`<span>.</span>`);
   return finalTitle;
 }
+
+export function convertHighlights(value) {
+  const newList = [];
+  var result = value.split(/\[(.*?)\]/);
+  result.forEach((element) => {
+    if (!isEmpty(element)) {
+      const roundedList = element.split(/\((.*?)\)/) ?? [];
+      if (!isEmpty(roundedList)) newList.push({ title: roundedList[1], desc: roundedList[3] });
+    }
+  });
+  return newList;
+}

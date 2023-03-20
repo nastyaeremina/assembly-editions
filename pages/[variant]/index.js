@@ -61,9 +61,9 @@ import HomeHeroSection from '../../components/Home/herosection/hybrid';
 export default function Home({ content, seoData, internalContent, clientContent, experiment, variant }) {
   useEffect(() => {
     if (variant.id === 1) {
-      window.analytics.identify({ ab_home_hero: 'Internal Focus' });
+      window.analytics?.identify({ ab_home_hero: 'Internal Focus' });
     } else if (variant.id === 2) {
-      window.analytics.identify({ ab_home_hero: 'Client Focus' });
+      window.analytics?.identify({ ab_home_hero: 'Client Focus' });
     }
   }, []);
 
@@ -289,7 +289,10 @@ export default function Home({ content, seoData, internalContent, clientContent,
                     </HelpLeftSub>
                     <HelpLeftSub>
                       <h3>Weekly Live Demo</h3>
-                      <p>Join our team as we take you on a tour of the Copilot platform in a 20-minute demo followed by a live Q&A.</p>
+                      <p>
+                        Join our team as we take you on a tour of the Copilot platform in a 20-minute demo followed by a
+                        live Q&A.
+                      </p>
                       <HelpLink className='icon-link'>
                         <a href='https://copilot.com/weekly-demo' className='learn-link mb0'>
                           Register

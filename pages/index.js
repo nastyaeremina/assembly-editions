@@ -1,11 +1,11 @@
-import React, {useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import Layout from '/components/layout';
 import Image from 'next/image';
 import Link from 'next/link';
 
-import { COOKIE_NAME } from '../lib/constants'
-import { useGa } from '../lib/useGa'
-import Cookies from 'js-cookie'
+import { COOKIE_NAME } from '../lib/constants';
+import { useGa } from '../lib/useGa';
+import Cookies from 'js-cookie';
 import { ReactMarkdown } from 'react-markdown/lib/react-markdown';
 
 import { OrganizationJsonLd } from 'next-seo';
@@ -60,24 +60,24 @@ import { separateSpecialChar } from '../helpers/helpers';
 import HomeHeroSection from '../components/Home/herosection/hybrid';
 
 export default function Home({ content, seoData, hybirdContent, clientContent, internalContent }) {
-  const ga = useGa()
-  const [cookie, setCookie] = useState('')
+  const ga = useGa();
+  const [cookie, setCookie] = useState('');
   const removeCookie = () => {
-    Cookies.remove(COOKIE_NAME)
-    window.location.reload()
-  }
+    Cookies.remove(COOKIE_NAME);
+    window.location.reload();
+  };
 
   useEffect(() => {
-    setCookie(Cookies.get(COOKIE_NAME))
-    window.analytics.identify({ab_home_hero:'Hybrid Focus'});
-  }, [])
+    setCookie(Cookies.get(COOKIE_NAME));
+    window.analytics?.identify({ ab_home_hero: 'Hybrid Focus' });
+  }, []);
 
   useEffect(() => {
     if (ga && cookie) {
-      ga('set', 'exp', cookie)
+      ga('set', 'exp', cookie);
     }
-  }, [ga, cookie])
-  
+  }, [ga, cookie]);
+
   return (
     <>
       <SEO seoData={seoData}></SEO>
@@ -292,7 +292,10 @@ export default function Home({ content, seoData, hybirdContent, clientContent, i
                     </HelpLeftSub>
                     <HelpLeftSub>
                       <h3>Weekly Live Demo</h3>
-                      <p>Join our team as we take you on a tour of the Copilot platform in a 20-minute demo followed by a live Q&A.</p>
+                      <p>
+                        Join our team as we take you on a tour of the Copilot platform in a 20-minute demo followed by a
+                        live Q&A.
+                      </p>
                       <HelpLink className='icon-link'>
                         <a href='https://copilot.com/weekly-demo' className='learn-link mb0'>
                           Register
