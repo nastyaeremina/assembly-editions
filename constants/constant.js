@@ -85,7 +85,7 @@ export const MODULE_GRADIENT_IMAGE_LIST = {
   form: { fullScreen: '/images/forms_gradient.svg', responsive: '/images/formbg.svg' },
   helpdesk: { fullScreen: '/images/helpdesk_gradient.svg', responsive: '/images/helpbg.svg' },
   contract: { fullScreen: '/images/contract_gradient.svg', responsive: '/images/contractbg.svg' },
-  other: { fullScreen: '/images/contract_gradient.svg', responsive: '/images/contractbg.svg' }
+  other: { fullScreen: '/images/casestudies_gradient.svg', responsive: '/images/casestudiesbg.svg' }
 };
 export const NAVBAR_COLOR_LIST = [
   {

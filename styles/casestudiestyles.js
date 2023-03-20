@@ -1,5 +1,5 @@
 import styled, { css } from 'styled-components';
-import { Body2, Body3, Body4, Body5, HeaderFont, Heading2, Heading3, Heading5, Heading6, MbBody1, MbBody5, MobileH2 } from './styles';
+import { Body2, Body3, Body4, Body5, HeaderFont, Heading2, Heading3, Heading4, Heading5, Heading6, MbBody1, MbBody3, MbBody4, MbBody5, MobileH2 } from './styles';
 
 const HeroSection = styled.div`
   width: 100%;
@@ -68,6 +68,9 @@ const HighlightSection = styled.div`
   @media only screen and (max-width: 768px) {
     padding: 20px 24px;
     margin-bottom: 80px;
+    align-items: center;
+  }
+  @media only screen and (max-width: 450px) {
     flex-direction: column;
     align-items: center;
   }
@@ -94,7 +97,7 @@ const Highlight = styled.div`
     css`
       padding: 12px 20px 12px 40px;
     `}
-  @media only screen and (max-width: 768px) {
+  @media only screen and (max-width: 450px) {
     ${(props) =>
       props.ishighlight1 &&
       css`
@@ -118,10 +121,29 @@ const Highlight = styled.div`
   h2 {
     ${Heading5}
     margin:0;
+    @media only screen and (max-width: 768px) {
+      font-weight: 500;
+      font-size: 22px;
+      line-height: 31px;
+    }
+    @media only screen and (max-width: 450px) {
+      font-weight: 500;
+      font-size: 24px;
+      line-height: 31px;
+    }
   }
   p {
     ${Body4}
     margin:5px 0 0;
+    @media only screen and (max-width: 768px) {
+      font-weight: 400;
+      font-size: 16px;
+      line-height: 19px;
+      letter-spacing: 0.02em;
+    }
+    @media only screen and (max-width: 450px) {
+      ${Body4}
+    }
   }
 `;
 
@@ -136,7 +158,57 @@ const LeftSection = styled.div`
     display:none;
   }
 `;
-const RightSection = styled.div``;
+const RightSection = styled.div`
+  h2 {
+    ${Heading3};
+    color: ${({ theme }) => theme.colors.title};
+    margin: 0;
+    padding-top: 60px;
+    margin-bottom: -16px;
+    :first-child {
+      padding-top: 0;
+    }
+  }
+
+  b {
+    font-weight: 400;
+    color: ${({ theme }) => theme.colors.title};
+  }
+  p {
+    ${Body3};
+    color: ${({ theme }) => theme.colors.body};
+    margin: 28px 0 0px 0;
+    a {
+      display: inline-block;
+      color: ${({ theme }) => theme.colors.primary};
+    }
+  }
+  span {
+    ${Body3};
+    color: ${({ theme }) => theme.colors.primary};
+    margin: 0;
+  }
+  @media only screen and (max-width: 768px) {
+    h2 {
+      ${MobileH2};
+      color: ${({ theme }) => theme.colors.title};
+      margin: 0;
+      padding-top: 40px;
+      :first-child {
+        padding-top: 0;
+      }
+    }
+    p {
+      margin-top: 16px;
+      ${MbBody3}
+    }
+    li {
+      p {
+        ${MbBody4}
+      }
+    }
+  }
+`;
 const CustomerLogo = styled.div``;
 const Head = styled.h2`
   ${Heading6}
@@ -145,7 +217,7 @@ const Head = styled.h2`
   border-bottom: 1px solid #000000;
 `;
 const Detail = styled.div`
-  margin:20px 0 0;
+  margin: 20px 0 0;
   h3 {
     ${Body5}
     margin:0 0 4px;
@@ -154,7 +226,7 @@ const Detail = styled.div`
   p {
     ${Body5}
     margin:0;
-    color: ${({ theme }) => theme.colors.body};
+    color: ${({ theme }) => theme.colors.lightgray};
   }
   a {
     ${Body5}
@@ -214,6 +286,7 @@ const LastDroplist = styled.div`
   }
   .HoverArrow {
     stroke-width: 1px;
+    padding-top:1px;
     fill: none;
     stroke: currentColor;
     position: relative;
