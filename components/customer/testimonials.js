@@ -35,7 +35,7 @@ export default function CustomerTestimonial({ logo, body, slug, highlightsData }
           </Top>
           <LastDroplist>
             <Last className='icon-link'>
-              <a href={`case-study/${slug}`} className='learn-link mb0'>
+              <a href={`case-studies/${slug}`} className='learn-link mb0'>
                 View full case study
                 <svg width='16' height='12' viewBox='0 0 16 12' fill='none' class='HoverArrow'>
                   <path
