@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
+import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
 import Button from '../../components/button/button';
 import CTA from '../../components/cta/cta';
 import Layout from '../../components/layout';
@@ -29,8 +30,12 @@ import logo from '../../public/images/logo1.png';
 import AppCardSection from '../../components/casestudies/appcardsection';
 import HighLightsCard from '../../components/casestudies/highlights';
 import HighlightSectionComponents from '../../components/casestudies/highlightSection';
+import { getCaseStudyDetail } from '../../lib/contentful-casestudies';
+import { isEmpty } from '../../helpers/helpers';
+import Quote from '../../components/quote/quote';
+import { MODULE_GRADIENT_IMAGE_LIST, MUDULE_LIST } from '../../constants/constant';
 
-export default function CaseStudies() {
+export default function CaseStudies({ postDetail: details }) {
   return (
     <>
       <Layout>
@@ -90,6 +95,8 @@ export default function CaseStudies() {
               </Bottom>
             </LeftSection>
             <RightSection>
+              {documentToReactComponents(details?.body?.json)}
+
               <h2>Challenge</h2>
               <p>
                 See how Acme Corp improved retention by x% and grew like x% and woah theyre doing so well because of
@@ -100,8 +107,27 @@ export default function CaseStudies() {
             </RightSection>
           </CustomerSection>
         </Container>
+        {!isEmpty(details?.testimonial) && (
+          <Quote gradientImage={MODULE_GRADIENT_IMAGE_LIST[MUDULE_LIST.OTHER]} data={details?.testimonial} />
+        )}
         <CTA />
       </Layout>
     </>
   );
 }
+export async function getStaticProps({ params, preview = false }) {
+  const postDetail = (await getCaseStudyDetail({ id: null })) || {};
+
+  return {
+    props: { postDetail }
+  };
+}
+
+// export async function getStaticPaths() {
+//   const allPosts = (await getAllJobsWithSlug()) ?? [];
+//   return {
+//     paths: allPosts?.map(({ slug }) => `/jobs/${slug}`) ?? [],
+
+//     fallback: true
+//   };
+// }
