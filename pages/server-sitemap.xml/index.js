@@ -7,6 +7,8 @@ import { getAllUniversityVideoWithSlug } from '../../lib/contentful-universityVi
 import { getAllAuthorWithSlug, getAllBlogWithSlug, getAllTagWithSlug } from '../../lib/blog-content';
 import { getUpdatesPosts, getUpdatesWithSlug } from '../../lib/updates-content';
 import { getAllComparisonWithSlug } from '../../lib/contentful-comparison';
+import { useMemo } from 'react';
+import { PER_UPDATE_PAGE_POST } from '../../constants/constant';
 
 export async function getServerSideProps(ctx) {
   const appsPost = (await getAllPartnerAppsWithSlug()) ?? []; // appa
@@ -29,6 +31,13 @@ export async function getServerSideProps(ctx) {
   const tagPostsPathList = tagPost?.map((item) => `blog/tag/${item?.slug}`);
   const comparisonPostsPathList = comparisonPost?.map((item) => `comparison/${item?.slug}`);
 
+  let allUpdateWithPagination = [];
+  const totalCount = updatesPost?.meta?.pagination?.total;
+  const totalPageCount = Math.ceil(totalCount / PER_UPDATE_PAGE_POST);
+
+  for (let page = 2; page <= totalPageCount; page++) {
+    allUpdateWithPagination.push(`updates/page/${page}`);
+  }
   const finalList = appsPostsPathList?.concat(
     jobsPostsPathList,
     solutionssPostsPathList,
@@ -37,7 +46,8 @@ export async function getServerSideProps(ctx) {
     updatesPostsPathList,
     authorPostsPathList,
     tagPostsPathList,
-    comparisonPostsPathList
+    comparisonPostsPathList,
+    allUpdateWithPagination
   );
   return getServerSideSitemapIndex(
     ctx,
