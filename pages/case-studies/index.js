@@ -59,9 +59,7 @@ export default function CaseStudies({ postDetail: details }) {
             </HeroBtnBlock>
           </Container>
         </HeroSection>
-        <HighlightSection>
-          <HighlightSectionComponents />
-        </HighlightSection>
+        <HighlightSectionComponents />
         <Container>
           <CustomerSection>
             <LeftSection>
@@ -94,21 +92,15 @@ export default function CaseStudies({ postDetail: details }) {
                 <AppCardSection />
               </Bottom>
             </LeftSection>
-            <RightSection>
-              {documentToReactComponents(details?.body?.json)}
-
-              <h2>Challenge</h2>
-              <p>
-                See how Acme Corp improved retention by x% and grew like x% and woah theyre doing so well because of
-                copilot pls buy our product plsSee how Acme Corp improved retention by x% and grew like x% and woah
-                theyre doing so well because of copilot pls buy our product plsSee how Acme Corp improved retention by
-                x% and grew like x% and woah theyre doing so well because of copilot pls buy our product pls
-              </p>
-            </RightSection>
+            <RightSection>{documentToReactComponents(details?.body?.json)}</RightSection>
           </CustomerSection>
         </Container>
         {!isEmpty(details?.testimonial) && (
-          <Quote gradientImage={MODULE_GRADIENT_IMAGE_LIST[MUDULE_LIST.OTHER]} data={details?.testimonial} />
+          <Quote
+            gradientImage={MODULE_GRADIENT_IMAGE_LIST[MUDULE_LIST.OTHER]}
+            data={details?.testimonial}
+            caseStudies
+          />
         )}
         <CTA />
       </Layout>
