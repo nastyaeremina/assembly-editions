@@ -36,7 +36,8 @@ export async function middleware(req) {
 
   // Add the cookie if it's not there
   if (!req.cookies.has(COOKIE_NAME)) {
-    res.cookies.set(COOKIE_NAME, cookie);
+    const one_year_ms = 24 * 60 * 60 * 1000 * 365;
+    res.cookies.set({ name: COOKIE_NAME, value: cookie, expires: new Date(Date.now() + one_year_ms) });
   }
 
   return res;
