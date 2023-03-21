@@ -103,16 +103,15 @@ export default function CaseStudies({ postDetail: details }) {
                   )}
                 </DetailSection>
               </Top>
-              {!isEmpty(details?.copilotAppsCollection?.items) ||
-                (!isEmpty(details?.appsCollection?.items) && (
-                  <Bottom>
-                    <Head>Apps in use</Head>
-                    <AppCardSection
-                      copilotAppList={details?.copilotAppsCollection?.items}
-                      appsList={details?.appsCollection?.items}
-                    />
-                  </Bottom>
-                ))}
+              {(!isEmpty(details?.copilotAppsCollection?.items) || !isEmpty(details?.appsCollection?.items)) && (
+                <Bottom>
+                  <Head>Apps in use</Head>
+                  <AppCardSection
+                    copilotAppList={details?.copilotAppsCollection?.items}
+                    appsList={details?.appsCollection?.items}
+                  />
+                </Bottom>
+              )}
             </LeftSection>
             <RightSection>{documentToReactComponents(details?.body?.json)}</RightSection>
           </CustomerSection>
