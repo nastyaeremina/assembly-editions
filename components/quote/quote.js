@@ -2,9 +2,9 @@ import Image from 'next/image';
 import { Container } from '../../styles/commonStyles';
 import { QuoteMain, Mainss, QuoteTxt, QuoteSubTxt, QuoteLine, QuoteImg } from './styles';
 
-export default function Quote({ gradientImage, data }) {
+export default function Quote({ gradientImage, data, caseStudies = false }) {
   return (
-    <QuoteMain gradientImage={gradientImage} caseStudies={true}>
+    <QuoteMain gradientImage={gradientImage} caseStudies={caseStudies}>
       <Container>
         <Mainss>
           <QuoteImg>
