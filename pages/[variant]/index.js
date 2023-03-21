@@ -61,11 +61,11 @@ import HomeHeroSection from '../../components/Home/herosection/hybrid';
 export default function Home({ content, seoData, internalContent, clientContent, experiment, variant }) {
   useEffect(() => {
     if (variant.id === 1) {
-      window.analytics?.identify({ ab_home_hero: 'Internal Focus' });
+      window?.analytics?.identify({ ab_home_hero: 'Internal Focus' });
     } else if (variant.id === 2) {
-      window.analytics?.identify({ ab_home_hero: 'Client Focus' });
+      window?.analytics?.identify({ ab_home_hero: 'Client Focus' });
     }
-  }, []);
+  }, [variant.id]);
 
   return (
     <>
