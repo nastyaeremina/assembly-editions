@@ -1,6 +1,37 @@
-import { NavigationBlock, NavMenu, MobileListLi, MenuMobileWrap, LeftImg, RightText, Last, LastDroplist } from './styles';
+import Image from 'next/image';
+import { useMemo } from 'react';
+import { isEmpty } from '../../helpers/helpers';
+import {
+  NavigationBlock,
+  NavMenu,
+  MobileListLi,
+  MenuMobileWrap,
+  LeftImg,
+  RightText,
+  Last,
+  LastDroplist
+} from './styles';
 
-export default function CompanySubMenu() {
+export default function CompanySubMenu({ data }) {
+  const renderSolutionList = useMemo(() => {
+    if (isEmpty(data)) return null;
+    return data?.map((item, index) => {
+      return (
+        <MobileListLi key={`solutionlistview_index_${index}`}>
+          <MenuMobileWrap href={`/solutions/${item?.slug}`}>
+            {!isEmpty(item?.industryIcon?.url) && (
+              <LeftImg>
+                <Image src={item?.industryIcon?.url} alt='hybridright' width={20} height={20} />
+              </LeftImg>
+            )}
+            <RightText resourcetext>
+              <h6>{item?.name}</h6>
+            </RightText>
+          </MenuMobileWrap>
+        </MobileListLi>
+      );
+    });
+  }, [data]);
   return (
     <>
       <NavMenu>
@@ -8,7 +39,7 @@ export default function CompanySubMenu() {
           <MobileListLi>
             <LastDroplist Mobilemenu>
               <Last className='icon-link'>
-                <a href={'#'} className='learn-link mb0'>
+                <a href={'/customer/'} className='learn-link mb0'>
                   Our Customers
                   <svg width='16' height='12' viewBox='0 0 16 12' fill='none' class='HoverArrow'>
                     <path
@@ -30,7 +61,8 @@ export default function CompanySubMenu() {
               </Last>
             </LastDroplist>
           </MobileListLi>
-          <MobileListLi>
+          {renderSolutionList}
+          {/* <MobileListLi>
             <MenuMobileWrap href='#'>
               <LeftImg>
                 <svg width='20' height='20' viewBox='0 0 20 20' fill='none' xmlns='http://www.w3.org/2000/svg'>
@@ -248,7 +280,7 @@ export default function CompanySubMenu() {
                 <h6>Legal</h6>
               </RightText>
             </MenuMobileWrap>
-          </MobileListLi>
+          </MobileListLi> */}
         </NavigationBlock>
       </NavMenu>
     </>
