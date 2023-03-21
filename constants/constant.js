@@ -19,7 +19,8 @@ export const MUDULE_LIST = {
   FORMS: 'form',
   KNOWLEDGE: 'knowledge',
   MESSAGING: 'message',
-  HELPDESK: 'helpdesk'
+  HELPDESK: 'helpdesk',
+  OTHER: 'other'
 };
 
 export const FUNCTION_LIST = {
@@ -83,7 +84,8 @@ export const MODULE_GRADIENT_IMAGE_LIST = {
   file: { fullScreen: '/images/files_gradient.svg', responsive: '/images/filebg.svg' },
   form: { fullScreen: '/images/forms_gradient.svg', responsive: '/images/formbg.svg' },
   helpdesk: { fullScreen: '/images/helpdesk_gradient.svg', responsive: '/images/helpbg.svg' },
-  contract: { fullScreen: '/images/contract_gradient.svg', responsive: '/images/contractbg.svg' }
+  contract: { fullScreen: '/images/contract_gradient.svg', responsive: '/images/contractbg.svg' },
+  other: { fullScreen: '/images/casestudies_gradient.svg', responsive: '/images/casestudiesbg.svg' }
 };
 export const NAVBAR_COLOR_LIST = [
   {
