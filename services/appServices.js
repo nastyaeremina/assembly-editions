@@ -2,7 +2,7 @@ import { setAppLoading, setCTAContent, setNavbarSolutionList, setTopBarContent }
 import { CTA_CONTENT_ID, TOP_BAR_CONTENT_ID } from '../constants/constant';
 import { isEmpty } from '../helpers/helpers';
 import { getSitemap } from '../lib/contentful-sitemap';
-import { getAllSolutionWithSlug } from '../lib/contentful-solutions';
+import { getAllNavbarSolution } from '../lib/contentful-solutions';
 
 export const getTopBarContent = () => async (dispatch) => {
   try {
@@ -58,7 +58,7 @@ export const getCTAContent = () => async (dispatch) => {
 export const getNavbarSolutionList = () => async (dispatch) => {
   try {
     dispatch(setAppLoading(true));
-    const data = (await getAllSolutionWithSlug()) || [];
+    const data = (await getAllNavbarSolution()) || [];
     if (!isEmpty(data)) {
       dispatch(setNavbarSolutionList(data));
       return data;
