@@ -11,7 +11,13 @@ const CTAContentReducer = createReducer({
   actionType: Actions.SET_CTA_CONTENT
 });
 
+const navbarSolutionReducer = createReducer({
+  initialState: [],
+  actionType: Actions.SET_NAVBAR_SOLUTION_LIST
+});
+
 export default combineReducers({
   topbarContent: topBarContentReducer,
-  ctaContent: CTAContentReducer
+  ctaContent: CTAContentReducer,
+  navbarSolutionList: navbarSolutionReducer
 });
