@@ -13,3 +13,7 @@ export const setTopBarContent = createAction(Actions.SET_TOP_BAR_CONTENT);
  * @desc Set CTA content
  */
 export const setCTAContent = createAction(Actions.SET_CTA_CONTENT);
+/**
+ * @desc Set Nvbar Solution List
+ */
+export const setNavbarSolutionList = createAction(Actions.SET_NAVBAR_SOLUTION_LIST);
