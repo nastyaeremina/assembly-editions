@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import Head from 'next/head';
 import { Container } from '../../styles/commonStyles';
 import Button from '../button/button';
+import { COPILOT_ONBORADING_LINK } from '../../constants/externalLinks';
 import {
   FeatureHeroSection,
   HeroBlock,
@@ -15,7 +16,6 @@ import {
   VideoPlay,
   VideoClose
 } from './styles';
-import { COPILOT_ONBORADING_LINK } from '../../constants/externalLinks';
 
 export default function FeatureHero({ colorList, title, description, iconUrl, videoId, heroImage }) {
   const [isOpen, setIsOpen] = useState(false);
@@ -52,15 +52,7 @@ export default function FeatureHero({ colorList, title, description, iconUrl, vi
             {isOpen ? (
               <VideoPlay>
                 <VideoClose onClick={onClick}>
-                  <svg width='22' height='22' viewBox='0 0 22 22' fill='none' xmlns='http://www.w3.org/2000/svg'>
-                    <path
-                      d='M20.5518 1.45312L1.46094 20.544M20.5518 20.544L1.46094 1.45312L20.5518 20.544Z'
-                      stroke='white'
-                      stroke-width='2.72727'
-                      stroke-linecap='round'
-                      stroke-linejoin='round'
-                    />
-                  </svg>
+                  close
                 </VideoClose>
                 <div className='play'>
                   <iframe
