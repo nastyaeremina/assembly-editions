@@ -12,7 +12,7 @@ import {
   LastDroplist
 } from './styles';
 
-export default function CompanySubMenu({ data }) {
+export default function SolutionSubMenu({ data }) {
   const renderSolutionList = useMemo(() => {
     if (isEmpty(data)) return null;
     return data?.map((item, index) => {

@@ -295,7 +295,7 @@ const InnerList = styled.ul`
     props.solution &&
     css`
       width: 100%;
-      min-width: 480px;
+      min-width: 554px;
       background-color: #ffffff;
       border: 1px solid #00160e;
       box-shadow: 0px 8px 24px rgba(0, 0, 0, 0.35);
@@ -310,7 +310,8 @@ const Listleft = styled.div`
   ${(props) =>
     props.solutionleft &&
     css`
-      max-width: 240px;
+      min-width: 277px;
+      white-space: nowrap;
     `}
 `;
 const Listright = styled.div`
@@ -320,7 +321,8 @@ const Listright = styled.div`
   ${(props) =>
     props.solutionright &&
     css`
-      max-width: 240px;
+      min-width: 277px;
+      white-space: nowrap;
     `}
 `;
 const HeaderBtnGroup = styled.div`
