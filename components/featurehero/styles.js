@@ -203,10 +203,19 @@ const VideoPlay = styled.div`
 `;
 
 const VideoClose = styled.div`
-    position:absolute;
-    top:5%;
-    right:5%;
-    cursor:pointer;
+  position: absolute;
+  top: 5%;
+  right: 5%;
+  cursor: pointer;
+  font-weight: 500;
+  font-size: 15px;
+  line-height: 24px;
+  letter-spacing: 0.02;
+  color: #ffffff;
+  margin: 0;
+  @media only screen and (min-width: 2160px) {
+    font-size: 1vw;
+  }
 `;
 
 export { FeatureHeroSection, HeroBlock, BlockLeft, BlockRight, BlockImage, BlockLine, BLockImg, FeatureImage,VideoPlay,VideoClose };

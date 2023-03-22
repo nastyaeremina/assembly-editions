@@ -1470,13 +1470,17 @@ const ImageDiv = styled.div`
     left: 50%;
     border-radius: 5px;
     z-index: 1;
-    max-width:75%;
+    max-width: 75%;
     max-height: 75%;
+    @media only screen and (max-width: 1024px) {
+      width: 100%;
+      max-width: 75%;
+      height: auto;
+    }
     @media only screen and (max-width: 768px) {
       width: 100%;
       max-width: 90%;
-      height:auto;
-      /* max-height:75%; */
+      height: auto;
     }
   }
 `;
