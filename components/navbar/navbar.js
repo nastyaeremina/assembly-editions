@@ -64,7 +64,7 @@ import {
 } from './styles';
 import FeatureSubMenu from './featuresubmenu';
 import ResourcesSubMenu from './resourcessubmenu';
-import CompanySubMenu from './companysubmenu';
+import SolutionSubMenu from './solutionsubmenu';
 
 export default function Navbar({ isModule, headerIndex, isEnterPrice }) {
   const appSelector = useSelector((state) => state.app);
@@ -73,18 +73,18 @@ export default function Navbar({ isModule, headerIndex, isEnterPrice }) {
   const router = useRouter();
   const [isOpenMobileMenu, setIsOpenMobileMenu] = useState(false);
   const [isOpenFeatureSubMenu, setIsOpenFeatureSubMenu] = useState(false);
-  const [isOpenCompanySubMenu, setIsOpenCompanySubMenu] = useState(false);
+  const [isOpenSolutionSubMenu, setIsOpenSolutionSubMenu] = useState(false);
   const [isOpenResoursesSubMenu, setIsOpenResoursesSubMenu] = useState(false);
   const [colorList, setColorList] = useState(NAVBAR_COLOR_LIST[0]);
   const closeSubMenu = useCallback(() => {
     if (isOpenFeatureSubMenu) {
       setIsOpenFeatureSubMenu(false);
-    } else if (isOpenCompanySubMenu) {
-      setIsOpenCompanySubMenu(false);
+    } else if (isOpenSolutionSubMenu) {
+      setIsOpenSolutionSubMenu(false);
     } else if (isOpenResoursesSubMenu) {
       setIsOpenResoursesSubMenu(false);
     }
-  }, [isOpenCompanySubMenu, isOpenFeatureSubMenu, isOpenResoursesSubMenu]);
+  }, [isOpenSolutionSubMenu, isOpenFeatureSubMenu, isOpenResoursesSubMenu]);
 
   const handleMobileMenu = useCallback(() => {
     const body = document.querySelector('body');
@@ -152,8 +152,8 @@ export default function Navbar({ isModule, headerIndex, isEnterPrice }) {
           <NavigationBlock>
             {isOpenFeatureSubMenu ? (
               <FeatureSubMenu />
-            ) : isOpenCompanySubMenu ? (
-              <CompanySubMenu data={navbarSolutionList} />
+            ) : isOpenSolutionSubMenu ? (
+              <SolutionSubMenu data={navbarSolutionList} />
             ) : isOpenResoursesSubMenu ? (
               <ResourcesSubMenu />
             ) : (
@@ -180,7 +180,7 @@ export default function Navbar({ isModule, headerIndex, isEnterPrice }) {
                   className={router.pathname === '/features' ? 'active' : ''}>
                   <MobileText
                     onClick={() => {
-                      setIsOpenCompanySubMenu(true);
+                      setIsOpenSolutionSubMenu(true);
                     }}>
                     Solutions
                   </MobileText>
@@ -304,7 +304,7 @@ export default function Navbar({ isModule, headerIndex, isEnterPrice }) {
               <LastDroplist>
                 <Last className='icon-link'>
                   <a href={'/customer/'} className='learn-link mb0'>
-                    Our Customers
+                    Meet our customers
                     <svg width='16' height='12' viewBox='0 0 16 12' fill='none' class='HoverArrow'>
                       <path
                         d='M5.7998 1.37109L10.4283 5.99958L5.7998 10.6281'
@@ -628,7 +628,7 @@ export default function Navbar({ isModule, headerIndex, isEnterPrice }) {
           <NavbarInner>
             {isModule ? (
               mobile ? (
-                isOpenResoursesSubMenu || isOpenCompanySubMenu || isOpenFeatureSubMenu ? (
+                isOpenResoursesSubMenu || isOpenSolutionSubMenu || isOpenFeatureSubMenu ? (
                   <BackWrap textColor={colorList?.fontColor} onClick={closeSubMenu}>
                     <SvgIcon>
                       <Image src='/images/moduleback.svg' width={10} height={10} alt='back-icon' />
@@ -647,7 +647,7 @@ export default function Navbar({ isModule, headerIndex, isEnterPrice }) {
               )
             ) : isEnterPrice ? (
               mobile ? (
-                isOpenResoursesSubMenu || isOpenCompanySubMenu || isOpenFeatureSubMenu ? (
+                isOpenResoursesSubMenu || isOpenSolutionSubMenu || isOpenFeatureSubMenu ? (
                   <BackWrap textColor={colorList?.fontColor} onClick={closeSubMenu}>
                     <SvgIcon>
                       <Image src='/images/moduleback.svg' width={10} height={10} alt='back-icon' />
@@ -665,7 +665,7 @@ export default function Navbar({ isModule, headerIndex, isEnterPrice }) {
                 </Link>
               )
             ) : mobile ? (
-              isOpenResoursesSubMenu || isOpenCompanySubMenu || isOpenFeatureSubMenu ? (
+              isOpenResoursesSubMenu || isOpenSolutionSubMenu || isOpenFeatureSubMenu ? (
                 <BackWrap onClick={closeSubMenu}>
                   <SvgIcon>
                     <Image src='/images/iconback.svg' width={10} height={10} alt='back-icon' />
