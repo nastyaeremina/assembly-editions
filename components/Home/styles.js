@@ -35,9 +35,11 @@ const HeroHeading = styled.h1`
 `;
 
 const Para = styled.p`
+  max-width:880px;
+  width:100%;
   ${Body2}
   letter-spacing: 0.02em;
-  margin: 0;
+  margin: 0 auto;
   color: ${({ theme }) => theme.colors.whiteColor};
   @media only screen and (max-width: 991px) {
     text-align: center;
@@ -174,12 +176,11 @@ const MainImage = styled.div`
   width: 100%;
   filter: drop-shadow(0px 4.68797px 157.047px rgba(9, 170, 108, 0.55));
   .heromain-image {
-    max-width: 1000px;
     width: 100%;
-    max-height: 500px;
+    max-height: 415px;
     height: 100%;
     margin-bottom: -4px;
-    margin-top: 100px;
+    margin-top: 50px;
     border-radius: 7px 7px 0 0;
   }
   @media only screen and (max-width: 768px) {
