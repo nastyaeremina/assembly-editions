@@ -36,7 +36,7 @@ import {
 } from '../styles';
 import FeatureSubMenu from '../featuresubmenu';
 import ResourcesSubMenu from '../resourcessubmenu';
-import CompanySubMenu from '../companysubmenu';
+import SolutionSubMenu from '../solutionsubmenu';
 import { NavigationBlock } from './styles';
 
 export default function BlogNavbar({ isModule, headerIndex, isEnterPrice, tagData }) {
@@ -46,19 +46,19 @@ export default function BlogNavbar({ isModule, headerIndex, isEnterPrice, tagDat
   const router = useRouter();
   const [isOpenMobileMenu, setIsOpenMobileMenu] = useState(false);
   const [isOpenFeatureSubMenu, setIsOpenFeatureSubMenu] = useState(false);
-  const [isOpenCompanySubMenu, setIsOpenCompanySubMenu] = useState(false);
+  const [isOpenSolutionSubMenu, setIsOpenSolutionSubMenu] = useState(false);
   const [isOpenResoursesSubMenu, setIsOpenResoursesSubMenu] = useState(false);
 
   const [colorList, setColorList] = useState(NAVBAR_COLOR_LIST[0]);
   const closeSubMenu = useCallback(() => {
     if (isOpenFeatureSubMenu) {
       setIsOpenFeatureSubMenu(false);
-    } else if (isOpenCompanySubMenu) {
-      setIsOpenCompanySubMenu(false);
+    } else if (isOpenSolutionSubMenu) {
+      setIsOpenSolutionSubMenu(false);
     } else if (isOpenResoursesSubMenu) {
       setIsOpenResoursesSubMenu(false);
     }
-  }, [isOpenCompanySubMenu, isOpenFeatureSubMenu, isOpenResoursesSubMenu]);
+  }, [isOpenSolutionSubMenu, isOpenFeatureSubMenu, isOpenResoursesSubMenu]);
 
   const handleMobileMenu = useCallback(() => {
     const body = document.querySelector('body');
@@ -96,8 +96,8 @@ export default function BlogNavbar({ isModule, headerIndex, isEnterPrice, tagDat
           <NavigationBlock>
             {isOpenFeatureSubMenu ? (
               <FeatureSubMenu />
-            ) : isOpenCompanySubMenu ? (
-              <CompanySubMenu />
+            ) : isOpenSolutionSubMenu ? (
+              <SolutionSubMenu />
             ) : isOpenResoursesSubMenu ? (
               <ResourcesSubMenu />
             ) : (
@@ -156,7 +156,7 @@ export default function BlogNavbar({ isModule, headerIndex, isEnterPrice, tagDat
   }, [
     colorList?.fontColor,
     colorList?.primaryColor,
-    isOpenCompanySubMenu,
+    isOpenSolutionSubMenu,
     isOpenFeatureSubMenu,
     isOpenResoursesSubMenu,
     router.pathname,
@@ -304,7 +304,7 @@ export default function BlogNavbar({ isModule, headerIndex, isEnterPrice, tagDat
           <NavbarInner>
             {isModule ? (
               mobile ? (
-                isOpenResoursesSubMenu || isOpenCompanySubMenu || isOpenFeatureSubMenu ? (
+                isOpenResoursesSubMenu || isOpenSolutionSubMenu || isOpenFeatureSubMenu ? (
                   <BackWrap textColor={colorList?.fontColor} onClick={closeSubMenu}>
                     <SvgIcon>
                       <Image src='/images/moduleback.svg' width={10} height={10} alt='back-icon' />
@@ -323,7 +323,7 @@ export default function BlogNavbar({ isModule, headerIndex, isEnterPrice, tagDat
               )
             ) : isEnterPrice ? (
               mobile ? (
-                isOpenResoursesSubMenu || isOpenCompanySubMenu || isOpenFeatureSubMenu ? (
+                isOpenResoursesSubMenu || isOpenSolutionSubMenu || isOpenFeatureSubMenu ? (
                   <BackWrap textColor={colorList?.fontColor} onClick={closeSubMenu}>
                     <SvgIcon>
                       <Image src='/images/moduleback.svg' width={10} height={10} alt='back-icon' />
@@ -341,7 +341,7 @@ export default function BlogNavbar({ isModule, headerIndex, isEnterPrice, tagDat
                 </Link>
               )
             ) : mobile ? (
-              isOpenResoursesSubMenu || isOpenCompanySubMenu || isOpenFeatureSubMenu ? (
+              isOpenResoursesSubMenu || isOpenSolutionSubMenu || isOpenFeatureSubMenu ? (
                 <BackWrap onClick={closeSubMenu}>
                   <SvgIcon>
                     <Image src='/images/iconback.svg' width={10} height={10} alt='back-icon' />
