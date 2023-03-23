@@ -16,9 +16,9 @@ import {
   Value
 } from './styles';
 const HeroSection = styled.div`
-  padding-top: 224px;
+  padding-top: 180px;
   @media only screen and (max-width: 991px) {
-    padding-top: 192px;
+    padding-top: 180px;
   }
   @media only screen and (max-width: 749px) {
     padding-top: 150px;

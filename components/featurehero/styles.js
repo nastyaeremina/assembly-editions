@@ -7,7 +7,7 @@ const FeatureHeroSection = styled.div`
     css`
       background-color: ${props.backgroundColor};
     `}
-  padding-top: 186px;
+  padding-top: 180px;
   overflow: hidden;
   @media only screen and (max-width: 749px) {
     padding-top: 150px;

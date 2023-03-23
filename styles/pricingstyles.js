@@ -17,7 +17,7 @@ import {
   TableText
 } from './styles';
 const HeroSection = styled.div`
-  padding: 224px 0 100px 0;
+  padding: 180px 0 100px 0;
   text-align: center;
   margin: 0 auto;
   h1 {
