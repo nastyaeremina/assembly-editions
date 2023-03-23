@@ -13,7 +13,7 @@ import {
   Value
 } from './styles';
 const UniversitySection = styled.div`
-  padding-top: 124px;
+  padding-top: 80px;
   padding-bottom: 100px;
   @media only screen and (max-width: 749px) {
     padding-bottom: 80px;

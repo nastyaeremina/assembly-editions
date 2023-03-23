@@ -3,7 +3,7 @@ import { Body4, Heading2, Heading4, Heading6, LinkTxt, MobileH2 } from './styles
 const MainSection = styled.div``;
 const PrivacuHero = styled.div`
   background-color: ${({ theme }) => theme.colors.greendark};
-  padding: 196px 0 100px 0;
+  padding: 180px 0 100px 0;
   text-align: center;
   h1 {
     ${Heading2};

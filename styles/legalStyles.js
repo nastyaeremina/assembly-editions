@@ -5,7 +5,7 @@ const MainSection = styled.div`
 `;
 const PrivacuHero = styled.div`
   background-color: ${({ theme }) => theme.colors.greendark};
-  padding: 196px 0 100px 0;
+  padding: 180px 0 100px 0;
   text-align: center;
   h1 {
     ${Heading2};
