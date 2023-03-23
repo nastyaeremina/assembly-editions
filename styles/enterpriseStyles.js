@@ -18,7 +18,7 @@ const MainWrap = styled.div`
   background-color: ${({ theme }) => theme.colors.greendark};
 `;
 const EnterPriseHero = styled.div`
-  padding: 204px 0 0 0;
+  padding: 180px 0 0 0;
   background-image: url('/images/enterpriceone.png');
   background-position: center 80px;
   background-repeat: no-repeat;
