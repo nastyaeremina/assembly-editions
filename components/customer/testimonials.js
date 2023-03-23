@@ -5,7 +5,7 @@ import rightphoto from '../../public/images/price.png';
 import { convertHighlights, isEmpty } from '../../helpers/helpers';
 import { Detail, Last, LastDroplist, LeftCard, Percentage, RightCard, Section, TestimonialCard, Top } from './styles';
 
-export default function CustomerTestimonial({ logo, body, slug, highlightsData }) {
+export default function CustomerTestimonial({ logo, body, slug, highlightsData, banner }) {
   const renderHighlightView = useMemo(() => {
     const newList = convertHighlights(highlightsData);
 
@@ -35,7 +35,7 @@ export default function CustomerTestimonial({ logo, body, slug, highlightsData }
           </Top>
           <LastDroplist>
             <Last className='icon-link'>
-              <a href={`case-studies/${slug}`} className='learn-link mb0'>
+              <a href={`customers/${slug}`} className='learn-link mb0'>
                 View full case study
                 <svg width='16' height='12' viewBox='0 0 16 12' fill='none' class='HoverArrow'>
                   <path
@@ -58,7 +58,7 @@ export default function CustomerTestimonial({ logo, body, slug, highlightsData }
           </LastDroplist>
         </LeftCard>
         <RightCard>
-          <Image src={rightphoto} alt='customer' className='right' />
+          <Image src={banner} alt='customer' className='right' width={405} height={407} />
         </RightCard>
       </TestimonialCard>
     </Container>

@@ -12,8 +12,9 @@ import { getSEOdata } from '../../lib/contentful-seo';
 import { CUSTOMER_SEO_ID, ENTERPRICE_SEO_ID } from '../../constants/constant';
 import { getAllFeaturedCaseStudies, getAllFeaturedTestimonial } from '../../lib/contentful-testimonial';
 import { convertHighlights, isEmpty } from '../../helpers/helpers';
+import SEO from '../../components/seo';
 
-export default function Customer({ testimonialPosts, casestudiesPosts }) {
+export default function Customer({ testimonialPosts, casestudiesPosts, seoData }) {
   const casestudiesView = useMemo(() => {
     if (isEmpty(casestudiesPosts)) return null;
     return casestudiesPosts?.map((item, index) => {
@@ -21,6 +22,7 @@ export default function Customer({ testimonialPosts, casestudiesPosts }) {
         <CustomerTestimonial
           key={`casestudy_index_${index}`}
           logo={item?.customerLogo?.imageAsset?.url}
+          banner={item?.caseStudyImage?.url}
           body={item?.description}
           highlightsData={item?.highlights}
           satisfaction={'+25%'}
@@ -34,6 +36,7 @@ export default function Customer({ testimonialPosts, casestudiesPosts }) {
 
   return (
     <>
+      <SEO seoData={seoData} />
       <Layout>
         <Navbar />
         <HeroSection>
