@@ -179,7 +179,7 @@ const FeatureItem = styled.li`
 
 const HeroSection = styled.div`
   width: 100%;
-  padding: 224px 0 50px 0;
+  padding: 180px 0 50px 0;
   text-align: center;
   overflow: hidden;
   @media only screen and (max-width: 749px) {
