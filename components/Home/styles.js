@@ -3,7 +3,7 @@ import { Body1, Body2, Body5, FooterText, Heading2, Heading3, MbBody1, MobileH2 
 
 const HeroSection = styled.div`
   width: 100%;
-  padding: 224px 0 0px 0;
+  padding: 180px 0 0px 0;
   /* margin-bottom: 50px; */
   text-align: center;
   overflow: hidden;

@@ -3,7 +3,7 @@ import { Body2, Body3, Body4, Body5, HeaderFont, Heading2, Heading3, Heading4, H
 
 const HeroSection = styled.div`
   width: 100%;
-  padding: 224px 0 0px 0;
+  padding: 180px 0 0px 0;
   text-align: center;
   overflow: hidden;
   @media only screen and (max-width: 749px) {
