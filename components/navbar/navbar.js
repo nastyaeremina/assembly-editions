@@ -303,7 +303,7 @@ export default function Navbar({ isModule, headerIndex, isEnterPrice }) {
               {renderSolutionMenu}
               <LastDroplist>
                 <Last className='icon-link'>
-                  <a href={'/customer/'} className='learn-link mb0'>
+                  <a href={'/customers/'} className='learn-link mb0'>
                     Meet our customers
                     <svg width='16' height='12' viewBox='0 0 16 12' fill='none' class='HoverArrow'>
                       <path
