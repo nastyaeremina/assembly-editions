@@ -1471,7 +1471,13 @@ const ImageDiv = styled.div`
     border-radius: 5px;
     z-index: 1;
     max-width: 75%;
-    max-height: 75%;
+    max-height: 85%;
+    height:auto;
+    @media only screen and (max-width: 1440px) {
+      width: 100%;
+      max-width: 75%;
+      height: auto;
+    }
     @media only screen and (max-width: 1024px) {
       width: 100%;
       max-width: 75%;
