@@ -23,11 +23,12 @@ const RightCard = styled.div`
     max-width: 100%;
   }
   .right {
-    width: 405px;
+    max-width: 405px;
+    width:100%;
     border-left: 1px solid #131313;
     border-radius: 0px 3px 3px 0px;
     @media only screen and (max-width: 768px) {
-        width:100%;
+        max-width:100%;
         border-left:none;
         border-radius:3px 3px 0px 0px;
     }
