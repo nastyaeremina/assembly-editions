@@ -13,6 +13,7 @@ import { CUSTOMER_SEO_ID, ENTERPRICE_SEO_ID } from '../../constants/constant';
 import { getAllFeaturedCaseStudies, getAllFeaturedTestimonial } from '../../lib/contentful-testimonial';
 import { convertHighlights, isEmpty } from '../../helpers/helpers';
 import SEO from '../../components/seo';
+import { COPILOT_ONBORADING_LINK } from '../../constants/externalLinks';
 
 export default function Customer({ testimonialPosts, casestudiesPosts, seoData }) {
   const casestudiesView = useMemo(() => {
@@ -42,7 +43,7 @@ export default function Customer({ testimonialPosts, casestudiesPosts, seoData }
         <HeroSection>
           <Container>
             <HeroHeading>Meet our customers</HeroHeading>
-            <Para>
+            <Para mainpagebody>
               Thousands of tech-enabled service companies – modern accounting firms, consulting businesses, marketing
               agencies – and others use Copilot to streamline their business and grow faster.
             </Para>
@@ -52,7 +53,7 @@ export default function Customer({ testimonialPosts, casestudiesPosts, seoData }
                 fontColor={'#FFFFFF'}
                 borderColor={'#09AA6C'}
                 text={'Start trial'}
-                href={'#'}
+                href={COPILOT_ONBORADING_LINK}
                 hoverColor={'rgba(0, 0, 0, 0.5)'}
               />
             </HeroBtnBlock>

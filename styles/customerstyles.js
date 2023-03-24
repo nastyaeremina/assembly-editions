@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { Body2, Heading2, Heading3, MbBody1, MobileH2 } from './styles';
 
 const HeroSection = styled.div`
@@ -29,8 +29,14 @@ const HeroHeading = styled.h1`
 const Para = styled.p`
   ${Body2}
   letter-spacing: 0.02em;
-  margin: 0;
+  margin: 0 auto;
   color: ${({ theme }) => theme.colors.body};
+  ${(props) =>
+    props.mainpagebody &&
+    css`
+      max-width: 780px;
+      width: 100%;
+    `}
   @media only screen and (max-width: 991px) {
     text-align: center;
     ${Body2}
