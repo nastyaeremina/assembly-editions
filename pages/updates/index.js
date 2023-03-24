@@ -14,6 +14,7 @@ import { getUpdatesPosts } from '../../lib/updates-content';
 import { Container, SecondryButton } from '../../styles/commonStyles';
 import {
   Detail,
+  Left,
   Pagination,
   UpadtePage,
   UpdateDate,
@@ -62,17 +63,22 @@ export default function Updates({ seoData, allPosts }) {
               />
             </UpdateSubscribe>
             {renderPosts}
-            <Pagination>
-              <Button
-                bgColor={'transparent'}
-                fontColor={'#000000'}
-                borderColor={'#000000'}
-                text={'Next Page'}
-                href={`/updates/page/2`}
-                hoverColor={'rgba(0, 0, 0, 0.5)'}
-                className={'pagination-button'}
-              />
-            </Pagination>
+            <Detail>
+              <Left></Left>
+              <UpdateDetail>
+                <Pagination>
+                  <Button
+                    bgColor={'transparent'}
+                    fontColor={'#000000'}
+                    borderColor={'#000000'}
+                    text={'Next Page'}
+                    href={`/updates/page/2`}
+                    hoverColor={'rgba(0, 0, 0, 0.5)'}
+                    className={'pagination-button'}
+                  />
+                </Pagination>
+              </UpdateDetail>
+            </Detail>
           </Container>
         </UpadtePage>
         <CTA />
