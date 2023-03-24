@@ -15,6 +15,7 @@ import { getUpdatesPosts } from '../../../lib/updates-content';
 import { Container } from '../../../styles/commonStyles';
 import {
   Detail,
+  Left,
   Pagination,
   UpadtePage,
   UpdateDate,
@@ -64,32 +65,37 @@ export default function Updates({ seoData, allPosts, pagination }) {
               />
             </UpdateSubscribe>
             {renderPosts}
-            {!isEmpty(allPosts) && (
-              <Pagination>
-                {!isEmpty(pagination?.prev) && (
-                  <Button
-                    bgColor={'transparent'}
-                    fontColor={'#000000'}
-                    borderColor={'#000000'}
-                    text={'Previous page'}
-                    href={pagination?.page === 2 ? `/updates/` : `/updates/page/${pagination?.page - 1}`}
-                    hoverColor={'rgba(0, 0, 0, 0.5)'}
-                    className={'pagination-button'}
-                  />
+            <Detail>
+              <Left></Left>
+              <UpdateDetail>
+                {!isEmpty(allPosts) && (
+                  <Pagination>
+                    {!isEmpty(pagination?.prev) && (
+                      <Button
+                        bgColor={'transparent'}
+                        fontColor={'#000000'}
+                        borderColor={'#000000'}
+                        text={'Previous page'}
+                        href={pagination?.page === 2 ? `/updates/` : `/updates/page/${pagination?.page - 1}`}
+                        hoverColor={'rgba(0, 0, 0, 0.5)'}
+                        className={'pagination-button'}
+                      />
+                    )}
+                    {!isEmpty(pagination?.next) && (
+                      <Button
+                        bgColor={'transparent'}
+                        fontColor={'#000000'}
+                        borderColor={'#000000'}
+                        text={'Next Page'}
+                        href={`/updates/page/${pagination?.page + 1}`}
+                        hoverColor={'rgba(0, 0, 0, 0.5)'}
+                        className={'pagination-button'}
+                      />
+                    )}
+                  </Pagination>
                 )}
-                {!isEmpty(pagination?.next) && (
-                  <Button
-                    bgColor={'transparent'}
-                    fontColor={'#000000'}
-                    borderColor={'#000000'}
-                    text={'Next Page'}
-                    href={`/updates/page/${pagination?.page + 1}`}
-                    hoverColor={'rgba(0, 0, 0, 0.5)'}
-                    className={'pagination-button'}
-                  />
-                )}
-              </Pagination>
-            )}
+              </UpdateDetail>
+            </Detail>
           </Container>
         </UpadtePage>
         <CTA />
