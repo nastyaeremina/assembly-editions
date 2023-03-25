@@ -154,6 +154,7 @@ const CustomerSection = styled.div`
 const LeftSection = styled.div`
   max-width: 274px;
   width: 100%;
+  position: relative;
   @media only screen and (max-width: 768px) {
     display:none;
   }
@@ -307,6 +308,11 @@ const Last = styled.div`
   display: flex;
   align-items: center;
 `;
+
+const Left = styled.div`
+  position:sticky;
+  top:144px;
+`
 export {
   HeroSection,
   HeroHeading,
@@ -325,5 +331,6 @@ export {
   Top,
   Bottom,
   LastDroplist,
-  Last
+  Last,
+  Left
 };

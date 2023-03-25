@@ -12,8 +12,10 @@ import { getSEOdata } from '../../lib/contentful-seo';
 import { CUSTOMER_SEO_ID, ENTERPRICE_SEO_ID } from '../../constants/constant';
 import { getAllFeaturedCaseStudies, getAllFeaturedTestimonial } from '../../lib/contentful-testimonial';
 import { convertHighlights, isEmpty } from '../../helpers/helpers';
+import SEO from '../../components/seo';
+import { COPILOT_ONBORADING_LINK } from '../../constants/externalLinks';
 
-export default function Customer({ testimonialPosts, casestudiesPosts }) {
+export default function Customer({ testimonialPosts, casestudiesPosts, seoData }) {
   const casestudiesView = useMemo(() => {
     if (isEmpty(casestudiesPosts)) return null;
     return casestudiesPosts?.map((item, index) => {
@@ -21,6 +23,7 @@ export default function Customer({ testimonialPosts, casestudiesPosts }) {
         <CustomerTestimonial
           key={`casestudy_index_${index}`}
           logo={item?.customerLogo?.imageAsset?.url}
+          banner={item?.caseStudyImage?.url}
           body={item?.description}
           highlightsData={item?.highlights}
           satisfaction={'+25%'}
@@ -34,12 +37,13 @@ export default function Customer({ testimonialPosts, casestudiesPosts }) {
 
   return (
     <>
+      <SEO seoData={seoData} />
       <Layout>
         <Navbar />
         <HeroSection>
           <Container>
             <HeroHeading>Meet our customers</HeroHeading>
-            <Para>
+            <Para mainpagebody>
               Thousands of tech-enabled service companies – modern accounting firms, consulting businesses, marketing
               agencies – and others use Copilot to streamline their business and grow faster.
             </Para>
@@ -49,7 +53,7 @@ export default function Customer({ testimonialPosts, casestudiesPosts }) {
                 fontColor={'#FFFFFF'}
                 borderColor={'#09AA6C'}
                 text={'Start trial'}
-                href={'#'}
+                href={COPILOT_ONBORADING_LINK}
                 hoverColor={'rgba(0, 0, 0, 0.5)'}
               />
             </HeroBtnBlock>
