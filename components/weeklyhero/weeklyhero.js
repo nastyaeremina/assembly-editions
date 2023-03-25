@@ -39,7 +39,7 @@ export default function WeeklyHero() {
         <SolutionWrap isWeeklycontainer={true}>
           <LeftWrap>
             <Time>
-              <p>Every Thursday 1 p.m. EST</p>
+              <p>Every Thursday 12 p.m. EDT</p>
             </Time>
             <TextSection>
               <h1>
