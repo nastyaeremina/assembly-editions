@@ -5,7 +5,7 @@ import { Body3, Body4, ButtonText, HeaderFont, Heading3, Heading4, MbBody3, MbBo
 const UpadtePage = styled.div`
 padding-top: 180px;
 padding-bottom:100px;
-@media only screen and (max-width: 426px){
+@media only screen and (max-width: 768px){
     padding-top: 100px;
     padding-bottom: 80px;
 }
@@ -62,6 +62,8 @@ const UpdateDate = styled(Link)`
     top: 150px;
     height:40px;
     ${ButtonText}
+    max-width:200px;
+    width:100%;
     color: ${({ theme }) => theme.colors.title};
     :hover{
         color: ${({ theme }) => theme.colors.primary};
@@ -158,15 +160,38 @@ ul{
 `
 const Pagination = styled.div`
   display: flex;
-  justify-content: center;
   gap: 13px;
-  padding-top:20px ;
   .pagination-button {
     a {
       ${HeaderFont}
       color: ${({ theme }) => theme.colors.black};
-      padding:8px 32px;
+      padding: 8px 32px;
+      @media only screen and (max-width: 449px) {
+        padding: 10px 16px;
+        font-weight: 500;
+        font-size: 12px;
+        line-height: 12px;
+      }
     }
   }
+  @media only screen and (max-width: 768px) {
+    justify-content: center;
+  }
 `;
-export { UpadtePage, UpdateSubscribe, UpdateDes, Detail, UpdateDate, UpdateDetail, DetailSlug, Pagination };
+
+const Left = styled.div`
+  position: sticky;
+  top: 150px;
+  height: 40px;
+  ${ButtonText}
+  max-width:200px;
+  width: 100%;
+  color: ${({ theme }) => theme.colors.title};
+  :hover {
+    color: ${({ theme }) => theme.colors.primary};
+  }
+  @media only screen and (max-width: 768px) {
+    display:none;
+  }
+`;
+export { UpadtePage, UpdateSubscribe, UpdateDes, Detail, UpdateDate, UpdateDetail, DetailSlug, Pagination, Left };
