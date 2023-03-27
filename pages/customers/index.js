@@ -14,8 +14,10 @@ import { getAllFeaturedCaseStudies, getAllFeaturedTestimonial } from '../../lib/
 import { convertHighlights, isEmpty } from '../../helpers/helpers';
 import SEO from '../../components/seo';
 import { COPILOT_ONBORADING_LINK } from '../../constants/externalLinks';
+import FeedbackSlider from '../../components/feedback/feedbackslider';
+import BusinessSlider from '../../components/businessSlider/businessslider';
 
-export default function Customer({ testimonialPosts, casestudiesPosts, seoData }) {
+export default function Customer({ testimonialPosts, casestudiesPosts, seoData, content }) {
   const casestudiesView = useMemo(() => {
     if (isEmpty(casestudiesPosts)) return null;
     return casestudiesPosts?.map((item, index) => {
@@ -59,7 +61,11 @@ export default function Customer({ testimonialPosts, casestudiesPosts, seoData }
             </HeroBtnBlock>
           </Container>
         </HeroSection>
-        {!isEmpty(testimonialPosts) && <CustomerFeedBack data={testimonialPosts} />}
+        {/* {!isEmpty(testimonialPosts) && <CustomerFeedBack data={testimonialPosts} />} */}
+        {!isEmpty(testimonialPosts) && <FeedbackSlider data={testimonialPosts} />}
+
+        {/* <BusinessSlider data={testimonialPosts} /> */}
+
         <Container>
           <Heading>How Copilot helps businesses succeed</Heading>
         </Container>
