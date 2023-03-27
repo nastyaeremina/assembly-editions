@@ -55,22 +55,18 @@ const CardDetail = styled.div`
   }
 `;
 const Customer = styled.div`
-  display: flex;
-  gap: 20px;
-  /* padding-bottom: 100px; */
-  /* overflow: scroll; */
-  ::-webkit-scrollbar {
-    display: none;
-  }
-  /* @media only screen and (max-width: 768px) {
+  padding-bottom: 100px;
+  @media only screen and (max-width: 768px) {
     padding-bottom: 80px;
-  } */
+  }
 `;
 const Section = styled.div`
-  display: flex;
+  display: flex !important;
   flex-direction: column;
   gap: 20px;
+  margin: 0 10px;
 `;
+
 const Rating = styled.div`
   margin-top: 20px;
 `;
@@ -79,7 +75,7 @@ const Main = styled.div`
   @media only screen and (max-width: 768px) {
     padding-bottom: 80px;
   }
-  @-webkit-keyframes scroll {
+  /* @-webkit-keyframes scroll {
     0% {
       -webkit-transform: translateX(0);
       transform: translateX(0);
@@ -99,19 +95,19 @@ const Main = styled.div`
       transform: translateX(calc(-300px * 6));
     }
   }
-  .slider-1 {
-    /* background: pr; */
-    height: auto;
+  .slider-1 { */
+  /* background: pr; */
+  /* height: auto;
     margin: auto;
     overflow: hidden;
-    position: relative;
-    // width: 100%;
-    //  max-width: 1440px;
-  }
+    position: relative; */
+  // width: 100%;
+  //  max-width: 1440px;
+  /* }
   .slider-1::before,
-  .slider-1::after {
-    /* background: linear-gradient(to right, rgba(243, 243, 243, 100), rgba(243, 243, 243, 0) 100%); */
-    content: '';
+  .slider-1::after { */
+  /* background: linear-gradient(to right, rgba(243, 243, 243, 100), rgba(243, 243, 243, 0) 100%); */
+  /* content: '';
     height: 400px;
     position: absolute;
     width: 200px;
@@ -133,10 +129,17 @@ const Main = styled.div`
     display: flex;
     flex-wrap: nowrap;
     width: calc(345px * 12);
-  }
+  } */
 `;
 
 const Sub = styled.div``;
+
+const SliderWrap = styled.div`
+  overflow: auto;
+  ::-webkit-scrollbar {
+    display: none;
+  }
+`;
 export {
   Feedbackcard,
   CardHeader,
@@ -150,5 +153,6 @@ export {
   Section,
   Rating,
   Main,
-  Sub
+  Sub,
+  SliderWrap
 };
