@@ -135,8 +135,9 @@ export default function Navbar({ isModule, headerIndex, isEnterPrice }) {
 
   const renderSolutionMenu = useMemo(() => {
     if (isEmpty(navbarSolutionList)) return null;
-    const evenList = navbarSolutionList?.filter((_, index) => index % 2 === 0);
-    const oddList = navbarSolutionList?.filter((_, index) => index % 2 === 1);
+    const solutionCount = navbarSolutionList.length;
+    const evenList = navbarSolutionList?.filter((_, index) => index <= solutionCount / 2);
+    const oddList = navbarSolutionList?.filter((_, index) => index > solutionCount / 2);
     return (
       <Drop>
         <Listleft solutionleft>{renderSolutionList(evenList)}</Listleft>
