@@ -136,8 +136,10 @@ export default function Navbar({ isModule, headerIndex, isEnterPrice }) {
   const renderSolutionMenu = useMemo(() => {
     if (isEmpty(navbarSolutionList)) return null;
     const solutionCount = navbarSolutionList.length;
-    const evenList = navbarSolutionList?.filter((_, index) => index <= solutionCount / 2);
-    const oddList = navbarSolutionList?.filter((_, index) => index > solutionCount / 2);
+    const totlItemInPart = solutionCount % 2 === 0 ? solutionCount / 2 : solutionCount / 2 + 1;
+
+    const evenList = navbarSolutionList?.slice(0, totlItemInPart);
+    const oddList = navbarSolutionList?.slice(totlItemInPart);
     return (
       <Drop>
         <Listleft solutionleft>{renderSolutionList(evenList)}</Listleft>
