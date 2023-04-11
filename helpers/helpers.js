@@ -47,7 +47,6 @@ export function separateSpecialChar(title) {
   const finalTitle = seprateWithDotList?.join(`<span>.</span>`);
   return finalTitle;
 }
-
 export function convertHighlights(value) {
   const newList = [];
   var result = value.split(/\[(.*?)\]/);
