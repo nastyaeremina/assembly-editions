@@ -57,12 +57,10 @@ import { BLOG_LINK, COPILOT_JOIN_COMMUNITY_LINK, HELP_CENTER_LINK } from '../../
 import { separateSpecialChar } from '../../helpers/helpers';
 import HomeHeroSection from '../../components/Home/herosection/hybrid';
 
-export default function Home({ content, seoData, clientLight, variant }) {
+export default function Home({ content, seoData }) {
   useEffect(() => {
-    if (variant.id === 1) {
       window.analytics?.identify({ ab_home_hero_client: 'Client Focus - Light' });
-    }
-  }, [variant.id]);
+  }, []);
 
   return (
     <>
@@ -83,16 +81,14 @@ export default function Home({ content, seoData, clientLight, variant }) {
       <Layout>
         <Navbar />
         <HomeMain>
-          {variant.id === 1 ? (
           <HomeHeroSection
-          title={clientLight?.heroTitle}
-          body={clientLight?.heroBody}
-          image1={clientLight?.heroImage1?.url}
-          leftImageTitle={clientLight?.heroImage1?.title}
-          rightImageTitle={clientLight?.heroImage2?.title}
+          title={content?.heroTitle}
+          body={content?.heroBody}
+          image1={content?.heroImage1?.url}
+          leftImageTitle={content?.heroImage1?.title}
+          rightImageTitle={content?.heroImage2?.title}
           isLight={true}
         />
-          ) : null}
           <BusinessSection>
             <Container>
               <BusinessText>
@@ -403,24 +399,13 @@ export default function Home({ content, seoData, clientLight, variant }) {
 }
 
 export async function getStaticProps({ params }) {
-  const experiment = getCurrentExperiment();
-  const [, variantId] = params.variant.split('.');
-  const content = (await getHomeContent(HOME_CONTENT_ID)) ?? '';
-  const clientLight = (await getHomeContent(HOME_CLIENT_LIGHT_ID)) ?? '';
-  const clientDark = (await getHomeContent(HOME_CLIENT_DARK_ID)) ?? '';
-  console.log(clientLight);
-  console.log(clientDark);
-
+  const content = (await getHomeContent(HOME_CLIENT_LIGHT_ID)) ?? '';
   const seoData = (await getSEOdata(content?.seoMetadata?.sys?.id)) ?? [];
   seoData.canonical = 'https://www.copilot.com/';
   return {
     props: {
       content,
-      clientLight,
-      clientDark,
       seoData,
-      experiment: { name: experiment.name },
-      variant: experiment.variants.find((v) => String(v.id) === variantId)
     }
   };
 }

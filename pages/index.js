@@ -44,9 +44,7 @@ import ExtensionSlider from '../components/extensionslider/extensionslider';
 import CTA from '../components/cta/cta';
 import {
   HEADER_LIST,
-  HOME_CONTENT_ID,
   HOME_CLIENT_DARK_ID,
-  HOME_CLIENT_LIGHT_ID
 
 } from '../constants/constant';
 import { getHomeContent } from '../lib/contentful-home';
@@ -59,7 +57,7 @@ import { BLOG_LINK, COPILOT_JOIN_COMMUNITY_LINK, HELP_CENTER_LINK } from '../con
 import { separateSpecialChar } from '../helpers/helpers';
 import HomeHeroSection from '../components/Home/herosection/hybrid';
 
-export default function Home({ content, seoData, hybirdContent, clientDark, internalContent }) {
+export default function Home({ content, seoData }) {
   const ga = useGa();
   const [cookie, setCookie] = useState('');
   const removeCookie = () => {
@@ -98,12 +96,12 @@ export default function Home({ content, seoData, hybirdContent, clientDark, inte
         <Navbar headerIndex={HEADER_LIST.ENTERPRICE} isModule={false} isEnterPrice={true} />
         <HomeMain>
           <HomeHeroSection
-            title={clientDark?.heroTitle}
-            body={clientDark?.heroBody}
-            image1={clientDark?.heroImage1?.url}
-            image2={clientDark?.heroImage2?.url}
-            leftImageTitle={clientDark?.heroImage1?.title}
-            rightImageTitle={clientDark?.heroImage2?.title}
+            title={content?.heroTitle}
+            body={content?.heroBody}
+            image1={content?.heroImage1?.url}
+            image2={content?.heroImage2?.url}
+            leftImageTitle={content?.heroImage1?.title}
+            rightImageTitle={content?.heroImage2?.title}
           />
           <BusinessSection>
             <Container>
@@ -414,19 +412,14 @@ export default function Home({ content, seoData, hybirdContent, clientDark, inte
   );
 }
 
-export async function getStaticProps(context) {
-  const content = (await getHomeContent(HOME_CONTENT_ID)) ?? '';
-  const clientLight = (await getHomeContent(HOME_CLIENT_LIGHT_ID)) ?? '';
-  const clientDark = (await getHomeContent(HOME_CLIENT_DARK_ID)) ?? '';
-
+export async function getStaticProps({ params }) {
+  const content = (await getHomeContent(HOME_CLIENT_DARK_ID)) ?? '';
   const seoData = (await getSEOdata(content?.seoMetadata?.sys?.id)) ?? [];
   seoData.canonical = 'https://www.copilot.com/';
   return {
     props: {
       content,
-      clientLight,
-      clientDark,
-      seoData
+      seoData,
     }
   };
 }
