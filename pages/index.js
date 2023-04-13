@@ -107,6 +107,7 @@ export default function Home({ content, seoData, hybirdContent, clientContent, i
             image2={hybirdContent?.heroImage2?.url}
             leftImageTitle={hybirdContent?.heroImage1?.title}
             rightImageTitle={hybirdContent?.heroImage2?.title}
+            isLight={true}
           />
           <BusinessSection>
             <Container>

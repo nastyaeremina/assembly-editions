@@ -21,16 +21,24 @@ import bgleft from '../../../public/images/bgleft.png';
 import bgright from '../../../public/images/bgright.png';
 import { isEmpty } from '../../../helpers/helpers';
 
-export default function HomeHeroSection({ title, body, image1, image2, leftImageTitle, rightImageTitle }) {
+export default function HomeHeroSection({
+  title,
+  body,
+  image1,
+  image2,
+  leftImageTitle,
+  rightImageTitle,
+  isLight = false
+}) {
   return (
-    <HeroSection>
+    <HeroSection isLight={isLight}>
       <Container>
-        <HeroHeading>{title}</HeroHeading>
-        <Para>{body}</Para>
+        <HeroHeading isLight={isLight}>{title}</HeroHeading>
+        <Para isLight={isLight}>{body}</Para>
 
         <ReviewLogo>
-          <ImageHover href='https://www.g2.com/products/copilotplatforms/reviews' target='_blank'>
-            <RightWrap>
+          <ImageHover href='https://www.g2.com/products/copilotplatforms/reviews' target='_blank' isLight={isLight}>
+            <RightWrap isLight={isLight}>
               <svg width='112' height='20' viewBox='0 0 112 20' fill='none' xmlns='http://www.w3.org/2000/svg'>
                 <path
                   d='M10.5 0L12.7451 6.90983H20.0106L14.1327 11.1803L16.3779 18.0902L10.5 13.8197L4.62215 18.0902L6.86729 11.1803L0.989435 6.90983H8.25486L10.5 0Z'
@@ -56,8 +64,8 @@ export default function HomeHeroSection({ title, body, image1, image2, leftImage
               <p>G2</p>
             </RightWrap>
           </ImageHover>
-          <ImageHover href='https://www.capterra.com/p/214210/Portal/' target='_blank'>
-            <RightWrap>
+          <ImageHover href='https://www.capterra.com/p/214210/Portal/' target='_blank' isLight={isLight}>
+            <RightWrap isLight={isLight}>
               <svg width='112' height='20' viewBox='0 0 112 20' fill='none' xmlns='http://www.w3.org/2000/svg'>
                 <path
                   d='M10.5 0L12.7451 6.90983H20.0106L14.1327 11.1803L16.3779 18.0902L10.5 13.8197L4.62215 18.0902L6.86729 11.1803L0.989435 6.90983H8.25486L10.5 0Z'
@@ -83,8 +91,8 @@ export default function HomeHeroSection({ title, body, image1, image2, leftImage
               <p>Capterra</p>
             </RightWrap>
           </ImageHover>
-          <ImageHover href='https://www.producthunt.com/products/copilot-5' target='_blank'>
-            <RightWrap>
+          <ImageHover href='https://www.producthunt.com/products/copilot-5' target='_blank' isLight={isLight}>
+            <RightWrap isLight={isLight}>
               <svg width='112' height='20' viewBox='0 0 112 20' fill='none' xmlns='http://www.w3.org/2000/svg'>
                 <path
                   d='M10.5 0L12.7451 6.90983H20.0106L14.1327 11.1803L16.3779 18.0902L10.5 13.8197L4.62215 18.0902L6.86729 11.1803L0.989435 6.90983H8.25486L10.5 0Z'
@@ -111,10 +119,10 @@ export default function HomeHeroSection({ title, body, image1, image2, leftImage
             </RightWrap>
           </ImageHover>
         </ReviewLogo>
-        <HeroBtnBlock>
+        <HeroBtnBlock isLight={isLight}>
           <Button
-            bgColor={'#E3FFEE'}
-            fontColor={'#00160E'}
+            bgColor={isLight ? '#09AA6C' : '#E3FFEE'}
+            fontColor={isLight ? '#FFFFFF' : '#00160E'}
             borderColor={'#E3FFEE'}
             text={'Try for free'}
             href={COPILOT_ONBORADING_LINK}
@@ -122,7 +130,7 @@ export default function HomeHeroSection({ title, body, image1, image2, leftImage
           />
         </HeroBtnBlock>
         {isEmpty(image2) ? (
-          <MainImage>
+          <MainImage isLight={isLight}>
             <Image src={image1} alt='internal' className='heromain-image' width={1172} height={415} />
           </MainImage>
         ) : (
