@@ -44,10 +44,9 @@ import ExtensionSlider from '../../components/extensionslider/extensionslider';
 import CTA from '../../components/cta/cta';
 import {
   HEADER_LIST,
-  HOME_CLIENT_CONTENT_ID,
   HOME_CONTENT_ID,
-  HOME_HYBIRD_CONTENT_ID,
-  HOME_INTERNAL_CONTENT_ID
+  HOME_CLIENT_DARK_ID,
+  HOME_CLIENT_LIGHT_ID
 } from '../../constants/constant';
 import { getHomeContent } from '../../lib/contentful-home';
 import TabView from '../../components/tab/tab';
@@ -58,14 +57,10 @@ import { BLOG_LINK, COPILOT_JOIN_COMMUNITY_LINK, HELP_CENTER_LINK } from '../../
 import { separateSpecialChar } from '../../helpers/helpers';
 import HomeHeroSection from '../../components/Home/herosection/hybrid';
 
-export default function Home({ content, seoData, internalContent, clientContent, experiment, variant }) {
+export default function Home({ content, seoData }) {
   useEffect(() => {
-    if (variant.id === 1) {
-      window.analytics?.identify({ ab_home_hero: 'Internal Focus' });
-    } else if (variant.id === 2) {
-      window.analytics?.identify({ ab_home_hero: 'Client Focus' });
-    }
-  }, [variant.id]);
+      window.analytics?.identify({ ab_home_hero_client: 'Client Focus - Light' });
+  }, []);
 
   return (
     <>
@@ -84,27 +79,16 @@ export default function Home({ content, seoData, internalContent, clientContent,
         ]}
       />
       <Layout>
-        <Navbar headerIndex={HEADER_LIST.ENTERPRICE} isModule={false} isEnterPrice={true} />
+        <Navbar />
         <HomeMain>
-          {/* old hero section */}
-          {/* <DefaultHeroSection title={content.heroTitle} body={content.heroBody} /> */}
-          {/* hybird */}
-          {variant.id === 1 ? (
-            <>
-              <HomeHeroSection
-                title={internalContent?.heroTitle}
-                body={internalContent?.heroBody}
-                image1={internalContent?.heroImage1?.url}
-              />
-            </>
-          ) : null}
-          {variant.id === 2 ? (
-            <HomeHeroSection
-              title={clientContent?.heroTitle}
-              body={clientContent?.heroBody}
-              image1={clientContent?.heroImage1?.url}
-            />
-          ) : null}
+          <HomeHeroSection
+          title={content?.heroTitle}
+          body={content?.heroBody}
+          image1={content?.heroImage1?.url}
+          leftImageTitle={content?.heroImage1?.title}
+          rightImageTitle={content?.heroImage2?.title}
+          isLight={true}
+        />
           <BusinessSection>
             <Container>
               <BusinessText>
@@ -415,25 +399,13 @@ export default function Home({ content, seoData, internalContent, clientContent,
 }
 
 export async function getStaticProps({ params }) {
-  const experiment = getCurrentExperiment();
-  const [, variantId] = params.variant.split('.');
-
-  const content = (await getHomeContent(HOME_CONTENT_ID)) ?? '';
-  const hybirdContent = (await getHomeContent(HOME_HYBIRD_CONTENT_ID)) ?? '';
-  const clientContent = (await getHomeContent(HOME_CLIENT_CONTENT_ID)) ?? '';
-  const internalContent = (await getHomeContent(HOME_INTERNAL_CONTENT_ID)) ?? '';
-
+  const content = (await getHomeContent(HOME_CLIENT_LIGHT_ID)) ?? '';
   const seoData = (await getSEOdata(content?.seoMetadata?.sys?.id)) ?? [];
   seoData.canonical = 'https://www.copilot.com/';
   return {
     props: {
       content,
-      hybirdContent,
-      clientContent,
-      internalContent,
       seoData,
-      experiment: { name: experiment.name },
-      variant: experiment.variants.find((v) => String(v.id) === variantId)
     }
   };
 }
