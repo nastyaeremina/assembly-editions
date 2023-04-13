@@ -19,5 +19,21 @@
         "weight": 33.3333
       }
     ]
+  },
+  {
+    "name": "Dark and light version of Hero",
+    "id": "5bf142459b72e12b2b1b2cd",
+    "variants": [
+      {
+        "name": "original",
+        "id": 0,
+        "weight": 50
+      },
+      {
+        "name": "Variant 1",
+        "id": 1,
+        "weight": 50
+      }
+    ]
   }
 ]

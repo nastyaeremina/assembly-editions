@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { Body1, Body2, Body5, FooterText, Heading2, Heading3, MbBody1, MobileH2 } from '../../styles/styles';
 
 const HeroSection = styled.div`
@@ -8,6 +8,11 @@ const HeroSection = styled.div`
   text-align: center;
   overflow: hidden;
   background-color: ${({ theme }) => theme.colors.greendark};
+  ${(props) =>
+    props.isLight &&
+    css`
+      background-color: ${({ theme }) => theme.colors.whiteColor};
+    `}
   @media only screen and (max-width: 749px) {
     padding: 148px 0 0px 0;
   }
@@ -20,6 +25,11 @@ const HeroHeading = styled.h1`
   ${Heading2};
   color: ${({ theme }) => theme.colors.greenlight};
   margin: 0 0 20px 0;
+  ${(props) =>
+    props.isLight &&
+    css`
+      color: ${({ theme }) => theme.colors.title};
+    `}
   span {
     color: ${({ theme }) => theme.colors.primary};
   }
@@ -30,17 +40,21 @@ const HeroHeading = styled.h1`
   @media only screen and (max-width: 749px) {
     margin-bottom: 20px;
     ${MobileH2}
-    color: ${({ theme }) => theme.colors.greenlight};
   }
 `;
 
 const Para = styled.p`
-  max-width:880px;
-  width:100%;
+  max-width: 880px;
+  width: 100%;
   ${Body2}
   letter-spacing: 0.02em;
   margin: 0 auto;
   color: ${({ theme }) => theme.colors.whiteColor};
+  ${(props) =>
+    props.isLight &&
+    css`
+      color: ${({ theme }) => theme.colors.body};
+    `}
   @media only screen and (max-width: 991px) {
     text-align: center;
     ${Body2}
@@ -72,6 +86,15 @@ const ImageHover = styled.a`
         fill: #e3ffee;
       }
     }
+    ${(props) =>
+      props.isLight &&
+      css`
+        svg {
+          path {
+            fill: #003f27;
+          }
+        }
+      `}
   }
   @media only screen and (max-width: 991px) {
     :hover {
@@ -80,6 +103,15 @@ const ImageHover = styled.a`
           fill: #e3ffee;
         }
       }
+      ${(props) =>
+        props.isLight &&
+        css`
+          svg {
+            path {
+              fill: #003f27;
+            }
+          }
+        `}
     }
   }
   @media only screen and (max-width: 450px) {
@@ -93,6 +125,15 @@ const ImageHover = styled.a`
           fill: #e3ffee;
         }
       }
+      ${(props) =>
+        props.isLight &&
+        css`
+          svg {
+            path {
+              fill: #003f27;
+            }
+          }
+        `}
     }
   }
   .show {
@@ -150,13 +191,18 @@ const RightWrap = styled.div`
   p {
     font-family: 'Bagoss';
     font-style: normal;
-    font-weight: 600;
+    font-weight: 500;
     font-size: 15px;
     line-height: 24px;
     color: ${({ theme }) => theme.colors.whiteColor};
     margin: 0 0 0 0px;
     text-align: center;
     letter-spacing: 0.02em;
+    ${(props) =>
+      props.isLight &&
+      css`
+        color: ${({ theme }) => theme.colors.greendark};
+      `}
     @media only screen and (max-width: 450px) {
       font-weight: 500;
       font-size: 14px;
@@ -168,21 +214,38 @@ const RightWrap = styled.div`
 const HeroBtnBlock = styled.div`
   margin: 32px 0 0px;
   @media only screen and (max-width: 768px) {
-    margin-bottom:80px;
+    margin-bottom: 80px;
+    ${(props) =>
+      props.isLight &&
+      css`
+        margin-bottom: 0px;
+      `}
   }
 `;
 
 const MainImage = styled.div`
   width: 100%;
   filter: drop-shadow(0px 4.68797px 157.047px rgba(9, 170, 108, 0.55));
+  ${(props) =>
+    props.isLight &&
+    css`
+      filter: drop-shadow(0px 5px 120px rgba(0, 0, 0, 0.2));
+    `}
   .heromain-image {
-    max-width:1000px;
+    max-width: 1000px;
     width: 100%;
     max-height: 415px;
     height: 100%;
     margin-bottom: -4px;
     margin-top: 50px;
     border-radius: 7px 7px 0 0;
+    ${(props) =>
+      props.isLight &&
+      css`
+        border: 1px solid #131313;
+        border-radius: 7px 7px 0 0;
+        border-bottom: none;
+      `}
   }
   @media only screen and (max-width: 768px) {
     display: none;
@@ -245,7 +308,7 @@ const Hero = styled.div`
   }
 `;
 
-const HeroImage = styled.div``
+const HeroImage = styled.div``;
 const HeroLine = styled.div`
   margin-top: 150px;
   .first-line {
@@ -270,7 +333,7 @@ const HeroLine = styled.div`
   @media only screen and (max-width: 1024px) {
     margin-top: 125px;
     .first-line {
-        width:900px;
+      width: 900px;
     }
     .second-line {
       position: absolute;
