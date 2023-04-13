@@ -44,6 +44,7 @@ const HeroHeading = styled.h1`
 `;
 
 const Para = styled.p`
+  max-width: 880px;
   width: 100%;
   ${Body2}
   letter-spacing: 0.02em;
