@@ -232,7 +232,7 @@ const MainImage = styled.div`
       filter: drop-shadow(0px 5px 120px rgba(0, 0, 0, 0.2));
     `}
   .heromain-image {
-    max-width: 1000px;
+    max-width:1000px;
     width: 100%;
     max-height: 415px;
     height: 100%;
