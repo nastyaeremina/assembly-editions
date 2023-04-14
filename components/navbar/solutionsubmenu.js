@@ -21,7 +21,7 @@ export default function SolutionSubMenu({ data }) {
           <MenuMobileWrap href={`/solutions/${item?.slug}`}>
             {!isEmpty(item?.industryIcon?.url) && (
               <LeftImg>
-                <Image src={item?.industryIcon?.url} alt='hybridright' width={20} height={20} />
+                <Image src={item?.industryIcon?.url} alt='hybridright' width={20} height={20} className='hover-image' />
               </LeftImg>
             )}
             <RightText resourcetext>

@@ -6,13 +6,14 @@ const NavbarWrapper = styled.div`
   position: fixed;
   left: 0;
   ${(props) =>
-    props.isAnnouncebar ?
-      css`
-    top: 44px;
-    `: css`
-    top: 0px;
-    `}
- 
+    props.isAnnouncebar
+      ? css`
+          top: 44px;
+        `
+      : css`
+          top: 0px;
+        `}
+
   right: 0;
   bottom: auto;
   z-index: 999;
@@ -31,23 +32,22 @@ const NavbarWrapper = styled.div`
     backdrop-filter: blur(6px);
     border-width: 1px;
   }
-  @media only screen and (max-width: 991px 748) {
+  @media only screen and (max-width: 991px) {
     padding: 24px 0;
     ${(props) =>
-    props.isAnnouncebar &&
-    css`
-      top: 34px;
+      props.isAnnouncebar &&
+      css`
+        top: 34px;
       `}
   }
   @media only screen and (max-width: 748px) {
     padding: 16px 0;
     ${(props) =>
-    props.isAnnouncebar &&
-    css`
-      top: 34px;
+      props.isAnnouncebar &&
+      css`
+        top: 34px;
       `}
   }
-
 `;
 const NavbarInner = styled.div`
   display: flex;
@@ -67,7 +67,7 @@ const NavMenu = styled.div`
   align-items: center;
   justify-content: space-between;
   width: 100%;
-  @media only screen and (max-width: 991px) { 
+  @media only screen and (max-width: 991px) {
     flex-direction: column;
     padding: 12px;
     position: absolute;
@@ -76,16 +76,16 @@ const NavMenu = styled.div`
     padding: 0;
     background: #fdfdfb;
     box-shadow: 0px 4px 24px rgba(0, 0, 0, 0.7);
-    animation: 0.2s ease-out 0s 1 slideInFromTop; 
+    animation: 0.2s ease-out 0s 1 slideInFromTop;
   }
   @keyframes slideInFromTop {
     0% {
-      opacity:0;
+      opacity: 0;
       visibility: hidden;
     }
     100% {
       visibility: visible;
-      opacity:1;
+      opacity: 1;
     }
   }
 `;
@@ -160,11 +160,11 @@ const SpanLink = styled.li`
         `}
     }
   }
-  :hover .dropdownlist{
-    display:flex;
-    min-width:400px;
-    width:100%;
-  } 
+  :hover .dropdownlist {
+    display: flex;
+    min-width: 400px;
+    width: 100%;
+  }
   @media only screen and (max-width: 991px) {
     margin-bottom: 0px;
     width: 100%;
@@ -208,15 +208,15 @@ const SpanMobileLink = styled.li`
     ${HeaderFont}
     margin: 0 14px;
     ${(props) =>
-    props.textColor &&
-    css`
+      props.textColor &&
+      css`
         color: ${props.title};
       `}
   }
   a:hover {
     ${(props) =>
-    props.hoverColor &&
-    css`
+      props.hoverColor &&
+      css`
         color: ${props.hoverColor};
       `}
   }
@@ -361,8 +361,8 @@ const SignIn = styled.li`
     align-items: center;
     transition: all 300ms;
     ${(props) =>
-    props.textColor &&
-    css`
+      props.textColor &&
+      css`
         color: ${props.textColor};
       `}
     /* color: ${({ theme }) => theme.colors.title}; */
@@ -370,8 +370,8 @@ const SignIn = styled.li`
     text-decoration: none;
     :hover {
       ${(props) =>
-    props.hoverColor &&
-    css`
+        props.hoverColor &&
+        css`
           color: ${props.hoverColor};
         `}
     }
@@ -511,7 +511,7 @@ const FirstLine = styled.span`
     css`
       transform: translate3d(0px, 8px, 0px) rotateZ(45deg);
     `}
-    ${(props) =>
+  ${(props) =>
     props.isEnterPrice &&
     css`
       background-color: ${({ theme }) => theme.colors.greenlight};
@@ -549,17 +549,17 @@ const ThirdLine = styled.span`
     props.isOpenMobileMenu &&
     css`
       transform: translate3d(0px, -8px, 0px) rotateZ(-45deg);
-  `}
+    `}
   ${(props) =>
     props.isEnterPrice &&
     css`
       background-color: ${({ theme }) => theme.colors.greenlight};
-  `}
+    `}
   ${(props) =>
     props.textColor &&
     css`
       background-color: ${props.textColor};
-  `}
+    `}
 `;
 
 const OverLayBlock = styled.div`
@@ -586,11 +586,19 @@ const MenuWrap = styled(Link)`
   }
   :hover {
     background-color: ${({ theme }) => theme.colors.greendark};
-    /* svg {
+    .hover-image {
+      filter: hue-rotate(390deg) saturate(0.3);
+    }
+    svg {
       path {
         fill: #e3ffee;
       }
-    } */
+      g {
+        path {
+          fill: #e3ffee;
+        }
+      }
+    }
     .logo {
       circle {
         fill: #e3ffee;
@@ -730,8 +738,8 @@ const MobileTextLink = styled(Link)`
   cursor: pointer;
   :hover {
     ${(props) =>
-    props.hoverColor &&
-    css`
+      props.hoverColor &&
+      css`
         color: ${props.hoverColor} !important;
       `}
   }
@@ -757,9 +765,17 @@ const MenuMobileWrap = styled.a`
   }
   :hover {
     background-color: ${({ theme }) => theme.colors.greendark};
+    .hover-image {
+      filter: hue-rotate(390deg) saturate(0.3);
+    }
     svg {
       path {
         fill: #e3ffee;
+      }
+      g {
+        path {
+          fill: #e3ffee;
+        }
       }
     }
     .logo {
@@ -839,8 +855,8 @@ const BackWrap = styled.div`
     ${MbButtonText};
     color: ${({ theme }) => theme.colors.black};
     ${(props) =>
-    props.textColor &&
-    css`
+      props.textColor &&
+      css`
         color: ${props.textColor};
       `}
   }
@@ -861,7 +877,7 @@ const TextView = styled.div`
   cursor: pointer;
 `;
 const TopBar = styled.div`
-  top:0;
+  top: 0;
   background-color: ${({ theme }) => theme.colors.primary};
   width: 100%;
   position: fixed;
@@ -937,7 +953,7 @@ const AnnounceBar = styled.div`
   }
   .mobilearrow {
     display: none;
-    
+
     @media only screen and (max-width: 749px) {
       position: relative;
       display: inline-block;
@@ -948,18 +964,18 @@ const AnnounceBar = styled.div`
 const HelpLink = styled.div``;
 
 const Dspace = styled.div`
-height: 34px;
-display: block;
+  height: 34px;
+  display: block;
 `;
 
 const Drop = styled.div`
-    display:flex;
-    min-width:400px;
-    width:100%;
-`
+  display: flex;
+  min-width: 400px;
+  width: 100%;
+`;
 const Last = styled.div`
-  display:flex;
-  align-items:center;
+  display: flex;
+  align-items: center;
 `;
 
 const LastDroplist = styled.div`
@@ -1043,8 +1059,8 @@ const LastDroplist = styled.div`
 `;
 
 const FeatureMenu = styled.div`
-  padding:8px 0;
-`
+  padding: 8px 0;
+`;
 export {
   NavbarWrapper,
   NavbarInner,
