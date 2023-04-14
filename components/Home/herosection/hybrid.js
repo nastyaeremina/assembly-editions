@@ -123,10 +123,10 @@ export default function HomeHeroSection({
           <Button
             bgColor={isLight ? '#09AA6C' : '#E3FFEE'}
             fontColor={isLight ? '#FFFFFF' : '#00160E'}
-            borderColor={'#E3FFEE'}
+            borderColor={isLight ? '#09AA6C' : '#E3FFEE'}
             text={'Try for free'}
             href={COPILOT_ONBORADING_LINK}
-            hoverColor={'rgba(0, 0, 0, 0.5)'}
+            hoverColor={isLight ? 'rgba(255, 255, 255,0.8)' : 'rgba(0, 0, 0, 0.5)'}
           />
         </HeroBtnBlock>
         {isEmpty(image2) ? (

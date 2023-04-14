@@ -394,6 +394,9 @@ const ReviewRight = styled.div`
   }
 `;
 const BusinessSection = styled.div`
+  box-shadow: 0px -26px 32px rgba(0, 0, 0, 0.08);
+  position: relative;
+  z-index:1;
   padding: 100px 0 50px;
   overflow: hidden;
   @media only screen and (max-width: 768px) {

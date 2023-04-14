@@ -229,21 +229,18 @@ const MainImage = styled.div`
   ${(props) =>
     props.isLight &&
     css`
-      filter: drop-shadow(0px 5px 120px rgba(0, 0, 0, 0.2));
+      filter: drop-shadow(0px 0px 60px rgba(0, 0, 0, 0.12));
     `}
   .heromain-image {
-    max-width:1000px;
+    max-width: 1000px;
     width: 100%;
     max-height: 415px;
     height: 100%;
     margin-bottom: -4px;
     margin-top: 50px;
-    border-radius: 7px 7px 0 0;
     ${(props) =>
       props.isLight &&
       css`
-        border: 1px solid #131313;
-        border-radius: 7px 7px 0 0;
         border-bottom: none;
       `}
   }
