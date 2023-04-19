@@ -90,8 +90,7 @@ export default function BookDemoForm() {
             }
           });
           setIsSubmit(true);
-        }
-        else {
+        } else {
           showHideChiliPiper();
         }
       }
@@ -100,8 +99,8 @@ export default function BookDemoForm() {
   );
 
   useEffect(() => {
-    const body = document.querySelector("body");
-    body.style.overflow = "auto";
+    const body = document.querySelector('body');
+    body.style.overflow = 'auto';
     return () => {
       dispatch(setformValidationError(null));
     };
@@ -156,7 +155,7 @@ export default function BookDemoForm() {
             </FormTxt>
             <FormDetail>
               <NameBlock>
-                <input type='hidden' id='lead_source' name='Source' value='Book a demo'/>
+                <input type='hidden' id='lead_source' name='Source' value='Book a demo' />
                 <NameInfo className='firstlable'>
                   <label for='First-Name-'>
                     First name <span>*</span>
@@ -352,7 +351,7 @@ export default function BookDemoForm() {
               {validationError?.name === 'objectives' && <Validation isLast={true} error={validationError?.message} />}
             </FormDetail>
 
-            <Button text={'Let’s talk'} className='btnposition' type={'submit'} onClick={onSubmit} />
+            <Button text={'Let’s talk'} className='btnposition' type={'submit'} />
             <LastText>
               <span>or</span>
               <HelpLink className='icon-link'>
