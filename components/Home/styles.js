@@ -215,11 +215,6 @@ const HeroBtnBlock = styled.div`
   margin: 32px 0 0px;
   @media only screen and (max-width: 768px) {
     margin-bottom: 80px;
-    ${(props) =>
-      props.isLight &&
-      css`
-        margin-bottom: 0px;
-      `}
   }
 `;
 

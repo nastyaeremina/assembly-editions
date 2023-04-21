@@ -119,7 +119,7 @@ export default function HomeHeroSection({
             </RightWrap>
           </ImageHover>
         </ReviewLogo>
-        <HeroBtnBlock isLight={isLight}>
+        <HeroBtnBlock>
           <Button
             bgColor={isLight ? '#09AA6C' : '#E3FFEE'}
             fontColor={isLight ? '#FFFFFF' : '#00160E'}
