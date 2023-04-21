@@ -58,3 +58,23 @@ export function convertHighlights(value) {
   });
   return newList;
 }
+
+export const convertSitemapDataToKeyValue = (value) => {
+  const list = value?.split('\n#');
+  list?.shift();
+  let sitemapList = [];
+  list?.forEach((item) => {
+    const newItemList = removeEmptyElement(item?.split('\n'));
+
+    const title = newItemList?.[0];
+    newItemList?.shift();
+    const mapList = [];
+    newItemList?.forEach((element) => {
+      const newObject = element?.split(/[\[\]\(\)]/);
+      const url = newObject[3]?.split('www.copilot.com')?.[1] || newObject[3];
+      mapList?.push({ name: newObject[1], url, isExternal: url === newObject[3] });
+    });
+    sitemapList?.push({ title, list: mapList });
+  });
+  return sitemapList;
+};

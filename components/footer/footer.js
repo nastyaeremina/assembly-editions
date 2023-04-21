@@ -3,7 +3,7 @@ import Image from 'next/image';
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import { Container } from '../../styles/commonStyles';
 import { getAllSolutionWithSlug } from '../../lib/contentful-solutions';
-import { isEmpty } from '../../helpers/helpers';
+import { convertSitemapDataToKeyValue, isEmpty } from '../../helpers/helpers';
 import {
   BLOG_LINK,
   COPILOT_FACEBOOK_LINK,
@@ -15,6 +15,8 @@ import {
   COPILOT_YOUTUBE_CHANNEL_LINK,
   HELP_CENTER_LINK
 } from '../../constants/externalLinks';
+import { getCommonContent } from '../../lib/contentful-common';
+import { FOOTER_CONTENT_ID } from '../../constants/constant';
 import {
   FooterSection,
   FooterInnerBlock,
@@ -30,12 +32,21 @@ import {
 } from './styles';
 
 export default function Footer({ isEnterPrice }) {
-  const [solutionList, setSolutionList] = useState([]);
+  const [footerDataList, setFooterDataList] = useState([]);
   const loadData = useCallback(async () => {
-    const data = await getAllSolutionWithSlug();
-    if (data) {
-      const newList = data?.filter((item) => item?.showFooter);
-      setSolutionList(newList);
+    try {
+      const footerData = (await getCommonContent(FOOTER_CONTENT_ID)) ?? [];
+      const newObject = footerData?.split(/[\{\}]/);
+      const newList = newObject?.filter((item) => item?.startsWith('\n'));
+
+      if (!isEmpty(footerData)) {
+        const rowWiseFooterData = footerData?.split(/[\{\}]/);
+        const finalFooterList = rowWiseFooterData?.filter((item) => item?.startsWith('\n'));
+        setFooterDataList(finalFooterList);
+        const newValue = convertSitemapDataToKeyValue(finalFooterList?.[0]);
+      }
+    } catch (error) {
+      console.log('error', error);
     }
   }, []);
 
@@ -43,23 +54,113 @@ export default function Footer({ isEnterPrice }) {
     loadData();
   }, [loadData]);
 
-  const renderSolutionList = useMemo(() => {
-    if (isEmpty(solutionList)) return null;
+  // const renderSolutionList = useMemo(() => {
+  //   if (isEmpty(solutionList)) return null;
+  //   return (
+  //     <>
+  //       <p>Solutions</p>
+  //       <FooterMenuList isEnterPrice={isEnterPrice}>
+  //         {solutionList?.map((item, index) => {
+  //           return (
+  //             <Link href={`/solutions/${item?.slug}`} key={`solutionitem_index_${index}`}>
+  //               {item?.name}
+  //             </Link>
+  //           );
+  //         })}
+  //       </FooterMenuList>
+  //     </>
+  //   );
+  // }, [isEnterPrice, solutionList]);
+
+  const renderDesktopFooterList = useMemo(() => {
+    if (isEmpty(footerDataList)) return null;
+    return footerDataList?.map((item, index) => {
+      const newItem = convertSitemapDataToKeyValue(item);
+      return (
+        <>
+          <FotterMenuLeft key={`footer_index_${index}`}>
+            {newItem?.map((category, categoryIndex) => {
+              return (
+                <FooterMenu
+                  isEnterPrice={isEnterPrice}
+                  key={`footer_${category?.title}_${categoryIndex}`}
+                  className={categoryIndex !== 0 && 'padding'}>
+                  <p>{category?.title}</p>
+                  <FooterMenuList isEnterPrice={isEnterPrice}>
+                    {category?.list?.map((subCategory, subCategoryIndex) => {
+                      return (
+                        <Link href={subCategory?.url} key={`subcategory_${category?.title}_${subCategoryIndex}`}>
+                          {subCategory?.name}
+                        </Link>
+                      );
+                    })}
+                  </FooterMenuList>
+                </FooterMenu>
+              );
+            })}
+          </FotterMenuLeft>
+        </>
+      );
+    });
+  }, [footerDataList, isEnterPrice]);
+
+  const renderMobileFooterList = useMemo(() => {
+    if (isEmpty(footerDataList)) return null;
+    const newList = [];
+    footerDataList?.forEach((item) => {
+      const newArray = convertSitemapDataToKeyValue(item);
+      newArray?.forEach((element) => newList?.push(element));
+    });
+    const list1 = newList?.slice(0, newList?.length / 2);
+    const list2 = newList?.slice(newList?.length / 2);
     return (
-      <>
-        <p>Solutions</p>
-        <FooterMenuList isEnterPrice={isEnterPrice}>
-          {solutionList?.map((item, index) => {
+      <FooterMobile>
+        <FotterMenuMobile key={`footer_first_row`}>
+          {list1?.map((item, index) => {
             return (
-              <Link href={`/solutions/${item?.slug}`} key={`solutionitem_index_${index}`}>
-                {item?.name}
-              </Link>
+              <FooterMenu
+                isEnterPrice={isEnterPrice}
+                key={`footer_${item?.title}_${index}`}
+                className={index !== 0 && 'padding'}>
+                <p>{item?.title}</p>
+                <FooterMenuList isEnterPrice={isEnterPrice}>
+                  {item?.list?.map((subCategory, subCategoryIndex) => {
+                    return (
+                      <Link href={subCategory?.url} key={`subcategory_${item?.title}_${subCategoryIndex}`}>
+                        {subCategory?.name}
+                      </Link>
+                    );
+                  })}
+                </FooterMenuList>
+              </FooterMenu>
             );
           })}
-        </FooterMenuList>
-      </>
+        </FotterMenuMobile>
+        <FotterMenuMobile key={`footer_first_row`}>
+          {list2?.map((item, index) => {
+            return (
+              <FooterMenu
+                isEnterPrice={isEnterPrice}
+                key={`footer_${item?.title}_${index}`}
+                className={index !== 0 && 'padding'}>
+                <p>{item?.title}</p>
+                <FooterMenuList isEnterPrice={isEnterPrice}>
+                  {item?.list?.map((subCategory, subCategoryIndex) => {
+                    return (
+                      <Link href={subCategory?.url} key={`subcategory_${item?.title}_${subCategoryIndex}`}>
+                        {subCategory?.name}
+                      </Link>
+                    );
+                  })}
+                </FooterMenuList>
+              </FooterMenu>
+            );
+          })}
+        </FotterMenuMobile>
+      </FooterMobile>
     );
-  }, [isEnterPrice, solutionList]);
+  }, [footerDataList, isEnterPrice]);
+
   return (
     <>
       <FooterSection isEnterPrice={isEnterPrice}>
@@ -269,94 +370,8 @@ export default function Footer({ isEnterPrice }) {
                 </Link>
               </FooterSocialList>
             </FooterFirst>
-            <FooterRight>
-              <FotterMenuLeft>
-                <FooterMenu isEnterPrice={isEnterPrice}>
-                  <p>Features</p>
-                  <FooterMenuList isEnterPrice={isEnterPrice}>
-                    <Link href='/features/messaging-app'>Messaging</Link>
-                    <Link href='/features/billing-app'>Billing</Link>
-                    <Link href='/features/files-app'>Files</Link>
-                    <Link href='/features/forms-app'>Forms</Link>
-                    <Link href='/features/helpdesk-app'>Helpdesk</Link>
-                    <Link href='/apps'>Apps</Link>
-                  </FooterMenuList>
-                </FooterMenu>
-              </FotterMenuLeft>
-              <FotterMenuLeft>
-                <FooterMenu isEnterPrice={isEnterPrice}>
-                  {renderSolutionList}
-                  <FooterMenu className='padding' isEnterPrice={isEnterPrice}>
-                    <p>Company</p>
-                    <FooterMenuList isEnterPrice={isEnterPrice}>
-                      <Link href='/copilot-plus'>Enterprise</Link>
-                      <Link href='/pricing'>Pricing</Link>
-                      <Link href='/jobs'>Jobs</Link>
-                      <Link href='/brand'>Brand</Link>
-                    </FooterMenuList>
-                  </FooterMenu>
-                </FooterMenu>
-              </FotterMenuLeft>
-              <FotterMenuLeft>
-                <FooterMenu isEnterPrice={isEnterPrice}>
-                  <p>Resources</p>
-                  <FooterMenuList isEnterPrice={isEnterPrice}>
-                    <Link href='/blog'>Blog</Link>
-                    <Link href={COPILOT_SECURITY_LINK}>Security</Link>
-                    <Link href={'/updates'}>What’s New</Link>
-                    <Link href={HELP_CENTER_LINK}>Help Center</Link>
-                    <Link href='/university'>Video Tutorials</Link>
-                    <Link href='/comparison'>Compare</Link>
-                    <Link href='http://docs.copilot.com/'>API Reference</Link>
-                    <Link href={COPILOT_SYSTEM_STATUS_LINK}>System Status</Link>
-                    <Link href='/sitemap'>Sitemap</Link>
-                  </FooterMenuList>
-                </FooterMenu>
-              </FotterMenuLeft>
-            </FooterRight>
-            <FooterMobile>
-              <FotterMenuMobile>
-                <FooterMenu isEnterPrice={isEnterPrice}>
-                  <p>Features</p>
-                  <FooterMenuList isEnterPrice={isEnterPrice}>
-                    <Link href='/features/messaging-app'>Messaging</Link>
-                    <Link href='/features/billing-app'>Billing</Link>
-                    <Link href='/features/files-app'>Files</Link>
-                    <Link href='/features/forms-app'>Forms</Link>
-                    <Link href='/features/helpdesk-app'>Helpdesk</Link>
-                    <Link href='/apps'>Apps</Link>
-                  </FooterMenuList>
-                </FooterMenu>
-                <FooterMenu className='padding' isEnterPrice={isEnterPrice}>
-                  {renderSolutionList}
-                </FooterMenu>
-              </FotterMenuMobile>
-              <FotterMenuMobile>
-                <FooterMenu isEnterPrice={isEnterPrice}>
-                  <p>Company</p>
-                  <FooterMenuList isEnterPrice={isEnterPrice}>
-                    <Link href='/copilot-plus'>Enterprise</Link>
-                    <Link href='/pricing'>Pricing</Link>
-                    <Link href='/jobs'>Jobs</Link>
-                    <Link href='/brand'>Brand</Link>
-                  </FooterMenuList>
-                </FooterMenu>
-                <FooterMenu className='padding' isEnterPrice={isEnterPrice}>
-                  <p>Resources</p>
-                  <FooterMenuList isEnterPrice={isEnterPrice}>
-                    <Link href={BLOG_LINK}>Blog</Link>
-                    <Link href={COPILOT_SECURITY_LINK}>Security</Link>
-                    <Link href={'/updates'}>What’s New</Link>
-                    <Link href={HELP_CENTER_LINK}>Help Center</Link>
-                    <Link href='/university'>Video Tutorials</Link>
-                    <Link href='/comparison'>Compare</Link>
-                    <Link href='http://docs.copilot.com/'>API Reference</Link>
-                    <Link href={COPILOT_SYSTEM_STATUS_LINK}>System Status</Link>
-                    <Link href='/sitemap'>Sitemap</Link>
-                  </FooterMenuList>
-                </FooterMenu>
-              </FotterMenuMobile>
-            </FooterMobile>
+            <FooterRight>{renderDesktopFooterList}</FooterRight>
+            {renderMobileFooterList}
           </FooterInnerBlock>
         </Container>
       </FooterSection>
