@@ -36,15 +36,16 @@ const HeroBtn = styled.div`
   z-index: 1;
 `;
 const Round = styled.div`
-  border: 2px dashed #00160e;
-  border-radius: 50%;
   width: 527px;
   height: 527px;
   margin: 0 auto;
   @media only screen and (max-width: 449px) {
     width: 270px;
     height: 270px;
-    border: 1.02519px dashed #00160e;
+    .circle {
+      width: 270px;
+      height: 270px;
+    }
   }
 `;
 const ImageSection = styled.div`
@@ -58,7 +59,7 @@ const Card = styled.div`
   width: 290px;
   height: 330px;
   background: #e3ffee;
-  border: 2px solid #00160e;
+  border: 1px solid #00160e;
   border-radius: 18px;
   display: flex;
   justify-content: center;
@@ -70,7 +71,7 @@ const Card = styled.div`
   @media only screen and (max-width: 449px) {
     width: 136px;
     height: 156px;
-    border: 0.944972px solid #00160e;
+    border: 1px solid #00160e;
     border-radius: 8.61153px;
     .hero-image {
       width: 120px;
@@ -92,7 +93,7 @@ const Section = styled.div`
    }
 `;
 const Leftline = styled.div`
-  border: 2px solid #00160e;
+  border: 1px solid #00160e;
   border-style: solid none none none;
   position: absolute;
   width: 100%;
@@ -102,12 +103,12 @@ const Leftline = styled.div`
     transform: translate(-60%, -50%);
   }
   @media only screen and (max-width: 449px) {
-    border: 0.944972px solid #00160e;
+    border: 1px solid #00160e;
     border-style: solid none none none;
   }
 `;
 const Rightline = styled.div`
-  border: 2px solid #00160e;
+  border: 1px solid #00160e;
   border-style: solid none none none;
   position: absolute;
   width: 43%;
@@ -121,7 +122,7 @@ const Rightline = styled.div`
     left: 60%;
   }
   @media only screen and (max-width: 768px) {
-    border: 2px solid #00160e;
+    border: 1px solid #00160e;
     border-style: solid none none none;
     width: 40%;
     transform: translate(-5%, -50%);
@@ -129,7 +130,7 @@ const Rightline = styled.div`
     left: 62%;
   }
   @media only screen and (max-width: 449px) {
-    border: 0.944972px solid #00160e;
+    border: 1px solid #00160e;
     border-style: solid none none none;
   }
 `;
