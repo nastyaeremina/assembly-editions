@@ -22,6 +22,7 @@ import PartnershipCard from '../../components/partnershipcard';
 import { PARTNERSHIP_APPLY_LINK } from '../../constants/externalLinks';
 import { PARTNERSHIP_FAQ_ID, PARTNERSHIP_ID } from '../../constants/constant';
 import { getPartnershipDetail } from '../../lib/contentful-partnership';
+import circle from '../../public/images/circle.svg';
 
 export default function Partnership({ details, seoData }) {
   return (
@@ -38,7 +39,7 @@ export default function Partnership({ details, seoData }) {
                 bgColor={'#09AA6C'}
                 fontColor={'#FFFFFF'}
                 borderColor={'#09AA6C'}
-                text={'Start earning'}
+                text={'Apply now'}
                 href={details?.link}
                 hoverColor={'rgba(255, 255, 255,0.8)'}
                 className='btn'
@@ -48,7 +49,9 @@ export default function Partnership({ details, seoData }) {
         </Container>
         <ImageSection>
           <Leftline></Leftline>
-          <Round></Round>
+          <Round>
+            <Image src={circle} alt='circle' width={527} height={527} className='circle'/>
+          </Round>
           <Section>
             <Card>
               <Image src={details?.image1?.url} alt='partnership' width={255} height={292} className='hero-image' />
