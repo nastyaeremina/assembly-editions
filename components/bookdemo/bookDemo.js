@@ -292,22 +292,22 @@ export default function BookDemoForm() {
               {INDUSTRY_ARRAY?.includes(bookDemoData?.industry) && (
                 <>
                   <label for='Last-Name-'>
-                    Are you interested in Portal for your own business or are you contacting us on behalf of a client?{' '}
+                    Are you interested in Copilot for your own business or are you contacting us on behalf of a client?{' '}
                     <span>*</span>
                   </label>
                   <select
-                    id='Are-you-interested-in-Portal-for-your-own-business-or-are-you-contacting-us-on-behalf-of-a-client'
-                    name='Are-you-interested-in-Portal-for-your-own-business-or-are-you-contacting-us-on-behalf-of-a-client'
-                    data-name='Are-you-interested-in-Portal-for-your-own-business-or-are-you-contacting-us-on-behalf-of-a-client?'
+                    id='Are-you-interested-in-Copilot-for-your-own-business-or-are-you-contacting-us-on-behalf-of-a-client'
+                    name='Are-you-interested-in-Copilot-for-your-own-business-or-are-you-contacting-us-on-behalf-of-a-client'
+                    data-name='Are-you-interested-in-Copilot-for-your-own-business-or-are-you-contacting-us-on-behalf-of-a-client?'
                     required=''
                     class='wselect'
                     onChange={(e) => onChangeInfo('youInerestedBusiness', e.target.value)}>
                     <option value=''>Please Select...</option>
-                    <option value='I’m interested in Portal for my own business.'>
-                      I’m interested in Portal for my own business.
+                    <option value='I’m interested in Copilot for my own business.'>
+                      I’m interested in Copilot for my own business.
                     </option>
-                    <option value='I’m interested in Portal for my clients.'>
-                      I’m interested in Portal for my clients.
+                    <option value='I’m interested in Copilot for my clients.'>
+                      I’m interested in Copilot for my clients.
                     </option>
                   </select>
                   {validationError?.name === 'youInerestedBusiness' && <Validation error={validationError?.message} />}
