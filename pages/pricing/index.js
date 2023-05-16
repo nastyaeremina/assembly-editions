@@ -177,7 +177,6 @@ export default function NewIndex({ faq, seoData }) {
                           <PriceText>
                             <p>per internal user</p>
                             <p>per month</p>
-                            <p>min. 5 users</p>
                           </PriceText>
                         </PriceWrap>
                         <PricePlan>
