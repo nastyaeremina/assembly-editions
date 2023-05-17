@@ -16,6 +16,7 @@ import SEO from '../../components/seo';
 import { COPILOT_ONBORADING_LINK } from '../../constants/externalLinks';
 import FeedbackSlider from '../../components/feedback/feedbackslider';
 import BusinessSlider from '../../components/businessSlider/businessslider';
+import { Banner } from '../../components/feedback/banner';
 
 export default function Customer({ testimonialPosts, casestudiesPosts, seoData, content }) {
   const casestudiesView = useMemo(() => {
@@ -62,7 +63,8 @@ export default function Customer({ testimonialPosts, casestudiesPosts, seoData, 
           </Container>
         </HeroSection>
         {/* {!isEmpty(testimonialPosts) && <CustomerFeedBack data={testimonialPosts} />} */}
-        {!isEmpty(testimonialPosts) && <FeedbackSlider data={testimonialPosts} />}
+        {/* {!isEmpty(testimonialPosts) && <FeedbackSlider data={testimonialPosts} />} */}
+        {!isEmpty(testimonialPosts) && <Banner speed={25000} data={testimonialPosts} />}
 
         {/* <BusinessSlider data={testimonialPosts} /> */}
 
