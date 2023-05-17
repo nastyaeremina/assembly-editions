@@ -251,7 +251,6 @@ export default function NewIndex({ faq, seoData }) {
                         {!isYearly && '$139'}
                       </p>
                       <span className='spantext'>per internal user</span>
-                      <span className='spantext'>5 user minimum</span>
                     </td>
                   </tr>
 
