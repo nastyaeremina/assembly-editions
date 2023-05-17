@@ -1,36 +1,9 @@
-import Slider from 'react-slick';
 import { useCallback, useMemo } from 'react';
 import { isEmpty } from '../../helpers/helpers';
-import 'slick-carousel/slick/slick.css';
-import 'slick-carousel/slick/slick-theme.css';
-// import useMobileDevice from '../../hooks/useMobileDevice';
-import { Section, Customer, SliderWrap } from './styles';
 import FeedBack from './feedback';
+import { BannerSection } from './styles';
 
-const FeedBackSlider = ({ data }) => {
-  var settings = {
-    speed: 4000,
-    autoplay: true,
-    infinite: true,
-    autoplaySpeed: 0,
-    cssEase: 'linear',
-    slidesToShow: 1,
-    slidesToScroll: 0.2,
-    centerMode: true,
-    variableWidth: true,
-    arrows: false,
-    dots: false
-    // responsive: [
-    //   {
-    //     breakpoint: 768,
-    //     settings: {
-    //       centerMode: false,
-    //       rtl: true,
-    //     }
-    //   }
-    // ]
-  };
-
+const Banner = ({ images, speed = 5000, data }) => {
   const logo = useCallback((sourceName) => {
     switch (sourceName) {
       case 'G2':
@@ -98,7 +71,7 @@ const FeedBackSlider = ({ data }) => {
   const renderCustomerCard = useCallback(
     (list) => {
       return (
-        <Section>
+        <section style={{ '--speed': `${speed}ms` }}>
           {list?.map((item, index) => {
             return (
               <FeedBack
@@ -112,27 +85,33 @@ const FeedBackSlider = ({ data }) => {
               />
             );
           })}
-        </Section>
+        </section>
       );
     },
-    [logo]
+    [logo, speed]
   );
+
   const feedbackView = useMemo(() => {
     if (isEmpty(data)) return null;
     return data?.map((item, index) => {
-      return <>{(index + 1) % 3 === 1 && renderCustomerCard(data?.slice(index, index + 3))}</>;
+      return (
+        // <div style={{ display: 'flex', flexDirection: 'column' }} key={`index_${index}`}>
+        <>{(index + 1) % 3 === 1 && renderCustomerCard(data?.slice(index, index + 3))}</>
+        // </div>
+      );
     });
   }, [data, renderCustomerCard]);
 
   return (
-    <>
-      <SliderWrap>
-        <Customer>
-          <Slider {...settings}>{feedbackView}</Slider>
-        </Customer>
-      </SliderWrap>
-    </>
+    <BannerSection>
+      <div className='inner'>
+        <div className='wrapper'>
+          {feedbackView}
+          {feedbackView}
+        </div>
+      </div>
+    </BannerSection>
   );
 };
 
-export default FeedBackSlider;
+export { Banner };

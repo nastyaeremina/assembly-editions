@@ -140,6 +140,54 @@ const SliderWrap = styled.div`
     display: none;
   }
 `;
+
+const BannerSection = styled.div`
+  padding-bottom: 100px;
+  @media only screen and (max-width: 768px) {
+    padding-bottom: 80px;
+  }
+  .inner {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    height: 100%;
+  }
+  .wrapper {
+    display: flex;
+    gap: 20px;
+  }
+  section {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    animation: swipe var(--speed) linear infinite backwards;
+  }
+  /* @keyframes swipe {
+    0% {
+      transform: translate(0);
+    }
+    100% {
+      transform: translate(-100%);
+    }
+  } */
+  @-webkit-keyframes swipe {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(calc(-300px * 6));
+    }
+  }
+
+  @keyframes swipe {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(calc(-300px * 6));
+    }
+  }
+`;
 export {
   Feedbackcard,
   CardHeader,
@@ -154,5 +202,6 @@ export {
   Rating,
   Main,
   Sub,
-  SliderWrap
+  SliderWrap,
+  BannerSection
 };
