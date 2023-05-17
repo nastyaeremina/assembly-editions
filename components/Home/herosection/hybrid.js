@@ -131,7 +131,7 @@ export default function HomeHeroSection({
         </HeroBtnBlock>
         {isEmpty(image2) ? (
           <MainImage isLight={isLight}>
-            <img src={image1} alt='internal' className='heromain-image' width={1172} height={415} />
+            <Image src={image1} alt='internal' className='heromain-image' width={1172} height={415} />
           </MainImage>
         ) : (
           <Hero>

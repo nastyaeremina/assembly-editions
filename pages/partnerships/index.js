@@ -23,8 +23,17 @@ import { PARTNERSHIP_APPLY_LINK } from '../../constants/externalLinks';
 import { PARTNERSHIP_FAQ_ID, PARTNERSHIP_ID } from '../../constants/constant';
 import { getPartnershipDetail } from '../../lib/contentful-partnership';
 import circle from '../../public/images/circle.svg';
+import { useMemo } from 'react';
 
 export default function Partnership({ details, seoData }) {
+  
+
+  const title=useMemo(()=>{
+    const titleSplitList = details?.title?.split(',');
+    const seprateWithDotList = titleSplitList?.join(`<span>,</span>`)?.split('.');
+    const finalTitle = seprateWithDotList?.join(`<span>.</span>`);
+    return finalTitle
+  },[details?.title])
   return (
     <>
       <SEO seoData={seoData} />
@@ -32,7 +41,7 @@ export default function Partnership({ details, seoData }) {
         <Navbar />
         <Container>
           <PartnershipHero>
-            <Heading>{details?.title && details?.title}</Heading>
+            <Heading>{details?.title &&                   <div dangerouslySetInnerHTML={{ __html: title }} />}</Heading>
             <Body>{details?.description && details?.description}</Body>
             <HeroBtn>
               <Button

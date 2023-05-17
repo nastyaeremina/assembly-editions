@@ -232,7 +232,7 @@ const MainImage = styled.div`
     max-height: 415px;
     height: 100%;
     margin-bottom: -4px;
-    margin-top: 50px;
+    margin-top: 60px;
     ${(props) =>
       props.isLight &&
       css`
