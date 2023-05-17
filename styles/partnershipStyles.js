@@ -14,6 +14,9 @@ const Heading = styled.h1`
   margin: 0 auto;
   max-width: 1000px;
   width: 100%;
+  span{
+    color: ${({ theme }) => theme.colors.primary};
+  }
   @media only screen and (max-width: 768px) {
     ${MobileH2}
   }
