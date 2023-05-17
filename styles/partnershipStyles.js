@@ -3,9 +3,9 @@ import { Body1, Body2, Body3, Body4, Heading2, Heading3, Heading4, MbBody2, Mobi
 
 const PartnershipHero = styled.div`
   padding: 180px 0 0 0;
-   @media only screen and (max-width: 768px) {
-    padding:120px 0 0 0;
-   }
+  @media only screen and (max-width: 768px) {
+    padding: 120px 0 0 0;
+  }
 `;
 const Heading = styled.h1`
   ${Heading2}
@@ -42,6 +42,14 @@ const Round = styled.div`
   width: 527px;
   height: 527px;
   margin: 0 auto;
+  @media only screen and (max-width: 749px) {
+    width: 340px;
+    height: 350px;
+    .circle {
+      width: 340px;
+      height: 350px;
+    }
+  }
   @media only screen and (max-width: 449px) {
     width: 270px;
     height: 270px;
@@ -54,9 +62,9 @@ const Round = styled.div`
 const ImageSection = styled.div`
   position: relative;
   top: -40px;
-   @media only screen and (max-width: 449px) {
-      top: -38px;
-   }
+  @media only screen and (max-width: 449px) {
+    top: -38px;
+  }
 `;
 const Card = styled.div`
   width: 290px;
@@ -70,6 +78,16 @@ const Card = styled.div`
   .hero-image {
     width: 255px;
     height: 292px;
+  }
+  @media only screen and (max-width: 749px) {
+    width: 190px;
+    height: 210px;
+    border: 1px solid #00160e;
+    border-radius: 8.61153px;
+    .hero-image {
+      width: 164px;
+      height: 182px;
+    }
   }
   @media only screen and (max-width: 449px) {
     width: 136px;
@@ -91,9 +109,12 @@ const Section = styled.div`
   top: 50%;
   left: 50%;
   z-index: 1;
-   @media only screen and (max-width: 449px) {
-    gap:54px;
-   }
+  @media only screen and (max-width: 649px) {
+    gap: 70px;
+  }
+  @media only screen and (max-width: 449px) {
+    gap: 54px;
+  }
 `;
 const Leftline = styled.div`
   border: 1px solid #00160e;
@@ -102,8 +123,14 @@ const Leftline = styled.div`
   width: 100%;
   transform: translate(-55%, -50%);
   top: 50%;
+  @media only screen and (max-width: 1305px) {
+    transform: translate(-60%, -50%);
+  }
   @media only screen and (max-width: 1024px) {
     transform: translate(-60%, -50%);
+  }
+  @media only screen and (max-width: 649px) {
+    transform: translate(-65%, -50%);
   }
   @media only screen and (max-width: 449px) {
     border: 1px solid #00160e;
@@ -121,20 +148,24 @@ const Rightline = styled.div`
   @media only screen and (max-width: 1024px) {
     width: 42%;
     transform: translate(-5%, -50%);
-    top: 50%;
     left: 60%;
   }
+  @media only screen and (max-width: 826px) {
+    width: 41%;
+    left: 61%;
+  }
   @media only screen and (max-width: 768px) {
-    border: 1px solid #00160e;
-    border-style: solid none none none;
     width: 40%;
     transform: translate(-5%, -50%);
-    top: 50%;
     left: 62%;
   }
+  @media only screen and (max-width: 649px) {
+    width: 36%;
+    transform: translate(-5%, -50%);
+    left: 65%;
+  }
   @media only screen and (max-width: 449px) {
-    border: 1px solid #00160e;
-    border-style: solid none none none;
+    width: 36%;
   }
 `;
 const Keycard = styled.div`
