@@ -72,7 +72,7 @@ export default function Automation({ seoData, details }) {
           </Container>
         </AutomationHero>
         <Container>
-        <SetupAutomation istitle>
+          <SetupAutomation istitle>
             <div
               dangerouslySetInnerHTML={{
                 __html: separateSpecialChar('Automate the client onboarding experience.')
@@ -85,27 +85,35 @@ export default function Automation({ seoData, details }) {
             textColor={MODULE_COLOR_LIST[HOME_MODULE_LIST['Messaging']]?.fontColor}
           />
           <AutomationCardSection
-            heading={'Let leads convert themselves.'}
-            title={'Every service business is a technology company'}
-            body={
-              'Enable client sign up and place a ‘Sign up’ button on your marketing website. Now let leads and clients seamlessly set up accounts self-serve and then guide them through a customized onboarding experience. '
-            }
-            imageurl={Card1}
+            heading='Let leads convert themselves.'
+            data={[
+              {
+                title: 'Every service business is a technology company',
+                body: 'Enable client sign up and place a ‘Sign up’ button on your marketing website. Now let leads and clients seamlessly set up accounts self-serve and then guide them through a customized onboarding experience. ',
+
+                imageurl:
+                  'https://firebasestorage.googleapis.com/v0/b/internal-use-ef844.appspot.com/o/coPilot%2Fcard1.png?alt=media&token=15c182a9-e4a5-454f-a22d-feedbf157c6e'
+              }
+            ]}
           />
           <AutomationCardSection
+            data={[
+              {
+                title: 'Every service business is a technology company',
+                body: 'Enable client sign up and place a ‘Sign up’ button on your marketing website. Now let leads and clients seamlessly set up accounts self-serve and then guide them through a customized onboarding experience. ',
+
+                imageurl:
+                  'https://firebasestorage.googleapis.com/v0/b/internal-use-ef844.appspot.com/o/coPilot%2Fcard1.png?alt=media&token=15c182a9-e4a5-454f-a22d-feedbf157c6e'
+              },
+              {
+                title: 'Every service business is a technology company',
+                body: 'Enable client sign up and place a ‘Sign up’ button on your marketing website. Now let leads and clients seamlessly set up accounts self-serve and then guide them through a customized onboarding experience. ',
+
+                imageurl:
+                  'https://firebasestorage.googleapis.com/v0/b/internal-use-ef844.appspot.com/o/coPilot%2Fcard1.png?alt=media&token=15c182a9-e4a5-454f-a22d-feedbf157c6e'
+              }
+            ]}
             heading={'Sync your 3rd party storage solutions, CRMs, and more.'}
-            title={'File storage sync'}
-            body={
-              'Back up data in an organized way by creating a secure and seamless connection with file storage solutions including Google Drive, Box, Dropbox, and others.'
-            }
-            title2={'Sales CRM sync'}
-            body2={
-              'If you’re using a separate sales CRM, set up automations to automatically invite clients to your client portal when a deal is closed, sync custom fields, and more. '
-            }
-            imageurl={File1}
-            imageurl2={File2}
-            isTwoCard={true}
-            isCard={true}
           />
         </Container>
         <ExploreTab />

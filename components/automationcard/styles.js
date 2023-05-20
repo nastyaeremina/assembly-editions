@@ -27,7 +27,7 @@ const Card = styled.div`
     width: 100%;
   }
   ${(props) =>
-    props.isCard &&
+    props.isTwoCard &&
     css`
       width: 50%;
       @media only screen and (max-width: 426px) {

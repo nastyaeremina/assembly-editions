@@ -15,7 +15,6 @@ const SliderInner = styled(Link)`
   z-index: 9999;
   margin: 0 18px;
   background-color: #fff;
-  transition: border-color 0.3s, box-shadow 0.3s;
   :hover {
     border: 1.5px solid #00160e;
     box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.1);

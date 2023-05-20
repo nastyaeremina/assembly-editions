@@ -2,9 +2,9 @@ import React from 'react';
 import Image from 'next/image';
 import { Card, CardTop, Description, Head } from './styles';
 
-export default function AutomationCard({ title, body, imageurl, isCard }) {
+export default function AutomationCard({ title, body, imageurl, isTwoCard }) {
   return (
-    <Card isCard={isCard}>
+    <Card isTwoCard={isTwoCard}>
       <CardTop>
         <Head>{title}</Head>
         <Description>{body}</Description>

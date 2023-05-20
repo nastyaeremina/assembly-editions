@@ -1,5 +1,5 @@
 import styled, { css } from 'styled-components';
-import { Body2, Heading2, Heading3, MbBody2, TableText } from './styles';
+import { Body2, CardTxt, Heading2, Heading3, MbBody2, TableText } from './styles';
 
 const AutomationHero = styled.div`
   width: 100%;
@@ -97,4 +97,44 @@ const Featured = styled.div`
     padding-top: 80px;
   }
 `;
-export { AutomationHero, Title, Caption, AutomationButton, SetupAutomation, Cards, CardSec, Featured };
+const DirectoryButton = styled.div`
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  @media only screen and (max-width: 426px) {
+    gap: 12px;
+  }
+`;
+const DirectoryCard = styled.div`
+  border: 1px solid #00160e;
+  border-radius: 4px;
+  cursor: pointer;
+  background-color: #fff;
+  max-width: 423px;
+  width: 100%;
+  :hover {
+    border: 1.5px solid #00160e;
+    box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.1);
+  }
+`;
+const Cardbottom = styled.div`
+  padding: 8px 16px;
+  background: #e3ffee;
+  border-top: 1px solid #000000;
+  border-radius: 0px 0px 5px 5px;
+  color: ${({ theme }) => theme.colors.purpledark};
+  ${CardTxt}
+`;
+export {
+  AutomationHero,
+  Title,
+  Caption,
+  AutomationButton,
+  SetupAutomation,
+  Cards,
+  CardSec,
+  Featured,
+  DirectoryButton,
+  DirectoryCard,
+  Cardbottom
+};
