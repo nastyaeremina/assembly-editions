@@ -25,7 +25,7 @@ export default function CustomerTestimonial({ logo, body, slug, highlightsData, 
   }, [highlightsData]);
 
   return (
-    <Container>
+    <>
       <TestimonialCard>
         <LeftCard>
           <Top>
@@ -61,6 +61,6 @@ export default function CustomerTestimonial({ logo, body, slug, highlightsData, 
           <Image src={banner} alt='customer' className='right' width={405} height={407} />
         </RightCard>
       </TestimonialCard>
-    </Container>
+    </>
   );
 }

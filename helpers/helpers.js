@@ -49,8 +49,8 @@ export function separateSpecialChar(title) {
 }
 export function convertHighlights(value) {
   const newList = [];
-  var result = value.split(/\[(.*?)\]/);
-  result.forEach((element) => {
+  var result = value?.split(/\[(.*?)\]/);
+  result?.forEach((element) => {
     if (!isEmpty(element)) {
       const roundedList = element.split(/\((.*?)\)/) ?? [];
       if (!isEmpty(roundedList)) newList.push({ title: roundedList[1], desc: roundedList[3] });
