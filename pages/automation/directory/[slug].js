@@ -17,7 +17,6 @@ import {
 import bluelogo from '../../../public/images/bluelogo.png';
 import Vector from '../../../public/images/vector.svg';
 import Make from '../../../public/images/make.svg';
-import IconWithButton from '../../../components/button/iconbutton';
 import Button from '../../../components/button/button';
 import Graphic from '../../../public/images/graphics.png';
 import FeatureSlider from '../../../components/FeatureSlider/featureslider';
