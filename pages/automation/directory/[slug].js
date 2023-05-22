@@ -47,8 +47,8 @@ export default function AutomationDetail() {
         </AppsDetailMain>
         <Container>
           <LogoSection>
-            <Image src={bluelogo} alt='logo' width={80} height={80} />
-            <Image src={bluelogo} alt='logo' width={80} height={80} />
+            <Image src={bluelogo} alt='logo' width={80} height={80} className='logo' />
+            <Image src={bluelogo} alt='logo' width={80} height={80} className='logo' />
           </LogoSection>
           <DetailTitle>Create clients in Copilot when new forms are submitted in Calendly</DetailTitle>
           <DetailCaption>
@@ -57,8 +57,29 @@ export default function AutomationDetail() {
             invitee that books an event with you to Copilot as a new client, saving you time on manual work.
           </DetailCaption>
           <DetailButtonSection>
-            <IconWithButton href={'#'} buttonname={'Go to Zapier'} img={Vector} />
-            <IconWithButton href={'#'} buttonname={'Go to Make'} img={Make} />
+            <Button
+              bgColor={'#09AA6C'}
+              fontColor={'#fff'}
+              borderColor={'#09AA6C'}
+              text={'Go to Zapier'}
+              href={'#'}
+              hoverColor={'rgba(255, 255, 255,0.8)'}
+              target={'_blank'}
+              isicon={true}
+              imgUrl={Vector}
+              className={'iconbutton'}
+            />
+            <Button
+              bgColor={'#09AA6C'}
+              fontColor={'#fff'}
+              borderColor={'#09AA6C'}
+              text={'Go to Make'}
+              href={'#'}
+              hoverColor={'rgba(255, 255, 255,0.8)'}
+              target={'_blank'}
+              isicon={true}
+              imgUrl={Make}
+            />
             <Button
               bgColor={'transparent'}
               fontColor={'#000000'}

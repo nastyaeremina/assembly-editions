@@ -1,5 +1,7 @@
 import Link from 'next/link';
+import Image from 'next/image';
 import { React } from 'react';
+import Vector from '../../public/images/vector.svg';
 import { ButtonContainer } from './style';
 
 function myFunction(e) {
@@ -20,7 +22,9 @@ export default function Button({
   onClick,
   isLink = true,
   target = '_self',
-  type = 'button'
+  type = 'button',
+  imgUrl,
+  isicon = false
 }) {
   return (
     <ButtonContainer
@@ -36,6 +40,7 @@ export default function Button({
         </button>
       ) : isLink ? (
         <Link onMouseMove={(e) => myFunction(e)} href={href} target={target}>
+          {isicon && <Image src={imgUrl} alt={'icon'} width={20} height={20} className='icon' />}
           {text[0].toUpperCase() + text.substring(1).toLowerCase()}
         </Link>
       ) : (

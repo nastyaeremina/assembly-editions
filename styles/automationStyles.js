@@ -1,5 +1,5 @@
 import styled, { css } from 'styled-components';
-import { Body2, Body3, ButtonText, CardTxt, Heading2, Heading3, MbBody2, TableText } from './styles';
+import { Body2, Body3, ButtonText, CardTxt, Heading2, Heading3, MbBody2, MbBody3, TableText } from './styles';
 
 const AutomationHero = styled.div`
   width: 100%;
@@ -130,6 +130,12 @@ const LogoSection = styled.div`
   gap: 16px;
   padding-top: 22px;
   padding-bottom: 20px;
+  @media only screen and (max-width: 426px) {
+    .logo {
+      width: 40px;
+      height: 40px;
+    }
+  }
 `;
 const DetailTitle = styled.h1`
   ${Heading3}
@@ -140,25 +146,44 @@ const DetailCaption = styled.p`
   margin: 16px 0 28px;
   ${Body3}
   color: ${({ theme }) => theme.colors.body};
+  @media only screen and (max-width: 426px) {
+    ${MbBody3}
+  }
 `;
 const DetailButtonSection = styled.div`
   display: flex;
   gap: 20px;
+  @media only screen and (max-width: 749px) {
+    flex-wrap: wrap;
+  }
+  @media only screen and (max-width: 449px) {
+    .iconbutton {
+      a {
+        padding: 8px 24px;
+      }
+    }
+  }
 `;
 const ImageSection = styled.div`
   background-color: ${({ theme }) => theme.colors.background};
   margin-top: 50px;
   margin-bottom: 100px;
-  padding: 40px 108px;
+  padding: 40px 0;
   .detailimage {
     max-width: 849px;
     width: 100%;
+  }
+  @media only screen and (max-width: 449px) {
+    margin-bottom: 80px;
   }
 `;
 const Head = styled.h2`
   margin: 0 0 50px 0;
   ${Heading3}
   color: ${({ theme }) => theme.colors.title};
+  @media only screen and (max-width: 449px) {
+    margin: 0 0 40px 0;
+  }
 `;
 export {
   AutomationHero,

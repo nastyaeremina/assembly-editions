@@ -9,6 +9,9 @@ const SliderWrap = styled.div`
     props.isDetailSlider &&
     css`
       padding-bottom: 100px;
+      @media only screen and (max-width: 449px) {
+        padding-bottom: 80px;
+      }
     `}
 `;
 const SliderInner = styled(Link)`
