@@ -1,333 +1,164 @@
-import Layout from '/components/layout';
-import Link from 'next/link';
-import { NextSeo } from 'next-seo';
-import { getAllBlogs } from '../../lib/contentful-blogs';
-import Navbar from '../../components/navbar/navbar';
-import {
-  HeroSection,
-  FeatureSection,
-  FeatureWrap,
-  Input,
-  Catagory,
-  Catagoryitem,
-  FeatureLeft,
-  LeftWrap,
-  InputWrap,
-  FeatureRight,
-  FeatureMenu,
-  FeatureCard,
-  CardText,
-  CardEnd,
-  FeatureImg,
-  Featured,
-  ExtensionsSection,
-  ExtensionCard,
-  CardSub,
-  CardInfo,
-  SchedulingApps,
-  AppsTitle,
-  BuildWrap,
-  BuildAppsDetail,
-  OtherWrap,
-  CardMain,
-  MainBg,
-  ImgView,
-  AppsHeroWrap,
-  ExtensionsLastSection,
-  AppHeader3
-} from '../../styles/appsStyles';
-import { Container, PrimaryButton, SecondryButton } from '../../styles/commonStyles';
-import CTA from '../../components/cta/cta';
 import Image from 'next/image';
-import FAQ from '../../components/faq/faq';
-import { getAllParrtnerAppsCategories, getAllPartnerApps } from '../../lib/contentful-partnerApps';
-import { useCallback, useEffect, useMemo, useState } from 'react';
-import { isEmpty } from '../../helpers/helpers';
-import { APPS_TYPE, APP_SEO_ID } from '../../constants/constant';
-import Button from '../../components/button/button';
 import SEO from '../../components/seo';
-import AppError from '../../components/apperror/error';
-import { getSEOdata } from '../../lib/contentful-seo';
-import { COPILOT_ONBORADING_LINK, COPILOT_REFERENCE_API_LINK } from '../../constants/externalLinks';
+import Navbar from '../../components/navbar/navbar';
+import Layout from '../../components/layout';
+import {
+  AutomationButton,
+  AutomationHero,
+  Caption,
+  CardSec,
+  Cards,
+  Featured,
+  SetupAutomation,
+  Title
+} from '../../styles/automationStyles';
+import { Container } from '../../styles/commonStyles';
+import AutomationIMG from '../../public/images/automation.png';
+import Button from '../../components/button/button';
+import { COPILOT_ONBORADING_LINK } from '../../constants/externalLinks';
+import CTA from '../../components/cta/cta';
+import Content from '../../components/content/content';
+import TabView from '../../components/tab/tab';
+import { FEATURES_MESSAG_ID, HOME_MODULE_LIST, MODULE_COLOR_LIST } from '../../constants/constant';
+import AutomationCardSection from '../../components/automationcard';
+import AutomationCard from '../../components/automationcard/card';
+import Card1 from '../../public/images/card1.png';
+import File1 from '../../public/images/file1.png';
+import File2 from '../../public/images/file2.png';
+import ExploreTab from '../../components/solution/clienttab/exploretab';
+import { separateSpecialChar } from '../../helpers/helpers';
+import ExtentionCard from '../../components/Extentioncard';
+import CustomerTestimonial from '../../components/customer/testimonials';
+import FAQ from '../../components/faq/faq';
+import { TopView } from '../../components/solution/clienttab/styles';
+import FeatureSlider from '../../components/FeatureSlider/featureslider';
+import { getFeatureById } from '../../lib/contentful-features';
+import { getSolutionBySlug } from '../../lib/contentful-solutions';
+import { getAllFeaturedCaseStudies } from '../../lib/contentful-testimonial';
 
-export default function Apps({ allPosts, featuredApps, allCategoryWithPost, dataIntegrationApps, seoData }) {
-  const [selected_category, setSelected_category] = useState();
-  const [query, setQuery] = useState('');
-  const [searchResult, setSearchResult] = useState([]);
-  const [isSearch, setIsSearch] = useState(false);
-  useEffect(() => {
-    if (typeof window !== 'undefined') {
-      let hash = window.location.hash;
-      let result = hash.replace(/#/g, '');
-      setSelected_category(result);
-    }
-  }, []);
-
-  const searchQuery = useCallback(
-    (value) => {
-      const result = allPosts?.filter((item) => item?.name?.toLowerCase().includes(value?.toLowerCase())) || [];
-      if (result) setSearchResult(result);
-    },
-    [allPosts]
-  );
-
-  const onSeachQueryChange = useCallback(
-    (e) => {
-      const value = e.target.value;
-      setQuery(value);
-      let timeout;
-
-      if (value) {
-        if (!isSearch) setIsSearch(true);
-        if (timeout) clearTimeout(timeout);
-        timeout = setTimeout(() => {
-          searchQuery(value);
-        }, 300);
-      } else {
-        if (isSearch) setIsSearch(false);
-        setSearchResult([]);
-      }
-    },
-    [isSearch, searchQuery]
-  );
-
-  const onSubmitSeachQuery = useCallback((e) => {
-    e.preventDefault();
-  }, []);
-
-  const renderFeaturedView = useMemo(() => {
-    if (isEmpty(featuredApps)) return null;
-    return featuredApps?.map((item, index) => {
-      return (
-        <CardMain key={`featuresitem_index_${index}`}>
-          <FeatureCard key={`featuredview_index_${index}`}>
-            <Link href={`/apps/${item?.slug}`}>
-              <FeatureImg>
-                <Image src={item?.logo?.url} alt='main-logo' width={236} height={56} objectFit='contain' />
-              </FeatureImg>
-              <CardText>
-                <h3>{item?.name}</h3>
-                <p>{item?.description}</p>
-              </CardText>
-              <CardEnd>
-                <p>{item?.partnerAppCategoriesCollection?.items[0]?.name}</p>
-              </CardEnd>
-            </Link>
-          </FeatureCard>
-        </CardMain>
-      );
-    });
-  }, [featuredApps]);
-
-  const renderCategoryList = useMemo(() => {
-    if (isEmpty(allCategoryWithPost)) return null;
-    return allCategoryWithPost?.map((item, index) => {
-      let isActive = item?.category?.slug === selected_category;
-      return (
-        <Catagoryitem key={`categorylist_index_${index}`} isActive={isActive}>
-          <Link
-            href={`#${item?.category?.slug}`}
-            onClick={() => {
-              setSelected_category(item?.category?.slug);
-            }}>
-            {item?.category?.name}
-          </Link>
-        </Catagoryitem>
-      );
-    });
-  }, [allCategoryWithPost, selected_category]);
-
-  const renderPartnerAppsView = useCallback((appList) => {
-    if (isEmpty(appList)) return null;
-    return appList?.map((item, index) => {
-      return (
-        <CardSub key={`partnerappview_index${index}`}>
-          <Link href={`/apps/${item?.slug}`}>
-            <CardInfo>
-              <ImgView>
-                <Image src={item?.icon?.url} alt='red-icon' width={25} height={25} layout={'fixed'} />
-              </ImgView>
-              <h3>{item?.name}</h3>
-            </CardInfo>
-            <p>{item?.description}</p>
-          </Link>
-        </CardSub>
-      );
-    }, []);
-  }, []);
-
-  const renderAllCategoryAppsView = useMemo(() => {
-    if (isEmpty(allCategoryWithPost)) return null;
-    return allCategoryWithPost?.map((item, index) => {
-      return (
-        <ExtensionsSection id={item?.category?.slug} key={`allCategoryappsview_index_${index}`}>
-          <AppHeader3>{item?.category?.name}</AppHeader3>
-          <ExtensionCard>{renderPartnerAppsView(item?.list)}</ExtensionCard>
-        </ExtensionsSection>
-      );
-    });
-  }, [allCategoryWithPost, renderPartnerAppsView]);
-
-  const renderDataIntegrationApps = useMemo(() => {
-    if (isEmpty(dataIntegrationApps)) return null;
-    return renderPartnerAppsView(dataIntegrationApps);
-  }, [dataIntegrationApps, renderPartnerAppsView]);
-
-  const renderResultView = useMemo(() => {
-    if (!isEmpty(searchResult)) {
-      return (
-        <Featured key={`searchview`}>
-          <h2> {`${searchResult?.length} Result for "${query}"`}</h2>
-          <FeatureMenu>{renderPartnerAppsView(searchResult)}</FeatureMenu>
-        </Featured>
-      );
-    } else
-      return (
-        <ExtensionsSection key={`searchEmptyview`}>
-          <AppError query={query} />
-        </ExtensionsSection>
-      );
-  }, [query, renderPartnerAppsView, searchResult]);
-
+export default function Automation({ seoData, details }) {
+  console.log('details', details);
   return (
     <>
       <SEO seoData={seoData}></SEO>
       <Layout>
-        <MainBg>
-          <Navbar />
-          <HeroSection>
-            <Container>
-              <AppsHeroWrap>
-                <h1>App Directory</h1>
-                <p>Try Copilot free for 14 days, no credit card required</p>
-                <Button text={'Start Trial'} href={COPILOT_ONBORADING_LINK} />
-              </AppsHeroWrap>
-            </Container>
-          </HeroSection>
-          <FeatureSection>
-            <Container>
-              <FeatureWrap>
-                <FeatureLeft>
-                  <LeftWrap>
-                    <InputWrap onSubmit={onSubmitSeachQuery}>
-                      <Image src='/images/searchicon.svg' alt='search-icon' width={20} height={20} />
-                      <Input placeholder='Find an app' value={query} onChange={onSeachQueryChange} type='search' />
-                    </InputWrap>
-                    <Catagory>
-                      <h4>Partner Apps</h4>
-                      <Catagoryitem
-                        isActive={selected_category === 'Brief-Section'}
-                        onClick={() => {
-                          setSelected_category('Brief-Section');
-                        }}>
-                        <Link href={'#Brief-Section'}>Featured</Link>
-                      </Catagoryitem>
-                      {renderCategoryList}
-                    </Catagory>
-                    <OtherWrap>
-                      <h4>Other</h4>
-                      <Catagoryitem isActive={selected_category === 'Integrations-Section'}>
-                        <Link
-                          href={'#Integrations-Section'}
-                          onClick={() => {
-                            setSelected_category('Integrations-Section');
-                          }}>
-                          Data Integrations
-                        </Link>
-                      </Catagoryitem>
-                      <Catagoryitem isActive={selected_category === 'custome-apps'}>
-                        <Link
-                          href={'#custome-apps'}
-                          onClick={() => {
-                            setSelected_category('custome-apps');
-                          }}>
-                          Custom Apps
-                        </Link>
-                      </Catagoryitem>
-                    </OtherWrap>
-                  </LeftWrap>
-                </FeatureLeft>
-                {isSearch ? (
-                  <FeatureRight isSearch={!isEmpty(searchResult)}>{renderResultView}</FeatureRight>
-                ) : (
-                  <FeatureRight>
-                    {!isEmpty(featuredApps) && (
-                      <Featured id='Brief-Section'>
-                        <AppHeader3>Featured</AppHeader3>
-                        <FeatureMenu>{renderFeaturedView}</FeatureMenu>
-                      </Featured>
-                    )}
-                    {renderAllCategoryAppsView}
+        <Navbar />
+        <AutomationHero>
+          <Container>
+            <Title>Automations</Title>
+            <Caption>
+              Save time, reduce human error, and streamline operations for your team and your clients with easy-to-use
+              automations.
+            </Caption>
+            <AutomationButton>
+              <Button
+                bgColor={'#09AA6C'}
+                fontColor={'#fff'}
+                borderColor={'#09AA6C'}
+                text={'Start Trial'}
+                href={COPILOT_ONBORADING_LINK}
+                hoverColor={'rgba(255, 255, 255,0.8)'}
+              />
+              <Button
+                bgColor={'transparent'}
+                fontColor={'#E3FFEE'}
+                borderColor={'#E3FFEE'}
+                text={'View all Automations'}
+                href={''}
+                hoverColor={'rgba(255, 255, 255,0.8)'}
+              />
+            </AutomationButton>
+            <Image src={AutomationIMG} alt='automation' width={1224} height={324} className='automation-image' />
+          </Container>
+        </AutomationHero>
+        <Container>
+          <SetupAutomation istitle>
+            <div
+              dangerouslySetInnerHTML={{
+                __html: separateSpecialChar('Automate the client onboarding experience.')
+              }}
+            />
+          </SetupAutomation>
+          <TabView
+            tabData={details?.clientFeaturesCollection?.items || []}
+            bgColor={MODULE_COLOR_LIST[HOME_MODULE_LIST['Messaging']]?.bgColor}
+            textColor={MODULE_COLOR_LIST[HOME_MODULE_LIST['Messaging']]?.fontColor}
+          />
+          <AutomationCardSection
+            data={[
+              {
+                title: 'Every service business is a technology company',
+                body: 'Enable client sign up and place a ‘Sign up’ button on your marketing website. Now let leads and clients seamlessly set up accounts self-serve and then guide them through a customized onboarding experience. ',
 
-                    {!isEmpty(dataIntegrationApps) && (
-                      <ExtensionsSection id='Integrations-Section'>
-                        <AppsTitle>
-                          <AppHeader3>Data Integrations</AppHeader3>
-                          <p>Integrations</p>
-                        </AppsTitle>
-                        <ExtensionCard>{renderDataIntegrationApps}</ExtensionCard>
-                      </ExtensionsSection>
-                    )}
-                    <ExtensionsLastSection id='custome-apps'>
-                      <AppsTitle>
-                        <h3>Custom Apps</h3>
-                      </AppsTitle>
-                      <BuildWrap>
-                        <BuildAppsDetail>
-                          <h3>Build your own app</h3>
-                          <p>
-                            A custom app is a web application that can be embedded into your portal and receives
-                            information about the current user or company. With this capability, you can render custom
-                            content automatically depending on the user that is currently signed in.
-                          </p>
-                          <Button
-                            bgColor={'transparent'}
-                            fontColor={'#000000'}
-                            borderColor={'#000000'}
-                            text={'Read API docs'}
-                            href={COPILOT_REFERENCE_API_LINK}
-                            hoverColor={'rgba(0, 0, 0, 0.5)'}
-                          />
-                        </BuildAppsDetail>
-                      </BuildWrap>
-                    </ExtensionsLastSection>
-                  </FeatureRight>
-                )}
-              </FeatureWrap>
-            </Container>
-          </FeatureSection>
-          <FAQ contentID={'60k3aY2O1pQfCEbwSKqgsr'} />
-          <CTA />
-        </MainBg>
+                imageurl:
+                  'https://firebasestorage.googleapis.com/v0/b/internal-use-ef844.appspot.com/o/coPilot%2Fcard1.png?alt=media&token=15c182a9-e4a5-454f-a22d-feedbf157c6e'
+              },
+              {
+                title: 'Every service business is a technology company',
+                body: 'Enable client sign up and place a ‘Sign up’ button on your marketing website. Now let leads and clients seamlessly set up accounts self-serve and then guide them through a customized onboarding experience. ',
+
+                imageurl:
+                  'https://firebasestorage.googleapis.com/v0/b/internal-use-ef844.appspot.com/o/coPilot%2Fcard1.png?alt=media&token=15c182a9-e4a5-454f-a22d-feedbf157c6e'
+              }
+            ]}
+            heading={'Sync your 3rd party storage solutions, CRMs, and more.'}
+          />
+        </Container>
+        <ExploreTab />
+        <Container>
+          <SetupAutomation>
+            <div
+              dangerouslySetInnerHTML={{
+                __html: separateSpecialChar('Learn from businesses doubling down on automation.')
+              }}
+            />
+          </SetupAutomation>
+          <CustomerTestimonial
+            body={
+              'With Copilot, Provantage Capital was able to grow lol obviously. We did them good. Case study case study lorem ipsum dolor sit amet.'
+            }
+          />
+          <Featured>
+            <TopView>
+              <h2>
+                Explore the most popular automations<span>.</span>
+              </h2>
+              <p>
+                There are unlimited ways to start saving time and money by automating your workflows. Here are some of
+                the most popular automations.
+              </p>
+              <Button
+                bgColor={'transparent'}
+                fontColor={'#000000'}
+                borderColor={'#000000'}
+                text={'View all automations'}
+                href={'#'}
+                hoverColor={'rgba(0, 0, 0, 0.5)'}
+                target={'_blank'}
+              />
+            </TopView>
+          </Featured>
+        </Container>
+        <FeatureSlider data={[1, 2, 3, 4, 5, 6, 7, 8, 9]} />
+        <FAQ />
+        <CTA />
       </Layout>
     </>
   );
 }
 
-export async function getStaticProps({ preview = false }) {
-  const allPosts = (await getAllPartnerApps(APPS_TYPE.PARTNER_APP, preview)) ?? [];
-  const allCategory = (await getAllParrtnerAppsCategories(preview)) ?? [];
-  const dataIntegrationApps = (await getAllPartnerApps(APPS_TYPE.DATA_INTEGRATION, preview)) ?? [];
-  const seoData = (await getSEOdata(APP_SEO_ID)) ?? [];
-  seoData.canonical = 'https://www.copilot.com/apps';
-  const featuredApps = allPosts?.filter((item) => item?.isFeatured === true && item?.appType === APPS_TYPE.PARTNER_APP);
-
-  let allCategoryWithPost = [];
-
-  allCategory?.forEach((item) => {
-    const filterList = allPosts?.filter((element) =>
-      element?.partnerAppCategoriesCollection?.items?.some((category) => category?.slug === item?.slug)
-    );
-    if (!isEmpty(filterList)) allCategoryWithPost?.push({ category: item, list: filterList });
-  });
-
+export async function getStaticProps({ params, preview = false }) {
+  const featuredetails = (await getFeatureById(FEATURES_MESSAG_ID, preview)) ?? [];
+  // const details = (await getMasterComparisonDetail()) ?? [];
+  const solutiondetails = (await getSolutionBySlug('accounting-client-portal', preview)) ?? [];
+  const casestudiesPosts = (await getAllFeaturedCaseStudies()) ?? [];
+  console.log('casestudiesPosts', casestudiesPosts);
+  const details = {
+    clientFeaturesCollection: featuredetails?.clientFeaturesCollection,
+    clientExperienceCollection: solutiondetails?.clientExperienceCollection,
+    casestudiesPosts: casestudiesPosts?.[0] || {}
+  };
   return {
-    props: {
-      featuredApps,
-      allCategoryWithPost,
-      dataIntegrationApps,
-      allPosts: allPosts.concat(dataIntegrationApps),
-      seoData
-    }
+    props: { details }
   };
 }

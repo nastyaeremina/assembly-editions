@@ -1,6 +1,6 @@
 import Layout from '/components/layout';
 import Link from 'next/link';
-import Navbar from '../../components/navbar/navbar';
+import Navbar from '../../../components/navbar/navbar';
 import {
   DetailLink,
   AppsDetailMain,
@@ -24,15 +24,15 @@ import {
   TooltipWrap,
   Tooltip,
   CardMain
-} from '../../styles/appsStyles';
-import { Container, PrimaryButton } from '../../styles/commonStyles';
-import CTA from '../../components/cta/cta';
+} from '../../../styles/appsStyles';
+import { Container, PrimaryButton } from '../../../styles/commonStyles';
+import CTA from '../../../components/cta/cta';
 import Image from 'next/image';
-import { getAllPartnerApps, getAllPartnerAppsWithSlug, getPartnerAppDetail } from '../../lib/contentful-partnerApps';
+import { getAllPartnerApps, getAllPartnerAppsWithSlug, getPartnerAppDetail } from '../../../lib/contentful-partnerApps';
 import { useMemo } from 'react';
-import { isEmpty } from '../../helpers/helpers';
-import Button from '../../components/button/button';
-import SEO from '../../components/seo';
+import { isEmpty } from '../../../helpers/helpers';
+import Button from '../../../components/button/button';
+import SEO from '../../../components/seo';
 
 export default function AppsDetail({ appDetail, relatedApps }) {
   const renderRelatedAppView = useMemo(() => {
@@ -86,7 +86,7 @@ export default function AppsDetail({ appDetail, relatedApps }) {
         <Navbar />
         <AppsDetailMain>
           <Container>
-            <Link href='/apps'>
+            <Link href='/apps/directory'>
               <DetailLink>
                 {/* <Image src='/images/leftarrow.svg' alt='bill-icon' width={12} height={12} layout={'fixed'} /> */}
                 <svg width='12' height='12' viewBox='0 0 12 12' fill='none' xmlns='http://www.w3.org/2000/svg'>
@@ -237,7 +237,7 @@ export async function getStaticProps({ params, preview = false }) {
 export async function getStaticPaths() {
   const allPosts = (await getAllPartnerAppsWithSlug()) ?? [];
   return {
-    paths: allPosts?.map(({ slug }) => `/apps/${slug}`) ?? [],
+    paths: allPosts?.map(({ slug }) => `/apps/directory/${slug}`) ?? [],
 
     fallback: true
   };
