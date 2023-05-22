@@ -1,5 +1,5 @@
 import styled, { css } from 'styled-components';
-import { Body2, CardTxt, Heading2, Heading3, MbBody2, TableText } from './styles';
+import { Body2, Body3, ButtonText, CardTxt, Heading2, Heading3, MbBody2, TableText } from './styles';
 
 const AutomationHero = styled.div`
   width: 100%;
@@ -125,6 +125,41 @@ const Cardbottom = styled.div`
   color: ${({ theme }) => theme.colors.purpledark};
   ${CardTxt}
 `;
+const LogoSection = styled.div`
+  display: flex;
+  gap: 16px;
+  padding-top: 22px;
+  padding-bottom: 20px;
+`;
+const DetailTitle = styled.h1`
+  ${Heading3}
+  color: ${({ theme }) => theme.colors.title};
+  margin: 0;
+`;
+const DetailCaption = styled.p`
+  margin: 16px 0 28px;
+  ${Body3}
+  color: ${({ theme }) => theme.colors.body};
+`;
+const DetailButtonSection = styled.div`
+  display: flex;
+  gap: 20px;
+`;
+const ImageSection = styled.div`
+  background-color: ${({ theme }) => theme.colors.background};
+  margin-top: 50px;
+  margin-bottom: 100px;
+  padding: 40px 108px;
+  .detailimage {
+    max-width: 849px;
+    width: 100%;
+  }
+`;
+const Head = styled.h2`
+  margin: 0 0 50px 0;
+  ${Heading3}
+  color: ${({ theme }) => theme.colors.title};
+`;
 export {
   AutomationHero,
   Title,
@@ -136,5 +171,11 @@ export {
   Featured,
   DirectoryButton,
   DirectoryCard,
-  Cardbottom
+  Cardbottom,
+  LogoSection,
+  DetailTitle,
+  DetailCaption,
+  DetailButtonSection,
+  ImageSection,
+  Head
 };

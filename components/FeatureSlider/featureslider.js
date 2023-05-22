@@ -8,7 +8,7 @@ import featurelogo from '../../public/images/featurelogo.svg';
 import { isEmpty } from '../../helpers/helpers';
 import { SliderIcon, SliderInner, SliderLine, SliderSub, SliderWrap } from './styles';
 
-const FeatureSlider = ({ data }) => {
+const FeatureSlider = ({ data, isDetailSlider }) => {
   const settings = {
     speed: 6000,
     autoplay: true,
@@ -68,7 +68,7 @@ const FeatureSlider = ({ data }) => {
 
   return (
     <>
-      <SliderWrap>
+      <SliderWrap isDetailSlider={isDetailSlider}>
         <Slider {...settings}>{featurecontentView}</Slider>
       </SliderWrap>
     </>

@@ -148,5 +148,20 @@ const Blur = styled.div`
       transform: translate(${props.position.left}px, ${props.position.top}px);
     `}
 `;
-
-export { ButtonContainer, Blur };
+const IconButton = styled.a`
+  height: 50px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 12px 24px;
+  gap: 12px;
+  border: 1px solid #09aa6c;
+  border-radius: 48px;
+  background: #09aa6c;
+  color: ${({ theme }) => theme.colors.whiteColor};
+  width: fit-content;
+  cursor: pointer;
+  ${ButtonText}
+`;
+export { ButtonContainer, Blur, IconButton };

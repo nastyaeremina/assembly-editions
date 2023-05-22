@@ -1,10 +1,15 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import Link from 'next/link';
 import { Body1, Body2, Body4, Body5, MbBody2 } from '../../styles/styles';
 
 const SliderWrap = styled.div`
   overflow: hidden;
   position: relative;
+  ${(props) =>
+    props.isDetailSlider &&
+    css`
+      padding-bottom: 100px;
+    `}
 `;
 const SliderInner = styled(Link)`
   border: 1px solid #00160e;
