@@ -65,13 +65,13 @@ export default function Automation({ seoData, details }) {
                 bgColor={'transparent'}
                 fontColor={'#E3FFEE'}
                 borderColor={'#E3FFEE'}
-                text={'View all Automations'}
+                text={'View all Apps'}
                 href={''}
                 hoverColor={'rgba(255, 255, 255,0.8)'}
               />
             </AutomationButton>
           </Container>
-          <Image src={Appshero} alt='automation' width={1224} height={324} className='apps-image' />
+          <Image src={Appshero} alt='apps' width={1224} height={324} className='apps-image' />
         </AutomationHero>
         <Container>
           <SetupAutomation istitle>
