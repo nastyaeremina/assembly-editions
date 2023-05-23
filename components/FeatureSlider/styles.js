@@ -46,6 +46,11 @@ const SliderSub = styled.div`
     ${Body4}
     color: ${({ theme }) => theme.colors.body};
     margin: 0;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+    overflow: hidden;
+    white-space: inherit;
     @media only screen and (max-width: 426px) {
       ${Body5}
     }
