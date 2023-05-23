@@ -8,6 +8,11 @@ const AutomationHero = styled.div`
   text-align: center;
   overflow: hidden;
   background-color: ${({ theme }) => theme.colors.greendark};
+  .apps-image {
+    width: 100%;
+    max-height: 536px;
+    height: 100%;
+  }
   .automation-image {
     max-width: 1224px;
     width: 100%;
@@ -22,6 +27,11 @@ const AutomationHero = styled.div`
     margin-bottom: 30px;
     .automation-image {
       display: none;
+    }
+  }
+  @media only screen and (max-width: 768px) {
+    .appsbutton {
+      flex-direction: row;
     }
   }
 `;

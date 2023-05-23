@@ -25,11 +25,15 @@ const Card = styled.div`
     display: flex;
     max-width: 1222px;
     width: 100%;
+    border-top: 1px solid #00160e;
   }
   ${(props) =>
     props.isTwoCard &&
     css`
       width: 50%;
+      flex-direction: column;
+      display: flex;
+      justify-content: space-between;
       @media only screen and (max-width: 426px) {
         width: 100%;
       }
@@ -37,7 +41,7 @@ const Card = styled.div`
 `;
 const CardTop = styled.div`
   padding: 40px;
-  border-bottom: 1px solid #00160e;
+
   @media only screen and (max-width: 426px) {
     padding: 28px;
   }
