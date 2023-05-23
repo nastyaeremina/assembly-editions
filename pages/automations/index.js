@@ -21,7 +21,7 @@ import TabView from '../../components/tab/tab';
 import { AUTOMATION_ID, HEADER_LIST, HOME_MODULE_LIST, MODULE_COLOR_LIST } from '../../constants/constant';
 import AutomationCardSection from '../../components/automationcard';
 import ExploreTab from '../../components/solution/clienttab/exploretab';
-import { convertCaseStudyData, removeEmptyElement, separateSpecialChar } from '../../helpers/helpers';
+import { convertCaseStudyData, isEmpty, removeEmptyElement, separateSpecialChar } from '../../helpers/helpers';
 import ExtentionCard from '../../components/Extentioncard';
 import CustomerTestimonial from '../../components/customer/testimonials';
 import FAQ from '../../components/faq/faq';
@@ -104,20 +104,25 @@ export default function Automation({ details }) {
               <ExtentionCard isCard={true} data={details?.sectionContent5Collection?.items[0]} />
             </Cards>
           </CardSec>
-          <SetupAutomation>
-            <div
-              dangerouslySetInnerHTML={{
-                __html: separateSpecialChar(details?.sectionCaseStudyHeader)
-              }}
-            />
-          </SetupAutomation>
-          <CustomerTestimonial
-            logo={details?.sectionCaseStudyContent?.customerLogo?.imageAsset?.url}
-            banner={details?.sectionCaseStudyContent?.caseStudyImage?.url}
-            body={details?.sectionCaseStudyContent?.description}
-            highlightsData={details?.sectionCaseStudyContent?.highlights}
-            slug={details?.sectionCaseStudyContent?.slug}
-          />
+          {!isEmpty(details?.sectionCaseStudyContent) && (
+            <>
+              <SetupAutomation>
+                <div
+                  dangerouslySetInnerHTML={{
+                    __html: separateSpecialChar(details?.sectionCaseStudyHeader)
+                  }}
+                />
+              </SetupAutomation>
+
+              <CustomerTestimonial
+                logo={details?.sectionCaseStudyContent?.customerLogo?.imageAsset?.url}
+                banner={details?.sectionCaseStudyContent?.caseStudyImage?.url}
+                body={details?.sectionCaseStudyContent?.description}
+                highlightsData={details?.sectionCaseStudyContent?.highlights}
+                slug={details?.sectionCaseStudyContent?.slug}
+              />
+            </>
+          )}
           <Featured>
             <TopView>
               <h2>
@@ -133,7 +138,7 @@ export default function Automation({ details }) {
                 fontColor={'#000000'}
                 borderColor={'#000000'}
                 text={'View all automations'}
-                href={'/directory'}
+                href={'/automations/directory'}
                 hoverColor={'rgba(0, 0, 0, 0.5)'}
               />
             </TopView>
