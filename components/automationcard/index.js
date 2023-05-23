@@ -9,9 +9,9 @@ export default function AutomationCardSection({ data, heading }) {
     return data?.map((item, index) => {
       return (
         <AutomationCard
-          title={item?.title}
+          title={item?.header}
           body={item?.body}
-          imageurl={item?.imageurl}
+          imageurl={item?.image?.url}
           isTwoCard={data?.length !== 1}
           key={`automationCard_index_${index}`}
         />

@@ -49,15 +49,13 @@ const FeatureSlider = ({ data, isDetailSlider }) => {
         <>
           <SliderInner href={'/apps/'} key={`slider_index_${index}`}>
             <SliderSub>
-              <h4>Add new Copilot clients to Airtable rows</h4>
-              <p>
-                Every time a new client signs in the first time on Copilot add a row with the client’s information in
-                Aritable.
-              </p>
+              <h4>{item?.name}</h4>
+              <p>{item?.description}</p>
             </SliderSub>
             <SliderIcon>
-              <Image src={featurelogo} alt='logo' width={40} height={40} />
-              <Image src={featurelogo} alt='logo' width={40} height={40} />
+              {item?.productLogosCollection?.items?.map((logo, index) => {
+                return <Image key={`automation_logo_${index}`} src={logo?.url} alt='logo' width={40} height={40} />;
+              })}
             </SliderIcon>
           </SliderInner>
           <SliderLine></SliderLine>

@@ -17,38 +17,30 @@ import AutomationIMG from '../../public/images/automation.png';
 import Button from '../../components/button/button';
 import { COPILOT_ONBORADING_LINK } from '../../constants/externalLinks';
 import CTA from '../../components/cta/cta';
-import Content from '../../components/content/content';
 import TabView from '../../components/tab/tab';
-import { FEATURES_MESSAG_ID, HOME_MODULE_LIST, MODULE_COLOR_LIST } from '../../constants/constant';
+import { AUTOMATION_ID, HEADER_LIST, HOME_MODULE_LIST, MODULE_COLOR_LIST } from '../../constants/constant';
 import AutomationCardSection from '../../components/automationcard';
-import AutomationCard from '../../components/automationcard/card';
-import Card1 from '../../public/images/card1.png';
-import File1 from '../../public/images/file1.png';
-import File2 from '../../public/images/file2.png';
 import ExploreTab from '../../components/solution/clienttab/exploretab';
-import { separateSpecialChar } from '../../helpers/helpers';
+import { convertCaseStudyData, removeEmptyElement, separateSpecialChar } from '../../helpers/helpers';
 import ExtentionCard from '../../components/Extentioncard';
 import CustomerTestimonial from '../../components/customer/testimonials';
 import FAQ from '../../components/faq/faq';
 import { TopView } from '../../components/solution/clienttab/styles';
 import FeatureSlider from '../../components/FeatureSlider/featureslider';
-import { getFeatureById } from '../../lib/contentful-features';
-import { getSolutionBySlug } from '../../lib/contentful-solutions';
-import { getAllFeaturedCaseStudies } from '../../lib/contentful-testimonial';
+import { getPageAutomationDetail } from '../../lib/contentful-automation';
 
-export default function Automation({ seoData, details }) {
-  console.log('details', details);
+export default function Automation({ details }) {
   return (
     <>
-      <SEO seoData={seoData}></SEO>
+      <SEO seoData={details?.seoMetadata}></SEO>
       <Layout>
-        <Navbar />
+        <Navbar isEnterPrice headerIndex={HEADER_LIST.ENTERPRICE} />
         <AutomationHero>
           <Container>
-            <Title>Automations</Title>
+            <Title>{details?.header}</Title>,
             <Caption>
-              Save time, reduce human error, and streamline operations for your team and your clients with easy-to-use
-              automations.
+              {/* <div dangerouslySetInnerHTML={{ __html: separateSpecialChar(heading) }} /> */}
+              {details?.body}
             </Caption>
             <AutomationButton>
               <Button
@@ -64,122 +56,91 @@ export default function Automation({ seoData, details }) {
                 fontColor={'#E3FFEE'}
                 borderColor={'#E3FFEE'}
                 text={'View all Automations'}
-                href={''}
+                href={'/directory'}
                 hoverColor={'rgba(255, 255, 255,0.8)'}
               />
             </AutomationButton>
-            <Image src={AutomationIMG} alt='automation' width={1224} height={324} className='automation-image' />
+            <Image
+              src={details?.heroImage?.url}
+              alt='automation'
+              width={1224}
+              height={324}
+              className='automation-image'
+            />
           </Container>
         </AutomationHero>
         <Container>
           <SetupAutomation istitle>
             <div
               dangerouslySetInnerHTML={{
-                __html: separateSpecialChar('Automate the client onboarding experience.')
+                __html: separateSpecialChar(details?.sectionHeader1)
               }}
             />
           </SetupAutomation>
           <TabView
-            tabData={details?.clientFeaturesCollection?.items || []}
-            bgColor={MODULE_COLOR_LIST[HOME_MODULE_LIST['Messaging']]?.bgColor}
-            textColor={MODULE_COLOR_LIST[HOME_MODULE_LIST['Messaging']]?.fontColor}
+            tabData={details?.sectionContent1Collection?.items || []}
+            bgColor={MODULE_COLOR_LIST[HOME_MODULE_LIST['Automation']]?.bgColor}
+            textColor={MODULE_COLOR_LIST[HOME_MODULE_LIST['Automation']]?.fontColor}
           />
-          <AutomationCardSection
-            heading='Let leads convert themselves.'
-            data={[
-              {
-                title: 'Every service business is a technology company',
-                body: 'Enable client sign up and place a ‘Sign up’ button on your marketing website. Now let leads and clients seamlessly set up accounts self-serve and then guide them through a customized onboarding experience. ',
-
-                imageurl:
-                  'https://firebasestorage.googleapis.com/v0/b/internal-use-ef844.appspot.com/o/coPilot%2Fcard1.png?alt=media&token=15c182a9-e4a5-454f-a22d-feedbf157c6e'
-              }
-            ]}
-          />
-          <AutomationCardSection
-            data={[
-              {
-                title: 'Every service business is a technology company',
-                body: 'Enable client sign up and place a ‘Sign up’ button on your marketing website. Now let leads and clients seamlessly set up accounts self-serve and then guide them through a customized onboarding experience. ',
-
-                imageurl:
-                  'https://firebasestorage.googleapis.com/v0/b/internal-use-ef844.appspot.com/o/coPilot%2Fcard1.png?alt=media&token=15c182a9-e4a5-454f-a22d-feedbf157c6e'
-              },
-              {
-                title: 'Every service business is a technology company',
-                body: 'Enable client sign up and place a ‘Sign up’ button on your marketing website. Now let leads and clients seamlessly set up accounts self-serve and then guide them through a customized onboarding experience. ',
-
-                imageurl:
-                  'https://firebasestorage.googleapis.com/v0/b/internal-use-ef844.appspot.com/o/coPilot%2Fcard1.png?alt=media&token=15c182a9-e4a5-454f-a22d-feedbf157c6e'
-              }
-            ]}
-            heading={'Sync your 3rd party storage solutions, CRMs, and more.'}
-          />
+          <AutomationCardSection heading={details?.sectionHeader2} data={[details?.sectionContent2]} />
+          <AutomationCardSection heading={details?.sectionHeader3} data={details?.sectionContent3Collection?.items} />
         </Container>
-        <ExploreTab />
+        <ExploreTab
+          data={removeEmptyElement(details?.sectionContent4Collection?.items)}
+          demoUrl={details?.demoPortalUrl}
+        />
         <Container>
           <SetupAutomation>
             <div
               dangerouslySetInnerHTML={{
-                __html: separateSpecialChar('Set up automations powered by our API, Zapier, or Make.')
+                __html: separateSpecialChar(details?.sectionHeader4)
               }}
             />
           </SetupAutomation>
           <CardSec>
-            <ExtentionCard
-              description={
-                'Copilot comes with a comprehensive REST API that lets you interact with entities like clients, companies, forms, files, and more. Use the Copilot API for full control over automations. '
-              }
-              linkname={'Copilot API'}
-            />
+            <ExtentionCard data={details?.sectionContent5Collection?.items[0]} />
             <Cards>
-              <ExtentionCard
-                isCard={true}
-                description={'Use Zapier templates to set up automations.'}
-                linkname={'Copilot on Zapier'}
-              />
-              <ExtentionCard
-                isCard={true}
-                description={'Use Make scenario templates to set up automations.'}
-                linkname={'Copilot on Make'}
-              />
+              <ExtentionCard isCard={true} data={details?.sectionContent5Collection?.items[0]} />
+              <ExtentionCard isCard={true} data={details?.sectionContent5Collection?.items[0]} />
             </Cards>
           </CardSec>
           <SetupAutomation>
             <div
               dangerouslySetInnerHTML={{
-                __html: separateSpecialChar('Learn from businesses doubling down on automation.')
+                __html: separateSpecialChar(details?.sectionCaseStudyHeader)
               }}
             />
           </SetupAutomation>
           <CustomerTestimonial
-            body={
-              'With Copilot, Provantage Capital was able to grow lol obviously. We did them good. Case study case study lorem ipsum dolor sit amet.'
-            }
+            logo={details?.sectionCaseStudyContent?.customerLogo?.imageAsset?.url}
+            banner={details?.sectionCaseStudyContent?.caseStudyImage?.url}
+            body={details?.sectionCaseStudyContent?.description}
+            highlightsData={details?.sectionCaseStudyContent?.highlights}
+            slug={details?.sectionCaseStudyContent?.slug}
           />
           <Featured>
             <TopView>
               <h2>
-                Explore the most popular automations<span>.</span>
+                <div
+                  dangerouslySetInnerHTML={{
+                    __html: separateSpecialChar(details?.sectionFeaturedHeader)
+                  }}
+                />
               </h2>
-              <p>
-                There are unlimited ways to start saving time and money by automating your workflows. Here are some of
-                the most popular automations.
-              </p>
+              <p>{details?.sectionFeaturedBody}</p>
               <Button
                 bgColor={'transparent'}
                 fontColor={'#000000'}
                 borderColor={'#000000'}
                 text={'View all automations'}
-                href={'#'}
+                href={'/directory'}
                 hoverColor={'rgba(0, 0, 0, 0.5)'}
-                target={'_blank'}
               />
             </TopView>
           </Featured>
         </Container>
-        <FeatureSlider data={[1, 2, 3, 4, 5, 6, 7, 8, 9]} />
-        <FAQ />
+        <FeatureSlider data={details?.sectionFeaturedContentCollection?.items} />
+        <FAQ contentID={details?.faq?.sys?.id} />
         <CTA />
       </Layout>
     </>
@@ -187,16 +148,8 @@ export default function Automation({ seoData, details }) {
 }
 
 export async function getStaticProps({ params, preview = false }) {
-  const featuredetails = (await getFeatureById(FEATURES_MESSAG_ID, preview)) ?? [];
-  // const details = (await getMasterComparisonDetail()) ?? [];
-  const solutiondetails = (await getSolutionBySlug('accounting-client-portal', preview)) ?? [];
-  const casestudiesPosts = (await getAllFeaturedCaseStudies()) ?? [];
-  console.log('casestudiesPosts', casestudiesPosts);
-  const details = {
-    clientFeaturesCollection: featuredetails?.clientFeaturesCollection,
-    clientExperienceCollection: solutiondetails?.clientExperienceCollection,
-    casestudiesPosts: casestudiesPosts?.[0] || {}
-  };
+  const details = (await getPageAutomationDetail(AUTOMATION_ID, preview)) ?? [];
+
   return {
     props: { details }
   };
