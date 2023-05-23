@@ -113,7 +113,7 @@ export default function Automation({ seoData, details }) {
           <SetupAutomation>
             <div
               dangerouslySetInnerHTML={{
-                __html: separateSpecialChar('Learn from businesses doubling down on automation.')
+                __html: separateSpecialChar('Learn from businesses doubling down on apps.')
               }}
             />
           </SetupAutomation>
@@ -125,17 +125,17 @@ export default function Automation({ seoData, details }) {
           <Featured>
             <TopView>
               <h2>
-                Explore the most popular automations<span>.</span>
+                Explore the most popular apps<span>.</span>
               </h2>
               <p>
                 There are unlimited ways to start saving time and money by automating your workflows. Here are some of
-                the most popular automations.
+                the most popular.
               </p>
               <Button
                 bgColor={'transparent'}
                 fontColor={'#000000'}
                 borderColor={'#000000'}
-                text={'View all automations'}
+                text={'View all apps'}
                 href={'#'}
                 hoverColor={'rgba(0, 0, 0, 0.5)'}
                 target={'_blank'}
