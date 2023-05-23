@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
 import SEO from '../../components/seo';
 import Navbar from '../../components/navbar/navbar';
 import Layout from '../../components/layout';
@@ -13,7 +14,6 @@ import {
   Title
 } from '../../styles/automationStyles';
 import { Container } from '../../styles/commonStyles';
-import AutomationIMG from '../../public/images/automation.png';
 import Button from '../../components/button/button';
 import { COPILOT_ONBORADING_LINK } from '../../constants/externalLinks';
 import CTA from '../../components/cta/cta';
@@ -21,13 +21,14 @@ import TabView from '../../components/tab/tab';
 import { AUTOMATION_ID, HEADER_LIST, HOME_MODULE_LIST, MODULE_COLOR_LIST } from '../../constants/constant';
 import AutomationCardSection from '../../components/automationcard';
 import ExploreTab from '../../components/solution/clienttab/exploretab';
-import { convertCaseStudyData, isEmpty, removeEmptyElement, separateSpecialChar } from '../../helpers/helpers';
+import { isEmpty, removeEmptyElement, separateSpecialChar } from '../../helpers/helpers';
 import ExtentionCard from '../../components/Extentioncard';
 import CustomerTestimonial from '../../components/customer/testimonials';
 import FAQ from '../../components/faq/faq';
 import { TopView } from '../../components/solution/clienttab/styles';
 import FeatureSlider from '../../components/FeatureSlider/featureslider';
 import { getPageAutomationDetail } from '../../lib/contentful-automation';
+import { RightSection } from '../../styles/casestudiestyles';
 
 export default function Automation({ details }) {
   return (
@@ -60,13 +61,15 @@ export default function Automation({ details }) {
                 hoverColor={'rgba(255, 255, 255,0.8)'}
               />
             </AutomationButton>
-            <Image
-              src={details?.heroImage?.url}
-              alt='automation'
-              width={1224}
-              height={324}
-              className='automation-image'
-            />
+            {!isEmpty(details?.heroImage?.url) && (
+              <Image
+                src={details?.heroImage?.url}
+                alt='automation'
+                width={1224}
+                height={324}
+                className='automation-image'
+              />
+            )}
           </Container>
         </AutomationHero>
         <Container>
@@ -82,7 +85,10 @@ export default function Automation({ details }) {
             bgColor={MODULE_COLOR_LIST[HOME_MODULE_LIST['Automation']]?.bgColor}
             textColor={MODULE_COLOR_LIST[HOME_MODULE_LIST['Automation']]?.fontColor}
           />
-          <AutomationCardSection heading={details?.sectionHeader2} data={[details?.sectionContent2]} />
+          <AutomationCardSection
+            heading={details?.sectionHeader2}
+            data={[details?.sectionContent2Collection?.items[0]]}
+          />
           <AutomationCardSection heading={details?.sectionHeader3} data={details?.sectionContent3Collection?.items} />
         </Container>
         <ExploreTab
@@ -91,11 +97,7 @@ export default function Automation({ details }) {
         />
         <Container>
           <SetupAutomation>
-            <div
-              dangerouslySetInnerHTML={{
-                __html: separateSpecialChar(details?.sectionHeader4)
-              }}
-            />
+            <RightSection>{documentToReactComponents(details?.sectionHeader4?.json)}</RightSection>
           </SetupAutomation>
           <CardSec>
             <ExtentionCard data={details?.sectionContent5Collection?.items[0]} />
@@ -132,7 +134,8 @@ export default function Automation({ details }) {
                   }}
                 />
               </h2>
-              <p>{details?.sectionFeaturedBody}</p>
+              <p>{documentToReactComponents(details?.sectionFeaturedBody?.json)}</p>
+
               <Button
                 bgColor={'transparent'}
                 fontColor={'#000000'}
@@ -145,7 +148,7 @@ export default function Automation({ details }) {
           </Featured>
         </Container>
         <FeatureSlider data={details?.sectionFeaturedContentCollection?.items} />
-        <FAQ contentID={details?.faq?.sys?.id} />
+        <FAQ contentID={details?.faqGroup?.sys?.id} />
         <CTA />
       </Layout>
     </>

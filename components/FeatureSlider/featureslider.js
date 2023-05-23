@@ -47,7 +47,7 @@ const FeatureSlider = ({ data, isDetailSlider }) => {
     return data?.map((item, index) => {
       return (
         <>
-          <SliderInner href={'/apps/'} key={`slider_index_${index}`}>
+          <SliderInner href={`/automations/directory/${item?.slug}`} key={`slider_index_${index}`}>
             <SliderSub>
               <h4>{item?.name}</h4>
               <p>{item?.description}</p>

@@ -1,7 +1,5 @@
 import Layout from '/components/layout';
 import Link from 'next/link';
-import { NextSeo } from 'next-seo';
-// import { getAllBlogs } from '../../lib/contentful-blogs';
 import Navbar from '../../../components/navbar/navbar';
 import {
   HeroSection,
@@ -15,51 +13,29 @@ import {
   InputWrap,
   FeatureRight,
   FeatureMenu,
-  FeatureCard,
-  CardText,
-  CardEnd,
-  FeatureImg,
   Featured,
   ExtensionsSection,
   ExtensionCard,
-  CardSub,
-  CardInfo,
-  SchedulingApps,
-  AppsTitle,
-  BuildWrap,
-  BuildAppsDetail,
-  OtherWrap,
-  CardMain,
   MainBg,
-  ImgView,
   AppsHeroWrap,
-  ExtensionsLastSection,
   AppHeader3
 } from '../../../styles/appsStyles';
-import { Container, PrimaryButton, SecondryButton } from '../../../styles/commonStyles';
+import { Container } from '../../../styles/commonStyles';
 import CTA from '../../../components/cta/cta';
 import Image from 'next/image';
-import FAQ from '../../../components/faq/faq';
-import { getAllParrtnerAppsCategories, getAllPartnerApps } from '../../../lib/contentful-partnerApps';
 import { useCallback, useEffect, useMemo, useState } from 'react';
-import { isEmpty } from '../../../helpers/helpers';
-import { APPS_TYPE, APP_SEO_ID } from '../../../constants/constant';
+import { isEmpty, joinArrayToString } from '../../../helpers/helpers';
+import { AUTOMATION_SEO_ID } from '../../../constants/constant';
 import Button from '../../../components/button/button';
 import SEO from '../../../components/seo';
 import AppError from '../../../components/apperror/error';
 import { getSEOdata } from '../../../lib/contentful-seo';
-import { COPILOT_ONBORADING_LINK, COPILOT_REFERENCE_API_LINK } from '../../../constants/externalLinks';
+import { COPILOT_ONBORADING_LINK } from '../../../constants/externalLinks';
 import { Cardbottom, DirectoryButton, DirectoryCard } from '../../../styles/automationStyles';
-import { SliderIcon, SliderInner, SliderSub } from '../../../components/FeatureSlider/styles';
-import featurelogo from '../../../public/images/featurelogo.svg';
+import { SliderIcon, SliderSub } from '../../../components/FeatureSlider/styles';
+import { getAllAutomationCategories, getAllAutomations } from '../../../lib/contentful-automation';
 
-export default function AutomationDirectory({
-  allPosts,
-  featuredApps,
-  allCategoryWithPost,
-  dataIntegrationApps,
-  seoData
-}) {
+export default function AutomationDirectory({ featuredApps, allCategoryWithPost, allPosts, seoData }) {
   const [selected_category, setSelected_category] = useState();
   const [query, setQuery] = useState('');
   const [searchResult, setSearchResult] = useState([]);
@@ -107,22 +83,27 @@ export default function AutomationDirectory({
   const renderFeaturedView = useMemo(() => {
     if (isEmpty(featuredApps)) return null;
     return featuredApps?.map((item, index) => {
+      console.log('item', item);
       return (
         <>
-          <Link href={`/apps/${item?.slug}`}>
-            <DirectoryCard href={`/apps/${item?.slug}`} key={`featuredview_index_${index}`}>
+          <Link href={`/automations/directory/${item?.slug}`}>
+            <DirectoryCard href={`/automations/directory/${item?.slug}`} key={`featuredview_index_${index}`}>
               <SliderSub>
-                <h4>Add new Copilot clients to Airtable rows</h4>
-                <p>
-                  Every time a new client signs in the first time on Copilot add a row with the client’s information in
-                  Aritable.
-                </p>
+                <h4>{item?.name}</h4>
+                <p>{item?.description}</p>
               </SliderSub>
               <SliderIcon>
-                <Image src={featurelogo} alt='logo' width={40} height={40} />
-                <Image src={featurelogo} alt='logo' width={40} height={40} />
+                {item?.productLogosCollection?.items?.map((logo, index) => {
+                  return <Image key={`automation_logo_${index}`} src={logo?.url} alt='logo' width={40} height={40} />;
+                })}
               </SliderIcon>
-              <Cardbottom>Onboarding</Cardbottom>
+              <Cardbottom>
+                {joinArrayToString({
+                  list: item?.automationCategoriesCollection?.items,
+                  fieldName: 'name',
+                  seprator: ', '
+                })}
+              </Cardbottom>
             </DirectoryCard>
           </Link>
         </>
@@ -153,18 +134,16 @@ export default function AutomationDirectory({
     return appList?.map((item, index) => {
       return (
         <>
-          <Link href={`/apps/${item?.slug}`}>
+          <Link href={`/automations/directory/${item?.slug}`}>
             <DirectoryCard key={`partnerappview_index${index}`}>
               <SliderSub>
-                <h4>Add new Copilot clients to Airtable rows</h4>
-                <p>
-                  Every time a new client signs in the first time on Copilot add a row with the client’s information in
-                  Aritable.
-                </p>
+                <h4>{item?.name}</h4>
+                <p>{item?.description}</p>
               </SliderSub>
               <SliderIcon>
-                <Image src={featurelogo} alt='logo' width={40} height={40} />
-                <Image src={featurelogo} alt='logo' width={40} height={40} />
+                {item?.productLogosCollection?.items?.map((logo, index) => {
+                  return <Image key={`automation_logo_${index}`} src={logo?.url} alt='logo' width={40} height={40} />;
+                })}
               </SliderIcon>
             </DirectoryCard>
           </Link>
@@ -184,11 +163,6 @@ export default function AutomationDirectory({
       );
     });
   }, [allCategoryWithPost, renderPartnerAppsView]);
-
-  const renderDataIntegrationApps = useMemo(() => {
-    if (isEmpty(dataIntegrationApps)) return null;
-    return renderPartnerAppsView(dataIntegrationApps);
-  }, [dataIntegrationApps, renderPartnerAppsView]);
 
   const renderResultView = useMemo(() => {
     if (!isEmpty(searchResult)) {
@@ -224,9 +198,8 @@ export default function AutomationDirectory({
                     fontColor={'#000000'}
                     borderColor={'#000000'}
                     text={'Back to overview'}
-                    href={'#'}
+                    href={'/automations'}
                     hoverColor={'rgba(0, 0, 0, 0.5)'}
-                    target={'_blank'}
                   />
                 </DirectoryButton>
               </AppsHeroWrap>
@@ -265,16 +238,6 @@ export default function AutomationDirectory({
                       </Featured>
                     )}
                     {renderAllCategoryAppsView}
-
-                    {!isEmpty(dataIntegrationApps) && (
-                      <ExtensionsSection id='Integrations-Section'>
-                        <AppsTitle>
-                          <AppHeader3>Data Integrations</AppHeader3>
-                          <p>Integrations</p>
-                        </AppsTitle>
-                        <ExtensionCard>{renderDataIntegrationApps}</ExtensionCard>
-                      </ExtensionsSection>
-                    )}
                   </FeatureRight>
                 )}
               </FeatureWrap>
@@ -288,18 +251,28 @@ export default function AutomationDirectory({
 }
 
 export async function getStaticProps({ preview = false }) {
-  const allPosts = (await getAllPartnerApps(APPS_TYPE.PARTNER_APP, preview)) ?? [];
-  const allCategory = (await getAllParrtnerAppsCategories(preview)) ?? [];
-  const dataIntegrationApps = (await getAllPartnerApps(APPS_TYPE.DATA_INTEGRATION, preview)) ?? [];
-  const seoData = (await getSEOdata(APP_SEO_ID)) ?? [];
-  seoData.canonical = 'https://www.copilot.com/apps';
-  const featuredApps = allPosts?.filter((item) => item?.isFeatured === true && item?.appType === APPS_TYPE.PARTNER_APP);
+  let allPosts = [];
+  let data = [];
+  let page = 0;
+  do {
+    const skip = page * 100;
+    data = (await getAllAutomations(skip)) || [];
+    allPosts = allPosts.concat(data);
+
+    if (data?.length !== 100) break;
+    // eslint-disable-next-line no-plusplus
+    else page++;
+  } while (data?.length !== 0);
+
+  const allCategory = (await getAllAutomationCategories(preview)) ?? [];
+  const seoData = (await getSEOdata(AUTOMATION_SEO_ID)) ?? [];
+  const featuredApps = allPosts?.filter((item) => item?.isFeatures === true);
 
   let allCategoryWithPost = [];
 
   allCategory?.forEach((item) => {
     const filterList = allPosts?.filter((element) =>
-      element?.partnerAppCategoriesCollection?.items?.some((category) => category?.slug === item?.slug)
+      element?.automationCategoriesCollection?.items?.some((category) => category?.slug === item?.slug)
     );
     if (!isEmpty(filterList)) allCategoryWithPost?.push({ category: item, list: filterList });
   });
@@ -308,8 +281,7 @@ export async function getStaticProps({ preview = false }) {
     props: {
       featuredApps,
       allCategoryWithPost,
-      dataIntegrationApps,
-      allPosts: allPosts.concat(dataIntegrationApps),
+      allPosts,
       seoData
     }
   };

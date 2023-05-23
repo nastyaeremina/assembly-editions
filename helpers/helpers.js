@@ -35,7 +35,7 @@ export const dateToMonthYear = (date) => {
 };
 
 export function removeEmptyElement(array) {
-  const filtered = array.filter(function (el) {
+  const filtered = array?.filter(function (el) {
     return !isEmpty(el);
   });
   return filtered;
@@ -77,4 +77,10 @@ export const convertSitemapDataToKeyValue = (value) => {
     sitemapList?.push({ title, list: mapList });
   });
   return sitemapList;
+};
+
+export const joinArrayToString = ({ list, fieldName, seprator }) => {
+  const nameList = list?.map((item) => item?.[fieldName]);
+  const result = nameList.join(seprator);
+  return result;
 };

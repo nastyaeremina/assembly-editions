@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
 import SEO from '../../components/seo';
 import Navbar from '../../components/navbar/navbar';
 import Layout from '../../components/layout';
@@ -6,51 +7,37 @@ import {
   AutomationButton,
   AutomationHero,
   Caption,
-  CardSec,
-  Cards,
   Featured,
   SetupAutomation,
   Title
 } from '../../styles/automationStyles';
 import { Container } from '../../styles/commonStyles';
-import AutomationIMG from '../../public/images/automation.png';
 import Button from '../../components/button/button';
-import { COPILOT_ONBORADING_LINK } from '../../constants/externalLinks';
 import CTA from '../../components/cta/cta';
-import Content from '../../components/content/content';
 import TabView from '../../components/tab/tab';
-import { FEATURES_MESSAG_ID, HOME_MODULE_LIST, MODULE_COLOR_LIST } from '../../constants/constant';
+import { APP_PAGE_ID, HEADER_LIST, HOME_MODULE_LIST, MODULE_COLOR_LIST } from '../../constants/constant';
 import AutomationCardSection from '../../components/automationcard';
-import AutomationCard from '../../components/automationcard/card';
-import Card1 from '../../public/images/card1.png';
-import File1 from '../../public/images/file1.png';
-import File2 from '../../public/images/file2.png';
 import ExploreTab from '../../components/solution/clienttab/exploretab';
-import { separateSpecialChar } from '../../helpers/helpers';
-import ExtentionCard from '../../components/Extentioncard';
+import { isEmpty, removeEmptyElement, separateSpecialChar } from '../../helpers/helpers';
 import CustomerTestimonial from '../../components/customer/testimonials';
 import FAQ from '../../components/faq/faq';
 import { TopView } from '../../components/solution/clienttab/styles';
-import FeatureSlider from '../../components/FeatureSlider/featureslider';
-import { getFeatureById } from '../../lib/contentful-features';
-import { getSolutionBySlug } from '../../lib/contentful-solutions';
-import { getAllFeaturedCaseStudies } from '../../lib/contentful-testimonial';
 import AppsSlider from '../../components/appsSlider';
-import Appshero from '../../public/images/appshero.png';
+import { getPageAutomationDetail } from '../../lib/contentful-automation';
+import { COPILOT_ONBORADING_LINK } from '../../constants/externalLinks';
 
 export default function Automation({ seoData, details }) {
-  console.log('details', details);
   return (
     <>
-      <SEO seoData={seoData}></SEO>
+      <SEO seoData={details?.seoMetadata}></SEO>
       <Layout>
-        <Navbar />
+        <Navbar isEnterPrice headerIndex={HEADER_LIST.ENTERPRICE} />
         <AutomationHero>
           <Container>
-            <Title>Apps</Title>
+            <Title>{details?.header}</Title>,
             <Caption>
-              Save time, reduce human error, and streamline operations for your team and your clients with easy-to-use
-              automations.
+              {/* <div dangerouslySetInnerHTML={{ __html: separateSpecialChar(heading) }} /> */}
+              {details?.body}
             </Caption>
             <AutomationButton className='appsbutton'>
               <Button
@@ -66,85 +53,83 @@ export default function Automation({ seoData, details }) {
                 fontColor={'#E3FFEE'}
                 borderColor={'#E3FFEE'}
                 text={'View all Apps'}
-                href={''}
+                href={'/apps/directory'}
                 hoverColor={'rgba(255, 255, 255,0.8)'}
               />
             </AutomationButton>
           </Container>
-          <Image src={Appshero} alt='apps' width={1224} height={324} className='apps-image' />
+          {!isEmpty(details?.heroImage?.url) && (
+            <Image src={details?.heroImage?.url} alt='apps' width={1224} height={324} className='apps-image' />
+          )}
         </AutomationHero>
         <Container>
           <SetupAutomation istitle>
             <div
               dangerouslySetInnerHTML={{
-                __html: separateSpecialChar(
-                  'Go beyond Copilot features and connect apps you already use like Airtable and Calendly.'
-                )
+                __html: separateSpecialChar(details?.sectionHeader1)
               }}
             />
           </SetupAutomation>
-          <TabView
-            tabData={details?.clientFeaturesCollection?.items || []}
-            bgColor={MODULE_COLOR_LIST[HOME_MODULE_LIST['Messaging']]?.bgColor}
-            textColor={MODULE_COLOR_LIST[HOME_MODULE_LIST['Messaging']]?.fontColor}
-          />
-          <AutomationCardSection
-            heading={'Configure which client can see which apps.'}
-            data={[
-              {
-                title: 'Visible to all clients',
-                body: 'With one click, enable all of your clients to see the same thing. E.g. connect Calendly this way to let every client see your availability and schedule a call with you.',
-
-                imageurl:
-                  'https://firebasestorage.googleapis.com/v0/b/internal-use-ef844.appspot.com/o/coPilot%2FAutomatic%20connection%20image.png?alt=media&token=d9650c57-dc4a-4057-ae46-6770ff243e08'
-              },
-              {
-                title: 'Manually set for each client',
-                body: 'Easily connect an app manually for each client, group of clients, or company. E.g. connect an Airtable project status dashboard manually if you want your clients to only see the projects relevant to them.',
-
-                imageurl:
-                  'https://firebasestorage.googleapis.com/v0/b/internal-use-ef844.appspot.com/o/coPilot%2FManual%20connection%20image.png?alt=media&token=7e3f3082-fd6e-4943-9e5a-e22c594b765f'
-              }
-            ]}
-          />
+          {!isEmpty(details?.sectionContent1Collection?.items) && (
+            <TabView
+              tabData={details?.sectionContent1Collection?.items || []}
+              bgColor={MODULE_COLOR_LIST[HOME_MODULE_LIST['Automation']]?.bgColor}
+              textColor={MODULE_COLOR_LIST[HOME_MODULE_LIST['Automation']]?.fontColor}
+            />
+          )}
+          {!isEmpty(details?.sectionContent3Collection?.items) && (
+            <AutomationCardSection heading={details?.sectionHeader3} data={details?.sectionContent3Collection?.items} />
+          )}{' '}
         </Container>
-        <ExploreTab />
+        <ExploreTab
+          data={removeEmptyElement(details?.sectionContent4Collection?.items)}
+          demoUrl={details?.demoPortalUrl}
+        />
         <Container>
-          <SetupAutomation>
-            <div
-              dangerouslySetInnerHTML={{
-                __html: separateSpecialChar('Learn from businesses doubling down on apps.')
-              }}
-            />
-          </SetupAutomation>
-          <CustomerTestimonial
-            body={
-              'With Copilot, Provantage Capital was able to grow lol obviously. We did them good. Case study case study lorem ipsum dolor sit amet.'
-            }
-          />
+          {!isEmpty(details?.sectionCaseStudyContent) && (
+            <>
+              <SetupAutomation>
+                <div
+                  dangerouslySetInnerHTML={{
+                    __html: separateSpecialChar(details?.sectionCaseStudyHeader)
+                  }}
+                />
+              </SetupAutomation>
+
+              <CustomerTestimonial
+                logo={details?.sectionCaseStudyContent?.customerLogo?.imageAsset?.url}
+                banner={details?.sectionCaseStudyContent?.caseStudyImage?.url}
+                body={details?.sectionCaseStudyContent?.description}
+                highlightsData={details?.sectionCaseStudyContent?.highlights}
+                slug={details?.sectionCaseStudyContent?.slug}
+              />
+            </>
+          )}
           <Featured>
             <TopView>
               <h2>
-                Explore the most popular apps<span>.</span>
+                <div
+                  dangerouslySetInnerHTML={{
+                    __html: separateSpecialChar(details?.sectionFeaturedHeader)
+                  }}
+                />
               </h2>
-              <p>
-                There are unlimited ways to start saving time and money by automating your workflows. Here are some of
-                the most popular.
-              </p>
+              <p>{documentToReactComponents(details?.sectionFeaturedBody?.json)}</p>
               <Button
                 bgColor={'transparent'}
                 fontColor={'#000000'}
                 borderColor={'#000000'}
                 text={'View all apps'}
-                href={'#'}
+                href={'/apps/directory'}
                 hoverColor={'rgba(0, 0, 0, 0.5)'}
-                target={'_blank'}
               />
             </TopView>
           </Featured>
         </Container>
-        <AppsSlider data={[1, 2, 3, 4, 5, 6, 7, 8, 9]} />
-        <FAQ />
+        {!isEmpty(details?.sectionFeaturedContentCollection?.items) && (
+          <AppsSlider data={details?.sectionFeaturedContentCollection?.items} />
+        )}
+        <FAQ contentID={details?.faqGroup?.sys?.id} />
         <CTA />
       </Layout>
     </>
@@ -152,16 +137,8 @@ export default function Automation({ seoData, details }) {
 }
 
 export async function getStaticProps({ params, preview = false }) {
-  const featuredetails = (await getFeatureById(FEATURES_MESSAG_ID, preview)) ?? [];
-  // const details = (await getMasterComparisonDetail()) ?? [];
-  const solutiondetails = (await getSolutionBySlug('accounting-client-portal', preview)) ?? [];
-  const casestudiesPosts = (await getAllFeaturedCaseStudies()) ?? [];
-  console.log('casestudiesPosts', casestudiesPosts);
-  const details = {
-    clientFeaturesCollection: featuredetails?.clientFeaturesCollection,
-    clientExperienceCollection: solutiondetails?.clientExperienceCollection,
-    casestudiesPosts: casestudiesPosts?.[0] || {}
-  };
+  const details = (await getPageAutomationDetail(APP_PAGE_ID, preview)) ?? [];
+
   return {
     props: { details }
   };

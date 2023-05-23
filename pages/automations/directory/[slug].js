@@ -20,15 +20,17 @@ import Make from '../../../public/images/make.svg';
 import Button from '../../../components/button/button';
 import Graphic from '../../../public/images/graphics.png';
 import FeatureSlider from '../../../components/FeatureSlider/featureslider';
+import { getAllAutomations, getAllAutomationsWithSlug, getAutomationDetail } from '../../../lib/contentful-automation';
+import { isEmpty } from '../../../helpers/helpers';
 
-export default function AutomationDetail() {
+export default function AutomationDetail({ detail, relatedApps }) {
   return (
     <>
       <Layout>
         <Navbar />
         <AppsDetailMain>
           <Container>
-            <Link href='/apps'>
+            <Link href={'/automations/directory'}>
               <DetailLink>
                 <svg width='12' height='12' viewBox='0 0 12 12' fill='none' xmlns='http://www.w3.org/2000/svg'>
                   <path
@@ -46,61 +48,120 @@ export default function AutomationDetail() {
         </AppsDetailMain>
         <Container>
           <LogoSection>
-            <Image src={bluelogo} alt='logo' width={80} height={80} className='logo' />
-            <Image src={bluelogo} alt='logo' width={80} height={80} className='logo' />
+            {detail?.productLogosCollection?.items?.map((logo, index) => {
+              return (
+                <Image
+                  key={`automation_logo_${index}`}
+                  src={logo?.url}
+                  alt='logo'
+                  width={80}
+                  height={80}
+                  className='logo'
+                />
+              );
+            })}
           </LogoSection>
-          <DetailTitle>Create clients in Copilot when new forms are submitted in Calendly</DetailTitle>
-          <DetailCaption>
-            Are you spending too much time manually adding event attendees to your Copilot portal? With the power of
-            this Zap, the repetitive work is done for you. This integration will automatically add every new Calendly
-            invitee that books an event with you to Copilot as a new client, saving you time on manual work.
-          </DetailCaption>
+          <DetailTitle>{detail?.name}</DetailTitle>
+          <DetailCaption>{detail?.description}</DetailCaption>
           <DetailButtonSection>
-            <Button
-              bgColor={'#09AA6C'}
-              fontColor={'#fff'}
-              borderColor={'#09AA6C'}
-              text={'Go to Zapier'}
-              href={'#'}
-              hoverColor={'rgba(255, 255, 255,0.8)'}
-              target={'_blank'}
-              isicon={true}
-              imgUrl={Vector}
-              className={'iconbutton'}
-            />
-            <Button
-              bgColor={'#09AA6C'}
-              fontColor={'#fff'}
-              borderColor={'#09AA6C'}
-              text={'Go to Make'}
-              href={'#'}
-              hoverColor={'rgba(255, 255, 255,0.8)'}
-              target={'_blank'}
-              isicon={true}
-              imgUrl={Make}
-            />
-            <Button
-              bgColor={'transparent'}
-              fontColor={'#000000'}
-              borderColor={'#000000'}
-              text={'Read setup instructions'}
-              href={'#'}
-              hoverColor={'rgba(0, 0, 0, 0.5)'}
-              target={'_blank'}
-            />
+            {!isEmpty(detail?.zapierLink) && (
+              <Button
+                bgColor={'#09AA6C'}
+                fontColor={'#fff'}
+                borderColor={'#09AA6C'}
+                text={'Go to Zapier'}
+                href={detail?.zapierLink}
+                hoverColor={'rgba(255, 255, 255,0.8)'}
+                target={'_blank'}
+                isicon={true}
+                imgUrl={Vector}
+                className={'iconbutton'}
+              />
+            )}
+            {!isEmpty(detail?.makeLink) && (
+              <Button
+                bgColor={'#09AA6C'}
+                fontColor={'#fff'}
+                borderColor={'#09AA6C'}
+                text={'Go to Make'}
+                href={detail?.makeLink}
+                hoverColor={'rgba(255, 255, 255,0.8)'}
+                target={'_blank'}
+                isicon={true}
+                imgUrl={Make}
+              />
+            )}
+            {!isEmpty(detail?.apiLink) && (
+              <Button
+                bgColor={'transparent'}
+                fontColor={'#000000'}
+                borderColor={'#000000'}
+                text={'Read setup instructions'}
+                href={detail?.apiLink}
+                hoverColor={'rgba(0, 0, 0, 0.5)'}
+                target={'_blank'}
+              />
+            )}
           </DetailButtonSection>
         </Container>
         <ImageSection>
           <Container>
-            <Image src={Graphic} alt='detail-image' width={849} height={232} className='detailimage' />
+            <Image
+              src={detail?.automationImage?.url}
+              alt='detail-image'
+              width={849}
+              height={232}
+              className='detailimage'
+            />
           </Container>
         </ImageSection>
         <Container>
           <Head>Related Automations</Head>
         </Container>
-        <FeatureSlider data={[1, 2, 3, 4, 5, 6, 7, 8, 9]} isDetailSlider={true} />
+        {!isEmpty(relatedApps) && <FeatureSlider data={relatedApps} isDetailSlider={true} />}
         <CTA />
       </Layout>
     </>
   );
+}
+
+export async function getStaticProps({ params, preview = false }) {
+  const detail = (await getAutomationDetail(params?.slug, preview)) ?? {};
+
+  let relatedApps = [];
+  if (!isEmpty(detail)) {
+    let allPosts = [];
+    let data = [];
+    let page = 0;
+    do {
+      const skip = page * 100;
+      data = (await getAllAutomations(skip)) || [];
+      allPosts = allPosts.concat(data);
+
+      if (data?.length !== 100) break;
+      // eslint-disable-next-line no-plusplus
+      else page++;
+    } while (data?.length !== 0);
+
+    const categoryList = detail?.automationCategoriesCollection?.items?.map((item) => item?.slug);
+    relatedApps = allPosts
+      ?.filter(
+        (item) =>
+          item?.automationCategoriesCollection &&
+          item?.automationCategoriesCollection?.items?.some((element) => categoryList.includes(element?.slug)) &&
+          item?.slug !== params?.slug
+      )
+      ?.slice(0, 4);
+  }
+  return {
+    props: { detail, relatedApps }
+  };
+}
+
+export async function getStaticPaths() {
+  const allPosts = (await getAllAutomationsWithSlug()) ?? [];
+  return {
+    paths: allPosts?.map(({ slug }) => `/automations/directory/${slug}`) ?? [],
+    fallback: true
+  };
 }
