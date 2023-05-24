@@ -57,7 +57,7 @@ export default function Automation({ details }) {
                 fontColor={'#E3FFEE'}
                 borderColor={'#E3FFEE'}
                 text={'View all Automations'}
-                href={'/directory'}
+                href={'automations/directory'}
                 hoverColor={'rgba(255, 255, 255,0.8)'}
               />
             </AutomationButton>
