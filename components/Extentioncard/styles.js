@@ -96,6 +96,11 @@ const RightDesc = styled.div`
 const Par = styled.div`
   ${Body1}
   color: ${({ theme }) => theme.colors.greendark};
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  overflow: hidden;
+  white-space: inherit;
   @media only screen and (max-width: 426px) {
     ${Body4}
   }

@@ -29,6 +29,16 @@ import { TopView } from '../../components/solution/clienttab/styles';
 import FeatureSlider from '../../components/FeatureSlider/featureslider';
 import { getPageAutomationDetail } from '../../lib/contentful-automation';
 import { RightSection } from '../../styles/casestudiestyles';
+import {
+  AnimatedIcon,
+  BottomList,
+  CardItem,
+  CardTextView,
+  CardWrapper,
+  Line,
+  Line1,
+  Line2
+} from '../../styles/homepageStyles';
 
 export default function Automation({ details }) {
   return (
@@ -38,7 +48,7 @@ export default function Automation({ details }) {
         <Navbar isEnterPrice headerIndex={HEADER_LIST.ENTERPRICE} />
         <AutomationHero>
           <Container>
-            <Title>{details?.header}</Title>,
+            <Title>{details?.header}</Title>
             <Caption>
               {/* <div dangerouslySetInnerHTML={{ __html: separateSpecialChar(heading) }} /> */}
               {details?.body}
@@ -61,7 +71,7 @@ export default function Automation({ details }) {
                 hoverColor={'rgba(255, 255, 255,0.8)'}
               />
             </AutomationButton>
-            {!isEmpty(details?.heroImage?.url) && (
+            {/* {!isEmpty(details?.heroImage?.url) && (
               <Image
                 src={details?.heroImage?.url}
                 alt='automation'
@@ -69,7 +79,90 @@ export default function Automation({ details }) {
                 height={324}
                 className='automation-image'
               />
-            )}
+            )} */}
+            <BottomList isAnimated>
+              <CardWrapper>
+                <CardItem isAnimated>
+                  <Image src='/images/linka.svg' width={35} height={35} alt='link-icon' />
+                  <CardTextView isAnimated>
+                    <p>Trigger</p>
+                    <span>New client activated</span>
+                  </CardTextView>
+                  <AnimatedIcon className={'done card1'} />
+                  <Line>
+                    <Line1 isAnimated>
+                      <p />
+                    </Line1>
+                    <Line1 isAnimationline2={true} isAnimated>
+                      <p />
+                    </Line1>
+                    <Line1 isAnimationline3={true} isAnimated>
+                      <p />
+                    </Line1>
+                  </Line>
+                </CardItem>
+              </CardWrapper>
+              <CardWrapper>
+                <CardItem isAnimated>
+                  <Image src='/images/linka.svg' width={35} height={35} alt='link-icon' />
+                  <CardTextView isAnimated>
+                    <p>Condition</p>
+                    <span>Company size &#60;= 50</span>
+                  </CardTextView>
+                  <AnimatedIcon className={'default card2'} />
+                  <Line>
+                    <Line2 isAnimated={true}>
+                      <p />
+                    </Line2>
+                  </Line>
+                </CardItem>
+                <CardItem isAnimated>
+                  <Image src='/images/linka.svg' width={35} height={35} alt='link-icon' />
+                  <CardTextView isAnimated>
+                    <p>Condition</p>
+                    <span>Company size &#62; 50</span>
+                  </CardTextView>
+                  <Line>
+                    <Line2 isAnimated={true}>
+                      <p />
+                    </Line2>
+                    <Line2 isAnimationline2={true} isAnimated>
+                      <p />
+                    </Line2>
+                    <Line2 isAnimationline3={true} isAnimated>
+                      <p />
+                    </Line2>
+                  </Line>
+                  <AnimatedIcon className={'default card2'} />
+                </CardItem>
+              </CardWrapper>
+              <CardWrapper>
+                <CardItem isAnimated>
+                  <Image src='/images/action-icon.svg' width={35} height={35} alt='action-icon' />
+                  <CardTextView isAnimated>
+                    <p>Action</p>
+                    <span>Assign small business onboarding form</span>
+                  </CardTextView>
+                  <AnimatedIcon className={'default card3'} />
+                </CardItem>
+                <CardItem isAnimated>
+                  <Image src='/images/msg-icon2.svg' width={35} height={35} alt='msg-icon' />
+                  <CardTextView isAnimated>
+                    <p>Action</p>
+                    <span>Send message with scheduling link</span>
+                  </CardTextView>
+                  <AnimatedIcon className={'default card3'} />
+                </CardItem>
+                <CardItem isAnimated>
+                  <Image src='/images/salesforce-icon.svg' width={35} height={35} alt='sales-icon' />
+                  <CardTextView isAnimated>
+                    <p>Action</p>
+                    <span>Create lead in Salesforce</span>
+                  </CardTextView>
+                  <AnimatedIcon className={'default card3'} />
+                </CardItem>
+              </CardWrapper>
+            </BottomList>
           </Container>
         </AutomationHero>
         <Container>
@@ -84,6 +177,7 @@ export default function Automation({ details }) {
             tabData={details?.sectionContent1Collection?.items || []}
             bgColor={MODULE_COLOR_LIST[HOME_MODULE_LIST['Automation']]?.bgColor}
             textColor={MODULE_COLOR_LIST[HOME_MODULE_LIST['Automation']]?.fontColor}
+            isAutomation={true}
           />
           <AutomationCardSection
             heading={details?.sectionHeader2}

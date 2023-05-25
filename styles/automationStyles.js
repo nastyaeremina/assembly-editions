@@ -123,7 +123,7 @@ const DirectoryCard = styled.div`
   max-width: 423px;
   width: 100%;
   :hover {
-    border: 1.5px solid #00160e;
+    outline: 1px solid #00160e;
     box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.1);
   }
 `;

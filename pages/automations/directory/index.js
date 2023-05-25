@@ -169,7 +169,7 @@ export default function AutomationDirectory({ featuredApps, allCategoryWithPost,
       return (
         <Featured key={`searchview`}>
           <h2> {`${searchResult?.length} Result for "${query}"`}</h2>
-          <FeatureMenu>{renderPartnerAppsView(searchResult)}</FeatureMenu>
+          <FeatureMenu isAutomationDirectoryCard>{renderPartnerAppsView(searchResult)}</FeatureMenu>
         </Featured>
       );
     } else

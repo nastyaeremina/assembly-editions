@@ -26,6 +26,7 @@ const Card = styled.div`
     max-width: 1222px;
     width: 100%;
     border-top: 1px solid #00160e;
+    border-radius: 0 0 3px 3px;
   }
   ${(props) =>
     props.isTwoCard &&
