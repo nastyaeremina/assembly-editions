@@ -49,6 +49,7 @@ import SEO from '../../../components/seo';
 import AppError from '../../../components/apperror/error';
 import { getSEOdata } from '../../../lib/contentful-seo';
 import { COPILOT_ONBORADING_LINK, COPILOT_REFERENCE_API_LINK } from '../../../constants/externalLinks';
+import { DirectoryButton } from '../../../styles/automationStyles';
 
 export default function Apps({ allPosts, featuredApps, allCategoryWithPost, dataIntegrationApps, seoData }) {
   const [selected_category, setSelected_category] = useState();
@@ -200,7 +201,17 @@ export default function Apps({ allPosts, featuredApps, allCategoryWithPost, data
               <AppsHeroWrap>
                 <h1>App Directory</h1>
                 <p>Try Copilot free for 14 days, no credit card required</p>
-                <Button text={'Start Trial'} href={COPILOT_ONBORADING_LINK} />
+                <DirectoryButton>
+                  <Button text={'Start Trial'} href={COPILOT_ONBORADING_LINK} />
+                  <Button
+                    bgColor={'transparent'}
+                    fontColor={'#000000'}
+                    borderColor={'#000000'}
+                    text={'Back to overview'}
+                    href={'/apps'}
+                    hoverColor={'rgba(0, 0, 0, 0.5)'}
+                  />
+                </DirectoryButton>
               </AppsHeroWrap>
             </Container>
           </HeroSection>

@@ -157,6 +157,15 @@ export default function Home({ content, seoData }) {
                   <div dangerouslySetInnerHTML={{ __html: separateSpecialChar(content?.heading4) }} />
                 </h2>
                 <ReactMarkdown>{content?.body4}</ReactMarkdown>
+                <Button
+                    bgColor={'transparent'}
+                    fontColor={'#000000'}
+                    borderColor={'#000000'}
+                    text={'See automations'}
+                    href={'/automations'}
+                    hoverColor={'rgba(0, 0, 0, 0.5)'}
+                    className={'automation-button'}
+                  />
               </AutomateText>
               <BottomList>
                 <CardWrapper>

@@ -786,6 +786,12 @@ const AutomateText = styled.div`
   max-width: 975px;
   width: 100%;
   margin-bottom: 40px;
+  .automation-button {
+    margin-top: 28px;
+    a {
+      color: #000000;
+    }
+  }
   .active:hover {
     color: ${({ theme }) => theme.colors.title};
   }

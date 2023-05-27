@@ -121,7 +121,7 @@ export default function Navbar({ isModule, headerIndex, isEnterPrice }) {
           <MenuWrap href={`/solutions/${item?.slug}`}>
             {!isEmpty(item?.industryIcon?.url) && (
               <LeftImg>
-                <Image src={item?.industryIcon?.url} alt='hybridright' width={20} height={20} className='hover-image'/>
+                <Image src={item?.industryIcon?.url} alt='hybridright' width={20} height={20} className='hover-image' />
               </LeftImg>
             )}
             <RightText resourcetext>
@@ -175,6 +175,14 @@ export default function Navbar({ isModule, headerIndex, isEnterPrice }) {
                   className={router.pathname === '/apps' ? 'active' : ''}>
                   <MobileTextLink href='/apps' hoverColor={colorList?.primaryColor}>
                     Apps
+                  </MobileTextLink>
+                </SpanLink>
+                <SpanLink
+                  textColor={colorList?.fontColor}
+                  hoverColor={colorList?.primaryColor}
+                  className={router.pathname === '/automations' ? 'active' : ''}>
+                  <MobileTextLink href='/automations' hoverColor={colorList?.primaryColor}>
+                    Automations
                   </MobileTextLink>
                 </SpanLink>
                 <SpanLink
@@ -297,6 +305,9 @@ export default function Navbar({ isModule, headerIndex, isEnterPrice }) {
           </SpanLink>
           <SpanLink textColor={colorList?.fontColor} hoverColor={colorList?.primaryColor}>
             <Link href='/apps'>Apps</Link>
+          </SpanLink>
+          <SpanLink textColor={colorList?.fontColor} hoverColor={colorList?.primaryColor}>
+            <Link href='/automations'>Automations</Link>
           </SpanLink>
           <SpanLink textColor={colorList?.fontColor} hoverColor={colorList?.primaryColor}>
             <Link href='#' className='hovernone'>

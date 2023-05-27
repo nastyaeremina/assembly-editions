@@ -54,7 +54,7 @@ const FeatureSlider = ({ data, isDetailSlider }) => {
             </SliderSub>
             <SliderIcon>
               {item?.productLogosCollection?.items?.map((logo, index) => {
-                return <Image key={`automation_logo_${index}`} src={logo?.url} alt='logo' width={40} height={40} />;
+                return <Image key={`automation_logo_${index}`} src={logo?.url} alt='logo' width={40} height={40} className='logo'/>;
               })}
             </SliderIcon>
           </SliderInner>

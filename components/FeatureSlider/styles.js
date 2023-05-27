@@ -75,5 +75,9 @@ const SliderIcon = styled.div`
   display: flex;
   gap: 10px;
   padding: 11px 18px;
+  .logo {
+    border: 0.375px solid #00160e;
+    border-radius: 50%;
+  }
 `;
 export { SliderWrap, SliderInner, SliderSub, SliderLine, SliderIcon };
