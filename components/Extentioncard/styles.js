@@ -11,7 +11,7 @@ const Extention = styled.div`
   }
   .logo {
     width: 140px;
-    height: 140px;
+    /* height: 140px; */
     @media only screen and (max-width: 426px) {
       height: 110px;
     }
@@ -73,6 +73,8 @@ const Extention = styled.div`
   }
 `;
 const Logo = styled.div`
+  display: flex;
+  align-items: center;
   padding: 35px;
   border-right: 1px solid #00160e;
   @media only screen and (max-width: 426px) {

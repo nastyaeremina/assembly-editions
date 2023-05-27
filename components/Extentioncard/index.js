@@ -7,7 +7,7 @@ export default function ExtentionCard({ data, isCard }) {
   return (
     <Extention isCard={isCard}>
       <Logo>
-        <Image src={data?.image?.url} alt='icon' width={140} height={140} className='logo' />
+        <Image src={data?.image?.url} alt='icon' width={140} height={0} className='logo' />
       </Logo>
       <RightDesc>
         <Par>{data?.body}</Par>

@@ -196,8 +196,8 @@ export default function Automation({ details }) {
           <CardSec>
             <ExtentionCard data={details?.sectionContent5Collection?.items[0]} />
             <Cards>
-              <ExtentionCard isCard={true} data={details?.sectionContent5Collection?.items[0]} />
-              <ExtentionCard isCard={true} data={details?.sectionContent5Collection?.items[0]} />
+              <ExtentionCard isCard={true} data={details?.sectionContent5Collection?.items[1]} />
+              <ExtentionCard isCard={true} data={details?.sectionContent5Collection?.items[2]} />
             </Cards>
           </CardSec>
           {!isEmpty(details?.sectionCaseStudyContent) && (
