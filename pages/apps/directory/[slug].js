@@ -42,7 +42,7 @@ export default function AppsDetail({ appDetail, relatedApps }) {
         <>
           <CardMain>
             <FeatureCard key={`renderrelatedappsview_index_${index}`}>
-              <Link href={`/apps/${item?.slug}`}>
+              <Link href={`/apps/directory/${item?.slug}`}>
                 <FeatureImg>
                   <Image src={item?.logo?.url} alt='main-logo' width={236} height={56} objectFit='contain' />
                 </FeatureImg>
@@ -126,7 +126,7 @@ export default function AppsDetail({ appDetail, relatedApps }) {
               </DetailWrap>
 
               <DetailRight>
-                {!isEmpty(appDetail?.appType) && (
+                {!isEmpty(appDetail?.appsType) && (
                   <RightWrap>
                     <Image
                       src='/images/linesmall.svg'
@@ -139,11 +139,11 @@ export default function AppsDetail({ appDetail, relatedApps }) {
                     <DetailTxt>
                       <p>Type</p>
                       <HelpWrap>
-                        <span>{appDetail?.appType}</span>
+                        <span>{appDetail?.appsType}</span>
                         <TooltipWrap className='tooltip'>
                           <Image src='/images/help.svg' alt='bill-icon' width={20} height={20} layout={'fixed'} />
                           <Tooltip className='tooltiptext'>
-                            <h5>{appDetail?.appType}</h5>
+                            <h5>{appDetail?.appsType}</h5>
                             <p>
                               Partner Apps are products from other companies like Airtable and Calendly that you can
                               embed into your portal so that clients can access them in one place.
@@ -218,7 +218,7 @@ export async function getStaticProps({ params, preview = false }) {
 
   let relatedApps = [];
   if (!isEmpty(appDetail)) {
-    const allPosts = (await getAllPartnerApps(appDetail?.appType, preview)) ?? [];
+    const allPosts = (await getAllPartnerApps(appDetail?.appsType, preview)) ?? [];
     const categoryList = appDetail?.partnerAppCategoriesCollection?.items?.map((item) => item?.slug);
     relatedApps = allPosts
       ?.filter(

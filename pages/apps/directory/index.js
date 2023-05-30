@@ -34,7 +34,8 @@ import {
   ImgView,
   AppsHeroWrap,
   ExtensionsLastSection,
-  AppHeader3
+  AppHeader3,
+  CustomAppSection
 } from '../../../styles/appsStyles';
 import { Container, PrimaryButton, SecondryButton } from '../../../styles/commonStyles';
 import CTA from '../../../components/cta/cta';
@@ -48,14 +49,14 @@ import Button from '../../../components/button/button';
 import SEO from '../../../components/seo';
 import AppError from '../../../components/apperror/error';
 import { getSEOdata } from '../../../lib/contentful-seo';
-import { COPILOT_ONBORADING_LINK, COPILOT_REFERENCE_API_LINK } from '../../../constants/externalLinks';
-import { DirectoryButton } from '../../../styles/automationStyles';
+import { COPILOT_ONBORADING_LINK, COPILOT_REFERENCE_API_LINK, CUSTOM_APP_LINK } from '../../../constants/externalLinks';
 
-export default function Apps({ allPosts, featuredApps, allCategoryWithPost, dataIntegrationApps, seoData }) {
+export default function Apps({ featuredApps, allCategoryWithPost, allPosts, seoData }) {
   const [selected_category, setSelected_category] = useState();
   const [query, setQuery] = useState('');
   const [searchResult, setSearchResult] = useState([]);
   const [isSearch, setIsSearch] = useState(false);
+
   useEffect(() => {
     if (typeof window !== 'undefined') {
       let hash = window.location.hash;
@@ -120,29 +121,37 @@ export default function Apps({ allPosts, featuredApps, allCategoryWithPost, data
     });
   }, [featuredApps]);
 
-  const renderCategoryList = useMemo(() => {
-    if (isEmpty(allCategoryWithPost)) return null;
-    return allCategoryWithPost?.map((item, index) => {
-      let isActive = item?.category?.slug === selected_category;
-      return (
-        <Catagoryitem key={`categorylist_index_${index}`} isActive={isActive}>
-          <Link
-            href={`#${item?.category?.slug}`}
-            onClick={() => {
-              setSelected_category(item?.category?.slug);
-            }}>
-            {item?.category?.name}
-          </Link>
-        </Catagoryitem>
-      );
-    });
-  }, [allCategoryWithPost, selected_category]);
+  const renderCategoryList = useCallback(
+    ({ type }) => {
+      if (isEmpty(allCategoryWithPost)) return null;
+      return allCategoryWithPost?.map((item, index) => {
+        let isActive = `${item?.category?.slug}_${type}` === selected_category;
+        if (
+          (type === APPS_TYPE.CLIENT && isEmpty(item?.clientList)) ||
+          (type === APPS_TYPE.INTERNAL && isEmpty(item?.internalList))
+        )
+          return null;
+        return (
+          <Catagoryitem key={`categorylist_${type}_index_${index}`} isActive={isActive}>
+            <Link
+              href={`#${item?.category?.slug}_${type}`}
+              onClick={() => {
+                setSelected_category(`${item?.category?.slug}_${type}`);
+              }}>
+              {item?.category?.name}
+            </Link>
+          </Catagoryitem>
+        );
+      });
+    },
+    [allCategoryWithPost, selected_category]
+  );
 
   const renderPartnerAppsView = useCallback((appList) => {
     if (isEmpty(appList)) return null;
     return appList?.map((item, index) => {
       return (
-        <CardSub key={`partnerappview_index${index}`}>
+        <CardSub key={`partnerappview_index${item.slug}`}>
           <Link href={`/apps/directory/${item?.slug}`}>
             <CardInfo>
               <ImgView>
@@ -157,22 +166,26 @@ export default function Apps({ allPosts, featuredApps, allCategoryWithPost, data
     }, []);
   }, []);
 
-  const renderAllCategoryAppsView = useMemo(() => {
-    if (isEmpty(allCategoryWithPost)) return null;
-    return allCategoryWithPost?.map((item, index) => {
-      return (
-        <ExtensionsSection id={item?.category?.slug} key={`allCategoryappsview_index_${index}`}>
-          <AppHeader3>{item?.category?.name}</AppHeader3>
-          <ExtensionCard>{renderPartnerAppsView(item?.list)}</ExtensionCard>
-        </ExtensionsSection>
-      );
-    });
-  }, [allCategoryWithPost, renderPartnerAppsView]);
-
-  const renderDataIntegrationApps = useMemo(() => {
-    if (isEmpty(dataIntegrationApps)) return null;
-    return renderPartnerAppsView(dataIntegrationApps);
-  }, [dataIntegrationApps, renderPartnerAppsView]);
+  const renderAllCategoryAppsView = useCallback(
+    ({ type }) => {
+      if (isEmpty(allCategoryWithPost)) return null;
+      return allCategoryWithPost?.map((item, index) => {
+        if (
+          (type === APPS_TYPE.CLIENT && isEmpty(item?.clientList)) ||
+          (type === APPS_TYPE.INTERNAL && isEmpty(item?.internalList))
+        )
+          return null;
+        return (
+          <ExtensionsSection id={`${item?.category?.slug}_${type}`} key={`allCategoryappsview_${type}_index_${index}`}>
+            <AppHeader3>{item?.category?.name}</AppHeader3>
+            {type === APPS_TYPE.CLIENT && <ExtensionCard>{renderPartnerAppsView(item?.clientList)}</ExtensionCard>}{' '}
+            {type === APPS_TYPE.INTERNAL && <ExtensionCard>{renderPartnerAppsView(item?.internalList)}</ExtensionCard>}{' '}
+          </ExtensionsSection>
+        );
+      });
+    },
+    [allCategoryWithPost, renderPartnerAppsView]
+  );
 
   const renderResultView = useMemo(() => {
     if (!isEmpty(searchResult)) {
@@ -201,17 +214,7 @@ export default function Apps({ allPosts, featuredApps, allCategoryWithPost, data
               <AppsHeroWrap>
                 <h1>App Directory</h1>
                 <p>Try Copilot free for 14 days, no credit card required</p>
-                <DirectoryButton>
-                  <Button text={'Start Trial'} href={COPILOT_ONBORADING_LINK} />
-                  <Button
-                    bgColor={'transparent'}
-                    fontColor={'#000000'}
-                    borderColor={'#000000'}
-                    text={'Back to overview'}
-                    href={'/apps'}
-                    hoverColor={'rgba(0, 0, 0, 0.5)'}
-                  />
-                </DirectoryButton>
+                <Button text={'Start Trial'} href={COPILOT_ONBORADING_LINK} />
               </AppsHeroWrap>
             </Container>
           </HeroSection>
@@ -225,37 +228,34 @@ export default function Apps({ allPosts, featuredApps, allCategoryWithPost, data
                       <Input placeholder='Find an app' value={query} onChange={onSeachQueryChange} type='search' />
                     </InputWrap>
                     <Catagory>
-                      <h4>Partner Apps</h4>
-                      <Catagoryitem
-                        isActive={selected_category === 'Brief-Section'}
-                        onClick={() => {
-                          setSelected_category('Brief-Section');
-                        }}>
-                        <Link href={'#Brief-Section'}>Featured</Link>
-                      </Catagoryitem>
-                      {renderCategoryList}
+                      <h4>Client Apps</h4>
+                      {!isEmpty(featuredApps) && (
+                        <Catagoryitem
+                          isActive={selected_category === 'Brief-Section'}
+                          onClick={() => {
+                            setSelected_category('Brief-Section');
+                          }}>
+                          <Link href={'#Brief-Section'}>Featured</Link>
+                        </Catagoryitem>
+                      )}
+                      {renderCategoryList({ type: APPS_TYPE.CLIENT })}
                     </Catagory>
                     <OtherWrap>
-                      <h4>Other</h4>
-                      <Catagoryitem isActive={selected_category === 'Integrations-Section'}>
-                        <Link
-                          href={'#Integrations-Section'}
-                          onClick={() => {
-                            setSelected_category('Integrations-Section');
-                          }}>
-                          Data Integrations
-                        </Link>
-                      </Catagoryitem>
-                      <Catagoryitem isActive={selected_category === 'custome-apps'}>
-                        <Link
-                          href={'#custome-apps'}
-                          onClick={() => {
-                            setSelected_category('custome-apps');
-                          }}>
-                          Custom Apps
-                        </Link>
-                      </Catagoryitem>
+                      <h4>Internal Apps</h4>
+                      {renderCategoryList({ type: APPS_TYPE.INTERNAL })}
                     </OtherWrap>
+                    <CustomAppSection>
+                      <h4>Want to create your own custom app?</h4>
+                      <Button
+                        bgColor={'transparent'}
+                        fontColor={'#000000'}
+                        borderColor={'#000000'}
+                        text={'Custom app documentation'}
+                        href={CUSTOM_APP_LINK}
+                        hoverColor={'rgba(0, 0, 0, 0.5)'}
+                        className={'custom'}
+                      />
+                    </CustomAppSection>
                   </LeftWrap>
                 </FeatureLeft>
                 {isSearch ? (
@@ -268,17 +268,8 @@ export default function Apps({ allPosts, featuredApps, allCategoryWithPost, data
                         <FeatureMenu>{renderFeaturedView}</FeatureMenu>
                       </Featured>
                     )}
-                    {renderAllCategoryAppsView}
-
-                    {!isEmpty(dataIntegrationApps) && (
-                      <ExtensionsSection id='Integrations-Section'>
-                        <AppsTitle>
-                          <AppHeader3>Data Integrations</AppHeader3>
-                          <p>Integrations</p>
-                        </AppsTitle>
-                        <ExtensionCard>{renderDataIntegrationApps}</ExtensionCard>
-                      </ExtensionsSection>
-                    )}
+                    {renderAllCategoryAppsView({ type: APPS_TYPE.CLIENT })}
+                    {renderAllCategoryAppsView({ type: APPS_TYPE.INTERNAL })}
                     <ExtensionsLastSection id='custome-apps'>
                       <AppsTitle>
                         <h3>Custom Apps</h3>
@@ -316,28 +307,38 @@ export default function Apps({ allPosts, featuredApps, allCategoryWithPost, data
 }
 
 export async function getStaticProps({ preview = false }) {
-  const allPosts = (await getAllPartnerApps(APPS_TYPE.PARTNER_APP, preview)) ?? [];
+  const allClientPosts = (await getAllPartnerApps(APPS_TYPE.CLIENT, preview)) ?? [];
+  console.log('allPosts', allClientPosts);
   const allCategory = (await getAllParrtnerAppsCategories(preview)) ?? [];
-  const dataIntegrationApps = (await getAllPartnerApps(APPS_TYPE.DATA_INTEGRATION, preview)) ?? [];
+  const allInternalPosts = (await getAllPartnerApps(APPS_TYPE.INTERNAL, preview)) ?? [];
   const seoData = (await getSEOdata(APP_SEO_ID)) ?? [];
   seoData.canonical = 'https://www.copilot.com/apps';
-  const featuredApps = allPosts?.filter((item) => item?.isFeatured === true && item?.appType === APPS_TYPE.PARTNER_APP);
+  const featuredApps = allClientPosts?.filter(
+    (item) => item?.isFeatured === true && item?.appsType === APPS_TYPE.CLIENT
+  );
 
   let allCategoryWithPost = [];
 
   allCategory?.forEach((item) => {
-    const filterList = allPosts?.filter((element) =>
+    //for client
+    const filterClientList = allClientPosts?.filter((element) =>
       element?.partnerAppCategoriesCollection?.items?.some((category) => category?.slug === item?.slug)
     );
-    if (!isEmpty(filterList)) allCategoryWithPost?.push({ category: item, list: filterList });
+    // for Internal
+    const filterInternalList = allInternalPosts?.filter((element) =>
+      element?.partnerAppCategoriesCollection?.items?.some((category) => category?.slug === item?.slug)
+    );
+    const newitem = { category: item };
+    if (!isEmpty(filterClientList)) newitem['clientList'] = filterClientList;
+    if (!isEmpty(filterInternalList)) newitem['internalList'] = filterInternalList;
+    allCategoryWithPost?.push(newitem);
   });
 
   return {
     props: {
       featuredApps,
       allCategoryWithPost,
-      dataIntegrationApps,
-      allPosts: allPosts.concat(dataIntegrationApps),
+      allPosts: allClientPosts.concat(allInternalPosts),
       seoData
     }
   };

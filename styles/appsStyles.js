@@ -689,6 +689,20 @@ const AppHeader3 = styled.h2`
   }
 `;
 
+const CustomAppSection = styled.div`
+  padding-top: 80px;
+  h4 {
+    font-weight: 500;
+    font-size: 24px;
+    line-height: 130%;
+    letter-spacing: 0.02em;
+    color: ${({ theme }) => theme.colors.title};
+    margin: 0 0 20px 0;
+  }
+  .custom a {
+    padding: 8px 32px;
+  }
+`;
 export {
   HeroSection,
   FeatureSection,
@@ -740,5 +754,6 @@ export {
   FirstImg,
   ExtensionsLastSection,
   TooltipWrap,
-  AppHeader3
+  AppHeader3,
+  CustomAppSection
 };

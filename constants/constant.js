@@ -202,7 +202,9 @@ export const MONTH_LIST = [
 ];
 export const APPS_TYPE = {
   PARTNER_APP: 'Partner App',
-  DATA_INTEGRATION: 'Data Integration'
+  DATA_INTEGRATION: 'Data Integration',
+  CLIENT: 'Client',
+  INTERNAL: 'Internal'
 };
 
 export const UNIVERSITY_VIDEO_CATEGORY = [
