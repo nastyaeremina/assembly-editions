@@ -41,7 +41,7 @@ const FeatureSlider = ({ data, isDetailSlider }) => {
       }
     ]
   };
-
+  console.log('data', data);
   const featurecontentView = useMemo(() => {
     if (isEmpty(data)) return null;
     return data?.map((item, index) => {
@@ -54,7 +54,16 @@ const FeatureSlider = ({ data, isDetailSlider }) => {
             </SliderSub>
             <SliderIcon>
               {item?.productLogosCollection?.items?.map((logo, index) => {
-                return <Image key={`automation_logo_${index}`} src={logo?.url} alt='logo' width={40} height={40} className='logo'/>;
+                return (
+                  <Image
+                    key={`automation_logo_${index}`}
+                    src={logo?.url}
+                    alt='logo'
+                    width={40}
+                    height={40}
+                    className='logo'
+                  />
+                );
               })}
             </SliderIcon>
           </SliderInner>

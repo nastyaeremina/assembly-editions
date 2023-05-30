@@ -49,7 +49,7 @@ const AppsSlider = ({ data, isDetailSlider }) => {
     return data?.map((item, index) => {
       return (
         <>
-          <SliderInner href={'/apps/'} key={`slider_index_${index}`}>
+          <SliderInner href={`/apps/directory/${item.slug}`} key={`slider_index_${index}`}>
             <FeatureImg>
               <Image src={item?.logo?.url} alt='main-logo' width={236} height={56} objectFit='contain' />
             </FeatureImg>

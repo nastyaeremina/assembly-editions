@@ -23,10 +23,10 @@ import CustomerTestimonial from '../../components/customer/testimonials';
 import FAQ from '../../components/faq/faq';
 import { TopView } from '../../components/solution/clienttab/styles';
 import AppsSlider from '../../components/appsSlider';
-import { getPageAutomationDetail } from '../../lib/contentful-automation';
 import { COPILOT_ONBORADING_LINK } from '../../constants/externalLinks';
+import { getPageAppDetail } from '../../lib/contentful-partnerApps';
 
-export default function Automation({ seoData, details }) {
+export default function Automation({ details }) {
   return (
     <>
       <SEO seoData={details?.seoMetadata}></SEO>
@@ -77,12 +77,12 @@ export default function Automation({ seoData, details }) {
               textColor={MODULE_COLOR_LIST[HOME_MODULE_LIST['Automation']]?.fontColor}
             />
           )}
-          {!isEmpty(details?.sectionContent3Collection?.items) && (
-            <AutomationCardSection heading={details?.sectionHeader3} data={details?.sectionContent3Collection?.items} />
+          {!isEmpty(details?.sectionContent2Collection?.items) && (
+            <AutomationCardSection heading={details?.sectionHeader2} data={details?.sectionContent2Collection?.items} />
           )}{' '}
         </Container>
         <ExploreTab
-          data={removeEmptyElement(details?.sectionContent4Collection?.items)}
+          data={removeEmptyElement(details?.sectionContent3Collection?.items)}
           demoUrl={details?.demoPortalUrl}
         />
         <Container>
@@ -137,7 +137,7 @@ export default function Automation({ seoData, details }) {
 }
 
 export async function getStaticProps({ params, preview = false }) {
-  const details = (await getPageAutomationDetail(APP_PAGE_ID, preview)) ?? [];
+  const details = (await getPageAppDetail(APP_PAGE_ID, preview)) ?? [];
 
   return {
     props: { details }
