@@ -270,7 +270,7 @@ export default function Apps({ featuredApps, allCategoryWithPost, allPosts, seoD
                     )}
                     {renderAllCategoryAppsView({ type: APPS_TYPE.CLIENT })}
                     {renderAllCategoryAppsView({ type: APPS_TYPE.INTERNAL })}
-                    <ExtensionsLastSection id='custome-apps'>
+                    {/* <ExtensionsLastSection id='custome-apps'>
                       <AppsTitle>
                         <h3>Custom Apps</h3>
                       </AppsTitle>
@@ -292,7 +292,7 @@ export default function Apps({ featuredApps, allCategoryWithPost, allPosts, seoD
                           />
                         </BuildAppsDetail>
                       </BuildWrap>
-                    </ExtensionsLastSection>
+                    </ExtensionsLastSection> */}
                   </FeatureRight>
                 )}
               </FeatureWrap>

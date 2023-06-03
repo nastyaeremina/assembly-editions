@@ -85,10 +85,10 @@ export default function Automation({ details }) {
                 <CardItem isAnimated>
                   <Image src='/images/linka.svg' width={35} height={35} alt='link-icon' />
                   <CardTextView isAnimated>
-                    <p>Trigger</p>
-                    <span>New client activated</span>
+                    <p>Client activates account</p>
+                    <span>Trigger</span>
                   </CardTextView>
-                  <AnimatedIcon className={'done card1'} />
+                  <AnimatedIcon className={'done card1'} isAnimated={true} />
                   <Line>
                     <Line1 isAnimated>
                       <p />
@@ -106,10 +106,10 @@ export default function Automation({ details }) {
                 <CardItem isAnimated>
                   <Image src='/images/linka.svg' width={35} height={35} alt='link-icon' />
                   <CardTextView isAnimated>
-                    <p>Condition</p>
-                    <span>Company size &#60;= 50</span>
+                    <p>Company size &#60; 50</p>
+                    <span>Condition</span>
                   </CardTextView>
-                  <AnimatedIcon className={'default card2'} />
+                  <AnimatedIcon className={'default card2'} isAnimated={true}/>
                   <Line>
                     <Line2 isAnimated={true}>
                       <p />
@@ -119,8 +119,8 @@ export default function Automation({ details }) {
                 <CardItem isAnimated>
                   <Image src='/images/linka.svg' width={35} height={35} alt='link-icon' />
                   <CardTextView isAnimated>
-                    <p>Condition</p>
-                    <span>Company size &#62; 50</span>
+                    <p>Company size &#62; 50</p>
+                    <span>Condition</span>
                   </CardTextView>
                   <Line>
                     <Line2 isAnimated={true}>
@@ -133,33 +133,33 @@ export default function Automation({ details }) {
                       <p />
                     </Line2>
                   </Line>
-                  <AnimatedIcon className={'default card2'} />
+                  <AnimatedIcon className={'default card2'} isAnimated={true}/>
                 </CardItem>
               </CardWrapper>
               <CardWrapper>
                 <CardItem isAnimated>
                   <Image src='/images/action-icon.svg' width={35} height={35} alt='action-icon' />
                   <CardTextView isAnimated>
-                    <p>Action</p>
-                    <span>Assign small business onboarding form</span>
+                    <p>Assign SMB onboarding form</p>
+                    <span>Action</span>
                   </CardTextView>
-                  <AnimatedIcon className={'default card3'} />
+                  <AnimatedIcon className={'default card3'} isAnimated={true}/>
                 </CardItem>
                 <CardItem isAnimated>
                   <Image src='/images/msg-icon2.svg' width={35} height={35} alt='msg-icon' />
                   <CardTextView isAnimated>
-                    <p>Action</p>
-                    <span>Send message with scheduling link</span>
+                    <p>Send meeting scheduling link</p>
+                    <span>Action</span>
                   </CardTextView>
-                  <AnimatedIcon className={'default card3'} />
+                  <AnimatedIcon className={'default card3'} isAnimated={true}/>
                 </CardItem>
                 <CardItem isAnimated>
                   <Image src='/images/salesforce-icon.svg' width={35} height={35} alt='sales-icon' />
                   <CardTextView isAnimated>
-                    <p>Action</p>
-                    <span>Create lead in Salesforce</span>
+                    <p>Create lead in Salesforce</p>
+                    <span>Action</span>
                   </CardTextView>
-                  <AnimatedIcon className={'default card3'} />
+                  <AnimatedIcon className={'default card3'} isAnimated={true}/>
                 </CardItem>
               </CardWrapper>
             </BottomList>

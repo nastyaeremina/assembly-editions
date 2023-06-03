@@ -24,7 +24,8 @@ export default function Button({
   target = '_self',
   type = 'button',
   imgUrl,
-  isicon = false
+  isicon = false,
+  isCamelCase = true
 }) {
   return (
     <ButtonContainer
@@ -41,7 +42,7 @@ export default function Button({
       ) : isLink ? (
         <Link onMouseMove={(e) => myFunction(e)} href={href} target={target}>
           {isicon && <Image src={imgUrl} alt={'icon'} width={20} height={20} className='icon' />}
-          {text[0].toUpperCase() + text.substring(1).toLowerCase()}
+          {isCamelCase ? text[0].toUpperCase() + text.substring(1).toLowerCase() : text}
         </Link>
       ) : (
         <a>{text[0].toUpperCase() + text.substring(1).toLowerCase()}</a>

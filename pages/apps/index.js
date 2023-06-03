@@ -34,7 +34,7 @@ export default function Automation({ details }) {
         <Navbar isEnterPrice headerIndex={HEADER_LIST.ENTERPRICE} />
         <AutomationHero>
           <Container>
-            <Title>{details?.header}</Title>,
+            <Title>{details?.header}</Title>
             <Caption>
               {/* <div dangerouslySetInnerHTML={{ __html: separateSpecialChar(heading) }} /> */}
               {details?.body}
@@ -75,6 +75,7 @@ export default function Automation({ details }) {
               tabData={details?.sectionContent1Collection?.items || []}
               bgColor={MODULE_COLOR_LIST[HOME_MODULE_LIST['Automation']]?.bgColor}
               textColor={MODULE_COLOR_LIST[HOME_MODULE_LIST['Automation']]?.fontColor}
+              isAutomation={true}
             />
           )}
           {!isEmpty(details?.sectionContent2Collection?.items) && (

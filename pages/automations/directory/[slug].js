@@ -76,6 +76,7 @@ export default function AutomationDetail({ detail, relatedApps }) {
                 isicon={true}
                 imgUrl={Vector}
                 className={'iconbutton'}
+                isCamelCase={false}
               />
             )}
             {!isEmpty(detail?.makeLink) && (
@@ -89,6 +90,7 @@ export default function AutomationDetail({ detail, relatedApps }) {
                 target={'_blank'}
                 isicon={true}
                 imgUrl={Make}
+                isCamelCase={false}
               />
             )}
             {!isEmpty(detail?.apiLink) && (

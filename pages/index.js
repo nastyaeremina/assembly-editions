@@ -172,8 +172,8 @@ export default function Home({ content, seoData }) {
                   <CardItem>
                     <Image src='/images/linkicon.svg' width={35} height={35} alt='link-icon' />
                     <CardTextView>
-                      <p>Trigger</p>
-                      <span>New client activated</span>
+                      <p>Client activates account</p>
+                      <span>Trigger</span>
                     </CardTextView>
                     <AnimatedIcon className={'done card1'} />
                     <Line>
@@ -193,8 +193,8 @@ export default function Home({ content, seoData }) {
                   <CardItem>
                     <Image src='/images/linkicon.svg' width={35} height={35} alt='link-icon' />
                     <CardTextView>
-                      <p>Condition</p>
-                      <span>Company size &#60;= 50</span>
+                      <p>Company size &#60; 50</p>
+                      <span>Condition</span>
                     </CardTextView>
                     <AnimatedIcon className={'default card2'} />
                     <Line>
@@ -206,8 +206,8 @@ export default function Home({ content, seoData }) {
                   <CardItem>
                     <Image src='/images/linkicon.svg' width={35} height={35} alt='link-icon' />
                     <CardTextView>
-                      <p>Condition</p>
-                      <span>Company size &#62; 50</span>
+                      <p>Company size &#62; 50</p>
+                      <span>Condition</span>
                     </CardTextView>
                     <Line>
                       <Line2>
@@ -227,24 +227,24 @@ export default function Home({ content, seoData }) {
                   <CardItem>
                     <Image src='/images/action-icon.svg' width={35} height={35} alt='action-icon' />
                     <CardTextView>
-                      <p>Action</p>
-                      <span>Assign small business onboarding form</span>
+                      <p>Assign SMB onboarding form</p>
+                      <span>Action</span>
                     </CardTextView>
                     <AnimatedIcon className={'default card3'} />
                   </CardItem>
                   <CardItem>
                     <Image src='/images/msg-icon2.svg' width={35} height={35} alt='msg-icon' />
                     <CardTextView>
-                      <p>Action</p>
-                      <span>Send message with scheduling link</span>
+                      <p>Send meeting scheduling link</p>
+                      <span>Action</span>
                     </CardTextView>
                     <AnimatedIcon className={'default card3'} />
                   </CardItem>
                   <CardItem>
                     <Image src='/images/salesforce-icon.svg' width={35} height={35} alt='sales-icon' />
                     <CardTextView>
-                      <p>Action</p>
-                      <span>Create lead in Salesforce</span>
+                      <p>Create lead in Salesforce</p>
+                      <span>Action</span>
                     </CardTextView>
                     <AnimatedIcon className={'default card3'} />
                   </CardItem>
