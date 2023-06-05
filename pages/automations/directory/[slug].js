@@ -6,6 +6,7 @@ import { Container, PrimaryButton } from '../../../styles/commonStyles';
 import CTA from '../../../components/cta/cta';
 import Image from 'next/image';
 import {
+  AnimateSlider,
   DetailButtonSection,
   DetailCaption,
   DetailTitle,
@@ -19,9 +20,9 @@ import Vector from '../../../public/images/vector.svg';
 import Make from '../../../public/images/make.svg';
 import Button from '../../../components/button/button';
 import Graphic from '../../../public/images/graphics.png';
-import FeatureSlider from '../../../components/FeatureSlider/featureslider';
 import { getAllAutomations, getAllAutomationsWithSlug, getAutomationDetail } from '../../../lib/contentful-automation';
 import { isEmpty } from '../../../helpers/helpers';
+import FeatureAnimated from '../../../components/FeatureSlider/featureanimated';
 
 export default function AutomationDetail({ detail, relatedApps }) {
   return (
@@ -120,7 +121,8 @@ export default function AutomationDetail({ detail, relatedApps }) {
         <Container>
           <Head>Related Automations</Head>
         </Container>
-        {!isEmpty(relatedApps) && <FeatureSlider data={relatedApps} isDetailSlider={true} />}
+        {/* {!isEmpty(relatedApps) && <FeatureSlider data={relatedApps} isDetailSlider={true} />} */}
+        {!isEmpty(relatedApps) && <FeatureAnimated data={relatedApps} />}
         <CTA />
       </Layout>
     </>

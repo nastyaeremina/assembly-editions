@@ -1,31 +1,23 @@
 import styled, { css } from 'styled-components';
 import Link from 'next/link';
-import { Body1, Body2, Body4, Body5, MbBody2 } from '../../styles/styles';
+import { Body2, Body4, Body5, MbBody2 } from '../../styles/styles';
 
-const SliderWrap = styled.div`
-  overflow: hidden;
-  position: relative;
-  ${(props) =>
-    props.isDetailSlider &&
-    css`
-      padding-bottom: 100px;
-      @media only screen and (max-width: 449px) {
-        padding-bottom: 80px;
-      }
-    `}
-`;
 const SliderInner = styled(Link)`
+  width: 423px;
   border: 1px solid #00160e;
   border-radius: 4px;
   /* margin: 0 40px; */
   cursor: pointer;
   position: relative;
-  z-index: 9999;
-  margin: 0 18px;
+  z-index: 99;
+  /* margin: 0 18px; */
   background-color: #fff;
   :hover {
-    border: 1.5px solid #00160e;
+    outline: 1px solid #00160e;
     box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.1);
+  }
+  @media only screen and (max-width: 449px) {
+    width: 278px;
   }
 `;
 const SliderSub = styled.div`
@@ -38,8 +30,18 @@ const SliderSub = styled.div`
     ${Body2}
     color: ${({ theme }) => theme.colors.title};
     margin: 0;
-    @media only screen and (max-width: 426px) {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
+    white-space: inherit;
+    @media only screen and (max-width: 449px) {
       ${MbBody2}
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 1;
+      overflow: hidden;
+      white-space: inherit;
     }
   }
   p {
@@ -51,7 +53,8 @@ const SliderSub = styled.div`
     -webkit-line-clamp: 3;
     overflow: hidden;
     white-space: inherit;
-    @media only screen and (max-width: 426px) {
+    white-space: wrap;
+    @media only screen and (max-width: 449px) {
       ${Body5}
     }
   }
@@ -64,12 +67,11 @@ const SliderLine = styled.div`
   background-position: 0 0, 200px 100px, 0 100px, 200px 0;
   background-repeat: repeat-x, repeat-x, repeat-y, repeat-y;
   background-size: 10px 4px, 10px 10px, 10px 14px, 10px 14px;
-  bottom: 0;
   height: 1px;
   left: 5px;
   position: absolute;
   right: 5px;
-  bottom: 63px;
+  bottom: 64px;
 `;
 const SliderIcon = styled.div`
   display: flex;
@@ -78,6 +80,57 @@ const SliderIcon = styled.div`
   .logo {
     border: 0.375px solid #00160e;
     border-radius: 50%;
+    @media only screen and (max-width: 449px) {
+      width: 35px;
+      height: 35px;
+    }
   }
 `;
-export { SliderWrap, SliderInner, SliderSub, SliderLine, SliderIcon };
+const AnimateSlider = styled.div`
+  display: flex;
+  position: relative;
+`;
+const Animated = styled.div`
+  margin-bottom: 100px;
+  position: relative;
+  @media only screen and (max-width: 449px) {
+    margin-bottom: 80px;
+  }
+  ${(props) =>
+    props.isDetailSlider &&
+    css`
+      margin-bottom: 0px;
+      @media only screen and (max-width: 449px) {
+        margin-bottom: 0px;
+      }
+    `}
+  .wrap {
+    width: 100%;
+
+    &--logobar {
+      height: 238px;
+      overflow: hidden;
+      position: relative;
+      @media only screen and (max-width: 449px) {
+        height: 190px;
+      }
+    }
+  }
+  .list {
+    list-style: none;
+    display: flex;
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    width: 100%;
+    margin-left: 0;
+
+    &__item {
+      flex-grow: 0;
+      flex-shrink: 0;
+      padding: 1px 36px 0 0;
+      width: auto;
+    }
+  }
+`;
+export { SliderInner, SliderSub, SliderLine, SliderIcon, AnimateSlider, Animated };

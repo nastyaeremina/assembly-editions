@@ -26,7 +26,6 @@ import ExtentionCard from '../../components/Extentioncard';
 import CustomerTestimonial from '../../components/customer/testimonials';
 import FAQ from '../../components/faq/faq';
 import { TopView } from '../../components/solution/clienttab/styles';
-import FeatureSlider from '../../components/FeatureSlider/featureslider';
 import { getPageAutomationDetail } from '../../lib/contentful-automation';
 import { RightSection } from '../../styles/casestudiestyles';
 import {
@@ -39,6 +38,7 @@ import {
   Line1,
   Line2
 } from '../../styles/homepageStyles';
+import FeatureAnimated from '../../components/FeatureSlider/featureanimated';
 
 export default function Automation({ details }) {
   return (
@@ -109,7 +109,7 @@ export default function Automation({ details }) {
                     <p>Company size &#60; 50</p>
                     <span>Condition</span>
                   </CardTextView>
-                  <AnimatedIcon className={'default card2'} isAnimated={true}/>
+                  <AnimatedIcon className={'default card2'} isAnimated={true} />
                   <Line>
                     <Line2 isAnimated={true}>
                       <p />
@@ -133,7 +133,7 @@ export default function Automation({ details }) {
                       <p />
                     </Line2>
                   </Line>
-                  <AnimatedIcon className={'default card2'} isAnimated={true}/>
+                  <AnimatedIcon className={'default card2'} isAnimated={true} />
                 </CardItem>
               </CardWrapper>
               <CardWrapper>
@@ -143,7 +143,7 @@ export default function Automation({ details }) {
                     <p>Assign SMB onboarding form</p>
                     <span>Action</span>
                   </CardTextView>
-                  <AnimatedIcon className={'default card3'} isAnimated={true}/>
+                  <AnimatedIcon className={'default card3'} isAnimated={true} />
                 </CardItem>
                 <CardItem isAnimated>
                   <Image src='/images/msg-icon2.svg' width={35} height={35} alt='msg-icon' />
@@ -151,7 +151,7 @@ export default function Automation({ details }) {
                     <p>Send meeting scheduling link</p>
                     <span>Action</span>
                   </CardTextView>
-                  <AnimatedIcon className={'default card3'} isAnimated={true}/>
+                  <AnimatedIcon className={'default card3'} isAnimated={true} />
                 </CardItem>
                 <CardItem isAnimated>
                   <Image src='/images/salesforce-icon.svg' width={35} height={35} alt='sales-icon' />
@@ -159,7 +159,7 @@ export default function Automation({ details }) {
                     <p>Create lead in Salesforce</p>
                     <span>Action</span>
                   </CardTextView>
-                  <AnimatedIcon className={'default card3'} isAnimated={true}/>
+                  <AnimatedIcon className={'default card3'} isAnimated={true} />
                 </CardItem>
               </CardWrapper>
             </BottomList>
@@ -241,7 +241,7 @@ export default function Automation({ details }) {
             </TopView>
           </Featured>
         </Container>
-        <FeatureSlider data={details?.sectionFeaturedContentCollection?.items} />
+        <FeatureAnimated data={details?.sectionFeaturedContentCollection?.items} isDetailSlider={true} />
         <FAQ contentID={details?.faqGroup?.sys?.id} />
         <CTA />
       </Layout>
