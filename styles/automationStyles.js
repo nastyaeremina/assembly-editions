@@ -39,7 +39,7 @@ const Title = styled.div`
   ${Heading2}
   text-align: center;
   color: ${({ theme }) => theme.colors.greenlight};
-  @media only screen and (max-width: 426px) {
+  @media only screen and (max-width: 449px) {
     ${TableText}
   }
 `;

@@ -6,13 +6,13 @@ const Extention = styled.div`
   flex-direction: row;
   border: 1px solid #00160e;
   border-radius: 4px;
-  @media only screen and (max-width: 426px) {
+  @media only screen and (max-width: 449px) {
     flex-direction: column;
   }
   .logo {
     width: 140px;
     /* height: 140px; */
-    @media only screen and (max-width: 426px) {
+    @media only screen and (max-width: 449px) {
       height: 110px;
     }
   }
@@ -35,7 +35,7 @@ const Extention = styled.div`
     color: ${({ theme }) => theme.colors.title};
     cursor: pointer;
     transition: none;
-    @media only screen and (max-width: 426px) {
+    @media only screen and (max-width: 449px) {
       ${HeaderFont}
     }
   }
@@ -77,7 +77,7 @@ const Logo = styled.div`
   align-items: center;
   padding: 35px;
   border-right: 1px solid #00160e;
-  @media only screen and (max-width: 426px) {
+  @media only screen and (max-width: 449px) {
     border-bottom: 1px solid #00160e;
     border-right: none;
     display: flex;
@@ -90,7 +90,7 @@ const RightDesc = styled.div`
   justify-content: space-between;
   padding: 28px 40px;
   gap: 36px;
-  @media only screen and (max-width: 426px) {
+  @media only screen and (max-width: 449px) {
     padding: 20px 28px;
     gap: 20px;
   }
@@ -103,7 +103,7 @@ const Par = styled.div`
   -webkit-line-clamp: 3;
   overflow: hidden;
   white-space: inherit;
-  @media only screen and (max-width: 426px) {
+  @media only screen and (max-width: 449px) {
     ${Body4}
   }
 `;

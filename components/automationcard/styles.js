@@ -35,7 +35,7 @@ const Card = styled.div`
       flex-direction: column;
       display: flex;
       justify-content: space-between;
-      @media only screen and (max-width: 426px) {
+      @media only screen and (max-width: 449px) {
         width: 100%;
       }
     `}
@@ -43,7 +43,7 @@ const Card = styled.div`
 const CardTop = styled.div`
   padding: 40px;
 
-  @media only screen and (max-width: 426px) {
+  @media only screen and (max-width: 449px) {
     padding: 28px;
   }
 `;
@@ -65,7 +65,7 @@ const Description = styled.p`
 const Cards = styled.div`
   display: flex;
   gap: 40px;
-  @media only screen and (max-width: 426px) {
+  @media only screen and (max-width: 449px) {
     flex-direction: column;
     /* flex-wrap: wrap; */
     width: 100%;

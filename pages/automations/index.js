@@ -190,9 +190,9 @@ export default function Automation({ details }) {
           demoUrl={details?.demoPortalUrl}
         />
         <Container>
-          <SetupAutomation>
-            <RightSection>{documentToReactComponents(details?.sectionHeader4?.json)}</RightSection>
-          </SetupAutomation>
+            <SetupAutomation>
+              <RightSection>{documentToReactComponents(details?.sectionHeader4?.json)}</RightSection>
+            </SetupAutomation>
           <CardSec>
             <ExtentionCard data={details?.sectionContent5Collection?.items[0]} />
             <Cards>
