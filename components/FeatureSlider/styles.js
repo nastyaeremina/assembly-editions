@@ -2,6 +2,18 @@ import styled, { css } from 'styled-components';
 import Link from 'next/link';
 import { Body2, Body4, Body5, MbBody2 } from '../../styles/styles';
 
+const SliderWrap = styled.div`
+  overflow: hidden;
+  position: relative;
+  ${(props) =>
+    props.isDetailSlider &&
+    css`
+      padding-bottom: 100px;
+      @media only screen and (max-width: 449px) {
+        padding-bottom: 80px;
+      }
+    `}
+`;
 const SliderInner = styled(Link)`
   width: 423px;
   border: 1px solid #00160e;
@@ -133,4 +145,4 @@ const Animated = styled.div`
     }
   }
 `;
-export { SliderInner, SliderSub, SliderLine, SliderIcon, AnimateSlider, Animated };
+export { SliderWrap, SliderInner, SliderSub, SliderLine, SliderIcon, AnimateSlider, Animated };
