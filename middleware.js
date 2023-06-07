@@ -11,6 +11,9 @@ export async function middleware(req) {
   if (await blockedIp(req)) {
     return new NextResponse(null, { status: 403 });
   }
+
+  //A / B Test code
+  /* 
   let cookie = req.cookies.get(COOKIE_NAME)?.value;
 
   if (!cookie) {
@@ -39,6 +42,6 @@ export async function middleware(req) {
     const one_year_ms = 24 * 60 * 60 * 1000 * 365;
     res.cookies.set({ name: COOKIE_NAME, value: cookie, expires: new Date(Date.now() + one_year_ms) });
   }
-
   return res;
+  */
 }

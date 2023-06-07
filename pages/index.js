@@ -42,11 +42,7 @@ import {
 import BusinessSlider from '../components/businessSlider/businessslider';
 import ExtensionSlider from '../components/extensionslider/extensionslider';
 import CTA from '../components/cta/cta';
-import {
-  HEADER_LIST,
-  HOME_CLIENT_DARK_ID,
-
-} from '../constants/constant';
+import { HEADER_LIST, HOME_CLIENT_DARK_ID } from '../constants/constant';
 import { getHomeContent } from '../lib/contentful-home';
 import TabView from '../components/tab/tab';
 import Button from '../components/button/button';
@@ -65,10 +61,13 @@ export default function Home({ content, seoData }) {
     window.location.reload();
   };
 
+  // track amplitude event on a/b test result.
+  /*
   useEffect(() => {
     setCookie(Cookies.get(COOKIE_NAME));
     window.analytics?.identify({ ab_home_hero_client: 'Client Focus - Dark' });
   }, []);
+*/
 
   useEffect(() => {
     if (ga && cookie) {
@@ -158,14 +157,14 @@ export default function Home({ content, seoData }) {
                 </h2>
                 <ReactMarkdown>{content?.body4}</ReactMarkdown>
                 <Button
-                    bgColor={'transparent'}
-                    fontColor={'#000000'}
-                    borderColor={'#000000'}
-                    text={'See automations'}
-                    href={'/automations'}
-                    hoverColor={'rgba(0, 0, 0, 0.5)'}
-                    className={'automation-button'}
-                  />
+                  bgColor={'transparent'}
+                  fontColor={'#000000'}
+                  borderColor={'#000000'}
+                  text={'See automations'}
+                  href={'/automations'}
+                  hoverColor={'rgba(0, 0, 0, 0.5)'}
+                  className={'automation-button'}
+                />
               </AutomateText>
               <BottomList>
                 <CardWrapper>
@@ -428,7 +427,7 @@ export async function getStaticProps({ params }) {
   return {
     props: {
       content,
-      seoData,
+      seoData
     }
   };
 }

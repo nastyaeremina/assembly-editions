@@ -22,10 +22,12 @@ const SliderInner = styled(Link)`
   cursor: pointer;
   position: relative;
   z-index: 99;
-  /* margin: 0 18px; */
+  padding: 0 1px;
   background-color: #fff;
   :hover {
-    outline: 1px solid #00160e;
+    border: 2px solid #00160e;
+    margin: -1px 0px;
+    padding: 0 0;
     box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.1);
   }
   @media only screen and (max-width: 449px) {
@@ -83,7 +85,7 @@ const SliderLine = styled.div`
   left: 5px;
   position: absolute;
   right: 5px;
-  bottom: 64px;
+  bottom: 64.5px;
 `;
 const SliderIcon = styled.div`
   display: flex;

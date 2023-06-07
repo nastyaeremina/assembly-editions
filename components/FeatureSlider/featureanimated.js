@@ -65,8 +65,10 @@ export default function FeatureAnimated({ data, isDetailSlider }) {
 
     function handleHover(event) {
       if (event.type === 'mouseenter') {
+        console.log('mouseenter');
         clearInterval(intervalId); // Pause animation on hover
       } else if (event.type === 'mouseleave') {
+        console.log('mouseleave');
         intervalId = setInterval(animationLoop, 10); // Resume animation on mouse leave
       }
     }
