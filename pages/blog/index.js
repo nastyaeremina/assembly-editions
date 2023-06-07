@@ -47,12 +47,8 @@ export default function Blog({ seoData, allPosts, tags }) {
   const renderFeaturedBlog = useMemo(() => {
     const featuredBlogList = allPosts?.filter((item) => item?.featured);
     if (isEmpty(featuredBlogList)) return null;
-    console.log();
     return featuredBlogList?.map((item, index) => {
       const finalTagList = item?.tags?.filter((tag) => tag?.name?.trim()?.[0] !== '#');
-      console.log('finalTagList', finalTagList);
-      console.log('item', item);
-      // if (index === 0) return null;
       return (
         <FirstBlog onClick={() => router.push(`/blog/${item?.slug}`)} key={`featuredblog_index_${index}`}>
           {!isEmpty(item?.feature_imag) && (
@@ -243,14 +239,10 @@ export default function Blog({ seoData, allPosts, tags }) {
 }
 export async function getStaticProps({ preview = false }) {
   const seoData = (await getSEOdata(BLOG_SEO_ID)) ?? [];
-  console.log('seoData', seoData);
   seoData.canonical = 'https://www.copilot.com/blog';
   const allPosts = (await getBlogPosts()) ?? [];
-  console.log('allPosts', allPosts);
   const tags = (await getAllTagWithSlug()) ?? [];
-  console.log('tags', tags);
   const finalTagList = tags?.filter((tag) => tag?.name?.trim()?.[0] !== '#');
-  console.log('finalTagList', finalTagList);
   return {
     props: {
       seoData,
