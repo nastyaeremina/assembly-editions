@@ -132,8 +132,14 @@ const CardSection = styled.div`
   }
   .message:hover {
     background-image: url('/images/hovermessage.svg');
+    @media only screen and (max-width: 991px) {
+      background-image: none;
+    }
     a {
       color: ${({ theme }) => theme.colors.brownlight};
+      @media only screen and (max-width: 991px) {
+        color: ${({ theme }) => theme.colors.title};
+      }
     }
   }
   @media only screen and (max-width: 749px) {
