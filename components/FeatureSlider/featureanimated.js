@@ -60,7 +60,7 @@ export default function FeatureAnimated({ data, isDetailSlider }) {
       }
 
       listElem.style.marginLeft = `${currentLeftValue}px`;
-      currentLeftValue--;
+      currentLeftValue -= 1;
     }
 
     function handleHover(event) {
