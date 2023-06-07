@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useMemo, useState } from 'react';
+import { useCallback, useMemo, useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import moment from 'moment';
@@ -6,24 +6,18 @@ import { useRouter } from 'next/router';
 import { OrganizationJsonLd } from 'next-seo';
 import Layout from '../../components/layout';
 import BlogNavbar from '../../components/navbar/blognavbar';
-import Navbar from '../../components/navbar/navbar';
+// import Navbar from '../../components/navbar/navbar';
 import { Container, SecondryButton } from '../../styles/commonStyles';
 import {
-  BlogList,
   FirstBlog,
   Last,
-  Lastpra,
   LastSection,
   Left,
-  Leftside,
   MainContent,
-  OverLayDiv,
   Par,
   PostDetail,
   Right,
-  Rightside,
   Text,
-  Textarea,
   Top
 } from '../../styles/blogstyles';
 import Blogcard from '../../components/Blogcard';
@@ -52,13 +46,20 @@ export default function Blog({ seoData, allPosts, tags }) {
 
   const renderFeaturedBlog = useMemo(() => {
     const featuredBlogList = allPosts?.filter((item) => item?.featured);
+    if (isEmpty(featuredBlogList)) return null;
+    console.log();
     return featuredBlogList?.map((item, index) => {
       const finalTagList = item?.tags?.filter((tag) => tag?.name?.trim()?.[0] !== '#');
+      console.log('finalTagList', finalTagList);
+      console.log('item', item);
+      // if (index === 0) return null;
       return (
         <FirstBlog onClick={() => router.push(`/blog/${item?.slug}`)} key={`featuredblog_index_${index}`}>
-          <Top>
-            <Image src={item?.feature_image} className='image' alt='blog' width={880} height={354} />
-          </Top>
+          {!isEmpty(item?.feature_imag) && (
+            <Top>
+              <Image src={item?.feature_image} className='image' alt='blog' width={880} height={354} />
+            </Top>
+          )}
           <Text>
             <h2>{item?.title}</h2>
             <PostDetail>
@@ -242,10 +243,14 @@ export default function Blog({ seoData, allPosts, tags }) {
 }
 export async function getStaticProps({ preview = false }) {
   const seoData = (await getSEOdata(BLOG_SEO_ID)) ?? [];
+  console.log('seoData', seoData);
   seoData.canonical = 'https://www.copilot.com/blog';
   const allPosts = (await getBlogPosts()) ?? [];
+  console.log('allPosts', allPosts);
   const tags = (await getAllTagWithSlug()) ?? [];
+  console.log('tags', tags);
   const finalTagList = tags?.filter((tag) => tag?.name?.trim()?.[0] !== '#');
+  console.log('finalTagList', finalTagList);
   return {
     props: {
       seoData,

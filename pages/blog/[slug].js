@@ -169,9 +169,11 @@ export default function Blogdetail({ blogDetail, tags }) {
                 </Link>
                 <h1>{blogDetail?.title}</h1>
               </DetailHero>
-              <BlogImage>
-                <Image src={blogDetail?.feature_image} alt='blogdetail' className='image' width={880} height={496} />
-              </BlogImage>
+              {!isEmpty(blogDetail?.feature_imag) && (
+                <BlogImage>
+                  <Image src={blogDetail?.feature_image} alt='blogdetail' className='image' width={880} height={496} />
+                </BlogImage>
+              )}
               <BlogTime>
                 <Post>
                   {blogDetail?.published_at && moment(new Date(blogDetail?.published_at)).format('MMM DD, YYYY')}
