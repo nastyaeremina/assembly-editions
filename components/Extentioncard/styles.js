@@ -1,7 +1,7 @@
 import styled, { css } from 'styled-components';
 import { Body1, Body4, HeaderFont, LinkTxt, MbPrimaryBtn } from '../../styles/styles';
 
-const Extention = styled.div`
+const Extention = styled.a`
   display: flex;
   flex-direction: row;
   border: 1px solid #00160e;

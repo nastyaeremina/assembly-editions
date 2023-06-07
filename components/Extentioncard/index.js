@@ -1,18 +1,17 @@
 import React from 'react';
 import Image from 'next/image';
-import aicon from '../../public/images/aicon.png';
 import { Cardlink, Extention, Logo, Par, RightDesc } from './styles';
 
 export default function ExtentionCard({ data, isCard }) {
   return (
-    <Extention isCard={isCard}>
+    <Extention isCard={isCard} href={data?.buttonLink} target='_blank'>
       <Logo>
         <Image src={data?.image?.url} alt='icon' width={140} height={0} className='logo' />
       </Logo>
       <RightDesc>
         <Par>{data?.body}</Par>
         <Cardlink className='icon-link'>
-          <a href={data?.buttonLink} target='_blank' className='learn-link mb0' rel='noreferrer'>
+          <a className='learn-link mb0' rel='noreferrer'>
             {data?.buttonName}
             <svg width='16' height='12' viewBox='0 0 16 12' fill='none' class='HoverArrow'>
               <path
