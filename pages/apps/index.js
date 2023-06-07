@@ -128,7 +128,7 @@ export default function Automation({ details }) {
           </Featured>
         </Container>
         {!isEmpty(details?.sectionFeaturedContentCollection?.items) && (
-          <AppsSlider data={details?.sectionFeaturedContentCollection?.items} />
+          <AppsSlider data={details?.sectionFeaturedContentCollection?.items} isDetailSlider={true} />
         )}
         <FAQ contentID={details?.faqGroup?.sys?.id} />
         <CTA />

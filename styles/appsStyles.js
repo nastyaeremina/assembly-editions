@@ -269,6 +269,10 @@ const FeatureImg = styled.div`
   img {
     max-width: 100%;
   }
+  .logo {
+    width: 236px;
+    height: 56px;
+  }
   @media only screen and (max-width: 749px) {
     justify-content: flex-start;
   }

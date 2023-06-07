@@ -142,6 +142,16 @@ const Animated = styled.div`
       flex-shrink: 0;
       padding: 1px 36px 0 0;
       width: auto;
+      @media only screen and (max-width: 449px) {
+        padding: 1px 20px 0 0;
+      }
+    }
+  }
+  .card-gap {
+    display: flex;
+    gap: 36px;
+    @media only screen and (max-width: 449px) {
+      gap: 20px;
     }
   }
 `;

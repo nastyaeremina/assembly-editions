@@ -84,16 +84,16 @@ export default function FeatureAnimated({ data, isDetailSlider }) {
       <div class='wrap wrap--logobar' id='containerElem'>
         <ul class='list' id='list'>
           <li class='list__item'>
-            <div style={{ display: 'flex', gap: '36px' }}>{featurecontentView}</div>
+            <div className='card-gap'>{featurecontentView}</div>
           </li>
           <li class='list__item'>
-            <div style={{ display: 'flex', gap: '36px' }}>{featurecontentView}</div>
+            <div className='card-gap'>{featurecontentView}</div>
           </li>
           <li class='list__item'>
-            <div style={{ display: 'flex', gap: '36px' }}>{featurecontentView}</div>
+            <div className='card-gap'>{featurecontentView}</div>
           </li>
           <li class='list__item'>
-            <div style={{ display: 'flex', gap: '36px' }}>{featurecontentView}</div>
+            <div className='card-gap'>{featurecontentView}</div>
           </li>
         </ul>
       </div>

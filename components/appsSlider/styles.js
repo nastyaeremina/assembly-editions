@@ -1,4 +1,5 @@
-import styled from 'styled-components';
+import Link from 'next/link';
+import styled, { css } from 'styled-components';
 
 const SliderLine = styled.div`
   background: linear-gradient(90deg, rgba(0, 0, 0, 1) 50%, transparent 0),
@@ -13,6 +14,79 @@ const SliderLine = styled.div`
   left: 5px;
   position: absolute;
   right: 5px;
-  bottom: 136px;
+  top: 134px;
 `;
-export { SliderLine };
+
+const Animated = styled.div`
+  margin-bottom: 100px;
+  position: relative;
+  @media only screen and (max-width: 449px) {
+    margin-bottom: 80px;
+  }
+  ${(props) =>
+    props.isDetailSlider &&
+    css`
+      margin-bottom: 0px;
+      @media only screen and (max-width: 449px) {
+        margin-bottom: 0px;
+      }
+    `}
+  .wrap {
+    width: 100%;
+
+    &--logobar {
+      height: 294px;
+      overflow: hidden;
+      position: relative;
+      @media only screen and (max-width: 449px) {
+        height: 290px;
+      }
+    }
+  }
+  .list {
+    list-style: none;
+    display: flex;
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    width: 100%;
+    margin-left: 0;
+
+    &__item {
+      flex-grow: 0;
+      flex-shrink: 0;
+      padding: 1px 36px 0 0;
+      width: auto;
+      @media only screen and (max-width: 449px) {
+        padding: 1px 20px 0 0;
+      }
+    }
+  }
+  .card-gap {
+    display: flex;
+    gap: 36px;
+    @media only screen and (max-width: 449px) {
+      gap: 20px;
+    }
+  }
+`;
+
+const SliderInner = styled(Link)`
+  width: 270px;
+  border: 1px solid #00160e;
+  border-radius: 4px;
+  cursor: pointer;
+  position: relative;
+  z-index: 99;
+  background-color: #fff;
+  padding: 1px;
+  :hover {
+    border: 2px solid #00160e;
+    padding: 0;
+    box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.1);
+  }
+  @media only screen and (max-width: 449px) {
+    width: 250px;
+  }
+`;
+export { SliderLine, Animated, SliderInner };
