@@ -25,6 +25,8 @@ import { TopView } from '../../components/solution/clienttab/styles';
 import AppsSlider from '../../components/appsSlider';
 import { COPILOT_ONBORADING_LINK } from '../../constants/externalLinks';
 import { getPageAppDetail } from '../../lib/contentful-partnerApps';
+import AppsHeroSlider from '../../components/appsSlider/appsheroSlider';
+import { AppSliderSection } from '../../styles/appsStyles';
 
 export default function Automation({ details }) {
   return (
@@ -58,9 +60,30 @@ export default function Automation({ details }) {
               />
             </AutomationButton>
           </Container>
-          {!isEmpty(details?.heroImage?.url) && (
+          {/* {!isEmpty(details?.heroImage?.url) && (
             <Image src={details?.heroImage?.url} alt='apps' width={1224} height={324} className='apps-image' />
-          )}
+          )} */}
+          <AppSliderSection>
+            <AppsHeroSlider
+              data={[
+                {
+                  icon: {
+                    url: 'https://images.ctfassets.net/l41zuz9np7js/7MMEpeI730Os5sARUM1qsj/8184594716017bad01e7c4616742bfc2/Icon_-_Google_Sheets.svg'
+                  }
+                },
+                {
+                  icon: {
+                    url: 'https://images.ctfassets.net/l41zuz9np7js/24p1Olg9Suy11porVo5kMW/70fb7a22d0bd6f2c2a937a55a3c1ae71/Icon_-_Clickup.svg'
+                  }
+                },
+                {
+                  icon: {
+                    url: 'https://images.ctfassets.net/l41zuz9np7js/24p1Olg9Suy11porVo5kMW/70fb7a22d0bd6f2c2a937a55a3c1ae71/Icon_-_Clickup.svg'
+                  }
+                }
+              ]}
+            />
+          </AppSliderSection>
         </AutomationHero>
         <Container>
           <SetupAutomation istitle>
@@ -115,7 +138,8 @@ export default function Automation({ details }) {
                   }}
                 />
               </h2>
-              <p>{documentToReactComponents(details?.sectionFeaturedBody?.json)}</p>
+              {!isEmpty(details?.sectionFeaturedBody?.json) &&
+                documentToReactComponents(details?.sectionFeaturedBody?.json)}
               <Button
                 bgColor={'transparent'}
                 fontColor={'#000000'}

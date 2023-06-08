@@ -707,6 +707,14 @@ const CustomAppSection = styled.div`
     padding: 8px 32px;
   }
 `;
+
+const AppSliderSection = styled.div`
+  margin: 116px 0 100px;
+  filter: drop-shadow(0px 4.68797px 157.047px rgba(9, 170, 108, 0.55));
+  @media only screen and (max-width: 449px) {
+    margin: 40px 0 80px;
+  }
+`;
 export {
   HeroSection,
   FeatureSection,
@@ -759,5 +767,6 @@ export {
   ExtensionsLastSection,
   TooltipWrap,
   AppHeader3,
-  CustomAppSection
+  CustomAppSection,
+  AppSliderSection
 };

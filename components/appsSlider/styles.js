@@ -89,4 +89,101 @@ const SliderInner = styled(Link)`
     width: 250px;
   }
 `;
-export { SliderLine, Animated, SliderInner };
+
+const SliderInnerBox = styled(Link)`
+  width: 80px;
+  height: 80px;
+  border: 1px solid #e3ffee;
+  border-radius: 8px;
+  cursor: pointer;
+  position: relative;
+  z-index: 99;
+  background-color: #00160e;
+  padding: 17px;
+  /* padding: 1px; */
+  /* :hover {
+    border: 2px solid #00160e;
+    padding: 0;
+    box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.1);
+  } */
+  .appshero-logo {
+    width: 46px;
+    height: 46px;
+    background: #e3ffee;
+    border-radius: 50%;
+    @media only screen and (max-width: 449px) {
+      width: 32px;
+      height: 32px;
+    }
+  }
+  @media only screen and (max-width: 449px) {
+    width: 60px;
+    height: 60px;
+    padding: 14px;
+  }
+`;
+
+const AppsAnimated = styled.div`
+  margin-bottom: 40px;
+  position: relative;
+  @media only screen and (max-width: 449px) {
+    margin-bottom: 32px;
+  }
+  .wrap {
+    width: 100%;
+
+    &--logobar {
+      height: 82px;
+      overflow: hidden;
+      position: relative;
+      @media only screen and (max-width: 449px) {
+        height: 62px;
+      }
+    }
+  }
+  .list1 {
+    list-style: none;
+    display: flex;
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    width: 100%;
+    margin-left: 0;
+
+    &__item1 {
+      flex-grow: 0;
+      flex-shrink: 0;
+      padding: 1px 60px 0 0;
+      width: auto;
+      @media only screen and (max-width: 449px) {
+        padding: 1px 40px 0 0;
+      }
+    }
+  }
+  .card-gap {
+    display: flex;
+    gap: 60px;
+    padding: 1px 60px 0 0;
+    @media only screen and (max-width: 449px) {
+      gap: 40px;
+      padding: 1px 40px 0 0;
+    }
+  }
+`;
+
+const AppSliderLine = styled.div`
+  background: linear-gradient(90deg, #e3ffee 50%, transparent 0), linear-gradient(90deg, #e3ffee 50%, transparent 0),
+    linear-gradient(0deg, #e3ffee 50%, transparent 0), linear-gradient(0deg, #e3ffee 50%, transparent 0);
+  background-position: 0 0, 200px 100px, 0 100px, 200px 0;
+  background-repeat: repeat-x, repeat-x, repeat-y, repeat-y;
+  background-size: 10px 4px, 10px 10px, 10px 14px, 10px 14px;
+  height: 1px;
+  left: 5px;
+  position: absolute;
+  right: 5px;
+  top: 41px;
+  @media only screen and (max-width: 449px) {
+    top: 31px;
+  }
+`;
+export { SliderLine, Animated, SliderInner, SliderInnerBox, AppsAnimated, AppSliderLine };

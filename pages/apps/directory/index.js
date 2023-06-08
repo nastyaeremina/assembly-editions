@@ -150,6 +150,7 @@ export default function Apps({ featuredApps, allCategoryWithPost, allPosts, seoD
   const renderPartnerAppsView = useCallback((appList) => {
     if (isEmpty(appList)) return null;
     return appList?.map((item, index) => {
+      console.log('item?.icon?.url', item?.icon?.url);
       return (
         <CardSub key={`partnerappview_index${item.slug}`}>
           <Link href={`/apps/directory/${item?.slug}`}>

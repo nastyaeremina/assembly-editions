@@ -41,6 +41,7 @@ import {
 import FeatureAnimated from '../../components/FeatureSlider/featureanimated';
 
 export default function Automation({ details }) {
+  console.log('details?.sectionFeaturedContentCollection?.items', details?.sectionFeaturedContentCollection?.items);
   return (
     <>
       <SEO seoData={details?.seoMetadata}></SEO>
@@ -190,9 +191,9 @@ export default function Automation({ details }) {
           demoUrl={details?.demoPortalUrl}
         />
         <Container>
-            <SetupAutomation>
-              <RightSection>{documentToReactComponents(details?.sectionHeader4?.json)}</RightSection>
-            </SetupAutomation>
+          <SetupAutomation>
+            <RightSection>{documentToReactComponents(details?.sectionHeader4?.json)}</RightSection>
+          </SetupAutomation>
           <CardSec>
             <ExtentionCard data={details?.sectionContent5Collection?.items[0]} />
             <Cards>
@@ -241,7 +242,9 @@ export default function Automation({ details }) {
             </TopView>
           </Featured>
         </Container>
-        <FeatureAnimated data={details?.sectionFeaturedContentCollection?.items} isDetailSlider={true} />
+        {!isEmpty(removeEmptyElement(details?.sectionFeaturedContentCollection?.items)) && (
+          <FeatureAnimated data={details?.sectionFeaturedContentCollection?.items} isDetailSlider={true} />
+        )}
         <FAQ contentID={details?.faqGroup?.sys?.id} />
         <CTA />
       </Layout>
