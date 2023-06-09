@@ -127,6 +127,7 @@ const AppsHeroSlider = ({ data, isDetailSlider }) => {
     // Kick off for the animation function.
     let intervalId = setInterval(animationLoop, 25);
 
+
     function animationLoop() {
       const firstListItem = listElem3.querySelector('.list__item1:first-child');
 
