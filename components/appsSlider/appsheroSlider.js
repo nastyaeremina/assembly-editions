@@ -46,11 +46,7 @@ const AppsHeroSlider = ({ data, isDetailSlider }) => {
     let currentLeftValue = 0;
 
     // Kick off for the animation function.
-    let intervalId = setInterval(animationLoop, 10);
-
-    // Add hover event listener to pause animation on hover
-    containerElem.addEventListener('mouseenter', handleHover);
-    containerElem.addEventListener('mouseleave', handleHover);
+    let intervalId = setInterval(animationLoop, 25);
 
     function animationLoop() {
       const firstListItem = listElem.querySelector('.list__item1:first-child');
@@ -66,19 +62,9 @@ const AppsHeroSlider = ({ data, isDetailSlider }) => {
       currentLeftValue--;
     }
 
-    function handleHover(event) {
-      if (event.type === 'mouseenter') {
-        clearInterval(intervalId); // Pause animation on hover
-      } else if (event.type === 'mouseleave') {
-        intervalId = setInterval(animationLoop, 10); // Resume animation on mouse leave
-      }
-    }
-
     // Cleanup the interval and remove event listeners on component unmount
     return () => {
       clearInterval(intervalId);
-      containerElem.removeEventListener('mouseenter', handleHover);
-      containerElem.removeEventListener('mouseleave', handleHover);
     };
   }, []);
 
@@ -90,11 +76,7 @@ const AppsHeroSlider = ({ data, isDetailSlider }) => {
     let currentLeftValue = -containerElem2.offsetWidth;
 
     // Kick off the animation function.
-    let intervalId2 = setInterval(animationLoop2, 10);
-
-    // Add hover event listeners to pause animation on hover
-    containerElem2.addEventListener('mouseenter', handleHover);
-    containerElem2.addEventListener('mouseleave', handleHover);
+    let intervalId2 = setInterval(animationLoop2, 25);
 
     function animationLoop2() {
       const firstListItem = listElem2.querySelector('.list__item1:first-child');
@@ -118,14 +100,6 @@ const AppsHeroSlider = ({ data, isDetailSlider }) => {
       }
     }
 
-    function handleHover(event) {
-      if (event.type === 'mouseenter') {
-        clearInterval(intervalId2); // Pause animation on hover
-      } else if (event.type === 'mouseleave') {
-        intervalId2 = setInterval(animationLoop2, 10); // Resume animation on mouse leave
-      }
-    }
-
     function handleResize() {
       rightSideOfContainer2 = containerElem2.getBoundingClientRect().right;
     }
@@ -136,8 +110,6 @@ const AppsHeroSlider = ({ data, isDetailSlider }) => {
     // Cleanup the interval, remove event listeners, and stop listening for resize on component unmount
     return () => {
       clearInterval(intervalId2);
-      containerElem2.removeEventListener('mouseenter', handleHover);
-      containerElem2.removeEventListener('mouseleave', handleHover);
       window.removeEventListener('resize', handleResize);
     };
   }, []);
@@ -151,11 +123,8 @@ const AppsHeroSlider = ({ data, isDetailSlider }) => {
     let currentLeftValue = 0;
 
     // Kick off for the animation function.
-    let intervalId = setInterval(animationLoop, 10);
+    let intervalId = setInterval(animationLoop, 25);
 
-    // Add hover event listener to pause animation on hover
-    containerElem3.addEventListener('mouseenter', handleHover);
-    containerElem3.addEventListener('mouseleave', handleHover);
 
     function animationLoop() {
       const firstListItem = listElem3.querySelector('.list__item1:first-child');
@@ -171,19 +140,9 @@ const AppsHeroSlider = ({ data, isDetailSlider }) => {
       currentLeftValue = currentLeftValue - 1;
     }
 
-    function handleHover(event) {
-      if (event.type === 'mouseenter') {
-        clearInterval(intervalId); // Pause animation on hover
-      } else if (event.type === 'mouseleave') {
-        intervalId = setInterval(animationLoop, 10); // Resume animation on mouse leave
-      }
-    }
-
     // Cleanup the interval and remove event listeners on component unmount
     return () => {
       clearInterval(intervalId);
-      containerElem3.removeEventListener('mouseenter', handleHover);
-      containerElem3.removeEventListener('mouseleave', handleHover);
     };
   }, []);
 

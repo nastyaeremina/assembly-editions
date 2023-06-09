@@ -39,7 +39,7 @@ const Animated = styled.div`
       overflow: hidden;
       position: relative;
       @media only screen and (max-width: 449px) {
-        height: 290px;
+        height: 292px;
       }
     }
   }
@@ -90,12 +90,12 @@ const SliderInner = styled(Link)`
   }
 `;
 
-const SliderInnerBox = styled(Link)`
+const SliderInnerBox = styled.div`
   width: 80px;
   height: 80px;
   border: 1px solid #e3ffee;
   border-radius: 8px;
-  cursor: pointer;
+  /* cursor: pointer; */
   position: relative;
   z-index: 99;
   background-color: #00160e;
