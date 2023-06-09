@@ -22,7 +22,9 @@ const AppsHeroSlider = ({ data, isDetailSlider }) => {
     return dataList?.map((item, index) => {
       return (
         <>
-          <SliderInnerBox href={`/apps/directory/${item?.slug}`} key={`slider_index_${index}`}>
+          <SliderInnerBox
+            // href={`/apps/directory/${item?.slug}`}
+            key={`slider_index_${index}`}>
             <Image
               src={item?.icon.url}
               alt='main-logo'
@@ -124,7 +126,6 @@ const AppsHeroSlider = ({ data, isDetailSlider }) => {
 
     // Kick off for the animation function.
     let intervalId = setInterval(animationLoop, 25);
-
 
     function animationLoop() {
       const firstListItem = listElem3.querySelector('.list__item1:first-child');
