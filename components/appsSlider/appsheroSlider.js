@@ -22,7 +22,7 @@ const AppsHeroSlider = ({ data, isDetailSlider }) => {
     return dataList?.map((item, index) => {
       return (
         <>
-          <SliderInnerBox href={`/apps/directory/`} key={`slider_index_${index}`}>
+          <SliderInnerBox href={`/apps/directory/${item?.slug}`} key={`slider_index_${index}`}>
             <Image
               src={item?.icon.url}
               alt='main-logo'

@@ -24,11 +24,11 @@ import FAQ from '../../components/faq/faq';
 import { TopView } from '../../components/solution/clienttab/styles';
 import AppsSlider from '../../components/appsSlider';
 import { COPILOT_ONBORADING_LINK } from '../../constants/externalLinks';
-import { getPageAppDetail } from '../../lib/contentful-partnerApps';
+import { getAllAppsWithIcon, getPageAppDetail } from '../../lib/contentful-partnerApps';
 import AppsHeroSlider from '../../components/appsSlider/appsheroSlider';
 import { AppSliderSection } from '../../styles/appsStyles';
 
-export default function Automation({ details }) {
+export default function Automation({ details, appsList }) {
   return (
     <>
       <SEO seoData={details?.seoMetadata}></SEO>
@@ -63,27 +63,11 @@ export default function Automation({ details }) {
           {/* {!isEmpty(details?.heroImage?.url) && (
             <Image src={details?.heroImage?.url} alt='apps' width={1224} height={324} className='apps-image' />
           )} */}
-          <AppSliderSection>
-            <AppsHeroSlider
-              data={[
-                {
-                  icon: {
-                    url: 'https://images.ctfassets.net/l41zuz9np7js/7MMEpeI730Os5sARUM1qsj/8184594716017bad01e7c4616742bfc2/Icon_-_Google_Sheets.svg'
-                  }
-                },
-                {
-                  icon: {
-                    url: 'https://images.ctfassets.net/l41zuz9np7js/24p1Olg9Suy11porVo5kMW/70fb7a22d0bd6f2c2a937a55a3c1ae71/Icon_-_Clickup.svg'
-                  }
-                },
-                {
-                  icon: {
-                    url: 'https://images.ctfassets.net/l41zuz9np7js/24p1Olg9Suy11porVo5kMW/70fb7a22d0bd6f2c2a937a55a3c1ae71/Icon_-_Clickup.svg'
-                  }
-                }
-              ]}
-            />
-          </AppSliderSection>
+          {!isEmpty(appsList) && (
+            <AppSliderSection>
+              <AppsHeroSlider data={appsList} />
+            </AppSliderSection>
+          )}
         </AutomationHero>
         <Container>
           <SetupAutomation istitle>
@@ -163,8 +147,8 @@ export default function Automation({ details }) {
 
 export async function getStaticProps({ params, preview = false }) {
   const details = (await getPageAppDetail(APP_PAGE_ID, preview)) ?? [];
-
+  const appsList = (await getAllAppsWithIcon(preview)) ?? [];
   return {
-    props: { details }
+    props: { details, appsList }
   };
 }
