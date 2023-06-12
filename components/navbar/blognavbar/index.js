@@ -122,7 +122,14 @@ export default function BlogNavbar({ isModule, headerIndex, isEnterPrice, tagDat
                     </SpanLink>
                   );
                 })}
-
+                <SpanLink
+                  textColor={colorList?.fontColor}
+                  hoverColor={colorList?.primaryColor}
+                  className={router.pathname === '/pricing' ? 'active' : ''}>
+                  <MobileTextLink hoverColor={colorList?.primaryColor} href='/updates'>
+                    What’s New
+                  </MobileTextLink>
+                </SpanLink>
                 {/* <SpanLink
                   textColor={colorList?.fontColor}
                   hoverColor={colorList?.primaryColor}
@@ -196,7 +203,12 @@ export default function BlogNavbar({ isModule, headerIndex, isEnterPrice, tagDat
               </SpanLink>
             );
           })}
-
+          <SpanLink
+            textColor={colorList?.fontColor}
+            hoverColor={colorList?.primaryColor}
+            className={router.pathname === '/pricing' ? 'active' : ''}>
+            <Link href='/updates'>What’s New</Link>
+          </SpanLink>
           {/* <SpanLink
             textColor={colorList?.fontColor}
             hoverColor={colorList?.primaryColor}
