@@ -31,7 +31,7 @@ import SEO from '../../../components/seo';
 import AppError from '../../../components/apperror/error';
 import { getSEOdata } from '../../../lib/contentful-seo';
 import { COPILOT_ONBORADING_LINK } from '../../../constants/externalLinks';
-import { Cardbottom, DirectoryButton, DirectoryCard } from '../../../styles/automationStyles';
+import { CardAuto, Cardbottom, DirectoryButton, DirectoryCard } from '../../../styles/automationStyles';
 import { SliderIcon, SliderSub } from '../../../components/FeatureSlider/styles';
 import { getAllAutomationCategories, getAllAutomations } from '../../../lib/contentful-automation';
 
@@ -86,33 +86,38 @@ export default function AutomationDirectory({ featuredApps, allCategoryWithPost,
       return (
         <>
           <Link href={`/automations/directory/${item?.slug}`}>
-            <DirectoryCard href={`/automations/directory/${item?.slug}`} key={`featuredview_index_${index}`}>
-              <SliderSub>
-                <h4>{item?.name}</h4>
-                <p>{item?.description}</p>
-              </SliderSub>
-              <SliderIcon>
-                {item?.productLogosCollection?.items?.map((logo, index) => {
-                  return (
-                    <Image
-                      key={`automation_logo_${index}`}
-                      src={logo?.url}
-                      alt='logo'
-                      width={40}
-                      height={40}
-                      className='logo'
-                    />
-                  );
-                })}
-              </SliderIcon>
-              <Cardbottom>
-                {joinArrayToString({
-                  list: item?.automationCategoriesCollection?.items,
-                  fieldName: 'name',
-                  seprator: ', '
-                })}
-              </Cardbottom>
-            </DirectoryCard>
+            <CardAuto>
+              <DirectoryCard
+                href={`/automations/directory/${item?.slug}`}
+                key={`featuredview_index_${index}`}
+                className='directorycard'>
+                <SliderSub>
+                  <h4>{item?.name}</h4>
+                  <p>{item?.description}</p>
+                </SliderSub>
+                <SliderIcon>
+                  {item?.productLogosCollection?.items?.map((logo, index) => {
+                    return (
+                      <Image
+                        key={`automation_logo_${index}`}
+                        src={logo?.url}
+                        alt='logo'
+                        width={40}
+                        height={40}
+                        className='logo'
+                      />
+                    );
+                  })}
+                </SliderIcon>
+                <Cardbottom>
+                  {joinArrayToString({
+                    list: item?.automationCategoriesCollection?.items,
+                    fieldName: 'name',
+                    seprator: ', '
+                  })}
+                </Cardbottom>
+              </DirectoryCard>
+            </CardAuto>
           </Link>
         </>
       );
@@ -143,30 +148,32 @@ export default function AutomationDirectory({ featuredApps, allCategoryWithPost,
       return (
         <>
           <Link href={`/automations/directory/${item?.slug}`}>
-            <DirectoryCard key={`partnerappview_index${index}`}>
-              <SliderSub>
-                <h4>{item?.name}</h4>
-                <p>{item?.description}</p>
-              </SliderSub>
-              <SliderIcon>
-                {item?.productLogosCollection?.items?.map((logo, index) => {
-                  return (
-                    <Image
-                      key={`automation_logo_${index}`}
-                      src={logo?.url}
-                      alt='logo'
-                      width={40}
-                      height={40}
-                      className='logo'
-                    />
-                  );
-                })}
-              </SliderIcon>
-            </DirectoryCard>
+            <CardAuto>
+              <DirectoryCard key={`partnerappview_index${index}`} className='directorycard'>
+                <SliderSub>
+                  <h4>{item?.name}</h4>
+                  <p>{item?.description}</p>
+                </SliderSub>
+                <SliderIcon>
+                  {item?.productLogosCollection?.items?.map((logo, index) => {
+                    return (
+                      <Image
+                        key={`automation_logo_${index}`}
+                        src={logo?.url}
+                        alt='logo'
+                        width={40}
+                        height={40}
+                        className='logo'
+                      />
+                    );
+                  })}
+                </SliderIcon>
+              </DirectoryCard>
+            </CardAuto>
           </Link>
         </>
       );
-    }, []);
+    });
   }, []);
 
   const renderAllCategoryAppsView = useMemo(() => {
@@ -233,13 +240,15 @@ export default function AutomationDirectory({ featuredApps, allCategoryWithPost,
                     </InputWrap>
                     <Catagory>
                       <h4>Categories</h4>
-                      <Catagoryitem
-                        isActive={selected_category === 'Brief-Section'}
-                        onClick={() => {
-                          setSelected_category('Brief-Section');
-                        }}>
-                        <Link href={'#Brief-Section'}>Featured</Link>
-                      </Catagoryitem>
+                      {!isEmpty(featuredApps) && (
+                        <Catagoryitem
+                          isActive={selected_category === 'featured'}
+                          onClick={() => {
+                            setSelected_category('featured');
+                          }}>
+                          <Link href={'#featured'}>Featured</Link>
+                        </Catagoryitem>
+                      )}
                       {renderCategoryList}
                     </Catagory>
                   </LeftWrap>
@@ -249,7 +258,7 @@ export default function AutomationDirectory({ featuredApps, allCategoryWithPost,
                 ) : (
                   <FeatureRight>
                     {!isEmpty(featuredApps) && (
-                      <Featured id='Brief-Section'>
+                      <Featured id='featured'>
                         <AppHeader3>Featured</AppHeader3>
                         <FeatureMenu isAutomationDirectoryCard>{renderFeaturedView}</FeatureMenu>
                       </Featured>

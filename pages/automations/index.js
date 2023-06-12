@@ -41,7 +41,6 @@ import {
 import FeatureAnimated from '../../components/FeatureSlider/featureanimated';
 
 export default function Automation({ details }) {
-  console.log('details?.sectionFeaturedContentCollection?.items', details?.sectionFeaturedContentCollection?.items);
   return (
     <>
       <SEO seoData={details?.seoMetadata}></SEO>

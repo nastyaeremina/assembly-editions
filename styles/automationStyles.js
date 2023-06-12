@@ -115,25 +115,12 @@ const DirectoryButton = styled.div`
     gap: 12px;
   }
 `;
-const DirectoryCard = styled.div`
-  border: 1px solid #00160e;
-  border-radius: 4px;
-  cursor: pointer;
-  background-color: #fff;
-  max-width: 423px;
-  width: 100%;
-  padding: 1px;
-  :hover {
-    border: 2px solid #00160e;
-    padding: 0px;
-    box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.1);
-  }
-`;
+const DirectoryCard = styled.div``;
 const Cardbottom = styled.div`
   padding: 8px 16px;
   background: #e3ffee;
   border-top: 1px solid #000000;
-  border-radius: 0px 0px 5px 5px;
+  border-radius: 0px 0px 4px 4px;
   color: ${({ theme }) => theme.colors.purpledark};
   ${CardTxt}
 `;
@@ -197,6 +184,34 @@ const Head = styled.h2`
     margin: 0 0 40px 0;
   }
 `;
+
+const CardAuto = styled.div`
+  -webkit-transition: all 0.2ms ease-in-out;
+  transition: all 0.2ms ease-in-out;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  cursor: pointer;
+  background-color: #fff;
+  max-width: 423px;
+  width: 100%;
+  .directorycard {
+    -webkit-transition: all 0.2ms ease-in-out;
+    transition: all 0.2ms ease-in-out;
+    border: 1px solid #00160e;
+    border-radius: 4px;
+  }
+  :hover {
+    -webkit-transition: all 0.2ms ease-in-out;
+    transition: all 0.2ms ease-in-out;
+    border: 2px solid #00160e;
+    box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.1);
+    .directorycard {
+      -webkit-transition: all 0.2ms ease-in-out;
+      transition: all 0.2ms ease-in-out;
+      border: 0px solid #00160e;
+    }
+  }
+`;
 export {
   AutomationHero,
   Title,
@@ -214,5 +229,6 @@ export {
   DetailCaption,
   DetailButtonSection,
   ImageSection,
-  Head
+  Head,
+  CardAuto
 };
