@@ -66,6 +66,7 @@ export default function Automation({ details, appsList }) {
           {!isEmpty(appsList) && (
             <AppSliderSection>
               <AppsHeroSlider data={appsList} />
+              <div className='drop'></div>
             </AppSliderSection>
           )}
         </AutomationHero>

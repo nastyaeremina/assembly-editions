@@ -710,7 +710,32 @@ const CustomAppSection = styled.div`
 
 const AppSliderSection = styled.div`
   margin: 116px 0 100px;
-  filter: drop-shadow(0px 4.68797px 157.047px rgba(9, 170, 108, 0.55));
+  position: relative;
+  .drop {
+    background-image: url('/images/appbackground.png');
+    background-size: contain;
+    width: 100%;
+    height: 526px;
+    position: absolute;
+    top: -115px;
+    bottom: 0;
+  }
+  @media only screen and (max-width: 1024px) {
+    .drop {
+      background-size: cover;
+      height: 526px;
+      top: -115px;
+      bottom: 0;
+    }
+  }
+  @media only screen and (max-width: 449px) {
+    .drop {
+      background-size: cover;
+      height: 426px;
+      top: -100px;
+      bottom: 0;
+    }
+  }
   @media only screen and (max-width: 449px) {
     margin: 40px 0 80px;
   }

@@ -220,7 +220,7 @@ const HeroBtnBlock = styled.div`
 
 const MainImage = styled.div`
   width: 100%;
-  filter: drop-shadow(0px 4.68797px 157.047px rgba(9, 170, 108, 0.55));
+  filter: drop-shadow(0px 4px 112px rgba(9, 170, 108, 0.55));
   ${(props) =>
     props.isLight &&
     css`
