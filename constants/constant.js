@@ -266,3 +266,4 @@ export const PARTNERSHIP_FAQ_ID = '5oRKzJaIkJ1yTQdAolMZjB';
 export const PARTNERSHIP_ID = '1qsEfH5A3RlGv7dac0uKZD';
 export const AUTOMATION_ID = '3tQZ0zurolpvj9N43yXCIF';
 export const APP_PAGE_ID = 'zHpvQW60FYupSGIasksht';
+export const WEEKLY_DEMO_PAGE_ID = '6yTkSs6vPA4UtptzHbvw3r';

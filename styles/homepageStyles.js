@@ -757,16 +757,16 @@ const RightDetail = styled.div`
     props.isAutomation &&
     css`
       padding: 0;
-      @media only screen and (max-width: 749px) {
-        padding: 0;
-      }
       img {
-        height: auto;
+        height: 100%;
         max-width: 100%;
         width: 100%;
-        max-height: 550px;
+        max-height: 275px;
         display: block;
         border-radius: 5px;
+      }
+      @media only screen and (max-width: 749px) {
+        padding: 0;
       }
     `}
 `;
