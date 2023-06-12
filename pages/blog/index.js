@@ -51,11 +51,9 @@ export default function Blog({ seoData, allPosts, tags }) {
       const finalTagList = item?.tags?.filter((tag) => tag?.name?.trim()?.[0] !== '#');
       return (
         <FirstBlog onClick={() => router.push(`/blog/${item?.slug}`)} key={`featuredblog_index_${index}`}>
-          {!isEmpty(item?.feature_imag) && (
-            <Top>
-              <Image src={item?.feature_image} className='image' alt='blog' width={880} height={354} />
-            </Top>
-          )}
+       <Top>
+            <Image src={item?.feature_image} className='image' alt='blog' width={880} height={354} />
+          </Top>
           <Text>
             <h2>{item?.title}</h2>
             <PostDetail>
