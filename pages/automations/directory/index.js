@@ -83,7 +83,6 @@ export default function AutomationDirectory({ featuredApps, allCategoryWithPost,
   const renderFeaturedView = useMemo(() => {
     if (isEmpty(featuredApps)) return null;
     return featuredApps?.map((item, index) => {
-      console.log('item', item);
       return (
         <>
           <Link href={`/automations/directory/${item?.slug}`}>
@@ -151,7 +150,16 @@ export default function AutomationDirectory({ featuredApps, allCategoryWithPost,
               </SliderSub>
               <SliderIcon>
                 {item?.productLogosCollection?.items?.map((logo, index) => {
-                  return <Image key={`automation_logo_${index}`} src={logo?.url} alt='logo' width={40} height={40} className='logo'/>;
+                  return (
+                    <Image
+                      key={`automation_logo_${index}`}
+                      src={logo?.url}
+                      alt='logo'
+                      width={40}
+                      height={40}
+                      className='logo'
+                    />
+                  );
                 })}
               </SliderIcon>
             </DirectoryCard>
