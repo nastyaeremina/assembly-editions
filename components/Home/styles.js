@@ -220,13 +220,16 @@ const HeroBtnBlock = styled.div`
 
 const MainImage = styled.div`
   width: 100%;
-  filter: drop-shadow(0px 4px 112px rgba(9, 170, 108, 0.55));
+  /* filter: drop-shadow(0px 4px 112px rgba(9, 170, 108, 0.55)); */
   ${(props) =>
     props.isLight &&
     css`
       filter: drop-shadow(0px 0px 60px rgba(0, 0, 0, 0.12));
     `}
   .heromain-image {
+    box-shadow: 0px 4px 112px rgba(9, 170, 108, 0.55);
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
     max-width: 1000px;
     width: 100%;
     max-height: 415px;
