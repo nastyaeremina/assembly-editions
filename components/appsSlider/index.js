@@ -27,11 +27,11 @@ const AppsSlider = ({ data, isDetailSlider }) => {
               />
             </FeatureImg>
             <CardText>
-              <h3>{'Airtable'}</h3>
-              <p>{'Lets clients to submit forms by surfacing a form created in Jotform. '}</p>
+              <h3>{item?.name}</h3>
+              <p>{item?.description}</p>
             </CardText>
             <CardEnd>
-              <p>{'Scheduling'}</p>
+              <p>{item?.partnerAppCategoriesCollection?.items[0]?.name}</p>
             </CardEnd>
           </SliderInner>
         </>
