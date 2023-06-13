@@ -6,8 +6,18 @@ import { Heading6 } from '../../styles/styles';
 const CardSection = styled.div`
   padding-top: 50px;
   padding-bottom: 50px;
+  ${(props) =>
+    props.isAppExplore &&
+    css`
+      padding-bottom: 0px;
+    `}
   @media only screen and (max-width: 426px) {
     padding-bottom: 30px;
+    ${(props) =>
+      props.isAppExplore &&
+      css`
+        padding-bottom: 0px;
+      `}
   }
 `;
 const CardSectionHead = styled.div`

@@ -87,13 +87,17 @@ export default function Automation({ details, appsList }) {
             />
           )}
           {!isEmpty(details?.sectionContent2Collection?.items) && (
-            <AutomationCardSection heading={details?.sectionHeader2} data={details?.sectionContent2Collection?.items} />
+            <AutomationCardSection
+              heading={details?.sectionHeader2}
+              data={details?.sectionContent2Collection?.items}
+              isAppExplore={true}
+            />
           )}{' '}
         </Container>
-        <ExploreTab
+        {/* <ExploreTab
           data={removeEmptyElement(details?.sectionContent3Collection?.items)}
           demoUrl={details?.demoPortalUrl}
-        />
+        /> */}
         <Container>
           {!isEmpty(details?.sectionCaseStudyContent) && (
             <>

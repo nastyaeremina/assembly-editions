@@ -3,7 +3,7 @@ import { isEmpty, separateSpecialChar } from '../../helpers/helpers';
 import { CardSection, CardSectionHead, Cards } from './styles';
 import AutomationCard from './card';
 
-export default function AutomationCardSection({ data, heading }) {
+export default function AutomationCardSection({ data, heading, isAppExplore }) {
   const renderCardView = useMemo(() => {
     if (isEmpty(data)) return null;
     return data?.map((item, index) => {
@@ -20,7 +20,7 @@ export default function AutomationCardSection({ data, heading }) {
   }, [data]);
 
   return (
-    <CardSection>
+    <CardSection isAppExplore={isAppExplore}>
       <CardSectionHead>
         <div dangerouslySetInnerHTML={{ __html: separateSpecialChar(heading) }} />
       </CardSectionHead>
