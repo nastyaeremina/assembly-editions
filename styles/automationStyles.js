@@ -129,10 +129,18 @@ const LogoSection = styled.div`
   gap: 16px;
   padding-top: 22px;
   padding-bottom: 20px;
+  .logo {
+    width: 80px;
+    height: 80px;
+    border: 2px solid #e9e9ea;
+    border-radius: 160px;
+  }
   @media only screen and (max-width: 426px) {
     .logo {
       width: 40px;
       height: 40px;
+      border: 1px solid #e9e9ea;
+      border-radius: 80px;
     }
   }
 `;
@@ -164,7 +172,7 @@ const DetailButtonSection = styled.div`
   }
 `;
 const ImageSection = styled.div`
-  background-color: ${({ theme }) => theme.colors.background};
+  background-color: #f5f5f5;
   margin-top: 50px;
   margin-bottom: 100px;
   padding: 40px 0;
