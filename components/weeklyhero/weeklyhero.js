@@ -37,21 +37,25 @@ export default function WeeklyHero({ data }) {
   const [isRegister, setIsRegister] = useState(false);
 
   const sdpeakersRenderDynamic = useMemo(() => {
-    if (isEmpty(data?.tagCollection?.items)) return null;
-    return data?.tagCollection?.items?.map((item, index) => {
+    if (isEmpty(data?.speakerCollection?.items)) return null;
+    return data?.speakerCollection?.items?.map((item, index) => {
       return (
         <Profile key={`speakes_index_${index}`}>
-          <Image
-            src={item?.profilePicture?.url}
-            alt='profile'
-            width={40}
-            height={40}
-            layout={'fixed'}
-            className='tooltip'
-          />
+          {!isEmpty(item?.profilePicture?.url) && (
+            <Link href={item?.profileLink ?? ''} target='_blank' key={`teammember_index_${index}`}>
+              <Image
+                src={item?.profilePicture?.url}
+                alt='profile'
+                width={40}
+                height={40}
+                layout={'fixed'}
+                className='tooltip'
+              />
+            </Link>
+          )}
           <MobileProfile>
-            <p>{item?.name}</p>
-            <span>{item?.description}</span>
+            {!isEmpty(item?.name) && <p>{item?.name}</p>}
+            {!isEmpty(item?.about) && <span>{item?.about}</span>}
           </MobileProfile>
           <Profiledetail className='tooltiptext'>
             <Line>
@@ -59,20 +63,20 @@ export default function WeeklyHero({ data }) {
                 <line x1='1' y1='4.37114e-08' x2='0.999997' y2='57' stroke='#00160E' stroke-width='2' />
               </svg>
             </Line>
-            <p>{item?.name}</p>
-            <span>{item?.description}</span>
+            {!isEmpty(item?.name) && <p>{item?.name}</p>}
+            {!isEmpty(item?.about) && <span>{item?.about}</span>}
           </Profiledetail>
         </Profile>
       );
     });
-  }, [data?.tagCollection?.items]);
+  }, [data?.speakerCollection?.items]);
   return (
     <HeroSection>
       <Container>
         <SolutionWrap isWeeklycontainer={true}>
           <LeftWrap>
             <Time>
-              <p>Every Thursday 12 p.m. EDT</p>
+              <p>{data?.tag}</p>
             </Time>
             <TextSection>
               <h1>
@@ -81,7 +85,7 @@ export default function WeeklyHero({ data }) {
               <div style={{ margin: '20px 0' }}>
                 {!isEmpty(data?.body?.json) && documentToReactComponents(data?.body?.json)}
               </div>
-              {!isEmpty(data?.tagCollection?.items) && (
+              {!isEmpty(data?.speakerCollection?.items) && (
                 <Speakers>
                   <p>Speakers</p>
                   <SpeakerProfile>{sdpeakersRenderDynamic}</SpeakerProfile>
