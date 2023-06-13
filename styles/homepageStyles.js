@@ -758,12 +758,10 @@ const RightDetail = styled.div`
     css`
       padding: 0;
       img {
-        height: 100%;
-        max-width: 100%;
         width: 100%;
-        max-height: 275px;
-        display: block;
+        max-width: 100%;
         border-radius: 5px;
+        max-height: ${props?.isGifFile ? '276px' : '550px'};
       }
       @media only screen and (max-width: 749px) {
         padding: 0;

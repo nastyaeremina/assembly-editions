@@ -50,6 +50,8 @@ export default function TabView({ bgColor, textColor, isHome, tabData: allPosts,
         <div className='outlet'>
           {allPosts?.map((item, index) => {
             const link = item?.link?.split('copilot.com/')?.[1];
+            var extension = item?.image?.url?.split('.').pop();
+            let isGifFile = extension === 'gif';
             return (
               <>
                 <TabContent id={index} activeTab={activeTab}>
@@ -76,7 +78,7 @@ export default function TabView({ bgColor, textColor, isHome, tabData: allPosts,
                         />
                       )}
                     </LeftDetail>
-                    <RightDetail onClick={onClick} isAutomation={isAutomation}>
+                    <RightDetail onClick={onClick} isAutomation={isAutomation} isGifFile={isGifFile}>
                       <ZoomImg src={item?.image?.url} width={881.76} height={550.63} alt='msg-screen' />
                     </RightDetail>
                   </ContainWrap>
