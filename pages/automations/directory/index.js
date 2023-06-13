@@ -25,7 +25,7 @@ import CTA from '../../../components/cta/cta';
 import Image from 'next/image';
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import { isEmpty, joinArrayToString } from '../../../helpers/helpers';
-import { AUTOMATION_SEO_ID } from '../../../constants/constant';
+import { AUTOMATION_SEO_ID, PER_API_LIMIT_FOR_AUTOMATION } from '../../../constants/constant';
 import Button from '../../../components/button/button';
 import SEO from '../../../components/seo';
 import AppError from '../../../components/apperror/error';
@@ -281,11 +281,11 @@ export async function getStaticProps({ preview = false }) {
   let data = [];
   let page = 0;
   do {
-    const skip = page * 100;
+    const skip = page * PER_API_LIMIT_FOR_AUTOMATION;
     data = (await getAllAutomations(skip)) || [];
     allPosts = allPosts.concat(data);
 
-    if (data?.length !== 100) break;
+    if (data?.length !== PER_API_LIMIT_FOR_AUTOMATION) break;
     // eslint-disable-next-line no-plusplus
     else page++;
   } while (data?.length !== 0);
