@@ -126,11 +126,10 @@ export default function AutomationDetail({ detail, relatedApps }) {
             />
           </Container>
         </ImageSection>
-        <Container>
+        {/* <Container>
           <Head>Related Automations</Head>
         </Container>
-        {/* {!isEmpty(relatedApps) && <FeatureSlider data={relatedApps} isDetailSlider={true} />} */}
-        {!isEmpty(relatedApps) && <FeatureAnimated data={relatedApps} />}
+        {!isEmpty(relatedApps) && <FeatureAnimated data={relatedApps} />} */}
         <CTA />
       </Layout>
     </>
