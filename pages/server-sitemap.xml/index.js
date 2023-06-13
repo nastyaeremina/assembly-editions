@@ -9,6 +9,7 @@ import { getUpdatesPosts, getUpdatesWithSlug } from '../../lib/updates-content';
 import { getAllComparisonWithSlug } from '../../lib/contentful-comparison';
 import { useMemo } from 'react';
 import { PER_UPDATE_PAGE_POST } from '../../constants/constant';
+import { getAllAutomationsWithSlug } from '../../lib/contentful-automation';
 
 export async function getServerSideProps(ctx) {
   const appsPost = (await getAllPartnerAppsWithSlug()) ?? []; // appa
@@ -20,8 +21,9 @@ export async function getServerSideProps(ctx) {
   const authorPost = (await getAllAuthorWithSlug()) ?? []; // blog/author
   const tagPost = (await getAllTagWithSlug()) ?? []; // blog/tag
   const comparisonPost = (await getAllComparisonWithSlug()) ?? []; // /comparison
+  const automationsPost = (await getAllAutomationsWithSlug()) ?? []; // automationsPost
 
-  const appsPostsPathList = appsPost?.map((item) => `apps/${item?.slug}`);
+  const appsPostsPathList = appsPost?.map((item) => `apps/directory/${item?.slug}`);
   const jobsPostsPathList = jobPosts?.map((item) => `jobs/${item?.slug}`);
   const solutionssPostsPathList = solutionPosts?.map((item) => `solutions/${item?.slug}`);
   const universityPostsPathList = universityPosts?.map((item) => `university/${item?.slug}`);
@@ -30,6 +32,7 @@ export async function getServerSideProps(ctx) {
   const authorPostsPathList = authorPost?.map((item) => `blog/author/${item?.slug}`);
   const tagPostsPathList = tagPost?.map((item) => `blog/tag/${item?.slug}`);
   const comparisonPostsPathList = comparisonPost?.map((item) => `comparison/${item?.slug}`);
+  const automationsPostsPathList = automationsPost?.map((item) => `automations/directory/${item?.slug}`);
 
   let allUpdateWithPagination = [];
   const totalCount = updatesPost?.meta?.pagination?.total;
@@ -47,7 +50,8 @@ export async function getServerSideProps(ctx) {
     authorPostsPathList,
     tagPostsPathList,
     comparisonPostsPathList,
-    allUpdateWithPagination
+    allUpdateWithPagination,
+    automationsPostsPathList
   );
   return getServerSideSitemapIndex(
     ctx,

@@ -23,10 +23,18 @@ import Graphic from '../../../public/images/graphics.png';
 import { getAllAutomations, getAllAutomationsWithSlug, getAutomationDetail } from '../../../lib/contentful-automation';
 import { isEmpty } from '../../../helpers/helpers';
 import FeatureAnimated from '../../../components/FeatureSlider/featureanimated';
+import SEO from '../../../components/seo';
 
 export default function AutomationDetail({ detail, relatedApps }) {
   return (
     <>
+      <SEO
+        seoData={{
+          seoTitle: detail?.name,
+          description: detail?.description,
+          canonical: 'https://www.copilot.com/automations/directory' + detail?.slug
+        }}
+      />
       <Layout>
         <Navbar />
         <AppsDetailMain>
