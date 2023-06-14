@@ -10,24 +10,26 @@ export default function FeatureAnimated({ data, isDetailSlider }) {
       return (
         <>
           <SliderInner href={`/automations/directory/${item?.slug}`} key={`slider_index_${index}`}>
-            <SliderSub>
-              <h4>{item?.name}</h4>
-              <p>{item?.description}</p>
-            </SliderSub>
-            <SliderIcon>
-              {item?.productLogosCollection?.items?.map((logo, index) => {
-                return (
-                  <Image
-                    key={`automation_logo_${index}`}
-                    src={logo?.url}
-                    alt='logo'
-                    width={40}
-                    height={40}
-                    className='logo'
-                  />
-                );
-              })}
-            </SliderIcon>
+            <div className='appsslider-card'>
+              <SliderSub>
+                <h4>{item?.name}</h4>
+                <p>{item?.description}</p>
+              </SliderSub>
+              <SliderIcon>
+                {item?.productLogosCollection?.items?.map((logo, index) => {
+                  return (
+                    <Image
+                      key={`automation_logo_${index}`}
+                      src={logo?.url}
+                      alt='logo'
+                      width={40}
+                      height={40}
+                      className='logo'
+                    />
+                  );
+                })}
+              </SliderIcon>
+            </div>
           </SliderInner>
         </>
       );

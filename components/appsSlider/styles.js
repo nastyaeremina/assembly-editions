@@ -14,7 +14,7 @@ const SliderLine = styled.div`
   left: 5px;
   position: absolute;
   right: 5px;
-  top: 134px;
+  top: 134.5px;
 `;
 
 const Animated = styled.div`
@@ -65,6 +65,7 @@ const Animated = styled.div`
   .card-gap {
     display: flex;
     gap: 36px;
+    height: 100%;
     @media only screen and (max-width: 449px) {
       gap: 20px;
     }
@@ -73,17 +74,29 @@ const Animated = styled.div`
 
 const SliderInner = styled(Link)`
   width: 270px;
-  border: 1px solid #00160e;
+  border: 1px solid transparent;
   border-radius: 4px;
   cursor: pointer;
   position: relative;
   z-index: 99;
   background-color: #fff;
-  padding: 1px;
+  height: 100%;
+  .appsslider-card {
+    border: 1px solid #00160e;
+    border-radius: 4px;
+    position: relative;
+    height: 100%;
+  }
   :hover {
-    border: 2px solid #00160e;
-    padding: 0;
+    -webkit-transition: all 0.2ms ease-in-out;
+    transition: all 0.2ms ease-in-out;
+    border: 1px solid #00160e;
     box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    .appsslider-card {
+      border: 1px solid #00160e;
+      border-radius: 4px;
+    }
   }
   @media only screen and (max-width: 449px) {
     width: 250px;

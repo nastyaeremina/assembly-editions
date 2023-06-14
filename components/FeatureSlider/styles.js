@@ -16,19 +16,27 @@ const SliderWrap = styled.div`
 `;
 const SliderInner = styled(Link)`
   width: 423px;
-  border: 1px solid #00160e;
+  border: 1px solid transparent;
   border-radius: 4px;
   /* margin: 0 40px; */
   cursor: pointer;
   position: relative;
   z-index: 99;
-  padding: 0 1px;
   background-color: #fff;
+  .appsslider-card {
+    border: 1px solid #00160e;
+    border-radius: 4px;
+    position: relative;
+    height: 100%;
+  }
   :hover {
-    border: 2px solid #00160e;
-    margin: -1px 0px;
-    padding: 0 0;
+    border: 1px solid #00160e;
+    border-radius: 5px;
     box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.1);
+    .appsslider-card {
+      border: 1px solid #00160e;
+      border-radius: 4px;
+    }
   }
   @media only screen and (max-width: 449px) {
     width: 278px;
@@ -86,6 +94,9 @@ const SliderLine = styled.div`
   position: absolute;
   right: 5px;
   bottom: 64.5px;
+  @media only screen and (max-width: 449px) {
+    bottom: 63px;
+  }
 `;
 const SliderIcon = styled.div`
   display: flex;
@@ -122,7 +133,7 @@ const Animated = styled.div`
     width: 100%;
 
     &--logobar {
-      height: 238px;
+      height: 240px;
       overflow: hidden;
       position: relative;
       @media only screen and (max-width: 449px) {

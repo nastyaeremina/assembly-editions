@@ -7,7 +7,7 @@ import Link from 'next/link';
 import featurelogo from '../../public/images/featurelogo.svg';
 import { isEmpty } from '../../helpers/helpers';
 import { CardEnd, CardText, FeatureImg } from '../../styles/appsStyles';
-import { Animated, SliderInner, SliderLine } from './styles';
+import { Animated, AppSliderCard, SliderInner, SliderLine } from './styles';
 
 const AppsSlider = ({ data, isDetailSlider }) => {
   const featurecontentView = useMemo(() => {
@@ -16,23 +16,25 @@ const AppsSlider = ({ data, isDetailSlider }) => {
       return (
         <>
           <SliderInner href={`/apps/directory/${item.slug}`} key={`slider_index_${index}`}>
-            <FeatureImg>
-              <Image
-                src={item?.logo?.url}
-                alt='main-logo'
-                width={236}
-                height={56}
-                objectFit='contain'
-                className='logo'
-              />
-            </FeatureImg>
-            <CardText>
-              <h3>{item?.name}</h3>
-              <p>{item?.description}</p>
-            </CardText>
-            <CardEnd>
-              <p>{item?.partnerAppCategoriesCollection?.items[0]?.name}</p>
-            </CardEnd>
+            <div className='appsslider-card'>
+              <FeatureImg>
+                <Image
+                  src={item?.logo?.url}
+                  alt='main-logo'
+                  width={236}
+                  height={56}
+                  objectFit='contain'
+                  className='logo'
+                />
+              </FeatureImg>
+              <CardText>
+                <h3>{item?.name}</h3>
+                <p>{item?.description}</p>
+              </CardText>
+              <CardEnd>
+                <p>{item?.partnerAppCategoriesCollection?.items[0]?.name}</p>
+              </CardEnd>
+            </div>
           </SliderInner>
         </>
       );
