@@ -186,6 +186,8 @@ export default function Automation({ details }) {
           <AutomationCardSection heading={details?.sectionHeader3} data={details?.sectionContent3Collection?.items} />
         </Container>
         <ExploreTab
+          title={details?.sectionHeader4}
+          description={details?.sectionBody4?.json}
           data={removeEmptyElement(details?.sectionContent4Collection?.items)}
           demoUrl={details?.demoPortalUrl}
         />
@@ -253,7 +255,6 @@ export default function Automation({ details }) {
 
 export async function getStaticProps({ params, preview = false }) {
   const details = (await getPageAutomationDetail(AUTOMATION_ID, preview)) ?? [];
-
   return {
     props: { details }
   };
