@@ -13,7 +13,8 @@ const Extention = styled.a`
     width: 140px;
     /* height: 140px; */
     @media only screen and (max-width: 449px) {
-      height: 110px;
+      /* height: 110px; */
+      /* width: 240px; */
     }
   }
   ${(props) =>
@@ -82,6 +83,7 @@ const Logo = styled.div`
     border-right: none;
     display: flex;
     justify-content: center;
+    height: 180px;
   }
 `;
 const RightDesc = styled.div`

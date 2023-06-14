@@ -274,7 +274,7 @@ const FeatureImg = styled.div`
     height: 56px;
   }
   @media only screen and (max-width: 749px) {
-    justify-content: flex-start;
+    justify-content: center;
   }
 `;
 const Featured = styled.div``;
