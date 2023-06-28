@@ -1,4 +1,4 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+This is the Copilot marketing website project that runs [copilot.com](https://www.copilot.com)
 
 ## Getting Started
 
