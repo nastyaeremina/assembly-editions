@@ -1,4 +1,7 @@
+import Cookies from 'js-cookie';
 import { MONTH_LIST } from '../constants/constant';
+import { COOKIE_NAME } from '../lib/constants';
+import { setUserAuth } from '../actions/appActions';
 
 export function isEmpty(value) {
   if (
@@ -96,4 +99,14 @@ export const createArrayWithFixedLength = (originalArray, desiredLength) => {
   }
 
   return repeatedArray;
+};
+
+export const isUserAtuthenticated = () => (dispatch) => {
+  const myCookieValue = Cookies.get(COOKIE_NAME);
+  if (!isEmpty(myCookieValue)) {
+    const newUser = JSON.parse(myCookieValue) ?? {};
+    if (newUser && newUser?.user?.isUnAuth === false) {
+      dispatch(setUserAuth(true));
+    }
+  }
 };

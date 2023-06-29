@@ -3,12 +3,12 @@ import Layout from '/components/layout';
 import Image from 'next/image';
 import Link from 'next/link';
 
-import { COOKIE_NAME } from '../lib/constants';
-import { useGa } from '../lib/useGa';
 import Cookies from 'js-cookie';
 import { ReactMarkdown } from 'react-markdown/lib/react-markdown';
 
 import { OrganizationJsonLd } from 'next-seo';
+import { COOKIE_NAME } from '../lib/constants';
+import { useGa } from '../lib/useGa';
 import Navbar from '../components/navbar/navbar';
 import { Container } from '../styles/commonStyles';
 import {

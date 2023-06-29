@@ -16,3 +16,6 @@ export const SET_BOOK_DEMO_VALIDATION_ERRORS = 'SET_BOOK_DEMO_VALIDATION_ERRORS'
 
 //Solution navbar List
 export const SET_NAVBAR_SOLUTION_LIST = 'SET_NAVBAR_SOLUTION_LIST';
+
+//user authenticated
+export const SET_USER_AUTH = 'SET_USER_AUTH';

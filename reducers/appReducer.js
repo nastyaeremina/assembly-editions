@@ -16,8 +16,13 @@ const navbarSolutionReducer = createReducer({
   actionType: Actions.SET_NAVBAR_SOLUTION_LIST
 });
 
+const userAuthReducer = createReducer({
+  initialState: false,
+  actionType: Actions.SET_USER_AUTH
+});
 export default combineReducers({
   topbarContent: topBarContentReducer,
   ctaContent: CTAContentReducer,
-  navbarSolutionList: navbarSolutionReducer
+  navbarSolutionList: navbarSolutionReducer,
+  userAuth: userAuthReducer
 });
