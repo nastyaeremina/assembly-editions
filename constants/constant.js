@@ -216,6 +216,8 @@ export const UNIVERSITY_VIDEO_CATEGORY = [
   'Quick Tips'
 ];
 
+export const COOKIE_NAME = 'current-portal-session';
+
 export const PER_API_LIMIT_FOR_AUTOMATION = 10;
 export const PER_UPDATE_PAGE_POST = 10;
 export const INDUSTRY_ARRAY = ['consulting', 'technology', 'marketing'];
