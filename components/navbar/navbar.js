@@ -561,7 +561,7 @@ export default function Navbar({ isModule, headerIndex, isEnterPrice }) {
                       ? colorList?.buttontextColor
                       : '#FFFFFF'
                   }
-                  text={'Open Copilot'}
+                  text={'Open Dashboard'}
                   borderColor={'transparent'}
                   href={OPEN_COPILOT_LINK}
                   hoverColor={'rgba(255, 255, 255, 0.8)'}
@@ -733,7 +733,7 @@ export default function Navbar({ isModule, headerIndex, isEnterPrice }) {
                     <BlackButton
                       textColor={isModule ? colorList?.fontColor : '#FFFFFF'}
                       backgroundColor={colorList?.buttonColor}>
-                      <Link href={OPEN_COPILOT_LINK}>Open Copilot</Link>
+                      <Link href={OPEN_COPILOT_LINK}>Open Dashboard</Link>
                     </BlackButton>
                   ) : (
                     <>
