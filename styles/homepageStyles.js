@@ -396,7 +396,7 @@ const ReviewRight = styled.div`
 const BusinessSection = styled.div`
   box-shadow: 0px -26px 32px rgba(0, 0, 0, 0.08);
   position: relative;
-  z-index:1;
+  z-index: 1;
   padding: 100px 0 50px;
   overflow: hidden;
   @media only screen and (max-width: 768px) {
@@ -682,6 +682,14 @@ const ContainWrap = styled.div`
     margin-top: 28px;
     padding-top: 0;
   }
+  ${(props) =>
+    props.isAutomation &&
+    css`
+      padding-bottom: 50px;
+      @media only screen and (max-width: 768px) {
+        padding-bottom: 30px;
+      }
+    `}
 `;
 const LeftDetail = styled.div`
   width: 100%;
@@ -732,6 +740,8 @@ const RightDetail = styled.div`
   background: transparent;
   position: relative;
   cursor: pointer;
+  display: flex;
+  align-items: center;
   @media only screen and (max-width: 749px) {
     margin-top: 4px;
     padding: 5px 6px;
@@ -743,6 +753,20 @@ const RightDetail = styled.div`
     max-height: 550px;
     display: block;
   }
+  ${(props) =>
+    props.isAutomation &&
+    css`
+      padding: 0;
+      img {
+        width: 100%;
+        max-width: 100%;
+        border-radius: 5px;
+        max-height: ${props?.isGifFile ? '276px' : '550px'};
+      }
+      @media only screen and (max-width: 749px) {
+        padding: 0;
+      }
+    `}
 `;
 const Extension = styled.div`
   padding: 50px 0;
@@ -760,6 +784,12 @@ const AutomateText = styled.div`
   max-width: 975px;
   width: 100%;
   margin-bottom: 40px;
+  .automation-button {
+    margin-top: 28px;
+    a {
+      color: #000000;
+    }
+  }
   .active:hover {
     color: ${({ theme }) => theme.colors.title};
   }
@@ -800,6 +830,13 @@ const BottomList = styled.div`
   display: flex;
   gap: 63px;
   position: relative;
+  ${(props) =>
+    props.isAnimated &&
+    css`
+      text-align: left !important;
+      filter: drop-shadow(0px 4.68797px 157.047px rgba(9, 170, 108, 0.55));
+      padding: 100px 0;
+    `}
   @media only screen and (max-width: 991px) {
     display: none;
   }
@@ -828,6 +865,12 @@ const CardItem = styled.div`
   position: relative;
   margin-bottom: 40px;
   width: 100%;
+  ${(props) =>
+    props.isAnimated &&
+    css`
+      background: #00160e;
+      border: 1px solid #e3ffee;
+    `}
   :last-child {
     margin-bottom: 0;
   }
@@ -843,12 +886,22 @@ const CardTextView = styled.div`
     ${Body4};
     color: ${({ theme }) => theme.colors.title};
     letter-spacing: 0.02em;
+    ${(props) =>
+      props.isAnimated &&
+      css`
+        color: ${({ theme }) => theme.colors.greenlight};
+      `}
   }
   span {
     display: block;
     ${Body5};
     color: ${({ theme }) => theme.colors.body};
     letter-spacing: 0.02em;
+    ${(props) =>
+      props.isAnimated &&
+      css`
+        color: ${({ theme }) => theme.colors.greenlight};
+      `}
   }
 `;
 const IconView = styled.div`
@@ -1358,6 +1411,13 @@ const Line1 = styled.div`
       bottom: -15px;
       right: 0;
     `}
+    ${(props) =>
+    props.isAnimated &&
+    css`
+      background: linear-gradient(90deg, #e3ffee 50%, transparent 50%);
+      background-repeat: repeat-x;
+      background-size: 10px 1px;
+    `}
   @keyframes dash {
     0% {
       background-position: 0 0;
@@ -1406,6 +1466,13 @@ const Line2 = styled.div`
       bottom: -15px;
       right: 0;
     `}
+    ${(props) =>
+    props.isAnimated &&
+    css`
+      background: linear-gradient(90deg, #e3ffee 50%, transparent 50%);
+      background-repeat: repeat-x;
+      background-size: 10px 1px;
+    `}
   @keyframes dash2 {
     0% {
       background-position: 0 0;
@@ -1440,7 +1507,7 @@ const Line = styled.div`
   left: auto;
   right: -65px;
   top: 40px;
-`
+`;
 const ZoomImage = styled.div`
   background: rgba(0, 0, 0, 0.8);
   width: 100%;
@@ -1475,7 +1542,7 @@ const ImageDiv = styled.div`
     z-index: 1;
     max-width: 75%;
     max-height: 85%;
-    height:auto;
+    height: auto;
     @media only screen and (max-width: 1440px) {
       width: 100%;
       max-width: 75%;

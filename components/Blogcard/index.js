@@ -20,9 +20,11 @@ export default function Blogcard(props) {
   return (
     <>
       <BlogDetail onClick={() => router.push(`/blog/${props?.slug}`)}>
-        <Leftside>
-          <Image src={props?.image} width={266} height={266} className='image' alt='blog' />
-        </Leftside>
+        {!isEmpty(props?.image) && (
+          <Leftside>
+            <Image src={props?.image} width={266} height={266} className='image' alt='blog' />
+          </Leftside>
+        )}
         <Rightside>
           <Textarea>
             <h2>{props?.name}</h2>

@@ -57,6 +57,11 @@ const FeatureSection = styled.div`
 const FeatureWrap = styled.div`
   display: flex;
   gap: 36px;
+  ${(props) =>
+    props.isAutomation &&
+    css`
+      padding-bottom: 100px;
+    `}
 `;
 const FirstImg = styled.div`
   img {
@@ -110,8 +115,8 @@ const Catagoryitem = styled.li`
     letter-spacing: 0.02em;
     color: ${({ theme }) => theme.colors.primary};
     ${(props) =>
-    props.isActive &&
-    css`
+      props.isActive &&
+      css`
         color: ${({ theme }) => theme.colors.title};
       `}
     margin: 0;
@@ -149,8 +154,8 @@ const FeatureRight = styled.div`
   ${(props) =>
     !props.isSearch &&
     css`
-        justify-content:center;     
-  `}
+      justify-content: center;
+    `}
   h2 {
     ${Heading4};
     color: ${({ theme }) => theme.colors.title};
@@ -166,6 +171,11 @@ const FeatureMenu = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   gap: 36px;
+  ${(props) =>
+    props.isAutomationDirectoryCard &&
+    css`
+      grid-template-columns: 1fr 1fr;
+    `}
   @media only screen and (max-width: 991px) {
     gap: 26px;
   }
@@ -259,8 +269,12 @@ const FeatureImg = styled.div`
   img {
     max-width: 100%;
   }
+  .logo {
+    width: 236px;
+    height: 56px;
+  }
   @media only screen and (max-width: 749px) {
-    justify-content: flex-start;
+    justify-content: center;
   }
 `;
 const Featured = styled.div``;
@@ -294,6 +308,11 @@ const ExtensionCard = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   gap: 36px;
+  ${(props) =>
+    props.isAutomationDirectoryCard &&
+    css`
+      grid-template-columns: 1fr 1fr;
+    `}
   @media only screen and (max-width: 991px) {
     gap: 26px;
   }
@@ -425,14 +444,14 @@ const DetailLink = styled.div`
       ${HeaderFont};
     }
   }
-  :hover{
-    p{
-        color: ${({ theme }) => theme.colors.title};
+  :hover {
+    p {
+      color: ${({ theme }) => theme.colors.title};
     }
-    svg path{
-        stroke: ${({ theme }) => theme.colors.title};
+    svg path {
+      stroke: ${({ theme }) => theme.colors.title};
     }
-}
+  }
 `;
 const AppsDetailMain = styled.div`
   padding-top: 164px;
@@ -665,15 +684,62 @@ const AppsDetailWrap = styled.div`
 const AppHeader3 = styled.h2`
   ${Heading4}
   margin-top: 0;
-&&::before{
+  &&::before {
     display: block;
-    content: " ";
+    content: ' ';
     height: 83px;
     margin-top: -83px;
     visibility: hidden;
-}
+  }
 `;
 
+const CustomAppSection = styled.div`
+  padding-top: 80px;
+  h4 {
+    font-weight: 500;
+    font-size: 24px;
+    line-height: 130%;
+    letter-spacing: 0.02em;
+    color: ${({ theme }) => theme.colors.title};
+    margin: 0 0 20px 0;
+  }
+  .custom a {
+    padding: 8px 32px;
+  }
+`;
+
+const AppSliderSection = styled.div`
+  margin: 116px 0 100px;
+  position: relative;
+  .drop {
+    background-image: url('/images/appbackground.png');
+    background-size: contain;
+    width: 100%;
+    height: 526px;
+    position: absolute;
+    top: -115px;
+    bottom: 0;
+  }
+  @media only screen and (max-width: 1024px) {
+    .drop {
+      background-size: cover;
+      height: 526px;
+      top: -115px;
+      bottom: 0;
+    }
+  }
+  @media only screen and (max-width: 449px) {
+    .drop {
+      background-size: cover;
+      height: 426px;
+      top: -100px;
+      bottom: 0;
+    }
+  }
+  @media only screen and (max-width: 449px) {
+    margin: 40px 0 80px;
+  }
+`;
 export {
   HeroSection,
   FeatureSection,
@@ -725,5 +791,7 @@ export {
   FirstImg,
   ExtensionsLastSection,
   TooltipWrap,
-  AppHeader3
+  AppHeader3,
+  CustomAppSection,
+  AppSliderSection
 };

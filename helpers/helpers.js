@@ -1,4 +1,7 @@
+import Cookies from 'js-cookie';
 import { MONTH_LIST } from '../constants/constant';
+import { COOKIE_NAME } from '../lib/constants';
+import { setUserAuth } from '../actions/appActions';
 
 export function isEmpty(value) {
   if (
@@ -35,7 +38,7 @@ export const dateToMonthYear = (date) => {
 };
 
 export function removeEmptyElement(array) {
-  const filtered = array.filter(function (el) {
+  const filtered = array?.filter(function (el) {
     return !isEmpty(el);
   });
   return filtered;
@@ -49,8 +52,8 @@ export function separateSpecialChar(title) {
 }
 export function convertHighlights(value) {
   const newList = [];
-  var result = value.split(/\[(.*?)\]/);
-  result.forEach((element) => {
+  var result = value?.split(/\[(.*?)\]/);
+  result?.forEach((element) => {
     if (!isEmpty(element)) {
       const roundedList = element.split(/\((.*?)\)/) ?? [];
       if (!isEmpty(roundedList)) newList.push({ title: roundedList[1], desc: roundedList[3] });
@@ -77,4 +80,33 @@ export const convertSitemapDataToKeyValue = (value) => {
     sitemapList?.push({ title, list: mapList });
   });
   return sitemapList;
+};
+
+export const joinArrayToString = ({ list, fieldName, seprator }) => {
+  const nameList = list?.map((item) => item?.[fieldName]);
+  const result = nameList.join(seprator);
+  return result;
+};
+
+export const createArrayWithFixedLength = (originalArray, desiredLength) => {
+  const repeatedArray = [];
+  const originalLength = originalArray.length;
+
+  if (originalLength >= desiredLength) return originalArray;
+  for (let i = 0; i < desiredLength; i++) {
+    const repeatedIndex = i % originalLength;
+    repeatedArray.push(originalArray[repeatedIndex]);
+  }
+
+  return repeatedArray;
+};
+
+export const isUserAtuthenticated = () => (dispatch) => {
+  const myCookieValue = Cookies.get(COOKIE_NAME);
+  if (!isEmpty(myCookieValue)) {
+    const newUser = JSON.parse(myCookieValue) ?? {};
+    if (newUser && newUser?.user?.isUnAuth === false) {
+      dispatch(setUserAuth(true));
+    }
+  }
 };

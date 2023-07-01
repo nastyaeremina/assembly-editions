@@ -32,7 +32,8 @@ import {
   PriceImageLeft,
   PriceText,
   BulletImage,
-  PricePlusImage
+  PricePlusImage,
+  PricingButton
 } from '../../styles/pricingstyles';
 import CTA from '../../components/cta/cta';
 import FAQ from '../../components/faq/faq';
@@ -69,7 +70,18 @@ export default function NewIndex({ faq, seoData }) {
               Create your portal<span>,</span> pick a plan later
             </h1>
             <p>Try Copilot free for 14 days, no credit card required</p>
-            <Button text={'Start Trial'} hoverColor={'rgba(255, 255, 255, 0.8)'} href={COPILOT_ONBORADING_LINK} />
+            <PricingButton>
+              <Button text={'Start Trial'} hoverColor={'rgba(255, 255, 255, 0.8)'} href={COPILOT_ONBORADING_LINK} />
+              <Button
+                bgColor={'transparent'}
+                fontColor={'#000000'}
+                borderColor={'#000000'}
+                text={'Book demo'}
+                href={'/book-demo'}
+                hoverColor={'rgba(0, 0, 0, 0.5)'}
+                className={'automation-button'}
+              />
+            </PricingButton>
           </Container>
         </HeroSection>
         <PricingSection>
@@ -366,6 +378,24 @@ export default function NewIndex({ faq, seoData }) {
                       <p>
                         Customizations include the ability to upload you brand assets, design your theme, set up a
                         custom log in screen, and more.
+                      </p>
+                    </td>
+                    <td>
+                      <Image src='/images/checkmark.svg' alt='main-logo' height={20} width={20} />
+                    </td>
+                    <td>
+                      <Image src='/images/checkmark.svg' alt='main-logo' height={20} width={20} />
+                    </td>
+                    <td>
+                      <Image src='/images/checkmark.svg' alt='main-logo' height={20} width={20} />
+                    </td>
+                  </tr>
+                  <tr>
+                    <td colSpan={3}>
+                      <h4>Authentication</h4>
+                      <p>
+                        Internal users and client users can authenticate with email and password, and set up 2-factor
+                        authentication. Google auth and magic link support is coming soon.
                       </p>
                     </td>
                     <td>
@@ -821,7 +851,7 @@ export default function NewIndex({ faq, seoData }) {
 }
 export async function getStaticProps({ preview = false }) {
   const seoData = (await getSEOdata('yof0gWCYzq1DaLbKJTFqb')) ?? [];
-  seoData.canonical="https://www.copilot.com/pricing";
+  seoData.canonical = 'https://www.copilot.com/pricing';
   return {
     props: {
       seoData

@@ -16,3 +16,5 @@ export const COPILOT_SECURITY_LINK = 'https://security.copilot.com/';
 export const COPILOT_UPDATE_LINK = 'https://copilot.com/updates';
 export const UPDATE_SUBSCRIBE_LINK = 'https://twitter.com/intent/user?screen_name=copilot';
 export const PARTNERSHIP_APPLY_LINK = 'https://copilotplatforms.typeform.com/to/VmRYidBZ';
+export const CUSTOM_APP_LINK = 'https://docs.copilot.com/page/custom-apps';
+export const OPEN_COPILOT_LINK = 'https://dashboard.copilot.com/'

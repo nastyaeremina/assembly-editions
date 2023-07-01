@@ -3,12 +3,12 @@ import Layout from '/components/layout';
 import Image from 'next/image';
 import Link from 'next/link';
 
-import { COOKIE_NAME } from '../lib/constants';
-import { useGa } from '../lib/useGa';
 import Cookies from 'js-cookie';
 import { ReactMarkdown } from 'react-markdown/lib/react-markdown';
 
 import { OrganizationJsonLd } from 'next-seo';
+import { COOKIE_NAME } from '../lib/constants';
+import { useGa } from '../lib/useGa';
 import Navbar from '../components/navbar/navbar';
 import { Container } from '../styles/commonStyles';
 import {
@@ -42,11 +42,7 @@ import {
 import BusinessSlider from '../components/businessSlider/businessslider';
 import ExtensionSlider from '../components/extensionslider/extensionslider';
 import CTA from '../components/cta/cta';
-import {
-  HEADER_LIST,
-  HOME_CLIENT_DARK_ID,
-
-} from '../constants/constant';
+import { HEADER_LIST, HOME_CLIENT_DARK_ID } from '../constants/constant';
 import { getHomeContent } from '../lib/contentful-home';
 import TabView from '../components/tab/tab';
 import Button from '../components/button/button';
@@ -65,10 +61,13 @@ export default function Home({ content, seoData }) {
     window.location.reload();
   };
 
+  // track amplitude event on a/b test result.
+  /*
   useEffect(() => {
     setCookie(Cookies.get(COOKIE_NAME));
     window.analytics?.identify({ ab_home_hero_client: 'Client Focus - Dark' });
   }, []);
+*/
 
   useEffect(() => {
     if (ga && cookie) {
@@ -157,14 +156,23 @@ export default function Home({ content, seoData }) {
                   <div dangerouslySetInnerHTML={{ __html: separateSpecialChar(content?.heading4) }} />
                 </h2>
                 <ReactMarkdown>{content?.body4}</ReactMarkdown>
+                <Button
+                  bgColor={'transparent'}
+                  fontColor={'#000000'}
+                  borderColor={'#000000'}
+                  text={'See automations'}
+                  href={'/automations'}
+                  hoverColor={'rgba(0, 0, 0, 0.5)'}
+                  className={'automation-button'}
+                />
               </AutomateText>
               <BottomList>
                 <CardWrapper>
                   <CardItem>
                     <Image src='/images/linkicon.svg' width={35} height={35} alt='link-icon' />
                     <CardTextView>
-                      <p>Trigger</p>
-                      <span>New client activated</span>
+                      <p>Client activates account</p>
+                      <span>Trigger</span>
                     </CardTextView>
                     <AnimatedIcon className={'done card1'} />
                     <Line>
@@ -184,8 +192,8 @@ export default function Home({ content, seoData }) {
                   <CardItem>
                     <Image src='/images/linkicon.svg' width={35} height={35} alt='link-icon' />
                     <CardTextView>
-                      <p>Condition</p>
-                      <span>Company size &#60;= 50</span>
+                      <p>Company size &#60; 50</p>
+                      <span>Condition</span>
                     </CardTextView>
                     <AnimatedIcon className={'default card2'} />
                     <Line>
@@ -197,8 +205,8 @@ export default function Home({ content, seoData }) {
                   <CardItem>
                     <Image src='/images/linkicon.svg' width={35} height={35} alt='link-icon' />
                     <CardTextView>
-                      <p>Condition</p>
-                      <span>Company size &#62; 50</span>
+                      <p>Company size &#62; 50</p>
+                      <span>Condition</span>
                     </CardTextView>
                     <Line>
                       <Line2>
@@ -218,24 +226,24 @@ export default function Home({ content, seoData }) {
                   <CardItem>
                     <Image src='/images/action-icon.svg' width={35} height={35} alt='action-icon' />
                     <CardTextView>
-                      <p>Action</p>
-                      <span>Assign small business onboarding form</span>
+                      <p>Assign SMB onboarding form</p>
+                      <span>Action</span>
                     </CardTextView>
                     <AnimatedIcon className={'default card3'} />
                   </CardItem>
                   <CardItem>
                     <Image src='/images/msg-icon2.svg' width={35} height={35} alt='msg-icon' />
                     <CardTextView>
-                      <p>Action</p>
-                      <span>Send message with scheduling link</span>
+                      <p>Send meeting scheduling link</p>
+                      <span>Action</span>
                     </CardTextView>
                     <AnimatedIcon className={'default card3'} />
                   </CardItem>
                   <CardItem>
                     <Image src='/images/salesforce-icon.svg' width={35} height={35} alt='sales-icon' />
                     <CardTextView>
-                      <p>Action</p>
-                      <span>Create lead in Salesforce</span>
+                      <p>Create lead in Salesforce</p>
+                      <span>Action</span>
                     </CardTextView>
                     <AnimatedIcon className={'default card3'} />
                   </CardItem>
@@ -419,7 +427,7 @@ export async function getStaticProps({ params }) {
   return {
     props: {
       content,
-      seoData,
+      seoData
     }
   };
 }

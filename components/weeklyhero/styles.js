@@ -1,5 +1,16 @@
 import styled from 'styled-components';
-import { Body2, Body4, FooterText, Heading2, Heading3, Heading5, Heading6, MbBody2, MbBody4, MobileH2 } from '../../styles/styles';
+import {
+  Body2,
+  Body4,
+  FooterText,
+  Heading2,
+  Heading3,
+  Heading5,
+  Heading6,
+  MbBody2,
+  MbBody4,
+  MobileH2
+} from '../../styles/styles';
 
 const Time = styled.div`
   padding: 4px 8px;
@@ -27,11 +38,9 @@ const TextSection = styled.div`
     ${Body2};
     color: ${({ theme }) => theme.colors.body};
     letter-spacing: 0.02em;
-    margin: 20px 0 12px;
+    margin: 0 0 12px;
   }
-  .demo-detail {
-    margin: 0 0 20px;
-  }
+
   @media only screen and (max-width: 749px) {
     h1 {
       ${MobileH2};
@@ -52,6 +61,11 @@ const Speakers = styled.div`
 const Profile = styled.div`
   position: relative;
   display: block;
+  .tooltip {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+  }
   :hover .tooltiptext {
     visibility: visible;
   }
@@ -60,9 +74,9 @@ const Profile = styled.div`
     z-index: 99;
   }
   @media only screen and (max-width: 768px) {
-    display:flex;
-    flex-direction:row;
-    gap:12px;
+    display: flex;
+    flex-direction: row;
+    gap: 12px;
   }
 `;
 const Profile2 = styled.div`
@@ -78,7 +92,7 @@ const Profile2 = styled.div`
   @media only screen and (max-width: 768px) {
     display: flex;
     flex-direction: row;
-    gap:12px;
+    gap: 12px;
   }
 `;
 const SpeakerProfile = styled.div`
@@ -87,12 +101,12 @@ const SpeakerProfile = styled.div`
   .tooltip {
     border-radius: 50%;
     border: 1px solid #00160e;
-    width:40px;
-    height:40px;
+    width: 40px;
+    height: 40px;
   }
   @media only screen and (max-width: 991px) {
-    flex-direction:column;
-    gap:16px;
+    flex-direction: column;
+    gap: 16px;
   }
 `;
 const Profiledetail = styled.div`
@@ -114,7 +128,7 @@ const Profiledetail = styled.div`
     ${Body4}
   }
   @media only screen and (max-width: 768px) {
-    display:none;
+    display: none;
   }
 `;
 const Form = styled.form`
@@ -134,8 +148,8 @@ const FormLine = styled.div`
   left: 50%;
   @media only screen and (max-width: 768px) {
     bottom: -84px;
-    svg{
-      height:80px;
+    svg {
+      height: 80px;
     }
   }
 `;
@@ -153,9 +167,9 @@ const Container = styled.div`
   overflow: hidden;
 `;
 const Icon = styled.div`
-cursor: pointer;
-background-color: white;
-  .detail :hover{
+  cursor: pointer;
+  background-color: white;
+  .detail :hover {
     visibility: visible;
   }
 `;
@@ -172,9 +186,9 @@ const TextWrap = styled.div`
   }
 `;
 const Line = styled.div`
-  position:absolute;
-  bottom:63%;
-`
+  position: absolute;
+  bottom: 63%;
+`;
 const MobileProfile = styled.div`
   display: none;
   @media only screen and (max-width: 768px) {
@@ -190,12 +204,12 @@ const MobileProfile = styled.div`
     color: ${({ theme }) => theme.colors.body};
   }
 `;
-const FormHeading3 =styled.div`
-font-style: normal;
-font-weight: 400;
-font-size: 32px;
-line-height: 105%;
-margin-bottom:20px;
+const FormHeading3 = styled.div`
+  font-style: normal;
+  font-weight: 400;
+  font-size: 32px;
+  line-height: 105%;
+  margin-bottom: 20px;
 `;
 
 export {

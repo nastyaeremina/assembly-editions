@@ -12,6 +12,11 @@ const IconWithoutView = styled.div`
     height: 20px;
     background-color: #ccccd0;
     border-radius: 50px;
+    ${(props) =>
+    props.isAnimated &&
+    css`
+      background-color: #E3FFEE;
+    `}
 `;
 
 const Icon = styled.div`    

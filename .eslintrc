@@ -4,7 +4,7 @@
   "rules": {
     "react/prop-types": 0,
     "no-unused-vars": 0,
-    " no-unreachable":0,
+    " no-unreachable": 0,
     "react/display-name": 0,
     "import/no-unresolved": 0,
     "import/no-named-as-default-member": 0,
@@ -35,25 +35,12 @@
       }
     ],
     "jsx-a11y/label-has-associated-control": 0,
-    "no-plusplus": [
-      "error",
-      {
-        "allowForLoopAfterthoughts": true
-      }
-    ],
+    "no-plusplus": "off",
     "import/prefer-default-export": 0,
     "import/order": [
       "warn",
       {
-        "groups": [
-          "builtin",
-          "external",
-          "internal",
-          "parent",
-          "sibling",
-          "index",
-          "object"
-        ]
+        "groups": ["builtin", "external", "internal", "parent", "sibling", "index", "object"]
       }
     ]
   }

@@ -1,6 +1,6 @@
 import Layout from '/components/layout';
 import Link from 'next/link';
-import Navbar from '../../components/navbar/navbar';
+import Navbar from '../../../components/navbar/navbar';
 import {
   DetailLink,
   AppsDetailMain,
@@ -24,15 +24,15 @@ import {
   TooltipWrap,
   Tooltip,
   CardMain
-} from '../../styles/appsStyles';
-import { Container, PrimaryButton } from '../../styles/commonStyles';
-import CTA from '../../components/cta/cta';
+} from '../../../styles/appsStyles';
+import { Container, PrimaryButton } from '../../../styles/commonStyles';
+import CTA from '../../../components/cta/cta';
 import Image from 'next/image';
-import { getAllPartnerApps, getAllPartnerAppsWithSlug, getPartnerAppDetail } from '../../lib/contentful-partnerApps';
+import { getAllPartnerApps, getAllPartnerAppsWithSlug, getPartnerAppDetail } from '../../../lib/contentful-partnerApps';
 import { useMemo } from 'react';
-import { isEmpty } from '../../helpers/helpers';
-import Button from '../../components/button/button';
-import SEO from '../../components/seo';
+import { isEmpty } from '../../../helpers/helpers';
+import Button from '../../../components/button/button';
+import SEO from '../../../components/seo';
 
 export default function AppsDetail({ appDetail, relatedApps }) {
   const renderRelatedAppView = useMemo(() => {
@@ -42,7 +42,7 @@ export default function AppsDetail({ appDetail, relatedApps }) {
         <>
           <CardMain>
             <FeatureCard key={`renderrelatedappsview_index_${index}`}>
-              <Link href={`/apps/${item?.slug}`}>
+              <Link href={`/apps/directory/${item?.slug}`}>
                 <FeatureImg>
                   <Image src={item?.logo?.url} alt='main-logo' width={236} height={56} objectFit='contain' />
                 </FeatureImg>
@@ -78,7 +78,7 @@ export default function AppsDetail({ appDetail, relatedApps }) {
         seoData={{
           seoTitle: `Connect ${appDetail?.name} to Copilot in 2 minutes • Copilot`,
           description: appDetail?.description,
-          canonical: 'https://www.copilot.com/apps/' + appDetail?.slug
+          canonical: 'https://www.copilot.com/apps/directory' + appDetail?.slug
         }}
       />
 
@@ -86,7 +86,7 @@ export default function AppsDetail({ appDetail, relatedApps }) {
         <Navbar />
         <AppsDetailMain>
           <Container>
-            <Link href='/apps'>
+            <Link href='/apps/directory'>
               <DetailLink>
                 {/* <Image src='/images/leftarrow.svg' alt='bill-icon' width={12} height={12} layout={'fixed'} /> */}
                 <svg width='12' height='12' viewBox='0 0 12 12' fill='none' xmlns='http://www.w3.org/2000/svg'>
@@ -126,7 +126,7 @@ export default function AppsDetail({ appDetail, relatedApps }) {
               </DetailWrap>
 
               <DetailRight>
-                {!isEmpty(appDetail?.appType) && (
+                {!isEmpty(appDetail?.appsType) && (
                   <RightWrap>
                     <Image
                       src='/images/linesmall.svg'
@@ -139,11 +139,11 @@ export default function AppsDetail({ appDetail, relatedApps }) {
                     <DetailTxt>
                       <p>Type</p>
                       <HelpWrap>
-                        <span>{appDetail?.appType}</span>
+                        <span>{appDetail?.appsType}</span>
                         <TooltipWrap className='tooltip'>
                           <Image src='/images/help.svg' alt='bill-icon' width={20} height={20} layout={'fixed'} />
                           <Tooltip className='tooltiptext'>
-                            <h5>{appDetail?.appType}</h5>
+                            <h5>{appDetail?.appsType}</h5>
                             <p>
                               Partner Apps are products from other companies like Airtable and Calendly that you can
                               embed into your portal so that clients can access them in one place.
@@ -218,7 +218,7 @@ export async function getStaticProps({ params, preview = false }) {
 
   let relatedApps = [];
   if (!isEmpty(appDetail)) {
-    const allPosts = (await getAllPartnerApps(appDetail?.appType, preview)) ?? [];
+    const allPosts = (await getAllPartnerApps(appDetail?.appsType, preview)) ?? [];
     const categoryList = appDetail?.partnerAppCategoriesCollection?.items?.map((item) => item?.slug);
     relatedApps = allPosts
       ?.filter(
@@ -237,7 +237,7 @@ export async function getStaticProps({ params, preview = false }) {
 export async function getStaticPaths() {
   const allPosts = (await getAllPartnerAppsWithSlug()) ?? [];
   return {
-    paths: allPosts?.map(({ slug }) => `/apps/${slug}`) ?? [],
+    paths: allPosts?.map(({ slug }) => `/apps/directory/${slug}`) ?? [],
 
     fallback: true
   };

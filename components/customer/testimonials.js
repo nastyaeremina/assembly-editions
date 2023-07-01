@@ -5,7 +5,7 @@ import rightphoto from '../../public/images/price.png';
 import { convertHighlights, isEmpty } from '../../helpers/helpers';
 import { Detail, Last, LastDroplist, LeftCard, Percentage, RightCard, Section, TestimonialCard, Top } from './styles';
 
-export default function CustomerTestimonial({ logo, body, slug, highlightsData, banner }) {
+export default function CustomerTestimonial({ logo, body, slug, highlightsData, banner, highlights }) {
   const renderHighlightView = useMemo(() => {
     const newList = convertHighlights(highlightsData);
 
@@ -25,7 +25,7 @@ export default function CustomerTestimonial({ logo, body, slug, highlightsData, 
   }, [highlightsData]);
 
   return (
-    <Container>
+    <>
       <TestimonialCard>
         <LeftCard>
           <Top>
@@ -61,6 +61,6 @@ export default function CustomerTestimonial({ logo, body, slug, highlightsData, 
           <Image src={banner} alt='customer' className='right' width={405} height={407} />
         </RightCard>
       </TestimonialCard>
-    </Container>
+    </>
   );
 }

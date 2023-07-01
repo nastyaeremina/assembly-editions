@@ -562,6 +562,14 @@ const PricePlusImage = styled.div`
     display: none;
   }
 `;
+const PricingButton = styled.div`
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  @media only screen and (max-width: 449px) {
+    gap: 12px;
+  }
+`;
 export {
   HeroHeading,
   HeroSection,
@@ -598,5 +606,6 @@ export {
   Pricefaq,
   PriceText,
   BulletImage,
-  PricePlusImage
+  PricePlusImage,
+  PricingButton
 };

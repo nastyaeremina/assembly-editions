@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { useCallback, useMemo, useState } from 'react';
-import { isEmpty } from '../../../helpers/helpers';
+import { isEmpty, separateSpecialChar } from '../../../helpers/helpers';
 import { Container, SecondryButton } from '../../../styles/commonStyles';
 import Button from '../../button/button';
 import ZoomImg from '../../zoomImage';
@@ -22,8 +22,9 @@ import {
   IconView,
   Tooltip
 } from './styles';
+import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
 
-export default function ExploreTab({ data, demoUrl }) {
+export default function ExploreTab({ data, demoUrl,title,description }) {
   const [selectedTabIbndex, setSelectedTabIbndex] = useState(0);
 
   const onClickTab = useCallback((index) => {
@@ -77,13 +78,16 @@ export default function ExploreTab({ data, demoUrl }) {
       <ExploreSection>
         <Container>
           <TopView>
-            <h2>
-              Explore the client experience<span>.</span>
+            <h2>{title && <><div  dangerouslySetInnerHTML={{
+                __html: separateSpecialChar(title)
+              }} /></>} {!title && <>Explore the client experience<span>.</span></>}
             </h2>
             <p>
+              { description && documentToReactComponents(description) }
+              { !description &&<>
               If you’d like to see what the user experience can be like for your clients, you can create a client
               account in a demo portal we have set up. We’ve customized this demo portal to highlight some of the
-              features that are most relevant.
+              features that are most relevant.</> }
             </p>
             {demoUrl && (
               <BtnWrap>

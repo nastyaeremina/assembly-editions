@@ -128,6 +128,9 @@ const ButtonContainer = styled.div`
       padding: 7px 32px;
     }
   }
+  .icon {
+    margin-right: 12px;
+  }
 `;
 
 const Blur = styled.div`

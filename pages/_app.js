@@ -8,6 +8,7 @@ import { useCallback, useEffect } from 'react';
 import store from '../store/store';
 import { styletron } from '../styletron';
 import SEO from '../next-seo.config';
+import { setUserAuth } from '../actions/appActions';
 
 const GlobalStyle = createGlobalStyle`
   html {
@@ -87,8 +88,10 @@ export const theme = {
 
 export default function MyApp({ Component, pageProps }) {
   const loadData = useCallback(async () => {
-    const { appInit } = require('../services/appInitHelpers');
-    await store.dispatch(appInit());
+    try {
+      const { appInit } = require('../services/appInitHelpers');
+      await store.dispatch(appInit());
+    } catch (error) {}
   }, []);
 
   useEffect(() => {

@@ -11,7 +11,7 @@ const nextConfig = {
     })
   ],
   images: {
-    domains: ['images.ctfassets.net', 'copilot-blog.ghost.io', 'images.unsplash.com']
+    domains: ['images.ctfassets.net', 'copilot-blog.ghost.io', 'images.unsplash.com', 'firebasestorage.googleapis.com']
   },
   async redirects() {
     const query = `query {

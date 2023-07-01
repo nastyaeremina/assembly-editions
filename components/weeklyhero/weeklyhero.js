@@ -1,7 +1,9 @@
 import classNames from 'classnames';
 import Image from 'next/image';
 import Link from 'next/link';
-import React, { useState } from 'react';
+import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
+import React, { useMemo, useState } from 'react';
+import { isEmpty } from '../../helpers/helpers';
 import { Container, PrimaryButton } from '../../styles/commonStyles';
 import { ImgLine } from '../bookdemo/styles';
 import {
@@ -31,80 +33,64 @@ import {
   FormHeading3
 } from './styles';
 
-export default function WeeklyHero() {
+export default function WeeklyHero({ data }) {
   const [isRegister, setIsRegister] = useState(false);
+
+  const sdpeakersRenderDynamic = useMemo(() => {
+    if (isEmpty(data?.speakerCollection?.items)) return null;
+    return data?.speakerCollection?.items?.map((item, index) => {
+      return (
+        <Profile key={`speakes_index_${index}`}>
+          {!isEmpty(item?.profilePicture?.url) && (
+            <Link href={item?.profileLink ?? ''} target='_blank' key={`teammember_index_${index}`}>
+              <Image
+                src={item?.profilePicture?.url}
+                alt='profile'
+                width={40}
+                height={40}
+                layout={'fixed'}
+                className='tooltip'
+              />
+            </Link>
+          )}
+          <MobileProfile>
+            {!isEmpty(item?.name) && <p>{item?.name}</p>}
+            {!isEmpty(item?.about) && <span>{item?.about}</span>}
+          </MobileProfile>
+          <Profiledetail className='tooltiptext'>
+            <Line>
+              <svg width='2' height='57' viewBox='0 0 2 57' fill='none' xmlns='http://www.w3.org/2000/svg'>
+                <line x1='1' y1='4.37114e-08' x2='0.999997' y2='57' stroke='#00160E' stroke-width='2' />
+              </svg>
+            </Line>
+            {!isEmpty(item?.name) && <p>{item?.name}</p>}
+            {!isEmpty(item?.about) && <span>{item?.about}</span>}
+          </Profiledetail>
+        </Profile>
+      );
+    });
+  }, [data?.speakerCollection?.items]);
   return (
     <HeroSection>
       <Container>
         <SolutionWrap isWeeklycontainer={true}>
           <LeftWrap>
             <Time>
-              <p>Every Thursday 12 p.m. EDT</p>
+              <p>{data?.tag}</p>
             </Time>
             <TextSection>
               <h1>
-                <div>Weekly Live Demo</div>
+                <div>{data?.header}</div>
               </h1>
-              <p>
-                Join our team as we take you on a tour of the Copilot platform in a 20-minute demo followed by a live
-                Q&A.
-              </p>
-              <p className='demo-detail'>
-                Copilot’s product suite gives you an all-in-one solution for client communication, payments,
-                file-sharing, contracts, forms, help desks, and more. Additionally, Copilot lets you offer your clients
-                a unified experience with a branded client portal.
-              </p>
-              <Speakers>
-                <p>Speakers</p>
-                <SpeakerProfile>
-                  <Profile>
-                    <Image
-                      src={'/images/adamprofile.png'}
-                      alt='profile'
-                      width={40}
-                      height={40}
-                      layout={'fixed'}
-                      className='tooltip'
-                    />
-                    <MobileProfile>
-                      <p>Adam Seitzman</p>
-                      <span>Adam is the Head of Sales at Copilot. </span>
-                    </MobileProfile>
-                    <Profiledetail className='tooltiptext'>
-                      <Line>
-                        <svg width='2' height='57' viewBox='0 0 2 57' fill='none' xmlns='http://www.w3.org/2000/svg'>
-                          <line x1='1' y1='4.37114e-08' x2='0.999997' y2='57' stroke='#00160E' stroke-width='2' />
-                        </svg>
-                      </Line>
-                      <p>Adam Seitzman</p>
-                      <span>Adam is the Head of Sales and Partnerships at Copilot</span>
-                    </Profiledetail>
-                  </Profile>
-                  <Profile2>
-                    <Image
-                      src={'/images/alleneprofile.png'}
-                      alt='profile'
-                      width={40}
-                      height={40}
-                      layout={'fixed'}
-                      className='tooltip'
-                    />
-                    <MobileProfile>
-                      <p>Allene Norton</p>
-                      <span>Allene is the Head of Support and Developer Relationships Lead at Copilot </span>
-                    </MobileProfile>
-                    <Profiledetail className='tooltiptext'>
-                      <Line>
-                        <svg width='2' height='57' viewBox='0 0 2 57' fill='none' xmlns='http://www.w3.org/2000/svg'>
-                          <line x1='1' y1='4.37114e-08' x2='0.999997' y2='57' stroke='#00160E' stroke-width='2' />
-                        </svg>
-                      </Line>
-                      <p>Allene Norton</p>
-                      <span>Allene is the Head of Support and Developer Relationships Lead at Copilot</span>
-                    </Profiledetail>
-                  </Profile2>
-                </SpeakerProfile>
-              </Speakers>
+              <div style={{ margin: '20px 0' }}>
+                {!isEmpty(data?.body?.json) && documentToReactComponents(data?.body?.json)}
+              </div>
+              {!isEmpty(data?.speakerCollection?.items) && (
+                <Speakers>
+                  <p>Speakers</p>
+                  <SpeakerProfile>{sdpeakersRenderDynamic}</SpeakerProfile>
+                </Speakers>
+              )}
             </TextSection>
           </LeftWrap>
           <RightWrap className={classNames('weeklydemo-form', { 'message-card': isRegister })}>
@@ -129,14 +115,15 @@ export default function WeeklyHero() {
                 </Card>
               ) : (
                 <>
-                <iframe
-                  width='100%'
-                  title='weekly-demo'
-                  height='900'
-                  frameborder='0'
-                  // eslint-disable-next-line react/style-prop-object
-                  style={{ overflow: 'hidden' }}
-                  src='https://app.livestorm.co/p/3646fef7-f43b-4c20-a6d4-1b1c9c2ef665/form'></iframe></>
+                  <iframe
+                    width='100%'
+                    title='weekly-demo'
+                    height='900'
+                    frameborder='0'
+                    // eslint-disable-next-line react/style-prop-object
+                    style={{ overflow: 'hidden' }}
+                    src='https://app.livestorm.co/p/3646fef7-f43b-4c20-a6d4-1b1c9c2ef665/form'></iframe>
+                </>
                 // <WeeklyDemoForm />
               )}
             </ImageView>

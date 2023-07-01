@@ -37,7 +37,8 @@ export const HOME_MODULE_LIST = {
   Billing: 1,
   Files: 2,
   Forms: 3,
-  Helpdesk: 4
+  Helpdesk: 4,
+  Automation: 5
 };
 
 export const MODULE_COLOR_LIST = [
@@ -75,6 +76,13 @@ export const MODULE_COLOR_LIST = [
     borderColor: theme.colors.orangemidlight,
     buttonBgColor: theme.colors.orangeprimary,
     buttonFontColor: theme.colors.whiteColor
+  },
+  {
+    bgColor: theme.colors.greendark,
+    fontColor: theme.colors.greenlight,
+    // borderColor: theme.colors.orangemidlight,
+    buttonBgColor: theme.colors.greendark,
+    buttonFontColor: theme.colors.greenlight
   }
 ];
 
@@ -194,7 +202,9 @@ export const MONTH_LIST = [
 ];
 export const APPS_TYPE = {
   PARTNER_APP: 'Partner App',
-  DATA_INTEGRATION: 'Data Integration'
+  DATA_INTEGRATION: 'Data Integration',
+  CLIENT: 'Client',
+  INTERNAL: 'Internal'
 };
 
 export const UNIVERSITY_VIDEO_CATEGORY = [
@@ -205,6 +215,10 @@ export const UNIVERSITY_VIDEO_CATEGORY = [
   'Industry Courses',
   'Quick Tips'
 ];
+
+export const COOKIE_NAME = 'current-portal-session';
+
+export const PER_API_LIMIT_FOR_AUTOMATION = 10;
 export const PER_UPDATE_PAGE_POST = 10;
 export const INDUSTRY_ARRAY = ['consulting', 'technology', 'marketing'];
 export const HOME_CONTENT_ID = '1cPG7VsMO1XCahxAnz3rne';
@@ -248,5 +262,10 @@ export const UPDATES_SEO_ID = '1qZerw40iK099KKnfz5Mv7';
 export const COMPARISON_SEO_ID = '3twHO4lBpRkH68Lh1ihdRy';
 export const WEEKLYDEMO_SEO_ID = '18U3TJnD547OkxGWWgtrLC';
 export const CUSTOMER_SEO_ID = '7b7osYERYHHeUuZ8rZk9CA';
+export const AUTOMATION_SEO_ID = '1YuaTMgNnzacoBjygKg4nk';
+
 export const PARTNERSHIP_FAQ_ID = '5oRKzJaIkJ1yTQdAolMZjB';
 export const PARTNERSHIP_ID = '1qsEfH5A3RlGv7dac0uKZD';
+export const AUTOMATION_ID = '3tQZ0zurolpvj9N43yXCIF';
+export const APP_PAGE_ID = 'zHpvQW60FYupSGIasksht';
+export const WEEKLY_DEMO_PAGE_ID = '6yTkSs6vPA4UtptzHbvw3r';

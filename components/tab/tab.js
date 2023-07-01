@@ -20,7 +20,7 @@ import { Tabbutton } from '../tabbutton/tabstyled';
 import { OverLayDiv } from '../../styles/blogstyles';
 import ZoomImg from '../zoomImage';
 
-export default function TabView({ bgColor, textColor, isHome, tabData: allPosts }) {
+export default function TabView({ bgColor, textColor, isHome, tabData: allPosts, isAutomation }) {
   const [activeTab, setActiveTab] = useState(0);
 
   const [isOpen, setIsOpen] = useState(false);
@@ -50,10 +50,12 @@ export default function TabView({ bgColor, textColor, isHome, tabData: allPosts 
         <div className='outlet'>
           {allPosts?.map((item, index) => {
             const link = item?.link?.split('copilot.com/')?.[1];
+            var extension = item?.image?.url?.split('.').pop();
+            let isGifFile = extension === 'gif';
             return (
               <>
                 <TabContent id={index} activeTab={activeTab}>
-                  <ContainWrap>
+                  <ContainWrap isAutomation={isAutomation}>
                     <LeftDetail>
                       {item?.icon?.url && (
                         <IconWrap>
@@ -76,7 +78,7 @@ export default function TabView({ bgColor, textColor, isHome, tabData: allPosts 
                         />
                       )}
                     </LeftDetail>
-                    <RightDetail onClick={onClick}>
+                    <RightDetail onClick={onClick} isAutomation={isAutomation} isGifFile={isGifFile}>
                       <ZoomImg src={item?.image?.url} width={881.76} height={550.63} alt='msg-screen' />
                     </RightDetail>
                   </ContainWrap>
