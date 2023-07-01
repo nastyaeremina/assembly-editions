@@ -3,6 +3,7 @@ import '../styles/globals.css';
 import { DefaultSeo } from 'next-seo';
 import { Provider } from 'react-redux';
 import { ThemeProvider, createGlobalStyle } from 'styled-components';
+import Cookies from 'next-cookies';
 import { Provider as StyletronProvider } from 'styletron-react';
 import { useCallback, useEffect } from 'react';
 import store from '../store/store';
@@ -90,8 +91,19 @@ export default function MyApp({ Component, pageProps }) {
   const loadData = useCallback(async () => {
     try {
       const { appInit } = require('../services/appInitHelpers');
+      const { COOKIE_NAME } = require('../constants/constant');
+      const { isEmpty } = require('../helpers/helpers');
+
+      const cookie = Cookies({ context: { req: { headers: { cookie: COOKIE_NAME } } } });
+      if (!isEmpty(cookie[COOKIE_NAME])) {
+        await store.dispatch(setUserAuth(true));
+      }
+
       await store.dispatch(appInit());
-    } catch (error) {}
+    } catch (error) {
+      console.log('error', error);
+    }
+
   }, []);
 
   useEffect(() => {
