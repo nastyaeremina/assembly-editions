@@ -1,5 +1,17 @@
 /** @type {import('next').NextConfig} */
 const purgecss = require('@fullhuman/postcss-purgecss');
+async function fetchGraphQL({ preview = false, query }) {
+  return fetch(`https://graphql.contentful.com/content/v1/spaces/${process.env.CONTENTFUL_SPACE_ID}`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${
+        preview ? process.env.CONTENTFUL_PREVIEW_ACCESS_TOKEN : process.env.CONTENTFUL_ACCESS_TOKEN
+      }`
+    },
+    body: JSON.stringify({ query })
+  }).then((response) => response.json());
+}
 const nextConfig = {
   reactStrictMode: true,
   compiler: {
@@ -24,25 +36,20 @@ const nextConfig = {
       }
     }
   }`;
-    const data = async function fetchGraphQL(preview = false) {
-      return fetch(`https://graphql.contentful.com/content/v1/spaces/${process.env.CONTENTFUL_SPACE_ID}`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: `Bearer ${
-            preview ? process.env.CONTENTFUL_PREVIEW_ACCESS_TOKEN : process.env.CONTENTFUL_ACCESS_TOKEN
-          }`
-        },
-        body: JSON.stringify({ query })
-      }).then((response) => response.json());
-    };
-    const postData = (await data()) ?? [];
-    console.log(postData);
+    const pageDemoQuery = ` query {
+    pageDemo(id:"6yTkSs6vPA4UtptzHbvw3r"){
+      slug
+    }
+  }`;
+    const postData = (await fetchGraphQL({ preview: false, query })) ?? [];
+    const pageDemoData = (await fetchGraphQL({ preview: false, query: pageDemoQuery })) ?? [];
+
     if (postData.length === 0) {
       return [];
     }
+
     const allPost = postData?.data?.redirectCollection?.items;
-    return (
+    const redirectData =
       allPost?.map((item, index) => {
         if (item?.redirectToPath.includes('https://') || item?.redirectToPath.includes('http://')) {
           return {
@@ -58,8 +65,13 @@ const nextConfig = {
             permanent: item?.permanent
           };
         }
-      }) ?? []
-    );
+      }) ?? [];
+    redirectData?.push({
+      source: '/weekly-demo',
+      destination: `/${pageDemoData?.data?.pageDemo?.slug}`,
+      permanent: true
+    });
+    return redirectData;
   }
 };
 
