@@ -381,6 +381,12 @@ const SignIn = styled.li`
       ${MbButtonText};
     }
   }
+  @media only screen and (max-width: 434px) {
+    a {
+      ${MbButtonText};
+      text-align: center;
+    }
+  }
 `;
 
 const DropDownToggle = styled.div`

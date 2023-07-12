@@ -17,6 +17,7 @@ import { isEmpty } from '../../helpers/helpers';
 import Button from '../button/button';
 import {
   BLOG_LINK,
+  CONTACT_SALES_LINK,
   COPILOT_DASHBOARD_LINK,
   COPILOT_ONBORADING_LINK,
   COPILOT_SECURITY_LINK,
@@ -207,12 +208,12 @@ export default function Navbar({ isModule, headerIndex, isEnterPrice }) {
                     Resources
                   </MobileText>
                 </SpanLink>
-                <SpanMobileLink
+                {/* <SpanMobileLink
                   textColor={colorList?.fontColor}
                   hoverColor={colorList?.primaryColor}
                   className={router.pathname === '/book-demo' ? 'active' : ''}>
                   <Link href='/book-demo'>Book Demo</Link>
-                </SpanMobileLink>
+                </SpanMobileLink> */}
                 <SpanLink
                   textColor={colorList?.fontColor}
                   hoverColor={colorList?.primaryColor}
@@ -552,31 +553,36 @@ export default function Navbar({ isModule, headerIndex, isEnterPrice }) {
           <SignInSignUpBtn>
             <>
               {userAuth ? (
-                <Button
-                  bgColor={colorList?.buttonColor}
-                  fontColor={
-                    isEnterPrice
-                      ? colorList?.fontColor
-                      : colorList?.buttontextColor
-                      ? colorList?.buttontextColor
-                      : '#FFFFFF'
-                  }
-                  text={'Open Dashboard'}
-                  borderColor={'transparent'}
-                  href={OPEN_COPILOT_LINK}
-                  hoverColor={'rgba(255, 255, 255, 0.8)'}
-                  className='hederbtn'
-                  isCamelCase={false}
-                  target='blank'
-                />
+                <>
+                  <SignIn textColor={colorList?.fontColor} hoverColor={colorList?.primaryColor}>
+                    <Link href={CONTACT_SALES_LINK}>Contact sales</Link>
+                  </SignIn>
+                  <Button
+                    bgColor={colorList?.buttonColor}
+                    fontColor={
+                      isEnterPrice
+                        ? colorList?.fontColor
+                        : colorList?.buttontextColor
+                        ? colorList?.buttontextColor
+                        : '#FFFFFF'
+                    }
+                    text={'Open Dashboard'}
+                    borderColor={'transparent'}
+                    href={OPEN_COPILOT_LINK}
+                    hoverColor={'rgba(255, 255, 255, 0.8)'}
+                    className='hederbtn'
+                    isCamelCase={false}
+                    target='blank'
+                  />
+                </>
               ) : (
                 <>
                   <SignIn textColor={colorList?.fontColor} hoverColor={colorList?.primaryColor}>
                     <Link href={COPILOT_DASHBOARD_LINK}>Log in</Link>
                   </SignIn>
-                  <SignIn textColor={colorList?.fontColor} hoverColor={colorList?.primaryColor}>
+                  {/* <SignIn textColor={colorList?.fontColor} hoverColor={colorList?.primaryColor}>
                     <Link href='/book-demo'>Book demo</Link>
-                  </SignIn>
+                  </SignIn> */}
                   <Button
                     bgColor={colorList?.buttonColor}
                     fontColor={
@@ -730,11 +736,16 @@ export default function Navbar({ isModule, headerIndex, isEnterPrice }) {
               <SignInMobile>
                 <>
                   {userAuth ? (
-                    <BlackButton
-                      textColor={isModule ? colorList?.fontColor : '#FFFFFF'}
-                      backgroundColor={colorList?.buttonColor}>
-                      <Link href={OPEN_COPILOT_LINK}>Open Dashboard</Link>
-                    </BlackButton>
+                    <>
+                      <SignIn textColor={colorList?.fontColor} hoverColor={colorList?.primaryColor}>
+                        <Link href={CONTACT_SALES_LINK}>Contact sales</Link>
+                      </SignIn>
+                      <BlackButton
+                        textColor={isModule ? colorList?.fontColor : '#FFFFFF'}
+                        backgroundColor={colorList?.buttonColor}>
+                        <Link href={OPEN_COPILOT_LINK}>Open Dashboard</Link>
+                      </BlackButton>
+                    </>
                   ) : (
                     <>
                       <SignIn textColor={colorList?.fontColor} hoverColor={colorList?.primaryColor}>

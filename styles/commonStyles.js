@@ -254,6 +254,12 @@ const BlackButton = styled.div`
       margin-left: 2px;
     }
   }
+  @media only screen and (max-width: 434px) {
+    a {
+      ${MbButtonText};
+      text-align: center;
+    }
+  }
 `;
 const TransparenBlack = styled.div`
   a {
