@@ -1,8 +1,8 @@
 // TODO: switch is not working
 
-import { useState, useCallback } from 'react';
-import Link from 'next/link';
+import { useState, useCallback, useMemo } from 'react';
 import Image from 'next/image';
+import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
 import Layout from '../../components/layout';
 import Navbar from '../../components/navbar/navbar';
 import SEO from '../../components/seo';
@@ -17,31 +17,20 @@ import {
   MonthlyButton,
   WrapSlide,
   PricingMenu,
-  PriceOption,
-  PriceMenuLeft,
-  LeftBorder,
-  RightBorder,
-  PriceLeft,
-  PriceWrap,
-  PricePlan,
-  PricePlanWrap,
   PlanButton,
   PriceTable,
-  ImageWrap,
-  PriceImage,
-  PriceImageLeft,
-  PriceText,
-  BulletImage,
-  PricePlusImage,
   PricingButton
 } from '../../styles/pricingstyles';
 import CTA from '../../components/cta/cta';
 import FAQ from '../../components/faq/faq';
 import Button from '../../components/button/button';
-import { getSEOdata } from '../../lib/contentful-seo';
 import { COPILOT_ONBORADING_LINK } from '../../constants/externalLinks';
+import PricingCardSection from '../../components/pricingcard/pricingCardSection';
+import { getPricingPageDetail } from '../../lib/contentful-pricing';
+import { PRICING_PAGE_ID } from '../../constants/constant';
+import { isEmpty } from '../../helpers/helpers';
 
-export default function NewIndex({ faq, seoData }) {
+export default function NewIndex({ details, planFeatures }) {
   const [isShowFeature, setShowFeature] = useState(true);
   const [isYearly, Yearly] = useState(true);
 
@@ -51,36 +40,114 @@ export default function NewIndex({ faq, seoData }) {
 
   const setYearly = useCallback(() => {
     Yearly(true);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [true]);
+  }, []);
 
   const setMonthly = useCallback(() => {
     Yearly(false);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [false]);
+  }, []);
+
+  const renderTableData = useCallback((value) => {
+    if (isEmpty(value)) return null;
+    var result = value?.split(/\[(.*?)\]/);
+    if (result?.[1] === 'true') {
+      return (
+        <>
+          <div style={{ display: 'flex', gap: 10 }}>
+            <Image src='/images/checkmark.svg' alt='main-logo' height={20} width={20} /> <span>{result?.[2]}</span>
+          </div>
+        </>
+      );
+    }
+    if (value?.toLowerCase() === 'true')
+      return <Image src='/images/checkmark.svg' alt='main-logo' height={20} width={20} />;
+    else return <span>{value}</span>;
+  }, []);
+
+  const renderPlanFeaturesView = useMemo(() => {
+    if (isEmpty(planFeatures)) return null;
+    return planFeatures?.map((item, index) => {
+      return (
+        <>
+          <thead key={`planfeatures_index_${index}`}>
+            <tr>
+              <th colSpan={3} className='tablepadding tab'>
+                {item?.section}
+              </th>
+              <th className='tab'></th>
+              <th className='tab'></th>
+              <th className='tab'></th>
+            </tr>
+          </thead>
+          <tbody>
+            {item?.items?.map((featuresItem, featuresIndex) => {
+              return (
+                <tr key={`plan_features_${item?.section}_index_${featuresIndex}`}>
+                  <td colSpan={3} className='sticky'>
+                    <h4>{featuresItem?.name}</h4>
+                    {documentToReactComponents(featuresItem?.description?.json)}
+                  </td>
+                  <td className='sticky'>{renderTableData(featuresItem?.planStarter)}</td>
+                  <td className='sticky'>{renderTableData(featuresItem?.planProfessional)}</td>
+                  <td className='sticky'>{renderTableData(featuresItem?.planAdvanced)}</td>
+                </tr>
+              );
+            })}
+          </tbody>
+        </>
+      );
+    });
+  }, [planFeatures, renderTableData]);
+
+  const renderTableHeader = useMemo(() => {
+    return (
+      <table className={!isShowFeature && 'active'}>
+        <thead>
+          <tr>
+            <th colSpan={3} className='tableBorder tablehead'></th>
+            <th className='tablehead'>
+              <p className='amount'>
+                {isYearly && `$${details?.plansCollection?.items[0]?.annualPrice}`}
+                {!isYearly && `$${details?.plansCollection?.items[0]?.monthlyPrice}`}
+              </p>
+              <span className='spantext'>per internal user</span>
+            </th>
+            <th className='tablehead'>
+              <p className='amount'>
+                {isYearly && `$${details?.plansCollection?.items[1]?.annualPrice}`}
+                {!isYearly && `$${details?.plansCollection?.items[1]?.monthlyPrice}`}
+              </p>
+              <span className='spantext'>per internal user</span>
+            </th>
+            <th className='tablehead'>
+              <p className='amount'>
+                {isYearly && `$${details?.plansCollection?.items[2]?.annualPrice}`}
+                {!isYearly && `$${details?.plansCollection?.items[2]?.monthlyPrice}`}
+              </p>
+              <span className='spantext'>per internal user</span>
+            </th>
+          </tr>
+          <tr className='bordercolor'>
+            <th colSpan={3}>Features</th>
+            <th>Starter</th>
+            <th>Professional</th>
+            <th>Advanced</th>
+          </tr>
+        </thead>
+      </table>
+    );
+  }, [details?.plansCollection?.items, isShowFeature, isYearly]);
 
   return (
     <>
-      <SEO seoData={seoData} />
+      <SEO seoData={details?.seoMetadata} />
       <Layout>
         <Navbar />
         <HeroSection>
           <Container>
-            <h1>
-              Create your portal<span>,</span> pick a plan later
-            </h1>
-            <p>Try Copilot free for 14 days, no credit card required</p>
+            {!isEmpty(details?.header) && <h1>{details?.header}</h1>}
+            {!isEmpty(details?.body) && <p>{details?.body}</p>}
             <PricingButton>
-              <Button text={'Start Trial'} hoverColor={'rgba(255, 255, 255, 0.8)'} href={COPILOT_ONBORADING_LINK} />
-              <Button
-                bgColor={'transparent'}
-                fontColor={'#000000'}
-                borderColor={'#000000'}
-                text={'Book demo'}
-                href={'/book-demo'}
-                hoverColor={'rgba(0, 0, 0, 0.5)'}
-                className={'automation-button'}
-              />
+              <Button text={'Try for free'} hoverColor={'rgba(255, 255, 255, 0.8)'} href={COPILOT_ONBORADING_LINK} />
             </PricingButton>
           </Container>
         </HeroSection>
@@ -98,125 +165,13 @@ export default function NewIndex({ faq, seoData }) {
                 </MonthlyButton>
               </PriceButton>
               <PricingMenu>
-                <PriceOption>
-                  <PriceMenuLeft>
-                    <WrapSlide>
-                      <LeftBorder></LeftBorder>
-                      <PriceLeft>
-                        <h2>Starter</h2>
-                        <p>Everything you need to run a modern services business</p>
-                        <PriceWrap>
-                          <span>
-                            {isYearly && '$29'}
-                            {!isYearly && '$39'}
-                          </span>
-                          <p>per internal user per month</p>
-                        </PriceWrap>
-                        <PricePlan>
-                          <h3>All Starter plans include</h3>
-                          <PricePlanWrap>
-                            <BulletImage></BulletImage>
-                            <p>Up to 100 clients and 10GB of storage</p>
-                          </PricePlanWrap>
-                          <PricePlanWrap>
-                            <BulletImage></BulletImage>
-                            <p>Client management and custom fields</p>
-                          </PricePlanWrap>
-                          <PricePlanWrap>
-                            <BulletImage></BulletImage>
-                            <p>Customizable branding and color scheme</p>
-                          </PricePlanWrap>
-                          <PricePlanWrap>
-                            <BulletImage></BulletImage>
-                            <p>Access to every Copilot App including Messaging, Billing, Files, Forms, and Helpdesk</p>
-                          </PricePlanWrap>
-                        </PricePlan>
-                      </PriceLeft>
-
-                      <RightBorder> </RightBorder>
-                    </WrapSlide>
-                  </PriceMenuLeft>
-                  <PriceMenuLeft>
-                    <WrapSlide>
-                      <LeftBorder></LeftBorder>
-
-                      <PriceLeft>
-                        <h2>Professional</h2>
-                        <p>Level up with more clients, custom domains, automations, and apps</p>
-                        <PriceWrap>
-                          <span>
-                            {isYearly && '$69'}
-                            {!isYearly && '$89'}
-                          </span>
-                          <p>per internal user per month</p>
-                        </PriceWrap>
-                        <PricePlan>
-                          <h3>Everything in Starter</h3>
-                          <PricePlanWrap>
-                            <BulletImage></BulletImage>
-                            <p>Up to 2,000 clients and 2TB of storage</p>
-                          </PricePlanWrap>
-                          <PricePlanWrap>
-                            <BulletImage></BulletImage>
-                            <p>Custom domain and custom email domain</p>
-                          </PricePlanWrap>
-                          <PricePlanWrap>
-                            <BulletImage></BulletImage>
-                            <p>Automations, Zapier, and API</p>
-                          </PricePlanWrap>
-                          <PricePlanWrap>
-                            <BulletImage></BulletImage>
-                            <p>Support for Partner Apps and Custom Apps</p>
-                          </PricePlanWrap>
-                        </PricePlan>
-                      </PriceLeft>
-
-                      <RightBorder> </RightBorder>
-                    </WrapSlide>
-                  </PriceMenuLeft>
-                  <PriceMenuLeft>
-                    <WrapSlide>
-                      <LeftBorder></LeftBorder>
-
-                      <PriceLeft>
-                        <h2>Advanced</h2>
-                        <p>Level up further with a a fully white-label experience and dedicated expert</p>
-                        <PriceWrap>
-                          <span>
-                            {isYearly && '$119'}
-                            {!isYearly && '$139'}
-                          </span>
-                          <PriceText>
-                            <p>per internal user</p>
-                            <p>per month</p>
-                          </PriceText>
-                        </PriceWrap>
-                        <PricePlan>
-                          <h3>Everything in Professional</h3>
-                          <PricePlanWrap>
-                            <BulletImage></BulletImage>
-                            <p>Up to 20,000 clients and 20TB of storage</p>
-                          </PricePlanWrap>
-                          <PricePlanWrap>
-                            <BulletImage></BulletImage>
-                            <p>Remove ‘Powered by Copilot’</p>
-                          </PricePlanWrap>
-                          <PricePlanWrap>
-                            <BulletImage></BulletImage>
-                            <p>HIPAA Compliance</p>
-                          </PricePlanWrap>
-
-                          <PricePlanWrap>
-                            <BulletImage></BulletImage>
-                            <p>Dedicated Copilot Expert</p>
-                          </PricePlanWrap>
-                        </PricePlan>
-                      </PriceLeft>
-
-                      <RightBorder> </RightBorder>
-                    </WrapSlide>
-                  </PriceMenuLeft>
-                </PriceOption>
+                {!isEmpty(details?.plansCollection?.items) && (
+                  <PricingCardSection
+                    data={details?.plansCollection?.items}
+                    cardSize={details?.plansCollection?.total || 0}
+                    isYearly={isYearly}
+                  />
+                )}
                 <PlanButton>
                   <Button
                     isLink={false}
@@ -230,631 +185,246 @@ export default function NewIndex({ faq, seoData }) {
                 </PlanButton>
               </PricingMenu>
             </PriceMenu>
-            <PriceTable>
-              <table className={!isShowFeature && 'active'}>
-                <thead>
-                  <tr className='bordercolor'>
-                    <th colSpan={3} className='tableBorder'></th>
-                    <th className='radius'>Starter</th>
-                    <th>Professional</th>
-                    <th className='rightradius'>Advanced</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td colSpan={3} className='tableBorder'></td>
-                    <td>
-                      <p className='amount'>
-                        {isYearly && '$29'}
-                        {!isYearly && '$39'}
-                      </p>
-                      <span className='spantext'>per internal user</span>
-                    </td>
-                    <td>
-                      <p className='amount'>
-                        {isYearly && '$69'}
-                        {!isYearly && '$89'}
-                      </p>
-                      <span className='spantext'>per internal user</span>
-                    </td>
-                    <td>
-                      <p className='amount'>
-                        {isYearly && '$119'}
-                        {!isYearly && '$139'}
-                      </p>
-                      <span className='spantext'>per internal user</span>
-                    </td>
-                  </tr>
-
-                  <tr className='tablecolor'>
-                    <td colSpan={3} className='tablepadding'>
-                      Access
-                    </td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                  </tr>
-                  <tr>
-                    <td colSpan={3}>
-                      <h4>Total clients</h4>
-                      <p>
-                        A client user is any client of your business that has their own login access to your portal.
-                        Internal users (team members) are not considered client users.
-                      </p>
-                    </td>
-                    <td>
-                      <span>100</span>
-                    </td>
-                    <td>
-                      <span>2,000</span>
-                    </td>
-                    <td>
-                      <span>20,000</span>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td colSpan={3}>
-                      <h4>Total storage</h4>
-                      <p>
-                        File uploads in the Files App by any user contribute to your file storage limit. When you reach
-                        your limit, our team will get in touch and ask that you make space or upgrade your account.
-                      </p>
-                    </td>
-                    <td>
-                      <span>10GB</span>
-                    </td>
-                    <td>
-                      <span>2TB</span>
-                    </td>
-                    <td>
-                      <span>20TB</span>
-                    </td>
-                  </tr>
-                  <tr className='tablecolor'>
-                    <td colSpan={3} className='tablepadding'>
-                      Features
-                    </td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                  </tr>
-                  <tr>
-                    <td colSpan={3}>
-                      <h4>Client management</h4>
-                      <p>
-                        Client management functionality lets you create, invite, organize, and manage client
-                        information.
-                      </p>
-                    </td>
-                    <td>
-                      <Image src='/images/checkmark.svg' alt='main-logo' height={20} width={20} />
-                    </td>
-                    <td>
-                      <Image src='/images/checkmark.svg' alt='main-logo' height={20} width={20} />
-                    </td>
-                    <td>
-                      <Image src='/images/checkmark.svg' alt='main-logo' height={20} width={20} />
-                    </td>
-                  </tr>
-                  <tr>
-                    <td colSpan={3}>
-                      <h4>Custom fields</h4>
-                      <p>
-                        With custom fields, you can add and track custom properties for your clients. For example, you
-                        can track locations, addresses, or birthdays.
-                      </p>
-                    </td>
-                    <td>
-                      <Image src='/images/checkmark.svg' alt='main-logo' height={20} width={20} />
-                    </td>
-                    <td>
-                      <Image src='/images/checkmark.svg' alt='main-logo' height={20} width={20} />
-                    </td>
-                    <td>
-                      <Image src='/images/checkmark.svg' alt='main-logo' height={20} width={20} />
-                    </td>
-                  </tr>
-                  <tr>
-                    <td colSpan={3}>
-                      <h4>Team collaboration</h4>
-                      <p>
-                        Assign a lead and one or more assignees to each of your clients. This lets you stay organized
-                        and gives you full control over which team member can access which client.
-                      </p>
-                    </td>
-                    <td>
-                      <Image src='/images/checkmark.svg' alt='main-logo' height={20} width={20} />
-                    </td>
-                    <td>
-                      <Image src='/images/checkmark.svg' alt='main-logo' height={20} width={20} />
-                    </td>
-                    <td>
-                      <Image src='/images/checkmark.svg' alt='main-logo' height={20} width={20} />
-                    </td>
-                  </tr>
-                  <tr>
-                    <td colSpan={3}>
-                      <h4>Customization</h4>
-                      <p>
-                        Customizations include the ability to upload you brand assets, design your theme, set up a
-                        custom log in screen, and more.
-                      </p>
-                    </td>
-                    <td>
-                      <Image src='/images/checkmark.svg' alt='main-logo' height={20} width={20} />
-                    </td>
-                    <td>
-                      <Image src='/images/checkmark.svg' alt='main-logo' height={20} width={20} />
-                    </td>
-                    <td>
-                      <Image src='/images/checkmark.svg' alt='main-logo' height={20} width={20} />
-                    </td>
-                  </tr>
-                  <tr>
-                    <td colSpan={3}>
-                      <h4>Authentication</h4>
-                      <p>
-                        Internal users and client users can authenticate with email and password, and set up 2-factor
-                        authentication. Google auth and magic link support is coming soon.
-                      </p>
-                    </td>
-                    <td>
-                      <Image src='/images/checkmark.svg' alt='main-logo' height={20} width={20} />
-                    </td>
-                    <td>
-                      <Image src='/images/checkmark.svg' alt='main-logo' height={20} width={20} />
-                    </td>
-                    <td>
-                      <Image src='/images/checkmark.svg' alt='main-logo' height={20} width={20} />
-                    </td>
-                  </tr>
-                  <tr>
-                    <td colSpan={3}>
-                      <h4>Automations & Zapier</h4>
-                      <p>
-                        Use Copilot API and Zapier triggers to set up automations that streamline the experience for
-                        your clients.
-                      </p>
-                    </td>
-                    <td></td>
-                    <td>
-                      <Image src='/images/checkmark.svg' alt='main-logo' height={20} width={20} />
-                    </td>
-                    <td>
-                      <Image src='/images/checkmark.svg' alt='main-logo' height={20} width={20} />
-                    </td>
-                  </tr>
-                  <tr>
-                    <td colSpan={3}>
-                      <h4>API Access</h4>
-                      <p>Use our REST API and Webhooks to set up automations and connect other tools.</p>
-                    </td>
-                    <td>
-                      <span></span>
-                    </td>
-                    <td>
-                      <span>Professional Rate Limit</span>
-                    </td>
-                    <td>
-                      <span>Advanced Rate Limit</span>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td colSpan={3}>
-                      <h4>White-labeling</h4>
-                      <p>
-                        With a custom domain, you can host your portal on your own URL. With a custom email domain, you
-                        can send client email notifications from your own email. Powered by Copilot is a small badge
-                        that shows in the client experience and can be removed on the Advanced plan.
-                      </p>
-                    </td>
-                    <td>
-                      <span></span>
-                    </td>
-                    <td>
-                      <span>Custom domain</span>
-
-                      <span className='spanpadding'>Custom email domain</span>
-                    </td>
-                    <td>
-                      <span>Custom domain</span>
-                      <span className='spanpadding'>Custom email domain</span>
-                      <span className='spanpadding'>Remove ‘Powered by Copilot’</span>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td colSpan={3}>
-                      <h4>HIPAA compliance with BAA</h4>
-                      <p>
-                        If you're a covered entity or business associate subject to HIPAA, contact our team to enter
-                        into a BAA.
-                      </p>
-                    </td>
-                    <td>
-                      <span></span>
-                    </td>
-                    <td>
-                      <span></span>
-                    </td>
-                    <td>
-                      <Image src='/images/checkmark.svg' alt='main-logo' height={20} width={20} />
-                    </td>
-                  </tr>
-                  <tr>
-                    <td colSpan={3}>
-                      <h4>Custom roles & permissions</h4>
-                      <p>
-                        Create custom roles for your team if you want full control over what functionality each internal
-                        user can access in your portal.
-                      </p>
-                    </td>
-                    <td></td>
-                    <td></td>
-                    <td>
-                      <ImageWrap>
+            {!isShowFeature && !isEmpty(planFeatures) && (
+              <PriceTable>
+                {renderTableHeader}
+                <table className={!isShowFeature && 'active'}>
+                  {renderPlanFeaturesView}
+                  {/* <thead>
+                    <tr>
+                      <th colSpan={3} className='tablepadding tab'>
+                        Access
+                      </th>
+                      <th className='tab'></th>
+                      <th className='tab'></th>
+                      <th className='tab'></th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td colSpan={3} className='sticky'>
+                        <h4>Total clients</h4>
+                        <p>
+                          A client user is any client of your business that has their own login access to your portal.
+                          Internal users (team members) are not considered client users.
+                        </p>
+                      </td>
+                      <td className='sticky'>
+                        <span>100</span>
+                      </td>
+                      <td className='sticky'>
+                        <span>2,000</span>
+                      </td>
+                      <td className='sticky'>
+                        <span>20,000</span>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td colSpan={3} className='sticky'>
+                        <h4>Total storage</h4>
+                        <p>
+                          File uploads in the Files App by any user contribute to your file storage limit. When you
+                          reach your limit, our team will get in touch and ask that you make space or upgrade your
+                          account.
+                        </p>
+                      </td>
+                      <td className='sticky'>
+                        <span>10GB</span>
+                      </td>
+                      <td className='sticky'>
+                        <span>2TB</span>
+                      </td>
+                      <td className='sticky'>
+                        <span>20TB</span>
+                      </td>
+                    </tr>
+                  </tbody>
+                  <thead>
+                    <tr>
+                      <th colSpan={3} className='tablepadding tab'>
+                        Features
+                      </th>
+                      <th className='tab'></th>
+                      <th className='tab'></th>
+                      <th className='tab'></th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td colSpan={3} className='sticky'>
+                        <h4>Client management</h4>
+                        <p>
+                          Client management functionality lets you create, invite, organize, and manage client
+                          information.
+                        </p>
+                      </td>
+                      <td className='sticky'>
                         <Image src='/images/checkmark.svg' alt='main-logo' height={20} width={20} />
-                        <p className='imagretext'>Coming Soon</p>
-                      </ImageWrap>
-                    </td>
-                  </tr>
+                      </td>
+                      <td className='sticky'>
+                        <Image src='/images/checkmark.svg' alt='main-logo' height={20} width={20} />
+                      </td>
+                      <td className='sticky'>
+                        <Image src='/images/checkmark.svg' alt='main-logo' height={20} width={20} />
+                      </td>
+                    </tr>
+                    <tr>
+                      <td colSpan={3} className='sticky'>
+                        <h4>Custom fields</h4>
+                        <p>
+                          With custom fields, you can add and track custom properties for your clients. For example, you
+                          can track locations, addresses, or birthdays.
+                        </p>
+                      </td>
+                      <td className='sticky'>
+                        <Image src='/images/checkmark.svg' alt='main-logo' height={20} width={20} />
+                      </td>
+                      <td className='sticky'>
+                        <Image src='/images/checkmark.svg' alt='main-logo' height={20} width={20} />
+                      </td>
+                      <td className='sticky'>
+                        <Image src='/images/checkmark.svg' alt='main-logo' height={20} width={20} />
+                      </td>
+                    </tr>
+                    <tr>
+                      <td colSpan={3} className='sticky'>
+                        <h4>Team collaboration</h4>
+                        <p>
+                          Assign a lead and one or more assignees to each of your clients. This lets you stay organized
+                          and gives you full control over which team member can access which client.
+                        </p>
+                      </td>
+                      <td className='sticky'>
+                        <Image src='/images/checkmark.svg' alt='main-logo' height={20} width={20} />
+                      </td>
+                      <td className='sticky'>
+                        <Image src='/images/checkmark.svg' alt='main-logo' height={20} width={20} />
+                      </td>
+                      <td className='sticky'>
+                        <Image src='/images/checkmark.svg' alt='main-logo' height={20} width={20} />
+                      </td>
+                    </tr>
+                    <tr>
+                      <td colSpan={3} className='sticky'>
+                        <h4>Customization</h4>
+                        <p>
+                          Customizations include the ability to upload you brand assets, design your theme, set up a
+                          custom log in screen, and more.
+                        </p>
+                      </td>
+                      <td className='sticky'>
+                        <Image src='/images/checkmark.svg' alt='main-logo' height={20} width={20} />
+                      </td>
+                      <td className='sticky'>
+                        <Image src='/images/checkmark.svg' alt='main-logo' height={20} width={20} />
+                      </td>
+                      <td className='sticky'>
+                        <Image src='/images/checkmark.svg' alt='main-logo' height={20} width={20} />
+                      </td>
+                    </tr>
+                    <tr>
+                      <td colSpan={3} className='sticky'>
+                        <h4>Authentication</h4>
+                        <p>
+                          Internal users and client users can authenticate with email and password, and set up 2-factor
+                          authentication. Google auth and magic link support is coming soon.
+                        </p>
+                      </td>
+                      <td className='sticky'>
+                        <Image src='/images/checkmark.svg' alt='main-logo' height={20} width={20} />
+                      </td>
+                      <td className='sticky'>
+                        <Image src='/images/checkmark.svg' alt='main-logo' height={20} width={20} />
+                      </td>
+                      <td className='sticky'>
+                        <Image src='/images/checkmark.svg' alt='main-logo' height={20} width={20} />
+                      </td>
+                    </tr>
+                    <tr>
+                      <td colSpan={3} className='sticky'>
+                        <h4>Automations & Zapier</h4>
+                        <p>
+                          Use Copilot API and Zapier triggers to set up automations that streamline the experience for
+                          your clients.
+                        </p>
+                      </td>
+                      <td className='sticky'></td>
+                      <td className='sticky'>
+                        <Image src='/images/checkmark.svg' alt='main-logo' height={20} width={20} />
+                      </td>
+                      <td className='sticky'>
+                        <Image src='/images/checkmark.svg' alt='main-logo' height={20} width={20} />
+                      </td>
+                    </tr>
+                    <tr>
+                      <td colSpan={3} className='sticky'>
+                        <h4>API Access</h4>
+                        <p>Use our REST API and Webhooks to set up automations and connect other tools.</p>
+                      </td>
+                      <td className='sticky'>
+                        <span></span>
+                      </td>
+                      <td className='sticky'>
+                        <span>Professional Rate Limit</span>
+                      </td>
+                      <td className='sticky'>
+                        <span>Advanced Rate Limit</span>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td colSpan={3} className='sticky'>
+                        <h4>White-labeling</h4>
+                        <p>
+                          With a custom domain, you can host your portal on your own URL. With a custom email domain,
+                          you can send client email notifications from your own email. Powered by Copilot is a small
+                          badge that shows in the client experience and can be removed on the Advanced plan.
+                        </p>
+                      </td>
+                      <td className='sticky'>
+                        <span></span>
+                      </td>
+                      <td className='sticky'>
+                        <span>Custom domain</span>
 
-                  <tr className='tablecolor'>
-                    <td colSpan={3} className='tablepadding'>
-                      Copilot Apps
-                    </td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                  </tr>
-                  <tr>
-                    <td colSpan={3}>
-                      <h4>Messaging</h4>
-                      <p>
-                        Securely communicate with clients in an integrated chat experience. Clients can send messages in
-                        your portal or reply to messaging email notifications in a seamless experience.
-                      </p>
-                    </td>
-                    <td>
-                      <Image src='/images/checkmark.svg' alt='main-logo' height={20} width={20} />
-                    </td>
-                    <td>
-                      <Image src='/images/checkmark.svg' alt='main-logo' height={20} width={20} />
-                    </td>
-                    <td>
-                      <Image src='/images/checkmark.svg' alt='main-logo' height={20} width={20} />
-                    </td>
-                  </tr>
-                  <tr>
-                    <td colSpan={3}>
-                      <h4>Billing</h4>
-                      <p>
-                        Create one-time invoices and recurring subscriptions in your portal. Give clients a way to
-                        seamlessly check out, pay via credit card or ACH, access invoices, and manage payment methods.
-                        Syncs with QuickBooks.
-                      </p>
-                    </td>
-                    <td>
-                      <Image src='/images/checkmark.svg' alt='main-logo' height={20} width={20} />
-                    </td>
-                    <td>
-                      <Image src='/images/checkmark.svg' alt='main-logo' height={20} width={20} />
-                    </td>
-                    <td>
-                      <Image src='/images/checkmark.svg' alt='main-logo' height={20} width={20} />
-                    </td>
-                  </tr>
-                  <tr>
-                    <td colSpan={3}>
-                      <h4>Files</h4>
-                      <p>
-                        Upload files, add links, and stay organized with folders. Advanced controls let you specify
-                        whether clients have the same controls or more limited access.
-                      </p>
-                    </td>
-                    <td>
-                      <Image src='/images/checkmark.svg' alt='main-logo' height={20} width={20} />
-                    </td>
-                    <td>
-                      <Image src='/images/checkmark.svg' alt='main-logo' height={20} width={20} />
-                    </td>
-                    <td>
-                      <Image src='/images/checkmark.svg' alt='main-logo' height={20} width={20} />
-                    </td>
-                  </tr>
-                  <tr>
-                    <td colSpan={3}>
-                      <h4>Contracts</h4>
-                      <p>Upload PDFs and request eSignatures directly in your portal.</p>
-                    </td>
-                    <td>
-                      <Image src='/images/checkmark.svg' alt='main-logo' height={20} width={20} />
-                    </td>
-                    <td>
-                      <Image src='/images/checkmark.svg' alt='main-logo' height={20} width={20} />
-                    </td>
-                    <td>
-                      <Image src='/images/checkmark.svg' alt='main-logo' height={20} width={20} />
-                    </td>
-                  </tr>
-                  <tr>
-                    <td colSpan={3}>
-                      <h4>Forms</h4>
-                      <p>Streamline the client onboarding experience and data intake with reusable forms.</p>
-                    </td>
-                    <td>
-                      <Image src='/images/checkmark.svg' alt='main-logo' height={20} width={20} />
-                    </td>
-                    <td>
-                      <Image src='/images/checkmark.svg' alt='main-logo' height={20} width={20} />
-                    </td>
-                    <td>
-                      <Image src='/images/checkmark.svg' alt='main-logo' height={20} width={20} />
-                    </td>
-                  </tr>
-                  <tr>
-                    <td colSpan={3}>
-                      <h4>Knowledge base</h4>
-                      <p>
-                        Create a knowledge base for your clients to reduce manual support time. With a powerful article
-                        editor, use rich text, images, videos, and embeds to create content. Use tags and custom
-                        visibility controls to organize articles and indicate which client can see which content
-                      </p>
-                    </td>
-                    <td>
-                      <Image src='/images/checkmark.svg' alt='main-logo' height={20} width={20} />
-                    </td>
-                    <td>
-                      <Image src='/images/checkmark.svg' alt='main-logo' height={20} width={20} />
-                    </td>
-                    <td>
-                      <Image src='/images/checkmark.svg' alt='main-logo' height={20} width={20} />
-                    </td>
-                  </tr>
-                  <tr className='tablecolor'>
-                    <td colSpan={3} className='tablepadding'>
-                      Apps
-                    </td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                  </tr>
-
-                  <tr>
-                    <td colSpan={3}>
-                      <h4>Partner Apps</h4>
-                      <p>
-                        Embed products like Airtable, ClickUp, Calendly, Google Data Studio, and 1000s of others in your
-                        portal and give clients a true one-stop shop experience.
-                      </p>
-                    </td>
-                    <td></td>
-                    <td>
-                      <Image src='/images/checkmark.svg' alt='main-logo' height={20} width={20} />
-                    </td>
-                    <td>
-                      <Image src='/images/checkmark.svg' alt='main-logo' height={20} width={20} />
-                    </td>
-                  </tr>
-
-                  <tr>
-                    <td colSpan={3}>
-                      <h4>Data Integration Apps</h4>
-                      <p>
-                        Connect products like QuickBooks and Google Analytics so that data can flow from Copilot into an
-                        external system or the other way around.
-                      </p>
-                    </td>
-                    <td></td>
-                    <td>
-                      <Image src='/images/checkmark.svg' alt='main-logo' height={20} width={20} />
-                    </td>
-                    <td>
-                      <Image src='/images/checkmark.svg' alt='main-logo' height={20} width={20} />
-                    </td>
-                  </tr>
-
-                  <tr>
-                    <td colSpan={3}>
-                      <h4>Custom Apps</h4>
-                      <p>
-                        A custom app is a web application that can be embedded into your portal and receives information
-                        about the current user or company. You can render custom content automatically depending on the
-                        client that is signed in.
-                      </p>
-                    </td>
-                    <td></td>
-                    <td>
-                      <Image src='/images/checkmark.svg' alt='main-logo' height={20} width={20} />
-                    </td>
-                    <td>
-                      <Image src='/images/checkmark.svg' alt='main-logo' height={20} width={20} />
-                    </td>
-                  </tr>
-                  <tr className='tablecolor'>
-                    <td colSpan={3} className='tablepadding'>
-                      Payment processing fees
-                    </td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                  </tr>
-
-                  <tr>
-                    <td colSpan={3}>
-                      <h4>Credit cards</h4>
-                      <p>
-                        Payment processing fee for credit cards. You can control whether you want to absorb payment
-                        processing fees or pass them on to your client.
-                      </p>
-                    </td>
-                    <td>
-                      <span>3.5% + $0.30</span>
-                    </td>
-                    <td>
-                      <span>3.2% + $0.30</span>
-                    </td>
-                    <td>
-                      <span>3.1% + $0.30</span>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td colSpan={3}>
-                      <h4>ACH</h4>
-                      <p>
-                        Payment processing fee for ACH Debit. You can control whether you want to absorb payment
-                        processing fees or pass them on to your client. Instant ACH powered by Plaid and traditional ACH
-                        with micro-deposit verification are both supported.
-                      </p>
-                    </td>
-                    <td>
-                      <span>$5 or 1% (whichever is lower)</span>
-                    </td>
-                    <td>
-                      <span>$5 or 1% (whichever is lower)</span>
-                    </td>
-                    <td>
-                      <span>$5 or 1% (whichever is lower)</span>
-                    </td>
-                  </tr>
-
-                  <tr className='tablecolor'>
-                    <td colSpan={3} className='tablepadding'>
-                      Additional Payment processing fees
-                    </td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                  </tr>
-                  <tr>
-                    <td colSpan={3}>
-                      <h4>Payments for invoices generated by a recurring subscription</h4>
-                      <p>Payments for invoices that are generated by a subscription may incur an additional fee.</p>
-                    </td>
-                    <td>
-                      <span>+1%</span>
-                    </td>
-                    <td>
-                      <span>+0.5%</span>
-                    </td>
-                    <td>
-                      <span>Included</span>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td colSpan={3}>
-                      <h4>International credit cards</h4>
-                      <p>International credit cards incur an additional 1% fee.</p>
-                    </td>
-                    <td>
-                      <span>+1%</span>
-                    </td>
-                    <td>
-                      <span>+1%</span>
-                    </td>
-                    <td>
-                      <span>+1%</span>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td colSpan={3}>
-                      <h4>Currency conversion required</h4>
-                      <p>Credit card payments that require currency conversion incur an additional 1% fee.</p>
-                    </td>
-                    <td>
-                      <span>+1%</span>
-                    </td>
-                    <td>
-                      <span>+1%</span>
-                    </td>
-                    <td>
-                      <span>+1%</span>
-                    </td>
-                  </tr>
-                  <tr className='tablecolor'>
-                    <td colSpan={3} className='tablepadding'>
-                      Support
-                    </td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                  </tr>
-                  <tr>
-                    <td colSpan={3}>
-                      <h4>Email and community support</h4>
-                      <p>Receive support from our Slack community and get answers from our support team.</p>
-                    </td>
-                    <td>
-                      <Image src='/images/checkmark.svg' alt='main-logo' height={20} width={20} />
-                    </td>
-                    <td>
-                      <Image src='/images/checkmark.svg' alt='main-logo' height={20} width={20} />
-                    </td>
-                    <td>
-                      <Image src='/images/checkmark.svg' alt='main-logo' height={20} width={20} />
-                    </td>
-                  </tr>
-                  <tr>
-                    <td colSpan={3}>
-                      <h4>Priority support</h4>
-                      <p>Receive elevated support from our priority support team.</p>
-                    </td>
-                    <td></td>
-                    <td>
-                      <Image src='/images/checkmark.svg' alt='main-logo' height={20} width={20} />
-                    </td>
-                    <td>
-                      <Image src='/images/checkmark.svg' alt='main-logo' height={20} width={20} />
-                    </td>
-                  </tr>
-                  <tr>
-                    <td colSpan={3}>
-                      <h4>Dedicated expert</h4>
-                      <p>
-                        Meet 1:1 with an expert to help you set up your portal, migrate data, set up workflow
-                        automations, and more.
-                      </p>
-                    </td>
-                    <td></td>
-                    <td></td>
-                    <td>
-                      <Image src='/images/checkmark.svg' alt='main-logo' height={20} width={20} />
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
-            </PriceTable>
-
-            <PriceImage>
-              <PriceImageLeft>
-                <Image src='/images/logoplus.svg' alt='main-logo' height={40} width={252} />
-                <h2>
-                  Starting at $2<span>,</span>000 USD/month
-                </h2>
-                <p>
-                  For businesses with custom requirements, enterprise compliance, advanced reporting needs, and more.
-                </p>
-                <SecondryButton>
-                  <Link href='/copilot-plus'>Learn more</Link>
-                </SecondryButton>
-              </PriceImageLeft>
-              <PricePlusImage>
-                <Image src='/images/price.png' alt='plus-image' width={421} height={361} />
-              </PricePlusImage>
-            </PriceImage>
+                        <span className='spanpadding'>Custom email domain</span>
+                      </td>
+                      <td className='sticky'>
+                        <span>Custom domain</span>
+                        <span className='spanpadding'>Custom email domain</span>
+                        <span className='spanpadding'>Remove ‘Powered by Copilot’</span>
+                      </td>
+                    </tr>
+                  </tbody> */}
+                </table>
+              </PriceTable>
+            )}
           </Container>
         </PricingSection>
-        <FAQ contentID={'7zdbfGOwwHXppWfH9yA8KI'} />
+        <FAQ contentID={details?.faqGroup?.sys?.id} />
         <CTA />
       </Layout>
     </>
   );
 }
 export async function getStaticProps({ preview = false }) {
-  const seoData = (await getSEOdata('yof0gWCYzq1DaLbKJTFqb')) ?? [];
-  seoData.canonical = 'https://www.copilot.com/pricing';
+  const details = (await getPricingPageDetail({ id: PRICING_PAGE_ID })) ?? [];
+  if (!isEmpty(details?.seoMetadata)) details.seoMetadata.canonical = 'https://www.copilot.com/pricing';
+
+  const planFeatures = [];
+  details?.planFeaturesCollection?.items?.forEach((element) => {
+    const findIndex = planFeatures?.findIndex((feature) => feature?.section === element.section);
+
+    if (findIndex !== -1) {
+      planFeatures?.[findIndex]['items'].push(element);
+    } else {
+      const item = { section: element.section, items: [element] };
+      planFeatures.push(item);
+    }
+  });
   return {
     props: {
-      seoData
+      details,
+      planFeatures
     }
   };
 }

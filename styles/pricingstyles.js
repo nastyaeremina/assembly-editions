@@ -73,6 +73,7 @@ const PricingSection = styled.div``;
 const PriceMenu = styled.div``;
 const PriceButton = styled.div`
   display: flex;
+  justify-content: center;
   padding-bottom: 32px;
   @media only screen and (max-width: 749px) {
     padding-bottom: 28px;
@@ -313,9 +314,11 @@ const PricePlanWrap = styled.li`
 `;
 const PlanPlanSub = styled.div``;
 const PlanButton = styled.div`
-  width: 100%;
+  width: fit-content;
   text-align: center;
   margin: 0 auto;
+  display: flex;
+  justify-content: center;
   a {
     cursor: pointer;
   }
@@ -323,44 +326,89 @@ const PlanButton = styled.div`
     display: none;
   }
 `;
-const FadeIN = keyframes`
- from { opacity: 0; }
-      to { opacity: 1; }
-`;
 const PriceTable = styled.div`
-  padding: 100px 0;
+  padding: 100px 0 0;
   display: block;
-  overflow: hidden;
-  transition: height 400ms ease 0s, padding 400ms ease 0s, margin 400ms ease 0s;
-  animation: ${FadeIN} 1s;
   table {
     display: none;
     width: 100%;
-    border-spacing: 0;
-    animation: ${FadeIN} 1s;
-    transition: height 400ms ease 0s, padding 400ms ease 0s, margin 400ms ease 0s;
-    border-collapse: separate;
-    .tableBorder {
-      background-color: #fff;
+    border-collapse: collapse;
+    border: 1px solid #00160e;
+    border-style: none solid solid;
+    :first-child {
+      position: sticky;
+      top: 83px;
+      border-style: none solid none solid;
+      z-index: 9;
     }
-    .bordercolor {
-      td {
-        color: ${({ theme }) => theme.colors.greenlight};
-        border-right-color: ${({ theme }) => theme.colors.greenlight};
+    thead > tr > td {
+      border: 1px solid #00160e;
+      border-style: none solid none none;
+      :last-child {
+        border-style: none;
       }
     }
-    .radius {
-      border-radius: 4px 0px 0px 0px;
+    thead > tr > th {
+      :first-child {
+        width: 630px;
+      }
     }
-    .rightradius {
-      border-top-right-radius: 4px;
-      border-right: none;
+    th {
+      border: 1px solid #00160e;
+      :first-child {
+        border-left: none;
+      }
+      :last-child {
+        border-right: none;
+      }
     }
-    .tablecolor {
-      background-color: ${({ theme }) => theme.colors.greenlight};
+    td {
+      border: 1px solid #00160e;
+      border-style: none solid;
+      :first-child {
+        border-left: none;
+      }
+      :last-child {
+        border-right: none;
+      }
+    }
+    tr {
+      :nth-child(even) {
+        td {
+          background: linear-gradient(0deg, #f8f9fb 0%, #f8f9fb 100%), #fff;
+        }
+      }
+    }
+    .bordercolor {
+      th {
+        color: ${({ theme }) => theme.colors.greenlight};
+        border-right: 1px solid #e3ffee;
+        :last-child {
+          border-right: none;
+        }
+      }
     }
     .tablepadding {
       padding: 12px 20px;
+    }
+    .tab {
+      position: sticky;
+      top: 233px;
+      z-index: 1;
+      background-color: ${({ theme }) => theme.colors.greenlight};
+      ${Body3};
+      color: ${({ theme }) => theme.colors.title};
+      padding: 16px 20px;
+      vertical-align: top;
+      letter-spacing: 0.02em;
+    }
+    .tablehead {
+      background-color: #fff;
+      padding: 16px 20px;
+    }
+    .sticky {
+      position: sticky;
+      top: 233px;
     }
     .leftradius {
       border-radius: 4px 0px 0px 0px;
@@ -381,26 +429,35 @@ const PriceTable = styled.div`
       padding: 12px 20px;
       text-align: left;
       width: 200px;
-      border-right: 1px solid #e3ffee;
+      position: sticky;
+      top: 83px;
+      .amount {
+        margin: 0 0 4px 0;
+        color: ${({ theme }) => theme.colors.title};
+        ${TableText};
+      }
+      .spantext {
+        ${FooterText};
+        color: ${({ theme }) => theme.colors.darkgray};
+      }
     }
     td {
       ${Body3};
       color: ${({ theme }) => theme.colors.title};
       padding: 16px 20px;
-      border: 1px solid #00160e;
       vertical-align: top;
       letter-spacing: 0.02em;
-      border-style: none solid solid none;
+      position: sticky;
+      top: 84px;
+      z-index: -99;
+      background: #fff;
       span {
         ${Body5};
         color: ${({ theme }) => theme.colors.title};
         display: block;
         letter-spacing: 0.02em;
       }
-      .spantext {
-        ${FooterText};
-        color: ${({ theme }) => theme.colors.darkgray};
-      }
+
       p {
         color: ${({ theme }) => theme.colors.body};
         ${Body5};
@@ -415,39 +472,10 @@ const PriceTable = styled.div`
       .spanpadding {
         padding-top: 12px;
       }
-      .amount {
-        margin: 0 0 4px 0;
-        color: ${({ theme }) => theme.colors.greendark};
-        ${TableText};
-      }
+
       .imagretext {
         color: ${({ theme }) => theme.colors.greenmiddark};
         margin: 0;
-      }
-    }
-    tr {
-      &:nth-child(1) {
-        td {
-          &:nth-child(1) {
-            border-style: none;
-          }
-          &:nth-child(2) {
-            border-style: solid;
-          }
-        }
-      }
-      &:nth-child(2) {
-        td {
-          &:nth-child(1) {
-            border-top-left-radius: 4px;
-            border-style: solid;
-          }
-        }
-      }
-      td {
-        &:nth-child(1) {
-          border-style: none solid solid solid;
-        }
       }
     }
   }

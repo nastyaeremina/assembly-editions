@@ -208,12 +208,14 @@ export default function Navbar({ isModule, headerIndex, isEnterPrice }) {
                     Resources
                   </MobileText>
                 </SpanLink>
-                {/* <SpanMobileLink
-                  textColor={colorList?.fontColor}
-                  hoverColor={colorList?.primaryColor}
-                  className={router.pathname === '/book-demo' ? 'active' : ''}>
-                  <Link href='/book-demo'>Book Demo</Link>
-                </SpanMobileLink> */}
+                {userAuth && (
+                  <SpanMobileLink
+                    textColor={colorList?.fontColor}
+                    hoverColor={colorList?.primaryColor}
+                    className={router.pathname === '/book-demo' ? 'active' : ''}>
+                    <Link href='/book-demo'>Contact sales</Link>
+                  </SpanMobileLink>
+                )}
                 <SpanLink
                   textColor={colorList?.fontColor}
                   hoverColor={colorList?.primaryColor}
@@ -555,7 +557,7 @@ export default function Navbar({ isModule, headerIndex, isEnterPrice }) {
               {userAuth ? (
                 <>
                   <SignIn textColor={colorList?.fontColor} hoverColor={colorList?.primaryColor}>
-                    <Link href={CONTACT_SALES_LINK}>Contact sales</Link>
+                    <Link href={'/book-demo'}>Contact sales</Link>
                   </SignIn>
                   <Button
                     bgColor={colorList?.buttonColor}
@@ -737,9 +739,9 @@ export default function Navbar({ isModule, headerIndex, isEnterPrice }) {
                 <>
                   {userAuth ? (
                     <>
-                      <SignIn textColor={colorList?.fontColor} hoverColor={colorList?.primaryColor}>
+                      {/* <SignIn textColor={colorList?.fontColor} hoverColor={colorList?.primaryColor}>
                         <Link href={CONTACT_SALES_LINK}>Contact sales</Link>
-                      </SignIn>
+                      </SignIn> */}
                       <BlackButton
                         textColor={isModule ? colorList?.fontColor : '#FFFFFF'}
                         backgroundColor={colorList?.buttonColor}>
