@@ -322,7 +322,7 @@ const PlanButton = styled.div`
   a {
     cursor: pointer;
   }
-  @media only screen and (max-width: 749px) {
+  @media only screen and (max-width: 768px) {
     display: none;
   }
 `;
@@ -431,6 +431,11 @@ const PriceTable = styled.div`
       width: 200px;
       position: sticky;
       top: 83px;
+      ${(props) =>
+        props.is4Card &&
+        css`
+          width: 170px;
+        `}
       .amount {
         margin: 0 0 4px 0;
         color: ${({ theme }) => theme.colors.title};
@@ -439,6 +444,7 @@ const PriceTable = styled.div`
       .spantext {
         ${FooterText};
         color: ${({ theme }) => theme.colors.darkgray};
+        display: block;
       }
     }
     td {
@@ -485,7 +491,7 @@ const PriceTable = styled.div`
   @media only screen and (max-width: 991px) {
     padding: 50px 0;
   }
-  @media only screen and (max-width: 749px) {
+  @media only screen and (max-width: 768px) {
     display: none;
   }
 `;

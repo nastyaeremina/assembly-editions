@@ -30,7 +30,7 @@ import { getPricingPageDetail } from '../../lib/contentful-pricing';
 import { PRICING_PAGE_ID } from '../../constants/constant';
 import { isEmpty } from '../../helpers/helpers';
 
-export default function NewIndex({ details, planFeatures }) {
+export default function NewIndex({ details, planFeatures, cardSize }) {
   const [isShowFeature, setShowFeature] = useState(true);
   const [isYearly, Yearly] = useState(true);
 
@@ -73,9 +73,13 @@ export default function NewIndex({ details, planFeatures }) {
               <th colSpan={3} className='tablepadding tab'>
                 {item?.section}
               </th>
-              <th className='tab'></th>
-              <th className='tab'></th>
-              <th className='tab'></th>
+              {details?.plansCollection?.items?.map((item) => {
+                return (
+                  <>
+                    <th className='tab' key={`blank_tab`}></th>
+                  </>
+                );
+              })}
             </tr>
           </thead>
           <tbody>
@@ -86,9 +90,13 @@ export default function NewIndex({ details, planFeatures }) {
                     <h4>{featuresItem?.name}</h4>
                     {documentToReactComponents(featuresItem?.description?.json)}
                   </td>
-                  <td className='sticky'>{renderTableData(featuresItem?.planStarter)}</td>
-                  <td className='sticky'>{renderTableData(featuresItem?.planProfessional)}</td>
-                  <td className='sticky'>{renderTableData(featuresItem?.planAdvanced)}</td>
+                  {details?.plansCollection?.items?.map((item) => {
+                    return (
+                      <>
+                        <td className='sticky'>{renderTableData(featuresItem?.[`plan${item?.name}`])}</td>
+                      </>
+                    );
+                  })}
                 </tr>
               );
             })}
@@ -96,7 +104,35 @@ export default function NewIndex({ details, planFeatures }) {
         </>
       );
     });
-  }, [planFeatures, renderTableData]);
+  }, [details?.plansCollection?.items, planFeatures, renderTableData]);
+
+  const renderPlanTableHeadingView = useMemo(() => {
+    if (isEmpty(details?.plansCollection?.items)) return null;
+    return details?.plansCollection?.items?.map((item, index) => {
+      return (
+        <>
+          <th className='tablehead'>
+            <p className='amount'>
+              {isYearly && `$${item?.annualPrice}`}
+              {!isYearly && `$${item?.monthlyPrice}`}
+            </p>
+            <span className='spantext'>{item?.details}</span>
+          </th>
+        </>
+      );
+    });
+  }, [details?.plansCollection?.items, isYearly]);
+
+  const renderTablePlanNameView = useMemo(() => {
+    if (isEmpty(details?.plansCollection?.items)) return null;
+    return details?.plansCollection?.items?.map((item, index) => {
+      return (
+        <>
+          <th>{item?.name}</th>
+        </>
+      );
+    });
+  }, [details?.plansCollection?.items]);
 
   const renderTableHeader = useMemo(() => {
     return (
@@ -104,38 +140,16 @@ export default function NewIndex({ details, planFeatures }) {
         <thead>
           <tr>
             <th colSpan={3} className='tableBorder tablehead'></th>
-            <th className='tablehead'>
-              <p className='amount'>
-                {isYearly && `$${details?.plansCollection?.items[0]?.annualPrice}`}
-                {!isYearly && `$${details?.plansCollection?.items[0]?.monthlyPrice}`}
-              </p>
-              <span className='spantext'>per internal user</span>
-            </th>
-            <th className='tablehead'>
-              <p className='amount'>
-                {isYearly && `$${details?.plansCollection?.items[1]?.annualPrice}`}
-                {!isYearly && `$${details?.plansCollection?.items[1]?.monthlyPrice}`}
-              </p>
-              <span className='spantext'>per internal user</span>
-            </th>
-            <th className='tablehead'>
-              <p className='amount'>
-                {isYearly && `$${details?.plansCollection?.items[2]?.annualPrice}`}
-                {!isYearly && `$${details?.plansCollection?.items[2]?.monthlyPrice}`}
-              </p>
-              <span className='spantext'>per internal user</span>
-            </th>
+            {renderPlanTableHeadingView}
           </tr>
           <tr className='bordercolor'>
             <th colSpan={3}>Features</th>
-            <th>Starter</th>
-            <th>Professional</th>
-            <th>Advanced</th>
+            {renderTablePlanNameView}
           </tr>
         </thead>
       </table>
     );
-  }, [details?.plansCollection?.items, isShowFeature, isYearly]);
+  }, [isShowFeature, renderPlanTableHeadingView, renderTablePlanNameView]);
 
   return (
     <>
@@ -186,7 +200,7 @@ export default function NewIndex({ details, planFeatures }) {
               </PricingMenu>
             </PriceMenu>
             {!isShowFeature && !isEmpty(planFeatures) && (
-              <PriceTable>
+              <PriceTable is4Card={details?.plansCollection?.total === 4}>
                 {renderTableHeader}
                 <table className={!isShowFeature && 'active'}>
                   {renderPlanFeaturesView}
