@@ -393,7 +393,7 @@ const PriceTable = styled.div`
     }
     .tab {
       position: sticky;
-      top: 233px;
+      top: 248px;
       z-index: 1;
       background-color: ${({ theme }) => theme.colors.greenlight};
       ${Body3};
@@ -408,7 +408,7 @@ const PriceTable = styled.div`
     }
     .sticky {
       position: sticky;
-      top: 233px;
+      top: 215px;
     }
     .leftradius {
       border-radius: 4px 0px 0px 0px;
