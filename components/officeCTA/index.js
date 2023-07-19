@@ -18,7 +18,7 @@ export default function OfficeCTA() {
             fontColor={'#E3FFEE'}
             borderColor={'#E3FFEE'}
             text={'Register for office hours'}
-            href={'/'}
+            href={'/weekly-demo'}
             hoverColor={'rgba(255, 255, 255,0.8)'}
             className={'office-registerbtn'}
           />

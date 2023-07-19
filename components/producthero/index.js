@@ -1,19 +1,11 @@
 import React, { useState } from 'react';
 import Image from 'next/image';
-import {
-  BLockImg,
-  BlockLeft,
-  BlockRight,
-  FeatureHeroSection,
-  FeatureImage,
-  HeroBlock,
-  VideoClose,
-  VideoPlay
-} from '../featurehero/styles';
+import { BLockImg, FeatureHeroSection, FeatureImage, HeroBlock, VideoClose, VideoPlay } from '../featurehero/styles';
 import { Container } from '../../styles/commonStyles';
 import Button from '../button/button';
 import heroImage from '../../public/images/heroimage.png';
 import { COPILOT_ONBORADING_LINK } from '../../constants/externalLinks';
+import { BlockLeft, BlockRight, Head, HeadCaption } from './styles';
 
 export default function ProductHero({ colorList, title, description, videoUrl }) {
   const [isOpen, setIsOpen] = useState(false);
@@ -25,8 +17,8 @@ export default function ProductHero({ colorList, title, description, videoUrl })
       <Container>
         <HeroBlock>
           <BlockLeft textColor={colorList?.fontColor}>
-            <h1>{title}</h1>
-            <p>{description}</p>
+            <Head>{title}</Head>
+            <HeadCaption>{description}</HeadCaption>
             <Button
               bgColor={colorList?.buttonBgColor}
               borderColor={colorList?.buttonBgColor}

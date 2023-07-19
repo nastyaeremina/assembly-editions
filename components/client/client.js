@@ -15,7 +15,8 @@ import {
   HelpLeftSub,
   ImageWrapper,
   HelpLink,
-  LastProductdemocard
+  LastProductdemocard,
+  LastCardSection
 } from './styles';
 
 export default function Client({ currentModule, title, isProductdemo }) {
@@ -284,8 +285,9 @@ export default function Client({ currentModule, title, isProductdemo }) {
               </ModuleCard>
             )}
           </CardSection>
-          <Link href='/apps' className='learn-link center'>
-            <BlockSection>
+          <LastCardSection>
+            {/* <Link href='/apps' className='learn-link center'> */}
+            <BlockSection href='/apps' className='learn-link center'>
               <Image src='/images/block.svg' alt='red-icon' width={185} height={145} className='show' />
               <Image src='/images/blockhover.svg' alt='red-icon' width={185} height={145} className='hide' />
 
@@ -324,14 +326,14 @@ export default function Client({ currentModule, title, isProductdemo }) {
                 </HelpLeftSub>
               </BlockText>
             </BlockSection>
-          </Link>
+            {/* </Link> */}
 
-          {isProductdemo && (
-            <LastProductdemocard>
-              <Link href='/automation' className='learn-link center'>
-                <BlockSection>
+            {isProductdemo && (
+              <>
+                {/* <Link > */}
+                <BlockSection href='/automations' className='learn-link center'>
                   <Image src='/images/lastpcard.svg' alt='red-icon' width={185} height={145} className='show' />
-                  <Image src='/images/lastpcard.svg' alt='red-icon' width={185} height={145} className='hide' />
+                  <Image src='/images/lasthovercard.svg' alt='red-icon' width={185} height={145} className='hide' />
 
                   <BlockText>
                     <h3>
@@ -369,9 +371,10 @@ export default function Client({ currentModule, title, isProductdemo }) {
                     </HelpLeftSub>
                   </BlockText>
                 </BlockSection>
-              </Link>
-            </LastProductdemocard>
-          )}
+                {/* </Link> */}
+              </>
+            )}
+          </LastCardSection>
         </ClientHero>
       </Container>
     </ClientMain>

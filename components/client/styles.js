@@ -1,4 +1,5 @@
 import styled, { css } from 'styled-components';
+import Link from 'next/link';
 import { Body1, Body4, Heading3, Heading4, LinkTxt } from '../../styles/styles';
 const ClientMain = styled.div`
   padding: 50px 0 100px 0;
@@ -280,12 +281,14 @@ const CardText = styled.div`
     color: white;
   }
 `;
-const BlockSection = styled.div`
+const BlockSection = styled(Link)`
   border: 1px solid #00160e;
   border-radius: 4px;
   padding: 40px 49px;
   display: flex;
+  align-items: center;
   gap: 60px;
+  width: 100%;
   img {
     max-width: 185px;
     width: 100%;
@@ -305,6 +308,7 @@ const BlockSection = styled.div`
     gap: 0;
     padding: 20px;
     max-width: 48%;
+    width: 100%;
   }
   :hover {
     background-image: url('/images/hoverblock.svg');
@@ -519,6 +523,17 @@ const HelpLink = styled.div`
 const LastProductdemocard = styled.div`
   margin-top: 16px;
 `;
+
+const LastCardSection = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  @media (max-width: 749px) {
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+  }
+`;
 export {
   ClientMain,
   ClientHero,
@@ -531,5 +546,6 @@ export {
   HelpLeftSub,
   ImageWrapper,
   HelpLink,
-  LastProductdemocard
+  LastProductdemocard,
+  LastCardSection
 };
