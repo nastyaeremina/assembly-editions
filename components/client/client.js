@@ -14,10 +14,11 @@ import {
   BlockWrap,
   HelpLeftSub,
   ImageWrapper,
-  HelpLink
+  HelpLink,
+  LastProductdemocard
 } from './styles';
 
-export default function Client({ currentModule, title }) {
+export default function Client({ currentModule, title, isProductdemo }) {
   const titleSplitList = title?.split(',');
   const seprateWithDotList = titleSplitList?.join(`<span>,</span>`)?.split('.');
   const finalTitle = seprateWithDotList?.join(`<span>.</span>`);
@@ -31,9 +32,9 @@ export default function Client({ currentModule, title }) {
               <div dangerouslySetInnerHTML={{ __html: finalTitle }} />
             </h2>
           )}
-          <CardSection>
+          <CardSection isProductdemo={isProductdemo}>
             {currentModule !== MUDULE_LIST.BILLING && (
-              <ModuleCard className='mydiv'>
+              <ModuleCard className='mydiv' isProductdemo={isProductdemo}>
                 <Link href='/features/billing-app' className='learn-link mb0'>
                   <ImageWrapper>
                     <Image
@@ -83,7 +84,7 @@ export default function Client({ currentModule, title }) {
               </ModuleCard>
             )}
             {currentModule !== MUDULE_LIST.FILES && (
-              <ModuleCard className='mydiv file'>
+              <ModuleCard className='mydiv file' isProductdemo={isProductdemo}>
                 <Link href='/features/files-app' className='learn-link mb0'>
                   <ImageWrapper>
                     <Image
@@ -133,7 +134,7 @@ export default function Client({ currentModule, title }) {
               </ModuleCard>
             )}
             {currentModule !== MUDULE_LIST.FORMS && (
-              <ModuleCard className='mydiv form'>
+              <ModuleCard className='mydiv form' isProductdemo={isProductdemo}>
                 <Link href='/features/forms-app' className='learn-link mb0'>
                   <ImageWrapper>
                     <Image
@@ -183,7 +184,7 @@ export default function Client({ currentModule, title }) {
               </ModuleCard>
             )}
             {currentModule !== MUDULE_LIST.HELPDESK && (
-              <ModuleCard className='mydiv Helpdesk'>
+              <ModuleCard className='mydiv Helpdesk' isProductdemo={isProductdemo}>
                 <Link href='/features/helpdesk-app' className='learn-link mb0'>
                   <ImageWrapper>
                     <Image
@@ -233,7 +234,7 @@ export default function Client({ currentModule, title }) {
               </ModuleCard>
             )}
             {currentModule !== MUDULE_LIST.MESSAGING && (
-              <ModuleCard className='mydiv message'>
+              <ModuleCard className='mydiv message' isProductdemo={isProductdemo}>
                 <Link href='/features/messaging-app' className='learn-link mb0'>
                   <ImageWrapper>
                     <Image
@@ -324,6 +325,53 @@ export default function Client({ currentModule, title }) {
               </BlockText>
             </BlockSection>
           </Link>
+
+          {isProductdemo && (
+            <LastProductdemocard>
+              <Link href='/automation' className='learn-link center'>
+                <BlockSection>
+                  <Image src='/images/lastpcard.svg' alt='red-icon' width={185} height={145} className='show' />
+                  <Image src='/images/lastpcard.svg' alt='red-icon' width={185} height={145} className='hide' />
+
+                  <BlockText>
+                    <h3>
+                      Save time on mundane admin work and automate the client experience. Copilot works with 1000s of
+                      popular products you can connect via API, Zapier, or Make. Start saving time and focus on what
+                      sets you apart.
+                    </h3>
+                    <HelpLeftSub>
+                      <HelpLink className='icon-link'>
+                        <Link href='/apps' className='learn-link center'>
+                          Automations
+                          <svg class='HoverArrow' width='10' height='10' viewBox='0 0 10 10' aria-hidden='true'>
+                            <g fill-rule='evenodd'>
+                              <path class='HoverArrow__linePath' d='M0 5h7'></path>
+                              <path class='HoverArrow__tipPath' d='M1 1l4 4-4 4'></path>
+                            </g>
+                          </svg>
+                          <svg
+                            width='8'
+                            height='14'
+                            viewBox='0 0 8 14'
+                            fill='none'
+                            xmlns='http://www.w3.org/2000/svg'
+                            class='mobilearrow'>
+                            <path
+                              d='M2 3L6 7L2 11'
+                              stroke='#131313'
+                              stroke-width='1.85714'
+                              stroke-linecap='round'
+                              stroke-linejoin='round'
+                            />
+                          </svg>
+                        </Link>
+                      </HelpLink>
+                    </HelpLeftSub>
+                  </BlockText>
+                </BlockSection>
+              </Link>
+            </LastProductdemocard>
+          )}
         </ClientHero>
       </Container>
     </ClientMain>

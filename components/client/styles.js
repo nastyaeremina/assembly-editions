@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { Body1, Body4, Heading3, Heading4, LinkTxt } from '../../styles/styles';
 const ClientMain = styled.div`
   padding: 50px 0 100px 0;
@@ -37,6 +37,11 @@ const CardSection = styled.div`
   grid-template-columns: 1fr 1fr 1fr 1fr;
   padding-bottom: 16px;
   padding-top: 40px;
+  ${(props) =>
+    props.isProductdemo &&
+    css`
+      grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    `}
   /* transition: all 0.5s ease; */
   .mydiv:hover .hide {
     display: block;
@@ -158,6 +163,14 @@ const ModuleCard = styled.div`
   display: flex;
   align-items: stretch;
   /* transition: all 5s ease; */
+  ${(props) =>
+    props.isProductdemo &&
+    css`
+      .learn-link {
+        display: flex;
+        flex-direction: column;
+      }
+    `}
   a {
     ${LinkTxt};
     color: ${({ theme }) => theme.colors.title};
@@ -224,7 +237,7 @@ const ModuleCard = styled.div`
   :hover .icon-link {
     transform: translateY(1px);
     @media only screen and (max-width: 991px) {
-      transform: none
+      transform: none;
     }
   }
   :hover .icon-message {
@@ -423,7 +436,7 @@ const ImageWrapper = styled.div`
     max-height: 100px;
   }
   @media only screen and (max-width: 769px) {
-        max-height: 105px;
+    max-height: 105px;
     height: 105px;
     min-height: 105px;
   }
@@ -502,6 +515,10 @@ const HelpLink = styled.div`
     }
   }
 `;
+
+const LastProductdemocard = styled.div`
+  margin-top: 16px;
+`;
 export {
   ClientMain,
   ClientHero,
@@ -513,5 +530,6 @@ export {
   BlockWrap,
   HelpLeftSub,
   ImageWrapper,
-  HelpLink
+  HelpLink,
+  LastProductdemocard
 };

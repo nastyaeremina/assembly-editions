@@ -38,7 +38,8 @@ export const HOME_MODULE_LIST = {
   Files: 2,
   Forms: 3,
   Helpdesk: 4,
-  Automation: 5
+  Automation: 5,
+  Productdemo: 6
 };
 
 export const MODULE_COLOR_LIST = [
@@ -83,6 +84,13 @@ export const MODULE_COLOR_LIST = [
     // borderColor: theme.colors.orangemidlight,
     buttonBgColor: theme.colors.greendark,
     buttonFontColor: theme.colors.greenlight
+  },
+  {
+    bgColor: theme.colors.whiteColor,
+    fontColor: theme.colors.title,
+    borderColor: theme.colors.primary,
+    buttonBgColor: theme.colors.primary,
+    buttonFontColor: theme.colors.whiteColor
   }
 ];
 
@@ -268,4 +276,5 @@ export const PARTNERSHIP_ID = '1qsEfH5A3RlGv7dac0uKZD';
 export const AUTOMATION_ID = '3tQZ0zurolpvj9N43yXCIF';
 export const APP_PAGE_ID = 'zHpvQW60FYupSGIasksht';
 export const WEEKLY_DEMO_PAGE_ID = '6yTkSs6vPA4UtptzHbvw3r';
+export const PRODUCT_DEMO_PAGE_ID = '2qbT95AIpVDChNTKj0PnfY';
 export const PRICING_PAGE_ID = '1lSCkgpg3oXPp3kuxEJwfg';
