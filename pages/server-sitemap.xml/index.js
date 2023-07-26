@@ -1,16 +1,13 @@
 import { getServerSideSitemapIndex } from 'next-sitemap';
-import { GetServerSideProps } from 'next';
-import { getAllPartnerAppsWithSlug } from '../../lib/contentful-partnerApps';
-import { getAllJobsWithSlug } from '../../lib/contentful-jobsListing';
-import { getAllSolutionWithSlug } from '../../lib/contentful-solutions';
-import { getAllUniversityVideoWithSlug } from '../../lib/contentful-universityVideos';
-import { getAllAuthorWithSlug, getAllBlogWithSlug, getAllTagWithSlug } from '../../lib/blog-content';
-import { getUpdatesPosts, getUpdatesWithSlug } from '../../lib/updates-content';
-import { getAllComparisonWithSlug } from '../../lib/contentful-comparison';
-import { useMemo } from 'react';
-import { PER_UPDATE_PAGE_POST, WEEKLY_DEMO_PAGE_ID } from '../../constants/constant';
-import { getAllAutomationsWithSlug } from '../../lib/contentful-automation';
-import { getWeeklyDemoContent } from '../../lib/contentful-weeklyDemo';
+import { getAllPartnerAppsWithSlug } from '../../app/lib/contentful-partnerApps';
+import { getAllJobsWithSlug } from '../../app/lib/contentful-jobsListing';
+import { getAllSolutionWithSlug } from '../../app/lib/contentful-solutions';
+import { getAllUniversityVideoWithSlug } from '../../app/lib/contentful-universityVideos';
+import { getAllAuthorWithSlug, getAllBlogWithSlug, getAllTagWithSlug } from '../../app/lib/blog-content';
+import { getUpdatesPosts, getUpdatesWithSlug } from '../../app/lib/updates-content';
+import { getAllComparisonWithSlug } from '../../app/lib/contentful-comparison';
+import { PER_UPDATE_PAGE_POST } from '../../app/constants/constant';
+import { getAllAutomationsWithSlug } from '../../app/lib/contentful-automation';
 
 export async function getServerSideProps(ctx) {
   const appsPost = (await getAllPartnerAppsWithSlug()) ?? []; // appa
@@ -23,7 +20,6 @@ export async function getServerSideProps(ctx) {
   const tagPost = (await getAllTagWithSlug()) ?? []; // blog/tag
   const comparisonPost = (await getAllComparisonWithSlug()) ?? []; // /comparison
   const automationsPost = (await getAllAutomationsWithSlug()) ?? []; // automationsPost
-  const weeklydemoData = (await getWeeklyDemoContent(WEEKLY_DEMO_PAGE_ID)) ?? []; //weekly-demo
 
   const appsPostsPathList = appsPost?.map((item) => `apps/directory/${item?.slug}`);
   const jobsPostsPathList = jobPosts?.map((item) => `jobs/${item?.slug}`);
@@ -35,7 +31,6 @@ export async function getServerSideProps(ctx) {
   const tagPostsPathList = tagPost?.map((item) => `blog/tag/${item?.slug}`);
   const comparisonPostsPathList = comparisonPost?.map((item) => `comparison/${item?.slug}`);
   const automationsPostsPathList = automationsPost?.map((item) => `automations/directory/${item?.slug}`);
-  const weeklydemoDataPathList = [`${weeklydemoData?.slug}`];
 
   let allUpdateWithPagination = [];
   const totalCount = updatesPost?.meta?.pagination?.total;
@@ -54,8 +49,7 @@ export async function getServerSideProps(ctx) {
     tagPostsPathList,
     comparisonPostsPathList,
     allUpdateWithPagination,
-    automationsPostsPathList,
-    weeklydemoDataPathList
+    automationsPostsPathList
   );
   return getServerSideSitemapIndex(
     ctx,

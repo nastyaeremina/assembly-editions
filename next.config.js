@@ -14,6 +14,7 @@ async function fetchGraphQL({ preview = false, query }) {
 }
 const nextConfig = {
   reactStrictMode: true,
+  experimental: { appDir: true },
   compiler: {
     styledComponents: true
   },
