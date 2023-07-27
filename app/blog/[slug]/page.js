@@ -16,7 +16,7 @@ async function getContent({ slug }) {
 }
 
 export async function generateMetadata({ params, searchParams }, parent) {
-  const { blogDetail } = getContent({ slug: params?.slug });
+  const { blogDetail } = await getContent({ slug: params?.slug });
 
   let og_title = blogDetail?.title;
   let og_des = blogDetail?.meta_description;

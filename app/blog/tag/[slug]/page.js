@@ -1,7 +1,7 @@
 import Layout from '../../../components/layout';
 import BlogNavbar from '../../../components/navbar/blognavbar';
 import { getAllTagWithSlug, getBlogByTag, getTagDetail } from '../../../lib/blog-content';
-import { getSEOData, isEmpty } from '../../../helpers/helpers';
+import { isEmpty } from '../../../helpers/helpers';
 import TagPage from '../../../components/PageComponent/Blog/tagsPage';
 
 async function getContent({ slug }) {
@@ -32,28 +32,26 @@ async function getContent({ slug }) {
 
 export async function generateMetadata({ params }) {
   const { seoData } = await getContent({ slug: params?.slug });
-  const data = await getSEOData({
-    data: {
-      title: seoData?.title,
-      description: seoData?.description,
-      canonical: seoData?.canonical ?? null,
-      openGraph: {
-        type: 'website',
-        locale: 'en_IE',
-        site_name: 'copilot.com',
-        title: seoData?.og_title,
-        description: seoData?.og_des,
-        images: isEmpty(seoData?.og_image)
-          ? []
-          : [
-              {
-                url: seoData?.og_image
-              }
-            ]
-      }
+
+  return {
+    title: seoData?.title,
+    description: seoData?.description,
+    canonical: seoData?.canonical ?? null,
+    openGraph: {
+      type: 'website',
+      locale: 'en_IE',
+      site_name: 'copilot.com',
+      title: seoData?.og_title,
+      description: seoData?.og_des,
+      images: isEmpty(seoData?.og_image)
+        ? []
+        : [
+            {
+              url: seoData?.og_image
+            }
+          ]
     }
-  });
-  return data;
+  };
 }
 
 export default async function Tag({ params }) {
