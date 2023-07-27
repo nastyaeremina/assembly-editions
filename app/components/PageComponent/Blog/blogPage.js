@@ -24,7 +24,7 @@ import SubscribeModel from '../../SubscribeModel';
 import { BlogSubscribe, Logo, Premium, Button, Model } from '../../SubscribeModel/style';
 
 export default function BlogPage({ allPosts, tags }) {
-  const [isOpen, setIsOpen] = useState(true);
+  const [isOpen, setIsOpen] = useState(false);
   const [issubscribe, setIsSubscribe] = useState(false);
   const router = useRouter();
 
@@ -32,9 +32,12 @@ export default function BlogPage({ allPosts, tags }) {
     setIsOpen(true);
   }, []);
 
+  const onSubscribe = useCallback(() => {
+    setIsSubscribe(true);
+  }, []);
+
   const onrequestCloseModel = useCallback(() => {
     setIsOpen(false);
-    setIsSubscribe(true);
   }, []);
 
   const renderFeaturedBlog = useMemo(() => {
@@ -158,7 +161,7 @@ export default function BlogPage({ allPosts, tags }) {
           </LastSection>
         </Container>
       </MainContent>
-      {isOpen && <SubscribeModel onRequestClose={onrequestCloseModel} />}
+      {isOpen && <SubscribeModel onRequestClose={onrequestCloseModel} onSubscribe={onSubscribe} />}
       {issubscribe ? (
         <Model>
           <BlogSubscribe>
