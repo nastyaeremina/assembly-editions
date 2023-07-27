@@ -4,6 +4,7 @@ import Layout from '../components/layout';
 import { getAllTagWithSlug, getBlogPosts } from './../lib/blog-content';
 import { getSEOData } from './../helpers/helpers';
 import { BLOG_SEO_ID } from './../constants/constant';
+import { getTopBarContent } from '../components/navbar/navbar';
 
 async function getContent() {
   const allPosts = await getBlogPosts();
@@ -20,10 +21,12 @@ export async function generateMetadata({ params, searchParams }, parent) {
 
 export default async function Blog() {
   const { allPosts, tags } = await getContent();
+  const topbarContent = await getTopBarContent();
+
   return (
     <>
       <Layout>
-        <BlogNavbar tagData={tags} />
+        <BlogNavbar tagData={tags} topbarContent={topbarContent} />
         <BlogPage allPosts={allPosts} tags={tags} />
       </Layout>
     </>

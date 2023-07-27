@@ -3,7 +3,6 @@
 import Link from 'next/link';
 import { useState, useEffect, useCallback, useMemo } from 'react';
 import Image from 'next/image';
-import { useSelector } from 'react-redux';
 import CopilotLogos from '../../../../public/images/blacklogo.svg';
 import GreenLogos from '../../../../public/images/greenlogo.svg';
 import WhiteLogos from '../../../../public/images/whitelogo.svg';
@@ -40,9 +39,7 @@ import ResourcesSubMenu from '../resourcessubmenu';
 import SolutionSubMenu from '../solutionsubmenu';
 import { NavigationBlock } from './styles';
 
-export default function BlogNavbar({ isModule, headerIndex, isEnterPrice, tagData }) {
-  const appSelector = useSelector((state) => state.app);
-  const { topbarContent } = appSelector;
+export default function BlogNavbar({ isModule, headerIndex, isEnterPrice, tagData, topbarContent }) {
   const mobile = useMobileDevice();
   const [isOpenMobileMenu, setIsOpenMobileMenu] = useState(false);
   const [isOpenFeatureSubMenu, setIsOpenFeatureSubMenu] = useState(false);

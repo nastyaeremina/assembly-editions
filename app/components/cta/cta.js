@@ -1,17 +1,21 @@
-'use client'
+'use client';
 
-import { useEffect, useMemo } from 'react';
+import { use, useEffect } from 'react';
 import Image from 'next/image';
-import { useSelector } from 'react-redux';
 import { Gradient } from '../../../public/js/Gradient.js';
-import { HEADER_LIST, NAVBAR_COLOR_LIST } from '../../constants/constant';
+import { CTA_CONTENT_ID, HEADER_LIST, NAVBAR_COLOR_LIST } from '../../constants/constant';
 import Button from '../button/button';
 import { COPILOT_ONBORADING_LINK } from '../../constants/externalLinks.js';
+import { getSitemap } from '../../lib/contentful-sitemap.js';
 import { CtaInner, CtaBtn, CtaAnimation, CtaWrap, LeftImg, MainCta, RightImg } from './styles';
 
+async function getContent() {
+  return await getSitemap(CTA_CONTENT_ID);
+}
+const getContentPromis = getContent();
+
 export default function CTA({ moduleName, colorList }) {
-  const appSelector = useSelector((state) => state.app);
-  const { ctaContent } = appSelector;
+  const { content: ctaContent } = use(getContentPromis) ?? { content: '' };
   useEffect(() => {
     const gradient = new Gradient();
     gradient.initGradient('#gradient-canvas');

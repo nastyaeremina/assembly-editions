@@ -1,4 +1,3 @@
-'use client';
 import Footer from './footer/footer';
 
 export default function Layout({ children = <></>, isEnterPrice = false }) {

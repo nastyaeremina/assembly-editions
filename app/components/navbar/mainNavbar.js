@@ -73,10 +73,14 @@ async function getAllNavbarSolutionData() {
 }
 const navbarSolutionListData = getAllNavbarSolutionData();
 
-export default function NavbarComponent({ isModule, headerIndex, isEnterPrice, isAuthenticated: userAuth }) {
-  const appSelector = useSelector((state) => state.app);
+export default function NavbarComponent({
+  isModule,
+  headerIndex,
+  isEnterPrice,
+  isAuthenticated: userAuth,
+  topbarContent
+}) {
   const navbarSolutionList = use(navbarSolutionListData);
-  const { topbarContent } = appSelector;
   const mobile = useMobileDevice();
   const router = useRouter();
   const [isOpenMobileMenu, setIsOpenMobileMenu] = useState(false);
