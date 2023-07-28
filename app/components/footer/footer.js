@@ -5,18 +5,12 @@ import { useCallback, useEffect, useMemo, useState } from 'react';
 import { Container } from '../../styles/commonStyles';
 import { convertSitemapDataToKeyValue, isEmpty } from '../../helpers/helpers';
 import {
-  BLOG_LINK,
   COPILOT_FACEBOOK_LINK,
   COPILOT_INSTAGRAM_LINK,
   COPILOT_LINKEDIN_LINK,
-  COPILOT_SECURITY_LINK,
-  COPILOT_SYSTEM_STATUS_LINK,
   COPILOT_TWITTER_LINK,
-  COPILOT_YOUTUBE_CHANNEL_LINK,
-  HELP_CENTER_LINK
+  COPILOT_YOUTUBE_CHANNEL_LINK
 } from '../../constants/externalLinks';
-import { getCommonContent } from '../../lib/contentful-common';
-import { FOOTER_CONTENT_ID } from '../../constants/constant';
 import {
   FooterSection,
   FooterInnerBlock,
@@ -31,11 +25,10 @@ import {
   FotterMenuMobile
 } from './styles';
 
-export default function Footer({ isEnterPrice }) {
+export default function Footer({ isEnterPrice, footerData }) {
   const [footerDataList, setFooterDataList] = useState([]);
-  const loadData = useCallback(async () => {
+  const loadData = useCallback(() => {
     try {
-      const footerData = (await getCommonContent(FOOTER_CONTENT_ID)) ?? [];
       const newObject = footerData?.split(/[\{\}]/);
       const newList = newObject?.filter((item) => item?.startsWith('\n'));
 
@@ -53,24 +46,6 @@ export default function Footer({ isEnterPrice }) {
   useEffect(() => {
     loadData();
   }, [loadData]);
-
-  // const renderSolutionList = useMemo(() => {
-  //   if (isEmpty(solutionList)) return null;
-  //   return (
-  //     <>
-  //       <p>Solutions</p>
-  //       <FooterMenuList isEnterPrice={isEnterPrice}>
-  //         {solutionList?.map((item, index) => {
-  //           return (
-  //             <Link href={`/solutions/${item?.slug}`} key={`solutionitem_index_${index}`}>
-  //               {item?.name}
-  //             </Link>
-  //           );
-  //         })}
-  //       </FooterMenuList>
-  //     </>
-  //   );
-  // }, [isEnterPrice, solutionList]);
 
   const renderDesktopFooterList = useMemo(() => {
     if (isEmpty(footerDataList)) return null;

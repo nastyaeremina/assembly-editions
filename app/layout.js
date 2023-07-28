@@ -1,5 +1,5 @@
 import './styles/globals.css';
-import React, { use } from 'react';
+import React from 'react';
 import parse from 'html-react-parser';
 import StyledJsxRegistry from './registry';
 import Favicon from './components/favicon';
@@ -9,10 +9,9 @@ import { Providers } from './redux/provider';
 async function getContent() {
   return await getCustomeCode();
 }
-const getContentPromis = getContent();
 
-export default function Layout({ children }) {
-  const data = use(getContentPromis);
+export default async function Layout({ children }) {
+  const data = await getContent();
   const header = data?.filter((item) => item.name === 'Head')?.[0] ?? null;
   const afterBody = data?.filter((item) => item.name === 'After Body Tag Start')?.[0] ?? null;
   const beforeBody = data?.filter((item) => item.name === 'Before Body Tag Close')?.[0] ?? null;

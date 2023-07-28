@@ -3,9 +3,12 @@ import { isEmpty } from '../../helpers/helpers';
 import { getSitemap } from '../../lib/contentful-sitemap';
 import { TOP_BAR_CONTENT_ID } from '../../constants/constant';
 import NavbarComponent from './mainNavbar';
+import { getAllNavbarSolution } from '../../lib/contentful-solutions';
 
 export async function getTopBarContent() {
   const data = (await getSitemap(TOP_BAR_CONTENT_ID)) ?? '';
+  const solutionDataList = (await getAllNavbarSolution()) ?? [];
+  let topbarContent = null;
   if (!isEmpty(data?.content)) {
     const contentList = data?.content?.split(/[\[\]\(\)]/);
 
@@ -13,14 +16,14 @@ export async function getTopBarContent() {
       title: contentList?.[1],
       url: contentList?.[3]
     };
-    return item;
+    topbarContent = item;
   }
-  return null;
+  return { topbarContent, solutionDataList };
 }
 
 export default async function Navbar({ isModule, headerIndex, isEnterPrice }) {
   const cookie = cookies().get('current-portal-session');
-  const topbarContent = await getTopBarContent();
+  const { topbarContent, solutionDataList } = await getTopBarContent();
   return (
     <>
       <NavbarComponent
@@ -29,6 +32,7 @@ export default async function Navbar({ isModule, headerIndex, isEnterPrice }) {
         isEnterPrice={isEnterPrice}
         isAuthenticated={!isEmpty(cookie?.value)}
         topbarContent={topbarContent}
+        solutionDataList={solutionDataList}
       />
     </>
   );

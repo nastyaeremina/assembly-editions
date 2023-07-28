@@ -72,11 +72,15 @@ import SolutionSubMenu from './solutionsubmenu';
 async function getAllNavbarSolutionData() {
   return await getAllNavbarSolution();
 }
-const navbarSolutionListData = getAllNavbarSolutionData();
 
-export default function NavbarComponent({ isModule, headerIndex, isEnterPrice, isAuthenticated: userAuth }) {
+export default function NavbarComponent({
+  isModule,
+  headerIndex,
+  isEnterPrice,
+  isAuthenticated: userAuth,
+  solutionDataList: navbarSolutionList
+}) {
   const appSelector = useSelector((state) => state.app);
-  const navbarSolutionList = use(navbarSolutionListData);
   const { topbarContent } = appSelector;
   const mobile = useMobileDevice();
   const router = useRouter();
