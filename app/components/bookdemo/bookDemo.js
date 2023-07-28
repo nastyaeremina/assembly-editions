@@ -76,7 +76,9 @@ export default function BookDemoForm() {
         return;
       } else {
         // sendEmail(bookDemoData);
-        if (['1', '5', '10']?.includes(bookDemoData?.companySize)) {
+        if (['10', '50']?.includes(bookDemoData?.companySize) || INDUSTRY_ARRAY?.includes(bookDemoData?.industry)) {
+          showHideChiliPiper();
+        } else {
           fetch('/api/contact', {
             method: 'POST',
             headers: {
@@ -91,8 +93,6 @@ export default function BookDemoForm() {
             }
           });
           setIsSubmit(true);
-        } else {
-          showHideChiliPiper();
         }
       }
     },
@@ -127,13 +127,14 @@ export default function BookDemoForm() {
                   </ImgLine>
                   <TextWrap>
                     <h2>Thank you!</h2>
-                    <ContactText>A Copilot expert will contact you soon.</ContactText>
+                    <ContactText>A member from the Copilot team will be in touch if there is a good fit. </ContactText>
                     <p>
-                      In the mean time, you can start a free trial{' '}
-                      <Link href={COPILOT_ONBORADING_LINK} target={'_blank'}>
-                        here
+                      Until then, consider{' '}
+                      <Link href={COPILOT_ONBORADING_LINK} target='_blank'>
+                        starting a free trial
                       </Link>
-                      .
+                      , <Link href={'/product-demo'}>watching a product demo</Link> , or registering for{' '}
+                      <Link href={'/weekly-demo'}>weekly office hours</Link>.
                     </p>
                   </TextWrap>
                   <ImgLine>
@@ -290,7 +291,7 @@ export default function BookDemoForm() {
                   {validationError?.name === 'industry_other' && <Validation error={validationError?.message} />}
                 </>
               )}
-              {INDUSTRY_ARRAY?.includes(bookDemoData?.industry) && (
+              {/* {INDUSTRY_ARRAY?.includes(bookDemoData?.industry) && (
                 <>
                   <label for='Last-Name-'>
                     Are you interested in Copilot for your own business or are you contacting us on behalf of a client?{' '}
@@ -313,7 +314,7 @@ export default function BookDemoForm() {
                   </select>
                   {validationError?.name === 'youInerestedBusiness' && <Validation error={validationError?.message} />}
                 </>
-              )}
+              )} */}
 
               <label for='Last-Name-'>
                 How large is your company? <span>*</span>
