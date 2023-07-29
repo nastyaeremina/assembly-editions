@@ -162,7 +162,7 @@ export default function NavbarComponent({
   const MobileNavigation = () => {
     return (
       <>
-        <NavMenu>
+        <NavMenu mobile={mobile}>
           <NavigationBlock>
             {isOpenFeatureSubMenu ? (
               <FeatureSubMenu />
