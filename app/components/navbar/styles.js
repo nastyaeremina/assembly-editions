@@ -83,6 +83,10 @@ const NavbarInner = styled.div`
 `;
 const CopilotLogo = styled.img`
   cursor: pointer;
+  @media only screen and (max-width: 991px) {
+    width: 96px;
+    height: 22px;
+  }
 `;
 const NavMenu = styled.div`
   display: flex;
@@ -111,12 +115,12 @@ const NavMenu = styled.div`
     }
   }
   @media only screen and (max-width: 991px) {
-    display:none;
+    display: none;
     ${(props) =>
       props.mobile &&
       css`
-        display:block;
-      `} 
+        display: block;
+      `}
   }
 `;
 const NavigationBlock = styled.ul`
@@ -128,6 +132,7 @@ const NavigationBlock = styled.ul`
     flex-direction: column;
     width: 100%;
     align-items: flex-start;
+    margin: 0;
   }
 `;
 const LineMenuImg = styled.div`
