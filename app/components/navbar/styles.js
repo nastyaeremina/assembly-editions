@@ -110,6 +110,14 @@ const NavMenu = styled.div`
       opacity: 1;
     }
   }
+  @media only screen and (max-width: 991px) {
+    display:none;
+    ${(props) =>
+      props.mobile &&
+      css`
+        display:block;
+      `} 
+  }
 `;
 const NavigationBlock = styled.ul`
   display: flex;
