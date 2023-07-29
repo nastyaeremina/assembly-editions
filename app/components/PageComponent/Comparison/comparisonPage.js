@@ -9,7 +9,7 @@ import Quote from '../../solution/quote/quote';
 import Cardsection from '../../comparison/cardsection/cardsection';
 import ComparisonTableView from '../../comparison/comparisonTable';
 
-export default async function ComparisonPage({ featuredCompetitorList, details, comparisonList }) {
+export default function ComparisonPage({ featuredCompetitorList, details, comparisonList }) {
   return (
     <>
       <MainWrap>

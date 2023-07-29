@@ -7,7 +7,7 @@ import SolutionHero from '../../../components/solution/solutionhero/solutionhero
 import { isEmpty, removeEmptyElement } from '../../../helpers/helpers';
 import { MainWrap } from '../../../components/solution/clienttab/styles';
 
-export default async function SolutionPage({ details }) {
+export default function SolutionPage({ details }) {
   return (
     <>
       <MainWrap>

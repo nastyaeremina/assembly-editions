@@ -16,7 +16,7 @@ import {
   DetailPosition
 } from '../../../styles/jobsStyles';
 
-export default async function JobsDetailPage({ data: jobDetail }) {
+export default function JobsDetailPage({ data: jobDetail }) {
   const renderTeamMemberView = () => {
     const teamMemberList = jobDetail?.teamMembersCollection?.items || [];
     if (isEmpty(teamMemberList)) return null;

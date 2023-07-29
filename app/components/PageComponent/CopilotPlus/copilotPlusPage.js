@@ -35,7 +35,7 @@ import {
   BtnListtwo
 } from '../../../styles/enterpriseStyles';
 
-export default async function EnterprisePage() {
+export default function EnterprisePage() {
   return (
     <>
       <EnterPriseHero>

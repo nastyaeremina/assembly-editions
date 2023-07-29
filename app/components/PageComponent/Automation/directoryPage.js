@@ -32,41 +32,6 @@ import { CardAuto, Cardbottom, DirectoryButton, DirectoryCard } from '../../../s
 import { SliderIcon, SliderSub } from '../../FeatureSlider/styles';
 import { getAllAutomationCategories, getAllAutomations } from '../../../lib/contentful-automation';
 
-async function getContent() {
-  let allPosts = [];
-  let data = [];
-  let page = 0;
-  do {
-    const skip = page * PER_API_LIMIT_FOR_AUTOMATION;
-    data = (await getAllAutomations(skip)) || [];
-    allPosts = allPosts.concat(data);
-
-    if (data?.length !== PER_API_LIMIT_FOR_AUTOMATION) break;
-    // eslint-disable-next-line no-plusplus
-    else page++;
-  } while (data?.length !== 0);
-
-  const allCategory = (await getAllAutomationCategories()) ?? [];
-  const seoData = (await getSEOdata(AUTOMATION_SEO_ID)) ?? [];
-  const featuredApps = allPosts?.filter((item) => item?.isFeatures === true);
-
-  let allCategoryWithPost = [];
-
-  allCategory?.forEach((item) => {
-    const filterList = allPosts?.filter((element) =>
-      element?.automationCategoriesCollection?.items?.some((category) => category?.slug === item?.slug)
-    );
-    if (!isEmpty(filterList)) allCategoryWithPost?.push({ category: item, list: filterList });
-  });
-
-  return { featuredApps, allCategoryWithPost, allPosts, seoData };
-}
-
-export async function generateMetadata({ params, searchParams }, parent) {
-  const { seoData } = await getContent();
-  return seoData;
-}
-
 export default function AutomationDirectoryPage({ featuredApps, allCategoryWithPost, allPosts }) {
   const [selected_category, setSelected_category] = useState();
   const [query, setQuery] = useState('');

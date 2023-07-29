@@ -6,7 +6,7 @@ import Blogcard from '../../../components/Blogcard';
 import { isEmpty } from '../../../helpers/helpers';
 import { MainContent } from '../../../styles/blogstyles';
 
-export default async function TagPage({ allPosts }) {
+export default function TagPage({ allPosts }) {
   const renderData = useMemo(() => {
     if (isEmpty(allPosts)) return null;
     return allPosts?.map((item, index) => {

@@ -7,7 +7,6 @@ import { getAllUniversityVideoWithSlug } from '../../lib/contentful-universityVi
 import { getAllAuthorWithSlug, getAllBlogWithSlug, getAllTagWithSlug } from '../../lib/blog-content';
 import { getUpdatesPosts, getUpdatesWithSlug } from '../../lib/updates-content';
 import { getAllComparisonWithSlug } from '../../lib/contentful-comparison';
-import { useMemo } from 'react';
 import { PER_UPDATE_PAGE_POST, WEEKLY_DEMO_PAGE_ID } from '../../constants/constant';
 import { getAllAutomationsWithSlug } from '../../lib/contentful-automation';
 import { getWeeklyDemoContent } from '../../lib/contentful-weeklyDemo';

@@ -23,7 +23,7 @@ import { COPILOT_ONBORADING_LINK } from '../../../constants/externalLinks';
 import AppsHeroSlider from '../../../components/appsSlider/appsheroSlider';
 import { AppSliderSection } from '../../../styles/appsStyles';
 
-export default async function AppPage({ details, appsList }) {
+export default function AppPage({ details, appsList }) {
   return (
     <>
       <AutomationHero>

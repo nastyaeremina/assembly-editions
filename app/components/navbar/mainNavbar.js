@@ -69,10 +69,6 @@ import FeatureSubMenu from './featuresubmenu';
 import ResourcesSubMenu from './resourcessubmenu';
 import SolutionSubMenu from './solutionsubmenu';
 
-async function getAllNavbarSolutionData() {
-  return await getAllNavbarSolution();
-}
-
 export default function NavbarComponent({
   isModule,
   headerIndex,

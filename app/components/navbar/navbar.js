@@ -2,8 +2,8 @@ import { cookies } from 'next/headers';
 import { isEmpty } from '../../helpers/helpers';
 import { getSitemap } from '../../lib/contentful-sitemap';
 import { TOP_BAR_CONTENT_ID } from '../../constants/constant';
-import NavbarComponent from './mainNavbar';
 import { getAllNavbarSolution } from '../../lib/contentful-solutions';
+import NavbarComponent from './mainNavbar';
 
 export async function getTopBarContent() {
   const data = (await getSitemap(TOP_BAR_CONTENT_ID)) ?? '';
