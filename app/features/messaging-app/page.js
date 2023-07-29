@@ -2,8 +2,8 @@ import { FEATURES_MESSAG_ID, HEADER_LIST } from '../../constants/constant';
 import { getFeatureById } from '../../lib/contentful-features';
 import MessagingAppPage from '../../components/featurePages/messagingAppPage';
 import { getSEOData } from '../../helpers/helpers';
-import Layout from '../../layout';
 import Navbar from '../../components/navbar/navbar';
+import Layout from '../../components/layout';
 async function getContent() {
   return await getFeatureById(FEATURES_MESSAG_ID);
 }
