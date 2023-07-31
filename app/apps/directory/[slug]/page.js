@@ -1,3 +1,4 @@
+import { notFound } from 'next/navigation';
 import Layout from '../../../components/layout';
 import Navbar from '../../../components/navbar/navbar';
 import { getAllPartnerApps, getPartnerAppDetail } from '../../../lib/contentful-partnerApps';
@@ -41,6 +42,7 @@ export async function generateMetadata({ params }) {
 
 export default async function AppsDetail({ params }) {
   const { appDetail, relatedApps } = await getContent({ slug: params.slug });
+  if (isEmpty(appDetail)) return notFound();
 
   return (
     <>

@@ -4,6 +4,7 @@ import BlogNavbar from '../../components/navbar/blognavbar';
 import { getAllTagWithSlug, getBlogDetail } from '../../lib/blog-content';
 import { isEmpty } from '../../helpers/helpers';
 import BlogdetailPage from '../../components/PageComponent/Blog/blogDetailPage';
+import { notFound } from 'next/navigation';
 
 async function getContent({ slug }) {
   const blogDetail = (await getBlogDetail(slug)) ?? [];
@@ -49,6 +50,7 @@ export async function generateMetadata({ params, searchParams }, parent) {
 export default async function Blogdetail({ params }) {
   const { blogDetail, tags } = await getContent({ slug: params?.slug });
 
+  if (isEmpty(blogDetail)) return notFound();
   const authorData = () => {
     if (isEmpty(blogDetail?.authors)) return [];
     return blogDetail?.authors?.map((item) => {

@@ -1,3 +1,4 @@
+import { notFound } from 'next/navigation';
 import Layout from '../components/layout';
 import Navbar from '../components/navbar/navbar';
 import WeeklyHero from '../components/weeklyhero/weeklyhero';
@@ -19,7 +20,9 @@ export async function generateMetadata() {
 }
 export default async function WeeklyDemo({ params }) {
   const { details } = await getContent();
-
+  if (details.slug !== params.slug) {
+    notFound();
+  }
   return (
     <>
       <div style={{ overflow: 'hidden' }}>

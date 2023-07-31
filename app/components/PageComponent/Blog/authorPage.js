@@ -1,6 +1,7 @@
 'use client';
 import { useMemo } from 'react';
 import moment from 'moment';
+import { notFound } from 'next/navigation';
 import { Container } from '../../../styles/commonStyles';
 import Blogcard from '../../../components/Blogcard';
 import { isEmpty } from '../../../helpers/helpers';
@@ -8,7 +9,7 @@ import { MainContent } from '../../../styles/blogstyles';
 
 export default async function AuthorPage({ allPosts }) {
   const renderData = useMemo(() => {
-    if (isEmpty(allPosts)) return null;
+    if (isEmpty(allPosts)) return notFound();
     return allPosts?.map((item, index) => {
       const finalTagList = item?.tags?.filter((tag) => tag?.name?.trim()?.[0] !== '#');
       return (

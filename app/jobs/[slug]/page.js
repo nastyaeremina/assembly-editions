@@ -1,6 +1,7 @@
+import { notFound } from 'next/navigation';
 import Layout from '../../components/layout';
 import Navbar from '../../components/navbar/navbar';
-import { getSEOData } from '../../helpers/helpers';
+import { getSEOData, isEmpty } from '../../helpers/helpers';
 import { getJobDetails } from '../../lib/contentful-jobsListing';
 import JobDetailPage from '../../components/PageComponent/Jobs/jobDetailPage';
 
@@ -23,6 +24,7 @@ export async function generateMetadata({ params }) {
 
 export default async function JobsDetail({ params }) {
   const jobDetail = await getContent({ slug: params?.slug });
+  if (isEmpty(jobDetail)) return notFound();
 
   return (
     <>

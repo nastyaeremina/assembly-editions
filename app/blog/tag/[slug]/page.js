@@ -3,6 +3,7 @@ import BlogNavbar from '../../../components/navbar/blognavbar';
 import { getAllTagWithSlug, getBlogByTag, getTagDetail } from '../../../lib/blog-content';
 import { isEmpty } from '../../../helpers/helpers';
 import TagPage from '../../../components/PageComponent/Blog/tagsPage';
+import { notFound } from 'next/navigation';
 
 async function getContent({ slug }) {
   const allPosts = (await getBlogByTag(slug)) ?? [];
@@ -56,7 +57,10 @@ export async function generateMetadata({ params }) {
 
 export default async function Tag({ params }) {
   const { allPosts, tags } = await getContent({ slug: params?.slug });
-
+  // console.log('tags', tags);
+  const tagList = JSON.parse(JSON.stringify(tags));
+  const index = allPosts.finIndex((post) => post?.tags?.[0]?.slug === params?.slug);
+  if (index === -1) return notFound();
   return (
     <>
       <Layout>

@@ -1,7 +1,6 @@
-import { NextSeo } from 'next-seo';
+'use client'
+
 import { Container, PrimaryButton } from '../../styles/commonStyles';
-import Layout from '../layout';
-import Navbar from '../navbar/navbar';
 import { MainHeroSection, ErrorMain } from './styles';
 
 export default function ErrorPage() {

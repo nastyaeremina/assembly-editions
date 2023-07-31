@@ -1,3 +1,4 @@
+import { notFound } from 'next/navigation';
 import CTA from '../../components/cta/cta';
 import Layout from '../../components/layout';
 import Navbar from '../../components/navbar/navbar';
@@ -33,7 +34,7 @@ export async function generateMetadata({ params }) {
 
 export default async function Solution({ params }) {
   const details = await getContent({ slug: params?.slug });
-
+  if (isEmpty(details)) return notFound();
   return (
     <>
       <Layout>

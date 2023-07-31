@@ -2,7 +2,7 @@ import { FOOTER_CONTENT_ID } from '../constants/constant';
 import { getCommonContent } from '../lib/contentful-common';
 import Footer from './footer/footer';
 
-async function getContent() {
+export async function getContent() {
   const footerData = (await getCommonContent(FOOTER_CONTENT_ID)) ?? [];
 
   return { footerData };

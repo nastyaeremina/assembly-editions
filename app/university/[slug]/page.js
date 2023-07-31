@@ -1,7 +1,8 @@
+import { notFound } from 'next/navigation';
 import Layout from '../../components/layout';
 import Navbar from '../../components/navbar/navbar';
 import { getAllUniversityVideos, getUniversityVideoDetail } from '../../lib/contentful-universityVideos';
-import { getSEOData } from '../../helpers/helpers';
+import { getSEOData, isEmpty } from '../../helpers/helpers';
 import 'react-lite-youtube-embed/dist/LiteYouTubeEmbed.css';
 import UniversityDetailPage from '../../components/PageComponent/University/universityDetailPage';
 
@@ -44,6 +45,9 @@ export async function generateMetadata({ params }) {
 
 export default async function UniversityDetail({ params }) {
   const { relatedVideos, universityVideoDetail } = await getContent({ slug: params?.slug });
+
+  if (isEmpty(universityVideoDetail)) return notFound();
+
   return (
     <>
       <Layout>

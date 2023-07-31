@@ -1,9 +1,10 @@
 import React from 'react';
+import { notFound } from 'next/navigation';
 import Layout from '../../components/layout';
 import Navbar from '../../components/navbar/navbar';
 import { getCaseStudyDetail } from '../../lib/contentful-casestudies';
 import CaseStudiesPage from '../../components/PageComponent/Customers/customerDetailPage';
-import { getSEOData } from '../../helpers/helpers';
+import { getSEOData, isEmpty } from '../../helpers/helpers';
 
 async function getContent({ slug }) {
   const details = await getCaseStudyDetail({ slug });
@@ -18,6 +19,7 @@ export async function generateMetadata({ params }) {
 
 export default async function CaseStudies({ params }) {
   const details = await getContent({ slug: params?.slug });
+  if (isEmpty(details)) return notFound();
   return (
     <>
       <Layout>

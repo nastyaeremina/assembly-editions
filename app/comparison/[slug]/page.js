@@ -1,3 +1,4 @@
+import { notFound } from 'next/navigation';
 import Layout from '../../components/layout';
 import Navbar from '../../components/navbar/navbar';
 import { getComparisonDetail } from '../../lib/contentful-comparison';
@@ -17,6 +18,8 @@ export async function generateMetadata({ params }) {
 }
 export default async function Comparison({ params }) {
   const details = await getContent({ slug: params?.slug });
+  if (isEmpty(details)) return notFound();
+
   return (
     <>
       <Layout>

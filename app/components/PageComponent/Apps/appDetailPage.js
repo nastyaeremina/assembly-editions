@@ -2,6 +2,7 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { useMemo } from 'react';
+import { notFound } from 'next/navigation';
 import {
   DetailLink,
   AppsDetailMain,
@@ -33,7 +34,7 @@ import Button from '../../../components/button/button';
 
 export default function AppsDetailPage({ appDetail, relatedApps }) {
   const renderRelatedAppView = useMemo(() => {
-    if (isEmpty(relatedApps)) return null;
+    if (isEmpty(relatedApps)) return notFound();
     return relatedApps?.map((item, index) => {
       return (
         <>

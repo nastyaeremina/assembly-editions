@@ -1,7 +1,8 @@
+import { notFound } from 'next/navigation';
 import Layout from '../../../components/layout';
 import Navbar from '../../../components/navbar/navbar';
 import { UPDATES_SEO_ID } from '../../../constants/constant';
-import { getSEOData } from '../../../helpers/helpers';
+import { getSEOData, isEmpty } from '../../../helpers/helpers';
 import { getUpdatesPosts } from '../../../lib/updates-content';
 import UpdatesPaginationPage from '../../../components/PageComponent/Updates/updatePaginationPage';
 
@@ -25,6 +26,7 @@ export async function generateMetadata({ params }) {
 
 export default async function Updates({ params }) {
   const { allPosts, pagination } = await getContent({ page: params?.page });
+  if (isEmpty(allPosts) || allPosts?.meta?.pagination?.page > allPosts?.meta?.pagination?.pages) return notFound();
 
   return (
     <>

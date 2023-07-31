@@ -3,6 +3,7 @@ import Navbar from '../../../components/navbar/navbar';
 import { getAllAutomations, getAutomationDetail } from '../../../lib/contentful-automation';
 import { getSEOData, isEmpty } from '../../../helpers/helpers';
 import AutomationDetailPage from '../../../components/PageComponent/Automation/directoryDetailsPage';
+import { notFound } from 'next/navigation';
 
 async function getContent({ slug }) {
   const detail = (await getAutomationDetail(slug)) ?? {};
@@ -47,6 +48,9 @@ export async function generateMetadata({ params }) {
 
 export default async function AutomationDetail({ params }) {
   const { detail, relatedApps } = await getContent({ slug: params?.slug });
+
+  if (isEmpty(detail)) return notFound();
+
   return (
     <>
       <Layout>

@@ -4,7 +4,6 @@ import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useState, useEffect, useCallback, useMemo, use } from 'react';
 import Image from 'next/image';
-import { useSelector } from 'react-redux';
 import CopilotLogos from '../../../public/images/blacklogo.svg';
 import GreenLogos from '../../../public/images/greenlogo.svg';
 import WhiteLogos from '../../../public/images/whitelogo.svg';
@@ -24,7 +23,7 @@ import {
   HELP_CENTER_LINK,
   OPEN_COPILOT_LINK
 } from '../../constants/externalLinks';
-import { getAllNavbarSolution } from '../../lib/contentful-solutions';
+// import { getAllNavbarSolution } from '../../lib/contentful-solutions';
 import {
   NavbarWrapper,
   NavbarInner,
@@ -73,10 +72,11 @@ export default function NavbarComponent({
   headerIndex,
   isEnterPrice,
   isAuthenticated: userAuth,
-  solutionDataList: navbarSolutionList
+  solutionDataList: navbarSolutionList,
+  topbarContent
 }) {
-  const appSelector = useSelector((state) => state.app);
-  const { topbarContent } = appSelector;
+  // const appSelector = useSelector((state) => state.app);
+  // const { topbarContent } = appSelector;
   const mobile = useMobileDevice();
   const router = useRouter();
   const [isOpenMobileMenu, setIsOpenMobileMenu] = useState(false);
