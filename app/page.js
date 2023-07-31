@@ -3,6 +3,7 @@ import Navbar from './components/navbar/navbar';
 import CTA from './components/cta/cta';
 import { HEADER_LIST, HOME_CLIENT_DARK_ID } from './constants/constant';
 import { getHomeContent } from './lib/contentful-home';
+import { getAllPartnerAppsWithSlug } from './lib/contentful-partnerApps';
 
 import HomePage from './components/Home/homepage/homepage';
 import { getSEOData } from './helpers/helpers';
@@ -19,6 +20,9 @@ export async function generateMetadata({ params, searchParams }, parent) {
 
 export default async function Home() {
   const content = await getContent();
+  const appsPost = (await getAllPartnerAppsWithSlug()) ?? []; // appa
+  const appsPostsPathList = appsPost?.map((item) => `apps/directory/${item?.slug}`);
+  console.log(appsPostsPathList);
   return (
     <>
       <Layout>
