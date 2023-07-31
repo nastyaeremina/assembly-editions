@@ -1,4 +1,4 @@
-'use client'
+'use client';
 
 import {
   BLOG_LINK,
@@ -17,10 +17,10 @@ import {
   Last
 } from './styles';
 
-export default function ResourcesSubMenu() {
+export default function ResourcesSubMenu({ mobile }) {
   return (
     <>
-      <NavMenu>
+      <NavMenu mobile={mobile}>
         <NavigationBlock>
           <MobileListLi>
             <LastDroplist Mobilemenu>

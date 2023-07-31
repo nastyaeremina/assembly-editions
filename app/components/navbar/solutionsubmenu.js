@@ -1,4 +1,4 @@
-'use client'
+'use client';
 
 import Image from 'next/image';
 import { useMemo } from 'react';
@@ -14,7 +14,7 @@ import {
   LastDroplist
 } from './styles';
 
-export default function SolutionSubMenu({ data }) {
+export default function SolutionSubMenu({ data, mobile }) {
   const renderSolutionList = useMemo(() => {
     if (isEmpty(data)) return null;
     return data?.map((item, index) => {
@@ -36,7 +36,7 @@ export default function SolutionSubMenu({ data }) {
   }, [data]);
   return (
     <>
-      <NavMenu>
+      <NavMenu mobile={mobile}>
         <NavigationBlock>
           <MobileListLi>
             <LastDroplist Mobilemenu>

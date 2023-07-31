@@ -158,17 +158,18 @@ export default function NavbarComponent({
     );
   }, [navbarSolutionList, renderSolutionList]);
 
-  const MobileNavigation = () => {
+  const MobileNavigation = useMemo(() => {
     return (
       <>
         <NavMenu mobile={mobile}>
           <NavigationBlock>
             {isOpenFeatureSubMenu ? (
-              <FeatureSubMenu />
+              // <div>Hello</div>
+              <FeatureSubMenu mobile={mobile} />
             ) : isOpenSolutionSubMenu ? (
-              <SolutionSubMenu data={navbarSolutionList} />
+              <SolutionSubMenu data={navbarSolutionList} mobile={mobile} />
             ) : isOpenResoursesSubMenu ? (
-              <ResourcesSubMenu />
+              <ResourcesSubMenu mobile={mobile} />
             ) : (
               <>
                 <SpanLink textColor={colorList?.fontColor} hoverColor={colorList?.primaryColor}>
@@ -237,10 +238,19 @@ export default function NavbarComponent({
         </NavMenu>
       </>
     );
-  };
+  }, [
+    colorList?.fontColor,
+    colorList?.primaryColor,
+    isOpenFeatureSubMenu,
+    isOpenResoursesSubMenu,
+    isOpenSolutionSubMenu,
+    mobile,
+    navbarSolutionList,
+    router.pathname
+  ]);
   const Navigation = () => {
     return (
-      <NavMenu>
+      <NavMenu mobile={mobile}>
         <NavigationBlock>
           <SpanLink textColor={colorList?.fontColor} hoverColor={colorList?.primaryColor}>
             <Link href='#' className='hovernone'>
@@ -732,7 +742,8 @@ export default function NavbarComponent({
 
             {isOpenMobileMenu ? (
               <OverLayBlock>
-                <MobileNavigation></MobileNavigation>
+                {MobileNavigation}
+                {/* <MobileNavigation></MobileNavigation> */}
               </OverLayBlock>
             ) : null}
 

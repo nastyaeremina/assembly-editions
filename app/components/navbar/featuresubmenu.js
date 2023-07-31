@@ -1,12 +1,12 @@
-'use client'
+'use client';
 
 import Image from 'next/image';
 import { NavigationBlock, NavMenu, MobileListLi, MenuWrap, LeftImg, RightText } from './styles';
 
-export default function FeatureSubMenu() {
+export default function FeatureSubMenu({ mobile }) {
   return (
     <>
-      <NavMenu>
+      <NavMenu mobile={mobile}>
         <NavigationBlock>
           <MobileListLi>
             <MenuWrap msghover href='/features/messaging-app'>

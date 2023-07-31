@@ -89,14 +89,14 @@ export default function BlogNavbar({ isModule, headerIndex, isEnterPrice, tagDat
   const MobileNavigation = useCallback(() => {
     return (
       <>
-        <NavMenu>
+        <NavMenu mobile={mobile}>
           <NavigationBlock>
             {isOpenFeatureSubMenu ? (
-              <FeatureSubMenu />
+              <FeatureSubMenu mobile={mobile} />
             ) : isOpenSolutionSubMenu ? (
-              <SolutionSubMenu />
+              <SolutionSubMenu mobile={mobile} />
             ) : isOpenResoursesSubMenu ? (
-              <ResourcesSubMenu />
+              <ResourcesSubMenu mobile={mobile} />
             ) : (
               <>
                 <SpanLink textColor={colorList?.fontColor} hoverColor={colorList?.primaryColor}>
@@ -128,17 +128,18 @@ export default function BlogNavbar({ isModule, headerIndex, isEnterPrice, tagDat
       </>
     );
   }, [
+    mobile,
+    isOpenFeatureSubMenu,
+    isOpenSolutionSubMenu,
+    isOpenResoursesSubMenu,
     colorList?.fontColor,
     colorList?.primaryColor,
-    isOpenSolutionSubMenu,
-    isOpenFeatureSubMenu,
-    isOpenResoursesSubMenu,
     tagData
   ]);
 
   const Navigation = useCallback(() => {
     return (
-      <NavMenu>
+      <NavMenu mobile={mobile}>
         <NavigationBlock>
           <SpanLink textColor={colorList?.fontColor} hoverColor={colorList?.primaryColor}>
             <Link href='/blog'>Blog Home</Link>

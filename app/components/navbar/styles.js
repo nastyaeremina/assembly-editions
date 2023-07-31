@@ -119,7 +119,7 @@ const NavMenu = styled.div`
     ${(props) =>
       props.mobile &&
       css`
-        display: block;
+        display: flex !important;
       `}
   }
 `;
