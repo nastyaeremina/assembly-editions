@@ -17,7 +17,6 @@ import useMobileDevice from '../../hooks/useMobileDevice';
 import { isEmpty } from '../../helpers/helpers';
 import Button from '../button/button';
 import {
-  CONTACT_SALES_LINK,
   COPILOT_DASHBOARD_LINK,
   COPILOT_ONBORADING_LINK,
   COPILOT_SECURITY_LINK,
@@ -566,7 +565,7 @@ export default function NavbarComponent({
                 <>
                   {' '}
                   <SignIn textColor={colorList?.fontColor} hoverColor={colorList?.primaryColor}>
-                    <Link href={CONTACT_SALES_LINK}>Contact sales</Link>
+                    <Link href={'/book-demo'}>Contact sales</Link>
                   </SignIn>
                   <Button
                     bgColor={colorList?.buttonColor}
@@ -744,7 +743,7 @@ export default function NavbarComponent({
                   {userAuth ? (
                     <>
                       <SignIn textColor={colorList?.fontColor} hoverColor={colorList?.primaryColor}>
-                        <Link href={CONTACT_SALES_LINK}>Contact sales</Link>
+                        <Link href={'/book-demo'}>Contact sales</Link>
                       </SignIn>
                       <BlackButton
                         textColor={isModule ? colorList?.fontColor : '#FFFFFF'}
