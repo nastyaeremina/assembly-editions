@@ -1,11 +1,6 @@
 'use client';
 
-import {
-  BLOG_LINK,
-  COPILOT_SECURITY_LINK,
-  COPILOT_SYSTEM_STATUS_LINK,
-  HELP_CENTER_LINK
-} from '../../constants/externalLinks';
+import { COPILOT_SECURITY_LINK, COPILOT_SYSTEM_STATUS_LINK, HELP_CENTER_LINK } from '../../constants/externalLinks';
 import {
   NavigationBlock,
   NavMenu,

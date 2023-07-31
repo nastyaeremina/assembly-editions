@@ -1,5 +1,4 @@
-export const BLOG_LINK = 'https://www.copilot.com/blog';
-export const COPILOT_ONBORADING_LINK = 'https://dashboard.copilot.com/onboarding';
+export const COPILOT_ONBORADING_LINK = 'https://dashboard.copilot.com/signup';
 export const HELP_CENTER_LINK = ' https://support.copilot.com';
 export const COPILOT_TWITTER_LINK = 'https://twitter.com/copilot';
 export const COPILOT_FACEBOOK_LINK = 'https://www.facebook.com/copilotplatforms';
@@ -17,5 +16,5 @@ export const COPILOT_UPDATE_LINK = 'https://copilot.com/updates';
 export const UPDATE_SUBSCRIBE_LINK = 'https://twitter.com/intent/user?screen_name=copilot';
 export const PARTNERSHIP_APPLY_LINK = 'https://copilotplatforms.typeform.com/to/VmRYidBZ';
 export const CUSTOM_APP_LINK = 'https://docs.copilot.com/page/custom-apps';
-export const OPEN_COPILOT_LINK = 'https://dashboard.copilot.com/'
-export const CONTACT_SALES_LINK = 'https://dashboard.copilot.com/'
+export const OPEN_COPILOT_LINK = 'https://dashboard.copilot.com/';
+export const CONTACT_SALES_LINK = 'https://dashboard.copilot.com/';
