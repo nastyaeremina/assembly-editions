@@ -163,6 +163,18 @@ const FormRightLine = styled.div`
   position: absolute;
   left: 100%;
   top: 50%;
+  @media only screen and (max-width: 1440px) {
+    width: 26%;
+  }
+  @media only screen and (max-width: 1024px) {
+    width: 8%;
+  }
+  @media only screen and (max-width: 768px) {
+    width: 3%;
+  }
+  @media only screen and (max-width: 449px) {
+    width: 6%;
+  }
 `;
 const Container = styled.div`
   overflow: hidden;
