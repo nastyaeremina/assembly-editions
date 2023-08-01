@@ -34,7 +34,7 @@ import {
 export default function BookDemoForm({ productDemoSlug }) {
   const bookDemoSelector = useSelector((state) => state.bookDemo);
   const { validationError, bookDemoData } = bookDemoSelector;
-  const [isSubmit, setIsSubmit] = useState(true);
+  const [isSubmit, setIsSubmit] = useState(false);
 
   const dispatch = useDispatch();
 
