@@ -134,3 +134,10 @@ export const getSEOData = async ({ id, data }) => {
     }
   };
 };
+
+export function extractYouTubeVideoId(url) {
+  const urlObj = new URL(url);
+  const path = urlObj.pathname;
+  const videoId = path.slice(1); // Remove the leading slash
+  return `https://www.youtube.com/embed/${videoId}?autoplay=1`;
+}

@@ -6,18 +6,20 @@ import { HOME_MODULE_LIST, MODULE_COLOR_LIST } from '../../../constants/constant
 import OfficeCTA from '../../officeCTA';
 import Client from '../../client/client';
 import ProductHero from '../../producthero';
+import { extractYouTubeVideoId } from '../../../helpers/helpers';
 
 export default function ProductDemoPage({ details }) {
+  const videoId = extractYouTubeVideoId(details?.videoUrl);
   return (
     <>
       <ProductHero
         colorList={MODULE_COLOR_LIST[HOME_MODULE_LIST['Productdemo']]}
         title={details?.header}
         description={documentToReactComponents(details?.body?.json)}
-        videoUrl={details?.videoUrl}
+        videoUrl={videoId}
       />
       <OfficeCTA />
-      <Client title={details?.section3Header} isProductdemo={true} />
+      <Client title={null} isProductdemo={true} />
     </>
   );
 }

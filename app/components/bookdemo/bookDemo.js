@@ -31,10 +31,10 @@ import {
   ValidationForm
 } from './styles';
 
-export default function BookDemoForm() {
+export default function BookDemoForm({ productDemoSlug }) {
   const bookDemoSelector = useSelector((state) => state.bookDemo);
   const { validationError, bookDemoData } = bookDemoSelector;
-  const [isSubmit, setIsSubmit] = useState(false);
+  const [isSubmit, setIsSubmit] = useState(true);
 
   const dispatch = useDispatch();
 
@@ -133,7 +133,7 @@ export default function BookDemoForm() {
                       <Link href={COPILOT_ONBORADING_LINK} target='_blank'>
                         starting a free trial
                       </Link>
-                      , <Link href={'/product-demo'}>watching a product demo</Link> , or registering for{' '}
+                      , <Link href={`/${productDemoSlug}`}>watching a product demo</Link> , or registering for{' '}
                       <Link href={'/weekly-demo'}>weekly office hours</Link>.
                     </p>
                   </TextWrap>

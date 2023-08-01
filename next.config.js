@@ -42,6 +42,7 @@ const nextConfig = {
       slug
     }
   }`;
+
     const postData = (await fetchGraphQL({ preview: false, query })) ?? [];
     const pageDemoData = (await fetchGraphQL({ preview: false, query: pageDemoQuery })) ?? [];
 
@@ -67,6 +68,7 @@ const nextConfig = {
           };
         }
       }) ?? [];
+    //add weekly-demo url
     redirectData?.push({
       source: '/weekly-demo',
       destination: `/${pageDemoData?.data?.pageDemo?.slug}`,
