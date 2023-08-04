@@ -57,9 +57,7 @@ export async function generateMetadata({ params }) {
 
 export default async function Tag({ params }) {
   const { allPosts, tags } = await getContent({ slug: params?.slug });
-  // console.log('tags', tags);
-  const tagList = JSON.parse(JSON.stringify(tags));
-  const index = allPosts.finIndex((post) => post?.tags?.[0]?.slug === params?.slug);
+  const index = allPosts.findIndex((post) => post?.tags?.[0]?.slug === params?.slug);
   if (index === -1) return notFound();
   return (
     <>
