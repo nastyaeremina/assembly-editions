@@ -34,7 +34,7 @@ import Button from '../../../components/button/button';
 
 export default function AppsDetailPage({ appDetail, relatedApps }) {
   const renderRelatedAppView = useMemo(() => {
-    if (isEmpty(relatedApps)) return notFound();
+    if (isEmpty(relatedApps)) return null;
     return relatedApps?.map((item, index) => {
       return (
         <>

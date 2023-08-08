@@ -13,9 +13,10 @@ const AppsSlider = ({ data, isDetailSlider }) => {
   const featurecontentView = useMemo(() => {
     if (isEmpty(data)) return null;
     return data?.map((item, index) => {
+      if (isEmpty(item)) return null;
       return (
         <>
-          <SliderInner href={`/apps/directory/${item.slug}`} key={`slider_index_${index}`}>
+          <SliderInner href={`/apps/directory/${item?.slug}`} key={`slider_index_${index}`}>
             <div className='appsslider-card'>
               <FeatureImg>
                 <Image

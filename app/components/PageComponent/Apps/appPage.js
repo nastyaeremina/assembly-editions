@@ -14,7 +14,7 @@ import CTA from '../../../components/cta/cta';
 import TabView from '../../../components/tab/tab';
 import { HOME_MODULE_LIST, MODULE_COLOR_LIST } from '../../../constants/constant';
 import AutomationCardSection from '../../../components/automationcard';
-import { isEmpty, separateSpecialChar } from '../../../helpers/helpers';
+import { isEmpty, removeEmptyElement, separateSpecialChar } from '../../../helpers/helpers';
 import CustomerTestimonial from '../../../components/customer/testimonials';
 import FAQ from '../../../components/faq/faq';
 import { TopView } from '../../../components/solution/clienttab/styles';
@@ -130,7 +130,7 @@ export default function AppPage({ details, appsList }) {
         </Featured>
       </Container>
       {!isEmpty(details?.sectionFeaturedContentCollection?.items) && (
-        <AppsSlider data={details?.sectionFeaturedContentCollection?.items} isDetailSlider={true} />
+        <AppsSlider data={removeEmptyElement(details?.sectionFeaturedContentCollection?.items)} isDetailSlider={true} />
       )}
       <FAQ contentID={details?.faqGroup?.sys?.id} />
       <CTA />
