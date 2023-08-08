@@ -8,6 +8,7 @@ import { getUpdatesPosts, getUpdatesWithSlug } from '../../app/lib/updates-conte
 import { getAllComparisonWithSlug } from '../../app/lib/contentful-comparison';
 import { PER_UPDATE_PAGE_POST } from '../../app/constants/constant';
 import { getAllAutomationsWithSlug } from '../../app/lib/contentful-automation';
+import { getAllGlossaryContent } from '../../app/lib/contentful-glossary';
 
 export async function getServerSideProps(ctx) {
   const appsPost = (await getAllPartnerAppsWithSlug()) ?? []; // appa
@@ -20,6 +21,7 @@ export async function getServerSideProps(ctx) {
   const tagPost = (await getAllTagWithSlug()) ?? []; // blog/tag
   const comparisonPost = (await getAllComparisonWithSlug()) ?? []; // /comparison
   const automationsPost = (await getAllAutomationsWithSlug()) ?? []; // automationsPost
+  const glossarysPost = (await getAllGlossaryContent()) ?? []; // glossary
 
   const appsPostsPathList = appsPost?.map((item) => `apps/directory/${item?.slug}`);
   const jobsPostsPathList = jobPosts?.map((item) => `jobs/${item?.slug}`);
@@ -31,6 +33,7 @@ export async function getServerSideProps(ctx) {
   const tagPostsPathList = tagPost?.map((item) => `blog/tag/${item?.slug}`);
   const comparisonPostsPathList = comparisonPost?.map((item) => `comparison/${item?.slug}`);
   const automationsPostsPathList = automationsPost?.map((item) => `automations/directory/${item?.slug}`);
+  const glossaryPostsPathList = glossarysPost?.map((item) => `glossary/${item?.slug}`);
 
   let allUpdateWithPagination = [];
   const totalCount = updatesPost?.meta?.pagination?.total;
@@ -49,7 +52,8 @@ export async function getServerSideProps(ctx) {
     tagPostsPathList,
     comparisonPostsPathList,
     allUpdateWithPagination,
-    automationsPostsPathList
+    automationsPostsPathList,
+    glossaryPostsPathList
   );
   return getServerSideSitemapIndex(
     ctx,

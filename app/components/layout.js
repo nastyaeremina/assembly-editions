@@ -7,14 +7,14 @@ export async function getContent() {
 
   return { footerData };
 }
-export default async function Layout({ children = <></>, isEnterPrice = false }) {
+export default async function Layout({ children = <></>, isEnterPrice = false, isGlossary = false }) {
   const { footerData } = await getContent();
   return (
     <>
       <div>
         <main>{children}</main>
       </div>
-      <Footer isEnterPrice={isEnterPrice} footerData={footerData} />
+      {!isGlossary && <Footer isEnterPrice={isEnterPrice} footerData={footerData} />}
     </>
   );
 }

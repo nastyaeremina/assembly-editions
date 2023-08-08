@@ -347,3 +347,4 @@ export const APP_PAGE_ID = 'zHpvQW60FYupSGIasksht';
 export const WEEKLY_DEMO_PAGE_ID = '6yTkSs6vPA4UtptzHbvw3r';
 export const PRODUCT_DEMO_PAGE_ID = '2qbT95AIpVDChNTKj0PnfY';
 export const PRICING_PAGE_ID = '1lSCkgpg3oXPp3kuxEJwfg';
+export const GLOSSARY_PAGE_ID = '59RJugqUUkgTppwv6aoA9I';

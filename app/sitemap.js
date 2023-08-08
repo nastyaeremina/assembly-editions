@@ -7,6 +7,7 @@ import { getUpdatesWithSlug } from './lib/updates-content';
 import { getAllComparisonWithSlug } from './lib/contentful-comparison';
 import { PER_UPDATE_PAGE_POST } from './constants/constant';
 import { getAllAutomationsWithSlug } from './lib/contentful-automation';
+import { getAllGlossaryContent } from './lib/contentful-glossary';
 
 export default async function sitemap() {
   const appsPost = (await getAllPartnerAppsWithSlug()) ?? []; // appa
@@ -19,6 +20,7 @@ export default async function sitemap() {
   const tagPost = (await getAllTagWithSlug()) ?? []; // blog/tag
   const comparisonPost = (await getAllComparisonWithSlug()) ?? []; // /comparison
   const automationsPost = (await getAllAutomationsWithSlug()) ?? []; // automationsPost
+  const glossarysPost = (await getAllGlossaryContent()) ?? []; // glossary
 
   const appsPostsPathList = appsPost?.map((item) => `apps/directory/${item?.slug}`);
   const jobsPostsPathList = jobPosts?.map((item) => `jobs/${item?.slug}`);
@@ -30,12 +32,13 @@ export default async function sitemap() {
   const tagPostsPathList = tagPost?.map((item) => `blog/tag/${item?.slug}`);
   const comparisonPostsPathList = comparisonPost?.map((item) => `comparison/${item?.slug}`);
   const automationsPostsPathList = automationsPost?.map((item) => `automations/directory/${item?.slug}`);
+  const glossaryPostsPathList = glossarysPost?.map((item) => `glossary/${item?.slug}`);
 
   let allUpdateWithPagination = [];
   const totalCount = updatesPost?.meta?.pagination?.total;
   const totalPageCount = Math.ceil(totalCount / PER_UPDATE_PAGE_POST);
 
-  const staticPages=[
+  const staticPages = [
     'apps',
     'automations',
     'automations/directory',
@@ -55,7 +58,8 @@ export default async function sitemap() {
     'sitemap',
     'university',
     'updates',
-    'weekly-demo'
+    'weekly-demo',
+    'glossary'
   ];
 
   for (let page = 2; page <= totalPageCount; page++) {
@@ -73,6 +77,7 @@ export default async function sitemap() {
     comparisonPostsPathList,
     allUpdateWithPagination,
     automationsPostsPathList,
+    glossaryPostsPathList
   );
   return finalList?.map((item) => {
     return {
