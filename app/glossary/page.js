@@ -37,7 +37,7 @@ export default async function Glossary() {
 
   return (
     <>
-      <Layout isGlossary={true}>
+      <Layout>
         <Navbar />
         <GlossaryPage data={glossaryList} />
       </Layout>
