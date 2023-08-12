@@ -7,7 +7,7 @@ import { Container } from '../../styles/commonStyles';
 import { getFAQs } from '../../lib/contentful-faq';
 import { FaqSection, FaqTitle, DivFAQ, FAQAnsware } from './styles';
 
-export default function FAQ({ enterprise, contentID }) {
+export default function FAQ({ enterprise, contentID, isGuideFAQ }) {
   const [allPosts, setAppPosts] = useState([]);
   const [activeAccordion, setActiveAccordion] = useState(false);
 
@@ -64,7 +64,7 @@ export default function FAQ({ enterprise, contentID }) {
   const [css] = useStyletron();
   return (
     <>
-      <FaqSection enterprise={enterprise}>
+      <FaqSection enterprise={enterprise} isGuideFAQ={isGuideFAQ}>
         <Container>
           <FaqTitle>
             <h2 className='faqtitle'>Frequently Asked Questions</h2>

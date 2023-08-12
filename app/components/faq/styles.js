@@ -1,11 +1,7 @@
 import styled, { css } from 'styled-components';
-import { Body1,  Heading3, Heading4, MbBody3 } from '../../styles/styles';
+import { Body1, Heading3, Heading4, MbBody3 } from '../../styles/styles';
 
-import {
-  greenlight,
-  body,
-  title,
-} from './../../styles/color';
+import { greenlight, body, title } from './../../styles/color';
 
 const FaqSection = styled.div`
   padding: 100px 0 60px 0;
@@ -33,6 +29,11 @@ const FaqSection = styled.div`
     css`
       padding: 100px 0 60px 0;
       background-color: ${greenlight};
+    `}
+  ${(props) =>
+    props.isGuideFAQ &&
+    css`
+      padding: 60px 0 100px 0;
     `}
   .ak:last-child {
     border-bottom: none;
@@ -157,59 +158,54 @@ const FaqWrap = styled.div`
 `;
 
 const DivFAQ = styled.div`
-    border-bottom:1px solid black;
-  .accordion-title{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    padding:40px 0px;
+  border-bottom: 1px solid black;
+  .accordion-title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 40px 0px;
     cursor: pointer;
   }
-  .accordion-heading{
+  .accordion-heading {
     ${Heading4}
     margin:0 30px 0 0;
   }
-  .accordion-content{
-   
+  .accordion-content {
   }
-  @media only screen and (max-width: 426px){
-    svg{
-      height:24px;
-      width:24px;
+  @media only screen and (max-width: 426px) {
+    svg {
+      height: 24px;
+      width: 24px;
     }
   }
-  svg path
-  {
+  svg path {
     transition: all 0.2s ease;
     transform-origin: center;
   }
-  svg .active{
+  svg .active {
     transform: rotate(90deg);
   }
-  :last-child
-  {
-    border-bottom:none; 
+  :last-child {
+    border-bottom: none;
   }
-
 `;
 const FAQAnsware = styled.div`
-  div{
+  div {
     ${Body1}
     color: ${body};
-    padding:0 32px 40px 0;
-     @media only screen and (max-width: 426px){
+    padding: 0 32px 40px 0;
+    @media only screen and (max-width: 426px) {
       ${MbBody3}
+    }
   }
+  opacity: 0;
+  max-height: 0;
+  transition: opacity 400ms ease-in-out 0s, max-height 400ms ease-in-out 0s;
+  overflow: hidden;
+  &&.active {
+    opacity: 1;
+    overflow: visible;
+    max-height: 500px;
   }
-    opacity:0 ;
-    max-height:0 ;
-    transition: opacity 400ms ease-in-out 0s,max-height 400ms ease-in-out 0s;
-    overflow:hidden ;
-  &&.active{
-    opacity:1 ;
-    overflow:visible ;
-    max-height:500px ;
-
-  }
-`
-export { FaqSection, FaqWrap, FaqTitle, DivFAQ,FAQAnsware };
+`;
+export { FaqSection, FaqWrap, FaqTitle, DivFAQ, FAQAnsware };

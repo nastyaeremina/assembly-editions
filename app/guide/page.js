@@ -1,0 +1,31 @@
+import React from 'react';
+import GuidePage from '../components/PageComponent/GuideModule/guidePage';
+import { getSEOData, isEmpty } from '../helpers/helpers';
+import { GUIDE_PAGE_ID, PER_API_LIMIT_FOR_GUIDE_SECTION } from '../constants/constant';
+import { getAllGuideSectionContent, getGuidePageContent } from '../lib/contentful-guide';
+async function getContent() {
+  const detail = (await getGuidePageContent({ id: GUIDE_PAGE_ID })) ?? {};
+
+  let allPosts = [];
+  let data = [];
+  const sectionIdList = detail?.sectionsCollection?.items.map((item) => `"${item.sys.id}"`) || [];
+  for (let i = 0; i < sectionIdList.length; i += PER_API_LIMIT_FOR_GUIDE_SECTION) {
+    const batch = sectionIdList.slice(i, i + PER_API_LIMIT_FOR_GUIDE_SECTION);
+    data = (await getAllGuideSectionContent(`id_in: [${batch}]`)) || [];
+    allPosts = allPosts.concat(data);
+  }
+
+  return { seoMetadata: detail?.seoMetadata, data: allPosts };
+}
+
+export async function generateMetadata() {
+  const { seoMetadata } = await getContent();
+  const seoData = await getSEOData({ data: seoMetadata });
+
+  return seoData;
+}
+export default async function Guide() {
+  const { data } = await getContent();
+  const firstArticle = data?.[0]?.articlesCollection?.items[0];
+  return <GuidePage data={data} defaultArticle={firstArticle} />;
+}

@@ -1,0 +1,236 @@
+import styled, { css } from 'styled-components';
+import { Body4, FooterText, MbBody5 } from '../../styles/styles';
+import { greendark, lightgray, primary, title } from '../../styles/color';
+
+const SideNavbar = styled.div`
+  width: 300px;
+  height: 100vh;
+  padding: 40px 0px 0px 20px;
+  border-right: 1px solid #ccccd0;
+  position: sticky;
+  top: 0;
+  @media only screen and (max-width: 991px) {
+    display: none;
+  }
+`;
+const Maindiv = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+`;
+const CopilotGuideLogo = styled.img`
+  cursor: pointer;
+  @media only screen and (max-width: 991px) {
+    width: 96px;
+    height: 22px;
+  }
+`;
+
+const SideNavbarHead = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding-right: 20px;
+`;
+const NavTitle = styled.p`
+  padding-left: 15px;
+  ${Body4};
+  color: ${greendark};
+  margin: 0;
+  @media only screen and (max-width: 991px) {
+    border-left: 1px solid #757575;
+  }
+`;
+
+const NavHead = styled.div`
+  display: flex;
+  justify-content: space-between;
+  gap: 40px;
+  cursor: pointer;
+`;
+const OptionName = styled.p`
+  margin: 0;
+  ${MbBody5};
+  color: ${lightgray};
+  ${(props) =>
+    props.isSelected &&
+    css`
+      color: ${greendark};
+    `}
+`;
+const OptionIcon = styled.div`
+  .close {
+    transform: rotate(90deg);
+  }
+`;
+const NavItem = styled.div`
+  display: flex;
+  gap: 10px;
+  padding-left: 12px;
+  align-items: center;
+  cursor: pointer;
+`;
+const Icon = styled.div`
+  display: flex;
+  align-items: center;
+  :hover {
+    svg {
+      path {
+        fill: red;
+      }
+    }
+  }
+`;
+const IconText = styled.div`
+  ${MbBody5};
+  color: ${lightgray};
+  ${(props) =>
+    props.isSelected &&
+    css`
+      color: ${greendark};
+    `}
+`;
+const NavItemSection = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+`;
+const NavmenuSection = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding-right: 20px;
+  @media only screen and (max-width: 991px) {
+    padding-right: 0;
+  }
+`;
+
+const GuideRight = styled.div`
+  width: 220px;
+  padding: 90px 20px 0px 0px;
+  position: sticky;
+  top: 0;
+  height: 100%;
+  @media only screen and (max-width: 991px) {
+    display: none;
+  }
+`;
+const ItemList = styled.div`
+  border-left: 1px solid #ccccd0;
+`;
+const ItemName = styled.p`
+  padding: 6px 0px 6px 8px;
+  margin: 0;
+  ${MbBody5};
+  cursor: pointer;
+  :first-child {
+    padding-top: 0;
+  }
+  a {
+    color: ${lightgray};
+  }
+  ${(props) =>
+    props.isSelected &&
+    css`
+      border-left: 1px solid #09aa6c;
+      margin-left: -1px;
+      a {
+        color: ${primary};
+      }
+    `}
+`;
+const ItemSubName = styled.p`
+  padding: 4px 0px 4px 30px;
+  margin: 0;
+  ${MbBody5};
+  cursor: pointer;
+  a {
+    color: ${lightgray};
+  }
+  ${(props) =>
+    props.isSelected &&
+    css`
+      border-left: 1px solid #09aa6c;
+      margin-left: -1px;
+      a {
+        color: ${primary};
+      }
+    `}
+`;
+const GuideMobileNavbar = styled.div`
+  display: none;
+  @media only screen and (max-width: 991px) {
+    display: block;
+    position: sticky;
+    top: 0;
+    height: 100%;
+    background: rgba(255, 255, 253, 0.8);
+    border-bottom: 0px solid rgb(204, 204, 208);
+    &&.scroll {
+      backdrop-filter: blur(6px);
+      border-width: 1px;
+    }
+  }
+`;
+const NavbarHeader = styled.div`
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+  padding: 16px 24px;
+`;
+const MobileNavMenu = styled.div`
+  position: absolute;
+  z-index: 1;
+  background-color: #ffffff;
+  /* top: 76px; */
+  width: 100%;
+  height: 100vh;
+  padding: 24px 24px 0;
+`;
+
+const BtnIcon = styled.div`
+  position: absolute;
+  top: 12px;
+  right: 20px;
+  display: flex;
+  gap: 4px;
+`;
+
+const AskDiv = styled.div`
+  border-radius: 36px;
+  border: 1px solid #ccccd0;
+  padding: 9px 20px;
+  position: relative;
+  max-width: 260px;
+  width: 100%;
+  ${FooterText};
+  color: ${lightgray};
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+`;
+export {
+  SideNavbar,
+  Maindiv,
+  CopilotGuideLogo,
+  SideNavbarHead,
+  NavTitle,
+  NavHead,
+  OptionName,
+  OptionIcon,
+  NavItem,
+  Icon,
+  IconText,
+  NavItemSection,
+  NavmenuSection,
+  GuideRight,
+  ItemList,
+  ItemName,
+  ItemSubName,
+  GuideMobileNavbar,
+  NavbarHeader,
+  MobileNavMenu,
+  BtnIcon,
+  AskDiv
+};

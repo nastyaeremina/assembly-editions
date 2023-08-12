@@ -290,6 +290,8 @@ export const COOKIE_NAME = 'current-portal-session';
 
 export const PER_API_LIMIT_FOR_AUTOMATION = 10;
 export const PER_UPDATE_PAGE_POST = 10;
+export const PER_API_LIMIT_FOR_GUIDE_SECTION = 10;
+
 export const INDUSTRY_ARRAY = [
   'marketing',
   'consulting',
@@ -348,3 +350,4 @@ export const WEEKLY_DEMO_PAGE_ID = '6yTkSs6vPA4UtptzHbvw3r';
 export const PRODUCT_DEMO_PAGE_ID = '2qbT95AIpVDChNTKj0PnfY';
 export const PRICING_PAGE_ID = '1lSCkgpg3oXPp3kuxEJwfg';
 export const GLOSSARY_PAGE_ID = '59RJugqUUkgTppwv6aoA9I';
+export const GUIDE_PAGE_ID = '21aIyPkZ2efko1hJU4Qeep';
