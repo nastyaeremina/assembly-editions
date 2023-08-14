@@ -24,6 +24,15 @@ async function getContent() {
       newList?.push(newItem);
     }
   });
+  //sort by key
+  newList.sort((a, b) => a.key.localeCompare(b.key));
+
+  //next level sort
+  //sort by list name
+  newList.forEach((item) => {
+    item.list.sort((x, y) => x.name.localeCompare(y.name));
+  });
+
   return { glossaryList: newList, seoMetadata: data?.seoMetadata };
 }
 
@@ -34,7 +43,6 @@ export async function generateMetadata({ params, searchParams }, parent) {
 }
 export default async function Glossary() {
   const { glossaryList } = await getContent();
-
   return (
     <>
       <Layout>
