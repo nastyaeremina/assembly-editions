@@ -56,12 +56,7 @@ export default function GuideRightSection({ data }) {
 
   return (
     <GuideRight>
-      <ItemList>
-        <ItemName isSelected={activeItem === 'overview'}>
-          <Link href={'#overview'}>Overview</Link>
-        </ItemName>
-        {renderHierarchy(data)}
-      </ItemList>
+      <ItemList>{renderHierarchy(data)}</ItemList>
     </GuideRight>
   );
 }

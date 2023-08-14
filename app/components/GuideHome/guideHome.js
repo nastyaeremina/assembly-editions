@@ -61,7 +61,7 @@ export default function GuideHome({ detail }) {
       <MainContent>
         <GuideCenter>
           <HeroSection>
-            <PageTitle id={'overview'}>{detail?.name}</PageTitle>
+            <PageTitle>{detail?.name}</PageTitle>
             {!isEmpty(detail?.header) && <Caption>{detail?.header}</Caption>}
           </HeroSection>
           {!isEmpty(detail?.content?.json) && (
