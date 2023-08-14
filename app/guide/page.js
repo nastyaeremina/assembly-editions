@@ -14,8 +14,14 @@ async function getContent() {
     data = (await getAllGuideSectionContent(`id_in: [${batch}]`)) || [];
     allPosts = allPosts.concat(data);
   }
+  const orderedData = sectionIdList
+    ?.map((sectionId) => {
+      const matchedData = data?.find((dataItem) => dataItem.sys.id === sectionId.replace(/"/g, ''));
+      return matchedData ? { ...matchedData } : null;
+    })
+    .filter((item) => item !== null);
 
-  return { seoMetadata: detail?.seoMetadata, data: allPosts };
+  return { seoMetadata: detail?.seoMetadata, data: orderedData };
 }
 
 export async function generateMetadata() {
