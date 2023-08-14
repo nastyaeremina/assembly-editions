@@ -52,8 +52,7 @@ const GuideDetail = styled.div`
       margin: 0;
     }
   }
-  p,
-  b {
+  p {
     ${Body5};
     color: ${body};
     margin: 8px 0 0;
@@ -73,6 +72,17 @@ const GuideDetail = styled.div`
         font-size: 15px;
         color: ${body};
       }
+    }
+  }
+  i {
+    font-weight: 700;
+  }
+  ul {
+    list-style-type: disc;
+    padding-left: 20px;
+    li {
+      ${Body5};
+      color: ${body};
     }
   }
   @media only screen and (max-width: 449px) {
