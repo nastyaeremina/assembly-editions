@@ -8,28 +8,21 @@ export default function GuideRightSection({ data }) {
   const renderHierarchy = useCallback(
     (data, isFirst = true) => {
       return data.map((item) => {
-        if (item.items && item.items.length > 0) {
-          return (
-            <ItemSubName key={item.id} isSelected={activeItem === item.id}>
-              <Link href={`#${item.id}`}>{item.title}</Link>
-              {renderHierarchy(item.items, false)}
-            </ItemSubName>
-          );
-        } else {
-          return (
-            <>
-              {isFirst ? (
-                <ItemName key={item.id} isSelected={activeItem === item.id}>
-                  <Link href={`#${item.id}`}>{item.title}</Link>
-                </ItemName>
-              ) : (
-                <ItemSubName key={item.id} isSelected={activeItem === item.id}>
-                  <Link href={`#${item.id}`}>{item.title}</Link>
-                </ItemSubName>
-              )}
-            </>
-          );
-        }
+        return (
+          <>
+            {isFirst ? (
+              <ItemName key={item.id} isSelected={activeItem === item.id} level={item?.level}>
+                <Link href={`#${item.id}`}>{item.title}</Link>
+              </ItemName>
+            ) : (
+              <ItemName key={item.id} isSelected={activeItem === item.id} level={item?.level}>
+                <Link href={`#${item.id}`}>{item.title}</Link>
+              </ItemName>
+            )}
+
+            {item.items && item.items.length > 0 && <>{renderHierarchy(item.items, false)}</>}
+          </>
+        );
       });
     },
     [activeItem]
@@ -56,12 +49,7 @@ export default function GuideRightSection({ data }) {
 
   return (
     <GuideRight>
-      <ItemList>
-        <ItemName isSelected={activeItem === 'overview'}>
-          <Link href={'#overview'}>Overview</Link>
-        </ItemName>
-        {renderHierarchy(data)}
-      </ItemList>
+      <ItemList>{renderHierarchy(data)}</ItemList>
     </GuideRight>
   );
 }

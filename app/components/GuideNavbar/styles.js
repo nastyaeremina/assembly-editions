@@ -120,6 +120,7 @@ const ItemList = styled.div`
 `;
 const ItemName = styled.p`
   padding: 6px 0px 6px 8px;
+
   margin: 0;
   ${MbBody5};
   cursor: pointer;
@@ -137,6 +138,31 @@ const ItemName = styled.p`
       a {
         color: ${primary};
       }
+    `}
+  ${(props) =>
+    props.level === 2 &&
+    css`
+      padding: 6px 0px 6px 22px;
+    `}
+    ${(props) =>
+    props.level === 3 &&
+    css`
+      padding: 6px 0px 6px 44px;
+    `}
+    ${(props) =>
+    props.level === 4 &&
+    css`
+      padding: 6px 0px 6px 66px;
+    `}
+    ${(props) =>
+    props.level === 5 &&
+    css`
+      padding: 6px 0px 6px 88px;
+    `}
+    ${(props) =>
+    props.level === 6 &&
+    css`
+      padding: 6px 0px 6px 110px;
     `}
 `;
 const ItemSubName = styled.p`

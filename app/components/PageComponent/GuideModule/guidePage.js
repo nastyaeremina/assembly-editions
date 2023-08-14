@@ -26,14 +26,16 @@ export default function GuidePage({ data, defaultArticle }) {
   function createHierarchy(inputArray) {
     const hierarchy = [];
     const stack = [];
+    let currentLevel = 1; // Initialize the current level
 
     inputArray.forEach((item) => {
       while (stack.length > 0 && stack[stack.length - 1].type >= item.type) {
         stack.pop();
+        currentLevel--; // Decrease the level when popping
       }
       const id = `${slugify(item.title?.toLowerCase())}-${item.type}`;
 
-      const newItem = { ...item, items: [], id };
+      const newItem = { ...item, items: [], id, level: currentLevel };
 
       if (stack.length === 0) {
         hierarchy.push(newItem);
@@ -42,6 +44,7 @@ export default function GuidePage({ data, defaultArticle }) {
       }
 
       stack.push(newItem);
+      currentLevel++; // Increase the level for the next item
     });
 
     return hierarchy;
