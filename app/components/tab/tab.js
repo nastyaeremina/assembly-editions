@@ -1,4 +1,4 @@
-'use client'
+'use client';
 import Image from 'next/image';
 import React, { useMemo, useState } from 'react';
 import {
@@ -23,7 +23,6 @@ export default function TabView({ bgColor, textColor, isHome, tabData: allPosts,
   const [isOpen, setIsOpen] = useState(false);
 
   const onClick = () => {
-    alert('test');
     setIsOpen(!isOpen);
   };
   return (
