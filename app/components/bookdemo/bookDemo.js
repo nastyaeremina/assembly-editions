@@ -207,7 +207,7 @@ export default function BookDemoForm({ productDemoSlug }) {
               {validationError?.name === 'email' && <Validation error={validationError?.message} />}
 
               <label for='Company'>
-                Comany name <span>*</span>
+                Company name <span>*</span>
               </label>
               <Input
                 type='text'
