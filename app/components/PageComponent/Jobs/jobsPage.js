@@ -44,7 +44,7 @@ import {
   MainWrap
 } from '../../../styles/jobsStyles';
 
-export default async function JobsPage({ jobList, jobImagesList, jobBlogPostList }) {
+export default function JobsPage({ jobList, jobImagesList, jobBlogPostList }) {
   const [selectedImageIndex, setSelectedImageIndex] = useState(0);
 
   const renderJobsListingView = useCallback((list) => {
