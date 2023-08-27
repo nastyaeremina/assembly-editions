@@ -29,7 +29,7 @@ import Quote from '../../quote/quote';
 import { MODULE_GRADIENT_IMAGE_LIST, MUDULE_LIST } from '../../../constants/constant';
 import { COPILOT_ONBORADING_LINK } from '../../../constants/externalLinks';
 
-export default async function CaseStudiesPage({ details }) {
+export default function CaseStudiesPage({ details }) {
   return (
     <>
       <HeroSection>

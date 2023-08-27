@@ -7,7 +7,7 @@ import Blogcard from '../../../components/Blogcard';
 import { isEmpty } from '../../../helpers/helpers';
 import { MainContent } from '../../../styles/blogstyles';
 
-export default async function AuthorPage({ allPosts }) {
+export default function AuthorPage({ allPosts }) {
   const renderData = useMemo(() => {
     if (isEmpty(allPosts)) return notFound();
     return allPosts?.map((item, index) => {
