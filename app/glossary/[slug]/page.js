@@ -13,7 +13,10 @@ async function getContent({ slug }) {
 export async function generateMetadata({ params }) {
   const data = await getContent({ slug: params?.slug });
 
-  return { title: `${data?.name} | Definition and examples`, description: data?.metaDescription };
+  return {
+    title: data?.metaTitle ? data?.metaTitle : `${data?.name} | Definition and examples`,
+    description: data?.metaDescription
+  };
 }
 export default async function GlossaryDetails({ params }) {
   const detail = await getContent({ slug: params?.slug });
