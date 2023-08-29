@@ -15,6 +15,7 @@ body{
   json
 }
 metaDescription
+metaTitle
 `;
 export async function getGlossaryPageContent(id) {
   const entries = await fetchGraphQL(

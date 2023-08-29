@@ -8,10 +8,11 @@ import {
   DetailLink,
   GlossaryContainer,
   GlossaryDetailTitle,
-  GlossaryDetailcontant,
   GlossaryDetailcontent,
   PageBack
 } from '../../../styles/glossaryStyles';
+import { COPILOT_ONBORADING_LINK } from '../../../constants/externalLinks';
+import { isEmpty } from '../../../helpers/helpers';
 
 export default function GlossaryDetailsPage({ detail }) {
   return (
@@ -34,7 +35,17 @@ export default function GlossaryDetailsPage({ detail }) {
           </Link>
         </PageBack>
         <GlossaryDetailTitle>{detail?.name}</GlossaryDetailTitle>
-        <GlossaryDetailcontent> {documentToReactComponents(detail?.body?.json)} </GlossaryDetailcontent>
+        <GlossaryDetailcontent>
+          {!isEmpty(detail?.metaTitle) && <h2>{detail?.metaTitle}</h2>}
+          {documentToReactComponents(detail?.body?.json)}
+          <h2>Looking for a better way to run your service business?</h2>
+          <p>
+            Copilot’s product suite gives businesses an all-in-one solution for client management, messaging, payments,
+            file-sharing, contracts, forms, help desks, and more. Additionally, Copilot enables businesses to offer
+            their clients a unified experience with a branded client portal. To give Copilot a try you can start a free
+            14-day trial <Link href={COPILOT_ONBORADING_LINK}>here</Link>.
+          </p>
+        </GlossaryDetailcontent>
       </GlossaryContainer>
     </Container>
   );
