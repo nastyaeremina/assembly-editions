@@ -7,7 +7,7 @@ import { ENTERPRICE_SEO_ID, HEADER_LIST } from './../constants/constant';
 
 export async function generateMetadata({ params, searchParams }, parent) {
   const seoData = await getSEOData({ id: ENTERPRICE_SEO_ID });
-  seoData.canonical = 'https://www.copilot.com/copilot-plus';
+  seoData.alternates = { canonical: 'https://www.copilot.com/copilot-plus' };
   return seoData;
 }
 

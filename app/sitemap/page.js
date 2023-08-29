@@ -14,7 +14,7 @@ async function getContent() {
 
 export async function generateMetadata() {
   const seoData = await getSEOData({ id: SITEMAP_SEO_ID });
-  seoData.canonical = 'https://www.copilot.com/sitemap';
+  seoData.alternates = { canonical: 'https://www.copilot.com/sitemap' };
   return seoData;
 }
 

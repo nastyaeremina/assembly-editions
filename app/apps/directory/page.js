@@ -40,7 +40,7 @@ async function getContent() {
 
 export async function generateMetadata({ params, searchParams }, parent) {
   const seoData = await getSEOData({ id: APP_SEO_ID });
-  seoData.canonical = 'https://www.copilot.com/apps';
+  seoData.alternates = { canonical: 'https://www.copilot.com/apps' };
   return seoData;
 }
 

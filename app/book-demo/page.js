@@ -5,7 +5,7 @@ import { getProductDemoContent } from '../lib/contentful-weeklyDemo';
 
 export async function generateMetadata({ params, searchParams }, parent) {
   const seoData = await getSEOData({ id: BOOK_DEMO_SEO_ID });
-  seoData.canonical = 'https://www.copilot.com/book-demo';
+  seoData.alternates = { canonical: 'https://www.copilot.com/book-demo' };
   return seoData;
 }
 

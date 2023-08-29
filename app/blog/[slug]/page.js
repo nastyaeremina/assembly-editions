@@ -5,6 +5,7 @@ import { getAllTagWithSlug, getBlogDetail } from '../../lib/blog-content';
 import { isEmpty } from '../../helpers/helpers';
 import BlogdetailPage from '../../components/PageComponent/Blog/blogDetailPage';
 import { notFound } from 'next/navigation';
+import { ArticleJsonLd } from 'next-seo';
 
 async function getContent({ slug }) {
   const blogDetail = (await getBlogDetail(slug)) ?? [];
@@ -62,20 +63,36 @@ export default async function Blogdetail({ params }) {
     });
   };
 
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    mainEntityOfPage: {
+      '@type': 'WebPage',
+      '@id': `https://www.copilot.com/blog/${blogDetail?.slug}/`
+    },
+    headline: blogDetail?.title,
+    description: blogDetail?.excerpt,
+    image: blogDetail?.feature_image,
+    author: {
+      '@type': 'Person',
+      name: blogDetail?.authors[0].name,
+      url: blogDetail?.authors[0]?.url
+    },
+    publisher: {
+      '@type': 'Organization',
+      name: 'Copilot',
+      logo: {
+        '@type': 'ImageObject',
+        url: 'https://www.copilot.com/blog/assets/images/logo-copilot.svg?v=d96fa6b44d'
+      }
+    },
+    datePublished: blogDetail?.created_at,
+    dateModified: blogDetail?.updated_at
+  };
+
   return (
     <>
-      {/* <ArticleJsonLd
-        type='Article'
-        authorName={authorData}
-        url={`https://www.copilot.com/blog/${blogDetail?.slug}/`}
-        images={[blogDetail?.feature_image]}
-        title={blogDetail?.title}
-        description={blogDetail?.excerpt}
-        publisherName='Copilot'
-        publisherLogo='https://www.copilot.com/blog/assets/images/logo-copilot.svg?v=d96fa6b44d'
-        datePublished={blogDetail?.created_at}
-        dateModified={blogDetail?.updated_at}
-      /> */}
+      <script type='application/ld+json' dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
 
       <Layout>
         <BlogNavbar tagData={tags} />

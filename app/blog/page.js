@@ -15,16 +15,31 @@ async function getContent() {
 
 export async function generateMetadata({ params, searchParams }, parent) {
   const seoData = await getSEOData({ id: BLOG_SEO_ID });
-  seoData.canonical = 'https://www.copilot.com/blog';
+  seoData.alternates = { canonical: 'https://www.copilot.com/blog' };
   return seoData;
 }
 
 export default async function Blog() {
   const { allPosts, tags } = await getContent();
   const { topbarContent } = await getTopBarContent();
-
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'Organization',
+    name: 'Copilot',
+    url: 'https://www.copilot.com',
+    logo: 'https://www.copilot.com/_next/static/media/blacklogo.370e156c.svg',
+    sameAs: [
+      'https://twitter.com/copilot',
+      'https://www.linkedin.com/company/copilotplatforms/',
+      'https://www.youtube.com/@copilotplatforms',
+      'https://www.facebook.com/copilotplatforms',
+      'https://www.instagram.com/copilotplatforms/'
+    ]
+  };
   return (
     <>
+      <script type='application/ld+json' dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+
       <Layout>
         <BlogNavbar tagData={tags} topbarContent={topbarContent} />
         <BlogPage allPosts={allPosts} tags={tags} />

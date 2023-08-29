@@ -22,9 +22,24 @@ export default async function Home() {
   const content = await getContent();
   const appsPost = (await getAllPartnerAppsWithSlug()) ?? []; // appa
   const appsPostsPathList = appsPost?.map((item) => `apps/directory/${item?.slug}`);
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'Organization',
+    name: 'Copilot',
+    url: 'https://www.copilot.com',
+    logo: 'https://www.copilot.com/_next/static/media/blacklogo.370e156c.svg',
+    sameAs: [
+      'https://twitter.com/copilot',
+      'https://www.linkedin.com/company/copilotplatforms/',
+      'https://www.youtube.com/@copilotplatforms',
+      'https://www.facebook.com/copilotplatforms',
+      'https://www.instagram.com/copilotplatforms/'
+    ]
+  };
   console.log(appsPostsPathList);
   return (
     <>
+      <script type='application/ld+json' dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       <Layout>
         <Navbar headerIndex={HEADER_LIST.ENTERPRICE} isModule={false} isEnterPrice={true} />
         <HomePage content={content}></HomePage>
