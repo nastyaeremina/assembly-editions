@@ -7,7 +7,7 @@ import { getSEOData } from '../../helpers/helpers';
 
 export async function generateMetadata() {
   const seoData = await getSEOData({ id: REFERRAL_SEO_ID });
-  seoData.canonical = 'https://www.copilot.com/referrals';
+  seoData.alternates = { canonical: 'https://www.copilot.com/referrals' };
 
   return seoData;
 }

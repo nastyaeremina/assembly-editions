@@ -42,7 +42,7 @@ async function getContent() {
 
 export async function generateMetadata({ params, searchParams }, parent) {
   const seoData = await getSEOData({ id: '2hMkBVQBYcMCmHLQyxzo8o' });
-  seoData.canonical = 'https://www.copilot.com/university';
+  seoData.alternates = { canonical: 'https://www.copilot.com/university' };
   return seoData;
 }
 

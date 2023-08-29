@@ -118,7 +118,7 @@ export const getSEOData = async ({ id, data }) => {
   else seoData = data;
   return {
     title: seoData?.seoTitle,
-    canonical: seoData?.canonical,
+    alternates: { canonical: seoData?.canonical },
     description: seoData?.description,
     openGraph: {
       type: 'website',

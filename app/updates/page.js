@@ -12,7 +12,7 @@ async function getContent() {
 
 export async function generateMetadata() {
   const seoData = await getSEOData({ id: UPDATES_SEO_ID });
-  seoData.canonical = 'https://www.copilot.com/updates';
+  seoData.alternates = { canonical: 'https://www.copilot.com/updates' };
   return seoData;
 }
 

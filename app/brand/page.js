@@ -6,7 +6,7 @@ import { BRAND_SEO_ID } from './../constants/constant';
 
 export async function generateMetadata({ params, searchParams }, parent) {
   const seoData = await getSEOData({ id: BRAND_SEO_ID });
-  seoData.canonical = 'https://www.copilot.com/brand';
+  seoData.alternates = { canonical: 'https://www.copilot.com/brand' };
   return seoData;
 }
 export default function Brand() {

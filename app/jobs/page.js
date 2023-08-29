@@ -44,7 +44,7 @@ async function getContent() {
 
 export async function generateMetadata() {
   const seoData = await getSEOData({ id: JOB_SEO_ID });
-  seoData.canonical = 'https://www.copilot.com/jobs';
+  seoData.alternates = { canonical: 'https://www.copilot.com/jobs' };
 
   return seoData;
 }

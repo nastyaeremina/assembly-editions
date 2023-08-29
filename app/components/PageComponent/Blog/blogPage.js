@@ -5,6 +5,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import moment from 'moment';
 import { useRouter } from 'next/navigation';
+import { OrganizationJsonLd } from 'next-seo';
 import { Container, SecondryButton } from '../../../styles/commonStyles';
 import {
   FirstBlog,
@@ -96,6 +97,19 @@ export default function BlogPage({ allPosts, tags }) {
 
   return (
     <>
+      <OrganizationJsonLd
+        type={'Organization'}
+        name='Copilot'
+        url='https://www.copilot.com'
+        logo='https://www.copilot.com/_next/static/media/blacklogo.370e156c.svg'
+        sameAs={[
+          'https://twitter.com/copilot',
+          'https://www.linkedin.com/company/copilotplatforms/',
+          'https://www.youtube.com/@copilotplatforms',
+          'https://www.facebook.com/copilotplatforms',
+          'https://www.instagram.com/copilotplatforms/'
+        ]}
+      />
       <MainContent>
         <Container>
           {renderFeaturedBlog}
