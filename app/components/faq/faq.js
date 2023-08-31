@@ -36,7 +36,7 @@ export default function FAQ({ enterprise, contentID, isGuideFAQ }) {
     return allPosts?.map((item, index) => {
       return (
         <>
-          <DivFAQ>
+          <DivFAQ isGuideFAQ={isGuideFAQ}>
             <div className='accordion-title' onClick={() => onClickQuestion(index)}>
               <div className='accordion-heading'>{item?.question}</div>
               <div>
@@ -52,21 +52,21 @@ export default function FAQ({ enterprise, contentID, isGuideFAQ }) {
                 </svg>
               </div>
             </div>
-            <FAQAnsware className={activeAccordion === index ? 'active' : ''}>
+            <FAQAnsware className={activeAccordion === index ? 'active' : ''} isGuideFAQ={isGuideFAQ}>
               <div>{item?.answer}</div>
             </FAQAnsware>
           </DivFAQ>
         </>
       );
     });
-  }, [activeAccordion, allPosts, onClickQuestion]);
+  }, [activeAccordion, allPosts, isGuideFAQ, onClickQuestion]);
 
   const [css] = useStyletron();
   return (
     <>
       <FaqSection enterprise={enterprise} isGuideFAQ={isGuideFAQ}>
         <Container>
-          <FaqTitle>
+          <FaqTitle isGuideFAQ={isGuideFAQ}>
             <h2 className='faqtitle'>Frequently Asked Questions</h2>
           </FaqTitle>
 

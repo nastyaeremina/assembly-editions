@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { Body3, Body5, Heading3, Heading5, MbBody3, MbBody4, MobileH4 } from '../../styles/styles';
+import { Body3, Body5, Heading3, Heading4, Heading5, Heading6, MbBody3, MbBody4, MobileH4 } from '../../styles/styles';
 import { body, primary, title } from '../../styles/color';
 
 const GuideCenter = styled.div`
@@ -26,7 +26,7 @@ const HeroSection = styled.div`
   flex-direction: column;
   gap: 16px;
 `;
-const PageTitle = styled.h1`
+const PageTitle = styled.h2`
   ${Heading3};
   color: ${title};
   margin: 0;
@@ -41,15 +41,34 @@ const Caption = styled.p`
 `;
 const GuideDetail = styled.div`
   padding: 40px 0;
-  h3,
-  h4,
-  h5 {
+  h3 > b,
+  h3 {
     ${Heading5};
     font-weight: 400;
     color: ${title};
     margin: 40px 0 0;
     :first-child {
       margin: 0;
+    }
+  }
+  h4 > b,
+  h4 {
+    ${Heading6};
+    font-weight: 400;
+    color: ${title};
+    margin: 40px 0 0;
+    :first-child {
+      margin: 0;
+    }
+  }
+  b {
+    font-weight: 600;
+  }
+  a {
+    color: ${primary};
+    display: initial;
+    :hover {
+      color: #00160e;
     }
   }
   p {
@@ -59,6 +78,12 @@ const GuideDetail = styled.div`
     a {
       color: ${primary};
       display: initial;
+      :hover {
+        color: #00160e;
+      }
+      u {
+        text-decoration: none;
+      }
     }
   }
   img {
@@ -83,6 +108,54 @@ const GuideDetail = styled.div`
     li {
       ${Body5};
       color: ${body};
+    }
+  }
+  table {
+    width: 100%;
+    border: 1px solid #00160e;
+    margin-bottom: 40px;
+    margin-top: -20px;
+    p {
+      margin: 0;
+    }
+    @media only screen and (max-width: 479px) {
+      margin-top: 20px;
+      margin-bottom: 0px;
+    }
+    tr {
+      :nth-child(odd) {
+        background-color: #f8f9fb;
+      }
+    }
+    th {
+      background-color: #e3ffee;
+      border: 1px solid #00160e;
+      padding: 12px 20px;
+      text-align: left;
+      ${Heading6};
+      font-weight: 400;
+      color: ${title};
+      p > b,
+      p {
+        ${Heading6};
+        font-weight: 400;
+        color: ${title};
+      }
+    }
+    td {
+      border: 1px solid #00160e;
+      border-style: none solid none solid;
+      padding: 16px 20px;
+      ${Body5};
+      color: ${title};
+      vertical-align: top;
+      p {
+        ${Body5};
+        color: ${title};
+        i {
+          font-style: italic !important;
+        }
+      }
     }
   }
   @media only screen and (max-width: 449px) {

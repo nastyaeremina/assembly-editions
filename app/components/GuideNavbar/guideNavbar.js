@@ -63,7 +63,7 @@ export default function GuideNavbar({ data, onClickArticle, selectedArticleId })
     }
   ];
 
-  const [openIndex, setOpenIndex] = useState(-1);
+  const [openIndex, setOpenIndex] = useState(0);
 
   const onClickOpen = useCallback(
     (index) => {

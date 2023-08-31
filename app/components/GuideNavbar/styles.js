@@ -120,7 +120,6 @@ const ItemList = styled.div`
 `;
 const ItemName = styled.p`
   padding: 6px 0px 6px 8px;
-
   margin: 0;
   ${MbBody5};
   cursor: pointer;
@@ -130,13 +129,20 @@ const ItemName = styled.p`
   a {
     color: ${lightgray};
   }
+  :hover {
+    border-left: 1px solid #09aa6c;
+    margin-left: -1px;
+    a {
+      color: ${primary};
+    }
+  }
   ${(props) =>
     props.isSelected &&
     css`
-      border-left: 1px solid #09aa6c;
+      border-left: 1px solid #00160e;
       margin-left: -1px;
       a {
-        color: ${primary};
+        color: ${greendark};
       }
     `}
   ${(props) =>
