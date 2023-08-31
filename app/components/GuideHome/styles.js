@@ -74,7 +74,7 @@ const GuideDetail = styled.div`
   p {
     ${Body5};
     color: ${body};
-    margin: 8px 0 0;
+    margin: 20px 0 0;
     a {
       color: ${primary};
       display: initial;
