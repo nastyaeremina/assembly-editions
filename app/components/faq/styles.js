@@ -1,5 +1,5 @@
 import styled, { css } from 'styled-components';
-import { Body1, Heading3, Heading4, MbBody3 } from '../../styles/styles';
+import { Body1, Body5, Heading3, Heading4, Heading5, Heading6, MbBody3, MobileH4 } from '../../styles/styles';
 
 import { greenlight, body, title } from './../../styles/color';
 
@@ -68,6 +68,12 @@ const FaqTitle = styled.div`
     ${Heading3};
     margin: 0;
     color: ${title};
+    ${(props) =>
+      props.isGuideFAQ &&
+      css`
+        ${Heading5};
+        font-weight: 400;
+      `}
   }
   margin-bottom: 20px;
   @media only screen and (max-width: 991px) {
@@ -78,6 +84,15 @@ const FaqTitle = styled.div`
   }
   @media only screen and (max-width: 749px) {
     margin-bottom: 0;
+    ${(props) =>
+      props.isGuideFAQ &&
+      css`
+        h2 {
+          font-weight: 400;
+          font-size: 32px;
+          line-height: 34px;
+        }
+      `}
   }
 `;
 const FaqWrap = styled.div`
@@ -165,10 +180,35 @@ const DivFAQ = styled.div`
     align-items: center;
     padding: 40px 0px;
     cursor: pointer;
+    ${(props) =>
+      props.isGuideFAQ &&
+      css`
+        padding: 24px 0px;
+        > div > svg {
+          width: 20px;
+          height: 20px;
+        }
+        @media only screen and (max-width: 449px) {
+          padding: 40px 0px;
+          > div > svg {
+            width: 24px;
+            height: 24px;
+          }
+        }
+      `}
   }
   .accordion-heading {
     ${Heading4}
     margin:0 30px 0 0;
+    ${(props) =>
+      props.isGuideFAQ &&
+      css`
+        ${Heading6};
+        font-weight: 400;
+        @media only screen and (max-width: 449px) {
+          ${MobileH4}
+        }
+      `}
   }
   .accordion-content {
   }
@@ -194,6 +234,12 @@ const FAQAnsware = styled.div`
     ${Body1}
     color: ${body};
     padding: 0 32px 40px 0;
+    ${(props) =>
+      props.isGuideFAQ &&
+      css`
+        ${Body5};
+        padding: 0 32px 24px 0;
+      `}
     @media only screen and (max-width: 426px) {
       ${MbBody3}
     }

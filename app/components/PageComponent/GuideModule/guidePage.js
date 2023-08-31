@@ -16,7 +16,7 @@ export default function GuidePage({ data, defaultArticle }) {
   const tableContents = useMemo(() => {
     const newList = [];
     article?.content?.json?.content?.forEach((item) => {
-      if (item?.nodeType?.includes('heading') && item?.content?.[0]?.value) {
+      if (['heading-3', 'heading-4'].includes(item?.nodeType) && item?.content?.[0]?.value) {
         newList?.push({ title: item?.content?.[0]?.value, type: item?.nodeType?.replace('heading-', 'h') });
       }
     });
