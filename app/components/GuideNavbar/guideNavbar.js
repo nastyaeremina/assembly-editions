@@ -136,14 +136,14 @@ export default function GuideNavbar({ data, onClickArticle, selectedArticleId })
             </Link>
             <NavTitle>Guide</NavTitle>
           </SideNavbarHead>
-          <AskDiv>
+          {/* <AskDiv>
             <Image src='/images/guideask.svg' alt='search-icon' width={24} height={24} />
             Ask a question...
             <BtnIcon>
               <Image src='/images/command.svg' alt='search-icon' width={20} height={20} />
               <Image src='/images/commandk.svg' alt='search-icon' width={20} height={20} />
             </BtnIcon>
-          </AskDiv>
+          </AskDiv> */}
           <NavmenuSection>{navbarRenderView}</NavmenuSection>
         </Maindiv>
       </SideNavbar>
