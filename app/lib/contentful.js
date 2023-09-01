@@ -1,11 +1,11 @@
-export async function fetchGraphQL(query, preview = false) {
+export async function fetchGraphQL(query, preview = false, type = ["other"]) {
   return fetch(`https://graphql.contentful.com/content/v1/spaces/l41zuz9np7js`, {
     method: 'POST',
+    next: { tags: type },
     headers: {
       'Content-Type': 'application/json',
-      Authorization: `Bearer ${
-        preview ? 'ZgkVOC33Z2rxYcGzUwVEKRr05h59HfY4Yo8Q14Y4oN8' : 'SzwToPTvkUQeo7liE28HvSTV1n-q_2ckxZ4KUpwsdA0'
-      }`
+      Authorization: `Bearer ${preview ? 'ZgkVOC33Z2rxYcGzUwVEKRr05h59HfY4Yo8Q14Y4oN8' : 'SzwToPTvkUQeo7liE28HvSTV1n-q_2ckxZ4KUpwsdA0'
+        }`
     },
     body: JSON.stringify({ query })
   }).then((response) => response.json());

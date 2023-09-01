@@ -41,8 +41,7 @@ export async function getGuidePageContent({ id }) {
             }
         }
     }         
-    `
-  );
+    `, false, ['guide']);
   return entries?.data?.pageDocs;
 }
 
