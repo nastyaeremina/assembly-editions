@@ -9,6 +9,7 @@ seoMetadata{
 `;
 
 const POST_GRAPHQL_GUIDE_ARTICLE_DETAILS_FIELDS = `
+slug
 sys{
     id
 }
@@ -41,7 +42,10 @@ export async function getGuidePageContent({ id }) {
             }
         }
     }         
-    `, false, ['guide']);
+    `,
+    false,
+    ['guide']
+  );
   return entries?.data?.pageDocs;
 }
 

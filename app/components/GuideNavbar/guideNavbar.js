@@ -2,17 +2,12 @@
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
+import { useRouter } from 'next/navigation';
 import CopilotLogos from '../../../public/images/blacklogo.svg';
 import closearrow from '../../../public/images/closearrow.svg';
-import navitem1 from '../../../public/images/navitem1.svg';
-import navitem2 from '../../../public/images/navitem2.svg';
-import navitem3 from '../../../public/images/navitem3.svg';
-import { GuideData } from '../GuideHome/guideHome';
 import { FirstLine, MobileMenu, ThirdLine } from '../navbar/styles';
 import { isEmpty } from '../../helpers/helpers';
 import {
-  AskDiv,
-  BtnIcon,
   CopilotGuideLogo,
   GuideMobileNavbar,
   Icon,
@@ -38,6 +33,8 @@ export default function GuideNavbar({ data, onClickArticle, selectedArticleId })
   const handleScroll = () => {
     setClientWindowHeight(window.scrollY);
   };
+  const router = useRouter();
+
   useEffect(() => {
     const body = document.querySelector('body');
     body.style.overflow = 'auto';
@@ -122,6 +119,7 @@ export default function GuideNavbar({ data, onClickArticle, selectedArticleId })
                     <NavItem
                       key={`guidearticle_index${childItem?.sys?.id}`}
                       onClick={() => {
+                        router.push(`/guide/${childItem?.slug}`);
                         onClickArticle(childItem);
                         setIsOpenMobileMenu(false);
                       }}>
@@ -143,7 +141,7 @@ export default function GuideNavbar({ data, onClickArticle, selectedArticleId })
         </>
       );
     });
-  }, [data, onClickArticle, onClickOpen, openIndex, selectedArticleId]);
+  }, [data, onClickArticle, onClickOpen, openIndex, router, selectedArticleId]);
 
   return (
     <>
