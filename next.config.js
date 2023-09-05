@@ -27,7 +27,8 @@ const nextConfig = {
     domains: ['images.ctfassets.net', 'copilot-blog.ghost.io', 'images.unsplash.com', 'firebasestorage.googleapis.com']
   },
   async redirects() {
-    const query = `query {
+    try {
+      const query = `query {
       redirectCollection {
       items {
         name
@@ -37,44 +38,50 @@ const nextConfig = {
       }
     }
   }`;
-    const pageDemoQuery = ` query {
+      const pageDemoQuery = ` query {
     pageDemo(id:"6yTkSs6vPA4UtptzHbvw3r"){
       slug
     }
   }`;
 
-    const postData = (await fetchGraphQL({ preview: false, query })) ?? [];
-    const pageDemoData = (await fetchGraphQL({ preview: false, query: pageDemoQuery })) ?? [];
+      const postData = (await fetchGraphQL({ preview: false, query })) ?? [];
+      const pageDemoData = (await fetchGraphQL({ preview: false, query: pageDemoQuery })) ?? [];
 
-    if (postData.length === 0) {
+      if (postData.length === 0) {
+        return [];
+      }
+
+      const allPost = postData?.data?.redirectCollection?.items;
+      const redirectData =
+        allPost?.map((item, index) => {
+          const oldPath = item?.oldPath?.trim();
+          const redirectPath = item?.redirectToPath?.trim();
+          if (redirectPath?.includes('https://') || redirectPath?.includes('http://')) {
+            return {
+              source: oldPath,
+              destination: redirectPath,
+              permanent: item?.permanent,
+              basePath: false
+            };
+          } else {
+            return {
+              source: oldPath,
+              destination: redirectPath,
+              permanent: item?.permanent
+            };
+          }
+        }) ?? [];
+      //add weekly-demo url
+      redirectData?.push({
+        source: '/weekly-demo',
+        destination: `/${pageDemoData?.data?.pageDemo?.slug}`,
+        permanent: true
+      });
+      return redirectData;
+    } catch (error) {
+      console.log('error', error);
       return [];
     }
-
-    const allPost = postData?.data?.redirectCollection?.items;
-    const redirectData =
-      allPost?.map((item, index) => {
-        if (item?.redirectToPath.includes('https://') || item?.redirectToPath.includes('http://')) {
-          return {
-            source: item?.oldPath,
-            destination: item?.redirectToPath,
-            permanent: item?.permanent,
-            basePath: false
-          };
-        } else {
-          return {
-            source: item?.oldPath,
-            destination: item?.redirectToPath,
-            permanent: item?.permanent
-          };
-        }
-      }) ?? [];
-    //add weekly-demo url
-    redirectData?.push({
-      source: '/weekly-demo',
-      destination: `/${pageDemoData?.data?.pageDemo?.slug}`,
-      permanent: true
-    });
-    return redirectData;
   }
 };
 
