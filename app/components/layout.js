@@ -1,5 +1,6 @@
 import { FOOTER_CONTENT_ID } from '../constants/constant';
 import { getCommonContent } from '../lib/contentful-common';
+import Favicon from './favicon';
 import Footer from './footer/footer';
 
 export async function getContent() {
@@ -11,6 +12,7 @@ export default async function Layout({ children = <></>, isEnterPrice = false, i
   const { footerData } = await getContent();
   return (
     <>
+      <Favicon />
       <div>
         <main>{children}</main>
       </div>
