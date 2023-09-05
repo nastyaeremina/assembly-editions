@@ -3,6 +3,21 @@ import GuidePage from '../components/PageComponent/GuideModule/guidePage';
 import { getSEOData, isEmpty } from '../helpers/helpers';
 import { GUIDE_PAGE_ID, PER_API_LIMIT_FOR_GUIDE_SECTION } from '../constants/constant';
 import { getAllGuideSectionContent, getGuidePageContent } from '../lib/contentful-guide';
+
+async function getsvgCode(svgUrl) {
+  // Fetch the SVG code from the URL.
+  if (isEmpty(svgUrl)) return null;
+  let code = null;
+  await fetch(svgUrl)
+    .then((response) => response.text())
+    .then((data) => {
+      code = data;
+    })
+    .catch((error) => {
+      console.error('Error fetching SVG:', error);
+    });
+  return code;
+}
 async function getContent() {
   const detail = (await getGuidePageContent({ id: GUIDE_PAGE_ID })) ?? {};
 
@@ -14,14 +29,24 @@ async function getContent() {
     data = (await getAllGuideSectionContent(`id_in: [${batch}]`)) || [];
     allPosts = allPosts.concat(data);
   }
-  const orderedData = sectionIdList
-    ?.map((sectionId) => {
+  const orderedData = await Promise.all(
+    await sectionIdList?.map(async (sectionId) => {
       const matchedData = data?.find((dataItem) => dataItem.sys.id === sectionId.replace(/"/g, ''));
-      return matchedData ? { ...matchedData } : null;
+      const newData = await Promise.all(
+        await matchedData?.articlesCollection?.items?.map(async (item) => {
+          const code = await getsvgCode(item?.icon?.url);
+          return { ...item, iconCode: code };
+        })
+      );
+      const newCollection = {
+        items: newData
+      };
+      return matchedData ? { ...matchedData, articlesCollection: newCollection } : null;
     })
-    .filter((item) => item !== null);
+  );
+  const filterData = orderedData.filter((item) => item !== null);
 
-  return { seoMetadata: detail?.seoMetadata, data: orderedData };
+  return { seoMetadata: detail?.seoMetadata, data: filterData };
 }
 
 export async function generateMetadata() {

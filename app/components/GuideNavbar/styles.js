@@ -97,19 +97,39 @@ const NavItem = styled.div`
     .secondhead {
       color: ${primary};
     }
+    .svgicon {
+      svg {
+        path {
+          stroke: #09aa6c;
+        }
+      }
+    }
+    .svglogo {
+      filter: hue-rotate(335deg);
+    }
   }
 `;
 const Icon = styled.div`
   display: flex;
-  align-items: center;
-  color: red;
-  :hover {
-    svg {
-      path {
-        fill: red;
-      }
+  /* align-items: center; */
+  width: 20px;
+  height: 20px;
+  svg {
+    width: 20px;
+    height: 20px;
+    path {
+      stroke: #a5aba9;
     }
   }
+  ${(props) =>
+    props.isSelected &&
+    css`
+      svg {
+        path {
+          stroke: #00160e;
+        }
+      }
+    `}
 `;
 const IconText = styled.div`
   ${MbBody5};

@@ -83,6 +83,33 @@ export default function GuideNavbar({ data, onClickArticle, selectedArticleId })
     }
   }, [isOpenMobileMenu]);
 
+  const renderArticleItemView = useCallback(
+    (item, index) => {
+      return item?.articlesCollection?.items?.map((childItem, childIndex) => {
+        if (isEmpty(childItem?.name)) return null;
+        return (
+          <NavItem
+            key={`guidearticle_index${childItem?.sys?.id}`}
+            onClick={() => {
+              onClickArticle(childItem);
+              setIsOpenMobileMenu(false);
+            }}>
+            {!isEmpty(childItem?.icon?.url) && (
+              <Icon className='svgicon' isSelected={selectedArticleId === childItem?.sys?.id}>
+                <div dangerouslySetInnerHTML={{ __html: childItem?.iconCode }} />
+                {/* <Image src={childItem?.icon?.url} alt='item-icon' width={16} height={16} className='svglogo'/> */}
+              </Icon>
+            )}
+            <IconText isSelected={selectedArticleId === childItem?.sys?.id} className='secondhead'>
+              {childItem?.name}
+            </IconText>
+          </NavItem>
+        );
+      });
+    },
+    [onClickArticle, openIndex, selectedArticleId]
+  );
+
   const navbarRenderView = useMemo(() => {
     if (isEmpty(data)) return null;
     return data.map((item, index) => {
@@ -110,38 +137,12 @@ export default function GuideNavbar({ data, onClickArticle, selectedArticleId })
               </svg>
             </OptionIcon>
           </NavHead>
-          <>
-            {openIndex === index && (
-              <NavItemSection>
-                {item?.articlesCollection?.items?.map((childItem, childIndex) => {
-                  if (isEmpty(childItem?.name)) return null;
-                  return (
-                    <NavItem
-                      key={`guidearticle_index${childItem?.sys?.id}`}
-                      onClick={() => {
-                        router.push(`/guide/${childItem?.slug}`);
-                        onClickArticle(childItem);
-                        setIsOpenMobileMenu(false);
-                      }}>
-                      {!isEmpty(childItem?.icon?.url) && (
-                        <Icon>
-                          <Image src={childItem?.icon?.url} alt='item-icon' width={16} height={16} />
-                        </Icon>
-                      )}
-                      <IconText isSelected={selectedArticleId === childItem?.sys?.id} className='secondhead'>
-                        {childItem?.name}
-                      </IconText>
-                    </NavItem>
-                  );
-                })}
-              </NavItemSection>
-            )}
-          </>
+          <>{openIndex === index && <NavItemSection>{renderArticleItemView(item, index)}</NavItemSection>}</>
           {/* </NavSection> */}
         </>
       );
     });
-  }, [data, onClickArticle, onClickOpen, openIndex, router, selectedArticleId]);
+  }, [data, onClickOpen, openIndex, renderArticleItemView]);
 
   return (
     <>
