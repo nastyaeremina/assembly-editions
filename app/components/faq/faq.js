@@ -6,6 +6,7 @@ import { isEmpty } from '../../helpers/helpers';
 import { Container } from '../../styles/commonStyles';
 import { getFAQs } from '../../lib/contentful-faq';
 import { FaqSection, FaqTitle, DivFAQ, FAQAnsware } from './styles';
+import { ReactMarkdown } from 'react-markdown/lib/react-markdown';
 
 export default function FAQ({ enterprise, contentID, isGuideFAQ }) {
   const [allPosts, setAppPosts] = useState([]);
@@ -53,7 +54,9 @@ export default function FAQ({ enterprise, contentID, isGuideFAQ }) {
               </div>
             </div>
             <FAQAnsware className={activeAccordion === index ? 'active' : ''} isGuideFAQ={isGuideFAQ}>
-              <div>{item?.answer}</div>
+              <div>
+                <ReactMarkdown>{item?.answer}</ReactMarkdown>
+              </div>
             </FAQAnsware>
           </DivFAQ>
         </>

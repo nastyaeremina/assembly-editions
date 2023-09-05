@@ -8,8 +8,22 @@
 }
 @font-face {
   font-family: 'Bagoss';
+  src: url('../../public/fonts/BagossStandard-ThinItalic.otf') format('opentype');
+  font-weight: 100;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Bagoss';
   src: url('../../public/fonts/BagossStandard-Light.otf') format('opentype'),
     url('../../public/fonts/BagossStandard-LightItalic.otf') format('opentype');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Bagoss';
+  src: url('../../public/fonts/BagossStandard-LightItalic.otf') format('opentype');
   font-weight: 300;
   font-style: italic;
   font-display: swap;
@@ -24,10 +38,24 @@
 }
 @font-face {
   font-family: 'Bagoss';
+  src: url('../../public/fonts/BagossStandard-RegularItalic.otf') format('opentype');
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Bagoss';
   src: url('../../public/fonts/BagossStandard-Medium.otf') format('opentype'),
     url('../../public/fonts/BagossStandard-MediumItalic.otf') format('opentype');
   font-weight: 500;
   font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Bagoss';
+  src: url('../../public/fonts/BagossStandard-MediumItalic.otf') format('opentype');
+  font-weight: 500;
+  font-style: italic;
   font-display: swap;
 }
 @font-face {
@@ -40,10 +68,24 @@
 }
 @font-face {
   font-family: 'Bagoss';
+  src: url('../../public/fonts/BagossStandard-SemiBoldItalic.otf') format('opentype');
+  font-weight: 600;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Bagoss';
   src: url('../../public/fonts/BagossStandard-Bold.otf') format('opentype'),
     url('../../public/fonts/BagossStandard-BoldItalic.otf') format('opentype');
   font-weight: 700;
   font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Bagoss';
+  src: url('../../public/fonts/BagossStandard-BoldItalic.otf') format('opentype');
+  font-weight: 700;
+  font-style: italic;
   font-display: swap;
 }
 @font-face {

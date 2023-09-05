@@ -47,6 +47,32 @@ const NavHead = styled.div`
   justify-content: space-between;
   gap: 40px;
   cursor: pointer;
+  :hover {
+    .head {
+      color: ${primary};
+    }
+    svg {
+      path {
+        stroke: #09aa6c;
+      }
+    }
+    .close {
+      svg {
+        path {
+          stroke: #09aa6c;
+        }
+      }
+    }
+  }
+  .close {
+    transform: rotate(90deg);
+    transition: all 0.3s ease;
+    svg {
+      path {
+        stroke: #00160e;
+      }
+    }
+  }
 `;
 const OptionName = styled.p`
   margin: 0;
@@ -59,27 +85,56 @@ const OptionName = styled.p`
     `}
 `;
 const OptionIcon = styled.div`
-  .close {
-    transform: rotate(90deg);
-  }
+  transition: all 0.3s ease;
 `;
-const NavItem = styled.div`
+const NavItem = styled.li`
   display: flex;
   gap: 10px;
   padding-left: 12px;
   align-items: center;
   cursor: pointer;
+  padding-top: 14px;
+  :first-child {
+    padding-top: 0px;
+    padding-bottom: 2px;
+  }
+  :hover {
+    .secondhead {
+      color: ${primary};
+    }
+    .svgicon {
+      svg {
+        path {
+          stroke: #09aa6c;
+        }
+      }
+    }
+    .svglogo {
+      filter: hue-rotate(335deg);
+    }
+  }
 `;
 const Icon = styled.div`
   display: flex;
-  align-items: center;
-  :hover {
-    svg {
-      path {
-        fill: red;
-      }
+  /* align-items: center; */
+  width: 20px;
+  height: 20px;
+  svg {
+    width: 20px;
+    height: 20px;
+    path {
+      stroke: #a5aba9;
     }
   }
+  ${(props) =>
+    props.isSelected &&
+    css`
+      svg {
+        path {
+          stroke: #00160e;
+        }
+      }
+    `}
 `;
 const IconText = styled.div`
   ${MbBody5};
@@ -104,7 +159,24 @@ const NavmenuSection = styled.div`
     padding-right: 0;
   }
 `;
-
+const GuideSectionItem = styled.div`
+  ${(props) =>
+    css`
+      .drop-down {
+        height: ${props.totalHeight}px;
+      }
+    `}
+  .drop-down {
+    list-style: none;
+    overflow: hidden;
+    -webkit-transition: height 0.3s ease;
+    transition: height 0.3s ease;
+  }
+  .drop-down.closed {
+    height: 18px;
+  }
+`;
+const NavSection = styled.ul``;
 const GuideRight = styled.div`
   width: 220px;
   padding: 90px 20px 0px 0px;
@@ -264,5 +336,7 @@ export {
   NavbarHeader,
   MobileNavMenu,
   BtnIcon,
-  AskDiv
+  AskDiv,
+  NavSection,
+  GuideSectionItem
 };

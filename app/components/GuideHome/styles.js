@@ -100,7 +100,8 @@ const GuideDetail = styled.div`
     }
   }
   i {
-    font-weight: 700;
+    font-style: italic;
+    color: ${body};
   }
   ul {
     list-style-type: disc;
@@ -114,7 +115,7 @@ const GuideDetail = styled.div`
     width: 100%;
     border: 1px solid #00160e;
     margin-bottom: 40px;
-    margin-top: -20px;
+    margin-top: 20px;
     p {
       margin: 0;
     }

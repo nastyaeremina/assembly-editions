@@ -2,19 +2,15 @@
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
+import { useRouter } from 'next/navigation';
 import CopilotLogos from '../../../public/images/blacklogo.svg';
 import closearrow from '../../../public/images/closearrow.svg';
-import navitem1 from '../../../public/images/navitem1.svg';
-import navitem2 from '../../../public/images/navitem2.svg';
-import navitem3 from '../../../public/images/navitem3.svg';
-import { GuideData } from '../GuideHome/guideHome';
 import { FirstLine, MobileMenu, ThirdLine } from '../navbar/styles';
 import { isEmpty } from '../../helpers/helpers';
 import {
-  AskDiv,
-  BtnIcon,
   CopilotGuideLogo,
   GuideMobileNavbar,
+  GuideSectionItem,
   Icon,
   IconText,
   Maindiv,
@@ -22,6 +18,7 @@ import {
   NavHead,
   NavItem,
   NavItemSection,
+  NavSection,
   NavTitle,
   NavbarHeader,
   NavmenuSection,
@@ -33,10 +30,13 @@ import {
 
 export default function GuideNavbar({ data, onClickArticle, selectedArticleId }) {
   let isScrollPage = false;
+  const [openIndex, setOpenIndex] = useState(0);
   const [clientWindowHeight, setClientWindowHeight] = useState('');
   const handleScroll = () => {
     setClientWindowHeight(window.scrollY);
   };
+  const router = useRouter();
+
   useEffect(() => {
     const body = document.querySelector('body');
     body.style.overflow = 'auto';
@@ -47,23 +47,6 @@ export default function GuideNavbar({ data, onClickArticle, selectedArticleId })
   } else {
     isScrollPage = false;
   }
-
-  const NavBarData = [
-    {
-      header: 'Start Guide',
-      child: [{ name: 'Navigation' }, { name: 'Customizations' }, { name: 'Creating a test client' }]
-    },
-    {
-      header: 'Start Guide',
-      child: [{ name: 'Navigation' }, { name: 'Customizations' }, { name: 'Creating a test client' }]
-    },
-    {
-      header: 'Start Guide',
-      child: [{ name: 'Navigation' }, { name: 'Customizations' }, { name: 'Creating a test client' }]
-    }
-  ];
-
-  const [openIndex, setOpenIndex] = useState(0);
 
   const onClickOpen = useCallback(
     (index) => {
@@ -85,46 +68,75 @@ export default function GuideNavbar({ data, onClickArticle, selectedArticleId })
     }
   }, [isOpenMobileMenu]);
 
+  const renderArticleItemView = useCallback(
+    (item, index) => {
+      return item?.articlesCollection?.items?.map((childItem, childIndex) => {
+        if (isEmpty(childItem?.name)) return null;
+        console.log('iconCode', childItem?.iconCode);
+        return (
+          <NavItem
+            key={`guidearticle_index${childItem?.sys?.id}`}
+            onClick={() => {
+              router.push(`/guide/${childItem?.slug}`);
+              onClickArticle(childItem);
+              setIsOpenMobileMenu(false);
+            }}>
+            {!isEmpty(childItem?.icon?.url) && (
+              <Icon className='svgicon' isSelected={selectedArticleId === childItem?.sys?.id}>
+                <div dangerouslySetInnerHTML={{ __html: childItem?.iconCode }} />
+                {/* <Image src={childItem?.icon?.url} alt='item-icon' width={16} height={16} className='svglogo'/> */}
+              </Icon>
+            )}
+            <IconText isSelected={selectedArticleId === childItem?.sys?.id} className='secondhead'>
+              {childItem?.name}
+            </IconText>
+          </NavItem>
+        );
+      });
+    },
+    [onClickArticle, router, selectedArticleId]
+  );
+
   const navbarRenderView = useMemo(() => {
     if (isEmpty(data)) return null;
     return data.map((item, index) => {
       if (isEmpty(item?.name)) return null;
+      const hegith = item?.articlesCollection?.total * 34 + 18;
       return (
         <>
-          <NavHead onClick={() => onClickOpen(index)} key={index}>
-            <OptionName isSelected={openIndex === index}>{item?.name}</OptionName>
-            <OptionIcon>
-              <Image src={closearrow} alt='arrow' width={12} height={12} className={openIndex === index && 'close'} />
-            </OptionIcon>
-          </NavHead>
-          <>
-            {openIndex === index && (
-              <NavItemSection>
-                {item?.articlesCollection?.items?.map((childItem, childIndex) => {
-                  if (isEmpty(childItem?.name)) return null;
-                  return (
-                    <NavItem
-                      key={`guidearticle_index${childItem?.sys?.id}`}
-                      onClick={() => {
-                        onClickArticle(childItem);
-                        setIsOpenMobileMenu(false);
-                      }}>
-                      {!isEmpty(childItem?.icon?.url) && (
-                        <Icon>
-                          <Image src={childItem?.icon?.url} alt='item-icon' width={16} height={16} />
-                        </Icon>
-                      )}
-                      <IconText isSelected={selectedArticleId === childItem?.sys?.id}>{childItem?.name}</IconText>
-                    </NavItem>
-                  );
-                })}
-              </NavItemSection>
-            )}
-          </>
+          <GuideSectionItem onClick={() => {}} totalHeight={hegith.toString()}>
+            <ul className={openIndex === index ? 'drop-down' : 'drop-down closed'}>
+              <li>
+                <NavHead onClick={() => onClickOpen(index)} key={index} className='nav-button'>
+                  <OptionName isSelected={openIndex === index} className='head'>
+                    {item?.name}
+                  </OptionName>
+                  <OptionIcon className={openIndex === index && 'close'}>
+                    <svg width='12' height='12' viewBox='0 0 12 12' fill='none' xmlns='http://www.w3.org/2000/svg'>
+                      <g id='Icon - home-outline'>
+                        <path
+                          id='Vector'
+                          d='M3.80078 1.37109L8.42927 5.99958L3.80078 10.6281'
+                          stroke='#757575'
+                          stroke-width='1.92854'
+                          stroke-linecap='round'
+                          stroke-linejoin='round'
+                        />
+                      </g>
+                    </svg>
+                  </OptionIcon>
+                </NavHead>
+              </li>
+              {/* <li>
+                <Link href='#'>About</Link>
+              </li> */}
+              {openIndex === index && <>{renderArticleItemView(item, index)}</>}
+            </ul>
+          </GuideSectionItem>
         </>
       );
     });
-  }, [data, onClickArticle, onClickOpen, openIndex, selectedArticleId]);
+  }, [data, onClickOpen, openIndex, renderArticleItemView]);
 
   return (
     <>
@@ -144,7 +156,9 @@ export default function GuideNavbar({ data, onClickArticle, selectedArticleId })
               <Image src='/images/commandk.svg' alt='search-icon' width={20} height={20} />
             </BtnIcon>
           </AskDiv> */}
-          <NavmenuSection>{navbarRenderView}</NavmenuSection>
+          <NavmenuSection>
+            {navbarRenderView}
+          </NavmenuSection>
         </Maindiv>
       </SideNavbar>
       <GuideMobileNavbar className={isScrollPage ? 'scroll' : ''}>
