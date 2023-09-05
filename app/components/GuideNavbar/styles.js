@@ -47,6 +47,32 @@ const NavHead = styled.div`
   justify-content: space-between;
   gap: 40px;
   cursor: pointer;
+  :hover {
+    .head {
+      color: ${primary};
+    }
+    svg {
+      path {
+        stroke: #09aa6c;
+      }
+    }
+    .close {
+      svg {
+        path {
+          stroke: #09aa6c;
+        }
+      }
+    }
+  }
+  .close {
+    transform: rotate(90deg);
+    transition: all 0.3s ease;
+    svg {
+      path {
+        stroke: #00160e;
+      }
+    }
+  }
 `;
 const OptionName = styled.p`
   margin: 0;
@@ -59,9 +85,7 @@ const OptionName = styled.p`
     `}
 `;
 const OptionIcon = styled.div`
-  .close {
-    transform: rotate(90deg);
-  }
+  transition: all 0.3s ease;
 `;
 const NavItem = styled.div`
   display: flex;
@@ -69,10 +93,16 @@ const NavItem = styled.div`
   padding-left: 12px;
   align-items: center;
   cursor: pointer;
+  :hover {
+    .secondhead {
+      color: ${primary};
+    }
+  }
 `;
 const Icon = styled.div`
   display: flex;
   align-items: center;
+  color: red;
   :hover {
     svg {
       path {
@@ -94,6 +124,7 @@ const NavItemSection = styled.div`
   display: flex;
   flex-direction: column;
   gap: 14px;
+  
 `;
 const NavmenuSection = styled.div`
   display: flex;
@@ -104,7 +135,7 @@ const NavmenuSection = styled.div`
     padding-right: 0;
   }
 `;
-
+const NavSection = styled.div``;
 const GuideRight = styled.div`
   width: 220px;
   padding: 90px 20px 0px 0px;
@@ -264,5 +295,6 @@ export {
   NavbarHeader,
   MobileNavMenu,
   BtnIcon,
-  AskDiv
+  AskDiv,
+  NavSection
 };

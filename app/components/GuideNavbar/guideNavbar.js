@@ -22,6 +22,7 @@ import {
   NavHead,
   NavItem,
   NavItemSection,
+  NavSection,
   NavTitle,
   NavbarHeader,
   NavmenuSection,
@@ -91,10 +92,25 @@ export default function GuideNavbar({ data, onClickArticle, selectedArticleId })
       if (isEmpty(item?.name)) return null;
       return (
         <>
+          {/* <NavSection> */}
           <NavHead onClick={() => onClickOpen(index)} key={index}>
-            <OptionName isSelected={openIndex === index}>{item?.name}</OptionName>
-            <OptionIcon>
-              <Image src={closearrow} alt='arrow' width={12} height={12} className={openIndex === index && 'close'} />
+            <OptionName isSelected={openIndex === index} className='head'>
+              {item?.name}
+            </OptionName>
+            <OptionIcon className={openIndex === index && 'close'}>
+              {/* <Image src={closearrow} alt='arrow' width={12} height={12} className={openIndex === index && 'close'} /> */}
+              <svg width='12' height='12' viewBox='0 0 12 12' fill='none' xmlns='http://www.w3.org/2000/svg'>
+                <g id='Icon - home-outline'>
+                  <path
+                    id='Vector'
+                    d='M3.80078 1.37109L8.42927 5.99958L3.80078 10.6281'
+                    stroke='#757575'
+                    stroke-width='1.92854'
+                    stroke-linecap='round'
+                    stroke-linejoin='round'
+                  />
+                </g>
+              </svg>
             </OptionIcon>
           </NavHead>
           <>
@@ -114,13 +130,16 @@ export default function GuideNavbar({ data, onClickArticle, selectedArticleId })
                           <Image src={childItem?.icon?.url} alt='item-icon' width={16} height={16} />
                         </Icon>
                       )}
-                      <IconText isSelected={selectedArticleId === childItem?.sys?.id}>{childItem?.name}</IconText>
+                      <IconText isSelected={selectedArticleId === childItem?.sys?.id} className='secondhead'>
+                        {childItem?.name}
+                      </IconText>
                     </NavItem>
                   );
                 })}
               </NavItemSection>
             )}
           </>
+          {/* </NavSection> */}
         </>
       );
     });
