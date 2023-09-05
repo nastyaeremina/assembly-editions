@@ -87,12 +87,17 @@ const OptionName = styled.p`
 const OptionIcon = styled.div`
   transition: all 0.3s ease;
 `;
-const NavItem = styled.div`
+const NavItem = styled.li`
   display: flex;
   gap: 10px;
   padding-left: 12px;
   align-items: center;
   cursor: pointer;
+  padding-top: 14px;
+  :first-child {
+    padding-top: 0px;
+    padding-bottom: 2px;
+  }
   :hover {
     .secondhead {
       color: ${primary};
@@ -144,7 +149,6 @@ const NavItemSection = styled.div`
   display: flex;
   flex-direction: column;
   gap: 14px;
-  
 `;
 const NavmenuSection = styled.div`
   display: flex;
@@ -155,7 +159,24 @@ const NavmenuSection = styled.div`
     padding-right: 0;
   }
 `;
-const NavSection = styled.div``;
+const GuideSectionItem = styled.div`
+  ${(props) =>
+    css`
+      .drop-down {
+        height: ${props.totalHeight}px;
+      }
+    `}
+  .drop-down {
+    list-style: none;
+    overflow: hidden;
+    -webkit-transition: height 0.3s ease;
+    transition: height 0.3s ease;
+  }
+  .drop-down.closed {
+    height: 18px;
+  }
+`;
+const NavSection = styled.ul``;
 const GuideRight = styled.div`
   width: 220px;
   padding: 90px 20px 0px 0px;
@@ -316,5 +337,6 @@ export {
   MobileNavMenu,
   BtnIcon,
   AskDiv,
-  NavSection
+  NavSection,
+  GuideSectionItem
 };

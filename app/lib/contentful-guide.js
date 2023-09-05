@@ -59,6 +59,7 @@ export async function getAllGuideSectionContent(idList, preview) {
               }
               name
                 articlesCollection{
+                  total
                     items{
 
                         ${POST_GRAPHQL_GUIDE_ARTICLE_DETAILS_FIELDS}
