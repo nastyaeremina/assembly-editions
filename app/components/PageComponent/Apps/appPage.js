@@ -132,7 +132,7 @@ export default function AppPage({ details, appsList }) {
       {!isEmpty(details?.sectionFeaturedContentCollection?.items) && (
         <AppsSlider data={removeEmptyElement(details?.sectionFeaturedContentCollection?.items)} isDetailSlider={true} />
       )}
-      <FAQ contentID={details?.faqGroup?.sys?.id} />
+      <FAQ faqData={details?.faQsCollection?.items} />
       <CTA />
     </>
   );

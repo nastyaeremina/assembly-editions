@@ -25,7 +25,7 @@ export default async function NewIndex() {
       <Layout>
         <Navbar />
         <PricingPage details={details} />
-        <FAQ contentID={details?.faqGroup?.sys?.id} />
+        <FAQ faqData={details?.faQsCollection?.items} />
         <CTA />
       </Layout>
     </>

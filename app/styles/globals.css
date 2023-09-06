@@ -432,3 +432,11 @@ th {
     max-height: 564px;
   }
 }
+
+.guideSection {
+  display: flex;
+  justify-content: space-between;
+  @media only screen and (max-width: 991px) {
+    display: block;
+  }
+}

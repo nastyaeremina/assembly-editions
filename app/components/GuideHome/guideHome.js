@@ -1,3 +1,4 @@
+'use client';
 import React from 'react';
 import slugify from 'slugify';
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
@@ -55,7 +56,7 @@ export default function GuideHome({ detail }) {
       }
     }
   };
-
+  console.log('detail?.faQsCollection?.items', detail?.faQsCollection?.items);
   return (
     <>
       <MainContent>
@@ -68,9 +69,9 @@ export default function GuideHome({ detail }) {
             <GuideDetail>{documentToReactComponents(detail?.content?.json, options)}</GuideDetail>
           )}
         </GuideCenter>
-        {!isEmpty(detail?.faqGroup?.sys?.id) && (
+        {!isEmpty(detail?.faQsCollection?.items) && (
           <FAQSection>
-            <FAQ contentID={detail?.faqGroup?.sys?.id} isGuideFAQ={true} />
+            <FAQ faqData={detail?.faQsCollection?.items} isGuideFAQ={true} />
           </FAQSection>
         )}
       </MainContent>

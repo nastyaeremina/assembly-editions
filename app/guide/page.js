@@ -1,23 +1,9 @@
 import React from 'react';
 import GuidePage from '../components/PageComponent/GuideModule/guidePage';
-import { getSEOData, isEmpty } from '../helpers/helpers';
+import { getSEOData, getsvgCode, isEmpty } from '../helpers/helpers';
 import { GUIDE_PAGE_ID, PER_API_LIMIT_FOR_GUIDE_SECTION } from '../constants/constant';
-import { getAllGuideSectionContent, getGuidePageContent } from '../lib/contentful-guide';
+import { getAllGuideSectionContent, getArticleData, getGuidePageContent } from '../lib/contentful-guide';
 
-async function getsvgCode(svgUrl) {
-  // Fetch the SVG code from the URL.
-  if (isEmpty(svgUrl)) return null;
-  let code = null;
-  await fetch(svgUrl)
-    .then((response) => response.text())
-    .then((data) => {
-      code = data;
-    })
-    .catch((error) => {
-      console.error('Error fetching SVG:', error);
-    });
-  return code;
-}
 async function getContent() {
   const detail = (await getGuidePageContent({ id: GUIDE_PAGE_ID })) ?? {};
 
@@ -31,22 +17,26 @@ async function getContent() {
   }
   const orderedData = await Promise.all(
     await sectionIdList?.map(async (sectionId) => {
-      const matchedData = data?.find((dataItem) => dataItem.sys.id === sectionId.replace(/"/g, ''));
-      const newData = await Promise.all(
-        await matchedData?.articlesCollection?.items?.map(async (item) => {
-          const code = await getsvgCode(item?.icon?.url);
-          return { ...item, iconCode: code };
-        })
-      );
-      const newCollection = {
-        items: newData
-      };
+      const matchedData = data?.find((dataItem) => dataItem.sys.id === sectionId.replace(/"/g, '')) || [];
+      let newCollection = [];
+      if (!isEmpty(matchedData)) {
+        const newData = await Promise.all(
+          await matchedData?.articlesCollection?.items?.map(async (item) => {
+            const code = await getsvgCode(item?.icon?.url);
+            return { ...item, iconCode: code };
+          })
+        );
+        newCollection = {
+          items: newData
+        };
+      }
       return matchedData ? { ...matchedData, articlesCollection: newCollection } : null;
     })
   );
   const filterData = orderedData.filter((item) => item !== null);
-
-  return { seoMetadata: detail?.seoMetadata, data: filterData };
+  const articleSlug = filterData?.[0]?.articlesCollection?.items?.[0]?.slug;
+  const articleData = (await getArticleData(articleSlug)) ?? {};
+  return { seoMetadata: detail?.seoMetadata, data: filterData, articleData };
 }
 
 export async function generateMetadata() {
@@ -56,7 +46,7 @@ export async function generateMetadata() {
   return seoData;
 }
 export default async function Guide() {
-  const { data } = await getContent();
-  const firstArticle = data?.[0]?.articlesCollection?.items[0];
-  return <GuidePage data={data} defaultArticle={firstArticle} />;
+  const { data, articleData } = await getContent();
+  const defaultsection = data?.[0]?.sys?.id ?? '';
+  return <GuidePage data={data} defaultArticle={articleData} defaultsection={defaultsection} />;
 }

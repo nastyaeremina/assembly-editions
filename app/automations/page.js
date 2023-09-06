@@ -25,7 +25,7 @@ export default async function Automation() {
       <Layout>
         <Navbar isEnterPrice headerIndex={HEADER_LIST.ENTERPRICE} />
         <AutomationPage details={details} />
-        <FAQ contentID={details?.faqGroup?.sys?.id} />
+        <FAQ faqData={details?.faQsCollection?.items} />
         <CTA />
       </Layout>
     </>
