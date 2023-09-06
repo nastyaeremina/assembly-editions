@@ -1,5 +1,6 @@
 import { PER_API_LIMIT_FOR_AUTOMATION } from '../constants/constant';
 import { fetchGraphQL } from './contentful';
+import { POST_GRAPHQL_FAQ_COLLECTION_FIELDS } from './contentful-faq';
 import { POST_GRAPHQL_PARTNER_APPS_DETAILS_FIELDS } from './contentful-partnerApps';
 
 const POST_GRAPHQL_PAGE_AUTOMATION_DETAILS_FIELDS_SECTION_1 = `
@@ -7,11 +8,7 @@ const POST_GRAPHQL_PAGE_AUTOMATION_DETAILS_FIELDS_SECTION_1 = `
     header
     body
     demoPortalUrl
-    faqGroup{
-      sys{
-        id
-      }
-    }
+    ${POST_GRAPHQL_FAQ_COLLECTION_FIELDS}
     seoMetadata {
         seoTitle
         description

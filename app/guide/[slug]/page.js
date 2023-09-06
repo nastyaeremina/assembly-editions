@@ -2,8 +2,8 @@ import React from 'react';
 import GuidePage from '../../components/PageComponent/GuideModule/guidePage';
 import { getSEOData, getsvgCode, isEmpty } from '../../helpers/helpers';
 import { GUIDE_PAGE_ID, PER_API_LIMIT_FOR_GUIDE_SECTION } from '../../constants/constant';
-import { getAllGuideSectionContent, getGuidePageContent } from '../../lib/contentful-guide';
-async function getContent() {
+import { getAllGuideSectionContent, getArticleData, getGuidePageContent } from '../../lib/contentful-guide';
+async function getContent(slug) {
   const detail = (await getGuidePageContent({ id: GUIDE_PAGE_ID })) ?? {};
 
   let allPosts = [];
@@ -31,7 +31,8 @@ async function getContent() {
   );
   const filterData = orderedData.filter((item) => item !== null);
 
-  return { seoMetadata: detail?.seoMetadata, data: filterData };
+  const articleData = (await getArticleData(slug)) ?? {};
+  return { seoMetadata: detail?.seoMetadata, data: filterData, articleData };
 }
 
 export async function generateMetadata() {
@@ -41,15 +42,13 @@ export async function generateMetadata() {
   return seoData;
 }
 export default async function Guide({ params }) {
-  const { data } = await getContent();
-  let firstArticle = null;
+  const { data, articleData } = await getContent(params?.slug);
   let defaultsection = null;
   data?.forEach((element) => {
     const articledata = element?.articlesCollection?.items?.find((item) => item.slug === params?.slug);
     if (!isEmpty(articledata)) {
-      firstArticle = articledata;
       defaultsection = element?.sys?.id;
     }
   });
-  return <GuidePage data={data} defaultArticle={firstArticle} defaultsection={defaultsection} />;
+  return <GuidePage data={data} defaultArticle={articleData} defaultsection={defaultsection} />;
 }

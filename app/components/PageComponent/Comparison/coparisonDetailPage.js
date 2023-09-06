@@ -209,7 +209,7 @@ export default async function ComparisonDetailPage({ details }) {
           </ComparisonTable>
         </Container>
         {!isEmpty(details?.testimonial) && <Quote data={details?.testimonial} isComparison />}
-        <FAQ contentID={details?.faq?.sys?.id} />
+        <FAQ faqData={details?.faQsCollection?.items} />
         <CTA />
       </MainWrap>
     </>

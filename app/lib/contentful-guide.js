@@ -7,6 +7,14 @@ seoMetadata{
   ${POST_GRAPHQL_SEOMETADATA_FIELDS}
 }
 `;
+export const POST_GRAPHQL_GUIDE_ARTICLE_FAQ_FIELDS = `
+faQsCollection{
+  items{
+    sys{
+      id
+    }
+  }
+}`;
 
 const POST_GRAPHQL_GUIDE_ARTICLE_DETAILS_FIELDS = `
 slug
@@ -14,18 +22,10 @@ sys{
     id
 }
 name
-header
 icon{
   url
 }
-content{
-  json
-}
-faqGroup{
-  sys{
-    id
-  }
-}
+
 `;
 export async function getGuidePageContent({ id }) {
   const entries = await fetchGraphQL(
@@ -71,4 +71,23 @@ export async function getAllGuideSectionContent(idList, preview) {
       `
   );
   return entries?.data?.guideSectionsCollection?.items;
+}
+
+export async function getArticleData(slug, preview) {
+  const entries = await fetchGraphQL(
+    `query {
+      guideArticleCollection(where:{slug:"${slug}"},limit:1,preview: ${preview ? 'true' : 'false'}) {
+             items{
+                        ${POST_GRAPHQL_GUIDE_ARTICLE_DETAILS_FIELDS}
+                        ${POST_GRAPHQL_GUIDE_ARTICLE_FAQ_FIELDS}
+                        header
+                        content{
+                          json
+                        }
+             }
+          }
+      }         
+      `
+  );
+  return entries?.data?.guideArticleCollection?.items?.[0];
 }

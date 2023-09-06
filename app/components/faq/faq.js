@@ -2,20 +2,44 @@
 
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { useStyletron } from 'baseui';
+import { ReactMarkdown } from 'react-markdown/lib/react-markdown';
 import { isEmpty } from '../../helpers/helpers';
 import { Container } from '../../styles/commonStyles';
-import { getFAQs } from '../../lib/contentful-faq';
+import { getFAQData, getFAQs } from '../../lib/contentful-faq';
+import { PER_API_LIMIT_FOR_FAQ_SECTION } from '../../constants/constant';
 import { FaqSection, FaqTitle, DivFAQ, FAQAnsware } from './styles';
-import { ReactMarkdown } from 'react-markdown/lib/react-markdown';
 
-export default function FAQ({ enterprise, contentID, isGuideFAQ }) {
+export default function FAQ({ enterprise, contentID, faqData, isGuideFAQ }) {
   const [allPosts, setAppPosts] = useState([]);
   const [activeAccordion, setActiveAccordion] = useState(false);
 
   const loadData = useCallback(async () => {
-    const posts = (await getFAQs(contentID)) ?? [];
-    setAppPosts(posts);
-  }, [contentID]);
+    try {
+      let posts = [];
+      if (contentID) {
+        posts = (await getFAQs(contentID)) ?? [];
+      } else {
+        let allPosts = [];
+        let data = [];
+        const dataIdList = faqData?.map((item) => `"${item.sys.id}"`) || [];
+        for (let i = 0; i < dataIdList.length; i += PER_API_LIMIT_FOR_FAQ_SECTION) {
+          const batch = dataIdList.slice(i, i + PER_API_LIMIT_FOR_FAQ_SECTION);
+          data = (await getFAQData(`id_in: [${batch}]`)) || [];
+          allPosts = allPosts.concat(data);
+        }
+        posts = dataIdList
+          ?.map((dataId) => {
+            const matchedData = allPosts?.find((dataItem) => dataItem.sys.id === dataId.replace(/"/g, ''));
+            return matchedData ? { ...matchedData } : null;
+          })
+          .filter((item) => item !== null);
+      }
+      setAppPosts(posts);
+    } catch (error) {
+      console.log('error', error);
+      return null;
+    }
+  }, [contentID, faqData]);
 
   useEffect(() => {
     loadData();

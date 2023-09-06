@@ -1,4 +1,5 @@
 import { fetchGraphQL } from './contentful';
+import { POST_GRAPHQL_FAQ_COLLECTION_FIELDS } from './contentful-faq';
 
 export const POST_GRAPHQL_PARTNER_APPS_DETAILS_FIELDS = `
 name
@@ -55,11 +56,7 @@ const POST_GRAPHQL_PAGE_APPS_DETAILS_FIELDS_SECTION_1 = `
     heroImage{
       url
     }
-    faqGroup{
-      sys{
-        id
-      }
-    }
+   ${POST_GRAPHQL_FAQ_COLLECTION_FIELDS}
     demoPortalUrl
     seoMetadata {
         seoTitle

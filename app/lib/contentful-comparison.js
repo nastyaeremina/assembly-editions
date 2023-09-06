@@ -1,4 +1,5 @@
 import { fetchGraphQL } from './contentful';
+import { POST_GRAPHQL_FAQ_COLLECTION_FIELDS } from './contentful-faq';
 
 const POST_GRAPHQL_COMPARISON_DETAILS_FIELDS = `
 name
@@ -44,11 +45,7 @@ testimonial{
   industry
   quote
 }
-faq{
-sys{
-  id
-}
-}
+${POST_GRAPHQL_FAQ_COLLECTION_FIELDS}
 seoMetadata{
   sys{
     id
