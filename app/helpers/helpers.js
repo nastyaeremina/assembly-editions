@@ -141,3 +141,18 @@ export function extractYouTubeVideoId(url) {
   const videoId = path.slice(1); // Remove the leading slash
   return `https://www.youtube.com/embed/${videoId}?autoplay=1`;
 }
+
+export async function getsvgCode(svgUrl) {
+  // Fetch the SVG code from the URL.
+  if (isEmpty(svgUrl)) return null;
+  let code = null;
+  await fetch(svgUrl)
+    .then((response) => response.text())
+    .then((data) => {
+      code = data;
+    })
+    .catch((error) => {
+      console.error('Error fetching SVG:', error);
+    });
+  return code;
+}

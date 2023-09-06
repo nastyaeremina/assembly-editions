@@ -1,10 +1,10 @@
 'use client';
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import Link from 'next/link';
-import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import CopilotLogos from '../../../public/images/blacklogo.svg';
-import closearrow from '../../../public/images/closearrow.svg';
+import { addGuideSiderItem, deleteGuideSiderItem } from '../../actions/guideActions';
 import { FirstLine, MobileMenu, ThirdLine } from '../navbar/styles';
 import { isEmpty } from '../../helpers/helpers';
 import {
@@ -17,8 +17,6 @@ import {
   MobileNavMenu,
   NavHead,
   NavItem,
-  NavItemSection,
-  NavSection,
   NavTitle,
   NavbarHeader,
   NavmenuSection,
@@ -28,32 +26,53 @@ import {
   SideNavbarHead
 } from './styles';
 
-export default function GuideNavbar({ data, onClickArticle, selectedArticleId }) {
+export default function GuideNavbar({ data, selectedArticleId, section }) {
   let isScrollPage = false;
-  const [openIndex, setOpenIndex] = useState(0);
   const [clientWindowHeight, setClientWindowHeight] = useState('');
+  const [isClick, setIsClick] = useState(false);
   const handleScroll = () => {
     setClientWindowHeight(window.scrollY);
   };
+  const guideSelector = useSelector((state) => state?.guide);
+  const { guideSectionData } = guideSelector;
+  const dispatch = useDispatch();
+  const isSectionOpen = useCallback(
+    (id) => {
+      const findIndex = guideSectionData?.findIndex((item) => item?.id === id);
+      if (findIndex !== -1 || (id === section && !isClick)) return true;
+      return false;
+    },
+    [guideSectionData, isClick, section]
+  );
+  const onOpenSection = useCallback(
+    (id) => {
+      const findIndex = guideSectionData?.findIndex((item) => item?.id === id);
+      if (id === section && !isClick) {
+        setIsClick(true);
+      }
+      if (findIndex === -1) {
+        dispatch(addGuideSiderItem({ id }));
+      } else {
+        dispatch(deleteGuideSiderItem(id));
+      }
+    },
+    [dispatch, guideSectionData, isClick, section]
+  );
   const router = useRouter();
 
   useEffect(() => {
     const body = document.querySelector('body');
     body.style.overflow = 'auto';
     window.addEventListener('scroll', handleScroll);
-  }, []);
+
+    dispatch(addGuideSiderItem({ id: section }));
+  }, [dispatch, section]);
+
   if (clientWindowHeight > 10) {
     isScrollPage = true;
   } else {
     isScrollPage = false;
   }
-
-  const onClickOpen = useCallback(
-    (index) => {
-      setOpenIndex(openIndex === index ? -1 : index);
-    },
-    [openIndex]
-  );
 
   const [isOpenMobileMenu, setIsOpenMobileMenu] = useState(false);
 
@@ -72,13 +91,11 @@ export default function GuideNavbar({ data, onClickArticle, selectedArticleId })
     (item, index) => {
       return item?.articlesCollection?.items?.map((childItem, childIndex) => {
         if (isEmpty(childItem?.name)) return null;
-        console.log('iconCode', childItem?.iconCode);
         return (
           <NavItem
             key={`guidearticle_index${childItem?.sys?.id}`}
             onClick={() => {
               router.push(`/guide/${childItem?.slug}`);
-              onClickArticle(childItem);
               setIsOpenMobileMenu(false);
             }}>
             {!isEmpty(childItem?.icon?.url) && (
@@ -94,7 +111,7 @@ export default function GuideNavbar({ data, onClickArticle, selectedArticleId })
         );
       });
     },
-    [onClickArticle, router, selectedArticleId]
+    [router, selectedArticleId]
   );
 
   const navbarRenderView = useMemo(() => {
@@ -102,16 +119,23 @@ export default function GuideNavbar({ data, onClickArticle, selectedArticleId })
     return data.map((item, index) => {
       if (isEmpty(item?.name)) return null;
       const hegith = item?.articlesCollection?.total * 34 + 18;
+      let isOpen = isSectionOpen(item?.sys?.id);
       return (
         <>
-          <GuideSectionItem onClick={() => {}} totalHeight={hegith.toString()}>
-            <ul className={openIndex === index ? 'drop-down' : 'drop-down closed'}>
+          <GuideSectionItem totalHeight={hegith.toString()}>
+            <ul className={isOpen ? 'drop-down' : 'drop-down closed'}>
               <li>
-                <NavHead onClick={() => onClickOpen(index)} key={index} className='nav-button'>
-                  <OptionName isSelected={openIndex === index} className='head'>
+                <NavHead
+                  onClick={() => {
+                    onOpenSection(item?.sys?.id);
+                    isOpen = isSectionOpen(item?.sys?.id);
+                  }}
+                  key={index}
+                  className='nav-button'>
+                  <OptionName isSelected={isOpen} className='head'>
                     {item?.name}
                   </OptionName>
-                  <OptionIcon className={openIndex === index && 'close'}>
+                  <OptionIcon className={isOpen && 'close'}>
                     <svg width='12' height='12' viewBox='0 0 12 12' fill='none' xmlns='http://www.w3.org/2000/svg'>
                       <g id='Icon - home-outline'>
                         <path
@@ -127,16 +151,13 @@ export default function GuideNavbar({ data, onClickArticle, selectedArticleId })
                   </OptionIcon>
                 </NavHead>
               </li>
-              {/* <li>
-                <Link href='#'>About</Link>
-              </li> */}
-              {openIndex === index && <>{renderArticleItemView(item, index)}</>}
+              {isOpen && <>{renderArticleItemView(item, index)}</>}
             </ul>
           </GuideSectionItem>
         </>
       );
     });
-  }, [data, onClickOpen, openIndex, renderArticleItemView]);
+  }, [data, isSectionOpen, onOpenSection, renderArticleItemView]);
 
   return (
     <>
@@ -148,17 +169,7 @@ export default function GuideNavbar({ data, onClickArticle, selectedArticleId })
             </Link>
             <NavTitle>Guide</NavTitle>
           </SideNavbarHead>
-          {/* <AskDiv>
-            <Image src='/images/guideask.svg' alt='search-icon' width={24} height={24} />
-            Ask a question...
-            <BtnIcon>
-              <Image src='/images/command.svg' alt='search-icon' width={20} height={20} />
-              <Image src='/images/commandk.svg' alt='search-icon' width={20} height={20} />
-            </BtnIcon>
-          </AskDiv> */}
-          <NavmenuSection>
-            {navbarRenderView}
-          </NavmenuSection>
+          <NavmenuSection>{navbarRenderView}</NavmenuSection>
         </Maindiv>
       </SideNavbar>
       <GuideMobileNavbar className={isScrollPage ? 'scroll' : ''}>

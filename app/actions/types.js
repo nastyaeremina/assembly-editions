@@ -19,3 +19,8 @@ export const SET_NAVBAR_SOLUTION_LIST = 'SET_NAVBAR_SOLUTION_LIST';
 
 //user authenticated
 export const SET_USER_AUTH = 'SET_USER_AUTH';
+
+//guide
+export const SET_GUIDE_SIDER_LIST = 'SET_GUIDE_SIDER_LIST';
+export const ADD_GUIDE_SIDER_ITEM = `ADD_GUIDE_SIDER_ITEM`;
+export const DELETE_GUIDE_SIDER_ITEM = `DELETE_GUIDE_SIDER_ITEM`;
