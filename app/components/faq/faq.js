@@ -8,7 +8,6 @@ import { Container } from '../../styles/commonStyles';
 import { getFAQData, getFAQs } from '../../lib/contentful-faq';
 import { PER_API_LIMIT_FOR_FAQ_SECTION } from '../../constants/constant';
 import { FaqSection, FaqTitle, DivFAQ, FAQAnsware } from './styles';
-import { ReactMarkdown } from 'react-markdown/lib/react-markdown';
 
 export default function FAQ({ enterprise, contentID, faqData, isGuideFAQ }) {
   const [allPosts, setAppPosts] = useState([]);
