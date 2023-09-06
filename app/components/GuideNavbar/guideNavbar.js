@@ -28,6 +28,7 @@ import {
 
 export default function GuideNavbar({ data, selectedArticleId, section }) {
   let isScrollPage = false;
+  const [openIndex, setOpenIndex] = useState(0);
   const [clientWindowHeight, setClientWindowHeight] = useState('');
   const [isClick, setIsClick] = useState(false);
   const handleScroll = () => {
@@ -152,8 +153,8 @@ export default function GuideNavbar({ data, selectedArticleId, section }) {
                 </NavHead>
               </li>
               {isOpen && <>{renderArticleItemView(item, index)}</>}
-            </ul>
-          </GuideSectionItem>
+            </ul >
+          </GuideSectionItem >
         </>
       );
     });
@@ -170,8 +171,8 @@ export default function GuideNavbar({ data, selectedArticleId, section }) {
             <NavTitle>Guide</NavTitle>
           </SideNavbarHead>
           <NavmenuSection>{navbarRenderView}</NavmenuSection>
-        </Maindiv>
-      </SideNavbar>
+        </Maindiv >
+      </SideNavbar >
       <GuideMobileNavbar className={isScrollPage ? 'scroll' : ''}>
         <NavbarHeader>
           <SideNavbarHead>
