@@ -1,4 +1,3 @@
-import { PER_API_LIMIT_FOR_GUIDE_SECTION } from '../constants/constant';
 import { fetchGraphQL } from './contentful';
 import { POST_GRAPHQL_SEOMETADATA_FIELDS } from './contentful-seo';
 
@@ -90,4 +89,18 @@ export async function getArticleData(slug, preview) {
       `
   );
   return entries?.data?.guideArticleCollection?.items?.[0];
+}
+
+export async function getAllGuideArticleSlug(preview) {
+  const entries = await fetchGraphQL(
+    `query {
+      guideArticleCollection(preview: ${preview ? 'true' : 'false'}) {
+             items{
+                       slug
+             }
+          }
+      }         
+      `
+  );
+  return entries?.data?.guideArticleCollection?.items;
 }

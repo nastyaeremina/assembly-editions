@@ -8,6 +8,7 @@ import { getAllComparisonWithSlug } from './lib/contentful-comparison';
 import { PER_UPDATE_PAGE_POST } from './constants/constant';
 import { getAllAutomationsWithSlug } from './lib/contentful-automation';
 import { getAllGlossaryContent } from './lib/contentful-glossary';
+import { getAllGuideArticleSlug } from './lib/contentful-guide';
 
 export default async function sitemap() {
   const appsPost = (await getAllPartnerAppsWithSlug()) ?? []; // appa
@@ -21,6 +22,7 @@ export default async function sitemap() {
   const comparisonPost = (await getAllComparisonWithSlug()) ?? []; // /comparison
   const automationsPost = (await getAllAutomationsWithSlug()) ?? []; // automationsPost
   const glossarysPost = (await getAllGlossaryContent()) ?? []; // glossary
+  const guidesPost = (await getAllGuideArticleSlug()) ?? []; // guide
 
   const appsPostsPathList = appsPost?.map((item) => `apps/directory/${item?.slug}`);
   const jobsPostsPathList = jobPosts?.map((item) => `jobs/${item?.slug}`);
@@ -33,6 +35,7 @@ export default async function sitemap() {
   const comparisonPostsPathList = comparisonPost?.map((item) => `comparison/${item?.slug}`);
   const automationsPostsPathList = automationsPost?.map((item) => `automations/directory/${item?.slug}`);
   const glossaryPostsPathList = glossarysPost?.map((item) => `glossary/${item?.slug}`);
+  const guidePostsPathList = guidesPost?.map((item) => `guide/${item?.slug}`);
 
   let allUpdateWithPagination = [];
   const totalCount = updatesPost?.meta?.pagination?.total;
@@ -59,7 +62,8 @@ export default async function sitemap() {
     'university',
     'updates',
     'weekly-demo',
-    'glossary'
+    'glossary',
+    'guide'
   ];
 
   for (let page = 2; page <= totalPageCount; page++) {
@@ -77,7 +81,8 @@ export default async function sitemap() {
     comparisonPostsPathList,
     allUpdateWithPagination,
     automationsPostsPathList,
-    glossaryPostsPathList
+    glossaryPostsPathList,
+    guidePostsPathList
   );
   return finalList?.map((item) => {
     return {
