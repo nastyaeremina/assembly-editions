@@ -24,6 +24,7 @@ async function getContent(slug) {
         })
       );
       const newCollection = {
+        total: matchedData?.articlesCollection?.total,
         items: newData
       };
       return matchedData ? { ...matchedData, articlesCollection: newCollection } : null;

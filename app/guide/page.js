@@ -27,6 +27,7 @@ async function getContent() {
           })
         );
         newCollection = {
+          total: matchedData?.articlesCollection?.total,
           items: newData
         };
       }

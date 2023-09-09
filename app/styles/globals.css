@@ -440,3 +440,10 @@ th {
     display: block;
   }
 }
+
+.guiderightsection {
+  padding-left: 300px;
+  display: grid;
+  grid-template-columns: minmax(0px, 1fr) 250px;
+  width: 100%;
+}

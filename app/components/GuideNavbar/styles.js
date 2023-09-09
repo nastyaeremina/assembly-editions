@@ -7,7 +7,7 @@ const SideNavbar = styled.div`
   height: 100vh;
   padding: 40px 0px 0px 20px;
   border-right: 1px solid #ccccd0;
-  position: sticky;
+  position: fixed;
   top: 0;
   @media only screen and (max-width: 991px) {
     display: none;
@@ -155,9 +155,24 @@ const NavmenuSection = styled.div`
   flex-direction: column;
   gap: 16px;
   padding-right: 20px;
+  height: 100vh;
+  overflow: scroll;
+  padding-bottom: 180px;
+  ::-webkit-scrollbar {
+    display: none;
+  }
   @media only screen and (max-width: 991px) {
     padding-right: 0;
+    padding-bottom: 80px;
   }
+`;
+const NavBg = styled.div`
+  background: linear-gradient(180deg, #f9f9f9, transparent);
+  height: 15px;
+  position: absolute;
+  max-width: 260px;
+  width: 100%;
+  z-index: -1;
 `;
 const GuideSectionItem = styled.div`
   ${(props) =>
@@ -175,6 +190,9 @@ const GuideSectionItem = styled.div`
   .drop-down.closed {
     height: 18px;
   }
+  :last-child {
+    /* padding-bottom: 100px; */
+  }
 `;
 const NavSection = styled.ul``;
 const GuideRight = styled.div`
@@ -182,7 +200,7 @@ const GuideRight = styled.div`
   padding: 90px 20px 0px 0px;
   position: sticky;
   top: 0;
-  height: 100%;
+  height: 100vh;
   @media only screen and (max-width: 991px) {
     display: none;
   }
@@ -338,5 +356,6 @@ export {
   BtnIcon,
   AskDiv,
   NavSection,
-  GuideSectionItem
+  GuideSectionItem,
+  NavBg
 };

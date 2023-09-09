@@ -15,6 +15,7 @@ import {
   IconText,
   Maindiv,
   MobileNavMenu,
+  NavBg,
   NavHead,
   NavItem,
   NavTitle,
@@ -91,6 +92,7 @@ export default function GuideNavbar({ data, selectedArticleId, section }) {
   const renderArticleItemView = useCallback(
     (item, index) => {
       return item?.articlesCollection?.items?.map((childItem, childIndex) => {
+        console.log('childItem?.iconCode', childItem?.iconCode);
         if (isEmpty(childItem?.name)) return null;
         return (
           <NavItem
@@ -123,7 +125,7 @@ export default function GuideNavbar({ data, selectedArticleId, section }) {
       let isOpen = isSectionOpen(item?.sys?.id);
       return (
         <>
-          <GuideSectionItem totalHeight={hegith.toString()}>
+          <GuideSectionItem totalHeight={hegith}>
             <ul className={isOpen ? 'drop-down' : 'drop-down closed'}>
               <li>
                 <NavHead
@@ -143,7 +145,7 @@ export default function GuideNavbar({ data, selectedArticleId, section }) {
                           id='Vector'
                           d='M3.80078 1.37109L8.42927 5.99958L3.80078 10.6281'
                           stroke='#757575'
-                          stroke-width='1.92854'
+                          stroke-width='1.25'
                           stroke-linecap='round'
                           stroke-linejoin='round'
                         />
@@ -153,8 +155,8 @@ export default function GuideNavbar({ data, selectedArticleId, section }) {
                 </NavHead>
               </li>
               {isOpen && <>{renderArticleItemView(item, index)}</>}
-            </ul >
-          </GuideSectionItem >
+            </ul>
+          </GuideSectionItem>
         </>
       );
     });
@@ -170,9 +172,12 @@ export default function GuideNavbar({ data, selectedArticleId, section }) {
             </Link>
             <NavTitle>Guide</NavTitle>
           </SideNavbarHead>
-          <NavmenuSection>{navbarRenderView}</NavmenuSection>
-        </Maindiv >
-      </SideNavbar >
+          <NavmenuSection>
+            <NavBg />
+            {navbarRenderView}
+          </NavmenuSection>
+        </Maindiv>
+      </SideNavbar>
       <GuideMobileNavbar className={isScrollPage ? 'scroll' : ''}>
         <NavbarHeader>
           <SideNavbarHead>
