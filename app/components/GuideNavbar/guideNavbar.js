@@ -49,7 +49,6 @@ export default function GuideNavbar({ data }) {
     },
     [guideSectionData, isClick, section]
   );
-
   const onOpenSection = useCallback(
     (id) => {
       const findIndex = guideSectionData?.findIndex((item) => item?.id === id);
