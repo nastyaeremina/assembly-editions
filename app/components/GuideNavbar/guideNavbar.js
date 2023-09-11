@@ -173,7 +173,7 @@ export default function GuideNavbar({ data, selectedArticleId, section }) {
             <NavTitle>Guide</NavTitle>
           </SideNavbarHead>
           <NavmenuSection>
-            <NavBg />
+            {/* <NavBg /> */}
             {navbarRenderView}
           </NavmenuSection>
         </Maindiv>

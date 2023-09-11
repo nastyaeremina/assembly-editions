@@ -436,7 +436,9 @@ th {
 .guideSection {
   display: flex;
   justify-content: space-between;
-  @media only screen and (max-width: 991px) {
+}
+@media only screen and (max-width: 991px) {
+  .guideSection {
     display: block;
   }
 }
@@ -446,4 +448,11 @@ th {
   display: grid;
   grid-template-columns: minmax(0px, 1fr) 250px;
   width: 100%;
+}
+@media only screen and (max-width: 991px) {
+  .guiderightsection {
+    padding-left: 0px;
+    display: unset;
+    width: 100%;
+  }
 }
