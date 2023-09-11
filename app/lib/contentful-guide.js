@@ -1,3 +1,4 @@
+import { PER_API_LIMIT_FOR_GUIDE_SECTION } from '../constants/constant';
 import { fetchGraphQL } from './contentful';
 import { POST_GRAPHQL_SEOMETADATA_FIELDS } from './contentful-seo';
 
@@ -21,9 +22,7 @@ sys{
     id
 }
 name
-icon{
-  url
-}
+iconCode
 
 `;
 export async function getGuidePageContent({ id }) {
@@ -34,6 +33,11 @@ export async function getGuidePageContent({ id }) {
             sectionsCollection{
                 items{
                     name
+                    articlesCollection(limit:1){
+                        items{
+                         slug
+                        }
+                    }
                     sys{
                       id
                     }
@@ -51,7 +55,9 @@ export async function getGuidePageContent({ id }) {
 export async function getAllGuideSectionContent(idList, preview) {
   const entries = await fetchGraphQL(
     `query {
-        guideSectionsCollection(where:{sys:{${idList}}},limit:10,preview: ${preview ? 'true' : 'false'}) {
+        guideSectionsCollection(where:{sys:{${idList}}},limit:${PER_API_LIMIT_FOR_GUIDE_SECTION},preview: ${
+      preview ? 'true' : 'false'
+    }) {
              items{
               sys{
                 id

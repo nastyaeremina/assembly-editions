@@ -113,6 +113,10 @@ const NavItem = styled.li`
       filter: hue-rotate(335deg);
     }
   }
+  .guidelink {
+    display: flex;
+    gap: 10px;
+  }
 `;
 const Icon = styled.div`
   display: flex;

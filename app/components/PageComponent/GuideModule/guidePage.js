@@ -1,10 +1,9 @@
 import React from 'react';
 import slugify from 'slugify';
-import GuideNavbar from '../../GuideNavbar/guideNavbar';
 import GuideHome from '../../GuideHome/guideHome';
 import GuideRightSection from '../../GuideNavbar/guideRightSection';
 
-export default function GuidePage({ data, defaultArticle: article, defaultsection }) {
+export default function GuidePage({ defaultArticle: article }) {
   function tableContents() {
     const newList = [];
     article?.content?.json?.content?.forEach((item) => {
@@ -39,13 +38,13 @@ export default function GuidePage({ data, defaultArticle: article, defaultsectio
 
   return (
     <>
-      <div className='guideSection'>
-        <GuideNavbar data={data} selectedArticleId={article?.sys?.id} section={defaultsection} />
-        <div className='guiderightsection'>
-          <GuideHome detail={article} />
-          <GuideRightSection data={createHierarchy(tableContents())} />
-        </div>
+      {/* <div className='guideSection'>
+        <GuideNavbar data={data} selectedArticleId={article?.sys?.id} section={defaultsection} /> */}
+      <div className='guiderightsection'>
+        <GuideHome detail={article} />
+        <GuideRightSection data={createHierarchy(tableContents())} />
       </div>
+      {/* </div> */}
     </>
   );
 }

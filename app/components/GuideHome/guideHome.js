@@ -56,7 +56,7 @@ export default function GuideHome({ detail }) {
       }
     }
   };
-  console.log('detail?.faQsCollection?.items', detail?.faQsCollection?.items);
+
   return (
     <>
       <MainContent>
