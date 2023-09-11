@@ -208,7 +208,7 @@ export default function AppDirectoryPage({ allCategoryWithPost, allPosts, featur
       </HeroSection>
       <FeatureSection>
         <Container>
-          <FeatureWrap>
+          <FeatureWrap isAutomation>
             <FeatureLeft>
               <LeftWrap>
                 <InputWrap onSubmit={onSubmitSeachQuery}>
@@ -286,7 +286,6 @@ export default function AppDirectoryPage({ allCategoryWithPost, allPosts, featur
           </FeatureWrap>
         </Container>
       </FeatureSection>
-      <FAQ contentID={'60k3aY2O1pQfCEbwSKqgsr'} />
       <CTA />
     </>
   );

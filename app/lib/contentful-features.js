@@ -1,6 +1,16 @@
-import { NO_OF_JOBS_PER_PAGE } from './constants';
 import { fetchGraphQL } from './contentful';
 
+export const POST_GRAPHQL_INTERNAL_FEATURES_COLLECTION_FIELDS = `
+internalFeaturesCollection{
+  items{
+    name
+    title
+    description
+    image{
+      url
+    }
+  }
+}`;
 const POST_GRAPHQL_FEATURES_DETAILS_FIELDS = `
     clientFeaturesCollection{
       items{
@@ -24,16 +34,7 @@ const POST_GRAPHQL_FEATURES_DETAILS_FIELDS = `
     section1Body
     section2Header
     section3Header
-    internalFeaturesCollection{
-      items{
-        name
-        title
-        description
-        image{
-          url
-        }
-      }
-    }
+   ${POST_GRAPHQL_INTERNAL_FEATURES_COLLECTION_FIELDS}
     seoMetadata{
       name
       seoTitle

@@ -2,6 +2,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { useCallback, useMemo, useState } from 'react';
+import { ReactMarkdown } from 'react-markdown/lib/react-markdown';
 import { dateToMonthYear, isEmpty } from '../../../helpers/helpers';
 import { Container } from '../../../styles/commonStyles';
 import {
@@ -15,7 +16,6 @@ import {
   RoleBlock,
   TeamBlock,
   RoleWrap,
-  AboutWrap,
   JobDetailWrap,
   JobView,
   RoleList,
@@ -35,18 +35,12 @@ import {
   TabView,
   ActiveTab,
   RegionView,
-  BenefitsSection,
-  BenefitWrap,
-  BenefitBox,
-  BoxView,
-  ImgIcon,
-  DetailView,
   MainWrap
 } from '../../../styles/jobsStyles';
+import Modern from '../../solution/modern/modern';
 
-export default function JobsPage({ jobList, jobImagesList, jobBlogPostList }) {
+export default function JobsPage({ details, jobList, jobImagesList, jobBlogPostList }) {
   const [selectedImageIndex, setSelectedImageIndex] = useState(0);
-
   const renderJobsListingView = useCallback((list) => {
     if (isEmpty(list)) return null;
     return list?.map((item, index) => {
@@ -155,30 +149,24 @@ export default function JobsPage({ jobList, jobImagesList, jobBlogPostList }) {
     });
   }, [jobBlogPostList, renderAuthorListView]);
 
+  const renderHeaderView = useMemo(() => {
+    return (
+      <>
+        {!isEmpty(details?.title) && <h1>{details?.title}</h1>}
+        {!isEmpty(details?.description) && <ReactMarkdown>{details?.description}</ReactMarkdown>}
+      </>
+    );
+  }, [details?.description, details?.title]);
   return (
     <>
       <MainWrap>
         <HeroJobSection>
           <Container>
-            <JobsWrap>
-              <UseCaseWrap>
-                <h1>Work at Copilot</h1>
-                <p>
-                  We are reinventing how service businesses and clients work together. If we succeed, more businesses
-                  will be started and those that do will have a way to serve customers directly, under their own brand,
-                  without intermediaries in between.
-                </p>
-              </UseCaseWrap>
+            <JobsWrap imageUrl={details?.banner?.url}>
+              <UseCaseWrap>{renderHeaderView}</UseCaseWrap>
             </JobsWrap>
             <JobsMobi>
-              <UseCaseWrapMobi>
-                <h1>Work at Copilot</h1>
-                <p>
-                  We are reinventing how service businesses and clients work together. If we succeed, more businesses
-                  will be started and those that do will have a way to serve customers directly, under their own brand,
-                  without intermediaries in between.
-                </p>
-              </UseCaseWrapMobi>
+              <UseCaseWrapMobi>{renderHeaderView}</UseCaseWrapMobi>
             </JobsMobi>
           </Container>
         </HeroJobSection>
@@ -187,19 +175,17 @@ export default function JobsPage({ jobList, jobImagesList, jobBlogPostList }) {
             <CareerBlock>
               <RoleBlock>
                 <RoleWrap>
-                  <h2>Roles</h2>
-                  <p>
-                    We’re committed to an equitable recruiting process and an inclusive culture that welcomes
-                    individuals across all races, ages, abilities, sexualities, gender identities/expressions,
-                    ethnicities, nationalities, and class backgrounds.
-                  </p>
+                  {!isEmpty(details?.sectionTitle1) && <h2>{details?.sectionTitle1}</h2>}
+                  {!isEmpty(details?.sectionDescription1) && (
+                    <ReactMarkdown>{details?.sectionDescription1}</ReactMarkdown>
+                  )}
                 </RoleWrap>
                 {!isEmpty(jobList) && <JobDetailWrap>{renderJobsRolesListView}</JobDetailWrap>}
               </RoleBlock>
               <TeamBlock>
                 {!isEmpty(jobBlogPostList) && (
                   <TeamView>
-                    <h2>Team writing & media</h2>
+                    {!isEmpty(details?.sectionTitle2) && <h2>{details?.sectionTitle2}</h2>}
                     <TeamDetail>{renderJobBlogPostView}</TeamDetail>
                   </TeamView>
                 )}
@@ -218,95 +204,9 @@ export default function JobsPage({ jobList, jobImagesList, jobBlogPostList }) {
             </CareerBlock>
           </Container>
         </CareerSection>
-        <BenefitsSection>
-          <Container>
-            <BenefitWrap>
-              <h2>Benefits</h2>
-            </BenefitWrap>
-            <BenefitBox>
-              <BoxView>
-                <ImgIcon>
-                  <Image src='/images/equity.svg' width={44} height={44} alt='file-icon' className='desktop' />
-                  <Image src='/images/equitymb.svg' width={24} height={24} alt='file-icon' className='mobiicon' />
-                </ImgIcon>
-                <DetailView>
-                  <h3>Equity</h3>
-                  <p>We want you to reap the benefits of the upside you create in the company.</p>
-                </DetailView>
-              </BoxView>
-              <BoxView>
-                <ImgIcon>
-                  <Image src='/images/health.svg' width={44} height={44} alt='file-icon' className='desktop' />
-                  <Image src='/images/healthmobi.svg' width={24} height={24} alt='file-icon' className='mobiicon' />
-                </ImgIcon>
-                <DetailView>
-                  <h3>Health insurance</h3>
-                  <p>Tier 1 Blue Cross plan with 100% coverage for you and 50% coverage for dependents.</p>
-                </DetailView>
-              </BoxView>
-              <BoxView>
-                <ImgIcon>
-                  <Image src='/images/pto.svg' width={44} height={44} alt='file-icon' className='desktop' />
-                  <Image src='/images/ptomobi.svg' width={24} height={24} alt='file-icon' className='mobiicon' />
-                </ImgIcon>
-                <DetailView>
-                  <h3>Flexible PTO</h3>
-                  <p>We recommend ~20 days of vacation per year. You can take whatever days you want.</p>
-                </DetailView>
-              </BoxView>
-              <BoxView>
-                <ImgIcon>
-                  <Image src='/images/internet.svg' width={44} height={44} alt='file-icon' className='desktop' />
-                  <Image src='/images/internetmobi.svg' width={24} height={24} alt='file-icon' className='mobiicon' />
-                </ImgIcon>
-                <DetailView>
-                  <h3>International offsites</h3>
-                  <p>We do team off-sites twice per year. In July, we met up in Istanbul.</p>
-                </DetailView>
-              </BoxView>
-              <BoxView>
-                <ImgIcon>
-                  <Image src='/images/sickicon.svg' width={44} height={44} alt='file-icon' className='desktop' />
-                  <Image src='/images/sickiconmobi.svg' width={24} height={24} alt='file-icon' className='mobiicon' />
-                </ImgIcon>
-                <DetailView>
-                  <h3>Sick leave</h3>
-                  <p>Take the time you need to recharge! We want everyone feeling their best at work.</p>
-                </DetailView>
-              </BoxView>
-              <BoxView>
-                <ImgIcon>
-                  <Image src='/images/leaveicon.svg' width={44} height={44} alt='file-icon' className='desktop' />
-                  <Image src='/images/leaveiconmobi.svg' width={24} height={24} alt='file-icon' className='mobiicon' />
-                </ImgIcon>
-                <DetailView>
-                  <h3>Parental leave</h3>
-                  <p>6 weeks of paid and 6 weeks of unpaid leave within the first year after becoming a parent.</p>
-                </DetailView>
-              </BoxView>
-              <BoxView>
-                <ImgIcon>
-                  <Image src='/images/hardware.svg' width={44} height={44} alt='file-icon' className='desktop' />
-                  <Image src='/images/hardwaremobi.svg' width={24} height={24} alt='file-icon' className='mobiicon' />
-                </ImgIcon>
-                <DetailView>
-                  <h3>Hardware</h3>
-                  <p>We’ll equip you with an M1 MacBook, 4K display, and anything else you need.</p>
-                </DetailView>
-              </BoxView>
-              <BoxView>
-                <ImgIcon>
-                  <Image src='/images/education.svg' width={44} height={44} alt='file-icon' className='desktop' />
-                  <Image src='/images/educationmobi.svg' width={24} height={24} alt='file-icon' className='mobiicon' />
-                </ImgIcon>
-                <DetailView>
-                  <h3>Education</h3>
-                  <p>Get reimbursed for relevant books, conferences, classes, and more.</p>
-                </DetailView>
-              </BoxView>
-            </BenefitBox>
-          </Container>
-        </BenefitsSection>
+        {!isEmpty(details?.internalFeaturesCollection?.items) && (
+          <Modern data={details?.internalFeaturesCollection?.items} title={details?.sectionTitle3} />
+        )}
       </MainWrap>
     </>
   );

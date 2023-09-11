@@ -324,14 +324,12 @@ export const PRIVCY_POLICY_ID = '46bwfuedc2NMOHEIj0AThy';
 export const TOP_BAR_CONTENT_ID = '4dKbgVv11cTh8aJaZ8VBP1';
 export const CTA_CONTENT_ID = '3nv4WphdHbk3tIU88tLbbo';
 
-export const JOB_SEO_ID = '3OxhA7Vy4csNLzaS9LUFF6';
 export const HOME_SEO_ID = '2jwCsXd1zP2HEDJlQCIKUG';
 export const APP_SEO_ID = '1YuaTMgNnzacoBjygKg4nk';
 export const BRAND_SEO_ID = '5SUY6L51crllldyZnYR7aA';
 export const UNIVERSITY_SEO_ID = '2hMkBVQBYcMCmHLQyxzo8o';
 export const PRICING_SEO_ID = 'yof0gWCYzq1DaLbKJTFqb';
 export const BOOK_DEMO_SEO_ID = '6eDXygV6YmyHfpyA88kyfp';
-export const ENTERPRICE_SEO_ID = '6p7v6zWrnGmgs9RVbm2xrk';
 export const SITEMAP_SEO_ID = '7iY7qo4zZ7Xqq59OjCPIGa';
 export const REFERRAL_SEO_ID = '79HJSAQBRSRNr1hhwkiRVo';
 export const PRIVACY_POLICY_SEO_ID = '7iilnHUwBUwRiOvWxzXLLL';
@@ -342,7 +340,6 @@ export const COMPARISON_SEO_ID = '3twHO4lBpRkH68Lh1ihdRy';
 export const CUSTOMER_SEO_ID = '7b7osYERYHHeUuZ8rZk9CA';
 export const AUTOMATION_SEO_ID = '1YuaTMgNnzacoBjygKg4nk';
 
-export const PARTNERSHIP_FAQ_ID = '5oRKzJaIkJ1yTQdAolMZjB';
 export const PARTNERSHIP_ID = '1qsEfH5A3RlGv7dac0uKZD';
 export const AUTOMATION_ID = '3tQZ0zurolpvj9N43yXCIF';
 export const APP_PAGE_ID = 'zHpvQW60FYupSGIasksht';
@@ -351,3 +348,4 @@ export const PRODUCT_DEMO_PAGE_ID = '2qbT95AIpVDChNTKj0PnfY';
 export const PRICING_PAGE_ID = '1lSCkgpg3oXPp3kuxEJwfg';
 export const GLOSSARY_PAGE_ID = '59RJugqUUkgTppwv6aoA9I';
 export const GUIDE_PAGE_ID = '21aIyPkZ2efko1hJU4Qeep';
+export const JOB_PAGE_ID = '7kgu8KP3AV2FgbwhCGz0sB';

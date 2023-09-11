@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import {
   Body1,
   Body2,
@@ -36,7 +36,14 @@ const HeroJobSection = styled.div`
 `;
 const JobsWrap = styled.div`
   border-radius: 8px;
-  background-image: linear-gradient(90deg, #000000 18.89%, rgba(0, 0, 0, 0) 82.84%), url('/images/jobImage.png');
+  ${(props) =>
+    props.imageUrl &&
+    css`
+      background-image: linear-gradient(90deg, #000000 18.89%, rgba(0, 0, 0, 0) 82.84%), url(${props.imageUrl});
+      @media only screen and (max-width: 991px) {
+        background-image: linear-gradient(90deg, #000000 18.89%, rgba(0, 0, 0, 0) 82.84%), url(${props.imageUrl});
+      }
+    `}
   background-position: 0 0, 50% 50%;
   background-size: auto, cover;
   background-repeat: repeat, no-repeat;
@@ -45,7 +52,6 @@ const JobsWrap = styled.div`
   padding-bottom: 141px;
   @media only screen and (max-width: 991px) {
     height: 470px;
-    background-image: linear-gradient(90deg, #000000 18.89%, rgba(0, 0, 0, 0) 82.84%), url('/images/jobsbgbig.jpg');
     padding-top: 60px;
     padding-left: 60px;
     padding-bottom: 0;
@@ -115,7 +121,7 @@ const UseCaseWrapMobi = styled.div`
   }
 `;
 const CareerSection = styled.div`
-  padding: 50px 0;
+  padding-top: 50px;
   @media only screen and (max-width: 749px) {
     padding: 40px 0;
   }
@@ -501,7 +507,7 @@ const DetailLink = styled.div`
   display: flex;
   gap: 8px;
   align-items: center;
-  margin-bottom:28px;
+  margin-bottom: 28px;
   p {
     ${LinkTxt};
     margin: 0;
@@ -509,7 +515,7 @@ const DetailLink = styled.div`
   }
   @media only screen and (max-width: 375px) {
     gap: 4px;
-    p{
+    p {
       ${HeaderFont}
     }
   }
@@ -526,7 +532,7 @@ const DetailLeft = styled.div`
   width: 100%;
   position: sticky;
   top: 120px;
-  margin-top:-44px;
+  margin-top: -44px;
   h3 {
     ${Heading3};
     color: ${title};
@@ -537,13 +543,13 @@ const DetailLeft = styled.div`
       font-size: 40px;
       line-height: 46px;
     }
-    width:100% ;
-    max-width:100% ;
+    width: 100%;
+    max-width: 100%;
   }
   @media only screen and (max-width: 469px) {
     h3 {
       ${MobileH3}
-    margin: 0 0 16px 0;
+      margin: 0 0 16px 0;
     }
   }
 `;
@@ -576,17 +582,18 @@ const ImageWrap = styled.div`
   display: flex;
   gap: 4px;
   padding-bottom: 12px;
-  a{
-  width:30px;
-  height:30px ;
-}  img {
+  a {
+    width: 30px;
+    height: 30px;
+  }
+  img {
     width: 30px;
     height: 30px;
     border-radius: 30px;
   }
 `;
 const DetailRight = styled.div`
-margin-top:10px;
+  margin-top: 10px;
   @media only screen and (max-width: 375px) {
     padding-top: 34px;
   }

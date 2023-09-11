@@ -2,14 +2,15 @@ import JobsPage from '../components/PageComponent/Jobs/jobsPage';
 import FAQ from './../components/faq/faq';
 import Layout from './../components/layout';
 import Navbar from './../components/navbar/navbar';
-import { JOB_SEO_ID } from './../constants/constant';
+import { JOB_PAGE_ID } from './../constants/constant';
 import { getSEOData } from './../helpers/helpers';
 import { NO_OF_JOBS_PER_PAGE } from './../lib/constants';
-import { getAllJobBlogPosts } from './../lib/contentful-jobBlogPosts';
+import { getAllJobBlogPosts, getJobDetail } from './../lib/contentful-jobBlogPosts';
 import { getAllJobImages, getAllJobs } from './../lib/contentful-jobsListing';
 import { getSEOdata } from './../lib/contentful-seo';
 
 async function getContent() {
+  const details = (await getJobDetail(JOB_PAGE_ID)) ?? {};
   const jobImagesList = (await getAllJobImages()) ?? [];
   const jobBlogPostList = (await getAllJobBlogPosts()) ?? [];
   let allPosts = [];
@@ -39,24 +40,26 @@ async function getContent() {
     }
   });
 
-  return { jobList, jobImagesList, jobBlogPostList };
+  return { jobList, jobImagesList, jobBlogPostList, details };
 }
 
 export async function generateMetadata() {
-  const seoData = await getSEOData({ id: JOB_SEO_ID });
+  const { details } = await getContent();
+
+  const seoData = await getSEOData({ data: details?.seoMetadata });
   seoData.alternates = { canonical: 'https://www.copilot.com/jobs' };
 
   return seoData;
 }
 
 export default async function Jobs() {
-  const { jobList, jobImagesList, jobBlogPostList } = await getContent();
+  const { details, jobList, jobImagesList, jobBlogPostList } = await getContent();
   return (
     <>
       <Layout>
         <Navbar />
-        <JobsPage jobList={jobList} jobImagesList={jobImagesList} jobBlogPostList={jobBlogPostList} />
-        <FAQ contentID={'724Cny0Z9XBus7znacIxWs'} />
+        <JobsPage jobList={jobList} jobImagesList={jobImagesList} jobBlogPostList={jobBlogPostList} details={details} />
+        <FAQ faqData={details?.faQsCollection?.items} />
       </Layout>
     </>
   );
