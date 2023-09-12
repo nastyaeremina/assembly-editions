@@ -78,6 +78,13 @@ const GuideDetail = styled.div`
     a {
       color: ${primary};
       display: initial;
+      i {
+        font-style: italic;
+        color: ${primary};
+        :hover {
+          color: #00160e;
+        }
+      }
       :hover {
         color: #00160e;
       }

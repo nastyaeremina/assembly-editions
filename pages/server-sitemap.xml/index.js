@@ -9,6 +9,7 @@ import { getAllComparisonWithSlug } from '../../app/lib/contentful-comparison';
 import { PER_UPDATE_PAGE_POST } from '../../app/constants/constant';
 import { getAllAutomationsWithSlug } from '../../app/lib/contentful-automation';
 import { getAllGlossaryContent } from '../../app/lib/contentful-glossary';
+import { getAllGuideArticleSlug } from '../../app/lib/contentful-guide';
 
 export async function getServerSideProps(ctx) {
   const appsPost = (await getAllPartnerAppsWithSlug()) ?? []; // appa
@@ -22,6 +23,7 @@ export async function getServerSideProps(ctx) {
   const comparisonPost = (await getAllComparisonWithSlug()) ?? []; // /comparison
   const automationsPost = (await getAllAutomationsWithSlug()) ?? []; // automationsPost
   const glossarysPost = (await getAllGlossaryContent()) ?? []; // glossary
+  const guidesPost = (await getAllGuideArticleSlug()) ?? []; // guide
 
   const appsPostsPathList = appsPost?.map((item) => `apps/directory/${item?.slug}`);
   const jobsPostsPathList = jobPosts?.map((item) => `jobs/${item?.slug}`);
@@ -34,6 +36,7 @@ export async function getServerSideProps(ctx) {
   const comparisonPostsPathList = comparisonPost?.map((item) => `comparison/${item?.slug}`);
   const automationsPostsPathList = automationsPost?.map((item) => `automations/directory/${item?.slug}`);
   const glossaryPostsPathList = glossarysPost?.map((item) => `glossary/${item?.slug}`);
+  const guidePostsPathList = guidesPost?.map((item) => `guide/${item?.slug}`);
 
   let allUpdateWithPagination = [];
   const totalCount = updatesPost?.meta?.pagination?.total;
@@ -42,7 +45,32 @@ export async function getServerSideProps(ctx) {
   for (let page = 2; page <= totalPageCount; page++) {
     allUpdateWithPagination.push(`updates/page/${page}`);
   }
+  const staticPages = [
+    'apps',
+    'automations',
+    'automations/directory',
+    'blog',
+    'book-demo',
+    'brand',
+    'comparison',
+    'customers',
+    'features/billing-app',
+    'features/files-app',
+    'features/forms-app',
+    'features/helpdesk-app',
+    'features/messaging-app',
+    'jobs',
+    'partnerships',
+    'pricing',
+    'sitemap',
+    'university',
+    'updates',
+    'weekly-demo',
+    'glossary',
+    'guide'
+  ];
   const finalList = appsPostsPathList?.concat(
+    staticPages,
     jobsPostsPathList,
     solutionssPostsPathList,
     universityPostsPathList,
@@ -53,7 +81,8 @@ export async function getServerSideProps(ctx) {
     comparisonPostsPathList,
     allUpdateWithPagination,
     automationsPostsPathList,
-    glossaryPostsPathList
+    glossaryPostsPathList,
+    guidePostsPathList
   );
   return getServerSideSitemapIndex(
     ctx,

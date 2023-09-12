@@ -92,13 +92,15 @@ export default function FAQ({ enterprise, contentID, faqData, isGuideFAQ }) {
   return (
     <>
       <FaqSection enterprise={enterprise} isGuideFAQ={isGuideFAQ}>
-        <Container>
-          <FaqTitle isGuideFAQ={isGuideFAQ}>
-            <h2 className='faqtitle'>Frequently Asked Questions</h2>
-          </FaqTitle>
+        {!isEmpty(allPosts) && (
+          <Container>
+            <FaqTitle isGuideFAQ={isGuideFAQ}>
+              <h2 className='faqtitle'>Frequently Asked Questions</h2>
+            </FaqTitle>
 
-          {faqView}
-        </Container>
+            {faqView}
+          </Container>
+        )}
       </FaqSection>
     </>
   );

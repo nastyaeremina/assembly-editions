@@ -2,7 +2,7 @@
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Link from 'next/link';
-import { useRouter } from 'next/navigation';
+import { useSelectedLayoutSegment } from 'next/navigation';
 import CopilotLogos from '../../../public/images/blacklogo.svg';
 import { addGuideSiderItem, deleteGuideSiderItem } from '../../actions/guideActions';
 import { FirstLine, MobileMenu, ThirdLine } from '../navbar/styles';
@@ -15,6 +15,7 @@ import {
   IconText,
   Maindiv,
   MobileNavMenu,
+  NavBg,
   NavHead,
   NavItem,
   NavTitle,
@@ -26,17 +27,20 @@ import {
   SideNavbarHead
 } from './styles';
 
-export default function GuideNavbar({ data, selectedArticleId, section }) {
+export default function GuideNavbar({ data }) {
+  const guideSelector = useSelector((state) => state?.guide);
   let isScrollPage = false;
-  const [openIndex, setOpenIndex] = useState(0);
   const [clientWindowHeight, setClientWindowHeight] = useState('');
   const [isClick, setIsClick] = useState(false);
+  const { guideSectionData } = guideSelector;
+  let selectedArticleId, section;
+  const slug = useSelectedLayoutSegment();
+  const dispatch = useDispatch();
+
   const handleScroll = () => {
     setClientWindowHeight(window.scrollY);
   };
-  const guideSelector = useSelector((state) => state?.guide);
-  const { guideSectionData } = guideSelector;
-  const dispatch = useDispatch();
+
   const isSectionOpen = useCallback(
     (id) => {
       const findIndex = guideSectionData?.findIndex((item) => item?.id === id);
@@ -59,13 +63,27 @@ export default function GuideNavbar({ data, selectedArticleId, section }) {
     },
     [dispatch, guideSectionData, isClick, section]
   );
-  const router = useRouter();
+
+  if (isEmpty(slug)) {
+    const articleId = data?.[0]?.articlesCollection?.items?.[0]?.slug;
+    selectedArticleId = articleId;
+    section = data?.[0]?.sys?.id;
+  } else {
+    selectedArticleId = slug;
+    data?.forEach((element) => {
+      const articledata = element?.articlesCollection?.items?.find((item) => item.slug === slug);
+      if (!isEmpty(articledata)) {
+        const sectionId = element?.sys?.id;
+        section = sectionId;
+        return;
+      }
+    });
+  }
 
   useEffect(() => {
     const body = document.querySelector('body');
     body.style.overflow = 'auto';
     window.addEventListener('scroll', handleScroll);
-
     dispatch(addGuideSiderItem({ id: section }));
   }, [dispatch, section]);
 
@@ -96,23 +114,25 @@ export default function GuideNavbar({ data, selectedArticleId, section }) {
           <NavItem
             key={`guidearticle_index${childItem?.sys?.id}`}
             onClick={() => {
-              router.push(`/guide/${childItem?.slug}`);
+              // router.push(`/guide/${childItem?.slug}`);
               setIsOpenMobileMenu(false);
             }}>
-            {!isEmpty(childItem?.icon?.url) && (
-              <Icon className='svgicon' isSelected={selectedArticleId === childItem?.sys?.id}>
-                <div dangerouslySetInnerHTML={{ __html: childItem?.iconCode }} />
-                {/* <Image src={childItem?.icon?.url} alt='item-icon' width={16} height={16} className='svglogo'/> */}
-              </Icon>
-            )}
-            <IconText isSelected={selectedArticleId === childItem?.sys?.id} className='secondhead'>
-              {childItem?.name}
-            </IconText>
+            <Link href={`/guide/${childItem?.slug}`} className='guidelink' shallow={true}>
+              {!isEmpty(childItem?.iconCode) && (
+                <Icon className='svgicon' isSelected={selectedArticleId === childItem?.slug}>
+                  <div dangerouslySetInnerHTML={{ __html: childItem?.iconCode }} />
+                  {/* <Image src={childItem?.icon?.url} alt='item-icon' width={16} height={16} className='svglogo' /> */}
+                </Icon>
+              )}
+              <IconText isSelected={selectedArticleId === childItem?.slug} className='secondhead'>
+                {childItem?.name}
+              </IconText>
+            </Link>
           </NavItem>
         );
       });
     },
-    [router, selectedArticleId]
+    [selectedArticleId]
   );
 
   const navbarRenderView = useMemo(() => {
@@ -123,7 +143,7 @@ export default function GuideNavbar({ data, selectedArticleId, section }) {
       let isOpen = isSectionOpen(item?.sys?.id);
       return (
         <>
-          <GuideSectionItem totalHeight={hegith.toString()}>
+          <GuideSectionItem totalHeight={hegith}>
             <ul className={isOpen ? 'drop-down' : 'drop-down closed'}>
               <li>
                 <NavHead
@@ -143,7 +163,7 @@ export default function GuideNavbar({ data, selectedArticleId, section }) {
                           id='Vector'
                           d='M3.80078 1.37109L8.42927 5.99958L3.80078 10.6281'
                           stroke='#757575'
-                          stroke-width='1.92854'
+                          stroke-width='1.25'
                           stroke-linecap='round'
                           stroke-linejoin='round'
                         />
@@ -153,8 +173,8 @@ export default function GuideNavbar({ data, selectedArticleId, section }) {
                 </NavHead>
               </li>
               {isOpen && <>{renderArticleItemView(item, index)}</>}
-            </ul >
-          </GuideSectionItem >
+            </ul>
+          </GuideSectionItem>
         </>
       );
     });
@@ -170,9 +190,12 @@ export default function GuideNavbar({ data, selectedArticleId, section }) {
             </Link>
             <NavTitle>Guide</NavTitle>
           </SideNavbarHead>
-          <NavmenuSection>{navbarRenderView}</NavmenuSection>
-        </Maindiv >
-      </SideNavbar >
+          <NavmenuSection>
+            {/* <NavBg /> */}
+            {navbarRenderView}
+          </NavmenuSection>
+        </Maindiv>
+      </SideNavbar>
       <GuideMobileNavbar className={isScrollPage ? 'scroll' : ''}>
         <NavbarHeader>
           <SideNavbarHead>

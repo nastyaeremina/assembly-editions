@@ -22,9 +22,7 @@ sys{
     id
 }
 name
-icon{
-  url
-}
+iconCode
 
 `;
 export async function getGuidePageContent({ id }) {
@@ -35,6 +33,11 @@ export async function getGuidePageContent({ id }) {
             sectionsCollection{
                 items{
                     name
+                    articlesCollection(limit:1){
+                        items{
+                         slug
+                        }
+                    }
                     sys{
                       id
                     }
@@ -52,7 +55,9 @@ export async function getGuidePageContent({ id }) {
 export async function getAllGuideSectionContent(idList, preview) {
   const entries = await fetchGraphQL(
     `query {
-        guideSectionsCollection(where:{sys:{${idList}}},limit:10,preview: ${preview ? 'true' : 'false'}) {
+        guideSectionsCollection(where:{sys:{${idList}}},limit:${PER_API_LIMIT_FOR_GUIDE_SECTION},preview: ${
+      preview ? 'true' : 'false'
+    }) {
              items{
               sys{
                 id
@@ -90,4 +95,18 @@ export async function getArticleData(slug, preview) {
       `
   );
   return entries?.data?.guideArticleCollection?.items?.[0];
+}
+
+export async function getAllGuideArticleSlug(preview) {
+  const entries = await fetchGraphQL(
+    `query {
+      guideArticleCollection(preview: ${preview ? 'true' : 'false'}) {
+             items{
+                       slug
+             }
+          }
+      }         
+      `
+  );
+  return entries?.data?.guideArticleCollection?.items;
 }

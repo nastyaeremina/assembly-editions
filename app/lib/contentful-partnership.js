@@ -1,4 +1,5 @@
 import { fetchGraphQL } from './contentful';
+import { POST_GRAPHQL_FAQ_COLLECTION_FIELDS } from './contentful-faq';
 
 const POST_GRAPHQL_PARTNERSHIP_DETAILS_FIELDS = `
     title
@@ -47,6 +48,7 @@ export async function getPartnershipDetail({ id }) {
     `query {
         pagePartnership(id: "${id}" ) {
                 ${POST_GRAPHQL_PARTNERSHIP_DETAILS_FIELDS}
+                ${POST_GRAPHQL_FAQ_COLLECTION_FIELDS}
         }
       }      
     `

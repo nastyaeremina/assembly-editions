@@ -18,15 +18,12 @@ import {
 import Button from '../../button/button';
 import PartnershipCard from '../../partnershipcard';
 import circle from '../../../../public/images/circle.svg';
-import { PARTNERSHIP_FAQ_ID } from '../../../constants/constant';
 
 export default function PartnershipPage({ details }) {
-  console.log('details?.image1?.url', details?.image1?.url);
   const title = () => {
     const titleSplitList = details?.title?.split(',');
     const seprateWithDotList = titleSplitList?.join(`<span>,</span>`)?.split('.');
     const finalTitle = seprateWithDotList?.join(`<span>.</span>`);
-    console.log('finalTitle==', finalTitle);
     return finalTitle;
   };
 

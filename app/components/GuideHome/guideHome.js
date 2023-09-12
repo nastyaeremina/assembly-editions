@@ -70,7 +70,7 @@ export default function GuideHome({ detail }) {
           )}
         </GuideCenter>
         {!isEmpty(detail?.faQsCollection?.items) && (
-          <FAQSection>
+          <FAQSection id='faqsSection'>
             <FAQ faqData={detail?.faQsCollection?.items} isGuideFAQ={true} />
           </FAQSection>
         )}

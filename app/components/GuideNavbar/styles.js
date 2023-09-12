@@ -7,7 +7,7 @@ const SideNavbar = styled.div`
   height: 100vh;
   padding: 40px 0px 0px 20px;
   border-right: 1px solid #ccccd0;
-  position: sticky;
+  position: fixed;
   top: 0;
   @media only screen and (max-width: 991px) {
     display: none;
@@ -16,7 +16,7 @@ const SideNavbar = styled.div`
 const Maindiv = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 40px;
+  /* gap: 40px; */
 `;
 const CopilotGuideLogo = styled.img`
   cursor: pointer;
@@ -107,11 +107,18 @@ const NavItem = styled.li`
         path {
           stroke: #09aa6c;
         }
+        ellipse {
+          fill: #09aa6c;
+        }
       }
     }
     .svglogo {
       filter: hue-rotate(335deg);
     }
+  }
+  .guidelink {
+    display: flex;
+    gap: 10px;
   }
 `;
 const Icon = styled.div`
@@ -120,8 +127,8 @@ const Icon = styled.div`
   width: 20px;
   height: 20px;
   svg {
-    width: 20px;
-    height: 20px;
+    width: 22px;
+    height: 22px;
     path {
       stroke: #a5aba9;
     }
@@ -154,10 +161,46 @@ const NavmenuSection = styled.div`
   display: flex;
   flex-direction: column;
   gap: 16px;
-  padding-right: 20px;
+  /* padding-right: 20px; */
+  height: 100vh;
+  overflow: scroll;
+  /* padding-bottom: 180px; */
+  padding: 40px 20px 140px 0px;
+  -webkit-mask-image: linear-gradient(
+    to bottom,
+    transparent 0%,
+    rgba(0, 0, 0, 0.2) calc(40px / 2),
+    #000 40px,
+    #000 calc(100% - 40px),
+    rgba(0, 0, 0, 0.2) calc(100% - calc(40px / 2)),
+    transparent 100%
+  );
+  mask-image: linear-gradient(
+    to bottom,
+    transparent 0%,
+    rgba(0, 0, 0, 0.2) calc(40px / 2),
+    #000 40px,
+    #000 calc(100% - 40px),
+    rgba(0, 0, 0, 0.2) calc(100% - calc(40px / 2)),
+    transparent 100%
+  );
+  ::-webkit-scrollbar {
+    display: none;
+  }
   @media only screen and (max-width: 991px) {
     padding-right: 0;
+    padding-bottom: 150px;
+    padding-top: 0px;
+    mask-image: unset;
   }
+`;
+const NavBg = styled.div`
+  background: linear-gradient(180deg, #f9f9f9, transparent);
+  height: 15px;
+  position: absolute;
+  max-width: 260px;
+  width: 100%;
+  z-index: -1;
 `;
 const GuideSectionItem = styled.div`
   ${(props) =>
@@ -175,6 +218,9 @@ const GuideSectionItem = styled.div`
   .drop-down.closed {
     height: 18px;
   }
+  :last-child {
+    /* padding-bottom: 100px; */
+  }
 `;
 const NavSection = styled.ul``;
 const GuideRight = styled.div`
@@ -182,7 +228,7 @@ const GuideRight = styled.div`
   padding: 90px 20px 0px 0px;
   position: sticky;
   top: 0;
-  height: 100%;
+  height: 100vh;
   @media only screen and (max-width: 991px) {
     display: none;
   }
@@ -338,5 +384,6 @@ export {
   BtnIcon,
   AskDiv,
   NavSection,
-  GuideSectionItem
+  GuideSectionItem,
+  NavBg
 };
