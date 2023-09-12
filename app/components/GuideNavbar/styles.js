@@ -16,7 +16,7 @@ const SideNavbar = styled.div`
 const Maindiv = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 40px;
+  /* gap: 40px; */
 `;
 const CopilotGuideLogo = styled.img`
   cursor: pointer;
@@ -107,6 +107,9 @@ const NavItem = styled.li`
         path {
           stroke: #09aa6c;
         }
+        ellipse {
+          fill: #09aa6c;
+        }
       }
     }
     .svglogo {
@@ -158,16 +161,37 @@ const NavmenuSection = styled.div`
   display: flex;
   flex-direction: column;
   gap: 16px;
-  padding-right: 20px;
+  /* padding-right: 20px; */
   height: 100vh;
   overflow: scroll;
-  padding-bottom: 180px;
+  /* padding-bottom: 180px; */
+  padding: 40px 20px 140px 0px;
+  -webkit-mask-image: linear-gradient(
+    to bottom,
+    transparent 0%,
+    rgba(0, 0, 0, 0.2) calc(40px / 2),
+    #000 40px,
+    #000 calc(100% - 40px),
+    rgba(0, 0, 0, 0.2) calc(100% - calc(40px / 2)),
+    transparent 100%
+  );
+  mask-image: linear-gradient(
+    to bottom,
+    transparent 0%,
+    rgba(0, 0, 0, 0.2) calc(40px / 2),
+    #000 40px,
+    #000 calc(100% - 40px),
+    rgba(0, 0, 0, 0.2) calc(100% - calc(40px / 2)),
+    transparent 100%
+  );
   ::-webkit-scrollbar {
     display: none;
   }
   @media only screen and (max-width: 991px) {
     padding-right: 0;
-    padding-bottom: 80px;
+    padding-bottom: 150px;
+    padding-top: 0px;
+    mask-image: unset;
   }
 `;
 const NavBg = styled.div`
