@@ -3,7 +3,7 @@ import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import Link from 'next/link';
 import { GuideRight, ItemList, ItemName, ItemSubName } from './styles';
 
-export default function GuideRightSection({ data }) {
+export default function GuideRightSection({ data, isFAQs }) {
   const [activeItem, setActiveItem] = useState(null);
   const renderHierarchy = useCallback(
     (data, isFirst = true) => {
@@ -49,7 +49,14 @@ export default function GuideRightSection({ data }) {
 
   return (
     <GuideRight>
-      <ItemList>{renderHierarchy(data)}</ItemList>
+      <ItemList>
+        {renderHierarchy(data)}
+        {isFAQs && (
+          <ItemName key={'faqsSection'} isSelected={activeItem === 'faqsSection'} level={1}>
+            <Link href={`#faqsSection`}>FAQ</Link>
+          </ItemName>
+        )}
+      </ItemList>
     </GuideRight>
   );
 }

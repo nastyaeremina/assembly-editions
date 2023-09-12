@@ -2,6 +2,7 @@ import React from 'react';
 import slugify from 'slugify';
 import GuideHome from '../../GuideHome/guideHome';
 import GuideRightSection from '../../GuideNavbar/guideRightSection';
+import { isEmpty } from '../../../helpers/helpers';
 
 export default function GuidePage({ defaultArticle: article }) {
   function tableContents() {
@@ -41,7 +42,7 @@ export default function GuidePage({ defaultArticle: article }) {
       {/* <div className='guideSection'>
         <GuideNavbar data={data} selectedArticleId={article?.sys?.id} section={defaultsection} /> */}
       <GuideHome detail={article} />
-      <GuideRightSection data={createHierarchy(tableContents())} />
+      <GuideRightSection data={createHierarchy(tableContents())} isFAQs={!isEmpty(article?.faQsCollection?.items)} />
       {/* </div> */}
     </>
   );
