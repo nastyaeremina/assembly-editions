@@ -40,10 +40,8 @@ export default function GuidePage({ defaultArticle: article }) {
     <>
       {/* <div className='guideSection'>
         <GuideNavbar data={data} selectedArticleId={article?.sys?.id} section={defaultsection} /> */}
-      <div className='guiderightsection'>
-        <GuideHome detail={article} />
-        <GuideRightSection data={createHierarchy(tableContents())} />
-      </div>
+      <GuideHome detail={article} />
+      <GuideRightSection data={createHierarchy(tableContents())} />
       {/* </div> */}
     </>
   );
