@@ -73,6 +73,25 @@ const NavHead = styled.div`
       }
     }
   }
+  @media only screen and (max-width: 991px) {
+    :hover {
+      .head {
+        color: ${lightgray};
+      }
+      svg {
+        path {
+          stroke: #a5aba9;
+        }
+      }
+      .close {
+        svg {
+          path {
+            stroke: #00160e;
+          }
+        }
+      }
+    }
+  }
 `;
 const OptionName = styled.p`
   margin: 0;
@@ -112,13 +131,27 @@ const NavItem = styled.li`
         }
       }
     }
-    .svglogo {
-      filter: hue-rotate(335deg);
-    }
   }
   .guidelink {
     display: flex;
     gap: 10px;
+  }
+  @media only screen and (max-width: 991px) {
+    :hover {
+      .secondhead {
+        color: ${lightgray};
+      }
+      .svgicon {
+        svg {
+          path {
+            stroke: #a5aba9;
+          }
+          ellipse {
+            fill: #a5aba9;
+          }
+        }
+      }
+    }
   }
 `;
 const Icon = styled.div`
@@ -161,10 +194,8 @@ const NavmenuSection = styled.div`
   display: flex;
   flex-direction: column;
   gap: 16px;
-  /* padding-right: 20px; */
   height: 100vh;
   overflow: scroll;
-  /* padding-bottom: 180px; */
   padding: 40px 20px 140px 0px;
   -webkit-mask-image: linear-gradient(
     to bottom,
@@ -184,14 +215,14 @@ const NavmenuSection = styled.div`
     rgba(0, 0, 0, 0.2) calc(100% - calc(40px / 2)),
     transparent 100%
   );
-  ::-webkit-scrollbar {
-    display: none;
+  @media only screen and (min-width: 992px) {
+    ::-webkit-scrollbar {
+      display: none;
+    }
   }
   @media only screen and (max-width: 991px) {
-    padding-right: 0;
-    padding-bottom: 150px;
-    padding-top: 0px;
-    mask-image: unset;
+    padding: 30px 24px 180px;
+    /* mask-image: unset; */
   }
 `;
 const NavBg = styled.div`
@@ -335,7 +366,8 @@ const MobileNavMenu = styled.div`
   /* top: 76px; */
   width: 100%;
   height: 100vh;
-  padding: 24px 24px 0;
+  /* padding: 0px 24px 0; */
+  /* overflow: scroll; */
 `;
 
 const BtnIcon = styled.div`
