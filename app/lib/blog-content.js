@@ -5,7 +5,9 @@ export async function getBlogPosts() {
     .browse({
       limit: 'all',
       include: 'tags',
-      order: 'published_at desc'
+      order: 'published_at desc',
+      filter: `tags:['announcements','inside-copilot']`
+
       // fields: ['reading_time', 'slug', 'title', 'featured', 'feature_image', 'published_at', 'excerpt', 'comment_id']
     })
     .catch((err) => {
