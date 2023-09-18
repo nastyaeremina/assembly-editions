@@ -1,16 +1,17 @@
-// import { ArticleJsonLd } from 'next-seo';
+import { notFound } from 'next/navigation';
 import Layout from '../../components/layout';
 import BlogNavbar from '../../components/navbar/blognavbar';
 import { getAllTagWithSlug, getBlogDetail } from '../../lib/blog-content';
-import { isEmpty } from '../../helpers/helpers';
+import { customSort, isEmpty } from '../../helpers/helpers';
 import BlogdetailPage from '../../components/PageComponent/Blog/blogDetailPage';
-import { notFound } from 'next/navigation';
-import { ArticleJsonLd } from 'next-seo';
+import { BLOG_TAG_SORTED_LIST } from '../../constants/constant';
 
 async function getContent({ slug }) {
   const blogDetail = (await getBlogDetail(slug)) ?? [];
   const tags = (await getAllTagWithSlug()) ?? [];
   const finalTagList = tags?.filter((tag) => tag?.name?.trim()?.[0] !== '#');
+  customSort(finalTagList, BLOG_TAG_SORTED_LIST);
+
   return {
     blogDetail,
     tags: finalTagList
@@ -52,16 +53,6 @@ export default async function Blogdetail({ params }) {
   const { blogDetail, tags } = await getContent({ slug: params?.slug });
 
   if (isEmpty(blogDetail)) return notFound();
-  const authorData = () => {
-    if (isEmpty(blogDetail?.authors)) return [];
-    return blogDetail?.authors?.map((item) => {
-      return {
-        type: 'Person',
-        name: item?.name,
-        url: item?.url
-      };
-    });
-  };
 
   const jsonLd = {
     '@context': 'https://schema.org',

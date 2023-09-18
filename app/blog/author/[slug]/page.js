@@ -1,8 +1,9 @@
 import Layout from '../../../components/layout';
 import BlogNavbar from '../../../components/navbar/blognavbar';
 import { getAllTagWithSlug, getAuthorDetail, getBlogByAuthor } from '../../../lib/blog-content';
-import { getSEOData, isEmpty } from '../../../helpers/helpers';
+import { customSort, getSEOData, isEmpty } from '../../../helpers/helpers';
 import AuthorPage from '../../../components/PageComponent/Blog/authorPage';
+import { BLOG_TAG_SORTED_LIST } from '../../../constants/constant';
 
 async function getContent({ slug }) {
   const allPosts = (await getBlogByAuthor(slug)) ?? [];
@@ -10,6 +11,8 @@ async function getContent({ slug }) {
 
   const tags = (await getAllTagWithSlug()) ?? [];
   const finalTagList = tags?.filter((tag) => tag?.name?.trim()?.[0] !== '#');
+  customSort(finalTagList, BLOG_TAG_SORTED_LIST);
+
   return {
     allPosts,
     tags: finalTagList,

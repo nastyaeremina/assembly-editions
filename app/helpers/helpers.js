@@ -156,3 +156,19 @@ export async function getsvgCode(svgUrl) {
     });
   return code;
 }
+
+export const customSort = (array, order) => {
+  return array.sort((a, b) => {
+    const indexOfA = order.indexOf(a?.slug);
+    const indexOfB = order.indexOf(b?.slug);
+
+    if (indexOfA === -1) {
+      return 1; // If 'a' is not found in the order, move it to the end.
+    }
+    if (indexOfB === -1) {
+      return -1; // If 'b' is not found in the order, move it to the beginning.
+    }
+
+    return indexOfA - indexOfB;
+  });
+};

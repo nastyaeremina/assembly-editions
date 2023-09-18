@@ -1,9 +1,10 @@
 import Layout from '../../../components/layout';
 import BlogNavbar from '../../../components/navbar/blognavbar';
 import { getAllTagWithSlug, getBlogByTag, getTagDetail } from '../../../lib/blog-content';
-import { isEmpty } from '../../../helpers/helpers';
+import { customSort, isEmpty } from '../../../helpers/helpers';
 import TagPage from '../../../components/PageComponent/Blog/tagsPage';
 import { notFound } from 'next/navigation';
+import { BLOG_TAG_SORTED_LIST } from '../../../constants/constant';
 
 async function getContent({ slug }) {
   const allPosts = (await getBlogByTag(slug)) ?? [];
@@ -24,6 +25,8 @@ async function getContent({ slug }) {
     description,
     canonical
   };
+  customSort(finalTagList, BLOG_TAG_SORTED_LIST);
+
   return {
     allPosts,
     tags: finalTagList,

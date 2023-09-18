@@ -3,13 +3,15 @@ import BlogNavbar from '../components/navbar/blognavbar';
 import Layout from '../components/layout';
 import { getTopBarContent } from '../components/navbar/navbar';
 import { getAllTagWithSlug, getBlogPosts } from './../lib/blog-content';
-import { getSEOData } from './../helpers/helpers';
-import { BLOG_SEO_ID } from './../constants/constant';
+import { customSort, getSEOData } from './../helpers/helpers';
+import { BLOG_SEO_ID, BLOG_TAG_SORTED_LIST } from './../constants/constant';
 
 async function getContent() {
   const allPosts = await getBlogPosts();
   const tagsData = await getAllTagWithSlug();
   const tags = tagsData?.filter((tagsData) => tagsData?.name?.trim()?.[0] !== '#');
+
+  customSort(tags, BLOG_TAG_SORTED_LIST);
   return { allPosts, tags };
 }
 

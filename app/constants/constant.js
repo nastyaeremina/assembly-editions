@@ -277,6 +277,7 @@ export const APPS_TYPE = {
   INTERNAL: 'Internal'
 };
 
+export const BLOG_TAG_SORTED_LIST = ['announcements', 'inside-copilot', 'guides'];
 export const UNIVERSITY_VIDEO_CATEGORY = [
   'Get Started',
   'Copilot Apps',
