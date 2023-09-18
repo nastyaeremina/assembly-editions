@@ -573,7 +573,6 @@ export default function NavbarComponent({
             <>
               {userAuth ? (
                 <>
-                  {' '}
                   <SignIn textColor={colorList?.fontColor} hoverColor={colorList?.primaryColor}>
                     <Link href={'/book-demo'}>Contact sales</Link>
                   </SignIn>
@@ -597,6 +596,9 @@ export default function NavbarComponent({
                 </>
               ) : (
                 <>
+                  <SignIn textColor={colorList?.fontColor} hoverColor={colorList?.primaryColor}>
+                    <Link href={'/book-demo'}>Contact sales</Link>
+                  </SignIn>
                   <SignIn textColor={colorList?.fontColor} hoverColor={colorList?.primaryColor}>
                     <Link href={COPILOT_DASHBOARD_LINK}>Log in</Link>
                   </SignIn>
