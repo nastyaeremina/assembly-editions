@@ -299,7 +299,9 @@ export const INDUSTRY_ARRAY = [
   'finance',
   'accounting_and_bookkeeping',
   'ecommerce',
-  'real_estate'
+  'real_estate',
+  'healthcare',
+  'design'
 ];
 export const HOME_CONTENT_ID = '1cPG7VsMO1XCahxAnz3rne';
 export const HOME_HYBIRD_CONTENT_ID = '1w6IZ3ILFiLQAbCmjHQX6Q';

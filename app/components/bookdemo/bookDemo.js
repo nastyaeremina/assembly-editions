@@ -76,7 +76,10 @@ export default function BookDemoForm({ productDemoSlug }) {
         return;
       } else {
         // sendEmail(bookDemoData);
-        if (['10', '50']?.includes(bookDemoData?.companySize) && INDUSTRY_ARRAY?.includes(bookDemoData?.industry)) {
+        if (
+          ['5', '10', '50']?.includes(bookDemoData?.companySize) &&
+          INDUSTRY_ARRAY?.includes(bookDemoData?.industry)
+        ) {
           showHideChiliPiper();
         } else {
           fetch('/api/contact', {
