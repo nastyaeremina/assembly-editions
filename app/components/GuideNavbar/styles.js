@@ -237,14 +237,6 @@ const NavBg = styled.div`
   width: 100%;
   z-index: -1;
 `;
-const NavBg = styled.div`
-  background: linear-gradient(180deg, #f9f9f9, transparent);
-  height: 15px;
-  position: absolute;
-  max-width: 260px;
-  width: 100%;
-  z-index: -1;
-`;
 const GuideSectionItem = styled.div`
   ${(props) =>
     css`
