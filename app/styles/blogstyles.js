@@ -623,10 +623,11 @@ const Content = styled.div`
     right: 12px;
     cursor: pointer;
   }
-  code {
+  pre {
     background-color: #f8f9f9;
+    font-family: monospace;
     color: #4c4c4c;
-    padding: 0px !important;
+    padding: 15px !important;
     font-family: 'Azeret Mono', monospace !important;
     font-size: 15px !important;
     font-weight: 400;

@@ -101,8 +101,8 @@ export default function BlogdetailPage({ blogDetail }) {
     
     <p>That's it for this sample blog post.</p>
   `;
-    // <Content dangerouslySetInnerHTML={{ __html: blogDetail?.html }} />;
-    const parser = new DOMParser();
+   return <Content dangerouslySetInnerHTML={{ __html: blogDetail?.html }} />;
+  /*  const parser = new DOMParser();
     const doc = parser.parseFromString(blogDetail?.html, 'text/html');
     const modifiedHTML = Array.from(doc.body.children).map((element, index) => {
       if (element.tagName.toLowerCase() === 'code') {
@@ -146,7 +146,8 @@ export default function BlogdetailPage({ blogDetail }) {
       }
       return React.createElement(element.tagName.toLowerCase(), { key: index }, element.textContent);
     });
-    return <Content>{modifiedHTML}</Content>;
+    return <Content dangerouslySetInnerHTML={{ __html: blogDetail?.html }} />;
+    return <Content>{modifiedHTML}</Content>; */
   }, [blogDetail?.html, CopyBlockData, onChangeCopy]);
 
   return (
