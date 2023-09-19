@@ -153,6 +153,10 @@ const NavItem = styled.li`
       }
     }
   }
+  .guidelink {
+    display: flex;
+    gap: 10px;
+  }
 `;
 const Icon = styled.div`
   display: flex;
@@ -224,6 +228,14 @@ const NavmenuSection = styled.div`
     padding: 30px 24px 180px;
     /* mask-image: unset; */
   }
+`;
+const NavBg = styled.div`
+  background: linear-gradient(180deg, #f9f9f9, transparent);
+  height: 15px;
+  position: absolute;
+  max-width: 260px;
+  width: 100%;
+  z-index: -1;
 `;
 const NavBg = styled.div`
   background: linear-gradient(180deg, #f9f9f9, transparent);
