@@ -20,15 +20,7 @@ import {
   MobileH4
 } from './styles';
 
-import {
-  greenlight,
-  body,
-  lightgray,
-  title,
-  primary,
-  black,
-} from './../styles/color';
-
+import { greenlight, body, lightgray, title, primary, black } from './../styles/color';
 
 const FirstBlog = styled.div`
   border: 1px solid #01011d;
@@ -555,6 +547,44 @@ const Content = styled.div`
       font-weight: 500;
       color: ${title};
     }
+  }
+  .code-block {
+    position: relative;
+  }
+  .code-block > div {
+    padding: 10px 12px;
+    border-radius: 4px;
+    border: 1px solid #f3f3f2;
+    background: #f8f9f9;
+  }
+  .code-block > div > span {
+    background: #f8f9f9 !important;
+  }
+  .code-block > div > button {
+    display: none;
+  }
+  .copy-icon {
+    display: none;
+  }
+  .code-block:hover {
+    .copy-icon {
+      display: block;
+    }
+  }
+  .copy-icon {
+    position: absolute;
+    top: -8px;
+    right: 12px;
+    cursor: pointer;
+  }
+  code {
+    background-color: #f8f9f9;
+    color: #4c4c4c;
+    padding: 0px !important;
+    font-family: 'Azeret Mono', monospace !important;
+    font-size: 15px !important;
+    font-weight: 400;
+    line-height: 20px !important;
   }
 `;
 
