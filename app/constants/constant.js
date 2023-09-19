@@ -294,15 +294,23 @@ export const PER_UPDATE_PAGE_POST = 10;
 export const PER_API_LIMIT_FOR_GUIDE_SECTION = 10;
 export const PER_API_LIMIT_FOR_FAQ_SECTION = 20;
 export const INDUSTRY_ARRAY = [
-  'marketing',
-  'consulting',
-  'finance',
   'accounting_and_bookkeeping',
+  'consulting',
+  'design',
   'ecommerce',
-  'real_estate',
+  'finance',
   'healthcare',
-  'design'
+  'marketing',
+  'real_estate'
 ];
+
+export const BOOK_DEMO_CONTENT_TYPE = {
+  COMPANY_SIZE_CRITERIA: 'companySizeCriteria',
+  COMPANY_SIZE: 'CompanySize',
+  INDUSTRY_CRITERIA: 'IndustryCriteria',
+  INDUSTRY: 'Industry',
+  FIND_US: 'FindUs'
+};
 export const HOME_CONTENT_ID = '1cPG7VsMO1XCahxAnz3rne';
 export const HOME_HYBIRD_CONTENT_ID = '1w6IZ3ILFiLQAbCmjHQX6Q';
 export const HOME_INTERNAL_CONTENT_ID = '2XZ0KqhzxydyrIOQtIi2rv';
@@ -326,6 +334,7 @@ export const TERMS_OF_SERVICE_ID = '4wBMUcC7Q60jpsCLQoJkpE';
 export const PRIVCY_POLICY_ID = '46bwfuedc2NMOHEIj0AThy';
 export const TOP_BAR_CONTENT_ID = '4dKbgVv11cTh8aJaZ8VBP1';
 export const CTA_CONTENT_ID = '3nv4WphdHbk3tIU88tLbbo';
+export const BOOK_DEMO_ID = '2VEqFdR8kt9HMtIm3EeQhO';
 
 export const HOME_SEO_ID = '2jwCsXd1zP2HEDJlQCIKUG';
 export const APP_SEO_ID = '1YuaTMgNnzacoBjygKg4nk';

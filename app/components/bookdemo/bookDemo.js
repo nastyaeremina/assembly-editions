@@ -6,7 +6,7 @@ import Script from 'next/script';
 import { useDispatch, useSelector } from 'react-redux';
 import { checkValidation, sendEmail } from '../../services/bookDemoService';
 import { setformValidationError, updateBookDemoItem } from '../../actions/bookDemoActions';
-import { INDUSTRY_ARRAY } from '../../constants/constant';
+import { BOOK_DEMO_CONTENT_TYPE } from '../../constants/constant';
 import { COPILOT_ONBORADING_LINK } from '../../constants/externalLinks';
 import Button from '../button/button';
 import Validation from '../Validation/validation';
@@ -31,7 +31,7 @@ import {
   ValidationForm
 } from './styles';
 
-export default function BookDemoForm({ productDemoSlug }) {
+export default function BookDemoForm({ productDemoSlug, data }) {
   const bookDemoSelector = useSelector((state) => state.bookDemo);
   const { validationError, bookDemoData } = bookDemoSelector;
   const [isSubmit, setIsSubmit] = useState(false);
@@ -77,8 +77,8 @@ export default function BookDemoForm({ productDemoSlug }) {
       } else {
         // sendEmail(bookDemoData);
         if (
-          ['5', '10', '50']?.includes(bookDemoData?.companySize) &&
-          INDUSTRY_ARRAY?.includes(bookDemoData?.industry)
+          data?.[BOOK_DEMO_CONTENT_TYPE.COMPANY_SIZE_CRITERIA]?.includes(bookDemoData?.companySize) &&
+          data?.[BOOK_DEMO_CONTENT_TYPE.INDUSTRY_CRITERIA]?.includes(bookDemoData?.industry)
         ) {
           showHideChiliPiper();
         } else {
@@ -99,7 +99,7 @@ export default function BookDemoForm({ productDemoSlug }) {
         }
       }
     },
-    [bookDemoData, dispatch, showHideChiliPiper]
+    [bookDemoData, data, dispatch, showHideChiliPiper]
   );
 
   useEffect(() => {
@@ -233,15 +233,14 @@ export default function BookDemoForm({ productDemoSlug }) {
                 class='wselect'
                 onChange={(e) => onChangeInfo('howDidYouFindUs', e.target.value)}>
                 <option value=''>Please select...</option>
-                <option value='linkedin'>LinkedIn</option>
-                <option value='google'>Google</option>
-                <option value='reddit'>Reddit</option>
-                <option value='press'>Press</option>
-                <option value='fb_instragram'>Facebook / Instagram</option>
-                <option value='referral'>Referral</option>
-                <option value='twitter'>Twitter</option>
-                <option value='review_site'>Review site</option>
-                <option value='product_hunt'>Product Hunt</option>
+                {data?.[BOOK_DEMO_CONTENT_TYPE.FIND_US]?.map((item, index) => {
+                  return (
+                    <option value={item} key={`industry_index_${index}`}>
+                      {item}
+                    </option>
+                  );
+                })}
+
                 <option value='other'>Other</option>
               </select>
               {validationError?.name === 'howDidYouFindUs' && <Validation error={validationError?.message} />}
@@ -259,22 +258,14 @@ export default function BookDemoForm({ productDemoSlug }) {
                   onChangeIndustry();
                 }}>
                 <option value=''>Please select...</option>
-                <option value='accounting_and_bookkeeping'>Accounting and bookkeeping</option>
-                <option value='construction'>Construction</option>
-                <option value='consulting'>Consulting</option>
-                <option value='ecommerce'>Ecommerce</option>
-                <option value='education'>Education</option>
-                <option value='engineering'>Engineering</option>
-                <option value='finance'>Finance</option>
-                <option value='healthcare'>Healthcare</option>
-                <option value='insurance'>Insurance</option>
-                <option value='legal'>Legal</option>
-                <option value='manufacturing'>Manufacturing</option>
-                <option value='marketing'>Marketing</option>
-                <option value='nonprofit'>Nonprofit</option>
-                <option value='real_estate'>Real estate</option>
-                <option value='recruiting_and_staffing'>Recruiting and staffing</option>
-                <option value='technology'>Technology</option>
+                {data?.[BOOK_DEMO_CONTENT_TYPE.INDUSTRY]?.map((item, index) => {
+                  return (
+                    <option value={item} key={`industry_index_${index}`}>
+                      {item}
+                    </option>
+                  );
+                })}
+
                 <option value='other'>Other</option>
               </select>
               {validationError?.name === 'industry' && <Validation error={validationError?.message} />}
@@ -294,30 +285,6 @@ export default function BookDemoForm({ productDemoSlug }) {
                   {validationError?.name === 'industry_other' && <Validation error={validationError?.message} />}
                 </>
               )}
-              {/* {INDUSTRY_ARRAY?.includes(bookDemoData?.industry) && (
-                <>
-                  <label for='Last-Name-'>
-                    Are you interested in Copilot for your own business or are you contacting us on behalf of a client?{' '}
-                    <span>*</span>
-                  </label>
-                  <select
-                    id='Are-you-interested-in-Copilot-for-your-own-business-or-are-you-contacting-us-on-behalf-of-a-client'
-                    name='Are-you-interested-in-Copilot-for-your-own-business-or-are-you-contacting-us-on-behalf-of-a-client'
-                    data-name='Are-you-interested-in-Copilot-for-your-own-business-or-are-you-contacting-us-on-behalf-of-a-client?'
-                    required=''
-                    class='wselect'
-                    onChange={(e) => onChangeInfo('youInerestedBusiness', e.target.value)}>
-                    <option value=''>Please Select...</option>
-                    <option value='I’m interested in Copilot for my own business.'>
-                      I’m interested in Copilot for my own business.
-                    </option>
-                    <option value='I’m interested in Copilot for my clients.'>
-                      I’m interested in Copilot for my clients.
-                    </option>
-                  </select>
-                  {validationError?.name === 'youInerestedBusiness' && <Validation error={validationError?.message} />}
-                </>
-              )} */}
 
               <label for='Last-Name-'>
                 How large is your company? <span>*</span>
@@ -330,12 +297,13 @@ export default function BookDemoForm({ productDemoSlug }) {
                 class='wselect'
                 onChange={(e) => onChangeInfo('companySize', e.target.value)}>
                 <option value=''>Please select...</option>
-                <option value='1'>Just me</option>
-                <option value='5'>2 - 5</option>
-                <option value='10'>6 - 10</option>
-                <option value='50'>11 - 50</option>
-                <option value='100'>51 - 100</option>
-                <option value='100+'>100+</option>
+                {data?.[BOOK_DEMO_CONTENT_TYPE.COMPANY_SIZE]?.map((item, index) => {
+                  return (
+                    <option value={item} key={`industry_index_${index}`}>
+                      {item}
+                    </option>
+                  );
+                })}
               </select>
               {validationError?.name === 'companySize' && <Validation error={validationError?.message} />}
               <label for='Last-Name-'>

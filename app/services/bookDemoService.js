@@ -1,5 +1,4 @@
 import { setformValidationError } from '../actions/bookDemoActions';
-import { INDUSTRY_ARRAY } from '../constants/constant';
 import { isEmail } from '../helpers/helpers';
 
 // export const sendEmail = (userDetail) => {
