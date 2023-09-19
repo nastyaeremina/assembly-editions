@@ -422,6 +422,18 @@ const Content = styled.div`
       }
     }
   }
+  figure + h2 {
+    margin-top: 60px;
+    @media only screen and (max-width: 450px) {
+      margin-top: 40px;
+    }
+  }
+  figure + h3 {
+    margin-top: 60px;
+    @media only screen and (max-width: 450px) {
+      margin-top: 40px;
+    }
+  }
   a {
     display: inline-block;
     ${Body3}
@@ -467,6 +479,7 @@ const Content = styled.div`
     line-height: 55px;
     margin-top: -4rem;
     padding-top: 6rem;
+    margin-bottom: 8px;
     color: #131313;
     font-weight: 400;
     strong {
@@ -479,10 +492,22 @@ const Content = styled.div`
       ${MobileH3}
     }
   }
+  h2 + p {
+    margin-top: 8px;
+  }
+  h2 + ol {
+    margin-top: 8px;
+  }
+  h2 + figure {
+    margin-top: 42px;
+    @media only screen and (max-width: 450px) {
+      margin-top: 22px;
+    }
+  }
   h3 {
     font-size: 32px;
     line-height: 105%;
-    margin-bottom: 1rem;
+    margin-bottom: 8px;
     margin-top: 2rem;
     font-weight: 400;
     color: #131313;
@@ -492,6 +517,24 @@ const Content = styled.div`
     @media only screen and (max-width: 479px) {
       ${MobileH4}
     }
+  }
+  h3 + p {
+    margin-top: 8px;
+  }
+  h3 + ol {
+    margin-top: 8px;
+  }
+  h3 + figure {
+    margin-top: 42px;
+    @media only screen and (max-width: 450px) {
+      margin-top: 22px;
+    }
+  }
+  ol + figure {
+    margin-top: 20px;
+  }
+  ul + figure {
+    margin-top: 20px;
   }
   h4 {
     font-size: 24px;
@@ -519,6 +562,9 @@ const Content = styled.div`
       font-weight: 500;
       color: ${title};
     }
+  }
+  p + figure {
+    margin-top: 20px;
   }
   ol {
     padding-left: 20px;
