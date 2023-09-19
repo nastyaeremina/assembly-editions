@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useCallback, useMemo, use } from 'react';
+import React, { useState, useCallback, useMemo, use } from 'react';
 import Image from 'next/image';
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
 import { Container } from '../../../styles/commonStyles';
@@ -66,7 +66,17 @@ export default function PricingPage({ details }) {
     }
     if (value?.toLowerCase() === 'true')
       return <Image src='/images/checkmark.svg' alt='main-logo' height={20} width={20} />;
-    else return <span>{value}</span>;
+    else {
+      const contentWithBreaks = value.split('\\n').map((line, index) => {
+        return (
+          <React.Fragment key={index}>
+            {line}
+            <br />
+          </React.Fragment>
+        );
+      });
+      return <span>{contentWithBreaks}</span>;
+    }
   }, []);
 
   const renderPlanFeaturesView = useMemo(() => {
