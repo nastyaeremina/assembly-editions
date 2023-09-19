@@ -18,8 +18,10 @@ export default async function PrivacyPolicy() {
   const { content } = await getContent();
   return (
     <>
-      <Navbar isEnterPrice={true} headerIndex={HEADER_LIST.ENTERPRICE} />
-      <PrivacyPolicyPage content={content} />
+      <main>
+        <Navbar isEnterPrice={true} headerIndex={HEADER_LIST.ENTERPRICE} />
+        <PrivacyPolicyPage content={content} />
+      </main>
     </>
   );
 }

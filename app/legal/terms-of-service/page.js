@@ -17,9 +17,9 @@ export async function generateMetadata() {
 export default async function TermsOfService() {
   const { content } = await getContent();
   return (
-    <>
+    <main>
       <Navbar isEnterPrice={true} headerIndex={HEADER_LIST.ENTERPRICE} />
       <TermsOfServicePage content={content} />
-    </>
+    </main>
   );
 }
