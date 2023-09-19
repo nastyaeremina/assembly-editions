@@ -65,7 +65,7 @@ export default function JobsDetailPage({ data: jobDetail }) {
                 {!isEmpty(jobDetail?.teamMembersCollection?.items) && (
                   <DetailWrap>
                     <p>Work with</p>
-                    <ImageWrap>{renderTeamMemberView}</ImageWrap>
+                    <ImageWrap>{renderTeamMemberView()}</ImageWrap>
                   </DetailWrap>
                 )}
                 <PrimaryButton>
