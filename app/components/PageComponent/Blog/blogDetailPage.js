@@ -80,75 +80,53 @@ export default function BlogdetailPage({ blogDetail }) {
   }, []);
 
   const renderHTMLContent = useCallback(() => {
-    const htmlContent = `
-    <p>This is a sample blog post with code snippets.</p>
-    
-    <code>
-      function greet(name) {
-        console.log(\`Hello, \${name}!\`);
-      }
-      greet("John");
-    </code>
-    
-    <p>Here's some more text in the blog.</p>
-    
-    <code>
-      const sum = (a, b) => {
-        return a + b;
-      };
-      console.log(sum(5, 10));
-    </code>
-    
-    <p>That's it for this sample blog post.</p>
-  `;
-   return <Content dangerouslySetInnerHTML={{ __html: blogDetail?.html }} />;
-  /*  const parser = new DOMParser();
-    const doc = parser.parseFromString(blogDetail?.html, 'text/html');
-    const modifiedHTML = Array.from(doc.body.children).map((element, index) => {
-      if (element.tagName.toLowerCase() === 'code') {
-        return (
-          <div
-            key={index}
-            className='code-block'
-            onMouseEnter={() => {
-              if (CopyBlockData?.length > 0) {
-                setCopyBlock([]);
-              }
-            }}>
-            <CopyBlock text={element.textContent.trim()} codeBlock theme={dracula} showLineNumbers={false} />
-            <p
-              className='copy-icon'
-              onClick={() => {
-                copy(element.textContent.trim());
-                onChangeCopy({ index, isCopy: true });
-                setTimeout(() => {
-                  onChangeCopy({ index, isCopy: false });
-                }, 3000);
-              }}>
-              {CopyBlockData?.indexOf(index) !== -1 ? (
-                <svg width='16' height='16' viewBox='0 0 16 16' fill='none' xmlns='http://www.w3.org/2000/svg'>
-                  <path
-                    d='M6.66845 10.1147L12.7964 3.98608L13.7398 4.92875L6.66845 12.0001L2.42578 7.75742L3.36845 6.81475L6.66845 10.1147Z'
-                    fill='#757575'
-                  />
-                </svg>
-              ) : (
-                <svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16' fill='none'>
-                  <path
-                    d='M4.66536 4.66683V2.00016C4.66536 1.82335 4.7356 1.65378 4.86063 1.52876C4.98565 1.40373 5.15522 1.3335 5.33203 1.3335H13.9987C14.1755 1.3335 14.3451 1.40373 14.4701 1.52876C14.5951 1.65378 14.6654 1.82335 14.6654 2.00016V10.6668C14.6654 10.8436 14.5951 11.0132 14.4701 11.1382C14.3451 11.2633 14.1755 11.3335 13.9987 11.3335H11.332V13.9955C11.332 14.3662 11.0327 14.6668 10.6607 14.6668H2.00336C1.91518 14.6669 1.82784 14.6496 1.74635 14.6159C1.66486 14.5822 1.59082 14.5328 1.52846 14.4704C1.46611 14.408 1.41666 14.334 1.38296 14.2525C1.34925 14.171 1.33194 14.0837 1.33203 13.9955L1.33403 5.33816C1.33403 4.9675 1.63336 4.66683 2.00536 4.66683H4.66536ZM5.9987 4.66683H10.6607C11.0314 4.66683 11.332 4.96616 11.332 5.33816V10.0002H13.332V2.66683H5.9987V4.66683ZM2.66736 6.00016L2.66536 13.3335H9.9987V6.00016H2.66736Z'
-                    fill='#757575'
-                  />
-                </svg>
-              )}
-            </p>
-          </div>
-        );
-      }
-      return React.createElement(element.tagName.toLowerCase(), { key: index }, element.textContent);
-    });
-    return <Content dangerouslySetInnerHTML={{ __html: blogDetail?.html }} />;
-    return <Content>{modifiedHTML}</Content>; */
-  }, [blogDetail?.html, CopyBlockData, onChangeCopy]);
+    const segments = blogDetail?.html.split(/(<pre><code[^>]*>.*?<\/code><\/pre>)/gs);
+    return (
+      <Content>
+        {segments.map((segment, index) => {
+          if (segment.startsWith('<pre><code')) {
+            const codeContent = segment
+              .replace(/<pre>/g, '') // Remove <pre> tags
+              .replace(/<\/pre>/g, '') // Remove </pre> tags
+              .replace(/<code[^>]*>/g, '') // Remove <code> tags
+              .replace(/<\/code>/g, ''); // Remove </code> tags
+            return (
+              <div key={index} className='code-block'>
+                <CopyBlock text={codeContent} codeBlock theme={dracula} showLineNumbers={false} />
+                <p
+                  className='copy-icon'
+                  onClick={() => {
+                    copy(codeContent.trim());
+                    onChangeCopy({ index, isCopy: true });
+                    setTimeout(() => {
+                      onChangeCopy({ index, isCopy: false });
+                    }, 3000);
+                  }}>
+                  {CopyBlockData?.indexOf(index) !== -1 ? (
+                    <svg width='16' height='16' viewBox='0 0 16 16' fill='none' xmlns='http://www.w3.org/2000/svg'>
+                      <path
+                        d='M6.66845 10.1147L12.7964 3.98608L13.7398 4.92875L6.66845 12.0001L2.42578 7.75742L3.36845 6.81475L6.66845 10.1147Z'
+                        fill='#757575'
+                      />
+                    </svg>
+                  ) : (
+                    <svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16' fill='none'>
+                      <path
+                        d='M4.66536 4.66683V2.00016C4.66536 1.82335 4.7356 1.65378 4.86063 1.52876C4.98565 1.40373 5.15522 1.3335 5.33203 1.3335H13.9987C14.1755 1.3335 14.3451 1.40373 14.4701 1.52876C14.5951 1.65378 14.6654 1.82335 14.6654 2.00016V10.6668C14.6654 10.8436 14.5951 11.0132 14.4701 11.1382C14.3451 11.2633 14.1755 11.3335 13.9987 11.3335H11.332V13.9955C11.332 14.3662 11.0327 14.6668 10.6607 14.6668H2.00336C1.91518 14.6669 1.82784 14.6496 1.74635 14.6159C1.66486 14.5822 1.59082 14.5328 1.52846 14.4704C1.46611 14.408 1.41666 14.334 1.38296 14.2525C1.34925 14.171 1.33194 14.0837 1.33203 13.9955L1.33403 5.33816C1.33403 4.9675 1.63336 4.66683 2.00536 4.66683H4.66536ZM5.9987 4.66683H10.6607C11.0314 4.66683 11.332 4.96616 11.332 5.33816V10.0002H13.332V2.66683H5.9987V4.66683ZM2.66736 6.00016L2.66536 13.3335H9.9987V6.00016H2.66736Z'
+                        fill='#757575'
+                      />
+                    </svg>
+                  )}
+                </p>
+              </div>
+            );
+          } else {
+            return <div key={index} dangerouslySetInnerHTML={{ __html: segment }} />;
+          }
+        })}
+      </Content>
+    );
+  }, [CopyBlockData, blogDetail?.html, onChangeCopy]);
 
   return (
     <>

@@ -423,9 +423,9 @@ const Content = styled.div`
     }
   }
   figure + h2 {
-    margin-top: 60px;
+    margin-top: -36px;
     @media only screen and (max-width: 450px) {
-      margin-top: 40px;
+      margin-top: -50px;
     }
   }
   figure + h3 {
@@ -596,21 +596,26 @@ const Content = styled.div`
   }
   .code-block {
     position: relative;
+    margin-top: 12px;
   }
   .code-block > div {
-    padding: 10px 12px;
+    padding: 0px;
     border-radius: 4px;
     border: 1px solid #f3f3f2;
     background: #f8f9f9;
   }
   .code-block > div > span {
     background: #f8f9f9 !important;
+    padding: 10px 12px;
   }
   .code-block > div > button {
     display: none;
   }
   .copy-icon {
     display: none;
+    @media only screen and (max-width: 991px) {
+      display: block;
+    }
   }
   .code-block:hover {
     .copy-icon {
@@ -632,6 +637,10 @@ const Content = styled.div`
     font-size: 15px !important;
     font-weight: 400;
     line-height: 20px !important;
+  }
+  code {
+    color: #4c4c4c;
+    font-family: 'Azeret Mono', monospace !important;
   }
 `;
 
