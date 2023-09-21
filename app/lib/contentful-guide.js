@@ -63,7 +63,7 @@ export async function getAllGuideSectionContent(idList, preview) {
                 id
               }
               name
-                articlesCollection{
+                articlesCollection(where:{sys:{id_exists:true}}){
                   total
                     items{
 
@@ -100,7 +100,7 @@ export async function getArticleData(slug, preview) {
 export async function getAllGuideArticleSlug(preview) {
   const entries = await fetchGraphQL(
     `query {
-      guideArticleCollection(preview: ${preview ? 'true' : 'false'}) {
+      guideArticleCollection(where:{sys:{id_exists:true}},preview: ${preview ? 'true' : 'false'}) {
              items{
                        slug
              }

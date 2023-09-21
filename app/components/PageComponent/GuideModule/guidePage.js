@@ -19,20 +19,22 @@ export default function GuidePage({ defaultArticle: article }) {
     const hierarchy = [];
     const stack = [];
     let currentLevel = 1; // Initialize the current level
-    inputArray.forEach((item) => {
-      while (stack.length > 0 && stack[stack.length - 1].type >= item.type) {
-        stack.pop();
-        currentLevel--; // Decrease the level when popping
+    inputArray?.forEach((item) => {
+      if (!isEmpty(item)) {
+        while (stack.length > 0 && stack[stack.length - 1].type >= item?.type) {
+          stack.pop();
+          currentLevel--; // Decrease the level when popping
+        }
+        const id = `${slugify(item?.title?.toLowerCase())}-${item?.type}`;
+        const newItem = { ...item, items: [], id, level: currentLevel };
+        if (stack.length === 0) {
+          hierarchy.push(newItem);
+        } else {
+          stack[stack.length - 1].items.push(newItem);
+        }
+        stack.push(newItem);
+        currentLevel++; // Increase the level for the next item
       }
-      const id = `${slugify(item.title?.toLowerCase())}-${item.type}`;
-      const newItem = { ...item, items: [], id, level: currentLevel };
-      if (stack.length === 0) {
-        hierarchy.push(newItem);
-      } else {
-        stack[stack.length - 1].items.push(newItem);
-      }
-      stack.push(newItem);
-      currentLevel++; // Increase the level for the next item
     });
     return hierarchy;
   }

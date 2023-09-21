@@ -6,7 +6,7 @@ import { useSelectedLayoutSegment } from 'next/navigation';
 import CopilotLogos from '../../../public/images/blacklogo.svg';
 import { addGuideSiderItem, deleteGuideSiderItem } from '../../actions/guideActions';
 import { FirstLine, MobileMenu, ThirdLine } from '../navbar/styles';
-import { isEmpty } from '../../helpers/helpers';
+import { isEmpty, removeEmptyElement } from '../../helpers/helpers';
 import {
   CopilotGuideLogo,
   GuideMobileNavbar,
@@ -71,7 +71,7 @@ export default function GuideNavbar({ data }) {
   } else {
     selectedArticleId = slug;
     data?.forEach((element) => {
-      const articledata = element?.articlesCollection?.items?.find((item) => item.slug === slug);
+      const articledata = removeEmptyElement(element?.articlesCollection?.items)?.find((item) => item.slug === slug);
       if (!isEmpty(articledata)) {
         const sectionId = element?.sys?.id;
         section = sectionId;
