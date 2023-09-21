@@ -41,7 +41,7 @@ const FirstBlog = styled.div`
     }
   }
   @media only screen and (max-width: 749px) {
-    margin: 0px auto 0px;
+    margin: 0px auto 28px;
   }
   :hover {
     h2 {
