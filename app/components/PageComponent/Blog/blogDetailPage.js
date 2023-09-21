@@ -132,7 +132,7 @@ export default function BlogdetailPage({ blogDetail }) {
     <>
       <MainContent>
         <Container>
-          <Details>
+          <Details id='main_content'>
             <DetailHero>
               <Link href='/blog'>
                 <Backlink>
