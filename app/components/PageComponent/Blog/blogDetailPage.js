@@ -1,6 +1,6 @@
 'use client';
 import Image from 'next/image';
-import React, { useCallback, useEffect, useMemo, useState } from 'react';
+import React, { useCallback, useMemo, useState } from 'react';
 import moment from 'moment';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
@@ -79,37 +79,6 @@ export default function BlogdetailPage({ blogDetail }) {
     if (typeof window === 'object') return window.location.href;
   }, []);
 
-  useEffect(() => {
-    const container = document.getElementById('main_content');
-    if (!container) return; // Make sure the container exists
-
-    const links = container.querySelectorAll('a');
-    // Define an array of allowed routes
-    const allowedRoutes = ['/blog/', '/pricing'];
-
-    // Loop through each link and check the pathname
-    links.forEach((link, index) => {
-      const linkPathname = new URL(link.href).pathname;
-      if (isSameDomain(link.href) && allowedRoutes.some((route) => linkPathname.startsWith(route))) {
-        // If it's the same domain and matches an allowed route, set target to "_self"
-        link.target = '_self';
-      } else {
-        // If it's a different domain or doesn't match an allowed route, set target to "_blank"
-        link.target = '_blank';
-      }
-    });
-
-    // Function to check if a URL is from the same domain
-    function isSameDomain(url) {
-      const currentDomain = window.location.hostname;
-      const link = document.createElement('a');
-      link.href = url;
-      const isSame =
-        link.hostname === currentDomain || link.hostname === 'copilot.com' || link.hostname === 'www.copilot.com';
-      return isSame;
-    }
-  }, [router]);
-
   const renderHTMLContent = useCallback(() => {
     const segments = blogDetail?.html.split(/(<pre><code[^>]*>.*?<\/code><\/pre>)/gs);
     return (
@@ -163,7 +132,7 @@ export default function BlogdetailPage({ blogDetail }) {
     <>
       <MainContent>
         <Container>
-          <Details id='main_content'>
+          <Details>
             <DetailHero>
               <Link href='/blog'>
                 <Backlink>
