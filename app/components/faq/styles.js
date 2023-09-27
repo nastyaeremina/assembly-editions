@@ -1,7 +1,7 @@
 import styled, { css } from 'styled-components';
 import { Body1, Body5, Heading3, Heading4, Heading5, Heading6, MbBody3, MobileH4 } from '../../styles/styles';
 
-import { greenlight, body, title } from './../../styles/color';
+import { greenlight, body, title, primary } from './../../styles/color';
 
 const FaqSection = styled.div`
   padding: 100px 0 60px 0;
@@ -251,7 +251,21 @@ const FAQAnsware = styled.div`
   &&.active {
     opacity: 1;
     overflow: visible;
-    max-height: 500px;
+    max-height: 1000px;
+  }
+  a {
+    color: ${primary};
+    display: initial;
+    :hover {
+      color: #00160e;
+    }
+  }
+  ul {
+    list-style-type: disc;
+    list-style-position: inside;
+  }
+  ol {
+    padding-left: 18px;
   }
 `;
 export { FaqSection, FaqWrap, FaqTitle, DivFAQ, FAQAnsware };

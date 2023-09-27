@@ -260,10 +260,14 @@ const GuideSectionItem = styled.div`
 const NavSection = styled.ul``;
 const GuideRight = styled.div`
   width: 220px;
-  padding: 90px 20px 0px 0px;
+  padding: 90px 20px 30px 0px;
   position: sticky;
   top: 0;
   height: 100vh;
+  overflow: scroll;
+  ::-webkit-scrollbar {
+    display: none;
+  }
   @media only screen and (max-width: 991px) {
     display: none;
   }
