@@ -52,8 +52,8 @@ export default function GuideRightSection({ data, isFAQs }) {
       <ItemList>
         {renderHierarchy(data)}
         {isFAQs && (
-          <ItemName key={'faqsSection'} isSelected={activeItem === 'faqsSection'} level={1}>
-            <Link href={`#faqsSection`}>FAQ</Link>
+          <ItemName key={'faqs'} isSelected={activeItem === 'faqsSection'} level={1}>
+            <Link href={`#faqs`}>FAQ</Link>
           </ItemName>
         )}
       </ItemList>

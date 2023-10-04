@@ -47,8 +47,18 @@ const GuideDetail = styled.div`
     font-weight: 400;
     color: ${title};
     margin: 40px 0 0;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: fit-content;
     :first-child {
       margin: 0;
+    }
+    :hover {
+      .copy-icon {
+        opacity: 1;
+        transition: all 0.3s;
+      }
     }
   }
   h4 > b,
@@ -57,8 +67,17 @@ const GuideDetail = styled.div`
     font-weight: 400;
     color: ${title};
     margin: 40px 0 0;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
     :first-child {
       margin: 0;
+    }
+    :hover {
+      .copy-icon-h4 {
+        opacity: 1;
+        transition: all 0.3s;
+      }
     }
   }
   b {
@@ -164,6 +183,28 @@ const GuideDetail = styled.div`
           font-style: italic !important;
         }
       }
+    }
+  }
+  .copy-icon {
+    width: 24px;
+    height: 24px;
+    opacity: 0;
+    cursor: pointer;
+    transition: all 0.3s;
+    :hover {
+      opacity: 1;
+      transition: all 0.3s;
+    }
+  }
+  .copy-icon-h4 {
+    width: 18px;
+    height: 18px;
+    opacity: 0;
+    cursor: pointer;
+    transition: all 0.3s;
+    :hover {
+      opacity: 1;
+      transition: all 0.3s;
     }
   }
   @media only screen and (max-width: 449px) {

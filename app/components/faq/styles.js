@@ -64,6 +64,30 @@ const FaqSection = styled.div`
   }
 `;
 const FaqTitle = styled.div`
+  :hover {
+    .copy-icon-h4 {
+      opacity: 1;
+    }
+  }
+  ${(props) =>
+    props.isGuideFAQ &&
+    css`
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+
+      .copy-icon-h4 {
+        opacity: 0;
+        cursor: pointer;
+        transition: all 0.3s;
+      }
+      .copy-icon-h4 {
+        :hover {
+          opacity: 1;
+          transition: all 0.3s;
+        }
+      }
+    `}
   h2 {
     ${Heading3};
     margin: 0;
@@ -196,6 +220,12 @@ const DivFAQ = styled.div`
           }
         }
       `}
+    :hover {
+      .faq-copy-icon {
+        opacity: 1;
+        transition: all 0.3s;
+      }
+    }
   }
   .accordion-heading {
     ${Heading4}
@@ -205,12 +235,22 @@ const DivFAQ = styled.div`
       css`
         ${Heading6};
         font-weight: 400;
+        display: inline-flex;
+        gap: 10px;
+        align-items: center;
         @media only screen and (max-width: 449px) {
           ${MobileH4}
         }
       `}
   }
   .accordion-content {
+  }
+  .faq-copy-icon {
+    width: 18px;
+    height: 18px;
+    /* margin-left: -10px; */
+    opacity: 0;
+    transition: all 0.3s;
   }
   @media only screen and (max-width: 426px) {
     svg {

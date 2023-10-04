@@ -3,13 +3,17 @@
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { useStyletron } from 'baseui';
 import { ReactMarkdown } from 'react-markdown/lib/react-markdown';
+import Image from 'next/image';
+import copy from 'copy-to-clipboard';
 import { isEmpty } from '../../helpers/helpers';
 import { Container } from '../../styles/commonStyles';
 import { getFAQData, getFAQs } from '../../lib/contentful-faq';
 import { PER_API_LIMIT_FOR_FAQ_SECTION } from '../../constants/constant';
+import CopyIcon from '../../../public/images/copy-icon.svg';
 import { FaqSection, FaqTitle, DivFAQ, FAQAnsware } from './styles';
+import slugify from 'slugify';
 
-export default function FAQ({ enterprise, contentID, faqData, isGuideFAQ }) {
+export default function FAQ({ enterprise, contentID, faqData, isGuideFAQ, currentpath }) {
   const [allPosts, setAppPosts] = useState([]);
   const [activeAccordion, setActiveAccordion] = useState(false);
 
@@ -59,11 +63,40 @@ export default function FAQ({ enterprise, contentID, faqData, isGuideFAQ }) {
   const faqView = useMemo(() => {
     if (isEmpty(allPosts)) return null;
     return allPosts?.map((item, index) => {
+      const faqId = slugify(item?.question, { lower: true }) || '';
       return (
         <>
           <DivFAQ isGuideFAQ={isGuideFAQ}>
             <div className='accordion-title' onClick={() => onClickQuestion(index)}>
-              <div className='accordion-heading'>{item?.question}</div>
+              <div style={{ display: 'inline-flex', alignItems: 'center' }} id={faqId}>
+                <div className='accordion-heading'>
+                  {item?.question}{' '}
+                  {isGuideFAQ && (
+                    <Image
+                      src={CopyIcon}
+                      alt='copy-icon'
+                      width={18}
+                      height={18}
+                      className='faq-copy-icon'
+                      onClick={() => {
+                        copy(`${currentpath}#${faqId}`);
+                      }}
+                    />
+                  )}
+                </div>
+                {/* {isGuideFAQ && (
+                  <Image
+                    src={CopyIcon}
+                    alt='copy-icon'
+                    width={18}
+                    height={18}
+                    className='faq-copy-icon'
+                    onClick={() => {
+                      copy(`${currentpath}#${faqId}`);
+                    }}
+                  />
+                )} */}
+              </div>
               <div>
                 <svg width='32' height='32' viewBox='0 0 32 32' fill='none' xmlns='http://www.w3.org/2000/svg'>
                   <path
@@ -86,7 +119,7 @@ export default function FAQ({ enterprise, contentID, faqData, isGuideFAQ }) {
         </>
       );
     });
-  }, [activeAccordion, allPosts, isGuideFAQ, onClickQuestion]);
+  }, [activeAccordion, allPosts, currentpath, isGuideFAQ, onClickQuestion]);
 
   const [css] = useStyletron();
   return (
@@ -94,8 +127,20 @@ export default function FAQ({ enterprise, contentID, faqData, isGuideFAQ }) {
       <FaqSection enterprise={enterprise} isGuideFAQ={isGuideFAQ}>
         {!isEmpty(allPosts) && (
           <Container>
-            <FaqTitle isGuideFAQ={isGuideFAQ}>
+            <FaqTitle isGuideFAQ={isGuideFAQ} id='faq'>
               <h2 className='faqtitle'>Frequently Asked Questions</h2>
+              {isGuideFAQ && currentpath && (
+                <Image
+                  src={CopyIcon}
+                  alt='copy-icon'
+                  width={24}
+                  height={24}
+                  className='copy-icon-h4'
+                  onClick={() => {
+                    copy(`${currentpath}#faqs`);
+                  }}
+                />
+              )}
             </FaqTitle>
 
             {faqView}

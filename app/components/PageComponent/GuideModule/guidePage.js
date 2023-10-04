@@ -25,7 +25,7 @@ export default function GuidePage({ defaultArticle: article }) {
           stack.pop();
           currentLevel--; // Decrease the level when popping
         }
-        const id = `${slugify(item?.title?.toLowerCase())}-${item?.type}`;
+        const id = `${slugify(item?.title?.toLowerCase())}`;
         const newItem = { ...item, items: [], id, level: currentLevel };
         if (stack.length === 0) {
           hierarchy.push(newItem);
