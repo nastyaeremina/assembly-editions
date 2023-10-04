@@ -125,7 +125,7 @@ export const getSEOData = async ({ id, data }) => {
       locale: 'en_IE',
       site_name: 'copilot.com',
       images: isEmpty(seoData?.openGraphImage)
-        ? []
+        ? ['/images/opengraph_Image.jpeg']
         : [
             {
               url: seoData?.openGraphImage?.url

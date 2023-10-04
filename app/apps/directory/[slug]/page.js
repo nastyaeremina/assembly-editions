@@ -32,7 +32,7 @@ export async function generateMetadata({ params }) {
 
   const seoData = await getSEOData({
     data: {
-      seoTitle: `Connect ${appDetail?.name} to Copilot in 2 minutes • Copilot`,
+      seoTitle: `Embed ${appDetail?.name} in your client portal | Copilot`,
       description: appDetail?.description,
       canonical: 'https://www.copilot.com/apps/directory' + appDetail?.slug
     }

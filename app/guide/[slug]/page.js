@@ -1,20 +1,23 @@
 import React from 'react';
-import GuidePage from '../../components/PageComponent/GuideModule/guidePage';
-import { getSEOData, getsvgCode, isEmpty } from '../../helpers/helpers';
-import { GUIDE_PAGE_ID, PER_API_LIMIT_FOR_GUIDE_SECTION } from '../../constants/constant';
-import { getAllGuideSectionContent, getArticleData, getGuidePageContent } from '../../lib/contentful-guide';
 import { notFound } from 'next/navigation';
-async function getContent(slug) {
-  const detail = (await getGuidePageContent({ id: GUIDE_PAGE_ID })) ?? {};
+import GuidePage from '../../components/PageComponent/GuideModule/guidePage';
+import { getSEOData, isEmpty } from '../../helpers/helpers';
+import { getArticleData } from '../../lib/contentful-guide';
 
+async function getContent(slug) {
   const articleData = (await getArticleData(slug)) ?? {};
-  return { seoMetadata: detail?.seoMetadata, articleData };
+  return { articleData };
 }
 
-export async function generateMetadata() {
-  const { seoMetadata } = await getContent();
-  const seoData = await getSEOData({ data: seoMetadata });
-
+export async function generateMetadata({ params }) {
+  const { articleData } = await getContent(params?.slug);
+  const seoData = await getSEOData({
+    data: {
+      seoTitle: `Copilot Guide | ${articleData?.name}`,
+      description: articleData?.header,
+      canonical: 'https://www.copilot.com/guide/' + articleData?.slug
+    }
+  });
   return seoData;
 }
 export default async function Guide({ params }) {
