@@ -251,7 +251,21 @@ const FAQAnsware = styled.div`
   &&.active {
     opacity: 1;
     overflow: visible;
-    max-height: 1000px;
+    max-height: 1500px;
+  }
+  ol {
+    padding-left: 18px;
+    li {
+      margin-top: 6px;
+    }
+  }
+  ul {
+    list-style-type: disc;
+    list-style-position: outside;
+    padding-left: 18px;
+    li {
+      margin-top: 6px;
+    }
   }
   a {
     color: ${primary};
@@ -260,13 +274,6 @@ const FAQAnsware = styled.div`
     :hover {
       color: #00160e;
     }
-  }
-  ul {
-    list-style-type: disc;
-    list-style-position: inside;
-  }
-  ol {
-    padding-left: 18px;
   }
 `;
 export { FaqSection, FaqWrap, FaqTitle, DivFAQ, FAQAnsware };
