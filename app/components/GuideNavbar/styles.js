@@ -263,8 +263,8 @@ const GuideRight = styled.div`
   padding: 90px 20px 30px 0px;
   position: sticky;
   top: 0;
-  height: 100vh;
   overflow: scroll;
+  height: 100vh;
   ::-webkit-scrollbar {
     display: none;
   }

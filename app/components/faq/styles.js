@@ -256,6 +256,7 @@ const FAQAnsware = styled.div`
   a {
     color: ${primary};
     display: initial;
+    cursor: pointer;
     :hover {
       color: #00160e;
     }
