@@ -291,7 +291,7 @@ const FAQAnsware = styled.div`
   &&.active {
     opacity: 1;
     overflow: visible;
-    max-height: 1500px;
+    max-height: 2000px;
   }
   ol {
     padding-left: 18px;
