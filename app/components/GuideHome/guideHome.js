@@ -15,7 +15,8 @@ import { Caption, FAQSection, GuideCenter, GuideDetail, HeroSection, MainContent
 
 export default function GuideHome({ detail }) {
   const currentPath = usePathname();
-  const currentDomain = window?.location?.host || 'https://www.copilot.com';
+  let currentDomain = 'https://www.copilot.com';
+  if (typeof window !== 'undefined') currentDomain = window?.location?.host;
 
   // console.log('router.pathname', window?.location);
 
