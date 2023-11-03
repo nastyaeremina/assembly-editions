@@ -22,23 +22,6 @@ question
 answer
 `;
 
-export async function getFAQs(id) {
-  const entries = await fetchGraphQL(
-    `query {
-        faqGroup(id: "${id}" ) {
-          faQsCollection {
-            items {
-              question
-              answer
-            }
-          }
-        }
-      }      
-    `
-  );
-  return extractData(entries);
-}
-
 export async function getFAQData(idList, preview) {
   const entries = await fetchGraphQL(
     `query {

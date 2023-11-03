@@ -367,3 +367,5 @@ export const PRICING_PAGE_ID = '1lSCkgpg3oXPp3kuxEJwfg';
 export const GLOSSARY_PAGE_ID = '59RJugqUUkgTppwv6aoA9I';
 export const GUIDE_PAGE_ID = '21aIyPkZ2efko1hJU4Qeep';
 export const JOB_PAGE_ID = '7kgu8KP3AV2FgbwhCGz0sB';
+
+export const CURRENT_DOMAIN = 'https://www.copilot.com';

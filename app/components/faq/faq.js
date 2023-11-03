@@ -5,35 +5,48 @@ import { useStyletron } from 'baseui';
 import { ReactMarkdown } from 'react-markdown/lib/react-markdown';
 import Image from 'next/image';
 import copy from 'copy-to-clipboard';
+import slugify from 'slugify';
 import { isEmpty } from '../../helpers/helpers';
 import { Container } from '../../styles/commonStyles';
-import { getFAQData, getFAQs } from '../../lib/contentful-faq';
+import { getFAQData } from '../../lib/contentful-faq';
 import { PER_API_LIMIT_FOR_FAQ_SECTION } from '../../constants/constant';
 import CopyIcon from '../../../public/images/copy-icon.svg';
 import { FaqSection, FaqTitle, DivFAQ, FAQAnsware } from './styles';
-import slugify from 'slugify';
+import CopyLink from '../copyLink/copyLink';
 
-export default function FAQ({ enterprise, contentID, faqData, isGuideFAQ, currentpath }) {
+export default function FAQ({ enterprise, faqData, isGuideFAQ, currentpath, faqList }) {
   const [allPosts, setAppPosts] = useState([]);
-  const [activeAccordion, setActiveAccordion] = useState(false);
+  //activeAccrodion use for open specific FAQ. In this we store FAQ element Id
+  const [activeAccordion, setActiveAccordion] = useState();
 
   const loadData = useCallback(async () => {
     try {
       let posts = [];
-      if (contentID) {
-        posts = (await getFAQs(contentID)) ?? [];
+
+      if (!isEmpty(faqList)) {
+        //Some cases we get all faqlist rather than only FAQ Id list.
+        //so we don't need to call fetch API for this
+        posts = faqList;
       } else {
         let allPosts = [];
-        let data = [];
         const dataIdList = faqData?.map((item) => `"${item.sys.id}"`) || [];
+
+        const batchPromises = [];
+
         for (let i = 0; i < dataIdList.length; i += PER_API_LIMIT_FOR_FAQ_SECTION) {
           const batch = dataIdList.slice(i, i + PER_API_LIMIT_FOR_FAQ_SECTION);
-          data = (await getFAQData(`id_in: [${batch}]`)) || [];
-          allPosts = allPosts.concat(data);
+          batchPromises.push(Promise.all(batch.map((id) => getFAQData(`id_in: [${id}]`))));
         }
+
+        const batchResults = await Promise.all(batchPromises);
+        batchResults.forEach((data) => {
+          allPosts = allPosts.concat(...data);
+        });
         posts = dataIdList
           ?.map((dataId) => {
-            const matchedData = allPosts?.find((dataItem) => dataItem.sys.id === dataId.replace(/"/g, ''));
+            const matchedData = allPosts?.find((dataItem) => {
+              return dataItem?.sys?.id === dataId.replace(/"/g, '');
+            });
             return matchedData ? { ...matchedData } : null;
           })
           .filter((item) => item !== null);
@@ -43,45 +56,44 @@ export default function FAQ({ enterprise, contentID, faqData, isGuideFAQ, curren
       console.log('error', error);
       return null;
     }
-  }, [contentID, faqData]);
+  }, [faqData, faqList]);
 
   useEffect(() => {
     loadData();
+    if (typeof window !== 'undefined' && !isEmpty(window?.location?.hash?.slice(1))) {
+      // set FAQ id that open default
+      // when user open link directly like https://copilot.com//guide/customization-and-setup#how-do-i-update-the-name-that-is-used-in-the-portal-and-for-email-notifications-to-clients
+      setActiveAccordion(window?.location?.hash?.slice(1));
+    }
   }, [loadData]);
 
   const onClickQuestion = useCallback(
-    (index) => {
-      if (index === activeAccordion) {
+    (faqId) => {
+      if (faqId === activeAccordion) {
         setActiveAccordion();
       } else {
-        setActiveAccordion(index);
+        setActiveAccordion(faqId);
       }
     },
     [activeAccordion]
   );
 
   const faqView = useMemo(() => {
-    if (isEmpty(allPosts)) return null;
-    return allPosts?.map((item, index) => {
+    const faqDetailList = isEmpty(faqList) ? allPosts : faqList;
+    if (isEmpty(faqDetailList)) return null;
+    return faqDetailList?.map((item, index) => {
       const faqId = slugify(item?.question, { lower: true }) || '';
       return (
         <>
           <DivFAQ isGuideFAQ={isGuideFAQ}>
-            <div className='accordion-title' onClick={() => onClickQuestion(index)}>
+            <div className='accordion-title' onClick={() => onClickQuestion(faqId)}>
               <div style={{ display: 'inline-flex', alignItems: 'center' }} id={faqId}>
                 <div className='accordion-heading'>
                   {item?.question}{' '}
                   {isGuideFAQ && (
-                    <Image
-                      src={CopyIcon}
-                      alt='copy-icon'
-                      width={18}
-                      height={18}
-                      className='faq-copy-icon'
-                      onClick={() => {
-                        copy(`${currentpath}#${faqId}`);
-                      }}
-                    />
+                    <>
+                      <CopyLink tagId={faqId} className='faq-copy-icon' size={18} />
+                    </>
                   )}
                 </div>
                 {/* {isGuideFAQ && (
@@ -100,7 +112,7 @@ export default function FAQ({ enterprise, contentID, faqData, isGuideFAQ, curren
               <div>
                 <svg width='32' height='32' viewBox='0 0 32 32' fill='none' xmlns='http://www.w3.org/2000/svg'>
                   <path
-                    className={activeAccordion === index ? '' : 'active'}
+                    className={activeAccordion === faqId ? '' : 'active'}
                     d='M1.70703 16L30.2904 16'
                     stroke='black'
                     stroke-width='2'
@@ -110,7 +122,7 @@ export default function FAQ({ enterprise, contentID, faqData, isGuideFAQ, curren
                 </svg>
               </div>
             </div>
-            <FAQAnsware className={activeAccordion === index ? 'active' : ''} isGuideFAQ={isGuideFAQ}>
+            <FAQAnsware className={activeAccordion === faqId ? 'active' : ''} isGuideFAQ={isGuideFAQ}>
               <div>
                 <ReactMarkdown>{item?.answer}</ReactMarkdown>
               </div>
@@ -119,13 +131,13 @@ export default function FAQ({ enterprise, contentID, faqData, isGuideFAQ, curren
         </>
       );
     });
-  }, [activeAccordion, allPosts, currentpath, isGuideFAQ, onClickQuestion]);
+  }, [activeAccordion, allPosts, faqList, isGuideFAQ, onClickQuestion]);
 
   const [css] = useStyletron();
   return (
     <>
       <FaqSection enterprise={enterprise} isGuideFAQ={isGuideFAQ}>
-        {!isEmpty(allPosts) && (
+        {(!isEmpty(faqList) || !isEmpty(allPosts)) && (
           <Container>
             <FaqTitle isGuideFAQ={isGuideFAQ} id='faq'>
               <h2 className='faqtitle'>Frequently Asked Questions</h2>

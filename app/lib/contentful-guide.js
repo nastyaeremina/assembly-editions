@@ -13,6 +13,8 @@ faQsCollection{
     sys{
       id
     }
+    question
+    answer
   }
 }`;
 

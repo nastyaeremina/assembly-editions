@@ -3,6 +3,7 @@ import { MONTH_LIST } from '../constants/constant';
 import { COOKIE_NAME } from '../../app/lib/constants';
 import { setUserAuth } from '../../app/actions/appActions';
 import { getSEOdata } from '../lib/contentful-seo';
+import slugify from 'slugify';
 
 export function isEmpty(value) {
   if (
@@ -172,3 +173,17 @@ export const customSort = (array, order) => {
     return indexOfA - indexOfB;
   });
 };
+
+/**
+ * Extract the tag ID from nested React elements and convert it to a slug.
+ * @param {React.ReactNode} children - The React elements containing the text.
+ * @returns {string} - The extracted and slugified tag ID.
+ */
+export function extractTagId(children) {
+  let newNode = children;
+  while (newNode?.props?.children) {
+    newNode = newNode.props.children;
+  }
+  const tagId = `${slugify(newNode?.toLowerCase())}`;
+  return tagId;
+}
