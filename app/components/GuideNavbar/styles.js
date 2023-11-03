@@ -121,6 +121,12 @@ const NavItem = styled.li`
     .secondhead {
       color: ${primary};
     }
+    .fill {
+      path {
+        fill: #09aa6c;
+        stroke: unset !important;
+      }
+    }
     .svgicon {
       svg {
         path {
@@ -163,6 +169,12 @@ const Icon = styled.div`
   /* align-items: center; */
   width: 20px;
   height: 20px;
+  .fill {
+    path {
+      fill: #a5aba9;
+      stroke: unset;
+    }
+  }
   svg {
     width: 22px;
     height: 22px;
@@ -176,6 +188,11 @@ const Icon = styled.div`
       svg {
         path {
           stroke: #00160e;
+        }
+      }
+      .fill {
+        path {
+          fill: #00160e;
         }
       }
     `}
