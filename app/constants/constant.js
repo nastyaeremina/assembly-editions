@@ -311,6 +311,12 @@ export const BOOK_DEMO_CONTENT_TYPE = {
   INDUSTRY: 'Industry',
   FIND_US: 'FindUs'
 };
+
+export const GUIDE_LINK_INFO = {
+  link: '/guide',
+  text: 'Copilot Guide'
+};
+
 export const HOME_CONTENT_ID = '1cPG7VsMO1XCahxAnz3rne';
 export const HOME_HYBIRD_CONTENT_ID = '1w6IZ3ILFiLQAbCmjHQX6Q';
 export const HOME_INTERNAL_CONTENT_ID = '2XZ0KqhzxydyrIOQtIi2rv';

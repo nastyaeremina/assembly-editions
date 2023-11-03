@@ -1,6 +1,7 @@
 'use client';
 
-import { COPILOT_SECURITY_LINK, COPILOT_SYSTEM_STATUS_LINK, HELP_CENTER_LINK } from '../../constants/externalLinks';
+import { GUIDE_LINK_INFO } from '../../constants/constant';
+import { COPILOT_SECURITY_LINK, COPILOT_SYSTEM_STATUS_LINK } from '../../constants/externalLinks';
 import {
   NavigationBlock,
   NavMenu,
@@ -43,7 +44,7 @@ export default function ResourcesSubMenu({ mobile }) {
             </LastDroplist>
           </MobileListLi>
           <MobileListLi>
-            <MenuMobileWrap href={HELP_CENTER_LINK}>
+            <MenuMobileWrap href={GUIDE_LINK_INFO.link}>
               <LeftImg>
                 <svg width='17' height='16' viewBox='0 0 17 16' fill='none' xmlns='http://www.w3.org/2000/svg'>
                   <path
@@ -61,7 +62,7 @@ export default function ResourcesSubMenu({ mobile }) {
                 </svg>
               </LeftImg>
               <RightText resourcetext>
-                <h6>Help Center</h6>
+                <h6>{GUIDE_LINK_INFO.text}</h6>
               </RightText>
             </MenuMobileWrap>
           </MobileListLi>

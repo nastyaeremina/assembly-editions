@@ -37,9 +37,10 @@ import ExtensionSlider from '../../../components/extensionslider/extensionslider
 import TabView from '../../../components/tab/tab';
 import Button from '../../../components/button/button';
 
-import { COPILOT_JOIN_COMMUNITY_LINK, HELP_CENTER_LINK } from '../../../constants/externalLinks';
+import { COPILOT_JOIN_COMMUNITY_LINK } from '../../../constants/externalLinks';
 import HomeHeroSection from '../../../components/Home/herosection/hybrid';
 import { separateSpecialChar } from '../../../helpers/helpers';
+import { GUIDE_LINK_INFO } from '../../../constants/constant';
 
 export default function HomePage({ content }) {
   return (
@@ -322,11 +323,11 @@ export default function HomePage({ content }) {
                       </HelpLink>
                     </HelpLeftSub>
                     <HelpLeftSub>
-                      <h3>Help Center</h3>
-                      <p>Read answers to the most common questions, learn best practices, and contact our team.</p>
+                      <h3>{GUIDE_LINK_INFO.text}</h3>
+                      <p>Read our comprehensive guide about how to get started and implement best practices.</p>
                       <HelpLink className='icon-link'>
-                        <a href={HELP_CENTER_LINK} className='learn-link mb0'>
-                          Get help
+                        <a href={GUIDE_LINK_INFO.link} className='learn-link mb0'>
+                          Read guide{' '}
                           <svg width='16' height='12' viewBox='0 0 16 12' fill='none' class='HoverArrow'>
                             <path
                               d='M5.7998 1.37109L10.4283 5.99958L5.7998 10.6281'

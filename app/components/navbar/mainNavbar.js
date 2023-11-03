@@ -11,7 +11,7 @@ import MobileBlackLogos from '../../../public/images/mobileblacklogo.svg';
 import MobileWhiteLogos from '../../../public/images/whitemobilelogo.svg';
 import MobileGreenLogos from '../../../public/images/greenmblogo.svg';
 import { BlackButton, Container } from '../../styles/commonStyles';
-import { HEADER_LIST, NAVBAR_COLOR_LIST } from '../../constants/constant';
+import { GUIDE_LINK_INFO, HEADER_LIST, NAVBAR_COLOR_LIST } from '../../constants/constant';
 import useMobileDevice from '../../hooks/useMobileDevice';
 import { isEmpty } from '../../helpers/helpers';
 import Button from '../button/button';
@@ -20,7 +20,6 @@ import {
   COPILOT_ONBORADING_LINK,
   COPILOT_SECURITY_LINK,
   COPILOT_SYSTEM_STATUS_LINK,
-  HELP_CENTER_LINK,
   OPEN_COPILOT_LINK
 } from '../../constants/externalLinks';
 // import { getAllNavbarSolution } from '../../lib/contentful-solutions';
@@ -376,7 +375,7 @@ export default function NavbarComponent({
               <Drop>
                 <Listleft>
                   <ListLi>
-                    <MenuWrap href={HELP_CENTER_LINK}>
+                    <MenuWrap href={GUIDE_LINK_INFO.link}>
                       <LeftImg>
                         <svg width='17' height='16' viewBox='0 0 17 16' fill='none' xmlns='http://www.w3.org/2000/svg'>
                           <path
@@ -394,7 +393,7 @@ export default function NavbarComponent({
                         </svg>
                       </LeftImg>
                       <RightText resourcetext>
-                        <h6>Help Center</h6>
+                        <h6>{GUIDE_LINK_INFO.text}</h6>
                       </RightText>
                     </MenuWrap>
                   </ListLi>

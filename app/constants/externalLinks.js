@@ -1,5 +1,4 @@
 export const COPILOT_ONBORADING_LINK = 'https://dashboard.copilot.com/signup';
-export const HELP_CENTER_LINK = ' https://support.copilot.com';
 export const COPILOT_TWITTER_LINK = 'https://twitter.com/copilot';
 export const COPILOT_FACEBOOK_LINK = 'https://www.facebook.com/copilotplatforms';
 export const COPILOT_LINKEDIN_LINK = 'https://www.linkedin.com/company/copilotplatforms';
