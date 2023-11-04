@@ -1,8 +1,11 @@
 import { notFound } from 'next/navigation';
+import { load } from 'cheerio';
 import Layout from '../../components/layout';
 import BlogNavbar from '../../components/navbar/blognavbar';
 import { getAllTagWithSlug, getBlogDetail } from '../../lib/blog-content';
 import { customSort, isEmpty } from '../../helpers/helpers';
+import { isSameDomain } from '../../helpers/serverSideHelpers';
+
 import BlogdetailPage from '../../components/PageComponent/Blog/blogDetailPage';
 import { BLOG_TAG_SORTED_LIST } from '../../constants/constant';
 
@@ -18,6 +21,10 @@ async function getContent({ slug }) {
   };
 }
 
+/* 
+   This section generates metadata for the page based on the fetched blog content.
+   It sets the title, description, and Open Graph metadata.
+*/
 export async function generateMetadata({ params, searchParams }, parent) {
   const { blogDetail } = await getContent({ slug: params?.slug });
 
@@ -52,8 +59,10 @@ export async function generateMetadata({ params, searchParams }, parent) {
 export default async function Blogdetail({ params }) {
   const { blogDetail, tags } = await getContent({ slug: params?.slug });
 
+  // Check if the fetched blog content is empty; if so, return a 404 response
   if (isEmpty(blogDetail)) return notFound();
 
+  // Create a JSON-LD script for structured data related to the blog post
   const jsonLd = {
     '@context': 'https://schema.org',
     '@type': 'Article',
@@ -81,13 +90,40 @@ export default async function Blogdetail({ params }) {
     dateModified: blogDetail?.updated_at
   };
 
+  // Use Cheerio to load the blog content's HTML
+  const $ = load(blogDetail?.html);
+  // List of allowed routes where links should open in the same tab
+  const allowedRoutes = ['/blog', '/pricing'];
+
+  // Process anchor elements within the content
+  $('a').each((index, element) => {
+    const href = $(element).attr('href');
+
+    if (href) {
+      // Check if href is a valid URL or a fragment identifier
+      const isFragmentIdentifier = href.startsWith('#');
+      if (!isFragmentIdentifier) {
+        // Extract the pathname from the URL and set the 'target' attribute
+        const linkPathname = new URL(href)?.pathname;
+        if (isSameDomain(href) && allowedRoutes.some((route) => linkPathname.startsWith(route))) {
+          // If it's the same domain and matches an allowed route, set target to "_self"
+          $(element).attr('target', '_self');
+        } else {
+          // If it's a different domain or doesn't match an allowed route, set target to "_blank"
+          $(element).attr('target', '_blank');
+        }
+      }
+    }
+  });
+  const modifiedHtmlData = $.html();
+
   return (
     <>
       <script type='application/ld+json' dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
 
       <Layout>
         <BlogNavbar tagData={tags} />
-        <BlogdetailPage blogDetail={blogDetail} />
+        <BlogdetailPage blogDetail={blogDetail} htmlData={modifiedHtmlData} />
       </Layout>
     </>
   );

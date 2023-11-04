@@ -28,12 +28,18 @@ import {
 import { isEmpty } from '../../../helpers/helpers';
 import SubscribeModel from '../../../components/SubscribeModel';
 import { BlogSubscribe, Button, Logo, Model, Premium } from '../../../components/SubscribeModel/style';
+import {
+  EXTRACT_CODE_TAG_FROM_HTML_REGEX,
+  EXTRACT_H2_TAG_FROM_HTML_REGEX,
+  EXTRACT_LEADING_DIGIT_REGEX
+} from '../../../constants/constant';
 
-export default function BlogdetailPage({ blogDetail }) {
+export default function BlogdetailPage({ blogDetail, htmlData }) {
   const [isShowData, setShowData] = useState(true);
   const [isOpen, setIsOpen] = useState();
   const [issubscribe, setIsSubscribe] = useState(false);
   const [CopyBlockData, setCopyBlock] = useState([]);
+  const router = useRouter();
 
   const onChangeCopy = useCallback(
     ({ index, isCopy }) => {
@@ -51,7 +57,6 @@ export default function BlogdetailPage({ blogDetail }) {
     },
     [CopyBlockData]
   );
-  const router = useRouter();
 
   const onOpenModel = useCallback(() => {
     setIsOpen(true);
@@ -62,42 +67,54 @@ export default function BlogdetailPage({ blogDetail }) {
   }, []);
 
   const renderTableData = useMemo(() => {
-    const newList = blogDetail?.html?.match(/(?:<h2 id\=\s*)\S.*?(?=\s*<\/h2|$)/gs);
+    if (isEmpty(htmlData)) return null;
+    const newList = htmlData?.match(EXTRACT_H2_TAG_FROM_HTML_REGEX);
+    if (isEmpty(newList)) return null;
     return newList?.map((item, index) => {
       const headingList = item?.split('>');
+      console.log('headingList?.[1]', headingList?.[1]);
       return (
         <li key={`tableDataHeading_index_${index}`}>
           <Link href={`#${headingList?.[0]?.replace(/['"]+/g, '').replace('<h2 id=', '')}`}>
-            {headingList?.[1]?.replace(/^[0-9]./, '')}
+            {headingList?.[1]?.replace(EXTRACT_LEADING_DIGIT_REGEX, '')}
           </Link>
         </li>
       );
     });
-  }, [blogDetail?.html]);
+  }, [htmlData]);
 
   const currentPath = useMemo(() => {
     if (typeof window === 'object') return window.location.href;
   }, []);
 
   const renderHTMLContent = useCallback(() => {
-    const segments = blogDetail?.html.split(/(<pre><code[^>]*>.*?<\/code><\/pre>)/gs);
+    // Split the HTML content into segments using a regex
+    const segments = htmlData?.split(EXTRACT_CODE_TAG_FROM_HTML_REGEX) || [];
+
+    // If there are no segments, return null
+    if (isEmpty(segments)) return null;
+
+    // Render the content
     return (
       <Content>
         {segments.map((segment, index) => {
-          if (segment.startsWith('<pre><code')) {
+          if (segment?.startsWith('<pre><code')) {
+            // Remove HTML tags and extract code content
             const codeContent = segment
-              .replace(/<pre>/g, '') // Remove <pre> tags
-              .replace(/<\/pre>/g, '') // Remove </pre> tags
-              .replace(/<code[^>]*>/g, '') // Remove <code> tags
-              .replace(/<\/code>/g, ''); // Remove </code> tags
+              ?.replace(/<pre>/g, '') // Remove <pre> tags
+              ?.replace(/<\/pre>/g, '') // Remove </pre> tags
+              ?.replace(/<code[^>]*>/g, '') // Remove <code> tags
+              ?.replace(/<\/code>/g, ''); // Remove </code> tags
             return (
               <div key={index} className='code-block'>
                 <CopyBlock text={codeContent} codeBlock theme={dracula} showLineNumbers={false} />
                 <p
                   className='copy-icon'
                   onClick={() => {
-                    copy(codeContent.trim());
+                    // Copy the code content to the clipboard
+                    copy(codeContent?.trim());
                     onChangeCopy({ index, isCopy: true });
+                    // Reset the "Copy" state after 3 seconds
                     setTimeout(() => {
                       onChangeCopy({ index, isCopy: false });
                     }, 3000);
@@ -121,12 +138,13 @@ export default function BlogdetailPage({ blogDetail }) {
               </div>
             );
           } else {
+            // Render non-code segments using dangerouslySetInnerHTML
             return <div key={index} dangerouslySetInnerHTML={{ __html: segment }} />;
           }
         })}
       </Content>
     );
-  }, [CopyBlockData, blogDetail?.html, onChangeCopy]);
+  }, [CopyBlockData, htmlData, onChangeCopy]);
 
   return (
     <>

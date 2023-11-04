@@ -24,6 +24,7 @@
     "@reduxjs/toolkit": "^1.9.1",
     "@tryghost/content-api": "^1.11.5",
     "baseui": "^12.2.0",
+    "cheerio": "^1.0.0-rc.12",
     "classnames": "^2.3.2",
     "contentful": "^9.1.18",
     "copy-to-clipboard": "^3.3.3",

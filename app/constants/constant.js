@@ -390,4 +390,10 @@ export const GLOSSARY_PAGE_ID = '59RJugqUUkgTppwv6aoA9I';
 export const GUIDE_PAGE_ID = '21aIyPkZ2efko1hJU4Qeep';
 export const JOB_PAGE_ID = '7kgu8KP3AV2FgbwhCGz0sB';
 
+/*
+Regex varibles
+*/
+export const EXTRACT_H2_TAG_FROM_HTML_REGEX = /(?:<h2 id\=\s*)\S.*?(?=\s*<\/h2|$)/gs;
+export const EXTRACT_CODE_TAG_FROM_HTML_REGEX = /(<pre><code[^>]*>.*?<\/code><\/pre>)/gs;
+export const EXTRACT_LEADING_DIGIT_REGEX = /^[0-9]./;
 export const CURRENT_DOMAIN = 'https://www.copilot.com';
