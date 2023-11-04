@@ -1,8 +1,9 @@
 /** @type {import('next').NextConfig} */
 const purgecss = require('@fullhuman/postcss-purgecss');
-async function fetchGraphQL({ preview = false, query }) {
+async function fetchGraphQL({ preview = false, query, type = ['other'] }) {
   return fetch(`https://graphql.contentful.com/content/v1/spaces/${process.env.CONTENTFUL_SPACE_ID}`, {
     method: 'POST',
+    next: { tags: type },
     headers: {
       'Content-Type': 'application/json',
       Authorization: `Bearer ${
@@ -45,7 +46,7 @@ const nextConfig = {
   }`;
 
       const postData = (await fetchGraphQL({ preview: false, query })) ?? [];
-      const pageDemoData = (await fetchGraphQL({ preview: false, query: pageDemoQuery })) ?? [];
+      const pageDemoData = (await fetchGraphQL({ preview: false, query: pageDemoQuery, type: ['weekly-demo'] })) ?? [];
 
       if (postData.length === 0) {
         return [];

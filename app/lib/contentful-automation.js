@@ -1,4 +1,4 @@
-import { PER_API_LIMIT_FOR_AUTOMATION } from '../constants/constant';
+import { CONTENTFUL_API_TAG, PER_API_LIMIT_FOR_AUTOMATION } from '../constants/constant';
 import { fetchGraphQL } from './contentful';
 import { POST_GRAPHQL_FAQ_COLLECTION_FIELDS } from './contentful-faq';
 import { POST_GRAPHQL_PARTNER_APPS_DETAILS_FIELDS } from './contentful-partnerApps';
@@ -186,7 +186,8 @@ export async function getPageAutomationDetail(id, preview) {
                ${POST_GRAPHQL_PAGE_AUTOMATION_DETAILS_FIELDS_SECTION_2}
       }
     }`,
-    preview
+    preview,
+    [CONTENTFUL_API_TAG.AUTOMATION]
   );
   return { ...entries1?.data?.pageFeature2, ...entries2?.data?.pageFeature2 };
 }
@@ -200,7 +201,8 @@ export async function getAllAutomationCategories(preview) {
         }
       }
     }`,
-    preview
+    preview,
+    [CONTENTFUL_API_TAG.AUTOMATION]
   );
   return entries?.data?.automationCategoriesCollection?.items;
 }
@@ -213,7 +215,8 @@ export async function getAllAutomations(skip, preview) {
         }
       }
     }`,
-    preview
+    preview,
+    [CONTENTFUL_API_TAG.AUTOMATION]
   );
   return extractPostEntries(entries);
 }
@@ -227,7 +230,8 @@ export async function getAutomationDetail(slug, preview) {
         }
       }
     }`,
-    preview
+    preview,
+    [CONTENTFUL_API_TAG.AUTOMATION]
   );
   return extractPostEntry(entries);
 }
@@ -241,7 +245,8 @@ export async function getAllAutomationsWithSlug(preview) {
         }
       }
     }`,
-    preview
+    preview,
+    [CONTENTFUL_API_TAG.AUTOMATION]
   );
   return extractPostEntries(entries);
 }

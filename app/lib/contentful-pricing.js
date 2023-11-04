@@ -1,3 +1,4 @@
+import { CONTENTFUL_API_TAG } from '../constants/constant';
 import { fetchGraphQL } from './contentful';
 import { POST_GRAPHQL_FAQ_COLLECTION_FIELDS } from './contentful-faq';
 import { POST_GRAPHQL_SEOMETADATA_FIELDS } from './contentful-seo';
@@ -62,7 +63,9 @@ export async function getPricingPageDetail({ id }) {
         ${POST_GRAPHQL_PRICING_DETAILS_FIELDS}
         }
       }      
-    `
+    `,
+    false,
+    [CONTENTFUL_API_TAG.PRICING]
   );
   return extractData(entries);
 }

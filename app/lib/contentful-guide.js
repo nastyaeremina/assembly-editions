@@ -1,4 +1,4 @@
-import { PER_API_LIMIT_FOR_GUIDE_SECTION } from '../constants/constant';
+import { CONTENTFUL_API_TAG, PER_API_LIMIT_FOR_GUIDE_SECTION } from '../constants/constant';
 import { fetchGraphQL } from './contentful';
 import { POST_GRAPHQL_SEOMETADATA_FIELDS } from './contentful-seo';
 
@@ -49,7 +49,7 @@ export async function getGuidePageContent({ id }) {
     }         
     `,
     false,
-    ['guide']
+    [CONTENTFUL_API_TAG.GUIDE]
   );
   return entries?.data?.pageDocs;
 }
@@ -75,7 +75,9 @@ export async function getAllGuideSectionContent(idList, preview) {
              }
           }
       }         
-      `
+      `,
+    false,
+    [CONTENTFUL_API_TAG.GUIDE]
   );
   return entries?.data?.guideSectionsCollection?.items;
 }
@@ -94,7 +96,9 @@ export async function getArticleData(slug, preview) {
              }
           }
       }         
-      `
+      `,
+    false,
+    [CONTENTFUL_API_TAG.GUIDE]
   );
   return entries?.data?.guideArticleCollection?.items?.[0];
 }
@@ -108,7 +112,9 @@ export async function getAllGuideArticleSlug(preview) {
              }
           }
       }         
-      `
+      `,
+    false,
+    [CONTENTFUL_API_TAG.GUIDE]
   );
   return entries?.data?.guideArticleCollection?.items;
 }

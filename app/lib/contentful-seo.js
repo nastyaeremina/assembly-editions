@@ -1,3 +1,4 @@
+import { CONTENTFUL_API_TAG } from '../constants/constant';
 import { fetchGraphQL } from './contentful';
 
 export const POST_GRAPHQL_SEOMETADATA_FIELDS = `
@@ -21,7 +22,9 @@ export async function getSEOdata(id) {
         ${POST_GRAPHQL_SEOMETADATA_FIELDS}
       }
     }
-    `
+    `,
+    false,
+    [CONTENTFUL_API_TAG.SEO]
   );
   return extractData(entries);
 }

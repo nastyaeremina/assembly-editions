@@ -312,6 +312,28 @@ export const BOOK_DEMO_CONTENT_TYPE = {
   FIND_US: 'FindUs'
 };
 
+export const CONTENTFUL_API_TAG = {
+  APP: 'app',
+  AUTOMATION: 'automation',
+  CASESTUDY: 'casestudy',
+  COMMON_CONTENT: 'common-content',
+  COMPARISON: 'comparison',
+  FAQ: 'faq',
+  FEATURES: 'features',
+  GLOSSARY: 'glossary',
+  GUIDE: 'guide',
+  HOME: 'home',
+  JOB: 'job',
+  PARTNERSHIP: 'partnership',
+  PRICING: 'pricing',
+  SEO: 'seo',
+  SITEMAP: 'sitemap',
+  SOLUTION: 'solution',
+  UNIVERSITY: 'university',
+  WEEKLY_DEMO: 'weekly-demo',
+  OTHER: 'other'
+};
+
 export const GUIDE_LINK_INFO = {
   link: '/guide',
   text: 'Copilot Guide'

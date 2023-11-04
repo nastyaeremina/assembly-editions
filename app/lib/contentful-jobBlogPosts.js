@@ -1,3 +1,4 @@
+import { CONTENTFUL_API_TAG } from '../constants/constant';
 import { fetchGraphQL } from './contentful';
 import { POST_GRAPHQL_FAQ_COLLECTION_FIELDS } from './contentful-faq';
 import { POST_GRAPHQL_INTERNAL_FEATURES_COLLECTION_FIELDS } from './contentful-features';
@@ -38,7 +39,8 @@ export async function getAllJobBlogPosts(preview) {
         }
       }
     }`,
-    preview
+    preview,
+    [CONTENTFUL_API_TAG.JOB]
   );
 
   return extractPostEntries(entries);
@@ -53,7 +55,8 @@ export async function getJobDetail(id, preview) {
 
       }
     }`,
-    preview
+    preview,
+    [CONTENTFUL_API_TAG.JOB]
   );
   return entries?.data?.pageJob;
 }

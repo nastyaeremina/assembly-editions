@@ -1,3 +1,4 @@
+import { CONTENTFUL_API_TAG } from '../constants/constant';
 import { fetchGraphQL } from './contentful';
 import { POST_GRAPHQL_FAQ_COLLECTION_FIELDS } from './contentful-faq';
 
@@ -167,7 +168,8 @@ export async function getAllCompetitorComparisonDetail(preview) {
         }
       }
     }`,
-    preview
+    preview,
+    [CONTENTFUL_API_TAG.COMPARISON]
   );
   return extractPostEntries(entry);
 }
@@ -181,7 +183,8 @@ export async function getMasterComparisonDetail(preview) {
         }
       }
     }`,
-    preview
+    preview,
+    [CONTENTFUL_API_TAG.COMPARISON]
   );
   return entry?.data?.masterComparisonCollection?.items?.[0];
 }

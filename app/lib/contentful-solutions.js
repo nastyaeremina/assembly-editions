@@ -1,3 +1,4 @@
+import { CONTENTFUL_API_TAG } from '../constants/constant';
 import { fetchGraphQL } from './contentful';
 
 const POST_GRAPHQL_SOLUTION_DETAILS_FIELDS = `
@@ -123,7 +124,8 @@ export async function getAllNavbarSolution(preview) {
         }
       }
     }`,
-    preview
+    preview,
+    [CONTENTFUL_API_TAG.SOLUTION]
   );
   return entries?.data?.solutionCollection?.items;
 }

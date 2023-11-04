@@ -1,3 +1,4 @@
+import { CONTENTFUL_API_TAG } from '../constants/constant';
 import { fetchGraphQL } from './contentful';
 import { POST_GRAPHQL_FAQ_COLLECTION_FIELDS } from './contentful-faq';
 
@@ -51,7 +52,9 @@ export async function getPartnershipDetail({ id }) {
                 ${POST_GRAPHQL_FAQ_COLLECTION_FIELDS}
         }
       }      
-    `
+    `,
+    false,
+    [CONTENTFUL_API_TAG.PARTNERSHIP]
   );
   return extractData(entries);
 }

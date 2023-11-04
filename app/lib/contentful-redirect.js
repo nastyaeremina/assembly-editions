@@ -1,3 +1,4 @@
+import { CONTENTFUL_API_TAG } from '../constants/constant';
 import { fetchGraphQL } from './contentful';
 
 const POST_GRAPHQL_REDIRECT_DETAILS_FIELDS = `
@@ -19,7 +20,8 @@ export async function getRedirectPosts(preview) {
         }
       }
     }`,
-    preview
+    preview,
+    [CONTENTFUL_API_TAG.OTHER]
   );
 
   return extractPostEntries(entries);

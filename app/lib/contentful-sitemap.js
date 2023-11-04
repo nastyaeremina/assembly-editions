@@ -1,18 +1,20 @@
-import { fetchGraphQL } from "./contentful";
-
+import { CONTENTFUL_API_TAG } from '../constants/constant';
+import { fetchGraphQL } from './contentful';
 
 function extractData(fetchResponse) {
-    return fetchResponse?.data?.commonContent;
+  return fetchResponse?.data?.commonContent;
 }
 
 export async function getSitemap(id) {
-    const entries = await fetchGraphQL(
-        `query {
+  const entries = await fetchGraphQL(
+    `query {
             commonContent(id: "${id}" ) {
                 content
         }
       }      
-    `
-    );
-    return extractData(entries);
+    `,
+    false,
+    [CONTENTFUL_API_TAG.COMMON_CONTENT]
+  );
+  return extractData(entries);
 }

@@ -1,3 +1,4 @@
+import { CONTENTFUL_API_TAG } from '../constants/constant';
 import { fetchGraphQL } from './contentful';
 
 const POST_GRAPHQL_TESTIMONIAL_DETAILS_FIELDS = `
@@ -61,7 +62,8 @@ export async function getAllFeaturedCaseStudies(preview) {
           }
         }
       }`,
-    preview
+    preview,
+    [CONTENTFUL_API_TAG.CASESTUDY]
   );
   return entries?.data?.caseStudiesCollection?.items;
 }

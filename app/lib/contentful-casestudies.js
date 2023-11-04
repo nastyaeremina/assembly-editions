@@ -1,3 +1,4 @@
+import { CONTENTFUL_API_TAG } from '../constants/constant';
 import { fetchGraphQL } from './contentful';
 
 const POST_GRAPHQL_CASESTUDY_DETAILS_FIELDS = `
@@ -78,7 +79,8 @@ export async function getCaseStudyDetail({ slug, preview }) {
         
       }
     }`,
-    preview
+    preview,
+    [CONTENTFUL_API_TAG.CASESTUDY]
   );
 
   return extractPostEntry(entries);
@@ -92,7 +94,8 @@ export async function getCaseStudyWithSlug(preview) {
           }        
       }
     }`,
-    preview
+    preview,
+    [CONTENTFUL_API_TAG.CASESTUDY]
   );
 
   return extractPostEntries(entries);

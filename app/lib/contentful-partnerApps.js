@@ -1,3 +1,4 @@
+import { CONTENTFUL_API_TAG } from '../constants/constant';
 import { fetchGraphQL } from './contentful';
 import { POST_GRAPHQL_FAQ_COLLECTION_FIELDS } from './contentful-faq';
 
@@ -174,7 +175,8 @@ export async function getPageAppDetail(id, preview) {
                ${POST_GRAPHQL_PAGE_APPS_DETAILS_FIELDS_SECTION_1}
               }
             }`,
-    preview
+    preview,
+    [CONTENTFUL_API_TAG.APP]
   );
   const entries2 = await fetchGraphQL(
     `query {
@@ -182,7 +184,8 @@ export async function getPageAppDetail(id, preview) {
         ${POST_GRAPHQL_PAGE_APPS_DETAILS_FIELDS_SECTION_2}
       }
     }`,
-    preview
+    preview,
+    [CONTENTFUL_API_TAG.APP]
   );
   return { ...entries1?.data?.pageApps, ...entries2?.data?.pageApps };
 }
@@ -196,7 +199,8 @@ export async function getAllPartnerApps(apptype, preview) {
         }
       }
     }`,
-    preview
+    preview,
+    [CONTENTFUL_API_TAG.APP]
   );
   return extractPostEntries(entries);
 }
@@ -210,7 +214,8 @@ export async function getAllPartnerAppsWithSlug(preview) {
         }
       }
     }`,
-    preview
+    preview,
+    [CONTENTFUL_API_TAG.APP]
   );
   return extractPostEntries(entries);
 }
@@ -224,7 +229,8 @@ export async function getPartnerAppDetail(slug, preview) {
         }
       }
     }`,
-    preview
+    preview,
+    [CONTENTFUL_API_TAG.APP]
   );
   return extractPostEntry(entries);
 }
@@ -239,7 +245,8 @@ export async function getAllAppsWithIcon(preview) {
         }
       }
     }`,
-    preview
+    preview,
+    [CONTENTFUL_API_TAG.APP]
   );
   return extractPostEntries(entries);
 }

@@ -1,3 +1,4 @@
+import { CONTENTFUL_API_TAG } from '../constants/constant';
 import { fetchGraphQL } from './contentful';
 
 function extractData(fetchResponse) {
@@ -69,7 +70,9 @@ export async function getHomeContent(id) {
         }
       }
     }         
-    `
+    `,
+    false,
+    [CONTENTFUL_API_TAG.HOME]
   );
   return extractData(entries);
 }

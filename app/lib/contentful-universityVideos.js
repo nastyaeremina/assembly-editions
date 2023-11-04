@@ -1,3 +1,4 @@
+import { CONTENTFUL_API_TAG } from '../constants/constant';
 import { fetchGraphQL } from './contentful';
 
 const POST_GRAPHQL_UNIVERSITY_VIDEOS_DETAILS_FIELDS = `
@@ -36,7 +37,8 @@ export async function getAllUniversityVideos(skip, preview) {
         }
       }
     }`,
-    preview
+    preview,
+    [CONTENTFUL_API_TAG.UNIVERSITY]
   );
   return extractPostEntries(entries);
 }
@@ -50,7 +52,8 @@ export async function getUniversityVideoDetail(slug, preview) {
         }
       }
     }`,
-    preview
+    preview,
+    [CONTENTFUL_API_TAG.UNIVERSITY]
   );
   return extractPostEntry(entries);
 }
@@ -64,7 +67,8 @@ export async function getAllUniversityVideoWithSlug(preview) {
         }
       }
     }`,
-    preview
+    preview,
+    [CONTENTFUL_API_TAG.UNIVERSITY]
   );
   return extractPostEntries(entries);
 }

@@ -1,3 +1,4 @@
+import { CONTENTFUL_API_TAG } from '../constants/constant';
 import { fetchGraphQL } from './contentful';
 
 export const POST_GRAPHQL_INTERNAL_FEATURES_COLLECTION_FIELDS = `
@@ -66,7 +67,8 @@ export async function getTabPostsWithSlug(preview) {
         }
       }
     }`,
-    preview
+    preview,
+    [CONTENTFUL_API_TAG.FEATURES]
   );
 
   return extractPostEntries(entries);
@@ -79,7 +81,8 @@ export async function getFeatureById(id, preview) {
                ${POST_GRAPHQL_FEATURES_DETAILS_FIELDS}
       }
     }`,
-    preview
+    preview,
+    [CONTENTFUL_API_TAG.FEATURES]
   );
   return entries?.data?.feature;
 }

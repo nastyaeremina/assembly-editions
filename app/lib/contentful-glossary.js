@@ -1,3 +1,4 @@
+import { CONTENTFUL_API_TAG } from '../constants/constant';
 import { fetchGraphQL } from './contentful';
 import { POST_GRAPHQL_SEOMETADATA_FIELDS } from './contentful-seo';
 
@@ -52,7 +53,8 @@ export async function getGlossaryDetails(slug, preview) {
         }
       }
     }`,
-    preview
+    preview,
+    [CONTENTFUL_API_TAG.GLOSSARY]
   );
   return entries?.data.glossaryDefinitionsCollection?.items[0];
 }

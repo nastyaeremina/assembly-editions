@@ -1,3 +1,4 @@
+import { CONTENTFUL_API_TAG } from '../constants/constant';
 import { fetchGraphQL } from './contentful';
 import { POST_GRAPHQL_SEOMETADATA_FIELDS } from './contentful-seo';
 
@@ -37,7 +38,9 @@ export async function getWeeklyDemoContent(id) {
       }
      }
            
-      `
+      `,
+    false,
+    [CONTENTFUL_API_TAG.WEEKLY_DEMO]
   );
   return extractData(entries);
 }
@@ -57,7 +60,9 @@ export async function getProductDemoContent(id) {
         }
       } 
     }   
-      `
+      `,
+    false,
+    [CONTENTFUL_API_TAG.WEEKLY_DEMO]
   );
   return entries?.data?.pageProductDemo;
 }

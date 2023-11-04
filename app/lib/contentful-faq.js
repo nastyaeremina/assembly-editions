@@ -1,4 +1,4 @@
-import { PER_API_LIMIT_FOR_FAQ_SECTION } from '../constants/constant';
+import { CONTENTFUL_API_TAG, PER_API_LIMIT_FOR_FAQ_SECTION } from '../constants/constant';
 import { fetchGraphQL } from './contentful';
 
 function extractData(fetchResponse) {
