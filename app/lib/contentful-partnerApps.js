@@ -193,16 +193,19 @@ export async function getPageAppDetail(id, preview) {
 export async function getAllPartnerApps(apptype, preview) {
   const entries = await fetchGraphQL(
     `query {
-      partnerAppsCollection(where:{appsType:"${apptype}"},preview: ${preview ? 'true' : 'false'}) {
+      partnerAppsCollection(where:{appsType:"${apptype}" },preview: ${preview ? 'true' : 'false'}) {
         items {
           ${POST_GRAPHQL_PARTNER_APPS_DETAILS_FIELDS}
+          isHidden
         }
       }
     }`,
     preview,
     [CONTENTFUL_API_TAG.APP]
   );
-  return extractPostEntries(entries);
+  const data = extractPostEntries(entries);
+  // Filter out items where isHidden is true (keep only items where isHidden is false or undefined)
+  return data?.filter((item) => item?.isHidden !== true) || [];
 }
 
 export async function getAllPartnerAppsWithSlug(preview) {
