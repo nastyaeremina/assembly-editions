@@ -18,8 +18,6 @@ import {
   HelpSection,
   HelpMain,
   HelpLeft,
-  HelpLeftSub,
-  HelpLink,
   HelpWrap,
   HelpMargin,
   BtnView,
@@ -33,14 +31,12 @@ import {
 import { Container } from '../../../styles/commonStyles';
 import BusinessSlider from '../../../components/businessSlider/businessslider';
 import ExtensionSlider from '../../../components/extensionslider/extensionslider';
-
 import TabView from '../../../components/tab/tab';
 import Button from '../../../components/button/button';
-
-import { COPILOT_JOIN_COMMUNITY_LINK } from '../../../constants/externalLinks';
 import HomeHeroSection from '../../../components/Home/herosection/hybrid';
-import { separateSpecialChar } from '../../../helpers/helpers';
-import { GUIDE_LINK_INFO } from '../../../constants/constant';
+import { isEmpty } from '../../../helpers/helpers';
+import SupportItem from '../supportSection/support';
+import HeadingText from '../../header/headingText';
 
 export default function HomePage({ content }) {
   return (
@@ -57,9 +53,8 @@ export default function HomePage({ content }) {
         <BusinessSection>
           <Container>
             <BusinessText>
-              <h2>
-                <div dangerouslySetInnerHTML={{ __html: separateSpecialChar(content?.heading1) }} />
-              </h2>
+              <HeadingText title={content?.heading1} />
+
               <ReactMarkdown>{content?.body1}</ReactMarkdown>
             </BusinessText>
           </Container>
@@ -68,9 +63,8 @@ export default function HomePage({ content }) {
         <Functionality>
           <Container>
             <TopFunctionWrap>
-              <h2 className='titlewrap'>
-                <div dangerouslySetInnerHTML={{ __html: separateSpecialChar(content?.heading2) }} />
-              </h2>
+              <HeadingText title={content?.heading2} />
+
               <ReactMarkdown>{content?.body2}</ReactMarkdown>
             </TopFunctionWrap>
             <BottomFunction>
@@ -81,9 +75,7 @@ export default function HomePage({ content }) {
         <Extension>
           <Container>
             <BusinessText>
-              <h2>
-                <div dangerouslySetInnerHTML={{ __html: separateSpecialChar(content?.heading3) }} />
-              </h2>
+              <HeadingText title={content?.heading3} />
               <div className='app-dec'>
                 <ReactMarkdown>{content?.body3}</ReactMarkdown>
               </div>
@@ -104,9 +96,7 @@ export default function HomePage({ content }) {
         <AutomateSection>
           <Container>
             <AutomateText>
-              <h2>
-                <div dangerouslySetInnerHTML={{ __html: separateSpecialChar(content?.heading4) }} />
-              </h2>
+              <HeadingText title={content?.heading4} />
               <ReactMarkdown>{content?.body4}</ReactMarkdown>
               <Button
                 bgColor={'transparent'}
@@ -207,161 +197,28 @@ export default function HomePage({ content }) {
           <Container>
             <HelpMain>
               <HelpLeft>
-                <h2>
-                  The support you need<span>,</span> when you need it<span>.</span>
-                </h2>
-                <HelpWrap>
-                  <HelpLeftSub>
-                    <h3>Our Community</h3>
-                    <p>Meet our team and a community of businesses that run on Copilot. Requires a Slack account.</p>
-                    <HelpLink className='icon-link'>
-                      <a href={COPILOT_JOIN_COMMUNITY_LINK} className='learn-link mb0'>
-                        Join community
-                        <svg width='16' height='12' viewBox='0 0 16 12' fill='none' class='HoverArrow'>
-                          <path
-                            d='M5.7998 1.37109L10.4283 5.99958L5.7998 10.6281'
-                            stroke-width='1.92854'
-                            stroke-linecap='round'
-                            stroke-linejoin='round'
-                            class='HoverArrow__tipPath'
-                          />
-                          <path
-                            d='M10.33 5.99951H1.5'
-                            stroke-width='2'
-                            stroke-linecap='round'
-                            stroke-linejoin='round'
-                            class='HoverArrow__linePath'
-                          />
-                        </svg>
-                        <svg width='8' height='14' viewBox='0 0 8 14' fill='none' class='mobilearrow'>
-                          <path
-                            d='M2 3L6 7L2 11'
-                            stroke='#09AA6C'
-                            stroke-width='1.85714'
-                            stroke-linecap='round'
-                            stroke-linejoin='round'
-                          />
-                        </svg>
-                      </a>
-                    </HelpLink>
-                  </HelpLeftSub>
-                  <HelpLeftSub>
-                    <h3>Weekly Live Demo</h3>
-                    <p>
-                      Join our team as we take you on a tour of the Copilot platform in a 20-minute demo followed by a
-                      live Q&A.
-                    </p>
-                    <HelpLink className='icon-link'>
-                      <a href='https://copilot.com/weekly-demo' className='learn-link mb0'>
-                        Register
-                        <svg width='16' height='12' viewBox='0 0 16 12' fill='none' class='HoverArrow'>
-                          <path
-                            d='M5.7998 1.37109L10.4283 5.99958L5.7998 10.6281'
-                            stroke-width='1.92854'
-                            stroke-linecap='round'
-                            stroke-linejoin='round'
-                            class='HoverArrow__tipPath'
-                          />
-                          <path
-                            d='M10.33 5.99951H1.5'
-                            stroke-width='2'
-                            stroke-linecap='round'
-                            stroke-linejoin='round'
-                            class='HoverArrow__linePath'
-                          />
-                        </svg>
-                        <svg width='8' height='14' viewBox='0 0 8 14' fill='none' class='mobilearrow'>
-                          <path
-                            d='M2 3L6 7L2 11'
-                            stroke='#09AA6C'
-                            stroke-width='1.85714'
-                            stroke-linecap='round'
-                            stroke-linejoin='round'
-                          />
-                        </svg>
-                      </a>
-                    </HelpLink>
-                  </HelpLeftSub>
-                </HelpWrap>
-                <HelpMargin>
-                  <HelpWrap>
-                    <HelpLeftSub>
-                      <h3>Copilot University</h3>
-                      <p>
-                        Watch video tutorials that cover getting set up, configuring your portal, best practices, and
-                        more.
-                      </p>
-                      <HelpLink className='icon-link'>
-                        <a href='https://copilot.com/university' className='learn-link mb0'>
-                          Watch videos
-                          <svg width='16' height='12' viewBox='0 0 16 12' fill='none' class='HoverArrow'>
-                            <path
-                              d='M5.7998 1.37109L10.4283 5.99958L5.7998 10.6281'
-                              stroke-width='1.92854'
-                              stroke-linecap='round'
-                              stroke-linejoin='round'
-                              class='HoverArrow__tipPath'
-                            />
-                            <path
-                              d='M10.33 5.99951H1.5'
-                              stroke-width='2'
-                              stroke-linecap='round'
-                              stroke-linejoin='round'
-                              class='HoverArrow__linePath'
-                            />
-                          </svg>
-                          <svg width='8' height='14' viewBox='0 0 8 14' fill='none' class='mobilearrow'>
-                            <path
-                              d='M2 3L6 7L2 11'
-                              stroke='#09AA6C'
-                              stroke-width='1.85714'
-                              stroke-linecap='round'
-                              stroke-linejoin='round'
-                            />
-                          </svg>
-                        </a>
-                      </HelpLink>
-                    </HelpLeftSub>
-                    <HelpLeftSub>
-                      <h3>{GUIDE_LINK_INFO.text}</h3>
-                      <p>Read our comprehensive guide about how to get started and implement best practices.</p>
-                      <HelpLink className='icon-link'>
-                        <a href={GUIDE_LINK_INFO.link} className='learn-link mb0'>
-                          Read guide{' '}
-                          <svg width='16' height='12' viewBox='0 0 16 12' fill='none' class='HoverArrow'>
-                            <path
-                              d='M5.7998 1.37109L10.4283 5.99958L5.7998 10.6281'
-                              stroke-width='1.92854'
-                              stroke-linecap='round'
-                              stroke-linejoin='round'
-                              class='HoverArrow__tipPath'
-                            />
-                            <path
-                              d='M10.33 5.99951H1.5'
-                              stroke-width='2'
-                              stroke-linecap='round'
-                              stroke-linejoin='round'
-                              class='HoverArrow__linePath'
-                            />
-                          </svg>
-                          <svg width='8' height='14' viewBox='0 0 8 14' fill='none' class='mobilearrow'>
-                            <path
-                              d='M2 3L6 7L2 11'
-                              stroke='#09AA6C'
-                              stroke-width='1.85714'
-                              stroke-linecap='round'
-                              stroke-linejoin='round'
-                            />
-                          </svg>
-                        </a>
-                      </HelpLink>
-                    </HelpLeftSub>
-                  </HelpWrap>
-                </HelpMargin>
+                <HeadingText title={content?.heading5} />
+                {!isEmpty(content?.supportSectionCollection?.items) &&
+                  content?.supportSectionCollection?.items?.length === 4 && (
+                    <>
+                      <HelpWrap>
+                        <SupportItem data={content?.supportSectionCollection?.items?.[0]} />
+                        <SupportItem data={content?.supportSectionCollection?.items?.[1]} />
+                      </HelpWrap>
+                      <HelpMargin>
+                        <HelpWrap>
+                          <SupportItem data={content?.supportSectionCollection?.items?.[2]} />
+                          <SupportItem data={content?.supportSectionCollection?.items?.[3]} />
+                        </HelpWrap>
+                      </HelpMargin>
+                    </>
+                  )}
               </HelpLeft>
-              <HelpImg>
-                <Image src='/images/helpimage.png' width={447} height={661} alt='right-arrow' />
-              </HelpImg>
+              {!isEmpty(content?.supportSectionImage?.url) && (
+                <HelpImg>
+                  <Image src={content?.supportSectionImage?.url} width={447} height={661} alt='right-arrow' />
+                </HelpImg>
+              )}
             </HelpMain>
           </Container>
         </HelpSection>

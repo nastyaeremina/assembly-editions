@@ -63,6 +63,18 @@ export async function getHomeContent(id) {
             }
           }
         }
+        heading5
+        supportSectionImage{
+          url
+        }
+         supportSectionCollection(limit:4){
+          items{
+            title
+            body
+            linkText
+            linkUrl
+          }
+        }
         seoMetadata {
           sys {
             id
