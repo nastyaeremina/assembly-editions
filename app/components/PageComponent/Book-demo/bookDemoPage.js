@@ -2,11 +2,11 @@
 import { BookSection, ImageSection, DemoContain, BottomName, BgOverlay } from '../../../styles/bookdemoStyles';
 import BookDemoForm from '../../bookdemo/bookDemo';
 
-export default function BookDemoPage({ productDemoSlug, data }) {
+export default function BookDemoPage({ productDemoSlug, data, thankYouMessage }) {
   return (
     <>
       <BookSection>
-        <BookDemoForm productDemoSlug={productDemoSlug} data={data} />
+        <BookDemoForm productDemoSlug={productDemoSlug} data={data} thankYouMessage={thankYouMessage} />
         <ImageSection>
           <BgOverlay></BgOverlay>
           <DemoContain>

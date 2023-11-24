@@ -485,9 +485,11 @@ const CardList = styled.div`
 const ImgLine = styled.div``;
 const TextWrap = styled.div`
   padding: 40px 80px;
-  h2 {
+  h1,
+  h2,
+  h3 {
     ${Heading3};
-    margin: 0 0 30px;
+    margin: 0 0 14px;
     color: ${black};
   }
   p {
@@ -496,6 +498,9 @@ const TextWrap = styled.div`
     margin: 16px auto 0;
     display: inline-block;
     color: ${title};
+    &:first-child {
+      margin: 0px auto;
+    }
   }
   a {
     display: initial;
@@ -505,7 +510,9 @@ const TextWrap = styled.div`
   }
   @media only screen and (max-width: 749px) {
     padding: 30px 40px;
-    h2 {
+    h1,
+    h2,
+    h3 {
       margin: 0 0 20px;
     }
     p {

@@ -4,12 +4,14 @@ import Image from 'next/image';
 import { useCallback, useEffect, useState } from 'react';
 import Script from 'next/script';
 import { useDispatch, useSelector } from 'react-redux';
+import { ReactMarkdown } from 'react-markdown/lib/react-markdown';
 import { checkValidation, sendEmail } from '../../services/bookDemoService';
 import { setformValidationError, updateBookDemoItem } from '../../actions/bookDemoActions';
 import { BOOK_DEMO_CONTENT_TYPE } from '../../constants/constant';
 import { COPILOT_ONBORADING_LINK } from '../../constants/externalLinks';
 import Button from '../button/button';
 import Validation from '../Validation/validation';
+import { isEmpty } from '../../helpers/helpers';
 import {
   MainSection,
   FormSection,
@@ -31,7 +33,7 @@ import {
   ValidationForm
 } from './styles';
 
-export default function BookDemoForm({ productDemoSlug, data }) {
+export default function BookDemoForm({ productDemoSlug, data, thankYouMessage }) {
   const bookDemoSelector = useSelector((state) => state.bookDemo);
   const { validationError, bookDemoData } = bookDemoSelector;
   const [isSubmit, setIsSubmit] = useState(false);
@@ -128,18 +130,12 @@ export default function BookDemoForm({ productDemoSlug, data }) {
                   <ImgLine>
                     <Image src='/images/upline.svg' alt='line-icon' width={200} height={25} />
                   </ImgLine>
-                  <TextWrap>
-                    <h2>Thank you!</h2>
-                    <ContactText>A member from the Copilot team will be in touch if there is a good fit. </ContactText>
-                    <p>
-                      Until then, consider{' '}
-                      <Link href={COPILOT_ONBORADING_LINK} target='_blank'>
-                        starting a free trial
-                      </Link>
-                      , <Link href={`/${productDemoSlug}`}>watching a product demo</Link> , or registering for{' '}
-                      <Link href={'/weekly-demo'}>weekly office hours</Link>.
-                    </p>
-                  </TextWrap>
+                  {!isEmpty(thankYouMessage) && (
+                    <TextWrap>
+                      {/* render markdown text */}
+                      <ReactMarkdown>{thankYouMessage}</ReactMarkdown>
+                    </TextWrap>
+                  )}
                   <ImgLine>
                     <Image src='/images/downline.svg' alt='line-icon' width={200} height={25} />
                   </ImgLine>
