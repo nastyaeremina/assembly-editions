@@ -1,10 +1,10 @@
-'use client'
+'use client';
 
 import Link from 'next/link';
 import Image from 'next/image';
 import { React } from 'react';
 import Vector from '../../../public/images/vector.svg';
-import { ButtonContainer } from './style';
+import { ButtonContainer, Buttons } from './style';
 
 function myFunction(e) {
   var rect = e.target.getBoundingClientRect();
@@ -27,7 +27,8 @@ export default function Button({
   type = 'button',
   imgUrl,
   isicon = false,
-  isCamelCase = true
+  isCamelCase = true,
+  isLoading
 }) {
   return (
     <ButtonContainer
@@ -36,11 +37,19 @@ export default function Button({
       hoverColor={hoverColor}
       borderColor={borderColor}
       fontColor={fontColor}
-      className={className}>
+      className={className}
+      isLoading={isLoading}>
       {type === 'submit' ? (
-        <button type={'submit'} onClick={onClick}>
+        <Buttons
+          type={'submit'}
+          onClick={onClick}
+          isLoading={isLoading}
+          fontColor={fontColor}
+          backgroundColor={bgColor}
+          hoverColor={hoverColor}
+          borderColor={borderColor}>
           {text}
-        </button>
+        </Buttons>
       ) : isLink ? (
         <Link onMouseMove={(e) => myFunction(e)} href={href} target={target}>
           {isicon && <Image src={imgUrl} alt={'icon'} width={20} height={20} className='icon' />}
