@@ -291,7 +291,7 @@ export const COOKIE_NAME = 'current-portal-session';
 
 export const PER_API_LIMIT_FOR_AUTOMATION = 10;
 export const PER_UPDATE_PAGE_POST = 10;
-export const PER_API_LIMIT_FOR_GUIDE_SECTION = 10;
+export const PER_API_LIMIT_FOR_GUIDE_SECTION = 5;
 export const PER_API_LIMIT_FOR_FAQ_SECTION = 20;
 export const INDUSTRY_ARRAY = [
   'accounting_and_bookkeeping',

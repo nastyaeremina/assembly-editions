@@ -106,15 +106,35 @@ const OptionName = styled.p`
 const OptionIcon = styled.div`
   transition: all 0.3s ease;
 `;
+const ULTag = styled.ul`
+  overflow: hidden;
+  max-height: 0;
+  opacity: 0;
+  -webkit-transition: all 0.5s ease-in-out 0s;
+  transition: all 0.5s ease-in-out 0s;
+  ${(props) =>
+    props.isOpenHeight &&
+    css`
+      max-height: 5000px;
+      opacity: 1;
+      z-index: 9999;
+    `};
+`;
 const NavItem = styled.li`
+  ${(props) =>
+    props.isSubItem &&
+    css`
+      padding-left: 28px !important;
+    `};
   display: flex;
   gap: 10px;
   padding-left: 12px;
   align-items: center;
+  justify-content: space-between;
   cursor: pointer;
   padding-top: 14px;
   :first-child {
-    padding-top: 0px;
+    padding-top: 12px;
     padding-bottom: 2px;
   }
   :hover {
@@ -137,10 +157,26 @@ const NavItem = styled.li`
         }
       }
     }
+    .close {
+      svg {
+        path {
+          stroke: #09aa6c;
+        }
+      }
+    }
   }
   .guidelink {
     display: flex;
     gap: 10px;
+  }
+  .close {
+    transform: rotate(90deg);
+    transition: all 0.3s ease;
+    svg {
+      path {
+        stroke: #00160e;
+      }
+    }
   }
   @media only screen and (max-width: 991px) {
     :hover {
@@ -157,11 +193,52 @@ const NavItem = styled.li`
           }
         }
       }
+      .close {
+        svg {
+          path {
+            stroke: #00160e;
+          }
+        }
+      }
     }
   }
   .guidelink {
     display: flex;
     gap: 10px;
+  }
+`;
+
+const NavSubItem = styled.li`
+  a {
+    ${MbBody5};
+    color: ${lightgray};
+    display: flex;
+    gap: 10px;
+    align-items: center;
+  }
+  padding-left: 28px;
+  padding-top: 10px;
+
+  ${(props) =>
+    props.isSelected &&
+    css`
+      color: ${greendark};
+    `};
+  :hover {
+    a {
+      color: ${primary};
+    }
+    .svgicon {
+      svg {
+        path {
+          stroke: #09aa6c;
+        }
+        ellipse {
+          fill: #09aa6c;
+        }
+      }
+    }
+    cursor: pointer;
   }
 `;
 const Icon = styled.div`
@@ -255,10 +332,72 @@ const NavBg = styled.div`
   z-index: -1;
 `;
 const GuideSectionItem = styled.div`
+  a {
+    color: #fff;
+  }
+
+  nav {
+    margin: 15px;
+    color: #000;
+    overflow: hidden;
+  }
+
+  #button {
+    width: 100px;
+    text-align: center;
+    border-radius: 20px;
+    margin-bottom: 10px;
+    padding: 5px;
+    color: #fff;
+    background: #000;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  ul {
+    /* margin: 0px 5px; */
+    &:first-child {
+      margin-top: 16px;
+    }
+    overflow: hidden;
+    text-align: center;
+    width: auto;
+    max-height: 0;
+    opacity: 0;
+    -webkit-transition: all 0.5s ease-in-out 0s;
+    transition: all 0.5s ease-in-out 0s;
+  }
+
+  #nav li {
+    margin: 5px 0;
+    border: solid 1px #999;
+    padding: 10px;
+    background: #7f7fff;
+  }
+
+  .open {
+    opacity: 1;
+    z-index: 9999;
+    ${(props) =>
+      css`
+        max-height: ${props.totalHeight}px;
+      `}
+  }
+
+  .arrow {
+    width: 13px;
+    transition: transform 0.3s ease;
+  }
+
+  .arrow.open {
+    transform: rotate(90deg);
+  }
+
   ${(props) =>
     css`
       .drop-down {
-        height: ${props.totalHeight}px;
+        max-height: ${props.totalHeight}px;
       }
     `}
   .drop-down {
@@ -272,6 +411,10 @@ const GuideSectionItem = styled.div`
   }
   :last-child {
     /* padding-bottom: 100px; */
+  }
+  .second-li {
+    padding-left: 14px;
+    padding-top: 10px;
   }
 `;
 const NavSection = styled.ul``;
@@ -442,5 +585,7 @@ export {
   AskDiv,
   NavSection,
   GuideSectionItem,
-  NavBg
+  NavBg,
+  NavSubItem,
+  ULTag
 };

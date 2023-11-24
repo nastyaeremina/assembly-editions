@@ -25,7 +25,17 @@ sys{
 }
 name
 iconCode
-
+childArticlesCollection(limit:15){
+  total
+  items{
+    slug
+    sys{
+        id
+    }
+    name
+    iconCode
+  }
+}
 `;
 export async function getGuidePageContent({ id }) {
   const entries = await fetchGraphQL(
@@ -54,7 +64,7 @@ export async function getGuidePageContent({ id }) {
   return entries?.data?.pageDocs;
 }
 
-export async function getAllGuideSectionContent(idList, preview) {
+export async function getAllGuideSectionContent({ idList, preview }) {
   const entries = await fetchGraphQL(
     `query {
         guideSectionsCollection(where:{sys:{${idList}}},limit:${PER_API_LIMIT_FOR_GUIDE_SECTION},preview: ${
@@ -65,7 +75,7 @@ export async function getAllGuideSectionContent(idList, preview) {
                 id
               }
               name
-                articlesCollection(where:{sys:{id_exists:true}}){
+              articlesCollection(where:{sys:{id_exists:true}}){
                   total
                     items{
 

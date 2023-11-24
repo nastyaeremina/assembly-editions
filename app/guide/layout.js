@@ -13,12 +13,12 @@ async function getContent() {
   const sectionIdList = sectionData?.map((item) => `"${item?.sys?.id}"`) || [];
   for (let i = 0; i < sectionIdList.length; i += PER_API_LIMIT_FOR_GUIDE_SECTION) {
     const batch = sectionIdList.slice(i, i + PER_API_LIMIT_FOR_GUIDE_SECTION);
-    data = (await getAllGuideSectionContent(`id_in: [${batch}]`)) || [];
+    data = (await getAllGuideSectionContent({ idList: `id_in: [${batch}]` })) || [];
     allPosts = allPosts.concat(data);
   }
 
   const orderedData = sectionIdList?.map((sectionId, index) => {
-    const matchedData = data?.find((dataItem) => dataItem.sys.id === sectionId.replace(/"/g, ''));
+    const matchedData = allPosts?.find((dataItem) => dataItem.sys.id === sectionId.replace(/"/g, ''));
     return matchedData;
   });
   const filterData = orderedData.filter((item) => !isEmpty(item));

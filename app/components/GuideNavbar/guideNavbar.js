@@ -15,7 +15,6 @@ import {
   IconText,
   Maindiv,
   MobileNavMenu,
-  NavBg,
   NavHead,
   NavItem,
   NavTitle,
@@ -24,16 +23,19 @@ import {
   OptionIcon,
   OptionName,
   SideNavbar,
-  SideNavbarHead
+  SideNavbarHead,
+  ULTag
 } from './styles';
-
 export default function GuideNavbar({ data }) {
   const guideSelector = useSelector((state) => state?.guide);
   let isScrollPage = false;
   const [clientWindowHeight, setClientWindowHeight] = useState('');
   const [isClick, setIsClick] = useState(false);
+  // State to manage the mobile menu's open/closed state
+  const [isOpenMobileMenu, setIsOpenMobileMenu] = useState(false);
+  const [isSecOpen, setIsSecOpen] = useState(false);
   const { guideSectionData } = guideSelector;
-  let selectedArticleId, section;
+  let selectedArticleId, section, parentArticleId;
   const slug = useSelectedLayoutSegment();
   const dispatch = useDispatch();
 
@@ -41,6 +43,29 @@ export default function GuideNavbar({ data }) {
     setClientWindowHeight(window.scrollY);
   };
 
+  useEffect(() => {
+    //get open dropdown and whole sidebar tag using id
+    const openButton = document.getElementById('OpenButton');
+    var nav = document.getElementById('nav');
+
+    const handleButtonClick = () => {
+      nav.classList.toggle('open');
+    };
+
+    if (openButton) {
+      //handle click event of guide article item
+      openButton.addEventListener('click', handleButtonClick);
+    }
+    return () => {
+      // Cleanup the event listener when the component unmounts
+      if (openButton) {
+        //remove handled event
+        openButton.removeEventListener('click', handleButtonClick);
+      }
+    };
+  }, []);
+
+  //check current section(id) is open or not
   const isSectionOpen = useCallback(
     (id) => {
       const findIndex = guideSectionData?.findIndex((item) => item?.id === id);
@@ -49,6 +74,8 @@ export default function GuideNavbar({ data }) {
     },
     [guideSectionData, isClick, section]
   );
+
+  // Function to toggle the section's open/close state
   const onOpenSection = useCallback(
     (id) => {
       const findIndex = guideSectionData?.findIndex((item) => item?.id === id);
@@ -64,6 +91,8 @@ export default function GuideNavbar({ data }) {
     [dispatch, guideSectionData, isClick, section]
   );
 
+  // Determine the initial section and parent article based on the slug
+  // so that we open perticluar section  dropdown
   if (isEmpty(slug)) {
     const articleId = data?.[0]?.articlesCollection?.items?.[0]?.slug;
     selectedArticleId = articleId;
@@ -71,30 +100,65 @@ export default function GuideNavbar({ data }) {
   } else {
     selectedArticleId = slug;
     data?.forEach((element) => {
-      const articledata = removeEmptyElement(element?.articlesCollection?.items)?.find((item) => item.slug === slug);
-      if (!isEmpty(articledata)) {
-        const sectionId = element?.sys?.id;
-        section = sectionId;
+      // Check if the slug is found in top-level articles
+      const parentArticleData = removeEmptyElement(element?.articlesCollection?.items)?.find(
+        (item) => item.slug === slug
+      );
+
+      if (parentArticleData) {
+        section = element?.sys?.id; // Capture the section ID
+        parentArticleId = parentArticleData.sys.id; // Capture the parent article's ID
         return;
+      }
+
+      // Check if the slug is found in child articles
+      const childArticleData = element?.articlesCollection?.items?.find((item) =>
+        item.childArticlesCollection?.items?.some((childItem) => childItem.slug === slug)
+      );
+
+      if (childArticleData) {
+        section = element?.sys?.id; // Capture the section ID
+        parentArticleId = childArticleData.sys.id; // Capture the parent article's ID
       }
     });
   }
 
+  // Attach scroll event listener
   useEffect(() => {
     const body = document.querySelector('body');
     body.style.overflow = 'auto';
     window.addEventListener('scroll', handleScroll);
     dispatch(addGuideSiderItem({ id: section }));
-  }, [dispatch, section]);
+    dispatch(addGuideSiderItem({ id: parentArticleId }));
+  }, [dispatch, parentArticleId, section]);
 
+  // Check if the page is scrolled
   if (clientWindowHeight > 10) {
     isScrollPage = true;
   } else {
     isScrollPage = false;
   }
 
-  const [isOpenMobileMenu, setIsOpenMobileMenu] = useState(false);
+  //calculate total article of perticluar section
+  const calculateTotalArticle = useCallback((data) => {
+    let total = data?.total ?? 0;
+    console.log();
+    data?.items?.forEach((element) => {
+      total += element?.childArticlesCollection?.total;
+    });
+    return total;
+  }, []);
 
+  //calculate total article of perticluar section
+  const calculateTotalSubArticle = useCallback((data) => {
+    let total = 0;
+    data?.items?.forEach((element) => {
+      total += 1;
+    });
+    return total;
+  }, []);
+
+  // Function to toggle the mobile menu
   const handleMobileMenu = useCallback(() => {
     const body = document.querySelector('body');
     if (isOpenMobileMenu) {
@@ -106,73 +170,107 @@ export default function GuideNavbar({ data }) {
     }
   }, [isOpenMobileMenu]);
 
+  // Function to render the article items
   const renderArticleItemView = useCallback(
-    (item, index) => {
-      return item?.articlesCollection?.items?.map((childItem, childIndex) => {
+    (item, index, isSub = false) => {
+      return item?.items?.map((childItem, childIndex) => {
         if (isEmpty(childItem?.name)) return null;
+        //check is current section open or not
+        let isOpen = isSectionOpen(childItem?.sys?.id);
+        let height = calculateTotalSubArticle(childItem?.childArticlesCollection) * 34;
         return (
-          <NavItem
-            key={`guidearticle_index${childItem?.sys?.id}`}
-            onClick={() => {
-              // router.push(`/guide/${childItem?.slug}`);
-              setIsOpenMobileMenu(false);
-            }}>
-            <Link href={`/guide/${childItem?.slug}`} className='guidelink' shallow={true}>
-              {!isEmpty(childItem?.iconCode) && (
-                <Icon className='svgicon' isSelected={selectedArticleId === childItem?.slug}>
-                  <div dangerouslySetInnerHTML={{ __html: childItem?.iconCode }} />
-                  {/* <Image src={childItem?.icon?.url} alt='item-icon' width={16} height={16} className='svglogo' /> */}
-                </Icon>
+          <>
+            <NavItem
+              key={`guidearticle_index${childItem?.sys?.id}`}
+              isSubItem={isSub}
+              onClick={() => {
+                onOpenSection(childItem?.sys?.id);
+                isOpen = isSectionOpen(childItem?.sys?.id);
+                setIsSecOpen(true);
+                setIsOpenMobileMenu(false);
+              }}>
+              <Link href={`/guide/${childItem?.slug}`} className='guidelink' shallow={true}>
+                {!isEmpty(childItem?.iconCode) && (
+                  <Icon className='svgicon' isSelected={selectedArticleId === childItem?.slug}>
+                    <div dangerouslySetInnerHTML={{ __html: childItem?.iconCode }} />
+                  </Icon>
+                )}
+                <IconText isSelected={selectedArticleId === childItem?.slug} className='secondhead'>
+                  {childItem?.name}
+                </IconText>
+              </Link>
+
+              {childItem?.childArticlesCollection?.total > 0 && (
+                <OptionIcon className={isOpen && 'close'}>
+                  <svg width='12' height='12' viewBox='0 0 12 12' fill='none' xmlns='http://www.w3.org/2000/svg'>
+                    <g id='Icon - home-outline'>
+                      <path
+                        id='Vector'
+                        d='M3.80078 1.37109L8.42927 5.99958L3.80078 10.6281'
+                        stroke='#757575'
+                        stroke-width='1.25'
+                        stroke-linecap='round'
+                        stroke-linejoin='round'
+                      />
+                    </g>
+                  </svg>
+                </OptionIcon>
               )}
-              <IconText isSelected={selectedArticleId === childItem?.slug} className='secondhead'>
-                {childItem?.name}
-              </IconText>
-            </Link>
-          </NavItem>
+            </NavItem>
+            <ul className={isOpen ? 'open' : ''} style={{ height: height }}>
+              {isOpen && <>{renderArticleItemView(childItem?.childArticlesCollection, index, true)}</>}
+            </ul>
+          </>
         );
       });
     },
-    [selectedArticleId]
+    [calculateTotalSubArticle, isSectionOpen, onOpenSection, selectedArticleId]
   );
 
   const navbarRenderView = useMemo(() => {
     if (isEmpty(data)) return null;
     return data.map((item, index) => {
       if (isEmpty(item?.name)) return null;
-      const hegith = item?.articlesCollection?.total * 34 + 18;
+      // calulate total height of section one section need 34px
+      const total = item?.articlesCollection?.total;
+      let hegith = total * 34;
+      item?.articlesCollection?.items?.forEach((x) => {
+        if (isSectionOpen(x?.sys?.id)) {
+          hegith = x?.childArticlesCollection?.total * 34 + hegith;
+        }
+      });
+
       let isOpen = isSectionOpen(item?.sys?.id);
       return (
         <>
           <GuideSectionItem totalHeight={hegith}>
-            <ul className={isOpen ? 'drop-down' : 'drop-down closed'}>
-              <li>
-                <NavHead
-                  onClick={() => {
-                    onOpenSection(item?.sys?.id);
-                    isOpen = isSectionOpen(item?.sys?.id);
-                  }}
-                  key={index}
-                  className='nav-button'>
-                  <OptionName isSelected={isOpen} className='head'>
-                    {item?.name}
-                  </OptionName>
-                  <OptionIcon className={isOpen && 'close'}>
-                    <svg width='12' height='12' viewBox='0 0 12 12' fill='none' xmlns='http://www.w3.org/2000/svg'>
-                      <g id='Icon - home-outline'>
-                        <path
-                          id='Vector'
-                          d='M3.80078 1.37109L8.42927 5.99958L3.80078 10.6281'
-                          stroke='#757575'
-                          stroke-width='1.25'
-                          stroke-linecap='round'
-                          stroke-linejoin='round'
-                        />
-                      </g>
-                    </svg>
-                  </OptionIcon>
-                </NavHead>
-              </li>
-              {isOpen && <>{renderArticleItemView(item, index)}</>}
+            <NavHead
+              onClick={() => {
+                onOpenSection(item?.sys?.id);
+                isOpen = isSectionOpen(item?.sys?.id);
+              }}
+              key={index}
+              className='nav-button'>
+              <OptionName isSelected={isOpen} className='head'>
+                {item?.name}
+              </OptionName>
+              <OptionIcon className={isOpen && 'close'}>
+                <svg width='12' height='12' viewBox='0 0 12 12' fill='none' xmlns='http://www.w3.org/2000/svg'>
+                  <g id='Icon - home-outline'>
+                    <path
+                      id='Vector'
+                      d='M3.80078 1.37109L8.42927 5.99958L3.80078 10.6281'
+                      stroke='#757575'
+                      stroke-width='1.25'
+                      stroke-linecap='round'
+                      stroke-linejoin='round'
+                    />
+                  </g>
+                </svg>
+              </OptionIcon>
+            </NavHead>
+            <ul className={isOpen ? 'open' : ''} style={{ height: hegith }}>
+              {isOpen && renderArticleItemView(item?.articlesCollection, index)}
             </ul>
           </GuideSectionItem>
         </>
@@ -190,10 +288,7 @@ export default function GuideNavbar({ data }) {
             </Link>
             <NavTitle>Guide</NavTitle>
           </SideNavbarHead>
-          <NavmenuSection>
-            {/* <NavBg /> */}
-            {navbarRenderView}
-          </NavmenuSection>
+          <NavmenuSection>{navbarRenderView}</NavmenuSection>
         </Maindiv>
       </SideNavbar>
       <GuideMobileNavbar className={isScrollPage ? 'scroll' : ''}>
