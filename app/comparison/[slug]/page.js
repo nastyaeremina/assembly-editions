@@ -4,6 +4,7 @@ import Navbar from '../../components/navbar/navbar';
 import { getComparisonDetail } from '../../lib/contentful-comparison';
 import { getSEOData, isEmpty } from '../../helpers/helpers';
 import ComparisonDetailPage from '../../components/PageComponent/Comparison/coparisonDetailPage';
+import { getFAQsData } from '../../services/faq';
 
 async function getContent({ slug }) {
   const details = (await getComparisonDetail(slug)) ?? [];
@@ -19,12 +20,13 @@ export async function generateMetadata({ params }) {
 export default async function Comparison({ params }) {
   const details = await getContent({ slug: params?.slug });
   if (isEmpty(details)) return notFound();
+  const faqData = await getFAQsData({ data: details?.faQsCollection?.items });
 
   return (
     <>
       <Layout>
         <Navbar />
-        <ComparisonDetailPage details={details} />
+        <ComparisonDetailPage details={details} faqList={faqData} />
       </Layout>
     </>
   );

@@ -4,6 +4,7 @@ import Layout from '../components/layout';
 import CTA from '../components/cta/cta';
 import { HEADER_LIST } from '../constants/constant';
 import FAQ from '../components/faq/faq';
+import { getFAQsData } from '../services/faq';
 import { getPageAutomationDetail } from './../lib/contentful-automation';
 import { getSEOData } from './../helpers/helpers';
 import { AUTOMATION_ID } from './../constants/constant';
@@ -20,12 +21,13 @@ export async function generateMetadata({ params, searchParams }, parent) {
 
 export default async function Automation() {
   const details = await getContent();
+  const faqData = await getFAQsData({ data: details?.faQsCollection?.items });
   return (
     <>
       <Layout>
         <Navbar isEnterPrice headerIndex={HEADER_LIST.ENTERPRICE} />
         <AutomationPage details={details} />
-        <FAQ faqData={details?.faQsCollection?.items} />
+        <FAQ faqList={faqData} />
         <CTA />
       </Layout>
     </>

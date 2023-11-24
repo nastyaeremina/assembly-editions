@@ -7,6 +7,7 @@ import { getSEOData } from '../helpers/helpers';
 import FAQ from '../components/faq/faq';
 import { getAllAppsWithIcon, getPageAppDetail } from '../lib/contentful-partnerApps';
 import AppPage from '../components/PageComponent/Apps/appPage';
+import { getFAQsData } from '../services/faq';
 
 async function getContent() {
   const details = (await getPageAppDetail(APP_PAGE_ID)) ?? [];
@@ -24,13 +25,14 @@ export async function generateMetadata() {
 }
 export default async function Automation() {
   const { details, appsList } = await getContent();
+  const faqData = await getFAQsData({ data: details?.faQsCollection?.items });
 
   return (
     <>
       <SEO seoData={details?.seoMetadata}></SEO>
       <Layout>
         <Navbar isEnterPrice headerIndex={HEADER_LIST.ENTERPRICE} />
-        <AppPage details={details} appsList={appsList} />
+        <AppPage details={details} appsList={appsList} faqList={faqData} />
       </Layout>
     </>
   );

@@ -56,7 +56,7 @@ const BorderProgress = styled(LinearProgress)(({ theme }) => ({
   }
 }));
 
-export default async function ComparisonDetailPage({ details }) {
+export default async function ComparisonDetailPage({ details, faqList }) {
   const g2ComparisonGroupView = useMemo(() => {
     if (isEmpty(details?.g2GroupCollection?.items)) return null;
     return details?.g2GroupCollection?.items?.map((item, index) => {
@@ -209,7 +209,7 @@ export default async function ComparisonDetailPage({ details }) {
           </ComparisonTable>
         </Container>
         {!isEmpty(details?.testimonial) && <Quote data={details?.testimonial} isComparison />}
-        <FAQ faqData={details?.faQsCollection?.items} />
+        <FAQ faqList={faqList} />
         <CTA />
       </MainWrap>
     </>

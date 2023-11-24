@@ -23,7 +23,7 @@ import { COPILOT_ONBORADING_LINK } from '../../../constants/externalLinks';
 import AppsHeroSlider from '../../../components/appsSlider/appsheroSlider';
 import { AppSliderSection } from '../../../styles/appsStyles';
 
-export default function AppPage({ details, appsList }) {
+export default function AppPage({ details, appsList, faqList }) {
   return (
     <>
       <AutomationHero>
@@ -132,7 +132,7 @@ export default function AppPage({ details, appsList }) {
       {!isEmpty(details?.sectionFeaturedContentCollection?.items) && (
         <AppsSlider data={removeEmptyElement(details?.sectionFeaturedContentCollection?.items)} isDetailSlider={true} />
       )}
-      <FAQ faqData={details?.faQsCollection?.items} />
+      {!isEmpty(faqList) && <FAQ faqList={faqList} />}
       <CTA />
     </>
   );

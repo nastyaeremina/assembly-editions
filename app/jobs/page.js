@@ -1,4 +1,5 @@
 import JobsPage from '../components/PageComponent/Jobs/jobsPage';
+import { getFAQsData } from '../services/faq';
 import FAQ from './../components/faq/faq';
 import Layout from './../components/layout';
 import Navbar from './../components/navbar/navbar';
@@ -7,7 +8,6 @@ import { getSEOData } from './../helpers/helpers';
 import { NO_OF_JOBS_PER_PAGE } from './../lib/constants';
 import { getAllJobBlogPosts, getJobDetail } from './../lib/contentful-jobBlogPosts';
 import { getAllJobImages, getAllJobs } from './../lib/contentful-jobsListing';
-import { getSEOdata } from './../lib/contentful-seo';
 
 async function getContent() {
   const details = (await getJobDetail(JOB_PAGE_ID)) ?? {};
@@ -54,12 +54,14 @@ export async function generateMetadata() {
 
 export default async function Jobs() {
   const { details, jobList, jobImagesList, jobBlogPostList } = await getContent();
+  const faqData = await getFAQsData({ data: details?.faQsCollection?.items });
+
   return (
     <>
       <Layout>
         <Navbar />
         <JobsPage jobList={jobList} jobImagesList={jobImagesList} jobBlogPostList={jobBlogPostList} details={details} />
-        <FAQ faqData={details?.faQsCollection?.items} />
+        <FAQ faqList={faqData} />
       </Layout>
     </>
   );

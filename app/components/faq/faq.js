@@ -8,64 +8,21 @@ import copy from 'copy-to-clipboard';
 import slugify from 'slugify';
 import { isEmpty } from '../../helpers/helpers';
 import { Container } from '../../styles/commonStyles';
-import { getFAQData } from '../../lib/contentful-faq';
-import { PER_API_LIMIT_FOR_FAQ_SECTION } from '../../constants/constant';
 import CopyIcon from '../../../public/images/copy-icon.svg';
-import { FaqSection, FaqTitle, DivFAQ, FAQAnsware } from './styles';
 import CopyLink from '../copyLink/copyLink';
+import { FaqSection, FaqTitle, DivFAQ, FAQAnsware } from './styles';
 
-export default function FAQ({ enterprise, faqData, isGuideFAQ, currentpath, faqList }) {
-  const [allPosts, setAppPosts] = useState([]);
+export default function FAQ({ enterprise, isGuideFAQ, currentpath, faqList: allPosts }) {
   //activeAccrodion use for open specific FAQ. In this we store FAQ element Id
   const [activeAccordion, setActiveAccordion] = useState();
 
-  const loadData = useCallback(async () => {
-    try {
-      let posts = [];
-
-      if (!isEmpty(faqList)) {
-        //Some cases we get all faqlist rather than only FAQ Id list.
-        //so we don't need to call fetch API for this
-        posts = faqList;
-      } else {
-        let allPosts = [];
-        const dataIdList = faqData?.map((item) => `"${item.sys.id}"`) || [];
-
-        const batchPromises = [];
-
-        for (let i = 0; i < dataIdList.length; i += PER_API_LIMIT_FOR_FAQ_SECTION) {
-          const batch = dataIdList.slice(i, i + PER_API_LIMIT_FOR_FAQ_SECTION);
-          batchPromises.push(Promise.all(batch.map((id) => getFAQData(`id_in: [${id}]`))));
-        }
-
-        const batchResults = await Promise.all(batchPromises);
-        batchResults.forEach((data) => {
-          allPosts = allPosts.concat(...data);
-        });
-        posts = dataIdList
-          ?.map((dataId) => {
-            const matchedData = allPosts?.find((dataItem) => {
-              return dataItem?.sys?.id === dataId.replace(/"/g, '');
-            });
-            return matchedData ? { ...matchedData } : null;
-          })
-          .filter((item) => item !== null);
-      }
-      setAppPosts(posts);
-    } catch (error) {
-      console.log('error', error);
-      return null;
-    }
-  }, [faqData, faqList]);
-
   useEffect(() => {
-    loadData();
     if (typeof window !== 'undefined' && !isEmpty(window?.location?.hash?.slice(1))) {
       // set FAQ id that open default
       // when user open link directly like https://copilot.com//guide/customization-and-setup#how-do-i-update-the-name-that-is-used-in-the-portal-and-for-email-notifications-to-clients
       setActiveAccordion(window?.location?.hash?.slice(1));
     }
-  }, [loadData]);
+  }, []);
 
   const onClickQuestion = useCallback(
     (faqId) => {
@@ -79,9 +36,8 @@ export default function FAQ({ enterprise, faqData, isGuideFAQ, currentpath, faqL
   );
 
   const faqView = useMemo(() => {
-    const faqDetailList = isEmpty(faqList) ? allPosts : faqList;
-    if (isEmpty(faqDetailList)) return null;
-    return faqDetailList?.map((item, index) => {
+    if (isEmpty(allPosts)) return null;
+    return allPosts.map((item, index) => {
       const faqId = slugify(item?.question, { lower: true }) || '';
       return (
         <>
@@ -131,13 +87,13 @@ export default function FAQ({ enterprise, faqData, isGuideFAQ, currentpath, faqL
         </>
       );
     });
-  }, [activeAccordion, allPosts, faqList, isGuideFAQ, onClickQuestion]);
+  }, [activeAccordion, allPosts, isGuideFAQ, onClickQuestion]);
 
   const [css] = useStyletron();
   return (
     <>
       <FaqSection enterprise={enterprise} isGuideFAQ={isGuideFAQ}>
-        {(!isEmpty(faqList) || !isEmpty(allPosts)) && (
+        {!isEmpty(allPosts) && (
           <Container>
             <FaqTitle isGuideFAQ={isGuideFAQ} id='faq'>
               <h2 className='faqtitle'>Frequently Asked Questions</h2>
@@ -154,7 +110,6 @@ export default function FAQ({ enterprise, faqData, isGuideFAQ, currentpath, faqL
                 />
               )}
             </FaqTitle>
-
             {faqView}
           </Container>
         )}
