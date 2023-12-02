@@ -52,10 +52,14 @@ export default function CustomerPage({ testimonialPosts, casestudiesPosts }) {
         </Container>
       </HeroSection>
       {!isEmpty(testimonialPosts) && <Banner speed={25000} data={testimonialPosts} />}
-      <Container>
-        <Heading>How Copilot helps businesses succeed</Heading>
-      </Container>
-      {!isEmpty(casestudiesPosts) && <LastSection>{casestudiesView}</LastSection>}
+      {!isEmpty(casestudiesPosts) && (
+        <>
+          <Container>
+            <Heading>How Copilot helps businesses succeed</Heading>
+          </Container>
+          <LastSection>{casestudiesView}</LastSection>
+        </>
+      )}
     </>
   );
 }
