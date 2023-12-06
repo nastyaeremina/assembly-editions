@@ -1,19 +1,20 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
 import Button from '../button/button';
-import { isEmpty } from '../../helpers/helpers';
-import { Caption, CardBtn, PriceMenu, PricePlan, PriceSection, Pricedetail, Pricenumber } from './styles';
+import { isEmpty, isNumber } from '../../helpers/helpers';
+import { Caption, CardBtn, PriceMenu, PricePlan, PriceSection, Pricedetail } from './styles';
+import PricingCardLabel from './pricingCardLabel';
 
-export default function PricingCard({ isSupersonic, data, isYearly }) {
+export default function PricingCard({ data, isYearly }) {
   return (
     <PriceMenu isSupersonic={data?.colorScheme === 'Dark'}>
       <PriceSection isSupersonic={data?.colorScheme === 'Dark'}>
         <h2>{data?.name}</h2>
         <p>{data?.description}</p>
-        <Pricenumber isSupersonic={data?.colorScheme === 'Dark'}>
-          ${isYearly ? data?.annualPrice : data?.monthlyPrice}
-          <span>/mo</span>
-        </Pricenumber>
+        <PricingCardLabel
+          isSupersonic={data?.colorScheme === 'Dark'}
+          price={isYearly ? data?.annualPrice : data?.monthlyPrice}
+        />
         <Caption isSupersonic={data?.colorScheme === 'Dark'}>{data?.details}</Caption>
       </PriceSection>
       <Pricedetail>

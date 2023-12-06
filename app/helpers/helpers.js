@@ -187,3 +187,12 @@ export function extractTagId(children) {
   const tagId = `${slugify(newNode?.toLowerCase())}`;
   return tagId;
 }
+
+/**
+ * Check if the given input string can be converted to a number.
+ * @param {string} inputString - The input string to be checked.
+ * @returns {boolean} - True if the input can be converted to a number, false otherwise.
+ */
+export function isNumber(inputString) {
+  return !isNaN(inputString);
+}
