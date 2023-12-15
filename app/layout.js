@@ -21,6 +21,13 @@ export default async function Layout({ children }) {
     <>
       <html>
         <head>
+          {/* preload all logos */}
+          <link rel='preload' href='../public/images/whitelogo.svg' as='image' />
+          <link rel='preload' href='../public/images/blacklogo.svg' as='image' />
+          <link rel='preload' href='../public/images/greenlogo.svg' as='image' />
+          <link rel='preload' href='../public/images/mobileblacklogo.svg' as='image' />
+          <link rel='preload' href='../public/images/whitemobilelogo.svg' as='image' />
+          <link rel='preload' href='../public/images/greenmblogo.svg' as='image' />
           <Favicon />
           {!isEmpty(newData?.header?.code) && process.env.NODE_ENV === 'production' && parse(newData?.header?.code)}
         </head>

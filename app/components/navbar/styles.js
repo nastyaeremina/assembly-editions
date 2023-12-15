@@ -2,6 +2,7 @@
 
 import styled, { css } from 'styled-components';
 import Link from 'next/link';
+import Image from 'next/image';
 import { HeaderFont, Body2, Body5, FooterText, MbButtonText, MbPrimaryBtn } from '../../styles/styles';
 import {
   lightBg,
@@ -81,7 +82,7 @@ const NavbarInner = styled.div`
     gap: unset;
   }
 `;
-const CopilotLogo = styled.img`
+const CopilotLogo = styled(Image)`
   cursor: pointer;
   @media only screen and (max-width: 991px) {
     width: 96px;

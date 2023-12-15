@@ -695,12 +695,12 @@ export default function NavbarComponent({
                   </BackWrap>
                 ) : (
                   <Link href='/' aria-label={'Navigate to Home'}>
-                    <CopilotLogo alt='copilot logo' loading='lazy' width='96' height='21' src={MobileWhiteLogos.src} />
+                    <CopilotLogo alt='copilot logo' loading='eager' width='96' height='21' src={MobileWhiteLogos.src} />
                   </Link>
                 )
               ) : (
                 <Link href='/' aria-label={'Navigate to Home'}>
-                  <CopilotLogo alt='copilot logo' loading='lazy' width='143' height='31' src={WhiteLogos.src} />
+                  <CopilotLogo alt='copilot logo' loading='eager' width='143' height='31' src={WhiteLogos.src} />
                 </Link>
               )
             ) : isEnterPrice ? (
@@ -714,12 +714,12 @@ export default function NavbarComponent({
                   </BackWrap>
                 ) : (
                   <Link href='/' aria-label={'Navigate to Home'}>
-                    <CopilotLogo alt='copilot logo' loading='lazy' width='96' height='21' src={MobileGreenLogos.src} />
+                    <CopilotLogo alt='copilot logo' loading='eager' width='96' height='21' src={MobileGreenLogos.src} />
                   </Link>
                 )
               ) : (
                 <Link href='/' aria-label={'Navigate to Home'}>
-                  <CopilotLogo alt='copilot logo' loading='lazy' width='143' height='31' src={GreenLogos.src} />
+                  <CopilotLogo alt='copilot logo' loading='eager' width='143' height='31' src={GreenLogos.src} />
                 </Link>
               )
             ) : mobile ? (
@@ -732,12 +732,12 @@ export default function NavbarComponent({
                 </BackWrap>
               ) : (
                 <Link href='/' aria-label={'Navigate to Home'}>
-                  <CopilotLogo alt='copilot logo' loading='lazy' width='96' height='21' src={MobileBlackLogos.src} />
+                  <CopilotLogo alt='copilot logo' loading='eager' width='96' height='21' src={MobileBlackLogos.src} />
                 </Link>
               )
             ) : (
               <Link href='/' aria-label={'Navigate to Home'}>
-                <CopilotLogo alt='copilot logo' loading='lazy' width='143' height='31' src={CopilotLogos.src} />{' '}
+                <CopilotLogo alt='copilot logo' loading='eager' width='143' height='31' src={CopilotLogos.src} />{' '}
               </Link>
             )}
 
