@@ -1,15 +1,8 @@
 'use client';
 import Image from 'next/image';
 import { useEffect, useMemo, useState } from 'react';
-import Slider from 'react-slick';
-import 'slick-carousel/slick/slick.css';
-import 'slick-carousel/slick/slick-theme.css';
-import Link from 'next/link';
-import featurelogo from '../../../public/images/featurelogo.svg';
 import { createArrayWithFixedLength, isEmpty } from '../../helpers/helpers';
-import { CardEnd, CardText, FeatureImg } from '../../styles/appsStyles';
-import AirLogo from '../../../public/images/adamprofile.png';
-import { Animated, AppSliderLine, AppsAnimated, SliderInner, SliderInnerBox, SliderLine } from './styles';
+import { AppSliderLine, AppsAnimated, SliderInnerBox } from './styles';
 
 const AppsHeroSlider = ({ data, isDetailSlider }) => {
   const [dataList, setDataList] = useState();

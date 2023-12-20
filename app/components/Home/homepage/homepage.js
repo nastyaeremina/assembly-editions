@@ -29,7 +29,7 @@ import {
   Line2
 } from '../../../styles/homepageStyles';
 import { Container } from '../../../styles/commonStyles';
-import BusinessSlider from '../../../components/businessSlider/businessslider';
+import Slider from '../../../components/businessSlider/homeSlider';
 import ExtensionSlider from '../../../components/extensionslider/extensionslider';
 import TabView from '../../../components/tab/tab';
 import Button from '../../../components/button/button';
@@ -58,7 +58,7 @@ export default function HomePage({ content }) {
               <ReactMarkdown>{content?.body1}</ReactMarkdown>
             </BusinessText>
           </Container>
-          <BusinessSlider data={content?.testimonialsCollection?.items} />
+          <Slider data={content?.testimonialsCollection?.items} />
         </BusinessSection>
         <Functionality>
           <Container>

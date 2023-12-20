@@ -14,7 +14,7 @@ import {
   textColor,
   title,
   primary,
-  whiteColor,
+  whiteColor
 } from './../styles/color';
 
 import {
@@ -347,7 +347,7 @@ const BusinessSection = styled.div`
   padding: 100px 0 50px;
   overflow: hidden;
   @media only screen and (max-width: 768px) {
-    padding: 80px 0 100px;
+    padding: 80px 0 80px;
   }
 `;
 const BusinessText = styled.div`
@@ -1507,6 +1507,13 @@ const ImageDiv = styled.div`
     }
   }
 `;
+
+const Responsive = styled.div`
+  display: none;
+  @media only screen and (max-width: 449px) {
+    display: block;
+  }
+`;
 export {
   HomeMain,
   Scfeaturetitle,
@@ -1580,5 +1587,6 @@ export {
   Line2,
   Line,
   ZoomImage,
-  ImageDiv
+  ImageDiv,
+  Responsive
 };

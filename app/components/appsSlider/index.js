@@ -1,13 +1,8 @@
 import Image from 'next/image';
 import { useEffect, useMemo } from 'react';
-import Slider from 'react-slick';
-import 'slick-carousel/slick/slick.css';
-import 'slick-carousel/slick/slick-theme.css';
-import Link from 'next/link';
-import featurelogo from '../../../public/images/featurelogo.svg';
 import { isEmpty } from '../../helpers/helpers';
 import { CardEnd, CardText, FeatureImg } from '../../styles/appsStyles';
-import { Animated, AppSliderCard, SliderInner, SliderLine } from './styles';
+import { Animated, SliderInner, SliderLine } from './styles';
 
 const AppsSlider = ({ data, isDetailSlider }) => {
   const featurecontentView = useMemo(() => {
