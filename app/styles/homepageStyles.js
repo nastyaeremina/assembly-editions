@@ -1514,6 +1514,13 @@ const Responsive = styled.div`
     display: block;
   }
 `;
+const Desktop = styled.div`
+  display: block;
+  margin-bottom: 50px;
+  @media only screen and (max-width: 449px) {
+    display: none;
+  }
+`;
 export {
   HomeMain,
   Scfeaturetitle,
@@ -1588,5 +1595,6 @@ export {
   Line,
   ZoomImage,
   ImageDiv,
-  Responsive
+  Responsive,
+  Desktop
 };

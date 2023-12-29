@@ -1,41 +1,17 @@
-import { useEffect, useMemo, useState } from 'react';
-import Image from 'next/image';
-import { SliderWrap, WrapImage, WrapSlide, SlideImg, MainSliderDiv } from './styles';
+import { useState } from 'react';
+import { SliderWrap, MainSliderDiv } from './styles';
 import SliderButton from './SliderButton';
 import Carousel from './Carousel';
-import { isEmpty } from '../../helpers/helpers';
-/**
- * BusinessSlider Component for mobile
- * @param {Object} props - Component props
- * @param {Array} props.data - Array of data for the business slider
- * @returns {JSX.Element} - JSX markup for the slider component
- */
-const BusinessSlider = ({ data = [] }) => {
-  const [currentIndex, setCurrentIndex] = useState(0);
 
-  const renderSliderView = useMemo(() => {
-    if (isEmpty(data)) return null;
-    return data.map((item, index) => {
-      if (isEmpty(item)) return null;
-      return (
-        <WrapSlide key={`slider_index_${index}`}>
-          <WrapImage>
-            <SlideImg>
-              <Image
-                src={`${item?.image?.url}?w=800&h=800&fit=thumb`}
-                alt='red-icon'
-                className='zoom'
-                width={354}
-                height={354}
-              />
-            </SlideImg>
-            <h4>{item?.industry}</h4>
-            <p className='hide'>{item?.quote}</p>
-          </WrapImage>
-        </WrapSlide>
-      );
-    });
-  }, [data]);
+/**
+ * BusinessSlider Component for mobile.
+ * @param {Object} props - Component props.
+ * @param {Function} props.renderSliderView - Function that renders the view for each slider item.
+ * @param {number} [props.slide=0] - number of slide item.
+ * @returns {JSX.Element} - JSX markup for the business slider component.
+ */
+const BusinessSlider = ({ renderSliderView, slide = 0 }) => {
+  const [currentIndex, setCurrentIndex] = useState(0);
 
   return (
     <>
@@ -45,7 +21,7 @@ const BusinessSlider = ({ data = [] }) => {
             {renderSliderView}
           </Carousel>
         </SliderWrap>
-        <SliderButton count={data.length} currentIndex={currentIndex} setCurrentIndex={setCurrentIndex} />
+        <SliderButton count={slide} currentIndex={currentIndex} setCurrentIndex={setCurrentIndex} />
       </MainSliderDiv>
     </>
   );

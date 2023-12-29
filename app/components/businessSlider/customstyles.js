@@ -1,11 +1,7 @@
 import styled, { css } from 'styled-components';
 
 const Animated = styled.div`
-  margin-bottom: 50px;
   position: relative;
-  @media only screen and (max-width: 449px) {
-    margin-bottom: 80px;
-  }
   .wrap {
     width: 100%;
 
@@ -44,9 +40,6 @@ const Animated = styled.div`
     @media only screen and (max-width: 449px) {
       gap: 20px;
     }
-  }
-  @media only screen and (max-width: 449px) {
-    display: none;
   }
 `;
 
@@ -102,7 +95,11 @@ const HomeSlider = styled.div`
     animation: scroll 60s linear infinite;
   }
   #container[data-animated]:hover #list {
-    animation-play-state: paused;
+    ${(props) =>
+      props?.isPauseOnHover &&
+      css`
+        animation-play-state: paused;
+      `}
   }
   @keyframes scroll {
     to {

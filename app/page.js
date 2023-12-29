@@ -36,7 +36,6 @@ export default async function Home() {
       'https://www.instagram.com/copilotplatforms/'
     ]
   };
-  console.log(appsPostsPathList);
   return (
     <>
       <script type='application/ld+json' dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />

@@ -79,7 +79,6 @@ const SliderWrap = styled.div`
     .slick-list {
       height: 494px;
     }
-    height: 500px;
   }
 `;
 

@@ -1,63 +1,43 @@
-'use client'
+'use client';
 
 import Image from 'next/image';
-import Slider from 'react-slick';
-import 'slick-carousel/slick/slick.css';
-import 'slick-carousel/slick/slick-theme.css';
+import { useMemo } from 'react';
+import { isEmpty } from '../../helpers/helpers';
+import CustomBusinessSlider from '../businessSlider/custombusinessslider';
 import { SliderWrap, SliderInner, SliderSub, SliderLine } from './styles';
 
+/**
+ * ExtensionSlider Component for displaying a slider of extension items.
+ * @param {Object} props - Component props.
+ * @param {Array} props.data - Array of extension data to be displayed in the slider.
+ * @returns {JSX.Element} - JSX markup for the ExtensionSlider component.
+ */
 const ExtensionSlider = ({ data }) => {
-  const settings = {
-    speed: 6000,
-    autoplay: true,
-    infinite: true,
-    autoplaySpeed: 0,
-    cssEase: 'linear',
-    slidesToShow: 4.5,
-    slidesToScroll: 1,
-    pauseOnHover: true,
-    variableWidth: true,
-    responsive: [
-      {
-        breakpoint: 1440,
-        settings: {
-          slidesToScroll: 2
-        }
-      },
-      {
-        breakpoint: 1000,
-        settings: {
-          slidesToShow: 2,
-          slidesToScroll: 1
-        }
-      },
-      {
-        breakpoint: 600,
-        settings: {
-          slidesToShow: 1,
-          slidesToScroll: 1
-        }
-      }
-    ]
-  };
+  // Memoizing the rendering of each slide view to improve performance
+  const renderSlideView = useMemo(() => {
+    // If data is empty, return null (no slides to render)
+    if (isEmpty(data)) return null;
+    // Map through the extension data and generate JSX for each slide
+    return data?.map((item, index) => {
+      return (
+        <>
+          {/* Each slider item is a clickable link to the extension's details */}
+          <SliderInner href={'/apps/directory/' + item?.slug}>
+            <SliderSub>
+              <Image src={item?.icon?.url} alt='red-icon' width={35} height={35} layout={'fixed'} />
+              <p>{item?.name}</p>
+            </SliderSub>
+          </SliderInner>
+          {/* Horizontal line to separate slider items */}
+          <SliderLine />
+        </>
+      );
+    });
+  }, [data]);
   return (
     <>
       <SliderWrap>
-        <Slider {...settings}>
-          {data?.map((item, index) => {
-            return (
-              <>
-                <SliderInner href={'/apps/directory/'+item?.slug}>
-                  <SliderSub>
-                    <Image src={item?.icon?.url} alt='red-icon' width={35} height={35} layout={'fixed'} />
-                    <p>{item?.name}</p>
-                  </SliderSub>
-                </SliderInner>
-                <SliderLine></SliderLine>
-              </>
-            );
-          })}
-        </Slider>
+        <CustomBusinessSlider renderSliderView={renderSlideView} isPauseOnHover={false} />
       </SliderWrap>
     </>
   );

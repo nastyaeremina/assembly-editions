@@ -1,46 +1,18 @@
-import Image from 'next/image';
-import { useEffect, useMemo } from 'react';
-import { isEmpty } from '../../helpers/helpers';
 import { Animated, HomeSlider } from '../../components/businessSlider/customstyles';
-import { LeftBorder, RightBorder, SlideImg, SliderWrap, WrapImage, WrapSlide } from './styles';
+import { SliderWrap } from './styles';
 
 /**
  * BusinessSlider Component for Desktop
  * @param {Object} props - Component props
- * @param {Array} props.data - Array of data for the custom business slider
+ * @param {Function} props.renderSliderView - Function that renders the view for each slider item.
+ * @param {boolean} [props.isPauseOnHover=true] - Flag indicating whether slider auto-play pauses on hover.
  * @returns {JSX.Element} - JSX markup for the CustomBusinessSlider component
  */
-const CustomBusinessSlider = ({ data = [] }) => {
+const CustomBusinessSlider = ({ renderSliderView, isPauseOnHover = true }) => {
   /**
    * Generates the view for each data item in the slider.
    * @returns {Array} - Array of JSX elements representing each data item in the slider
    */
-  const featureContentView = useMemo(() => {
-    if (isEmpty(data)) return null;
-    return data?.map((item, index) => {
-      if (isEmpty(item)) return null;
-      return (
-        <WrapSlide className='mydiv' key={`slider_index_${index}`}>
-          <LeftBorder className='hide'></LeftBorder>
-          <WrapImage>
-            <SlideImg>
-              {/* Image component for each data item */}
-              <Image
-                src={`${item?.image?.url}?w=800&h=800&fit=thumb`}
-                alt='red-icon'
-                className='zoom'
-                width={354}
-                height={354}
-              />
-            </SlideImg>
-            <h4>{item?.industry}</h4>
-            <p className='hide'>{item?.quote}</p>
-          </WrapImage>
-          <RightBorder className='hide'> </RightBorder>
-        </WrapSlide>
-      );
-    });
-  }, [data]);
 
   // JSX markup for the CustomBusinessSlider component
   return (
@@ -49,15 +21,15 @@ const CustomBusinessSlider = ({ data = [] }) => {
       <Animated>
         <SliderWrap>
           {/* HomeSlider container for styling */}
-          <HomeSlider>
+          <HomeSlider isPauseOnHover={isPauseOnHover}>
             <div id='container' data-animated>
               {/* List container for the slider items */}
               <ul id='list'>
                 {/* List item containing the generated view for each data item */}
-                <li>{featureContentView}</li>
+                <li>{renderSliderView}</li>
                 {/* Duplicates the items in the list to create a continuous looping effect. */}
-                <li aria-hidden='true'>{featureContentView}</li>
-                <li aria-hidden='true'>{featureContentView}</li>
+                <li aria-hidden='true'>{renderSliderView}</li>
+                <li aria-hidden='true'>{renderSliderView}</li>
               </ul>
             </div>
           </HomeSlider>
