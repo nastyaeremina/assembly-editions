@@ -1,16 +1,8 @@
 'use client';
 import Image from 'next/image';
-import React, { useMemo, useState } from 'react';
-import {
-  ContainWrap,
-  IconSvg,
-  IconWrap,
-  ImageDiv,
-  LeftDetail,
-  RightDetail,
-  TabRow,
-  ZoomImage
-} from '../../styles/homepageStyles';
+import React, { useState } from 'react';
+import { ReactMarkdown } from 'react-markdown/lib/react-markdown';
+import { ContainWrap, IconSvg, IconWrap, LeftDetail, RightDetail } from '../../styles/homepageStyles';
 import Button from '../button/button';
 import TabContent from '../tabbutton/TabContent';
 import TabNavItem from '../tabbutton/TabNavItem';
@@ -62,7 +54,7 @@ export default function TabView({ bgColor, textColor, isHome, tabData: allPosts,
                         </IconWrap>
                       )}
                       <h3>{item?.title}</h3>
-                      <p>{item?.description}</p>
+                      <ReactMarkdown>{item?.description}</ReactMarkdown>
                       {link && (
                         <Button
                           bgColor={'transparent'}
