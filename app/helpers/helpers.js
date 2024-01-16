@@ -196,3 +196,14 @@ export function extractTagId(children) {
 export function isNumber(inputString) {
   return !isNaN(inputString);
 }
+
+/**
+ * Formats a plan price for display, adding a dollar sign if it's a valid number string.
+ *
+ * @param {string} price - The price string to format.
+ * @returns {string} - The formatted price string, with a dollar sign if the input was a valid number string.
+ */
+export function formatPlanPrice(price) {
+  if (isNumber(price)) return `$${price}`;
+  return price;
+}

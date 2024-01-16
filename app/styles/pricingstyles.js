@@ -387,7 +387,7 @@ const PriceTable = styled.div`
     }
     .tab {
       position: sticky;
-      top: 248px;
+      top: 232px;
       z-index: 1;
       background-color: ${greenlight};
       ${Body3};
@@ -428,7 +428,8 @@ const PriceTable = styled.div`
       ${(props) =>
         props.is4Card &&
         css`
-          width: 170px;
+          /* width: 190px; */
+          word-break: break-all;
         `}
       .amount {
         margin: 0 0 4px 0;

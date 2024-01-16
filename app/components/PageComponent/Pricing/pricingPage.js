@@ -22,7 +22,7 @@ import FAQ from '../../faq/faq';
 import Button from '../../button/button';
 import { COPILOT_ONBORADING_LINK } from '../../../constants/externalLinks';
 import PricingCardSection from '../../pricingcard/pricingCardSection';
-import { isEmpty } from '../../../helpers/helpers';
+import { isEmpty, formatPlanPrice } from '../../../helpers/helpers';
 
 export default function PricingPage({ details }) {
   // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -129,8 +129,8 @@ export default function PricingPage({ details }) {
         <>
           <th className='tablehead'>
             <p className='amount'>
-              {isYearly && `$${item?.annualPrice}`}
-              {!isYearly && `$${item?.monthlyPrice}`}
+              {isYearly && formatPlanPrice(item?.annualPrice)}
+              {!isYearly && formatPlanPrice(item?.monthlyPrice)}
             </p>
             <span className='spantext'>{item?.details}</span>
           </th>
