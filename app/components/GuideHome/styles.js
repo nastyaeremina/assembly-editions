@@ -13,12 +13,12 @@ const GuideCenter = styled.div`
 `;
 const MainContent = styled.div``;
 const FAQSection = styled.div`
-  max-width: 692px;
+  max-width: 740px;
   width: 100%;
   margin: 0 auto;
+  padding: 0 26px;
   @media only screen and (max-width: 749px) {
-    max-width: 740px;
-    width: 100%;
+    padding: 0;
   }
 `;
 const HeroSection = styled.div`
