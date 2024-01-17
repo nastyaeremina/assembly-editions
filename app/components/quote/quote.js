@@ -1,6 +1,7 @@
+'use client';
 import Image from 'next/image';
 import { Container } from '../../styles/commonStyles';
-import { QuoteMain, Mainss, QuoteTxt, QuoteSubTxt, QuoteLine, QuoteImg } from './styles';
+import { QuoteMain, Mainss, QuoteTxt, QuoteSubTxt, QuoteImg } from './styles';
 
 export default function Quote({ gradientImage, data, caseStudies = false }) {
   return (

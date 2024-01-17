@@ -26,7 +26,7 @@ import AppCardSection from '../../casestudies/appcardsection';
 import HighlightSectionComponents from '../../casestudies/highlightSection';
 import { isEmpty } from '../../../helpers/helpers';
 import Quote from '../../quote/quote';
-import { MODULE_GRADIENT_IMAGE_LIST, MUDULE_LIST } from '../../../constants/constant';
+import { FEATURE_THEME_LIST } from '../../../constants/constant';
 import { COPILOT_ONBORADING_LINK } from '../../../constants/externalLinks';
 
 export default function CaseStudiesPage({ details }) {
@@ -110,7 +110,7 @@ export default function CaseStudiesPage({ details }) {
         </CustomerSection>
       </Container>
       {!isEmpty(details?.testimonial) && (
-        <Quote gradientImage={MODULE_GRADIENT_IMAGE_LIST[MUDULE_LIST.OTHER]} data={details?.testimonial} caseStudies />
+        <Quote gradientImage={FEATURE_THEME_LIST.Other.imageList} data={details?.testimonial} caseStudies />
       )}
       <CTA />
     </>

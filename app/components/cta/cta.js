@@ -3,7 +3,7 @@
 import { use, useEffect } from 'react';
 import Image from 'next/image';
 import { Gradient } from '../../../public/js/Gradient.js';
-import { CTA_CONTENT_ID, HEADER_LIST, NAVBAR_COLOR_LIST } from '../../constants/constant';
+import { CTA_CONTENT_ID, MODULE_COLOR_LIST } from '../../constants/constant';
 import Button from '../button/button';
 import { COPILOT_ONBORADING_LINK } from '../../constants/externalLinks.js';
 import { getSitemap } from '../../lib/contentful-sitemap.js';
@@ -20,7 +20,6 @@ export default function CTA({ moduleName, colorList }) {
     const gradient = new Gradient();
     gradient.initGradient('#gradient-canvas');
   }, []);
-
   return (
     <>
       {
@@ -38,16 +37,14 @@ export default function CTA({ moduleName, colorList }) {
                   <Button
                     className='paddingbtn'
                     bgColor={
-                      colorList?.primaryColor
-                        ? colorList?.primaryColor
-                        : NAVBAR_COLOR_LIST[HEADER_LIST.ENTERPRICE].primaryColor
+                      colorList?.primaryColor ? colorList?.primaryColor : MODULE_COLOR_LIST.Enterprice.primaryColor
                     }
                     fontColor={
                       moduleName === 'form'
                         ? colorList?.buttontextColor
                         : colorList?.lightColor
                         ? colorList?.lightColor
-                        : NAVBAR_COLOR_LIST[HEADER_LIST.ENTERPRICE].lightColor
+                        : MODULE_COLOR_LIST.Enterprice.lightColor
                     }
                     borderColor={'transparent'}
                     text={'Start Trial'}
@@ -55,15 +52,9 @@ export default function CTA({ moduleName, colorList }) {
                     hoverColor={'white'}
                   />
                   <Button
-                    fontColor={
-                      colorList?.lightColor
-                        ? colorList?.lightColor
-                        : NAVBAR_COLOR_LIST[HEADER_LIST.ENTERPRICE].lightColor
-                    }
+                    fontColor={colorList?.lightColor ? colorList?.lightColor : MODULE_COLOR_LIST.Enterprice.lightColor}
                     borderColor={
-                      colorList?.lightColor
-                        ? colorList?.lightColor
-                        : NAVBAR_COLOR_LIST[HEADER_LIST.ENTERPRICE].lightColor
+                      colorList?.lightColor ? colorList?.lightColor : MODULE_COLOR_LIST.Enterprice.lightColor
                     }
                     bgColor={'transparent'}
                     text={'Book Demo'}

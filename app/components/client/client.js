@@ -1,28 +1,72 @@
+'use client';
 import Link from 'next/link';
 import Image from 'next/image';
+import { useMemo } from 'react';
 import { isEmpty } from '../../helpers/helpers';
-import { MUDULE_LIST } from '../../constants/constant';
+import { FEATURE_THEME_LIST } from '../../constants/constant';
 import { Container } from '../../styles/commonStyles';
 import {
   ClientMain,
   ClientHero,
   CardSection,
   ModuleCard,
-  CardText,
   BlockSection,
   BlockText,
-  BlockWrap,
   HelpLeftSub,
   ImageWrapper,
-  HelpLink,
-  LastProductdemocard,
-  LastCardSection
+  HelpLink
 } from './styles';
 
-export default function Client({ currentModule, title, isProductdemo }) {
+export default function Client({ data, title, isProductdemo }) {
   const titleSplitList = title?.split(',');
   const seprateWithDotList = titleSplitList?.join(`<span>,</span>`)?.split('.');
   const finalTitle = seprateWithDotList?.join(`<span>.</span>`);
+
+  const renderFeatureAppView = useMemo(() => {
+    if (isEmpty(data)) return null;
+    return data?.map((item, index) => {
+      return (
+        <ModuleCard
+          key={`featureapp_index_${index}`}
+          className={`mydiv ${item?.name?.toLowerCase()}`}
+          isProductdemo={isProductdemo}
+          bgImage={FEATURE_THEME_LIST[item?.theme]?.imageList.bgImage}
+          strokecolor={FEATURE_THEME_LIST[item?.theme]?.colorList?.lineColor}>
+          <Link href={`/features/${item?.slug}`} className='learn-link mb0'>
+            <ImageWrapper>
+              <div dangerouslySetInnerHTML={{ __html: item?.featureIconSvg }} />
+            </ImageWrapper>
+            <HelpLeftSub>
+              <HelpLink className='icon-link'>
+                {item?.name}
+                <svg class='HoverArrow' width='10' height='10' viewBox='0 0 10 10' aria-hidden='true'>
+                  <g fill-rule='evenodd'>
+                    <path class='HoverArrow__linePath' d='M0 5h7'></path>
+                    <path class='HoverArrow__tipPath' d='M1 1l4 4-4 4'></path>
+                  </g>
+                </svg>
+                <svg
+                  width='8'
+                  height='14'
+                  viewBox='0 0 8 14'
+                  fill='none'
+                  xmlns='http://www.w3.org/2000/svg'
+                  class='mobilearrow'>
+                  <path
+                    d='M2 3L6 7L2 11'
+                    stroke='#131313'
+                    stroke-width='1.85714'
+                    stroke-linecap='round'
+                    stroke-linejoin='round'
+                  />
+                </svg>
+              </HelpLink>
+            </HelpLeftSub>
+          </Link>
+        </ModuleCard>
+      );
+    });
+  }, [data, isProductdemo]);
 
   return (
     <ClientMain>
@@ -34,258 +78,8 @@ export default function Client({ currentModule, title, isProductdemo }) {
             </h2>
           )}
           <CardSection isProductdemo={isProductdemo}>
-            {currentModule !== MUDULE_LIST.BILLING && (
-              <ModuleCard className='mydiv' isProductdemo={isProductdemo}>
-                <Link href='/features/billing-app' className='learn-link mb0'>
-                  <ImageWrapper>
-                    <Image
-                      src='/images/bill.svg'
-                      alt='red-icon'
-                      width={220}
-                      height={165}
-                      layout={'fixed'}
-                      className='show'
-                    />
-                    <Image
-                      src='/images/billhover.svg'
-                      alt='red-icon'
-                      width={220}
-                      height={165}
-                      layout={'fixed'}
-                      className='hide'
-                    />
-                  </ImageWrapper>
-                  <HelpLeftSub>
-                    <HelpLink className='icon-link'>
-                      Billing
-                      <svg className='HoverArrow' width='10' height='10' viewBox='0 0 10 10' aria-hidden='true'>
-                        <g fill-rule='evenodd'>
-                          <path class='HoverArrow__linePath' d='M0 5h7'></path>
-                          <path class='HoverArrow__tipPath' d='M1 1l4 4-4 4'></path>
-                        </g>
-                      </svg>
-                      <svg
-                        width='8'
-                        height='14'
-                        viewBox='0 0 8 14'
-                        fill='none'
-                        xmlns='http://www.w3.org/2000/svg'
-                        class='mobilearrow'>
-                        <path
-                          d='M2 3L6 7L2 11'
-                          stroke='#131313'
-                          stroke-width='1.85714'
-                          stroke-linecap='round'
-                          stroke-linejoin='round'
-                        />
-                      </svg>
-                    </HelpLink>
-                  </HelpLeftSub>
-                </Link>
-              </ModuleCard>
-            )}
-            {currentModule !== MUDULE_LIST.FILES && (
-              <ModuleCard className='mydiv file' isProductdemo={isProductdemo}>
-                <Link href='/features/files-app' className='learn-link mb0'>
-                  <ImageWrapper>
-                    <Image
-                      src='/images/file.svg'
-                      alt='red-icon'
-                      width={220}
-                      height={165}
-                      layout={'fixed'}
-                      className='show'
-                    />
-                    <Image
-                      src='/images/filehover.svg'
-                      alt='red-icon'
-                      width={220}
-                      height={165}
-                      layout={'fixed'}
-                      className='hide'
-                    />
-                  </ImageWrapper>
-                  <HelpLeftSub>
-                    <HelpLink className='icon-link'>
-                      Files
-                      <svg class='HoverArrow' width='10' height='10' viewBox='0 0 10 10' aria-hidden='true'>
-                        <g fill-rule='evenodd'>
-                          <path class='HoverArrow__linePath' d='M0 5h7'></path>
-                          <path class='HoverArrow__tipPath' d='M1 1l4 4-4 4'></path>
-                        </g>
-                      </svg>
-                      <svg
-                        width='8'
-                        height='14'
-                        viewBox='0 0 8 14'
-                        fill='none'
-                        xmlns='http://www.w3.org/2000/svg'
-                        class='mobilearrow'>
-                        <path
-                          d='M2 3L6 7L2 11'
-                          stroke='#131313'
-                          stroke-width='1.85714'
-                          stroke-linecap='round'
-                          stroke-linejoin='round'
-                        />
-                      </svg>
-                    </HelpLink>
-                  </HelpLeftSub>
-                </Link>
-              </ModuleCard>
-            )}
-            {currentModule !== MUDULE_LIST.FORMS && (
-              <ModuleCard className='mydiv form' isProductdemo={isProductdemo}>
-                <Link href='/features/forms-app' className='learn-link mb0'>
-                  <ImageWrapper>
-                    <Image
-                      src='/images/form.svg'
-                      alt='red-icon'
-                      width={220}
-                      height={165}
-                      layout={'fixed'}
-                      className='show'
-                    />
-                    <Image
-                      src='/images/formhover.svg'
-                      alt='red-icon'
-                      width={220}
-                      height={165}
-                      layout={'fixed'}
-                      className='hide'
-                    />
-                  </ImageWrapper>
-                  <HelpLeftSub>
-                    <HelpLink className='icon-link'>
-                      Forms
-                      <svg class='HoverArrow' width='10' height='10' viewBox='0 0 10 10' aria-hidden='true'>
-                        <g fill-rule='evenodd'>
-                          <path class='HoverArrow__linePath' d='M0 5h7'></path>
-                          <path class='HoverArrow__tipPath' d='M1 1l4 4-4 4'></path>
-                        </g>
-                      </svg>
-                      <svg
-                        width='8'
-                        height='14'
-                        viewBox='0 0 8 14'
-                        fill='none'
-                        xmlns='http://www.w3.org/2000/svg'
-                        class='mobilearrow'>
-                        <path
-                          d='M2 3L6 7L2 11'
-                          stroke='#131313'
-                          stroke-width='1.85714'
-                          stroke-linecap='round'
-                          stroke-linejoin='round'
-                        />
-                      </svg>
-                    </HelpLink>
-                  </HelpLeftSub>
-                </Link>
-              </ModuleCard>
-            )}
-            {currentModule !== MUDULE_LIST.HELPDESK && (
-              <ModuleCard className='mydiv Helpdesk' isProductdemo={isProductdemo}>
-                <Link href='/features/helpdesk-app' className='learn-link mb0'>
-                  <ImageWrapper>
-                    <Image
-                      src='/images/base.svg'
-                      alt='red-icon'
-                      width={220}
-                      height={165}
-                      layout={'fixed'}
-                      className='show'
-                    />
-                    <Image
-                      src='/images/basehover.svg'
-                      alt='red-icon'
-                      width={220}
-                      height={165}
-                      layout={'fixed'}
-                      className='hide'
-                    />
-                  </ImageWrapper>
-                  <HelpLeftSub>
-                    <HelpLink className='icon-link'>
-                      Helpdesk
-                      <svg class='HoverArrow' width='10' height='10' viewBox='0 0 10 10' aria-hidden='true'>
-                        <g fill-rule='evenodd'>
-                          <path class='HoverArrow__linePath' d='M0 5h7'></path>
-                          <path class='HoverArrow__tipPath' d='M1 1l4 4-4 4'></path>
-                        </g>
-                      </svg>
-                      <svg
-                        width='8'
-                        height='14'
-                        viewBox='0 0 8 14'
-                        fill='none'
-                        xmlns='http://www.w3.org/2000/svg'
-                        class='mobilearrow'>
-                        <path
-                          d='M2 3L6 7L2 11'
-                          stroke='#131313'
-                          stroke-width='1.85714'
-                          stroke-linecap='round'
-                          stroke-linejoin='round'
-                        />
-                      </svg>
-                    </HelpLink>
-                  </HelpLeftSub>
-                </Link>
-              </ModuleCard>
-            )}
-            {currentModule !== MUDULE_LIST.MESSAGING && (
-              <ModuleCard className='mydiv message' isProductdemo={isProductdemo}>
-                <Link href='/features/messaging-app' className='learn-link mb0'>
-                  <ImageWrapper>
-                    <Image
-                      src='/images/Messageicon.svg'
-                      alt='red-icon'
-                      width={220}
-                      height={165}
-                      layout={'fixed'}
-                      className='show'
-                    />
-                    <Image
-                      src='/images/messagehover.svg'
-                      alt='red-icon'
-                      width={220}
-                      height={165}
-                      layout={'fixed'}
-                      className='hide'
-                    />
-                  </ImageWrapper>
-                  <HelpLeftSub>
-                    <HelpLink className='icon-link icon-message'>
-                      Messaging
-                      <svg class='HoverArrow' width='10' height='10' viewBox='0 0 10 10' aria-hidden='true'>
-                        <g fill-rule='evenodd'>
-                          <path class='HoverArrow__linePath' d='M0 5h7'></path>
-                          <path class='HoverArrow__tipPath' d='M1 1l4 4-4 4'></path>
-                        </g>
-                      </svg>
-                      <svg
-                        width='8'
-                        height='14'
-                        viewBox='0 0 8 14'
-                        fill='none'
-                        xmlns='http://www.w3.org/2000/svg'
-                        class='mobilearrow'>
-                        <path
-                          d='M2 3L6 7L2 11'
-                          stroke='#131313'
-                          stroke-width='1.85714'
-                          stroke-linecap='round'
-                          stroke-linejoin='round'
-                        />
-                      </svg>
-                    </HelpLink>
-                  </HelpLeftSub>
-                </Link>
-              </ModuleCard>
-            )}
-          </CardSection>
-          <LastCardSection>
+            {renderFeatureAppView}
+            {/* <LastCardSection> */}
             {/* <Link href='/apps' className='learn-link center'> */}
             <BlockSection href='/apps' className='learn-link center'>
               <Image src='/images/block.svg' alt='red-icon' width={185} height={145} className='show' />
@@ -374,7 +168,8 @@ export default function Client({ currentModule, title, isProductdemo }) {
                 {/* </Link> */}
               </>
             )}
-          </LastCardSection>
+            {/* </LastCardSection> */}
+          </CardSection>
         </ClientHero>
       </Container>
     </ClientMain>

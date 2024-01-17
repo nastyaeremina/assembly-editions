@@ -16,7 +16,7 @@ import { Container } from '../../../styles/commonStyles';
 import Button from '../../button/button';
 import { COPILOT_ONBORADING_LINK } from '../../../constants/externalLinks';
 import TabView from '../../tab/tab';
-import { HOME_MODULE_LIST, MODULE_COLOR_LIST } from '../../../constants/constant';
+import { MODULE_COLOR_LIST } from '../../../constants/constant';
 import AutomationCardSection from '../../automationcard';
 import ExploreTab from '../../solution/clienttab/exploretab';
 import { isEmpty, removeEmptyElement, separateSpecialChar } from '../../../helpers/helpers';
@@ -156,8 +156,8 @@ export default function AutomationPage({ details }) {
         </SetupAutomation>
         <TabView
           tabData={details?.sectionContent1Collection?.items || []}
-          bgColor={MODULE_COLOR_LIST[HOME_MODULE_LIST['Automation']]?.bgColor}
-          textColor={MODULE_COLOR_LIST[HOME_MODULE_LIST['Automation']]?.fontColor}
+          bgColor={MODULE_COLOR_LIST.Automation.bgColor}
+          textColor={MODULE_COLOR_LIST.Automation.fontColor}
           isAutomation={true}
         />
         <AutomationCardSection

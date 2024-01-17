@@ -6,14 +6,18 @@ import { PRODUCT_DEMO_PAGE_ID, WEEKLY_DEMO_PAGE_ID } from '../constants/constant
 import { getProductDemoContent, getWeeklyDemoContent } from '../lib/contentful-weeklyDemo';
 import { getSEOData } from '../helpers/helpers';
 import ProductDemoPage from '../components/PageComponent/ProductDemo/productDemoPage';
+import { getAllFeature } from '../lib/contentful-features';
 
 async function getContent() {
   const details = (await getWeeklyDemoContent(WEEKLY_DEMO_PAGE_ID)) ?? [];
   const productdetails = await getProductDemoContent(PRODUCT_DEMO_PAGE_ID);
 
+  //get all features app
+  const featureAppData = (await getAllFeature()) ?? [];
   return {
     details,
-    productdetails
+    productdetails,
+    featureAppData
   };
 }
 
@@ -27,7 +31,7 @@ export async function generateMetadata({ params }) {
   return seoData;
 }
 export default async function WeeklyDemo({ params }) {
-  const { details, productdetails } = await getContent();
+  const { details, productdetails, featureAppData } = await getContent();
 
   if (details.slug !== params.slug && productdetails?.slug !== params?.slug) return notFound();
 
@@ -35,7 +39,9 @@ export default async function WeeklyDemo({ params }) {
     <Layout>
       <Navbar />
       {params.slug === details?.slug && <WeeklyHero data={details} />}
-      {params.slug === productdetails?.slug && <ProductDemoPage details={productdetails} />}
+      {params.slug === productdetails?.slug && (
+        <ProductDemoPage details={productdetails} featureAppData={featureAppData} />
+      )}
     </Layout>
   );
 }

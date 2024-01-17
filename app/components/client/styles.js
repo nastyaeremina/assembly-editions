@@ -1,7 +1,18 @@
 import styled, { css } from 'styled-components';
 import Link from 'next/link';
 import { Body1, Body4, Heading3, Heading4, LinkTxt } from '../../styles/styles';
-import { bluelight, bodycolor, brownlight, greendark, greenlight, orangelight, primary, purplelight, title, yellowlight } from '../../styles/color';
+import {
+  bluelight,
+  bodycolor,
+  brownlight,
+  greendark,
+  greenlight,
+  orangelight,
+  primary,
+  purplelight,
+  title,
+  yellowlight
+} from '../../styles/color';
 const ClientMain = styled.div`
   padding: 50px 0 100px 0;
   &::before {
@@ -34,15 +45,22 @@ const ClientHero = styled.div`
   }
 `;
 const CardSection = styled.div`
-  display: grid;
+  /* display: grid; */
   gap: 16px;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
+  /* grid-template-columns: 1fr 1fr 1fr 1fr; */
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: stretch;
+  align-content: stretch;
+  width: 100%;
   padding-bottom: 16px;
   padding-top: 40px;
   ${(props) =>
     props.isProductdemo &&
     css`
-      grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+      /* display: grid;
+      grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr; */
     `}
   /* transition: all 0.5s ease; */
   .mydiv:hover .hide {
@@ -57,8 +75,15 @@ const CardSection = styled.div`
       display: block;
     }
   }
+  ${(props) =>
+    props.bgImage &&
+    css`
+      .mydiv:hover {
+        background-image: url('/images/billhoverbg.svg');
+      }
+    `}
   .mydiv:hover {
-    background-image: url('/images/billhoverbg.svg');
+    /* background-image: url('/images/billhoverbg.svg'); */
     background-repeat: no-repeat;
     background-size: cover;
     a {
@@ -74,6 +99,8 @@ const CardSection = styled.div`
     }
   }
   @media only screen and (max-width: 749px) {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
   }
   .file {
     border: 1px solid #01011d;
@@ -153,15 +180,26 @@ const CardSection = styled.div`
     grid-template-columns: 1fr 1fr;
     gap: 11px;
     row-gap: 16px;
+    flex-wrap: wrap;
   }
 `;
 const ModuleCard = styled.div`
+  ${(props) =>
+    props.bgImage &&
+    css`
+      &:hover {
+        background-image: url(${props.bgImage});
+      }
+    `}
   padding: 36px;
   border: 1px solid #01292c;
   border-radius: 4px;
   display: block;
   cursor: pointer;
-  height: 100%;
+  height: auto;
+  width: auto;
+  /* flex-grow: 1; */
+  flex: 1 1 0;
   display: flex;
   align-items: stretch;
   /* transition: all 5s ease; */
@@ -180,6 +218,10 @@ const ModuleCard = styled.div`
   .learn-link {
     transition: transform 300ms ease;
     height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
   }
   .learn-link svg path {
     transition: transform 300ms ease;
@@ -259,12 +301,29 @@ const ModuleCard = styled.div`
       transform: none;
     }
   }
+
+  @media only screen and (min-width: 749px) {
+    ${(props) =>
+      props.strokecolor &&
+      css`
+        :hover {
+          svg {
+            path {
+              stroke: ${props.strokecolor};
+            }
+          }
+        }
+      `}
+  }
   @media only screen and (max-width: 991px) {
     padding: 20px;
     a {
       font-size: 16px;
       line-height: 22px;
     }
+  }
+  @media only screen and (max-width: 749px) {
+    width: unset;
   }
 `;
 const CardText = styled.div`
@@ -308,7 +367,7 @@ const BlockSection = styled(Link)`
     flex-direction: column;
     gap: 0;
     padding: 20px;
-    max-width: 48%;
+    max-width: 100%;
     width: 100%;
   }
   :hover {
@@ -427,15 +486,27 @@ const HelpLeftSub = styled.div`
   }
 `;
 const ImageWrapper = styled.div`
-  max-height: 165px;
-  height: 100%;
+  /* max-height: 165px; */
+  /* height: 100%; */
   width: 100%;
   img {
     max-width: 100%;
     height: 100%;
   }
+  svg {
+    max-width: 220px;
+    width: 100%;
+    max-height: 165px;
+    height: 100%;
+  }
   @media only screen and (max-width: 1025px) {
     max-height: 124px;
+    svg {
+      max-width: 185px;
+      width: 100%;
+      max-height: 124px;
+      height: 100%;
+    }
   }
   @media only screen and (max-width: 769px) {
     max-height: 100px;
@@ -444,10 +515,21 @@ const ImageWrapper = styled.div`
     max-height: 105px;
     height: 105px;
     min-height: 105px;
+    display: flex;
+    justify-content: center;
+  }
+  @media only screen and (max-width: 749px) {
+    svg {
+      max-width: 124px;
+      width: 100%;
+      max-height: 165px;
+      height: 100%;
+    }
   }
 `;
 const HelpLink = styled.div`
   text-align: left;
+  white-space: nowrap;
   .mobilearrow {
     display: none;
   }
@@ -529,6 +611,9 @@ const LastCardSection = styled.div`
   display: flex;
   flex-direction: column;
   gap: 16px;
+  flex-basis: 100%;
+  align-self: stretch;
+  width: 100%;
   @media (max-width: 749px) {
     flex-direction: row;
     justify-content: space-between;

@@ -1,5 +1,4 @@
-import { useMemo } from 'react';
-import { textSeprateandJoinWithSpecialChar } from '../../helpers/helpers';
+'use client';
 import { Container } from '../../styles/commonStyles';
 import TabView from '../tab/tab';
 import { ContentMain, TopFunctionWrap } from './styles';

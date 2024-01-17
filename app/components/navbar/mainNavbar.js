@@ -11,7 +11,7 @@ import MobileBlackLogos from '../../../public/images/mobileblacklogo.svg';
 import MobileWhiteLogos from '../../../public/images/whitemobilelogo.svg';
 import MobileGreenLogos from '../../../public/images/greenmblogo.svg';
 import { BlackButton, Container } from '../../styles/commonStyles';
-import { GUIDE_LINK_INFO, HEADER_LIST, NAVBAR_COLOR_LIST } from '../../constants/constant';
+import { GUIDE_LINK_INFO, HEADER_LIST, FEATURE_THEME_LIST, NAVBAR_COLOR_LIST } from '../../constants/constant';
 import useMobileDevice from '../../hooks/useMobileDevice';
 import { isEmpty } from '../../helpers/helpers';
 import Button from '../button/button';
@@ -72,7 +72,9 @@ export default function NavbarComponent({
   isEnterPrice,
   isAuthenticated: userAuth,
   solutionDataList: navbarSolutionList,
-  topbarContent
+  topbarContent,
+  navbarColorList,
+  featureData
 }) {
   // const appSelector = useSelector((state) => state.app);
   // const { topbarContent } = appSelector;
@@ -83,7 +85,8 @@ export default function NavbarComponent({
   const [isOpenSolutionSubMenu, setIsOpenSolutionSubMenu] = useState(false);
   const [isOpenResoursesSubMenu, setIsOpenResoursesSubMenu] = useState(false);
   var colorList = NAVBAR_COLOR_LIST[0];
-  if (headerIndex) colorList = NAVBAR_COLOR_LIST[headerIndex];
+  if (navbarColorList) colorList = navbarColorList;
+  else if (headerIndex) colorList = NAVBAR_COLOR_LIST[headerIndex];
   else colorList = NAVBAR_COLOR_LIST[HEADER_LIST.DEFAULT];
   const closeSubMenu = useCallback(() => {
     if (isOpenFeatureSubMenu) {
@@ -164,7 +167,7 @@ export default function NavbarComponent({
           <NavigationBlock>
             {isOpenFeatureSubMenu ? (
               // <div>Hello</div>
-              <FeatureSubMenu mobile={mobile} />
+              <FeatureSubMenu data={featureData} mobile={mobile} />
             ) : isOpenSolutionSubMenu ? (
               <SolutionSubMenu data={navbarSolutionList} mobile={mobile} />
             ) : isOpenResoursesSubMenu ? (
@@ -240,6 +243,7 @@ export default function NavbarComponent({
   }, [
     colorList?.fontColor,
     colorList?.primaryColor,
+    featureData,
     isOpenFeatureSubMenu,
     isOpenResoursesSubMenu,
     isOpenSolutionSubMenu,
@@ -247,6 +251,25 @@ export default function NavbarComponent({
     navbarSolutionList,
     router.pathname
   ]);
+  const renderFeatureView = useMemo(() => {
+    return featureData?.map((item, index) => {
+      const colorList = FEATURE_THEME_LIST[item?.theme].colorList;
+
+      return (
+        <ListLi key={`feature_navbar_index_${index}`}>
+          <MenuWrap darkColor={colorList.dark} lightColor={colorList.light} href={`/features/${item?.slug}`}>
+            <LeftImg>
+              <Image src={item?.featureIcon?.url} alt='msg-icon' width={32} height={32} />
+            </LeftImg>
+            <RightText>
+              <h5>{item?.name}</h5>
+              <span>{item?.navbarDescription}</span>
+            </RightText>
+          </MenuWrap>
+        </ListLi>
+      );
+    });
+  }, [featureData]);
   const Navigation = () => {
     return (
       <NavMenu mobile={mobile}>
@@ -256,63 +279,7 @@ export default function NavbarComponent({
               Features
             </Link>
             <InnerList features className='innerlist'>
-              <FeatureMenu>
-                <ListLi>
-                  <MenuWrap msghover href='/features/messaging-app'>
-                    <LeftImg>
-                      <Image src='/images/menumsg.svg' alt='msg-icon' width={32} height={32} />
-                    </LeftImg>
-                    <RightText>
-                      <h5>Messaging</h5>
-                      <span>Communicate with clients securely</span>
-                    </RightText>
-                  </MenuWrap>
-                </ListLi>
-                <ListLi>
-                  <MenuWrap billhover href='/features/billing-app'>
-                    <LeftImg>
-                      <Image src='/images/billmenuicon.svg' alt='bill-icon' width={32} height={32} />
-                    </LeftImg>
-                    <RightText>
-                      <h5>Billing</h5>
-                      <span>Create invoices and subscriptions</span>
-                    </RightText>
-                  </MenuWrap>
-                </ListLi>
-                <ListLi>
-                  <MenuWrap filehover href='/features/files-app'>
-                    <LeftImg>
-                      <Image src='/images/filemenuicon.svg' alt='file-icon' width={32} height={32} />
-                    </LeftImg>
-                    <RightText>
-                      <h5>Files & eSignatures</h5>
-                      <span>Share files and sign contracts</span>
-                    </RightText>
-                  </MenuWrap>
-                </ListLi>
-                <ListLi>
-                  <MenuWrap formhover href='/features/forms-app'>
-                    <LeftImg>
-                      <Image src='/images/formmenuicon.svg' alt='form-icon' width={32} height={32} />
-                    </LeftImg>
-                    <RightText>
-                      <h5>Forms</h5>
-                      <span>Streamline data collection</span>
-                    </RightText>
-                  </MenuWrap>
-                </ListLi>
-                <ListLi>
-                  <MenuWrap helphover href='/features/helpdesk-app'>
-                    <LeftImg>
-                      <Image src='/images/deskmenuicon.svg' alt='desk-icon' width={32} height={32} />
-                    </LeftImg>
-                    <RightText>
-                      <h5>Helpdesk</h5>
-                      <span>Improve customer support</span>
-                    </RightText>
-                  </MenuWrap>
-                </ListLi>
-              </FeatureMenu>
+              <FeatureMenu>{renderFeatureView}</FeatureMenu>
             </InnerList>
             <LineMenuImg className='img-line' lineColor={colorList?.lineColor}>
               <svg width='93' height='30' viewBox='0 0 93 30' fill='none' xmlns='http://www.w3.org/2000/svg'>

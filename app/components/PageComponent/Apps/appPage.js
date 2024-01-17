@@ -12,7 +12,7 @@ import { Container } from '../../../styles/commonStyles';
 import Button from '../../../components/button/button';
 import CTA from '../../../components/cta/cta';
 import TabView from '../../../components/tab/tab';
-import { HOME_MODULE_LIST, MODULE_COLOR_LIST } from '../../../constants/constant';
+import { MODULE_COLOR_LIST } from '../../../constants/constant';
 import AutomationCardSection from '../../../components/automationcard';
 import { isEmpty, removeEmptyElement, separateSpecialChar } from '../../../helpers/helpers';
 import CustomerTestimonial from '../../../components/customer/testimonials';
@@ -70,8 +70,8 @@ export default function AppPage({ details, appsList, faqList }) {
         {!isEmpty(details?.sectionContent1Collection?.items) && (
           <TabView
             tabData={details?.sectionContent1Collection?.items || []}
-            bgColor={MODULE_COLOR_LIST[HOME_MODULE_LIST['Automation']]?.bgColor}
-            textColor={MODULE_COLOR_LIST[HOME_MODULE_LIST['Automation']]?.fontColor}
+            bgColor={MODULE_COLOR_LIST.Automation.bgColor}
+            textColor={MODULE_COLOR_LIST.Automation.fontColor}
             isAutomation={true}
           />
         )}

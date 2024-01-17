@@ -12,7 +12,32 @@ internalFeaturesCollection{
     }
   }
 }`;
+
+const POST_GRAPHQL_FEATURES_DETAILS_CARD_DETAIL = `
+name
+slug
+featureIconSvg
+theme`;
+
+const POST_GRAPHQL_FEATURES_DETAILS_NAVBAR_DETAIL = `
+name
+slug
+featureIcon{
+  url
+}
+navbarDescription
+theme`;
+
 const POST_GRAPHQL_FEATURES_DETAILS_FIELDS = `
+      theme
+      featureIcon{
+        url
+      }
+      section3ContentCollection{
+        items{
+${POST_GRAPHQL_FEATURES_DETAILS_CARD_DETAIL}
+        }
+      }
     clientFeaturesCollection{
       items{
         name
@@ -77,12 +102,58 @@ export async function getTabPostsWithSlug(preview) {
 export async function getFeatureById(id, preview) {
   const entries = await fetchGraphQL(
     `query {
-            feature(id:"${id}",preview: ${preview ? 'true' : 'false'}) {
-               ${POST_GRAPHQL_FEATURES_DETAILS_FIELDS}
+      featureCollection(where:{slug:"${id}"},limit:1,preview: ${preview ? 'true' : 'false'}) {
+              items{
+                ${POST_GRAPHQL_FEATURES_DETAILS_FIELDS}
+              }
       }
     }`,
     preview,
     [CONTENTFUL_API_TAG.FEATURES]
   );
-  return entries?.data?.feature;
+  return entries?.data?.featureCollection?.items?.[0];
+}
+
+/**
+ * get all Features app with theme,name and Icon
+ *
+ * @param {Boolean} preview -  Determines whether to fetch features in preview mode.
+ *                           Set to `true` for draft content preview, and `false` for published content.
+ * @returns {Array} - An array of feature items fetched from Contentful.
+ */
+export async function getAllFeature(preview) {
+  const entries = await fetchGraphQL(
+    `query {
+      featureCollection(preview: ${preview ? 'true' : 'false'}) {
+              items{
+                ${POST_GRAPHQL_FEATURES_DETAILS_CARD_DETAIL}
+              }
+      }
+    }`,
+    preview,
+    [CONTENTFUL_API_TAG.FEATURES]
+  );
+  return entries?.data?.featureCollection?.items;
+}
+
+/**
+ * get all Features app with theme,name ,description and navbarIcon
+ *
+ * @param {Boolean} preview -  Determines whether to fetch features in preview mode.
+ *                           Set to `true` for draft content preview, and `false` for published content.
+ * @returns {Array} - An array of ordered feature items fetched from Contentful.
+ */
+export async function getNavbarFeature(preview) {
+  const entries = await fetchGraphQL(
+    `query {
+      featureCollection(order:[order_ASC],preview: ${preview ? 'true' : 'false'}) {
+              items{
+                ${POST_GRAPHQL_FEATURES_DETAILS_NAVBAR_DETAIL}
+              }
+      }
+    }`,
+    preview,
+    [CONTENTFUL_API_TAG.FEATURES]
+  );
+  return entries?.data?.featureCollection?.items;
 }

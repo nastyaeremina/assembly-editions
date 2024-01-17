@@ -602,13 +602,13 @@ const MenuWrap = styled(Link)`
   //hover style for features list
 
   ${(props) =>
-    props.msghover &&
+    props.darkColor &&
     css`
       :hover {
-        background-color: ${browndark};
+        background-color: ${props.darkColor};
         h5,
         span {
-          color: ${brownlight};
+          color: ${props.lightColor};
         }
       }
     `}

@@ -397,35 +397,41 @@ th {
   --gradient-color-3: #003f27;
   --gradient-color-4: #7ddaa0;
 }
-.message {
+.Brown {
   --gradient-color-1: #d7b79e;
   --gradient-color-2: #120800;
   --gradient-color-3: #85664d;
   --gradient-color-4: #f4d8c4;
 }
-.billing {
+.Blue {
   --gradient-color-1: #00afb9;
   --gradient-color-2: #01292c;
   --gradient-color-3: #03888f;
   --gradient-color-4: #7adce1;
 }
-.file {
+.Purple {
   --gradient-color-1: #989af2;
   --gradient-color-2: #01011d;
   --gradient-color-3: #3d3fbe;
   --gradient-color-4: #b6b6ec;
 }
-.form {
+.Yellow {
   --gradient-color-1: #f3da1a;
   --gradient-color-2: #171500;
   --gradient-color-3: #958602;
   --gradient-color-4: #f4e77e;
 }
-.helpdesk {
+.Orange {
   --gradient-color-1: #fd8c2e;
   --gradient-color-2: #1c0c00;
   --gradient-color-3: #cf650d;
   --gradient-color-4: #ffa55b;
+}
+.Magenta {
+  --gradient-color-1: #f35b80;
+  --gradient-color-2: #27000a;
+  --gradient-color-3: #b8294b;
+  --gradient-color-4: #ff96af;
 }
 @media only screen and (max-width: 749px) {
   #gradient-canvas {

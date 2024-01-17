@@ -2,24 +2,24 @@
 
 import React from 'react';
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
-import { HOME_MODULE_LIST, MODULE_COLOR_LIST } from '../../../constants/constant';
+import { MODULE_COLOR_LIST } from '../../../constants/constant';
 import OfficeCTA from '../../officeCTA';
 import Client from '../../client/client';
 import ProductHero from '../../producthero';
 import { extractYouTubeVideoId } from '../../../helpers/helpers';
 
-export default function ProductDemoPage({ details }) {
+export default function ProductDemoPage({ details, featureAppData }) {
   const videoId = extractYouTubeVideoId(details?.videoUrl);
   return (
     <>
       <ProductHero
-        colorList={MODULE_COLOR_LIST[HOME_MODULE_LIST['Productdemo']]}
+        colorList={MODULE_COLOR_LIST.Productdemo}
         title={details?.header}
         description={documentToReactComponents(details?.body?.json)}
         videoUrl={videoId}
       />
       <OfficeCTA />
-      <Client title={null} isProductdemo={true} />
+      <Client data={featureAppData} title={null} isProductdemo={true} />
     </>
   );
 }

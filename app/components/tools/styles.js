@@ -2,27 +2,36 @@ import styled, { css } from 'styled-components';
 import { Body4, Heading3, Heading4, MbBody5 } from '../../styles/styles';
 import { body, primary, title, whiteColor } from '../../styles/color';
 const ToolMain = styled.div`
-  padding: 100px 0 50px 0;
+  padding: 0px 0 50px 0;
   h2 {
-    max-width: 918px;
+    max-width: 75%;
     width: 100%;
     margin: 0;
     ${Heading3};
     color: ${title};
+    border-right: 1px solid #000900;
+    margin-bottom: -40px;
+    padding-bottom: 40px;
+    padding-top: 100px;
+    @media only screen and (max-width: 991px) {
+      border-right: none;
+      padding-top: 80px;
+      max-width: 100%;
+    }
   }
 
   span {
     color: ${primary};
   }
   @media only screen and (max-width: 749px) {
-    padding: 80px 0 40px 0;
+    padding: 0px 0 40px 0;
   }
 `;
 const ModuleSection = styled.div`
   margin-top: 40px;
   border: 1px solid #120800;
   border-top: 0;
-  border-radius:4px;
+  border-radius: 4px;
   color: ${whiteColor};
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;

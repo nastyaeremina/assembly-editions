@@ -13,7 +13,7 @@ const BottomFunction = styled.div`
     position: absolute;
     height: 250px;
     right: calc(25.01% - 0px);
-    border-right: 1px solid #000900;
+    /* border-right: 1px solid #000900; */
     position: absolute;
   }
   @media only screen and (max-width: 769px) {
