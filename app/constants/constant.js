@@ -103,7 +103,7 @@ export const MODULE_COLOR_LIST = {
 export const FEATURE_THEME_LIST = {
   Brown: {
     colorList: {
-      bgColor: 'rgba(18, 8, 0, 0.8)',
+      bgColor: theme.colors.browndark,
       borderBottomColor: '#85664D',
       fontColor: '#F3F3F2',
       buttonColor: '#D7B79E',
@@ -124,7 +124,7 @@ export const FEATURE_THEME_LIST = {
   },
   Blue: {
     colorList: {
-      bgColor: 'rgba(1, 41, 44, 0.8)',
+      bgColor: theme.colors.bluedark,
       borderBottomColor: '#03888F',
       fontColor: '#F3F3F2',
       buttonColor: '#00AFB9',
@@ -145,7 +145,7 @@ export const FEATURE_THEME_LIST = {
   },
   Purple: {
     colorList: {
-      bgColor: 'rgba(1, 1, 29, 0.8)',
+      bgColor: theme.colors.purpledark,
       borderBottomColor: '#3D3FBE',
       fontColor: '#F3F3F2',
       buttonColor: '#989AF2',
@@ -166,7 +166,7 @@ export const FEATURE_THEME_LIST = {
   },
   Yellow: {
     colorList: {
-      bgColor: 'rgba(23, 21, 0, 0.8)',
+      bgColor: theme.colors.yellowdark,
       borderBottomColor: '#958602',
       fontColor: '#F3F3F2',
       buttonColor: '#F3DA1A',
@@ -188,7 +188,7 @@ export const FEATURE_THEME_LIST = {
   },
   Orange: {
     colorList: {
-      bgColor: 'rgba(28, 12, 0, 0.8)',
+      bgColor: theme.colors.orangedark,
       borderBottomColor: '#CF650D',
       fontColor: '#F3F3F2',
       buttonColor: '#FD8C2E',
@@ -209,7 +209,7 @@ export const FEATURE_THEME_LIST = {
   },
   Magenta: {
     colorList: {
-      bgColor: 'rgba(39, 0, 10, 0.8)',
+      bgColor: theme.colors.magentadark,
       borderBottomColor: '#B8294B',
       fontColor: '#F3F3F2',
       buttonColor: '#F35B80',

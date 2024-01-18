@@ -21,7 +21,7 @@ export default function FeatureAppPage({ details }) {
           <TabView
             tabData={details?.clientFeaturesCollection?.items || []}
             bgColor={colorList?.bgColor}
-            textColor={colorList?.fontColor}
+            textColor={colorList?.lightColor}
           />
         </BottomFunction>
       </Container>
