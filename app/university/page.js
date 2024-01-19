@@ -1,9 +1,8 @@
 import Layout from '../components/layout';
 import Navbar from './../components/navbar/navbar';
 import UniversityPage from './../components/PageComponent/University/universityPage';
-import { getAllUniversityVideos } from './../lib/contentful-universityVideos';
-import { getSEOData, isEmpty } from './../helpers/helpers';
-import { UNIVERSITY_VIDEO_CATEGORY } from './../constants/constant';
+import { getAllUniversityVideos, getUniversityVideoCategory } from './../lib/contentful-universityVideos';
+import { customSort, getSEOData } from './../helpers/helpers';
 
 async function getContent() {
   let allPosts = [];
@@ -33,11 +32,13 @@ async function getContent() {
     }
   });
 
-  const sortedCategory = UNIVERSITY_VIDEO_CATEGORY.reverse();
-  const universityVideosList = newList
-    ?.sort((a, b) => sortedCategory?.indexOf(a.category) - sortedCategory?.indexOf(b.category))
-    ?.reverse();
-  return { universityVideosList, allPosts };
+  // get all video category
+  const sortedCategory = await getUniversityVideoCategory();
+
+  //sorting by video category
+  customSort(newList, sortedCategory, 'category');
+
+  return { universityVideosList: newList, allPosts };
 }
 
 export async function generateMetadata({ params, searchParams }, parent) {

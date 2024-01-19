@@ -1,5 +1,5 @@
 import { CONTENTFUL_API_TAG } from '../constants/constant';
-import { fetchGraphQL } from './contentful';
+import { fetchGraphQL, getContentTypeDetail } from './contentful';
 
 const POST_GRAPHQL_UNIVERSITY_VIDEOS_DETAILS_FIELDS = `
 name
@@ -71,4 +71,20 @@ export async function getAllUniversityVideoWithSlug(preview) {
     [CONTENTFUL_API_TAG.UNIVERSITY]
   );
   return extractPostEntries(entries);
+}
+
+/**
+ * fetch all predefine  video category on contentful model
+ * @returns {Array} - The array of Video Category.
+ */
+export async function getUniversityVideoCategory() {
+  const contentTypeId = 'universityVideos';
+  const data = await getContentTypeDetail(contentTypeId);
+  if (data) {
+    const defaultValue = data.fields
+      .find((field) => field.id === 'videoCategory')
+      ?.validations?.find((item) => item?.in)?.in;
+    return defaultValue;
+  }
+  return [];
 }

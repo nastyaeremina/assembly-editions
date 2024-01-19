@@ -364,14 +364,6 @@ export const APPS_TYPE = {
 };
 
 export const BLOG_TAG_SORTED_LIST = ['announcements', 'inside-copilot', 'guides'];
-export const UNIVERSITY_VIDEO_CATEGORY = [
-  'Get Started',
-  'Copilot Apps',
-  'Partner Apps',
-  'Advanced',
-  'Industry Courses',
-  'Quick Tips'
-];
 
 export const COOKIE_NAME = 'current-portal-session';
 

@@ -158,10 +158,17 @@ export async function getsvgCode(svgUrl) {
   return code;
 }
 
-export const customSort = (array, order) => {
+/**
+ * Custom sorting function for an array of objects based on a specified order.
+ * @param {Array} array - The array of objects to be sorted.
+ * @param {Array} order - The desired order of elements based on the specified field.
+ * @param {string} [field='slug'] - The field to be used for comparison; default is 'slug'.
+ * @returns {Array} - The sorted array based on the specified order and field.
+ */
+export const customSort = (array, order, field = 'slug') => {
   return array.sort((a, b) => {
-    const indexOfA = order.indexOf(a?.slug);
-    const indexOfB = order.indexOf(b?.slug);
+    const indexOfA = order.indexOf(a?.[field]);
+    const indexOfB = order.indexOf(b?.[field]);
 
     if (indexOfA === -1) {
       return 1; // If 'a' is not found in the order, move it to the end.
@@ -197,12 +204,6 @@ export function isNumber(inputString) {
   return !isNaN(inputString);
 }
 
-/**
- * Formats a plan price for display, adding a dollar sign if it's a valid number string.
- *
- * @param {string} price - The price string to format.
- * @returns {string} - The formatted price string, with a dollar sign if the input was a valid number string.
- */
 export function formatPlanPrice(price) {
   if (isNumber(price)) return `$${price}`;
   return price;
