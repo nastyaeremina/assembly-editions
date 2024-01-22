@@ -179,6 +179,10 @@ const GuideDetail = styled.div`
       p {
         ${Body5};
         color: ${title};
+        padding-top: 20px;
+        :first-child {
+          padding-top: 0;
+        }
         i {
           font-style: italic !important;
         }
