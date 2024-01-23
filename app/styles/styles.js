@@ -242,6 +242,16 @@ const MobileH1 = css`
   font-size: 60px;
   line-height: 54px;
 `;
+
+const Limarker = css`
+  ::before {
+    content: '';
+    position: absolute;
+    width: 20px;
+    height: 10px;
+    background-color: #7ddaa0;
+  }
+`;
 export {
   Heading1,
   Heading2,
@@ -279,5 +289,6 @@ export {
   SliderTxt,
   MobileH1,
   MbBody2,
-  MbBody5
+  MbBody5,
+  Limarker
 };

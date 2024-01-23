@@ -1,14 +1,7 @@
 import styled, { css } from 'styled-components';
-import { Body2, Body4, Body5, Heading2, Heading3, Heading4, Heading5 } from '../../styles/styles';
+import { Body2, Body4, Body5, Heading2, Heading3, Heading4, Heading5, Limarker } from '../../styles/styles';
 
-import {
-  greenlight,
-  title,
-  darkgray,
-  midiumgray,
-  greenmidlight
-} from './../../styles/color';
-
+import { greenlight, title, darkgray, midiumgray, greenmidlight } from './../../styles/color';
 
 const PriceMenu = styled.div`
   width: 100%;
@@ -112,14 +105,19 @@ const PricePlan = styled.div`
     margin: 0;
   }
   ul {
-    list-style-image: url('./images/Bullet.svg');
     padding-left: 24px;
     margin-top: 20px;
     li {
+      position: relative;
       margin-top: 12px;
       padding-left: 14px;
       ${Body5}
       color: ${darkgray};
+      ${Limarker}
+      ::before {
+        top: 5px;
+        left: -24px;
+      }
     }
   }
   ${(props) =>
@@ -182,14 +180,4 @@ const PriceOption = styled.div`
     grid-template-columns: repeat(auto-fill, minmax(262px, 1fr));
   }
 `;
-export {
-  PriceMenu,
-  PriceSection,
-  Pricenumber,
-  Caption,
-  PricePlan,
-  BulletImage,
-  Pricedetail,
-  CardBtn,
-  PriceOption
-};
+export { PriceMenu, PriceSection, Pricenumber, Caption, PricePlan, BulletImage, Pricedetail, CardBtn, PriceOption };
