@@ -38,7 +38,7 @@ export default function FAQ({ enterprise, isGuideFAQ, currentpath, faqList: allP
   const faqView = useMemo(() => {
     if (isEmpty(allPosts)) return null;
     return allPosts.map((item, index) => {
-      const faqId = slugify(item?.question, { lower: true }) || '';
+      const faqId = slugify(item?.question ?? '', { lower: true }) || '';
       return (
         <>
           <DivFAQ isGuideFAQ={isGuideFAQ}>

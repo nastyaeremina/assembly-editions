@@ -48,18 +48,18 @@ export default function UniversityPage({ universityVideosList, allPosts }) {
     if (isEmpty(universityVideosList)) return null;
 
     return universityVideosList?.map((item, index) => {
-      let isActive = slugify(item?.category) === selected_category;
+      let isActive = slugify(item?.category ?? '') === selected_category;
       return (
         <Catagoryitem
           key={`rendercategoryitem_index_${index}`}
           onClick={() => {
-            onClickCategories(slugify(item?.category));
+            onClickCategories(slugify(item?.category ?? ''));
           }}
           isActive={isActive}>
           <Link
-            href={`#${slugify(item?.category)}`}
+            href={`#${slugify(item?.category ?? '')}`}
             onClick={() => {
-              onClickCategories(slugify(item?.category));
+              onClickCategories(slugify(item?.category ?? ''));
             }}>
             {item?.category}
           </Link>
@@ -90,9 +90,9 @@ export default function UniversityPage({ universityVideosList, allPosts }) {
     return universityVideosList?.map((item, index) => {
       return (
         <ExtensionsSection
-          id={slugify(item?.category)}
+          id={slugify(item?.category ?? '')}
           key={`renderuniversityvideoslistiten_index_${index}`}
-          isSelected={slugify(item?.category) === selected_category}
+          isSelected={slugify(item?.category ?? '') === selected_category}
           isNotFirst={index !== 0}>
           <h2>{item?.category}</h2>
           <FeatureMenu>{renderUniversityVideosView(item?.list)}</FeatureMenu>

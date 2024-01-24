@@ -191,7 +191,7 @@ export function extractTagId(children) {
   while (newNode?.props?.children) {
     newNode = newNode.props.children;
   }
-  const tagId = `${slugify(newNode?.toLowerCase())}`;
+  const tagId = `${slugify(newNode?.toLowerCase() ?? '')}`;
   return tagId;
 }
 
