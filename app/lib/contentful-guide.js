@@ -37,6 +37,30 @@ childArticlesCollection(limit:15){
   }
 }
 `;
+
+const POST_GRAPHQL_GUIDE_ARTICLE_CONTENT_FIELDS = `
+content{
+  json
+  links{
+    assets{
+       block{
+         sys{
+           id
+         }
+         title
+         description
+         contentType
+         fileName
+         url
+         contentType
+       }
+       hyperlink{
+ url
+       }
+     }
+   }
+}
+`;
 export async function getGuidePageContent({ id }) {
   const entries = await fetchGraphQL(
     `query {
@@ -100,9 +124,8 @@ export async function getArticleData(slug, preview) {
                         ${POST_GRAPHQL_GUIDE_ARTICLE_DETAILS_FIELDS}
                         ${POST_GRAPHQL_GUIDE_ARTICLE_FAQ_FIELDS}
                         header
-                        content{
-                          json
-                        }
+                        ${POST_GRAPHQL_GUIDE_ARTICLE_CONTENT_FIELDS}
+                          
              }
           }
       }         

@@ -115,6 +115,16 @@ const GuideDetail = styled.div`
   img {
     width: 100%;
     height: 100%;
+    margin-top: 16px;
+    border-radius: 4px;
+    border: 0.4px solid #dfe1e4;
+  }
+  video {
+    width: 100%;
+    height: 100%;
+    margin-top: 16px;
+    border-radius: 4px;
+    border: 0.4px solid #dfe1e4;
   }
   ol {
     padding-left: 20px;

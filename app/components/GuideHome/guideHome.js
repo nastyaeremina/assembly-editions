@@ -3,6 +3,7 @@ import React, { useCallback, useEffect } from 'react';
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
 import { BLOCKS } from '@contentful/rich-text-types';
 import { usePathname } from 'next/navigation';
+import Image from 'next/image';
 import FAQ from '../../components/faq/faq';
 import { extractTagId, isEmpty } from '../../helpers/helpers';
 import CopyLink from '../copyLink/copyLink';
@@ -10,6 +11,9 @@ import { Caption, FAQSection, GuideCenter, GuideDetail, HeroSection, MainContent
 
 export default function GuideHome({ detail }) {
   const currentPath = usePathname();
+  //extract assets block from article content
+  const assets = detail?.content?.links?.assets?.block ?? [];
+
   let currentDomain = 'https://www.copilot.com';
   if (typeof window !== 'undefined') currentDomain = window?.location?.host;
 
@@ -83,6 +87,21 @@ export default function GuideHome({ detail }) {
             <CopyLink tagId={tagId} />
           </h6>
         );
+      },
+      [BLOCKS.EMBEDDED_ASSET]: (node) => {
+        const assetId = node?.data?.target?.sys?.id;
+        const asset = assets.find((item) => item?.sys?.id === assetId);
+        if (asset) {
+          const src = asset?.url;
+          //check current asset is image
+          if (asset?.contentType?.startsWith('image/'))
+            return <Image src={src} alt={asset?.fileName} width={753} height={266} className='content-image' />;
+          //check current asset is image
+          else if (asset?.contentType?.startsWith('video/')) return <video src={src} controls={true} autoPlay={true} />;
+          return null;
+        }
+
+        return null;
       }
     }
   };
