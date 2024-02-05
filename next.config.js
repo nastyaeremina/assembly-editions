@@ -83,7 +83,15 @@ const nextConfig = {
       console.log('error', error);
       return [];
     }
-  }
+  },
+  async rewrites() {
+    return [
+      {
+        source: '/experts',
+        destination: 'https://copilotplatforms.partnerpage.io/experts',
+      },
+    ]
+  },
 };
 
 module.exports = nextConfig;
