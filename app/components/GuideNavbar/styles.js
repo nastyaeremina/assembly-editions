@@ -168,6 +168,7 @@ const NavItem = styled.li`
   .guidelink {
     display: flex;
     gap: 10px;
+    width: 100%;
   }
   .close {
     transform: rotate(90deg);
@@ -201,10 +202,6 @@ const NavItem = styled.li`
         }
       }
     }
-  }
-  .guidelink {
-    display: flex;
-    gap: 10px;
   }
 `;
 
