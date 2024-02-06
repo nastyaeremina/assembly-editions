@@ -87,11 +87,11 @@ const nextConfig = {
   async rewrites() {
     return [
       {
-        source: '/experts',
-        destination: 'https://copilotplatforms.partnerpage.io/experts',
-      },
-    ]
-  },
+        source: '/experts/:path*',
+        destination: 'https://copilotplatforms.partnerpage.io/experts/:path*'
+      }
+    ];
+  }
 };
 
 module.exports = nextConfig;
