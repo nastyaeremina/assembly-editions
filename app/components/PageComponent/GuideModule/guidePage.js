@@ -1,8 +1,7 @@
 import React from 'react';
-import slugify from 'slugify';
 import GuideHome from '../../GuideHome/guideHome';
 import GuideRightSection from '../../GuideNavbar/guideRightSection';
-import { isEmpty } from '../../../helpers/helpers';
+import { isEmpty, stringToSlugyfy } from '../../../helpers/helpers';
 
 export default function GuidePage({ defaultArticle: article }) {
   function tableContents() {
@@ -25,7 +24,7 @@ export default function GuidePage({ defaultArticle: article }) {
           stack.pop();
           currentLevel--; // Decrease the level when popping
         }
-        const id = `${slugify(item?.title?.toLowerCase())}`;
+        const id = `${stringToSlugyfy(item?.title)}`;
         const newItem = { ...item, items: [], id, level: currentLevel };
         if (stack.length === 0) {
           hierarchy.push(newItem);

@@ -3,7 +3,6 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { useCallback, useMemo, useState } from 'react';
-import slugify from 'slugify';
 import {
   UniversitySection,
   UniversityHero,
@@ -23,7 +22,7 @@ import {
   EmptySection
 } from '../../../styles/universityStyles';
 import { Container } from '../../../styles/commonStyles';
-import { isEmpty } from '../../../helpers/helpers';
+import { isEmpty, stringToSlugyfy } from '../../../helpers/helpers';
 import AppError from '../../../components/apperror/error';
 
 export default function UniversityPage({ universityVideosList, allPosts }) {
@@ -48,18 +47,18 @@ export default function UniversityPage({ universityVideosList, allPosts }) {
     if (isEmpty(universityVideosList)) return null;
 
     return universityVideosList?.map((item, index) => {
-      let isActive = slugify(item?.category ?? '') === selected_category;
+      let isActive = stringToSlugyfy(item?.category) === selected_category;
       return (
         <Catagoryitem
           key={`rendercategoryitem_index_${index}`}
           onClick={() => {
-            onClickCategories(slugify(item?.category ?? ''));
+            onClickCategories(stringToSlugyfy(item?.category));
           }}
           isActive={isActive}>
           <Link
-            href={`#${slugify(item?.category ?? '')}`}
+            href={`#${stringToSlugyfy(item?.category)}`}
             onClick={() => {
-              onClickCategories(slugify(item?.category ?? ''));
+              onClickCategories(stringToSlugyfy(item?.category));
             }}>
             {item?.category}
           </Link>
@@ -90,9 +89,9 @@ export default function UniversityPage({ universityVideosList, allPosts }) {
     return universityVideosList?.map((item, index) => {
       return (
         <ExtensionsSection
-          id={slugify(item?.category ?? '')}
+          id={stringToSlugyfy(item?.category)}
           key={`renderuniversityvideoslistiten_index_${index}`}
-          isSelected={slugify(item?.category ?? '') === selected_category}
+          isSelected={stringToSlugyfy(item?.category) === selected_category}
           isNotFirst={index !== 0}>
           <h2>{item?.category}</h2>
           <FeatureMenu>{renderUniversityVideosView(item?.list)}</FeatureMenu>

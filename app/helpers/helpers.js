@@ -191,7 +191,7 @@ export function extractTagId(children) {
   while (newNode?.props?.children) {
     newNode = newNode.props.children;
   }
-  const tagId = `${slugify(newNode?.toLowerCase() ?? '')}`;
+  const tagId = `${stringToSlugyfy(newNode)}`;
   return tagId;
 }
 
@@ -207,4 +207,17 @@ export function isNumber(inputString) {
 export function formatPlanPrice(price) {
   if (isNumber(price)) return `$${price}`;
   return price;
+}
+
+/**
+ * Convert a string to a slug.
+ * @param {string} value - The string to be converted to a slug.
+ * @returns {string} - The slugified version of the input string.
+ */
+export function stringToSlugyfy(value) {
+  // Check if the value is empty
+  if (isEmpty(value)) return '';
+
+  // Convert the value to a slug with lowercase letters
+  return slugify(value, { lower: true });
 }

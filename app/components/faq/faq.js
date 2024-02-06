@@ -5,8 +5,7 @@ import { useStyletron } from 'baseui';
 import { ReactMarkdown } from 'react-markdown/lib/react-markdown';
 import Image from 'next/image';
 import copy from 'copy-to-clipboard';
-import slugify from 'slugify';
-import { isEmpty } from '../../helpers/helpers';
+import { isEmpty, stringToSlugyfy } from '../../helpers/helpers';
 import { Container } from '../../styles/commonStyles';
 import CopyIcon from '../../../public/images/copy-icon.svg';
 import CopyLink from '../copyLink/copyLink';
@@ -38,7 +37,7 @@ export default function FAQ({ enterprise, isGuideFAQ, currentpath, faqList: allP
   const faqView = useMemo(() => {
     if (isEmpty(allPosts)) return null;
     return allPosts.map((item, index) => {
-      const faqId = slugify(item?.question ?? '', { lower: true }) || '';
+      const faqId = stringToSlugyfy(item?.question);
       return (
         <>
           <DivFAQ isGuideFAQ={isGuideFAQ}>
