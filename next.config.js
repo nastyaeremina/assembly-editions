@@ -85,15 +85,12 @@ const nextConfig = {
     }
   },
   async rewrites() {
-    return {
-      // These rewrites are checked after both pages/public files and dynamic routes are checked
-      fallback: [
-        {
-          source: '/experts/:path*',
-          destination: 'https://copilotplatforms.partnerpage.io/experts/:path*'
-        }
-      ]
-    };
+    return  [
+      {
+        source: '/experts/:path*',
+        destination: 'https://copilotplatforms.partnerpage.io/experts/:path*'
+      }
+    ];
   }
 };
 
