@@ -17,6 +17,11 @@ const QuoteMain = styled.div`
   background-position: 50% 50%;
   padding: 50px 0;
   position: relative;
+  ${(props) =>
+    props.isStandardPage &&
+    css`
+      padding: 0px 0 100px;
+    `}
   @media only screen and (max-width: 768px) {
     padding: 40px 0;
     ${(props) =>
@@ -28,6 +33,11 @@ const QuoteMain = styled.div`
       props.caseStudies &&
       css`
         padding: 80px 0;
+      `}
+      ${(props) =>
+      props.isStandardPage &&
+      css`
+        padding: 0px 0 80px;
       `}
   }
   ${(props) =>
@@ -57,14 +67,14 @@ const QuoteTxt = styled.div`
   padding: 40px 40px 40px 0;
   p {
     ${Quote};
-    margin: 0;
+    margin: 0px 0 30px 0;
     color: ${title};
   }
   @media only screen and (max-width: 768px) {
     padding: 30px 28px;
     p {
       ${MobileH3};
-      padding-bottom: 30px;
+      padding-bottom: 0px;
     }
   }
 `;
@@ -113,6 +123,7 @@ const QuoteImg = styled.div`
   img {
     border-radius: 2px 0 0 2px;
     height: 100%;
+    object-fit: cover;
   }
   @media only screen and (max-width: 768px) {
     border-right: 0;

@@ -93,6 +93,7 @@ const ImageWrap = styled.div`
   margin-top: -1px;
   img {
     height: 100%;
+    object-fit: cover;
   }
   @media only screen and (max-width: 991px) {
     left: 0;

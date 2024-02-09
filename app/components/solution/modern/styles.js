@@ -1,12 +1,22 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { Body4, Heading3, Heading4, MbBody5 } from '../../../styles/styles';
 import { body, primary, title } from '../../../styles/color';
 
 const ModernSection = styled.div`
   padding: 100px 0 50px;
   overflow: hidden;
+  ${(props) =>
+    props.isStandardPage &&
+    css`
+      padding: 0 0 100px;
+    `}
   @media only screen and (max-width: 749px) {
     padding: 80px 0 40px;
+    ${(props) =>
+      props.isStandardPage &&
+      css`
+        padding: 0 0 80px;
+      `}
   }
 `;
 const HeadView = styled.div`

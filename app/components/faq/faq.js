@@ -11,7 +11,7 @@ import CopyIcon from '../../../public/images/copy-icon.svg';
 import CopyLink from '../copyLink/copyLink';
 import { FaqSection, FaqTitle, DivFAQ, FAQAnsware } from './styles';
 
-export default function FAQ({ enterprise, isGuideFAQ, currentpath, faqList: allPosts }) {
+export default function FAQ({ enterprise, isGuideFAQ, currentpath, faqList: allPosts, title, isStandardPage }) {
   //activeAccrodion use for open specific FAQ. In this we store FAQ element Id
   const [activeAccordion, setActiveAccordion] = useState();
 
@@ -91,11 +91,11 @@ export default function FAQ({ enterprise, isGuideFAQ, currentpath, faqList: allP
   const [css] = useStyletron();
   return (
     <>
-      <FaqSection enterprise={enterprise} isGuideFAQ={isGuideFAQ}>
+      <FaqSection enterprise={enterprise} isGuideFAQ={isGuideFAQ} isStandardPage={isStandardPage}>
         {!isEmpty(allPosts) && (
           <Container>
             <FaqTitle isGuideFAQ={isGuideFAQ} id='faq'>
-              <h2 className='faqtitle'>Frequently Asked Questions</h2>
+              <h2 className='faqtitle'>{!isEmpty(title) ? title : 'Frequently Asked Questions'}</h2>
               {isGuideFAQ && currentpath && (
                 <Image
                   src={CopyIcon}

@@ -2,15 +2,18 @@
 import Image from 'next/image';
 import { Container } from '../../styles/commonStyles';
 import { QuoteMain, Mainss, QuoteTxt, QuoteSubTxt, QuoteImg } from './styles';
+import { isEmpty } from '../../helpers/helpers';
 
-export default function Quote({ gradientImage, data, caseStudies = false }) {
+export default function Quote({ gradientImage, data, caseStudies = false, isStandardPage }) {
   return (
-    <QuoteMain gradientImage={gradientImage} caseStudies={caseStudies}>
+    <QuoteMain gradientImage={gradientImage} caseStudies={caseStudies} isStandardPage={isStandardPage}>
       <Container>
         <Mainss>
-          <QuoteImg>
-            <Image src={data?.image?.url} alt='red-icon' width={413} height={405} layout={'fixed'} />
-          </QuoteImg>
+          {!isEmpty(data?.image?.url) && (
+            <QuoteImg>
+              <Image src={data?.image?.url} alt='red-icon' width={413} height={405} layout={'fixed'} />
+            </QuoteImg>
+          )}
           <QuoteTxt>
             <p>{data?.quote}</p>
             <QuoteSubTxt>

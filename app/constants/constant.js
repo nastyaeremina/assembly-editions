@@ -409,7 +409,8 @@ export const CONTENTFUL_API_TAG = {
   SOLUTION: 'solution',
   UNIVERSITY: 'university',
   WEEKLY_DEMO: 'weekly-demo',
-  OTHER: 'other'
+  OTHER: 'other',
+  STANDARD_PAGE: 'standard-page'
 };
 
 export const GUIDE_LINK_INFO = {

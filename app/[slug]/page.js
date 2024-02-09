@@ -4,44 +4,54 @@ import Navbar from '../components/navbar/navbar';
 import WeeklyHero from '../components/weeklyhero/weeklyhero';
 import { PRODUCT_DEMO_PAGE_ID, WEEKLY_DEMO_PAGE_ID } from '../constants/constant';
 import { getProductDemoContent, getWeeklyDemoContent } from '../lib/contentful-weeklyDemo';
-import { getSEOData } from '../helpers/helpers';
+import { getSEOData, isEmpty } from '../helpers/helpers';
 import ProductDemoPage from '../components/PageComponent/ProductDemo/productDemoPage';
 import { getAllFeature } from '../lib/contentful-features';
+import { getStandardPageContent } from '../lib/contentful-standardPage';
+import StandardPage from '../components/standardPage/standaradPage';
 
-async function getContent() {
+const PAGE_TYPE = {
+  DEFAULT: 0,
+  STANDARD_PAGE: 1,
+  WEEKLY_DEMO: 2,
+  PRODUCT_DEMO: 3
+};
+async function getContent({ slug }) {
   const details = (await getWeeklyDemoContent(WEEKLY_DEMO_PAGE_ID)) ?? [];
-  const productdetails = await getProductDemoContent(PRODUCT_DEMO_PAGE_ID);
+  if (!isEmpty(details) && details.slug === slug) return { data: details, type: PAGE_TYPE.WEEKLY_DEMO };
 
-  //get all features app
-  const featureAppData = (await getAllFeature()) ?? [];
-  return {
-    details,
-    productdetails,
-    featureAppData
-  };
+  const productdetails = await getProductDemoContent(PRODUCT_DEMO_PAGE_ID);
+  if (!isEmpty(productdetails) && productdetails.slug === slug) {
+    const featureAppData = (await getAllFeature()) ?? [];
+    return { data: productdetails, type: PAGE_TYPE.PRODUCT_DEMO, featureAppData };
+  }
+
+ const standardPageContent = (await getStandardPageContent(slug)) ?? {};
+  if (!isEmpty(standardPageContent))
+    return {
+        type: PAGE_TYPE.STANDARD_PAGE,
+        data: standardPageContent
+    };
+  
+  return {};
 }
 
 export async function generateMetadata({ params }) {
-  const { details, productdetails } = await getContent();
-  let data;
-  if (params.slug === details?.slug) data = details;
-  else if (params.slug === productdetails?.slug) data = productdetails;
+  const { data } = await getContent({ slug: params.slug });
 
   const seoData = await getSEOData({ data: data?.seoMetadata });
   return seoData;
 }
 export default async function WeeklyDemo({ params }) {
-  const { details, productdetails, featureAppData } = await getContent();
-
-  if (details.slug !== params.slug && productdetails?.slug !== params?.slug) return notFound();
+  const { featureAppData, data, type } = await getContent({ slug: params.slug });
+  if (data?.slug !== params.slug) return notFound();
 
   return (
     <Layout>
       <Navbar />
-      {params.slug === details?.slug && <WeeklyHero data={details} />}
-      {params.slug === productdetails?.slug && (
-        <ProductDemoPage details={productdetails} featureAppData={featureAppData} />
-      )}
+      {type === PAGE_TYPE.WEEKLY_DEMO && <WeeklyHero data={data} />}
+      {type === PAGE_TYPE.PRODUCT_DEMO && <ProductDemoPage details={data} featureAppData={featureAppData} />}
+      {type === PAGE_TYPE.STANDARD_PAGE && <StandardPage data={data?.contentCollection?.items} />}
     </Layout>
   );
 }

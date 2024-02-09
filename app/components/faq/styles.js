@@ -5,6 +5,11 @@ import { greenlight, body, title, primary } from './../../styles/color';
 
 const FaqSection = styled.div`
   padding: 100px 0 60px 0;
+  ${(props) =>
+    props.isStandardPage &&
+    css`
+      padding: 0px 0 60px;
+    `}
   li {
     padding-bottom: 0;
     :last-child {
@@ -51,6 +56,11 @@ const FaqSection = styled.div`
       font-size: 18px !important;
       line-height: 22px !important;
     }
+    ${(props) =>
+      props.isStandardPage &&
+      css`
+        padding: 0px 0 40px;
+      `}
   }
   @media only screen and (max-width: 749px) {
     .listtitle {
