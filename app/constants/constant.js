@@ -1,4 +1,4 @@
-const theme = {
+export const theme = {
   fontfamily: {
     Bagoss: 'Bagoss',
     Everett: 'Everett'
@@ -369,8 +369,10 @@ export const COOKIE_NAME = 'current-portal-session';
 
 export const PER_API_LIMIT_FOR_AUTOMATION = 10;
 export const PER_UPDATE_PAGE_POST = 10;
-export const PER_API_LIMIT_FOR_GUIDE_SECTION = 5;
+export const PER_API_LIMIT_FOR_GUIDE_SECTION = 1;
 export const PER_API_LIMIT_FOR_FAQ_SECTION = 20;
+export const PER_API_LIMIT_FOR_GUIDE_ARTICLE_FAQ = 40;
+
 export const INDUSTRY_ARRAY = [
   'accounting_and_bookkeeping',
   'consulting',
@@ -416,6 +418,17 @@ export const CONTENTFUL_API_TAG = {
 export const GUIDE_LINK_INFO = {
   link: '/guide',
   text: 'Copilot Guide'
+};
+
+export const FIELD_SCORE = {
+  'heading-1': 1000,
+  'page-description': 100,
+  'heading-2': 10,
+  'heading-3': 10,
+  'heading-4': 10,
+  faqQuetion: 1,
+  faqAnswer: 0.1,
+  other: 0.1
 };
 
 export const HOME_CONTENT_ID = '1cPG7VsMO1XCahxAnz3rne';

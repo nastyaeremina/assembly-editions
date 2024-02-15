@@ -1,7 +1,7 @@
 import styled, { css } from 'styled-components';
 import { Body4, FooterText, MbBody5 } from '../../styles/styles';
 import { greendark, lightgray, primary, title } from '../../styles/color';
-import Link from 'next/link';
+import { theme } from '../../constants/constant';
 
 const SideNavbar = styled.div`
   width: 300px;
@@ -294,7 +294,7 @@ const NavmenuSection = styled.div`
   gap: 16px;
   height: 100vh;
   overflow: scroll;
-  padding: 40px 20px 140px 0px;
+  padding: 40px 20px 240px 0px;
   -webkit-mask-image: linear-gradient(
     to bottom,
     transparent 0%,
@@ -560,6 +560,244 @@ const AskDiv = styled.div`
   gap: 8px;
   cursor: pointer;
 `;
+
+const Main = styled.div`
+  background: rgba(255, 255, 255, 0.65);
+  backdrop-filter: blur(2px);
+  position: fixed;
+  z-index: 9999;
+  width: 100%;
+  height: 100vh;
+  top: 0;
+`;
+
+const PopUp = styled.div`
+  background-color: ${theme.colors.neutral};
+  position: absolute;
+  top: 15vh;
+  left: calc(50% - 327px);
+  border-radius: 12px;
+  .vercel [cmdk-root] {
+    width: 640px;
+    padding: 8px 0 0;
+    /* background: ${({ theme }) => theme.inputBackground}; */
+    border-radius: 12px;
+    overflow: hidden;
+    /* border: 1px solid ${({ theme }) => theme.border}; */
+    box-shadow: 0 16px 70px rgba(0, 0, 0, 0.2);
+    transition: transform 100ms ease;
+  }
+
+  .dark .vercel [cmdk-root] {
+    background: rgba(22, 22, 22, 0.7);
+  }
+
+  .vercel [cmdk-input] {
+    border: none;
+    width: 100%;
+    font-size: 17px;
+    padding: 8px 8px 16px 46px;
+    outline: none;
+    color: ${theme.colors.greendark};
+    /* margin-bottom: 16px; */
+    border-radius: 0;
+    background-color: ${theme.colors.neutral};
+  }
+
+  .vercel [cmdk-input]::placeholder {
+    /* color: ${({ theme }) => theme.modalplaceholder}; */
+  }
+
+  .vercel [cmdk-vercel-badge] {
+    height: 20px;
+    /* background: ${({ theme }) => theme.projectnamehover}; */
+    display: inline-flex;
+    align-items: center;
+    padding: 0 8px;
+    font-size: 12px;
+    /* color: ${({ theme }) => theme.description}; */
+    border-radius: 4px;
+    margin: 4px 0 4px 12px;
+    user-select: none;
+    text-transform: capitalize;
+    font-weight: 500;
+  }
+
+  .vercel [cmdk-item] {
+    content-visibility: auto;
+    cursor: pointer;
+    border-radius: 8px;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    user-select: none;
+    will-change: background, color;
+    transition: all 150ms ease;
+    transition-property: none;
+  }
+
+  .vercel [cmdk-item][data-selected='true'] {
+    background: #e2e2e2;
+  }
+
+  .vercel [cmdk-item][data-disabled='true'] {
+    color: #c7c7c7;
+    cursor: not-allowed;
+  }
+
+  .vercel [cmdk-item]:active {
+    transition-property: background;
+    background: ${theme.colors.neutral};
+    color: ${theme.colors.greendark};
+  }
+
+  .vercel [cmdk-item] svg {
+    width: 22px;
+    height: 22px;
+  }
+
+  .vercel [cmdk-list] {
+    /* min-height:330px; */
+    max-height: 400px;
+    overflow: auto;
+    overscroll-behavior: contain;
+    transition: 100ms ease;
+    transition-property: height;
+    padding: 8px;
+    border-top: 1px solid ${theme.colors.border};
+    scroll-padding-block: 8px;
+  }
+  .vercel [cmdk-vercel-shortcuts] {
+    display: flex;
+    margin-left: auto;
+    gap: 8px;
+  }
+
+  .vercel [cmdk-vercel-shortcuts] kbd {
+    font-family: 'Inter';
+    font-size: 12px;
+    min-width: 20px;
+    padding: 4px;
+    height: 20px;
+    border-radius: 4px;
+    /* color: ${({ theme }) => theme.description}; */
+    background: ${theme.colors.neutral};
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-transform: uppercase;
+  }
+
+  .vercel [cmdk-separator] {
+    height: 1px;
+    width: 100%;
+    background: #e8e8e8;
+    margin: 4px 0;
+  }
+
+  .vercel *:not([hidden]) + [cmdk-group] {
+    margin-top: 8px;
+  }
+
+  .vercel [cmdk-group-heading] {
+    user-select: none;
+    font-size: 12px;
+    /* color: ${({ theme }) => theme.lighttext}; */
+    padding: 0 8px;
+    display: flex;
+    align-items: center;
+    margin-bottom: 8px;
+  }
+
+  .vercel [cmdk-empty] {
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 48px;
+    white-space: pre-wrap;
+    color: ${theme.colors.greendark};
+  }
+  .vercel [cmdk-group-items] {
+    display: flex;
+    flex-direction: column;
+  }
+  .highlight {
+    /* background-color: yellow; */
+    font-weight: 500;
+    color: ${theme.colors.primary};
+  }
+  .search-icon {
+    position: absolute;
+    z-index: 1;
+    width: 16px;
+    height: 16px;
+    top: 18px;
+    left: 20px;
+  }
+`;
+const OverLayDiv = styled.div`
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+`;
+
+const SearchList = styled.div`
+  padding: 12px;
+  .list {
+    display: flex;
+    gap: 10px;
+  }
+`;
+
+const SearchListText = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  color: ${theme.colors.body};
+  font-style: 400;
+  h4 {
+    margin: 0;
+    font-weight: 500;
+  }
+  .text {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 1;
+    overflow: hidden;
+  }
+`;
+
+const InputWrap = styled.form`
+  margin-top: 40px;
+  max-width: 260px;
+  width: 100%;
+  position: relative;
+  cursor: pointer;
+  .ask-icon {
+    position: absolute;
+    top: 10px;
+    left: 20px;
+  }
+`;
+const Text = styled.div`
+  ${FooterText};
+  color: ${lightgray};
+  letter-spacing: 0.01em;
+  padding: 11px 68px 11px 48px;
+  border: 1.5px solid #ccccd0;
+  border-radius: 48px;
+  width: 100%;
+  outline: 0;
+  :hover {
+    border: 1.5px solid #ccccd0;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.07);
+  }
+`;
+
 export {
   SideNavbar,
   Maindiv,
@@ -587,5 +825,12 @@ export {
   GuideSectionItem,
   NavBg,
   NavSubItem,
-  ULTag
+  ULTag,
+  Main,
+  PopUp,
+  OverLayDiv,
+  SearchList,
+  SearchListText,
+  Text,
+  InputWrap
 };

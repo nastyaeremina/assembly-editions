@@ -3,16 +3,20 @@ import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Link from 'next/link';
 import { useSelectedLayoutSegment } from 'next/navigation';
+import { useHotkeys } from 'react-hotkeys-hook';
+import Image from 'next/image';
 import CopilotLogos from '../../../public/images/blacklogo.svg';
 import { addGuideSiderItem, deleteGuideSiderItem } from '../../actions/guideActions';
 import { FirstLine, MobileMenu, ThirdLine } from '../navbar/styles';
 import { isEmpty, removeEmptyElement } from '../../helpers/helpers';
 import {
+  BtnIcon,
   CopilotGuideLogo,
   GuideMobileNavbar,
   GuideSectionItem,
   Icon,
   IconText,
+  InputWrap,
   Maindiv,
   MobileNavMenu,
   NavHead,
@@ -24,9 +28,11 @@ import {
   OptionName,
   SideNavbar,
   SideNavbarHead,
-  ULTag
+  Text
 } from './styles';
-export default function GuideNavbar({ data }) {
+import GuideSearch from './guideSearch';
+
+export default function GuideNavbar({ sectionData, articleData }) {
   const guideSelector = useSelector((state) => state?.guide);
   let isScrollPage = false;
   const [clientWindowHeight, setClientWindowHeight] = useState('');
@@ -34,6 +40,11 @@ export default function GuideNavbar({ data }) {
   // State to manage the mobile menu's open/closed state
   const [isOpenMobileMenu, setIsOpenMobileMenu] = useState(false);
   const [isSecOpen, setIsSecOpen] = useState(false);
+  const [isSearchModalOpen, setIsSearchModalOpen] = useState(false);
+
+  // State to store the hotkey combination based on the operating system
+  const [hotkeyCombination, setHotkeyCombination] = useState('ctrl+k');
+
   const { guideSectionData } = guideSelector;
   let selectedArticleId, section, parentArticleId;
   const slug = useSelectedLayoutSegment();
@@ -95,7 +106,7 @@ export default function GuideNavbar({ data }) {
   // so that we open perticluar section  dropdown
   if (!isEmpty(slug)) {
     selectedArticleId = slug;
-    data?.forEach((element) => {
+    sectionData?.forEach((element) => {
       // Check if the slug is found in top-level articles
       const parentArticleData = removeEmptyElement(element?.articlesCollection?.items)?.find(
         (item) => item.slug === slug
@@ -136,21 +147,10 @@ export default function GuideNavbar({ data }) {
   }
 
   //calculate total article of perticluar section
-  const calculateTotalArticle = useCallback((data) => {
-    let total = data?.total ?? 0;
-    console.log();
-    data?.items?.forEach((element) => {
-      total += element?.childArticlesCollection?.total;
-    });
-    return total;
-  }, []);
-
-  //calculate total article of perticluar section
-  const calculateTotalSubArticle = useCallback((data) => {
-    let total = 0;
-    data?.items?.forEach((element) => {
-      total += 1;
-    });
+  const calculateTotalSubArticle = useCallback((sectionData) => {
+    const total = sectionData?.items?.reduce((accumulator, element) => {
+      return accumulator + 1;
+    }, 0);
     return total;
   }, []);
 
@@ -224,8 +224,8 @@ export default function GuideNavbar({ data }) {
   );
 
   const navbarRenderView = useMemo(() => {
-    if (isEmpty(data)) return null;
-    return data.map((item, index) => {
+    if (isEmpty(sectionData)) return null;
+    return sectionData.map((item, index) => {
       if (isEmpty(item?.name)) return null;
       // calulate total height of section one section need 34px
       const total = item?.articlesCollection?.total;
@@ -272,46 +272,84 @@ export default function GuideNavbar({ data }) {
         </>
       );
     });
-  }, [data, isSectionOpen, onOpenSection, renderArticleItemView]);
+  }, [sectionData, isSectionOpen, onOpenSection, renderArticleItemView]);
+
+  // Effect to determine the hotkey combination based on the user agent (OS)
+  useEffect(() => {
+    const isMacOS = navigator.userAgent.includes('Mac');
+    const hotkey = isMacOS ? 'meta+k' : 'ctrl+k';
+
+    setHotkeyCombination(hotkey);
+  }, []);
+
+  useHotkeys([hotkeyCombination], (event) => {
+    event.preventDefault();
+    setIsSearchModalOpen(true);
+  });
+
+  useHotkeys('esc', (event) => {
+    event.preventDefault();
+    setIsSearchModalOpen(false);
+  });
+
+  const onCloseSearch = useCallback(() => {
+    setIsSearchModalOpen(false);
+  }, []);
 
   return (
     <>
-      <SideNavbar>
-        <Maindiv>
-          <SideNavbarHead>
-            <Link href='/' aria-label={'Navigate to Home'}>
-              <CopilotGuideLogo alt='copilot logo' loading='lazy' width='142' height='30' src={CopilotLogos.src} />
-            </Link>
-            <NavTitle>
-              <Link href={'/guide'}>Guide</Link>
-            </NavTitle>
-          </SideNavbarHead>
-          <NavmenuSection>{navbarRenderView}</NavmenuSection>
-        </Maindiv>
-      </SideNavbar>
-      <GuideMobileNavbar className={isScrollPage ? 'scroll' : ''}>
-        <NavbarHeader>
-          <SideNavbarHead>
-            <Link href='/' aria-label={'Navigate to Home'}>
-              <CopilotGuideLogo alt='copilot logo' loading='lazy' width='142' height='30' src={CopilotLogos.src} />
-            </Link>
-            <NavTitle>
-              <Link href={'/guide'} onClick={() => setIsOpenMobileMenu(false)}>
-                Guide
+      {isSearchModalOpen && (
+        <div>
+          <GuideSearch articleData={articleData} onCloseSearch={onCloseSearch} />
+        </div>
+      )}
+
+      <>
+        <SideNavbar>
+          <Maindiv>
+            <SideNavbarHead>
+              <Link href='/' aria-label={'Navigate to Home'}>
+                <CopilotGuideLogo alt='copilot logo' loading='lazy' width='142' height='30' src={CopilotLogos.src} />
               </Link>
-            </NavTitle>
-          </SideNavbarHead>
-          <MobileMenu onClick={handleMobileMenu}>
-            <FirstLine isOpenMobileMenu={isOpenMobileMenu}></FirstLine>
-            <ThirdLine isOpenMobileMenu={isOpenMobileMenu}></ThirdLine>
-          </MobileMenu>
-        </NavbarHeader>
-        {isOpenMobileMenu && (
-          <MobileNavMenu>
+              <NavTitle>
+                <Link href={'/guide'}>Guide</Link>
+              </NavTitle>
+            </SideNavbarHead>
+            <InputWrap onClick={setIsSearchModalOpen}>
+              <Image src='/images/guideask.svg' alt='search-icon' width={24} height={24} className='ask-icon' />
+              <Text>Search guide...</Text>
+              <BtnIcon>
+                <Image src='/images/command.svg' alt='search-icon' width={20} height={20} />
+                <Image src='/images/commandk.svg' alt='search-icon' width={20} height={20} />
+              </BtnIcon>
+            </InputWrap>
             <NavmenuSection>{navbarRenderView}</NavmenuSection>
-          </MobileNavMenu>
-        )}
-      </GuideMobileNavbar>
+          </Maindiv>
+        </SideNavbar>
+        <GuideMobileNavbar className={isScrollPage ? 'scroll' : ''}>
+          <NavbarHeader>
+            <SideNavbarHead>
+              <Link href='/' aria-label={'Navigate to Home'}>
+                <CopilotGuideLogo alt='copilot logo' loading='lazy' width='142' height='30' src={CopilotLogos.src} />
+              </Link>
+              <NavTitle>
+                <Link href={'/guide'} onClick={() => setIsOpenMobileMenu(false)}>
+                  Guide
+                </Link>
+              </NavTitle>
+            </SideNavbarHead>
+            <MobileMenu onClick={handleMobileMenu}>
+              <FirstLine isOpenMobileMenu={isOpenMobileMenu}></FirstLine>
+              <ThirdLine isOpenMobileMenu={isOpenMobileMenu}></ThirdLine>
+            </MobileMenu>
+          </NavbarHeader>
+          {isOpenMobileMenu && (
+            <MobileNavMenu>
+              <NavmenuSection>{navbarRenderView}</NavmenuSection>
+            </MobileNavMenu>
+          )}
+        </GuideMobileNavbar>
+      </>
     </>
   );
 }

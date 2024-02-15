@@ -1,5 +1,5 @@
 import Cookies from 'js-cookie';
-import { MONTH_LIST } from '../constants/constant';
+import { FIELD_SCORE, MONTH_LIST } from '../constants/constant';
 import { COOKIE_NAME } from '../../app/lib/constants';
 import { setUserAuth } from '../../app/actions/appActions';
 import { getSEOdata } from '../lib/contentful-seo';
@@ -221,4 +221,248 @@ export function stringToSlugyfy(value) {
 
   // Convert the value to a slug with lowercase letters
   return slugify(value, { lower: true });
+}
+
+/**
+ * Finds the index of the specified string in the paragraph starting from a specific index.
+ * If the string is not found, returns Infinity.
+ * @param {string} paragraph - The paragraph to search within.
+ * @param {string} searchString - The string to search for.
+ * @param {number} fromIndex - The index to start the search from. Default is 0.
+ * @param {boolean} reverse - If true, searches in reverse direction. Default is false.
+ * @returns {number} - The index of the string, or Infinity if not found.
+ */
+const findStringIndex = (paragraph, char, fromIndex = 0, reverse = false) => {
+  let index = -1;
+  // Determine the appropriate search method based on the 'reverse' parameter
+  if (reverse) {
+    // If searching in reverse, use lastIndexOf method
+    index = paragraph.lastIndexOf(char, fromIndex);
+  } else {
+    // Otherwise, use indexOf method
+    index = paragraph.indexOf(char, fromIndex);
+  }
+  // Return the index of the string if found, otherwise return Infinity
+  return index !== -1 ? index : Infinity;
+};
+
+/**
+ * Converts a paragraph to a sentence containing the any search term of searchTermArray with context.
+ * @param {string} paragraph - The paragraph to search within.
+ * @param {string} searchTermArray - The terms of array to search for within the paragraph.
+ * @returns {string} - The sentence containing the search term with context, or an error message if not found.
+ */
+export const trimParagraphToSentence = (paragraph, searchTermArray) => {
+  // Trim unnecessary spaces and line breaks from the paragraph
+  const trimmedParagraph = paragraph.trim().replace(/\s+/g, ' ');
+
+  //set default searchindex -1
+  let searchTermIndex = -1;
+
+  // Find the index of the search term within the paragraph
+  for (let substring of searchTermArray) {
+    searchTermIndex = trimmedParagraph.toLowerCase().indexOf(substring);
+    if (searchTermIndex !== -1) {
+      break; // return -1 if any substring is not found
+    }
+  }
+
+  // Handle cases where the search term is not found by returning the original paragraph
+  if (searchTermIndex === -1) {
+    return paragraph;
+  }
+
+  // Determine the start and end indices of the sentence containing the search term
+  let sentenceStart = Math.max(
+    0,
+    findStringIndex(trimmedParagraph, '.', searchTermIndex, true) + 1,
+    findStringIndex(trimmedParagraph, ',', searchTermIndex, true) + 1,
+    findStringIndex(trimmedParagraph, '?', searchTermIndex, true) + 1
+  );
+  let sentenceEnd = Math.min(
+    trimmedParagraph.length,
+    findStringIndex(trimmedParagraph, '.', searchTermIndex) + 1,
+    findStringIndex(trimmedParagraph, ',', searchTermIndex) + 1,
+    findStringIndex(trimmedParagraph, '?', searchTermIndex) + 1
+  );
+
+  // Adjust the indices to handle cases where the search term is at the beginning or end of a sentence
+  if (sentenceStart > searchTermIndex || sentenceEnd < searchTermIndex) {
+    sentenceStart = Math.max(
+      findStringIndex(trimmedParagraph, '.', searchTermIndex - 1, true),
+      findStringIndex(trimmedParagraph, ',', searchTermIndex - 1, true),
+      findStringIndex(trimmedParagraph, '?', searchTermIndex - 1, true)
+    );
+    sentenceEnd = Math.min(
+      trimmedParagraph.length,
+      findStringIndex(trimmedParagraph, '.', searchTermIndex) + 1,
+      findStringIndex(trimmedParagraph, ',', searchTermIndex) + 1,
+      findStringIndex(trimmedParagraph, '?', searchTermIndex) + 1
+    );
+  }
+
+  // Extract the sentence containing the search term
+  const sentence = trimmedParagraph.slice(sentenceStart, sentenceEnd).trim();
+  // Return the original paragraph if the sentence cannot be extracted
+  if (!sentence) {
+    return paragraph;
+  }
+
+  // Ensure the sentence starts with a capital letter and ends with proper punctuation
+  const firstChar = sentence.charAt(0).toUpperCase();
+  const lastChar = sentence.length > 1 ? sentence.charAt(sentence.length - 1) : '';
+  const punctuation = lastChar === '.' || lastChar === '?' || lastChar === '!' ? '' : '.';
+
+  // Return the formatted sentence
+  return `${firstChar}${sentence.slice(1)}${punctuation}`;
+};
+
+/**
+ * Function to return unique array based on specified criteria.
+ * @param {Array} data - The array to be processed.
+ * @param {Array} [consideredFields=[]] - List of fields to consider for uniqueness.
+ * @param {Array} [ignoredFields=[]] - List of fields to ignore for uniqueness.
+ * @returns {Array} - Unique array based on the specified criteria.
+ */
+
+export const getUniqueArray = ({ data, consideredFields = [], ignoredFields = [] }) => {
+  // Create a Map to store unique objects based on stringified version of objects
+  const uniqueArr = Array.from(new Map(data.map((item) => [JSON.stringify(item), item])).values());
+
+  // Filter the unique array based on specified criteria
+  const uniqueArrFiltered = uniqueArr.filter((item, index, self) => {
+    if (ignoredFields.length > 0) {
+      // If ignoredFields are provided, check all fields except those in ignoredFields for uniqueness
+      return (
+        index ===
+        self.findIndex((t) => Object.keys(t).every((key) => t[key] === item[key] || ignoredFields.includes(key)))
+      );
+    } else if (consideredFields.length > 0) {
+      // If consideredFields are provided, check only those fields for uniqueness
+      return index === self.findIndex((t) => consideredFields.every((field) => t[field] === item[field]));
+    } else {
+      // If neither consideredFields nor ignoredFields are provided, check all fields for uniqueness
+      return index === self.findIndex((t) => Object.keys(t).every((key) => t[key] === item[key]));
+    }
+  });
+  return uniqueArrFiltered;
+};
+
+/**
+ * Constructs a search result item object based on provided parameters.
+ * @param {string} value - The value of the search result item.
+ * @param {string} slug - The slug of the search result item.
+ * @param {string} parentValue - The parent value of the search result item.
+ * @param {string} parentType - The parent type of the search result item.
+ * @param {string} query - The search query string.
+ * @param {RegExp} searchRegex - The regular expression used for searching.
+ * @param {string} searchValue - The value used for searching.
+ * @returns {object|null} - A search result item object if it matches the criteria, otherwise null.
+ */
+
+export const SearachResultItem = ({
+  value,
+  slug,
+  parentValue = '',
+  parentType,
+  query,
+  searchRegex,
+  searchValue = ''
+}) => {
+  const searchText = !isEmpty(searchValue) ? searchValue : value;
+  const fieldScore = FIELD_SCORE[parentType] ?? FIELD_SCORE.other;
+  if (searchText?.toLowerCase().includes(query))
+    return {
+      value,
+      parentType,
+      slug,
+      parentValue,
+      matchType: 'query',
+      score: fieldScore * 10
+    };
+  else {
+    const matches = searchText?.toLowerCase()?.match(searchRegex);
+    if (matches && matches.length > 0)
+      return {
+        value,
+        parentType,
+        slug,
+        parentValue,
+        matchType: 'term',
+        score: fieldScore * matches.length
+      };
+  }
+  return null;
+};
+
+/**
+ * Searches a Rich text JSON object for values with parent elements matching the specified criteria.
+ * @param {object} json - The JSON object to search.
+ * @param {string} query - The search query string.
+ * @param {string} slug - The article slug.
+ * @param {RegExp} searchRegex - The regular expression used for searching.
+ * @returns {array} - An array of search results matching the specified criteria.
+ */
+export function searchJsonForValueWithParent({ json, query, slug, searchRegex }) {
+  let results = [];
+  let parentHeading, parentValue;
+
+  // Function to traverse the JSON object and search for values with parents
+  function traverse(node, parentType = null) {
+    if (node.nodeType === 'heading-2' || node.nodeType === 'heading-3') {
+      parentHeading = node.nodeType;
+    }
+    if (node.nodeType === 'text' && !isEmpty(parentHeading)) {
+      parentValue = node.value;
+      parentHeading = '';
+    }
+    if (node.nodeType === 'text' && node.value) {
+      // Search for the value and construct search result item
+      const searchItem = SearachResultItem({ value: node.value, slug, parentValue, parentType, query, searchRegex });
+      if (!isEmpty(searchItem)) results.push(searchItem);
+    } else if (node.content && Array.isArray(node.content)) {
+      // Traverse child nodes recursively
+      node.content.forEach((childNode) => traverse(childNode, node.nodeType));
+    }
+  }
+
+  traverse(json);
+  return results;
+}
+
+/**
+ * Searches an array of FAQ items for values with parent elements matching the specified criteria.
+ * @param {array} array - The array of FAQ items to search.
+ * @param {string} query - The search query string.
+ * @param {string} slug - The article slug.
+ * @param {RegExp} searchRegex - The regular expression used for searching.
+ * @returns {array} - An array of search results matching the specified criteria.
+ */
+export function searchFAQForValueWithParent({ array, query, slug, searchRegex }) {
+  let results = [];
+  array?.forEach((item) => {
+    //search for the faq quetion
+    const searchQuetionItem = SearachResultItem({
+      value: item?.answer,
+      slug,
+      parentValue: item?.question,
+      parentType: 'faqQuetion',
+      query,
+      searchRegex,
+      searchValue: item?.question
+    });
+    if (!isEmpty(searchQuetionItem)) results.push(searchQuetionItem);
+
+    //search for the faq answer
+    const searchAnswerItem = SearachResultItem({
+      value: item?.answer,
+      slug,
+      parentValue: item?.question,
+      parentType: 'faqAnswer',
+      query,
+      searchRegex
+    });
+    if (!isEmpty(searchAnswerItem)) results.push(searchAnswerItem);
+  });
+  return results;
 }

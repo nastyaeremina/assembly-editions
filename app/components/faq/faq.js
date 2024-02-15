@@ -16,10 +16,26 @@ export default function FAQ({ enterprise, isGuideFAQ, currentpath, faqList: allP
   const [activeAccordion, setActiveAccordion] = useState();
 
   useEffect(() => {
-    if (typeof window !== 'undefined' && !isEmpty(window?.location?.hash?.slice(1))) {
-      // set FAQ id that open default
-      // when user open link directly like https://copilot.com//guide/customization-and-setup#how-do-i-update-the-name-that-is-used-in-the-portal-and-for-email-notifications-to-clients
-      setActiveAccordion(window?.location?.hash?.slice(1));
+    const handleHashChange = () => {
+      if (!isEmpty(window?.location?.hash?.slice(1))) {
+        setActiveAccordion(window?.location?.hash?.slice(1));
+      }
+    };
+
+    // Check if window object is available
+    if (typeof window !== 'undefined') {
+      // Set the active accordion based on initial URL hash
+      if (!isEmpty(window?.location?.hash?.slice(1))) {
+        setActiveAccordion(window?.location?.hash?.slice(1));
+      }
+
+      // Add event listener for hash change
+      window.addEventListener('hashchange', handleHashChange);
+
+      // Cleanup function to remove event listener
+      return () => {
+        window.removeEventListener('hashchange', handleHashChange);
+      };
     }
   }, []);
 

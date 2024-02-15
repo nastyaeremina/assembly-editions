@@ -1,4 +1,8 @@
-import { CONTENTFUL_API_TAG, PER_API_LIMIT_FOR_GUIDE_SECTION } from '../constants/constant';
+import {
+  CONTENTFUL_API_TAG,
+  PER_API_LIMIT_FOR_GUIDE_ARTICLE_FAQ,
+  PER_API_LIMIT_FOR_GUIDE_SECTION
+} from '../constants/constant';
 import { fetchGraphQL } from './contentful';
 import { POST_GRAPHQL_SEOMETADATA_FIELDS } from './contentful-seo';
 
@@ -34,30 +38,31 @@ sectionContent2Collection{
 export const POST_GRAPHQL_GUIDE_ARTICLE_FAQ_FIELDS = `
 faQsCollection{
   items{
-    sys{
-      id
-    }
+   sys{id}
     question
     answer
   }
 }`;
 
-const POST_GRAPHQL_GUIDE_ARTICLE_DETAILS_FIELDS = `
+const POST_GRAPHQL_GUIDE_ARTICLE_ITEM_FIELDS = `
 sys{
   id
 }
 slug
 name
+header
 iconCode
+content{
+  json
+}
+`;
+
+const POST_GRAPHQL_GUIDE_ARTICLE_DETAILS_FIELDS = `
+${POST_GRAPHQL_GUIDE_ARTICLE_ITEM_FIELDS}
 childArticlesCollection(limit:15){
   total
   items{
-    slug
-    sys{
-        id
-    }
-    name
-    iconCode
+    ${POST_GRAPHQL_GUIDE_ARTICLE_ITEM_FIELDS}
   }
 }
 `;
@@ -96,6 +101,7 @@ export async function getGuidePageContent({ id }) {
                     articlesCollection(limit:1){
                         items{
                          slug
+                         
                         }
                     }
                     sys{
@@ -176,6 +182,27 @@ export async function getAllGuideArticleSlug(preview) {
   return entries?.data?.guideArticleCollection?.items;
 }
 
+export async function getAllArticleFAQ({ skip, preview }) {
+  const entries = await fetchGraphQL(
+    `query {
+      guideArticleCollection(skip:${skip},limit:${PER_API_LIMIT_FOR_GUIDE_ARTICLE_FAQ},preview: ${
+      preview ? 'true' : 'false'
+    }) {
+             items{
+              sys{
+                id
+              }
+              ${POST_GRAPHQL_GUIDE_ARTICLE_FAQ_FIELDS}
+             }
+          }
+      }   
+         
+      `,
+    false,
+    [CONTENTFUL_API_TAG.GUIDE]
+  );
+  return entries?.data?.guideArticleCollection?.items;
+}
 export async function getGuideHomePageContent({ id }) {
   const entries = await fetchGraphQL(
     `query {
