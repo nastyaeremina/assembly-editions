@@ -2,14 +2,12 @@ import React from 'react';
 import GuidePage from '../components/PageComponent/GuideModule/guidePage';
 import { getSEOData } from '../helpers/helpers';
 import { GUIDE_PAGE_ID } from '../constants/constant';
-import { getArticleData, getGuidePageContent } from '../lib/contentful-guide';
+import { getArticleData, getGuideHomePageContent, getGuidePageContent } from '../lib/contentful-guide';
+import GuideMainHome from '../components/GuideHome/guidemainHome';
 
 async function getContent() {
-  const detail = (await getGuidePageContent({ id: GUIDE_PAGE_ID })) ?? {};
-
-  const slug = detail?.sectionsCollection?.items?.[0]?.articlesCollection?.items?.[0]?.slug;
-  const articleData = (await getArticleData(slug)) ?? {};
-  return { seoMetadata: detail?.seoMetadata, articleData };
+  const detail = (await getGuideHomePageContent({ id: GUIDE_PAGE_ID })) ?? {};
+  return { seoMetadata: detail?.seoMetadata, data: detail };
 }
 
 export async function generateMetadata() {
@@ -19,6 +17,10 @@ export async function generateMetadata() {
   return seoData;
 }
 export default async function Guide() {
-  const { articleData } = await getContent();
-  return <GuidePage defaultArticle={articleData} />;
+  const { data } = await getContent();
+  return (
+    <>
+      <GuideMainHome data={data} />
+    </>
+  );
 }

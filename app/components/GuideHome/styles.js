@@ -8,7 +8,7 @@ const GuideCenter = styled.div`
   padding: 90px 50px 0px 50px;
   margin: 0 auto;
   @media only screen and (max-width: 749px) {
-    padding: 40px 24px 0;
+    padding: 40px 24px 40px;
   }
 `;
 const MainContent = styled.div``;

@@ -23,5 +23,9 @@ export async function generateMetadata({ params }) {
 export default async function Guide({ params }) {
   const { articleData } = await getContent(params?.slug);
   if (isEmpty(articleData)) return notFound();
-  return <GuidePage defaultArticle={articleData} />;
+  return (
+    <div className='guidehome'>
+      <GuidePage defaultArticle={articleData} />
+    </div>
+  );
 }

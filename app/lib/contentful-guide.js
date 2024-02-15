@@ -7,6 +7,30 @@ seoMetadata{
   ${POST_GRAPHQL_SEOMETADATA_FIELDS}
 }
 `;
+const POST_GRAPHQL_ARTICLE_CARD_FIELDS = `
+slug
+name
+iconCode
+header
+`;
+const POST_GRAPHQL_GUIDE_PAGE_FIELDS = `
+title
+description
+sectionTitle1
+sectionDescription1
+sectionContent1Collection{
+  items{
+    ${POST_GRAPHQL_ARTICLE_CARD_FIELDS}
+  }
+}
+sectionTitle2
+sectionDescription2
+sectionContent2Collection{
+   items{
+    ${POST_GRAPHQL_ARTICLE_CARD_FIELDS}
+  }
+}`;
+
 export const POST_GRAPHQL_GUIDE_ARTICLE_FAQ_FIELDS = `
 faQsCollection{
   items{
@@ -19,10 +43,10 @@ faQsCollection{
 }`;
 
 const POST_GRAPHQL_GUIDE_ARTICLE_DETAILS_FIELDS = `
-slug
 sys{
-    id
+  id
 }
+slug
 name
 iconCode
 childArticlesCollection(limit:15){
@@ -150,4 +174,19 @@ export async function getAllGuideArticleSlug(preview) {
     [CONTENTFUL_API_TAG.GUIDE]
   );
   return entries?.data?.guideArticleCollection?.items;
+}
+
+export async function getGuideHomePageContent({ id }) {
+  const entries = await fetchGraphQL(
+    `query {
+        pageDocs(id: "${id}") {
+            ${POST_GRAPHQL_GUIDE_PAGE_FIELDS}
+            ${POST_GRAPHQL_PAGE_GUIDE_DETAILS_FIELDS}
+        }
+    }         
+    `,
+    false,
+    [CONTENTFUL_API_TAG.GUIDE]
+  );
+  return entries?.data?.pageDocs;
 }

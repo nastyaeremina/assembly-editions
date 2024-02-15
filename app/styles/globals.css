@@ -453,13 +453,19 @@ th {
 .guiderightsection {
   padding-left: 300px;
   display: grid;
-  grid-template-columns: minmax(0px, 1fr) 250px;
   width: 100%;
+}
+.guidehome {
+  display: grid;
+  grid-template-columns: minmax(0px, 1fr) 250px;
 }
 @media only screen and (max-width: 991px) {
   .guiderightsection {
     padding-left: 0px;
     display: unset;
     width: 100%;
+  }
+  .guidehome {
+    display: unset;
   }
 }

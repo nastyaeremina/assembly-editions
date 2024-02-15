@@ -1,6 +1,7 @@
 import styled, { css } from 'styled-components';
 import { Body4, FooterText, MbBody5 } from '../../styles/styles';
 import { greendark, lightgray, primary, title } from '../../styles/color';
+import Link from 'next/link';
 
 const SideNavbar = styled.div`
   width: 300px;
@@ -32,11 +33,13 @@ const SideNavbarHead = styled.div`
   gap: 15px;
   padding-right: 20px;
 `;
-const NavTitle = styled.p`
-  padding-left: 15px;
-  ${Body4};
-  color: ${greendark};
-  margin: 0;
+const NavTitle = styled.div`
+  a {
+    padding-left: 15px;
+    ${Body4};
+    color: ${greendark};
+    margin: 0;
+  }
   @media only screen and (max-width: 991px) {
     border-left: 1px solid #757575;
   }

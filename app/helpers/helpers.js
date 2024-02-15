@@ -40,9 +40,10 @@ export const dateToMonthYear = (date) => {
 };
 
 export function removeEmptyElement(array) {
-  const filtered = array?.filter(function (el) {
-    return !isEmpty(el);
-  });
+  const filtered =
+    array?.filter(function (el) {
+      return !isEmpty(el);
+    }) || [];
   return filtered;
 }
 

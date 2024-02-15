@@ -93,11 +93,7 @@ export default function GuideNavbar({ data }) {
 
   // Determine the initial section and parent article based on the slug
   // so that we open perticluar section  dropdown
-  if (isEmpty(slug)) {
-    const articleId = data?.[0]?.articlesCollection?.items?.[0]?.slug;
-    selectedArticleId = articleId;
-    section = data?.[0]?.sys?.id;
-  } else {
+  if (!isEmpty(slug)) {
     selectedArticleId = slug;
     data?.forEach((element) => {
       // Check if the slug is found in top-level articles
@@ -286,7 +282,9 @@ export default function GuideNavbar({ data }) {
             <Link href='/' aria-label={'Navigate to Home'}>
               <CopilotGuideLogo alt='copilot logo' loading='lazy' width='142' height='30' src={CopilotLogos.src} />
             </Link>
-            <NavTitle>Guide</NavTitle>
+            <NavTitle>
+              <Link href={'/guide'}>Guide</Link>
+            </NavTitle>
           </SideNavbarHead>
           <NavmenuSection>{navbarRenderView}</NavmenuSection>
         </Maindiv>
@@ -297,7 +295,11 @@ export default function GuideNavbar({ data }) {
             <Link href='/' aria-label={'Navigate to Home'}>
               <CopilotGuideLogo alt='copilot logo' loading='lazy' width='142' height='30' src={CopilotLogos.src} />
             </Link>
-            <NavTitle>Guide</NavTitle>
+            <NavTitle>
+              <Link href={'/guide'} onClick={() => setIsOpenMobileMenu(false)}>
+                Guide
+              </Link>
+            </NavTitle>
           </SideNavbarHead>
           <MobileMenu onClick={handleMobileMenu}>
             <FirstLine isOpenMobileMenu={isOpenMobileMenu}></FirstLine>
