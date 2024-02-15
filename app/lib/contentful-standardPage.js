@@ -15,6 +15,8 @@ contentCollection{
             heroDescription
             primaryButtonText
             primaryButtonLink
+            secondaryButtonText
+            secondaryButtonLink
           }
           ...on ComponentFeature{
             sys{

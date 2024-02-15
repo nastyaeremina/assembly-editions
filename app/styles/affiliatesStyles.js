@@ -89,4 +89,10 @@ const HeroCaption = styled.div`
     }
   }
 `;
-export { HeroSection, MainHero, BrandName, HeroCaption };
+
+const ButtonGroup = styled.div`
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+`;
+export { HeroSection, MainHero, BrandName, HeroCaption, ButtonGroup };
