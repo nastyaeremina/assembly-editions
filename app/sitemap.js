@@ -56,7 +56,6 @@ export default async function sitemap() {
     'features/helpdesk-app',
     'features/messaging-app',
     'jobs',
-    'partnerships',
     'pricing',
     'sitemap',
     'university',

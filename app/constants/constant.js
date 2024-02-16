@@ -404,7 +404,6 @@ export const CONTENTFUL_API_TAG = {
   GUIDE: 'guide',
   HOME: 'home',
   JOB: 'job',
-  PARTNERSHIP: 'partnership',
   PRICING: 'pricing',
   SEO: 'seo',
   SITEMAP: 'sitemap',
@@ -472,8 +471,6 @@ export const UPDATES_SEO_ID = '1qZerw40iK099KKnfz5Mv7';
 export const COMPARISON_SEO_ID = '3twHO4lBpRkH68Lh1ihdRy';
 export const CUSTOMER_SEO_ID = '7b7osYERYHHeUuZ8rZk9CA';
 export const AUTOMATION_SEO_ID = '2S0c1CDc7mUs5wFY6yqpL3';
-
-export const PARTNERSHIP_ID = '1qsEfH5A3RlGv7dac0uKZD';
 export const AUTOMATION_ID = '3tQZ0zurolpvj9N43yXCIF';
 export const APP_PAGE_ID = 'zHpvQW60FYupSGIasksht';
 export const WEEKLY_DEMO_PAGE_ID = '6yTkSs6vPA4UtptzHbvw3r';

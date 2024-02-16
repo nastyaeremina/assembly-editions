@@ -60,7 +60,6 @@ export async function getServerSideProps(ctx) {
     'features/helpdesk-app',
     'features/messaging-app',
     'jobs',
-    'partnerships',
     'pricing',
     'sitemap',
     'university',
