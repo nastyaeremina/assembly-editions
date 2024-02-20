@@ -205,6 +205,9 @@ const GuideDetail = styled.div`
     opacity: 0;
     cursor: pointer;
     transition: all 0.3s;
+    border: none;
+    margin-top: 0;
+    display: flex;
     :hover {
       opacity: 1;
       transition: all 0.3s;

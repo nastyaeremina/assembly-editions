@@ -469,3 +469,7 @@ th {
     display: unset;
   }
 }
+
+[data-rmiz-modal-content] {
+  cursor: zoom-out;
+}

@@ -4,6 +4,8 @@ import { documentToReactComponents } from '@contentful/rich-text-react-renderer'
 import { BLOCKS } from '@contentful/rich-text-types';
 import { usePathname } from 'next/navigation';
 import Image from 'next/image';
+import Zoom from 'react-medium-image-zoom';
+import 'react-medium-image-zoom/dist/styles.css';
 import FAQ from '../../components/faq/faq';
 import { extractTagId, isEmpty } from '../../helpers/helpers';
 import CopyLink from '../copyLink/copyLink';
@@ -95,9 +97,14 @@ export default function GuideHome({ detail }) {
           const src = asset?.url;
           //check current asset is image
           if (asset?.contentType?.startsWith('image/'))
-            return <Image src={src} alt={asset?.fileName} width={753} height={266} className='content-image' />;
-          //check current asset is image
-          else if (asset?.contentType?.startsWith('video/')) return <video src={src} controls={true} autoPlay={true} />;
+            return (
+              <Zoom>
+                <Image src={src} alt={asset?.fileName} width={753} height={266} className='content-image' />
+              </Zoom>
+            );
+          //check current asset is video
+          else if (asset?.contentType?.startsWith('video/'))
+            return <video src={src} controls={true} autoPlay={false} />;
           return null;
         }
 
