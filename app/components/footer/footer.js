@@ -1,7 +1,7 @@
 'use client';
 import Link from 'next/link';
 import Image from 'next/image';
-import { useCallback, useEffect, useMemo, useState } from 'react';
+import { useMemo } from 'react';
 import { Container } from '../../styles/commonStyles';
 import { convertSitemapDataToKeyValue, isEmpty } from '../../helpers/helpers';
 import {
@@ -25,28 +25,7 @@ import {
   FotterMenuMobile
 } from './styles';
 
-export default function Footer({ isEnterPrice, footerData }) {
-  const [footerDataList, setFooterDataList] = useState([]);
-  const loadData = useCallback(() => {
-    try {
-      const newObject = footerData?.split(/[\{\}]/);
-      const newList = newObject?.filter((item) => item?.startsWith('\n'));
-
-      if (!isEmpty(footerData)) {
-        const rowWiseFooterData = footerData?.split(/[\{\}]/);
-        const finalFooterList = rowWiseFooterData?.filter((item) => item?.startsWith('\n'));
-        setFooterDataList(finalFooterList);
-        const newValue = convertSitemapDataToKeyValue(finalFooterList?.[0]);
-      }
-    } catch (error) {
-      console.log('error', error);
-    }
-  }, []);
-
-  useEffect(() => {
-    loadData();
-  }, [loadData]);
-
+export default function Footer({ isEnterPrice, footerData: footerDataList }) {
   const renderDesktopFooterList = useMemo(() => {
     if (isEmpty(footerDataList)) return null;
     return footerDataList?.map((item, index) => {
