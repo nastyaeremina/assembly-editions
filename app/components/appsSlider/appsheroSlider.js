@@ -1,16 +1,10 @@
 'use client';
 import Image from 'next/image';
-import { useEffect, useMemo, useState } from 'react';
-import { createArrayWithFixedLength, isEmpty } from '../../helpers/helpers';
+import { useEffect, useMemo } from 'react';
+import { isEmpty } from '../../helpers/helpers';
 import { AppSliderLine, AppsAnimated, SliderInnerBox } from './styles';
 
-const AppsHeroSlider = ({ data, isDetailSlider }) => {
-  const [dataList, setDataList] = useState();
-
-  useEffect(() => {
-    const newList = createArrayWithFixedLength(data, 50);
-    setDataList(newList);
-  }, [data]);
+const AppsHeroSlider = ({ data: dataList }) => {
   const featurecontentView = useMemo(() => {
     if (isEmpty(dataList)) return null;
     return dataList?.map((item, index) => {
