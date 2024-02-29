@@ -33,8 +33,6 @@ import {
   CustomAppSection
 } from '../../../styles/appsStyles';
 import { Container } from '../../../styles/commonStyles';
-import CTA from '../../../components/cta/cta';
-import FAQ from '../../../components/faq/faq';
 import { isEmpty } from '../../../helpers/helpers';
 import { APPS_TYPE } from '../../../constants/constant';
 import Button from '../../../components/button/button';
@@ -286,7 +284,6 @@ export default function AppDirectoryPage({ allCategoryWithPost, allPosts, featur
           </FeatureWrap>
         </Container>
       </FeatureSection>
-      <CTA />
     </>
   );
 }

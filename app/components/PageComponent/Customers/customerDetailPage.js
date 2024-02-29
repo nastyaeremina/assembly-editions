@@ -112,7 +112,6 @@ export default function CaseStudiesPage({ details }) {
       {!isEmpty(details?.testimonial) && (
         <Quote gradientImage={FEATURE_THEME_LIST.Other.imageList} data={details?.testimonial} caseStudies />
       )}
-      <CTA />
     </>
   );
 }

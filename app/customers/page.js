@@ -5,6 +5,7 @@ import Navbar from '../components/navbar/navbar';
 import { CUSTOMER_SEO_ID } from './../constants/constant';
 import { getAllFeaturedCaseStudies, getAllFeaturedTestimonial } from './../lib/contentful-testimonial';
 import { getSEOData } from './../helpers/helpers';
+import CTA from '../components/cta/cta';
 
 async function getContent() {
   const testimonialPosts = await getAllFeaturedTestimonial();
@@ -25,6 +26,7 @@ export default async function Customer() {
       <Layout>
         <Navbar />
         <CustomerPage testimonialPosts={testimonialPosts} casestudiesPosts={casestudiesPosts} />
+        <CTA />
       </Layout>
     </>
   );

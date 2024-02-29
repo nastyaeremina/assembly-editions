@@ -5,6 +5,7 @@ import { getComparisonDetail } from '../../lib/contentful-comparison';
 import { getSEOData, isEmpty } from '../../helpers/helpers';
 import ComparisonDetailPage from '../../components/PageComponent/Comparison/coparisonDetailPage';
 import { getFAQsData } from '../../services/faq';
+import CTA from '../../components/cta/cta';
 
 async function getContent({ slug }) {
   const details = (await getComparisonDetail(slug)) ?? [];
@@ -27,6 +28,7 @@ export default async function Comparison({ params }) {
       <Layout>
         <Navbar />
         <ComparisonDetailPage details={details} faqList={faqData} />
+        <CTA />
       </Layout>
     </>
   );

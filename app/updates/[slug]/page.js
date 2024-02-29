@@ -4,6 +4,7 @@ import { getUpdateDetail } from '../../lib/updates-content';
 import Navbar from '../../components/navbar/navbar';
 import { getSEOData, isEmpty } from '../../helpers/helpers';
 import UpdatedetailPage from '../../components/PageComponent/Updates/updateDetailPage';
+import CTA from '../../components/cta/cta';
 
 async function getContent({ slug }) {
   const updateDetails = (await getUpdateDetail(slug)) ?? [];
@@ -33,6 +34,7 @@ export default async function Updatedetail({ params }) {
       <Layout>
         <Navbar isModule={false} />
         <UpdatedetailPage details={updateDetails} />
+        <CTA />
       </Layout>
     </>
   );

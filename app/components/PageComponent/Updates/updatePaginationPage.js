@@ -2,7 +2,6 @@
 import moment from 'moment';
 import { useMemo } from 'react';
 import Button from '../../../components/button/button';
-import CTA from '../../../components/cta/cta';
 import { UPDATE_SUBSCRIBE_LINK } from '../../../constants/externalLinks';
 import { isEmpty } from '../../../helpers/helpers';
 import { Container } from '../../../styles/commonStyles';
@@ -87,7 +86,6 @@ export default function UpdatesPaginationPage({ allPosts, pagination }) {
           </Detail>
         </Container>
       </UpadtePage>
-      <CTA />
     </>
   );
 }

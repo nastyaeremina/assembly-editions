@@ -4,6 +4,7 @@ import { getAllAutomations, getAutomationDetail } from '../../../lib/contentful-
 import { getSEOData, isEmpty } from '../../../helpers/helpers';
 import AutomationDetailPage from '../../../components/PageComponent/Automation/directoryDetailsPage';
 import { notFound } from 'next/navigation';
+import CTA from '../../../components/cta/cta';
 
 async function getContent({ slug }) {
   const detail = (await getAutomationDetail(slug)) ?? {};
@@ -56,6 +57,7 @@ export default async function AutomationDetail({ params }) {
       <Layout>
         <Navbar />
         <AutomationDetailPage detail={detail} relatedApps={relatedApps} />
+        <CTA />
       </Layout>
     </>
   );

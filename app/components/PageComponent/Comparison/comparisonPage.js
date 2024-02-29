@@ -1,7 +1,6 @@
 'use client';
 
 import ComparisonHero from '../../comparison/comparisonhero/comparisonhero';
-import CTA from '../../cta/cta';
 import { MainWrap } from '../../solution/clienttab/styles';
 import { Container } from '../../../styles/commonStyles';
 import { isEmpty } from '../../../helpers/helpers';
@@ -19,8 +18,6 @@ export default function ComparisonPage({ featuredCompetitorList, details, compar
           {!isEmpty(comparisonList) && <ComparisonTableView data={comparisonList} />}
         </Container>
         {!isEmpty(details?.testimonial) && <Quote data={details?.testimonial} isMasterComparison />}
-        {/* <FAQ contentID={details?.faq?.sys?.id} /> */}
-        <CTA />
       </MainWrap>
     </>
   );

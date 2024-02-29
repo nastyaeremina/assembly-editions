@@ -5,6 +5,7 @@ import Navbar from '../../components/navbar/navbar';
 import { getCaseStudyDetail } from '../../lib/contentful-casestudies';
 import CaseStudiesPage from '../../components/PageComponent/Customers/customerDetailPage';
 import { getSEOData, isEmpty } from '../../helpers/helpers';
+import CTA from '../../components/cta/cta';
 
 async function getContent({ slug }) {
   const details = await getCaseStudyDetail({ slug });
@@ -25,6 +26,7 @@ export default async function CaseStudies({ params }) {
       <Layout>
         <Navbar />
         <CaseStudiesPage details={details} />
+        <CTA />
       </Layout>
     </>
   );

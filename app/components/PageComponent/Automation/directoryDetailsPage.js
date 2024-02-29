@@ -4,7 +4,6 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { DetailLink, AppsDetailMain } from '../../../styles/appsStyles';
 import { Container } from '../../../styles/commonStyles';
-import CTA from '../../../components/cta/cta';
 import {
   DetailButtonSection,
   DetailCaption,
@@ -109,11 +108,6 @@ export default function AutomationDetailPage({ detail, relatedApps }) {
           />
         </Container>
       </ImageSection>
-      {/* <Container>
-          <Head>Related Automations</Head>
-        </Container>
-        {!isEmpty(relatedApps) && <FeatureAnimated data={relatedApps} />} */}
-      <CTA />
     </>
   );
 }

@@ -7,6 +7,7 @@ import {
   getAllCompetitorComparisonDetail,
   getMasterComparisonDetail
 } from './../lib/contentful-comparison';
+import CTA from '../components/cta/cta';
 
 async function getContent() {
   const featuredCompetitorList = await getAllCompetitor();
@@ -33,6 +34,7 @@ export default async function Comparison() {
           details={details}
           comparisonList={comparisonList}
         />
+        <CTA />
       </Layout>
     </>
   );

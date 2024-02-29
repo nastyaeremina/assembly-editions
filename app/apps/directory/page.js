@@ -5,6 +5,7 @@ import { APPS_TYPE, APP_SEO_ID } from '../../constants/constant';
 import AppDirectoryPage from '../../components/PageComponent/Apps/directoryPage';
 import { getAllParrtnerAppsCategories, getAllPartnerApps } from '../../lib/contentful-partnerApps';
 import Navbar from '../../components/navbar/navbar';
+import CTA from '../../components/cta/cta';
 
 async function getContent() {
   const allCategory = (await getAllParrtnerAppsCategories()) ?? [];
@@ -53,6 +54,7 @@ export default async function Apps() {
         <div style={{ backgroundcolor: '#fffffd' }}>
           <Navbar />
           <AppDirectoryPage allCategoryWithPost={allCategoryWithPost} allPosts={allPosts} featuredApps={featuredApps} />
+          <CTA />
         </div>
       </Layout>
     </>

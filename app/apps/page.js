@@ -6,7 +6,7 @@ import { createArrayWithFixedLength, getSEOData } from '../helpers/helpers';
 import { getAllAppsWithIcon, getPageAppDetail } from '../lib/contentful-partnerApps';
 import AppPage from '../components/PageComponent/Apps/appPage';
 import { getFAQsData } from '../services/faq';
-
+import CTA from '../components/cta/cta';
 async function getContent() {
   const details = (await getPageAppDetail(APP_PAGE_ID)) ?? [];
   const appsList = (await getAllAppsWithIcon()) ?? [];
@@ -35,6 +35,7 @@ export default async function Automation() {
       <Layout>
         <Navbar isEnterPrice headerIndex={HEADER_LIST.ENTERPRICE} />
         <AppPage details={details} appsList={sliderAppList} faqList={faqData} />
+        <CTA />
       </Layout>
     </>
   );

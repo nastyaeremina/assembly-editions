@@ -5,6 +5,7 @@ import { UPDATES_SEO_ID } from '../../../constants/constant';
 import { getSEOData, isEmpty } from '../../../helpers/helpers';
 import { getUpdatesPosts } from '../../../lib/updates-content';
 import UpdatesPaginationPage from '../../../components/PageComponent/Updates/updatePaginationPage';
+import CTA from '../../../components/cta/cta';
 
 async function getContent({ page }) {
   const allPosts = (await getUpdatesPosts({ page })) ?? [];
@@ -33,6 +34,7 @@ export default async function Updates({ params }) {
       <Layout>
         <Navbar />
         <UpdatesPaginationPage allPosts={allPosts} pagination={pagination} />
+        <CTA />
       </Layout>
     </>
   );

@@ -4,6 +4,7 @@ import Navbar from '../../../components/navbar/navbar';
 import { getAllPartnerApps, getPartnerAppDetail } from '../../../lib/contentful-partnerApps';
 import { getSEOData, isEmpty } from '../../../helpers/helpers';
 import AppsDetailPage from '../../../components/PageComponent/Apps/appDetailPage';
+import CTA from '../../../components/cta/cta';
 
 async function getContent({ slug }) {
   const appDetail = (await getPartnerAppDetail(slug)) ?? {};
@@ -49,6 +50,7 @@ export default async function AppsDetail({ params }) {
       <Layout>
         <Navbar />
         <AppsDetailPage appDetail={appDetail} relatedApps={relatedApps} />
+        <CTA />
       </Layout>
     </>
   );

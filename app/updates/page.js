@@ -4,6 +4,7 @@ import { getSEOData } from '../helpers/helpers';
 import UpdatesPage from '../components/PageComponent/Updates/updatesPage';
 import Layout from '../components/layout';
 import Navbar from '../components/navbar/navbar';
+import CTA from '../components/cta/cta';
 
 async function getContent() {
   const allPosts = await getUpdatesPosts({ page: 1 });
@@ -23,6 +24,7 @@ export default async function Updates() {
       <Layout>
         <Navbar />
         <UpdatesPage allPosts={allPosts} />
+        <CTA />
       </Layout>
     </>
   );

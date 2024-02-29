@@ -2,7 +2,6 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { useMemo } from 'react';
-import { notFound } from 'next/navigation';
 import {
   DetailLink,
   AppsDetailMain,
@@ -28,7 +27,6 @@ import {
   CardMain
 } from '../../../styles/appsStyles';
 import { Container } from '../../../styles/commonStyles';
-import CTA from '../../../components/cta/cta';
 import { isEmpty } from '../../../helpers/helpers';
 import Button from '../../../components/button/button';
 
@@ -193,7 +191,6 @@ export default function AppsDetailPage({ appDetail, relatedApps }) {
           )}
         </Container>
       </AppsDetailMain>
-      <CTA />
     </>
   );
 }

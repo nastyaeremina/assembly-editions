@@ -22,7 +22,6 @@ import {
   MobileViewTable,
   Processdata
 } from '../../../components/comparison/styles';
-import CTA from '../../../components/cta/cta';
 import { CopilotLogo } from '../../../components/navbar/styles';
 import { MainWrap } from '../../../components/solution/clienttab/styles';
 import { Container } from '../../../styles/commonStyles';
@@ -210,7 +209,6 @@ export default async function ComparisonDetailPage({ details, faqList }) {
         </Container>
         {!isEmpty(details?.testimonial) && <Quote data={details?.testimonial} isComparison />}
         <FAQ faqList={faqList} />
-        <CTA />
       </MainWrap>
     </>
   );

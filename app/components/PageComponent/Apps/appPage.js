@@ -10,7 +10,6 @@ import {
 } from '../../../styles/automationStyles';
 import { Container } from '../../../styles/commonStyles';
 import Button from '../../../components/button/button';
-import CTA from '../../../components/cta/cta';
 import TabView from '../../../components/tab/tab';
 import { MODULE_COLOR_LIST } from '../../../constants/constant';
 import AutomationCardSection from '../../../components/automationcard';
@@ -133,7 +132,6 @@ export default function AppPage({ details, appsList, faqList }) {
         <AppsSlider data={removeEmptyElement(details?.sectionFeaturedContentCollection?.items)} isDetailSlider={true} />
       )}
       {!isEmpty(faqList) && <FAQ faqList={faqList} />}
-      <CTA />
     </>
   );
 }
