@@ -411,7 +411,8 @@ export const CONTENTFUL_API_TAG = {
   UNIVERSITY: 'university',
   WEEKLY_DEMO: 'weekly-demo',
   OTHER: 'other',
-  STANDARD_PAGE: 'standard-page'
+  STANDARD_PAGE: 'standard-page',
+  TEMPLATE: 'template'
 };
 
 export const GUIDE_LINK_INFO = {
@@ -480,6 +481,7 @@ export const GLOSSARY_PAGE_ID = '59RJugqUUkgTppwv6aoA9I';
 export const GUIDE_PAGE_ID = '21aIyPkZ2efko1hJU4Qeep';
 export const JOB_PAGE_ID = '7kgu8KP3AV2FgbwhCGz0sB';
 export const BOOK_DEMO_THANK_YOU_ID = '45qbrJ6ILTiwkuWz92S0OX';
+export const TEMPLATE_PAGE_ID = '6JOXBgDQWb5uazPg8n98ea';
 /*
 Regex varibles
 */

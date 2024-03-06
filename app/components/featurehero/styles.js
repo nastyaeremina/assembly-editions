@@ -169,23 +169,23 @@ const BlockImage = styled.div`
   }
 `;
 const FeatureImage = styled(Image)`
-width: 570px;
-height: 392px;
-@media only screen and (max-width: 1200px) {
-  width: auto;
-  height: auto;
-}
-`
+  width: 570px;
+  height: 392px;
+  @media only screen and (max-width: 1200px) {
+    width: auto;
+    height: auto;
+  }
+`;
 
 const VideoPlay = styled.div`
   background: rgba(0, 0, 0, 0.6);
-  width:100%;
-  height:100vh;
-  position:fixed;
-  z-index:9999;
-  top:0;
-  left:0;
-  .play{
+  width: 100%;
+  height: 100vh;
+  position: fixed;
+  z-index: 9999;
+  top: 0;
+  left: 0;
+  .play {
     position: absolute;
     left: 50%;
     transform: translate(-50%, 50%);
@@ -194,12 +194,12 @@ const VideoPlay = styled.div`
     width: 100%;
     height: 100%;
   }
-  .iframecss{
-    max-width:819px ;
-    width:100% ;
-    max-height:461px ;
-    height:100% ;
-}
+  .iframecss {
+    max-width: 819px;
+    width: 100%;
+    max-height: 461px;
+    height: 100%;
+  }
 `;
 
 const VideoClose = styled.div`
@@ -218,4 +218,15 @@ const VideoClose = styled.div`
   }
 `;
 
-export { FeatureHeroSection, HeroBlock, BlockLeft, BlockRight, BlockImage, BlockLine, BLockImg, FeatureImage,VideoPlay,VideoClose };
+export {
+  FeatureHeroSection,
+  HeroBlock,
+  BlockLeft,
+  BlockRight,
+  BlockImage,
+  BlockLine,
+  BLockImg,
+  FeatureImage,
+  VideoPlay,
+  VideoClose
+};

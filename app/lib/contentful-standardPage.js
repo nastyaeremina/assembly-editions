@@ -2,6 +2,23 @@ import { CONTENTFUL_API_TAG } from '../constants/constant';
 import { fetchGraphQL } from './contentful';
 import { POST_GRAPHQL_SEOMETADATA_FIELDS } from './contentful-seo';
 
+export const POST_GRAPHQL_HERO_COMPONENT_FIELDS = `
+heroTitle
+heroDescription
+primaryButtonText
+primaryButtonLink
+secondaryButtonText
+secondaryButtonLink`;
+
+export const POST_GRAPHQL_FAQ_COMPONENT_FIELDS = `
+title
+faQsCollection{
+  items{
+    sys{
+      id
+    }
+  }
+}`;
 const POST_GRAPHQL_STANDARD_PAGE_LIST_FIELDS = `
 slug
 seoMetadata {
@@ -11,12 +28,7 @@ contentCollection{
     items{
         __typename
         ...on ComponentHero{
-            heroTitle
-            heroDescription
-            primaryButtonText
-            primaryButtonLink
-            secondaryButtonText
-            secondaryButtonLink
+            ${POST_GRAPHQL_HERO_COMPONENT_FIELDS}
           }
           ...on ComponentFeature{
             sys{
@@ -33,14 +45,7 @@ contentCollection{
             quote
         }
         ...on ComponentFaq{
-            title
-            faQsCollection{
-              items{
-                sys{
-                  id
-                }
-              }
-            }
+            ${POST_GRAPHQL_FAQ_COMPONENT_FIELDS}
           }
     }
 }
