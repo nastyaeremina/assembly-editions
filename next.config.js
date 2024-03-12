@@ -6,9 +6,7 @@ async function fetchGraphQL({ preview = false, query, type = ['other'] }) {
     next: { tags: type },
     headers: {
       'Content-Type': 'application/json',
-      Authorization: `Bearer ${
-        preview ? process.env.CONTENTFUL_PREVIEW_ACCESS_TOKEN : process.env.CONTENTFUL_ACCESS_TOKEN
-      }`
+      Authorization: `Bearer ${process.env.CONTENTFUL_PREVIEW_ACCESS_TOKEN}`
     },
     body: JSON.stringify({ query })
   }).then((response) => response.json());
@@ -85,7 +83,7 @@ const nextConfig = {
     }
   },
   async rewrites() {
-    return  [
+    return [
       {
         source: '/experts/:path*',
         destination: 'https://copilotplatforms.partnerpage.io/experts/:path*'
