@@ -10,9 +10,10 @@ import {
   Limarker,
   MbBody3,
   MbBody4,
+  MbBody5,
   MbPrimaryBtn
 } from './styles';
-import { black, body, primary, title } from './color';
+import { black, body, neutral, primary, title } from './color';
 
 const UpadtePage = styled.div`
   padding-top: 180px;
@@ -91,6 +92,12 @@ const UpdateDetail = styled.div`
   max-width: 917px;
   width: 100%;
   ${Body4}
+  code {
+    padding: 2px 6px;
+    background-color: ${neutral};
+    border-radius: 4px;
+    ${MbBody5}
+  }
   figure {
     margin: 0 0 1rem 0;
     object-fit: cover;
@@ -161,6 +168,9 @@ const UpdateDetail = styled.div`
       ${Body4}
       color: ${body};
       position: relative;
+      ul {
+        margin-bottom: 12px;
+      }
       @media only screen and (max-width: 768px) {
         font-size: 15px;
         letter-spacing: 0.02em;
