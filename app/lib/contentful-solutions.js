@@ -65,6 +65,7 @@ showFooter
 industryIcon{
   url
 }
+solutionType
 `;
 
 function extractPostEntries(fetchResponse) {

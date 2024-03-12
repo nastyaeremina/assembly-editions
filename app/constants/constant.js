@@ -430,7 +430,10 @@ export const FIELD_SCORE = {
   faqAnswer: 0.1,
   other: 0.1
 };
-
+export const SOLUTION_TYPE = {
+  INDUSTRY: 'Industry',
+  USE_CASE: 'Use case'
+};
 export const HOME_CONTENT_ID = '1cPG7VsMO1XCahxAnz3rne';
 export const HOME_HYBIRD_CONTENT_ID = '1w6IZ3ILFiLQAbCmjHQX6Q';
 export const HOME_INTERNAL_CONTENT_ID = '2XZ0KqhzxydyrIOQtIi2rv';

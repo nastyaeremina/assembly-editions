@@ -1,7 +1,7 @@
 import { cookies } from 'next/headers';
 import { isEmpty } from '../../helpers/helpers';
 import { getSitemap } from '../../lib/contentful-sitemap';
-import { TOP_BAR_CONTENT_ID } from '../../constants/constant';
+import { SOLUTION_TYPE, TOP_BAR_CONTENT_ID } from '../../constants/constant';
 import { getAllNavbarSolution } from '../../lib/contentful-solutions';
 import NavbarComponent from './mainNavbar';
 import { getNavbarFeature } from '../../lib/contentful-features';
@@ -26,6 +26,9 @@ export async function getTopBarContent() {
 export default async function Navbar({ colorList, isModule, headerIndex, isEnterPrice }) {
   const cookie = cookies().get('current-portal-session');
   const { topbarContent, solutionDataList, featureData } = await getTopBarContent();
+
+  // Filter solutionDataList to get items that  solutionType is industry
+  const solutionIndustryList = solutionDataList?.filter((item) => item?.solutionType === SOLUTION_TYPE.INDUSTRY);
   return (
     <>
       <NavbarComponent
@@ -35,7 +38,7 @@ export default async function Navbar({ colorList, isModule, headerIndex, isEnter
         isEnterPrice={isEnterPrice}
         isAuthenticated={!isEmpty(cookie?.value)}
         topbarContent={topbarContent}
-        solutionDataList={solutionDataList}
+        solutionDataList={solutionIndustryList}
         featureData={featureData}
       />
     </>

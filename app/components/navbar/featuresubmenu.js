@@ -1,7 +1,7 @@
 'use client';
 
 import Image from 'next/image';
-import { NavigationBlock, NavMenu, MobileListLi, MenuWrap, LeftImg, RightText } from './styles';
+import { NavigationBlock, NavMenu, MobileListLi, MenuWrap, LeftImg, RightText, Last, LastDroplist } from './styles';
 import { useMemo } from 'react';
 import { FEATURE_THEME_LIST } from '../../constants/constant';
 
@@ -28,7 +28,32 @@ export default function FeatureSubMenu({ mobile, data }) {
   return (
     <>
       <NavMenu mobile={mobile}>
-        <NavigationBlock>{renderFeatureView}</NavigationBlock>
+        <NavigationBlock>
+          {renderFeatureView}
+          <LastDroplist Mobilemenu>
+            <Last className='icon-link'>
+              <a href={'/apps/directory'} className='learn-link mb0'>
+                Go to app directory
+                <svg width='16' height='12' viewBox='0 0 16 12' fill='none' class='HoverArrow'>
+                  <path
+                    d='M5.7998 1.37109L10.4283 5.99958L5.7998 10.6281'
+                    stroke-width='1.92854'
+                    stroke-linecap='round'
+                    stroke-linejoin='round'
+                    class='HoverArrow__tipPath'
+                  />
+                  <path
+                    d='M10.33 5.99951H1.5'
+                    stroke-width='2'
+                    stroke-linecap='round'
+                    stroke-linejoin='round'
+                    class='HoverArrow__linePath'
+                  />
+                </svg>
+              </a>
+            </Last>
+          </LastDroplist>
+        </NavigationBlock>
       </NavMenu>
     </>
   );

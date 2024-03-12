@@ -19,7 +19,7 @@ export default function SolutionSubMenu({ data, mobile }) {
     if (isEmpty(data)) return null;
     return data?.map((item, index) => {
       return (
-        <MobileListLi key={`solutionlistview_index_${index}`}>
+        <MobileListLi key={`solutionlistview_index_${index}`} isSolutionmenu>
           <MenuMobileWrap href={`/solutions/${item?.slug}`}>
             {!isEmpty(item?.industryIcon?.url) && (
               <LeftImg>
@@ -38,7 +38,7 @@ export default function SolutionSubMenu({ data, mobile }) {
     <>
       <NavMenu mobile={mobile}>
         <NavigationBlock>
-          <MobileListLi>
+          {/* <MobileListLi>
             <LastDroplist Mobilemenu>
               <Last className='icon-link'>
                 <a href={'/customers/'} className='learn-link mb0'>
@@ -62,7 +62,7 @@ export default function SolutionSubMenu({ data, mobile }) {
                 </a>
               </Last>
             </LastDroplist>
-          </MobileListLi>
+          </MobileListLi> */}
           {renderSolutionList}
           {/* <MobileListLi>
             <MenuMobileWrap href='#'>

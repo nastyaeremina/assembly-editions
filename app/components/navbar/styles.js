@@ -3,7 +3,7 @@
 import styled, { css } from 'styled-components';
 import Link from 'next/link';
 import Image from 'next/image';
-import { HeaderFont, Body2, Body5, FooterText, MbButtonText, MbPrimaryBtn } from '../../styles/styles';
+import { HeaderFont, Body2, Body5, FooterText, MbButtonText, MbPrimaryBtn, Heading6 } from '../../styles/styles';
 import {
   lightBg,
   greendark,
@@ -22,7 +22,9 @@ import {
   yellowlight,
   orangedark,
   orangelight,
-  textColor
+  textColor,
+  neutral,
+  border
 } from './../../styles/color';
 
 const NavbarWrapper = styled.div`
@@ -102,8 +104,13 @@ const NavMenu = styled.div`
     right: 0;
     padding: 0;
     background: #fdfdfb;
-    box-shadow: 0px 4px 24px rgba(0, 0, 0, 0.7);
+
     animation: 0.2s ease-out 0s 1 slideInFromTop;
+    ${(props) =>
+      props.isBoxShadow &&
+      css`
+        box-shadow: 0px 4px 24px rgba(0, 0, 0, 0.7);
+      `}
   }
   @keyframes slideInFromTop {
     0% {
@@ -135,6 +142,36 @@ const NavigationBlock = styled.ul`
     align-items: flex-start;
     margin: 0;
   }
+
+  ${(props) =>
+    props.isResourcemenu &&
+    css`
+      li {
+        background-color: unset;
+        border-bottom: 1px solid #000000;
+        :first-child {
+          border-top: 1px solid #000000;
+        }
+        :last-child {
+          border-bottom: none;
+        }
+      }
+    `}
+
+  .open {
+    opacity: 1;
+    z-index: 9999;
+    max-height: 1000px;
+  }
+`;
+
+const Dropdown = styled.div`
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+  -webkit-transition: all 0.5s ease-in-out 0s;
+  transition: all 0.5s ease-in-out 0s;
+  width: 100%;
 `;
 const LineMenuImg = styled.div`
   position: absolute;
@@ -330,35 +367,44 @@ const InnerList = styled.ul`
     ${(props) =>
     props.solution &&
     css`
-      width: 100%;
-      min-width: 554px;
+      /* width: 100%; */
+      /* min-width: 560px; */
+      width: max-content;
       background-color: #ffffff;
       border: 1px solid #00160e;
       box-shadow: 0px 8px 24px rgba(0, 0, 0, 0.35);
     `}
 `;
-const ListLi = styled.li``;
+const ListLi = styled.li`
+  @media only screen and (max-width: 991px) {
+    background-color: ${neutral};
+    border-bottom: 1px solid ${border};
+    :last-of-type {
+      border-bottom: none;
+    }
+  }
+`;
 const Listleft = styled.div`
-  max-width: 200px;
+  /* max-width: 200px; */
   width: 100%;
   padding: 8px 0;
-  border-right: 1px solid #00160e;
+  /* border-right: 1px solid #00160e; */
   ${(props) =>
     props.solutionleft &&
     css`
-      min-width: 277px;
-      white-space: nowrap;
+      /* min-width: 277px; */
+      /* white-space: nowrap; */
     `}
 `;
 const Listright = styled.div`
-  max-width: 200px;
+  /* max-width: 200px; */
   width: 100%;
   padding: 8px 0;
   ${(props) =>
     props.solutionright &&
     css`
-      min-width: 277px;
-      white-space: nowrap;
+      /* min-width: 277px; */
+      /* white-space: nowrap; */
     `}
 `;
 const HeaderBtnGroup = styled.div`
@@ -567,6 +613,10 @@ const MenuWrap = styled(Link)`
   }
   :hover {
     background-color: ${greendark};
+    h5,
+    span {
+      color: ${greenlight};
+    }
     .hover-image {
       filter: hue-rotate(390deg) saturate(0.3);
     }
@@ -704,10 +754,21 @@ const MobileRight = styled.div`
 const MobileListLi = styled.li`
   @media only screen and (max-width: 991px) {
     width: 100%;
-    border-bottom: 1px solid #000000;
+    border-bottom: 1px solid ${border};
+    background-color: ${neutral};
     :first-child {
-      border-top: 1px solid #000000;
+      /* border-top: 1px solid #000000; */
     }
+    :last-of-type {
+      border-bottom: 0;
+    }
+    ${(props) =>
+      props.isSolutionmenu &&
+      css`
+        :last-of-type {
+          border-bottom: 1px solid #000000;
+        }
+      `}
   }
 `;
 const MobileTextLink = styled(Link)`
@@ -732,6 +793,16 @@ const MobileText = styled.div`
   -webkit-transition: all 300ms;
   transition: all 300ms;
   cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  .open-icon {
+    transform: rotate(180deg);
+    transition: all 0.3s;
+  }
+  .close-icon {
+    transition: all 0.3s;
+  }
 `;
 const MenuMobileWrap = styled.a`
   display: flex;
@@ -951,7 +1022,7 @@ const Dspace = styled.div`
 
 const Drop = styled.div`
   display: flex;
-  min-width: 400px;
+  /* min-width: 400px; */
   width: 100%;
 `;
 const Last = styled.div`
@@ -968,6 +1039,21 @@ const LastDroplist = styled.div`
       css`
         padding: 12px 24px;
         border-top: none;
+      `}
+    border-top: 1px solid #00160e;
+    border-bottom: 1px solid #00160e;
+    width: 100%;
+    background-color: ${neutral};
+    ${(props) =>
+      props.isSolutionmenu &&
+      css`
+        border-top: none !important;
+        background-color: unset;
+      `}
+    ${(props) =>
+      props.isResourcemenu &&
+      css`
+        background-color: unset;
       `}
   }
 
@@ -988,6 +1074,9 @@ const LastDroplist = styled.div`
       /* @media only screen and (max-width: 749px) {
         opacity: 0;
       } */
+    }
+    @media only screen and (max-width: 991px) {
+      width: 100%;
     }
     :hover .HoverArrow__tipPath {
       transform: translateX(2px);
@@ -1042,6 +1131,35 @@ const LastDroplist = styled.div`
 const FeatureMenu = styled.div`
   padding: 8px 0;
 `;
+
+const DropDownHeading = styled.div`
+  ${Heading6}
+  color: ${greendark};
+  background-color: ${greenlight};
+  padding: 12px 20px;
+  min-width: 280px;
+  ${(props) =>
+    props.isFeatureWidth &&
+    css`
+      min-width: 360px;
+    `}
+`;
+
+const BorderLine = styled.div`
+  border-left: 1px solid #00160e;
+  width: 100%;
+`;
+
+const FeatureDropdown = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border-left: 1px solid #00160e;
+  :first-child {
+    border-left: none;
+  }
+`;
+
 export {
   NavbarWrapper,
   NavbarInner,
@@ -1086,5 +1204,9 @@ export {
   Drop,
   Last,
   LastDroplist,
-  FeatureMenu
+  FeatureMenu,
+  DropDownHeading,
+  BorderLine,
+  FeatureDropdown,
+  Dropdown
 };
