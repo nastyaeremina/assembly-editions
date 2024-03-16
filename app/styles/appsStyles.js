@@ -12,6 +12,7 @@ import {
   Label,
   LinkTxt,
   MbBody2,
+  MbBody4,
   MobileH2,
   Value
 } from './styles';
@@ -87,7 +88,7 @@ const Input = styled.input`
   ${Value};
   color: ${title};
   letter-spacing: 0.01em;
-  padding: 11px 20px 11px 55px;
+  padding: 11px 55px 11px 55px;
   border: 1.5px solid #bebebf;
   border-radius: 48px;
   width: 306px;
@@ -106,6 +107,11 @@ const Input = styled.input`
   :focus {
     border: 1.5px solid #131313;
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.07);
+  }
+  @media only screen and (max-width: 449px) {
+    padding: 10px 50px 10px 52px;
+    width: 100%;
+    ${MbBody4}
   }
 `;
 const Catagory = styled.ul`
@@ -436,11 +442,44 @@ const BuildAppsDetail = styled.div`
 `;
 const InputWrap = styled.form`
   position: relative;
+  width: 100%;
+  max-width: 1272px;
+  padding: 0 24px;
+  margin: 0 auto;
+  div {
+    position: absolute;
+    right: 24px;
+  }
   img {
     position: absolute;
     top: 15px;
     left: 20px;
   }
+  @media only screen and (max-width: 820px) {
+    div {
+      position: relative;
+      right: 0;
+      margin: 0 auto;
+      margin-bottom: 30px;
+    }
+    input {
+      width: 100%;
+    }
+  }
+  @media only screen and (max-width: 449px) {
+    img {
+      top: 11px;
+    }
+  }
+`;
+
+const CloseIcon = styled.div`
+  position: absolute;
+  right: 20px;
+  top: 13px;
+  display: flex;
+  cursor: pointer;
+  z-index: 1;
 `;
 const LeftWrap = styled.div`
   position: sticky;
@@ -755,6 +794,15 @@ const AppSliderSection = styled.div`
     margin: 40px 0 80px;
   }
 `;
+
+const SearchEmpty = styled.div`
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 100px;
+  @media only screen and (max-width: 449px) {
+    padding-bottom: 80px;
+  }
+`;
 export {
   HeroSection,
   FeatureSection,
@@ -808,5 +856,7 @@ export {
   TooltipWrap,
   AppHeader3,
   CustomAppSection,
-  AppSliderSection
+  AppSliderSection,
+  SearchEmpty,
+  CloseIcon
 };

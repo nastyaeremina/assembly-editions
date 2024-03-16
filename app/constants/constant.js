@@ -360,7 +360,9 @@ export const APPS_TYPE = {
   PARTNER_APP: 'Partner App',
   DATA_INTEGRATION: 'Data Integration',
   CLIENT: 'Client',
-  INTERNAL: 'Internal'
+  INTERNAL: 'Internal',
+  EMBED: 'Embed',
+  APP: 'App'
 };
 
 export const BLOG_TAG_SORTED_LIST = ['announcements', 'inside-copilot', 'guides'];
@@ -492,3 +494,8 @@ export const EXTRACT_H2_TAG_FROM_HTML_REGEX = /(?:<h2 id\=\s*)\S.*?(?=\s*<\/h2|$
 export const EXTRACT_CODE_TAG_FROM_HTML_REGEX = /(<pre><code[^>]*>.*?<\/code><\/pre>)/gs;
 export const EXTRACT_LEADING_DIGIT_REGEX = /^[0-9]./;
 export const CURRENT_DOMAIN = 'https://www.copilot.com';
+export const AppInfoMessage =
+  'Apps are specifically made for the Copilot Platform, are secured, and can use notifications.';
+export const EmbedInfoMessage = 'Copilot supports embedding any application that allow for embedding.';
+export const InternalAppInfoMessage = 'Internal-facing apps are only visible team';
+export const ClientAppInfoMessage = 'Client-facing apps are visible to clients as well as your internal team';

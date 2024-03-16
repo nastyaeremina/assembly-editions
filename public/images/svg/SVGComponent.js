@@ -122,6 +122,104 @@ const getPath = (name) => {
           </defs>
         </>
       );
+    case 'green-star-icon':
+      return (
+        <>
+          <path
+            fill='#09AA6C'
+            fillRule='evenodd'
+            stroke='#09AA6C'
+            strokeLinecap='round'
+            strokeLinejoin='round'
+            strokeWidth={0.875}
+            d='M6.999 2.19 8.71 5.685l3.83.565L9.77 8.97l.653 3.84L7 10.997l-3.425 1.815.654-3.842-2.771-2.72 3.829-.564L6.999 2.19Z'
+            clipRule='evenodd'
+          />
+        </>
+      );
+    case 'bullet-point-icon':
+      return (
+        <>
+          <circle cx={8.328} cy={8.5} r={2} fill='#A5ABA9' />
+        </>
+      );
+    case 'information-icon':
+      return (
+        <>
+          <path
+            stroke='#4C4C4C'
+            strokeMiterlimit={10}
+            strokeWidth={1.091}
+            fill='none'
+            d='M8.327 2.9a5.6 5.6 0 1 0 0 11.2 5.6 5.6 0 0 0 0-11.2Z'
+          />
+          <path
+            stroke='#4C4C4C'
+            strokeLinecap='round'
+            strokeLinejoin='round'
+            strokeWidth={1.091}
+            fill='none'
+            d='M7.203 7.375h1V11'
+          />
+          <path
+            stroke='#4C4C4C'
+            strokeLinecap='round'
+            strokeMiterlimit={10}
+            strokeWidth={1.091}
+            fill='none'
+            d='M6.828 11.125h2.75'
+          />
+          <path fill='#4C4C4C' d='M8.078 4.563a.813.813 0 1 0 0 1.625.813.813 0 0 0 0-1.625Z' />
+        </>
+      );
+    case 'informative-icon':
+      return (
+        <>
+          <g clipPath='url(#a)'>
+            <path
+              stroke='#131313'
+              strokeMiterlimit={10}
+              strokeWidth={1.091}
+              fill='none'
+              d='M7.01 1.4a5.6 5.6 0 1 0 .001 11.2 5.6 5.6 0 0 0 0-11.2Z'
+            />
+            <path
+              stroke='#131313'
+              strokeLinecap='round'
+              strokeLinejoin='round'
+              strokeWidth={1.091}
+              fill='none'
+              d='M5.887 5.875h1V9.5'
+            />
+            <path
+              stroke='#131313'
+              strokeLinecap='round'
+              strokeMiterlimit={10}
+              strokeWidth={1.091}
+              fill='none'
+              d='M5.512 9.625h2.75'
+            />
+            <path fill='#131313' d='M6.762 3.063a.812.812 0 1 0 0 1.624.812.812 0 0 0 0-1.625Z' />
+          </g>
+          <defs>
+            <clipPath id='a'>
+              <path fill='#fff' d='M.828.818h12.364v12.364H.828z' />
+            </clipPath>
+          </defs>
+        </>
+      );
+    case 'close-icon':
+      return (
+        <>
+          <path
+            stroke='#757575'
+            strokeLinecap='round'
+            strokeLinejoin='round'
+            strokeWidth={1.182}
+            d='m17.136 8.864-8.273 8.272m8.273 0L8.863 8.864l8.273 8.272Z'
+          />
+        </>
+      );
     default:
       return <path />;
   }

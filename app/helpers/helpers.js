@@ -466,3 +466,21 @@ export function searchFAQForValueWithParent({ array, query, slug, searchRegex })
   });
   return results;
 }
+
+// Function to calculate average rate
+export function calculateAverageRate(items) {
+  // Check if items array is not empty
+  if (items?.length === 0) {
+    return 0; // Return 0 if array is empty
+  }
+
+  // Calculate sum of all rates
+  const sum = items.reduce((accumulator, currentItem) => {
+    return accumulator + currentItem?.rate;
+  }, 0);
+
+  // Calculate average rate
+  const average = sum / items?.length;
+
+  return average;
+}
