@@ -351,8 +351,11 @@ const BusinessSection = styled.div`
   }
 `;
 const BusinessText = styled.div`
+  display: flex;
+  flex-direction: row;
   width: 100%;
   padding-bottom: 40px;
+  gap: 120px;
   h2 {
     ${Heading3};
     margin: 0;
@@ -371,13 +374,13 @@ const BusinessText = styled.div`
     letter-spacing: 0.02em;
     width: 100%;
   }
-  .app-dec {
-    width: 100%;
-    max-width: 810px;
-  }
-  @media only screen and (max-width: 749px) {
+
+  @media only screen and (max-width: 768px) {
+    flex-direction: column;
     padding-bottom: 32px;
+    gap: 20px;
     h2 {
+      padding-bottom: 0;
       ${MobileH3};
       color: ${greendark};
     }
@@ -386,6 +389,17 @@ const BusinessText = styled.div`
     }
   }
 `;
+
+export const RightContent = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 810px;
+  @media only screen and (max-width: 768px) {
+    flex-direction: column;
+  }
+`;
+
 const Functionality = styled.div`
   padding: 0px 0 50px;
   @media only screen and (max-width: 749px) {

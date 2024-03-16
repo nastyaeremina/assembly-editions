@@ -30,13 +30,13 @@ import {
 } from '../../../styles/homepageStyles';
 import { Container } from '../../../styles/commonStyles';
 import Slider from '../../../components/businessSlider/homeSlider';
-import ExtensionSlider from '../../../components/extensionslider/extensionslider';
 import TabView from '../../../components/tab/tab';
 import Button from '../../../components/button/button';
 import HomeHeroSection from '../../../components/Home/herosection/hybrid';
 import { isEmpty } from '../../../helpers/helpers';
 import SupportItem from '../supportSection/support';
 import HeadingText from '../../header/headingText';
+import PartnerAppsComponent from '../../partnerApps/partnerApps';
 
 export default function HomePage({ content }) {
   return (
@@ -72,27 +72,11 @@ export default function HomePage({ content }) {
             </BottomFunction>
           </Container>
         </Functionality>
-        <Extension>
-          <Container>
-            <BusinessText>
-              <HeadingText title={content?.heading3} />
-              <div className='app-dec'>
-                <ReactMarkdown>{content?.body3}</ReactMarkdown>
-              </div>
-              <BtnView>
-                <Button
-                  bgColor={'transparent'}
-                  fontColor={'#000000'}
-                  borderColor={'#000000'}
-                  text={'Browse Apps'}
-                  href={'/apps'}
-                  hoverColor={'rgba(0, 0, 0, 0.5)'}
-                />
-              </BtnView>
-            </BusinessText>
-          </Container>
-          <ExtensionSlider data={content?.partnerAppsCollection?.items} />
-        </Extension>
+        <PartnerAppsComponent
+          title={content?.heading3}
+          description={content?.body3}
+          appList={content?.partnerAppsCollection?.items}
+        />
         <AutomateSection>
           <Container>
             <AutomateText>
