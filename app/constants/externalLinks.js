@@ -7,7 +7,7 @@ export const COPILOT_INSTAGRAM_LINK = 'https://www.instagram.com/copilotplatform
 export const COPILOT_SYSTEM_STATUS_LINK = 'https://status.copilot.com';
 export const COPILOT_DASHBOARD_LINK = 'https://dashboard.copilot.com';
 export const ZAPIER_LINK = 'https://zapier.com/apps/copilot/integrations';
-export const COPILOT_REFERENCE_API_LINK = 'https://docs.copilot.com/reference/introduction';
+export const COPILOT_REFERENCE_API_LINK = 'https://docs.copilot.com/reference/';
 export const COPILOT_JOIN_COMMUNITY_LINK =
   'https://join.slack.com/t/copilotcommunity/shared_invite/zt-1n4u6dr8m-Bm_8Jnmq6_RoY1ySq~yVcQ';
 export const COPILOT_SECURITY_LINK = 'https://security.copilot.com/';

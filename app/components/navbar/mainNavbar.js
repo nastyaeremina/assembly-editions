@@ -71,6 +71,7 @@ import {
 import FeatureSubMenu from './featuresubmenu';
 import ResourcesSubMenu from './resourcessubmenu';
 import SolutionSubMenu from './solutionsubmenu';
+import { COPILOT_REFERENCE_API_LINK } from '../../constants/externalLinks';
 
 const PlateformData = [
   {
@@ -80,7 +81,7 @@ const PlateformData = [
     plateformDescription: 'Resources for developers'
   },
   {
-    href: 'https://docs.copilot.com/docs/getting-started',
+    href: 'https://docs.copilot.com/docs/',
     plateformIcon: plateformapps,
     plateformname: 'Custom Apps',
     plateformDescription: 'Build apps on our platform'
@@ -274,7 +275,7 @@ export default function NavbarComponent({
                       {renderFeaturePlateform}
                       <LastDroplist>
                         <Last className='icon-link'>
-                          <a href={'https://docs.copilot.com/reference/introduction'} className='learn-link mb0'>
+                          <a href={COPILOT_REFERENCE_API_LINK} className='learn-link mb0'>
                             Go to API reference
                             <svg width='16' height='12' viewBox='0 0 16 12' fill='none' class='HoverArrow'>
                               <path
@@ -509,7 +510,7 @@ export default function NavbarComponent({
                   </div>
                   <LastDroplist>
                     <Last className='icon-link'>
-                      <a href={'https://docs.copilot.com/reference/introduction'} className='learn-link mb0'>
+                      <a href={COPILOT_REFERENCE_API_LINK} className='learn-link mb0'>
                         Go to API reference
                         <svg width='16' height='12' viewBox='0 0 16 12' fill='none' class='HoverArrow'>
                           <path
