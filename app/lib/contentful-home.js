@@ -27,12 +27,12 @@ export async function getHomeContent(id) {
           url
           title
         }
-        testimonialsCollection {
-          items {
+        solutionCollection(preview:false){
+          items{
             name
-            quote
-            industry
-            image {
+            slug
+            header
+            imageBackground{
               url
             }
           }

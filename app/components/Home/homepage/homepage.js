@@ -3,12 +3,9 @@
 import Image from 'next/image';
 import { ReactMarkdown } from 'react-markdown/lib/react-markdown';
 import {
-  BusinessSection,
-  BusinessText,
   Functionality,
   TopFunctionWrap,
   BottomFunction,
-  Extension,
   AutomateSection,
   AutomateText,
   BottomList,
@@ -20,7 +17,6 @@ import {
   HelpLeft,
   HelpWrap,
   HelpMargin,
-  BtnView,
   HomeMain,
   HelpImg,
   AnimatedIcon,
@@ -29,13 +25,13 @@ import {
   Line2
 } from '../../../styles/homepageStyles';
 import { Container } from '../../../styles/commonStyles';
-import Slider from '../../../components/businessSlider/homeSlider';
 import TabView from '../../../components/tab/tab';
 import Button from '../../../components/button/button';
 import HomeHeroSection from '../../../components/Home/herosection/hybrid';
 import { isEmpty } from '../../../helpers/helpers';
 import SupportItem from '../supportSection/support';
 import HeadingText from '../../header/headingText';
+import BussinessSectionComponent from '../BussinessSection';
 import PartnerAppsComponent from '../../partnerApps/partnerApps';
 
 export default function HomePage({ content }) {
@@ -50,16 +46,14 @@ export default function HomePage({ content }) {
           leftImageTitle={content?.heroImage1?.title}
           rightImageTitle={content?.heroImage2?.title}
         />
-        <BusinessSection>
-          <Container>
-            <BusinessText>
-              <HeadingText title={content?.heading1} />
+        <BussinessSectionComponent
+          title={content?.heading1}
+          description={content?.body1}
+          primaryButtonText={content?.primaryButtonText1}
+          PrimaryButtonLink={content?.primaryButtonLink1}
+          sliderData={content?.solutionCollection?.items}
+        />
 
-              <ReactMarkdown>{content?.body1}</ReactMarkdown>
-            </BusinessText>
-          </Container>
-          <Slider data={content?.testimonialsCollection?.items} />
-        </BusinessSection>
         <Functionality>
           <Container>
             <TopFunctionWrap>

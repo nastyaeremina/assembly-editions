@@ -122,6 +122,43 @@ const getPath = (name) => {
           </defs>
         </>
       );
+    case 'left-arrow-icon':
+      return (
+        <>
+          <path
+            stroke='#A5ABA9'
+            strokeLinecap='round'
+            strokeLinejoin='round'
+            strokeWidth={2}
+            d='M8.266 1.828 2.094 8m0 0 6.172 6.172M2.094 7.999H14'
+          />
+        </>
+      );
+    case 'right-arrow-icon':
+      return (
+        <>
+          <path
+            stroke='#A5ABA9'
+            strokeLinecap='round'
+            strokeLinejoin='round'
+            strokeWidth={2}
+            d='M7.734 1.828 13.906 8m0 0-6.172 6.172m6.172-6.172H2'
+          />
+        </>
+      );
+    case 'arrow':
+      return (
+        <>
+          <path
+            stroke='#131313'
+            strokeLinecap='round'
+            strokeLinejoin='round'
+            strokeWidth={1.857}
+            fill='none'
+            d='m2 3 4 4-4 4'
+          />
+        </>
+      );
     case 'green-star-icon':
       return (
         <>

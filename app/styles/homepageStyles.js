@@ -14,7 +14,8 @@ import {
   textColor,
   title,
   primary,
-  whiteColor
+  whiteColor,
+  border
 } from './../styles/color';
 
 import {
@@ -344,10 +345,13 @@ const BusinessSection = styled.div`
   box-shadow: 0px -26px 32px rgba(0, 0, 0, 0.08);
   position: relative;
   z-index: 1;
-  padding: 100px 0 50px;
+  padding: 100px 0 100px;
   overflow: hidden;
   @media only screen and (max-width: 768px) {
     padding: 80px 0 80px;
+  }
+  @media only screen and (max-width: 449px) {
+    padding: 80px 0 40px;
   }
 `;
 const BusinessText = styled.div`
@@ -1525,14 +1529,116 @@ const ImageDiv = styled.div`
 const Responsive = styled.div`
   display: none;
   @media only screen and (max-width: 449px) {
-    display: block;
+    display: flex;
   }
 `;
 const Desktop = styled.div`
-  display: block;
+  display: none;
   margin-bottom: 50px;
+`;
+
+const Block = styled.div`
+  display: flex;
+  align-items: end;
+  gap: 32px;
+`;
+
+const SliderButton = styled.div`
+  display: flex;
+  gap: 10px;
+  padding-bottom: 40px;
+  @media only screen and (max-width: 449px) {
+    justify-content: center;
+    padding-top: 32px;
+    padding-bottom: 0;
+  }
+`;
+
+const Arrow = styled.div`
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  border: 1px solid ${border};
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s;
+  cursor: pointer;
+  :hover {
+    border: 1px solid ${title};
+    transition: all 0.3s;
+    svg {
+      path {
+        stroke: ${title};
+      }
+    }
+  }
+  ${(props) =>
+    props.isDisabled &&
+    css`
+      cursor: no-drop;
+      pointer-event: none;
+      :hover {
+        border: 1px solid ${border};
+        svg {
+          path {
+            stroke: ${border};
+          }
+        }
+      }
+    `}
+`;
+
+const SliderBlock = styled.div``;
+
+const ButtonGroup = styled.div`
   @media only screen and (max-width: 449px) {
     display: none;
+  }
+`;
+const ResponsiveButtonGroup = styled.div`
+  display: none;
+  @media only screen and (max-width: 449px) {
+    display: block;
+  }
+`;
+const BusinessSectionText = styled.div`
+  width: 100%;
+  padding-bottom: 40px;
+  h2 {
+    ${Heading3};
+    margin: 0;
+    color: ${title};
+    padding-bottom: 16px;
+    span {
+      color: ${primary};
+    }
+  }
+  p {
+    max-width: 1164px;
+    width: 100%;
+    ${Body3};
+    margin: 0;
+    color: ${bodycolor};
+    letter-spacing: 0.02em;
+    width: 100%;
+  }
+  .app-dec {
+    width: 100%;
+    max-width: 810px;
+  }
+  .block-button {
+    margin-top: 28px;
+  }
+  @media only screen and (max-width: 749px) {
+    padding-bottom: 32px;
+    h2 {
+      ${MobileH3};
+      color: ${greendark};
+    }
+    p {
+      ${MbBody3};
+    }
   }
 `;
 export {
@@ -1610,5 +1716,12 @@ export {
   ZoomImage,
   ImageDiv,
   Responsive,
-  Desktop
+  Desktop,
+  Block,
+  SliderButton,
+  Arrow,
+  SliderBlock,
+  ButtonGroup,
+  ResponsiveButtonGroup,
+  BusinessSectionText
 };
