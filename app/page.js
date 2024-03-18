@@ -40,7 +40,7 @@ export default async function Home() {
     <>
       <script type='application/ld+json' dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       <Layout>
-        <Navbar headerIndex={HEADER_LIST.ENTERPRICE} isModule={false} isEnterPrice={true} />
+        <Navbar />
         <HomePage content={content}></HomePage>
         <CTA />
       </Layout>

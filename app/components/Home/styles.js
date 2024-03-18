@@ -1,13 +1,6 @@
 import styled, { css } from 'styled-components';
-import {  Body2, Body5, FooterText, Heading2,  MbBody1, MobileH2 } from '../../styles/styles';
-import {
-  greendark,
-  greenlight,
-  body,
-  title,
-  primary,
-  whiteColor,
-} from './../../styles/color';
+import { Body2, Body5, FooterText, Heading2, MbBody1, MobileH2 } from '../../styles/styles';
+import { greendark, greenlight, body, title, primary, whiteColor } from './../../styles/color';
 
 const HeroSection = styled.div`
   width: 100%;
@@ -32,7 +25,8 @@ const HeroSection = styled.div`
 const HeroHeading = styled.h1`
   ${Heading2};
   color: ${greenlight};
-  margin: 0 0 20px 0;
+  margin: 0 auto 20px;
+  max-width: 1000px;
   ${(props) =>
     props.isLight &&
     css`
@@ -222,7 +216,7 @@ const RightWrap = styled.div`
 const HeroBtnBlock = styled.div`
   margin: 32px 0 0px;
   @media only screen and (max-width: 768px) {
-    margin-bottom: 80px;
+    margin-bottom: 20px;
   }
 `;
 
@@ -235,7 +229,8 @@ const MainImage = styled.div`
       filter: drop-shadow(0px 0px 60px rgba(0, 0, 0, 0.12));
     `}
   .heromain-image {
-    box-shadow: 0px 4px 112px rgba(9, 170, 108, 0.55);
+    /* box-shadow: 0px 4px 112px rgba(9, 170, 108, 0.55); */
+    box-shadow: 0px 0px 66.61846160888672px 0px #0000001f;
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
     max-width: 1000px;
@@ -243,7 +238,7 @@ const MainImage = styled.div`
     max-height: 415px;
     height: 100%;
     margin-bottom: -4px;
-    margin-top: 60px;
+    margin-top: 40px;
     ${(props) =>
       props.isLight &&
       css`

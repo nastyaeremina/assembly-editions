@@ -28,6 +28,7 @@ import { Container } from '../../../styles/commonStyles';
 import TabView from '../../../components/tab/tab';
 import Button from '../../../components/button/button';
 import HomeHeroSection from '../../../components/Home/herosection/hybrid';
+
 import { isEmpty } from '../../../helpers/helpers';
 import SupportItem from '../supportSection/support';
 import HeadingText from '../../header/headingText';
@@ -45,6 +46,7 @@ export default function HomePage({ content }) {
           image2={content?.heroImage2?.url}
           leftImageTitle={content?.heroImage1?.title}
           rightImageTitle={content?.heroImage2?.title}
+          isLight={true}
         />
         <BussinessSectionComponent
           title={content?.heading1}
