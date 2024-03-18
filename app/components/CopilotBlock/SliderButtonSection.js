@@ -31,10 +31,10 @@ export default function SliderButtonSection({ xPos, setXpos, noOfSlide }) {
 
   return (
     <SliderButton>
-      <Arrow onClick={onClickPrev} isDisabled={xPos <= minimumSlidePosition}>
+      <Arrow onClick={onClickNext} isDisabled={xPos === 0}>
         <SVGComponent name='left-arrow-icon' width='16' height='16' viewBox='16' />
       </Arrow>
-      <Arrow onClick={onClickNext} isDisabled={xPos === 0}>
+      <Arrow onClick={onClickPrev} isDisabled={xPos <= minimumSlidePosition}>
         <SVGComponent name='right-arrow-icon' width='16' height='16' viewBox='16' />
       </Arrow>
     </SliderButton>

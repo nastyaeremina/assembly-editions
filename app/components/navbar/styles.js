@@ -79,6 +79,9 @@ const NavbarInner = styled.div`
   /* justify-content: space-between; */
   align-items: center;
   gap: 60px;
+  @media only screen and (max-width: 1024px) {
+    gap: 30px;
+  }
   @media only screen and (max-width: 991px) {
     justify-content: space-between;
     gap: unset;

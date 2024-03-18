@@ -15,6 +15,10 @@ export async function getHomeContent(id) {
         body1
         heading2
         body2
+        primaryButtonText2
+        primaryButtonLink2
+        secondaryButtonText2
+        secondaryButtonLink2
         heading3
         body3
         heading4
@@ -41,6 +45,9 @@ export async function getHomeContent(id) {
           items {
             title
             description
+            backgroundImage{
+              url
+            }
             subTitle
             image{
               url

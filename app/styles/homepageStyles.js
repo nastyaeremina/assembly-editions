@@ -407,7 +407,7 @@ export const RightContent = styled.div`
 const Functionality = styled.div`
   padding: 0px 0 50px;
   @media only screen and (max-width: 749px) {
-    padding: 40px 0;
+    /* padding: 40px 0; */
   }
   .ak {
     margin-bottom: 20px;
@@ -450,6 +450,7 @@ const TopFunctionWrap = styled.div`
 `;
 const BottomFunction = styled.div`
   margin-top: 40px;
+
   .am {
     font-family: 'Bagoss';
     letter-spacing: 0.02em;
@@ -457,7 +458,13 @@ const BottomFunction = styled.div`
   .af {
     width: 100%;
   }
-  @media only screen and (max-width: 749px) {
+
+  @media only screen and (max-width: 768px) {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
     margin-top: 28px;
   }
   .ml0 {
@@ -644,7 +651,7 @@ const ContainWrap = styled.div`
   padding-top: 40px;
   @media only screen and (max-width: 991px) {
     flex-wrap: wrap;
-    margin-top: 28px;
+    margin-top: 0;
     padding-top: 0;
   }
   ${(props) =>

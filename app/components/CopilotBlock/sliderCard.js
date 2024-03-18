@@ -1,7 +1,8 @@
 import React from 'react';
 import Image from 'next/image';
 import SVGComponent from '../../../public/images/svg/SVGComponent';
-import { BLockImage, BlockCard, BlockDescription, BlockDescriptionTop, LinkDiv } from './styles';
+import { BLockImage, BlockCard, BlockDescription, BlockDescriptionTop, Last, LastDroplist, LinkDiv } from './styles';
+import Link from 'next/link';
 
 export default function CopilotBlockItem({ title, description, imageUrl, link }) {
   return (
@@ -16,10 +17,12 @@ export default function CopilotBlockItem({ title, description, imageUrl, link })
               <h2>{title}</h2>
               <p>{description}</p>
             </BlockDescriptionTop>
-            <LinkDiv href={link}>
-              <p>Learn more</p>
-              <SVGComponent name='arrow' width='8' height='13' viewBox='0 0 8 13' />
-            </LinkDiv>
+            <LastDroplist>
+              <Link href={link} className='learn-link mb0'>
+                Learn more
+                <SVGComponent name='animated-link-icon' width='16' height='12' viewBox='0 0 16 12' />
+              </Link>
+            </LastDroplist>
           </BlockDescription>
         </BlockCard>
       </>

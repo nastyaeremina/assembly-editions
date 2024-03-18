@@ -1,12 +1,18 @@
 import styled from 'styled-components';
-import { Body3, Heading3, MbBody3 } from '../../styles/styles';
+import {
+  Body2,
+  Body3,
+  Heading2,
+  Heading3,
+  Heading4,
+  Heading5,
+  MbBody3,
+  MobileH2,
+  MobileH3,
+  MobileH4
+} from '../../styles/styles';
 import { body, title } from '../../styles/color';
 
-const HeroSection = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-`;
 const PageTitle = styled.h2`
   ${Heading3};
   color: ${title};
@@ -25,4 +31,87 @@ const Caption = styled.div`
   }
 `;
 
-export { HeroSection, PageTitle, Caption };
+const MainHero = styled.div`
+  padding: 0;
+  @media only screen and (max-width: 769px) {
+    /* padding-bottom: 40px; */
+    /* padding-top: 112px; */
+  }
+`;
+const HeroSection = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  max-width: 810px;
+  width: 100%;
+  text-align: left;
+  h1 {
+    font-family: 'Bagoss';
+    ${Heading3};
+    color: ${title};
+    margin: 0;
+  }
+  .button-section {
+    margin-top: 8px;
+  }
+  @media only screen and (max-width: 769px) {
+    h1 {
+      ${MobileH2}
+    }
+  }
+  @media only screen and (max-width: 449px) {
+    h1 {
+      ${MobileH3}
+    }
+  }
+`;
+
+const HeroCaption = styled.div`
+  max-width: 880px;
+  width: 100%;
+  margin: 0;
+  h1 {
+    ${Heading2};
+    color: ${title};
+    margin: 0 0 20px 0;
+  }
+  h2 {
+    ${Heading3};
+    color: ${title};
+    margin: 0 0 20px 0;
+  }
+  h3 {
+    ${Heading4};
+    color: ${title};
+    margin: 0 0 20px 0;
+  }
+  h4 {
+    ${Heading5};
+    color: ${title};
+    margin: 0 0 20px 0;
+  }
+  p {
+    ${Body2};
+    color: ${body};
+    margin: 0;
+  }
+  @media only screen and (max-width: 449px) {
+    h2 {
+      font-family: 'Bagoss';
+      ${MobileH3}
+      line-height:30.8px;
+      letter-spacing: 0em;
+      text-align: left;
+    }
+    p {
+      ${MbBody3}
+    }
+  }
+`;
+
+const ButtonGroup = styled.div`
+  display: flex;
+  gap: 20px;
+  justify-content: flex-start;
+`;
+export { HeroSection, PageTitle, Caption, MainHero, HeroCaption, ButtonGroup };

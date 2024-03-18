@@ -9,9 +9,9 @@ export default function CopilotBlock({ xPos, sliderData }) {
         {sliderData.map((item, index) => (
           <CopilotBlockItem
             key={index}
-            title={item?.name}
-            description={item?.header}
-            imageUrl={item?.imageBackground?.url}
+            title={item.name}
+            description={item.header}
+            imageUrl={item.imageBackground?.url}
             link={`/solutions/${item.slug}`}
           />
         ))}

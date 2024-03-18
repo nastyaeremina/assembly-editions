@@ -3,9 +3,12 @@
 import Image from 'next/image';
 import { ReactMarkdown } from 'react-markdown/lib/react-markdown';
 import {
+  BusinessSection,
+  BusinessText,
   Functionality,
   TopFunctionWrap,
   BottomFunction,
+  Extension,
   AutomateSection,
   AutomateText,
   BottomList,
@@ -22,9 +25,15 @@ import {
   AnimatedIcon,
   Line1,
   Line,
-  Line2
+  Line2,
+  Block,
+  SliderBlock,
+  ButtonGroup,
+  ResponsiveButtonGroup
 } from '../../../styles/homepageStyles';
 import { Container } from '../../../styles/commonStyles';
+import Slider from '../../../components/businessSlider/homeSlider';
+import ExtensionSlider from '../../../components/extensionslider/extensionslider';
 import TabView from '../../../components/tab/tab';
 import Button from '../../../components/button/button';
 import HomeHeroSection from '../../../components/Home/herosection/hybrid';
@@ -34,6 +43,10 @@ import SupportItem from '../supportSection/support';
 import HeadingText from '../../header/headingText';
 import BussinessSectionComponent from '../BussinessSection';
 import PartnerAppsComponent from '../../partnerApps/partnerApps';
+import FeatureSection from '../../featureSection/featureSection';
+import { primary, whiteColor } from '../../../styles/color';
+import CopilotBlock from '../../../components/CopilotBlock/copilotblock';
+import SliderButtonSection from '../../../components/CopilotBlock/SliderButtonSection';
 
 export default function HomePage({ content }) {
   return (
@@ -56,18 +69,17 @@ export default function HomePage({ content }) {
           sliderData={content?.solutionCollection?.items}
         />
 
-        <Functionality>
-          <Container>
-            <TopFunctionWrap>
-              <HeadingText title={content?.heading2} />
-
-              <ReactMarkdown>{content?.body2}</ReactMarkdown>
-            </TopFunctionWrap>
-            <BottomFunction>
-              <TabView isHome={true} tabData={content?.featuresCollection?.items} />
-            </BottomFunction>
-          </Container>
-        </Functionality>
+        <FeatureSection
+          featuresList={content?.featuresCollection?.items}
+          heroSectionData={{
+            heroTitle: content?.heading2,
+            heroDescription: content?.body2,
+            primaryButtonText: content?.primaryButtonText2,
+            secondaryButtonText: content?.secondaryButtonText2,
+            primaryButtonLink: content?.primaryButtonLink2,
+            secondaryButtonLink: content?.secondaryButtonLink2
+          }}
+        />
         <PartnerAppsComponent
           title={content?.heading3}
           description={content?.body3}

@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 import { Body5, HeaderFont, Heading5 } from '../../styles/styles';
-import { body, greendark, title } from '../../styles/color';
-import Link from 'next/link';
+import { body, greendark, primary, title } from '../../styles/color';
 
 const BlockCard = styled.div`
   min-width: 500px;
@@ -18,25 +17,30 @@ const BlockCard = styled.div`
   @media only screen and (max-width: 449px) {
     min-width: calc(100vw - 50px);
     margin: 0 25px;
-    padding: 20px 20px 0 20px;
+    padding: 20px;
     flex-direction: column;
+    height: 100%;
   }
 `;
 
 const BLockImage = styled.div`
   overflow: hidden;
-  width: 180px;
+  width: 100%;
+  max-width: 180px;
   height: 180px;
   border-radius: 4px;
   img {
     border-radius: 4px;
+    min-width: 180px;
+    height: 180px;
   }
   @media only screen and (max-width: 449px) {
-    width: calc(100vw - 92px);
+    width: 100%;
+    max-width: 400px;
     height: calc(100vw - 92px);
     img {
       width: 100%;
-      height: auto;
+      height: 100%;
     }
   }
 `;
@@ -46,11 +50,18 @@ const BlockDescriptionTop = styled.div`
     ${Heading5};
     color: ${title};
     margin: 0 0 12px;
+    font-weight: 400;
   }
   p {
     ${Body5};
     color: ${body};
     margin: 0;
+  }
+  @media only screen and (max-width: 449px) {
+    h2 {
+      font-size: 20px;
+      line-height: 26px;
+    }
   }
 `;
 const BlockDescription = styled.div`
@@ -62,27 +73,78 @@ const BlockDescription = styled.div`
   }
 `;
 
-const LinkDiv = styled(Link)`
-  display: flex;
-  gap: 4px;
-  align-items: center;
-  width: 100px;
-  p {
-    ${HeaderFont};
-    color: ${title};
-    margin: 0;
-  }
-`;
-
 const MainBlock = styled.div`
   transition: transform 500ms ease;
   display: flex;
   gap: 28px;
-  width: 1224px;
+  width: 1272px;
   margin: 0 auto;
   overflow: visible;
   ::-webkit-scrollbar {
     display: none;
   }
+  padding: 0 24px;
+  @media only screen and (max-width: 449px) {
+    padding: 0;
+  }
 `;
-export { BlockCard, BLockImage, BlockDescriptionTop, BlockDescription, LinkDiv, MainBlock };
+
+const Last = styled.div`
+  display: flex;
+  align-items: center;
+`;
+
+const LastDroplist = styled.div`
+  .learn-link,
+  .learn-link svg path {
+    transition: all 300ms ease;
+  }
+  a {
+    ${HeaderFont};
+    color: ${primary};
+    margin: 0;
+    display: inline-flex;
+    gap: 4px;
+    align-items: center;
+    cursor: pointer;
+    transition: none;
+    :hover .HoverArrow__linePath {
+      opacity: 1;
+      fill: none;
+      fill: black;
+    }
+    @media only screen and (max-width: 991px) {
+      width: 100%;
+    }
+    :hover .HoverArrow__tipPath {
+      transform: translateX(2px);
+    }
+  }
+
+  .learn-link:hover {
+    color: black;
+    transition: all 300ms ease;
+  }
+  .learn-link svg path {
+    transition: all 300ms ease;
+  }
+  .HoverArrow__linePath {
+    opacity: 0;
+    fill: none;
+  }
+  .HoverArrow {
+    stroke-width: 2px;
+    fill: none;
+    stroke: currentColor;
+    position: relative;
+    margin-left: var(--arrowSpacing);
+    stroke-width: 2px;
+    fill: none;
+    stroke: currentColor;
+    margin-left: 8px;
+    --arrowSpacing: 5px;
+    --arrowHoverTransition: 150ms cubic-bezier(0.215, 0.61, 0.355, 1);
+    --arrowHoverOffset: translateX(3px);
+  }
+`;
+export { BlockCard, BLockImage, BlockDescriptionTop, BlockDescription, MainBlock, LastDroplist, Last };
