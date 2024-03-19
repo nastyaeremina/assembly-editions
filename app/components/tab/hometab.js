@@ -4,8 +4,9 @@ import React, { useState } from 'react';
 import { ContainWrap, IconSvg, IconWrap, LeftDetail, RightDetail } from '../../styles/homepageStyles';
 import TabContent from '../tabbutton/TabContent';
 import NewTabNavItem from '../tabbutton/NewTabNavItem';
-import { LeftContent, NAV, RightContent, Tabbutton, TabbuttonBottom, TabbuttonTop } from '../tabbutton/tabstyled';
+import { LeftContent, Nav, RightContent, Tabbutton, TabbuttonBottom, TabbuttonTop } from '../tabbutton/hometabstyle';
 import featurebackground from '/public/images/Featurbackgroundimage.png';
+import { greendark, greenlight } from '../../styles/color';
 
 export default function HomeTabView({ bgColor, textColor, isHome, tabData: allPosts, isAutomation }) {
   const [activeTab, setActiveTab] = useState(0);
@@ -17,15 +18,15 @@ export default function HomeTabView({ bgColor, textColor, isHome, tabData: allPo
   };
   return (
     <>
-      <NAV>
+      <Nav>
         <ul className='nav'>
           {allPosts?.map((item, index) => {
             return (
               <>
                 <NewTabNavItem
                   title={item?.title}
-                  bgColor={bgColor}
-                  textColor={textColor}
+                  bgColor={greendark}
+                  textColor={greenlight}
                   id={index}
                   activeTab={activeTab}
                   setActiveTab={setActiveTab}
@@ -34,7 +35,7 @@ export default function HomeTabView({ bgColor, textColor, isHome, tabData: allPo
             );
           })}
         </ul>
-      </NAV>
+      </Nav>
       <Tabbutton className='Tabs' bgimage={allPosts[activeTab]?.backgroundImage?.url || featurebackground.src}>
         <TabbuttonTop>
           <LeftContent>{allPosts[activeTab]?.description}</LeftContent>
@@ -46,8 +47,8 @@ export default function HomeTabView({ bgColor, textColor, isHome, tabData: allPo
                     <div>
                       <NewTabNavItem
                         title={item?.title}
-                        bgColor={bgColor}
-                        textColor={textColor}
+                        bgColor={greendark}
+                        textColor={greenlight}
                         id={index}
                         activeTab={activeTab}
                         setActiveTab={setActiveTab}

@@ -70,6 +70,7 @@ function AppImageSection({ imageList }) {
                   fontColor='#000'
                   className={'section1'}
                   onClick={() => onClick(3)}
+                  hoverColor={'rgba(0, 0, 0, 0.5)'}
                 />
               </ButtonImage>
             )}

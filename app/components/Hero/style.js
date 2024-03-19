@@ -95,6 +95,11 @@ const HeroCaption = styled.div`
     color: ${body};
     margin: 0;
   }
+  @media only screen and (max-width: 768px) {
+    p {
+      ${Body3}
+    }
+  }
   @media only screen and (max-width: 449px) {
     h2 {
       font-family: 'Bagoss';

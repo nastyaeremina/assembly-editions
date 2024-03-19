@@ -4,7 +4,7 @@ import { Functionality } from '../../styles/homepageStyles';
 // import TabView from '../tab/tab';
 import HomeTabView from '../tab/hometab';
 import SubHeroComponent from '../Hero/subHero';
-import { BottomFunction } from '../tabbutton/tabstyled';
+import { BottomFunction } from '../tabbutton/hometabstyle';
 
 export default function FeatureSection({ heroSectionData, featuresList }) {
   return (

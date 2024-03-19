@@ -36,6 +36,7 @@ import {
   MbBody4,
   HeaderFont,
   MobileH4,
+  MobileH2,
   MbButtonText
 } from './styles';
 
@@ -386,6 +387,20 @@ const BusinessText = styled.div`
     gap: 20px;
     h2 {
       padding-bottom: 0;
+      ${MobileH2};
+      line-height: 50px;
+      color: ${greendark};
+    }
+    p {
+      ${Body3};
+    }
+  }
+  @media only screen and (max-width: 449px) {
+    flex-direction: column;
+    padding-bottom: 32px;
+    gap: 16px;
+    h2 {
+      padding-bottom: 0;
       ${MobileH3};
       color: ${greendark};
     }
@@ -407,16 +422,8 @@ export const RightContent = styled.div`
 
 const Functionality = styled.div`
   padding: 0px 0 50px;
-  @media only screen and (max-width: 749px) {
-    /* padding: 40px 0; */
-  }
-  .ak {
-    margin-bottom: 20px;
-  }
-  @media only screen and (max-width: 749px) {
-    .ak {
-      margin-bottom: 28px;
-    }
+  @media only screen and (max-width: 768px) {
+    padding: 0 0 40px;
   }
 `;
 const TopFunctionWrap = styled.div`

@@ -1,8 +1,7 @@
 'use client';
 
 import React from 'react';
-import { LeftDetail,  RightTab, Tab } from './tabstyled';
-import { bgcolor1 } from '../../styles/color';
+import { Tab } from './hometabstyle';
 
 const NewTabNavItem = ({ description, id, title, activeTab, setActiveTab, bgColor, textColor }) => {
   const eleId = title.replace(/ /g, '').toLowerCase() + id;
@@ -15,14 +14,14 @@ const NewTabNavItem = ({ description, id, title, activeTab, setActiveTab, bgColo
   };
 
   return (
-        <Tab
-          id={eleId}
-          bgColor={bgcolor1}
-          textColor={textColor}
-          onClick={handleClick}
-          className={activeTab === id ? 'active' : ''}>
-          {title}
-        </Tab>
+    <Tab
+      id={eleId}
+      bgColor={bgColor}
+      textColor={textColor}
+      onClick={handleClick}
+      className={activeTab === id ? 'active' : ''}>
+      {title}
+    </Tab>
   );
 };
 
