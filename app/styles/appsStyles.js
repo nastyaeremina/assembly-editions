@@ -508,10 +508,10 @@ const DetailLink = styled.div`
   }
 `;
 const AppsDetailMain = styled.div`
-  padding-top: 164px;
+  /* padding-top: 164px;
   @media only screen and (max-width: 749px) {
     padding-top: 148px;
-  }
+  } */
 `;
 const AppDetailCard = styled.div`
   background-color: ${background};

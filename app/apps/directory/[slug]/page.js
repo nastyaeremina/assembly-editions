@@ -8,23 +8,8 @@ import CTA from '../../../components/cta/cta';
 
 async function getContent({ slug }) {
   const appDetail = (await getPartnerAppDetail(slug)) ?? {};
-  // const allPosts = (await getAllPartnerAppsWithSlug()) ?? [];
-  let relatedApps = [];
-  if (!isEmpty(appDetail)) {
-    const allPosts = (await getAllPartnerApps(appDetail?.appsType)) ?? [];
-    const categoryList = appDetail?.partnerAppCategoriesCollection?.items?.map((item) => item?.slug);
-    relatedApps = allPosts
-      ?.filter(
-        (item) =>
-          item?.partnerAppCategoriesCollection &&
-          item?.partnerAppCategoriesCollection?.items?.some((element) => categoryList.includes(element?.slug)) &&
-          item?.slug !== slug
-      )
-      ?.slice(0, 4);
-  }
   return {
-    appDetail,
-    relatedApps
+    appDetail
   };
 }
 
@@ -42,14 +27,13 @@ export async function generateMetadata({ params }) {
 }
 
 export default async function AppsDetail({ params }) {
-  const { appDetail, relatedApps } = await getContent({ slug: params.slug });
+  const { appDetail } = await getContent({ slug: params.slug });
   if (isEmpty(appDetail)) return notFound();
-
   return (
     <>
       <Layout>
         <Navbar />
-        <AppsDetailPage appDetail={appDetail} relatedApps={relatedApps} />
+        <AppsDetailPage appDetail={appDetail} />
         <CTA />
       </Layout>
     </>

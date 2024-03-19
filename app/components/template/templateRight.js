@@ -7,9 +7,11 @@ export default function TemplateRight({ appsList, aboutContent }) {
   return (
     <RightSection>
       <AboutComponent
-        maker={aboutContent?.maker}
-        highlights={aboutContent?.highlights}
-        industry={aboutContent?.industry}
+        data={[
+          { label: 'Maker', value: aboutContent?.maker },
+          { label: 'Highlights', value: aboutContent?.highlights },
+          { label: 'Industry', value: aboutContent?.industry?.name, link: `/solutions/${aboutContent.industry?.slug}` }
+        ]}
       />
       <AppsComponent appsList={appsList} />
     </RightSection>

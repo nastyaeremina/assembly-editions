@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { lightgray, title } from '../../styles/color';
 import { HeaderFont, LinkTxt } from '../../styles/styles';
 
@@ -34,6 +34,11 @@ const DetailLink = styled.div`
   }
   @media only screen and (max-width: 449px) {
     display: none;
+    ${(props) =>
+      props.isDirectorydetail &&
+      css`
+        display: block;
+      `}
   }
 `;
 

@@ -35,7 +35,8 @@ import {
   MbBody3,
   MbBody4,
   HeaderFont,
-  MobileH4
+  MobileH4,
+  MbButtonText
 } from './styles';
 
 const HomeMain = styled.div`
@@ -759,6 +760,7 @@ const AutomateText = styled.div`
   .automation-button {
     margin-top: 28px;
     a {
+      ${MbButtonText}
       color: #000000;
     }
   }

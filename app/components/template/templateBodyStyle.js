@@ -1,6 +1,6 @@
-import styled from 'styled-components';
-import { body, footercolor, greendark, lightgray, primary, title } from '../../styles/color';
-import { Body3, Body4, Body5, Heading4, Heading6, MbBody3, MbBody4, MbBody5 } from '../../styles/styles';
+import styled, { css } from 'styled-components';
+import { body, footercolor, greendark, greenlight, lightgray, primary, title } from '../../styles/color';
+import { Body3, Body4, Body5, HeaderFont, Heading4, Heading6, MbBody3, MbBody4, MbBody5 } from '../../styles/styles';
 
 const TemplateBody = styled.div`
   display: flex;
@@ -36,6 +36,11 @@ const AboutSection = styled.div`
   @media only screen and (max-width: 449px) {
     padding: 0;
   }
+  ${(props) =>
+    props.isDirectory &&
+    css`
+      padding: 0;
+    `}
 `;
 const Title = styled.div`
   padding: 0 12px 16px;
@@ -51,6 +56,12 @@ const Info = styled.div`
   display: flex;
   flex-direction: column;
   gap: 20px;
+  .app-button {
+    a {
+      ${HeaderFont};
+      padding: 8px 32px;
+    }
+  }
   @media only screen and (max-width: 449px) {
     padding: 0 0 16px;
   }
@@ -59,8 +70,36 @@ const InfoTitle = styled.h5`
   ${Body5}
   color: ${title};
   margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+`;
+const Tooltip = styled.div`
+  position: absolute;
+  width: 234px;
+  top: 25px;
+  left: -6px;
+  padding: 12px;
+  background-color: ${greendark};
+  color: ${greenlight};
+  box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.25);
+  border-radius: 4px;
+  p {
+    ${Body5}
+    color: ${greenlight};
+    margin: 0;
+  }
+  span {
+    ${Body4}
+  }
+  @media only screen and (max-width: 768px) {
+    display: none;
+  }
 `;
 const InfoDescription = styled.p`
+  display: flex;
+  gap: 4px;
+  align-items: center;
   ${Body5}
   color: ${lightgray};
   margin: 0;
@@ -246,5 +285,6 @@ export {
   ListName,
   ListIcon,
   LableName,
-  TemplateContent
+  TemplateContent,
+  Tooltip
 };

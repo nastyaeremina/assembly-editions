@@ -237,13 +237,65 @@ export async function getAllPartnerAppsWithSlug(preview) {
   );
   return extractPostEntries(entries);
 }
-
+const POST_GRAPHQL_DATA_APPS_DETAILS_FIELDS = `
+name
+slug
+appsType
+appType
+description
+website
+setupInstructionsLink
+icon{
+    url
+}
+body{
+  json
+}
+appCreator
+      launchDate
+      isPlatformApp
+      requirements
+      builtBy
+      pricing
+      imageListCollection{
+        items{
+          url
+        }
+      }
+      reviewsCollection{
+        total
+        items{
+          name
+          customerName
+          location
+          yearsWithApp
+          rate
+          comment
+          date
+        }
+      }
+relativeAppsCollection{
+  items{
+    name
+slug
+appsType
+description
+isFeatured
+pricing
+icon{
+    url
+}
+reviewsCollection(preview:false){
+  total
+}
+  }
+}`;
 export async function getPartnerAppDetail(slug, preview) {
   const entries = await fetchGraphQL(
     `query {
-      partnerAppsCollection(where:{slug:"${slug}"},preview: ${preview ? 'true' : 'false'}) {
+      partnerAppsCollection(where:{slug:"${slug}"},limit:1,preview: ${preview ? 'true' : 'false'}) {
         items {
-          ${POST_GRAPHQL_PARTNER_APPS_DETAILS_FIELDS}
+          ${POST_GRAPHQL_DATA_APPS_DETAILS_FIELDS}
         }
       }
     }`,

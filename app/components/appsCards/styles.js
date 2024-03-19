@@ -17,6 +17,7 @@ const CardSub = styled.div`
     -webkit-transition: all 0.2s ease-in-out;
     transition: all 0.2s ease-in-out;
     height: 100%;
+    position: relative;
     :hover {
       border: 1px solid ${purpledark};
       box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.1);
@@ -37,6 +38,11 @@ const CardDescription = styled.div`
   -webkit-line-clamp: 2; /* number of lines to show */
   line-clamp: 2;
   -webkit-box-orient: vertical;
+  ${(props) =>
+    props.isBottom &&
+    css`
+      padding-bottom: 36px;
+    `}
 `;
 const CardInfo = styled.div`
   display: flex;
@@ -116,6 +122,9 @@ const CardEnd = styled.div`
   padding: 8px 16px;
   border-top: 1px solid #01011d;
   border-radius: 0 0 3px 3px;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
   p {
     ${CardTxt};
     color: ${purpledark};
@@ -234,6 +243,7 @@ const Tooltip = styled.div`
   p {
     ${Body5}
     color: ${greenlight};
+    margin: 0;
   }
   span {
     ${Body4}
@@ -256,6 +266,7 @@ const Line = styled.div`
 
 const Informative = styled.div`
   position: relative;
+  display: flex;
   :hover .tooltiptext {
     visibility: visible;
   }

@@ -85,7 +85,7 @@ export default function AppsCards({
               </RatingSection>
             </CardTitle>
           </CardInfo>
-          <CardDescription>{description}</CardDescription>
+          <CardDescription isBottom={isBottom}>{description}</CardDescription>
         </CardTop>
         <CardEnd isBottom={isBottom}>
           <p>{appVisibility}</p>

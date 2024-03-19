@@ -4,10 +4,10 @@ import Link from 'next/link';
 import { Container } from '../../styles/commonStyles';
 import { DetailLink } from './styles';
 
-export default function BackComponent({ backtext , href}) {
+export default function BackComponent({ backtext, href, isDirectorydetail }) {
   return (
     <Container>
-      <DetailLink>
+      <DetailLink isDirectorydetail={isDirectorydetail}>
         <Link href={href}>
           <svg width='12' height='12' viewBox='0 0 12 12' fill='none' xmlns='http://www.w3.org/2000/svg'>
             <path

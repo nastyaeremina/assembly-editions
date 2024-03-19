@@ -245,6 +245,86 @@ const getPath = (name) => {
           </defs>
         </>
       );
+    case 'green-star-big-icon':
+      return (
+        <>
+          <path
+            fill='#09AA6C'
+            fillRule='evenodd'
+            stroke='#09AA6C'
+            strokeLinecap='round'
+            strokeLinejoin='round'
+            strokeWidth={1.5}
+            d='m12 3.396 2.935 5.993 6.565.968-4.75 4.662 1.121 6.586L12 18.494l-5.871 3.11L7.25 15.02 2.5 10.357l6.564-.968L12 3.396Z'
+            clipRule='evenodd'
+          />
+        </>
+      );
+    case 'white-star-big-icon':
+      return (
+        <>
+          <path
+            fill='#fff'
+            stroke='#A5ABA9'
+            strokeLinecap='round'
+            strokeLinejoin='round'
+            strokeWidth={1.5}
+            d='m12 3.396 2.935 5.993 6.565.968-4.75 4.662 1.121 6.586L12 18.494l-5.871 3.11L7.25 15.02 2.5 10.357l6.564-.968L12 3.396Z'
+            clipRule='evenodd'
+          />
+        </>
+      );
+    case 'green-star-medium-icon':
+      return (
+        <>
+          <path
+            fill='#09AA6C'
+            fillRule='evenodd'
+            stroke='#09AA6C'
+            strokeLinecap='round'
+            strokeLinejoin='round'
+            strokeWidth={1.25}
+            d='m9.999 2.414 2.445 4.994 5.471.806-3.958 3.885.934 5.488L10 14.995l-4.893 2.592.934-5.488-3.958-3.885 5.47-.806 2.447-4.994Z'
+            clipRule='evenodd'
+          />
+        </>
+      );
+    case 'white-star-medium-icon':
+      return (
+        <>
+          <path
+            stroke='#A5ABA9'
+            strokeLinecap='round'
+            strokeLinejoin='round'
+            strokeWidth={1.5}
+            fill='none'
+            d='m9.999 2.414 2.445 4.994 5.471.806-3.958 3.885.934 5.488L10 14.995l-4.893 2.592.934-5.488-3.958-3.885 5.47-.806 2.447-4.994Z'
+            clipRule='evenodd'
+          />
+        </>
+      );
+    case 'half-star-big-icon':
+      return (
+        <>
+          <path
+            fill='#fff'
+            stroke='#A5ABA9'
+            strokeLinecap='round'
+            strokeLinejoin='round'
+            strokeWidth={1.5}
+            d='m12.5 3 2.935 5.993L22 9.96l-4.75 4.662 1.121 6.586-5.871-3.111-5.871 3.111 1.121-6.586L3 9.96l6.564-.967L12.5 3Z'
+            clipRule='evenodd'
+          />
+          <path
+            fill='#09AA6C'
+            stroke='#09AA6C'
+            strokeLinecap='round'
+            strokeLinejoin='round'
+            strokeWidth={1.5}
+            d='m6.629 21.208 5.871-3.111V3L9.564 8.993 3 9.96l4.75 4.662-1.121 6.586Z'
+          />
+        </>
+      );
     case 'close-icon':
       return (
         <>
@@ -254,6 +334,18 @@ const getPath = (name) => {
             strokeLinejoin='round'
             strokeWidth={1.182}
             d='m17.136 8.864-8.273 8.272m8.273 0L8.863 8.864l8.273 8.272Z'
+          />
+        </>
+      );
+    case 'slider-close-icon':
+      return (
+        <>
+          <path
+            stroke='#A5ABA9'
+            strokeLinecap='round'
+            strokeLinejoin='round'
+            strokeWidth={2.545}
+            d='M36.908 19.09 19.09 36.91m17.818 0L19.09 19.091l17.818 17.818Z'
           />
         </>
       );
