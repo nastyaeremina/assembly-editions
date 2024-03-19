@@ -1,8 +1,9 @@
 import styled from 'styled-components';
+import Link from 'next/link';
 import { Body5, HeaderFont, Heading5 } from '../../styles/styles';
 import { body, greendark, primary, title } from '../../styles/color';
 
-const BlockCard = styled.div`
+const BlockCard = styled(Link)`
   min-width: 500px;
   padding: 20px;
   display: flex;
@@ -93,13 +94,13 @@ const Last = styled.div`
   display: flex;
   align-items: center;
 `;
-
+const LinkDiv = styled.div``;
 const LastDroplist = styled.div`
   .learn-link,
   .learn-link svg path {
     transition: all 300ms ease;
   }
-  a {
+  .learn-link {
     ${HeaderFont};
     color: ${primary};
     margin: 0;
@@ -147,4 +148,4 @@ const LastDroplist = styled.div`
     --arrowHoverOffset: translateX(3px);
   }
 `;
-export { BlockCard, BLockImage, BlockDescriptionTop, BlockDescription, MainBlock, LastDroplist, Last };
+export { BlockCard, BLockImage, BlockDescriptionTop, BlockDescription, MainBlock, LastDroplist, Last, LinkDiv };
