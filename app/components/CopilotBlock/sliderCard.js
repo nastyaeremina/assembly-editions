@@ -13,7 +13,8 @@ export default function CopilotBlockItem({ title, description, imageUrl, link })
             <Image src={imageUrl} alt='slider-image' width={180} height={180} />
           </BLockImage>
           <BlockDescription>
-            <BlockDescriptionTop>
+            {/* maxLine is 4 if title is render in two line other wise its take 5 line */}
+            <BlockDescriptionTop maxLine={title.length > 21 ? 4 : 5}>
               <h2>{title}</h2>
               <p>{description}</p>
             </BlockDescriptionTop>

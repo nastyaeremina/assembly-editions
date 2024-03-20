@@ -10,7 +10,7 @@ export default function CopilotBlock({ xPos, sliderData }) {
           <CopilotBlockItem
             key={index}
             title={item.name}
-            description={item.header}
+            description={item.summary}
             imageUrl={item.imageBackground?.url}
             link={`/solutions/${item.slug}`}
           />

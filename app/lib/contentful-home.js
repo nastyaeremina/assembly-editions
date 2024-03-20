@@ -55,7 +55,7 @@ export async function getHomeContent(id) {
           items{
             name
             slug
-            header
+            summary
             imageBackground{
               url
             }

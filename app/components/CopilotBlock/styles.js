@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import Link from 'next/link';
 import { Body5, HeaderFont, Heading5 } from '../../styles/styles';
 import { body, greendark, primary, title } from '../../styles/color';
@@ -20,7 +20,6 @@ const BlockCard = styled(Link)`
     margin: 0 25px;
     padding: 20px;
     flex-direction: column;
-    height: 100%;
   }
 `;
 
@@ -36,6 +35,7 @@ const BLockImage = styled.div`
     height: 180px;
   }
   @media only screen and (max-width: 449px) {
+    overflow: unset;
     width: 100%;
     max-width: 400px;
     height: calc(100vw - 92px);
@@ -57,11 +57,23 @@ const BlockDescriptionTop = styled.div`
     ${Body5};
     color: ${body};
     margin: 0;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    white-space: inherit;
+    ${(props) =>
+      props.maxLine &&
+      css`
+        -webkit-line-clamp: ${props.maxLine};
+      `}
   }
   @media only screen and (max-width: 449px) {
     h2 {
       font-size: 20px;
       line-height: 26px;
+    }
+    p {
+      -webkit-line-clamp: 5;
     }
   }
 `;
@@ -69,8 +81,11 @@ const BlockDescription = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  width: 100%;
+  gap: 4px;
   @media only screen and (max-width: 449px) {
-    gap: 24px;
+    gap: 12px;
+    height: 100%;
   }
 `;
 
