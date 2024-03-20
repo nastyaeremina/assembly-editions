@@ -37,7 +37,8 @@ import {
   HeaderFont,
   MobileH4,
   MobileH2,
-  MbButtonText
+  MbButtonText,
+  MbBody2
 } from './styles';
 
 const HomeMain = styled.div`
@@ -749,9 +750,9 @@ const RightDetail = styled.div`
     `}
 `;
 const Extension = styled.div`
-  padding: 50px 0;
+  padding: 50px 0 100px;
   @media only screen and (max-width: 749px) {
-    padding: 40px 0;
+    padding: 40px 0 80px;
   }
 `;
 const AutomateSection = styled.div`
@@ -767,22 +768,27 @@ const AutomateText = styled.div`
   .automation-button {
     margin-top: 28px;
     a {
-      ${MbButtonText}
-      color: #000000;
+      color: ${whiteColor};
+      :hover {
+        color: ${whiteColor};
+      }
     }
   }
   .active:hover {
     color: ${title};
+  }
+  a {
+    color: ${primary};
+    display: inline-block;
+    :hover {
+      color: ${greendark};
+    }
   }
   h2 {
     ${Heading3};
     margin: 0;
     color: ${title};
     padding-bottom: 16px;
-  }
-  a {
-    color: ${primary};
-    display: inline-block;
   }
   p {
     ${Body3};
@@ -795,14 +801,19 @@ const AutomateText = styled.div`
   span {
     color: ${primary};
   }
-  @media only screen and (max-width: 749px) {
+  @media only screen and (max-width: 768px) {
     max-width: 100%;
     margin-bottom: 0;
     p {
-      ${MbBody3};
+      ${Body3};
       letter-spacing: 0.02em;
       color: ${body};
       margin: 0;
+    }
+  }
+  @media only screen and (max-width: 449px) {
+    p {
+      ${MbBody3};
     }
   }
 `;

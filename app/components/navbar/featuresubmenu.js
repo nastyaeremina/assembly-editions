@@ -33,7 +33,7 @@ export default function FeatureSubMenu({ mobile, data }) {
           <LastDroplist Mobilemenu>
             <Last className='icon-link'>
               <a href={'/apps/directory'} className='learn-link mb0'>
-                Go to app directory
+                Go to App Store
                 <svg width='16' height='12' viewBox='0 0 16 12' fill='none' class='HoverArrow'>
                   <path
                     d='M5.7998 1.37109L10.4283 5.99958L5.7998 10.6281'

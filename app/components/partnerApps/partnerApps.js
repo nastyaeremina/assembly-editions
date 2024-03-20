@@ -15,7 +15,7 @@ export default function PartnerAppsComponent({ title, description, appList }) {
           <RightContent>
             <ReactMarkdown>{description}</ReactMarkdown>
             <BtnView>
-              <Button text={'Browse App Store'} href={'/apps'} />
+              <Button text={'Browse App Store'} href={'/apps/directory'} />
             </BtnView>
           </RightContent>
         </BusinessText>

@@ -89,6 +89,8 @@ const BottomFunction = styled.div`
 const Nav = styled.div`
   display: none;
   @media only screen and (max-width: 768px) {
+    margin: 0 -24px;
+    padding: 0 24px;
     overflow: scroll;
     scrollbar-width: none;
     margin-bottom: 28px;
@@ -178,9 +180,9 @@ const TabbuttonTop = styled.div`
   padding: 40px 40px 0 40px;
   display: flex;
   flex-direction: row;
-  justify-content: space-around;
+  justify-content: space-between;
   gap: 80px;
-  align-items: center;
+  align-items: flex-start;
   @media only screen and (max-width: 1024px) {
     gap: 6px;
   }
@@ -199,7 +201,8 @@ const LeftContent = styled.p`
   ${Body3}
   color: ${whiteColor};
   @media only screen and (max-width: 1440px) {
-    max-width: 566px;
+    max-width: 500px;
+    width: 100%;
   }
   @media only screen and (max-width: 1024px) {
     max-width: 375px;
@@ -223,7 +226,7 @@ const RightContent = styled.div`
     display: none;
   }
   ul.nav {
-    max-width: 746px;
+    /* max-width: 746px; */
     width: fit-content;
     background: rgba(255, 255, 255, 0.8);
     border: 1px solid #00160e;

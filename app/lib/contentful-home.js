@@ -5,6 +5,26 @@ function extractData(fetchResponse) {
   return fetchResponse?.data?.pageHome;
 }
 
+const POST_GRAPHQL_HOME_TAB_CONTENT_FIELDS = `
+items {
+  title
+  description
+  backgroundImage{
+    url
+  }
+  subTitle
+  image{
+    url
+  }
+  icon{
+    url
+  }
+  link
+  sys {
+    id
+  }
+}
+`;
 export async function getHomeContent(id) {
   const entries = await fetchGraphQL(
     `query {
@@ -42,25 +62,17 @@ export async function getHomeContent(id) {
           }
         }
         featuresCollection {
-          items {
-            title
-            description
-            backgroundImage{
-              url
-            }
-            subTitle
-            image{
-              url
-            }
-            icon{
-              url
-            }
-            link
-            sys {
-              id
-            }
-          }
+          ${POST_GRAPHQL_HOME_TAB_CONTENT_FIELDS}
         }
+        body6
+    heading6
+    primaryButtonText6
+    primaryButtonLink6
+    secondaryButtonText6
+    secondaryButtonLink6
+    section6DataCollection{
+      ${POST_GRAPHQL_HOME_TAB_CONTENT_FIELDS}
+    }
         partnerAppsCollection {
           items {
             name

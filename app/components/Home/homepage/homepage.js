@@ -85,18 +85,29 @@ export default function HomePage({ content }) {
           description={content?.body3}
           appList={content?.partnerAppsCollection?.items}
         />
+        <FeatureSection
+          featuresList={content?.section6DataCollection?.items}
+          heroSectionData={{
+            heroTitle: content?.heading6,
+            heroDescription: content?.body6,
+            primaryButtonText: content?.primaryButtonText6,
+            secondaryButtonText: content?.secondaryButtonText6,
+            primaryButtonLink: content?.primaryButtonLink6,
+            secondaryButtonLink: content?.secondaryButtonLink6
+          }}
+        />
         <AutomateSection>
           <Container>
             <AutomateText>
               <HeadingText title={content?.heading4} />
               <ReactMarkdown>{content?.body4}</ReactMarkdown>
               <Button
-                bgColor={'transparent'}
-                fontColor={'#000000'}
-                borderColor={'#000000'}
+                bgColor={primary}
+                fontColor={whiteColor}
+                borderColor={primary}
                 text={'See automations'}
-                href={'/automations'}
-                hoverColor={'rgba(0, 0, 0, 0.5)'}
+                href={'https://www.copilot.com/guide/recommended-workflows'}
+                hoverColor={'rgba(255, 255, 255,0.8)'}
                 className={'automation-button'}
               />
             </AutomateText>
