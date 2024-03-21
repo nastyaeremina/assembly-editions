@@ -1,7 +1,7 @@
 import { CONTENTFUL_API_TAG } from '../constants/constant';
 import { fetchGraphQL } from './contentful';
 import { POST_GRAPHQL_FAQ_COLLECTION_FIELDS } from './contentful-faq';
-
+import { POST_GRAPHQL_GUIDE_ARTICLE_CONTENT_FIELDS } from './contentful-guide';
 export const POST_GRAPHQL_PARTNER_APPS_CARD_ITEM_FIELDS = `
 name
 slug
@@ -27,7 +27,6 @@ appsType
 description
 website
 isFeatured
-setupInstructionsLink
 icon{
     url
 }
@@ -56,7 +55,6 @@ slug
 description
 appsType
 website
-setupInstructionsLink
 icon{
     url
 }
@@ -244,28 +242,25 @@ appsType
 appType
 description
 website
-setupInstructionsLink
 icon{
     url
 }
-body{
-  json
+guideArticle{
+  ${POST_GRAPHQL_GUIDE_ARTICLE_CONTENT_FIELDS}
 }
-appCreator
       launchDate
       isPlatformApp
       requirements
       builtBy
       pricing
-      imageListCollection{
+      imageListCollection(preview:false){
         items{
           url
         }
       }
-      reviewsCollection{
+      reviewsCollection(preview:false){
         total
         items{
-          name
           customerName
           location
           yearsWithApp
@@ -274,7 +269,7 @@ appCreator
           date
         }
       }
-relativeAppsCollection{
+relativeAppsCollection(preview:false){
   items{
     name
 slug
@@ -285,9 +280,7 @@ pricing
 icon{
     url
 }
-reviewsCollection(preview:false){
-  total
-}
+
   }
 }`;
 export async function getPartnerAppDetail(slug, preview) {
@@ -300,7 +293,7 @@ export async function getPartnerAppDetail(slug, preview) {
       }
     }`,
     preview,
-    [CONTENTFUL_API_TAG.APP]
+    [CONTENTFUL_API_TAG.APP, CONTENTFUL_API_TAG.GUIDE]
   );
   return extractPostEntry(entries);
 }

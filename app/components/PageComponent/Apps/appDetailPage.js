@@ -15,7 +15,7 @@ export default function AppsDetailPage({ appDetail }) {
       <AppsDetailMain>
         <>
           <BackComponent backtext={'Back to all apps'} href={'/apps/directory'} isDirectorydetail />
-          <AppsDetailComponent detail={appDetail?.body} content={{ ...appDetail, avarageRate }} />
+          <AppsDetailComponent detail={appDetail?.guideArticle} content={{ ...appDetail, avarageRate }} />
           {!isEmpty(removeEmptyElement(appDetail?.reviewsCollection?.items)) && (
             <ReviewSection
               totalReview={appDetail?.reviewsCollection?.total}

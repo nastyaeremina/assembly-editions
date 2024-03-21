@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { Body3, Body5, Heading3, Heading4, Heading5, Heading6, MbBody3, MbBody4, MobileH4 } from '../../styles/styles';
 import { body, primary, title } from '../../styles/color';
 
@@ -41,6 +41,11 @@ const Caption = styled.p`
 `;
 const GuideDetail = styled.div`
   padding: 40px 0;
+  ${(props) =>
+    props.isAppdetail &&
+    css`
+      padding: 0;
+    `}
   h3 > b,
   h3 {
     ${Heading5};
@@ -66,7 +71,7 @@ const GuideDetail = styled.div`
     ${Heading6};
     font-weight: 400;
     color: ${title};
-    margin: 40px 0 0;
+    margin: 20px 0 0;
     display: inline-flex;
     align-items: center;
     gap: 10px;
@@ -79,6 +84,9 @@ const GuideDetail = styled.div`
         transition: all 0.3s;
       }
     }
+  }
+  h4 + p {
+    margin: 6px 0 0;
   }
   b {
     font-weight: 600;
@@ -93,7 +101,7 @@ const GuideDetail = styled.div`
   p {
     ${Body5};
     color: ${body};
-    margin: 20px 0 0;
+    margin: 8px 0 0;
     a {
       color: ${primary};
       display: initial;
@@ -226,6 +234,11 @@ const GuideDetail = styled.div`
   }
   @media only screen and (max-width: 449px) {
     padding: 40px 0 0;
+    ${(props) =>
+      props.isAppdetail &&
+      css`
+        padding: 0;
+      `}
     h4 {
       ${MobileH4}
     }

@@ -11,6 +11,7 @@ import {
   EmbedInfoMessage,
   InternalAppInfoMessage
 } from '../../constants/constant';
+import GuideArticleDetail from '../GuideHome/guideArticleDetail';
 import {
   AppDetail,
   AppLogo,
@@ -21,8 +22,8 @@ import {
   RightContent,
   Title
 } from './styles';
-import TemplateDetail from '../template/templateDetail';
 import ImageSection from './ImageSection';
+
 export default function AppsDetailComponent({ detail, content }) {
   const imageList = removeEmptyElement(content?.imageListCollection?.items);
   return (
@@ -40,15 +41,20 @@ export default function AppsDetailComponent({ detail, content }) {
         <DetailContent>
           {!isEmpty(imageList) && (
             <LeftContent>
-              <ImageSection imageList={imageList} /> <TemplateDetail content={detail} />
+              <ImageSection imageList={imageList} />
+              {!isEmpty(detail?.content?.json) && (
+                <GuideArticleDetail
+                  jsonData={detail?.content?.json}
+                  assets={detail?.content?.links?.assets?.block}
+                  isAppdetail
+                />
+              )}
             </LeftContent>
           )}
           <RightContent>
             <AboutComponent
               isDirectory={true}
               content={content}
-              buttonText='Read setup instructions'
-              buttonLink={content.setupInstructionsLink}
               data={[
                 {
                   label: 'Launched',

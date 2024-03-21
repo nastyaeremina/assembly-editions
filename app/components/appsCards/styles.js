@@ -233,7 +233,7 @@ const InputWrap = styled.form`
 const Tooltip = styled.div`
   position: absolute;
   width: 234px;
-  top: 30px;
+  top: 22px;
   left: -6px;
   padding: 12px;
   background-color: ${greendark};

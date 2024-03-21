@@ -67,7 +67,7 @@ childArticlesCollection(limit:15){
 }
 `;
 
-const POST_GRAPHQL_GUIDE_ARTICLE_CONTENT_FIELDS = `
+export const POST_GRAPHQL_GUIDE_ARTICLE_CONTENT_FIELDS = `
 content{
   json
   links{
