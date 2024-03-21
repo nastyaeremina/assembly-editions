@@ -3,7 +3,6 @@ import Link from 'next/link';
 import Image from 'next/image';
 import SVGComponent from '../../../public/images/svg/SVGComponent';
 import { isEmpty } from '../../helpers/helpers';
-import { AppInfoMessage } from '../../constants/constant';
 import {
   AppInformativeSection,
   CardDescription,
@@ -34,6 +33,9 @@ export default function AppsCards({
   description,
   reviews
 }) {
+  const shouldShowFirstBullet = !isEmpty(reviews) && reviews !== 0 && !isEmpty(appType);
+  const shouldShowSecondBullet = !isEmpty(appType) && !isEmpty(pricingStatus);
+
   return (
     <CardSub>
       <Link href={link}>
@@ -47,14 +49,16 @@ export default function AppsCards({
             <CardTitle>
               {!isEmpty(title) && <h3>{title}</h3>}{' '}
               <RatingSection>
-                <RatingNumber>
-                  <p>{rate}</p>
-                  <SVGComponent name='green-star-icon' width='14' height='14' viewBox='14' />
-                  <p>({reviews})</p>
-                </RatingNumber>
+                {!isEmpty(reviews) && reviews !== 0 && (
+                  <RatingNumber>
+                    <p>{rate}</p>
+                    <SVGComponent name='green-star-icon' width='14' height='14' viewBox='14' />
+                    <p>({reviews})</p>
+                  </RatingNumber>
+                )}
+                {shouldShowFirstBullet && <SVGComponent name='bullet-point-icon' width='16' height='16' viewBox='16' />}
                 {!isEmpty(appType) && (
                   <>
-                    <SVGComponent name='bullet-point-icon' width='16' height='16' viewBox='16' />
                     <AppInformativeSection>
                       <p>{appType}</p>
                       <Informative>
@@ -76,12 +80,10 @@ export default function AppsCards({
                     </AppInformativeSection>
                   </>
                 )}
-                {!isEmpty(pricingStatus) && (
-                  <>
-                    <SVGComponent name='bullet-point-icon' width='16' height='16' viewBox='16' />
-                    <p>{pricingStatus}</p>
-                  </>
+                {shouldShowSecondBullet && (
+                  <SVGComponent name='bullet-point-icon' width='16' height='16' viewBox='16' />
                 )}
+                {!isEmpty(pricingStatus) && <p>{pricingStatus}</p>}
               </RatingSection>
             </CardTitle>
           </CardInfo>

@@ -1160,6 +1160,11 @@ const HelpMargin = styled.div`
 `;
 const BtnView = styled.div`
   margin-top: 28px;
+  .app-store-button {
+    a {
+      text-transform: capitalize;
+    }
+  }
 `;
 const ImageHover = styled.a`
   transition: 300ms all ease-in-out;
