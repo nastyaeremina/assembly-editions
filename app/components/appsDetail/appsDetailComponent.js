@@ -39,9 +39,9 @@ export default function AppsDetailComponent({ detail, content }) {
           <Caption>{content?.description}</Caption>
         </DetailTitleSection>
         <DetailContent>
-          {!isEmpty(imageList) && (
+          {(!isEmpty(imageList) || !isEmpty(detail?.content?.json)) && (
             <LeftContent>
-              <ImageSection imageList={imageList} />
+              {!isEmpty(imageList) && <ImageSection imageList={imageList} />}
               {!isEmpty(detail?.content?.json) && (
                 <GuideArticleDetail
                   jsonData={detail?.content?.json}

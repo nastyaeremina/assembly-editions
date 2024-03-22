@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { Body3, Heading3, MbBody3, MbBody4, MbButtonText, MobileH3, MobileH4 } from '../../styles/styles';
 import { black, body, border, title, whiteColor } from '../../styles/color';
 
@@ -76,33 +76,111 @@ const RightContent = styled.div`
   }
 `;
 const ImageSection = styled.div`
+  position: relative;
   display: flex;
   gap: 24px;
+  .left-arrow {
+    display: none;
+  }
+  .right-arrow {
+    display: none;
+  }
+
   img {
     border-radius: 4px;
     border: 1px solid ${border};
     object-fit: cover;
     cursor: pointer;
+    user-select: none;
   }
   .big-image {
-    max-height: 344px;
+    max-height: 460px;
     height: 100%;
     object-fit: cover;
+    width: 100%;
   }
+  ${(props) =>
+    !props.isHide &&
+    css`
+      :hover {
+        .left-arrow {
+          display: flex;
+          left: 20px;
+          top: calc(50% - 19px);
+        }
+        .right-arrow {
+          display: flex;
+          right: 20px;
+          top: calc(50% - 19px);
+        }
+      }
+    `}
   @media only screen and (max-width: 1024px) {
     width: 100%;
     img {
       width: 100%;
     }
     .big-image {
-      max-height: 262px;
+      max-height: 344px;
     }
   }
   @media only screen and (max-width: 768px) {
-    display: none;
+    .big-image {
+      max-height: 404px;
+    }
+
+    ${(props) =>
+      !props.isHide &&
+      css`
+        .left-arrow {
+          display: flex;
+          left: 20px;
+        }
+        .right-arrow {
+          display: flex;
+          right: 20px;
+        }
+      `}
+  }
+  @media only screen and (max-width: 449px) {
+    margin: 0 -24px;
+    width: unset;
+    img {
+      border-radius: 0px;
+      border: 1px ${border};
+      border-style: solid none;
+      object-fit: cover;
+      cursor: pointer;
+    }
+    .big-image {
+      height: 238px;
+    }
   }
 `;
 
+const ImageSlider = styled.div`
+  .roundbutton-section {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    width: 100%;
+    margin-top: 20px;
+  }
+  .round {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: #dfdfde;
+    cursor: pointer;
+  }
+  .active-round {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: #000;
+    cursor: pointer;
+  }
+`;
 const SmallImageSection = styled.div`
   display: flex;
   flex-direction: column;
@@ -187,6 +265,7 @@ const CloseIcon = styled.div`
   letter-spacing: 0.02;
   color: #ffffff;
   margin: 0;
+  z-index: 1;
   :hover {
     svg {
       path {
@@ -220,7 +299,7 @@ const SliderSection = styled.div`
 
 const ArrowIcon = styled.div`
   position: absolute;
-  top: 50%;
+  top: calc(50% - 19px);
   width: 38px;
   height: 38px;
   border-radius: 50%;
@@ -229,15 +308,21 @@ const ArrowIcon = styled.div`
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  z-index: 1;
+  z-index: 2;
+  box-shadow: 0px 4px 16px 0px rgba(0, 0, 0, 0.1);
   svg {
     path {
       stroke: ${title};
     }
   }
-  @media only screen and (max-width: 768px) {
-    width: 26px;
-    height: 26px;
+  ${(props) =>
+    props.isHide &&
+    css`
+      display: none;
+    `}
+  @media only screen and (max-width: 449px) {
+    /* width: 26px;
+    height: 26px; */
   }
 `;
 export {
@@ -257,5 +342,6 @@ export {
   AppDetailSlider,
   CloseIcon,
   SliderSection,
-  ArrowIcon
+  ArrowIcon,
+  ImageSlider
 };

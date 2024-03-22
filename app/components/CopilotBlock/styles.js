@@ -33,6 +33,7 @@ const BLockImage = styled.div`
     border-radius: 4px;
     min-width: 180px;
     height: 180px;
+    object-fit: cover;
   }
   @media only screen and (max-width: 449px) {
     overflow: unset;
