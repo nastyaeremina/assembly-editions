@@ -9,8 +9,7 @@ const SliderImageDiv = styled.div`
     border-radius: 4px;
     z-index: 1;
     max-width: 75%;
-    max-height: 85%;
-    height: 100%;
+    max-height: 1000px;
     width: 100%;
     user-select: none;
     @media only screen and (max-width: 1440px) {

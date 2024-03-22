@@ -7,8 +7,25 @@ import { ZoomImage } from '../../styles/homepageStyles';
 import { ArrowIcon, CloseIcon } from '../appsDetail/styles';
 import SVGComponent from '../../../public/images/svg/SVGComponent';
 import { SliderImageDiv, ZoomImageSection } from './style';
+import { useHotkeys } from 'react-hotkeys-hook';
 
-export default function ZoomImageSlider({ imageUrl, goToPreviousImage, goToNextImage, onCloseModal,isSlideButtonHide }) {
+export default function ZoomImageSlider({
+  imageUrl,
+  goToPreviousImage,
+  goToNextImage,
+  onCloseModal,
+  isSlideButtonHide
+}) {
+  useHotkeys('ArrowLeft', async (event) => {
+    event.preventDefault();
+    goToPreviousImage();
+  });
+
+  useHotkeys('ArrowRight', async (event) => {
+    event.preventDefault();
+    goToNextImage();
+  });
+
   return (
     <>
       <ZoomImageSection isHide={isSlideButtonHide}>
