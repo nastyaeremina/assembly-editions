@@ -11,16 +11,16 @@ import { calculateAverageRate, isEmpty, removeEmptyElement } from '../../helpers
 import { CardListSection, DirectoryCardSection, SectionHeader, SectionHeading } from './styles';
 import AppsCard from './appsCards';
 
-export default function AppsCardSection({ isBottom, is4Card, appList, heading, caption, isSearchEmpty }) {
+export default function AppsCardSection({ isBottom, is4Card, appList, heading, caption, isSearchEmpty, isAppdetail }) {
   const isShowHeader = !isEmpty(heading) || !isEmpty(caption);
   return (
     <Container>
-      <DirectoryCardSection isSearchEmpty={isSearchEmpty}>
+      <DirectoryCardSection isSearchEmpty={isSearchEmpty} isAppdetail={isAppdetail}>
         {isShowHeader && (
           <SectionHeader>
             {(!isEmpty(heading) || !isEmpty(caption)) && (
               <SectionHeading>
-                {!isEmpty(heading) && <h3>{heading}</h3>}
+                {!isEmpty(heading) && <h2>{heading}</h2>}
                 {!isEmpty(caption) && <p>{caption}</p>}
               </SectionHeading>
             )}

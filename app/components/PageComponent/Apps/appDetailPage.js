@@ -29,6 +29,7 @@ export default function AppsDetailPage({ appDetail }) {
               appList={removeEmptyElement(appDetail?.relativeAppsCollection?.items)}
               isBottom
               is4Card
+              isAppdetail
             />
           )}
         </>

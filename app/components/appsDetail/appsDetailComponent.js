@@ -11,7 +11,6 @@ import {
   EmbedInfoMessage,
   InternalAppInfoMessage
 } from '../../constants/constant';
-import GuideArticleDetail from '../GuideHome/guideArticleDetail';
 import {
   AppDetail,
   AppLogo,
@@ -23,6 +22,7 @@ import {
   Title
 } from './styles';
 import ImageSection from './ImageSection';
+import AppsDetailDescription from './appsDetailDescription';
 
 export default function AppsDetailComponent({ detail, content }) {
   const imageList = removeEmptyElement(content?.imageListCollection?.items);
@@ -43,7 +43,7 @@ export default function AppsDetailComponent({ detail, content }) {
             <LeftContent>
               {!isEmpty(imageList) && <ImageSection imageList={imageList} />}
               {!isEmpty(detail?.content?.json) && (
-                <GuideArticleDetail
+                <AppsDetailDescription
                   jsonData={detail?.content?.json}
                   assets={detail?.content?.links?.assets?.block}
                   isAppdetail

@@ -41,11 +41,6 @@ const Caption = styled.p`
 `;
 const GuideDetail = styled.div`
   padding: 40px 0;
-  ${(props) =>
-    props.isAppdetail &&
-    css`
-      padding: 0;
-    `}
   h3 > b,
   h3 {
     ${Heading5};
@@ -234,11 +229,6 @@ const GuideDetail = styled.div`
   }
   @media only screen and (max-width: 449px) {
     padding: 40px 0 0;
-    ${(props) =>
-      props.isAppdetail &&
-      css`
-        padding: 0;
-      `}
     h4 {
       ${MobileH4}
     }

@@ -17,7 +17,7 @@ export default function ReviewSection({ totalReview, avarageRate = 0, reviewList
     <Container>
       <ReviewContent>
         <SectionHeading>
-          <h3>Reviews ({totalReview})</h3>
+          <h2>Reviews</h2>
         </SectionHeading>
         <Content>
           <OverAllRating>

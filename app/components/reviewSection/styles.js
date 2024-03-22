@@ -1,14 +1,28 @@
 import styled from 'styled-components';
-import { Body3, Body4, Body5, Heading4, Heading5, Heading6, MbBody3, MbBody4, MbPrimaryBtn } from '../../styles/styles';
+import {
+  Body3,
+  Body4,
+  Body5,
+  Heading3,
+  Heading4,
+  Heading5,
+  Heading6,
+  MbBody3,
+  MbBody4,
+  MbPrimaryBtn
+} from '../../styles/styles';
 import { body, border, lightgray, title } from '../../styles/color';
 
 const ReviewContent = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 28px;
+  gap: 40px;
   padding-bottom: 100px;
   @media only screen and (max-width: 768px) {
     padding-bottom: 80px;
+  }
+  @media only screen and (max-width: 768px) {
+    gap: 24px;
   }
 `;
 const SectionHeading = styled.div`
@@ -16,8 +30,8 @@ const SectionHeading = styled.div`
   flex-direction: column;
   gap: 12px;
   width: 100%;
-  h3 {
-    ${Heading4}
+  h2 {
+    ${Heading3}
     color: ${title};
     margin: 0;
   }
@@ -129,7 +143,7 @@ const Star = styled.div`
   gap: 4px;
 `;
 const ReviewDetail = styled.div`
-  ${Body3};
+  ${Body4};
   color: ${body};
   @media only screen and (max-width: 449px) {
     ${MbBody3}

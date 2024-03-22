@@ -5,11 +5,11 @@ import { BLOCKS } from '@contentful/rich-text-types';
 import Image from 'next/image';
 import Zoom from 'react-medium-image-zoom';
 import 'react-medium-image-zoom/dist/styles.css';
-import { extractTagId, isEmpty } from '../../helpers/helpers';
+import { extractTagId } from '../../helpers/helpers';
 import CopyLink from '../copyLink/copyLink';
-import { GuideDetail } from './styles';
+import { AboutDescription, AboutTitle, AppDetailContent } from './styles';
 
-export default function GuideArticleDetail({ assets = [], jsonData, isAppdetail }) {
+export default function AppsDetailDescription({ assets = [], jsonData, isAppdetail }) {
   const options = {
     renderNode: {
       [BLOCKS.HEADING_1]: (node, children) => {
@@ -92,7 +92,10 @@ export default function GuideArticleDetail({ assets = [], jsonData, isAppdetail 
 
   return (
     <>
-      <GuideDetail>{documentToReactComponents(jsonData, options)}</GuideDetail>
+      <AboutDescription>
+        <AboutTitle>About</AboutTitle>
+        <AppDetailContent>{documentToReactComponents(jsonData, options)}</AppDetailContent>
+      </AboutDescription>
     </>
   );
 }

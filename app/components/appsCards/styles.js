@@ -1,5 +1,5 @@
 import styled, { css } from 'styled-components';
-import { Body4, Body5, CardTxt, FooterText, Heading4, Heading5, Value } from '../../styles/styles';
+import { Body4, Body5, CardTxt, FooterText, Heading3, Heading4, Heading5, Value } from '../../styles/styles';
 import { body, darkgray, greendark, greenlight, lightgray, purpledark, title } from '../../styles/color';
 
 const CardSub = styled.div`
@@ -77,6 +77,11 @@ const DirectoryCardSection = styled.div`
     padding-bottom: 80px;
     gap: 24px;
   }
+  ${(props) =>
+    props.isAppdetail &&
+    css`
+      gap: 40px;
+    `}
   ${(props) =>
     props.isSearchEmpty &&
     css`
@@ -168,8 +173,8 @@ const SectionHeading = styled.div`
   flex-direction: column;
   gap: 12px;
   width: 100%;
-  h3 {
-    ${Heading4};
+  h2 {
+    ${Heading3};
     color: ${title};
     margin: 0;
   }
