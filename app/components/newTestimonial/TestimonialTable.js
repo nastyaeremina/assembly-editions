@@ -26,10 +26,7 @@ export default function TestimonialTable({ tableData }) {
     <TestimonialMainBox>
       {tableData.map((item, index) => {
         return (
-          <React.Fragment
-            key={`testinomial_index_${stringToSlugyfy(currentTestimonial.name)}_${stringToSlugyfy(
-              currentTestimonial.role
-            )}`}>
+          <React.Fragment key={`testinomial_index_${stringToSlugyfy(item.name)}_${stringToSlugyfy(item.role)}`}>
             {((mobile && index === 0) || (!mobile && index === 5)) && (
               <TestimonialCenterBox
                 logoUrl={currentTestimonial.logo?.url}

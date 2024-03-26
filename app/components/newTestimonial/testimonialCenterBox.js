@@ -6,7 +6,7 @@ import { Caption, Founder, FounderPosition, FounderSection, Name, TestimonialCen
 export default function TestimonialCenterBox({ personProfile, personRole, personName, quote, logoUrl }) {
   return (
     <TestimonialCenter>
-      <Image src={logoUrl} alt='' width={148} height={32} className='main-logo' />
+      <Image src={logoUrl} alt='' width={148} height={52} className='main-logo' />
       <Caption>
         <ReactMarkdown>{quote}</ReactMarkdown>
       </Caption>

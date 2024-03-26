@@ -15,7 +15,7 @@ const TestimonialMainBox = styled.div`
 `;
 
 const TestimonialBox = styled.div`
-  padding: 25px;
+  padding: 12px;
   border-right: 1px solid ${black};
   border-bottom: 1px solid ${black};
   display: flex;
@@ -27,8 +27,8 @@ const TestimonialBox = styled.div`
     background-color: ${greenmidlight};
   }
   img {
-    max-width: 137px;
-    max-height: 24px;
+    width: auto;
+    height: 52px;
     filter: grayscale(100%);
   }
   :nth-child(4) {
@@ -64,12 +64,16 @@ const TestimonialCenter = styled.div`
   justify-content: center;
   align-items: center;
   .main-logo {
-    max-width: 148px;
-    max-height: 32px;
+    width: auto;
+    height: 52px;
   }
   @media only screen and (max-width: 449px) {
     padding: 20px;
     gap: 24px;
+    .main-logo {
+      width: auto;
+      height: 52px;
+    }
   }
 `;
 
@@ -107,7 +111,6 @@ const Caption = styled.div`
   strong:nth-of-type(2):before {
     animation-delay: 0.6s;
   }
-
   @keyframes hero-highlight {
     100% {
       transform: scaleX(1);
