@@ -383,7 +383,7 @@ const AppDetailContent = styled.div`
     margin: 8px 0 0;
   }
   b {
-    font-weight: 600;
+    font-weight: 500;
   }
   a {
     color: ${primary};
@@ -448,9 +448,17 @@ const AppDetailContent = styled.div`
   ul {
     list-style-type: disc;
     padding-left: 20px;
+    margin: 12px 0 0px;
     li {
       ${Body5};
       color: ${body};
+      p {
+        margin: 8px 0 0;
+      }
+      ::marker {
+        font-size: 18px;
+        color: ${body};
+      }
     }
   }
   table {
@@ -549,6 +557,12 @@ const AppDetailContent = styled.div`
     }
     ol {
       margin: 12px 0;
+      li::marker {
+        font-size: 15px;
+      }
+    }
+    ul {
+      margin: 12px 0 0;
       li::marker {
         font-size: 15px;
       }

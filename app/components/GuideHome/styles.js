@@ -84,7 +84,7 @@ const GuideDetail = styled.div`
     margin: 6px 0 0;
   }
   b {
-    font-weight: 600;
+    font-weight: 500;
   }
   a {
     color: ${primary};
