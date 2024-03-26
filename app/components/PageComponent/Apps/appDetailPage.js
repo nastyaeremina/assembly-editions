@@ -7,9 +7,8 @@ import AppsDetailComponent from '../../appsDetail/appsDetailComponent';
 import AppsCardSection from '../../appsCards/appsCardSection';
 import ReviewSection from '../../reviewSection/reviewSection';
 
-export default function AppsDetailPage({ appDetail }) {
+export default function AppsDetailPage({ appDetail, relatedAppList }) {
   const avarageRate = calculateAverageRate(removeEmptyElement(appDetail?.reviewsCollection?.items));
-
   return (
     <>
       <AppsDetailMain>
@@ -23,10 +22,10 @@ export default function AppsDetailPage({ appDetail }) {
               avarageRate={avarageRate}
             />
           )}
-          {!isEmpty(removeEmptyElement(appDetail?.relativeAppsCollection?.items)) && (
+          {!isEmpty(relatedAppList) && (
             <AppsCardSection
               heading={'More apps like this'}
-              appList={removeEmptyElement(appDetail?.relativeAppsCollection?.items)}
+              appList={relatedAppList}
               isBottom
               is4Card
               isAppdetail

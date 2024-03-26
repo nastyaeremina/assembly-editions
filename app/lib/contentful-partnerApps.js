@@ -268,21 +268,7 @@ guideArticle{
           comment
           date
         }
-      }
-relativeAppsCollection(preview:false){
-  items{
-    name
-slug
-appsType
-description
-isFeatured
-pricing
-icon{
-    url
-}
-
-  }
-}`;
+      }`;
 export async function getPartnerAppDetail(slug, preview) {
   const entries = await fetchGraphQL(
     `query {

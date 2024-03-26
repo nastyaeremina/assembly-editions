@@ -484,3 +484,24 @@ export function calculateAverageRate(items) {
 
   return average;
 }
+
+/**
+ * Retrieves a specified number of unique random elements from an array.
+ *
+ * @param {Array} array - The input array from which to retrieve random elements.
+ * @param {number} numberOfElements - The number of unique random elements to retrieve.
+ * @returns {Array} An array containing the unique random elements.
+ */
+export function getRandomUniqueElements(array, numberOfElements) {
+  let copyArray = [...array]; // Create a copy of the original array to avoid modifying it
+  let randomElements = [];
+
+  for (let i = 0; i < numberOfElements && copyArray.length > 0; i++) {
+    let randomIndex = Math.floor(Math.random() * copyArray.length);
+    randomElements.push(copyArray[randomIndex]);
+
+    // Remove the selected element to avoid duplicate selection
+    copyArray.splice(randomIndex, 1);
+  }
+  return randomElements;
+}

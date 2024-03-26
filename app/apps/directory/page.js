@@ -6,7 +6,7 @@ import { getAllPartnerApps } from '../../lib/contentful-partnerApps';
 import Navbar from '../../components/navbar/navbar';
 import CTA from '../../components/cta/cta';
 
-async function getContent() {
+export async function getAppDirectoryContent() {
   const allClientPosts = (await getAllPartnerApps(APPS_TYPE.CLIENT)) ?? [];
   const allInternalPosts = (await getAllPartnerApps(APPS_TYPE.INTERNAL)) ?? [];
   const featuredApps = allClientPosts?.filter((item) => item?.isFeatured === true);
@@ -21,7 +21,7 @@ export async function generateMetadata() {
 }
 
 export default async function Apps() {
-  const { clientApps, internalApps, featuredApps } = await getContent();
+  const { clientApps, internalApps, featuredApps } = await getAppDirectoryContent();
 
   return (
     <>
