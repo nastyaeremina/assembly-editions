@@ -59,7 +59,7 @@ content{
 
 const POST_GRAPHQL_GUIDE_ARTICLE_DETAILS_FIELDS = `
 ${POST_GRAPHQL_GUIDE_ARTICLE_ITEM_FIELDS}
-childArticlesCollection(limit:15){
+childArticlesCollection(limit:50){
   total
   items{
     ${POST_GRAPHQL_GUIDE_ARTICLE_ITEM_FIELDS}
