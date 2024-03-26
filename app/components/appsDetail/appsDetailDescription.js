@@ -7,7 +7,7 @@ import Zoom from 'react-medium-image-zoom';
 import 'react-medium-image-zoom/dist/styles.css';
 import { extractTagId } from '../../helpers/helpers';
 import CopyLink from '../copyLink/copyLink';
-import { AboutDescription, AboutTitle, AppDetailContent } from './styles';
+import { AboutDescription, AppDetailContent } from './styles';
 
 export default function AppsDetailDescription({ assets = [], jsonData, isAppdetail }) {
   const options = {
@@ -93,7 +93,6 @@ export default function AppsDetailDescription({ assets = [], jsonData, isAppdeta
   return (
     <>
       <AboutDescription>
-        <AboutTitle>About</AboutTitle>
         <AppDetailContent>{documentToReactComponents(jsonData, options)}</AppDetailContent>
       </AboutDescription>
     </>

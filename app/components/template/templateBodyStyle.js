@@ -64,6 +64,11 @@ const Info = styled.div`
   }
   @media only screen and (max-width: 449px) {
     padding: 0 0 16px;
+    ${(props) =>
+      props.hasSpacing &&
+      css`
+        padding: 0;
+      `}
   }
 `;
 const InfoTitle = styled.h5`

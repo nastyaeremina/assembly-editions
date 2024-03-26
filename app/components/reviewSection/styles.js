@@ -30,8 +30,8 @@ const SectionHeading = styled.div`
   flex-direction: column;
   gap: 12px;
   width: 100%;
-  h2 {
-    ${Heading3}
+  h3 {
+    ${Heading4}
     color: ${title};
     margin: 0;
   }

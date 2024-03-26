@@ -41,7 +41,7 @@ export default function AboutComponent({ data, buttonText, buttonLink, isDirecto
   return (
     <AboutSection isDirectory={isDirectory}>
       <Title>About</Title>
-      <Info>
+      <Info hasSpacing={isDirectory}>
         {renderAboutItems()}
         {shouldButtonShow && (
           <Button

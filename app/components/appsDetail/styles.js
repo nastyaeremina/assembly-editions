@@ -578,11 +578,7 @@ const AboutDescription = styled.div`
     gap: 24px;
   }
 `;
-const AboutTitle = styled.h2`
-  ${Heading3};
-  color: ${title};
-  margin: 0;
-`;
+
 export {
   AppDetail,
   DetailTitleSection,
@@ -604,5 +600,4 @@ export {
   ImageSlider,
   AppDetailContent,
   AboutDescription,
-  AboutTitle
 };
