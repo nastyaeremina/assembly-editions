@@ -107,7 +107,7 @@ const ImageSection = styled.div`
     user-select: none;
   }
   .big-image {
-    max-height: 460px;
+    max-height: fit-content;
     height: 100%;
     object-fit: cover;
     width: 100%;
@@ -133,14 +133,8 @@ const ImageSection = styled.div`
     img {
       width: 100%;
     }
-    .big-image {
-      max-height: 344px;
-    }
   }
   @media only screen and (max-width: 768px) {
-    .big-image {
-      max-height: 404px;
-    }
 
     ${(props) =>
       !props.isHide &&
@@ -166,7 +160,7 @@ const ImageSection = styled.div`
       cursor: pointer;
     }
     .big-image {
-      height: 238px;
+      /* height: 238px; */
     }
   }
 `;

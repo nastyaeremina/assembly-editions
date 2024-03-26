@@ -9,7 +9,7 @@ const SliderImageDiv = styled.div`
     border-radius: 4px;
     z-index: 1;
     max-width: 75%;
-    max-height: 1000px;
+    /* max-height: 1000px; */
     width: 100%;
     user-select: none;
     @media only screen and (max-width: 1440px) {
@@ -37,7 +37,7 @@ const ZoomImageSection = styled.div`
   .right-arrow {
     right: 44px;
   }
-  background: rgba(0, 0, 0, 0.8);
+  background: rgba(0, 0, 0, 0.9);
   width: 100%;
   height: 100vh;
   position: fixed;

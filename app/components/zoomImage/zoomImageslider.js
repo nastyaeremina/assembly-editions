@@ -2,12 +2,12 @@
 
 import Image from 'next/image';
 import React from 'react';
+import { useHotkeys } from 'react-hotkeys-hook';
 import { OverLayDiv } from '../../styles/blogstyles';
 import { ZoomImage } from '../../styles/homepageStyles';
 import { ArrowIcon, CloseIcon } from '../appsDetail/styles';
 import SVGComponent from '../../../public/images/svg/SVGComponent';
 import { SliderImageDiv, ZoomImageSection } from './style';
-import { useHotkeys } from 'react-hotkeys-hook';
 
 export default function ZoomImageSlider({
   imageUrl,

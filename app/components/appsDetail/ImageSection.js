@@ -56,7 +56,7 @@ function AppImageSection({ imageList }) {
             width={614}
             height={344}
             className='big-image'
-            onClick={() => onClick('0')}
+            onClick={() => onClick(currentImageIndex)}
           />
           <ArrowIcon className='right-arrow' onClick={goToNextImage}>
             <SVGComponent name='right-arrow-icon' width='16' height='16' viewBox='16' />
