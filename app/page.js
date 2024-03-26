@@ -1,12 +1,12 @@
 import Layout from './components/layout';
 import Navbar from './components/navbar/navbar';
 import CTA from './components/cta/cta';
-import { HEADER_LIST, HOME_CLIENT_DARK_ID } from './constants/constant';
+import { HOME_CLIENT_DARK_ID } from './constants/constant';
 import { getHomeContent } from './lib/contentful-home';
 import { getAllPartnerAppsWithSlug } from './lib/contentful-partnerApps';
 
 import HomePage from './components/Home/homepage/homepage';
-import { getSEOData } from './helpers/helpers';
+import { createArrayWithFixedLength, getSEOData, removeEmptyElement } from './helpers/helpers';
 
 async function getContent() {
   return await getHomeContent(HOME_CLIENT_DARK_ID);
@@ -20,8 +20,6 @@ export async function generateMetadata({ params, searchParams }, parent) {
 
 export default async function Home() {
   const content = await getContent();
-  const appsPost = (await getAllPartnerAppsWithSlug()) ?? []; // appa
-  const appsPostsPathList = appsPost?.map((item) => `apps/directory/${item?.slug}`);
   const jsonLd = {
     '@context': 'https://schema.org',
     '@type': 'Organization',
@@ -36,12 +34,16 @@ export default async function Home() {
       'https://www.instagram.com/copilotplatforms/'
     ]
   };
+  const testimonialTableData = createArrayWithFixedLength(
+    removeEmptyElement(content?.section7DataCollection?.items),
+    18
+  );
   return (
     <>
       <script type='application/ld+json' dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       <Layout>
         <Navbar />
-        <HomePage content={content}></HomePage>
+        <HomePage content={content} testimonialTableData={testimonialTableData}></HomePage>
         <CTA />
       </Layout>
     </>

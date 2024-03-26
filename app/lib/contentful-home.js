@@ -73,7 +73,23 @@ export async function getHomeContent(id) {
     section6DataCollection{
       ${POST_GRAPHQL_HOME_TAB_CONTENT_FIELDS}
     }
-        partnerAppsCollection {
+    heading7
+    body7
+    section7DataCollection{
+    items{
+      name
+      role
+      industry
+      imageHeadshot{
+        url
+      }
+      logo{
+        url
+      }
+      quoteNew
+    }
+  }     
+    partnerAppsCollection {
           items {
             name
             slug
@@ -100,7 +116,8 @@ export async function getHomeContent(id) {
           }
         }
       }
-    }         
+    }
+      
     `,
     false,
     [CONTENTFUL_API_TAG.HOME]

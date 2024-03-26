@@ -91,7 +91,7 @@ export const joinArrayToString = ({ list, fieldName, seprator }) => {
   return result;
 };
 
-export const createArrayWithFixedLength = (originalArray, desiredLength) => {
+export const createArrayWithFixedLength = (originalArray = [], desiredLength) => {
   const repeatedArray = [];
   const originalLength = originalArray.length;
 

@@ -45,10 +45,9 @@ import BussinessSectionComponent from '../BussinessSection';
 import PartnerAppsComponent from '../../partnerApps/partnerApps';
 import FeatureSection from '../../featureSection/featureSection';
 import { primary, whiteColor } from '../../../styles/color';
-import CopilotBlock from '../../../components/CopilotBlock/copilotblock';
-import SliderButtonSection from '../../../components/CopilotBlock/SliderButtonSection';
+import TestimonialTableSection from '../../newTestimonial/testimonialTableSection';
 
-export default function HomePage({ content }) {
+export default function HomePage({ content, testimonialTableData }) {
   return (
     <>
       <HomeMain>
@@ -196,6 +195,13 @@ export default function HomePage({ content }) {
             </BottomList>
           </Container>
         </AutomateSection>
+        {!isEmpty(testimonialTableData) && (
+          <TestimonialTableSection
+            title={content?.heading7}
+            description={content?.body7}
+            tableData={testimonialTableData}
+          />
+        )}
         <HelpSection>
           <Container>
             <HelpMain>
