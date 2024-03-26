@@ -31,7 +31,8 @@ export default function AppsCards({
   title,
   rate,
   description,
-  reviews
+  reviews,
+  isFeature
 }) {
   const shouldShowFirstBullet = !isEmpty(reviews) && reviews !== 0 && !isEmpty(appType);
   const shouldShowSecondBullet = !isEmpty(appType) && !isEmpty(pricingStatus);
@@ -39,7 +40,7 @@ export default function AppsCards({
   return (
     <CardSub>
       <Link href={link}>
-        <CardTop>
+        <CardTop isFeature={isFeature}>
           <CardInfo>
             {!isEmpty(icon) && (
               <ImgView>
@@ -62,7 +63,7 @@ export default function AppsCards({
                     <AppInformativeSection>
                       <p>{appType}</p>
                       <Informative>
-                        <SVGComponent name='information-icon' width='16' height='16' viewBox='16' />
+                        <SVGComponent name='informative-icon' width='13' height='13' viewBox='13' />
                         <Tooltip className='tooltiptext' isApptooltip>
                           <Line>
                             <svg
@@ -74,7 +75,7 @@ export default function AppsCards({
                               <line x1='1' y1='4.37114e-08' x2='0.999997' y2='57' stroke='#00160E' stroke-width='2' />
                             </svg>
                           </Line>
-                          <p>{appTypeInfo}</p>
+                          {appTypeInfo}
                         </Tooltip>
                       </Informative>
                     </AppInformativeSection>
@@ -92,7 +93,7 @@ export default function AppsCards({
         <CardEnd isBottom={isBottom}>
           <p>{appVisibility}</p>
           <Informative>
-            <SVGComponent name='informative-icon' width='13' height='13' viewBox='13' />
+            <SVGComponent name='information-icon' width='13' height='13' viewBox='13' />
             <Tooltip className='tooltiptext'>
               <Line>
                 <svg width='2' height='16' viewBox='0 0 2 16' fill='none' xmlns='http://www.w3.org/2000/svg'>

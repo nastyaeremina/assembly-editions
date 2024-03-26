@@ -495,7 +495,7 @@ export const EXTRACT_CODE_TAG_FROM_HTML_REGEX = /(<pre><code[^>]*>.*?<\/code><\/
 export const EXTRACT_LEADING_DIGIT_REGEX = /^[0-9]./;
 export const CURRENT_DOMAIN = 'https://www.copilot.com';
 export const AppInfoMessage =
-  'Apps are specifically made for the Copilot Platform, are secured, and can use notifications.';
-export const EmbedInfoMessage = 'Copilot supports embedding any application that allow for embedding.';
-export const InternalAppInfoMessage = 'Internal-facing apps are only visible team';
-export const ClientAppInfoMessage = 'Client-facing apps are visible to clients as well as your internal team';
+  'Apps are tailor-made for Copilot platform and typically come with rich functionality including notifications.';
+export const EmbedInfoMessage = 'Copilot supports embedding any external application that doesn’t block embedding.';
+export const InternalAppInfoMessage = 'Internal-facing apps are only visible to your internal team.';
+export const ClientAppInfoMessage = 'Client-facing apps are visible to clients as well as your internal team.';

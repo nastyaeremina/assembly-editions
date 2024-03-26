@@ -95,6 +95,7 @@ export default function AppDirectoryPage({ clientApps, internalApps, featuredApp
             caption='These are the most popular, mostly highly rated apps. '
             appList={featuredApps}
             isSearchbar={true}
+            isFeature
           />
           <AppsCardSection
             is4Card

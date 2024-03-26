@@ -183,42 +183,13 @@ const getPath = (name) => {
     case 'information-icon':
       return (
         <>
-          <path
-            stroke='#4C4C4C'
-            strokeMiterlimit={10}
-            strokeWidth={1.091}
-            fill='none'
-            d='M8.327 2.9a5.6 5.6 0 1 0 0 11.2 5.6 5.6 0 0 0 0-11.2Z'
-          />
-          <path
-            stroke='#4C4C4C'
-            strokeLinecap='round'
-            strokeLinejoin='round'
-            strokeWidth={1.091}
-            fill='none'
-            d='M7.203 7.375h1V11'
-          />
-          <path
-            stroke='#4C4C4C'
-            strokeLinecap='round'
-            strokeMiterlimit={10}
-            strokeWidth={1.091}
-            fill='none'
-            d='M6.828 11.125h2.75'
-          />
-          <path fill='#4C4C4C' d='M8.078 4.563a.813.813 0 1 0 0 1.625.813.813 0 0 0 0-1.625Z' />
-        </>
-      );
-    case 'informative-icon':
-      return (
-        <>
           <g clipPath='url(#a)'>
             <path
               stroke='#131313'
               strokeMiterlimit={10}
               strokeWidth={1.091}
               fill='none'
-              d='M7.01 1.4a5.6 5.6 0 1 0 .001 11.2 5.6 5.6 0 0 0 0-11.2Z'
+              d='M6.002 1.065a5.436 5.436 0 1 0 0 10.871 5.436 5.436 0 0 0 0-10.871Z'
             />
             <path
               stroke='#131313'
@@ -226,7 +197,7 @@ const getPath = (name) => {
               strokeLinejoin='round'
               strokeWidth={1.091}
               fill='none'
-              d='M5.887 5.875h1V9.5'
+              d='M4.906 5.408h.97v3.518'
             />
             <path
               stroke='#131313'
@@ -234,13 +205,49 @@ const getPath = (name) => {
               strokeMiterlimit={10}
               strokeWidth={1.091}
               fill='none'
-              d='M5.512 9.625h2.75'
+              d='M4.543 9.048h2.67'
             />
-            <path fill='#131313' d='M6.762 3.063a.812.812 0 1 0 0 1.624.812.812 0 0 0 0-1.625Z' />
+            <path fill='#131313' d='M5.757 2.678a.789.789 0 1 0 0 1.577.789.789 0 0 0 0-1.577Z' />
           </g>
           <defs>
             <clipPath id='a'>
-              <path fill='#fff' d='M.828.818h12.364v12.364H.828z' />
+              <path fill='#fff' d='M0 .5h12v12H0z' />
+            </clipPath>
+          </defs>
+        </>
+      );
+    case 'informative-icon':
+      return (
+        <>
+          <g clipPath='url(#a)'>
+            <path
+              stroke='#4C4C4C'
+              strokeMiterlimit={10}
+              strokeWidth={1.091}
+              fill='none'
+              d='M6.002 1.065a5.436 5.436 0 1 0 0 10.871 5.436 5.436 0 0 0 0-10.871Z'
+            />
+            <path
+              stroke='#4C4C4C'
+              strokeLinecap='round'
+              strokeLinejoin='round'
+              strokeWidth={1.091}
+              fill='none'
+              d='M4.906 5.408h.97v3.518'
+            />
+            <path
+              stroke='#4C4C4C'
+              strokeLinecap='round'
+              strokeMiterlimit={10}
+              strokeWidth={1.091}
+              fill='none'
+              d='M4.543 9.048h2.67'
+            />
+            <path fill='#4C4C4C' d='M5.757 2.678a.789.789 0 1 0 0 1.577.789.789 0 0 0 0-1.577Z' />
+          </g>
+          <defs>
+            <clipPath id='a'>
+              <path fill='#fff' d='M0 .5h12v12H0z' />
             </clipPath>
           </defs>
         </>

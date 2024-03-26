@@ -11,7 +11,16 @@ import { calculateAverageRate, isEmpty, removeEmptyElement } from '../../helpers
 import { CardListSection, DirectoryCardSection, SectionHeader, SectionHeading } from './styles';
 import AppsCard from './appsCards';
 
-export default function AppsCardSection({ isBottom, is4Card, appList, heading, caption, isSearchEmpty, isAppdetail }) {
+export default function AppsCardSection({
+  isBottom,
+  is4Card,
+  appList,
+  heading,
+  caption,
+  isSearchEmpty,
+  isAppdetail,
+  isFeature
+}) {
   const isShowHeader = !isEmpty(heading) || !isEmpty(caption);
   return (
     <Container>
@@ -45,6 +54,7 @@ export default function AppsCardSection({ isBottom, is4Card, appList, heading, c
                 appTypeInfo={item?.appType === APPS_TYPE.EMBED ? EmbedInfoMessage : AppInfoMessage}
                 appVisibility={appsType === APPS_TYPE.CLIENT ? 'Client-facing' : 'Internal-facing'}
                 appVisibilityInfo={appsType === APPS_TYPE.CLIENT ? ClientAppInfoMessage : InternalAppInfoMessage}
+                isFeature={isFeature}
               />
             );
           })}

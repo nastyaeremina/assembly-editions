@@ -63,7 +63,7 @@ export default function AppsDetailComponent({ detail, content }) {
                 {
                   label: 'Type',
                   value: content.appType,
-                  labelInfo: content.appType === APPS_TYPE.EMBED ? EmbedInfoMessage : AppInfoMessage
+                  valueInfo: content.appType === APPS_TYPE.EMBED ? EmbedInfoMessage : AppInfoMessage
                 },
                 {
                   label: 'App Visibility',

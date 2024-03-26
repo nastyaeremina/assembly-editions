@@ -38,11 +38,6 @@ const CardDescription = styled.div`
   -webkit-line-clamp: 2; /* number of lines to show */
   line-clamp: 2;
   -webkit-box-orient: vertical;
-  ${(props) =>
-    props.isBottom &&
-    css`
-      padding-bottom: 36px;
-    `}
 `;
 const CardInfo = styled.div`
   display: flex;
@@ -99,7 +94,6 @@ const CardTitle = styled.div`
 `;
 const RatingSection = styled.div`
   display: flex;
-  min-height: 19.5px;
   p {
     text-transform: capitalize;
     ${FooterText};
@@ -115,11 +109,16 @@ const RatingNumber = styled.div`
 
 const AppInformativeSection = styled.div`
   display: flex;
-  gap: 2px;
+  gap: 4px;
 `;
 
 const CardTop = styled.div`
   padding: 16px;
+  ${(props) =>
+    props.isFeature &&
+    css`
+      padding-bottom: 46px;
+    `}
 `;
 const CardEnd = styled.div`
   display: none;
@@ -259,8 +258,7 @@ const Tooltip = styled.div`
   ${(props) =>
     props.isApptooltip &&
     css`
-      top: 25px;
-      left: -4px;
+      top: 24px;
     `}
 `;
 
@@ -272,6 +270,7 @@ const Line = styled.div`
 const Informative = styled.div`
   position: relative;
   display: flex;
+  align-items: center;
   :hover .tooltiptext {
     visibility: visible;
   }

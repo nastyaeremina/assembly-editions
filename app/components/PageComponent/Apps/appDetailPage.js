@@ -30,6 +30,7 @@ export default function AppsDetailPage({ appDetail }) {
               isBottom
               is4Card
               isAppdetail
+              isFeature
             />
           )}
         </>
