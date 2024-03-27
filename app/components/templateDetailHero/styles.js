@@ -14,7 +14,7 @@ const HeroBlock = styled.div`
   display: flex;
   gap: 60px;
 
-  @media only screen and (max-width: 996px) {
+  @media only screen and (max-width: 1024px) {
     flex-wrap: wrap;
     gap: 40px;
   }
@@ -22,11 +22,13 @@ const HeroBlock = styled.div`
 
 const BlockLeft = styled.div`
   max-width: 612px;
-
   h1 {
     margin: 0px 0 16px 0;
     color: ${title};
     ${Heading2}
+  }
+  @media only screen and (max-width: 1024px) {
+    max-width: 980px;
   }
   @media only screen and (max-width: 749px) {
     h1 {
@@ -48,8 +50,13 @@ const BlockLeft = styled.div`
 const BlockRight = styled.div`
   margin: 0px 0 100px 0;
 
-  @media only screen and (max-width: 768px) {
+  @media only screen and (max-width: 1024px) {
     margin: 0 auto 60px;
+    width: 100%;
+  }
+  @media only screen and (max-width: 768px) {
+    margin: 0 0 60px;
+    width: 100%;
   }
 `;
 const TabView = styled.div`
@@ -96,7 +103,7 @@ const BLockImg = styled.div`
   border-radius: 8px;
   cursor: pointer;
   .heroimage {
-    max-width: 513px;
+    max-width: 934px;
     width: 100%;
   }
   ::after {
@@ -121,7 +128,7 @@ const BLockImg = styled.div`
 
 const FeatureImage = styled(Image)`
   width: 513px;
-  height: 400px;
+  height: auto;
   @media only screen and (max-width: 1200px) {
     width: auto;
     height: auto;
@@ -132,7 +139,7 @@ const ButtonSection = styled.div`
   display: flex;
   gap: 20px;
   margin-bottom: 100px;
-  @media only screen and (max-width: 991px) {
+  @media only screen and (max-width: 1024px) {
     margin-bottom: 0;
   }
   @media only screen and (max-width: 449px) {
