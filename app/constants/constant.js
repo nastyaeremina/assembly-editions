@@ -493,6 +493,7 @@ Regex varibles
 export const EXTRACT_H2_TAG_FROM_HTML_REGEX = /(?:<h2 id\=\s*)\S.*?(?=\s*<\/h2|$)/gs;
 export const EXTRACT_CODE_TAG_FROM_HTML_REGEX = /(<pre><code[^>]*>.*?<\/code><\/pre>)/gs;
 export const EXTRACT_LEADING_DIGIT_REGEX = /^[0-9]./;
+export const STRING_END_OF_APP = /\bapp$/i;
 export const CURRENT_DOMAIN = 'https://www.copilot.com';
 export const AppInfoMessage =
   'Apps are tailor-made for Copilot platform and typically come with rich functionality including notifications.';

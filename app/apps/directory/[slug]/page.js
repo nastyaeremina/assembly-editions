@@ -6,6 +6,7 @@ import { getRandomUniqueElements, getSEOData, isEmpty } from '../../../helpers/h
 import AppsDetailPage from '../../../components/PageComponent/Apps/appDetailPage';
 import CTA from '../../../components/cta/cta';
 import { getAppDirectoryContent } from '../page.js';
+import { APPS_TYPE, STRING_END_OF_APP } from '../../../constants/constant.js';
 async function getContent({ slug }) {
   const appDetail = (await getPartnerAppDetail(slug)) ?? {};
   const { clientApps, internalApps } = await getAppDirectoryContent();
@@ -21,10 +22,17 @@ async function getContent({ slug }) {
 
 export async function generateMetadata({ params }) {
   const { appDetail } = await getContent({ slug: params.slug });
+  // Check if the name of the app ends with "app" (ignoring case)
+  // Some app names are like "Billing App" or "Messaging App". To avoid repetitive use of the word "app", we handle it as follows:
+  const appName = STRING_END_OF_APP.test(appDetail.name) ? appDetail.name : `${appDetail.name} App`;
 
+  const seoTitle =
+    appDetail?.appType === APPS_TYPE.EMBED
+      ? `Embed ${appDetail.name} in your client portal | Copilot` // SEO title for embedded app
+      : `Install ${appName} | Copilot`; // SEO title for Install App
   const seoData = await getSEOData({
     data: {
-      seoTitle: `Embed ${appDetail?.name} in your client portal | Copilot`,
+      seoTitle,
       description: appDetail?.description,
       canonical: 'https://www.copilot.com/apps/directory' + appDetail?.slug
     }
