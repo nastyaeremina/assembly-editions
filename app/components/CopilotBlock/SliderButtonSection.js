@@ -4,11 +4,11 @@ import SVGComponent from '../../../public/images/svg/SVGComponent';
 import { useWindowDimensions } from '../../hooks/useMobileDevice';
 
 //sliderItemWidth represent the hight of single slide
-const sliderItemWidth = 530;
+const sliderItemWidth = 528;
 export default function SliderButtonSection({ xPos, setXpos, noOfSlide }) {
-  // calculate slider position based on the slide item to  prevent the next slide show
-  const minimumSlidePosition = (noOfSlide - 2) * -sliderItemWidth;
   const { width } = useWindowDimensions();
+  // calculate slider position based on the slide item to  prevent the next slide show
+  const minimumSlidePosition = width > 1024 ? (noOfSlide - 2) * -sliderItemWidth : (noOfSlide - 1) * -sliderItemWidth;
 
   const onClickPrev = useCallback(() => {
     if (width > 450) {
