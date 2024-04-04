@@ -2,7 +2,7 @@
 
 import styled, { css } from 'styled-components';
 import { Body3, Label, MbBody1, MbBody3, MbPrimaryBtn } from '../../styles/styles';
-import { black, whiteColor } from '../../styles/color';
+import { black, whiteColor, greendark, greenlight } from '../../styles/color';
 
 const Tabbutton = styled.div`
   margin: 0 auto;
@@ -41,7 +41,9 @@ const TabDetails = styled.div`
   }
 `;
 
-const Tab = styled.li`
+const Tab = styled.div`
+  position: relative;
+  z-index: 10;
   white-space: nowrap;
   border-radius: 30px;
   padding: 10px 20px;
@@ -52,16 +54,21 @@ const Tab = styled.li`
   line-height: 21px;
   font-weight: 500;
   cursor: pointer;
+  color: black;
+  transition: all 0.5s ease;
   &&.active {
+    color: #e3ffee;
+
     ${(props) =>
       props.textColor &&
       css`
         color: ${props.textColor};
       `}
+    background-color:#00160E;
     ${(props) =>
-      props.bgColor &&
+      props.bgcolor &&
       css`
-        background: ${props.bgColor};
+        color: ${props.bgcolor};
       `}
   }
   @media only screen and (max-width: 449px) {
@@ -88,6 +95,31 @@ const BottomFunction = styled.div`
 
 const Nav = styled.div`
   display: none;
+  // this css work in tablet and mobile device
+  .tabsection {
+    background-color: rgba(255, 255, 255, 0.8);
+    display: flex;
+    white-space: nowrap;
+    border-radius: 80px;
+    position: relative;
+    border: 1px solid ${greendark};
+    cursor: pointer;
+    width: max-content;
+  }
+  .tab {
+    padding: 10px 20px;
+    z-index: 1;
+    color: ${black};
+    ${Label};
+    transition: all 0.3s ease-in-out 0s;
+  }
+  .activetab {
+    position: absolute;
+    background-color: ${greendark};
+    height: 100%;
+    border-radius: 80px;
+    transition: all 0.3s ease-in-out 0s;
+  }
   @media only screen and (max-width: 768px) {
     margin: 0 -24px;
     padding: 0 24px;
@@ -95,6 +127,10 @@ const Nav = styled.div`
     scrollbar-width: none;
     margin-bottom: 28px;
     display: block;
+    .tab {
+      padding: 5px 20px;
+      ${MbPrimaryBtn};
+    }
   }
   @media only screen and (max-width: 449px) {
     overflow: scroll;
@@ -105,6 +141,7 @@ const Nav = styled.div`
     max-width: 100vw;
   }
   ul {
+    position: relative;
     display: flex;
     list-style: none;
     padding: 0;
@@ -115,7 +152,28 @@ const Nav = styled.div`
     width: fit-content;
     scrollbar-width: none;
     &::-webkit-scrollbar {
+      background-color: ${greendark};
       display: none;
+    }
+  }
+  ul .active_place {
+    position: absolute;
+    height: 41px;
+    width: 100px;
+    transition: all 0.5s ease;
+    z-index: 1;
+    border-radius: 30px;
+    background-color: ${greendark};
+    ${(props) =>
+      props.bgcolor &&
+      css`
+        background-color: ${props.bgcolor};
+      `}
+    @media only screen and (max-width: 425px) {
+      height: 36px;
+    }
+    @media only screen and (max-width: 375px) {
+      height: 34px;
     }
   }
   ul.nav {
@@ -208,7 +266,6 @@ const LeftContent = styled.p`
     max-width: 375px;
   }
   @media only screen and (max-width: 768px) {
-    /* text-align: left; */
     max-width: 100%;
   }
   @media only screen and (max-width: 449px) {
@@ -225,8 +282,25 @@ const RightContent = styled.div`
   @media only screen and (max-width: 768px) {
     display: none;
   }
+  ul {
+    position: relative;
+  }
+  ul .active_place {
+    position: absolute;
+    height: 41px;
+    width: 100px;
+    transition: all 0.5s ease;
+    z-index: 1;
+    border-radius: 30px;
+    color: ${greenlight};
+    background-color: ${greendark};
+    ${(props) =>
+      props.bgcolor &&
+      css`
+        background-color: ${props.bgcolor};
+      `}
+  }
   ul.nav {
-    /* max-width: 746px; */
     width: fit-content;
     background: rgba(255, 255, 255, 0.8);
     border: 1px solid #00160e;
@@ -236,14 +310,10 @@ const RightContent = styled.div`
     padding-left: 0px;
     display: flex;
     @media (max-width: 1440px) {
-      /* margin: 0 -25px; */
-      /* padding: 0 24px; */
       overflow: auto;
       display: flex;
     }
     @media (max-width: 1024px) {
-      /* margin: 0 -25px; */
-      /* padding: 0 24px; */
       overflow: auto;
       display: flex;
     }
@@ -252,6 +322,30 @@ const RightContent = styled.div`
     ::-webkit-scrollbar {
       display: none; /* Safari and Chrome */
     }
+  }
+  // this css work for desktop device
+  .tabsection {
+    background-color: rgba(255, 255, 255, 0.8);
+    display: flex;
+    white-space: nowrap;
+    border-radius: 80px;
+    position: relative;
+    border: 1px solid ${greendark};
+    cursor: pointer;
+  }
+  .tab {
+    padding: 10px 20px;
+    z-index: 1;
+    color: ${black};
+    ${Label};
+    transition: all 0.3s ease-in-out 0s;
+  }
+  .activetab {
+    position: absolute;
+    background-color: ${greendark};
+    height: 100%;
+    border-radius: 80px;
+    transition: all 0.3s ease-in-out 0s;
   }
 `;
 

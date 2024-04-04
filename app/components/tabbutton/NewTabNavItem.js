@@ -1,27 +1,24 @@
 'use client';
 
 import React from 'react';
-import { Tab } from './hometabstyle';
+import { isEmpty } from '../../helpers/helpers';
+import { black, greenlight } from '../../styles/color';
 
-const NewTabNavItem = ({ description, id, title, activeTab, setActiveTab, bgColor, textColor }) => {
-  const eleId = title.replace(/ /g, '').toLowerCase() + id;
-  const handleClick = () => {
-    setActiveTab(id);
-    document.getElementById(eleId).scrollIntoView({
-      behavior: 'smooth',
-      block: 'nearest'
-    });
-  };
-
+const NewTabNavItem = ({ eleId, id, title, activeTab, setActiveTab }) => {
   return (
-    <Tab
+    <div
+      // Unique ID for the tab element
       id={eleId}
-      bgColor={bgColor}
-      textColor={textColor}
-      onClick={handleClick}
-      className={activeTab === id ? 'active' : ''}>
+      className='tab'
+      onClick={() => {
+        setActiveTab(id);
+      }}
+      style={{
+        // If the tab is active or if it's the first tab than apply this css for text color
+        color: activeTab === id || (id === 0 && isEmpty(activeTab)) ? `${greenlight}` : `${black}`
+      }}>
       {title}
-    </Tab>
+    </div>
   );
 };
 
