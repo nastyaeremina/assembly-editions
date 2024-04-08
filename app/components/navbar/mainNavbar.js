@@ -387,14 +387,14 @@ export default function NavbarComponent({
                     Solutions
                   </MobileText>
                 </SpanLink>
-                {/* <SpanLink
+                <SpanLink
                   textColor={colorList?.fontColor}
                   hoverColor={colorList?.primaryColor}
                   className={router.pathname === '/templates' ? 'active' : ''}>
                   <MobileTextLink href='/templates' hoverColor={colorList?.primaryColor}>
                     Templates
                   </MobileTextLink>
-                </SpanLink> */}
+                </SpanLink>
                 <SpanLink
                   textColor={colorList?.fontColor}
                   hoverColor={colorList?.primaryColor}
@@ -586,9 +586,9 @@ export default function NavbarComponent({
               </svg>
             </LineMenuImg>
           </SpanLink>
-          {/* <SpanLink textColor={colorList?.fontColor} hoverColor={colorList?.primaryColor}>
+          <SpanLink textColor={colorList?.fontColor} hoverColor={colorList?.primaryColor}>
             <Link href='/templates'>Templates</Link>
-          </SpanLink> */}
+          </SpanLink>
           <SpanLink textColor={colorList?.fontColor} hoverColor={colorList?.primaryColor}>
             <Link href='#' className='hovernone'>
               Resources
