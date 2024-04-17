@@ -8,7 +8,7 @@ import Client from '../../client/client';
 import ProductHero from '../../producthero';
 import { extractYouTubeVideoId } from '../../../helpers/helpers';
 
-export default function ProductDemoPage({ details, featureAppData }) {
+export default function ProductDemoPage({ details }) {
   const videoId = extractYouTubeVideoId(details?.videoUrl);
   return (
     <>
@@ -19,7 +19,7 @@ export default function ProductDemoPage({ details, featureAppData }) {
         videoUrl={videoId}
       />
       <OfficeCTA />
-      <Client data={featureAppData} title={null} isProductdemo={true} />
+      <Client title={null} isProductdemo={true} />
     </>
   );
 }

@@ -3,8 +3,8 @@ import { isEmpty } from '../../helpers/helpers';
 import { getSitemap } from '../../lib/contentful-sitemap';
 import { SOLUTION_TYPE, TOP_BAR_CONTENT_ID } from '../../constants/constant';
 import { getAllNavbarSolution } from '../../lib/contentful-solutions';
+import { getNavbarFeatureApss } from '../../lib/contentful-partnerApps';
 import NavbarComponent from './mainNavbar';
-import { getNavbarFeature } from '../../lib/contentful-features';
 
 export async function getTopBarContent() {
   const data = (await getSitemap(TOP_BAR_CONTENT_ID)) ?? '';
@@ -19,7 +19,7 @@ export async function getTopBarContent() {
     };
     topbarContent = item;
   }
-  const featureData = (await getNavbarFeature()) ?? [];
+  const featureData = (await getNavbarFeatureApss()) ?? [];
   return { topbarContent, solutionDataList, featureData };
 }
 

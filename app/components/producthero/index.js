@@ -1,11 +1,21 @@
 import React, { useState } from 'react';
 import Image from 'next/image';
-import { BLockImg, FeatureHeroSection, FeatureImage, HeroBlock, VideoClose, VideoPlay } from '../featurehero/styles';
 import { Container } from '../../styles/commonStyles';
 import Button from '../button/button';
 import heroImage from '../../../public/images/heroimage.png';
 import { COPILOT_ONBORADING_LINK } from '../../constants/externalLinks';
-import { BlockLeft, BlockRight, Head, HeadCaption } from './styles';
+import {
+  BLockImg,
+  BlockLeft,
+  BlockRight,
+  FeatureHeroSection,
+  FeatureImage,
+  Head,
+  HeadCaption,
+  HeroBlock,
+  VideoClose,
+  VideoPlay
+} from './styles';
 
 export default function ProductHero({ colorList, title, description, videoUrl }) {
   const [isOpen, setIsOpen] = useState(false);

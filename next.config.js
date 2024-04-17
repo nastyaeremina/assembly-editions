@@ -76,6 +76,13 @@ const nextConfig = {
         destination: `/${pageDemoData?.data?.pageDemo?.slug}`,
         permanent: true
       });
+
+      //set redirects for all the /features pages
+      redirectData?.push({
+        source: '/features/:path',
+        destination: `/apps/directory/:path`,
+        permanent: true
+      });
       return redirectData;
     } catch (error) {
       console.log('error', error);

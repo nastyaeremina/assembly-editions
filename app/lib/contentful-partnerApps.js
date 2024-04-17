@@ -269,6 +269,16 @@ guideArticle{
           date
         }
       }`;
+
+const POST_GRAPHQL_NAVBAR_FEATURES_APP_DETAIL = `
+name
+slug
+icon{
+  url
+}
+navbarDescription
+      `;
+
 export async function getPartnerAppDetail(slug, preview) {
   const entries = await fetchGraphQL(
     `query {
@@ -298,4 +308,28 @@ export async function getAllAppsWithIcon(preview) {
     [CONTENTFUL_API_TAG.APP]
   );
   return extractPostEntries(entries);
+}
+
+/**
+ * get all Features app with theme,name ,description and navbarIcon
+ *
+ * @param {Boolean} preview -  Determines whether to fetch features in preview mode.
+ *                           Set to `true` for draft content preview, and `false` for published content.
+ * @returns {Array} - An array of ordered feature items fetched from Contentful.
+ */
+export async function getNavbarFeatureApss(preview) {
+  const entries = await fetchGraphQL(
+    `query {
+      partnerAppsCollection(order:[order_ASC],where:{sholdShowOnFeatureNavbar:true},preview: ${
+        preview ? 'true' : 'false'
+      }) {
+              items{
+                ${POST_GRAPHQL_NAVBAR_FEATURES_APP_DETAIL}
+              }
+      }
+    }`,
+    preview,
+    [CONTENTFUL_API_TAG.APP]
+  );
+  return entries?.data?.partnerAppsCollection?.items;
 }

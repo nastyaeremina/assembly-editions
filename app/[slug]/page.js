@@ -6,7 +6,6 @@ import { PRODUCT_DEMO_PAGE_ID, WEEKLY_DEMO_PAGE_ID } from '../constants/constant
 import { getProductDemoContent, getWeeklyDemoContent } from '../lib/contentful-weeklyDemo';
 import { getSEOData, isEmpty } from '../helpers/helpers';
 import ProductDemoPage from '../components/PageComponent/ProductDemo/productDemoPage';
-import { getAllFeature } from '../lib/contentful-features';
 import { getStandardPageContent } from '../lib/contentful-standardPage';
 import StandardPage from '../components/standardPage/standaradPage';
 
@@ -22,17 +21,16 @@ async function getContent({ slug }) {
 
   const productdetails = await getProductDemoContent(PRODUCT_DEMO_PAGE_ID);
   if (!isEmpty(productdetails) && productdetails.slug === slug) {
-    const featureAppData = (await getAllFeature()) ?? [];
-    return { data: productdetails, type: PAGE_TYPE.PRODUCT_DEMO, featureAppData };
+    return { data: productdetails, type: PAGE_TYPE.PRODUCT_DEMO };
   }
 
- const standardPageContent = (await getStandardPageContent(slug)) ?? {};
+  const standardPageContent = (await getStandardPageContent(slug)) ?? {};
   if (!isEmpty(standardPageContent))
     return {
-        type: PAGE_TYPE.STANDARD_PAGE,
-        data: standardPageContent
+      type: PAGE_TYPE.STANDARD_PAGE,
+      data: standardPageContent
     };
-  
+
   return {};
 }
 
@@ -43,14 +41,14 @@ export async function generateMetadata({ params }) {
   return seoData;
 }
 export default async function WeeklyDemo({ params }) {
-  const { featureAppData, data, type } = await getContent({ slug: params.slug });
+  const { data, type } = await getContent({ slug: params.slug });
   if (data?.slug !== params.slug) return notFound();
 
   return (
     <Layout>
       <Navbar />
       {type === PAGE_TYPE.WEEKLY_DEMO && <WeeklyHero data={data} />}
-      {type === PAGE_TYPE.PRODUCT_DEMO && <ProductDemoPage details={data} featureAppData={featureAppData} />}
+      {type === PAGE_TYPE.PRODUCT_DEMO && <ProductDemoPage details={data} />}
       {type === PAGE_TYPE.STANDARD_PAGE && <StandardPage data={data?.contentCollection?.items} />}
     </Layout>
   );

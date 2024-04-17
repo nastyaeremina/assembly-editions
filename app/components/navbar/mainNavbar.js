@@ -16,7 +16,7 @@ import plateformhome from 'public/images/plateformhome.svg';
 import plateformapps from 'public/images/plateformapps.svg';
 import plateformzapier from 'public/images/plateformzapier.svg';
 import { BlackButton, Container } from '../../styles/commonStyles';
-import { GUIDE_LINK_INFO, HEADER_LIST, FEATURE_THEME_LIST, NAVBAR_COLOR_LIST } from '../../constants/constant';
+import { GUIDE_LINK_INFO, HEADER_LIST, NAVBAR_COLOR_LIST } from '../../constants/constant';
 import useMobileDevice from '../../hooks/useMobileDevice';
 import { isEmpty } from '../../helpers/helpers';
 import Button from '../button/button';
@@ -27,6 +27,7 @@ import {
   COPILOT_SYSTEM_STATUS_LINK,
   OPEN_COPILOT_LINK
 } from '../../constants/externalLinks';
+import { COPILOT_REFERENCE_API_LINK } from '../../constants/externalLinks';
 import {
   NavbarWrapper,
   NavbarInner,
@@ -71,7 +72,6 @@ import {
 import FeatureSubMenu from './featuresubmenu';
 import ResourcesSubMenu from './resourcessubmenu';
 import SolutionSubMenu from './solutionsubmenu';
-import { COPILOT_REFERENCE_API_LINK } from '../../constants/externalLinks';
 
 const PlateformData = [
   {
@@ -443,13 +443,11 @@ export default function NavbarComponent({
   ]);
   const renderFeatureView = useMemo(() => {
     return featureData?.map((item, index) => {
-      const colorList = FEATURE_THEME_LIST[item?.theme].colorList;
-
       return (
         <ListLi key={`feature_navbar_index_${index}`}>
-          <MenuWrap darkColor={colorList.dark} lightColor={colorList.light} href={`/features/${item?.slug}`}>
+          <MenuWrap href={`/apps/directory/${item?.slug}`}>
             <LeftImg>
-              <Image src={item?.featureIcon?.url} alt='msg-icon' width={32} height={32} />
+              <Image src={item?.icon?.url} alt='msg-icon' width={32} height={32} />
             </LeftImg>
             <RightText>
               <h5>{item?.name}</h5>

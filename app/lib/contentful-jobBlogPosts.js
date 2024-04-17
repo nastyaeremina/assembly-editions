@@ -1,7 +1,6 @@
 import { CONTENTFUL_API_TAG } from '../constants/constant';
 import { fetchGraphQL } from './contentful';
 import { POST_GRAPHQL_FAQ_COLLECTION_FIELDS } from './contentful-faq';
-import { POST_GRAPHQL_INTERNAL_FEATURES_COLLECTION_FIELDS } from './contentful-features';
 import { POST_GRAPHQL_SEOMETADATA_FIELDS } from './contentful-seo';
 
 const POST_GRAPHQL_JOB_BLOG_POST_DETAILS_FIELDS = `
@@ -10,6 +9,18 @@ author
 date
 blogLink
 `;
+
+const POST_GRAPHQL_INTERNAL_FEATURES_COLLECTION_FIELDS = `
+internalFeaturesCollection{
+  items{
+    name
+    title
+    description
+    image{
+      url
+    }
+  }
+}`;
 
 const POST_GRAPHQL_JOB_DETAILS_FIELDS = `
     title
