@@ -128,3 +128,17 @@ export async function getTemplateDetailContent({ slug }) {
 
   return entries1?.data?.templateCollection?.items?.[0];
 }
+
+export async function getAllTemplatesWithSlug() {
+  const entries = await fetchGraphQL(
+    `query {
+      templateCollection(preview: false) {
+        items {
+         slug
+        }
+      }
+    }`,
+    false
+  );
+  return entries?.data?.templateCollection?.items;
+}

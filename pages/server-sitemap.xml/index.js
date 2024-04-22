@@ -10,6 +10,7 @@ import { PER_UPDATE_PAGE_POST } from '../../app/constants/constant';
 import { getAllAutomationsWithSlug } from '../../app/lib/contentful-automation';
 import { getAllGlossaryContent } from '../../app/lib/contentful-glossary';
 import { getAllGuideArticleSlug } from '../../app/lib/contentful-guide';
+import { getAllTemplatesWithSlug } from '../../app/lib/contentful-template';
 
 export async function getServerSideProps(ctx) {
   const appsPost = (await getAllPartnerAppsWithSlug()) ?? []; // appa
@@ -24,6 +25,7 @@ export async function getServerSideProps(ctx) {
   const automationsPost = (await getAllAutomationsWithSlug()) ?? []; // automationsPost
   const glossarysPost = (await getAllGlossaryContent()) ?? []; // glossary
   const guidesPost = (await getAllGuideArticleSlug()) ?? []; // guide
+  const templatesPost = await getAllTemplatesWithSlug(); //templates
 
   const appsPostsPathList = appsPost?.map((item) => `apps/directory/${item?.slug}`);
   const jobsPostsPathList = jobPosts?.map((item) => `jobs/${item?.slug}`);
@@ -37,6 +39,7 @@ export async function getServerSideProps(ctx) {
   const automationsPostsPathList = automationsPost?.map((item) => `automations/directory/${item?.slug}`);
   const glossaryPostsPathList = glossarysPost?.map((item) => `glossary/${item?.slug}`);
   const guidePostsPathList = guidesPost?.map((item) => `guide/${item?.slug}`);
+  const templatePostsPathList = templatesPost?.map((item) => `templates/${item?.slug}`);
 
   let allUpdateWithPagination = [];
   const totalCount = updatesPost?.meta?.pagination?.total;
@@ -54,11 +57,6 @@ export async function getServerSideProps(ctx) {
     'brand',
     'comparison',
     'customers',
-    'features/billing-app',
-    'features/files-app',
-    'features/forms-app',
-    'features/helpdesk-app',
-    'features/messaging-app',
     'jobs',
     'pricing',
     'sitemap',
@@ -66,7 +64,8 @@ export async function getServerSideProps(ctx) {
     'updates',
     'weekly-demo',
     'glossary',
-    'guide'
+    'guide',
+    'templates'
   ];
   const finalList = appsPostsPathList?.concat(
     staticPages,
@@ -81,7 +80,8 @@ export async function getServerSideProps(ctx) {
     allUpdateWithPagination,
     automationsPostsPathList,
     glossaryPostsPathList,
-    guidePostsPathList
+    guidePostsPathList,
+    templatePostsPathList
   );
   return getServerSideSitemapIndex(
     ctx,
