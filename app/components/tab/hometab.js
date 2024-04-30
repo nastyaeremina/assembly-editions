@@ -1,10 +1,18 @@
 'use client';
 import Image from 'next/image';
-import React, { useCallback, useEffect, useMemo, useState } from 'react';
-import { AnimatePresence, motion } from 'framer-motion';
-import TabContent from '../tabbutton/TabContent';
+import React, { useCallback, useEffect, useState } from 'react';
 import NewTabNavItem from '../tabbutton/NewTabNavItem';
-import { LeftContent, Nav, RightContent, Tabbutton, TabbuttonBottom, TabbuttonTop } from '../tabbutton/hometabstyle';
+import {
+  BgImage,
+  Description,
+  LeftContent,
+  MainSection,
+  Nav,
+  RightContent,
+  ShowImage,
+  Tabbutton,
+  TabbuttonTop
+} from '../tabbutton/hometabstyle';
 import featurebackground from '/public/images/Featurbackgroundimage.png';
 import useMobileDevice from '../../hooks/useMobileDevice';
 
@@ -13,16 +21,10 @@ export default function HomeTabView({ tabData: allPosts, isAutomation }) {
   const [activeIndex, setActiveIndex] = useState(0);
   const [width, setWidth] = useState(0);
   const [totalWidth, setTotalWidth] = useState(0);
-
-  const [pos, setPos] = useState({ width: 0, xPosition: 0 });
+  const [maxHeight, setMaxHeight] = useState(0);
 
   const [isOpen, setIsOpen] = useState(false);
-  const onClickTab = useCallback((index) => {
-    setActiveTabId(index);
 
-    const activeItem = document.querySelector(`.tabs #${index}`);
-    setPos({ width: activeItem.clientWidth, xPosition: activeItem.offsetLeft });
-  }, []);
   const onClick = () => {
     setIsOpen(!isOpen);
   };
@@ -40,11 +42,27 @@ export default function HomeTabView({ tabData: allPosts, isAutomation }) {
       // Select the element using the generated ID
       const element = document.querySelector(`.tabs #${eleId}`);
       // Get the width of the element
-      var width = element.clientWidth;
+      var width = element?.clientWidth;
       return width;
     },
     [allPosts, isMobile]
   );
+
+  const getTextContentMaxHeight = useCallback(() => {
+    // Use setTimeout to ensure that the DOM elements are rendered before accessing them
+    setTimeout(() => {
+      allPosts?.forEach((item, index) => {
+        // Get the element by its ID (dynamic ID based on item title)
+        const element = document.getElementById(item?.title);
+        if (element) {
+          const height = element.offsetHeight;
+          if (height > maxHeight) {
+            setMaxHeight(height);
+          }
+        }
+      });
+    }, 200); // Wait 200 milliseconds before executing the code inside setTimeout
+  }, [allPosts, maxHeight]);
 
   // Effect to set the initial width when the component mounts or when allPosts changes
   useEffect(() => {
@@ -52,7 +70,8 @@ export default function HomeTabView({ tabData: allPosts, isAutomation }) {
     var width = getElementWidth(0);
     // Set the initial width state
     setWidth(width);
-  }, [getElementWidth]);
+    getTextContentMaxHeight();
+  }, [getElementWidth, getTextContentMaxHeight]);
 
   const handleTabClick = useCallback(
     (index) => {
@@ -92,7 +111,9 @@ export default function HomeTabView({ tabData: allPosts, isAutomation }) {
                   title={item?.title}
                   id={index}
                   eleId={eleId}
-                  setActiveIndex={(index) => setActiveIndex(index)}
+                  setActiveIndex={(index) => {
+                    setActiveIndex(index);
+                  }}
                   activeTab={activeTabId}
                   setActiveTab={handleTabClick}
                   activeIndex={activeIndex}
@@ -111,38 +132,61 @@ export default function HomeTabView({ tabData: allPosts, isAutomation }) {
       {/* For Mobile  */}
       <Nav className='tabs'>{renderTabBar(true)}</Nav>
       {/* For Desktop */}
-      <Tabbutton className='tabs' bgimage={allPosts[activeTabId]?.backgroundImage?.url || featurebackground.src}>
-        <TabbuttonTop>
-          <LeftContent>{allPosts[activeTabId]?.description}</LeftContent>
-          <RightContent>{renderTabBar()}</RightContent>
-        </TabbuttonTop>
-        <div className='outlet'>
+      <MainSection>
+        <BgImage>
           {allPosts?.map((item, index) => {
-            var extension = item?.image?.url?.split('.').pop();
-            let isGifFile = extension === 'gif';
-
             return (
               <>
-                <TabContent id={index} activeTab={activeTabId}>
-                  <>
-                    <AnimatePresence mode='wait'>
-                      <motion.div
-                        initial={{ scale: 0.8 }}
-                        animate={{ scale: 1 }}
-                        exit={{ scale: 0.8 }}
-                        transition={{ duration: 0.3 }}>
-                        <TabbuttonBottom onClick={onClick} isAutomation={isAutomation} isGifFile={isGifFile}>
-                          <Image src={item?.image?.url} alt='msg-screen' width={881.76} height={550.63} />
-                        </TabbuttonBottom>
-                      </motion.div>
-                    </AnimatePresence>
-                  </>
-                </TabContent>
+                <Image
+                  src={item?.backgroundImage?.url}
+                  alt=''
+                  width={1000}
+                  height={500}
+                  style={{ width: '100%', height: '100%' }}
+                  className={index === activeTabId ? 'active-img' : 'img'}
+                />
               </>
             );
           })}
-        </div>
-      </Tabbutton>
+        </BgImage>
+        <Tabbutton className='tabs'>
+          <TabbuttonTop id='text-content'>
+            <Description height={maxHeight}>
+              {allPosts?.map((item, index) => {
+                return (
+                  <>
+                    <LeftContent isShow={activeTabId === index} id={item?.title}>
+                      {item?.description}
+                    </LeftContent>
+                  </>
+                );
+              })}
+            </Description>
+            <RightContent>{renderTabBar()}</RightContent>
+          </TabbuttonTop>
+          <div className='outlet'>
+            {allPosts?.map((item, index) => {
+              var extension = item?.image?.url?.split('.').pop();
+              let isGifFile = extension === 'gif';
+              let isSelectedTab = activeTabId === index;
+              return (
+                <>
+                  <ShowImage isSelectedTab={isSelectedTab}>
+                    <Image
+                      src={item?.image?.url}
+                      alt='msg-screen'
+                      width={881.76}
+                      height={550.63}
+                      loading='eager'
+                      priority={true}
+                    />
+                  </ShowImage>
+                </>
+              );
+            })}
+          </div>
+        </Tabbutton>
+      </MainSection>
     </>
   );
 }

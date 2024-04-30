@@ -2,22 +2,12 @@
 
 import styled, { css } from 'styled-components';
 import { Body3, Label, MbBody1, MbBody3, MbPrimaryBtn } from '../../styles/styles';
-import { black, whiteColor, greendark, greenlight } from '../../styles/color';
+import { black, whiteColor, greendark, greenlight, title } from '../../styles/color';
 
 const Tabbutton = styled.div`
   margin: 0 auto;
   max-width: 1400px;
-  ${(props) =>
-    props.bgimage &&
-    css`
-      background: url(${props.bgimage});
-      width: 100%;
-      background-size: cover;
-      border-radius: 5px;
-      border: 1px solid #131313;
-      background-repeat: no-repeat;
-    `}
-
+  z-index: 1;
   .Tabs {
     width: 80%;
     height: auto;
@@ -30,6 +20,9 @@ const Tabbutton = styled.div`
     @media (max-width: 769px) {
       padding: 2rem 0;
     }
+  }
+  .outlet {
+    position: relative;
   }
 `;
 
@@ -90,6 +83,21 @@ const BottomFunction = styled.div`
     flex-direction: column;
     justify-content: unset;
     margin-top: 28px;
+  }
+
+  .image-container {
+    background-position: center;
+    transform: scale(1.2, 1.2);
+  }
+  @keyframes zoomeffect {
+    0% {
+      background-position: center;
+      transform: scale(1.2, 1.2);
+    }
+    80% {
+      background-position: center;
+      transform: scale(1, 1);
+    }
   }
 `;
 
@@ -195,43 +203,6 @@ const Nav = styled.div`
   }
 `;
 
-const TabbuttonBottom = styled.div`
-  width: 100%;
-  background: transparent;
-  position: relative;
-  cursor: pointer;
-  display: flex;
-  padding: 34px 0 60px 0;
-  align-items: center;
-  justify-content: center;
-  img {
-    height: 100%;
-    max-width: 881.76px;
-    width: 100%;
-    border: 1px solid #131313;
-    border-radius: 4px;
-    max-height: 550.63px;
-    box-shadow: 4px 4px 32px 0px rgba(0, 0, 0, 0.25);
-    display: block;
-  }
-  ${(props) =>
-    props.isAutomation &&
-    css`
-      padding: 0;
-      img {
-        width: 100%;
-        max-width: 100%;
-        border-radius: 5px;
-        max-height: ${props?.isGifFile ? '276px' : '550px'};
-      }
-      @media only screen and (max-width: 749px) {
-        padding: 0;
-      }
-    `}
-  @media only screen and (max-width: 768px) {
-    padding: 14px;
-  }
-`;
 const TabbuttonTop = styled.div`
   max-width: 1440px;
   width: 100%;
@@ -258,6 +229,14 @@ const LeftContent = styled.p`
   margin: 0;
   ${Body3}
   color: ${whiteColor};
+  opacity: 0;
+  display: none;
+  ${(props) =>
+    props.isShow &&
+    css`
+      opacity: 1;
+      display: inline-block;
+    `}
   @media only screen and (max-width: 1440px) {
     max-width: 500px;
     width: 100%;
@@ -349,4 +328,113 @@ const RightContent = styled.div`
   }
 `;
 
-export { Tabbutton, TabDetails, Tab, BottomFunction, Nav, TabbuttonBottom, TabbuttonTop, LeftContent, RightContent };
+const BgImage = styled.div`
+  margin: 0px auto;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  scale: 1;
+  transition: all 1s cubic-bezier(0.72, 0, 0.12, 1) 0s;
+  overflow: hidden;
+  opacity: 1;
+  will-change: scale, width;
+  .img {
+    object-position: center top;
+    object-fit: cover;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    height: 100%;
+    width: 100%;
+    opacity: 0;
+    scale: 1.1;
+    visibility: hidden;
+    transition: opacity 0.3s ease 0s, scale 0.3s ease-in-out 0s, visibility 1ms ease 0.3s;
+  }
+
+  .active-img {
+    object-position: center center;
+    object-fit: cover;
+    /* position: absolute; */
+    top: 0px;
+    left: 0px;
+    height: 100%;
+    width: 100%;
+    opacity: 1;
+    scale: 1;
+    visibility: visible;
+    transition: opacity 0s ease 0s, scale 0.4s ease-in-out 0s;
+  }
+`;
+
+const MainSection = styled.div`
+  display: flex;
+  width: 100%;
+  height: auto;
+  overflow: hidden;
+  border: 1px solid ${title};
+  border-radius: 4px;
+  position: relative;
+`;
+
+const Description = styled.div`
+  ${(props) =>
+    props.height &&
+    css`
+      height: ${props.height}px;
+      @media only screen and (max-width: 768px) {
+        height: auto;
+      }
+    `}
+`;
+
+const ShowImage = styled.div`
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  height: 100%;
+  width: 100%;
+  opacity: 0;
+  scale: 0.95;
+  visibility: hidden;
+  transition: opacity 0.3s ease 0s, scale 0.3s ease-in-out 0s, visibility 1ms ease 0.3s;
+  padding: 34px 0 60px 0;
+  display: flex;
+  justify-content: center;
+  img {
+    height: 100%;
+    border-radius: 4px;
+    border: 1px solid ${title};
+  }
+  ${(props) =>
+    props.isSelectedTab &&
+    css`
+      position: relative;
+      height: 100%;
+      width: 100%;
+      opacity: 1;
+      scale: 1;
+      visibility: visible;
+      transition: opacity 0.4s ease 0s, scale 0.4s ease-in-out 0s;
+    `};
+  @media only screen and (max-width: 768px) {
+    padding: 14px;
+    img {
+      width: 100%;
+    }
+  }
+`;
+export {
+  Tabbutton,
+  TabDetails,
+  Tab,
+  BottomFunction,
+  Nav,
+  TabbuttonTop,
+  LeftContent,
+  RightContent,
+  BgImage,
+  MainSection,
+  Description,
+  ShowImage
+};
