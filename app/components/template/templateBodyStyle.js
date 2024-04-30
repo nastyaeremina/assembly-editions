@@ -1,6 +1,17 @@
 import styled, { css } from 'styled-components';
 import { body, footercolor, greendark, greenlight, lightgray, primary, title } from '../../styles/color';
-import { Body3, Body4, Body5, HeaderFont, Heading4, Heading6, MbBody3, MbBody4, MbBody5 } from '../../styles/styles';
+import {
+  Body3,
+  Body4,
+  Body5,
+  HeaderFont,
+  Heading4,
+  Heading5,
+  Heading6,
+  MbBody3,
+  MbBody4,
+  MbBody5
+} from '../../styles/styles';
 
 const TemplateBody = styled.div`
   display: flex;
@@ -203,6 +214,71 @@ const TemplateContent = styled.div`
   }
   h3 + p {
     margin: 12px 0 0;
+  }
+  h4 > b,
+  h4 {
+    ${Heading5};
+    font-weight: 400;
+    color: ${title};
+    margin: 20px 0 0;
+  }
+  h4 + p {
+    margin: 6px 0 0;
+  }
+  b {
+    font-weight: 500;
+  }
+  table {
+    width: 100%;
+    border: 1px solid #00160e;
+    margin-bottom: 40px;
+    margin-top: 20px;
+    p {
+      margin: 0;
+    }
+    @media only screen and (max-width: 479px) {
+      margin-top: 20px;
+      margin-bottom: 0px;
+    }
+    tr {
+      :nth-child(odd) {
+        background-color: #f8f9fb;
+      }
+    }
+    th {
+      background-color: #e3ffee;
+      border: 1px solid #00160e;
+      padding: 12px 20px;
+      text-align: left;
+      ${Heading6};
+      font-weight: 400;
+      color: ${title};
+      p > b,
+      p {
+        ${Heading6};
+        font-weight: 400;
+        color: ${title};
+      }
+    }
+    td {
+      border: 1px solid #00160e;
+      border-style: none solid none solid;
+      padding: 16px 20px;
+      ${Body5};
+      color: ${title};
+      vertical-align: top;
+      p {
+        ${Body5};
+        color: ${title};
+        padding-top: 20px;
+        :first-child {
+          padding-top: 0;
+        }
+        i {
+          font-style: italic !important;
+        }
+      }
+    }
   }
   p {
     ${Body4};
