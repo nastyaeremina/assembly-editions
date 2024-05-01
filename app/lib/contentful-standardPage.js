@@ -88,7 +88,7 @@ export async function getStandardPageContent(slug, preview) {
         }
       }`,
     preview,
-    [CONTENTFUL_API_TAG.STANDARD_PAGE]
+    [CONTENTFUL_API_TAG.STANDARD_PAGE, CONTENTFUL_API_TAG.TEMPLATE]
   );
   return entries?.data?.pageTemplateCollection?.items?.[0];
 }

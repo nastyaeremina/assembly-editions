@@ -138,7 +138,8 @@ export async function getAllTemplatesWithSlug() {
         }
       }
     }`,
-    false
+    false,
+    [CONTENTFUL_API_TAG.TEMPLATE]
   );
   return entries?.data?.templateCollection?.items;
 }
