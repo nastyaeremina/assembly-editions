@@ -300,6 +300,12 @@ const TemplateContent = styled.div`
     margin: 16px auto 0;
     width: inherit;
   }
+  video {
+    width: inherit;
+    margin: 16px auto 0;
+    border-radius: 4px;
+    border: 0.4px solid #dfe1e4;
+  }
   ol {
     padding-left: 20px;
     li {

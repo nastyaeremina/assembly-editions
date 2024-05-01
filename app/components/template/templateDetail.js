@@ -16,6 +16,8 @@ export default function TemplateDetail({ content }) {
           //check current asset is image
           if (asset?.contentType?.startsWith('image/'))
             return <Image src={src} alt={asset?.fileName} width={753} height={266} className='content-image' />;
+          else if (asset?.contentType?.startsWith('video/'))
+            return <video src={src} controls={true} autoPlay={false} />;
           return null;
         }
 
