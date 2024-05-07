@@ -56,3 +56,4 @@ export const bgcolor = '#FFFFFD';
 export const subtitle = '#3D3D3D';
 export const texrColor = '#000';
 export const gainsboro = 'rgba(0, 0, 0, 0.5)';
+export const tablecolor = '#F8F9FB';

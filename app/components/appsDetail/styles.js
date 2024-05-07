@@ -3,6 +3,7 @@ import {
   Body3,
   Body4,
   Body5,
+  HeaderFont,
   Heading3,
   Heading4,
   Heading5,
@@ -13,7 +14,7 @@ import {
   MobileH3,
   MobileH4
 } from '../../styles/styles';
-import { black, body, border, primary, title, whiteColor } from '../../styles/color';
+import { black, body, border, primary, tablecolor, title, whiteColor } from '../../styles/color';
 
 const AppDetail = styled.div`
   display: flex;
@@ -135,7 +136,6 @@ const ImageSection = styled.div`
     }
   }
   @media only screen and (max-width: 768px) {
-
     ${(props) =>
       !props.isHide &&
       css`
@@ -457,9 +457,10 @@ const AppDetailContent = styled.div`
   }
   table {
     width: 100%;
-    border: 1px solid #00160e;
     margin-bottom: 40px;
     margin-top: 20px;
+    box-shadow: ${border} 0px 0px 0px 1px;
+    border-radius: 3px;
     p {
       margin: 0;
     }
@@ -471,26 +472,40 @@ const AppDetailContent = styled.div`
       :nth-child(odd) {
         background-color: #f8f9fb;
       }
+      :last-child {
+        td {
+          :first-child {
+            border-radius: 0 0 0 3px;
+          }
+          :last-child {
+            border-radius: 0 0 3px 0;
+          }
+        }
+      }
+      :first-child {
+        border-bottom: 1px solid ${border};
+      }
     }
     th {
-      background-color: #e3ffee;
-      border: 1px solid #00160e;
+      background-color: ${tablecolor};
       padding: 12px 20px;
       text-align: left;
-      ${Heading6};
-      font-weight: 400;
+      ${HeaderFont};
       color: ${title};
       p > b,
       p {
-        ${Heading6};
-        font-weight: 400;
+        ${HeaderFont};
         color: ${title};
+      }
+      :first-child {
+        border-radius: 3px 0 0 0;
+      }
+      :last-child {
+        border-radius: 0 3px 0 0;
       }
     }
     td {
-      border: 1px solid #00160e;
-      border-style: none solid none solid;
-      padding: 16px 20px;
+      padding: 12px 20px;
       ${Body4};
       color: ${title};
       vertical-align: top;
@@ -593,5 +608,5 @@ export {
   ArrowIcon,
   ImageSlider,
   AppDetailContent,
-  AboutDescription,
+  AboutDescription
 };
