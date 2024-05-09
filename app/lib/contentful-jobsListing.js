@@ -7,6 +7,7 @@ name
 slug
 department
 location
+compensation
 isRemote
 jobDescription{
     json

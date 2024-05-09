@@ -62,6 +62,12 @@ export default function JobsDetailPage({ data: jobDetail }) {
                     <span>{jobDetail?.location}</span>
                   </DetailWrap>
                 )}
+                {!isEmpty(jobDetail?.compensation) && (
+                  <DetailWrap>
+                    <p>Compensation</p>
+                    <span>{jobDetail?.compensation}</span>
+                  </DetailWrap>
+                )}
                 {!isEmpty(jobDetail?.teamMembersCollection?.items) && (
                   <DetailWrap>
                     <p>Work with</p>
