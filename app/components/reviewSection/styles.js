@@ -1,17 +1,20 @@
 import styled from 'styled-components';
 import {
+  Body2,
   Body3,
   Body4,
   Body5,
+  HeaderFont,
   Heading3,
   Heading4,
   Heading5,
   Heading6,
   MbBody3,
   MbBody4,
+  MbButtonText,
   MbPrimaryBtn
 } from '../../styles/styles';
-import { body, border, lightgray, title } from '../../styles/color';
+import { body, border, greendark, lightgray, title } from '../../styles/color';
 
 const ReviewContent = styled.div`
   display: flex;
@@ -52,6 +55,12 @@ const OverAllRating = styled.div`
   justify-content: space-between;
   align-items: center;
   margin-bottom: 24px;
+  .button {
+    a {
+      padding: 7px 32px;
+      ${HeaderFont}
+    }
+  }
   @media only screen and (max-width: 449px) {
     flex-direction: column;
     align-items: flex-start;
@@ -108,6 +117,9 @@ const Info = styled.div`
   gap: 10px;
   max-width: 306px;
   width: 100%;
+  @media only screen and (max-width: 768px) {
+    max-width: 200px;
+  }
   @media only screen and (max-width: 449px) {
     gap: 6px;
   }
@@ -116,6 +128,7 @@ const Review = styled.div`
   display: flex;
   flex-direction: column;
   gap: 16px;
+  width: 100%;
   @media only screen and (max-width: 449px) {
     gap: 12px;
   }
@@ -149,6 +162,41 @@ const ReviewDetail = styled.div`
     ${MbBody3}
   }
 `;
+
+const EmptyDesign = styled.div`
+  max-width: 524px;
+  margin: 0 auto;
+  .review-empty-logo {
+    margin: 0 auto;
+    display: flex;
+  }
+`;
+
+const EmptyContent = styled.div`
+  margin-top: 40px;
+  .empty-section-button {
+    display: flex;
+    justify-content: center;
+    a {
+      padding: 7px 32px;
+      ${HeaderFont}
+    }
+  }
+`;
+
+const Emptyheading = styled.h4`
+  ${Body2}
+  color:${greendark};
+  margin: 0;
+  text-align: center;
+`;
+
+const EmptyCaption = styled.p`
+  ${Body4};
+  color: ${lightgray};
+  margin: 16px 0 32px;
+  text-align: center;
+`;
 export {
   ReviewContent,
   SectionHeading,
@@ -164,5 +212,9 @@ export {
   Body,
   PersonReview,
   Star,
-  ReviewDetail
+  ReviewDetail,
+  EmptyDesign,
+  EmptyContent,
+  Emptyheading,
+  EmptyCaption
 };

@@ -1,17 +1,15 @@
 import React from 'react';
 import moment from 'moment';
-import { Body, Info, PersonName, PersonReview, Review, ReviewDetail, ReviewDiv, Star } from './styles';
 import { isEmpty } from '../../helpers/helpers';
+import { Body, Info, PersonName, PersonReview, Review, ReviewDetail, ReviewDiv, Star } from './styles';
 
 import StartList from './starList';
 export default function ReviewInfo({ data }) {
-  console.log('data', data);
   return (
     <ReviewDiv>
       <Info>
-        <PersonName>{data?.customerName}</PersonName>
-        <Body>{data?.location}</Body>
-        {!isEmpty(data?.yearsWithApp) && <Body>{`About ${data?.yearsWithApp} years using the app`}</Body>}{' '}
+        {data?.customerName && <PersonName>{data?.customerName}</PersonName>}
+        {data?.location && <Body>{data?.location}</Body>}
       </Info>
       <Review>
         <PersonReview>

@@ -396,6 +396,7 @@ export const BOOK_DEMO_CONTENT_TYPE = {
 
 export const CONTENTFUL_API_TAG = {
   APP: 'app',
+  APP_REVIEW: 'app-review',
   AUTOMATION: 'automation',
   CASESTUDY: 'casestudy',
   COMMON_CONTENT: 'common-content',

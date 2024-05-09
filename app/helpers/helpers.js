@@ -470,19 +470,26 @@ export function searchFAQForValueWithParent({ array, query, slug, searchRegex })
 // Function to calculate average rate
 export function calculateAverageRate(items) {
   // Check if items array is not empty
-  if (items?.length === 0) {
-    return 0; // Return 0 if array is empty
+  if (!items || items.length === 0) {
+    return 0; // Return 0 if array is empty or undefined
   }
 
-  // Calculate sum of all rates
+  // Filter out items with undefined rates and calculate sum of all valid rates
   const sum = items.reduce((accumulator, currentItem) => {
-    return accumulator + currentItem?.rate;
+    // Check if currentItem has a valid rate
+    if (typeof currentItem.rate === 'number' && !isNaN(currentItem.rate)) {
+      return accumulator + currentItem.rate;
+    } else {
+      return accumulator; // Ignore invalid rates
+    }
   }, 0);
 
   // Calculate average rate
-  const average = sum / items?.length;
+  const average = sum / items.length;
+  // Round average rate to the nearest half
+  const roundedAverage = Math.ceil(average * 2) / 2;
 
-  return average;
+  return roundedAverage;
 }
 
 /**

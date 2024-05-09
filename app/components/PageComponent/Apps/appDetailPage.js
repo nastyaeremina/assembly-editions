@@ -1,5 +1,6 @@
 'use client';
 
+import { useMemo, useState } from 'react';
 import { AppsDetailMain } from '../../../styles/appsStyles';
 import { calculateAverageRate, isEmpty, removeEmptyElement } from '../../../helpers/helpers';
 import BackComponent from '../../backComponent/backComponent';
@@ -8,7 +9,13 @@ import AppsCardSection from '../../appsCards/appsCardSection';
 import ReviewSection from '../../reviewSection/reviewSection';
 
 export default function AppsDetailPage({ appDetail, relatedAppList, isUserAuthenticated }) {
-  const avarageRate = calculateAverageRate(removeEmptyElement(appDetail?.reviewsCollection?.items));
+  const [reviewList, setReviewList] = useState(appDetail?.reviewsCollection?.items || []);
+
+  //calculate avarage rate
+  const avarageRate = useMemo(() => {
+    return calculateAverageRate(removeEmptyElement(reviewList)) || 0;
+  }, [reviewList]);
+
   return (
     <>
       <AppsDetailMain>
@@ -16,14 +23,20 @@ export default function AppsDetailPage({ appDetail, relatedAppList, isUserAuthen
           <BackComponent backtext={'Back to all apps'} href={'/apps/directory'} isDirectorydetail />
           <AppsDetailComponent
             detail={appDetail?.guideArticle}
+            reviewList={reviewList}
             content={{ ...appDetail, avarageRate }}
             isUserAuthenticated={isUserAuthenticated}
           />
-          {!isEmpty(removeEmptyElement(appDetail?.reviewsCollection?.items)) && (
+          {/* show review section only if user is authenticated (case of no review exist user can add first one)
+          show review section if review list is not exist */}
+          {(isUserAuthenticated || !isEmpty(removeEmptyElement(reviewList))) && (
             <ReviewSection
               totalReview={appDetail?.reviewsCollection?.total}
-              reviewList={appDetail?.reviewsCollection?.items}
+              reviewList={reviewList}
               avarageRate={avarageRate}
+              isAuthenticated={isUserAuthenticated}
+              appId={appDetail?.sys.id}
+              setReviewList={setReviewList}
             />
           )}
           {!isEmpty(relatedAppList) && (

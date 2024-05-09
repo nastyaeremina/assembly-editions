@@ -27,7 +27,7 @@ import AppsDetailDescription from './appsDetailDescription';
 import Button from '../button/button';
 import { black, whiteColor } from '../../styles/color';
 
-export default function AppsDetailComponent({ detail, content, isUserAuthenticated }) {
+export default function AppsDetailComponent({ detail, content, isUserAuthenticated, reviewList }) {
   const imageList = removeEmptyElement(content?.imageListCollection?.items);
   return (
     <Container>
@@ -96,10 +96,7 @@ export default function AppsDetailComponent({ detail, content, isUserAuthenticat
                 },
                 {
                   label: 'Rating',
-                  value:
-                    content.reviewsCollection?.total !== 0
-                      ? `${content.avarageRate}/5 (${content.reviewsCollection?.total} reviews)`
-                      : ''
+                  value: reviewList?.length !== 0 ? `${content.avarageRate}/5 (${reviewList?.length} reviews)` : ''
                 },
                 {
                   label: 'Pricing',

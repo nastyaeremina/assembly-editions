@@ -5,8 +5,8 @@ import { Star } from './styles';
 export default function StartList({ rate, isBig }) {
   const svgWidth = isBig ? '24' : '20';
   const renderStar = () => {
-    return [...Array(5)].map((i, index) => {
-      if (index + 1 <= rate || rate - index > 0.5)
+    return [...Array(5)].map((_, index) => {
+      if (index + 1 <= rate)
         return (
           <SVGComponent
             name={`green-star-${isBig ? 'big' : 'medium'}-icon`}
@@ -15,7 +15,7 @@ export default function StartList({ rate, isBig }) {
             viewBox={svgWidth}
           />
         );
-      else if (rate - index <= 0.5 && rate - index !== 0)
+      else if (rate - index === 0.5)
         return (
           <SVGComponent
             name={`half-star-${isBig ? 'big' : 'medium'}-icon`}

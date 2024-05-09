@@ -236,6 +236,9 @@ export async function getAllPartnerAppsWithSlug(preview) {
   return extractPostEntries(entries);
 }
 const POST_GRAPHQL_DATA_APPS_DETAILS_FIELDS = `
+sys{
+  id
+}
 name
 slug
 appsType
@@ -258,12 +261,14 @@ guideArticle{
           url
         }
       }
-      reviewsCollection(preview:false){
+      `;
+
+const POST_GRAPHQL_DATA_APPS_REVIW_DETAILS_FIELDS = `
+
+      reviewsCollection(preview:false,order:date_DESC,){
         total
         items{
           customerName
-          location
-          yearsWithApp
           rate
           comment
           date
@@ -291,7 +296,18 @@ export async function getPartnerAppDetail(slug, preview) {
     preview,
     [CONTENTFUL_API_TAG.APP, CONTENTFUL_API_TAG.GUIDE]
   );
-  return extractPostEntry(entries);
+  const reviewEntries = await fetchGraphQL(
+    `query {
+      partnerAppsCollection(where:{slug:"${slug}"},limit:1,preview: ${preview ? 'true' : 'false'}) {
+        items {
+          ${POST_GRAPHQL_DATA_APPS_REVIW_DETAILS_FIELDS}
+        }
+      }
+    }`,
+    preview,
+    [CONTENTFUL_API_TAG.APP, CONTENTFUL_API_TAG.APP_REVIEW]
+  );
+  return { ...extractPostEntry(entries), ...extractPostEntry(reviewEntries) };
 }
 
 export async function getAllAppsWithIcon(preview) {
