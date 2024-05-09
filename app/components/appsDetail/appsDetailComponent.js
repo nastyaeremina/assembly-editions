@@ -19,25 +19,45 @@ import {
   DetailTitleSection,
   LeftContent,
   RightContent,
+  Section,
   Title
 } from './styles';
 import ImageSection from './ImageSection';
 import AppsDetailDescription from './appsDetailDescription';
+import Button from '../button/button';
+import { black, whiteColor } from '../../styles/color';
 
-export default function AppsDetailComponent({ detail, content }) {
+export default function AppsDetailComponent({ detail, content, isUserAuthenticated }) {
   const imageList = removeEmptyElement(content?.imageListCollection?.items);
   return (
     <Container>
       <AppDetail>
-        <DetailTitleSection>
-          <Title>
-            <AppLogo>
-              <Image src={content?.icon?.url} alt='app-logo' width={80} height={80} />
-            </AppLogo>
-            <h3>{content?.name}</h3>
-          </Title>
-          <Caption>{content?.description}</Caption>
-        </DetailTitleSection>
+        <Section>
+          <DetailTitleSection>
+            <Title>
+              {!isEmpty(content?.icon?.url) && (
+                <AppLogo>
+                  <Image src={content?.icon?.url} alt='app-logo' width={80} height={80} />
+                </AppLogo>
+              )}
+              <h3>{content?.name}</h3>
+            </Title>
+            <Caption>{content?.description}</Caption>
+          </DetailTitleSection>
+
+          {isUserAuthenticated && (
+            <Button
+              text={'Install'}
+              href={`https://dashboard.copilot.com/install/${content?.slug}`}
+              target='_blank'
+              className={'install-button'}
+              bgColor={black}
+              fontColor={whiteColor}
+              borderColor={black}
+              hoverColor={'rgba(255, 255, 255,0.8)'}
+            />
+          )}
+        </Section>
         <DetailContent>
           {(!isEmpty(imageList) || !isEmpty(detail?.content?.json)) && (
             <LeftContent>

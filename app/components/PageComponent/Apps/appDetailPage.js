@@ -7,14 +7,18 @@ import AppsDetailComponent from '../../appsDetail/appsDetailComponent';
 import AppsCardSection from '../../appsCards/appsCardSection';
 import ReviewSection from '../../reviewSection/reviewSection';
 
-export default function AppsDetailPage({ appDetail, relatedAppList }) {
+export default function AppsDetailPage({ appDetail, relatedAppList, isUserAuthenticated }) {
   const avarageRate = calculateAverageRate(removeEmptyElement(appDetail?.reviewsCollection?.items));
   return (
     <>
       <AppsDetailMain>
         <>
           <BackComponent backtext={'Back to all apps'} href={'/apps/directory'} isDirectorydetail />
-          <AppsDetailComponent detail={appDetail?.guideArticle} content={{ ...appDetail, avarageRate }} />
+          <AppsDetailComponent
+            detail={appDetail?.guideArticle}
+            content={{ ...appDetail, avarageRate }}
+            isUserAuthenticated={isUserAuthenticated}
+          />
           {!isEmpty(removeEmptyElement(appDetail?.reviewsCollection?.items)) && (
             <ReviewSection
               totalReview={appDetail?.reviewsCollection?.total}

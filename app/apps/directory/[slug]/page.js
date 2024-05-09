@@ -1,4 +1,5 @@
 import { notFound } from 'next/navigation';
+import { cookies } from 'next/headers';
 import Layout from '../../../components/layout';
 import Navbar from '../../../components/navbar/navbar';
 import { getAllPartnerApps, getPartnerAppDetail } from '../../../lib/contentful-partnerApps';
@@ -43,11 +44,17 @@ export async function generateMetadata({ params }) {
 export default async function AppsDetail({ params }) {
   const { appDetail, relatedApps } = await getContent({ slug: params.slug });
   if (isEmpty(appDetail)) return notFound();
+  const cookie = cookies().get('current-portal-session');
+  const isUserAuthenticated = !isEmpty(cookie?.value);
   return (
     <>
       <Layout>
         <Navbar />
-        <AppsDetailPage appDetail={appDetail} relatedAppList={relatedApps} />
+        <AppsDetailPage
+          isUserAuthenticated={isUserAuthenticated}
+          appDetail={appDetail}
+          relatedAppList={relatedApps}
+        />
         <CTA />
       </Layout>
     </>

@@ -588,6 +588,30 @@ const AboutDescription = styled.div`
   }
 `;
 
+const Section = styled.div`
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  .install-button {
+    a {
+      padding: 7px 32px;
+      font-size: 16px;
+      line-height: 24px;
+      margin-top: 20px;
+    }
+  }
+  @media only screen and (max-width: 449px) {
+    flex-direction: column;
+    .install-button {
+      a {
+        padding: 9px 16px;
+        font-size: 12px;
+        line-height: 12px;
+        margin-top: 0px;
+      }
+    }
+  }
+`;
 export {
   AppDetail,
   DetailTitleSection,
@@ -608,5 +632,6 @@ export {
   ArrowIcon,
   ImageSlider,
   AppDetailContent,
-  AboutDescription
+  AboutDescription,
+  Section
 };
