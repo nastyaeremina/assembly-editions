@@ -1,9 +1,9 @@
 'use client';
-import Link from 'next/link';
 import React from 'react';
 import { Container } from '../../styles/commonStyles';
-import { TemplateBody } from './templateBodyStyle';
-import TemplateDetail from './templateDetail';
+import RichTextDetail from '../richTextDetail/richText';
+import { isEmpty } from '../../helpers/helpers';
+import { TemplateBody, TemplateContent } from './templateBodyStyle';
 import TemplateRight from './templateRight';
 
 export default function TemplateBodySection({ bodyContent, appsList, aboutContent }) {
@@ -12,7 +12,11 @@ export default function TemplateBodySection({ bodyContent, appsList, aboutConten
       <Container>
         <TemplateBody>
           {/* left content */}
-          <TemplateDetail content={bodyContent} />
+          {!isEmpty(bodyContent) && (
+            <TemplateContent>
+              <RichTextDetail data={bodyContent?.json} assets={bodyContent?.links} shouldHeadingCopy={false} />
+            </TemplateContent>
+          )}
           {/* right content */}
           <TemplateRight appsList={appsList} aboutContent={aboutContent} />
         </TemplateBody>

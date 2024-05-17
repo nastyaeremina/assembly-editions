@@ -1,5 +1,6 @@
 import { CONTENTFUL_API_TAG } from '../constants/constant';
 import { fetchGraphQL } from './contentful';
+import { POST_GRAPHQL_VIDEO_CONTENT_FIELDS } from './contentful-guide';
 import { POST_GRAPHQL_SEOMETADATA_FIELDS } from './contentful-seo';
 
 const POST_GRAPHQL_PAGE_GLOSSARY_DETAILS_FIELDS = `
@@ -14,6 +15,10 @@ name
 slug
 body{
   json
+  links{
+    ${POST_GRAPHQL_VIDEO_CONTENT_FIELDS}
+
+  }
 }
 metaDescription
 metaTitle

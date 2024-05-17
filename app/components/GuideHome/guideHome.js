@@ -4,8 +4,8 @@ import { usePathname } from 'next/navigation';
 import 'react-medium-image-zoom/dist/styles.css';
 import FAQ from '../../components/faq/faq';
 import { isEmpty } from '../../helpers/helpers';
-import { Caption, FAQSection, GuideCenter, HeroSection, MainContent, PageTitle } from './styles';
-import GuideArticleDetail from './guideArticleDetail';
+import RichTextDetail from '../richTextDetail/richText';
+import { Caption, FAQSection, GuideCenter, GuideDetail, HeroSection, MainContent, PageTitle } from './styles';
 
 export default function GuideHome({ detail }) {
   const currentPath = usePathname();
@@ -36,7 +36,9 @@ export default function GuideHome({ detail }) {
             {!isEmpty(detail?.header) && <Caption>{detail?.header}</Caption>}
           </HeroSection>
           {!isEmpty(detail?.content?.json) && (
-            <GuideArticleDetail jsonData={detail?.content?.json} assets={detail?.content?.links?.assets?.block} />
+            <GuideDetail>
+              <RichTextDetail data={detail?.content?.json} assets={detail?.content?.links} />
+            </GuideDetail>
           )}
         </GuideCenter>
         {!isEmpty(detail?.faQsCollection?.items) && (

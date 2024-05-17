@@ -66,10 +66,28 @@ childArticlesCollection(limit:50){
   }
 }
 `;
-
+export const POST_GRAPHQL_VIDEO_CONTENT_FIELDS = `
+links{
+entries{
+  inline{
+    sys{
+      id
+    }
+     ...on Video{
+      thumbnailImage{
+        url
+      }
+      video{
+        url
+      }
+    }
+  }
+}
+} `;
 export const POST_GRAPHQL_GUIDE_ARTICLE_CONTENT_FIELDS = `
 content{
   json
+  ${POST_GRAPHQL_VIDEO_CONTENT_FIELDS}
   links{
     assets{
        block{

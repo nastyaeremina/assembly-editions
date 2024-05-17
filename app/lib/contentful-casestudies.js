@@ -1,6 +1,6 @@
 import { CONTENTFUL_API_TAG } from '../constants/constant';
 import { fetchGraphQL } from './contentful';
-
+import { POST_GRAPHQL_VIDEO_CONTENT_FIELDS } from './contentful-guide';
 const POST_GRAPHQL_CASESTUDY_DETAILS_FIELDS = `
 slug
 title
@@ -16,6 +16,7 @@ testimonial{
 }
 body{
   json
+  ${POST_GRAPHQL_VIDEO_CONTENT_FIELDS}
 }
 title
 description

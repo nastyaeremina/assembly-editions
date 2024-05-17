@@ -63,11 +63,7 @@ export default function AppsDetailComponent({ detail, content, isUserAuthenticat
             <LeftContent>
               {!isEmpty(imageList) && <ImageSection imageList={imageList} />}
               {!isEmpty(detail?.content?.json) && (
-                <AppsDetailDescription
-                  jsonData={detail?.content?.json}
-                  assets={detail?.content?.links?.assets?.block}
-                  isAppdetail
-                />
+                <AppsDetailDescription jsonData={detail?.content?.json} assets={detail?.content?.links} isAppdetail />
               )}
             </LeftContent>
           )}
