@@ -56,6 +56,7 @@ export default function AppDirectoryPage({ clientApps, internalApps, featuredApp
             heading={`${searchResult?.length} Result for "${query}"`}
             appList={searchResult}
             isSearchbar
+            isFeature
           />
         </>
       );
