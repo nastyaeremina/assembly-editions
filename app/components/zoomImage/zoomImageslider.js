@@ -36,7 +36,7 @@ export default function ZoomImageSlider({
           <ArrowIcon className='left-arrow' onClick={goToPreviousImage}>
             <SVGComponent name='left-arrow-icon' width='16' height='16' viewBox='16' />
           </ArrowIcon>
-          <Image src={imageUrl} alt='msg-screen' className='onzoom' width={614} height={344} />
+          <Image src={imageUrl} alt='msg-screen' className='onzoom' width={614} height={344} layout='responsive' />
           <ArrowIcon className='right-arrow' onClick={goToNextImage}>
             <SVGComponent name='right-arrow-icon' width='16' height='16' viewBox='16' />
           </ArrowIcon>
