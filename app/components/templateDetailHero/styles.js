@@ -12,7 +12,7 @@ const TemplateHeroSection = styled.div`
 
 const HeroBlock = styled.div`
   display: flex;
-  gap: 60px;
+  gap: 50px;
 
   @media only screen and (max-width: 1024px) {
     flex-wrap: wrap;
@@ -97,14 +97,16 @@ const BlockLine = styled.div`
 
 const BLockImg = styled.div`
   position: relative;
-  padding: 20px;
   border: 1px solid ${greendark};
 
-  border-radius: 8px;
+  border-radius: 4px;
   cursor: pointer;
   .heroimage {
     max-width: 934px;
     width: 100%;
+    display: flex;
+    border-radius: 3px;
+    overflow: hidden;
   }
   ::after {
     content: '';
@@ -120,9 +122,6 @@ const BLockImg = styled.div`
     transform: translate(-50%, -50%);
     top: 50%;
     left: 50%;
-  }
-  @media only screen and (max-width: 768px) {
-    padding: 9px;
   }
 `;
 

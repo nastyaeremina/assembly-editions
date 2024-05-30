@@ -19,6 +19,7 @@ import {
   TabView,
   TemplateHeroSection
 } from './styles';
+import ZoomImageSlider from '../../components/zoomImage/zoomImageslider';
 
 export default function TemplateDetailHero({
   title,
@@ -29,11 +30,30 @@ export default function TemplateDetailHero({
   secondaryButtonLink,
   imageList
 }) {
+  const [isOpen, setIsOpen] = useState(false);
   const [selectedTabIbndex, setSelectedTabIbndex] = useState(0);
   const onClickTab = useCallback((index) => {
     setSelectedTabIbndex(index);
   }, []);
 
+  const onClick = useCallback(
+    (imageIndex) => {
+      if (imageIndex) setSelectedTabIbndex(Number(imageIndex));
+      setIsOpen(!isOpen);
+    },
+    [isOpen]
+  );
+
+  const onCloseModal = useCallback(() => {
+    setIsOpen(false);
+  }, []);
+  const onClickNextImage = () => {
+    setSelectedTabIbndex((prevIndex) => (prevIndex === imageList.length - 1 ? 0 : prevIndex + 1));
+  };
+
+  const onClickPreviousImage = () => {
+    setSelectedTabIbndex((prevIndex) => (prevIndex === 0 ? imageList.length - 1 : prevIndex - 1));
+  };
   const tabListView = useMemo(() => {
     return imageList?.map((item, index) => {
       return (
@@ -89,9 +109,20 @@ export default function TemplateDetailHero({
                   alt='template-image'
                   height={400}
                   width={513}
+                  layout='responsive'
                   className='heroimage'
+                  onClick={() => onClick(selectedTabIbndex)}
                 />
               </BLockImg>
+              {isOpen ? (
+                <ZoomImageSlider
+                  isSlideButtonHide={imageList?.length <= 1}
+                  imageUrl={imageList[selectedTabIbndex]?.url}
+                  goToNextImage={onClickNextImage}
+                  goToPreviousImage={onClickPreviousImage}
+                  onCloseModal={onCloseModal}
+                />
+              ) : null}
               <TabSection>{tabListView}</TabSection>
             </BlockRight>
           </HeroBlock>
