@@ -13,6 +13,7 @@ export default function StartList({ rate, isBig }) {
             width={svgWidth}
             height={svgWidth}
             viewBox={svgWidth}
+            key={`start-${index}`}
           />
         );
       else if (rate - index === 0.5)
@@ -22,6 +23,7 @@ export default function StartList({ rate, isBig }) {
             width={svgWidth}
             height={svgWidth}
             viewBox={svgWidth}
+            key={`start-${index}`}
           />
         );
       else
@@ -31,6 +33,7 @@ export default function StartList({ rate, isBig }) {
             width={svgWidth}
             height={svgWidth}
             viewBox={svgWidth}
+            key={`start-${index}`}
           />
         );
     });

@@ -80,6 +80,9 @@ entries{
       video{
         url
       }
+      isEmbedWithIframe
+      videoLink
+      name
     }
   }
 }
@@ -178,7 +181,7 @@ export async function getArticleData(slug, preview) {
           }
       }         
       `,
-    false,
+    preview,
     [CONTENTFUL_API_TAG.GUIDE]
   );
   return entries?.data?.guideArticleCollection?.items?.[0];

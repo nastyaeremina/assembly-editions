@@ -5,14 +5,13 @@ import { BLOCKS, INLINES } from '@contentful/rich-text-types';
 import Image from 'next/image';
 import Zoom from 'react-medium-image-zoom';
 import 'react-medium-image-zoom/dist/styles.css';
-import { extractTagId } from '../../helpers/helpers';
+import { extractTagId, isEmpty } from '../../helpers/helpers';
 import CopyLink from '../copyLink/copyLink';
 import VideoComponent from '../../components/videoComponent';
-
+import IframeView from './iframeView';
 export default function RichTextDetail({ assets = [], data, shouldHeadingCopy = true }) {
   const assetData = assets?.assets?.block || [];
   const videoEntries = assets?.entries?.inline || [];
-
   const options = {
     renderNode: {
       [BLOCKS.HEADING_1]: (node, children) => {
@@ -76,7 +75,17 @@ export default function RichTextDetail({ assets = [], data, shouldHeadingCopy = 
         if (videoData) {
           const videoUrl = videoData?.video?.url;
           const thumbnailUrl = videoData?.thumbnailImage?.url;
-          if (videoUrl) return <VideoComponent src={videoUrl} poster={thumbnailUrl} />;
+
+          //check if is embedWithiframe is true and videolink available
+          if (videoData?.isEmbedWithIframe === true && !isEmpty(videoData?.videoLink)) {
+            return <IframeView url={videoData.videoLink} title={videoData.name} />;
+          }
+          if (videoUrl)
+            return (
+              <>
+                <VideoComponent src={videoUrl} poster={thumbnailUrl} />
+              </>
+            );
         }
 
         return null;
@@ -94,7 +103,12 @@ export default function RichTextDetail({ assets = [], data, shouldHeadingCopy = 
               </Zoom>
             );
           //check current asset is video
-          else if (asset?.contentType?.startsWith('video/')) return <VideoComponent src={src} />;
+          else if (asset?.contentType?.startsWith('video/'))
+            return (
+              <>
+                <VideoComponent src={src} />
+              </>
+            );
           return null;
         }
         return null;

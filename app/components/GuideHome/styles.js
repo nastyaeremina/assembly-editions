@@ -140,6 +140,10 @@ const GuideDetail = styled.div`
     border-radius: 4px;
     border: 0.4px solid #dfe1e4;
   }
+  iframe {
+    border-radius: 4px;
+    border: 0.4px solid #dfe1e4;
+  }
   ol {
     padding-left: 20px;
     li {
