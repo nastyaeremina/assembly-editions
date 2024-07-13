@@ -89,9 +89,24 @@ export default async function Blogdetail({ params }) {
     datePublished: blogDetail?.created_at,
     dateModified: blogDetail?.updated_at
   };
+  // Define a regular expression to match the <cta> tag and its contents,
+  // specifically targeting nested <title> and <description> tags
+  const ctaRegex = /<cta>\s*<title>([^<]+)<\/title>\s*<description>([^<]+)<\/description>\s*<\/cta>/;
+
+  // Attempt to match the regular expression against the HTML content
+  const match = blogDetail?.html.match(ctaRegex);
+
+  // Extract the title from the <title> tag if a match is found, otherwise set to an empty string
+  const ctaTitle = match ? match[1] : '';
+
+  // Extract the description from the <description> tag if a match is found, otherwise set to an empty string
+  const ctaDescription = match ? match[2] : '';
+
+  // Remove the <cta> tag and its contents from the original HTML string
+  const cleanedHtmlString = blogDetail?.html?.replace(ctaRegex, '');
 
   // Use Cheerio to load the blog content's HTML
-  const $ = load(blogDetail?.html);
+  const $ = load(cleanedHtmlString);
   // List of allowed routes where links should open in the same tab
   const allowedRoutes = ['/blog', '/pricing'];
 
@@ -123,7 +138,12 @@ export default async function Blogdetail({ params }) {
 
       <Layout>
         <BlogNavbar tagData={tags} />
-        <BlogdetailPage blogDetail={blogDetail} htmlData={modifiedHtmlData} />
+        <BlogdetailPage
+          blogDetail={blogDetail}
+          htmlData={modifiedHtmlData}
+          ctaTitle={ctaTitle}
+          ctaDescription={ctaDescription}
+        />
       </Layout>
     </>
   );

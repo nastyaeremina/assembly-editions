@@ -213,7 +213,7 @@ const Backlink = styled.div`
   display: inline-flex;
   gap: 8px;
   align-items: center;
-  padding-bottom: 28px;
+  margin-bottom: 42px;
   p {
     ${LinkTxt};
     margin: 0px;
@@ -228,6 +228,7 @@ const Backlink = styled.div`
     }
   }
   @media only screen and (max-width: 769px) {
+    margin-bottom: 28px;
     p {
       ${HeaderFont}
     }
@@ -235,23 +236,26 @@ const Backlink = styled.div`
 `;
 
 const DetailHero = styled.div`
-  padding: 0px 0 40px;
+  display: flex;
+  gap: 38px;
+  padding: 0px 0 100px;
   /* margin-top:20px;     */
   h1 {
-    ${Heading2};
+    ${Heading3};
     color: ${title};
     margin: 0;
     @media only screen and (max-width: 769px) {
       ${MobileH2}
     }
   }
-  @media only screen and (max-width: 769px) {
+  @media only screen and (max-width: 768px) {
     padding-bottom: 28px;
+    flex-direction: column;
+    gap: 28px;
   }
 `;
 
 const BlogImage = styled.div`
-  max-width: 880px;
   width: 100%;
   overflow: hidden;
   display: flex;
@@ -260,29 +264,25 @@ const BlogImage = styled.div`
     max-width: 100%;
     object-fit: cover;
     border-radius: 8px;
-    border: 1px solid #dfe1f4;
-    @media only screen and (max-width: 450px) {
-      height: 248px;
-      object-fit: cover;
+    border: 1px solid ${black};
+    @media only screen and (max-width: 768px) {
+      width: 100%;
     }
-  }
-  @media only screen and (max-width: 450px) {
-    height: 248px;
   }
 `;
 const BlogTime = styled.div`
   ${Body4}
-  max-width:880px;
   width: 100%;
   display: flex;
-  justify-content: space-between;
   margin-top: 20px;
   margin-bottom: 40px;
   color: ${lightgray};
-  @media only screen and (max-width: 450px) {
+  @media only screen and (max-width: 768px) {
+    margin-bottom: 0px;
+  }
+  @media only screen and (max-width: 449px) {
     ${MbBody4}
     margin-top:16px;
-    margin-bottom: 28px;
   }
   span:hover {
     color: ${title};
@@ -303,15 +303,12 @@ const Post = styled.div`
   }
 `;
 const Table = styled.div`
-  max-width: 880px;
   width: 100%;
   border: 1px solid #000000;
   border-radius: 4px;
-  padding: 30px 25px;
-  margin-bottom: 40px;
+  padding: 30px 24px;
   @media only screen and (max-width: 450px) {
     padding: 20px 16px;
-    margin-bottom: 28px;
   }
   ol {
     margin-top: 8px;
@@ -389,12 +386,10 @@ const Desc = styled.div`
 `;
 const Details = styled.div`
   margin: auto;
-  max-width: 880px;
   width: 100%;
 `;
 
 const Content = styled.div`
-  max-width: 880px;
   width: 100%;
   font-feature-settings: normal;
   ${Body3}
@@ -642,6 +637,23 @@ const Content = styled.div`
     color: #4c4c4c;
     font-family: 'Azeret Mono', monospace !important;
   }
+  p {
+    :first-child {
+      padding-top: 0;
+      margin-top: 0;
+    }
+  }
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    :first-child {
+      padding-top: 0;
+      margin-top: 0;
+    }
+  }
 `;
 
 const Textcontent = styled.div`
@@ -722,9 +734,51 @@ const Leftsec = styled.div`
 
 const MainContent = styled.div`
   padding-top: 120px;
+  .without-toc {
+    max-width: 880px;
+  }
   @media only screen and (max-width: 768px) {
     padding-top: 115px;
   }
+`;
+const BlogDetailsidebar = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  max-width: 306px;
+  margin-bottom: 100px;
+  height: 100%;
+  position: sticky;
+  top: 100px;
+  @media only screen and (max-width: 768px) {
+    max-width: 100%;
+    margin-bottom: 0px;
+    position: relative;
+    top: 0;
+  }
+`;
+const BlogContent = styled.div`
+  display: flex;
+  gap: 38px;
+  @media only screen and (max-width: 768px) {
+    flex-direction: column;
+  }
+  @media only screen and (max-width: 449px) {
+    gap: 28px;
+  }
+`;
+
+const HeroLeft = styled.div`
+  max-width: 574px;
+  width: 100%;
+  a {
+    display: inline;
+  }
+`;
+
+const Rightcontent = styled.div`
+  max-width: 880px;
+  width: 100%;
 `;
 export {
   FirstBlog,
@@ -756,5 +810,9 @@ export {
   Icon,
   Leftsec,
   OverLayDiv,
-  MainContent
+  MainContent,
+  BlogDetailsidebar,
+  BlogContent,
+  HeroLeft,
+  Rightcontent
 };

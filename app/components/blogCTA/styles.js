@@ -1,11 +1,12 @@
 import styled, { css } from 'styled-components';
-import { Body4, Heading4 } from '../../styles/styles';
+import { Body4, Body5, Heading4, MobileH3 } from '../../styles/styles';
 import { body, primary, title, whiteColor } from '../../styles/color';
 
 const BlogCTACard = styled.div`
   max-width: 880px;
   width: 100%;
   border: 1px solid #000;
+  border-radius: 4px;
   background: #fff;
   margin: 100px auto;
   display: flex;
@@ -48,9 +49,12 @@ const BlogLeftCTA = styled.div`
     }
   }
   @media only screen and (max-width: 479px) {
+    padding: 24px;
     h2 {
-      font-size: 32px;
-      line-height: 34px;
+      ${MobileH3}
+    }
+    p {
+      ${Body5}
     }
     .blogerror {
       font-size: 15px;
