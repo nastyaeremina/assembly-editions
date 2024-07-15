@@ -15,10 +15,7 @@ name
 slug
 body{
   json
-  links{
     ${POST_GRAPHQL_VIDEO_CONTENT_FIELDS}
-
-  }
 }
 metaDescription
 metaTitle
@@ -61,5 +58,5 @@ export async function getGlossaryDetails(slug, preview) {
     preview,
     [CONTENTFUL_API_TAG.GLOSSARY]
   );
-  return entries?.data.glossaryDefinitionsCollection?.items[0];
+  return entries?.data?.glossaryDefinitionsCollection?.items[0] || {};
 }
