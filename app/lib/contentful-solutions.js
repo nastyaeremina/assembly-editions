@@ -1,61 +1,6 @@
-import { CONTENTFUL_API_TAG } from '../constants/constant';
-import { fetchGraphQL } from './contentful';
-
-const POST_GRAPHQL_SOLUTION_DETAILS_FIELDS = `
-    name
-    slug
-    header
-    body
-    sectionTitle
-    demoPortalUrl
-    imageForeground{
-      url
-    }
-    imageBackground{
-      url
-    }
-    clientExperienceCollection{
-      items{
-        name
-        title
-        slug
-        subTitle
-        description
-        image{
-          url
-        }
-        icon{
-          url
-        }
-        link
-      }
-    }
-    testimonial{
-      name
-      role
-      quote
-      image
-      {
-        url
-      }
-    }
-    seoMetadata{
-      name
-      seoTitle
-      description
-      noIndex
-      noFollow
-    }
-    solutionValueCollection{
-      items{
-        title
-        description
-        image{
-          url
-        }
-	 }
-    }
-`;
+import { SOLUTION_CONTENT_ID } from '../constants/constant';
+import { isEmpty, parseData } from '../helpers/helpers';
+import { getSitemap } from './contentful-sitemap';
 
 const POST_GRAPHQL_SOLUTION_NAME_SLUG_FIELDS = `
 name
@@ -68,65 +13,9 @@ industryIcon{
 solutionType
 `;
 
-function extractPostEntries(fetchResponse) {
-  return fetchResponse?.data?.solution;
-}
-
-function extractPostEntry(fetchResponse) {
-  return fetchResponse?.data?.solutionCollection?.items?.[0];
-}
-
-export async function getSolutionById(id, preview) {
-  const entries = await fetchGraphQL(
-    `query {
-            solution(id:"${id}",preview: ${preview ? 'true' : 'false'}) {
-               ${POST_GRAPHQL_SOLUTION_DETAILS_FIELDS}
-      }
-    }`,
-    preview
-  );
-  return extractPostEntries(entries);
-}
-
-export async function getSolutionBySlug(slug, preview) {
-  const entries = await fetchGraphQL(
-    `query {
-      solutionCollection(where:{slug:"${slug}"},limit:1,preview:false){
-        items{
-          ${POST_GRAPHQL_SOLUTION_DETAILS_FIELDS}
-        }
-      }
-  }`,
-    preview
-  );
-  return extractPostEntry(entries);
-}
-
-export async function getAllSolutionWithSlug(preview) {
-  const entries = await fetchGraphQL(
-    `query {
-      solutionCollection(preview: false,order:order_ASC) {
-        items {
-         ${POST_GRAPHQL_SOLUTION_NAME_SLUG_FIELDS}
-        }
-      }
-    }`,
-    preview
-  );
-  return entries?.data?.solutionCollection?.items;
-}
-
 export async function getAllNavbarSolution(preview) {
-  const entries = await fetchGraphQL(
-    `query {
-      solutionCollection(where:{showNavbar:true},preview: false,order:order_ASC) {
-        items {
-         ${POST_GRAPHQL_SOLUTION_NAME_SLUG_FIELDS}
-        }
-      }
-    }`,
-    preview,
-    [CONTENTFUL_API_TAG.SOLUTION]
-  );
-  return entries?.data?.solutionCollection?.items;
+  const data = (await getSitemap(SOLUTION_CONTENT_ID)) || {};
+  if (isEmpty(data)) return null;
+  const list = parseData(data.content) || []
+  return list;
 }

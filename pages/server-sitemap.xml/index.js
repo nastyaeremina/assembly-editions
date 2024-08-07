@@ -1,21 +1,20 @@
 import { getServerSideSitemapIndex } from 'next-sitemap';
 import { getAllPartnerAppsWithSlug } from '../../app/lib/contentful-partnerApps';
 import { getAllJobsWithSlug } from '../../app/lib/contentful-jobsListing';
-import { getAllSolutionWithSlug } from '../../app/lib/contentful-solutions';
 import { getAllUniversityVideoWithSlug } from '../../app/lib/contentful-universityVideos';
 import { getAllAuthorWithSlug, getAllBlogWithSlug, getAllTagWithSlug } from '../../app/lib/blog-content';
-import { getUpdatesPosts, getUpdatesWithSlug } from '../../app/lib/updates-content';
+import { getUpdatesWithSlug } from '../../app/lib/updates-content';
 import { getAllComparisonWithSlug } from '../../app/lib/contentful-comparison';
 import { PER_UPDATE_PAGE_POST } from '../../app/constants/constant';
 import { getAllAutomationsWithSlug } from '../../app/lib/contentful-automation';
 import { getAllGlossaryContent } from '../../app/lib/contentful-glossary';
 import { getAllGuideArticleSlug } from '../../app/lib/contentful-guide';
 import { getAllTemplatesWithSlug } from '../../app/lib/contentful-template';
+import { getAllStandardPageWithSlug } from '../../app/lib/contentful-standardPage';
 
 export async function getServerSideProps(ctx) {
   const appsPost = (await getAllPartnerAppsWithSlug()) ?? []; // appa
   const jobPosts = (await getAllJobsWithSlug()) ?? []; //jobs
-  const solutionPosts = await getAllSolutionWithSlug(); //solutions
   const universityPosts = (await getAllUniversityVideoWithSlug()) ?? []; //university
   const blogPost = (await getAllBlogWithSlug()) ?? []; //blog
   const updatesPost = (await getUpdatesWithSlug()) ?? []; //updates
@@ -26,10 +25,10 @@ export async function getServerSideProps(ctx) {
   const glossarysPost = (await getAllGlossaryContent()) ?? []; // glossary
   const guidesPost = (await getAllGuideArticleSlug()) ?? []; // guide
   const templatesPost = await getAllTemplatesWithSlug(); //templates
+  const standardPagesPost = (await getAllStandardPageWithSlug()) || []; //standard pages
 
   const appsPostsPathList = appsPost?.map((item) => `apps/directory/${item?.slug}`);
   const jobsPostsPathList = jobPosts?.map((item) => `jobs/${item?.slug}`);
-  const solutionssPostsPathList = solutionPosts?.map((item) => `solutions/${item?.slug}`);
   const universityPostsPathList = universityPosts?.map((item) => `university/${item?.slug}`);
   const blogPostsPathList = blogPost?.map((item) => `blog/${item?.slug}`);
   const updatesPostsPathList = updatesPost?.map((item) => `updates/${item?.slug}`);
@@ -40,6 +39,7 @@ export async function getServerSideProps(ctx) {
   const glossaryPostsPathList = glossarysPost?.map((item) => `glossary/${item?.slug}`);
   const guidePostsPathList = guidesPost?.map((item) => `guide/${item?.slug}`);
   const templatePostsPathList = templatesPost?.map((item) => `templates/${item?.slug}`);
+  const standardPagesPathList = standardPagesPost?.map((item) => `${item?.slug}`);
 
   let allUpdateWithPagination = [];
   const totalCount = updatesPost?.meta?.pagination?.total;
@@ -70,7 +70,6 @@ export async function getServerSideProps(ctx) {
   const finalList = appsPostsPathList?.concat(
     staticPages,
     jobsPostsPathList,
-    solutionssPostsPathList,
     universityPostsPathList,
     blogPostsPathList,
     updatesPostsPathList,
@@ -81,7 +80,8 @@ export async function getServerSideProps(ctx) {
     automationsPostsPathList,
     glossaryPostsPathList,
     guidePostsPathList,
-    templatePostsPathList
+    templatePostsPathList,
+    standardPagesPathList
   );
   return getServerSideSitemapIndex(
     ctx,

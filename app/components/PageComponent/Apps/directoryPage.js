@@ -6,8 +6,8 @@ import { isEmpty } from '../../../helpers/helpers';
 import AppError from '../../../components/apperror/error';
 import { COPILOT_ONBORADING_LINK } from '../../../constants/externalLinks';
 import AppsCardSection from '../../appsCards/appsCardSection';
-import HeroComponent from '../../Hero/hero';
 import SearchInput from './searchInput';
+import HeroComponent from '../../standardHero/hero';
 
 export default function AppDirectoryPage({ clientApps, internalApps, featuredApps }) {
   let allPosts = clientApps.concat(internalApps);

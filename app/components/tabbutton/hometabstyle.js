@@ -68,7 +68,7 @@ const Tab = styled.div`
     padding: 5px 20px;
     font-size: 15px;
     line-height: 24px;
-  } ;
+  }
 `;
 const BottomFunction = styled.div`
   margin-top: 40px;
@@ -222,6 +222,12 @@ const TabbuttonTop = styled.div`
     width: auto;
     padding: 14px 19px 0px 19px;
   }
+  ${(props) =>
+    props.isDesktopView &&
+    css`
+      flex-direction: column-reverse;
+      gap: 24px;
+    `}
 `;
 
 const LeftContent = styled.p`
@@ -240,9 +246,19 @@ const LeftContent = styled.p`
   @media only screen and (max-width: 1440px) {
     max-width: 500px;
     width: 100%;
+    ${(props) =>
+      props.isDesktopView &&
+      css`
+        max-width: 812px;
+      `}
   }
   @media only screen and (max-width: 1024px) {
     max-width: 375px;
+    ${(props) =>
+      props.isDesktopView &&
+      css`
+        max-width: 812px;
+      `}
   }
   @media only screen and (max-width: 768px) {
     max-width: 100%;
@@ -326,6 +342,20 @@ const RightContent = styled.div`
     border-radius: 80px;
     transition: all 0.3s ease-in-out 0s;
   }
+  ${(props) =>
+    props.isDesktopView &&
+    css`
+      .tabsection {
+        overflow: auto;
+        max-width: 1272px;
+        ::-webkit-scrollbar {
+          display: none;
+        }
+        @media only screen and (max-width: 1024px) {
+          max-width: 880px;
+        }
+      }
+    `}
 `;
 
 const BgImage = styled.div`
@@ -385,6 +415,12 @@ const Description = styled.div`
       @media only screen and (max-width: 768px) {
         height: auto;
       }
+    `}
+  ${(props) =>
+    props.isDesktopView &&
+    css`
+      height: auto;
+      max-width: 812px;
     `}
 `;
 

@@ -1,10 +1,10 @@
 import Layout from '../components/layout';
 import { TEMPLATE_PAGE_ID } from '../constants/constant';
 import { getTemplateHomeContent } from '../lib/contentful-template';
-import HeroComponent from '../components/Hero/hero';
 import TemplateListSection from '../components/template/templateListSection';
 import { getSEOData, isEmpty, removeEmptyElement } from './../helpers/helpers';
 import Navbar from './../components/navbar/navbar';
+import HeroComponent from '../components/standardHero/hero';
 async function getTemplateContent() {
   return (await getTemplateHomeContent(TEMPLATE_PAGE_ID)) ?? {};
 }

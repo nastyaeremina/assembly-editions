@@ -6,24 +6,32 @@ import { isEmpty } from '../../helpers/helpers';
 import { black } from '../../styles/color';
 import { MainHero, ButtonGroup, SubHeroSection, SubHeroCaption } from './style';
 
-export default function SubHeroComponent({ data }) {
-  const isShowPrimaryButton = !isEmpty(data?.primaryButtonText) && !isEmpty(data?.primaryButtonLink);
-  const isShowSecondaryButton = !isEmpty(data?.secondaryButtonText) && !isEmpty(data?.secondaryButtonLink);
+/**
+ * SubHeroComponent
+ * @param {Object} props - Component props
+ * @param {Object} props.data - Data for the hero section
+ * @param {boolean} [props.hasFullWidth=false] - Flag indicating if the section should be full width
+ * @returns {JSX.Element} - JSX markup for the SubHeroComponent
+ */
+
+export default function SubHeroComponent({ data, hasFullWidth = false }) {
+  const showPrimaryButton = !isEmpty(data?.primaryButtonText) && !isEmpty(data?.primaryButtonLink);
+  const showSecondaryButton = !isEmpty(data?.secondaryButtonText) && !isEmpty(data?.secondaryButtonLink);
   return (
     <>
       <MainHero>
         <>
-          <SubHeroSection>
+          <SubHeroSection hasFullWidth={hasFullWidth}>
             <h1>{data?.heroTitle}</h1>
-            <SubHeroCaption>
+            <SubHeroCaption hasFullWidth={hasFullWidth}>
               <ReactMarkdown>{data?.heroDescription}</ReactMarkdown>
             </SubHeroCaption>
-            {isShowPrimaryButton && isShowSecondaryButton && (
+            {(showPrimaryButton || showSecondaryButton) && (
               <ButtonGroup>
-                {isShowPrimaryButton && (
+                {showPrimaryButton && (
                   <Button text={data?.primaryButtonText} href={data?.primaryButtonLink} className={'button-section'} />
                 )}
-                {isShowSecondaryButton && (
+                {showSecondaryButton && (
                   <Button
                     text={data?.secondaryButtonText}
                     href={data?.secondaryButtonLink}

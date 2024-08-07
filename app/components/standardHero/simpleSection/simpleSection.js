@@ -1,0 +1,111 @@
+'use client';
+import React, { useState } from 'react';
+import { Container } from '../../../styles/commonStyles';
+import {
+  BlockImg,
+  BlockLeft,
+  BlockRight,
+  ButtonSection,
+  FeatureImage,
+  HeroBlock,
+  HeroBody,
+  SimpleMainSection,
+  VideoClose,
+  VideoPlay
+} from './styles';
+import Button from '../../button/button';
+import { isEmpty } from '../../../helpers/helpers';
+import { black, primary, whiteColor } from '../../../styles/color';
+import ButtonGroup from '../../ButtonGroup/buttonGroup';
+
+/**
+ * SimpleSection Component
+ * @param {Object} props - Component props
+ * @param {string} props.title - The section title
+ * @param {string} props.description - The section description
+ * @param {string} props.primaryButtonText - The text for the primary button
+ * @param {string} props.primaryButtonLink - The link for the primary button
+ * @param {string} props.secondaryButtonText - The text for the secondary button
+ * @param {string} props.secondaryButtonLink - The link for the secondary button
+ * @param {boolean} props.isHeading1 - Flag to determine heading style
+ * @param {string} props.banner - URL for the banner image
+ * @param {string} props.videoUrl - URL for the video
+ */
+
+export default function SimpleSection({
+  title,
+  description,
+  primaryButtonText,
+  primaryButtonLink,
+  secondaryButtonText,
+  secondaryButtonLink,
+  isHeading1,
+  banner,
+  videoUrl
+}) {
+  const [isOpen, setIsOpen] = useState(false);
+  const onClick = () => {
+    setIsOpen(!isOpen);
+  };
+
+  const shouldShowVideo = !isEmpty(videoUrl) && !isEmpty(banner);
+  return (
+    <SimpleMainSection>
+      <Container>
+        <HeroBlock>
+          <BlockLeft isHeading1={isHeading1}>
+            {!isEmpty(title) && <h2>{title}</h2>}
+            {!isEmpty(description) && <HeroBody isHeading1={isHeading1}>{description}</HeroBody>}
+            {/* button group for primary and secondary  */}
+            <ButtonGroup
+              primaryButtonText={primaryButtonText}
+              primaryButtonLink={primaryButtonLink}
+              secondaryButtonText={secondaryButtonText}
+              secondaryButtonLink={secondaryButtonLink}
+            />
+          </BlockLeft>
+          {/* when video open tha show this section */}
+          {isOpen ? (
+            <VideoPlay>
+              <VideoClose onClick={onClick}>close</VideoClose>
+              <div className='play'>
+                <iframe
+                  className='iframecss'
+                  src={videoUrl}
+                  title='YouTube video player'
+                  frameborder='0'
+                  allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share'
+                  autoplay></iframe>
+              </div>
+            </VideoPlay>
+          ) : null}
+          <BlockRight>
+            {!isEmpty(banner) && (
+              <BlockImg onClick={() => shouldShowVideo && onClick()}>
+                <FeatureImage
+                  src={banner}
+                  alt='template-image'
+                  height={400}
+                  width={612}
+                  layout='responsive'
+                  className='heroimage'
+                />
+                {/* video play icon  */}
+                {shouldShowVideo && (
+                  <img
+                    rel='preload'
+                    src='/images/videoiconblack.svg'
+                    alt='video-logo'
+                    height={76}
+                    width={76}
+                    className='icon'
+                  />
+                )}
+              </BlockImg>
+            )}
+          </BlockRight>
+        </HeroBlock>
+      </Container>
+    </SimpleMainSection>
+  );
+}

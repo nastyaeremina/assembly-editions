@@ -462,6 +462,7 @@ export const PRIVCY_POLICY_ID = '46bwfuedc2NMOHEIj0AThy';
 export const TOP_BAR_CONTENT_ID = '4dKbgVv11cTh8aJaZ8VBP1';
 export const CTA_CONTENT_ID = '3nv4WphdHbk3tIU88tLbbo';
 export const BOOK_DEMO_ID = '2VEqFdR8kt9HMtIm3EeQhO';
+export const SOLUTION_CONTENT_ID = '2lhiF03KbI8ck0GuZDzXov';
 
 export const HOME_SEO_ID = '2jwCsXd1zP2HEDJlQCIKUG';
 export const APP_SEO_ID = '1YuaTMgNnzacoBjygKg4nk';

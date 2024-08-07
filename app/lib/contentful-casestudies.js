@@ -24,10 +24,9 @@ highlights
 customerSince
 customerCompanyUrl
 customerFounded
-solution{
-  name
+industry{
+  title
   slug
-  header
 }
 copilotAppsCollection{
   items{

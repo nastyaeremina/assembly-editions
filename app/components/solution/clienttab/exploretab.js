@@ -1,12 +1,13 @@
 'use client';
 import Image from 'next/image';
-import Link from 'next/link';
 import { useCallback, useMemo, useState } from 'react';
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
+import ReactMarkdown from 'react-markdown';
 import { isEmpty, separateSpecialChar } from '../../../helpers/helpers';
-import { Container, SecondryButton } from '../../../styles/commonStyles';
+import { Container } from '../../../styles/commonStyles';
 import Button from '../../button/button';
 import ZoomImg from '../../zoomImage';
+import { black } from '../../../styles/color';
 import {
   ExploreSection,
   TopView,
@@ -20,14 +21,41 @@ import {
   SignBox,
   SignImgView,
   ActiveTab,
-  BtnWrap,
-  IconView,
-  Tooltip
+  BtnWrap
 } from './styles';
 
-export default function ExploreTab({ data, demoUrl, title, description }) {
-  const [selectedTabIbndex, setSelectedTabIbndex] = useState(0);
+const defaltDescription =
+  ' If you’d like to see what the user experience can be like for your clients, you can create a client account in a demo portal we have set up. We’ve customized this demo portal to highlight some of the features that are most relevant.';
 
+/**
+ * ExploreTab Component
+ * @param {Object} props - Component props
+ * @param {Array} props.data - Array of data for tabs
+ * @param {string} props.title - Title of the section
+ * @param {string} props.description - Description of the section
+ * @param {string} props.secondaryButtonLink - URL for the secondary button
+ * @param {string} props.primaryButtonLink - URL for the primary button
+ * @param {string} props.secondaryButtonText - Text for the secondary button
+ * @param {string} props.primaryButtonText - Text for the primary button
+ * @param {boolean} props.isRichText - Flag indicating if the description is rich text
+ * @param {boolean} props.isStandardPage - Flag indicating if it is a standard page
+ * @returns {JSX.Element} - JSX markup for the ExploreTab component
+ */
+
+export default function ExploreTab({
+  data,
+  title = 'Explore the client experience.',
+  description = defaltDescription,
+  secondaryButtonLink,
+  primaryButtonLink,
+  secondaryButtonText = 'Create client account in a demo portal',
+  primaryButtonText,
+  isRichText = false,
+  isStandardPage = false
+}) {
+  const [selectedTabIbndex, setSelectedTabIbndex] = useState(0);
+  const showPrimaryButton = !isEmpty(primaryButtonText) && !isEmpty(primaryButtonLink);
+  const showSecondaryButton = !isEmpty(secondaryButtonText) && !isEmpty(secondaryButtonLink);
   const onClickTab = useCallback((index) => {
     setSelectedTabIbndex(index);
   }, []);
@@ -76,7 +104,7 @@ export default function ExploreTab({ data, demoUrl, title, description }) {
 
   return (
     <>
-      <ExploreSection>
+      <ExploreSection isStandardPage={isStandardPage}>
         <Container>
           <TopView>
             <h2>
@@ -88,34 +116,30 @@ export default function ExploreTab({ data, demoUrl, title, description }) {
                     }}
                   />
                 </>
-              )}{' '}
-              {!title && (
-                <>
-                  Explore the client experience<span>.</span>
-                </>
               )}
             </h2>
-            <p>
-              {description && documentToReactComponents(description)}
-              {!description && (
-                <>
-                  If you’d like to see what the user experience can be like for your clients, you can create a client
-                  account in a demo portal we have set up. We’ve customized this demo portal to highlight some of the
-                  features that are most relevant.
-                </>
-              )}
-            </p>
-            {demoUrl && (
+            {description && isRichText ? (
+              documentToReactComponents(description)
+            ) : (
+              <ReactMarkdown>{description}</ReactMarkdown>
+            )}
+
+            {(showPrimaryButton || showSecondaryButton) && (
               <BtnWrap>
-                <Button
-                  bgColor={'transparent'}
-                  fontColor={'#000000'}
-                  borderColor={'#000000'}
-                  text={'Create client account in a demo portal'}
-                  href={demoUrl}
-                  hoverColor={'rgba(0, 0, 0, 0.5)'}
-                  target={'_blank'}
-                />
+                {showPrimaryButton && (
+                  <Button text={primaryButtonText} href={primaryButtonLink} className={'button-section'} />
+                )}
+                {showSecondaryButton && (
+                  <Button
+                    text={secondaryButtonText}
+                    href={secondaryButtonLink}
+                    className={'button-section'}
+                    bgColor={'transparent'}
+                    fontColor={black}
+                    borderColor={black}
+                    hoverColor={'rgba(0, 0, 0, 0.5)'}
+                  />
+                )}
               </BtnWrap>
             )}
           </TopView>

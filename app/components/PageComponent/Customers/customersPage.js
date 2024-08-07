@@ -1,5 +1,5 @@
 'use client';
-import React from 'react';
+import React, { useMemo } from 'react';
 import Button from '../../button/button';
 import CustomerTestimonial from '../../customer/testimonials';
 import { Container } from '../../../styles/commonStyles';
@@ -9,26 +9,21 @@ import { COPILOT_ONBORADING_LINK } from '../../../constants/externalLinks';
 import { Banner } from '../../feedback/banner';
 
 export default function CustomerPage({ testimonialPosts, casestudiesPosts }) {
-  const casestudiesView =
-    (() => {
-      if (isEmpty(casestudiesPosts)) return null;
-      return casestudiesPosts?.map((item, index) => {
-        return (
-          <CustomerTestimonial
-            key={`casestudy_index_${index}`}
-            logo={item?.customerLogo?.imageAsset?.url}
-            banner={item?.caseStudyImage?.url}
-            body={item?.description}
-            highlightsData={item?.highlights}
-            satisfaction={'+25%'}
-            rate={'-10%'}
-            retention={'+25%'}
-            slug={item?.slug}
-          />
-        );
-      });
-    },
-    [casestudiesPosts]);
+  const casestudiesView = useMemo(() => {
+    if (isEmpty(casestudiesPosts)) return null;
+    return casestudiesPosts?.map((item, index) => {
+      return (
+        <CustomerTestimonial
+          key={`casestudy_index_${index}`}
+          logo={item?.customerLogo?.imageAsset?.url}
+          banner={item?.caseStudyImage?.url}
+          body={item?.description}
+          highlightsData={item?.highlights}
+          slug={item?.slug}
+        />
+      );
+    });
+  }, [casestudiesPosts]);
 
   return (
     <>

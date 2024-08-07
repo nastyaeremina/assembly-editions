@@ -45,7 +45,7 @@ export default async function TemplateDetail({ params }) {
           aboutContent={{
             maker: tempalateDetail?.maker,
             highlights: tempalateDetail?.highlights,
-            industry: tempalateDetail?.industry
+            industry: tempalateDetail?.industryNew
           }}
         />
         {!isEmpty(relatedTemplateList) && (

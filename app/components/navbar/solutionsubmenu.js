@@ -20,7 +20,7 @@ export default function SolutionSubMenu({ data, mobile }) {
     return data?.map((item, index) => {
       return (
         <MobileListLi key={`solutionlistview_index_${index}`} isSolutionmenu>
-          <MenuMobileWrap href={`/solutions/${item?.slug}`}>
+          <MenuMobileWrap href={`/${item?.slug}`}>
             {!isEmpty(item?.industryIcon?.url) && (
               <LeftImg>
                 <Image src={item?.industryIcon?.url} alt='hybridright' width={20} height={20} className='hover-image' />

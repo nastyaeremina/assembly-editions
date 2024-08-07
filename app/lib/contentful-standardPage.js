@@ -5,11 +5,49 @@ import { POST_GRAPHQL_SEOMETADATA_FIELDS } from './contentful-seo';
 export const POST_GRAPHQL_HERO_COMPONENT_FIELDS = `
 heroTitle
 heroDescription
+type
+rating
 primaryButtonText
 primaryButtonLink
 secondaryButtonText
-secondaryButtonLink`;
+secondaryButtonLink
+videoUrl
+banner1{
+  url
+}
+banner2{
+  url
+}`;
 
+const POST_GRAPHQL_CASESTUDY_COMPONENT_FIELDS = ` 
+slug
+description
+highlights
+caseStudyImage{
+  url
+}
+customerLogo{
+  imageAsset{
+    url
+  }
+}`;
+const POST_GRAPHQL_SECTIONBOX_COMPONENT_FIELDS = `
+    title
+    description
+    primaryButtonText
+    primaryButtonLink
+    secondaryButtonText
+    secondaryButtonLink
+    box1Title
+    box1Image{
+    url
+    }
+    box1Description
+    box2Title
+    box2Image{
+    url
+    }
+`;
 export const POST_GRAPHQL_FAQ_COMPONENT_FIELDS = `
 title
 faQsCollection{
@@ -30,9 +68,22 @@ contentCollection{
         ...on ComponentHero{
             ${POST_GRAPHQL_HERO_COMPONENT_FIELDS}
           }
+          ...on CaseStudies{
+          ${POST_GRAPHQL_CASESTUDY_COMPONENT_FIELDS}
+        }
+          ...on SectionBoxes{
+           sys{
+           id
+           }
+          }
           ...on ComponentFeature{
             sys{
               id
+            }
+        }
+            ...on SectionTab{
+            sys{
+            id
             }
         }
         ...on   Testimonial{
@@ -64,6 +115,37 @@ featuresCollection{
   }
 }
 `;
+const POST_GRAPHQL_SECTION_TAB_FIELDS = `
+  title
+    description
+    primaryButtonText
+    primaryButtonLink
+    secondaryButtonText
+    secondaryButtonLink
+    type
+    tabsCollection{
+      items{
+        name
+        title
+        slug
+        subTitle
+        description
+        image{
+          url
+        }
+        backgroundImage{
+          url
+        }
+        sys {
+          id
+        }
+        icon{
+          url
+        }
+        link
+      }
+    }`;
+
 export async function getFeatureComponentContent(id, preview) {
   const entries = await fetchGraphQL(
     `query {
@@ -76,6 +158,32 @@ export async function getFeatureComponentContent(id, preview) {
     [CONTENTFUL_API_TAG.STANDARD_PAGE]
   );
   return entries?.data?.componentFeature;
+}
+export async function getSectionBoxesComponentContent(id, preview) {
+  const entries = await fetchGraphQL(
+    `query {
+        sectionBoxes(id:"${id}",preview: ${preview ? 'true' : 'false'}) {
+          ${POST_GRAPHQL_SECTIONBOX_COMPONENT_FIELDS}
+        
+      }
+    }`,
+    preview,
+    [CONTENTFUL_API_TAG.STANDARD_PAGE]
+  );
+  return entries?.data?.sectionBoxes || {};
+}
+export async function getSectionTabContent(id, preview) {
+  const entries = await fetchGraphQL(
+    `query {
+        sectionTab(id:"${id}",preview: ${preview ? 'true' : 'false'}) {
+         ${POST_GRAPHQL_SECTION_TAB_FIELDS}
+      
+      }
+    }`,
+    preview,
+    [CONTENTFUL_API_TAG.STANDARD_PAGE]
+  );
+  return entries?.data?.sectionTab || {};
 }
 
 export async function getStandardPageContent(slug, preview) {
@@ -91,4 +199,19 @@ export async function getStandardPageContent(slug, preview) {
     [CONTENTFUL_API_TAG.STANDARD_PAGE, CONTENTFUL_API_TAG.TEMPLATE]
   );
   return entries?.data?.pageTemplateCollection?.items?.[0];
+}
+
+export async function getAllStandardPageWithSlug() {
+  const entries = await fetchGraphQL(
+    `query {
+      pageTemplateCollection(preview: false) {
+        items {
+         slug
+        }
+      }
+    }`,
+    false,
+    [CONTENTFUL_API_TAG.TEMPLATE]
+  );
+  return entries?.data?.pageTemplateCollection?.items;
 }

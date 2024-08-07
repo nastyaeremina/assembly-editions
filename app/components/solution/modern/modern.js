@@ -5,8 +5,17 @@ import { isEmpty } from '../../../helpers/helpers';
 import { Container } from '../../../styles/commonStyles';
 import { ModernSection, ModernWrap, HeadView, BoxWrap, BoxView, ImgIcon, DetailView } from './styles';
 
+/**
+ * Modern Component
+ * @param {Object} props - Component props
+ * @param {Object[]} props.data - Array of data objects for rendering boxes
+ * @param {string} props.title - The title text
+ * @param {boolean} props.isStandardPage - Standard page flag
+ * @returns {JSX.Element} - JSX markup for the Modern component
+ */
+
 export default function Modern({ data, title, isStandardPage }) {
-  console.log('title--', title);
+  // Split the title by commas and dots, then wrap commas and dots in span elements
   const titleSplitList = title?.split(',');
   const seprateWithDotList = titleSplitList?.join(`<span>,</span>`)?.split('.');
   const finalTitle = seprateWithDotList?.join(`<span>.</span>`);
@@ -38,6 +47,7 @@ export default function Modern({ data, title, isStandardPage }) {
           <ModernWrap>
             <HeadView>
               <h2>
+                {/* Render the title with special characters handled */}
                 <div dangerouslySetInnerHTML={{ __html: finalTitle }} />
               </h2>
             </HeadView>

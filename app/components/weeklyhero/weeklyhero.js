@@ -15,7 +15,7 @@ import {
   MobileView,
   RightWrap,
   SolutionWrap
-} from '../solution/solutionhero/styles';
+} from '../standardHero/solutionhero/styles';
 import WeeklyDemoForm from './form';
 import {
   Card,

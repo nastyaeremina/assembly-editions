@@ -1,6 +1,6 @@
 'use client';
 import Image from 'next/image';
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 import NewTabNavItem from '../tabbutton/NewTabNavItem';
 import {
   BgImage,
@@ -22,6 +22,7 @@ export default function HomeTabView({ tabData: allPosts, isAutomation }) {
   const [width, setWidth] = useState(0);
   const [totalWidth, setTotalWidth] = useState(0);
   const [maxHeight, setMaxHeight] = useState(0);
+  const [isDesktopView, setIsDesktopView] = useState(false);
 
   const [isOpen, setIsOpen] = useState(false);
 
@@ -99,7 +100,7 @@ export default function HomeTabView({ tabData: allPosts, isAutomation }) {
   const renderTabBar = useCallback(
     (isMobile) => {
       return (
-        <div className='tabsection'>
+        <div className='tabsection' ref={divRef}>
           <div className='activetab' style={{ transform: `translateX(${totalWidth}px)`, width: `${width}px` }}></div>
           {allPosts?.map((item, index) => {
             // Dynamically generates unique IDs for tab elements based on mobile/desktop view
@@ -126,6 +127,22 @@ export default function HomeTabView({ tabData: allPosts, isAutomation }) {
     },
     [activeIndex, activeTabId, allPosts, handleTabClick, totalWidth, width]
   );
+  const divRef = useRef(null);
+  useEffect(() => {
+    const checkWidth = () => {
+      if (divRef.current) {
+        setIsDesktopView(divRef.current.offsetWidth > 746);
+      }
+    };
+
+    checkWidth(); // Check width on initial render
+    window.addEventListener('resize', checkWidth); // Check width on window resize
+
+    // Clean up the event listener on component unmount
+    return () => {
+      window.removeEventListener('resize', checkWidth);
+    };
+  }, []);
 
   return (
     <>
@@ -150,19 +167,19 @@ export default function HomeTabView({ tabData: allPosts, isAutomation }) {
           })}
         </BgImage>
         <Tabbutton className='tabs'>
-          <TabbuttonTop id='text-content'>
-            <Description height={maxHeight}>
+          <TabbuttonTop id='text-content' isDesktopView={isDesktopView}>
+            <Description height={maxHeight} isDesktopView={isDesktopView}>
               {allPosts?.map((item, index) => {
                 return (
                   <>
-                    <LeftContent isShow={activeTabId === index} id={item?.title}>
+                    <LeftContent isShow={activeTabId === index} id={item?.title} isDesktopView={isDesktopView}>
                       {item?.description}
                     </LeftContent>
                   </>
                 );
               })}
             </Description>
-            <RightContent>{renderTabBar()}</RightContent>
+            <RightContent isDesktopView={isDesktopView}>{renderTabBar()}</RightContent>
           </TabbuttonTop>
           <div className='outlet'>
             {allPosts?.map((item, index) => {

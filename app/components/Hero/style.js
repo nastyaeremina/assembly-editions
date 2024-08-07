@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import {
   Body2,
   Body3,
@@ -135,6 +135,11 @@ const SubHeroSection = styled.div`
   .button-section {
     margin-top: 8px;
   }
+  ${(props) =>
+    props.hasFullWidth &&
+    css`
+      max-width: 100%;
+    `}
   @media only screen and (max-width: 768px) {
     h1 {
       ${MobileH2}
@@ -176,6 +181,11 @@ const SubHeroCaption = styled.div`
     color: ${body};
     margin: 0;
   }
+  ${(props) =>
+    props.hasFullWidth &&
+    css`
+      max-width: 100%;
+    `}
   @media only screen and (max-width: 768px) {
     p {
       ${Body3}

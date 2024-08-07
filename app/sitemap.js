@@ -1,6 +1,5 @@
 import { getAllPartnerAppsWithSlug } from './lib/contentful-partnerApps';
 import { getAllJobsWithSlug } from './lib/contentful-jobsListing';
-import { getAllSolutionWithSlug } from './lib/contentful-solutions';
 import { getAllUniversityVideoWithSlug } from './lib/contentful-universityVideos';
 import { getAllAuthorWithSlug, getAllBlogWithSlug, getAllTagWithSlug } from './lib/blog-content';
 import { getUpdatesWithSlug } from './lib/updates-content';
@@ -9,11 +8,12 @@ import { PER_UPDATE_PAGE_POST } from './constants/constant';
 import { getAllAutomationsWithSlug } from './lib/contentful-automation';
 import { getAllGlossaryContent } from './lib/contentful-glossary';
 import { getAllGuideArticleSlug } from './lib/contentful-guide';
+import { getAllStandardPageWithSlug } from './lib/contentful-standardPage';
 
 export default async function sitemap() {
   const appsPost = (await getAllPartnerAppsWithSlug()) ?? []; // appa
   const jobPosts = (await getAllJobsWithSlug()) ?? []; //jobs
-  const solutionPosts = await getAllSolutionWithSlug(); //solutions
+  const standardPagesPost = (await getAllStandardPageWithSlug()) || []; //standard pages
   const universityPosts = (await getAllUniversityVideoWithSlug()) ?? []; //university
   const blogPost = (await getAllBlogWithSlug()) ?? []; //blog
   const updatesPost = (await getUpdatesWithSlug()) ?? []; //updates
@@ -26,7 +26,7 @@ export default async function sitemap() {
 
   const appsPostsPathList = appsPost?.map((item) => `apps/directory/${item?.slug}`);
   const jobsPostsPathList = jobPosts?.map((item) => `jobs/${item?.slug}`);
-  const solutionssPostsPathList = solutionPosts?.map((item) => `solutions/${item?.slug}`);
+  const standardPagesPathList = standardPagesPost?.map((item) => `${item?.slug}`);
   const universityPostsPathList = universityPosts?.map((item) => `university/${item?.slug}`);
   const blogPostsPathList = blogPost?.map((item) => `blog/${item?.slug}`);
   const updatesPostsPathList = updatesPost?.map((item) => `updates/${item?.slug}`);
@@ -71,7 +71,7 @@ export default async function sitemap() {
   const finalList = appsPostsPathList?.concat(
     staticPages,
     jobsPostsPathList,
-    solutionssPostsPathList,
+    standardPagesPathList,
     universityPostsPathList,
     blogPostsPathList,
     updatesPostsPathList,

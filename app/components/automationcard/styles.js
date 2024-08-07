@@ -1,13 +1,9 @@
 import styled, { css } from 'styled-components';
-import { Heading3 } from '../../styles/styles';
+import { Body3, Heading3, MbBody3, MbBody4 } from '../../styles/styles';
 import { Heading4 } from '../../styles/styles';
 import { Heading6 } from '../../styles/styles';
 
-import {
-  body,
-  title,
-  primary
-} from './../../styles/color';
+import { body, title, primary } from './../../styles/color';
 
 const CardSection = styled.div`
   padding-top: 50px;
@@ -17,6 +13,18 @@ const CardSection = styled.div`
     css`
       padding-bottom: 0px;
     `}
+  ${(props) =>
+    props.isStandardPage &&
+    css`
+      padding: 0 0 100px;
+    `}
+    @media only screen and (max-width: 768px) {
+    ${(props) =>
+      props.isStandardPage &&
+      css`
+        padding: 0 0 80px !important;
+      `}
+  }
   @media only screen and (max-width: 426px) {
     padding-bottom: 30px;
     ${(props) =>
@@ -29,7 +37,6 @@ const CardSection = styled.div`
 const CardSectionHead = styled.div`
   ${Heading3}
   color: ${title};
-  margin-bottom: 40px;
   span {
     color: ${primary};
   }
@@ -61,6 +68,11 @@ const CardTop = styled.div`
 
   @media only screen and (max-width: 449px) {
     padding: 28px;
+    ${(props) =>
+      props.isStandardPage &&
+      css`
+        padding: 20px;
+      `}
   }
 `;
 const Head = styled.h3`
@@ -77,6 +89,9 @@ const Description = styled.p`
   max-width: 780px;
   width: 100%;
   margin: 12px 0 0;
+  @media only screen and (max-width: 449px) {
+    ${MbBody4}
+  }
 `;
 const Cards = styled.div`
   display: flex;
@@ -87,4 +102,20 @@ const Cards = styled.div`
     width: 100%;
   }
 `;
-export { CardSection, CardSectionHead, Card, CardTop, Head, Description, Cards };
+
+const Body = styled.div`
+  p {
+    ${Body3};
+    color: ${body};
+    margin: 16px 0 0;
+  }
+  @media only screen and (max-width: 449px) {
+    p {
+      ${MbBody3}
+    }
+  }
+`;
+const HeaderSection = styled.div`
+  margin-bottom: 40px;
+`;
+export { CardSection, CardSectionHead, Card, CardTop, Head, Description, Cards, Body, HeaderSection };

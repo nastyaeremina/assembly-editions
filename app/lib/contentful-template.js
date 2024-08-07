@@ -77,10 +77,9 @@ body{
 }
 maker
 highlights
-industry{
-  name
+industryNew{
+  title
   slug
-  
 }
 relatedTemplatesCollection{
   items{

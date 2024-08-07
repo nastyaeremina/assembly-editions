@@ -51,13 +51,11 @@ export async function getHomeContent(id) {
           url
           title
         }
-        solutionCollection(preview:false){
+        section1Collection(preview:false){
           items{
-            name
             slug
-            summary
-            imageBackground{
-              url
+            hiddenAttributes{
+               content
             }
           }
         }

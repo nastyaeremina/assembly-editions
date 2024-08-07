@@ -36,7 +36,7 @@ import Slider from '../../../components/businessSlider/homeSlider';
 import ExtensionSlider from '../../../components/extensionslider/extensionslider';
 import TabView from '../../../components/tab/tab';
 import Button from '../../../components/button/button';
-import HomeHeroSection from '../../../components/Home/herosection/hybrid';
+import HomeHeroSection from '../../standardHero/hybrid';
 
 import { isEmpty } from '../../../helpers/helpers';
 import SupportItem from '../supportSection/support';
@@ -46,6 +46,7 @@ import PartnerAppsComponent from '../../partnerApps/partnerApps';
 import FeatureSection from '../../featureSection/featureSection';
 import { primary, whiteColor } from '../../../styles/color';
 import TestimonialTableSection from '../../newTestimonial/testimonialTableSection';
+import { COPILOT_ONBORADING_LINK } from '../../../constants/externalLinks';
 
 export default function HomePage({ content, testimonialTableData }) {
   return (
@@ -59,13 +60,15 @@ export default function HomePage({ content, testimonialTableData }) {
           leftImageTitle={content?.heroImage1?.title}
           rightImageTitle={content?.heroImage2?.title}
           isLight={true}
+          primaryButtonText={'Try for free'}
+          primaryButtonLink={COPILOT_ONBORADING_LINK}
         />
         <BussinessSectionComponent
           title={content?.heading1}
           description={content?.body1}
           primaryButtonText={content?.primaryButtonText1}
           PrimaryButtonLink={content?.primaryButtonLink1}
-          sliderData={content?.solutionCollection?.items}
+          sliderData={content?.section1Collection?.items}
         />
 
         <FeatureSection

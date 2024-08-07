@@ -423,8 +423,18 @@ export const RightContent = styled.div`
 
 const Functionality = styled.div`
   padding: 0px 0 50px;
+  ${(props) =>
+    props.isStandardPage &&
+    css`
+      padding: 0 0 100px;
+    `}
   @media only screen and (max-width: 768px) {
     padding: 0 0 40px;
+    ${(props) =>
+      props.isStandardPage &&
+      css`
+        padding: 0 0 80px;
+      `}
   }
 `;
 const TopFunctionWrap = styled.div`

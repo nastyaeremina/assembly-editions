@@ -1,12 +1,7 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { Body3, HeaderFont, Heading3, MbBody3, MbPrimaryBtn, MobileH3 } from '../../styles/styles';
 
-import {
-  greendark,
-  body,
-  title,
-  primary,
-} from './../../styles/color';
+import { greendark, body, title, primary } from './../../styles/color';
 
 const TestimonialCard = styled.div`
   border: 1px solid #131313;
@@ -15,6 +10,14 @@ const TestimonialCard = styled.div`
   @media only screen and (max-width: 768px) {
     flex-direction: column-reverse;
   }
+  ${(props) =>
+    props.isStandardPage &&
+    css`
+      margin-bottom: 100px;
+      @media only screen and (max-width: 768px) {
+        margin-bottom: 80px;
+      }
+    `}
 `;
 const LeftCard = styled.div`
   display: flex;
@@ -31,13 +34,13 @@ const RightCard = styled.div`
   }
   .right {
     max-width: 405px;
-    width:100%;
+    width: 100%;
     border-left: 1px solid #131313;
     border-radius: 0px 3px 3px 0px;
     @media only screen and (max-width: 768px) {
-        max-width:100%;
-        border-left:none;
-        border-radius:3px 3px 0px 0px;
+      max-width: 100%;
+      border-left: none;
+      border-radius: 3px 3px 0px 0px;
     }
   }
 `;
@@ -101,7 +104,7 @@ const LastDroplist = styled.div`
     cursor: pointer;
     transition: none;
     @media only screen and (max-width: 768px) {
-        ${HeaderFont}
+      ${HeaderFont}
     }
     :hover .HoverArrow__linePath {
       opacity: 1;

@@ -87,10 +87,10 @@ export default function CaseStudiesPage({ details }) {
                       </Link>
                     </Detail>
                   )}
-                  {!isEmpty(details?.solution) && (
+                  {!isEmpty(details?.industry) && (
                     <Detail>
                       <h3>Industry</h3>
-                      <Link href={`/solutions/${details?.solution?.slug}`}>{details?.solution?.name} </Link>
+                      <Link href={`/${details?.industry?.slug}`}>{details?.industry?.title} </Link>
                     </Detail>
                   )}
                 </DetailSection>

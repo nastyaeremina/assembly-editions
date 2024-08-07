@@ -1,9 +1,20 @@
+'use client';
 import React, { useMemo } from 'react';
 import Image from 'next/image';
 import { convertHighlights, isEmpty } from '../../helpers/helpers';
+import { Container } from '../../styles/commonStyles';
 import { Detail, Last, LastDroplist, LeftCard, Percentage, RightCard, Section, TestimonialCard, Top } from './styles';
 
-export default function CustomerTestimonial({ logo, body, slug, highlightsData, banner, highlights }) {
+/**
+ * CustomerTestimonial Component
+ * @param {string} props.logo - URL of the customer's logo
+ * @param {string} props.body - Main testimonial body text
+ * @param {string} props.slug - URL slug for the full case study
+ * @param {Array} props.highlightsData - Array of highlights to display data
+ * @param {string} props.banner - URL of the banner image
+ * @param {boolean} [props.isStandardPage=false] - determine if it's a standard page
+ */
+export default function CustomerTestimonial({ logo, body, slug, highlightsData, banner, isStandardPage = false }) {
   const renderHighlightView = useMemo(() => {
     const newList = convertHighlights(highlightsData);
 
@@ -23,8 +34,8 @@ export default function CustomerTestimonial({ logo, body, slug, highlightsData, 
   }, [highlightsData]);
 
   return (
-    <>
-      <TestimonialCard>
+    <Container>
+      <TestimonialCard isStandardPage={isStandardPage}>
         <LeftCard>
           <Top>
             <Image src={logo} alt='customer' width={218} height={50} className='top-logo' />
@@ -33,7 +44,7 @@ export default function CustomerTestimonial({ logo, body, slug, highlightsData, 
           </Top>
           <LastDroplist>
             <Last className='icon-link'>
-              <a href={`customers/${slug}`} className='learn-link mb0'>
+              <a href={`/customers/${slug}`} className='learn-link mb0'>
                 View full case study
                 <svg width='16' height='12' viewBox='0 0 16 12' fill='none' class='HoverArrow'>
                   <path
@@ -59,6 +70,6 @@ export default function CustomerTestimonial({ logo, body, slug, highlightsData, 
           <Image src={banner} alt='customer' className='right' width={405} height={407} />
         </RightCard>
       </TestimonialCard>
-    </>
+    </Container>
   );
 }

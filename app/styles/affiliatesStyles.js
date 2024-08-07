@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { Body2, Body3, Heading2, Heading3, Heading4, Heading5, MbBody2, MbBody3, MobileH2, MobileH4 } from './styles';
 import { body, title } from './color';
 const MainHero = styled.div`
@@ -7,6 +7,14 @@ const MainHero = styled.div`
     padding-bottom: 40px;
     padding-top: 112px;
   }
+  ${(props) =>
+    props.isStandardPage &&
+    css`
+      padding: 0 0 100px;
+      @media only screen and (max-width: 768px) {
+        padding: 0 0 80px;
+      }
+    `}
 `;
 const HeroSection = styled.div`
   padding-top: 100px;
@@ -17,15 +25,20 @@ const HeroSection = styled.div`
     color: ${title};
     margin: 0;
   }
-  .button-section {
-    margin-top: 32px;
-  }
   @media only screen and (max-width: 769px) {
     padding: 36px 0 40px;
     h1 {
       ${MobileH2}
     }
   }
+  ${(props) =>
+    props.isStandardPage &&
+    css`
+      padding: 0;
+      @media only screen and (max-width: 768px) {
+        padding: 0;
+      }
+    `}
 `;
 const BrandName = styled.div`
   padding: 50px 0;

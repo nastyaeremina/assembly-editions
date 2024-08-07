@@ -74,14 +74,14 @@ export default function AppPage({ details, appsList, faqList }) {
             isAutomation={true}
           />
         )}
-        {!isEmpty(details?.sectionContent2Collection?.items) && (
-          <AutomationCardSection
-            heading={details?.sectionHeader2}
-            data={details?.sectionContent2Collection?.items}
-            isAppExplore={true}
-          />
-        )}{' '}
       </Container>
+      {!isEmpty(details?.sectionContent2Collection?.items) && (
+        <AutomationCardSection
+          title={details?.sectionHeader2}
+          data={details?.sectionContent2Collection?.items}
+          isAppExplore
+        />
+      )}{' '}
       {/* <ExploreTab
           data={removeEmptyElement(details?.sectionContent3Collection?.items)}
           demoUrl={details?.demoPortalUrl}

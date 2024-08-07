@@ -1,19 +1,17 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { Container, PrimaryButton } from '../../../styles/commonStyles';
+import { COPILOT_ONBORADING_LINK } from '../../../constants/externalLinks';
 import {
   BtnWrap,
   HeroSection,
   ImageView,
   LeftWrap,
-  MobileImg,
-  Mobilenew,
   MobileView,
   RightWrap,
   SolutionWrap,
   TextSection
-} from '../../solution/solutionhero/styles';
-import { COPILOT_ONBORADING_LINK } from '../../../constants/externalLinks';
+} from '../../standardHero/solutionhero/styles';
 
 export default function ComparisonHero({ title, description, image }) {
   return (

@@ -1,19 +1,26 @@
 import { isEmpty } from '../../helpers/helpers';
-import { getFeatureComponentContent } from '../../lib/contentful-standardPage';
-import HeroComponent from '../Hero/hero';
+import {
+  getFeatureComponentContent,
+  getSectionBoxesComponentContent,
+  getSectionTabContent
+} from '../../lib/contentful-standardPage';
 import Modern from '../solution/modern/modern';
 import Quote from '../quote/quote';
 import FAQ from '../faq/faq';
 import { getFAQsData } from '../../services/faq';
+import TabsComponent from '../tabsComponent/tabscomponent';
+import CustomerTestimonial from '../customer/testimonials';
+import StandardHero from '../standardHero/standardHero';
+import AutomationCardSection from '../automationcard';
 
 export default async function StandardPage({ data }) {
   const renderComponent = async (componentData) => {
     // eslint-disable-next-line no-underscore-dangle
-    switch (componentData.__typename) {
+    switch (componentData?.__typename) {
       case 'ComponentHero':
         return (
           <>
-            <HeroComponent data={componentData} />
+            <StandardHero type={componentData.type} data={componentData} />
           </>
         );
       case 'ComponentFeature':
@@ -26,7 +33,7 @@ export default async function StandardPage({ data }) {
                   <Modern
                     data={featureData?.featuresCollection?.items}
                     title={featureData?.title}
-                    isStandardPage={true}
+                    isStandardPage={true} // isStandardPage props use for standard Page wise spacing design
                   />
                 )}
               </>
@@ -41,15 +48,68 @@ export default async function StandardPage({ data }) {
           return <FAQ faqList={faqList} title={componentData?.title} isStandardPage={true} />;
         }
         return null;
+      case 'SectionTab':
+        if (componentData?.sys?.id) {
+          const tabData = (await getSectionTabContent(componentData?.sys?.id)) ?? {};
+          return !isEmpty(tabData) ? <TabsComponent type={tabData.type} content={tabData} /> : null;
+        }
+        return null;
+      case 'SectionBoxes':
+        if (componentData?.sys?.id) {
+          const data = (await getSectionBoxesComponentContent(componentData?.sys?.id)) ?? {};
+          const content = [
+            {
+              header: data?.box1Title,
+              body: data?.box1Description,
+              image: {
+                url: data?.box1Image?.url
+              }
+            }
+          ];
+          if (!isEmpty(data?.box2Title))
+            content.push({
+              header: data.box2Title,
+              body: data?.box2Description,
+              image: {
+                url: data?.box2Image?.url
+              }
+            });
+
+          return !isEmpty(data) ? (
+            <AutomationCardSection
+              title={data.title}
+              description={data?.description}
+              primaryButtonText={data?.primaryButtonText}
+              primaryButtonLink={data?.primaryButtonLink}
+              secondaryButtonText={data?.secondaryButtonText}
+              secondaryButtonLink={data?.secondaryButtonLink}
+              data={content}
+              isStandardPage
+            />
+          ) : null;
+        }
+        return null;
+      case 'CaseStudies':
+        return (
+          <CustomerTestimonial
+            componentData={componentData}
+            logo={componentData?.customerLogo?.imageAsset?.url}
+            banner={componentData?.caseStudyImage?.url}
+            body={componentData?.description}
+            highlightsData={componentData?.highlights}
+            slug={componentData?.slug}
+            isStandardPage={true}
+          />
+        );
       default:
         return null;
     }
   };
   return (
-    <>
+    <div className='standard-page'>
       {data?.map((componentData) => (
         <>{renderComponent(componentData)}</>
       ))}
-    </>
+    </div>
   );
 }

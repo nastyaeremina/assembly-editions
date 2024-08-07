@@ -166,7 +166,7 @@ export default function NavbarComponent({
     return list?.map((item, index) => {
       return (
         <ListLi key={`solutionlistview_index_${index}`}>
-          <MenuWrap href={`/solutions/${item?.slug}`}>
+          <MenuWrap href={`/${item?.slug}`}>
             {!isEmpty(item?.industryIcon?.url) && (
               <LeftImg>
                 <Image src={item?.industryIcon?.url} alt='hybridright' width={20} height={20} className='hover-image' />

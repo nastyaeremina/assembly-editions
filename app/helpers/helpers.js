@@ -512,3 +512,93 @@ export function getRandomUniqueElements(array, numberOfElements) {
   }
   return randomElements;
 }
+
+/**
+ * Transforms an array of strings with the format 'title[link]' into an array of objects.
+ * Each object contains a 'title' and 'link' property.
+ *
+ * @param {string[]} inputArray - The input array of strings in the format 'title[link]'.
+ * @returns {Object[]} The transformed array of objects with 'title' and 'link' properties.
+ */
+export function transformArray(inputArray) {
+  if (isEmpty(inputArray)) return null;
+  return inputArray
+    .map((item) => {
+      const matches = item.match(/(.+?)\[(.+?)\]/);
+      if (matches) {
+        return {
+          title: matches[1],
+          link: matches[2]
+        };
+      }
+      return null;
+    })
+    .filter((item) => item !== null);
+}
+
+/**
+ * Parses a Markdown string to extract the heading, normal text, and image URL.
+ * @param {string} markdown - The Markdown string to parse.
+ * @returns {Object} An object containing the heading, text, and image URL.
+ */
+export function parseMarkdown(markdown) {
+  // Extract the first heading
+  const headingMatch = markdown.match(/^# (.*)$/m);
+  const heading = headingMatch ? headingMatch[1] : null;
+
+  // Extract the first image URL
+  const imageMatch = markdown.match(/!\[.*\]\((.*)\)/);
+  const imageUrl = imageMatch ? imageMatch[1] : null;
+
+  // Remove the first heading from the markdown
+  const textWithoutFirstHeading = markdown.replace(/^# .*\n*/, '');
+
+  // Remove all image markdown from the text
+  const textWithoutImages = textWithoutFirstHeading.replace(/!\[.*\]\(.*\)/g, '');
+
+  // Remove subsequent headings from the text
+  const textWithoutHeadings = textWithoutImages.replace(/^# .*\n*/gm, '').trim();
+
+  // Properly format the image URL
+  const formattedImageUrl = imageUrl && imageUrl.startsWith('//') ? 'https:' + imageUrl : imageUrl;
+
+  return {
+    heading: heading,
+    text: textWithoutHeadings,
+    imageUrl: formattedImageUrl
+  };
+}
+
+/**
+ * Parses a given data string to extract name, URL, and icon information.
+ * The data is expected to be in the format:
+ * [Name](URL)(![Icon Description](Icon URL))
+ * Multiple entries are separated by newline characters ("\n").
+ *
+ * @param {string} data - The input string containing multiple entries.
+ * @returns {Array} mapList - An array of objects containing the extracted information.
+ */
+export function parseData(data) {
+  const mapList = [];
+  const entries = data.split('\n');
+
+  entries.forEach((element) => {
+    // Extract name, URL, and icon using a regular expression
+    const [_, name, url, icon] = element.match(/\[(.*?)\]\((.*?)\)\(.*?\((.*?)\)\)/) || [];
+    if (name && url && icon) {
+      // Check if the URL contains 'www.copilot.com' and format it accordingly
+      const formattedUrl = url.includes('www.copilot.com') ? url.split('www.copilot.com/')[1] : url;
+      // Ensure the icon URL has a protocol (default to https if it starts with //)
+      const iconUrl = icon && icon.startsWith('//') ? 'https:' + icon : icon;
+
+      // Push the extracted information to the mapList array
+      mapList.push({
+        name,
+        slug: formattedUrl,
+        industryIcon: { url: iconUrl }
+      });
+    }
+  });
+
+  return mapList;
+}

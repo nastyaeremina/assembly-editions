@@ -14,6 +14,14 @@ const HeroSection = styled.div`
     css`
       background-color: ${whiteColor};
     `}
+  ${(props) =>
+    props.isStandardPage &&
+    css`
+      padding: 0 0 100px;
+      @media only screen and (max-width: 768px) {
+        padding: 0 0 80px !important;
+      }
+    `}
   @media only screen and (max-width: 749px) {
     padding: 148px 0 0px 0;
   }
@@ -214,9 +222,14 @@ const RightWrap = styled.div`
 `;
 
 const HeroBtnBlock = styled.div`
+  display: flex;
+  justify-content: center;
+  gap: 20px;
   margin: 32px 0 0px;
   @media only screen and (max-width: 768px) {
     margin-bottom: 20px;
+    gap: 12px;
+    flex-wrap: wrap;
   }
 `;
 

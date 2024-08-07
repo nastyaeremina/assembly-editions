@@ -1,20 +1,26 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { Body3, Body4, Body5, Heading3, Heading4, MbBody3, MbBody4, SliderTxt } from '../../../styles/styles';
 
-import {
-  greendark,
-  greenlight,
-  body,
-  title,
-  primary,
-  border
-} from './../../../styles/color';
+import { greendark, greenlight, body, title, primary, border, whiteColor } from './../../../styles/color';
 
 const ExploreSection = styled.div`
   padding: 50px 0;
   overflow: hidden;
+  ${(props) =>
+    props.isStandardPage &&
+    css`
+      padding: 0 0 100px;
+      @media only screen and (max-width: 768px) {
+        padding: 0 0 80px;
+      }
+    `}
   @media only screen and (max-width: 749px) {
     padding: 40px 0;
+    ${(props) =>
+      props.isStandardPage &&
+      css`
+        padding: 0 0 80px;
+      `}
   }
 `;
 const TopView = styled.div`
@@ -84,6 +90,9 @@ const LeftWrap = styled.div`
       margin: 0;
     }
   }
+  @media only screen and (max-width: 749px) {
+    margin-bottom: 28px;
+  }
 `;
 const RightWrap = styled.div`
   @media only screen and (max-width: 991px) {
@@ -108,11 +117,11 @@ const TabWrap = styled.div`
     }
     border: 1.08px solid #4c4c4c;
     width: 100%;
-      max-width: 72px;
-      min-width: 72px;
-      height: 100%;
-      min-height: 72px;
-      max-height: 72px;
+    max-width: 72px;
+    min-width: 72px;
+    height: 100%;
+    min-height: 72px;
+    max-height: 72px;
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -136,7 +145,7 @@ const TabWrap = styled.div`
     justify-content: flex-end;
     gap: 20px;
     .activetab {
-      border:1px solid #4c4c4c;
+      border: 1px solid #4c4c4c;
       width: 100%;
       max-width: 57px;
       min-width: 57px;
@@ -158,31 +167,36 @@ const TabView = styled.div`
   }
   border: 1.08px solid #ccccd0;
   width: 100%;
-      max-width: 72px;
-      min-width: 72px;
-      height: 100%;
-      min-height: 72px;
-      max-height: 72px;
+  max-width: 72px;
+  min-width: 72px;
+  height: 100%;
+  min-height: 72px;
+  max-height: 72px;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
+  :hover {
+    span {
+      color: ${title};
+    }
+  }
   @media only screen and (max-width: 991px) {
-     width: 100%;
-      max-width: 59px;
-      min-width: 59px;
-      height: 100%;
-      min-height: 59px;
-      max-height: 59px;
+    width: 100%;
+    max-width: 59px;
+    min-width: 59px;
+    height: 100%;
+    min-height: 59px;
+    max-height: 59px;
   }
   @media only screen and (max-width: 749px) {
     border: 1px solid #ccccd0;
     width: 100%;
-      max-width: 57px;
-      min-width: 57px;
-      height: 100%;
-      min-height: 57px;
-      max-height: 57px;
+    max-width: 57px;
+    min-width: 57px;
+    height: 100%;
+    min-height: 57px;
+    max-height: 57px;
   }
 `;
 const LastSection = styled.div`
@@ -219,13 +233,16 @@ const SignBox = styled.div`
   border: 1px solid #131313;
   border-radius: 8px;
   padding: 35px;
-  background-color: #fffffd;
-  cursor:pointer;
+  cursor: pointer;
   @media only screen and (max-width: 991px) {
     padding: 25px;
+    background-color: ${whiteColor};
   }
   @media only screen and (max-width: 749px) {
-    padding: 9px;
+    padding: 8px;
+  }
+  @media only screen and (max-width: 449px) {
+    border-radius: 4px;
   }
 `;
 const SignImgView = styled.div`
@@ -233,11 +250,18 @@ const SignImgView = styled.div`
   box-shadow: 0px 0px 34px rgba(0, 0, 0, 0.07);
   background: #ffffff;
   position: relative;
-  border-radius: 6px;
+  border-radius: 4px;
   img {
     max-height: 725px;
     height: 100%;
     max-width: 100%;
+    border-radius: 4px;
+  }
+  @media only screen and (max-width: 449px) {
+    border-radius: 2px;
+    img {
+      border-radius: 2px;
+    }
   }
 `;
 const ActiveTab = styled.div`

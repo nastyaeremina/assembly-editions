@@ -26,9 +26,6 @@ export async function getTopBarContent() {
 export default async function Navbar({ colorList, isModule, headerIndex, isEnterPrice }) {
   const cookie = cookies().get('current-portal-session');
   const { topbarContent, solutionDataList, featureData } = await getTopBarContent();
-
-  // Filter solutionDataList to get items that  solutionType is industry
-  const solutionIndustryList = solutionDataList?.filter((item) => item?.solutionType === SOLUTION_TYPE.INDUSTRY);
   return (
     <>
       <NavbarComponent
@@ -38,7 +35,7 @@ export default async function Navbar({ colorList, isModule, headerIndex, isEnter
         isEnterPrice={isEnterPrice}
         isAuthenticated={!isEmpty(cookie?.value)}
         topbarContent={topbarContent}
-        solutionDataList={solutionIndustryList}
+        solutionDataList={solutionDataList}
         featureData={featureData}
       />
     </>

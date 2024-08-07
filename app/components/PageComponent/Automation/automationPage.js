@@ -160,17 +160,15 @@ export default function AutomationPage({ details }) {
           textColor={MODULE_COLOR_LIST.Automation.fontColor}
           isAutomation={true}
         />
-        <AutomationCardSection
-          heading={details?.sectionHeader2}
-          data={[details?.sectionContent2Collection?.items[0]]}
-        />
-        <AutomationCardSection heading={details?.sectionHeader3} data={details?.sectionContent3Collection?.items} />
       </Container>
+      <AutomationCardSection title={details?.sectionHeader2} data={[details?.sectionContent2Collection?.items[0]]} />
+      <AutomationCardSection title={details?.sectionHeader3} data={details?.sectionContent3Collection?.items} />
       <ExploreTab
         title={details?.sectionHeader4}
         description={details?.sectionBody4?.json}
+        isRichText={true}
         data={removeEmptyElement(details?.sectionContent4Collection?.items)}
-        demoUrl={details?.demoPortalUrl}
+        secondaryButtonLink={details?.demoPortalUrl}
       />
       <Container>
         <SetupAutomation>

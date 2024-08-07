@@ -4,8 +4,21 @@ import { body, greenlight, primary, title, whiteColor } from '../../../styles/co
 
 const HeroSection = styled.div`
   padding: 180px 0 0 0;
+  ${(props) =>
+    props.isStandardPage &&
+    css`
+      padding: 0 0 100px;
+      @media only screen and (max-width: 768px) {
+        padding: 0 0 80px;
+      }
+    `}
   @media only screen and (max-width: 749px) {
     padding-top: 148px;
+    ${(props) =>
+      props.isStandardPage &&
+      css`
+        padding: 0 0 80px;
+      `}
   }
 `;
 const SolutionWrap = styled.div`
@@ -57,7 +70,13 @@ const RightWrap = styled.div`
   }
   @media only screen and (max-width: 991px) {
     width: 100%;
+    text-align: center;
+  }
+  @media only screen and (max-width: 768px) {
     text-align: right;
+  }
+  @media only screen and (max-width: 749px) {
+    display: block;
   }
 `;
 const TextSection = styled.div`
@@ -80,7 +99,7 @@ const TextSection = styled.div`
     h1 {
       ${MobileH2};
     }
-    p{
+    p {
       ${MbBody2}
     }
   }
@@ -88,6 +107,10 @@ const TextSection = styled.div`
 const BtnWrap = styled.div`
   display: flex;
   gap: 20px;
+  @media only screen and (max-width: 449px) {
+    gap: 12px;
+    flex-wrap: wrap;
+  }
 `;
 
 const ImageView = styled.div`
@@ -95,7 +118,7 @@ const ImageView = styled.div`
   background-color: ${whiteColor};
   padding-bottom: 174px;
   z-index: 2;
-  @media only screen and (max-width: 991px) {
+  @media only screen and (max-width: 449px) {
     display: none;
   }
 `;
@@ -107,6 +130,7 @@ const MobileImg = styled.div`
   left: -103px;
   border-radius: 21.0831px;
   background: transparent;
+  height: -webkit-fill-available;
   img {
     box-shadow: 0px 15px 64px rgba(0, 0, 0, 0.15), 0px 0px 15.6171px rgba(0, 0, 0, 0.08),
       inset 0px 0px 6.24685px rgba(0, 0, 0, 0.16);
@@ -126,6 +150,7 @@ const Mobilenew = styled.div`
     left: 0px;
     border-radius: 21.0831px;
     background: transparent;
+    height: -webkit-fill-available;
     img {
       box-shadow: 0px 15px 64px rgba(0, 0, 0, 0.15), 0px 0px 15.6171px rgba(0, 0, 0, 0.08),
         inset 0px 0px 6.24685px rgba(0, 0, 0, 0.16);
@@ -135,7 +160,7 @@ const Mobilenew = styled.div`
 `;
 const MobileView = styled.div`
   display: none;
-  @media only screen and (max-width: 749px) {
+  @media only screen and (max-width: 449px) {
     display: block;
     position: relative;
     background-color: ${whiteColor};
