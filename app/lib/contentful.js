@@ -8,7 +8,7 @@ export async function fetchGraphQL(query, preview = false, type = ['other']) {
   return fetch(`https://graphql.contentful.com/content/v1/spaces/${process.env.CONTENTFUL_SPACE_ID}`, {
     method: 'POST',
     cache: hasSpecialTags ? 'no-store' : 'force-cache',
-    next: { tags: type },
+    next: { tags: type, revalidate: 24 * 3600 },
     headers: {
       'Content-Type': 'application/json',
       Authorization: `Bearer ${process.env.CONTENTFUL_PREVIEW_ACCESS_TOKEN}`
