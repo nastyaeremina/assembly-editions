@@ -1,11 +1,10 @@
 import { notFound } from 'next/navigation';
-import { load } from 'cheerio';
+import { parse } from 'node-html-parser';
 import Layout from '../../components/layout';
 import BlogNavbar from '../../components/navbar/blognavbar';
 import { getAllTagWithSlug, getBlogDetail } from '../../lib/blog-content';
 import { customSort, isEmpty } from '../../helpers/helpers';
 import { isSameDomain } from '../../helpers/serverSideHelpers';
-
 import BlogdetailPage from '../../components/PageComponent/Blog/blogDetailPage';
 import { BLOG_TAG_SORTED_LIST } from '../../constants/constant';
 
@@ -106,13 +105,13 @@ export default async function Blogdetail({ params }) {
   const cleanedHtmlString = blogDetail?.html?.replace(ctaRegex, '');
 
   // Use Cheerio to load the blog content's HTML
-  const $ = load(cleanedHtmlString);
+  const root = parse(cleanedHtmlString);
   // List of allowed routes where links should open in the same tab
   const allowedRoutes = ['/blog', '/pricing'];
 
   // Process anchor elements within the content
-  $('a').each((index, element) => {
-    const href = $(element).attr('href');
+  root.querySelectorAll('a').forEach((element) => {
+    const href = element.getAttribute('href');
 
     if (href) {
       // Check if href is a valid URL or a fragment identifier
@@ -122,15 +121,15 @@ export default async function Blogdetail({ params }) {
         const linkPathname = new URL(href)?.pathname;
         if (isSameDomain(href) && allowedRoutes.some((route) => linkPathname.startsWith(route))) {
           // If it's the same domain and matches an allowed route, set target to "_self"
-          $(element).attr('target', '_self');
+          element.setAttribute('target', '_self');
         } else {
           // If it's a different domain or doesn't match an allowed route, set target to "_blank"
-          $(element).attr('target', '_blank');
+          element.setAttribute('target', '_blank');
         }
       }
     }
   });
-  const modifiedHtmlData = $.html();
+  const modifiedHtmlData = root.toString();
 
   return (
     <>
