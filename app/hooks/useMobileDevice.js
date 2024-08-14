@@ -22,12 +22,28 @@ const useMobileDevice = () => {
   return isMobileDevice;
 };
 
+/**
+ * Returns the current window dimensions (width and height).
+ * If executed in a non-browser environment (e.g., server-side),
+ * it returns an object with both width and height set to 0.
+ *
+ * @returns {Object} - An object containing the width and height of the window.
+ *   - {number} width - The inner width of the window in pixels.
+ *   - {number} height - The inner height of the window in pixels.
+ */
 function getWindowDimensions() {
-  const { innerWidth: width, innerHeight: height } = window;
-  return {
-    width,
-    height
-  };
+  if (typeof window !== 'undefined') {
+    const { innerWidth: width, innerHeight: height } = window;
+    return {
+      width,
+      height
+    };
+  } else {
+    return {
+      width: 0,
+      height: 0
+    };
+  }
 }
 
 export function useWindowDimensions() {
