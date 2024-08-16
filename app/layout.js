@@ -10,6 +10,10 @@ async function getContent() {
   return await getCustomeCode();
 }
 
+export const metadata = {
+  metadataBase: new URL('https://www.copilot.com')
+};
+
 export default async function Layout({ children }) {
   const data = await getContent();
   const header = data?.filter((item) => item.name === 'Head')?.[0] ?? null;

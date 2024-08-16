@@ -1,13 +1,6 @@
-import { CONTENTFUL_API_TAG } from '../constants/constant';
-
 export async function fetchGraphQL(query, preview = false, type = ['other']) {
-  // Check if 'template' tag is present in the type array
-  const hasSpecialTags = type.some(
-    (item) => item.includes(CONTENTFUL_API_TAG.TEMPLATE) || item.includes(CONTENTFUL_API_TAG.APP_REVIEW)
-  );
   return fetch(`https://graphql.contentful.com/content/v1/spaces/${process.env.CONTENTFUL_SPACE_ID}`, {
     method: 'POST',
-    cache: hasSpecialTags ? 'no-store' : 'force-cache',
     next: { tags: type, revalidate: 24 * 3600 },
     headers: {
       'Content-Type': 'application/json',
