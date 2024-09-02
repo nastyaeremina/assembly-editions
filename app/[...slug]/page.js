@@ -8,7 +8,6 @@ import { getSEOData, isEmpty } from '../helpers/helpers';
 import ProductDemoPage from '../components/PageComponent/ProductDemo/productDemoPage';
 import { getStandardPageContent } from '../lib/contentful-standardPage';
 import StandardPage from '../components/standardPage/standaradPage';
-import CTA from '../components/cta/cta';
 
 const PAGE_TYPE = {
   DEFAULT: 0,
@@ -56,7 +55,6 @@ export default async function WeeklyDemo({ params }) {
       {type === PAGE_TYPE.STANDARD_PAGE && (
         <>
           <StandardPage data={data?.contentCollection?.items} />
-          <CTA />
         </>
       )}
     </Layout>

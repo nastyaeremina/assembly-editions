@@ -86,6 +86,11 @@ contentCollection{
             id
             }
         }
+             ... on SectionCta{
+            sys{
+              id
+            }
+          }
         ...on   Testimonial{
             name
             role
@@ -146,6 +151,17 @@ const POST_GRAPHQL_SECTION_TAB_FIELDS = `
       }
     }`;
 
+
+const POST_GRAPHQL_SECTION_CTA_FIELDS = `
+  title
+  primaryButtonText
+  primaryButtonLink
+  secondaryButtonText
+  secondaryButtonLink
+  banner{
+    url
+  }
+`
 export async function getFeatureComponentContent(id, preview) {
   const entries = await fetchGraphQL(
     `query {
@@ -214,4 +230,17 @@ export async function getAllStandardPageWithSlug() {
     [CONTENTFUL_API_TAG.TEMPLATE]
   );
   return entries?.data?.pageTemplateCollection?.items;
+}
+
+export async function getSectionCTAContent(id, preview) {
+  const entries = await fetchGraphQL(
+    `query {
+        sectionCta(id:"${id}",preview: ${preview ? 'true' : 'false'}) {
+         ${POST_GRAPHQL_SECTION_CTA_FIELDS}
+      }
+    }`,
+    preview,
+    [CONTENTFUL_API_TAG.STANDARD_PAGE]
+  );
+  return entries?.data?.sectionCta || {};
 }

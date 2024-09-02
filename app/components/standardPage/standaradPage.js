@@ -2,6 +2,7 @@ import { isEmpty } from '../../helpers/helpers';
 import {
   getFeatureComponentContent,
   getSectionBoxesComponentContent,
+  getSectionCTAContent,
   getSectionTabContent
 } from '../../lib/contentful-standardPage';
 import Modern from '../solution/modern/modern';
@@ -12,6 +13,7 @@ import TabsComponent from '../tabsComponent/tabscomponent';
 import CustomerTestimonial from '../customer/testimonials';
 import StandardHero from '../standardHero/standardHero';
 import AutomationCardSection from '../automationcard';
+import CTA from '../cta/newCTA';
 
 export default async function StandardPage({ data }) {
   const renderComponent = async (componentData) => {
@@ -101,6 +103,21 @@ export default async function StandardPage({ data }) {
             isStandardPage={true}
           />
         );
+      case 'SectionCta':
+        if (componentData?.sys?.id) {
+          const data = (await getSectionCTAContent(componentData?.sys?.id)) ?? {};
+          return !isEmpty(data) ? (
+            <CTA
+              title={data?.title}
+              primaryButtonText={data?.primaryButtonText}
+              primaryButtonLink={data?.primaryButtonLink}
+              secondaryButtonText={data?.secondaryButtonText}
+              secondaryButtonLink={data?.secondaryButtonLink}
+              banner={data?.banner?.url}
+            />
+          ) : null;
+        }
+        return null;
       default:
         return null;
     }
