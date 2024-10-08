@@ -82,9 +82,7 @@ const HeroSection = styled.div`
     }
   }
 `;
-const HeroHeading = styled.div`
-  text-align: center;
-`;
+
 const PricingSection = styled.div``;
 const PriceMenu = styled.div``;
 const PriceButton = styled.div`
@@ -125,188 +123,13 @@ const MonthlyButton = styled.div`
     }
   }
 `;
-const LeftTopBorder = styled.div`
-  border-top: 1px solid black;
-  border-left: 1px solid black;
-  width: 6px;
-  margin-right: -6px;
-  display: block;
-  border-top-left-radius: 4px;
-  height: 6px;
-`;
-const RightTopBorder = styled.div`
-  border-top: 1px solid black;
-  border-right: 1px solid black;
-  width: 6px;
-  margin-left: -6px;
-  display: block;
-  border-top-right-radius: 4px;
-  height: 6px;
-`;
-const LeftbottomBorder = styled.div`
-  border-bottom: 1px solid black;
-  border-right: 1px solid black;
-  width: 6px;
-  margin-left: -6px;
-  display: block;
-  border-top-right-radius: 4px;
-  height: 6px;
-`;
+
 const WrapSlide = styled.div`
   display: -webkit-inline-box;
   align-items: stretch;
   height: 100%;
 `;
-const RightBottomBorder = styled.div`
-  border-bottom: 1px solid black;
-  border-right: 1px solid black;
-  width: 6px;
-  margin-left: -6px;
-  display: block;
-  border-top-right-radius: 4px;
-  height: 6px;
-`;
-const PricingMenu = styled.div``;
-const PriceOption = styled.div`
-  display: flex;
-  gap: 40px;
-  justify-content: space-between;
-  padding-bottom: 40px;
-  @media only screen and (max-width: 991px) {
-    gap: 20px;
-  }
-  @media only screen and (max-width: 749px) {
-    flex-wrap: wrap;
-    gap: 40px;
-    padding-bottom: 0;
-    justify-content: center;
-  }
-`;
 
-const PriceMenuLeft = styled.div`
-  max-width: 382px;
-  width: 100%;
-`;
-const RightBorder = styled.div`
-  border-top: 1px solid #003f27;
-  border-right: 1px solid #003f27;
-  border-bottom: 1px solid #003f27;
-  width: 29px;
-
-  display: block;
-  border-bottom-right-radius: 4px;
-  border-top-right-radius: 4px;
-  margin-left: -29px;
-`;
-const LeftBorder = styled.div`
-  border-top: 1px solid #003f27;
-  border-left: 1px solid #003f27;
-  border-bottom: 1px solid #003f27;
-  width: 29px;
-  border-bottom-left-radius: 4px;
-  border-top-left-radius: 4px;
-  display: block;
-  margin-right: -29px;
-`;
-const PriceLeft = styled.div`
-  padding: 40px 30px;
-  h2 {
-    ${Heading4};
-    color: ${title};
-    margin: 0 0 12px 0;
-  }
-  p {
-    ${Body4};
-    color: ${bodycolor};
-    letter-spacing: 0.02em;
-    margin: 0 0 28px 0;
-  }
-  @media only screen and (max-width: 991px) {
-    padding: 20px;
-    h2 {
-      font-size: 28px;
-      line-height: 34px;
-    }
-    p {
-      font-size: 16px;
-      line-height: 23px;
-    }
-  }
-  @media only screen and (max-width: 749px) {
-    padding: 40px 30px;
-    h4 {
-      ${MobileH4};
-    }
-    p {
-      ${MbBody3};
-    }
-  }
-`;
-const PriceWrap = styled.div`
-  display: flex;
-  gap: 12px;
-  padding-bottom: 32px;
-  border-bottom: 1px solid black;
-  span {
-    ${Heading2};
-    color: ${title};
-    margin: 0;
-  }
-  p {
-    ${Body5};
-    color: ${lightgray};
-    letter-spacing: 0.02em;
-    margin: 0;
-    max-width: 115px;
-    width: 100%;
-  }
-  @media only screen and (max-width: 991px) {
-    span {
-      font-size: 45px;
-      line-height: 36px;
-    }
-    p {
-      font-size: 12px;
-      line-height: 14px;
-    }
-  }
-  @media only screen and (max-width: 749px) {
-    span {
-      ${MobileH1};
-    }
-    p {
-      ${Body5};
-    }
-  }
-`;
-const PricePlan = styled.ul`
-  padding-top: 32px;
-  max-width: 285px;
-  width: 100%;
-  margin: 0 auto;
-  h3 {
-    color: ${title};
-    ${Body2};
-    margin: 0 0 20px 0;
-    letter-spacing: 0.02em;
-  }
-  p {
-    color: ${darkgray};
-  }
-  @media only screen and (max-width: 991px) {
-    h3 {
-      font-size: 18px;
-      line-height: 20px;
-    }
-  }
-  @media only screen and (max-width: 749px) {
-    h3 {
-      ${Body2};
-    }
-  }
-`;
-
-const PlanPlanSub = styled.div``;
 const PlanButton = styled.div`
   width: fit-content;
   text-align: center;
@@ -490,97 +313,7 @@ const PriceTable = styled.div`
     display: none;
   }
 `;
-const LearnLink = styled.div`
-  padding-top: 8px;
-  a {
-    display: flex;
-    align-items: center;
-    ${FooterText};
-    color: ${title};
-    img {
-      margin-left: 6px;
-    }
-  }
-`;
-const ImgMargin = styled.div`
-  margin-left: 6px;
-`;
-const TextUnderline = styled.div`
-  padding-bottom: 4px;
-  border-bottom: 1px solid #00160e;
-  display: inline-block;
-`;
 
-const PricePadding = styled.div`
-  padding-top: 12px;
-`;
-const ImageWrap = styled.div`
-  display: flex;
-  gap: 10px;
-  align-items: center;
-`;
-const PriceImage = styled.div`
-  display: flex;
-  border: 1px solid #000000;
-  border-radius: 4px;
-  @media only screen and (max-width: 749px) {
-    display: none;
-  }
-`;
-const PriceImageLeft = styled.div`
-  padding: 40px;
-  max-width: 820px;
-  width: 100%;
-  border-right: 1px solid #000000;
-  img {
-    display: block;
-  }
-  h2 {
-    margin: 40px 0 0 0;
-    ${Heading3};
-    color: ${title};
-  }
-  span {
-    ${Heading3};
-    color: ${primary};
-  }
-  p {
-    margin: 16px 0 28px 0;
-    color: ${body};
-    letter-spacing: 0.02em;
-    ${Body3};
-  }
-  @media only screen and (max-width: 991px) {
-    border-right: none;
-  }
-`;
-const Pricefaq = styled.div`
-  h2 {
-    ${Heading3};
-    color: ${title};
-  }
-  margin: 0 0 60px 0;
-`;
-const PriceText = styled.div`
-  max-width: 115px;
-  width: 100%;
-`;
-const BulletImage = styled.div`
-  padding: 5px 10px;
-  margin-top: 7px;
-  background-color: ${greenmidlight};
-  @media only screen and (max-width: 749px) {
-    padding: 4px 8px;
-  }
-`;
-const PricePlusImage = styled.div`
-  img {
-    height: 100%;
-  }
-  @media only screen and (max-width: 991px) {
-    display: none;
-  }
-`;
 const PricingButton = styled.div`
   display: flex;
   justify-content: center;
@@ -590,39 +323,14 @@ const PricingButton = styled.div`
   }
 `;
 export {
-  HeroHeading,
   HeroSection,
   PricingSection,
   PriceMenu,
   PriceButton,
   YearlyButton,
   MonthlyButton,
-  LeftTopBorder,
-  RightTopBorder,
   WrapSlide,
-  LeftbottomBorder,
-  RightBottomBorder,
-  PricingMenu,
-  PriceOption,
-  PriceMenuLeft,
-  LeftBorder,
-  RightBorder,
-  PriceLeft,
-  PriceWrap,
-  PricePlan,
-  PlanPlanSub,
   PlanButton,
   PriceTable,
-  LearnLink,
-  ImgMargin,
-  TextUnderline,
-  PricePadding,
-  ImageWrap,
-  PriceImage,
-  PriceImageLeft,
-  Pricefaq,
-  PriceText,
-  BulletImage,
-  PricePlusImage,
   PricingButton
 };

@@ -1,12 +1,11 @@
-'use client'
+'use client';
 
 import Image from 'next/image';
 import { useMemo } from 'react';
-import { useRouter } from 'next/navigation'
+import { useRouter } from 'next/navigation';
 import { Par, PostDetail, Textarea } from '../../styles/blogstyles';
 import { isEmpty } from '../../helpers/helpers';
-import { Container } from '../../styles/commonStyles';
-import { BlogDetail, Bottom, Desc, Heading, Leftside, Rightside, Text } from './styles';
+import { BlogDetail, Bottom, Leftside, Rightside } from './styles';
 
 export default function Blogcard(props) {
   const router = useRouter();

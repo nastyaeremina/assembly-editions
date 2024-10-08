@@ -95,23 +95,7 @@ const PrivacyContent = styled.div`
     }
   }
 `;
-const PrivacyData = styled.div`
-  padding-left: 36px;
-  position: relative;
-  margin-top: 10px;
-  p {
-    margin: 0;
-  }
-  :before {
-    content: '';
-    position: absolute;
-    top: 7px;
-    left: 0;
-    width: 20px;
-    height: 10px;
-    background-color: #7ddaa0;
-  }
-`;
+
 const ContentInfo = styled.div`
   padding: 28px 0 100px 0;
   @media only screen and (max-width: 749px) {
@@ -160,20 +144,5 @@ const FooterSection = styled.div`
   margin-top: 60px;
   background-color: ${footercolor};
 `;
-const FooterSub = styled.div`
-  padding: 40px 0;
-  display: flex;
-  gap: 40px;
-`;
-export {
-  MainSection,
-  PrivacuHero,
-  PostContent,
-  PrivacyContent,
-  PrivacyData,
-  ContentInfo,
-  InfoWrap,
-  InfoLink,
-  FooterSection,
-  FooterSub
-};
+
+export { MainSection, PrivacuHero, PostContent, PrivacyContent, ContentInfo, InfoWrap, InfoLink, FooterSection };

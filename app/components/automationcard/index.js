@@ -1,11 +1,11 @@
 'use client';
 import React, { useMemo } from 'react';
+import ReactMarkdown from 'react-markdown';
 import { isEmpty, separateSpecialChar } from '../../helpers/helpers';
+import { Container } from '../../styles/commonStyles';
+import ButtonGroup from '../ButtonGroup/buttonGroup';
 import { Body, CardSection, CardSectionHead, Cards, Description, HeaderSection } from './styles';
 import AutomationCard from './card';
-import { Container } from '../../styles/commonStyles';
-import ReactMarkdown from 'react-markdown';
-import ButtonGroup from '../ButtonGroup/buttonGroup';
 
 /**
  * AutomationCardSection Component
@@ -46,7 +46,7 @@ export default function AutomationCardSection({
         />
       );
     });
-  }, [data]);
+  }, [data, isStandardPage]);
 
   return (
     <Container>

@@ -303,30 +303,7 @@ const NameInfo = styled.div`
     border-radius: 4px;
   }
 `;
-const Swiper = styled.div`
-  width: 100%;
-  height: 100%;
-`;
 
-const SwiperSlide = styled.div`
-  text-align: center;
-  font-size: 18px;
-  background: #fff;
-
-  /* Center slide text vertically */
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: -webkit-flex;
-  display: flex;
-  -webkit-box-pack: center;
-  -ms-flex-pack: center;
-  -webkit-justify-content: center;
-  justify-content: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  -webkit-align-items: center;
-  align-items: center;
-`;
 const ImgWrap = styled.div`
   display: inline-flex;
   max-height: 24px;
@@ -420,14 +397,7 @@ const TextWrap = styled.div`
     }
   }
 `;
-const ContactText = styled.span`
-  display: block;
-  ${Body3};
-  color: ${title};
-  @media only screen and (max-width: 749px) {
-    ${MbBody3};
-  }
-`;
+
 export {
   MainSection,
   FormSection,
@@ -438,8 +408,6 @@ export {
   NameBlock,
   NameInfo,
   LastText,
-  Swiper,
-  SwiperSlide,
   ImgWrap,
   ThanksWrap,
   HelpLink,
@@ -447,6 +415,5 @@ export {
   CardView,
   CardList,
   ImgLine,
-  TextWrap,
-  ContactText
+  TextWrap
 };

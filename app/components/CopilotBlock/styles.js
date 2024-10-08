@@ -106,10 +106,6 @@ const MainBlock = styled.div`
   }
 `;
 
-const Last = styled.div`
-  display: flex;
-  align-items: center;
-`;
 const LinkDiv = styled.div``;
 const LastDroplist = styled.div`
   .learn-link,
@@ -164,4 +160,4 @@ const LastDroplist = styled.div`
     --arrowHoverOffset: translateX(3px);
   }
 `;
-export { BlockCard, BLockImage, BlockDescriptionTop, BlockDescription, MainBlock, LastDroplist, Last, LinkDiv };
+export { BlockCard, BLockImage, BlockDescriptionTop, BlockDescription, MainBlock, LastDroplist, LinkDiv };

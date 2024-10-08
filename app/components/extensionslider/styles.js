@@ -1,53 +1,13 @@
 import Link from 'next/link';
 import styled, { keyframes } from 'styled-components';
-import { Body3, Body4, Body5 } from '../../styles/styles';
-import {
-  greendark,
-  title,
-  greenmiddark,
-  whiteColor,
-} from './../../styles/color';
+import { Body4 } from '../../styles/styles';
+import { title, whiteColor } from './../../styles/color';
 
-const Slide = styled.div`
-  a {
-    z-index: 3;
-    display: inline-block;
-    position: relative;
-    border-radius: 12px;
-    overflow: hidden;
-    @media only screen and (max-width: 600px) {
-      border-radius: 0;
-    }
-  }
-`;
 const SliderWrap = styled.div`
   overflow: hidden;
   position: relative;
 `;
-const WrapImage = styled.div`
-  max-width: 350px;
-  width: 100%;
-  padding: 22px 0;
-  margin: 0 22px;
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-  h4 {
-    text-align: center;
-    padding-top: 22px;
-    ${Body3};
-    margin: 0;
-    color: ${greendark};
-  }
-  p {
-    ${Body5};
-    padding-top: 7px;
-    text-align: center;
-    margin: 0;
-    color: ${greenmiddark};
-    letter-spacing: 0.02em;
-  }
-`;
+
 const SliderInner = styled(Link)`
   padding: 11px 20px 11px 15px;
   border: 1px solid #000000;
@@ -94,4 +54,4 @@ const SliderLine = styled.div`
   top: 0;
 `;
 
-export { Slide, SliderWrap, WrapImage, SliderInner, SliderSub, SliderLine };
+export { SliderWrap, SliderInner, SliderSub, SliderLine };

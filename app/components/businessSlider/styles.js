@@ -1,18 +1,6 @@
 import styled from 'styled-components';
 import { Body3, Body5, MbBody3, MbBody5 } from '../../styles/styles';
 
-const Slide = styled.div`
-  a {
-    z-index: 3;
-    display: inline-block;
-    position: relative;
-    border-radius: 12px;
-    overflow: hidden;
-    @media only screen and (max-width: 991px) {
-      border-radius: 0;
-    }
-  }
-`;
 const SliderWrap = styled.div`
   .roundbutton-section {
     position: absolute;
@@ -216,9 +204,4 @@ const SlideImg = styled.div`
   }
 `;
 
-const MobileSection = styled.div`
-  display: flex;
-  flex-direction: column;
-`;
-
-export { Slide, SliderWrap, WrapImage, LeftBorder, RightBorder, WrapSlide, SlideImg, MainSliderDiv, MobileSection };
+export { SliderWrap, WrapImage, LeftBorder, RightBorder, WrapSlide, SlideImg, MainSliderDiv };

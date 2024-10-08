@@ -183,164 +183,7 @@ const CardSection = styled.div`
     flex-wrap: wrap;
   }
 `;
-const ModuleCard = styled.div`
-  ${(props) =>
-    props.bgImage &&
-    css`
-      &:hover {
-        background-image: url(${props.bgImage});
-      }
-    `}
-  padding: 36px;
-  border: 1px solid #01292c;
-  border-radius: 4px;
-  display: block;
-  cursor: pointer;
-  height: auto;
-  width: auto;
-  /* flex-grow: 1; */
-  flex: 1 1 0;
-  display: flex;
-  align-items: stretch;
-  /* transition: all 5s ease; */
-  ${(props) =>
-    props.isProductdemo &&
-    css`
-      .learn-link {
-        display: flex;
-        flex-direction: column;
-      }
-    `}
-  a {
-    ${LinkTxt};
-    color: ${title};
-  }
-  .learn-link {
-    transition: transform 300ms ease;
-    height: 100%;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-  }
-  .learn-link svg path {
-    transition: transform 300ms ease;
-  }
 
-  .HoverArrow__linePath {
-    opacity: 0;
-    fill: none;
-  }
-  .HoverArrow {
-    stroke-width: 2px;
-    fill: none;
-    stroke: currentColor;
-    position: relative;
-    margin-left: var(--arrowSpacing);
-    stroke-width: 2px;
-    fill: none;
-    stroke: currentColor;
-    margin-left: 8px;
-    @media only screen and (max-width: 991px) {
-      display: none;
-    }
-  }
-  .mobilearrow {
-    display: none;
-  }
-  @media only screen and (max-width: 991px) {
-    .mobilearrow {
-      display: block;
-      margin-left: 4px;
-    }
-  }
-  .mobilearrow a {
-    color: ${title};
-    cursor: pointer;
-    display: block;
-    ${LinkTxt};
-    :hover .HoverArrow__linePath {
-      opacity: 1;
-      fill: none;
-      @media only screen and (max-width: 991px) {
-        opacity: 0;
-        margin-left: 4px;
-      }
-    }
-    :hover .HoverArrow__tipPath {
-      transform: translateX(4px);
-    }
-  }
-  .hide {
-    display: none;
-  }
-  :hover {
-    display: block;
-    color: white;
-  }
-  :hover .icon-link {
-    transform: translateY(1px);
-    @media only screen and (max-width: 991px) {
-      transform: none;
-    }
-  }
-  :hover .icon-message {
-    transform: translateY(0px);
-  }
-  :hover .HoverArrow__linePath {
-    opacity: 1;
-    fill: none;
-    @media only screen and (max-width: 991px) {
-      opacity: 0;
-      margin-left: 4px;
-    }
-  }
-  :hover .HoverArrow__tipPath {
-    transform: translateX(4px);
-    @media only screen and (max-width: 991px) {
-      transform: none;
-    }
-  }
-
-  @media only screen and (min-width: 749px) {
-    ${(props) =>
-      props.strokecolor &&
-      css`
-        :hover {
-          svg {
-            path {
-              stroke: ${props.strokecolor};
-            }
-          }
-        }
-      `}
-  }
-  @media only screen and (max-width: 991px) {
-    padding: 20px;
-    a {
-      font-size: 16px;
-      line-height: 22px;
-    }
-  }
-  @media only screen and (max-width: 749px) {
-    width: unset;
-  }
-`;
-const CardText = styled.div`
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  padding-top: 40px;
-  transition: all 300ms ease-in-out;
-  h4 {
-    margin: 0;
-    color: ${title};
-    ${LinkTxt};
-  }
-  h4:hover {
-    color: white;
-  }
-`;
 const BlockSection = styled(Link)`
   border: 1px solid #00160e;
   border-radius: 4px;
@@ -446,28 +289,7 @@ const BlockText = styled.div`
     }
   }
 `;
-const BlockWrap = styled.div`
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  .hidden {
-    display: none;
-  }
-  .show {
-    display: block;
-  }
-  h4 {
-    margin: 0;
-    color: ${title};
-    ${LinkTxt};
-  }
-  .show:hover {
-    display: none;
-  }
-  .hidden:hover {
-    display: block;
-  }
-`;
+
 const HelpLeftSub = styled.div`
   display: block;
   margin-top: 40px;
@@ -485,48 +307,7 @@ const HelpLeftSub = styled.div`
     margin-top: 18px;
   }
 `;
-const ImageWrapper = styled.div`
-  /* max-height: 165px; */
-  /* height: 100%; */
-  width: 100%;
-  img {
-    max-width: 100%;
-    height: 100%;
-  }
-  svg {
-    max-width: 220px;
-    width: 100%;
-    max-height: 165px;
-    height: 100%;
-  }
-  @media only screen and (max-width: 1025px) {
-    max-height: 124px;
-    svg {
-      max-width: 185px;
-      width: 100%;
-      max-height: 124px;
-      height: 100%;
-    }
-  }
-  @media only screen and (max-width: 769px) {
-    max-height: 100px;
-  }
-  @media only screen and (max-width: 769px) {
-    max-height: 105px;
-    height: 105px;
-    min-height: 105px;
-    display: flex;
-    justify-content: center;
-  }
-  @media only screen and (max-width: 749px) {
-    svg {
-      max-width: 124px;
-      width: 100%;
-      max-height: 165px;
-      height: 100%;
-    }
-  }
-`;
+
 const HelpLink = styled.div`
   text-align: left;
   white-space: nowrap;
@@ -603,35 +384,4 @@ const HelpLink = styled.div`
   }
 `;
 
-const LastProductdemocard = styled.div`
-  margin-top: 16px;
-`;
-
-const LastCardSection = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-  flex-basis: 100%;
-  align-self: stretch;
-  width: 100%;
-  @media (max-width: 749px) {
-    flex-direction: row;
-    justify-content: space-between;
-    width: 100%;
-  }
-`;
-export {
-  ClientMain,
-  ClientHero,
-  CardSection,
-  ModuleCard,
-  CardText,
-  BlockSection,
-  BlockText,
-  BlockWrap,
-  HelpLeftSub,
-  ImageWrapper,
-  HelpLink,
-  LastProductdemocard,
-  LastCardSection
-};
+export { ClientMain, ClientHero, CardSection, BlockSection, BlockText, HelpLeftSub, HelpLink };

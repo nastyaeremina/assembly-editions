@@ -3,18 +3,6 @@ import Link from 'next/link';
 import { Body2, Body4, Body5, MbBody2 } from '../../styles/styles';
 import { body, title } from '../../styles/color';
 
-const SliderWrap = styled.div`
-  overflow: hidden;
-  position: relative;
-  ${(props) =>
-    props.isDetailSlider &&
-    css`
-      padding-bottom: 100px;
-      @media only screen and (max-width: 449px) {
-        padding-bottom: 80px;
-      }
-    `}
-`;
 const SliderInner = styled(Link)`
   width: 423px;
   border: 1px solid transparent;
@@ -112,10 +100,7 @@ const SliderIcon = styled.div`
     }
   }
 `;
-const AnimateSlider = styled.div`
-  display: flex;
-  position: relative;
-`;
+
 const Animated = styled.div`
   margin-bottom: 100px;
   position: relative;
@@ -169,4 +154,4 @@ const Animated = styled.div`
     }
   }
 `;
-export { SliderWrap, SliderInner, SliderSub, SliderLine, SliderIcon, AnimateSlider, Animated };
+export { SliderInner, SliderSub, SliderLine, SliderIcon, Animated };

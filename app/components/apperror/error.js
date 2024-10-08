@@ -1,6 +1,5 @@
 import Image from 'next/image';
-import { Container, PrimaryButton } from '../../styles/commonStyles';
-import { AppMain, ErrorMain } from './styles';
+import { AppMain } from './styles';
 
 export default function AppError({ query }) {
   return (

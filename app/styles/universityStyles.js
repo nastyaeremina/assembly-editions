@@ -145,7 +145,7 @@ const Catagoryitem = styled.li`
   }
 `;
 const FeatureRight = styled.div`
-  width:100%;
+  width: 100%;
   margin-top: -40px;
   position: relative;
   h2 {
@@ -157,13 +157,7 @@ const FeatureRight = styled.div`
     width: 100%;
   }
 `;
-const Featured = styled.div`
-  ${(props) =>
-    props.isSelected &&
-    css`
-      padding-top: 100px;
-    `}
-`;
+
 const FeatureMenu = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
@@ -222,25 +216,7 @@ const ExtensionsSection = styled.div`
     width: 100%;
   }
 `;
-const ExtensionCard = styled.div`
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  gap: 36px;
-  @media only screen and (max-width: 991px) {
-    grid-template-columns: 1fr 1fr;
-  }
-  @media only screen and (max-width: 749px) {
-    grid-template-columns: 1fr;
-  }
-`;
-const SchedulingApps = styled.div`
-  padding-top: 40px;
-  ${(props) =>
-    props.isSelected &&
-    css`
-      padding-top: 100px;
-    `}
-`;
+
 const DetailVideoMain = styled.div`
   padding-top: 80px;
 `;
@@ -260,16 +236,16 @@ const Backlink = styled.div`
   gap: 8px;
   align-items: center;
   padding-bottom: 28px;
-  :hover{
-    p{
-        color: ${title};
+  :hover {
+    p {
+      color: ${title};
     }
-    svg path{
-        stroke: ${title};
+    svg path {
+      stroke: ${title};
     }
-}
+  }
   p {
-  ${LinkTxt};
+    ${LinkTxt};
     margin-top: 20px;
     color: ${lightgray};
   }
@@ -279,20 +255,7 @@ const Backlink = styled.div`
     }
   }
 `;
-const VideoImage = styled.div`
-  position: relative;
-  max-height: 689px;
-  height: 100%;
-  img {
-    border-radius: 8px;
-    max-width: 100%;
-  }
-  @media only screen and (max-width: 769px) {
-    img {
-      border-radius: 4px;
-    }
-  }
-`;
+
 const VideoSection = styled.div`
   padding-bottom: 100px;
   .mainimage {
@@ -482,17 +445,13 @@ export {
   Catagory,
   Catagoryitem,
   FeatureRight,
-  Featured,
   FeatureMenu,
   FeatureCard,
   ExtensionsSection,
-  SchedulingApps,
-  ExtensionCard,
   DetailVideoMain,
   DetailVideoHero,
   Backlink,
   VideoSection,
-  VideoImage,
   VIdeoWrap,
   UniversityVideo,
   Overlay,
