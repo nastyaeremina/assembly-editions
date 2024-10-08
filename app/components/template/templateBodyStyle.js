@@ -100,28 +100,7 @@ const InfoTitle = styled.h5`
   align-items: center;
   gap: 4px;
 `;
-const Tooltip = styled.div`
-  position: absolute;
-  width: 234px;
-  top: 25px;
-  left: -6px;
-  padding: 12px;
-  background-color: ${greendark};
-  color: ${greenlight};
-  box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.25);
-  border-radius: 4px;
-  p {
-    ${Body5}
-    color: ${greenlight};
-    margin: 0;
-  }
-  span {
-    ${Body4}
-  }
-  @media only screen and (max-width: 768px) {
-    display: none;
-  }
-`;
+
 const InfoDescription = styled.p`
   display: flex;
   gap: 4px;
@@ -397,6 +376,5 @@ export {
   ListName,
   ListIcon,
   LableName,
-  TemplateContent,
-  Tooltip
+  TemplateContent
 };

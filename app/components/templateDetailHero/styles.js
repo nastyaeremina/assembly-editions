@@ -76,25 +76,6 @@ const TabView = styled.div`
   }
 `;
 
-const BlockLine = styled.div`
-  margin-bottom: 28px;
-  position: relative;
-
-  ::after {
-    content: '';
-    position: absolute;
-    ${(props) =>
-      props.lineColor &&
-      css`
-        border-top: 1.5px solid ${props.lineColor};
-      `}
-    max-width: 100vw;
-    width: 100vw;
-    top: 50%;
-    right: 100%;
-  }
-`;
-
 const BLockImg = styled.div`
   position: relative;
   border: 1px solid ${greendark};
@@ -182,7 +163,6 @@ export {
   HeroBlock,
   BlockLeft,
   BlockRight,
-  BlockLine,
   TabView,
   BLockImg,
   FeatureImage,

@@ -6,6 +6,7 @@ import { Container } from '../../styles/commonStyles';
 import { black, primary, whiteColor } from '../../styles/color';
 import Button from '../../components/button/button';
 import { isEmpty } from '../../helpers/helpers';
+import ZoomImageSlider from '../../components/zoomImage/zoomImageslider';
 import {
   ActiveTab,
   BLockImg,
@@ -19,7 +20,6 @@ import {
   TabView,
   TemplateHeroSection
 } from './styles';
-import ZoomImageSlider from '../../components/zoomImage/zoomImageslider';
 
 export default function TemplateDetailHero({
   title,
