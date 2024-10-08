@@ -80,22 +80,7 @@ const Profile = styled.div`
     gap: 12px;
   }
 `;
-const Profile2 = styled.div`
-  position: relative;
-  display: block;
-  :hover .tooltiptext {
-    visibility: visible;
-  }
-  .tooltiptext {
-    visibility: hidden;
-    z-index: 99;
-  }
-  @media only screen and (max-width: 768px) {
-    display: flex;
-    flex-direction: row;
-    gap: 12px;
-  }
-`;
+
 const SpeakerProfile = styled.div`
   display: flex;
   gap: 12px;
@@ -176,16 +161,7 @@ const FormRightLine = styled.div`
     width: 6%;
   }
 `;
-const Container = styled.div`
-  overflow: hidden;
-`;
-const Icon = styled.div`
-  cursor: pointer;
-  background-color: white;
-  .detail :hover {
-    visibility: visible;
-  }
-`;
+
 const Card = styled.div`
   text-align: center;
   display: flex;
@@ -217,13 +193,6 @@ const MobileProfile = styled.div`
     color: ${body};
   }
 `;
-const FormHeading3 = styled.div`
-  font-style: normal;
-  font-weight: 400;
-  font-size: 32px;
-  line-height: 105%;
-  margin-bottom: 20px;
-`;
 
 export {
   Time,
@@ -234,13 +203,9 @@ export {
   Form,
   FormLine,
   FormRightLine,
-  Container,
-  Icon,
-  Profile2,
   SpeakerProfile,
   Card,
   TextWrap,
   Line,
-  MobileProfile,
-  FormHeading3
+  MobileProfile
 };

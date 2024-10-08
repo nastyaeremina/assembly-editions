@@ -61,12 +61,7 @@ const Caption = styled.p`
     ${MbBody4}
   }
 `;
-const ImageSection = styled.div`
-  position: relative;
-  display: flex;
-  overflow: hidden;
-  border-radius: 4px;
-`;
+
 const Image = styled.img``;
 
 const BgImage = styled.div`
@@ -203,7 +198,6 @@ export {
   ToolsTab,
   Title,
   Caption,
-  ImageSection,
   Image,
   BgImage,
   ShowImage,

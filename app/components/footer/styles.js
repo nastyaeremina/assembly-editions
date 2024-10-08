@@ -1,14 +1,6 @@
 import styled, { css } from 'styled-components';
 import { Body4, FooterText, Heading2, Body1, Body2, Body3 } from '../../styles/styles';
-import {
-  greendark,
-  greenlight,
-  lightgray,
-  neutral,
-  title,
-  whiteColor,
-  greenmidlight
-} from './../../styles/color';
+import { greendark, greenlight, lightgray, neutral, title, whiteColor, greenmidlight } from './../../styles/color';
 
 const FooterSection = styled.div`
   background-color: ${neutral};
@@ -35,61 +27,6 @@ const FooterInnerBlock = styled.div`
   }
 `;
 
-const FooterTitleLeft = styled.div`
-  @media only screen and (max-width: 991px) {
-    margin-bottom: 24px;
-  }
-`;
-const FooterTitleRight = styled.div`
-  button {
-    :last-child {
-      margin-left: 12px;
-    }
-  }
-  @media only screen and (max-width: 479px) {
-    display: flex;
-    flex-direction: column;
-    align-items: stretch;
-    button {
-      a {
-        width: 100%;
-      }
-      :last-child {
-        margin-left: 0;
-        margin-top: 12px;
-      }
-    }
-  }
-`;
-const SectionHeading = styled.h2`
-  margin: 0;
-  ${Heading2}
-  color: ${whiteColor};
-`;
-
-const FooterLinkBlock = styled.div`
-  max-width: 920px;
-  width: 100%;
-  margin: 0 auto;
-  padding: 64px 0;
-  display: flex;
-  justify-content: space-between;
-  align-items: stretch;
-  @media only screen and (max-width: 768px) {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-gap: 16px;
-  }
-  @media only screen and (max-width: 479px) {
-    display: none;
-  }
-`;
-
-const FooterLinkList = styled.ul`
-  margin: 0;
-  padding: 0;
-  list-style: none;
-`;
 const FooterMenu = styled.ul`
   margin: 0;
   :last-child {
@@ -110,7 +47,6 @@ const FooterMenu = styled.ul`
       }
     `}
 `;
-
 
 const FooterSocialList = styled.ul`
   list-style: none;
@@ -172,19 +108,6 @@ const FooterRight = styled.div`
   width: 100%;
   @media only screen and (max-width: 749px) {
     display: none;
-  }
-`;
-const MobileFooterList = styled.ul`
-  list-style: none;
-  padding: 0;
-  margin: 0;
-`;
-
-const MobileFooterMain = styled.div`
-  display: none;
-  padding: 36px 0 24px 0;
-  @media only screen and (max-width: 479px) {
-    display: block;
   }
 `;
 const FooterFirst = styled.div`
@@ -270,15 +193,8 @@ const FooterSub = styled.div`
 export {
   FooterSection,
   FooterInnerBlock,
-  FooterTitleLeft,
-  FooterTitleRight,
-  FooterLinkBlock,
-  FooterLinkList,
   FooterSocialList,
   FooterSocialItem,
-  MobileFooterList,
-  MobileFooterMain,
-  SectionHeading,
   FooterFirst,
   FooterRight,
   FooterMenu,

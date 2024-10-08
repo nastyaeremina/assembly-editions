@@ -48,85 +48,6 @@ const HomeMain = styled.div`
     padding-bottom: 0;
   }
 `;
-const Scfeaturetitle = styled.div`
-  max-width: 720px;
-  width: 100%;
-  margin: auto;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-`;
-const SectionHeading = styled.h2`
-  margin: 16px 0 0 0;
-  ${Heading3}
-  text-align: center;
-  color: ${textColor};
-`;
-const FeatureWrapBlock = styled.div`
-  width: 100%;
-  max-width: 896px;
-  margin: 14px auto 0 auto;
-  @media only screen and (max-width: 749px) {
-    margin: 24px 0 0 0;
-  }
-`;
-const FeatureBlock = styled.ul`
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  margin: 0 -16px;
-  @media only screen and (max-width: 749px) {
-    margin: 0 -12px;
-  }
-  @media only screen and (max-width: 749px) {
-    margin: 0;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-gap: 12px;
-  }
-`;
-const LearnMoreLink = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: 5px 0 0 0;
-  opacity: 0;
-  transition: all 300ms;
-  span {
-    ${Body2};
-    font-family: ${({ theme }) => theme.fontfamily.Gtwalsheimpro};
-    margin: 0 6px 0 0;
-    color: ${primary};
-  }
-  @media only screen and (max-width: 749px) {
-    opacity: 1;
-  }
-  @media only screen and (max-width: 749px) {
-    span {
-      font-size: 14px;
-      line-height: 18px;
-    }
-  }
-`;
-const FeatureImg = styled.div`
-  text-align: center;
-  transition: all 300ms;
-`;
-const FeatureCardTitle = styled.h3`
-  margin: 16px 0 0 0;
-  ${Body2}
-  text-align: center;
-  color: ${textColor};
-  transition: all 300ms;
-  @media only screen and (max-width: 749px) {
-    margin: 10px 0 0 0;
-    font-size: 14px;
-    line-height: 20px;
-  }
-`;
 
 const HeroSection = styled.div`
   width: 100%;
@@ -138,15 +59,6 @@ const HeroSection = styled.div`
   }
 `;
 
-const HeroLeft = styled.div`
-  max-width: 534px;
-  width: 100%;
-  margin: 24px 35px 24px 0;
-  @media only screen and (max-width: 991px) {
-    max-width: 100%;
-    margin: 0 0 24px 0;
-  }
-`;
 const HeroHeading = styled.h1`
   ${Heading1};
   color: ${title};
@@ -196,131 +108,6 @@ const HeroBtnBlock = styled.div`
   }
 `;
 
-const HeroRight = styled.div`
-  position: relative;
-  transform: translate(80px);
-  @media only screen and (max-width: 991px) {
-    transform: translate(0);
-  }
-`;
-
-const MainModal = styled.div`
-  width: 100%;
-  height: 100%;
-  cursor: pointer;
-`;
-
-const EmailModal = styled.div`
-  position: absolute;
-  left: -60px;
-  top: 86px;
-  @media only screen and (max-width: 749px) {
-    display: none;
-  }
-`;
-
-const SmsModal = styled.div`
-  position: absolute;
-  top: 71px;
-  right: -54px;
-  @media only screen and (max-width: 749px) {
-    display: none;
-  }
-`;
-
-const CallModal = styled.div`
-  position: absolute;
-  right: 0;
-  bottom: -28px;
-  @media only screen and (max-width: 749px) {
-    display: none;
-  }
-`;
-
-const PlayIcon = styled.div`
-  display: flex;
-`;
-
-const PlayerWrapper = styled.div`
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -25%);
-  width: 80px;
-  height: 80px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 50%;
-  background-color: ${primary};
-  box-shadow: 0 0 48px 0 rgb(0 0 0 / 32%);
-  @media only screen and (max-width: 479px) {
-    height: 48px;
-    width: 48px;
-    ${PlayIcon} {
-      width: 12px;
-    }
-  }
-`;
-
-const LightBox = styled.div`
-  background-color: fade(black, 80%);
-  overflow: scroll;
-  position: fixed;
-  display: none;
-  align-items: center;
-  justify-content: center;
-  z-index: 1;
-  bottom: 0;
-  right: 0;
-  left: 0;
-  top: 0;
-  overflow: hidden;
-  background-color: rgba(0, 0, 0, 0.65);
-  z-index: 999;
-  ${(props) =>
-    props.isLightBox &&
-    css`
-      display: flex;
-    `}
-`;
-
-const LightBoxContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  position: relative;
-  max-width: 960px;
-  width: 100%;
-  margin: 7% auto;
-  padding: 0 3%;
-  height: auto;
-  z-index: 10;
-`;
-const VideoContainer = styled.div`
-  padding-bottom: 56.25%;
-  position: relative;
-  padding-top: 30px;
-  overflow: hidden;
-  height: 0;
-  iframe {
-    position: absolute;
-    height: 100%;
-    width: 100%;
-    left: 0;
-    top: 0;
-  }
-`;
-const CloseButton = styled.button`
-  padding: 16px 0;
-  margin-left: auto;
-  font-size: 32px;
-  color: ${whiteColor};
-  @media only screen and (max-width: 991px) {
-    font-size: 24px;
-    padding: 12px 0;
-  }
-`;
-const Iframe = styled.iframe``;
 const ReviewLogo = styled.div`
   display: flex;
   align-items: center;
@@ -329,21 +116,7 @@ const ReviewLogo = styled.div`
   display: inline-block;
   max-height: 43px;
 `;
-const Reviewimage = styled.div`
-  display: flex;
-  gap: 3px;
-  :hover {
-    display: none;
-  }
-`;
-const ReviewRight = styled.div`
-  p {
-    ${Caption};
-    margin: 0;
-    letter-spacing: 0.02em;
-    color: ${caption};
-  }
-`;
+
 const BusinessSection = styled.div`
   box-shadow: 0px -26px 32px rgba(0, 0, 0, 0.08);
   position: relative;
@@ -437,146 +210,7 @@ const Functionality = styled.div`
       `}
   }
 `;
-const TopFunctionWrap = styled.div`
-  width: 100%;
-  max-width: 1020px;
-  .titlewrap {
-    max-width: 820px;
-  }
-  h2 {
-    margin: 0 0 16px 0;
-    ${Heading3};
-    color: ${title};
-    span {
-      color: ${primary};
-    }
-    @media only screen and (max-width: 991px) {
-      font-size: 44px;
-      line-height: 50px;
-    }
-    @media only screen and (max-width: 749px) {
-      ${MobileH3};
-    }
-  }
-  p {
-    ${Body3};
-    color: ${body};
-    margin: 0;
-    @media only screen and (max-width: 749px) {
-      ${MbBody3};
-    }
-  }
-`;
-const BottomFunction = styled.div`
-  margin-top: 40px;
 
-  .am {
-    font-family: 'Bagoss';
-    letter-spacing: 0.02em;
-  }
-  .af {
-    width: 100%;
-  }
-
-  @media only screen and (max-width: 768px) {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-content: center;
-    align-items: center;
-    margin-top: 28px;
-  }
-  .ml0 {
-    margin-left: -6px;
-  }
-`;
-const TabRow = styled.div`
-  display: flex;
-  @media only screen and (max-width: 768px) {
-    display: block;
-  }
-
-  .tabcss {
-    background-color: ${browndark};
-    color: ${brownlight};
-    border-radius: 74px;
-    ${Label};
-    letter-spacing: 0.01em;
-    padding: 7px 20px;
-
-    :hover {
-      color: ${brownlight};
-    }
-
-    .b2 {
-      padding-bottom: 0;
-    }
-    .b4 {
-      ${(props) =>
-        props.textColor &&
-        css`
-          color: ${props.textColor};
-        `}
-      ${(props) =>
-        props.backColor &&
-        css`
-          background-color: ${props.bgColor};
-        `}
-    }
-  }
-  .ag {
-    display: flex;
-    overflow: auto;
-    ::-webkit-scrollbar {
-      display: none;
-    }
-  }
-  .bd {
-    :hover {
-      ${(props) =>
-        props.textColor &&
-        css`
-          color: ${props.textColor};
-        `}
-    }
-  }
-  .ml0 {
-  }
-  .tabsecond {
-    padding: 7px 20px;
-    color: ${lightgray};
-    ${Label};
-    letter-spacing: 0.01em;
-  }
-  .c1 {
-    display: none;
-  }
-
-  .b8 {
-    font-size: 17px;
-    line-height: 21px;
-  }
-`;
-const TabBox = styled.div`
-  a {
-    ${Label};
-    color: ${lightgray};
-    padding: 7px 20px;
-    border-radius: 74px;
-    font-weight: 500;
-    letter-spacing: 0.01em;
-    :hover {
-      color: ${title};
-    }
-  }
-  .activetab {
-    background-color: ${browndark};
-    color: ${brownlight};
-    :hover {
-      color: ${brownlight};
-    }
-  }
-`;
 const IconWrap = styled.div`
   position: relative;
   margin-bottom: 28px;
@@ -628,43 +262,7 @@ const IconSvg = styled.div`
     display: none;
   }
 `;
-const IconViewblank = styled.div`
-  width: 20px;
-  height: 20px;
-  background-color: #ccccd0;
-  border-radius: 50px;
-  position: absolute;
-  right: 10px;
-  top: -11px;
-  display: inline-flex;
-`;
-const TabName = styled.span`
-  display: block;
-  margin-left: 12px;
-  ${Body4};
-  color: ${body};
-`;
-const LeftB = styled.div`
-  border-top: 1px solid #00160e;
-  border-left: 1px solid #00160e;
-  border-bottom: 1px solid #00160e;
-  width: 10px;
-  border-top-left-radius: 4px;
-  border-bottom-left-radius: 4px;
-`;
-const RightB = styled.div`
-  border-top: 1px solid #00160e;
-  border-right: 1px solid #00160e;
-  border-bottom: 1px solid #00160e;
-  width: 10px;
-  border-top-right-radius: 4px;
-  border-bottom-right-radius: 4px;
-`;
-const CenterBox = styled.div`
-  display: flex;
-  align-items: center;
-  padding: 8px 0;
-`;
+
 const ContainWrap = styled.div`
   display: flex;
   padding-top: 40px;
@@ -906,93 +504,7 @@ const CardTextView = styled.div`
       `}
   }
 `;
-const IconView = styled.div`
-  position: absolute;
-  right: 10px;
-  top: -11px;
-  display: inline-flex;
-`;
-const IconWithoutView = styled.div`
-  width: 20px;
-  height: 20px;
-  background-color: #ccccd0;
-  border-radius: 50px;
-  position: absolute;
-  right: 10px;
-  top: -11px;
-`;
-const LineIcon = styled.div`
-  position: absolute;
-  position: absolute;
-  top: 50%;
-  right: 0;
-  transform: translate(100%, 0);
-  .path {
-    opacity: 0.3;
-    animation-duration: 15s;
-  }
-  .path1 {
-    animation-name: dash;
-    animation-timing-function: linear;
-  }
-  .path2 {
-    animation-name: dash2;
-    /* animation-delay: 6.5s; */
-    animation-timing-function: linear;
-  }
-  .path3 {
-    animation-name: dash;
-    animation-timing-function: linear;
-  }
-  .path4 {
-    animation-name: dash2;
-    /* animation-delay: 9s; */
-    animation-direction: reverse;
-    animation-timing-function: linear;
-  }
-  @keyframes dash {
-    0% {
-      stroke-dashoffset: 0;
-      opacity: 0.3;
-    }
-    30% {
-      stroke-dashoffset: 0;
-      opacity: 0.3;
-    }
-    31% {
-      stroke-dashoffset: 100;
-      opacity: 1;
-    }
-    60% {
-      stroke-dashoffset: 100;
-      opacity: 1;
-    }
-    61% {
-      stroke-dashoffset: 0;
-      opacity: 0.3;
-    }
-    100% {
-      stroke-dashoffset: 0;
-      opacity: 0.3;
-    }
-  }
-  @keyframes dash2 {
-    0% {
-      opacity: 0.3;
-    }
-    90% {
-      opacity: 0.3;
-      stroke-dashoffset: 0;
-    }
-    91% {
-      stroke-dashoffset: 100;
-      opacity: 1;
-    }
-    100% {
-      opacity: 1;
-    }
-  }
-`;
+
 const HelpSection = styled.div`
   padding: 50px 0;
   @media only screen and (max-width: 749px) {
@@ -1685,44 +1197,14 @@ const BusinessSectionText = styled.div`
 `;
 export {
   HomeMain,
-  Scfeaturetitle,
-  SectionHeading,
-  FeatureBlock,
-  FeatureImg,
-  FeatureCardTitle,
-  LearnMoreLink,
-  FeatureWrapBlock,
   HeroSection,
-  HeroLeft,
   HeroHeading,
   Para,
   HeroBtnBlock,
-  HeroRight,
-  MainModal,
-  PlayerWrapper,
-  EmailModal,
-  SmsModal,
-  CallModal,
-  PlayIcon,
-  LightBox,
-  LightBoxContainer,
-  VideoContainer,
-  CloseButton,
-  Iframe,
   ReviewLogo,
-  Reviewimage,
-  ReviewRight,
   BusinessSection,
   BusinessText,
   Functionality,
-  TopFunctionWrap,
-  BottomFunction,
-  TabRow,
-  TabBox,
-  TabName,
-  LeftB,
-  RightB,
-  CenterBox,
   ContainWrap,
   LeftDetail,
   RightDetail,
@@ -1733,9 +1215,6 @@ export {
   CardWrapper,
   CardItem,
   CardTextView,
-  IconView,
-  IconWithoutView,
-  LineIcon,
   HelpSection,
   HelpMain,
   HelpLeft,
@@ -1744,7 +1223,6 @@ export {
   HelpWrap,
   HelpMargin,
   IconSvg,
-  IconViewblank,
   BtnView,
   ImageHover,
   HelpImg,
