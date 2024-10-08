@@ -187,52 +187,6 @@ const SectionHeading = styled.div`
     gap:8px;
   }
 `;
-const Input = styled.input`
-  ${Value};
-  color: ${title};
-  letter-spacing: 0.01em;
-  padding: 11px 20px 11px 55px;
-  border: 1.5px solid #bebebf;
-  border-radius: 48px;
-  width: 285px;
-  outline: 0;
-  ::placeholder {
-    color: ${lightgray};
-  }
-  :hover {
-    border: 1.5px solid #ccccd0;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.07);
-  }
-  :active {
-    border: 1.5px solid #131313;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.07);
-  }
-  :focus {
-    border: 1.5px solid #131313;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.07);
-  }
-  @media only screen and (max-width: 768px) {
-    width: 100%;
-  }
-`;
-
-const InputWrap = styled.form`
-  display: none;
-  position: relative;
-  img {
-    position: absolute;
-    top: 15px;
-    left: 20px;
-  }
-  ${(props) =>
-    props.isSearchbar &&
-    css`
-      display: block;
-    `}
-  @media only screen and (max-width: 768px) {
-    width: 100%;
-  }
-`;
 
 const Tooltip = styled.div`
   position: absolute;
@@ -294,8 +248,6 @@ export {
   CardListSection,
   SectionHeader,
   SectionHeading,
-  Input,
-  InputWrap,
   Tooltip,
   Line,
   Informative

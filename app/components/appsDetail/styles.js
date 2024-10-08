@@ -188,78 +188,6 @@ const ImageSlider = styled.div`
     cursor: pointer;
   }
 `;
-const SmallImageSection = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 24px;
-  img {
-    max-height: 160px;
-    height: 100%;
-    object-fit: cover;
-    cursor: pointer;
-  }
-`;
-
-const LastImage = styled.div`
-  position: relative;
-`;
-
-const ButtonImage = styled.div`
-  display: flex;
-  /* position: relative; */
-  /* top: -130px;
-  right: -720px; */
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: fit-content;
-  z-index: 1;
-  cursor: pointer;
-  .section1 {
-    a {
-      border-radius: 48px;
-      border: 1px solid;
-      ${MbButtonText}
-      padding: 10px 16px;
-    }
-  }
-  @media only screen and (max-width: 768px) {
-    display: none;
-  }
-`;
-
-const ResponsiveImageSection = styled.div`
-  display: none;
-  @media only screen and (max-width: 768px) {
-    display: flex;
-    gap: 12px;
-    margin: 0 -24px;
-    padding: 0 24px;
-    overflow: scroll;
-    ::-webkit-scrollbar {
-      display: none;
-    }
-    img {
-      border: 1px solid ${border};
-      border-radius: 4px;
-      max-height: 160px;
-      height: 100%;
-      min-width: 280px;
-      object-fit: cover;
-    }
-  }
-`;
-
-const AppDetailSlider = styled.div`
-  background: rgba(0, 0, 0, 0.8);
-  width: 100%;
-  height: 100vh;
-  position: fixed;
-  z-index: 9999;
-  top: 0;
-  left: 0;
-`;
 
 const CloseIcon = styled.div`
   position: absolute;
@@ -282,25 +210,6 @@ const CloseIcon = styled.div`
   }
   @media only screen and (min-width: 2160px) {
     font-size: 1vw;
-  }
-`;
-
-const SliderSection = styled.div`
-  .left-arrow {
-    left: 44px;
-  }
-  .right-arrow {
-    right: 44px;
-  }
-  img {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    border-radius: 4px;
-    @media only screen and (max-width: 768px) {
-      width: 100%;
-    }
   }
 `;
 
@@ -622,13 +531,7 @@ export {
   LeftContent,
   RightContent,
   ImageSection,
-  SmallImageSection,
-  ButtonImage,
-  LastImage,
-  ResponsiveImageSection,
-  AppDetailSlider,
   CloseIcon,
-  SliderSection,
   ArrowIcon,
   ImageSlider,
   AppDetailContent,

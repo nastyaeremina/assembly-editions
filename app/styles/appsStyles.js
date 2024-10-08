@@ -149,19 +149,7 @@ const Catagoryitem = styled.li`
     }
   }
 `;
-const OtherWrap = styled.ul`
-  padding-top: 79px;
-  h4 {
-    padding-bottom: 20px;
-    margin: 0;
-    ${Heading5};
-    color: ${title};
-    border-bottom: 1px solid #000000;
-    letter-spacing: 0.02em;
-    max-width: 306px;
-    width: 100%;
-  }
-`;
+
 const FeatureLeft = styled.div`
   position: relative;
   @media only screen and (max-width: 991px) {
@@ -205,42 +193,7 @@ const FeatureMenu = styled.div`
     gap: 20px;
   }
 `;
-const CardMain = styled.div`
-  :hover {
-    -webkit-transition: all 0.2s ease-in-out;
-    transition: all 0.2s ease-in-out;
-    box-shadow: 0px 0px 0px 0.2px #01011d;
-    border-radius: 4px;
-  }
-`;
-const FeatureCard = styled.div`
-  max-width: 100%;
-  width: 100%;
-  height: 100%;
-  a {
-    position: relative;
-    height: 100%;
-    -webkit-transition: all 0.2s ease-in-out;
-    transition: all 0.2s ease-in-out;
-    background-color: ${whiteColor};
-    border-radius: 4px;
-    width: 100%;
-    box-shadow: 0px 4px 16px transparent;
-    border: 1px solid #01011d;
-    display: flex;
-    flex-direction: column;
-    :hover {
-      border: 1px solid #01011d;
-      box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.1);
-      -webkit-transition: all 0.2s ease-in-out;
-      transition: all 0.2s ease-in-out;
-    }
-  }
-  /* :hover {
-    border: 1.5px solid #01011d;
-    box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.1);
-  } */
-`;
+
 const CardText = styled.div`
   padding: 20px 16px 46px 16px;
   border-top: 1px solid black;
@@ -313,18 +266,7 @@ const ExtensionsSection = styled.div`
     /* display: none; */
   }
 `;
-const ExtensionsLastSection = styled.div`
-  padding-top: 40px;
-  p {
-    ${Body5};
-    color: ${title};
-    margin: 0;
-    letter-spacing: 0.02em;
-  }
-  @media only screen and (max-width: 749px) {
-    display: none;
-  }
-`;
+
 const ExtensionCard = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
@@ -342,104 +284,7 @@ const ExtensionCard = styled.div`
     gap: 20px;
   }
 `;
-const CardSub = styled.div`
-  display: block;
-  :hover {
-    -webkit-transition: all 0.2s ease-in-out;
-    transition: all 0.2s ease-in-out;
-    box-shadow: 0px 0px 0px 0.1px #01011d;
-    border-radius: 4px;
-  }
-  a {
-    background: #ffffff;
-    border: 1px solid #000000;
-    border-radius: 4px;
-    padding: 15px;
-    -webkit-transition: all 0.2s ease-in-out;
-    transition: all 0.2s ease-in-out;
-    height: 100%;
-    :hover {
-      border: 1px solid #000000;
-      box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.1);
-      -webkit-transition: all 0.2s ease-in-out;
-      transition: all 0.2s ease-in-out;
-    }
-  }
-  p {
-    color: ${darkgray};
-    letter-spacing: 0.02em;
-    ${Body5}
-    margin: 0;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    display: -webkit-box;
-    -webkit-line-clamp: 3; /* number of lines to show */
-    line-clamp: 3;
-    -webkit-box-orient: vertical;
-  }
-`;
-const CardInfo = styled.div`
-  display: flex;
-  gap: 8px;
-  align-items: center;
-  padding-bottom: 12px;
-  img {
-    max-width: 100%;
-  }
-  h3 {
-    color: ${title};
-    ${Body4}
-    letter-spacing: 0.02em;
-    margin: 0;
-  }
-`;
-const SchedulingApps = styled.div`
-  padding-top: 40px;
-`;
-const CardWrap = styled.div``;
-const AppsTitle = styled.div`
-  margin-bottom: 28px;
-  h3 {
-    margin-bottom: 0;
-  }
-  p {
-    margin: 0;
-    ${Body4};
-    color: ${title};
-    margin-top: 12px;
-    @media only screen and (max-width: 749px) {
-      margin-top: 8px;
-    }
-  }
-  @media only screen and (max-width: 749px) {
-    margin-bottom: 24px;
-  }
-`;
-const BuildWrap = styled.div`
-  background-color: ${whiteColor};
-  border: 1px solid #000000;
-  border-radius: 8px;
-  padding: 27px;
-`;
-const BuildAppsDetail = styled.div`
-  h3 {
-    ${Body4};
-    color: ${black};
-    margin: 0;
-  }
-  p {
-    ${Body5};
-    color: ${darkgray};
-    letter-spacing: 0.02em;
-    margin: 12px 0 28px 0;
-  }
-  a {
-    font-weight: 500;
-    font-size: 16px;
-    line-height: 24px;
-    padding: 7px 31px;
-  }
-`;
+
 const InputWrap = styled.form`
   position: relative;
   width: 100%;
@@ -473,14 +318,6 @@ const InputWrap = styled.form`
   }
 `;
 
-const CloseIcon = styled.div`
-  position: absolute;
-  right: 20px;
-  top: 13px;
-  display: flex;
-  cursor: pointer;
-  z-index: 1;
-`;
 const LeftWrap = styled.div`
   position: sticky;
   top: 95px;
@@ -513,228 +350,7 @@ const AppsDetailMain = styled.div`
     padding-top: 148px;
   } */
 `;
-const AppDetailCard = styled.div`
-  background-color: ${background};
-  margin-bottom: 40px;
-`;
-const DetailWrap = styled.div`
-  border: 1px solid #000000;
-  border-radius: 8px;
-  padding: 25px;
-  position: relative;
-  .imagepostion {
-    position: absolute;
-    top: 131px;
-    right: 0;
-  }
-  .imagepostion2 {
-    position: absolute;
-    top: 247px;
-    right: 0;
-  }
-  @media only screen and (max-width: 749px) {
-    padding: 9px;
-  }
-`;
-const DetailMain = styled.div`
-  display: flex;
-  padding-bottom: 100px;
-  @media only screen and (max-width: 991px) {
-    flex-wrap: wrap;
-    flex-direction: column-reverse;
-    padding-bottom: 80px;
-  }
-`;
-const LinePostion = styled.div`
-  position: absolute;
-  top: 15px;
-  right: -45px;
-`;
-const DetailRight = styled.div`
-  padding: 30px 0;
-  .mr10 {
-    padding-top: 10px;
-  }
-  @media only screen and (max-width: 991px) {
-    padding: 0 0;
-  }
-`;
-const RightWrap = styled.div`
-  display: flex;
-  gap: 10px;
-  padding-bottom: 60px;
-  align-items: flex-start;
-  @media only screen and (max-width: 991px) {
-    padding-bottom: 40px;
-    :last-child {
-      padding-bottom: 28px;
-    }
-  }
-`;
-const DetailTxt = styled.div`
-  display: flex;
-  flex-direction: column;
-  p {
-    ${Label};
-    color: ${lightgray};
-    margin: 0 0 12px 0;
-  }
-  span {
-    ${Body4};
-    color: ${title};
-    margin: 0;
-  }
-  a {
-    color: ${primary};
-    ${Body4};
-  }
-`;
-const HelpWrap = styled.div`
-  display: flex;
-  gap: 12px;
-  .tooltip {
-    position: relative;
-    display: inline-block;
-    @media only screen and (max-width: 749px) {
-      display: none;
-    }
-  }
-  .tooltip .tooltiptext {
-    visibility: hidden;
-    opacity: 0;
-    width: 769px;
-    border-radius: 6px;
-    padding: 24px 32px;
-    ${Body4};
-    background-color: ${greendark};
-    color: ${greenlight};
-    /* Position the tooltip */
-    position: absolute;
-    z-index: 2;
-    top: 42px;
-    right: 0;
-    margin-right: -54px;
-    box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.25);
-    border-radius: 4px;
-    @media only screen and (max-width: 991px) {
-      width: 549px;
-      left: -45px;
-      right: 0;
-    }
-  }
-  .tooltip:hover .tooltiptext {
-    visibility: visible;
-    opacity: 1;
-    ::after {
-      content: '';
-      position: absolute;
-      width: 46px;
-      border-top: 2px solid #00160e;
-      transform: rotate(90deg);
-      top: 0;
-      right: 42px;
-      z-index: -1;
-      @media only screen and (max-width: 991px) {
-        left: unset;
-        right: unset;
-      }
-    }
-  }
-`;
-const RightTxt = styled.div`
-  background-color: ${greenlight};
-  padding: 7px 20px;
-  margin-bottom: 12px;
-  display: inline-block;
-  border-radius: 4px;
-  width: fit-content;
-  :last-child {
-    margin-bottom: 0;
-  }
-  h4 {
-    ${Label};
-    color: ${primary};
-    margin: 0;
-    letter-spacing: 0.01em;
-  }
-`;
-const LeftImage = styled.div`
-  padding-top: 10px;
-`;
-const AppWrap = styled.div`
-  padding-bottom: 100px;
-  h2 {
-    ${Heading3};
-    margin: 0;
-    color: ${black};
-  }
-  @media only screen and (max-width: 991px) {
-    padding-bottom: 80px;
-  }
-`;
-const CardSection = styled.div`
-  padding-top: 50px;
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
-  grid-gap: 48px;
-  @media only screen and (max-width: 991px) {
-    grid-template-columns: 1fr 1fr 1fr;
-    gap: 26px;
-  }
-  @media only screen and (max-width: 749px) {
-    grid-template-columns: 1fr;
-    padding-top: 20px;
-    gap: 20px;
-  }
-`;
-const MainBg = styled.div`
-  background-color: #fffffd;
-`;
-const ImgView = styled.div`
-  width: 35px;
-  height: 35px;
-  border: 1px solid #e9e9ea;
-  border-radius: 70px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-`;
-const ImageWrap = styled.div`
-  display: block;
-  max-height: 543px;
-  height: 100%;
-  box-shadow: 0px 0px 25.4474px rgba(0, 0, 0, 0.07);
-  border-radius: 5px;
-  img {
-    max-width: 100%;
-  }
-`;
-const TooltipWrap = styled.div`
-  cursor: pointer;
-`;
-const Tooltip = styled.div`
-  h5 {
-    ${Heading5};
-    margin: 0;
-    color: ${greenlight};
-  }
-  p {
-    ${Body4};
-    margin: 8px 0 0;
-    color: ${greenlight};
-  }
-`;
-const AppsDetailWrap = styled.div`
-  padding: 40px 0;
-  p {
-    margin: 20px 0 32px 0;
-    ${Body2};
-    color: ${body};
-    @media only screen and (max-width: 749px) {
-      ${MbBody2};
-    }
-  }
-`;
+
 const AppHeader3 = styled.h2`
   ${Heading4}
   margin-top: 0;
@@ -744,21 +360,6 @@ const AppHeader3 = styled.h2`
     height: 83px;
     margin-top: -83px;
     visibility: hidden;
-  }
-`;
-
-const CustomAppSection = styled.div`
-  padding-top: 80px;
-  h4 {
-    font-weight: 500;
-    font-size: 24px;
-    line-height: 130%;
-    letter-spacing: 0.02em;
-    color: ${title};
-    margin: 0 0 20px 0;
-  }
-  .custom a {
-    padding: 8px 32px;
   }
 `;
 
@@ -813,50 +414,18 @@ export {
   FeatureLeft,
   FeatureRight,
   FeatureMenu,
-  FeatureCard,
   CardText,
   CardEnd,
   FeatureImg,
   Featured,
   ExtensionsSection,
   ExtensionCard,
-  CardSub,
-  CardInfo,
-  SchedulingApps,
-  CardWrap,
-  AppsTitle,
-  BuildWrap,
-  BuildAppsDetail,
   InputWrap,
-  OtherWrap,
   LeftWrap,
   DetailLink,
   AppsDetailMain,
-  AppDetailCard,
-  DetailWrap,
-  DetailMain,
-  LinePostion,
-  DetailRight,
-  RightWrap,
-  DetailTxt,
-  HelpWrap,
-  RightTxt,
-  LeftImage,
-  AppWrap,
-  CardSection,
-  CardMain,
-  MainBg,
-  ImgView,
-  ImageWrap,
-  Tooltip,
   AppsHeroWrap,
-  AppsDetailWrap,
-  FirstImg,
-  ExtensionsLastSection,
-  TooltipWrap,
   AppHeader3,
-  CustomAppSection,
   AppSliderSection,
-  SearchEmpty,
-  CloseIcon
+  SearchEmpty
 };
