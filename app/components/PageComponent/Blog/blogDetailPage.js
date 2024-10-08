@@ -64,7 +64,7 @@ export default function BlogdetailPage({ blogDetail, htmlData, ctaTitle, ctaDesc
       return (
         <li key={`tableDataHeading_index_${index}`}>
           <Link href={`#${headingList?.[0]?.replace(/['"]+/g, '').replace('<h2 id=', '')}`}>
-            {headingList?.[1]?.replace(EXTRACT_LEADING_DIGIT_REGEX, '')}
+            <span dangerouslySetInnerHTML={{ __html: headingList?.[1]?.replace(EXTRACT_LEADING_DIGIT_REGEX, '') }} />
           </Link>
         </li>
       );
