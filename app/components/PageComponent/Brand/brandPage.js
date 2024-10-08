@@ -98,7 +98,7 @@ export default function BrandPage() {
           <BrandHeroSection>
             <h1>Copilot Brand Guidelines</h1>
             <p>Resources for presenting the Copilot brand consistently and professionally.</p>
-            <Button text={'Download Brand Assets'} href={'images/Copilot_Brand_Assets.zip'} />
+            <Button text={'Download Brand Assets'} href={'/images/Copilot_Brand_Assets.zip'} isDownload={true} />
           </BrandHeroSection>
           <BrandName>
             <h2>Naming</h2>
