@@ -109,20 +109,7 @@ const OptionName = styled.p`
 const OptionIcon = styled.div`
   transition: all 0.3s ease;
 `;
-const ULTag = styled.ul`
-  overflow: hidden;
-  max-height: 0;
-  opacity: 0;
-  -webkit-transition: all 0.5s ease-in-out 0s;
-  transition: all 0.5s ease-in-out 0s;
-  ${(props) =>
-    props.isOpenHeight &&
-    css`
-      max-height: 5000px;
-      opacity: 1;
-      z-index: 9999;
-    `};
-`;
+
 const NavItem = styled.li`
   ${(props) =>
     props.isSubItem &&
@@ -208,39 +195,6 @@ const NavItem = styled.li`
   }
 `;
 
-const NavSubItem = styled.li`
-  a {
-    ${MbBody5};
-    color: ${lightgray};
-    display: flex;
-    gap: 10px;
-    align-items: center;
-  }
-  padding-left: 28px;
-  padding-top: 10px;
-
-  ${(props) =>
-    props.isSelected &&
-    css`
-      color: ${greendark};
-    `};
-  :hover {
-    a {
-      color: ${primary};
-    }
-    .svgicon {
-      svg {
-        path {
-          stroke: #09aa6c;
-        }
-        ellipse {
-          fill: #09aa6c;
-        }
-      }
-    }
-    cursor: pointer;
-  }
-`;
 const Icon = styled.div`
   display: flex;
   /* align-items: center; */
@@ -283,11 +237,7 @@ const IconText = styled.div`
       color: ${greendark};
     `}
 `;
-const NavItemSection = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 14px;
-`;
+
 const NavmenuSection = styled.div`
   display: flex;
   flex-direction: column;
@@ -323,14 +273,7 @@ const NavmenuSection = styled.div`
     /* mask-image: unset; */
   }
 `;
-const NavBg = styled.div`
-  background: linear-gradient(180deg, #f9f9f9, transparent);
-  height: 15px;
-  position: absolute;
-  max-width: 260px;
-  width: 100%;
-  z-index: -1;
-`;
+
 const GuideSectionItem = styled.div`
   a {
     color: #fff;
@@ -488,24 +431,7 @@ const ItemName = styled.p`
       padding: 6px 0px 6px 110px;
     `}
 `;
-const ItemSubName = styled.p`
-  padding: 4px 0px 4px 30px;
-  margin: 0;
-  ${MbBody5};
-  cursor: pointer;
-  a {
-    color: ${lightgray};
-  }
-  ${(props) =>
-    props.isSelected &&
-    css`
-      border-left: 1px solid #09aa6c;
-      margin-left: -1px;
-      a {
-        color: ${primary};
-      }
-    `}
-`;
+
 const GuideMobileNavbar = styled.div`
   display: none;
   @media only screen and (max-width: 991px) {
@@ -544,21 +470,6 @@ const BtnIcon = styled.div`
   right: 20px;
   display: flex;
   gap: 4px;
-`;
-
-const AskDiv = styled.div`
-  border-radius: 36px;
-  border: 1px solid #ccccd0;
-  padding: 9px 20px;
-  position: relative;
-  max-width: 260px;
-  width: 100%;
-  ${FooterText};
-  color: ${lightgray};
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  cursor: pointer;
 `;
 
 const Main = styled.div`
@@ -810,22 +721,16 @@ export {
   NavItem,
   Icon,
   IconText,
-  NavItemSection,
   NavmenuSection,
   GuideRight,
   ItemList,
   ItemName,
-  ItemSubName,
   GuideMobileNavbar,
   NavbarHeader,
   MobileNavMenu,
   BtnIcon,
-  AskDiv,
   NavSection,
   GuideSectionItem,
-  NavBg,
-  NavSubItem,
-  ULTag,
   Main,
   PopUp,
   OverLayDiv,
