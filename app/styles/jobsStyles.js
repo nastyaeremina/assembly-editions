@@ -185,39 +185,7 @@ const RoleWrap = styled.div`
     }
   }
 `;
-const AboutWrap = styled.div`
-  h3 {
-    ${Heading4};
-    color: ${title};
-    margin: 0 0 12px 0;
-  }
-  p {
-    display: block;
-    ${Body5};
-    color: ${body};
-    letter-spacing: 0.02em;
-    margin: 0;
-    a {
-      color: ${primary};
-      display: inline-block;
-      white-space: break-spaces;
-      :hover {
-        color: ${title};
-      }
-    }
-  }
-  @media only screen and (max-width: 991px) {
-    h3 {
-      font-size: 26px;
-      line-height: 34px;
-    }
-  }
-  @media only screen and (max-width: 749px) {
-    h3 {
-      ${MobileH4}
-    }
-  }
-`;
+
 const JobDetailWrap = styled.div``;
 const JobView = styled.div`
   margin-bottom: 14px;
@@ -424,77 +392,7 @@ const RegionView = styled.div`
     margin: 0;
   }
 `;
-const BenefitsSection = styled.div`
-  padding: 50px 0 0;
-  @media only screen and (max-width: 749px) {
-    padding-top: 40px;
-  }
-`;
-const BenefitWrap = styled.div`
-  h2 {
-    margin: 0;
-    ${Heading3};
-    color: ${title};
-  }
-`;
-const BenefitBox = styled.div`
-  border: 1px solid #000000;
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
-  margin-top: 40px;
-  @media only screen and (max-width: 991px) {
-    grid-template-columns: 1fr 1fr;
-  }
-`;
-const BoxView = styled.div`
-  padding: 28px 24px;
-  border-right: 1px solid #120800;
-  border-bottom: 1px solid #120800;
-  margin: -1px;
-  :last-child {
-    border-right: none;
-  }
-  @media only screen and (max-width: 749px) {
-    padding: 20px 16px;
-  }
-`;
-const ImgIcon = styled.div`
-  display: inline-flex;
-  .desktop {
-    display: block;
-    @media only screen and (max-width: 749px) {
-      display: none;
-    }
-  }
-  .mobiicon {
-    display: none;
-    @media only screen and (max-width: 749px) {
-      display: block;
-    }
-  }
-`;
-const DetailView = styled.div`
-  h3 {
-    ${Body1};
-    margin: 20px 0 0 0;
-    color: ${title};
-  }
-  p {
-    ${Body4};
-    margin: 12px 0 0;
-    color: ${body};
-  }
-  @media only screen and (max-width: 749px) {
-    h3 {
-      ${MobileH4};
-      margin: 12px 0 0 0;
-    }
-    p {
-      ${MbBody5};
-      margin: 8px 0 0;
-    }
-  }
-`;
+
 const JObMain = styled.div`
   padding-top: 164px;
   padding-bottom: 100px;
@@ -598,64 +496,7 @@ const DetailRight = styled.div`
     padding-top: 34px;
   }
 `;
-const DetailText = styled.ul`
-  h4 {
-    ${Heading4};
-    color: ${title};
-    margin: 0;
-  }
-`;
-const DeatilTextSub = styled.li`
-  p {
-    ${Body3};
-    color: ${body};
-    margin: 24px 0 0 0;
-    :first-child {
-      margin: 20px 0 0 0;
-    }
-  }
-  span {
-    ${Body3};
-    color: ${primary};
-    margin: 0;
-  }
-`;
-const DetailInner = styled.ul`
-  padding-top: 40px;
-  h4 {
-    ${Heading4};
-    color: ${title};
-    margin: 0 0 20px 0;
-  }
-  .bullet {
-    padding-top: 7px;
-  }
-  .textcolor {
-    color: ${darkgray};
-  }
-`;
-const DetailInnerSub = styled.li`
-  display: flex;
-  gap: 16px;
-  align-items: flex-start;
 
-  .mr0 {
-    margin-bottom: 0;
-  }
-  p {
-    ${Body4};
-    color: ${body};
-    margin: 0 0 16px 0;
-    span {
-      color: ${title};
-    }
-  }
-`;
-const BulletImage = styled.div`
-  padding: 5px 10px;
-  margin-top: 7px;
-  background-color: ${greenmidlight};
-`;
 const DetailRIghtText = styled.div`
   h1,
   h2,
@@ -737,7 +578,6 @@ export {
   RoleBlock,
   TeamBlock,
   RoleWrap,
-  AboutWrap,
   JobDetailWrap,
   JobView,
   RoleList,
@@ -757,12 +597,6 @@ export {
   TabView,
   ActiveTab,
   RegionView,
-  BenefitsSection,
-  BenefitWrap,
-  BenefitBox,
-  BoxView,
-  ImgIcon,
-  DetailView,
   MainWrap,
   JObMain,
   DetailLink,
@@ -771,11 +605,6 @@ export {
   DetailWrap,
   ImageWrap,
   DetailRight,
-  DetailText,
-  DeatilTextSub,
-  DetailInner,
-  DetailInnerSub,
-  BulletImage,
   DetailRIghtText,
   DetailPosition,
   JobsMobi,

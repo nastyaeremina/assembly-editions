@@ -65,11 +65,5 @@ const SubData = styled.div`
     }
   }
 `;
-const Catagory = styled.ol`
-  padding: 0;
-  margin: 0;
-  padding-left: 24px;
-`;
-const SubDataWrap = styled.li``;
 
-export { PrivacuHero, MainSection, SubData,  SubDataWrap,  Catagory };
+export { PrivacuHero, MainSection, SubData };

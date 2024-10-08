@@ -62,18 +62,6 @@ const HeroBtnBlock = styled.div`
   }
 `;
 
-const Heading = styled.h2`
-  text-align: center;
-  ${Heading3}
-  color: ${title};
-  margin-top: 0;
-  margin-bottom: 60px;
-  @media only screen and (max-width: 768px) {
-    margin-top: 0;
-    margin-bottom: 40px;
-  }
-`;
-
 const HighlightSection = styled.div`
   padding: 20px 108px;
   margin-bottom: 100px;
@@ -333,7 +321,6 @@ export {
   HeroHeading,
   Para,
   HeroBtnBlock,
-  Heading,
   HighlightSection,
   Highlight,
   CustomerSection,
