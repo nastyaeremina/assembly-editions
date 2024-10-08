@@ -40,28 +40,6 @@ const HeroSection = styled.div`
       }
     `}
 `;
-const BrandName = styled.div`
-  padding: 50px 0;
-  h2 {
-    ${Heading4};
-    color: ${title};
-    margin: 0 0 12px 0;
-  }
-  p {
-    margin: 0;
-    color: ${body};
-    ${Body3};
-  }
-  @media only screen and (max-width: 749px) {
-    padding: 40px 0;
-    h2 {
-      ${MobileH4}
-    }
-    p {
-      ${MbBody3}
-    }
-  }
-`;
 
 const HeroCaption = styled.div`
   max-width: 880px;
@@ -103,9 +81,4 @@ const HeroCaption = styled.div`
   }
 `;
 
-const ButtonGroup = styled.div`
-  display: flex;
-  gap: 20px;
-  justify-content: center;
-`;
-export { HeroSection, MainHero, BrandName, HeroCaption, ButtonGroup };
+export { HeroSection, MainHero, HeroCaption };

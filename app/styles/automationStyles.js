@@ -18,7 +18,7 @@ import {
   whiteColor,
   black,
   bluelight,
-  purpledark,
+  purpledark
 } from './../styles/color';
 
 const AutomationHero = styled.div`
@@ -204,14 +204,6 @@ const ImageSection = styled.div`
     margin-bottom: 80px;
   }
 `;
-const Head = styled.h2`
-  margin: 0 0 50px 0;
-  ${Heading3}
-  color: ${title};
-  @media only screen and (max-width: 449px) {
-    margin: 0 0 40px 0;
-  }
-`;
 
 const CardAuto = styled.div`
   -webkit-transition: all 0.2ms ease-in-out;
@@ -257,6 +249,5 @@ export {
   DetailCaption,
   DetailButtonSection,
   ImageSection,
-  Head,
   CardAuto
 };
