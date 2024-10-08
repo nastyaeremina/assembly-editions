@@ -133,82 +133,6 @@ const Last = styled.div`
   }
 `;
 
-const BlogList = styled.div`
-  border: 1px solid #01011d;
-  border-radius: 4px;
-  max-width: 880px;
-  width: 100%;
-  margin: auto;
-  display: flex;
-  height: 205px;
-  margin-bottom: 25px;
-`;
-
-const Leftside = styled.div`
-  border-right: 1px solid #01011d;
-  border-radius: 4px 0px 0px 4px;
-`;
-
-const Rightside = styled.div`
-  display: flex;
-  flex-direction: column;
-`;
-const Lastpra = styled.div`
-  margin-top: 17px;
-  border-top: 1px solid #01011d;
-  border-radius: 0px 0px 4px 4px;
-  background-color: ${greenlight};
-  padding: 8px 25px;
-  p {
-    ${MbButtonText}
-    margin:0px;
-  }
-`;
-const LastSection = styled.div`
-  max-width: 880px;
-  width: 100%;
-  border-width: 1px 0px 1px 1px;
-  border-style: solid;
-  border-color: #000000;
-  border-radius: 4px 4px 4px 4px;
-  display: flex;
-  margin: 100px auto;
-  @media only screen and (max-width: 768px) {
-    border-width: 1px 1px 1px 1px;
-    border-style: solid;
-    margin: 80px auto;
-  }
-`;
-
-const Left = styled.div`
-  margin: 50px 40px auto 40px;
-  h2 {
-    ${Heading4}
-    margin-top:0px;
-    margin-bottom: 12px;
-  }
-  p {
-    ${Body5}
-    margin-bottom:40px;
-    margin-top: 0px;
-  }
-  @media only screen and (max-width: 768px) {
-    margin: 40px 24px;
-  }
-`;
-
-const Right = styled.div`
-  margin-top: -1px;
-  display: inline-flex;
-  align-items: stretch;
-  svg {
-    object-fit: cover;
-  }
-  @media only screen and (max-width: 768px) {
-    display: none;
-  }
-`;
-
 const Backlink = styled.div`
   display: inline-flex;
   gap: 8px;
@@ -235,73 +159,6 @@ const Backlink = styled.div`
   }
 `;
 
-const DetailHero = styled.div`
-  display: flex;
-  gap: 38px;
-  padding: 0px 0 100px;
-  /* margin-top:20px;     */
-  h1 {
-    ${Heading3};
-    color: ${title};
-    margin: 0;
-    @media only screen and (max-width: 769px) {
-      ${MobileH2}
-    }
-  }
-  @media only screen and (max-width: 768px) {
-    padding-bottom: 28px;
-    flex-direction: column;
-    gap: 28px;
-  }
-`;
-
-const BlogImage = styled.div`
-  width: 100%;
-  overflow: hidden;
-  display: flex;
-  .image {
-    height: auto;
-    max-width: 100%;
-    object-fit: cover;
-    border-radius: 8px;
-    border: 1px solid ${black};
-    @media only screen and (max-width: 768px) {
-      width: 100%;
-    }
-  }
-`;
-const BlogTime = styled.div`
-  ${Body4}
-  width: 100%;
-  display: flex;
-  margin-top: 20px;
-  margin-bottom: 40px;
-  color: ${lightgray};
-  @media only screen and (max-width: 768px) {
-    margin-bottom: 0px;
-  }
-  @media only screen and (max-width: 449px) {
-    ${MbBody4}
-    margin-top:16px;
-  }
-  span:hover {
-    color: ${title};
-    cursor: pointer;
-  }
-`;
-const Post = styled.div`
-  ${Body4}
-  display:flex;
-  color: ${lightgray};
-  gap: 8px;
-  align-items: center;
-  @media only screen and (max-width: 450px) {
-    ${MbBody4}
-  }
-  li {
-    list-style-type: none;
-  }
-`;
 const Table = styled.div`
   width: 100%;
   border: 1px solid #000000;
@@ -357,27 +214,6 @@ const TableHeading = styled.div`
     }
     :hover {
       cursor: pointer;
-    }
-  }
-  span {
-    color: ${primary};
-  }
-`;
-const Desc = styled.div`
-  max-width: 880px;
-  width: 100%;
-  margin: 40px 0;
-  @media only screen and (max-width: 450px) {
-    margin: 28px 0;
-    ${MbBody4}
-  }
-  ${Body4}
-  color: ${body};
-  P {
-    margin-top: 10px;
-    margin-bottom: 40px;
-    @media only screen and (max-width: 450px) {
-      margin-bottom: 28px;
     }
   }
   span {
@@ -788,21 +624,9 @@ export {
   PostDetail,
   Par,
   Last,
-  BlogList,
-  Leftside,
-  Rightside,
-  Lastpra,
-  LastSection,
-  Left,
-  Right,
   Backlink,
-  DetailHero,
-  BlogImage,
-  BlogTime,
-  Post,
   Table,
   TableHeading,
-  Desc,
   Details,
   Content,
   Textcontent,
