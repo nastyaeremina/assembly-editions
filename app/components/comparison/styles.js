@@ -1,6 +1,16 @@
 import styled, { css } from 'styled-components';
-import { Body2, Body3, Body4, Body5, Heading2, Heading3, Heading4, Heading6, MbBody3, Quote } from '../../styles/styles';
-import { body, hover, primary, title } from '../../styles/color';
+import {
+  Body2,
+  Body3,
+  Body4,
+  Body5,
+  Heading2,
+  Heading3,
+  Heading4,
+  Heading6,
+  MbBody3,
+  Quote
+} from '../../styles/styles';
 
 const QuoteSection = styled.div`
   padding: 100px 0 0px;
@@ -18,7 +28,7 @@ const ComparisonTable = styled.div`
     margin: 0;
     padding-top: 100px;
     ${Heading3}
-    color: ${title};
+    color: var(--title);
     padding-bottom: 40px;
     @media only screen and (max-width: 450px) {
       padding-top: 40px;
@@ -26,7 +36,7 @@ const ComparisonTable = styled.div`
   }
   p {
     ${Body3}
-    color: ${body};
+    color: var(--body);
     margin-top: -24px;
     margin-bottom: 40px;
     @media only screen and (max-width: 450px) {
@@ -59,7 +69,7 @@ const ComparisonTable = styled.div`
       text-align: right;
       padding: 16px 20px;
       ${Body3}
-      color: ${title};
+      color: var(--title);
     }
     th {
       padding: 26px 25px;
@@ -107,10 +117,10 @@ const G2section = styled.div`
     margin: 0;
     padding-top: 50px;
     ${Heading3}
-    color: ${title};
+    color: var(--title);
     padding-bottom: 40px;
     @media only screen and (max-width: 426px) {
-      padding-top:40px;
+      padding-top: 40px;
     }
   }
 `;
@@ -157,13 +167,13 @@ const Groupdetail = styled.div`
   p {
     ${Body3}
     margin:0;
-    color: ${title};
+    color: var(--title);
     @media only screen and (max-width: 426px) {
       ${Body5}
     }
   }
   .report {
-    color: ${hover};
+    color: var(--hover);
   }
 `;
 const G2criteria = styled.div`
@@ -189,7 +199,7 @@ const G2text = styled.div`
   h3 {
     margin: 0;
     ${Heading4}
-    color: ${title};
+    color: var(--title);
   }
 `;
 const G2progressbar = styled.div`
@@ -203,76 +213,76 @@ const G2progressbar = styled.div`
 `;
 const Processdata = styled.div`
   .seconddata {
-    color: #757575;
+    color: var(--medium-gray);
   }
   span {
     ${Heading6}
     display: flex;
     justify-content: flex-end;
     padding-bottom: 5px;
-    color: #000000;
+    color: var(--black);
   }
 `;
 const ComparisonHide = styled.div`
-  border: 1px solid #00160e;
+  border: 1px solid var(--dark-green);
   border-radius: 4px;
-  background: #ffffff;
+  background: var(--white);
 `;
 const Headingpart = styled.div`
-  display:flex;
-  justify-content:center;
+  display: flex;
+  justify-content: center;
   padding: 20px 20px;
-  border-bottom: 1px solid #00160e;
+  border-bottom: 1px solid var(--dark-green);
   position: relative;
   h2 {
     font-weight: 400;
     font-size: 32px;
     line-height: 34px;
-    text-align:center;
-    padding:0;
+    text-align: center;
+    padding: 0;
   }
 `;
 const Details = styled.div`
   display: flex;
   flex-direction: row;
-  align-items:center;
-  gap:12px;
+  align-items: center;
+  gap: 12px;
   p {
     ${Body5}
     margin:0;
   }
   .mobilecheckmark {
-    width:14px;
-    height:14px;
+    width: 14px;
+    height: 14px;
   }
 `;
 const Comparisontabledata = styled.div`
-    padding:14px 16px;
-    display:flex;
-    flex-direction:column;
-    gap:10px;
-`
+  padding: 14px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+`;
 const MobileViewTable = styled.div`
   display: none;
-  @media only screen and (max-width: 450px){
-    display:block;
+  @media only screen and (max-width: 450px) {
+    display: block;
   }
 `;
 const Carditem = styled.div`
   width: 366px;
   display: flex;
   flex-direction: column;
-  border: 1px solid #00160e;
+  border: 1px solid var(--dark-green);
   @media only screen and (max-width: 768px) {
     width: 327px;
-    .mobilecard{
-      width:203px;
-      height:44px;
+    .mobilecard {
+      width: 203px;
+      height: 44px;
     }
   }
 `;
 const CardLogo = styled.div`
-  background-color: #00160e;
+  background-color: var(--dark-green);
   height: 183px;
   display: flex;
   align-items: center;
@@ -282,7 +292,7 @@ const CardLogo = styled.div`
   }
 `;
 const ComparisonLogo = styled.div`
-  background-color: #fff;
+  background-color: var(--white);
   height: 183px;
   display: flex;
   align-items: center;
@@ -297,9 +307,9 @@ const Allcard = styled.div`
   gap: 63px;
   padding-top: 100px;
   @media only screen and (max-width: 450px) {
-    gap:40px;
-    justify-content:center;
-    padding-bottom:40px;
+    gap: 40px;
+    justify-content: center;
+    padding-bottom: 40px;
   }
 `;
 const TableDropdown = styled.div`
@@ -307,7 +317,7 @@ const TableDropdown = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  border: 1px solid #ccccd0;
+  border: 1px solid var(--border);
   border-radius: 4px;
   cursor: pointer;
   ${(props) =>
@@ -319,8 +329,8 @@ const TableDropdown = styled.div`
     ${Body4}
     margin:0;
     padding: 12px 20px;
-    width:150px;
-    text-align:left;
+    width: 150px;
+    text-align: left;
   }
   .dropdownicon {
     margin-right: 20px;
@@ -328,10 +338,10 @@ const TableDropdown = styled.div`
 `;
 const Dropdownbox = styled.div`
   width: calc(100% - 50px);
-  border: 1px solid #00160e;
-  box-shadow: 0px 8px 24px rgba(0, 0, 0, 0.15);
+  border: 1px solid var(--dark-green);
+  box-shadow: 0px 8px 24px var(--black-shadow-15);
   border-radius: 4px;
-  background: #ffffff;
+  background: var(--white);
   position: absolute;
   padding: 8px;
   z-index: 99;
@@ -349,14 +359,14 @@ const Comparisonname = styled.div`
   padding: 4px 8px;
   text-align: left;
   :hover {
-    background-color: #e3ffee;
+    background-color: var(--light-green);
     border-radius: 3px;
   }
   ${(props) =>
     props.isActive &&
     css`
-      color: ${primary};
-      background-color: #fff;
+      color: var(--primary);
+      background-color: var(--white);
     `}
 `;
 export {

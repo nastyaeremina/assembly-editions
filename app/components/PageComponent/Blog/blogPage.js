@@ -1,28 +1,14 @@
 'use client';
 
 import { useCallback, useMemo, useState } from 'react';
-import Link from 'next/link';
 import Image from 'next/image';
 import moment from 'moment';
 import { useRouter } from 'next/navigation';
 import { OrganizationJsonLd } from 'next-seo';
-import { Container, SecondryButton } from '../../../styles/commonStyles';
-import {
-  FirstBlog,
-  Last,
-  LastSection,
-  Left,
-  MainContent,
-  Par,
-  PostDetail,
-  Right,
-  Text,
-  Top
-} from '../../../styles/blogstyles';
+import { Container } from '../../../styles/commonStyles';
+import { FirstBlog, Last, MainContent, Par, PostDetail, Right, Text, Top } from '../../../styles/blogstyles';
 import Blogcard from '../../Blogcard';
 import { isEmpty } from '../../../helpers/helpers';
-import SubscribeModel from '../../SubscribeModel';
-import { BlogSubscribe, Logo, Premium, Button, Model } from '../../SubscribeModel/style';
 import BlogCTA from '../../blogCTA';
 
 export default function BlogPage({ allPosts, tags }) {

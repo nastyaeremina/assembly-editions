@@ -1,10 +1,8 @@
 import styled from 'styled-components';
-import NewCTAbg from '../../../public/images/newCTAbg.svg';
 import { Heading3 } from '../../styles/styles';
-import { whiteColor } from '../../styles/color';
 
 const Content = styled.div`
-  border: 1px solid ${whiteColor};
+  border: 1px solid var(--white);
   border-radius: 4px;
   display: flex;
 `;
@@ -28,7 +26,7 @@ const ImageSection = styled.div`
 const Title = styled.div`
   p {
     ${Heading3};
-    color: ${whiteColor};
+    color: var(--white);
     margin: 0;
   }
 `;

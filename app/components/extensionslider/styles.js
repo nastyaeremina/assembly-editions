@@ -1,18 +1,16 @@
 import Link from 'next/link';
-import styled, { keyframes } from 'styled-components';
+import styled from 'styled-components';
 import { Body4 } from '../../styles/styles';
-import { title, whiteColor } from './../../styles/color';
 
 const SliderWrap = styled.div`
   overflow: hidden;
   position: relative;
 `;
-
 const SliderInner = styled(Link)`
   padding: 11px 20px 11px 15px;
-  border: 1px solid #000000;
+  border: 1px solid var(--black);
   border-radius: 4px;
-  background-color: ${whiteColor};
+  background-color: var(--white);
   margin: 0 40px;
   cursor: pointer;
   position: relative;
@@ -26,22 +24,14 @@ const SliderSub = styled.div`
   p {
     ${Body4};
     margin: 0;
-    color: ${title};
-  }
-`;
-const borderAnimation = keyframes`
-  100% {
-    background-position: 0px 0px, 300px 116px, 0px 150px, 216px 0px;
-  }
-  0% {
-    background-position: 300px 0px, 0px 116px, 0px 0px, 216px 150px;
+    color: var(--title);
   }
 `;
 const SliderLine = styled.div`
-  background: linear-gradient(90deg, rgba(0, 0, 0, 1) 50%, transparent 0),
-    linear-gradient(90deg, rgba(0, 0, 0, 1) 50%, transparent 0),
-    linear-gradient(0deg, rgba(0, 0, 0, 1) 50%, transparent 0),
-    linear-gradient(0deg, rgba(0, 0, 0, 1) 50%, transparent 0);
+  background: linear-gradient(90deg, var(--black-shadow-100) 50%, transparent 0),
+    linear-gradient(90deg, var(--black-shadow-100) 50%, transparent 0),
+    linear-gradient(0deg, var(--black-shadow-100) 50%, transparent 0),
+    linear-gradient(0deg, var(--black-shadow-100) 50%, transparent 0);
   background-position: 0 0, 200px 100px, 0 100px, 200px 0;
   background-repeat: repeat-x, repeat-x, repeat-y, repeat-y;
   background-size: 10px 4px, 10px 10px, 10px 14px, 10px 14px;

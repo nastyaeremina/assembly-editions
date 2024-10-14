@@ -46,11 +46,11 @@ export default function UpdatesPage({ allPosts }) {
             <p>New updates and improvements to Copilot.</p>
             <Button
               bgColor={'transparent'}
-              fontColor={'#000000'}
-              borderColor={'#000000'}
+              fontColor={'--black'}
+              borderColor={'--black'}
               text={'Subscribe to updates'}
               href={UPDATE_SUBSCRIBE_LINK}
-              hoverColor={'rgba(0, 0, 0, 0.5)'}
+              hoverColor={'--hover-color'}
             />
           </UpdateSubscribe>
           {renderPosts}
@@ -60,11 +60,11 @@ export default function UpdatesPage({ allPosts }) {
               <Pagination>
                 <Button
                   bgColor={'transparent'}
-                  fontColor={'#000000'}
-                  borderColor={'#000000'}
+                  fontColor={'--black'}
+                  borderColor={'--black'}
                   text={'Next Page'}
                   href={`/updates/page/2`}
-                  hoverColor={'rgba(0, 0, 0, 0.5)'}
+                  hoverColor={'--hover-color'}
                   className={'pagination-button'}
                 />
               </Pagination>

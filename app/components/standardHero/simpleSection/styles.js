@@ -1,6 +1,5 @@
 import styled, { css } from 'styled-components';
-import { body, greendark, title } from '../../../styles/color';
-import { Body2, Body3, Heading2, Heading3, MbBody2, MbBody3, MobileH2, MobileH3 } from '../../../styles/styles';
+import { Body3, Heading2, Heading3, MbBody3, MobileH2, MobileH3 } from '../../../styles/styles';
 
 const SimpleMainSection = styled.div`
   overflow: hidden;
@@ -20,7 +19,7 @@ const BlockLeft = styled.div`
   max-width: 567px;
   h2 {
     margin: 0px;
-    color: ${title};
+    color: var(--title);
     ${Heading3}
     ${(props) =>
       props.isHeading1 &&
@@ -41,7 +40,7 @@ const BlockLeft = styled.div`
 `;
 const BlockRight = styled.div``;
 const HeroBody = styled.div`
-  color: ${body};
+  color: var(--body);
   ${Body3}
   margin: 16px 0 28px 0;
   ${(props) =>
@@ -55,7 +54,7 @@ const HeroBody = styled.div`
 `;
 const BlockImg = styled.div`
   position: relative;
-  border: 1px solid ${greendark};
+  border: 1px solid var(--dark-green);
 
   border-radius: 4px;
   cursor: pointer;
@@ -69,7 +68,7 @@ const BlockImg = styled.div`
   ::after {
     content: '';
     position: absolute;
-    border-top: 1px solid ${greendark};
+    border-top: 1px solid var(--dark-green);
     max-width: 100vw;
     width: 100vw;
     top: 50%;
@@ -91,7 +90,7 @@ const FeatureImage = styled.img`
   }
 `;
 const VideoPlay = styled.div`
-  background: rgba(0, 0, 0, 0.6);
+  background: var(--light-modal-bg-color);
   width: 100%;
   height: 100vh;
   position: fixed;
@@ -124,7 +123,7 @@ const VideoClose = styled.div`
   font-size: 15px;
   line-height: 24px;
   letter-spacing: 0.02;
-  color: #ffffff;
+  color: var(--white);
   margin: 0;
   @media only screen and (min-width: 2160px) {
     font-size: 20px;

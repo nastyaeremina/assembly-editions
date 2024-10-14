@@ -212,11 +212,11 @@ export default function AutomationDirectoryPage({ featuredApps, allCategoryWithP
               <Button text={'Start Trial'} href={COPILOT_ONBORADING_LINK} />
               <Button
                 bgColor={'transparent'}
-                fontColor={'#000000'}
-                borderColor={'#000000'}
+                fontColor={'--black'}
+                borderColor={'--black'}
                 text={'Back to overview'}
                 href={'/automations'}
-                hoverColor={'rgba(0, 0, 0, 0.5)'}
+                hoverColor={'--hover-color'}
               />
             </DirectoryButton>
           </AppsHeroWrap>

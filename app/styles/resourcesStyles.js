@@ -1,14 +1,14 @@
 import styled from 'styled-components';
 import { Body4, Heading2, Heading4, Heading6, LinkTxt, MobileH2 } from './styles';
-import { black, body, footercolor, greendark, greenlight, primary, title } from './color';
+
 const MainSection = styled.div``;
 const PrivacuHero = styled.div`
-  background-color: ${greendark};
+  background-color: var(--dark-green);
   padding: 180px 0 100px 0;
   text-align: center;
   h1 {
     ${Heading2};
-    color: ${greenlight};
+    color: var(--light-green);
     margin: 0;
   }
   @media only screen and (max-width: 749px) {
@@ -29,42 +29,42 @@ const PostContent = styled.div`
   p {
     margin: 16px 0 0 0;
     ${Body4};
-    color: ${body};
+    color: var(--body);
   }
   span {
     ${Heading6};
-    color: ${body};
+    color: var(--body);
   }
 `;
 const PrivacyContent = styled.div`
   h4 {
     ${Heading4};
-    color: ${title};
+    color: var(--title);
     margin: 60px 0 12px 0;
   }
   h5 {
     ${Heading6};
-    color: ${title};
+    color: var(--title);
     margin: 0 0 16px 0;
   }
   h6 {
     ${Heading6};
-    color: ${title};
+    color: var(--title);
     margin: 30px 0 16px 0;
   }
   strong {
     ${Heading6};
-    color: ${title};
+    color: var(--title);
   }
   p {
     ${Body4};
-    color: ${body};
+    color: var(--body);
     margin: 0 0 16px 0;
     :last-child {
       margin-bottom: 0;
     }
     strong {
-      color: ${body};
+      color: var(--body);
       ${Heading6};
     }
   }
@@ -74,13 +74,13 @@ const PrivacyContent = styled.div`
       padding-left: 36px;
       position: relative;
       ${Body4};
-      color: ${body};
+      color: var(--body);
       margin-bottom: 8px;
       :last-child {
         margin-bottom: 0;
       }
       strong {
-        color: ${body};
+        color: var(--body);
         ${Heading6};
       }
       :before {
@@ -90,12 +90,11 @@ const PrivacyContent = styled.div`
         left: 0;
         width: 20px;
         height: 10px;
-        background-color: #7ddaa0;
+        background-color: var(--mid-light-green);
       }
     }
   }
 `;
-
 const ContentInfo = styled.div`
   padding: 28px 0 100px 0;
   @media only screen and (max-width: 749px) {
@@ -104,12 +103,12 @@ const ContentInfo = styled.div`
 `;
 const InfoWrap = styled.div`
   padding: 40px 0;
-  border-bottom: 1px solid #000000;
+  border-bottom: 1px solid var(--black);
 
   h2 {
     ${Heading4};
     margin: 0;
-    color: ${title};
+    color: var(--title);
   }
   @media only screen and (max-width: 749px) {
     h2 {
@@ -125,11 +124,11 @@ const InfoLink = styled.div`
   row-gap: 16px;
   a {
     ${LinkTxt};
-    color: ${primary};
+    color: var(--primary);
     display: block;
     transition: all 300ms;
     :hover {
-      color: ${black};
+      color: var(--black);
     }
   }
   @media only screen and (max-width: 991px) {
@@ -142,7 +141,7 @@ const InfoLink = styled.div`
 `;
 const FooterSection = styled.div`
   margin-top: 60px;
-  background-color: ${footercolor};
+  background-color: var(--footer);
 `;
 
 export { MainSection, PrivacuHero, PostContent, PrivacyContent, ContentInfo, InfoWrap, InfoLink, FooterSection };

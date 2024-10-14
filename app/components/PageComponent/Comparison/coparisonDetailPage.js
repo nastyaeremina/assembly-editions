@@ -40,7 +40,7 @@ const BorderLinearProgress = styled(LinearProgress)(({ theme }) => ({
   },
   [`& .${linearProgressClasses.bar}`]: {
     borderRadius: 30,
-    backgroundColor: theme.palette.mode === 'light' ? '#09AA6C' : 'red'
+    backgroundColor: theme.palette.mode === 'light' ? 'var(--primary)' : 'red'
   }
 }));
 const BorderProgress = styled(LinearProgress)(({ theme }) => ({
@@ -51,7 +51,7 @@ const BorderProgress = styled(LinearProgress)(({ theme }) => ({
   },
   [`& .${linearProgressClasses.bar}`]: {
     borderRadius: 30,
-    backgroundColor: theme.palette.mode === 'light' ? '#CCCCD0' : 'red'
+    backgroundColor: theme.palette.mode === 'light' ? 'var(--border)' : 'red'
   }
 }));
 

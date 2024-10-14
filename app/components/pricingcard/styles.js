@@ -1,17 +1,15 @@
 import styled, { css } from 'styled-components';
 import { Body2, Body4, Body5, Heading2, Heading3, Heading4, Heading5, Limarker } from '../../styles/styles';
 
-import { greenlight, title, darkgray, midiumgray, greenmidlight } from './../../styles/color';
-
 const PriceMenu = styled.div`
   width: 100%;
-  border: 1px solid #ccccd0;
+  border: 1px solid var(--border);
   position: relative;
   ${(props) =>
     props.isSupersonic &&
     css`
-      border: 1px solid #7ddaa0;
-      background-color: #00160e;
+      border: 1px solid var(--mid-light-green);
+      background-color: var(--dark-green);
     `}
 
   .cardbtn {
@@ -24,10 +22,10 @@ const PriceMenu = styled.div`
 `;
 const PriceSection = styled.div`
   padding: 24px;
-  border-bottom: 1px solid #ccccd0;
+  border-bottom: 1px solid var(--border);
   h2 {
     ${Heading4}
-    color: ${title};
+    color: var(--title);
     margin: 0 0 4px 0;
     @media (max-width: 479px) {
       font-size: 32px;
@@ -36,25 +34,25 @@ const PriceSection = styled.div`
   }
   p {
     ${Body5}
-    color: ${darkgray};
+    color: var(--dark-gray);
     margin: 0;
     height: 57px;
   }
   ${(props) =>
     props.isSupersonic &&
     css`
-      border-bottom: 1px solid #7ddaa0;
+      border-bottom: 1px solid var(--mid-light-green);
       h2 {
-        color: ${greenlight};
+        color: var(--light-green);
       }
       p {
-        color: ${greenlight};
+        color: var(--light-green);
       }
     `}
 `;
 const Pricenumber = styled.h3`
   ${Heading3}
-  color: ${title};
+  color: var(--title);
   margin: 20px 0 0;
   display: flex;
   gap: 4px;
@@ -73,17 +71,17 @@ const Pricenumber = styled.h3`
   ${(props) =>
     props.isSupersonic &&
     css`
-      color: ${greenlight};
+      color: var(--light-green);
     `}
 `;
 const Caption = styled.h5`
   ${Body5}
-  color: ${title};
+  color: var(--title);
   margin: 0;
   ${(props) =>
     props.isSupersonic &&
     css`
-      color: ${greenlight};
+      color: var(--light-green);
     `}
 `;
 
@@ -100,7 +98,7 @@ const PricePlan = styled.div`
   p {
     b {
       ${Body4}
-      color: ${title};
+      color: var(--title);
     }
     margin: 0;
   }
@@ -112,7 +110,7 @@ const PricePlan = styled.div`
       margin-top: 12px;
       padding-left: 14px;
       ${Body5}
-      color: ${darkgray};
+      color: var(--dark-gray);
       ${Limarker}
       ::before {
         top: 5px;
@@ -126,12 +124,12 @@ const PricePlan = styled.div`
       h3,
       p {
         b {
-          color: ${greenlight};
+          color: var(--light-green);
         }
       }
       ul {
         li {
-          color: ${greenlight};
+          color: var(--light-green);
         }
       }
     `}
@@ -140,7 +138,7 @@ const PricePlan = styled.div`
 const BulletImage = styled.div`
   padding: 5px 10px;
   margin-top: 7px;
-  background-color: ${greenmidlight};
+  background-color: var(--mid-light-green);
   @media only screen and (max-width: 749px) {
     padding: 4px 8px;
   }

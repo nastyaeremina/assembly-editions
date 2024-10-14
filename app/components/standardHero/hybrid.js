@@ -104,22 +104,22 @@ export default function HomeHeroSection({
           <HeroBtnBlock>
             {showPrimaryButton && (
               <Button
-                bgColor={isLight ? '#09AA6C' : '#E3FFEE'}
-                fontColor={isLight ? '#FFFFFF' : '#00160E'}
-                borderColor={isLight ? '#09AA6C' : '#E3FFEE'}
+                bgColor={isLight ? '--primary' : '--light-green'}
+                fontColor={isLight ? '--white' : '--dark-green'}
+                borderColor={isLight ? '--primary' : '--light-green'}
                 text={primaryButtonText}
                 href={primaryButtonLink}
-                hoverColor={isLight ? 'rgba(255, 255, 255,0.8)' : 'rgba(0, 0, 0, 0.5)'}
+                hoverColor={isLight ? '--secondary-hover-color' : '--hover-color'}
               />
             )}
             {showSecondaryButton && (
               <Button
                 bgColor={'transparent'}
-                fontColor={isLight ? '#00160E' : '#FFFFFF'}
-                borderColor={isLight ? '#00160E' : '#FFFFFF'}
+                fontColor={isLight ? '--dark-green' : '--white'}
+                borderColor={isLight ? '--dark-green' : '--white'}
                 text={secondaryButtonText}
                 href={secondaryButtonLink}
-                hoverColor={isLight ? 'rgba(0, 0, 0, 0.5)' : 'rgba(255, 255, 255,0.8)'}
+                hoverColor={isLight ? '--hover-color' : '--secondary-hover-color'}
               />
             )}
           </HeroBtnBlock>

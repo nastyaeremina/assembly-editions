@@ -13,12 +13,12 @@ import {
   MbBody4,
   MobileH4
 } from '../../styles/styles';
-import { bgcolor, black, body, greenlight, primary, subtitle, title, whiteColor } from '../../styles/color';
+
 const MainSection = styled.div`
   max-width: 50%;
   width: 100%;
   padding: 40px 80px;
-  background-color: ${bgcolor};
+  background-color: var(--main-bg-color);
   @media only screen and (max-width: 991px) {
     height: 100%;
     margin-bottom: 50px;
@@ -47,7 +47,7 @@ const LastText = styled.div`
   a {
     ${HeaderFont};
     margin: 0 0 0 5px;
-    color: ${primary};
+    color: var(--primary);
     cursor: pointer;
     transition: none;
     display: flex;
@@ -128,12 +128,12 @@ const FormTxt = styled.div`
   padding: 30px 0;
   h4 {
     ${Heading4};
-    color: ${title};
+    color: var(--title);
     margin: 0 0 12px 0;
   }
   p {
     ${Body5};
-    color: ${body};
+    color: var(--body);
     margin: 0;
   }
   @media only screen and (max-width: 768px) {
@@ -157,18 +157,18 @@ const FormDetail = styled.div`
   label {
     display: block;
     ${CardTxt};
-    color: ${subtitle};
+    color: var(--sub-title);
     margin: 0 0 5px 0;
   }
   span {
-    color: ${primary};
+    color: var(--primary);
   }
   select {
     margin-bottom: 20px;
     padding: 7px 0;
-    border: 1px solid #dfe1eb;
+    border: 1px solid var(--selected-border-color);
     border-radius: 4px;
-    background-color: #fff;
+    background-color: var(--white);
     background-image: none;
     background-position: 0 0;
     background-size: auto;
@@ -179,10 +179,10 @@ const FormDetail = styled.div`
     appearance: none;
     width: 100%;
     :hover {
-      border-color: ${primary};
+      border-color: var(--primary);
     }
     :focus {
-      border-color: ${primary};
+      border-color: var(--primary);
     }
   }
   .wselect {
@@ -193,11 +193,11 @@ const FormDetail = styled.div`
     font-size: 12px;
     line-height: 14px;
     letter-spacing: 0.02em;
-    color: ${title};
+    color: var(--title);
     font-weight: 400px;
     /* vertical-align: middle; */
-    background-color: #fff;
-    border: 1px solid #ccc;
+    background-color: var(--white);
+    border: 1px solid var(--border-gray);
   }
   .sm {
     border-radius: 4px;
@@ -212,14 +212,14 @@ const FormDetail = styled.div`
     /* height: 32px; */
     padding: 7px 12px;
     outline: 0;
-    border: 1px solid #dfe1eb;
+    border: 1px solid var(--selected-border-color);
     overflow: hidden;
-    color: ${title};
+    color: var(--title);
     :hover {
-      border-color: ${primary};
+      border-color: var(--primary);
     }
     :focus {
-      border-color: ${primary};
+      border-color: var(--primary);
     }
   }
   label {
@@ -247,8 +247,8 @@ const FormDetail = styled.div`
 
 const Input = styled.input`
   padding: 7px 12px;
-  background-color: ${whiteColor};
-  border: 1px solid #ccccd0;
+  background-color: var(--white);
+  border: 1px solid var(--border);
   border-radius: 4px;
   outline: 0;
   height: 32px;
@@ -256,12 +256,12 @@ const Input = styled.input`
   font-size: 12px;
   line-height: 14px;
   width: 100%;
-  color: ${title};
+  color: var(--title);
   :hover {
-    border-color: ${primary};
+    border-color: var(--primary);
   }
   :focus {
-    border-color: ${primary};
+    border-color: var(--primary);
   }
 `;
 const ValidationForm = styled.div`
@@ -272,7 +272,7 @@ const ValidationForm = styled.div`
   font-size: 12px;
   line-height: 14px;
   letter-spacing: 0.02em;
-  color: #ff5644;
+  color: var(--delete-text);
   svg {
     display: inline-flex;
     margin-right: 4px;
@@ -340,7 +340,7 @@ const ThanksWrap = styled.div`
 `;
 
 const CardView = styled.div`
-  background-color: ${greenlight};
+  background-color: var(--light-green);
   padding: 50px 0;
   border-radius: 10px;
   width: 100%;
@@ -359,21 +359,21 @@ const TextWrap = styled.div`
   h3 {
     ${Heading3};
     margin: 0 0 14px;
-    color: ${black};
+    color: var(--black);
   }
   p {
     ${Body3};
     max-width: 335px;
     margin: 16px auto 0;
     display: inline-block;
-    color: ${title};
+    color: var(--title);
     &:first-child {
       margin: 0px auto;
     }
   }
   a {
     display: initial;
-    color: ${title};
+    color: var(--title);
     ${Body3};
     text-decoration: underline;
   }
@@ -389,7 +389,7 @@ const TextWrap = styled.div`
       max-width: 100%;
       margin: 10px auto 0;
       display: inline-block;
-      color: ${title};
+      color: var(--title);
     }
     a {
       ${MbBody3};
@@ -397,7 +397,6 @@ const TextWrap = styled.div`
     }
   }
 `;
-
 export {
   MainSection,
   FormSection,

@@ -249,7 +249,7 @@ const Limarker = css`
     position: absolute;
     width: 20px;
     height: 10px;
-    background-color: #7ddaa0;
+    background-color: var(--mid-light-green);
   }
 `;
 export {

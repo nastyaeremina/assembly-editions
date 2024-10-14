@@ -1,13 +1,11 @@
 import styled, { css } from 'styled-components';
 import { Body4, FooterText, MbBody5 } from '../../styles/styles';
-import { greendark, lightgray, primary, title } from '../../styles/color';
-import { theme } from '../../constants/constant';
 
 const SideNavbar = styled.div`
   width: 300px;
   height: 100vh;
   padding: 40px 0px 0px 20px;
-  border-right: 1px solid #ccccd0;
+  border-right: 1px solid var(--border);
   position: fixed;
   top: 0;
   @media only screen and (max-width: 991px) {
@@ -37,11 +35,11 @@ const NavTitle = styled.div`
   a {
     padding-left: 15px;
     ${Body4};
-    color: ${greendark};
+    color: var(--dark-green);
     margin: 0;
   }
   @media only screen and (max-width: 991px) {
-    border-left: 1px solid #757575;
+    border-left: 1px solid var(--medium-gray);
   }
 `;
 
@@ -52,17 +50,17 @@ const NavHead = styled.div`
   cursor: pointer;
   :hover {
     .head {
-      color: ${primary};
+      color: var(--primary);
     }
     svg {
       path {
-        stroke: #09aa6c;
+        stroke: var(--primary);
       }
     }
     .close {
       svg {
         path {
-          stroke: #09aa6c;
+          stroke: var(--primary);
         }
       }
     }
@@ -72,24 +70,24 @@ const NavHead = styled.div`
     transition: all 0.3s ease;
     svg {
       path {
-        stroke: #00160e;
+        stroke: var(--dark-green);
       }
     }
   }
   @media only screen and (max-width: 991px) {
     :hover {
       .head {
-        color: ${lightgray};
+        color: var(--medium-gray);
       }
       svg {
         path {
-          stroke: #a5aba9;
+          stroke: var(--light-gray);
         }
       }
       .close {
         svg {
           path {
-            stroke: #00160e;
+            stroke: var(--dark-green);
           }
         }
       }
@@ -99,11 +97,11 @@ const NavHead = styled.div`
 const OptionName = styled.p`
   margin: 0;
   ${MbBody5};
-  color: ${lightgray};
+  color: var(--medium-gray);
   ${(props) =>
     props.isSelected &&
     css`
-      color: ${greendark};
+      color: var(--dark-green);
     `}
 `;
 const OptionIcon = styled.div`
@@ -129,28 +127,28 @@ const NavItem = styled.li`
   }
   :hover {
     .secondhead {
-      color: ${primary};
+      color: var(--primary);
     }
     .fill {
       path {
-        fill: #09aa6c;
+        fill: var(--primary);
         stroke: unset !important;
       }
     }
     .svgicon {
       svg {
         path {
-          stroke: #09aa6c;
+          stroke: var(--primary);
         }
         ellipse {
-          fill: #09aa6c;
+          fill: var(--primary);
         }
       }
     }
     .close {
       svg {
         path {
-          stroke: #09aa6c;
+          stroke: var(--primary);
         }
       }
     }
@@ -165,29 +163,29 @@ const NavItem = styled.li`
     transition: all 0.3s ease;
     svg {
       path {
-        stroke: #00160e;
+        stroke: var(--dark-green);
       }
     }
   }
   @media only screen and (max-width: 991px) {
     :hover {
       .secondhead {
-        color: ${lightgray};
+        color: var(--medium-gray);
       }
       .svgicon {
         svg {
           path {
-            stroke: #a5aba9;
+            stroke: var(--light-gray);
           }
           ellipse {
-            fill: #a5aba9;
+            fill: var(--light-gray);
           }
         }
       }
       .close {
         svg {
           path {
-            stroke: #00160e;
+            stroke: var(--dark-green);
           }
         }
       }
@@ -202,7 +200,7 @@ const Icon = styled.div`
   height: 20px;
   .fill {
     path {
-      fill: #a5aba9;
+      fill: var(--light-gray);
       stroke: unset;
     }
   }
@@ -210,7 +208,7 @@ const Icon = styled.div`
     width: 22px;
     height: 22px;
     path {
-      stroke: #a5aba9;
+      stroke: var(--light-gray);
     }
   }
   ${(props) =>
@@ -218,23 +216,23 @@ const Icon = styled.div`
     css`
       svg {
         path {
-          stroke: #00160e;
+          stroke: var(--dark-green);
         }
       }
       .fill {
         path {
-          fill: #00160e;
+          fill: var(--dark-green);
         }
       }
     `}
 `;
 const IconText = styled.div`
   ${MbBody5};
-  color: ${lightgray};
+  color: var(--medium-gray);
   ${(props) =>
     props.isSelected &&
     css`
-      color: ${greendark};
+      color: var(--dark-green);
     `}
 `;
 
@@ -248,19 +246,19 @@ const NavmenuSection = styled.div`
   -webkit-mask-image: linear-gradient(
     to bottom,
     transparent 0%,
-    rgba(0, 0, 0, 0.2) calc(40px / 2),
-    #000 40px,
-    #000 calc(100% - 40px),
-    rgba(0, 0, 0, 0.2) calc(100% - calc(40px / 2)),
+    var(--black-shadow-20) calc(40px / 2),
+    var(--black) 40px,
+    var(--black) calc(100% - 40px),
+    var(--black-shadow-20) calc(100% - calc(40px / 2)),
     transparent 100%
   );
   mask-image: linear-gradient(
     to bottom,
     transparent 0%,
-    rgba(0, 0, 0, 0.2) calc(40px / 2),
-    #000 40px,
-    #000 calc(100% - 40px),
-    rgba(0, 0, 0, 0.2) calc(100% - calc(40px / 2)),
+    var(--black-shadow-20) calc(40px / 2),
+    var(--black) 40px,
+    var(--black) calc(100% - 40px),
+    var(--black-shadow-20) calc(100% - calc(40px / 2)),
     transparent 100%
   );
   @media only screen and (min-width: 992px) {
@@ -276,12 +274,12 @@ const NavmenuSection = styled.div`
 
 const GuideSectionItem = styled.div`
   a {
-    color: #fff;
+    color: var(--white);
   }
 
   nav {
     margin: 15px;
-    color: #000;
+    color: var(--black);
     overflow: hidden;
   }
 
@@ -291,8 +289,8 @@ const GuideSectionItem = styled.div`
     border-radius: 20px;
     margin-bottom: 10px;
     padding: 5px;
-    color: #fff;
-    background: #000;
+    color: var(--white);
+    background: var(--black);
     cursor: pointer;
     display: flex;
     justify-content: space-between;
@@ -310,13 +308,6 @@ const GuideSectionItem = styled.div`
     opacity: 0;
     -webkit-transition: all 0.5s ease-in-out 0s;
     transition: all 0.5s ease-in-out 0s;
-  }
-
-  #nav li {
-    margin: 5px 0;
-    border: solid 1px #999;
-    padding: 10px;
-    background: #7f7fff;
   }
 
   .open {
@@ -376,7 +367,7 @@ const GuideRight = styled.div`
   }
 `;
 const ItemList = styled.div`
-  border-left: 1px solid #ccccd0;
+  border-left: 1px solid var(--border);
 `;
 const ItemName = styled.p`
   padding: 6px 0px 6px 8px;
@@ -387,22 +378,22 @@ const ItemName = styled.p`
     padding-top: 0;
   }
   a {
-    color: ${lightgray};
+    color: var(--medium-gray);
   }
   :hover {
-    border-left: 1px solid #09aa6c;
+    border-left: 1px solid var(--primary);
     margin-left: -1px;
     a {
-      color: ${primary};
+      color: var(--primary);
     }
   }
   ${(props) =>
     props.isSelected &&
     css`
-      border-left: 1px solid #00160e;
+      border-left: 1px solid var(--dark-green);
       margin-left: -1px;
       a {
-        color: ${greendark};
+        color: var(--dark-green);
       }
     `}
   ${(props) =>
@@ -431,7 +422,6 @@ const ItemName = styled.p`
       padding: 6px 0px 6px 110px;
     `}
 `;
-
 const GuideMobileNavbar = styled.div`
   display: none;
   @media only screen and (max-width: 991px) {
@@ -439,7 +429,7 @@ const GuideMobileNavbar = styled.div`
     position: sticky;
     top: 0;
     height: 100%;
-    background: rgba(255, 255, 253, 0.8);
+    background: var(--main-bg-color);
     border-bottom: 0px solid rgb(204, 204, 208);
     &&.scroll {
       backdrop-filter: blur(6px);
@@ -456,7 +446,7 @@ const NavbarHeader = styled.div`
 const MobileNavMenu = styled.div`
   position: absolute;
   z-index: 1;
-  background-color: #ffffff;
+  background-color: var(--white);
   /* top: 76px; */
   width: 100%;
   height: 100vh;
@@ -473,7 +463,7 @@ const BtnIcon = styled.div`
 `;
 
 const Main = styled.div`
-  background: rgba(255, 255, 255, 0.65);
+  background: var(--white);
   backdrop-filter: blur(2px);
   position: fixed;
   z-index: 9999;
@@ -483,7 +473,7 @@ const Main = styled.div`
 `;
 
 const PopUp = styled.div`
-  background-color: ${theme.colors.neutral};
+  background-color: var(--neutral);
   position: absolute;
   top: 15vh;
   left: calc(50% - 327px);
@@ -495,12 +485,12 @@ const PopUp = styled.div`
     border-radius: 12px;
     overflow: hidden;
     /* border: 1px solid ${({ theme }) => theme.border}; */
-    box-shadow: 0 16px 70px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 16px 70px var(--black-shadow-20);
     transition: transform 100ms ease;
   }
 
   .dark .vercel [cmdk-root] {
-    background: rgba(22, 22, 22, 0.7);
+    background: var(--black-shadow);
   }
 
   .vercel [cmdk-input] {
@@ -509,10 +499,10 @@ const PopUp = styled.div`
     font-size: 17px;
     padding: 8px 8px 16px 46px;
     outline: none;
-    color: ${theme.colors.greendark};
+    color: var(--dark-green);
     /* margin-bottom: 16px; */
     border-radius: 0;
-    background-color: ${theme.colors.neutral};
+    background-color: var(--neutral);
   }
 
   .vercel [cmdk-input]::placeholder {
@@ -549,18 +539,18 @@ const PopUp = styled.div`
   }
 
   .vercel [cmdk-item][data-selected='true'] {
-    background: #e2e2e2;
+    background: var(--select-bg-color);
   }
 
   .vercel [cmdk-item][data-disabled='true'] {
-    color: #c7c7c7;
+    color: var(--select-text-color);
     cursor: not-allowed;
   }
 
   .vercel [cmdk-item]:active {
     transition-property: background;
-    background: ${theme.colors.neutral};
-    color: ${theme.colors.greendark};
+    background: var(--neutral);
+    color: var(--dark-green);
   }
 
   .vercel [cmdk-item] svg {
@@ -576,7 +566,7 @@ const PopUp = styled.div`
     transition: 100ms ease;
     transition-property: height;
     padding: 8px;
-    border-top: 1px solid ${theme.colors.border};
+    border-top: 1px solid var(--border);
     scroll-padding-block: 8px;
   }
   .vercel [cmdk-vercel-shortcuts] {
@@ -593,7 +583,7 @@ const PopUp = styled.div`
     height: 20px;
     border-radius: 4px;
     /* color: ${({ theme }) => theme.description}; */
-    background: ${theme.colors.neutral};
+    background: var(--neutral);
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -603,7 +593,6 @@ const PopUp = styled.div`
   .vercel [cmdk-separator] {
     height: 1px;
     width: 100%;
-    background: #e8e8e8;
     margin: 4px 0;
   }
 
@@ -628,7 +617,7 @@ const PopUp = styled.div`
     justify-content: center;
     height: 48px;
     white-space: pre-wrap;
-    color: ${theme.colors.greendark};
+    color: var(--dark-green);
   }
   .vercel [cmdk-group-items] {
     display: flex;
@@ -637,7 +626,7 @@ const PopUp = styled.div`
   .highlight {
     /* background-color: yellow; */
     font-weight: 500;
-    color: ${theme.colors.primary};
+    color: var(--primary);
   }
   .search-icon {
     position: absolute;
@@ -668,7 +657,7 @@ const SearchListText = styled.div`
   display: flex;
   flex-direction: column;
   gap: 4px;
-  color: ${theme.colors.body};
+  color: var(--body);
   font-style: 400;
   h4 {
     margin: 0;
@@ -696,16 +685,16 @@ const InputWrap = styled.form`
 `;
 const Text = styled.div`
   ${FooterText};
-  color: ${lightgray};
+  color: var(--medium-gray);
   letter-spacing: 0.01em;
   padding: 11px 68px 11px 48px;
-  border: 1.5px solid #ccccd0;
+  border: 1.5px solid var(--border);
   border-radius: 48px;
   width: 100%;
   outline: 0;
   :hover {
-    border: 1.5px solid #ccccd0;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.07);
+    border: 1.5px solid var(--border);
+    box-shadow: 0px 4px 8px var(--black-shadow-7);
   }
 `;
 

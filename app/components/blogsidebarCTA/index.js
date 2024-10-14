@@ -1,6 +1,5 @@
 import React from 'react';
 import Button from '../../components/button/button';
-import { primary, whiteColor } from '../../styles/color';
 import { COPILOT_ONBORADING_LINK } from '../../constants/externalLinks.js';
 import SVGComponent from '../../../public/images/svg/SVGComponent';
 import StartList from '../../components/reviewSection/starList';
@@ -25,12 +24,12 @@ export default function BlogSidebarCTA({ headerText, bodyText }) {
         </G2Section>
       </Content>
       <Button
-        bgColor={primary}
-        fontColor={whiteColor}
-        borderColor={primary}
+        bgColor={'--primary'}
+        fontColor={'--white'}
+        borderColor={'--primary'}
         text={'Start trial'}
         href={COPILOT_ONBORADING_LINK}
-        hoverColor={'rgba(255, 255, 255,0.8)'}
+        hoverColor={'--secondary-hover-color'}
         className={'CTA-button'}
       />
     </SideBarCTA>

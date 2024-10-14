@@ -4,28 +4,6 @@ import styled, { css } from 'styled-components';
 import Link from 'next/link';
 import Image from 'next/image';
 import { HeaderFont, Body2, Body5, FooterText, MbButtonText, MbPrimaryBtn, Heading6 } from '../../styles/styles';
-import {
-  lightBg,
-  greendark,
-  greenlight,
-  browndark,
-  brownlight,
-  title,
-  bluedark,
-  primary,
-  whiteColor,
-  black,
-  bluelight,
-  purpledark,
-  purplelight,
-  yellowdark,
-  yellowlight,
-  orangedark,
-  orangelight,
-  textColor,
-  neutral,
-  border
-} from './../../styles/color';
 
 const NavbarWrapper = styled.div`
   position: fixed;
@@ -50,8 +28,8 @@ const NavbarWrapper = styled.div`
   align-items: center;
   ${(props) =>
     css`
-      background: ${props.colorList?.bgColor};
-      border-bottom: 0px solid ${props.colorList?.borderBottomColor};
+      background: var(${props.colorList?.bgColor});
+      border-bottom: 0px solid var(${props.colorList?.borderBottomColor});
     `}
   &&.scroll {
     backdrop-filter: blur(6px);
@@ -106,13 +84,13 @@ const NavMenu = styled.div`
     left: 0;
     right: 0;
     padding: 0;
-    background: #fdfdfb;
+    background: var(--bg-pages);
 
     animation: 0.2s ease-out 0s 1 slideInFromTop;
     ${(props) =>
       props.isBoxShadow &&
       css`
-        box-shadow: 0px 4px 24px rgba(0, 0, 0, 0.7);
+        box-shadow: 0px 4px 24px var(--black-shadow-70);
       `}
   }
   @keyframes slideInFromTop {
@@ -151,9 +129,9 @@ const NavigationBlock = styled.ul`
     css`
       li {
         background-color: unset;
-        border-bottom: 1px solid #000000;
+        border-bottom: 1px solid var(--black);
         :first-child {
-          border-top: 1px solid #000000;
+          border-top: 1px solid var(--black);
         }
         :last-child {
           border-bottom: none;
@@ -188,7 +166,7 @@ const LineMenuImg = styled.div`
     css`
       svg {
         line {
-          stroke: ${props?.lineColor} !important;
+          stroke: var(${props?.lineColor}) !important;
         }
       }
     `}
@@ -202,7 +180,7 @@ const SpanLink = styled.li`
     ${(props) =>
       props.textColor &&
       css`
-        color: ${props.textColor};
+        color: var(${props.textColor});
       `}
     cursor: pointer;
   }
@@ -210,21 +188,21 @@ const SpanLink = styled.li`
     ${(props) =>
       props.hoverColor &&
       css`
-        color: ${props.hoverColor};
+        color: var(${props.hoverColor});
       `}
   }
   .hovernone {
     ${(props) =>
       props.textColor &&
       css`
-        color: ${props.textColor};
+        color: var(${props.textColor});
       `}
   }
   .hovernone:hover {
     ${(props) =>
       props.hoverColor &&
       css`
-        color: ${props.hoverColor};
+        color: var(${props.hoverColor});
       `}
   }
   &.active {
@@ -232,7 +210,7 @@ const SpanLink = styled.li`
       ${(props) =>
         props.hoverColor &&
         css`
-          color: ${props.hoverColor};
+          color: var(${props.hoverColor});
         `}
     }
   }
@@ -244,13 +222,13 @@ const SpanLink = styled.li`
   @media only screen and (max-width: 991px) {
     margin-bottom: 0px;
     width: 100%;
-    border-bottom: 1px solid #000000;
+    border-bottom: 1px solid var(--black);
     :first-child {
-      border-top: 1px solid #000000;
+      border-top: 1px solid var(--black);
     }
     &.active {
       a {
-        background-color: ${lightBg};
+        background-color: var(--light-green);
       }
     }
     a {
@@ -298,7 +276,7 @@ const SpanMobileLink = styled.li`
   }
   &.active {
     a {
-      color: ${primary};
+      color: var(--primary);
     }
   }
 
@@ -306,13 +284,13 @@ const SpanMobileLink = styled.li`
     margin-bottom: 0px;
     display: block;
     width: 100%;
-    border-bottom: 1px solid #000000;
+    border-bottom: 1px solid var(--black);
     :first-child {
-      border-top: 1px solid #000000;
+      border-top: 1px solid var(--black);
     }
     &.active {
       a {
-        background-color: ${lightBg};
+        background-color: var(--light-green);
       }
     }
     a {
@@ -320,7 +298,7 @@ const SpanMobileLink = styled.li`
       display: block;
       border-radius: 0px;
       margin: 0;
-      color: ${title};
+      color: var(--title);
     }
   }
   :hover .innerlist,
@@ -344,8 +322,8 @@ const InnerList = styled.ul`
   position: absolute;
   top: 47px;
   left: -10px;
-  background: #fff;
-  box-shadow: 0px 8px 30px #ddd;
+  background: var(--white);
+  box-shadow: 0px 8px 30px var(--box-shadow-gray);
   z-index: 90;
   display: none;
   transition: all 300ms;
@@ -354,18 +332,18 @@ const InnerList = styled.ul`
     css`
       width: 100%;
       min-width: 360px;
-      background-color: #ffffff;
-      border: 1px solid #00160e;
-      box-shadow: 0px 8px 24px rgba(0, 0, 0, 0.35);
+      background-color: var(--white);
+      border: 1px solid var(--dark-green);
+      box-shadow: 0px 8px 24px var(--black-shadow-35);
     `}
   ${(props) =>
     props.company &&
     css`
       width: 100%;
       min-width: 400px;
-      background-color: #ffffff;
-      border: 1px solid #00160e;
-      box-shadow: 0px 8px 24px rgba(0, 0, 0, 0.35);
+      background-color: var(--white);
+      border: 1px solid var(--dark-green);
+      box-shadow: 0px 8px 24px var(--black-shadow-35);
     `}
     ${(props) =>
     props.solution &&
@@ -373,15 +351,15 @@ const InnerList = styled.ul`
       /* width: 100%; */
       /* min-width: 560px; */
       width: max-content;
-      background-color: #ffffff;
-      border: 1px solid #00160e;
-      box-shadow: 0px 8px 24px rgba(0, 0, 0, 0.35);
+      background-color: var(--white);
+      border: 1px solid var(--dark-green);
+      box-shadow: 0px 8px 24px var(--black-shadow-35);
     `}
 `;
 const ListLi = styled.li`
   @media only screen and (max-width: 991px) {
-    background-color: ${neutral};
-    border-bottom: 1px solid ${border};
+    background-color: var(--neutral);
+    border-bottom: 1px solid var(--border);
     :last-of-type {
       border-bottom: none;
     }
@@ -391,7 +369,7 @@ const Listleft = styled.div`
   /* max-width: 200px; */
   width: 100%;
   padding: 8px 0;
-  /* border-right: 1px solid #00160e; */
+  /* border-right: 1px solid var(--light-green); */
   ${(props) =>
     props.solutionleft &&
     css`
@@ -425,7 +403,7 @@ const SignInSignUpBtn = styled.ul`
   @media only screen and (max-width: 991px) {
     width: 100%;
     padding: 12px 0;
-    border-top: 1px solid #ebeef2;
+    border-top: 1px solid var(--navbar-border-color);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -448,16 +426,16 @@ const SignIn = styled.li`
     ${(props) =>
       props.textColor &&
       css`
-        color: ${props.textColor};
+        color: var(${props.textColor});
       `}
-    /* color: ${title}; */
+    /* color: var(--title); */
     cursor: pointer;
     text-decoration: none;
     :hover {
       ${(props) =>
         props.hoverColor &&
         css`
-          color: ${props.hoverColor};
+          color: var(${props.hoverColor});
         `}
     }
   }
@@ -488,7 +466,6 @@ const DropDownToggle = styled.div`
 `;
 const DropdownSpan = styled.span`
   margin-right: 4px;
-  color: ${textColor};
   ${Body2}
 `;
 const DropDownArrow = styled.div`
@@ -510,7 +487,7 @@ const HorizontalLine = styled.div`
   height: 24px;
   margin-right: 8px;
   margin-left: 16px;
-  background-color: rgba(0, 0, 0, 0.12);
+  background-color: var(--black-shadow-12);
   @media only screen and (max-width: 991px) {
     display: none;
   }
@@ -531,7 +508,7 @@ const FirstLine = styled.span`
   display: block;
   width: 24px;
   height: 2px;
-  background-color: ${black};
+  background-color: var(--black);
   border-radius: 1px;
   margin-bottom: 14px;
   transition: all 300ms;
@@ -544,19 +521,19 @@ const FirstLine = styled.span`
   ${(props) =>
     props.isEnterPrice &&
     css`
-      background-color: ${greenlight};
+      background-color: var(--light-green);
     `}
     ${(props) =>
     props.textColor &&
     css`
-      background-color: ${props.textColor};
+      background-color: var(${props.textColor});
     `}
 `;
 const SecondLine = styled.span`
   display: block;
   width: 24px;
   height: 2px;
-  background-color: ${black};
+  background-color: var(--black);
   border-radius: 1px;
   margin-bottom: 6px;
   transition: all 300ms;
@@ -571,7 +548,7 @@ const ThirdLine = styled.span`
   display: block;
   width: 24px;
   height: 2px;
-  background-color: ${black};
+  background-color: var(--black);
   border-radius: 1px;
   transition: all 300ms;
   transform: translate3d(0px, 0px, 0px) rotateZ(0deg);
@@ -583,12 +560,12 @@ const ThirdLine = styled.span`
   ${(props) =>
     props.isEnterPrice &&
     css`
-      background-color: ${greenlight};
+      background-color: var(--light-green);
     `}
   ${(props) =>
     props.textColor &&
     css`
-      background-color: ${props.textColor};
+      background-color: var(${props.textColor});
     `}
 `;
 
@@ -615,41 +592,41 @@ const MenuWrap = styled(Link)`
     width: 100%;
   }
   :hover {
-    background-color: ${greendark};
+    background-color: var(--dark-green);
     h5,
     span {
-      color: ${greenlight};
+      color: var(--light-green);
     }
     .hover-image {
       filter: hue-rotate(390deg) saturate(0.3);
     }
     svg {
       path {
-        fill: #e3ffee;
+        fill: var(--light-green);
       }
       g {
         path {
-          fill: #e3ffee;
+          fill: var(--light-green);
         }
       }
     }
     .logo {
       circle {
-        fill: #e3ffee;
+        fill: var(--light-green);
       }
       path {
-        fill: #00160e;
+        fill: var(--dark-green);
       }
     }
     /* .brand {
       g {
         path {
-          fill: #e3ffee;
+          fill: var(--light-green);
         }
       }
     } */
     h6 {
-      color: ${greenlight};
+      color: var(--light-green);
     }
   }
   //hover style for features list
@@ -669,10 +646,10 @@ const MenuWrap = styled(Link)`
     props.billhover &&
     css`
       :hover {
-        background-color: ${bluedark};
+        background-color: var(--dark-blue);
         h5,
         span {
-          color: ${bluelight};
+          color: var(--light-blue);
         }
       }
     `}
@@ -680,10 +657,10 @@ const MenuWrap = styled(Link)`
     props.filehover &&
     css`
       :hover {
-        background-color: ${purpledark};
+        background-color: var(--dark-purple);
         h5,
         span {
-          color: ${purplelight};
+          color: var(--light-purple);
         }
       }
     `}
@@ -691,10 +668,10 @@ const MenuWrap = styled(Link)`
     props.formhover &&
     css`
       :hover {
-        background-color: ${yellowdark};
+        background-color: var(--dark-yellow);
         h5,
         span {
-          color: ${yellowlight};
+          color: var(----light-yellow);
         }
       }
     `}
@@ -702,10 +679,10 @@ const MenuWrap = styled(Link)`
     props.helphover &&
     css`
       :hover {
-        background-color: ${orangedark};
+        background-color: var(--dark-orange);
         h5,
         span {
-          color: ${orangelight};
+          color: var(--light-orange);
         }
       }
     `}
@@ -714,7 +691,7 @@ const LeftImg = styled.div`
   display: inline-flex;
 `;
 const RightText = styled.div`
-  color: ${title};
+  color: var(--title);
   padding-left: 20px;
   ${(props) =>
     props.resourcetext &&
@@ -725,18 +702,18 @@ const RightText = styled.div`
     margin: 0 0 4px 0;
     ${Body5};
     letter-spacing: 0.02em;
-    color: ${title};
+    color: var(--title);
   }
   h6 {
     ${Body5};
     letter-spacing: 0.02em;
     margin: 0;
-    color: ${title};
+    color: var(--title);
   }
   span {
     ${FooterText};
     display: block;
-    color: ${title};
+    color: var(--title);
   }
 `;
 const SignInMobile = styled.ul`
@@ -757,10 +734,9 @@ const MobileRight = styled.div`
 const MobileListLi = styled.li`
   @media only screen and (max-width: 991px) {
     width: 100%;
-    border-bottom: 1px solid ${border};
-    background-color: ${neutral};
+    border-bottom: 1px solid var(--border);
+    background-color: var(--neutral);
     :first-child {
-      /* border-top: 1px solid #000000; */
     }
     :last-of-type {
       border-bottom: 0;
@@ -769,7 +745,7 @@ const MobileListLi = styled.li`
       props.isSolutionmenu &&
       css`
         :last-of-type {
-          border-bottom: 1px solid #000000;
+          border-bottom: 1px solid var(--black);
         }
       `}
   }
@@ -777,7 +753,7 @@ const MobileListLi = styled.li`
 const MobileTextLink = styled(Link)`
   ${HeaderFont}
   padding: 20px 24px;
-  color: #131313 !important;
+  color: var(--title) !important;
   -webkit-transition: all 300ms;
   transition: all 300ms;
   cursor: pointer;
@@ -792,7 +768,7 @@ const MobileTextLink = styled(Link)`
 const MobileText = styled.div`
   ${HeaderFont}
   padding: 20px 24px;
-  color: #131313;
+  color: var(--title);
   -webkit-transition: all 300ms;
   transition: all 300ms;
   cursor: pointer;
@@ -819,41 +795,41 @@ const MenuMobileWrap = styled.a`
     padding: 22px 24px;
   }
   :hover {
-    background-color: ${greendark};
+    background-color: var(--dark-green);
     .hover-image {
       filter: hue-rotate(390deg) saturate(0.3);
     }
     svg {
       path {
-        fill: #e3ffee;
+        fill: var(--light-green);
       }
       g {
         path {
-          fill: #e3ffee;
+          fill: var(--light-green);
         }
       }
     }
     .logo {
       circle {
-        fill: #e3ffee;
+        fill: var(--light-green);
       }
       path {
-        fill: #00160e;
+        fill: var(--dark-green);
       }
     }
 
     h6 {
-      color: ${greenlight};
+      color: var(--light-green);
     }
   }
   ${(props) =>
     props.msghover &&
     css`
       :hover {
-        background-color: ${browndark};
+        background-color: var(--dark-brown);
         h5,
         span {
-          color: ${brownlight};
+          color: var(--light-brown);
         }
       }
     `}
@@ -861,10 +837,10 @@ const MenuMobileWrap = styled.a`
     props.billhover &&
     css`
       :hover {
-        background-color: ${bluedark};
+        background-color: var(--dark-blue);
         h5,
         span {
-          color: ${bluelight};
+          color: var(--light-blue);
         }
       }
     `}
@@ -872,10 +848,10 @@ const MenuMobileWrap = styled.a`
     props.filehover &&
     css`
       :hover {
-        background-color: ${purpledark};
+        background-color: var(--dark-purple);
         h5,
         span {
-          color: ${purplelight};
+          color: var(--light-purple);
         }
       }
     `}
@@ -883,10 +859,10 @@ const MenuMobileWrap = styled.a`
     props.formhover &&
     css`
       :hover {
-        background-color: ${yellowdark};
+        background-color: var(--dark-yellow);
         h5,
         span {
-          color: ${yellowlight};
+          color: var(----light-yellow);
         }
       }
     `}
@@ -894,10 +870,10 @@ const MenuMobileWrap = styled.a`
     props.helphover &&
     css`
       :hover {
-        background-color: ${orangedark};
+        background-color: var(--dark-orange);
         h5,
         span {
-          color: ${orangelight};
+          color: var(--light-orange);
         }
       }
     `}
@@ -908,7 +884,7 @@ const BackWrap = styled.div`
   gap: 4px;
   span {
     ${MbButtonText};
-    color: ${black};
+    color: var(--black);
     ${(props) =>
       props.textColor &&
       css`
@@ -933,7 +909,7 @@ const TextView = styled.div`
 `;
 const TopBar = styled.div`
   top: 0;
-  background-color: ${primary};
+  background-color: var(--primary);
   width: 100%;
   position: fixed;
   z-index: 9999;
@@ -948,7 +924,7 @@ const AnnounceBar = styled.div`
   a {
     ${MbPrimaryBtn};
     margin: 0;
-    color: ${whiteColor};
+    color: var(--white);
     cursor: pointer;
     transition: none;
     @media only screen and (max-width: 749px) {
@@ -975,7 +951,7 @@ const AnnounceBar = styled.div`
 
   .learn-link:hover {
     @media only screen and (max-width: 749px) {
-      color: ${whiteColor};
+      color: var(--white);
     }
   }
   .learn-link svg path {
@@ -1034,7 +1010,7 @@ const Last = styled.div`
 `;
 
 const LastDroplist = styled.div`
-  border-top: 1px solid #00160e;
+  border-top: 1px solid var(--dark-green);
   padding: 12px 20px;
   @media only screen and (max-width: 991px) {
     ${(props) =>
@@ -1043,10 +1019,10 @@ const LastDroplist = styled.div`
         padding: 12px 24px;
         border-top: none;
       `}
-    border-top: 1px solid #00160e;
-    border-bottom: 1px solid #00160e;
+    border-top: 1px solid var(--dark-green);
+    border-bottom: 1px solid var(--dark-green);
     width: 100%;
-    background-color: ${neutral};
+    background-color: var(--neutral);
     ${(props) =>
       props.isSolutionmenu &&
       css`
@@ -1067,7 +1043,7 @@ const LastDroplist = styled.div`
   a {
     ${MbPrimaryBtn};
     margin: 0;
-    color: ${title};
+    color: var(--title);
     cursor: pointer;
     transition: none;
     :hover .HoverArrow__linePath {
@@ -1092,7 +1068,7 @@ const LastDroplist = styled.div`
   .learn-link:hover {
     color: black;
     /* @media only screen and (max-width: 749px) {
-      color: ${primary};
+      color: var(--primary);
     } */
   }
   .learn-link svg path {
@@ -1137,8 +1113,8 @@ const FeatureMenu = styled.div`
 
 const DropDownHeading = styled.div`
   ${Heading6}
-  color: ${greendark};
-  background-color: ${greenlight};
+  color: var(--dark-green);
+  background-color: var(--light-green);
   padding: 12px 20px;
   min-width: 280px;
   ${(props) =>
@@ -1149,7 +1125,7 @@ const DropDownHeading = styled.div`
 `;
 
 const BorderLine = styled.div`
-  border-left: 1px solid #00160e;
+  border-left: 1px solid var(--dark-green);
   width: 100%;
 `;
 
@@ -1157,7 +1133,7 @@ const FeatureDropdown = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  border-left: 1px solid #00160e;
+  border-left: 1px solid var(--dark-green);
   :first-child {
     border-left: none;
   }

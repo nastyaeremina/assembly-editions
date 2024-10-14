@@ -14,7 +14,6 @@ import {
   MbButtonText,
   MbPrimaryBtn
 } from '../../styles/styles';
-import { body, border, greendark, lightgray, title } from '../../styles/color';
 
 const ReviewContent = styled.div`
   display: flex;
@@ -35,12 +34,12 @@ const SectionHeading = styled.div`
   width: 100%;
   h3 {
     ${Heading4}
-    color: ${title};
+    color: var(--title);
     margin: 0;
   }
   p {
     ${Body4};
-    color: ${body};
+    color: var(--body);
     margin: 0;
   }
   @media only screen and (max-width: 449px) {
@@ -75,7 +74,7 @@ const Left = styled.div`
 
   h4 {
     ${Body4};
-    color: ${lightgray};
+    color: var(--medium-gray);
     margin: 0;
   }
 `;
@@ -84,7 +83,7 @@ const RatingNumber = styled.div`
   align-items: center;
   gap: 8px;
   ${Heading5};
-  color: ${title};
+  color: var(--title);
 `;
 const RatingIcon = styled.div`
   display: flex;
@@ -96,7 +95,7 @@ const ReviewDiv = styled.div`
   gap: 54px;
   justify-content: space-between;
   padding: 30px 0;
-  border-bottom: 1px solid ${border};
+  border-bottom: 1px solid var(--border);
   :last-child {
     border-bottom: none;
     padding: 30px 0 0;
@@ -135,14 +134,14 @@ const Review = styled.div`
 `;
 const PersonName = styled.div`
   ${Heading6};
-  color: ${title};
+  color: var(--title);
   @media only screen and (max-width: 449px) {
     ${MbPrimaryBtn}
   }
 `;
 const Body = styled.div`
   ${Body4};
-  color: ${lightgray};
+  color: var(--medium-gray);
   @media only screen and (max-width: 449px) {
     ${MbBody4}
   }
@@ -157,7 +156,7 @@ const Star = styled.div`
 `;
 const ReviewDetail = styled.div`
   ${Body4};
-  color: ${body};
+  color: var(--body);
   @media only screen and (max-width: 449px) {
     ${MbBody3}
   }
@@ -186,14 +185,14 @@ const EmptyContent = styled.div`
 
 const Emptyheading = styled.h4`
   ${Body2}
-  color:${greendark};
+  color:var(--dark-green);
   margin: 0;
   text-align: center;
 `;
 
 const EmptyCaption = styled.p`
   ${Body4};
-  color: ${lightgray};
+  color: var(--medium-gray);
   margin: 16px 0 32px;
   text-align: center;
 `;

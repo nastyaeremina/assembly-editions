@@ -3,7 +3,6 @@ import Image from 'next/image';
 import { Container } from '../../../styles/commonStyles';
 import { isEmpty, separateSpecialChar } from '../../../helpers/helpers';
 import Button from '../../button/button';
-import { black } from '../../../styles/color';
 import {
   HeroSection,
   SolutionWrap,
@@ -68,9 +67,9 @@ export default function SolutionHero({
                         href={secondaryButtonLink}
                         className={'button-section'}
                         bgColor={'transparent'}
-                        fontColor={black}
-                        borderColor={black}
-                        hoverColor={'rgba(0, 0, 0, 0.5)'}
+                        fontColor={'--black'}
+                        borderColor={'--black'}
+                        hoverColor={'--hover-color'}
                       />
                     )}
                   </BtnWrap>

@@ -45,20 +45,20 @@ export default function AutomationPage({ details }) {
           <Caption>{details?.body}</Caption>
           <AutomationButton>
             <Button
-              bgColor={'#09AA6C'}
-              fontColor={'#fff'}
-              borderColor={'#09AA6C'}
+              bgColor={'--primary'}
+              fontColor={'--white'}
+              borderColor={'--primary'}
               text={'Start Trial'}
               href={COPILOT_ONBORADING_LINK}
-              hoverColor={'rgba(255, 255, 255,0.8)'}
+              hoverColor={'--secondary-hover-color'}
             />
             <Button
               bgColor={'transparent'}
-              fontColor={'#E3FFEE'}
-              borderColor={'#E3FFEE'}
+              fontColor={'--light-green'}
+              borderColor={'--light-green'}
               text={'View all Automations'}
               href={'automations/directory'}
-              hoverColor={'rgba(255, 255, 255,0.8)'}
+              hoverColor={'--secondary-hover-color'}
             />
           </AutomationButton>
           <BottomList isAnimated>
@@ -213,11 +213,11 @@ export default function AutomationPage({ details }) {
 
             <Button
               bgColor={'transparent'}
-              fontColor={'#000000'}
-              borderColor={'#000000'}
+              fontColor={'--black'}
+              borderColor={'--black'}
               text={'View all automations'}
               href={'/automations/directory'}
-              hoverColor={'rgba(0, 0, 0, 0.5)'}
+              hoverColor={'--hover-color'}
             />
           </TopView>
         </Featured>

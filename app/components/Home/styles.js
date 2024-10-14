@@ -1,6 +1,5 @@
 import styled, { css } from 'styled-components';
 import { Body2, Body5, FooterText, Heading2, MbBody1, MobileH2 } from '../../styles/styles';
-import { greendark, greenlight, body, title, primary, whiteColor } from './../../styles/color';
 
 const HeroSection = styled.div`
   width: 100%;
@@ -8,11 +7,11 @@ const HeroSection = styled.div`
   /* margin-bottom: 50px; */
   text-align: center;
   overflow: hidden;
-  background-color: ${greendark};
+  background-color: var(--dark-green);
   ${(props) =>
     props.isLight &&
     css`
-      background-color: ${whiteColor};
+      background-color: var(--white);
     `}
   ${(props) =>
     props.isStandardPage &&
@@ -32,16 +31,16 @@ const HeroSection = styled.div`
 
 const HeroHeading = styled.h1`
   ${Heading2};
-  color: ${greenlight};
+  color: var(--light-green);
   margin: 0 auto 20px;
   max-width: 1000px;
   ${(props) =>
     props.isLight &&
     css`
-      color: ${title};
+      color: var(--title);
     `}
   span {
-    color: ${primary};
+    color: var(--primary);
   }
   @media only screen and (max-width: 991px) {
     text-align: center;
@@ -59,11 +58,11 @@ const Para = styled.p`
   ${Body2}
   letter-spacing: 0.02em;
   margin: 0 auto;
-  color: ${whiteColor};
+  color: var(--white);
   ${(props) =>
     props.isLight &&
     css`
-      color: ${body};
+      color: var(--body);
     `}
   @media only screen and (max-width: 991px) {
     text-align: center;
@@ -93,7 +92,7 @@ const ImageHover = styled.a`
   :hover {
     svg {
       path {
-        fill: #e3ffee;
+        fill: var(--light-green);
       }
     }
     ${(props) =>
@@ -101,7 +100,7 @@ const ImageHover = styled.a`
       css`
         svg {
           path {
-            fill: #003f27;
+            fill: var(--mid-dark-green);
           }
         }
       `}
@@ -110,7 +109,7 @@ const ImageHover = styled.a`
     :hover {
       svg {
         path {
-          fill: #e3ffee;
+          fill: var(--light-green);
         }
       }
       ${(props) =>
@@ -118,7 +117,7 @@ const ImageHover = styled.a`
         css`
           svg {
             path {
-              fill: #003f27;
+              fill: var(--mid-dark-green);
             }
           }
         `}
@@ -132,7 +131,7 @@ const ImageHover = styled.a`
     :hover {
       svg {
         path {
-          fill: #e3ffee;
+          fill: var(--light-green);
         }
       }
       ${(props) =>
@@ -140,7 +139,7 @@ const ImageHover = styled.a`
         css`
           svg {
             path {
-              fill: #003f27;
+              fill: var(--mid-dark-green);
             }
           }
         `}
@@ -204,14 +203,14 @@ const RightWrap = styled.div`
     font-weight: 500;
     font-size: 15px;
     line-height: 24px;
-    color: ${whiteColor};
+    color: var(--white);
     margin: 0 0 0 0px;
     text-align: center;
     letter-spacing: 0.02em;
     ${(props) =>
       props.isLight &&
       css`
-        color: ${greendark};
+        color: var(--dark-green);
       `}
     @media only screen and (max-width: 450px) {
       font-weight: 500;
@@ -235,14 +234,14 @@ const HeroBtnBlock = styled.div`
 
 const MainImage = styled.div`
   width: 100%;
-  /* filter: drop-shadow(0px 4px 112px rgba(9, 170, 108, 0.55)); */
+  /* filter: drop-shadow(0px 4px 112px var(--primary)); */
   ${(props) =>
     props.isLight &&
     css`
-      filter: drop-shadow(0px 0px 60px rgba(0, 0, 0, 0.12));
+      filter: drop-shadow(0px 0px 60px var(--black-shadow-12));
     `}
   .heromain-image {
-    /* box-shadow: 0px 4px 112px rgba(9, 170, 108, 0.55); */
+    /* box-shadow: 0px 4px 112px var(--primary); */
     box-shadow: 0px 0px 66.61846160888672px 0px #0000001f;
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
@@ -370,9 +369,9 @@ const LeftHeading = styled.p`
   margin-top: 58px;
   margin-left: 74px;
   padding: 10px 6px;
-  background-color: ${greendark};
-  color: ${greenlight};
-  border: 1px solid #e3ffee;
+  background-color: var(--dark-green);
+  color: var(--light-green);
+  border: 1px solid var(--light-green);
   border-radius: 4px 4px 0px 0px;
   border-bottom: none;
   z-index: 2;
@@ -389,9 +388,9 @@ const RightHeading = styled.p`
   margin-top: 58px;
   margin-left: 903px;
   padding: 10px 6px;
-  background-color: ${greendark};
-  color: ${greenlight};
-  border: 1px solid #e3ffee;
+  background-color: var(--dark-green);
+  color: var(--light-green);
+  border: 1px solid var(--light-green);
   border-radius: 4px 4px 0px 0px;
   border-bottom: none;
   z-index: 2;

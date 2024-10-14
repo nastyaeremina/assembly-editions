@@ -758,12 +758,12 @@ export default function NavbarComponent({
                         ? colorList?.fontColor
                         : colorList?.buttontextColor
                         ? colorList?.buttontextColor
-                        : '#FFFFFF'
+                        : '--white'
                     }
                     text={'Open Dashboard'}
                     borderColor={'transparent'}
                     href={OPEN_COPILOT_LINK}
-                    hoverColor={'rgba(255, 255, 255, 0.8)'}
+                    hoverColor={'--secondary-hover-color'}
                     className='hederbtn'
                     isCamelCase={false}
                     target='blank'
@@ -787,12 +787,12 @@ export default function NavbarComponent({
                         ? colorList?.fontColor
                         : colorList?.buttontextColor
                         ? colorList?.buttontextColor
-                        : '#FFFFFF'
+                        : '--white'
                     }
                     text={'Start Trial'}
-                    borderColor={'transparent'}
+                    borderColor={'--transparent'}
                     href={COPILOT_ONBORADING_LINK}
-                    hoverColor={'rgba(255, 255, 255, 0.8)'}
+                    hoverColor={'--secondary-hover-color'}
                     className='hederbtn'
                   />
                 </>
@@ -931,7 +931,7 @@ export default function NavbarComponent({
                   {userAuth ? (
                     <>
                       <BlackButton
-                        textColor={isModule ? colorList?.fontColor : '#FFFFFF'}
+                        textColor={isModule ? colorList?.fontColor : '--white'}
                         backgroundColor={colorList?.buttonColor}>
                         <Link href={OPEN_COPILOT_LINK}>Open Dashboard</Link>
                       </BlackButton>
@@ -942,7 +942,7 @@ export default function NavbarComponent({
                         <Link href={COPILOT_DASHBOARD_LINK}>Log in</Link>
                       </SignIn>
                       <BlackButton
-                        textColor={isModule ? colorList?.fontColor : '#FFFFFF'}
+                        textColor={isModule ? colorList?.fontColor : '--white'}
                         backgroundColor={colorList?.buttonColor}>
                         <Link href={COPILOT_ONBORADING_LINK}>Start trial</Link>
                       </BlackButton>

@@ -35,7 +35,7 @@ export default function BrandPage() {
           <BlockSub
             className='hover-name'
             onClick={() => {
-              copy('#09AA6C');
+              copy('--primary');
               setCopy1('Copied!');
               const interval = setInterval(() => {
                 setCopy1('Copy');
@@ -56,7 +56,7 @@ export default function BrandPage() {
           <BlockSub
             className='hover-name'
             onClick={() => {
-              copy('#E3FFEE');
+              copy('--light-green');
               setCopy2('Copied!');
               const interval = setInterval(() => {
                 setCopy2('Copy');
@@ -77,7 +77,7 @@ export default function BrandPage() {
           <BlockLight
             className='hover-name'
             onClick={() => {
-              copy('#00160E');
+              copy('--dark-green');
               setCopy3('Copied!');
               const interval = setInterval(() => {
                 setCopy3('Copy');

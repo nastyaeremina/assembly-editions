@@ -1,13 +1,12 @@
 import styled, { css } from 'styled-components';
 import { Body4, Body5, Heading4, MobileH3 } from '../../styles/styles';
-import { body, primary, title, whiteColor } from '../../styles/color';
 
 const BlogCTACard = styled.div`
   max-width: 880px;
   width: 100%;
-  border: 1px solid #000;
+  border: 1px solid var(--black);
   border-radius: 4px;
-  background: #fff;
+  background: var(--white);
   margin: 100px auto;
   display: flex;
   min-height: 256px;
@@ -29,12 +28,12 @@ const BlogLeftCTA = styled.div`
     ${Heading4}
     margin-top:0px;
     margin-bottom: 8px;
-    color: ${title};
+    color: var(--title);
   }
   p {
     ${Body4}
     margin: 0px;
-    color: ${body};
+    color: var(--body);
   }
   .blogerror {
     margin-top: 12px;
@@ -72,8 +71,8 @@ const BlogRightCTA = styled.div`
 `;
 const Input = styled.input`
   padding: 13px 20px;
-  background-color: ${whiteColor};
-  border: 1px solid #ccccd0;
+  background-color: var(--white);
+  border: 1px solid var(--border);
   border-radius: 71px;
   outline: 0;
   height: 50px;
@@ -81,12 +80,12 @@ const Input = styled.input`
   line-height: 24px;
   font-weight: 400;
   width: 100%;
-  color: ${title};
+  color: var(--title);
   :hover {
-    border-color: ${primary};
+    border-color: var(--primary);
   }
   :focus {
-    border-color: ${primary};
+    border-color: var(--primary);
   }
   @media only screen and (max-width: 449px) {
     font-size: 16px;

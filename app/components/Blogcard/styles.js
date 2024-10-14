@@ -1,6 +1,5 @@
 import styled from 'styled-components';
 import { MbButtonText } from '../../styles/styles';
-import { greenlight, title } from '../../styles/color';
 
 const BlogDetail = styled.div`
   display: flex;
@@ -10,7 +9,7 @@ const BlogDetail = styled.div`
   margin: auto;
   margin-top: 28px;
   margin-bottom: 28px;
-  border: 1px solid #01011d;
+  border: 1px solid var(--dark-purple);
   border-radius: 4px;
   overflow: hidden;
   @media only screen and (max-width: 749px) {
@@ -18,7 +17,7 @@ const BlogDetail = styled.div`
   }
   :hover {
     h2 {
-      color: ${title};
+      color: var(--title);
     }
     .image {
       transform: scale(1.1);
@@ -29,7 +28,7 @@ const BlogDetail = styled.div`
 const Leftside = styled.div`
   display: inline-flex;
   align-items: stretch;
-  border-right: 1px solid #01011d;
+  border-right: 1px solid var(--dark-purple);
   padding: 0;
   margin: 0;
   overflow: hidden;
@@ -60,10 +59,10 @@ const Rightside = styled.div`
 `;
 const Bottom = styled.div`
   ${MbButtonText}
-  background-color: ${greenlight};
+  background-color: var(--light-green);
   padding: 8px 25px;
   /* margin-top:30px; */
-  border-top: 1px solid #01011d;
+  border-top: 1px solid var(--dark-purple);
   border-bottom-right-radius: 3px;
   @media only screen and (max-width: 749px) {
     border-bottom-left-radius: 3px;

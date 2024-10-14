@@ -1,22 +1,5 @@
 import styled, { css } from 'styled-components';
 import Iconview from '../components/iconview/iconview';
-import {
-  lightBg,
-  greendark,
-  bgpages,
-  greenlight,
-  body,
-  caption,
-  bodycolor,
-  lightgray,
-  browndark,
-  brownlight,
-  textColor,
-  title,
-  primary,
-  whiteColor,
-  border
-} from './../styles/color';
 
 import {
   Body1,
@@ -42,7 +25,7 @@ import {
 } from './styles';
 
 const HomeMain = styled.div`
-  background-color: ${bgpages};
+  background-color: var(--bg-pages);
   padding-bottom: 50px;
   @media only screen and (max-width: 749px) {
     padding-bottom: 0;
@@ -61,10 +44,10 @@ const HeroSection = styled.div`
 
 const HeroHeading = styled.h1`
   ${Heading1};
-  color: ${title};
+  color: var(--title);
   margin: 0 0 40px 0;
   span {
-    color: ${primary};
+    color: var(--primary);
   }
   @media only screen and (max-width: 991px) {
     text-align: center;
@@ -75,7 +58,7 @@ const HeroHeading = styled.h1`
     margin-bottom: 20px;
     font-size: 60px;
     line-height: 54px;
-    color: ${greendark};
+    color: var(--dark-green);
   }
 `;
 
@@ -83,7 +66,7 @@ const Para = styled.p`
   ${Body1}
   letter-spacing: 0.02em;
   margin: 0;
-  color: ${body};
+  color: var(--body);
   @media only screen and (max-width: 991px) {
     text-align: center;
     ${Body1}
@@ -116,9 +99,8 @@ const ReviewLogo = styled.div`
   display: inline-block;
   max-height: 43px;
 `;
-
 const BusinessSection = styled.div`
-  box-shadow: 0px -26px 32px rgba(0, 0, 0, 0.08);
+  box-shadow: 0px -26px 32px var(--black-shadow-8);
   position: relative;
   z-index: 1;
   padding: 100px 0 100px;
@@ -139,10 +121,10 @@ const BusinessText = styled.div`
   h2 {
     ${Heading3};
     margin: 0;
-    color: ${title};
+    color: var(--title);
     padding-bottom: 16px;
     span {
-      color: ${primary};
+      color: var(--primary);
     }
   }
   p {
@@ -150,7 +132,7 @@ const BusinessText = styled.div`
     width: 100%;
     ${Body3};
     margin: 0;
-    color: ${bodycolor};
+    color: var(--body);
     letter-spacing: 0.02em;
     width: 100%;
   }
@@ -163,7 +145,7 @@ const BusinessText = styled.div`
       padding-bottom: 0;
       ${MobileH2};
       line-height: 50px;
-      color: ${greendark};
+      color: var(--dark-green);
     }
     p {
       ${Body3};
@@ -176,7 +158,7 @@ const BusinessText = styled.div`
     h2 {
       padding-bottom: 0;
       ${MobileH3};
-      color: ${greendark};
+      color: var(--dark-green);
     }
     p {
       ${MbBody3};
@@ -210,14 +192,13 @@ const Functionality = styled.div`
       `}
   }
 `;
-
 const IconWrap = styled.div`
   position: relative;
   margin-bottom: 28px;
   ::after {
     content: '';
     position: absolute;
-    border-top: 1px solid #000000;
+    border-top: 1px solid var(--black);
     max-width: 242px;
     width: 100%;
     top: 50%;
@@ -240,9 +221,9 @@ const IconSvg = styled.div`
     top: 0;
     bottom: 0;
     width: 10px;
-    border-top: 1px solid #00160e;
-    border-left: 1px solid #00160e;
-    border-bottom: 1px solid #00160e;
+    border-top: 1px solid var(--dark-green);
+    border-left: 1px solid var(--dark-green);
+    border-bottom: 1px solid var(--dark-green);
     border-radius: 4px 0px 0 4px;
   }
   ::before {
@@ -252,9 +233,9 @@ const IconSvg = styled.div`
     top: 0;
     bottom: 0;
     width: 10px;
-    border-top: 1px solid #00160e;
-    border-right: 1px solid #00160e;
-    border-bottom: 1px solid #00160e;
+    border-top: 1px solid var(--dark-green);
+    border-right: 1px solid var(--dark-green);
+    border-bottom: 1px solid var(--dark-green);
     border-radius: 0px 4px 4px 0px;
   }
 
@@ -262,7 +243,6 @@ const IconSvg = styled.div`
     display: none;
   }
 `;
-
 const ContainWrap = styled.div`
   display: flex;
   padding-top: 40px;
@@ -287,12 +267,12 @@ const LeftDetail = styled.div`
   h3 {
     margin: 0 0 12px 0;
     ${Heading4};
-    color: ${title};
+    color: var(--title);
   }
   p {
     ${Body4};
     letter-spacing: 0.02em;
-    color: ${body};
+    color: var(--body);
     margin: 0 0 24px 0;
   }
   @media only screen and (max-width: 991px) {
@@ -308,12 +288,12 @@ const LeftDetail = styled.div`
     h3 {
       margin: 0 0 8px 0;
       ${Heading4};
-      color: ${title};
+      color: var(--title);
     }
     p {
       ${MbBody4};
       letter-spacing: 0.02em;
-      color: ${body};
+      color: var(--body);
       margin: 0 0 24px 0;
     }
     .btnmobi {
@@ -322,7 +302,7 @@ const LeftDetail = styled.div`
   }
 `;
 const RightDetail = styled.div`
-  border: 1px solid #000000;
+  border: 1px solid var(--black);
   border-radius: 5px;
   padding: 16px 18px;
   width: 100%;
@@ -376,38 +356,38 @@ const AutomateText = styled.div`
   .automation-button {
     margin-top: 28px;
     a {
-      color: ${whiteColor};
+      color: var(--white);
       :hover {
-        color: ${whiteColor};
+        color: var(--white);
       }
     }
   }
   .active:hover {
-    color: ${title};
+    color: var(--title);
   }
   a {
-    color: ${primary};
+    color: var(--primary);
     display: inline-block;
     :hover {
-      color: ${greendark};
+      color: var(--dark-green);
     }
   }
   h2 {
     ${Heading3};
     margin: 0;
-    color: ${title};
+    color: var(--title);
     padding-bottom: 16px;
   }
   p {
     ${Body3};
     margin: 0;
-    color: ${bodycolor};
+    color: var(--body);
     letter-spacing: 0.02em;
     max-width: 933px;
     width: 100%;
   }
   span {
-    color: ${primary};
+    color: var(--primary);
   }
   @media only screen and (max-width: 768px) {
     max-width: 100%;
@@ -415,7 +395,7 @@ const AutomateText = styled.div`
     p {
       ${Body3};
       letter-spacing: 0.02em;
-      color: ${body};
+      color: var(--body);
       margin: 0;
     }
   }
@@ -434,7 +414,7 @@ const BottomList = styled.div`
     props.isAnimated &&
     css`
       text-align: left !important;
-      filter: drop-shadow(0px 4.68797px 157.047px rgba(9, 170, 108, 0.55));
+      filter: drop-shadow(0px 4.68797px 157.047px var(--primary));
       padding: 100px 0;
     `}
   @media only screen and (max-width: 991px) {
@@ -456,8 +436,8 @@ const CardWrapper = styled.div`
   }
 `;
 const CardItem = styled.div`
-  background: #ffffff;
-  border: 1px solid #212b36;
+  background: var(--white);
+  border: 1px solid var(--card-border-color);
   border-radius: 4px;
   padding: 16px;
   display: flex;
@@ -468,8 +448,8 @@ const CardItem = styled.div`
   ${(props) =>
     props.isAnimated &&
     css`
-      background: #00160e;
-      border: 1px solid #e3ffee;
+      background: var(--dark-green);
+      border: 1px solid var(--light-green);
     `}
   :last-child {
     margin-bottom: 0;
@@ -484,27 +464,26 @@ const CardTextView = styled.div`
   p {
     margin: 0 0 4px 0;
     ${Body4};
-    color: ${title};
+    color: var(--title);
     letter-spacing: 0.02em;
     ${(props) =>
       props.isAnimated &&
       css`
-        color: ${greenlight};
+        color: var(--light-green);
       `}
   }
   span {
     display: block;
     ${Body5};
-    color: ${body};
+    color: var(--body);
     letter-spacing: 0.02em;
     ${(props) =>
       props.isAnimated &&
       css`
-        color: ${greenlight};
+        color: var(--light-green);
       `}
   }
 `;
-
 const HelpSection = styled.div`
   padding: 50px 0;
   @media only screen and (max-width: 749px) {
@@ -514,9 +493,9 @@ const HelpSection = styled.div`
 const HelpMain = styled.div`
   display: flex;
   align-items: stretch;
-  border: 1px solid #000000;
+  border: 1px solid var(--black);
   border-radius: 4px;
-  background-color: ${whiteColor};
+  background-color: var(--white);
   image {
     border-radius: 0px 4px 4px 0px;
     max-width: 100%;
@@ -529,10 +508,10 @@ const HelpLeft = styled.div`
   padding: 60px;
   h2 {
     ${Heading3}
-    color: ${title};
+    color: var(--title);
     margin: 0 0 40px 0;
     span {
-      color: ${primary};
+      color: var(--primary);
     }
   }
   @media only screen and (max-width: 991px) {
@@ -549,7 +528,7 @@ const HelpLeft = styled.div`
   }
 
   span {
-    color: ${primary};
+    color: var(--primary);
   }
 `;
 const HelpLeftSub = styled.div`
@@ -562,7 +541,7 @@ const HelpLeftSub = styled.div`
   a {
     ${LinkTxt};
     margin: 0;
-    color: ${primary};
+    color: var(--primary);
     cursor: pointer;
     transition: none;
     :hover .HoverArrow__linePath {
@@ -584,7 +563,7 @@ const HelpLeftSub = styled.div`
   .learn-link:hover {
     color: black;
     @media only screen and (max-width: 749px) {
-      color: ${primary};
+      color: var(--primary);
     }
   }
   .learn-link svg path {
@@ -623,24 +602,24 @@ const HelpLeftSub = styled.div`
   }
   h3 {
     ${Heading4};
-    color: ${title};
+    color: var(--title);
     margin: 0 0 12px 0;
   }
   p {
     ${Body4};
     margin: 0 0 20px 0;
-    color: ${bodycolor};
+    color: var(--body);
   }
   @media only screen and (max-width: 749px) {
     h3 {
       ${MobileH4};
-      color: ${title};
+      color: var(--title);
       margin: 0 0 12px 0;
     }
     p {
       ${MbBody4};
       margin: 0 0 16px 0;
-      color: ${bodycolor};
+      color: var(--body);
     }
     a {
       ${HeaderFont};
@@ -708,7 +687,7 @@ const ImageHover = styled.a`
   :hover {
     svg {
       path {
-        fill: #ff492c;
+        fill: var(--hover);
       }
     }
   }
@@ -716,7 +695,7 @@ const ImageHover = styled.a`
     :hover {
       svg {
         path {
-          fill: #00160e;
+          fill: var(--dark-green);
         }
       }
     }
@@ -766,7 +745,7 @@ const RightWrap = styled.div`
     font-size: 12px;
     line-height: 23px;
     letter-spacing: 0.02em;
-    color: #6e847c;
+    color: var(--extra-text-color);
     margin: 0 0 0 0px;
     padding-left: 3px;
   }
@@ -933,7 +912,7 @@ const Line1 = styled.div`
     ${(props) =>
     props.isAnimated &&
     css`
-      background: linear-gradient(90deg, #e3ffee 50%, transparent 50%);
+      background: linear-gradient(90deg, var(--light-green) 50%, transparent 50%);
       background-repeat: repeat-x;
       background-size: 10px 1px;
     `}
@@ -988,7 +967,7 @@ const Line2 = styled.div`
     ${(props) =>
     props.isAnimated &&
     css`
-      background: linear-gradient(90deg, #e3ffee 50%, transparent 50%);
+      background: linear-gradient(90deg, var(--light-green) 50%, transparent 50%);
       background-repeat: repeat-x;
       background-size: 10px 1px;
     `}
@@ -1028,7 +1007,7 @@ const Line = styled.div`
   top: 40px;
 `;
 const ZoomImage = styled.div`
-  background: rgba(0, 0, 0, 0.8);
+  background: var(--modal-bg-color);
   width: 100%;
   height: 100vh;
   position: fixed;
@@ -1040,7 +1019,7 @@ const ZoomImage = styled.div`
     font-size: 13px;
     line-height: 24px;
     letter-spacing: 0.02;
-    color: #ffffff;
+    color: var(--white);
     margin: 0;
     position: absolute;
     top: 5%;
@@ -1112,18 +1091,18 @@ const Arrow = styled.div`
   width: 38px;
   height: 38px;
   border-radius: 50%;
-  border: 1px solid ${border};
+  border: 1px solid var(--border);
   display: flex;
   align-items: center;
   justify-content: center;
   transition: all 0.3s;
   cursor: pointer;
   :hover {
-    border: 1px solid ${title};
+    border: 1px solid var(--title);
     transition: all 0.3s;
     svg {
       path {
-        stroke: ${title};
+        stroke: var(--title);
       }
     }
   }
@@ -1133,10 +1112,10 @@ const Arrow = styled.div`
       cursor: no-drop;
       pointer-event: none;
       :hover {
-        border: 1px solid ${border};
+        border: 1px solid var(--border);
         svg {
           path {
-            stroke: ${border};
+            stroke: var(--border);
           }
         }
       }
@@ -1162,10 +1141,10 @@ const BusinessSectionText = styled.div`
   h2 {
     ${Heading3};
     margin: 0;
-    color: ${title};
+    color: var(--title);
     padding-bottom: 16px;
     span {
-      color: ${primary};
+      color: var(--primary);
     }
   }
   p {
@@ -1173,7 +1152,7 @@ const BusinessSectionText = styled.div`
     width: 100%;
     ${Body3};
     margin: 0;
-    color: ${bodycolor};
+    color: var(--body);
     letter-spacing: 0.02em;
     width: 100%;
   }
@@ -1188,7 +1167,7 @@ const BusinessSectionText = styled.div`
     padding-bottom: 32px;
     h2 {
       ${MobileH3};
-      color: ${greendark};
+      color: var(--dark-green);
     }
     p {
       ${MbBody3};

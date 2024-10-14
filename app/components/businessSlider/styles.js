@@ -14,13 +14,13 @@ const SliderWrap = styled.div`
     width: 8px;
     height: 8px;
     border-radius: 50%;
-    background-color: #dfdfde;
+    background-color: var(--snow-drift-gray);
   }
   .active-round {
     width: 8px;
     height: 8px;
     border-radius: 50%;
-    background-color: #000;
+    background-color: var(--black);
   }
 
   .mydiv:hover .hide {
@@ -37,7 +37,7 @@ const SliderWrap = styled.div`
     line-height: 20px;
     width: 10px;
     height: 10px;
-    color: #dfdfde;
+    color: var(--snow-drift-gray);
     opacity: 1;
   }
   .slick-dots li.slick-active button:before {
@@ -84,13 +84,13 @@ const MainSliderDiv = styled.div`
     width: 8px;
     height: 8px;
     border-radius: 50%;
-    background-color: #dfdfde;
+    background-color: var(--snow-drift-gray);
   }
   .active-round {
     width: 8px;
     height: 8px;
     border-radius: 50%;
-    background-color: #000;
+    background-color: var(--black);
   }
   .carousel-container {
     overflow: hidden;
@@ -115,7 +115,7 @@ const WrapImage = styled.div`
     padding-top: 43px;
     ${Body3};
     margin: 0;
-    color: #131313;
+    color: var(--title);
     @media only screen and (max-width: 911px) {
       padding-top: 20px;
       ${MbBody3};
@@ -127,7 +127,7 @@ const WrapImage = styled.div`
     padding-top: 8px;
     text-align: center;
     margin: 0;
-    color: #4c4c4c;
+    color: var(--body);
     letter-spacing: 0.02em;
     @media only screen and (max-width: 911px) {
       padding-top: 8px;

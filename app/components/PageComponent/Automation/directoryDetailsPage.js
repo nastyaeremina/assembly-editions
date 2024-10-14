@@ -57,12 +57,12 @@ export default function AutomationDetailPage({ detail, relatedApps }) {
         <DetailButtonSection>
           {!isEmpty(detail?.zapierLink) && (
             <Button
-              bgColor={'#09AA6C'}
-              fontColor={'#fff'}
-              borderColor={'#09AA6C'}
+              bgColor={'--primary'}
+              fontColor={'--white'}
+              borderColor={'--primary'}
               text={'Go to Zapier'}
               href={detail?.zapierLink}
-              hoverColor={'rgba(255, 255, 255,0.8)'}
+              hoverColor={'--secondary-hover-color'}
               target={'_blank'}
               isicon={true}
               imgUrl={Vector}
@@ -72,12 +72,12 @@ export default function AutomationDetailPage({ detail, relatedApps }) {
           )}
           {!isEmpty(detail?.makeLink) && (
             <Button
-              bgColor={'#09AA6C'}
-              fontColor={'#fff'}
-              borderColor={'#09AA6C'}
+              bgColor={'--primary'}
+              fontColor={'--white'}
+              borderColor={'--primary'}
               text={'Go to Make'}
               href={detail?.makeLink}
-              hoverColor={'rgba(255, 255, 255,0.8)'}
+              hoverColor={'--secondary-hover-color'}
               target={'_blank'}
               isicon={true}
               imgUrl={Make}
@@ -87,11 +87,11 @@ export default function AutomationDetailPage({ detail, relatedApps }) {
           {!isEmpty(detail?.apiLink) && (
             <Button
               bgColor={'transparent'}
-              fontColor={'#000000'}
-              borderColor={'#000000'}
+              fontColor={'--black'}
+              borderColor={'--black'}
               text={'Read setup instructions'}
               href={detail?.apiLink}
-              hoverColor={'rgba(0, 0, 0, 0.5)'}
+              hoverColor={'--hover-color'}
               target={'_blank'}
             />
           )}

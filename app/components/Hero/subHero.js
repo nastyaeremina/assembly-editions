@@ -3,7 +3,6 @@
 import ReactMarkdown from 'react-markdown';
 import Button from '../button/button';
 import { isEmpty } from '../../helpers/helpers';
-import { black } from '../../styles/color';
 import { MainHero, ButtonGroup, SubHeroSection, SubHeroCaption } from './style';
 
 /**
@@ -37,9 +36,9 @@ export default function SubHeroComponent({ data, hasFullWidth = false }) {
                     href={data?.secondaryButtonLink}
                     className={'button-section'}
                     bgColor={'transparent'}
-                    fontColor={black}
-                    borderColor={black}
-                    hoverColor={'rgba(0, 0, 0, 0.5)'}
+                    fontColor={'--black'}
+                    borderColor={'--black'}
+                    hoverColor={'--hover-color'}
                   />
                 )}
               </ButtonGroup>

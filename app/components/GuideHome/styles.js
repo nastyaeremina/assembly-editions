@@ -11,7 +11,6 @@ import {
   MbBody4,
   MobileH4
 } from '../../styles/styles';
-import { body, border, primary, tablecolor, title } from '../../styles/color';
 
 const GuideCenter = styled.div`
   max-width: 740px;
@@ -39,12 +38,12 @@ const HeroSection = styled.div`
 `;
 const PageTitle = styled.h2`
   ${Heading3};
-  color: ${title};
+  color: var(--title);
   margin: 0;
 `;
 const Caption = styled.p`
   ${Body3};
-  color: ${body};
+  color: var(--body);
   margin: 0;
   @media only screen and (max-width: 449px) {
     ${MbBody3}
@@ -56,7 +55,7 @@ const GuideDetail = styled.div`
   h3 {
     ${Heading5};
     font-weight: 400;
-    color: ${title};
+    color: var(--title);
     margin: 40px 0 0;
     display: flex;
     align-items: center;
@@ -76,7 +75,7 @@ const GuideDetail = styled.div`
   h4 {
     ${Heading6};
     font-weight: 400;
-    color: ${title};
+    color: var(--title);
     margin: 20px 0 0;
     display: inline-flex;
     align-items: center;
@@ -98,28 +97,28 @@ const GuideDetail = styled.div`
     font-weight: 500;
   }
   a {
-    color: ${primary};
+    color: var(--primary);
     display: initial;
     :hover {
-      color: #00160e;
+      color: var(--dark-green);
     }
   }
   p {
     ${Body5};
-    color: ${body};
+    color: var(--body);
     margin: 8px 0 0;
     a {
-      color: ${primary};
+      color: var(--primary);
       display: initial;
       i {
         font-style: italic;
-        color: ${primary};
+        color: var(--primary);
         :hover {
-          color: #00160e;
+          color: var(--dark-green);
         }
       }
       :hover {
-        color: #00160e;
+        color: var(--dark-green);
       }
       u {
         text-decoration: none;
@@ -131,45 +130,45 @@ const GuideDetail = styled.div`
     height: 100%;
     margin-top: 16px;
     border-radius: 4px;
-    border: 0.4px solid #dfe1e4;
+    border: 0.4px solid var(--platinum-gray);
   }
   video {
     width: 100%;
     height: 100%;
     margin-top: 16px;
     border-radius: 4px;
-    border: 0.4px solid #dfe1e4;
+    border: 0.4px solid var(--platinum-gray);
   }
   iframe {
     border-radius: 4px;
-    border: 0.4px solid #dfe1e4;
+    border: 0.4px solid var(--platinum-gray);
   }
   ol {
     padding-left: 20px;
     li {
       ::marker {
         font-size: 15px;
-        color: ${body};
+        color: var(--body);
       }
     }
   }
   i {
     font-style: italic;
-    color: ${body};
+    color: var(--body);
   }
   ul {
     list-style-type: disc;
     padding-left: 20px;
     li {
       ${Body5};
-      color: ${body};
+      color: var(--body);
     }
   }
   table {
     width: 100%;
     margin-bottom: 40px;
     margin-top: 20px;
-    box-shadow: ${border} 0px 0px 0px 1px;
+    box-shadow: var(--border) 0px 0px 0px 1px;
     border-radius: 3px;
     p {
       margin: 0;
@@ -180,7 +179,7 @@ const GuideDetail = styled.div`
     }
     tr {
       :nth-child(odd) {
-        background-color: #f8f9fb;
+        background-color: var(--table-color);
       }
       :last-child {
         td {
@@ -193,19 +192,19 @@ const GuideDetail = styled.div`
         }
       }
       :first-child {
-        border-bottom: 1px solid ${border};
+        border-bottom: 1px solid var(--border);
       }
     }
     th {
-      background-color: ${tablecolor};
+      background-color: var(--table-color);
       padding: 12px 20px;
       text-align: left;
       ${HeaderFont};
-      color: ${title};
+      color: var(--title);
       p > b,
       p {
         ${HeaderFont};
-        color: ${title};
+        color: var(--title);
       }
       :first-child {
         border-radius: 3px 0 0 0;
@@ -217,11 +216,11 @@ const GuideDetail = styled.div`
     td {
       padding: 12px 20px;
       ${Body5};
-      color: ${title};
+      color: var(--title);
       vertical-align: top;
       p {
         ${Body5};
-        color: ${title};
+        color: var(--title);
         padding-top: 20px;
         :first-child {
           padding-top: 0;

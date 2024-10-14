@@ -13,9 +13,7 @@ import {
   VideoClose,
   VideoPlay
 } from './styles';
-import Button from '../../button/button';
 import { isEmpty } from '../../../helpers/helpers';
-import { black, primary, whiteColor } from '../../../styles/color';
 import ButtonGroup from '../../ButtonGroup/buttonGroup';
 
 /**

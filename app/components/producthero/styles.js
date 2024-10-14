@@ -1,13 +1,13 @@
 import styled, { css } from 'styled-components';
 import Image from 'next/image';
 import { Body2, Heading2, MbBody2, MobileH2 } from '../../styles/styles';
-import { body, title } from '../../styles/color';
+
 const BlockLeft = styled.div`
   max-width: 552px;
 `;
 const Head = styled.h2`
   margin: 0;
-  color: ${title};
+  color: var(--title);
   ${Heading2}
   @media only screen and (max-width: 749px) {
     ${MobileH2}
@@ -17,7 +17,7 @@ const HeadCaption = styled.div`
   margin: 20px 0 32px;
   p {
     ${Body2}
-    color: ${body};
+    color: var(--body);
     margin: 12px 0 0;
     :first-child {
       margin: 0;
@@ -97,7 +97,7 @@ const FeatureImage = styled(Image)`
 `;
 
 const VideoPlay = styled.div`
-  background: rgba(0, 0, 0, 0.6);
+  background: var(--light-modal-bg-color);
   width: 100%;
   height: 100vh;
   position: fixed;
@@ -130,7 +130,7 @@ const VideoClose = styled.div`
   font-size: 15px;
   line-height: 24px;
   letter-spacing: 0.02;
-  color: #ffffff;
+  color: var(--white);
   margin: 0;
   @media only screen and (min-width: 2160px) {
     font-size: 20px;

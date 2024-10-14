@@ -1,6 +1,5 @@
 import styled, { css } from 'styled-components';
 import { Body4, ButtonText, MobileH3, Quote } from '../../styles/styles';
-import { body, title } from '../../styles/color';
 
 const QuoteMain = styled.div`
   ${(props) =>
@@ -49,9 +48,9 @@ const QuoteMain = styled.div`
 const Mainss = styled.div`
   display: flex;
   gap: 40px;
-  border: 1px solid #000000;
+  border: 1px solid var(--black);
   border-radius: 4px;
-  background: #ffffff;
+  background: var(--white);
   overflow: hidden;
   @media only screen and (max-width: 768px) {
     gap: 0;
@@ -68,7 +67,7 @@ const QuoteTxt = styled.div`
   p {
     ${Quote};
     margin: 0px 0 30px 0;
-    color: ${title};
+    color: var(--title);
   }
   @media only screen and (max-width: 768px) {
     padding: 30px 28px;
@@ -83,12 +82,12 @@ const QuoteSubTxt = styled.div`
     margin: 0 0 5px 0;
     display: block;
     ${ButtonText};
-    color: ${title};
+    color: var(--title);
   }
   p {
     margin: 0;
     ${Body4};
-    color: ${body};
+    color: var(--body);
   }
   @media only screen and (max-width: 768px) {
     span {
@@ -118,7 +117,7 @@ const QuoteLine = styled.div`
 const QuoteImg = styled.div`
   position: relative;
   left: -1px;
-  border-right: 1px solid #000;
+  border-right: 1px solid var(--black);
   margin-top: -1px;
   img {
     border-radius: 2px 0 0 2px;
@@ -127,7 +126,7 @@ const QuoteImg = styled.div`
   }
   @media only screen and (max-width: 768px) {
     border-right: 0;
-    border-bottom: 1px solid #000000;
+    border-bottom: 1px solid var(--black);
     left: 0;
     width: 100%;
     img {

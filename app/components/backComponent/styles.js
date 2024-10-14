@@ -1,5 +1,4 @@
 import styled, { css } from 'styled-components';
-import { lightgray, title } from '../../styles/color';
 import { HeaderFont, LinkTxt } from '../../styles/styles';
 
 const DetailLink = styled.div`
@@ -13,7 +12,7 @@ const DetailLink = styled.div`
   p {
     ${LinkTxt};
     margin: 0;
-    color: ${lightgray};
+    color: var(--medium-gray);
     @media only screen and (max-width: 749px) {
       ${HeaderFont};
     }
@@ -21,10 +20,10 @@ const DetailLink = styled.div`
   a {
     :hover {
       p {
-        color: ${title};
+        color: var(--title);
       }
       svg path {
-        stroke: ${title};
+        stroke: var(--title);
       }
     }
   }

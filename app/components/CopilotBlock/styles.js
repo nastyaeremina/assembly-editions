@@ -1,18 +1,17 @@
 import styled, { css } from 'styled-components';
 import Link from 'next/link';
 import { Body5, HeaderFont, Heading5 } from '../../styles/styles';
-import { body, greendark, primary, title } from '../../styles/color';
 
 const BlockCard = styled(Link)`
   min-width: 500px;
   padding: 20px;
   display: flex;
   gap: 20px;
-  border: 1px solid ${greendark};
+  border: 1px solid var(--dark-green);
   border-radius: 5px;
   transition: all 0.3s;
   :hover {
-    box-shadow: 0px 4px 16px 0px rgba(0, 0, 0, 0.1);
+    box-shadow: 0px 4px 16px 0px var(--black-shadow-10);
     transition: all 0.3s;
   }
   @media only screen and (max-width: 449px) {
@@ -50,13 +49,13 @@ const BLockImage = styled.div`
 const BlockDescriptionTop = styled.div`
   h2 {
     ${Heading5};
-    color: ${title};
+    color: var(--title);
     margin: 0 0 12px;
     font-weight: 400;
   }
   p {
     ${Body5};
-    color: ${body};
+    color: var(--body);
     margin: 0;
     display: -webkit-box;
     -webkit-box-orient: vertical;
@@ -114,7 +113,7 @@ const LastDroplist = styled.div`
   }
   .learn-link {
     ${HeaderFont};
-    color: ${primary};
+    color: var(--primary);
     margin: 0;
     display: inline-flex;
     gap: 4px;

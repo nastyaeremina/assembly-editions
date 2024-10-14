@@ -5,7 +5,6 @@ import { isEmpty } from '../../helpers/helpers';
 import { Container } from '../../styles/commonStyles';
 import { Gradient } from '../../../public/js/Gradient';
 import Button from '../button/button';
-import { greenlight } from '../../styles/color';
 import { ButtonSection, Content, CtaAnimation, CtaWrap, Image, ImageSection, TextSection, Title } from './newCTAStyles';
 
 export default function NewCTA({
@@ -83,9 +82,9 @@ export default function NewCTA({
                         text={secondaryButtonText}
                         href={secondaryButtonLink}
                         bgColor={'transparent'}
-                        fontColor={greenlight}
-                        borderColor={greenlight}
-                        hoverColor={'rgba(255, 255, 255,0.8)'}
+                        fontColor={'--light-green'}
+                        borderColor={'--light-green'}
+                        hoverColor={'--secondary-hover-color'}
                       />
                     )}
                   </ButtonSection>

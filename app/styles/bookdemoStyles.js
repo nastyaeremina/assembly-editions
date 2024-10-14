@@ -1,6 +1,5 @@
 import styled from 'styled-components';
 import { Body4, Quote } from './styles';
-import { whiteColor } from './color';
 
 const BookSection = styled.div`
   display: flex;
@@ -31,8 +30,8 @@ const DemoContain = styled.div`
   padding: 60px;
   p {
     ${Quote};
-    text-shadow: 0px 1px 3px rgba(0, 0, 0, 0.25);
-    color: ${whiteColor};
+    text-shadow: 0px 1px 3px var(--black-shadow-25);
+    color: var(--white);
     margin: 0 0 24px;
     @media only screen and (max-width: 1024px) {
       font-size: 21px;
@@ -43,11 +42,11 @@ const DemoContain = styled.div`
 const BottomName = styled.div`
   display: flex;
   justify-content: space-between;
-  border-top: 1px solid #ffffff;
+  border-top: 1px solid var(--white);
   padding-top: 24px;
   p {
     ${Body4};
-    color: ${whiteColor};
+    color: var(--white);
     margin: 0;
     @media only screen and (max-width: 1024px) {
       font-size: 16px;
@@ -61,7 +60,7 @@ const BgOverlay = styled.div`
   top: 0;
   right: 0;
   bottom: 0;
-  background: linear-gradient(360deg, #000000 0%, rgba(82, 49, 0, 0) 100%);
+  background: linear-gradient(360deg, var(--black) 0%, var(--shadow-black) 100%);
   backdrop-filter: blur(4px);
 `;
 export { BookSection, ImageSection, DemoContain, BottomName, BgOverlay };

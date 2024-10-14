@@ -45,11 +45,11 @@ export default function UpdatesPaginationPage({ allPosts, pagination }) {
             <p>New updates and improvements to Copilot.</p>
             <Button
               bgColor={'transparent'}
-              fontColor={'#000000'}
-              borderColor={'#000000'}
+              fontColor={'--black'}
+              borderColor={'--black'}
               text={'Subscribe to updates'}
               href={UPDATE_SUBSCRIBE_LINK}
-              hoverColor={'rgba(0, 0, 0, 0.5)'}
+              hoverColor={'--hover-color'}
             />
           </UpdateSubscribe>
           {renderPosts}
@@ -61,22 +61,22 @@ export default function UpdatesPaginationPage({ allPosts, pagination }) {
                   {!isEmpty(pagination?.prev) && (
                     <Button
                       bgColor={'transparent'}
-                      fontColor={'#000000'}
-                      borderColor={'#000000'}
+                      fontColor={'--black'}
+                      borderColor={'--black'}
                       text={'Previous page'}
                       href={pagination?.page === 2 ? `/updates/` : `/updates/page/${pagination?.page - 1}`}
-                      hoverColor={'rgba(0, 0, 0, 0.5)'}
+                      hoverColor={'--hover-color'}
                       className={'pagination-button'}
                     />
                   )}
                   {!isEmpty(pagination?.next) && (
                     <Button
                       bgColor={'transparent'}
-                      fontColor={'#000000'}
-                      borderColor={'#000000'}
+                      fontColor={'--black'}
+                      borderColor={'--black'}
                       text={'Next Page'}
                       href={`/updates/page/${pagination?.page + 1}`}
-                      hoverColor={'rgba(0, 0, 0, 0.5)'}
+                      hoverColor={'--hover-color'}
                       className={'pagination-button'}
                     />
                   )}

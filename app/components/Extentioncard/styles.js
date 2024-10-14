@@ -1,11 +1,10 @@
 import styled, { css } from 'styled-components';
 import { Body1, Body4, HeaderFont, LinkTxt, MbPrimaryBtn } from '../../styles/styles';
-import { greendark, title } from '../../styles/color';
 
 const Extention = styled.a`
   display: flex;
   flex-direction: row;
-  border: 1px solid #00160e;
+  border: 1px solid var(--dark-green);
   border-radius: 4px;
   @media only screen and (max-width: 449px) {
     flex-direction: column;
@@ -34,7 +33,7 @@ const Extention = styled.a`
   a {
     ${LinkTxt};
     margin: 0;
-    color: ${title};
+    color: var(--title);
     cursor: pointer;
     transition: none;
     @media only screen and (max-width: 449px) {
@@ -78,9 +77,9 @@ const Logo = styled.div`
   display: flex;
   align-items: center;
   padding: 35px;
-  border-right: 1px solid #00160e;
+  border-right: 1px solid var(--dark-green);
   @media only screen and (max-width: 449px) {
-    border-bottom: 1px solid #00160e;
+    border-bottom: 1px solid var(--dark-green);
     border-right: none;
     display: flex;
     justify-content: center;
@@ -100,7 +99,7 @@ const RightDesc = styled.div`
 `;
 const Par = styled.div`
   ${Body1}
-  color: ${greendark};
+  color: var(--dark-green);
   display: -webkit-box;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 3;

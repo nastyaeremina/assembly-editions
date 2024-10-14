@@ -34,20 +34,20 @@ export default function AppPage({ details, appsList, faqList }) {
           </Caption>
           <AutomationButton className='appsbutton'>
             <Button
-              bgColor={'#09AA6C'}
-              fontColor={'#fff'}
-              borderColor={'#09AA6C'}
+              bgColor={'--primary'}
+              fontColor={'--white'}
+              borderColor={'--priamry'}
               text={'Start Trial'}
               href={COPILOT_ONBORADING_LINK}
-              hoverColor={'rgba(255, 255, 255,0.8)'}
+              hoverColor={'--secondary-hover-color'}
             />
             <Button
               bgColor={'transparent'}
-              fontColor={'#E3FFEE'}
-              borderColor={'#E3FFEE'}
+              fontColor={'--light-green'}
+              borderColor={'--light-green'}
               text={'View all Apps'}
               href={'/apps/directory'}
-              hoverColor={'rgba(255, 255, 255,0.8)'}
+              hoverColor={'--secondary-hover-color'}
             />
           </AutomationButton>
         </Container>
@@ -119,11 +119,11 @@ export default function AppPage({ details, appsList, faqList }) {
               documentToReactComponents(details?.sectionFeaturedBody?.json)}
             <Button
               bgColor={'transparent'}
-              fontColor={'#000000'}
-              borderColor={'#000000'}
+              fontColor={'--black'}
+              borderColor={'--black'}
               text={'View all apps'}
               href={'/apps/directory'}
-              hoverColor={'rgba(0, 0, 0, 0.5)'}
+              hoverColor={'--hover-color'}
             />
           </TopView>
         </Featured>

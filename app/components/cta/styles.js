@@ -1,14 +1,10 @@
 import styled from 'styled-components';
-import { Heading, Heading2 } from '../../styles/styles';
-import {
-  primary,
-  whiteColor,
-} from './../../styles/color';
+import { Heading2 } from '../../styles/styles';
 
 const CtaInner = styled.div`
   text-align: center;
   h2 {
-    color: ${whiteColor};
+    color: var(--white);
     ${Heading2};
     padding-bottom: 50px;
     margin: 0 auto;
@@ -31,7 +27,7 @@ const CtaInner = styled.div`
       max-width: 188px;
     }
     span {
-      color: ${primary};
+      color: var(--primary);
       /* display: block; */
     }
   }
@@ -70,7 +66,7 @@ const LeftImg = styled.div`
     content: '';
     position: absolute;
     top: 50%;
-    border-top: 1px dashed #ffffff;
+    border-top: 1px dashed var(--white);
     right: 100%;
     width: 100vw;
   }
@@ -112,7 +108,7 @@ const RightImg = styled.div`
     width: 100vw;
     left: 100%;
     top: 50%;
-    border-top: 1px dashed #ffffff;
+    border-top: 1px dashed var(--white);
   }
   .mobileshow {
     display: none;

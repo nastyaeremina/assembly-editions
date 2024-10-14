@@ -13,7 +13,6 @@ import {
   MbBody5,
   MbPrimaryBtn
 } from './styles';
-import { black, body, neutral, primary, title } from './color';
 
 const UpadtePage = styled.div`
   padding-top: 180px;
@@ -28,12 +27,12 @@ const UpdateSubscribe = styled.div`
   margin-bottom: 40px;
   h1 {
     ${Heading3}
-    color: ${title};
+    color: var(--title);
     margin: 0px;
   }
   p {
     ${Body3}
-    color: ${body};
+    color: var(--body);
     margin-top: 16px;
     margin-bottom: 28px;
     @media only screen and (max-width: 768px) {
@@ -43,7 +42,7 @@ const UpdateSubscribe = styled.div`
 `;
 
 const UpdateDes = styled.div`
-  border-top: 1px solid #000000;
+  border-top: 1px solid var(--black);
   svg {
     position: absolute;
   }
@@ -77,9 +76,9 @@ const UpdateDate = styled(Link)`
   ${ButtonText}
   max-width:200px;
   width: 100%;
-  color: ${title};
+  color: var(--title);
   :hover {
-    color: ${primary};
+    color: var(--primary);
   }
   @media only screen and (max-width: 768px) {
     ${MbPrimaryBtn}
@@ -94,7 +93,7 @@ const UpdateDetail = styled.div`
   ${Body4}
   code {
     padding: 2px 6px;
-    background-color: ${neutral};
+    background-color: var(--neutral);
     border-radius: 4px;
     ${MbBody5}
   }
@@ -124,15 +123,15 @@ const UpdateDetail = styled.div`
   }
   a {
     display: inline-block;
-    color: ${primary};
+    color: var(--primary);
     :hover {
-      color: ${title};
+      color: var(--title);
     }
   }
   h1 {
     margin: 0px;
     ${Heading4}
-    color : ${title}
+    color : var(--title)
   }
   h3 {
     font-size: 1.5rem;
@@ -149,7 +148,7 @@ const UpdateDetail = styled.div`
     margin-top: 12px;
     margin-bottom: 40px;
     ${Body4}
-    color : ${body};
+    color : var(--body);
     @media only screen and (max-width: 768px) {
       font-size: 15px;
       letter-spacing: 0.02em;
@@ -166,7 +165,7 @@ const UpdateDetail = styled.div`
       margin-bottom: 0.5rem;
       padding-left: 1rem;
       ${Body4}
-      color: ${body};
+      color: var(--body);
       position: relative;
       ul {
         margin-bottom: 12px;
@@ -190,7 +189,7 @@ const Pagination = styled.div`
   .pagination-button {
     a {
       ${HeaderFont}
-      color: ${black};
+      color: var(--black);
       padding: 8px 32px;
       @media only screen and (max-width: 449px) {
         padding: 10px 16px;
@@ -209,9 +208,9 @@ const Left = styled.div`
   ${ButtonText}
   max-width:200px;
   width: 100%;
-  color: ${title};
+  color: var(--title);
   :hover {
-    color: ${primary};
+    color: var(--primary);
   }
   @media only screen and (max-width: 768px) {
     display: none;

@@ -3,8 +3,6 @@ import { Body3, Heading3, MbBody3, MbBody4 } from '../../styles/styles';
 import { Heading4 } from '../../styles/styles';
 import { Heading6 } from '../../styles/styles';
 
-import { body, title, primary } from './../../styles/color';
-
 const CardSection = styled.div`
   padding-top: 50px;
   padding-bottom: 50px;
@@ -36,19 +34,19 @@ const CardSection = styled.div`
 `;
 const CardSectionHead = styled.div`
   ${Heading3}
-  color: ${title};
+  color: var(--title);
   span {
-    color: ${primary};
+    color: var(--primary);
   }
 `;
 const Card = styled.div`
-  border: 1px solid #00160e;
+  border: 1px solid var(--dark-green);
   border-radius: 4px;
   .card-img {
     display: flex;
     max-width: 1222px;
     width: 100%;
-    border-top: 1px solid #00160e;
+    border-top: 1px solid var(--dark-green);
     border-radius: 0 0 3px 3px;
   }
   ${(props) =>
@@ -77,7 +75,7 @@ const CardTop = styled.div`
 `;
 const Head = styled.h3`
   ${Heading4}
-  color: ${title};
+  color: var(--title);
   max-width: 780px;
   width: 100%;
   margin: 0;
@@ -85,7 +83,7 @@ const Head = styled.h3`
 const Description = styled.p`
   font-weight: 400 !important;
   ${Heading6}
-  color: ${body};
+  color: var(--body);
   max-width: 780px;
   width: 100%;
   margin: 12px 0 0;
@@ -106,7 +104,7 @@ const Cards = styled.div`
 const Body = styled.div`
   p {
     ${Body3};
-    color: ${body};
+    color: var(--body);
     margin: 16px 0 0;
   }
   @media only screen and (max-width: 449px) {

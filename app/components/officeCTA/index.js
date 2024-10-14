@@ -15,11 +15,11 @@ export default function OfficeCTA() {
         <OfficeCTABtn>
           <Button
             bgColor={'transparent'}
-            fontColor={'#E3FFEE'}
-            borderColor={'#E3FFEE'}
+            fontColor={'--light-green'}
+            borderColor={'--light-green'}
             text={'Register for office hours'}
             href={'/weekly-demo'}
-            hoverColor={'rgba(255, 255, 255,0.8)'}
+            hoverColor={'--secondary-hover-color'}
             className={'office-registerbtn'}
           />
         </OfficeCTABtn>

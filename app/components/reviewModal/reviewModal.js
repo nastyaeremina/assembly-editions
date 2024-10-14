@@ -97,11 +97,11 @@ export default function ReviewModal({ onClose, appId, setReviewList, reviewList 
               <Caption>Your review has been successfully submitted.</Caption>
             </Title>
             <Button
-              bgColor={'#09AA6C'}
-              fontColor={'#fff'}
-              borderColor={'#09AA6C'}
+              bgColor={'--primary'}
+              fontColor={'--white'}
+              borderColor={'--primary'}
               text={'Go back'}
-              hoverColor={'rgba(255, 255, 255,0.8)'}
+              hoverColor={'--secondary-hover-color'}
               className={'back-button'}
               onClick={onCloseModal}
             />
@@ -125,9 +125,9 @@ export default function ReviewModal({ onClose, appId, setReviewList, reviewList 
                     rating={rate}
                     starDimension='32px'
                     starSpacing='4px'
-                    starRatedColor='#09AA6C'
-                    starEmptyColor='#A5ABA9'
-                    starHoverColor='#09AA6C'
+                    starRatedColor='var(--primary)'
+                    starEmptyColor='var(--light-gray)'
+                    starHoverColor='var(--primary)'
                     svgIconPath='m16.003 4.361 3.913 7.991 8.753 1.29-6.333 6.215 1.495 8.782-7.828-4.148-7.828 4.148 1.494-8.782-6.333-6.216 8.752-1.289 3.915-7.99Z'
                     svgIconViewBox='0 0 32 32'
                   />

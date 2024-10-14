@@ -37,7 +37,7 @@ const ZoomImageSection = styled.div`
   .right-arrow {
     right: 44px;
   }
-  background: rgba(0, 0, 0, 0.9);
+  background: var(--black-shadow-90);
   width: 100%;
   height: 100vh;
   position: fixed;

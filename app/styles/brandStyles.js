@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { Body2, Body3, ButtonText, Heading2, Heading4, LinkTxt, MbBody2, MbBody3, MobileH2, MobileH4 } from './styles';
-import { body, greendark, greenlight, neutral, primary, title, whiteColor } from './color';
+
 const BrandMain = styled.div`
   padding: 80px 0 50px 0;
   @media only screen and (max-width: 769px) {
@@ -14,12 +14,12 @@ const BrandHeroSection = styled.div`
   text-align: center;
   h1 {
     ${Heading2};
-    color: ${title};
+    color: var(--title);
     margin: 0 0 20px 0;
   }
   p {
     ${Body2};
-    color: ${body};
+    color: var(--body);
     margin: 0 0 32px 0;
   }
   @media only screen and (max-width: 769px) {
@@ -36,12 +36,12 @@ const BrandName = styled.div`
   padding: 50px 0;
   h2 {
     ${Heading4};
-    color: ${title};
+    color: var(--title);
     margin: 0 0 12px 0;
   }
   p {
     margin: 0;
-    color: ${body};
+    color: var(--body);
     ${Body3};
   }
   @media only screen and (max-width: 749px) {
@@ -98,7 +98,7 @@ const BrandImage = styled.div`
 `;
 const BrandImageLeft = styled.div`
   padding: 160px 0;
-  background-color: ${greendark};
+  background-color: var(--dark-green);
   border-radius: 10px;
   width: 100%;
   text-align: center;
@@ -124,7 +124,7 @@ const BrandImageLeft = styled.div`
 `;
 const HoverSection = styled.div`
   gap: 12px;
-  background-color: ${greenlight};
+  background-color: var(--light-green);
   padding: 17px 24px;
   border-radius: 0px 0px 7px 7px;
   display: flex;
@@ -136,7 +136,7 @@ const HoverSection = styled.div`
   text-align: center;
   p {
     ${LinkTxt};
-    color: ${greendark};
+    color: var(--dark-green);
   }
   img {
     max-width: 20px;
@@ -184,10 +184,10 @@ const HoverLink = styled.div`
   position: absolute;
   text-align: center;
   gap: 12px;
-  background-color: ${primary};
+  background-color: var(--primary);
   p {
     ${LinkTxt};
-    color: ${whiteColor};
+    color: var(--white);
   }
   @media only screen and (max-width: 749px) {
     padding: 10px 13px;
@@ -212,7 +212,7 @@ const HoverLink = styled.div`
 `;
 const BlackHover = styled.div`
   gap: 12px;
-  background-color: ${greendark};
+  background-color: var(--dark-green);
   padding: 17px 24px;
   border-radius: 0px 0px 7px 7px;
   display: flex;
@@ -224,7 +224,7 @@ const BlackHover = styled.div`
   text-align: center;
   p {
     ${LinkTxt};
-    color: ${greenlight};
+    color: var(--light-green);
   }
   @media only screen and (max-width: 749px) {
     padding: 10px 13px;
@@ -249,7 +249,7 @@ const BlackHover = styled.div`
 `;
 const BrandImageRight = styled.div`
   padding: 160px 0;
-  background-color: ${greenlight};
+  background-color: var(--light-green);
   border-radius: 10px;
   width: 100%;
   text-align: center;
@@ -275,7 +275,7 @@ const BrandImageRight = styled.div`
 `;
 const CompanyIcon = styled.div`
   padding: 112px 0;
-  background-color: ${neutral};
+  background-color: var(--neutral);
   border-radius: 10px;
   width: 100%;
   text-align: center;
@@ -312,10 +312,10 @@ const ColorSection = styled.div`
   gap: 63px;
   padding-top: 40px;
   .block2color {
-    background-color: ${greenlight};
+    background-color: var(--light-green);
   }
   .block3color {
-    background-color: ${greendark};
+    background-color: var(--dark-green);
   }
   .effect-goliath {
     cursor: pointer;
@@ -356,7 +356,7 @@ const ColorSection = styled.div`
 const Block1 = styled.div`
   height: 366px;
   width: 366px;
-  background-color: ${primary};
+  background-color: var(--primary);
   border-radius: 10px;
   position: relative;
   @media only screen and (max-width: 769px) {
@@ -365,7 +365,7 @@ const Block1 = styled.div`
   }
 `;
 const BlockSub = styled.div`
-  background-color: ${greendark};
+  background-color: var(--dark-green);
   border-radius: 0px 0px 7px 7px;
   padding: 8px 20px;
   position: absolute;
@@ -384,10 +384,10 @@ const BlockSub = styled.div`
   gap: 12px;
   p {
     ${ButtonText};
-    color: ${greenlight};
+    color: var(--light-green);
   }
   span {
-    color: ${greenlight};
+    color: var(--light-green);
     ${Body2};
     letter-spacing: 0;
   }
@@ -404,7 +404,7 @@ const BlockSub = styled.div`
   }
 `;
 const BlockLight = styled.div`
-  background-color: ${greenlight};
+  background-color: var(--light-green);
   border-radius: 0px 0px 10px 10px;
   padding: 8px 20px;
   position: absolute;
@@ -415,10 +415,10 @@ const BlockLight = styled.div`
   justify-content: space-between;
   p {
     ${ButtonText};
-    color: ${greendark};
+    color: var(--dark-green);
   }
   span {
-    color: ${greendark};
+    color: var(--dark-green);
     ${Body2}
   }
   @media only screen and (max-width: 749px) {

@@ -26,7 +26,7 @@ export default async function Apps() {
   return (
     <>
       <Layout>
-        <div style={{ backgroundcolor: '#fffffd' }}>
+        <div style={{ backgroundcolor: 'var(--main-bg-color)' }}>
           <Navbar />
           <AppDirectoryPage clientApps={clientApps} internalApps={internalApps} featuredApps={featuredApps} />
           <CTA />

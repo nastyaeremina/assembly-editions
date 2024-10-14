@@ -11,15 +11,14 @@ import {
   MbBody4,
   MobileH2
 } from '../../styles/styles';
-import { black, body, greendark, greenlight, primary, title } from '../../styles/color';
 
 const Time = styled.div`
   padding: 4px 8px;
-  background: #00160e;
+  background: var(--dark-green);
   display: inline-block;
   margin-bottom: 20px;
   p {
-    color: ${greenlight};
+    color: var(--light-green);
     margin: 0;
     ${Heading6}
   }
@@ -28,16 +27,16 @@ const Time = styled.div`
 const TextSection = styled.div`
   h1 {
     ${Heading2};
-    color: ${title};
+    color: var(--title);
     margin: 0;
     span {
-      color: ${primary};
+      color: var(--primary);
     }
   }
 
   p {
     ${Body2};
-    color: ${body};
+    color: var(--body);
     letter-spacing: 0.02em;
     margin: 0 0 12px;
   }
@@ -55,7 +54,7 @@ const TextSection = styled.div`
 const Speakers = styled.div`
   p {
     ${Heading6}
-    color: ${title};
+    color: var(--title);
     margin: 0 0 8px;
   }
 `;
@@ -86,7 +85,7 @@ const SpeakerProfile = styled.div`
   gap: 12px;
   .tooltip {
     border-radius: 50%;
-    border: 1px solid #00160e;
+    border: 1px solid var(--dark-green);
     width: 40px;
     height: 40px;
   }
@@ -101,14 +100,14 @@ const Profiledetail = styled.div`
   top: 60px;
   left: -14px;
   padding: 24px 32px;
-  background-color: ${greendark};
-  color: ${greenlight};
-  box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.25);
+  background-color: var(--dark-green);
+  color: var(--light-green);
+  box-shadow: 0px 4px 16px var(--black-shadow-25);
   border-radius: 4px;
   p {
     ${Heading5}
     margin:0 0 8px;
-    color: ${greenlight};
+    color: var(--light-green);
   }
   span {
     ${Body4}
@@ -166,12 +165,12 @@ const Card = styled.div`
   text-align: center;
   display: flex;
   flex-direction: column;
-  background-color: ${greenlight};
+  background-color: var(--light-green);
 `;
 const TextWrap = styled.div`
   h2 {
     ${Heading3};
-    color: ${black};
+    color: var(--black);
   }
 `;
 const Line = styled.div`
@@ -186,11 +185,11 @@ const MobileProfile = styled.div`
   p {
     ${MbBody4}
     margin: 0 0 2px;
-    color: ${title};
+    color: var(--title);
   }
   span {
     ${FooterText}
-    color: ${body};
+    color: var(--body);
   }
 `;
 

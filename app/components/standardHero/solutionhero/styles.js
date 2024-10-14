@@ -1,6 +1,5 @@
 import styled, { css } from 'styled-components';
 import { Body2, Heading2, MbBody2, MobileH2 } from '../../../styles/styles';
-import { body, greenlight, primary, title, whiteColor } from '../../../styles/color';
 
 const HeroSection = styled.div`
   padding: 180px 0 0 0;
@@ -46,7 +45,7 @@ const SolutionWrap = styled.div`
   .weeklydemo-form {
     position: relative;
     width: 100%;
-    border: 1px solid #00160e;
+    border: 1px solid var(--dark-green);
     padding: 28px 28px 40px;
     @media only screen and (max-width: 768px) {
       padding: 18px 18px 30px;
@@ -56,7 +55,7 @@ const SolutionWrap = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: ${greenlight};
+    background-color: var(--light-green);
   }
 `;
 const LeftWrap = styled.div``;
@@ -82,16 +81,16 @@ const RightWrap = styled.div`
 const TextSection = styled.div`
   h1 {
     ${Heading2};
-    color: ${title};
+    color: var(--title);
     margin: 0;
     span {
-      color: ${primary};
+      color: var(--primary);
     }
   }
 
   p {
     ${Body2};
-    color: ${body};
+    color: var(--body);
     letter-spacing: 0.02em;
     margin: 20px 0 32px;
   }
@@ -115,7 +114,7 @@ const BtnWrap = styled.div`
 
 const ImageView = styled.div`
   position: relative;
-  background-color: ${whiteColor};
+  background-color: var(--white);
   padding-bottom: 174px;
   z-index: 2;
   @media only screen and (max-width: 449px) {
@@ -132,8 +131,8 @@ const MobileImg = styled.div`
   background: transparent;
   height: -webkit-fill-available;
   img {
-    box-shadow: 0px 15px 64px rgba(0, 0, 0, 0.15), 0px 0px 15.6171px rgba(0, 0, 0, 0.08),
-      inset 0px 0px 6.24685px rgba(0, 0, 0, 0.16);
+    box-shadow: 0px 15px 64px var(--black-shadow-15), 0px 0px 15.6171px var(--black-shadow-8),
+      inset 0px 0px 6.24685px var(--black-shadow-16);
     border-radius: 21px;
   }
   @media only screen and (max-width: 991px) {
@@ -152,8 +151,8 @@ const Mobilenew = styled.div`
     background: transparent;
     height: -webkit-fill-available;
     img {
-      box-shadow: 0px 15px 64px rgba(0, 0, 0, 0.15), 0px 0px 15.6171px rgba(0, 0, 0, 0.08),
-        inset 0px 0px 6.24685px rgba(0, 0, 0, 0.16);
+      box-shadow: 0px 15px 64px var(--black-shadow-15), 0px 0px 15.6171px var(--black-shadow-8),
+        inset 0px 0px 6.24685px var(--black-shadow-16);
       border-radius: 21px;
     }
   }
@@ -163,7 +162,7 @@ const MobileView = styled.div`
   @media only screen and (max-width: 449px) {
     display: block;
     position: relative;
-    background-color: ${whiteColor};
+    background-color: var(--white);
     padding-bottom: 90px;
     z-index: 2;
   }

@@ -4,10 +4,7 @@ import Link from 'next/link';
 import { isEmpty } from '../../helpers/helpers';
 import { AboutSection, Info, InfoDescription, InfoDiv, InfoTitle, Title } from './templateBodyStyle';
 import Button from '../button/button';
-import { black, gainsboro } from '../../styles/color';
-import { Informative, Line } from '../appsCards/styles';
 import AppTooltip from '../appsCards/appTooltip';
-import SVGComponent from '../../../public/images/svg/SVGComponent';
 
 export default function AboutComponent({ data, buttonText, buttonLink, isDirectory }) {
   const shouldButtonShow = !isEmpty(buttonText) && !isEmpty(buttonLink);
@@ -46,12 +43,12 @@ export default function AboutComponent({ data, buttonText, buttonLink, isDirecto
         {shouldButtonShow && (
           <Button
             bgColor={'transparent'}
-            fontColor={black}
-            borderColor={black}
+            fontColor={'--black'}
+            borderColor={'--black'}
             text={buttonText}
             href={buttonLink}
             target='_blank'
-            hoverColor={gainsboro}
+            hoverColor={'--hover-color'}
             className={'app-button'}
           />
         )}

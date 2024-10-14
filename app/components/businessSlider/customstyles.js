@@ -50,10 +50,10 @@ const SliderInner = styled.div`
   cursor: pointer;
   position: relative;
   z-index: 99;
-  background-color: #fff;
+  background-color: var(--white);
   height: 100%;
   .appsslider-card {
-    border: 1px solid #00160e;
+    border: 1px solid var(--dark-green);
     border-radius: 4px;
     position: relative;
     height: 100%;
@@ -61,11 +61,11 @@ const SliderInner = styled.div`
   :hover {
     -webkit-transition: all 0.2ms ease-in-out;
     transition: all 0.2ms ease-in-out;
-    border: 1px solid #00160e;
-    box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.1);
+    border: 1px solid var(--dark-green);
+    box-shadow: 0px 4px 16px var(--black-shadow-10);
     border-radius: 5px;
     .appsslider-card {
-      border: 1px solid #00160e;
+      border: 1px solid var(--dark-green);
       border-radius: 4px;
     }
   }

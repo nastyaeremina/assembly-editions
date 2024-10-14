@@ -1,8 +1,7 @@
 import React from 'react';
-import { ButtonGroups } from './styles';
 import Button from '../button/button';
 import { isEmpty } from '../../helpers/helpers';
-import { black } from '../../styles/color';
+import { ButtonGroups } from './styles';
 
 export default function ButtonGroup({
   primaryButtonText,
@@ -25,9 +24,9 @@ export default function ButtonGroup({
             text={secondaryButtonText}
             href={secondaryButtonLink}
             bgColor={'transparent'}
-            fontColor={black}
-            borderColor={black}
-            hoverColor={'rgba(0, 0, 0, 0.5)'}
+            fontColor={'--black'}
+            borderColor={'--black'}
+            hoverColor={'--hover-color'}
           />
         )}
       </ButtonGroups>

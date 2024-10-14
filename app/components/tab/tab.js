@@ -58,11 +58,11 @@ export default function TabView({ bgColor, textColor, isHome, tabData: allPosts,
                       {link && (
                         <Button
                           bgColor={'transparent'}
-                          fontColor={'#000000'}
-                          borderColor={'#000000'}
+                          fontColor={'--black'}
+                          borderColor={'--black'}
                           href={link ?? ''}
                           text={'Learn More'}
-                          hoverColor={'rgba(0, 0, 0, 0.5)'}
+                          hoverColor={'--hover-color'}
                           className='btnmobi'
                         />
                       )}

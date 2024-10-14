@@ -1,6 +1,6 @@
 import styled, { css } from 'styled-components';
-import { Body2, Body3, Heading2, Heading3, Heading4, Heading5, MbBody2, MbBody3, MobileH2, MobileH4 } from './styles';
-import { body, title } from './color';
+import { Body2, Body3, Heading2, Heading3, Heading4, Heading5, MbBody3, MobileH2, MobileH4 } from './styles';
+
 const MainHero = styled.div`
   padding: 80px 0 50px 0;
   @media only screen and (max-width: 769px) {
@@ -22,7 +22,7 @@ const HeroSection = styled.div`
   text-align: center;
   h1 {
     ${Heading2};
-    color: ${title};
+    color: var(--title);
     margin: 0;
   }
   @media only screen and (max-width: 769px) {
@@ -47,27 +47,27 @@ const HeroCaption = styled.div`
   margin: 0 auto;
   h1 {
     ${Heading2};
-    color: ${title};
+    color: var(--title);
     margin: 0 0 20px 0;
   }
   h2 {
     ${Heading3};
-    color: ${title};
+    color: var(--title);
     margin: 0 0 20px 0;
   }
   h3 {
     ${Heading4};
-    color: ${title};
+    color: var(--title);
     margin: 0 0 20px 0;
   }
   h4 {
     ${Heading5};
-    color: ${title};
+    color: var(--title);
     margin: 0 0 20px 0;
   }
   p {
     ${Body2};
-    color: ${body};
+    color: var(--body);
     margin: 20px 0 0px 0;
   }
   @media only screen and (max-width: 749px) {

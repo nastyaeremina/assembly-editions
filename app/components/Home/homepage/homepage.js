@@ -44,7 +44,6 @@ import HeadingText from '../../header/headingText';
 import BussinessSectionComponent from '../BussinessSection';
 import PartnerAppsComponent from '../../partnerApps/partnerApps';
 import FeatureSection from '../../featureSection/featureSection';
-import { primary, whiteColor } from '../../../styles/color';
 import TestimonialTableSection from '../../newTestimonial/testimonialTableSection';
 import { COPILOT_ONBORADING_LINK } from '../../../constants/externalLinks';
 
@@ -104,12 +103,12 @@ export default function HomePage({ content, testimonialTableData }) {
               <HeadingText title={content?.heading4} />
               <ReactMarkdown>{content?.body4}</ReactMarkdown>
               <Button
-                bgColor={primary}
-                fontColor={whiteColor}
-                borderColor={primary}
+                bgColor={'--primary'}
+                fontColor={'--white'}
+                borderColor={'--primary'}
                 text={'See automations'}
                 href={'https://www.copilot.com/guide/recommended-workflows'}
-                hoverColor={'rgba(255, 255, 255,0.8)'}
+                hoverColor={'--secondary-hover-color'}
                 className={'automation-button'}
               />
             </AutomateText>

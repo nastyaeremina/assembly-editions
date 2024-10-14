@@ -6,30 +6,14 @@ import {
   CardTxt,
   HeaderFont,
   Heading2,
-  Heading3,
   Heading4,
   Heading5,
-  Label,
   LinkTxt,
   MbBody2,
   MbBody4,
   MobileH2,
   Value
 } from './styles';
-
-import {
-  greendark,
-  greenlight,
-  body,
-  lightgray,
-  title,
-  primary,
-  whiteColor,
-  black,
-  purpledark,
-  darkgray,
-  background
-} from './../styles/color';
 
 const HeroSection = styled.div`
   padding-top: 180px;
@@ -44,7 +28,7 @@ const AppsHeroWrap = styled.div`
   text-align: center;
   h1 {
     ${Heading2};
-    color: ${title};
+    color: var(--title);
     margin: 0 auto;
     margin-bottom: 20px;
   }
@@ -52,7 +36,7 @@ const AppsHeroWrap = styled.div`
     ${Body2};
     margin: 0 auto;
     margin-bottom: 32px;
-    color: ${body};
+    color: var(--body);
     letter-spacing: 0.02em;
   }
   @media only screen and (max-width: 749px) {
@@ -86,27 +70,27 @@ const FirstImg = styled.div`
 `;
 const Input = styled.input`
   ${Value};
-  color: ${title};
+  color: var(--title);
   letter-spacing: 0.01em;
   padding: 11px 55px 11px 55px;
-  border: 1.5px solid #bebebf;
+  border: 1.5px solid var(--ghost-gray);
   border-radius: 48px;
   width: 306px;
   outline: 0;
   ::placeholder {
-    color: ${lightgray};
+    color: var(--medium-gray);
   }
   :hover {
-    border: 1.5px solid #ccccd0;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.07);
+    border: 1.5px solid var(--border);
+    box-shadow: 0px 4px 8px var(--black-shadow-7);
   }
   :active {
-    border: 1.5px solid #131313;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.07);
+    border: 1.5px solid var(--title);
+    box-shadow: 0px 4px 8px var(--black-shadow-7);
   }
   :focus {
-    border: 1.5px solid #131313;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.07);
+    border: 1.5px solid var(--title);
+    box-shadow: 0px 4px 8px var(--black-shadow-7);
   }
   @media only screen and (max-width: 449px) {
     padding: 10px 50px 10px 52px;
@@ -121,8 +105,8 @@ const Catagory = styled.ul`
     padding-bottom: 20px;
     margin: 0;
     ${Heading5};
-    color: ${title};
-    border-bottom: 1px solid #000000;
+    color: var(--title);
+    border-bottom: 1px solid var(--black);
     letter-spacing: 0.02em;
     max-width: 306px;
     width: 100%;
@@ -130,26 +114,25 @@ const Catagory = styled.ul`
 `;
 const Catagoryitem = styled.li`
   padding: 16px 0;
-  border-bottom: 1px solid #000000;
+  border-bottom: 1px solid var(--black);
   a {
     ${LinkTxt};
     letter-spacing: 0.02em;
-    color: ${primary};
+    color: var(--primary);
     ${(props) =>
       props.isActive &&
       css`
-        color: ${title};
+        color: var(--title);
       `}
     margin: 0;
     :hover {
-      color: ${title};
+      color: var(--title);
     }
     :active {
-      color: ${title};
+      color: var(--title);
     }
   }
 `;
-
 const FeatureLeft = styled.div`
   position: relative;
   @media only screen and (max-width: 991px) {
@@ -167,7 +150,7 @@ const FeatureRight = styled.div`
     `}
   h2 {
     ${Heading4};
-    color: ${title};
+    color: var(--title);
     margin: 0 0 28px 0;
   }
   @media only screen and (max-width: 749px) {
@@ -193,18 +176,17 @@ const FeatureMenu = styled.div`
     gap: 20px;
   }
 `;
-
 const CardText = styled.div`
   padding: 20px 16px 46px 16px;
   border-top: 1px solid black;
   h3 {
     ${Body4};
-    color: ${title};
+    color: var(--title);
     letter-spacing: 0.02em;
     margin: 0 0 8px 0;
   }
   p {
-    color: ${darkgray};
+    color: var(--dark-gray);
     ${Body5};
     letter-spacing: 0.02em;
     margin: 0;
@@ -217,9 +199,9 @@ const CardText = styled.div`
   }
 `;
 const CardEnd = styled.div`
-  background-color: ${greenlight};
+  background-color: var(--light-green);
   padding: 6px 16px;
-  border-top: 1px solid #01011d;
+  border-top: 1px solid var(--dark-purple);
   border-radius: 0 0 4px 4px;
   position: absolute;
   top: auto;
@@ -228,7 +210,7 @@ const CardEnd = styled.div`
   right: 0;
   p {
     ${CardTxt};
-    color: ${purpledark};
+    color: var(--dark-purple);
     margin: 0;
   }
 `;
@@ -259,14 +241,13 @@ const ExtensionsSection = styled.div`
   flex-direction: column;
   p {
     ${Body5};
-    color: ${title};
+    color: var(--title);
     letter-spacing: 0.02em;
   }
   @media only screen and (max-width: 749px) {
     /* display: none; */
   }
 `;
-
 const ExtensionCard = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
@@ -284,7 +265,6 @@ const ExtensionCard = styled.div`
     gap: 20px;
   }
 `;
-
 const InputWrap = styled.form`
   position: relative;
   width: 100%;
@@ -330,17 +310,17 @@ const DetailLink = styled.div`
   p {
     ${LinkTxt};
     margin: 0;
-    color: ${lightgray};
+    color: var(--medium-gray);
     @media only screen and (max-width: 749px) {
       ${HeaderFont};
     }
   }
   :hover {
     p {
-      color: ${title};
+      color: var(--title);
     }
     svg path {
-      stroke: ${title};
+      stroke: var(--title);
     }
   }
 `;
@@ -350,7 +330,6 @@ const AppsDetailMain = styled.div`
     padding-top: 148px;
   } */
 `;
-
 const AppHeader3 = styled.h2`
   ${Heading4}
   margin-top: 0;

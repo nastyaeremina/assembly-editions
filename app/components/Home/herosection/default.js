@@ -1,10 +1,19 @@
-import React from 'react'
+import React from 'react';
 import { COPILOT_ONBORADING_LINK } from '../../../constants/externalLinks';
 import { Container } from '../../../styles/commonStyles';
-import { HeroBtnBlock, HeroHeading, HeroSection, ImageHover, LeftSvg, Para, ReviewLogo, RightWrap } from '../../../styles/homepageStyles';
+import {
+  HeroBtnBlock,
+  HeroHeading,
+  HeroSection,
+  ImageHover,
+  LeftSvg,
+  Para,
+  ReviewLogo,
+  RightWrap
+} from '../../../styles/homepageStyles';
 import Button from '../../button/button';
 
-export default function DefaultHeroSection({title,body}) {
+export default function DefaultHeroSection({ title, body }) {
   return (
     <HeroSection>
       <Container>
@@ -15,20 +24,20 @@ export default function DefaultHeroSection({title,body}) {
         <Para>{body}</Para>
         <HeroBtnBlock>
           <Button
-            bgColor={'#09AA6C'}
-            fontColor={'#fff'}
-            borderColor={'#09AA6C'}
+            bgColor={'--primary'}
+            fontColor={'--white'}
+            borderColor={'--primary'}
             text={'Start Trial'}
             href={COPILOT_ONBORADING_LINK}
-            hoverColor={'rgba(255, 255, 255,0.8)'}
+            hoverColor={'--secondary-hover-color'}
           />
           <Button
             bgColor={'transparent'}
-            fontColor={'#000000'}
-            borderColor={'#000000'}
+            fontColor={'--black'}
+            borderColor={'--black'}
             text={'Book Demo'}
             href={'/book-demo'}
-            hoverColor={'rgba(0, 0, 0, 0.5)'}
+            hoverColor={'--hover-color'}
           />
         </HeroBtnBlock>
         <ReviewLogo>

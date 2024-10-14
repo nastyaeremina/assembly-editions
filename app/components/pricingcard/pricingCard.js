@@ -27,18 +27,18 @@ export default function PricingCard({ data, isYearly }) {
           {!isEmpty(data?.secondaryCtaText) && (
             <Button
               bgColor={'transparent'}
-              fontColor={data?.colorScheme === 'Dark' ? '#E3FFEE' : '#00160E'}
-              borderColor={data?.colorScheme === 'Dark' ? '#E3FFEE' : '#00160E'}
+              fontColor={data?.colorScheme === 'Dark' ? '--light-green' : '--dark-green'}
+              borderColor={data?.colorScheme === 'Dark' ? '--light-green' : '--dark-green'}
               text={data?.secondaryCtaText}
               href={data?.secondaryCtaLink}
-              hoverColor={data?.colorScheme === 'Dark' ? 'rgba(255, 255, 255,0.8)' : 'rgba(0, 0, 0, 0.5)'}
+              hoverColor={data?.colorScheme === 'Dark' ? '--secondary-hover-color' : '--hover-color'}
               className={'cardbtn'}
             />
           )}
           {!isEmpty(data?.primaryCtaText) && (
             <Button
               text={data?.primaryCtaText}
-              hoverColor={'rgba(255, 255, 255, 0.8)'}
+              hoverColor={'--secondary-hover-color'}
               href={data?.primaryCtaLink}
               className={'cardbtn'}
             />

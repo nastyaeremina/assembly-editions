@@ -1,6 +1,5 @@
 import styled, { css } from 'styled-components';
 import { Body4, HeaderFont, Heading2, Heading3, LinkTxt, MbBody4, MobileH2 } from '../../styles/styles';
-import { black, lightgray, title } from '../../styles/color';
 
 const Backlink = styled.div`
   display: inline-flex;
@@ -10,14 +9,14 @@ const Backlink = styled.div`
   p {
     ${LinkTxt};
     margin: 0px;
-    color: ${lightgray};
+    color: var(--medium-gray);
   }
   :hover {
     p {
-      color: ${title};
+      color: var(--title);
     }
     svg path {
-      stroke: ${title};
+      stroke: var(--title);
     }
   }
   ${(props) =>
@@ -37,7 +36,7 @@ const DetailHero = styled.div`
   margin: 0px 0 40px;
   h1 {
     ${Heading2};
-    color: ${title};
+    color: var(--title);
     margin: 0;
     @media only screen and (max-width: 769px) {
       ${MobileH2}
@@ -81,7 +80,7 @@ const BlogImage = styled.div`
     max-width: 100%;
     object-fit: cover;
     border-radius: 8px;
-    border: 1px solid ${black};
+    border: 1px solid var(--black);
     @media only screen and (max-width: 768px) {
       width: 100%;
     }
@@ -94,7 +93,7 @@ const BlogTime = styled.div`
   justify-content: space-between;
   margin-top: 20px;
   margin-bottom: 40px;
-  color: ${lightgray};
+  color: var(--medium-gray);
   @media only screen and (max-width: 768px) {
     margin-bottom: 12px;
   }
@@ -114,14 +113,14 @@ const BlogTime = styled.div`
       }
     `}
   span:hover {
-    color: ${title};
+    color: var(--title);
     cursor: pointer;
   }
 `;
 const Post = styled.div`
   ${Body4}
   display:flex;
-  color: ${lightgray};
+  color: var(--medium-gray);
   gap: 8px;
   align-items: center;
   @media only screen and (max-width: 450px) {

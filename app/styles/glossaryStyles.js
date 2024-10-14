@@ -1,6 +1,5 @@
 import styled from 'styled-components';
-import { Body3, HeaderFont, Heading2, LinkTxt, MbBody3, MobileH1, MobileH2, MobileH3, MobileH4 } from './styles';
-import { body, lightgray, primary, title } from './color';
+import { Body3, HeaderFont, Heading2, LinkTxt, MbBody3, MobileH2, MobileH3, MobileH4 } from './styles';
 
 const GlossaryContainer = styled.div`
   max-width: 880px;
@@ -16,17 +15,17 @@ const DetailLink = styled.div`
   p {
     ${LinkTxt};
     margin: 0;
-    color: ${lightgray};
+    color: var(--medium-gray);
     @media only screen and (max-width: 749px) {
       ${HeaderFont};
     }
   }
   :hover {
     p {
-      color: ${title};
+      color: var(--title);
     }
     svg path {
-      stroke: ${title};
+      stroke: var(--title);
     }
   }
 `;
@@ -37,7 +36,7 @@ const PageBack = styled.div`
 `;
 const GlossaryDetailTitle = styled.h1`
   ${Heading2}
-  color: ${title};
+  color: var(--title);
   margin: 0;
   @media (max-width: 479px) {
     ${MobileH2}
@@ -47,7 +46,7 @@ const GlossaryDetailTitle = styled.h1`
 const GlossaryDetailcontent = styled.div`
   padding: 40px 0 100px;
   ${Body3}
-  color: ${body};
+  color: var(--body);
   @media only screen and (max-width: 450px) {
     padding: 20px 0 80px;
     ${MbBody3}
@@ -58,12 +57,12 @@ const GlossaryDetailcontent = styled.div`
   a {
     display: inline;
     ${Body3}
-    color: ${primary};
+    color: var(--primary);
     @media only screen and (max-width: 450px) {
       ${MbBody3}
     }
     :hover {
-      color: ${title};
+      color: var(--title);
     }
   }
   ul {
@@ -74,27 +73,27 @@ const GlossaryDetailcontent = styled.div`
       strong,
       b {
         font-weight: 500;
-        color: ${title};
+        color: var(--title);
       }
       a {
         display: inline-block;
         ${Body3}
-        color: ${primary};
+        color: var(--primary);
         @media only screen and (max-width: 450px) {
           ${MbBody3}
         }
         :hover {
-          color: ${title};
+          color: var(--title);
         }
       }
     }
     li::marker {
-      color: ${title};
+      color: var(--title);
       font-weight: 500;
     }
     span {
       font-weight: 500;
-      color: ${title};
+      color: var(--title);
     }
   }
   h2 {
@@ -103,7 +102,7 @@ const GlossaryDetailcontent = styled.div`
     margin-top: -4rem;
     margin-bottom: 0;
     padding-top: 6rem;
-    color: #131313;
+    color: var(--title);
     font-weight: 400;
     strong {
       font-weight: 400;
@@ -121,7 +120,7 @@ const GlossaryDetailcontent = styled.div`
     margin-bottom: 1rem;
     margin-top: 2rem;
     font-weight: 400;
-    color: #131313;
+    color: var(--title);
     strong {
       font-weight: 400;
     }
@@ -135,7 +134,7 @@ const GlossaryDetailcontent = styled.div`
     font-weight: 400;
     line-height: 31px;
     letter-spacing: 0.02em;
-    color: #131313;
+    color: var(--title);
     strong {
       font-weight: 400;
     }
@@ -144,7 +143,7 @@ const GlossaryDetailcontent = styled.div`
     }
   }
   p {
-    color: ${body};
+    color: var(--body);
     margin-bottom: 1rem;
     margin-top: 1rem;
     ${Body3};
@@ -157,7 +156,7 @@ const GlossaryDetailcontent = styled.div`
     }
     strong {
       font-weight: 500;
-      color: ${title};
+      color: var(--title);
     }
   }
   ol {
@@ -167,27 +166,27 @@ const GlossaryDetailcontent = styled.div`
       strong,
       b {
         font-weight: 500;
-        color: ${title};
+        color: var(--title);
       }
       a {
         display: inline-block;
         ${Body3}
-        color: ${primary};
+        color: var(--primary);
         @media only screen and (max-width: 450px) {
           ${MbBody3}
         }
         :hover {
-          color: ${title};
+          color: var(--title);
         }
       }
     }
     li::marker {
-      color: ${title};
+      color: var(--title);
       font-weight: 500;
     }
     span {
       font-weight: 500;
-      color: ${title};
+      color: var(--title);
     }
   }
 `;

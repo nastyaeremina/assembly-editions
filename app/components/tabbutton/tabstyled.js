@@ -1,16 +1,15 @@
 'use client';
 
 import styled, { css } from 'styled-components';
-import { FeatureCardTitle } from '../../styles/homepageStyles';
 import { Label } from '../../styles/styles';
 const Tabbutton = styled.div`
   .Tabs {
     width: 80%;
     height: auto;
     min-height: 400px;
-    background: #053742;
+    background: var(--tab-background-color);
     margin: 3.5rem auto 1.5rem;
-    color: #e8f0f2;
+    color: var(--tab-text-color);
     border-radius: 2rem;
     @media (max-width: 769px) {
       padding: 2rem 0;
@@ -18,7 +17,7 @@ const Tabbutton = styled.div`
   }
   ul.nav {
     ${Label}
-    color: #757575;
+    color: var(--medium-gray);
     padding-left: 0px;
     display: flex;
     @media (max-width: 1440px) {
@@ -34,11 +33,11 @@ const Tabbutton = styled.div`
     }
   }
   ul.nav li:hover {
-    color: #131313;
+    color: var(--title);
   }
   ul.nav li.active {
-    background: #120800;
-    color: #fff7f0;
+    background: var(--dark-brown);
+    color: var(--ul-active-text-color);
   }
   @media only screen and (max-width: 991px) {
     ul.nav {
@@ -65,12 +64,12 @@ const Tab = styled.li`
     ${(props) =>
       props.textColor &&
       css`
-        color: ${props.textColor} !important;
+        color: var(${props.textColor}) !important;
       `}
     ${(props) =>
       props.bgColor &&
       css`
-        background: ${props.bgColor} !important;
+        background: var(${props.bgColor}) !important;
       `}
   }
 `;

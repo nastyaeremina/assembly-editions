@@ -3,7 +3,6 @@ import React, { useCallback, useMemo, useState } from 'react';
 import Image from 'next/image';
 import ReactMarkdown from 'react-markdown';
 import { Container } from '../../styles/commonStyles';
-import { black, primary, whiteColor } from '../../styles/color';
 import Button from '../../components/button/button';
 import { isEmpty } from '../../helpers/helpers';
 import ZoomImageSlider from '../../components/zoomImage/zoomImageslider';
@@ -84,10 +83,10 @@ export default function TemplateDetailHero({
                   <Button
                     text={primaryButtonText}
                     href={primaryButtonLink}
-                    bgColor={primary}
-                    fontColor={whiteColor}
-                    borderColor={primary}
-                    hoverColor='rgba(255, 255, 255,0.8)'
+                    bgColor={'--primary'}
+                    fontColor={'--white'}
+                    borderColor={'--primary'}
+                    hoverColor='--secondary-hover-color'
                   />
                 )}
                 {!isEmpty(secondaryButtonText) && !isEmpty(secondaryButtonLink) && (
@@ -95,9 +94,9 @@ export default function TemplateDetailHero({
                     text={secondaryButtonText}
                     href={secondaryButtonLink}
                     bgColor={'transparent'}
-                    fontColor={black}
-                    borderColor={black}
-                    hoverColor={'rgba(0, 0, 0, 0.5)'}
+                    fontColor={'--black'}
+                    borderColor={'--black'}
+                    hoverColor={'--hover-color'}
                   />
                 )}
               </ButtonSection>

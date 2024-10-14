@@ -1,10 +1,8 @@
 import styled, { css } from 'styled-components';
-import { Body3, HeaderFont, Heading3, MbBody3, MbPrimaryBtn, MobileH3 } from '../../styles/styles';
-
-import { greendark, body, title, primary } from './../../styles/color';
+import { Body3, HeaderFont, Heading3, MbBody3, MobileH3 } from '../../styles/styles';
 
 const TestimonialCard = styled.div`
-  border: 1px solid #131313;
+  border: 1px solid var(--title);
   border-radius: 4px;
   display: flex;
   @media only screen and (max-width: 768px) {
@@ -35,7 +33,7 @@ const RightCard = styled.div`
   .right {
     max-width: 405px;
     width: 100%;
-    border-left: 1px solid #131313;
+    border-left: 1px solid var(--title);
     border-radius: 0px 3px 3px 0px;
     @media only screen and (max-width: 768px) {
       max-width: 100%;
@@ -47,7 +45,7 @@ const RightCard = styled.div`
 const Detail = styled.p`
   ${Body3}
   margin: 20px 0 38px;
-  color: ${body};
+  color: var(--body);
   @media only screen and (max-width: 768px) {
     ${MbBody3}
     letter-spacing: 0.02em;
@@ -70,12 +68,12 @@ const Section = styled.div`
   flex-direction: column;
   span {
     ${Heading3}
-    color: ${title};
+    color: var(--title);
   }
   p {
     ${Body3}
     margin:0;
-    color: ${greendark};
+    color: var(--dark-green);
   }
   @media only screen and (max-width: 768px) {
     span {
@@ -87,7 +85,7 @@ const Section = styled.div`
   }
 `;
 const LastDroplist = styled.div`
-  border-top: 1px solid #00160e;
+  border-top: 1px solid var(--dark-green);
   padding: 28px;
   @media only screen and (max-width: 768px) {
     padding: 16px 20px;
@@ -100,7 +98,7 @@ const LastDroplist = styled.div`
   a {
     ${Body3};
     margin: 0;
-    color: ${title};
+    color: var(--title);
     cursor: pointer;
     transition: none;
     @media only screen and (max-width: 768px) {
@@ -125,7 +123,7 @@ const LastDroplist = styled.div`
   .learn-link:hover {
     color: black;
     /* @media only screen and (max-width: 749px) {
-      color: ${primary};
+      color: var(--primary);
     } */
   }
   .learn-link svg path {

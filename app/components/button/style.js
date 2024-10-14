@@ -1,6 +1,5 @@
 import styled, { css, keyframes } from 'styled-components';
 import { ButtonText, MbPrimaryBtn } from '../../styles/styles';
-import { primary } from './../../styles/color';
 
 const ButtonContainer = styled.div`
   position: relative;
@@ -12,22 +11,22 @@ const ButtonContainer = styled.div`
     letter-spacing: 0.02em;
     padding: 11px 32px;
     border-radius: 26px;
-    color: ${primary};
-    border: 1px solid ${primary};
+    color: var(--primary);
+    border: 1px solid var(--primary);
     ${(props) =>
       props.fontColor &&
       css`
-        color: ${props.fontColor};
+        color: var(${props.fontColor});
       `}
     ${(props) =>
       props.backgroundColor &&
       css`
-        background-color: ${props.backgroundColor};
+        background-color: var(${props.backgroundColor});
       `}
       ${(props) =>
       props.borderColor &&
       css`
-        border: 1px solid ${props.borderColor};
+        border: 1px solid var(${props.borderColor});
       `}
     text-decoration: none;
     transition: all 300ms;
@@ -46,12 +45,12 @@ const ButtonContainer = styled.div`
       opacity: var(--border-shine-opacity);
       transition: opacity 400ms ease 0s;
       will-change: background, opacity;
-      background: radial-gradient(80px circle at var(--x) var(--y), rgba(255, 255, 255, 0.8), transparent 40%);
+      background: radial-gradient(80px circle at var(--x) var(--y), var(--secondary-hover-color), transparent 40%);
       filter: blur(25px);
       ${(props) =>
         props.hoverColor &&
         css`
-          background: radial-gradient(80px circle at var(--x) var(--y), ${props.hoverColor}, transparent 40%);
+          background: radial-gradient(80px circle at var(--x) var(--y), var(${props.hoverColor}), transparent 40%);
         `}
     }
     &:hover::before {
@@ -171,22 +170,22 @@ const Buttons = styled.button`
   display: block;
   width: 100%;
   border-radius: 26px;
-  color: ${primary};
-  border: 1px solid ${primary};
+  color: var(--primary);
+  border: 1px solid var(--primary);
   ${(props) =>
     props.fontColor &&
     css`
-      color: ${props.fontColor};
+      color: var(${props.fontColor});
     `}
   ${(props) =>
     props.backgroundColor &&
     css`
-      background-color: ${props.backgroundColor};
+      background-color: var(${props.backgroundColor});
     `}
       ${(props) =>
     props.borderColor &&
     css`
-      border: 1px solid ${props.borderColor};
+      border: 1px solid var(${props.borderColor});
     `}
     text-decoration: none;
   transition: all 300ms;
@@ -205,12 +204,12 @@ const Buttons = styled.button`
     opacity: var(--border-shine-opacity);
     transition: opacity 400ms ease 0s;
     will-change: background, opacity;
-    background: radial-gradient(80px circle at var(--x) var(--y), rgba(255, 255, 255, 0.8), transparent 40%);
+    background: radial-gradient(80px circle at var(--x) var(--y), var(--secondary-hover-color) transparent 40%);
     filter: blur(25px);
     ${(props) =>
       props.hoverColor &&
       css`
-        background: radial-gradient(80px circle at var(--x) var(--y), ${props.hoverColor}, transparent 40%);
+        background: radial-gradient(80px circle at var(--x) var(--y), var(${props.hoverColor}), transparent 40%);
       `}
   }
   &:hover::before {

@@ -1,21 +1,20 @@
 import styled, { css } from 'styled-components';
 import { Body4, FooterText, Heading2, Body1, Body2, Body3 } from '../../styles/styles';
-import { greendark, greenlight, lightgray, neutral, title, whiteColor, greenmidlight } from './../../styles/color';
 
 const FooterSection = styled.div`
-  background-color: ${neutral};
+  background-color: var(--neutral);
   padding: 40px 0 60px;
   ${(props) =>
     props.isEnterPrice &&
     css`
-      background-color: ${greendark};
+      background-color: var(--dark-green);
     `}
   @media only screen and (max-width: 749px) {
     padding: 50px 0;
   }
 `;
 const FooterSectionLegal = styled.div`
-  background-color: ${neutral};
+  background-color: var(--neutral);
   padding: 40px 0 40px 0;
 `;
 const FooterInnerBlock = styled.div`
@@ -35,7 +34,7 @@ const FooterMenu = styled.ul`
   list-style: none;
   p {
     ${FooterText};
-    color: ${title};
+    color: var(--title);
     margin: 0;
     padding-bottom: 10px;
   }
@@ -43,7 +42,7 @@ const FooterMenu = styled.ul`
     props.isEnterPrice &&
     css`
       p {
-        color: ${greenmidlight};
+        color: var(--mid-light-green);
       }
     `}
 `;
@@ -66,7 +65,7 @@ const FooterSocialItem = styled.li`
   :hover {
     svg {
       path {
-        fill: #000;
+        fill: var(--black);
       }
     }
   }
@@ -76,7 +75,7 @@ const FooterSocialItem = styled.li`
       :hover {
         svg {
           path {
-            fill: #7ddaa0;
+            fill: var(--mid-light-green);
           }
         }
       }
@@ -116,14 +115,14 @@ const FooterFirst = styled.div`
   p {
     ${Body4};
     letter-spacing: 0.02em;
-    color: ${lightgray};
+    color: var(--medium-gray);
     margin: 20px 0 24px 0;
   }
   ${(props) =>
     props.isEnterPrice &&
     css`
       p {
-        color: ${greenlight};
+        color: var(--light-green);
       }
     `}
   @media only screen and (max-width: 768px) {
@@ -141,7 +140,7 @@ const FotterMenuLeft = styled.div`
 const FooterMenuList = styled.li`
   a {
     ${FooterText};
-    color: ${lightgray};
+    color: var(--medium-gray);
     display: block;
     padding-bottom: 10px;
     transition: all 300ms;
@@ -150,16 +149,16 @@ const FooterMenuList = styled.li`
       padding: 0;
     }
     :hover {
-      color: ${title};
+      color: var(--title);
     }
   }
   ${(props) =>
     props.isEnterPrice &&
     css`
       a {
-        color: ${greenlight};
+        color: var(--light-green);
         :hover {
-          color: ${greenmidlight};
+          color: var(--mid-light-green);
         }
       }
     `}
@@ -187,7 +186,7 @@ const FooterSub = styled.div`
   p {
     ${FooterText};
     margin: 0;
-    color: ${lightgray};
+    color: var(--medium-gray);
   }
 `;
 export {

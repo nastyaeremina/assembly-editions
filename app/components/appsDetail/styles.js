@@ -7,14 +7,10 @@ import {
   Heading3,
   Heading4,
   Heading5,
-  Heading6,
   MbBody3,
   MbBody4,
-  MbButtonText,
-  MobileH3,
   MobileH4
 } from '../../styles/styles';
-import { black, body, border, primary, tablecolor, title, whiteColor } from '../../styles/color';
 
 const AppDetail = styled.div`
   display: flex;
@@ -46,7 +42,7 @@ const AppLogo = styled.div`
 `;
 const Caption = styled.div`
   ${Body3};
-  color: ${body};
+  color: var(--body);
   @media only screen and (max-width: 449px) {
     ${MbBody3};
   }
@@ -57,7 +53,7 @@ const Title = styled.div`
   align-items: center;
   h3 {
     ${Heading3};
-    color: ${title};
+    color: var(--title);
     margin: 0;
   }
   @media only screen and (max-width: 449px) {
@@ -102,7 +98,7 @@ const ImageSection = styled.div`
 
   img {
     border-radius: 4px;
-    border: 1px solid ${border};
+    border: 1px solid var(--border);
     object-fit: cover;
     cursor: pointer;
     user-select: none;
@@ -154,7 +150,7 @@ const ImageSection = styled.div`
     width: unset;
     img {
       border-radius: 0px;
-      border: 1px ${border};
+      border: 1px var(--border);
       border-style: solid none;
       object-fit: cover;
       cursor: pointer;
@@ -177,14 +173,14 @@ const ImageSlider = styled.div`
     width: 8px;
     height: 8px;
     border-radius: 50%;
-    background-color: #dfdfde;
+    background-color: var(--snow-drift-gray);
     cursor: pointer;
   }
   .active-round {
     width: 8px;
     height: 8px;
     border-radius: 50%;
-    background-color: #000;
+    background-color: var(--black);
     cursor: pointer;
   }
 `;
@@ -198,13 +194,13 @@ const CloseIcon = styled.div`
   font-size: 15px;
   line-height: 24px;
   letter-spacing: 0.02;
-  color: #ffffff;
+  color: var(--white);
   margin: 0;
   z-index: 1;
   :hover {
     svg {
       path {
-        stroke: ${whiteColor};
+        stroke: var(--white);
       }
     }
   }
@@ -219,16 +215,16 @@ const ArrowIcon = styled.div`
   width: 38px;
   height: 38px;
   border-radius: 50%;
-  background-color: ${whiteColor};
+  background-color: var(--white);
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
   z-index: 2;
-  box-shadow: 0px 4px 16px 0px rgba(0, 0, 0, 0.1);
+  box-shadow: 0px 4px 16px 0px var(--black-shadow-10);
   svg {
     path {
-      stroke: ${title};
+      stroke: var(--title);
     }
   }
   ${(props) =>
@@ -247,7 +243,7 @@ const AppDetailContent = styled.div`
   h3 {
     ${Heading4};
     font-weight: 400;
-    color: ${title};
+    color: var(--title);
     margin: 28px 0 0;
     display: flex;
     align-items: center;
@@ -267,7 +263,7 @@ const AppDetailContent = styled.div`
   h4 {
     ${Heading5};
     font-weight: 400;
-    color: ${title};
+    color: var(--title);
     margin: 20px 0 0;
     display: inline-flex;
     align-items: center;
@@ -289,28 +285,28 @@ const AppDetailContent = styled.div`
     font-weight: 500;
   }
   a {
-    color: ${primary};
+    color: var(--primary);
     display: initial;
     :hover {
-      color: #00160e;
+      color: var(--dark-green);
     }
   }
   p {
     ${Body4};
-    color: ${body};
+    color: var(--body);
     margin: 12px 0 0;
     a {
-      color: ${primary};
+      color: var(--primary);
       display: initial;
       i {
         font-style: italic;
-        color: ${primary};
+        color: var(--primary);
         :hover {
-          color: #00160e;
+          color: var(--dark-green);
         }
       }
       :hover {
-        color: #00160e;
+        color: var(--dark-green);
       }
       u {
         text-decoration: none;
@@ -322,14 +318,14 @@ const AppDetailContent = styled.div`
     height: 100%;
     margin-top: 16px;
     border-radius: 4px;
-    border: 0.4px solid #dfe1e4;
+    border: 0.4px solid var(--platinum-gray);
   }
   video {
     width: 100%;
     height: 100%;
     margin-top: 16px;
     border-radius: 4px;
-    border: 0.4px solid #dfe1e4;
+    border: 0.4px solid var(--platinum-gray);
   }
   ol {
     padding-left: 20px;
@@ -340,13 +336,13 @@ const AppDetailContent = styled.div`
       }
       ::marker {
         font-size: 18px;
-        color: ${body};
+        color: var(--body);
       }
     }
   }
   i {
     font-style: italic;
-    color: ${body};
+    color: var(--body);
   }
   ul {
     list-style-type: disc;
@@ -354,13 +350,13 @@ const AppDetailContent = styled.div`
     margin: 12px 0 0px;
     li {
       ${Body5};
-      color: ${body};
+      color: var(--body);
       p {
         margin: 8px 0 0;
       }
       ::marker {
         font-size: 18px;
-        color: ${body};
+        color: var(--body);
       }
     }
   }
@@ -368,7 +364,7 @@ const AppDetailContent = styled.div`
     width: 100%;
     margin-bottom: 40px;
     margin-top: 20px;
-    box-shadow: ${border} 0px 0px 0px 1px;
+    box-shadow: var(--border) 0px 0px 0px 1px;
     border-radius: 3px;
     p {
       margin: 0;
@@ -379,7 +375,7 @@ const AppDetailContent = styled.div`
     }
     tr {
       :nth-child(odd) {
-        background-color: #f8f9fb;
+        background-color: var(--table-color);
       }
       :last-child {
         td {
@@ -392,19 +388,19 @@ const AppDetailContent = styled.div`
         }
       }
       :first-child {
-        border-bottom: 1px solid ${border};
+        border-bottom: 1px solid var(--border);
       }
     }
     th {
-      background-color: ${tablecolor};
+      background-color: var(--table-color);
       padding: 12px 20px;
       text-align: left;
       ${HeaderFont};
-      color: ${title};
+      color: var(--title);
       p > b,
       p {
         ${HeaderFont};
-        color: ${title};
+        color: var(--title);
       }
       :first-child {
         border-radius: 3px 0 0 0;
@@ -416,11 +412,11 @@ const AppDetailContent = styled.div`
     td {
       padding: 12px 20px;
       ${Body4};
-      color: ${title};
+      color: var(--title);
       vertical-align: top;
       p {
         ${Body4};
-        color: ${title};
+        color: var(--title);
         padding-top: 20px;
         :first-child {
           padding-top: 0;

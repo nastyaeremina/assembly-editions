@@ -1,5 +1,4 @@
 import styled, { css } from 'styled-components';
-import { black, body, border, darkgray, title } from '../../styles/color';
 import { Body4, Heading5, MbBody4, MobileH4 } from '../../styles/styles';
 
 const TabsVerticalSection = styled.div`
@@ -31,7 +30,7 @@ const MainSection = styled.div`
   width: 100%;
   height: 100%;
   overflow: hidden;
-  border: 1px solid ${title};
+  border: 1px solid var(--title);
   border-radius: 4px;
   position: relative;
   @media only screen and (max-width: 768px) {
@@ -64,7 +63,7 @@ const ShowImage = styled.div`
   img {
     height: 100%;
     border-radius: 4px;
-    border: 1px solid ${title};
+    border: 1px solid var(--title);
     object-fit: cover;
     object-position: left;
   }
@@ -135,24 +134,24 @@ const BgImage = styled.div`
 
 const ToolsTab = styled.div`
   padding: 20px 0;
-  border-bottom: 1px solid ${border};
+  border-bottom: 1px solid var(--border);
   display: flex;
   flex-direction: column;
   cursor: pointer;
   ${(props) =>
     props.selectedTab &&
     css`
-      border-bottom: 1px solid ${black};
+      border-bottom: 1px solid var(--black);
     `}
   @media only screen and (max-width: 768px) {
-    border-top: 1px solid ${border};
+    border-top: 1px solid var(--border);
     border-bottom: none;
     padding: 16px 0 0 0;
     gap: 6px;
     ${(props) =>
       props.selectedTab &&
       css`
-        border-top: 1px solid ${black};
+        border-top: 1px solid var(--black);
       `}
   }
 `;
@@ -171,16 +170,16 @@ const ResponsiveCaption = styled.div`
 const Title = styled.h3`
   ${Heading5};
   font-weight: 400;
-  color: ${darkgray};
+  color: var(--dark-gray);
   margin: 0;
   ${(props) =>
     props.selectedTab &&
     css`
-      color: ${title};
+      color: var(--title);
       margin: 0 0 8px;
     `}
   ${ToolsTab}:hover & {
-    color: ${title};
+    color: var(--title);
   }
   @media only screen and (max-width: 449px) {
     ${MobileH4}
@@ -188,7 +187,7 @@ const Title = styled.h3`
 `;
 const Caption = styled.p`
   ${Body4};
-  color: ${body};
+  color: var(--body);
   margin: 0;
   @media only screen and (max-width: 449px) {
     ${MbBody4}

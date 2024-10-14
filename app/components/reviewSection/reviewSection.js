@@ -2,7 +2,6 @@ import Image from 'next/image';
 import React, { useMemo, useState } from 'react';
 import { Container } from '../../styles/commonStyles';
 import Button from '../button/button';
-import { black, gainsboro, primary, whiteColor } from '../../styles/color';
 import ReviewModal from '../reviewModal/reviewModal';
 import reviewemptylogo from '../../../public/images/reviewemptylogo.svg';
 import StartList from './starList';
@@ -61,10 +60,10 @@ export default function ReviewSection({ appId, avarageRate = 0, reviewList, isAu
                 {isAuthenticated && (
                   <Button
                     bgColor={'transparent'}
-                    fontColor={black}
-                    borderColor={black}
+                    fontColor={'--black'}
+                    borderColor={'--black'}
                     text={'Write a review'}
-                    hoverColor={gainsboro}
+                    hoverColor={'--hover-color'}
                     onClick={onOpenModal}
                     className={'button'}
                   />
@@ -89,11 +88,11 @@ export default function ReviewSection({ appId, avarageRate = 0, reviewList, isAu
               <EmptyCaption>Be the first to share your thoughts. Your feedback matters to us.</EmptyCaption>
               <div>
                 <Button
-                  bgColor={primary}
-                  fontColor={whiteColor}
-                  borderColor={primary}
+                  bgColor={'--primary'}
+                  fontColor={'--white'}
+                  borderColor={'--primary'}
                   text={'Write a review'}
-                  hoverColor={'rgba(255, 255, 255,0.8)'}
+                  hoverColor={'--secondary-hover-color'}
                   onClick={onOpenModal}
                   className={'empty-section-button'}
                 />

@@ -1,18 +1,7 @@
 import styled, { css } from 'styled-components';
 import Link from 'next/link';
 import { Body1, Body4, Heading3, Heading4, LinkTxt } from '../../styles/styles';
-import {
-  bluelight,
-  bodycolor,
-  brownlight,
-  greendark,
-  greenlight,
-  orangelight,
-  primary,
-  purplelight,
-  title,
-  yellowlight
-} from '../../styles/color';
+
 const ClientMain = styled.div`
   padding: 50px 0 100px 0;
   &::before {
@@ -34,10 +23,10 @@ const ClientHero = styled.div`
     max-width: 920px;
     width: 100%;
     ${Heading3};
-    color: ${title};
+    color: var(--title);
     margin: 0 auto;
     span {
-      color: ${primary};
+      color: var(--primary);
     }
   }
   @media only screen and (max-width: 749px) {
@@ -87,14 +76,14 @@ const CardSection = styled.div`
     background-repeat: no-repeat;
     background-size: cover;
     a {
-      color: ${bluelight};
+      color: var(--light-blue);
       /* position: relative;
       top: 3px; */
     }
     @media only screen and (max-width: 749px) {
       background-image: none;
       a {
-        color: ${title};
+        color: var(--title);
       }
     }
   }
@@ -103,16 +92,16 @@ const CardSection = styled.div`
     grid-template-columns: 1fr 1fr;
   }
   .file {
-    border: 1px solid #01011d;
+    border: 1px solid var(--dark-purple);
   }
   .form {
-    border: 1px solid #171500;
+    border: 1px solid var(--dark-yellow);
   }
   .Helpdesk {
-    border: 1px solid #1c0c00;
+    border: 1px solid var(--dark-orange);
   }
   .message {
-    border: 1px solid #27000a;
+    border: 1px solid var(--dark-magenta);
   }
   .file:hover .hide {
     display: block;
@@ -131,24 +120,24 @@ const CardSection = styled.div`
     background-repeat: no-repeat;
     background-size: cover;
     a {
-      color: ${purplelight};
+      color: var(--light-purple);
     }
     @media only screen and (max-width: 991px) {
       background-image: none;
       a {
-        color: ${title};
+        color: var(--title);
       }
     }
   }
   .form:hover {
     background-image: url('/images/hoverform.svg');
     a {
-      color: ${yellowlight};
+      color: var(--light-yellow);
     }
     @media only screen and (max-width: 991px) {
       background-image: none;
       a {
-        color: ${title};
+        color: var(--title);
       }
     }
   }
@@ -158,9 +147,9 @@ const CardSection = styled.div`
       background-image: none;
     }
     a {
-      color: ${orangelight};
+      color: var(--light-orange);
       @media only screen and (max-width: 991px) {
-        color: ${title};
+        color: var(--title);
       }
     }
   }
@@ -170,9 +159,9 @@ const CardSection = styled.div`
       background-image: none;
     }
     a {
-      color: ${brownlight};
+      color: var(--light-brown);
       @media only screen and (max-width: 991px) {
-        color: ${title};
+        color: var(--title);
       }
     }
   }
@@ -183,9 +172,8 @@ const CardSection = styled.div`
     flex-wrap: wrap;
   }
 `;
-
 const BlockSection = styled(Link)`
-  border: 1px solid #00160e;
+  border: 1px solid var(--dark-green);
   border-radius: 4px;
   padding: 40px 49px;
   display: flex;
@@ -221,15 +209,15 @@ const BlockSection = styled(Link)`
       background-image: none;
     }
     a {
-      color: ${greenlight};
+      color: var(--light-green);
       @media only screen and (max-width: 991px) {
-        color: ${title};
+        color: var(--title);
       }
     }
     h3 {
-      color: ${greenlight};
+      color: var(--light-green);
       @media only screen and (max-width: 991px) {
-        color: ${title};
+        color: var(--title);
       }
     }
     .hide {
@@ -264,16 +252,16 @@ const BlockText = styled.div`
   h3 {
     margin: 0 0 50px 0;
     ${Body1};
-    color: ${greendark};
+    color: var(--dark-green);
   }
   .hidden {
     display: none;
   }
   .learn-link:hover {
-    color: #e3ffee;
+    color: var(--light-green);
 
     @media only screen and (max-width: 991px) {
-      color: ${title};
+      color: var(--title);
     }
   }
   @media only screen and (max-width: 991px) {
@@ -289,19 +277,18 @@ const BlockText = styled.div`
     }
   }
 `;
-
 const HelpLeftSub = styled.div`
   display: block;
   margin-top: 40px;
   h4 {
     ${Heading4};
-    color: ${title};
+    color: var(--title);
     margin: 0 0 12px 0;
   }
   p {
     ${Body4};
     margin: 0 0 20px 0;
-    color: ${bodycolor};
+    color: var(--body);
   }
   @media only screen and (max-width: 769px) {
     margin-top: 18px;
@@ -335,7 +322,7 @@ const HelpLink = styled.div`
   }
   .learn-link:hover {
     @media only screen and (max-width: 749px) {
-      color: #131313;
+      color: var(--title);
     }
   }
   .learn-link svg path {
@@ -360,7 +347,7 @@ const HelpLink = styled.div`
     }
   }
   a {
-    color: ${title};
+    color: var(--title);
     cursor: pointer;
     display: block;
     ${LinkTxt};

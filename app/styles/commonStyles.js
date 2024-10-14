@@ -1,8 +1,6 @@
 'use client';
 
 import styled, { css } from 'styled-components';
-import { gainsboro, primary, whiteColor, black } from './../styles/color';
-
 import { ButtonText, HeaderFont, MbButtonText, MbPrimaryBtn } from './styles';
 
 const Container = styled.div`
@@ -19,24 +17,24 @@ const PrimaryButton = styled.div`
     letter-spacing: 0.02em;
     padding: 11px 32px;
     border-radius: 26px;
-    background-color: ${primary};
-    color: ${whiteColor};
-    border: 1px solid #09aa6c;
+    background-color: var(--primary);
+    color: var(--white);
+    border: 1px solid var(--primary);
     :hover {
-      background-color: ${primary};
+      background-color: var(--primary);
     }
     ${(props) =>
       props.textColor &&
       css`
-        color: ${props.textColor};
+        color: var(${props.textColor});
       `}
     ${(props) =>
       props.backgroundColor &&
       css`
-        background-color: ${props.backgroundColor};
-        border: 1px solid ${props.backgroundColor};
+        background-color: var(${props.backgroundColor});
+        border: 1px solid var(${props.backgroundColor});
         :hover {
-          background-color: ${props.backgroundColor};
+          background-color: var(${props.backgroundColor});
         }
       `}
     text-decoration: none;
@@ -60,15 +58,15 @@ const SecondryButton = styled.div`
     ${ButtonText}
     display: inline-block;
     padding: 11px 32px;
-    border: 1px solid #000000;
+    border: 1px solid var(--black);
     border-radius: 48px;
     background-color: transparent;
-    color: ${black};
+    color: var(--black);
     letter-spacing: 0.02em;
     text-decoration: none;
     transition: all 300ms;
     :hover {
-      background-color: ${gainsboro};
+      background-color: var(--hover-color);
     }
   }
   @media only screen and (max-width: 749px) {
@@ -89,12 +87,12 @@ const BlackButton = styled.div`
     ${(props) =>
       props.textColor &&
       css`
-        color: ${props.textColor};
+        color: var(${props.textColor});
       `}
     ${(props) =>
       props.backgroundColor &&
       css`
-        background-color: ${props.backgroundColor};
+        background-color: var(${props.backgroundColor});
       `}
     text-decoration: none;
     transition: all 300ms;

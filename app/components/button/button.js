@@ -39,10 +39,10 @@ function myFunction(e) {
  */
 
 export default function Button({
-  bgColor = '#09AA6C',
+  bgColor = '--primary',
   hoverColor,
   borderColor = 'transparent',
-  fontColor = '#ffffff',
+  fontColor = '--white',
   href = '#',
   text,
   className,

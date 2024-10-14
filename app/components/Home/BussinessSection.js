@@ -11,7 +11,6 @@ import {
 import { Container } from '../../styles/commonStyles';
 import Button from '../../components/button/button';
 import HeadingText from '../header/headingText';
-import { primary, whiteColor } from '../../styles/color';
 import CopilotBlock from '../../components/CopilotBlock/copilotblock';
 import SliderButtonSection from '../../components/CopilotBlock/SliderButtonSection';
 import { isEmpty } from '../../helpers/helpers';
@@ -40,12 +39,12 @@ export default function BussinessSectionComponent({
               <ReactMarkdown>{description}</ReactMarkdown>
               {isButtonShow && (
                 <Button
-                  bgColor={primary}
-                  fontColor={whiteColor}
-                  borderColor={primary}
+                  bgColor={'--primary'}
+                  fontColor={'--white'}
+                  borderColor={'--primary'}
                   text={primaryButtonText}
                   href={PrimaryButtonLink}
-                  hoverColor={'rgba(255, 255, 255,0.8)'}
+                  hoverColor={'--secondary-hover-color'}
                   className={'block-button'}
                 />
               )}

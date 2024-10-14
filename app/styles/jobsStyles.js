@@ -23,10 +23,9 @@ import {
   MobileH4,
   Name
 } from './styles';
-import { black, body, border, darkgray, greenmidlight, lightgray, primary, title, whiteColor } from './color';
 
 const MainWrap = styled.div`
-  background: #fffffd;
+  background: var(--main-bg-color);
 `;
 const HeroJobSection = styled.div`
   padding: 144px 0 50px;
@@ -39,9 +38,9 @@ const JobsWrap = styled.div`
   ${(props) =>
     props.imageUrl &&
     css`
-      background-image: linear-gradient(90deg, #000000 18.89%, rgba(0, 0, 0, 0) 82.84%), url(${props.imageUrl});
+      background-image: linear-gradient(90deg, var(--black) 18.89%, var(--black) 82.84%), url(${props.imageUrl});
       @media only screen and (max-width: 991px) {
-        background-image: linear-gradient(90deg, #000000 18.89%, rgba(0, 0, 0, 0) 82.84%), url(${props.imageUrl});
+        background-image: linear-gradient(90deg, var(--black) 18.89%, var(--black) 82.84%), url(${props.imageUrl});
       }
     `}
   background-position: 0 0, 50% 50%;
@@ -68,7 +67,7 @@ const JobsMobi = styled.div`
   @media only screen and (max-width: 749px) {
     display: block;
     border-radius: 8px;
-    background-image: linear-gradient(180deg, #000000 51.28%, rgba(0, 0, 0, 0) 70.01%), url('/images/jobmobi.svg');
+    background-image: linear-gradient(180deg, var(--black) 51.28%, var(--black) 70.01%), url('/images/jobmobi.svg');
     background-position: 0 0, 50% 50%;
     background-size: auto, cover;
     background-repeat: repeat, no-repeat;
@@ -85,11 +84,11 @@ const UseCaseWrap = styled.div`
   h1 {
     ${Heading2};
     margin: 0;
-    color: ${whiteColor};
+    color: var(--white);
   }
   p {
     ${Body2};
-    color: ${whiteColor};
+    color: var(--white);
     margin: 20px 0 0;
     letter-spacing: 0.02em;
   }
@@ -111,11 +110,11 @@ const UseCaseWrapMobi = styled.div`
   h1 {
     ${MobileH2};
     margin: 0;
-    color: ${whiteColor};
+    color: var(--white);
   }
   p {
     ${MbBody2};
-    color: ${whiteColor};
+    color: var(--white);
     margin: 20px 0 0;
     letter-spacing: 0.02em;
   }
@@ -161,12 +160,12 @@ const RoleWrap = styled.div`
   margin-bottom: 40px;
   h2 {
     ${Heading4};
-    color: ${title};
+    color: var(--title);
     margin: 0 0 12px 0;
   }
   p {
     ${Body5};
-    color: ${body};
+    color: var(--body);
     letter-spacing: 0.02em;
     margin: 0;
   }
@@ -185,14 +184,13 @@ const RoleWrap = styled.div`
     }
   }
 `;
-
 const JobDetailWrap = styled.div``;
 const JobView = styled.div`
   margin-bottom: 14px;
   h3 {
     margin: 0;
     ${HeaderFont};
-    color: ${title};
+    color: var(--title);
   }
   @media only screen and (max-width: 749px) {
     h3 {
@@ -212,12 +210,12 @@ const RoleRow = styled.div`
   border-bottom: 1px dashed transparent;
   cursor: pointer;
   :hover {
-    border-bottom: 1px dashed #000000;
+    border-bottom: 1px dashed var(--black);
     p {
-      color: #000000;
+      color: var(--black);
     }
     .bgdot {
-      background-color: #000000;
+      background-color: var(--black);
     }
   }
   @media only screen and (max-width: 749px) {
@@ -228,7 +226,7 @@ const LeftRow = styled.div`
   p {
     margin: 0;
     ${Body5};
-    color: ${body};
+    color: var(--body);
   }
 `;
 const RightRow = styled.div`
@@ -237,20 +235,20 @@ const RightRow = styled.div`
   p {
     margin: 0;
     ${FooterText};
-    color: ${lightgray};
+    color: var(--medium-gray);
   }
 `;
 const Dot = styled.div`
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background-color: ${border};
+  background-color: var(--border);
   margin: 0 8px;
 `;
 const TeamView = styled.div`
   h2 {
     ${Heading4};
-    color: ${title};
+    color: var(--title);
     margin: 0;
   }
   @media only screen and (max-width: 991px) {
@@ -286,15 +284,15 @@ const TeamLine = styled.div`
   justify-content: space-between;
   a {
     ${Body5};
-    color: ${primary};
+    color: var(--primary);
     letter-spacing: 0.02em;
     :hover {
-      color: ${title};
+      color: var(--title);
     }
   }
   p {
     ${FooterText};
-    color: ${lightgray};
+    color: var(--medium-gray);
     margin: 0;
   }
   @media only screen and (max-width: 749px) {
@@ -311,17 +309,17 @@ const NameView = styled.div`
   p {
     ${Name};
     margin: 0;
-    color: ${lightgray};
+    color: var(--medium-gray);
   }
 `;
 const ImgWrap = styled.div`
   margin-top: 40px;
 `;
 const ImgBorder = styled.div`
-  border: 1px solid #000000;
+  border: 1px solid var(--black);
   border-radius: 4px;
   overflow: hidden;
-  background-color: #ffffff;
+  background-color: var(--white);
   max-height: 320px;
 `;
 const TabList = styled.div`
@@ -336,9 +334,9 @@ const TabWrap = styled.div`
     position: relative;
     span {
       ${Body6};
-      color: ${black};
+      color: var(--black);
     }
-    border: 1px solid #000000;
+    border: 1px solid var(--black);
     width: 40px;
     height: 40px;
     border-radius: 50%;
@@ -352,9 +350,9 @@ const TabView = styled.div`
   cursor: pointer;
   span {
     ${Body6};
-    color: ${border};
+    color: var(--border);
   }
-  border: 1px solid #ccccd0;
+  border: 1px solid var(--border);
   width: 40px;
   height: 40px;
   border-radius: 50%;
@@ -365,12 +363,12 @@ const TabView = styled.div`
 const ActiveTab = styled.div`
   position: absolute;
   bottom: 101%;
-  background: #000;
+  background: var(--black);
   width: 1px;
   height: 21px;
 `;
 const RegionView = styled.div`
-  border-top: 1px solid #000000;
+  border-top: 1px solid var(--black);
   margin-top: 20px;
   position: relative;
   padding-top: 15px;
@@ -392,7 +390,6 @@ const RegionView = styled.div`
     margin: 0;
   }
 `;
-
 const JObMain = styled.div`
   padding-top: 164px;
   padding-bottom: 100px;
@@ -409,7 +406,7 @@ const DetailLink = styled.div`
   p {
     ${LinkTxt};
     margin: 0;
-    color: ${lightgray};
+    color: var(--medium-gray);
   }
   @media only screen and (max-width: 375px) {
     gap: 4px;
@@ -433,7 +430,7 @@ const DetailLeft = styled.div`
   margin-top: -44px;
   h3 {
     ${Heading3};
-    color: ${title};
+    color: var(--title);
     margin: 0 0 24px 0;
   }
   @media only screen and (max-width: 768px) {
@@ -459,12 +456,12 @@ const DetailWrap = styled.div`
   p {
     ${Body4};
     margin: 0;
-    color: ${lightgray};
+    color: var(--medium-gray);
   }
   span {
     ${Body4};
     margin: 0;
-    color: ${title};
+    color: var(--title);
   }
   @media only screen and (max-width: 749px) {
     padding-bottom: 16px;
@@ -496,7 +493,6 @@ const DetailRight = styled.div`
     padding-top: 34px;
   }
 `;
-
 const DetailRIghtText = styled.div`
   h1,
   h2,
@@ -505,7 +501,7 @@ const DetailRIghtText = styled.div`
   h5,
   h6 {
     ${Heading4};
-    color: ${title};
+    color: var(--title);
     margin: 0;
     padding-top: 40px;
     :first-child {
@@ -515,24 +511,24 @@ const DetailRIghtText = styled.div`
 
   b {
     font-weight: 400;
-    color: ${title};
+    color: var(--title);
   }
 
   p {
     ${Body3};
-    color: ${body};
+    color: var(--body);
     margin: 24px 0 0 0;
     :first-child {
       margin: 20px 0 0 0;
     }
     a {
       display: inline-block;
-      color: ${primary};
+      color: var(--primary);
     }
   }
   span {
     ${Body3};
-    color: ${primary};
+    color: var(--primary);
     margin: 0;
   }
   li {
@@ -544,14 +540,14 @@ const DetailRIghtText = styled.div`
       left: 0;
       width: 20px;
       height: 10px;
-      background-color: ${greenmidlight};
+      background-color: var(--mid-light-green);
     }
     p {
       padding: 0 10px 0 36px;
       margin-top: 7px;
       font-weight: 400;
       font-size: 18px;
-      color: ${body};
+      color: var(--body);
     }
   }
   @media only screen and (max-width: 375px) {

@@ -1,16 +1,5 @@
 import styled, { css } from 'styled-components';
 import {
-  body,
-  border,
-  footercolor,
-  greendark,
-  greenlight,
-  lightgray,
-  primary,
-  tablecolor,
-  title
-} from '../../styles/color';
-import {
   Body3,
   Body4,
   Body5,
@@ -65,9 +54,9 @@ const AboutSection = styled.div`
 `;
 const Title = styled.div`
   padding: 0 12px 16px;
-  border-bottom: 1px solid ${title};
+  border-bottom: 1px solid var(--title);
   ${Heading6};
-  color: ${title};
+  color: var(--title);
   @media only screen and (max-width: 449px) {
     padding: 0 0 16px;
   }
@@ -94,25 +83,24 @@ const Info = styled.div`
 `;
 const InfoTitle = styled.h5`
   ${Body5}
-  color: ${title};
+  color: var(--title);
   margin: 0;
   display: flex;
   align-items: center;
   gap: 4px;
 `;
-
 const InfoDescription = styled.p`
   display: flex;
   gap: 4px;
   align-items: center;
   ${Body5}
-  color: ${lightgray};
+  color: var(--medium-gray);
   margin: 0;
   a {
-    color: ${primary};
+    color: var(--primary);
     display: inline-flex;
     :hover {
-      color: ${greendark};
+      color: var(--dark-green);
     }
   }
 `;
@@ -152,7 +140,7 @@ const ListItem = styled.li`
     position: relative;
     stroke-width: 2px;
     fill: none;
-    stroke: ${greendark};
+    stroke: var(--dark-green);
     margin-left: 8px;
     --arrowSpacing: 5px;
     --arrowHoverTransition: 150ms cubic-bezier(0.215, 0.61, 0.355, 1);
@@ -168,7 +156,7 @@ const ListItem = styled.li`
   }
   @media only screen and (min-width: 449px) {
     :hover {
-      background-color: ${footercolor};
+      background-color: var(--footer);
       border-radius: 4px;
     }
   }
@@ -188,14 +176,14 @@ const ListIcon = styled.div``;
 
 const LableName = styled.div`
   ${MbBody5}
-  color: ${title};
+  color: var(--title);
 `;
 
 const TemplateContent = styled.div`
   width: 100%;
   h3 {
     ${Heading4};
-    color: ${title};
+    color: var(--title);
     margin: 30px 0 0;
     :first-child {
       margin: 0;
@@ -208,7 +196,7 @@ const TemplateContent = styled.div`
   h4 {
     ${Heading5};
     font-weight: 400;
-    color: ${title};
+    color: var(--title);
     margin: 20px 0 0;
   }
   h4 + p {
@@ -221,7 +209,7 @@ const TemplateContent = styled.div`
     width: 100%;
     margin-bottom: 40px;
     margin-top: 20px;
-    box-shadow: ${border} 0px 0px 0px 1px;
+    box-shadow: var(--border) 0px 0px 0px 1px;
     border-radius: 3px;
     p {
       margin: 0;
@@ -232,7 +220,7 @@ const TemplateContent = styled.div`
     }
     tr {
       :nth-child(odd) {
-        background-color: #f8f9fb;
+        background-color: var(--table-color);
       }
       :last-child {
         td {
@@ -245,19 +233,19 @@ const TemplateContent = styled.div`
         }
       }
       :first-child {
-        border-bottom: 1px solid ${border};
+        border-bottom: 1px solid var(--border);
       }
     }
     th {
-      background-color: ${tablecolor};
+      background-color: var(--table-color);
       padding: 12px 20px;
       text-align: left;
       ${HeaderFont};
-      color: ${title};
+      color: var(--title);
       p > b,
       p {
         ${HeaderFont};
-        color: ${title};
+        color: var(--title);
       }
       :first-child {
         border-radius: 3px 0 0 0;
@@ -269,11 +257,11 @@ const TemplateContent = styled.div`
     td {
       padding: 12px 20px;
       ${Body5};
-      color: ${title};
+      color: var(--title);
       vertical-align: top;
       p {
         ${Body5};
-        color: ${title};
+        color: var(--title);
         padding-top: 20px;
         :first-child {
           padding-top: 0;
@@ -286,20 +274,20 @@ const TemplateContent = styled.div`
   }
   p {
     ${Body4};
-    color: ${body};
+    color: var(--body);
     margin: 16px 0 0;
   }
   a {
-    color: ${primary};
+    color: var(--primary);
     display: initial;
     cursor: pointer;
     :hover {
-      color: #00160e;
+      color: var(--dark-green);
     }
   }
   img {
     border-radius: 4px;
-    border: 0.4px solid #dfe1e4;
+    border: 0.4px solid var(--platinum-gray);
     display: flex;
     margin: 16px auto 0;
     width: inherit;
@@ -308,14 +296,14 @@ const TemplateContent = styled.div`
     width: inherit;
     margin: 16px auto 0;
     border-radius: 4px;
-    border: 0.4px solid #dfe1e4;
+    border: 0.4px solid var(--platinum-gray);
   }
   ol {
     padding-left: 20px;
     li {
       ::marker {
         font-size: 15px;
-        color: ${body};
+        color: var(--body);
       }
     }
   }
@@ -330,26 +318,26 @@ const TemplateContent = styled.div`
       }
       strong {
         font-weight: 500;
-        color: ${title};
+        color: var(--title);
       }
       a {
         display: inline-block;
         ${Body3}
-        color: ${primary};
+        color: var(--primary);
         @media only screen and (max-width: 450px) {
           ${MbBody3}
         }
         :hover {
-          color: ${title};
+          color: var(--title);
         }
       }
     }
     li::marker {
-      color: ${body};
+      color: var(--body);
     }
     span {
       font-weight: 500;
-      color: ${title};
+      color: var(--title);
     }
   }
   @media only screen and (max-width: 449px) {

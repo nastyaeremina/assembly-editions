@@ -1,26 +1,25 @@
 import styled, { css } from 'styled-components';
-import { Body4, Body5, CardTxt, FooterText, Heading3, Heading4, Heading5, Value } from '../../styles/styles';
-import { body, darkgray, greendark, greenlight, lightgray, purpledark, title } from '../../styles/color';
+import { Body4, Body5, CardTxt, FooterText, Heading3, Value } from '../../styles/styles';
 
 const CardSub = styled.div`
   display: block;
   :hover {
     -webkit-transition: all 0.2s ease-in-out;
     transition: all 0.2s ease-in-out;
-    box-shadow: 0px 0px 0px 0.1px #01011d;
+    box-shadow: 0px 0px 0px 0.1px var(--dark-purple);
     border-radius: 4px;
   }
   a {
-    background: #ffffff;
-    border: 1px solid ${purpledark};
+    background: var(--white);
+    border: 1px solid var(--dark-purple);
     border-radius: 4px;
     -webkit-transition: all 0.2s ease-in-out;
     transition: all 0.2s ease-in-out;
     height: 100%;
     position: relative;
     :hover {
-      border: 1px solid ${purpledark};
-      box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.1);
+      border: 1px solid var(--dark-purple);
+      box-shadow: 0px 4px 16px var(--black-shadow-10);
       -webkit-transition: all 0.2s ease-in-out;
       transition: all 0.2s ease-in-out;
     }
@@ -28,7 +27,7 @@ const CardSub = styled.div`
 `;
 
 const CardDescription = styled.div`
-  color: ${darkgray};
+  color: var(--dark-gray);
   letter-spacing: 0.02em;
   ${Body5}
   margin: 0;
@@ -48,7 +47,7 @@ const CardInfo = styled.div`
     max-width: 100%;
   }
   h3 {
-    color: ${title};
+    color: var(--title);
     ${Body4}
     letter-spacing: 0.02em;
     margin: 0;
@@ -97,7 +96,7 @@ const RatingSection = styled.div`
   p {
     text-transform: capitalize;
     ${FooterText};
-    color: ${body};
+    color: var(--body);
     margin: 0;
   }
 `;
@@ -122,16 +121,16 @@ const CardTop = styled.div`
 `;
 const CardEnd = styled.div`
   display: none;
-  background-color: ${greenlight};
+  background-color: var(--light-green);
   padding: 8px 16px;
-  border-top: 1px solid #01011d;
+  border-top: 1px solid var(--dark-purple);
   border-radius: 0 0 3px 3px;
   position: absolute;
   bottom: 0;
   width: 100%;
   p {
     ${CardTxt};
-    color: ${purpledark};
+    color: var(--dark-purple);
     margin: 0;
   }
   ${(props) =>
@@ -174,12 +173,12 @@ const SectionHeading = styled.div`
   width: 100%;
   h2 {
     ${Heading3};
-    color: ${title};
+    color: var(--title);
     margin: 0;
   }
   p {
     ${Body4};
-    color: ${body};
+    color: var(--body);
     margin: 0;
   }
   @media only screen and (max-width: 449px) {
@@ -194,13 +193,13 @@ const Tooltip = styled.div`
   top: 22px;
   left: -6px;
   padding: 12px;
-  background-color: ${greendark};
-  color: ${greenlight};
-  box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.25);
+  background-color: var(--dark-green);
+  color: var(--light-green);
+  box-shadow: 0px 4px 16px var(--black-shadow-25);
   border-radius: 4px;
   p {
     ${Body5}
-    color: ${greenlight};
+    color: var(--light-green);
     margin: 0;
   }
   span {

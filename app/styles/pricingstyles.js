@@ -1,10 +1,9 @@
-import styled, { css, keyframes } from 'styled-components';
+import styled, { css } from 'styled-components';
 import {
   Body2,
   Body3,
   Body4,
   Body5,
-  ButtonText,
   FooterText,
   Heading2,
   Heading3,
@@ -17,28 +16,13 @@ import {
   TableText
 } from './styles';
 
-import {
-  greendark,
-  greenlight,
-  body,
-  bodycolor,
-  lightgray,
-  title,
-  primary,
-  black,
-  darkgray,
-  midiumgray,
-  greenmiddark,
-  greenmidlight
-} from './../styles/color';
-
 const HeroSection = styled.div`
   padding: 180px 0 100px 0;
   text-align: center;
   margin: 0 auto;
   h1 {
     ${Heading2};
-    color: ${title};
+    color: var(--title);
     margin: 0 0 40px 0;
     max-width: 780px;
     width: 100%;
@@ -46,12 +30,12 @@ const HeroSection = styled.div`
   }
   span {
     margin: 0;
-    color: ${primary};
+    color: var(--primary);
     ${Heading2}
   }
   p {
     ${Body2};
-    color: ${body};
+    color: var(--body);
     letter-spacing: 0.02em;
     margin: 20px 0 32px 0;
   }
@@ -62,7 +46,7 @@ const HeroSection = styled.div`
     padding: 150px 0px 80px;
     h1 {
       ${MobileH2};
-      color: ${title};
+      color: var(--title);
       margin: 0 0 40px 0;
       max-width: 780px;
       width: 100%;
@@ -70,13 +54,13 @@ const HeroSection = styled.div`
     }
     span {
       margin: 0;
-      color: ${primary};
+      color: var(--primary);
       ${MobileH2}
     }
     p {
       font-size: 17px;
       line-height: 21px;
-      color: ${body};
+      color: var(--body);
       letter-spacing: 0.02em;
       margin: 20px 0 32px 0;
     }
@@ -97,14 +81,14 @@ const YearlyButton = styled.div`
   padding: 7px 20px;
   border-radius: 4px;
   button {
-    color: ${lightgray};
+    color: var(--medium-gray);
     letter-spacing: 0.01em;
     ${Label};
   }
   &.active {
-    background-color: ${greenlight};
+    background-color: var(--light-green);
     button {
-      color: ${black};
+      color: var(--black);
     }
   }
 `;
@@ -112,14 +96,14 @@ const MonthlyButton = styled.div`
   padding: 7px 20px;
   border-radius: 4px;
   button {
-    color: ${lightgray};
+    color: var(--medium-gray);
     ${Label};
     letter-spacing: 0.01em;
   }
   &.active {
-    background-color: ${greenlight};
+    background-color: var(--light-green);
     button {
-      color: ${black};
+      color: var(--black);
     }
   }
 `;
@@ -150,7 +134,7 @@ const PriceTable = styled.div`
     display: none;
     width: 100%;
     border-collapse: collapse;
-    border: 1px solid #00160e;
+    border: 1px solid var(--dark-green);
     border-style: none solid solid;
     :first-child {
       position: sticky;
@@ -159,7 +143,7 @@ const PriceTable = styled.div`
       z-index: 9;
     }
     thead > tr > td {
-      border: 1px solid #00160e;
+      border: 1px solid var(--dark-green);
       border-style: none solid none none;
       :last-child {
         border-style: none;
@@ -171,7 +155,7 @@ const PriceTable = styled.div`
       }
     }
     th {
-      border: 1px solid #00160e;
+      border: 1px solid var(--dark-green);
       :first-child {
         border-left: none;
       }
@@ -180,7 +164,7 @@ const PriceTable = styled.div`
       }
     }
     td {
-      border: 1px solid #00160e;
+      border: 1px solid var(--dark-green);
       border-style: none solid;
       :first-child {
         border-left: none;
@@ -192,14 +176,14 @@ const PriceTable = styled.div`
     tr {
       :nth-child(even) {
         td {
-          background: linear-gradient(0deg, #f8f9fb 0%, #f8f9fb 100%), #fff;
+          background: linear-gradient(0deg, var(--table-color) 0%, var(--table-color) 100%), var(--white);
         }
       }
     }
     .bordercolor {
       th {
-        color: ${greenlight};
-        border-right: 1px solid #e3ffee;
+        color: var(--light-green);
+        border-right: 1px solid var(--light-green);
         :last-child {
           border-right: none;
         }
@@ -212,15 +196,15 @@ const PriceTable = styled.div`
       position: sticky;
       top: 232px;
       z-index: 1;
-      background-color: ${greenlight};
+      background-color: var(--light-green);
       ${Body3};
-      color: ${title};
+      color: var(--title);
       padding: 16px 20px;
       vertical-align: top;
       letter-spacing: 0.02em;
     }
     .tablehead {
-      background-color: #fff;
+      background-color: var(--white);
       padding: 16px 20px;
     }
     .sticky {
@@ -232,16 +216,16 @@ const PriceTable = styled.div`
     }
     .tabletext {
       ${TableText};
-      color: ${greendark};
+      color: var(--dark-green);
     }
     .subtext {
       ${FooterText};
-      color: ${darkgray};
+      color: var(--dark-gray);
     }
     th {
       ${Body3};
-      background-color: ${greendark};
-      color: ${greenlight};
+      background-color: var(--dark-green);
+      color: var(--light-green);
       letter-spacing: 0.02em;
       padding: 12px 20px;
       text-align: left;
@@ -256,34 +240,34 @@ const PriceTable = styled.div`
         `}
       .amount {
         margin: 0 0 4px 0;
-        color: ${title};
+        color: var(--title);
         ${TableText};
       }
       .spantext {
         ${FooterText};
-        color: ${darkgray};
+        color: var(--dark-gray);
         display: block;
       }
     }
     td {
       ${Body3};
-      color: ${title};
+      color: var(--title);
       padding: 16px 20px;
       vertical-align: top;
       letter-spacing: 0.02em;
       position: sticky;
       top: 84px;
       z-index: -99;
-      background: #fff;
+      background: var(--white);
       span {
         ${Body5};
-        color: ${title};
+        color: var(--title);
         display: block;
         letter-spacing: 0.02em;
       }
 
       p {
-        color: ${body};
+        color: var(--body);
         ${Body5};
         margin: 4px 0 0 0;
         letter-spacing: 0.02em;
@@ -291,14 +275,14 @@ const PriceTable = styled.div`
       h4 {
         margin: 0;
         ${Body4};
-        color: ${title};
+        color: var(--title);
       }
       .spanpadding {
         padding-top: 12px;
       }
 
       .imagretext {
-        color: ${greenmiddark};
+        color: var(--mid-dark-green);
         margin: 0;
       }
     }
@@ -313,7 +297,6 @@ const PriceTable = styled.div`
     display: none;
   }
 `;
-
 const PricingButton = styled.div`
   display: flex;
   justify-content: center;

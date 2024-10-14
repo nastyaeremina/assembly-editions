@@ -1,8 +1,7 @@
 'use client';
 
 import styled, { css } from 'styled-components';
-import { Body3, Label, MbBody1, MbBody3, MbPrimaryBtn } from '../../styles/styles';
-import { black, whiteColor, greendark, greenlight, title } from '../../styles/color';
+import { Body3, Label, MbBody3, MbPrimaryBtn } from '../../styles/styles';
 
 const Tabbutton = styled.div`
   margin: 0 auto;
@@ -12,9 +11,9 @@ const Tabbutton = styled.div`
     width: 80%;
     height: auto;
     min-height: 400px;
-    background: #053742;
+    background: var(--tab-background-color);
     margin: 3.5rem auto 1.5rem;
-    color: #e8f0f2;
+    color: var(--tab-text-color);
     border-radius: 2rem;
 
     @media (max-width: 769px) {
@@ -50,14 +49,14 @@ const Tab = styled.div`
   color: black;
   transition: all 0.5s ease;
   &&.active {
-    color: #e3ffee;
+    color: var(--light-green);
 
     ${(props) =>
       props.textColor &&
       css`
         color: ${props.textColor};
       `}
-    background-color:#00160E;
+    background-color:var(--dark-green);
     ${(props) =>
       props.bgcolor &&
       css`
@@ -105,25 +104,25 @@ const Nav = styled.div`
   display: none;
   // this css work in tablet and mobile device
   .tabsection {
-    background-color: rgba(255, 255, 255, 0.8);
+    background-color: var(--secondary-hover-color);
     display: flex;
     white-space: nowrap;
     border-radius: 80px;
     position: relative;
-    border: 1px solid ${greendark};
+    border: 1px solid var(--dark-green);
     cursor: pointer;
     width: max-content;
   }
   .tab {
     padding: 10px 20px;
     z-index: 1;
-    color: ${black};
+    color: var(--black);
     ${Label};
     transition: all 0.3s ease-in-out 0s;
   }
   .activetab {
     position: absolute;
-    background-color: ${greendark};
+    background-color: var(--dark-green);
     height: 100%;
     border-radius: 80px;
     transition: all 0.3s ease-in-out 0s;
@@ -155,12 +154,12 @@ const Nav = styled.div`
     padding: 0;
     margin: 0;
     overflow: scroll;
-    border: 1px solid #00160e;
+    border: 1px solid var(--dark-green);
     border-radius: 40px;
     width: fit-content;
     scrollbar-width: none;
     &::-webkit-scrollbar {
-      background-color: ${greendark};
+      background-color: var(--dark-green);
       display: none;
     }
   }
@@ -171,7 +170,7 @@ const Nav = styled.div`
     transition: all 0.5s ease;
     z-index: 1;
     border-radius: 30px;
-    background-color: ${greendark};
+    background-color: var(--dark-green);
     ${(props) =>
       props.bgcolor &&
       css`
@@ -187,7 +186,7 @@ const Nav = styled.div`
   ul.nav {
     ${Label}
     letter-spacing: 0.01em;
-    color: ${black};
+    color: var(--black);
     padding-left: 0px;
     display: flex;
     @media (max-width: 449px) {
@@ -234,7 +233,7 @@ const LeftContent = styled.p`
   font-family: 'Bagoss';
   margin: 0;
   ${Body3}
-  color: ${whiteColor};
+  color: var(--white);
   opacity: 0;
   display: none;
   ${(props) =>
@@ -287,8 +286,8 @@ const RightContent = styled.div`
     transition: all 0.5s ease;
     z-index: 1;
     border-radius: 30px;
-    color: ${greenlight};
-    background-color: ${greendark};
+    color: var(--light-green);
+    background-color: var(--dark-green);
     ${(props) =>
       props.bgcolor &&
       css`
@@ -297,11 +296,11 @@ const RightContent = styled.div`
   }
   ul.nav {
     width: fit-content;
-    background: rgba(255, 255, 255, 0.8);
-    border: 1px solid #00160e;
+    background: var(--secondary-hover-color);
+    border: 1px solid var(--dark-green);
     border-radius: 41px;
     ${Label}
-    color: #000000;
+    color: var(--black);
     padding-left: 0px;
     display: flex;
     @media (max-width: 1440px) {
@@ -320,24 +319,24 @@ const RightContent = styled.div`
   }
   // this css work for desktop device
   .tabsection {
-    background-color: rgba(255, 255, 255, 0.8);
+    background-color: var(--secondary-hover-color);
     display: flex;
     white-space: nowrap;
     border-radius: 80px;
     position: relative;
-    border: 1px solid ${greendark};
+    border: 1px solid var(--dark-green);
     cursor: pointer;
   }
   .tab {
     padding: 10px 20px;
     z-index: 1;
-    color: ${black};
+    color: var(--black);
     ${Label};
     transition: all 0.3s ease-in-out 0s;
   }
   .activetab {
     position: absolute;
-    background-color: ${greendark};
+    background-color: var(--dark-green);
     height: 100%;
     border-radius: 80px;
     transition: all 0.3s ease-in-out 0s;
@@ -402,7 +401,7 @@ const MainSection = styled.div`
   width: 100%;
   height: auto;
   overflow: hidden;
-  border: 1px solid ${title};
+  border: 1px solid var(--title);
   border-radius: 4px;
   position: relative;
 `;
@@ -440,7 +439,7 @@ const ShowImage = styled.div`
   img {
     height: 100%;
     border-radius: 4px;
-    border: 1px solid ${title};
+    border: 1px solid var(--title);
   }
   ${(props) =>
     props.isSelectedTab &&

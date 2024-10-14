@@ -1,6 +1,5 @@
 import styled, { css } from 'styled-components';
 import { Body4, Heading5, MbBody4, MobileH4 } from '../../styles/styles';
-import { black, body, border, darkgray, title } from '../../styles/color';
 
 const TabsHorizontalSection = styled.div`
   padding-bottom: 100px;
@@ -21,7 +20,7 @@ const TabsSection = styled.div`
 `;
 const ToolsTab = styled.div`
   padding: 20px 0;
-  border-top: 1px solid ${border};
+  border-top: 1px solid var(--border);
   display: flex;
   flex-direction: column;
   gap: 8px;
@@ -29,7 +28,7 @@ const ToolsTab = styled.div`
   ${(props) =>
     props.selectedTab &&
     css`
-      border-top: 1px solid ${black};
+      border-top: 1px solid var(--black);
     `}
   @media only screen and (max-width: 768px) {
     padding: 16px 0 0;
@@ -39,15 +38,15 @@ const ToolsTab = styled.div`
 const Title = styled.h3`
   ${Heading5};
   font-weight: 400;
-  color: ${darkgray};
+  color: var(--dark-gray);
   margin: 0;
   ${(props) =>
     props.selectedTab &&
     css`
-      color: ${title};
+      color: var(--title);
     `}
   ${ToolsTab}:hover & {
-    color: ${title};
+    color: var(--title);
   }
   @media only screen and (max-width: 449px) {
     ${MobileH4}
@@ -55,7 +54,7 @@ const Title = styled.h3`
 `;
 const Caption = styled.p`
   ${Body4};
-  color: ${body};
+  color: var(--body);
   margin: 0;
   @media only screen and (max-width: 449px) {
     ${MbBody4}
@@ -108,7 +107,7 @@ const MainSection = styled.div`
   width: 100%;
   height: auto;
   overflow: hidden;
-  border: 1px solid ${title};
+  border: 1px solid var(--title);
   border-radius: 4px;
   position: relative;
   margin-top: 40px;
@@ -140,7 +139,7 @@ const ShowImage = styled.div`
   img {
     height: 100%;
     border-radius: 4px 4px 0 0;
-    border: 1px solid ${title};
+    border: 1px solid var(--title);
   }
   ${(props) =>
     props.isSelectedTab &&

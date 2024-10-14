@@ -11,6 +11,7 @@ import {
   EmbedInfoMessage,
   InternalAppInfoMessage
 } from '../../constants/constant';
+import Button from '../button/button';
 import {
   AppDetail,
   AppLogo,
@@ -24,8 +25,6 @@ import {
 } from './styles';
 import ImageSection from './ImageSection';
 import AppsDetailDescription from './appsDetailDescription';
-import Button from '../button/button';
-import { black, whiteColor } from '../../styles/color';
 
 export default function AppsDetailComponent({ detail, content, isUserAuthenticated, reviewList }) {
   const imageList = removeEmptyElement(content?.imageListCollection?.items);
@@ -51,10 +50,10 @@ export default function AppsDetailComponent({ detail, content, isUserAuthenticat
               href={`https://dashboard.copilot.com/install/${content?.slug}`}
               target='_blank'
               className={'install-button'}
-              bgColor={black}
-              fontColor={whiteColor}
-              borderColor={black}
-              hoverColor={'rgba(255, 255, 255,0.8)'}
+              bgColor={'--black'}
+              fontColor={'--white'}
+              borderColor={'--black'}
+              hoverColor={'--secondary-hover-color'}
             />
           )}
         </Section>

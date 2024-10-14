@@ -1,10 +1,9 @@
 import styled from 'styled-components';
-import { black, body, border, footercolor, title } from '../../styles/color';
 import { Body5, Heading6, MbPrimaryBtn } from '../../styles/styles';
 
 const SideBarCTA = styled.div`
   padding: 24px;
-  border: 1px solid ${black};
+  border: 1px solid var(--black);
   border-radius: 4px;
   .CTA-button {
     a {
@@ -19,8 +18,8 @@ const SideBarCTA = styled.div`
   }
 `;
 const Image = styled.img`
-  box-shadow: 0px 4px 16px 0px rgba(0, 0, 0, 0.1);
-  border: 0.5px solid ${footercolor};
+  box-shadow: 0px 4px 16px 0px var(--black-shadow-10);
+  border: 0.5px solid var(--footer);
   border-radius: 4px;
 `;
 const ImageDiv = styled.div``;
@@ -33,12 +32,12 @@ const Content = styled.div`
 const Title = styled.h4`
   ${Heading6};
   font-weight: 400;
-  color: ${title};
+  color: var(--title);
   margin: 0;
 `;
 const Caption = styled.p`
   ${Body5};
-  color: ${body};
+  color: var(--body);
   margin: 0;
 `;
 
@@ -48,7 +47,7 @@ const G2Section = styled.div`
   margin-top: 8px;
   p {
     ${Body5};
-    color: ${title};
+    color: var(--title);
     margin: 0;
   }
 `;
@@ -57,6 +56,6 @@ const ReviewText = styled.div`
   align-items: center;
   gap: 8px;
   padding-left: 8px;
-  border-left: 1px solid ${border};
+  border-left: 1px solid var(--border);
 `;
 export { SideBarCTA, Image, ImageDiv, Content, Title, Caption, G2Section, ReviewText };

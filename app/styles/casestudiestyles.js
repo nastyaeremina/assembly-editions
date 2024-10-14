@@ -14,7 +14,6 @@ import {
   MbBody5,
   MobileH2
 } from './styles';
-import { body, greendark, greenlight, lightgray, primary, title } from './color';
 
 const HeroSection = styled.div`
   width: 100%;
@@ -28,7 +27,7 @@ const HeroSection = styled.div`
 
 const HeroHeading = styled.h1`
   ${Heading2};
-  color: ${title};
+  color: var(--title);
   margin: 0 0 20px 0;
   @media only screen and (max-width: 991px) {
     text-align: center;
@@ -37,7 +36,7 @@ const HeroHeading = styled.h1`
   @media only screen and (max-width: 749px) {
     margin-bottom: 20px;
     ${MobileH2}
-    color: ${title};
+    color: var(--title);
   }
 `;
 
@@ -45,7 +44,7 @@ const Para = styled.p`
   ${Body2}
   letter-spacing: 0.02em;
   margin: 0;
-  color: ${body};
+  color: var(--body);
   @media only screen and (max-width: 991px) {
     text-align: center;
     ${Body2}
@@ -65,7 +64,7 @@ const HeroBtnBlock = styled.div`
 const HighlightSection = styled.div`
   padding: 20px 108px;
   margin-bottom: 100px;
-  background-color: ${greendark};
+  background-color: var(--dark-green);
   display: flex;
   justify-content: center;
   @media only screen and (max-width: 768px) {
@@ -81,7 +80,7 @@ const HighlightSection = styled.div`
 const Highlight = styled.div`
   max-width: 408px;
   width: 100%;
-  color: ${greenlight};
+  color: var(--light-green);
   text-align: center;
   ${(props) =>
     props.ishighlight1 &&
@@ -91,8 +90,8 @@ const Highlight = styled.div`
   ${(props) =>
     props.ishighlight2 &&
     css`
-      border-right: 1px solid #e3ffee;
-      border-left: 1px solid #e3ffee;
+      border-right: 1px solid var(--light-green);
+      border-left: 1px solid var(--light-green);
       padding: 12px 40px;
     `}
     ${(props) =>
@@ -109,8 +108,8 @@ const Highlight = styled.div`
     ${(props) =>
       props.ishighlight2 &&
       css`
-        border-top: 1px solid #e3ffee;
-        border-bottom: 1px solid #e3ffee;
+        border-top: 1px solid var(--light-green);
+        border-bottom: 1px solid var(--light-green);
         border-left: none;
         border-right: none;
         padding: 20px 0px;
@@ -165,7 +164,7 @@ const LeftSection = styled.div`
 const RightSection = styled.div`
   h2 {
     ${Heading3};
-    color: ${title};
+    color: var(--title);
     margin: 0;
     padding-top: 60px;
     margin-bottom: -16px;
@@ -176,26 +175,26 @@ const RightSection = styled.div`
 
   b {
     font-weight: 400;
-    color: ${title};
+    color: var(--title);
   }
   p {
     ${Body3};
-    color: ${body};
+    color: var(--body);
     margin: 28px 0 0px 0;
     a {
       display: inline-block;
-      color: ${primary};
+      color: var(--primary);
     }
   }
   span {
     ${Body3};
-    color: ${primary};
+    color: var(--primary);
     margin: 0;
   }
   @media only screen and (max-width: 768px) {
     h2 {
       ${MobileH2};
-      color: ${title};
+      color: var(--title);
       margin: 0;
       padding-top: 40px;
       :first-child {
@@ -218,27 +217,27 @@ const Head = styled.h2`
   ${Heading6}
   padding-bottom:16px;
   margin: 20px 0 0;
-  border-bottom: 1px solid #000000;
+  border-bottom: 1px solid var(--black);
 `;
 const Detail = styled.div`
   margin: 20px 0 0;
   h3 {
     ${Body5}
     margin:0 0 4px;
-    color: ${title};
+    color: var(--title);
   }
   p {
     ${Body5}
     margin:0;
-    color: ${lightgray};
+    color: var(--medium-gray);
   }
   a {
     ${Body5}
     margin:0;
-    color: ${primary};
+    color: var(--primary);
     cursor: pointer;
     :hover {
-      color: ${title};
+      color: var(--title);
     }
   }
 `;
@@ -254,7 +253,7 @@ const LastDroplist = styled.div`
   align-items: center;
   gap: 10px;
   padding: 17px 0;
-  border-bottom: 1px solid #131313;
+  border-bottom: 1px solid var(--title);
   :last-child {
     border-bottom: none;
   }
@@ -265,7 +264,7 @@ const LastDroplist = styled.div`
   a {
     ${MbBody5};
     margin: 0;
-    color: ${title};
+    color: var(--title);
     cursor: pointer;
     transition: none;
     :hover .HoverArrow__linePath {

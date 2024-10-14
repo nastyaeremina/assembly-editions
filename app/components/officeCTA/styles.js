@@ -1,16 +1,15 @@
 import styled from 'styled-components';
 import { Body2, Heading3, MbBody2, MobileH2 } from '../../styles/styles';
-import { greendark, greenlight } from '../../styles/color';
 
 const OfficeSection = styled.div`
-  background-color: ${greendark};
+  background-color: var(--dark-green);
   padding: 60px 24px;
 `;
 const OfficeCTAHeading = styled.h2`
   margin: 0 auto;
   text-align: center;
   ${Heading3}
-  color: ${greenlight};
+  color: var(--light-green);
   @media (max-width: 479px) {
     ${MobileH2}
   }
@@ -22,7 +21,7 @@ const OfficeCTACaption = styled.p`
   margin: 8px auto 32px;
   text-align: center;
   ${Body2}
-  color: ${greenlight};
+  color: var(--light-green);
   @media (max-width: 449px) {
     ${MbBody2}
   }

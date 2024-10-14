@@ -1,8 +1,6 @@
 import styled, { css } from 'styled-components';
 import { Body1, Body5, Heading3, Heading4, Heading5, Heading6, MbBody3, MobileH4 } from '../../styles/styles';
 
-import { greenlight, body, title, primary } from './../../styles/color';
-
 const FaqSection = styled.div`
   padding: 100px 0 60px 0;
   ${(props) =>
@@ -33,7 +31,7 @@ const FaqSection = styled.div`
     props.enterprise &&
     css`
       padding: 100px 0 60px 0;
-      background-color: ${greenlight};
+      background-color: var(--light-green);
     `}
   ${(props) =>
     props.isGuideFAQ &&
@@ -101,7 +99,7 @@ const FaqTitle = styled.div`
   h2 {
     ${Heading3};
     margin: 0;
-    color: ${title};
+    color: var(--title);
     ${(props) =>
       props.isGuideFAQ &&
       css`
@@ -206,7 +204,7 @@ const DivFAQ = styled.div`
 const FAQAnsware = styled.div`
   div {
     ${Body1}
-    color: ${body};
+    color: var(--body);
     padding: 0 32px 40px 0;
     ${(props) =>
       props.isGuideFAQ &&
@@ -242,11 +240,11 @@ const FAQAnsware = styled.div`
     }
   }
   a {
-    color: ${primary};
+    color: var(--primary);
     display: initial;
     cursor: pointer;
     :hover {
-      color: #00160e;
+      color: var(--dark-green);
     }
   }
 `;

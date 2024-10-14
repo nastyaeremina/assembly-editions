@@ -1,8 +1,6 @@
 import styled, { css } from 'styled-components';
 import { Body3, Body4, Body5, Heading3, Heading4, MbBody3, MbBody4, SliderTxt } from '../../../styles/styles';
 
-import { greendark, greenlight, body, title, primary, border, whiteColor } from './../../../styles/color';
-
 const ExploreSection = styled.div`
   padding: 50px 0;
   overflow: hidden;
@@ -28,16 +26,16 @@ const TopView = styled.div`
   max-width: 811px;
   h2 {
     ${Heading3};
-    color: ${title};
+    color: var(--title);
     margin: 0;
     span {
-      color: ${primary};
+      color: var(--primary);
     }
   }
   p {
     ${Body3};
     letter-spacing: 0.02em;
-    color: ${body};
+    color: var(--body);
     margin: 16px 0 28px;
   }
   @media only screen and (max-width: 749px) {
@@ -65,11 +63,11 @@ const LeftWrap = styled.div`
   h3 {
     ${Heading4};
     margin: 0 0 12px;
-    color: ${title};
+    color: var(--title);
   }
   p {
     ${Body4};
-    color: ${body};
+    color: var(--body);
     margin: 0;
   }
   @media only screen and (max-width: 991px) {
@@ -82,11 +80,11 @@ const LeftWrap = styled.div`
     h3 {
       ${Heading4};
       margin: 0 0 12px;
-      color: ${title};
+      color: var(--title);
     }
     p {
       ${Body5};
-      color: ${body};
+      color: var(--body);
       margin: 0;
     }
   }
@@ -110,12 +108,12 @@ const TabWrap = styled.div`
     position: relative;
     span {
       ${SliderTxt};
-      color: ${body};
+      color: var(--body);
       @media only screen and (max-width: 991px) {
         ${MbBody4}
       }
     }
-    border: 1.08px solid #4c4c4c;
+    border: 1.08px solid var(--body);
     width: 100%;
     max-width: 72px;
     min-width: 72px;
@@ -145,7 +143,7 @@ const TabWrap = styled.div`
     justify-content: flex-end;
     gap: 20px;
     .activetab {
-      border: 1px solid #4c4c4c;
+      border: 1px solid var(--body);
       width: 100%;
       max-width: 57px;
       min-width: 57px;
@@ -160,12 +158,12 @@ const TabView = styled.div`
   cursor: pointer;
   span {
     ${SliderTxt};
-    color: ${border};
+    color: var(--border);
     @media only screen and (max-width: 991px) {
       ${MbBody4}
     }
   }
-  border: 1.08px solid #ccccd0;
+  border: 1.08px solid var(--border);
   width: 100%;
   max-width: 72px;
   min-width: 72px;
@@ -178,7 +176,7 @@ const TabView = styled.div`
   justify-content: center;
   :hover {
     span {
-      color: ${title};
+      color: var(--title);
     }
   }
   @media only screen and (max-width: 991px) {
@@ -190,7 +188,7 @@ const TabView = styled.div`
     max-height: 59px;
   }
   @media only screen and (max-width: 749px) {
-    border: 1px solid #ccccd0;
+    border: 1px solid var(--border);
     width: 100%;
     max-width: 57px;
     min-width: 57px;
@@ -230,13 +228,13 @@ const LastSection = styled.div`
   }
 `;
 const SignBox = styled.div`
-  border: 1px solid #131313;
+  border: 1px solid var(--title);
   border-radius: 8px;
   padding: 35px;
   cursor: pointer;
   @media only screen and (max-width: 991px) {
     padding: 25px;
-    background-color: ${whiteColor};
+    background-color: var(--white);
   }
   @media only screen and (max-width: 749px) {
     padding: 8px;
@@ -247,8 +245,8 @@ const SignBox = styled.div`
 `;
 const SignImgView = styled.div`
   display: inline-flex;
-  box-shadow: 0px 0px 34px rgba(0, 0, 0, 0.07);
-  background: #ffffff;
+  box-shadow: 0px 0px 34px var(--black-shadow-7);
+  background: var(--white);
   position: relative;
   border-radius: 4px;
   img {
@@ -298,15 +296,15 @@ const BtnWrap = styled.div`
     border-radius: 6px;
     padding: 24px 32px;
     ${Body4};
-    background-color: ${greendark};
-    color: ${greenlight};
+    background-color: var(--dark-green);
+    color: var(--light-green);
     /* Position the tooltip */
     position: absolute;
     z-index: 2;
     top: 40px;
     left: 0;
     margin-left: -54px;
-    box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.25);
+    box-shadow: 0px 4px 16px var(--black-shadow-25);
     border-radius: 4px;
   }
   .tooltip:hover .tooltiptext {
@@ -316,7 +314,7 @@ const BtnWrap = styled.div`
       content: '';
       position: absolute;
       width: 46px;
-      border-top: 2px solid #00160e;
+      border-top: 2px solid var(--dark-green);
       transform: rotate(90deg);
       top: 0;
       left: 42px;
@@ -331,7 +329,7 @@ const IconView = styled.div`
   }
 `;
 const MainWrap = styled.div`
-  background-color: #fffffd;
+  background-color: var(--main-bg-color);
 `;
 const Tooltip = styled.div``;
 export {

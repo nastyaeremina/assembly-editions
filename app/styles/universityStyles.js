@@ -12,7 +12,7 @@ import {
   MobileH2,
   Value
 } from './styles';
-import { body, lightgray, primary, title } from './color';
+
 const UniversitySection = styled.div`
   padding-top: 80px;
   padding-bottom: 100px;
@@ -28,22 +28,22 @@ const UniversityHero = styled.div`
   margin: 0 auto;
   h1 {
     ${Heading2};
-    color: ${title};
+    color: var(--title);
     margin: 0 0 20px 0;
   }
   p {
-    color: ${body};
+    color: var(--body);
     margin: 0;
     ${Body2};
   }
   @media only screen and (max-width: 749px) {
     h1 {
       ${MobileH2};
-      color: ${title};
+      color: var(--title);
       margin: 0 0 20px 0;
     }
     p {
-      color: ${body};
+      color: var(--body);
       margin: 0;
       ${MbBody2};
     }
@@ -80,44 +80,44 @@ const InputWrap = styled.div`
 `;
 const Input = styled.input`
   ${Value};
-  color: ${title};
+  color: var(--title);
   letter-spacing: 0.01em;
   font-weight: 400;
   font-size: 18px;
   line-height: 26px;
   padding: 11px 20px 11px 55px;
-  border: 1.5px solid #bebebf;
+  border: 1.5px solid var(--ghost-gray);
   border-radius: 48px;
   width: 306px;
   outline: 0;
   transition: 0.3s all;
   ::placeholder {
-    color: ${lightgray};
+    color: var(--medium-gray);
   }
   :hover {
-    border: 1.5px solid #ccccd0;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.07);
+    border: 1.5px solid var(--border);
+    box-shadow: 0px 4px 8px var(--black-shadow-7);
   }
   :active {
-    border: 1.5px solid #131313;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.07);
+    border: 1.5px solid var(--title);
+    box-shadow: 0px 4px 8px var(--black-shadow-7);
   }
   :focus {
-    border: 1.5px solid #131313;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.07);
+    border: 1.5px solid var(--title);
+    box-shadow: 0px 4px 8px var(--black-shadow-7);
   }
 `;
 const Catagory = styled.ul`
   padding-top: 50px;
   .active {
-    color: ${title};
+    color: var(--title);
   }
   h4 {
     padding-bottom: 20px;
     margin: 0;
     ${Heading5};
-    color: ${title};
-    border-bottom: 1px solid #000000;
+    color: var(--title);
+    border-bottom: 1px solid var(--black);
     letter-spacing: 0.02em;
     max-width: 306px;
     width: 100%;
@@ -125,22 +125,22 @@ const Catagory = styled.ul`
 `;
 const Catagoryitem = styled.li`
   padding: 16px 0;
-  border-bottom: 1px solid #000000;
+  border-bottom: 1px solid var(--black);
   a {
     ${LinkTxt};
     letter-spacing: 0.02em;
-    color: ${primary};
+    color: var(--primary);
     margin: 0;
     :hover {
-      color: ${title};
+      color: var(--title);
     }
     :active {
-      color: ${title};
+      color: var(--title);
     }
     ${(props) =>
       props.isActive &&
       css`
-        color: ${title};
+        color: var(--title);
       `}
   }
 `;
@@ -150,7 +150,7 @@ const FeatureRight = styled.div`
   position: relative;
   h2 {
     ${Heading4};
-    color: ${title};
+    color: var(--title);
     margin: 0 0 28px 0;
   }
   @media only screen and (max-width: 991px) {
@@ -179,7 +179,7 @@ const FeatureCard = styled.div`
   :hover .hovericon {
     display: block;
     opacity: 0.4;
-    background: #000000;
+    background: var(--black);
   }
   :hover .hoveritem {
     opacity: 1;
@@ -224,7 +224,7 @@ const DetailVideoHero = styled.div`
   padding: 40px 0;
   h1 {
     ${Heading3};
-    color: ${title};
+    color: var(--title);
     margin: 0;
   }
   @media only screen and (max-width: 769px) {
@@ -238,16 +238,16 @@ const Backlink = styled.div`
   padding-bottom: 28px;
   :hover {
     p {
-      color: ${title};
+      color: var(--title);
     }
     svg path {
-      stroke: ${title};
+      stroke: var(--title);
     }
   }
   p {
     ${LinkTxt};
     margin-top: 20px;
-    color: ${lightgray};
+    color: var(--medium-gray);
   }
   @media only screen and (max-width: 769px) {
     p {
@@ -272,7 +272,7 @@ const VideoSection = styled.div`
   }
   p {
     ${Body2};
-    color: ${body};
+    color: var(--body);
     margin: 40px 0 0 0;
   }
   @media only screen and (max-width: 769px) {
@@ -288,7 +288,7 @@ const VideoSection = styled.div`
     :hover {
       ::before {
         content: '';
-        background-color: #000000;
+        background-color: var(--black);
         opacity: 0.4;
         position: absolute;
         left: 0;
@@ -323,7 +323,7 @@ const VideoSection = styled.div`
     @media only screen and (max-width: 749px) {
       ::before {
         content: '';
-        background-color: #000000;
+        background-color: var(--black);
         opacity: 0.4;
         position: absolute;
         left: 0;
@@ -348,7 +348,7 @@ const VIdeoWrap = styled.div`
   padding-bottom: 100px;
   h2 {
     ${Heading3};
-    color: ${title};
+    color: var(--title);
     margin: 0;
   }
   @media only screen and (max-width: 769px) {
@@ -427,7 +427,7 @@ const EmptySection = styled.div`
   flex-direction: column;
   p {
     ${Body5};
-    color: ${title};
+    color: var(--title);
     letter-spacing: 0.02em;
   }
   @media only screen and (max-width: 749px) {

@@ -38,12 +38,12 @@ export default function CaseStudiesPage({ details }) {
           {!isEmpty(details?.description) && <Para>{details?.description}</Para>}
           <HeroBtnBlock>
             <Button
-              bgColor={'#09AA6C'}
-              fontColor={'#FFFFFF'}
-              borderColor={'#09AA6C'}
+              bgColor={'--primary'}
+              fontColor={'--white'}
+              borderColor={'--primary'}
               text={'Start trial'}
               href={COPILOT_ONBORADING_LINK}
-              hoverColor={'rgba(0, 0, 0, 0.5)'}
+              hoverColor={'--hover-color'}
             />
           </HeroBtnBlock>
         </Container>

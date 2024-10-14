@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 import css from 'styled-jsx/css';
 import { Body4, ButtonText, HeaderFont, MbBody3, MobileH3, Quote } from '../../../styles/styles';
-import { body, title } from '../../../styles/color';
 
 const QuoteSection = styled.div`
   padding: 50px 0 100px;
@@ -33,9 +32,9 @@ const QuoteSection = styled.div`
 
 const Mainss = styled.div`
   display: flex;
-  border: 1px solid #000000;
+  border: 1px solid var(--black);
   border-radius: 4px;
-  background: #ffffff;
+  background: var(--white);
   overflow: hidden;
   @media only screen and (max-width: 991px) {
     overflow: hidden;
@@ -50,14 +49,14 @@ const QuoteTxt = styled.div`
   p {
     ${Quote};
     margin: 0px 0 30px 0;
-    color: ${title};
+    color: var(--title);
   }
   @media only screen and (max-width: 749px) {
     padding: 30px;
     p {
       ${MobileH3};
       margin: 0px 0 30px 0;
-      color: ${title};
+      color: var(--title);
     }
   }
 `;
@@ -66,30 +65,30 @@ const QuoteSubTxt = styled.div`
     display: block;
     margin: 0 0 5px 0;
     ${ButtonText};
-    color: ${title};
+    color: var(--title);
   }
   p {
     margin: 0;
     ${Body4};
-    color: ${body};
+    color: var(--body);
   }
   @media only screen and (max-width: 749px) {
     span {
       margin: 0 0 0 0;
       ${HeaderFont};
-      color: ${title};
+      color: var(--title);
     }
     p {
       margin: 0;
       ${MbBody3};
-      color: ${body};
+      color: var(--body);
     }
   }
 `;
 const ImageWrap = styled.div`
   position: relative;
   left: -1px;
-  border-right: 1px solid #000;
+  border-right: 1px solid var(--black);
   margin-top: -1px;
   img {
     height: 100%;

@@ -90,12 +90,12 @@ export default function GlossarySearch({ data: glossaryList }) {
       <Container>
         <GlossarySearchSection>
           <Search>
-            <form onSubmit={onSubmitSeachQuery}>
-              <InputWrap>
+            <>
+              <InputWrap onSubmit={onSubmitSeachQuery}>
                 <Image src='/images/searchicon.svg' alt='search-icon' width={20} height={20} />
                 <Input placeholder='Search the glossary...' type='search' value={query} onChange={onSeachQueryChange} />
               </InputWrap>
-            </form>
+            </>
           </Search>
           <SearchDataSection>{renderListview}</SearchDataSection>
         </GlossarySearchSection>

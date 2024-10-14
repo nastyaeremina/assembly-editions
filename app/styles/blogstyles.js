@@ -20,10 +20,8 @@ import {
   MobileH4
 } from './styles';
 
-import { greenlight, body, lightgray, title, primary, black } from './../styles/color';
-
 const FirstBlog = styled.div`
-  border: 1px solid #01011d;
+  border: 1px solid var(--dark-purple);
   border-radius: 4px;
   max-width: 882px;
   width: 100%;
@@ -45,7 +43,7 @@ const FirstBlog = styled.div`
   }
   :hover {
     h2 {
-      color: ${title};
+      color: var(--title);
     }
     .image {
       transform: scale(1.1);
@@ -69,7 +67,7 @@ const Text = styled.div`
   }
   h2 {
     ${Body4}
-    color: ${primary};
+    color: var(--primary);
     margin-bottom: 4px;
     margin-top: 0px;
     @media only screen and (max-width: 749px) {
@@ -86,7 +84,7 @@ const Textarea = styled.div`
   }
   h2 {
     ${Body4}
-    color: ${primary};
+    color: var(--primary);
     margin-bottom: 4px;
     margin-top: 0px;
     @media only screen and (max-width: 749px) {
@@ -98,7 +96,7 @@ const Textarea = styled.div`
 const PostDetail = styled.div`
   ${FooterText}
   display:flex;
-  color: ${lightgray};
+  color: var(--medium-gray);
   gap: 8px;
   align-items: center;
   li {
@@ -112,7 +110,7 @@ const Par = styled.div`
   -webkit-line-clamp: 4;
   ${Body5}
   margin-top:16px;
-  color: ${body};
+  color: var(--body);
   @media only screen and (max-width: 749px) {
     ${MbBody5}
     margin-top:8px;
@@ -120,9 +118,9 @@ const Par = styled.div`
 `;
 
 const Last = styled.div`
-  border-top: 1px solid #01011d;
+  border-top: 1px solid var(--dark-purple);
   border-radius: 0px 0px 4px 4px;
-  background-color: ${greenlight};
+  background-color: var(--light-green);
   padding: 8px 25px;
   @media only screen and (max-width: 749px) {
     padding: 8px 16px;
@@ -141,14 +139,14 @@ const Backlink = styled.div`
   p {
     ${LinkTxt};
     margin: 0px;
-    color: ${lightgray};
+    color: var(--medium-gray);
   }
   :hover {
     p {
-      color: ${title};
+      color: var(--title);
     }
     svg path {
-      stroke: ${title};
+      stroke: var(--title);
     }
   }
   @media only screen and (max-width: 769px) {
@@ -161,7 +159,7 @@ const Backlink = styled.div`
 
 const Table = styled.div`
   width: 100%;
-  border: 1px solid #000000;
+  border: 1px solid var(--black);
   border-radius: 4px;
   padding: 30px 24px;
   @media only screen and (max-width: 450px) {
@@ -174,7 +172,7 @@ const Table = styled.div`
     ${Body4}
     padding-left:0px;
     list-style-position: inside;
-    color: ${primary};
+    color: var(--primary);
     @media only screen and (max-width: 450px) {
       margin-top: 4px;
       margin-bottom: 0px;
@@ -184,22 +182,22 @@ const Table = styled.div`
       margin: 12px 0 0;
       a {
         display: contents;
-        color: ${primary};
+        color: var(--primary);
         :hover {
-          color: ${title};
+          color: var(--title);
         }
       }
     }
     li:hover {
       cursor: pointer;
-      color: ${title};
+      color: var(--title);
     }
   }
 `;
 
 const TableHeading = styled.div`
   ${Body1}
-  color: ${title};
+  color: var(--title);
   display: flex;
   gap: 8px;
   align-items: center;
@@ -217,7 +215,7 @@ const TableHeading = styled.div`
     }
   }
   span {
-    color: ${primary};
+    color: var(--primary);
   }
 `;
 const Details = styled.div`
@@ -229,7 +227,7 @@ const Content = styled.div`
   width: 100%;
   font-feature-settings: normal;
   ${Body3}
-  color: ${body};
+  color: var(--body);
   @media only screen and (max-width: 450px) {
     ${MbBody3}
   }
@@ -241,11 +239,11 @@ const Content = styled.div`
     img {
       width: 100%;
       border-radius: 8px;
-      border: 1px solid #dfe1f4;
+      border: 1px solid var(--blog-img-border);
     }
     iframe {
       border-radius: 0.375rem;
-      border: 1px solid black;
+      border: 1px solid var(--black);
       width: 100%;
       height: 496px;
       @media only screen and (max-width: 450px) {
@@ -268,12 +266,12 @@ const Content = styled.div`
   a {
     display: inline-block;
     ${Body3}
-    color: ${primary};
+    color: var(--primary);
     @media only screen and (max-width: 450px) {
       ${MbBody3}
     }
     :hover {
-      color: ${title};
+      color: var(--title);
     }
   }
   ul {
@@ -283,26 +281,26 @@ const Content = styled.div`
       margin-top: 8px;
       strong {
         font-weight: 500;
-        color: ${title};
+        color: var(--title);
       }
       a {
         display: inline-block;
         ${Body3}
-        color: ${primary};
+        color: var(--primary);
         @media only screen and (max-width: 450px) {
           ${MbBody3}
         }
         :hover {
-          color: ${title};
+          color: var(--title);
         }
       }
     }
     li::marker {
-      color: ${body};
+      color: var(--body);
     }
     span {
       font-weight: 500;
-      color: ${title};
+      color: var(--title);
     }
   }
   h2 {
@@ -311,7 +309,7 @@ const Content = styled.div`
     margin-top: -4rem;
     padding-top: 6rem;
     margin-bottom: 8px;
-    color: #131313;
+    color: var(--title);
     font-weight: 400;
     strong {
       font-weight: 400;
@@ -341,7 +339,7 @@ const Content = styled.div`
     margin-bottom: 8px;
     margin-top: 2rem;
     font-weight: 400;
-    color: #131313;
+    color: var(--title);
     strong {
       font-weight: 400;
     }
@@ -372,7 +370,7 @@ const Content = styled.div`
     font-weight: 400;
     line-height: 31px;
     letter-spacing: 0.02em;
-    color: #131313;
+    color: var(--title);
     strong {
       font-weight: 400;
     }
@@ -381,7 +379,7 @@ const Content = styled.div`
     }
   }
   p {
-    color: ${body};
+    color: var(--body);
     margin-bottom: 1rem;
     margin-top: 1rem;
     ${Body3}
@@ -391,7 +389,7 @@ const Content = styled.div`
     }
     strong {
       font-weight: 500;
-      color: ${title};
+      color: var(--title);
     }
   }
   p + figure {
@@ -403,26 +401,26 @@ const Content = styled.div`
       margin-top: 8px;
       strong {
         font-weight: 500;
-        color: ${title};
+        color: var(--title);
       }
       a {
         display: inline-block;
         ${Body3}
-        color: ${primary};
+        color: var(--primary);
         @media only screen and (max-width: 450px) {
           ${MbBody3}
         }
         :hover {
-          color: ${title};
+          color: var(--title);
         }
       }
     }
     li::marker {
-      color: ${body};
+      color: var(--body);
     }
     span {
       font-weight: 500;
-      color: ${title};
+      color: var(--title);
     }
   }
   .code-block {
@@ -432,11 +430,11 @@ const Content = styled.div`
   .code-block > div {
     padding: 0px;
     border-radius: 4px;
-    border: 1px solid #f3f3f2;
-    background: #f8f9f9;
+    border: 1px solid var(--neutral);
+    background: var(--other-bg-color);
   }
   .code-block > div > span {
-    background: #f8f9f9 !important;
+    background: var(--other-bg-color) !important;
     padding: 10px 12px;
   }
   .code-block > div > button {
@@ -460,9 +458,9 @@ const Content = styled.div`
     cursor: pointer;
   }
   pre {
-    background-color: #f8f9f9;
+    background-color: var(--other-bg-color);
     font-family: monospace;
-    color: #4c4c4c;
+    color: var(--body);
     padding: 15px !important;
     font-family: 'Azeret Mono', monospace !important;
     font-size: 15px !important;
@@ -470,7 +468,7 @@ const Content = styled.div`
     line-height: 20px !important;
   }
   code {
-    color: #4c4c4c;
+    color: var(--body);
     font-family: 'Azeret Mono', monospace !important;
   }
   p {
@@ -494,7 +492,7 @@ const Content = styled.div`
 
 const Textcontent = styled.div`
   ${Body4}
-  color: ${body};
+  color: var(--body);
   @media only screen and (max-width: 450px) {
     ${MbBody4}
   }
@@ -520,11 +518,11 @@ const Icon = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: #00160e;
+    background-color: var(--dark-green);
     border-radius: 50%;
     :hover {
       cursor: pointer;
-      background-color: #09aa6c;
+      background-color: var(--primary);
     }
     @media only screen and (max-width: 450px) {
       width: 30px;
@@ -548,7 +546,7 @@ const Leftsec = styled.div`
     ${Heading4}
     margin-top:0px;
     margin-bottom: 12px;
-    color: ${black};
+    color: var(--black);
     @media only screen and (max-width: 450px) {
       ${MobileH4}
     }
@@ -557,7 +555,7 @@ const Leftsec = styled.div`
     ${Body5}
     margin-bottom:40px;
     margin-top: 30px;
-    color: ${body};
+    color: var(--body);
     @media only screen and (max-width: 450px) {
       margin-bottom: 0px;
       ${Body5}

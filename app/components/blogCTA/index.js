@@ -4,7 +4,6 @@ import blogCTA from '../../../public/images/blogcta.svg';
 import blogCTASubmit from '../../../public/images/blogctasubmit.svg';
 import Button from '../button/button';
 import Validation from '../Validation/validation';
-import { primary, whiteColor } from '../../styles/color';
 import { BlogCTACard, BlogLeftCTA, BlogRightCTA, BlogSubscribeForm, Form, Input } from './styles';
 
 export default function BlogCTA() {
@@ -75,11 +74,11 @@ export default function BlogCTA() {
             </BlogSubscribeForm>
             <Button
               type='submit'
-              bgColor={primary}
-              fontColor={whiteColor}
-              borderColor={primary}
+              bgColor={'--primary'}
+              fontColor={'--white'}
+              borderColor={'--primary'}
               text='Subscribe'
-              hoverColor='rgba(255, 255, 255,0.8)'
+              hoverColor='--secondary-hover-color'
               isLoading={loading}
             />
           </Form>

@@ -12,13 +12,10 @@ import {
   YearlyButton,
   MonthlyButton,
   WrapSlide,
-  PricingMenu,
   PlanButton,
   PriceTable,
   PricingButton
 } from '../../../styles/pricingstyles';
-import CTA from '../../cta/cta';
-import FAQ from '../../faq/faq';
 import Button from '../../button/button';
 import { COPILOT_ONBORADING_LINK } from '../../../constants/externalLinks';
 import PricingCardSection from '../../pricingcard/pricingCardSection';
@@ -174,7 +171,7 @@ export default function PricingPage({ details }) {
           {!isEmpty(details?.header) && <h1>{details?.header}</h1>}
           {!isEmpty(details?.body) && <p>{details?.body}</p>}
           <PricingButton>
-            <Button text={'Try for free'} hoverColor={'rgba(255, 255, 255, 0.8)'} href={COPILOT_ONBORADING_LINK} />
+            <Button text={'Try for free'} hoverColor={'--secondary-hover-color'} href={COPILOT_ONBORADING_LINK} />
           </PricingButton>
         </Container>
       </HeroSection>
@@ -191,7 +188,7 @@ export default function PricingPage({ details }) {
                 <button>Pay monthly</button>
               </MonthlyButton>
             </PriceButton>
-            <PricingMenu>
+            <>
               {!isEmpty(details?.plansCollection?.items) && (
                 <PricingCardSection
                   data={details?.plansCollection?.items}
@@ -204,13 +201,13 @@ export default function PricingPage({ details }) {
                   isLink={false}
                   onClick={toggleShowFeature}
                   bgColor={'transparent'}
-                  fontColor={'#000000'}
-                  borderColor={'#000000'}
+                  fontColor={'--black'}
+                  borderColor={'--black'}
                   text={isShowFeature ? 'Show plan details' : 'Hide plan details'}
-                  hoverColor={'rgba(0, 0, 0, 0.5)'}
+                  hoverColor={'--hover-color'}
                 />
               </PlanButton>
-            </PricingMenu>
+            </>
           </PriceMenu>
           {!isShowFeature && !isEmpty(planFeatures) && (
             <PriceTable is4Card={details?.plansCollection?.total === 4}>

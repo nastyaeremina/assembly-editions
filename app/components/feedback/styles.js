@@ -1,11 +1,10 @@
 import styled from 'styled-components';
 import { MbBody5, MbPrimaryBtn } from '../../styles/styles';
-import { body, title } from '../../styles/color';
 
 const Feedbackcard = styled.div`
   width: 345px;
   padding: 20px;
-  border: 1px solid #ccccd0;
+  border: 1px solid var(--border);
   border-radius: 4px;
 `;
 
@@ -32,13 +31,13 @@ const PersonName = styled.h2`
   ${MbPrimaryBtn}
   letter-spacing: 0.02em;
   margin: 0;
-  color: ${title};
+  color: var(--title);
 `;
 const Caption = styled.p`
   ${MbBody5}
   letter-spacing: 0.02em;
   margin: 0;
-  color: ${body};
+  color: var(--body);
 `;
 const CardDetail = styled.div`
   margin: 0;
@@ -46,13 +45,13 @@ const CardDetail = styled.div`
     ${MbPrimaryBtn}
     letter-spacing: 0.02em;
     margin: 0;
-    color: ${title};
+    color: var(--title);
   }
   p {
     ${MbBody5}
     letter-spacing: 0.02em;
     margin: 4px 0 0;
-    color: ${title};
+    color: var(--title);
   }
 `;
 const Customer = styled.div`

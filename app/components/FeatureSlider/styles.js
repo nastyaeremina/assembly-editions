@@ -1,7 +1,6 @@
 import styled, { css } from 'styled-components';
 import Link from 'next/link';
 import { Body2, Body4, Body5, MbBody2 } from '../../styles/styles';
-import { body, title } from '../../styles/color';
 
 const SliderInner = styled(Link)`
   width: 423px;
@@ -11,19 +10,19 @@ const SliderInner = styled(Link)`
   cursor: pointer;
   position: relative;
   z-index: 99;
-  background-color: #fff;
+  background-color: var(--white);
   .appsslider-card {
-    border: 1px solid #00160e;
+    border: 1px solid var(--dark-green);
     border-radius: 4px;
     position: relative;
     height: 100%;
   }
   :hover {
-    border: 1px solid #00160e;
+    border: 1px solid var(--dark-green);
     border-radius: 5px;
-    box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.1);
+    box-shadow: 0px 4px 16px var(--black-shadow-10);
     .appsslider-card {
-      border: 1px solid #00160e;
+      border: 1px solid var(--dark-green);
       border-radius: 4px;
     }
   }
@@ -35,11 +34,11 @@ const SliderSub = styled.div`
   padding: 20px;
   display: flex;
   flex-direction: column;
-  border-bottom: 1px solid #00160e;
+  border-bottom: 1px solid var(--dark-green);
   gap: 4px;
   h4 {
     ${Body2}
-    color: ${title};
+    color: var(--title);
     margin: 0;
     display: -webkit-box;
     -webkit-box-orient: vertical;
@@ -57,7 +56,7 @@ const SliderSub = styled.div`
   }
   p {
     ${Body4}
-    color: ${body};
+    color: var(--body);
     margin: 0;
     display: -webkit-box;
     -webkit-box-orient: vertical;
@@ -71,10 +70,10 @@ const SliderSub = styled.div`
   }
 `;
 const SliderLine = styled.div`
-  background: linear-gradient(90deg, rgba(0, 0, 0, 1) 50%, transparent 0),
-    linear-gradient(90deg, rgba(0, 0, 0, 1) 50%, transparent 0),
-    linear-gradient(0deg, rgba(0, 0, 0, 1) 50%, transparent 0),
-    linear-gradient(0deg, rgba(0, 0, 0, 1) 50%, transparent 0);
+  background: linear-gradient(90deg, var(--black-shadow-100) 50%, transparent 0),
+    linear-gradient(90deg, var(--black-shadow-100) 50%, transparent 0),
+    linear-gradient(0deg, var(--black-shadow-100) 50%, transparent 0),
+    linear-gradient(0deg, var(--black-shadow-100) 50%, transparent 0);
   background-position: 0 0, 200px 100px, 0 100px, 200px 0;
   background-repeat: repeat-x, repeat-x, repeat-y, repeat-y;
   background-size: 10px 4px, 10px 10px, 10px 14px, 10px 14px;
@@ -92,7 +91,7 @@ const SliderIcon = styled.div`
   gap: 10px;
   padding: 11px 18px;
   .logo {
-    border: 0.375px solid #00160e;
+    border: 0.375px solid var(--dark-green);
     border-radius: 50%;
     @media only screen and (max-width: 449px) {
       width: 35px;

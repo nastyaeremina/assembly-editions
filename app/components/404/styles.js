@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { Body3, Heading3 } from '../../styles/styles';
-import { body, title } from '../../styles/color';
+
 const MainHeroSection = styled.div``;
 const ErrorMain = styled.div`
   display: flex;
@@ -12,10 +12,10 @@ const ErrorMain = styled.div`
   h3 {
     ${Heading3};
     margin: 0 0 16px 0;
-    color: ${title};
+    color: var(--title);
   }
   p {
-    color: ${body};
+    color: var(--body);
     ${Body3};
     margin: 0 0 24px 0;
   }

@@ -11,17 +11,16 @@ import {
   MobileH3,
   MobileH4
 } from '../../styles/styles';
-import { body, title } from '../../styles/color';
 
 const PageTitle = styled.h2`
   ${Heading3};
-  color: ${title};
+  color: var(--title);
   margin: 0;
 `;
 const Caption = styled.div`
   p {
     ${Body3};
-    color: ${body};
+    color: var(--body);
     margin: 0;
   }
   @media only screen and (max-width: 449px) {
@@ -48,7 +47,7 @@ const HeroSection = styled.div`
   h1 {
     font-family: 'Bagoss';
     ${Heading3};
-    color: ${title};
+    color: var(--title);
     margin: 0;
   }
   .button-section {
@@ -72,27 +71,27 @@ const HeroCaption = styled.div`
   margin: 0;
   h1 {
     ${Heading2};
-    color: ${title};
+    color: var(--title);
     margin: 0 0 20px 0;
   }
   h2 {
     ${Heading3};
-    color: ${title};
+    color: var(--title);
     margin: 0 0 20px 0;
   }
   h3 {
     ${Heading4};
-    color: ${title};
+    color: var(--title);
     margin: 0 0 20px 0;
   }
   h4 {
     ${Heading5};
-    color: ${title};
+    color: var(--title);
     margin: 0 0 20px 0;
   }
   p {
     ${Body2};
-    color: ${body};
+    color: var(--body);
     margin: 0;
   }
   @media only screen and (max-width: 768px) {
@@ -129,7 +128,7 @@ const SubHeroSection = styled.div`
   h1 {
     font-family: 'Bagoss';
     ${Heading3};
-    color: ${title};
+    color: var(--title);
     margin: 0;
   }
   .button-section {
@@ -158,27 +157,27 @@ const SubHeroCaption = styled.div`
   margin: 0;
   h1 {
     ${Heading2};
-    color: ${title};
+    color: var(--title);
     margin: 0 0 20px 0;
   }
   h2 {
     ${Heading3};
-    color: ${title};
+    color: var(--title);
     margin: 0 0 20px 0;
   }
   h3 {
     ${Heading4};
-    color: ${title};
+    color: var(--title);
     margin: 0 0 20px 0;
   }
   h4 {
     ${Heading5};
-    color: ${title};
+    color: var(--title);
     margin: 0 0 20px 0;
   }
   p {
     ${Body3};
-    color: ${body};
+    color: var(--body);
     margin: 0;
   }
   ${(props) =>

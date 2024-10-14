@@ -2,10 +2,10 @@ import Link from 'next/link';
 import styled, { css } from 'styled-components';
 
 const SliderLine = styled.div`
-  background: linear-gradient(90deg, rgba(0, 0, 0, 1) 50%, transparent 0),
-    linear-gradient(90deg, rgba(0, 0, 0, 1) 50%, transparent 0),
-    linear-gradient(0deg, rgba(0, 0, 0, 1) 50%, transparent 0),
-    linear-gradient(0deg, rgba(0, 0, 0, 1) 50%, transparent 0);
+  background: linear-gradient(90deg, var(--black-shadow-100) 50%, transparent 0),
+    linear-gradient(90deg, var(--black-shadow-100) 50%, transparent 0),
+    linear-gradient(0deg, var(--black-shadow-100) 50%, transparent 0),
+    linear-gradient(0deg, var(--black-shadow-100) 50%, transparent 0);
   background-position: 0 0, 200px 100px, 0 100px, 200px 0;
   background-repeat: repeat-x, repeat-x, repeat-y, repeat-y;
   background-size: 10px 4px, 10px 10px, 10px 14px, 10px 14px;
@@ -79,10 +79,10 @@ const SliderInner = styled(Link)`
   cursor: pointer;
   position: relative;
   z-index: 99;
-  background-color: #fff;
+  background-color: var(--white);
   height: 100%;
   .appsslider-card {
-    border: 1px solid #00160e;
+    border: 1px solid var(--dark-green);
     border-radius: 4px;
     position: relative;
     height: 100%;
@@ -90,11 +90,11 @@ const SliderInner = styled(Link)`
   :hover {
     -webkit-transition: all 0.2ms ease-in-out;
     transition: all 0.2ms ease-in-out;
-    border: 1px solid #00160e;
-    box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.1);
+    border: 1px solid var(--dark-green);
+    box-shadow: 0px 4px 16px var(--black-shadow-10);
     border-radius: 5px;
     .appsslider-card {
-      border: 1px solid #00160e;
+      border: 1px solid var(--dark-green);
       border-radius: 4px;
     }
   }
@@ -106,23 +106,23 @@ const SliderInner = styled(Link)`
 const SliderInnerBox = styled.div`
   width: 80px;
   height: 80px;
-  border: 1px solid #e3ffee;
+  border: 1px solid var(--light-green);
   border-radius: 8px;
   /* cursor: pointer; */
   position: relative;
   z-index: 99;
-  background-color: #00160e;
+  background-color: var(--dark-green);
   padding: 17px;
   /* padding: 1px; */
   /* :hover {
-    border: 2px solid #00160e;
+    border: 2px solid ;
     padding: 0;
-    box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.1);
+    box-shadow: 0px 4px 16px var(--black-shadow-10);
   } */
   .appshero-logo {
     width: 46px;
     height: 46px;
-    background: #e3ffee;
+    background: var(--light-green);
     border-radius: 50%;
     @media only screen and (max-width: 449px) {
       width: 32px;
@@ -185,8 +185,10 @@ const AppsAnimated = styled.div`
 `;
 
 const AppSliderLine = styled.div`
-  background: linear-gradient(90deg, #e3ffee 50%, transparent 0), linear-gradient(90deg, #e3ffee 50%, transparent 0),
-    linear-gradient(0deg, #e3ffee 50%, transparent 0), linear-gradient(0deg, #e3ffee 50%, transparent 0);
+  background: linear-gradient(90deg, var(--light-green) 50%, transparent 0),
+    linear-gradient(90deg, var(--light-green) 50%, transparent 0),
+    linear-gradient(0deg, var(--light-green) 50%, transparent 0),
+    linear-gradient(0deg, var(--light-green) 50%, transparent 0);
   background-position: 0 0, 200px 100px, 0 100px, 200px 0;
   background-repeat: repeat-x, repeat-x, repeat-y, repeat-y;
   background-size: 10px 4px, 10px 10px, 10px 14px, 10px 14px;

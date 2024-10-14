@@ -1,7 +1,6 @@
 import styled, { css } from 'styled-components';
 import Image from 'next/image';
 import { Body2, Body6, Heading2, MbBody2, MobileH2, MobileH3 } from '../../styles/styles';
-import { black, body, border, greendark, title } from '../../styles/color';
 
 const TemplateHeroSection = styled.div`
   overflow: hidden;
@@ -24,7 +23,7 @@ const BlockLeft = styled.div`
   max-width: 612px;
   h1 {
     margin: 0px 0 16px 0;
-    color: ${title};
+    color: var(--title);
     ${Heading2}
   }
   @media only screen and (max-width: 1024px) {
@@ -63,7 +62,7 @@ const TabView = styled.div`
   width: 40px;
   height: 40px;
   border-radius: 50%;
-  border: 1px solid ${border};
+  border: 1px solid var(--border);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -72,13 +71,13 @@ const TabView = styled.div`
   cursor: pointer;
   span {
     ${Body6};
-    color: ${border};
+    color: var(--border);
   }
 `;
 
 const BLockImg = styled.div`
   position: relative;
-  border: 1px solid ${greendark};
+  border: 1px solid var(--dark-green);
 
   border-radius: 4px;
   cursor: pointer;
@@ -92,7 +91,7 @@ const BLockImg = styled.div`
   ::after {
     content: '';
     position: absolute;
-    border-top: 1px solid ${greendark};
+    border-top: 1px solid var(--dark-green);
     max-width: 100vw;
     width: 100vw;
     top: 50%;
@@ -138,16 +137,16 @@ const TabSection = styled.div`
   justify-content: flex-end;
   gap: 10px;
   .activetab {
-    border: 1px solid ${black};
+    border: 1px solid var(--black);
     span {
-      color: ${black};
+      color: var(--black);
     }
   }
 `;
 
 const HeroBody = styled.div`
   p {
-    color: ${body};
+    color: var(--body);
     ${Body2}
     margin: 0 0 32px 0;
   }

@@ -2,63 +2,6 @@ export const theme = {
   fontfamily: {
     Bagoss: 'Bagoss',
     Everett: 'Everett'
-  },
-  colors: {
-    primary: '#09AA6C',
-    title: '#131313',
-    body: '#4C4C4C',
-    lightgray: '#757575',
-    darkgray: '#5B5B5B',
-    black: '#000000',
-    whiteColor: '#FFFFFF',
-    border: '#CCCCD0',
-    neutral: '#F3F3F2',
-    darkPrimary: '#2e69ce',
-    textColor: '#424242',
-    lightDark: '#333333',
-    greendark: '#00160E',
-    greenmiddark: '#003F27',
-    greenmidlight: '#7DDAA0',
-    greenlight: '#E3FFEE',
-    blueprimary: '#00AFB9',
-    bluedark: '#01292C',
-    bluemiddark: '#01292C',
-    bluemidlight: '#7ADCE1',
-    bluelight: '#E0FBFD',
-    purpleprimary: '#989AF2',
-    purpledark: '#01011D',
-    purplemiddark: '#3D3FBE',
-    purplemidlight: '#B6B6EC',
-    purplelight: '#EFEEFF',
-    orangeprimary: '#FD8C2E',
-    orangedark: '#1C0C00',
-    orangemiddark: '#CF650D',
-    orangemidlight: '#FFA55B',
-    orangelight: '#FFEDDE',
-    yellow: '#F3DA1A',
-    yellowdark: '#171500',
-    yellowmiddark: '#958602',
-    yellowmidlight: '#F4E77E',
-    yellowlight: '#FDFBEC',
-    brown: '#D7B79E',
-    browndark: '#120800',
-    brownmiddark: '#85664D',
-    brownmidlight: '#F4D8C4',
-    brownlight: '#FFF7F0',
-    magenta: '#F35B80',
-    magentadark: '#27000A',
-    magentamiddark: '#B8294B',
-    magentamidlight: '#FF96AF',
-    magentalight: '#FFEFF3',
-    bordercolor: '#BEBEBF',
-    footercolor: '#F3F3F2',
-    caption: '#6E847C',
-    bodycolor: '#4C4C4C',
-    background: '#F8F8F8',
-    bgpages: '#FDFDFB',
-    hover: '#FF492C',
-    bgcolor: '#FFFFFD',
-    subtitle: '#3D3D3D'
   }
 };
 
@@ -76,45 +19,45 @@ export const HEADER_LIST = {
 
 export const MODULE_COLOR_LIST = {
   Automation: {
-    bgColor: theme.colors.greendark,
-    fontColor: theme.colors.greenlight,
+    bgColor: '--dark-green',
+    fontColor: '--light-green',
     // borderColor: theme.colors.orangemidlight,
-    buttonBgColor: theme.colors.greendark,
-    buttonFontColor: theme.colors.greenlight
+    buttonBgColor: '--dark-green',
+    buttonFontColor: '--light-green'
   },
   Productdemo: {
-    bgColor: theme.colors.whiteColor,
-    fontColor: theme.colors.title,
-    borderColor: theme.colors.primary,
-    buttonBgColor: theme.colors.primary,
-    buttonFontColor: theme.colors.whiteColor
+    bgColor: '--white',
+    fontColor: '--title',
+    borderColor: '--primary',
+    buttonBgColor: '--primary',
+    buttonFontColor: '--white'
   },
   Enterprice: {
-    bgColor: 'rgba(0, 22, 14, 0.8)',
-    borderBottomColor: '#003F27',
-    fontColor: '#E3FFEE',
-    buttonColor: '#003F27',
-    primaryColor: '#09AA6C',
-    lineColor: '#E3FFEE',
-    lightColor: '#E3FFEE'
+    bgColor: '--dark-green',
+    borderBottomColor: '--mid-dark-green',
+    fontColor: '--light-green',
+    buttonColor: '--mid-dark-green',
+    primaryColor: '--primary',
+    lineColor: '--light-green',
+    lightColor: '--light-green'
   }
 };
 
 export const FEATURE_THEME_LIST = {
   Brown: {
     colorList: {
-      bgColor: theme.colors.browndark,
-      borderBottomColor: '#85664D',
-      fontColor: '#F3F3F2',
-      buttonColor: '#D7B79E',
-      primaryColor: '#D7B79E',
-      lineColor: '#FFF6F0',
-      lightColor: '#FFF7F0',
-      borderColor: theme.colors.brownmidlight,
-      buttonBgColor: theme.colors.brown,
-      buttonFontColor: theme.colors.whiteColor,
-      dark: theme.colors.browndark,
-      light: theme.colors.brownlight
+      bgColor: '--dark-brown',
+      borderBottomColor: '--mid-dark-brown',
+      fontColor: '--footer',
+      buttonColor: '--primary-brown',
+      primaryColor: '--primary-brown',
+      lineColor: '--light-brown',
+      lightColor: '--light-brown',
+      borderColor: '--mid-light-brown',
+      buttonBgColor: '--primary-brown',
+      buttonFontColor: '--white',
+      dark: '--dark-brown',
+      light: '--light-brown'
     },
     imageList: {
       fullScreen: '/images/message_gradient.svg',
@@ -124,18 +67,18 @@ export const FEATURE_THEME_LIST = {
   },
   Blue: {
     colorList: {
-      bgColor: theme.colors.bluedark,
-      borderBottomColor: '#03888F',
-      fontColor: '#F3F3F2',
-      buttonColor: '#00AFB9',
-      primaryColor: '#00AFB9',
-      lineColor: '#E0FBFD',
-      lightColor: '#E0FBFD',
-      borderColor: theme.colors.bluemidlight,
-      buttonBgColor: theme.colors.blueprimary,
-      buttonFontColor: theme.colors.whiteColor,
-      dark: theme.colors.bluedark,
-      light: theme.colors.bluelight
+      bgColor: '--dark-blue',
+      borderBottomColor: '--mid-dark-blue',
+      fontColor: '--footer',
+      buttonColor: '--primary-blue',
+      primaryColor: '--primary-blue',
+      lineColor: '--light-blue',
+      lightColor: '--light-blue',
+      borderColor: '--mid-light-blue',
+      buttonBgColor: '--primary-blue',
+      buttonFontColor: '--white',
+      dark: '--dark-blue',
+      light: '--light-blue'
     },
     imageList: {
       fullScreen: '/images/billing_gradient.svg',
@@ -145,18 +88,18 @@ export const FEATURE_THEME_LIST = {
   },
   Purple: {
     colorList: {
-      bgColor: theme.colors.purpledark,
-      borderBottomColor: '#3D3FBE',
-      fontColor: '#F3F3F2',
-      buttonColor: '#989AF2',
-      primaryColor: '#989AF2',
-      lineColor: '#EFEEFF',
-      lightColor: '#EFEEFF',
-      borderColor: theme.colors.purplemidlight,
-      buttonBgColor: theme.colors.purpleprimary,
-      buttonFontColor: theme.colors.whiteColor,
-      dark: theme.colors.purpledark,
-      light: theme.colors.purplelight
+      bgColor: '--dark-purple',
+      borderBottomColor: '--mid-dark-purple',
+      fontColor: '--footer',
+      buttonColor: '--primary-purple',
+      primaryColor: '--primary-purple',
+      lineColor: '--light-purple',
+      lightColor: '--light-purple',
+      borderColor: '--mid-light-purple',
+      buttonBgColor: '--primary-purple',
+      buttonFontColor: '--white',
+      dark: '--dark-purple',
+      light: '--light-purple'
     },
     imageList: {
       fullScreen: '/images/files_gradient.svg',
@@ -166,19 +109,19 @@ export const FEATURE_THEME_LIST = {
   },
   Yellow: {
     colorList: {
-      bgColor: theme.colors.yellowdark,
-      borderBottomColor: '#958602',
-      fontColor: '#F3F3F2',
-      buttonColor: '#F3DA1A',
-      primaryColor: '#F3DA1A',
-      lineColor: '#FDFBEC',
-      lightColor: '#FDFBEC',
-      buttontextColor: theme.colors.yellowdark,
-      borderColor: theme.colors.yellowmidlight,
-      buttonBgColor: theme.colors.yellow,
-      buttonFontColor: theme.colors.yellowdark,
-      dark: theme.colors.yellowdark,
-      light: theme.colors.yellowlight
+      bgColor: '--dark-yellow',
+      borderBottomColor: '--mid-dark-yellow',
+      fontColor: '--footer',
+      buttonColor: '--primary-yellow',
+      primaryColor: '--primary-yellow',
+      lineColor: '--light-yellow',
+      lightColor: '--light-yellow',
+      buttontextColor: '--dark-yellow',
+      borderColor: '--mid-light-yellow',
+      buttonBgColor: '--primary-yellow',
+      buttonFontColor: '--dark-yellow',
+      dark: '--dark-yellow',
+      light: '--light-yellow'
     },
     imageList: {
       fullScreen: '/images/forms_gradient.svg',
@@ -188,18 +131,18 @@ export const FEATURE_THEME_LIST = {
   },
   Orange: {
     colorList: {
-      bgColor: theme.colors.orangedark,
-      borderBottomColor: '#CF650D',
-      fontColor: '#F3F3F2',
-      buttonColor: '#FD8C2E',
-      primaryColor: '#FD8C2E',
-      lineColor: '#FFEDDE',
-      lightColor: '#FFEDDE',
-      borderColor: theme.colors.orangemidlight,
-      buttonBgColor: theme.colors.orangeprimary,
-      buttonFontColor: theme.colors.whiteColor,
-      dark: theme.colors.orangedark,
-      light: theme.colors.orangelight
+      bgColor: '--dark-orange',
+      borderBottomColor: '--mid-dark-orange',
+      fontColor: '--footer',
+      buttonColor: '--primary-orange',
+      primaryColor: '--primary-orange',
+      lineColor: '--light-orange',
+      lightColor: '--light-orange',
+      borderColor: '--mid-light-orange',
+      buttonBgColor: '--primary-orange',
+      buttonFontColor: '--white',
+      dark: '--dark-orange',
+      light: '--light-orange'
     },
     imageList: {
       fullScreen: '/images/helpdesk_gradient.svg',
@@ -209,18 +152,18 @@ export const FEATURE_THEME_LIST = {
   },
   Magenta: {
     colorList: {
-      bgColor: theme.colors.magentadark,
-      borderBottomColor: '#B8294B',
-      fontColor: '#F3F3F2',
-      buttonColor: '#F35B80',
-      primaryColor: '#F35B80',
-      lineColor: '#FFEFF3',
-      lightColor: '#FFEFF3',
-      borderColor: theme.colors.magentamidlight,
-      buttonBgColor: theme.colors.magenta,
-      buttonFontColor: theme.colors.whiteColor,
-      dark: theme.colors.magentadark,
-      light: theme.colors.magentalight
+      bgColor: '--dark-magenta',
+      borderBottomColor: '--mid-dark-magenta',
+      fontColor: '--footer',
+      buttonColor: '--primary-magenta',
+      primaryColor: '--primary-magenta',
+      lineColor: '--light-magenta',
+      lightColor: '--light-magenta',
+      borderColor: '--mid-light-magenta',
+      buttonBgColor: '--primary-magenta',
+      buttonFontColor: '--white',
+      dark: '--dark-magenta',
+      light: '--light-magenta'
     },
     imageList: {
       fullScreen: '/images/GradiantMagenta.svg',
@@ -230,110 +173,109 @@ export const FEATURE_THEME_LIST = {
   },
   Other: {
     colorList: {
-      bgColor: 'rgba(255, 255, 253, 0.8)',
-      borderBottomColor: '#CCCCD0',
-      fontColor: '#131313',
-      buttonColor: '#000000',
-      primaryColor: '#09AA6C',
-      lineColor: '#00160E'
+      borderBottomColor: '--border',
+      fontColor: '--title',
+      buttonColor: '--black',
+      primaryColor: '--primary',
+      lineColor: '--dark-green'
     },
     imageList: { fullScreen: '/images/casestudies_gradient.svg', responsive: '/images/casestudiesbg.svg' }
   },
   Enterprice: {
     colorList: {
-      bgColor: 'rgba(0, 22, 14, 0.8)',
-      borderBottomColor: '#003F27',
-      fontColor: '#E3FFEE',
-      buttonColor: '#003F27',
-      primaryColor: '#09AA6C',
-      lineColor: '#E3FFEE'
+      bgColor: '--dark-green',
+      borderBottomColor: '--mid-dark-green',
+      fontColor: '--light-green',
+      buttonColor: '--mid-dark-green',
+      primaryColor: '--primary',
+      lineColor: '--light-green'
     }
   }
 };
 
 export const NAVBAR_COLOR_LIST = [
   {
-    bgColor: 'rgba(255, 255, 253, 0.8)',
-    borderBottomColor: '#CCCCD0',
-    fontColor: '#131313',
-    buttonColor: '#000000',
-    primaryColor: '#09AA6C',
-    lineColor: '#00160E'
+    bgColor: '--white-shadow-80',
+    borderBottomColor: '--border',
+    fontColor: '--title',
+    buttonColor: '--black',
+    primaryColor: '--primary',
+    lineColor: '--dark-green'
   },
 
   {
-    bgColor: 'rgba(18, 8, 0, 0.8)',
-    borderBottomColor: '#85664D',
-    fontColor: '#F3F3F2',
-    buttonColor: '#D7B79E',
-    primaryColor: '#D7B79E',
-    lineColor: '#FFF6F0',
-    lightColor: '#FFF7F0'
+    bgColor: '--dark-brown',
+    borderBottomColor: '--mid-dark-brown',
+    fontColor: '--neutral',
+    buttonColor: '--primary-brown',
+    primaryColor: '--primary-brown',
+    lineColor: '--light-brown',
+    lightColor: '--light-brown'
   },
   {
-    bgColor: 'rgba(1, 1, 29, 0.8)',
-    borderBottomColor: '#3D3FBE',
-    fontColor: '#F3F3F2',
-    buttonColor: '#989AF2',
-    primaryColor: '#989AF2',
-    lineColor: '#EFEEFF',
-    lightColor: '#EFEEFF'
+    bgColor: '--dark-purple',
+    borderBottomColor: '--mid-dark-purple',
+    fontColor: '--neutral',
+    buttonColor: '--primary-purple',
+    primaryColor: '--primary-purple',
+    lineColor: '--light-purple',
+    lightColor: '--light-purple'
   },
   {
-    bgColor: 'rgba(1, 41, 44, 0.8)',
-    borderBottomColor: '#03888F',
-    fontColor: '#F3F3F2',
-    buttonColor: '#00AFB9',
-    primaryColor: '#00AFB9',
-    lineColor: '#E0FBFD',
-    lightColor: '#E0FBFD'
+    bgColor: '--dark-blue',
+    borderBottomColor: '--mid-dark-blue',
+    fontColor: '--neutral',
+    buttonColor: '--primary-blue',
+    primaryColor: '--primary-blue',
+    lineColor: '--light-blue',
+    lightColor: '--light-blue'
   },
   {
-    bgColor: 'rgba(23, 21, 0, 0.8)',
-    borderBottomColor: '#958602',
-    fontColor: '#F3F3F2',
-    buttonColor: '#F3DA1A',
-    primaryColor: '#F3DA1A',
-    lineColor: '#FDFBEC',
-    lightColor: '#FDFBEC',
-    buttontextColor: theme.colors.yellowdark
+    bgColor: '--dark-yellow',
+    borderBottomColor: '--mid-dark-yellow',
+    fontColor: '--footer',
+    buttonColor: '--primary-yellow',
+    primaryColor: '--primary-yellow',
+    lineColor: '--light-yellow',
+    lightColor: '--light-yellow',
+    buttontextColor: '--dark-yellow'
   },
   {
-    bgColor: 'rgba(28, 12, 0, 0.8)',
-    borderBottomColor: '#CF650D',
-    fontColor: '#F3F3F2',
-    buttonColor: '#FD8C2E',
-    primaryColor: '#FD8C2E',
-    lineColor: '#FFEDDE',
-    lightColor: '#FFEDDE'
+    bgColor: '--dark-orange',
+    borderBottomColor: '--mid-dark-orange',
+    fontColor: '--footer',
+    buttonColor: '--primary-orange',
+    primaryColor: '--primary-orange',
+    lineColor: '--light-orange',
+    lightColor: '--light-orange'
   },
   {
-    bgColor: 'rgba(39, 0, 10, 0.8)',
-    borderBottomColor: '#B8294B',
-    fontColor: '#F3F3F2',
-    buttonColor: '#F35B80',
-    primaryColor: '#F35B80',
-    lineColor: '#FFEFF3',
-    lightColor: '#FFEFF3'
+    bgColor: '--dark-blue',
+    borderBottomColor: '--mid-dark-magenta',
+    fontColor: '--footer',
+    buttonColor: '--primary-magenta',
+    primaryColor: '--primary-magenta',
+    lineColor: '--light-magenta',
+    lightColor: '--light-magenta'
   },
   {
-    bgColor: 'rgba(253, 253, 251, 0.8)',
-    borderBottomColor: '#CCCCD0',
-    fontColor: '#131313',
-    buttonColor: '#000000',
-    primaryColor: '#09AA6C',
-    lineColor: '#00160E',
+    bgColor: '--bg-pages',
+    borderBottomColor: '--border',
+    fontColor: '--title',
+    buttonColor: '--black',
+    primaryColor: '--primary',
+    lineColor: '--dark-green',
     lightColor: ''
   },
 
   {
-    bgColor: 'rgba(0, 22, 14, 0.8)',
-    borderBottomColor: '#003F27',
-    fontColor: '#E3FFEE',
-    buttonColor: '#003F27',
-    primaryColor: '#09AA6C',
-    lineColor: '#E3FFEE',
-    lightColor: '#E3FFEE'
+    bgColor: '--dark-green',
+    borderBottomColor: '--mid-dark-green',
+    fontColor: '--light-green',
+    buttonColor: '--mid-dark-green',
+    primaryColor: '--primary',
+    lineColor: '--light-green',
+    lightColor: '--light-green'
   }
 ];
 export const MODULE_IMAGE_LIST = [

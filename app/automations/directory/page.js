@@ -46,7 +46,7 @@ export default async function AutomationDirectory() {
   return (
     <>
       <Layout>
-        <div style={{ backgroundColor: '#fffffd' }}>
+        <div style={{ backgroundColor: 'var(--main-bg-color)' }}>
           <Navbar />
           <AutomationDirectoryPage
             featuredApps={featuredApps}

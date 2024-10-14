@@ -1,15 +1,14 @@
 import styled, { css } from 'styled-components';
 import Link from 'next/link';
-import { body, border, greendark, lightgray, title } from '../../styles/color';
 import { Body1, Body4, Body5 } from '../../styles/styles';
 
 const PopularCard = styled(Link)`
   /* max-width: 306px; */
   width: 100%;
   border-radius: 4px;
-  border: 1px solid ${border};
+  border: 1px solid var(--border);
   :hover {
-    border-color: ${greendark};
+    border-color: var(--dark-green);
   }
 `;
 const PopularImageDiv = styled.div`
@@ -35,7 +34,7 @@ const PopularDetail = styled.div`
 const PopularTitle = styled.h3`
   margin: 0;
   ${Body4}
-  color: ${title};
+  color: var(--title);
 `;
 const PopularCaption = styled.p`
   margin: 0;
@@ -44,7 +43,7 @@ const PopularCaption = styled.p`
   -webkit-line-clamp: 2;
   overflow: hidden;
   ${Body5};
-  color: ${body};
+  color: var(--body);
 `;
 
 const ArticleCardSection = styled.div`
@@ -69,7 +68,7 @@ const CenterImage = styled.div`
     width: 42px;
     height: 42px;
     path {
-      stroke: #e3ffee;
+      stroke: var(--light-green);
     }
   }
 `;
@@ -82,13 +81,13 @@ const SectionHead = styled.div`
 const PopularHeading = styled.h2`
   margin: 0;
   ${Body1};
-  color: ${title};
+  color: var(--title);
 `;
 const PopularBody = styled.div`
   p {
     margin: 0;
     ${Body5};
-    color: ${body};
+    color: var(--body);
   }
 `;
 const GuideCard = styled.div`
@@ -110,7 +109,7 @@ const ArticaleIcon = styled.div`
     width: 28px;
     height: 28px;
     path {
-      stroke: ${lightgray};
+      stroke: var(--medium-gray);
     }
   }
 `;

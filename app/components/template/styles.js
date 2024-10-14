@@ -1,7 +1,6 @@
 import styled, { css } from 'styled-components';
 import Link from 'next/link';
 import { Body4, Body5, Heading4, Heading5, MbBody4, MbBody5 } from '../../styles/styles';
-import { body, border, greendark, title } from '../../styles/color';
 
 const PopularCard = styled(Link)`
   display: flex;
@@ -9,7 +8,7 @@ const PopularCard = styled(Link)`
   gap: 16px;
   :hover {
     .image-div {
-      border: 1px solid ${greendark};
+      border: 1px solid var(--dark-green);
     }
   }
   @media only screen and (max-width: 449px) {
@@ -20,7 +19,7 @@ const ImageDiv = styled.div`
   max-width: 388px;
   max-height: 220px;
   border-radius: 4px;
-  border: 1px solid ${border};
+  border: 1px solid var(--border);
   transition: all 0.3s;
   img {
     width: 100%;
@@ -44,7 +43,7 @@ const CardText = styled.div`
 `;
 const Title = styled.h4`
   ${Body4};
-  color: ${title};
+  color: var(--title);
   margin: 0;
   ${(props) =>
     props.isBigCard &&
@@ -58,7 +57,7 @@ const Title = styled.h4`
 `;
 const Description = styled.p`
   ${Body5};
-  color: ${body};
+  color: var(--body);
   margin: 0;
   ${(props) =>
     props.isBigCard &&
@@ -105,7 +104,7 @@ const TemplateItemList = styled.div`
 
 const SectionHeading = styled.h3`
   ${Heading4};
-  color: ${title};
+  color: var(--title);
   margin: 0 0 30px;
   @media only screen and (max-width: 449px) {
     margin: 0 0 28px;
