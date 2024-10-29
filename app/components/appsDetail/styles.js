@@ -459,9 +459,6 @@ const AppDetailContent = styled.div`
     h3 + p {
       margin: 8px 0 0;
     }
-    h4 {
-      ${MobileH4}
-    }
     h4 + p {
       margin: 8px 0 0;
     }

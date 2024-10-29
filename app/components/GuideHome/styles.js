@@ -1,16 +1,5 @@
 import styled, { css } from 'styled-components';
-import {
-  Body3,
-  Body5,
-  HeaderFont,
-  Heading3,
-  Heading4,
-  Heading5,
-  Heading6,
-  MbBody3,
-  MbBody4,
-  MobileH4
-} from '../../styles/styles';
+import { Body3, Body4, Body5, HeaderFont, Heading3, Heading4, Heading5, MbBody3, MbBody4 } from '../../styles/styles';
 
 const GuideCenter = styled.div`
   max-width: 740px;
@@ -53,7 +42,7 @@ const GuideDetail = styled.div`
   padding: 40px 0;
   h3 > b,
   h3 {
-    ${Heading5};
+    ${Heading4};
     font-weight: 400;
     color: var(--title);
     margin: 40px 0 0;
@@ -73,7 +62,7 @@ const GuideDetail = styled.div`
   }
   h4 > b,
   h4 {
-    ${Heading6};
+    ${Heading5};
     font-weight: 400;
     color: var(--title);
     margin: 20px 0 0;
@@ -104,7 +93,7 @@ const GuideDetail = styled.div`
     }
   }
   p {
-    ${Body5};
+    ${Body4};
     color: var(--body);
     margin: 8px 0 0;
     a {
@@ -215,7 +204,7 @@ const GuideDetail = styled.div`
       color: var(--title);
       vertical-align: top;
       p {
-        ${Body5};
+        ${Body4};
         color: var(--title);
         padding-top: 20px;
         :first-child {
@@ -254,9 +243,6 @@ const GuideDetail = styled.div`
   }
   @media only screen and (max-width: 449px) {
     padding: 40px 0 0;
-    h4 {
-      ${MobileH4}
-    }
     p {
       ${MbBody4}
     }
