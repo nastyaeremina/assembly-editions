@@ -139,10 +139,6 @@ const GuideDetail = styled.div`
     border-radius: 4px;
     border: 0.4px solid var(--platinum-gray);
   }
-  iframe {
-    border-radius: 4px;
-    border: 0.4px solid var(--platinum-gray);
-  }
   ol {
     padding-left: 20px;
     li {

@@ -14,6 +14,7 @@ const IframeBlock = styled.iframe`
   height: 100%;
   color-scheme: light;
   width: 100%;
+  border: none;
 `;
 
 export { IframeDiv, IframeBlock };
