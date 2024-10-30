@@ -91,7 +91,7 @@ export default function AppsDetailComponent({ detail, content, isUserAuthenticat
                 },
                 {
                   label: 'Rating',
-                  value: reviewList?.length !== 0 ? `${content.avarageRate}/5 (${reviewList?.length} reviews)` : ''
+                  value: reviewList?.length !== 0 ? `${content.averageRate}/5 (${reviewList?.length} reviews)` : ''
                 },
                 {
                   label: 'Pricing',

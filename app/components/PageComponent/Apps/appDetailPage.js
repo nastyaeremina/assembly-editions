@@ -11,8 +11,8 @@ import ReviewSection from '../../reviewSection/reviewSection';
 export default function AppsDetailPage({ appDetail, relatedAppList, isUserAuthenticated }) {
   const [reviewList, setReviewList] = useState(appDetail?.reviewsCollection?.items || []);
 
-  //calculate avarage rate
-  const avarageRate = useMemo(() => {
+  //calculate average rate
+  const averageRate = useMemo(() => {
     return calculateAverageRate(removeEmptyElement(reviewList)) || 0;
   }, [reviewList]);
 
@@ -24,7 +24,7 @@ export default function AppsDetailPage({ appDetail, relatedAppList, isUserAuthen
           <AppsDetailComponent
             detail={appDetail?.guideArticle}
             reviewList={reviewList}
-            content={{ ...appDetail, avarageRate }}
+            content={{ ...appDetail, averageRate }}
             isUserAuthenticated={isUserAuthenticated}
           />
           {/* show review section only if user is authenticated (case of no review exist user can add first one)
@@ -33,7 +33,7 @@ export default function AppsDetailPage({ appDetail, relatedAppList, isUserAuthen
             <ReviewSection
               totalReview={appDetail?.reviewsCollection?.total}
               reviewList={reviewList}
-              avarageRate={avarageRate}
+              averageRate={averageRate}
               isAuthenticated={isUserAuthenticated}
               appId={appDetail?.sys.id}
               setReviewList={setReviewList}

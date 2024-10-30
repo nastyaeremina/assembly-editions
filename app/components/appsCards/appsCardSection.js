@@ -37,14 +37,14 @@ export default function AppsCardSection({
         )}
         <CardListSection is4Card={is4Card}>
           {appList?.map((item, index) => {
-            const avrageRate = calculateAverageRate(removeEmptyElement(item?.reviewsCollection?.items));
+            const averageRate = calculateAverageRate(removeEmptyElement(item?.reviewsCollection?.items));
             const appsType = item?.appsType;
             return (
               <AppsCard
                 key={index}
                 link={`/apps/directory/${item.slug}`}
                 title={item?.name}
-                rate={avrageRate}
+                rate={averageRate.toFixed(1)}
                 reviews={item?.reviewsCollection?.total}
                 description={item?.description}
                 isBottom={isBottom}

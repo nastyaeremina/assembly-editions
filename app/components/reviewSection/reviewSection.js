@@ -20,7 +20,7 @@ import {
   SectionHeading
 } from './styles';
 
-export default function ReviewSection({ appId, avarageRate = 0, reviewList, isAuthenticated = false, setReviewList }) {
+export default function ReviewSection({ appId, averageRate = 0, reviewList, isAuthenticated = false, setReviewList }) {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   // Function to handle button click
@@ -50,9 +50,9 @@ export default function ReviewSection({ appId, avarageRate = 0, reviewList, isAu
               <Left>
                 <h4>Overall rating</h4>
                 <RatingNumber>
-                  {avarageRate}
+                  {averageRate.toFixed(1)}
                   <RatingIcon>
-                    <StartList rate={avarageRate} isBig={true} />
+                    <StartList rate={averageRate} isBig={true} />
                   </RatingIcon>
                 </RatingNumber>
               </Left>
