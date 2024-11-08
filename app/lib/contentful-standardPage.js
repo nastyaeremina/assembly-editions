@@ -151,7 +151,6 @@ const POST_GRAPHQL_SECTION_TAB_FIELDS = `
       }
     }`;
 
-
 const POST_GRAPHQL_SECTION_CTA_FIELDS = `
   title
   primaryButtonText
@@ -161,7 +160,7 @@ const POST_GRAPHQL_SECTION_CTA_FIELDS = `
   banner{
     url
   }
-`
+`;
 export async function getFeatureComponentContent(id, preview) {
   const entries = await fetchGraphQL(
     `query {
@@ -212,7 +211,7 @@ export async function getStandardPageContent(slug, preview) {
         }
       }`,
     preview,
-    [CONTENTFUL_API_TAG.STANDARD_PAGE, CONTENTFUL_API_TAG.TEMPLATE]
+    [CONTENTFUL_API_TAG.STANDARD_PAGE]
   );
   return entries?.data?.pageTemplateCollection?.items?.[0];
 }
@@ -227,7 +226,7 @@ export async function getAllStandardPageWithSlug() {
       }
     }`,
     false,
-    [CONTENTFUL_API_TAG.TEMPLATE]
+    [CONTENTFUL_API_TAG.STANDARD_PAGE]
   );
   return entries?.data?.pageTemplateCollection?.items;
 }
