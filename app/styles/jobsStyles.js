@@ -38,9 +38,11 @@ const JobsWrap = styled.div`
   ${(props) =>
     props.imageUrl &&
     css`
-      background-image: linear-gradient(90deg, var(--black) 18.89%, var(--black) 82.84%), url(${props.imageUrl});
+      background-image: linear-gradient(90deg, var(--black) 18.89%, var(--black-shadow-0) 82.84%),
+        url(${props.imageUrl});
       @media only screen and (max-width: 991px) {
-        background-image: linear-gradient(90deg, var(--black) 18.89%, var(--black) 82.84%), url(${props.imageUrl});
+        background-image: linear-gradient(90deg, var(--black) 18.89%, var(--black-shadow-0) 82.84%),
+          url(${props.imageUrl});
       }
     `}
   background-position: 0 0, 50% 50%;

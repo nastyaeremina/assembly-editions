@@ -218,6 +218,7 @@ body {
   --modal-bg-color: rgba(0, 0, 0, 0.8);
   --light-modal-bg-color: rgba(0, 0, 0, 0.6);
   /* box shadows color */
+  --black-shadow-0: rgba(0, 0, 0, 0);
   --black-shadow-7: rgba(0, 0, 0, 0.07);
   --black-shadow-8: rgba(0, 0, 0, 0.08);
   --black-shadow-10: rgba(0, 0, 0, 0.1);

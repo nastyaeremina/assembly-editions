@@ -80,7 +80,7 @@ export default function JobsPage({ details, jobList, jobImagesList, jobBlogPostL
   }, [jobList, renderJobsListingView]);
 
   const renderJobImageView = useMemo(() => {
-    const imageUrl = jobImagesList?.[selectedImageIndex]?.image?.url;
+    const imageUrl = jobImagesList?.[selectedImageIndex]?.url;
     if (isEmpty(imageUrl)) return null;
     return (
       <ImgBorder>
@@ -109,10 +109,10 @@ export default function JobsPage({ details, jobList, jobImagesList, jobBlogPostL
   }, [jobImagesList, onClickImageTab, selectedImageIndex]);
 
   const renderJobImageNameView = useMemo(() => {
-    if (isEmpty(jobImagesList?.[selectedImageIndex]?.name)) return null;
+    if (isEmpty(jobImagesList?.[selectedImageIndex]?.title)) return null;
     return (
       <RegionView>
-        <p>{jobImagesList?.[selectedImageIndex]?.name}</p>
+        <p>{jobImagesList?.[selectedImageIndex]?.title}</p>
       </RegionView>
     );
   }, [jobImagesList, selectedImageIndex]);
@@ -157,6 +157,7 @@ export default function JobsPage({ details, jobList, jobImagesList, jobBlogPostL
       </>
     );
   }, [details?.description, details?.title]);
+
   return (
     <>
       <MainWrap>

@@ -21,7 +21,10 @@ internalFeaturesCollection{
     }
   }
 }`;
-
+const POST_GRAPHQL_JOB_IMAGES_FIELDS = `
+    url
+    title
+ `;
 const POST_GRAPHQL_JOB_DETAILS_FIELDS = `
     title
     description
@@ -33,6 +36,11 @@ const POST_GRAPHQL_JOB_DETAILS_FIELDS = `
     sectionTitle2
     sectionTitle3
     ${POST_GRAPHQL_INTERNAL_FEATURES_COLLECTION_FIELDS}
+    jobImagesCollection{
+      items{
+      ${POST_GRAPHQL_JOB_IMAGES_FIELDS}
+      }
+    }     
     seoMetadata{
         ${POST_GRAPHQL_SEOMETADATA_FIELDS}
     }
@@ -63,7 +71,6 @@ export async function getJobDetail(id, preview) {
             pageJob(id:"${id}",preview: ${preview ? 'true' : 'false'}) {
                 ${POST_GRAPHQL_JOB_DETAILS_FIELDS}
                 ${POST_GRAPHQL_FAQ_COLLECTION_FIELDS}
-
       }
     }`,
     preview,

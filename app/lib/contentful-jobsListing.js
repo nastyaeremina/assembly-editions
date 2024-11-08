@@ -31,12 +31,6 @@ department
 location
 isRemote
 `;
-const POST_GRAPHQL_JOB_IMAGES_LIST_FIELDS = `
-name
-image{
-    url
-}
-`;
 
 function extractPostEntry(fetchResponse) {
   return fetchResponse?.data?.jobListingsCollection?.items?.[0];
@@ -77,22 +71,6 @@ export async function getJobDetails(slug, preview) {
     [CONTENTFUL_API_TAG.JOB]
   );
   return extractPostEntry(entries);
-}
-
-export async function getAllJobImages(preview) {
-  const entries = await fetchGraphQL(
-    `query {
-            jobImagesCollection(order:[order_ASC],preview: ${preview ? 'true' : 'false'}) {
-        items {
-          ${POST_GRAPHQL_JOB_IMAGES_LIST_FIELDS}
-        }
-      }
-    }`,
-    preview,
-    [CONTENTFUL_API_TAG.JOB]
-  );
-
-  return entries?.data?.jobImagesCollection?.items;
 }
 
 export async function getAllJobsWithSlug(preview) {

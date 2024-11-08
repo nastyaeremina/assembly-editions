@@ -11,7 +11,8 @@ import { getAllJobImages, getAllJobs } from './../lib/contentful-jobsListing';
 
 async function getContent() {
   const details = (await getJobDetail(JOB_PAGE_ID)) ?? {};
-  const jobImagesList = (await getAllJobImages()) ?? [];
+  const jobImagesList = details.jobImagesCollection?.items ?? [];
+  delete details.jobImagesCollection;
   const jobBlogPostList = (await getAllJobBlogPosts()) ?? [];
   let allPosts = [];
   let data = [];
