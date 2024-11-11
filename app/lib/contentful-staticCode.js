@@ -2,17 +2,20 @@ import { CONTENTFUL_API_TAG } from '../constants/constant';
 import { fetchGraphQL } from './contentful';
 
 function extractData(fetchResponse) {
-  return fetchResponse?.data?.customCodeCollection?.items;
+  return fetchResponse?.data?.commonContentCollection?.items;
 }
 
-export async function getCustomeCode() {
+export async function getCustomeCode(ids) {
   const entries = await fetchGraphQL(
     `query{
-        customCodeCollection{
-        items{
-            name
-            code
-        }
+        commonContentCollection(where:{sys:{id_in:[${ids}]}}){
+    items{
+      content
+      sys{
+        id
+      }
+    
+  }
       }
     }
     `,

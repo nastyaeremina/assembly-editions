@@ -431,6 +431,9 @@ export const GUIDE_PAGE_ID = '21aIyPkZ2efko1hJU4Qeep';
 export const JOB_PAGE_ID = '7kgu8KP3AV2FgbwhCGz0sB';
 export const BOOK_DEMO_THANK_YOU_ID = '45qbrJ6ILTiwkuWz92S0OX';
 export const TEMPLATE_PAGE_ID = '6JOXBgDQWb5uazPg8n98ea';
+export const CUSTOM_CODE_HEAD_ID = '7v9PqjbDuvaFz4Mm2cxQTX';
+export const CUSTOM_CODE_BEFORE_BODY_TAG_ID = '6CMLDvTPrgvrVzpv5O8XPc';
+export const CUSTOM_CODE_AFTER_BODY_TAG_ID = '2GQxmuzDZhGcXGB5FbgoGa';
 /*
 Regex varibles
 */
