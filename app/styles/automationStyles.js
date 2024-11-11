@@ -127,7 +127,6 @@ const Cardbottom = styled.div`
 const LogoSection = styled.div`
   display: flex;
   gap: 16px;
-  padding-top: 22px;
   padding-bottom: 20px;
   .logo {
     width: 80px;
