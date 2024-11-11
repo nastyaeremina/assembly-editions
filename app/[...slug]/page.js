@@ -2,8 +2,8 @@ import { notFound } from 'next/navigation';
 import Layout from '../components/layout';
 import Navbar from '../components/navbar/navbar';
 import WeeklyHero from '../components/weeklyhero/weeklyhero';
-import { PRODUCT_DEMO_PAGE_ID, WEEKLY_DEMO_PAGE_ID } from '../constants/constant';
-import { getProductDemoContent, getWeeklyDemoContent } from '../lib/contentful-weeklyDemo';
+import { PRODUCT_DEMO_PAGE_ID } from '../constants/constant';
+import { getProductDemoContent } from '../lib/contentful-weeklyDemo';
 import { getSEOData, isEmpty } from '../helpers/helpers';
 import ProductDemoPage from '../components/PageComponent/ProductDemo/productDemoPage';
 import { getStandardPageContent } from '../lib/contentful-standardPage';
@@ -17,9 +17,6 @@ const PAGE_TYPE = {
 };
 async function getContent({ slug }) {
   const combinedSlug = slug.join('/');
-
-  const details = (await getWeeklyDemoContent(WEEKLY_DEMO_PAGE_ID)) ?? [];
-  if (!isEmpty(details) && details.slug === combinedSlug) return { data: details, type: PAGE_TYPE.WEEKLY_DEMO };
 
   const productdetails = await getProductDemoContent(PRODUCT_DEMO_PAGE_ID);
   if (!isEmpty(productdetails) && productdetails.slug === combinedSlug) {

@@ -37,14 +37,8 @@ const nextConfig = {
       }
     }
   }`;
-      const pageDemoQuery = ` query {
-    pageDemo(id:"6yTkSs6vPA4UtptzHbvw3r"){
-      slug
-    }
-  }`;
 
       const postData = (await fetchGraphQL({ preview: false, query })) ?? [];
-      const pageDemoData = (await fetchGraphQL({ preview: false, query: pageDemoQuery, type: ['weekly-demo'] })) ?? [];
 
       if (postData.length === 0) {
         return [];
@@ -70,12 +64,6 @@ const nextConfig = {
             };
           }
         }) ?? [];
-      //add weekly-demo url
-      redirectData?.push({
-        source: '/weekly-demo',
-        destination: `/${pageDemoData?.data?.pageDemo?.slug}`,
-        permanent: true
-      });
 
       //set redirects for all the /features pages
       redirectData?.push({
