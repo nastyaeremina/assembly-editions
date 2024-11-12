@@ -425,7 +425,7 @@ export const AUTOMATION_ID = '3tQZ0zurolpvj9N43yXCIF';
 export const APP_PAGE_ID = 'zHpvQW60FYupSGIasksht';
 export const WEEKLY_DEMO_PAGE_ID = '6yTkSs6vPA4UtptzHbvw3r';
 export const PRODUCT_DEMO_PAGE_ID = '2qbT95AIpVDChNTKj0PnfY';
-export const PRICING_PAGE_ID = '1lSCkgpg3oXPp3kuxEJwfg';
+export const PRICING_PAGE_ID = '30oDBQnjjxGSi17XmAtD8j';
 export const GLOSSARY_PAGE_ID = '59RJugqUUkgTppwv6aoA9I';
 export const GUIDE_PAGE_ID = '21aIyPkZ2efko1hJU4Qeep';
 export const JOB_PAGE_ID = '7kgu8KP3AV2FgbwhCGz0sB';
@@ -440,6 +440,7 @@ Regex varibles
 export const EXTRACT_H2_TAG_FROM_HTML_REGEX = /(?:<h2 id\=\s*)\S.*?(?=\s*<\/h2|$)/gs;
 export const EXTRACT_CODE_TAG_FROM_HTML_REGEX = /(<pre><code[^>]*>.*?<\/code><\/pre>)/gs;
 export const EXTRACT_LEADING_DIGIT_REGEX = /^[0-9]./;
+export const EXTRACT_SQUARE_BRACKET_AND_TAG_TEXT_REGEX = /(\[.*?\]|\(Tag\))/g;
 export const STRING_END_OF_APP = /\bapp$/i;
 export const CURRENT_DOMAIN = 'https://www.copilot.com';
 export const AppInfoMessage =
@@ -447,3 +448,4 @@ export const AppInfoMessage =
 export const EmbedInfoMessage = 'Copilot supports embedding any external application that doesn’t block embedding.';
 export const InternalAppInfoMessage = 'Internal-facing apps are only visible to your internal team.';
 export const ClientAppInfoMessage = 'Client-facing apps are visible to clients as well as your internal team.';
+export const PlanList = ['Starter', 'Professional', 'Advanced', 'Supersonic'];

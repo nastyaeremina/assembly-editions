@@ -3,7 +3,7 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { React } from 'react';
-import { ButtonContainer, Buttons } from './style';
+import { ButtonContainer, Buttons, LinkButton } from './style';
 
 /**
  * Adjusts the CSS custom properties for the cursor position.
@@ -56,6 +56,7 @@ export default function Button({
   isLoading,
   isDownload = false
 }) {
+  const formattedText = text[0].toUpperCase() + text.substring(1).toLowerCase();
   return (
     <ButtonContainer
       onClick={onClick}
@@ -65,7 +66,12 @@ export default function Button({
       fontColor={fontColor}
       className={className}
       isLoading={isLoading}>
-      {type === 'submit' ? (
+      {/* check button type is link */}
+      {type === 'link' ? (
+        <LinkButton>
+          <a href={href}> {isCamelCase ? formattedText : text}</a>
+        </LinkButton>
+      ) : type === 'submit' ? (
         // Renders a submit button if `type` is 'submit'.
         <Buttons
           type={'submit'}
@@ -81,17 +87,20 @@ export default function Button({
         // Renders an anchor tag with a download attribute if `isDownload` is true.
         <a onMouseMove={(e) => myFunction(e)} href={href} download>
           {isicon && <Image src={imgUrl} alt={'icon'} width={20} height={20} className='icon' />}
-          {isCamelCase ? text[0].toUpperCase() + text.substring(1).toLowerCase() : text}
+          {isCamelCase ? formattedText : text}
         </a>
       ) : isLink ? (
         // Renders a Next.js Link component if `isLink` is true.
         <Link onMouseMove={(e) => myFunction(e)} href={href} target={target}>
           {isicon && <Image src={imgUrl} alt={'icon'} width={20} height={20} className='icon' />}
-          {isCamelCase ? text[0].toUpperCase() + text.substring(1).toLowerCase() : text}
+          {isCamelCase ? formattedText : text}
         </Link>
       ) : (
         // Renders a plain anchor tag if neither `isLink` nor `isDownload` is true.
-        <a>{text[0].toUpperCase() + text.substring(1).toLowerCase()}</a>
+        <a>
+          {isicon && <Image src={imgUrl} alt={'icon'} width={20} height={20} className='icon' />}
+          {formattedText}
+        </a>
       )}
     </ButtonContainer>
   );

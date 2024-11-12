@@ -63,7 +63,13 @@ export default function AppsCards({
                     <AppInformativeSection>
                       <p>{appType}</p>
                       <Informative>
-                        <SVGComponent name='informative-icon' width='13' height='13' viewBox='13' />
+                        <SVGComponent
+                          name='informative-icon'
+                          width='13'
+                          height='13'
+                          viewBox='13'
+                          fill='var(--dark-gray)'
+                        />
                         <Tooltip className='tooltiptext' isApptooltip>
                           <Line>
                             <svg

@@ -5,7 +5,11 @@ const getViewBox = (name) => {
   }
 };
 
-const getPath = (name) => {
+const getPath = (name, props) => {
+  const {
+    fill
+    // , stroke, stopColor, iconprimary
+  } = props;
   switch (name) {
     case 'find-expert-icon':
       return (
@@ -221,14 +225,14 @@ const getPath = (name) => {
         <>
           <g clipPath='url(#a)'>
             <path
-              stroke='#4C4C4C'
+              stroke={fill}
               strokeMiterlimit={10}
               strokeWidth={1.091}
               fill='none'
               d='M6.002 1.065a5.436 5.436 0 1 0 0 10.871 5.436 5.436 0 0 0 0-10.871Z'
             />
             <path
-              stroke='#4C4C4C'
+              stroke={fill}
               strokeLinecap='round'
               strokeLinejoin='round'
               strokeWidth={1.091}
@@ -236,14 +240,14 @@ const getPath = (name) => {
               d='M4.906 5.408h.97v3.518'
             />
             <path
-              stroke='#4C4C4C'
+              stroke={fill}
               strokeLinecap='round'
               strokeMiterlimit={10}
               strokeWidth={1.091}
               fill='none'
               d='M4.543 9.048h2.67'
             />
-            <path fill='#4C4C4C' d='M5.757 2.678a.789.789 0 1 0 0 1.577.789.789 0 0 0 0-1.577Z' />
+            <path fill={fill} d='M5.757 2.678a.789.789 0 1 0 0 1.577.789.789 0 0 0 0-1.577Z' />
           </g>
           <defs>
             <clipPath id='a'>
@@ -340,7 +344,7 @@ const getPath = (name) => {
             strokeLinecap='round'
             strokeLinejoin='round'
             strokeWidth={1.5}
-            fill="none"
+            fill='none'
             d='m10.417 2.5 2.446 4.994 5.47.806-3.958 3.885.934 5.488-4.892-2.592-4.893 2.592.934-5.488L2.5 8.3l5.47-.806L10.417 2.5Z'
             clipRule='evenodd'
           />
@@ -437,6 +441,35 @@ const getPath = (name) => {
           />
         </>
       );
+    case 'table-arrow-tick-icon':
+      return (
+        <>
+          <path
+            fill='#131313'
+            stroke='#131313'
+            strokeWidth={0.5}
+            d='M7.498 15.291h-.002a.626.626 0 0 1-.444-.187L3.72 11.72a.625.625 0 1 1 .89-.877l2.892 2.936 7.888-7.888a.625.625 0 1 1 .884.884L7.94 15.108a.622.622 0 0 1-.442.183Z'
+          />
+        </>
+      );
+    case 'tooltip-icon':
+      return (
+        <>
+          <path
+            fill='#5B5B5B'
+            d='M8 2.676a5.824 5.824 0 1 1 0 11.648A5.824 5.824 0 0 1 8 2.676Zm0 12.992A7.168 7.168 0 1 0 8 1.331a7.168 7.168 0 0 0 0 14.337ZM6.88 10.74a.67.67 0 0 0-.672.672c0 .372.3.672.672.672h2.24a.67.67 0 0 0 .672-.672.67.67 0 0 0-.672-.672h-.224V8.276a.67.67 0 0 0-.672-.672H6.88a.67.67 0 0 0-.672.672c0 .372.3.672.672.672h.672v1.792H6.88ZM8 6.708a.896.896 0 1 0 0-1.792.896.896 0 0 0 0 1.792Z'
+          />
+        </>
+      );
+    case 'blank-line':
+      return (
+        <>
+          <path
+            fill='#CCCCD0'
+            d='M3 10.5c0-.52.293-.938.656-.938h12.688c.363 0 .656.418.656.938s-.293.938-.656.938H3.656c-.363 0-.656-.418-.656-.938Z'
+          />
+        </>
+      );
     default:
       return <path />;
   }
@@ -461,6 +494,7 @@ const SVGComponent = ({
     style={style}
     height={height}
     className={className}
+    fill={fill}
     xmlns='http://www.w3.org/2000/svg'
     viewBox={viewBox || getViewBox(name)}
     xmlnsXlink='http://www.w3.org/1999/xlink'>

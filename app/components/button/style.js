@@ -1,5 +1,5 @@
 import styled, { css, keyframes } from 'styled-components';
-import { ButtonText, MbPrimaryBtn } from '../../styles/styles';
+import { ButtonText, MbBody4, MbPrimaryBtn } from '../../styles/styles';
 
 const ButtonContainer = styled.div`
   position: relative;
@@ -216,4 +216,17 @@ const Buttons = styled.button`
     display: block;
   }
 `;
-export { ButtonContainer, Buttons, ball };
+
+const LinkButton = styled.div`
+  a {
+    padding: unset;
+    background-color: unset;
+    border: none;
+    ${MbBody4};
+    border-radius: 0;
+    color: var(--dark-gray);
+    text-decoration: underline;
+  }
+`;
+
+export { ButtonContainer, Buttons, ball, LinkButton };

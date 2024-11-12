@@ -189,14 +189,15 @@ const SectionHeading = styled.div`
 
 const Tooltip = styled.div`
   position: absolute;
-  width: 234px;
+  width: 220px;
   top: 22px;
-  left: -6px;
+  left: -65px;
   padding: 12px;
   background-color: var(--dark-green);
   color: var(--light-green);
   box-shadow: 0px 4px 16px var(--black-shadow-25);
   border-radius: 4px;
+  opacity: 0;
   p {
     ${Body5}
     color: var(--light-green);
@@ -205,31 +206,62 @@ const Tooltip = styled.div`
   span {
     ${Body4}
   }
-  @media only screen and (max-width: 768px) {
-    display: none;
-  }
   ${(props) =>
     props.isApptooltip &&
     css`
       top: 24px;
     `}
+  @media only screen and (max-width: 768px) {
+    ${(props) =>
+      props.isAutoAdjust &&
+      css`
+        left: -32px;
+        width: calc(100% + 32px);
+      `}
+  }
 `;
 
 const Line = styled.div`
   position: absolute;
   top: -10px;
+  left: 70px;
+  .line {
+    background-color: var(--dark-green);
+    width: 2px;
+    height: 16px;
+  }
+  @media only screen and (max-width: 768px) {
+    ${(props) =>
+      props.isAutoAdjust &&
+      css`
+        display: none;
+      `}
+  }
 `;
 
 const Informative = styled.div`
   position: relative;
-  display: flex;
+  display: inline-flex;
   align-items: center;
   :hover .tooltiptext {
     visibility: visible;
+    opacity: 1;
+    transition: all 0.55s;
   }
   .tooltiptext {
     visibility: hidden;
     z-index: 99;
+  }
+  .tooltip-icon {
+    width: 13px;
+    height: 13px;
+  }
+  @media only screen and (max-width: 768px) {
+    ${(props) =>
+      props.isAutoAdjust &&
+      css`
+        position: unset;
+      `}
   }
 `;
 export {

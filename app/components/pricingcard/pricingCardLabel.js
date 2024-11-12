@@ -20,7 +20,7 @@ import { Pricenumber } from './styles';
         {isNumber(price) ? (
           <>
             ${price}
-            <span>/mo</span>
+            <span>/month</span>
           </>
         ) : (
           price // If not a number, display the price as is could be a string(e.g. 'Custom').

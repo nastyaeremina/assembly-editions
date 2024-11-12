@@ -4,11 +4,13 @@ import { POST_GRAPHQL_FAQ_COLLECTION_FIELDS } from './contentful-faq';
 import { POST_GRAPHQL_SEOMETADATA_FIELDS } from './contentful-seo';
 
 const POST_GRAPHQL_PRICING_PLAN_DETAILS_FIELDS = `
-name
+    name
     details
     description
     monthlyPrice
+    monthlyExtraUserPrice
     annualPrice
+    annualExtraUserPrice
     primaryCtaText
     primaryCtaLink
     secondaryCtaText

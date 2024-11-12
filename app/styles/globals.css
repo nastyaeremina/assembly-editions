@@ -30,7 +30,7 @@
 }
 @font-face {
   font-family: 'Bagoss';
-  src: url('../../public/fonts/BagossStandard-Regular.otf') format('opentype'),
+  src: url('../../public/fonts/BagossStandard-Regular.ttf') format('opentype'),
     url('../../public/fonts/BagossStandard-RegularItalic.otf') format('opentype');
   font-weight: 400;
   font-style: normal;
@@ -134,6 +134,7 @@ body {
 
 :root {
   --title: #131313;
+  --text-primary: #212b36;
   --body: #4c4c4c;
   --dark-gray: #5b5b5b;
   --medium-gray: #757575;
@@ -235,6 +236,8 @@ body {
   --shadow-black: rgba(82, 49, 0, 0);
   --transparent-color: rgba(255, 255, 253, 0);
   --white-shadow-80: rgba(255, 255, 253, 0.8);
+  --green-shadow-20: rgba(9, 170, 108, 0.2);
+  --transparent-color-2: rgba(9, 170, 108, 0);
 }
 
 .tableUL {

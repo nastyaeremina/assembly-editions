@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useCallback, useMemo, use } from 'react';
+import React, { useState, useCallback, useMemo } from 'react';
 import Image from 'next/image';
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
 import { Container } from '../../../styles/commonStyles';
@@ -9,17 +9,19 @@ import {
   PricingSection,
   PriceMenu,
   PriceButton,
-  YearlyButton,
-  MonthlyButton,
   WrapSlide,
-  PlanButton,
   PriceTable,
-  PricingButton
+  PlanButton
 } from '../../../styles/pricingstyles';
-import Button from '../../button/button';
-import { COPILOT_ONBORADING_LINK } from '../../../constants/externalLinks';
 import PricingCardSection from '../../pricingcard/pricingCardSection';
 import { isEmpty, formatPlanPrice } from '../../../helpers/helpers';
+import SVGComponent from '../../../../public/images/svg/SVGComponent';
+import AppTooltip from '../../appsCards/appTooltip';
+import Button from '../../button/button';
+import DownArrow from '../../../../public/images/down-arrow.svg';
+import UpArrow from '../../../../public/images/up-arrow.svg';
+import YearlyToggleComponent from './yearlyToggleComponent';
+import { PlanList } from '../../../constants/constant';
 
 export default function PricingPage({ details }) {
   // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -34,35 +36,41 @@ export default function PricingPage({ details }) {
     }
   });
 
+  const [isYearly, setIsYearly] = useState(true);
   const [isShowFeature, setShowFeature] = useState(true);
-  const [isYearly, Yearly] = useState(true);
 
   const toggleShowFeature = useCallback(() => {
     setShowFeature(!isShowFeature);
   }, [isShowFeature]);
 
-  const setYearly = useCallback(() => {
-    Yearly(true);
-  }, []);
-
-  const setMonthly = useCallback(() => {
-    Yearly(false);
+  const toggleBillingCycle = useCallback(() => {
+    setIsYearly((prev) => !prev);
   }, []);
 
   const renderTableData = useCallback((value) => {
-    if (isEmpty(value)) return null;
+    if (isEmpty(value))
+      return (
+        <div className='icon-div'>
+          <SVGComponent name='blank-line' width='20' height='20' viewBox='0 0 20 21' />
+        </div>
+      );
     var result = value?.split(/\[(.*?)\]/);
-    if (result?.[1] === 'true') {
+
+    if (result?.[1] === 'X') {
       return (
         <>
           <div style={{ display: 'flex', gap: 10 }}>
-            <Image src='/images/checkmark.svg' alt='main-logo' height={20} width={20} /> <span>{result?.[2]}</span>
+            <SVGComponent name='table-arrow-tick-icon' width='20' height='20' viewBox='20' />
           </div>
         </>
       );
     }
-    if (value?.toLowerCase() === 'true')
-      return <Image src='/images/checkmark.svg' alt='main-logo' height={20} width={20} />;
+    if (value?.toLowerCase() === 'x')
+      return (
+        <div className='icon-div'>
+          <SVGComponent name='table-arrow-tick-icon' width='20' height='20' viewBox='20' />
+        </div>
+      );
     else {
       const contentWithBreaks = value.split('\\n').map((line, index) => {
         return (
@@ -72,7 +80,7 @@ export default function PricingPage({ details }) {
           </React.Fragment>
         );
       });
-      return <span>{contentWithBreaks}</span>;
+      return <span className='icon-div'>{contentWithBreaks}</span>;
     }
   }, []);
 
@@ -81,67 +89,58 @@ export default function PricingPage({ details }) {
     return planFeatures?.map((item, index) => {
       return (
         <>
-          <thead key={`planfeatures_index_${index}`}>
-            <tr>
-              <th colSpan={3} className='tablepadding tab'>
-                {item?.section}
-              </th>
-              {details?.plansCollection?.items?.map((item) => {
-                return (
-                  <>
-                    <th className='tab' key={`blank_tab`}></th>
-                  </>
-                );
-              })}
-            </tr>
-          </thead>
-          <tbody>
-            {item?.items?.map((featuresItem, featuresIndex) => {
-              return (
+          <table className={!isShowFeature && 'active'}>
+            <thead key={`planfeatures_index_${index}`}>
+              <tr>
+                <th colSpan={3} className='tablepadding tab'>
+                  {item?.section}
+                </th>
+                {details?.plansCollection?.items?.map((item) => {
+                  return (
+                    <>
+                      <th className='tab' key={`blank_tab`}></th>
+                    </>
+                  );
+                })}
+              </tr>
+            </thead>
+            <tbody>
+              {item?.items?.map((featuresItem, featuresIndex) => (
                 <tr key={`plan_features_${item?.section}_index_${featuresIndex}`}>
-                  <td colSpan={3} className='sticky'>
-                    <h4>{featuresItem?.name}</h4>
-                    {documentToReactComponents(featuresItem?.description?.json)}
+                  <td colSpan={3}>
+                    <div className='title'>
+                      <h4>{featuresItem?.name}</h4>
+                      {!isEmpty(featuresItem?.description?.json) && (
+                        <AppTooltip
+                          message={documentToReactComponents(featuresItem?.description?.json)}
+                          iconSize='16'
+                          fill='var(--dark-gray)'
+                          style={{ top: 24, left: -6 }}
+                        />
+                      )}
+                    </div>
                   </td>
-                  {details?.plansCollection?.items?.map((item) => {
-                    return (
-                      <>
-                        <td className='sticky'>{renderTableData(featuresItem?.[`plan${item?.name}`])}</td>
-                      </>
-                    );
-                  })}
+                  {details?.plansCollection?.items?.map((planItem, index) => (
+                    <td className='sticky' key={`plan_${planItem?.name}`}>
+                      {renderTableData(featuresItem?.[`plan${PlanList[index]}`])}
+                    </td>
+                  ))}
                 </tr>
-              );
-            })}
-          </tbody>
+              ))}
+            </tbody>
+          </table>
+          <div style={{ height: 24 }}></div>
         </>
       );
     });
-  }, [details?.plansCollection?.items, planFeatures, renderTableData]);
-
-  const renderPlanTableHeadingView = useMemo(() => {
-    if (isEmpty(details?.plansCollection?.items)) return null;
-    return details?.plansCollection?.items?.map((item, index) => {
-      return (
-        <>
-          <th className='tablehead'>
-            <p className='amount'>
-              {isYearly && formatPlanPrice(item?.annualPrice)}
-              {!isYearly && formatPlanPrice(item?.monthlyPrice)}
-            </p>
-            <span className='spantext'>{item?.details}</span>
-          </th>
-        </>
-      );
-    });
-  }, [details?.plansCollection?.items, isYearly]);
+  }, [details?.plansCollection?.items, isShowFeature, planFeatures, renderTableData]);
 
   const renderTablePlanNameView = useMemo(() => {
     if (isEmpty(details?.plansCollection?.items)) return null;
     return details?.plansCollection?.items?.map((item, index) => {
       return (
         <>
-          <th>{item?.name}</th>
+          <th className={item.colorScheme === 'Dark' ? 'isactive' : ''}>{item?.name}</th>
         </>
       );
     });
@@ -149,30 +148,23 @@ export default function PricingPage({ details }) {
 
   const renderTableHeader = useMemo(() => {
     return (
-      <table className={!isShowFeature && 'active'}>
+      <table>
         <thead>
-          <tr>
-            <th colSpan={3} className='tableBorder tablehead'></th>
-            {renderPlanTableHeadingView}
-          </tr>
           <tr className='bordercolor'>
-            <th colSpan={3}>Features</th>
+            <th colSpan={3}></th>
             {renderTablePlanNameView}
           </tr>
         </thead>
       </table>
     );
-  }, [isShowFeature, renderPlanTableHeadingView, renderTablePlanNameView]);
+  }, [renderTablePlanNameView]);
 
   return (
     <>
       <HeroSection>
         <Container>
-          {!isEmpty(details?.header) && <h1>{details?.header}</h1>}
-          {!isEmpty(details?.body) && <p>{details?.body}</p>}
-          <PricingButton>
-            <Button text={'Try for free'} hoverColor={'--secondary-hover-color'} href={COPILOT_ONBORADING_LINK} />
-          </PricingButton>
+          {!isEmpty(details?.header) && <h1>{details.header}</h1>}
+          {!isEmpty(details?.body) && <p>{details.body}</p>}
         </Container>
       </HeroSection>
       <PricingSection>
@@ -180,13 +172,8 @@ export default function PricingPage({ details }) {
           <PriceMenu>
             <PriceButton>
               <WrapSlide>
-                <YearlyButton className={isYearly && 'active'} onClick={setYearly}>
-                  <button>Pay yearly</button>
-                </YearlyButton>
+                <YearlyToggleComponent onClick={toggleBillingCycle} isYearly={isYearly} />
               </WrapSlide>
-              <MonthlyButton className={!isYearly && 'active'} onClick={setMonthly}>
-                <button>Pay monthly</button>
-              </MonthlyButton>
             </PriceButton>
             <>
               {!isEmpty(details?.plansCollection?.items) && (
@@ -196,23 +183,25 @@ export default function PricingPage({ details }) {
                   isYearly={isYearly}
                 />
               )}
-              <PlanButton>
-                <Button
-                  isLink={false}
-                  onClick={toggleShowFeature}
-                  bgColor={'transparent'}
-                  fontColor={'--black'}
-                  borderColor={'--black'}
-                  text={isShowFeature ? 'Show plan details' : 'Hide plan details'}
-                  hoverColor={'--hover-color'}
-                />
-              </PlanButton>
             </>
+            <PlanButton>
+              <Button
+                isLink={false}
+                onClick={toggleShowFeature}
+                bgColor={'--white'}
+                fontColor={'--black'}
+                borderColor={'--black'}
+                text={isShowFeature ? 'Show plan details' : 'Hide plan details'}
+                hoverColor={'--hover-color'}
+                isicon={true}
+                imgUrl={!isShowFeature && !isEmpty(planFeatures) ? UpArrow : DownArrow}
+              />
+            </PlanButton>
           </PriceMenu>
           {!isShowFeature && !isEmpty(planFeatures) && (
             <PriceTable is4Card={details?.plansCollection?.total === 4}>
               {renderTableHeader}
-              <table className={!isShowFeature && 'active'}>{renderPlanFeaturesView}</table>
+              {renderPlanFeaturesView}
             </PriceTable>
           )}
         </Container>
