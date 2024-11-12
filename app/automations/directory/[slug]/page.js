@@ -22,12 +22,12 @@ async function getContent({ slug }) {
       // eslint-disable-next-line no-plusplus
       else page++;
     } while (data?.length !== 0);
-    const categoryList = detail?.automationCategoriesCollection?.items?.map((item) => item?.slug);
+    const categoryList = detail?.automationsCategories;
     relatedApps = allPosts
       ?.filter(
         (item) =>
-          item?.automationCategoriesCollection &&
-          item?.automationCategoriesCollection?.items?.some((element) => categoryList.includes(element?.slug)) &&
+          item?.automationsCategories &&
+          item?.automationsCategories.some((element) => categoryList.includes(element)) &&
           item?.slug !== slug
       )
       ?.slice(0, 4);

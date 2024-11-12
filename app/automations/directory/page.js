@@ -27,7 +27,7 @@ async function getContent() {
 
   allCategory?.forEach((item) => {
     const filterList = allPosts?.filter((element) =>
-      element?.automationCategoriesCollection?.items?.some((category) => category?.slug === item?.slug)
+      element?.automationsCategories?.some((category) => category === item)
     );
     if (!isEmpty(filterList)) allCategoryWithPost?.push({ category: item, list: filterList });
   });

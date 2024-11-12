@@ -17,20 +17,16 @@ import {
   Featured,
   ExtensionsSection,
   ExtensionCard,
-  MainBg,
   AppsHeroWrap,
   AppHeader3
 } from '../../../styles/appsStyles';
 import { Container } from '../../../styles/commonStyles';
-import { isEmpty, joinArrayToString } from '../../../helpers/helpers';
-import { AUTOMATION_SEO_ID, PER_API_LIMIT_FOR_AUTOMATION } from '../../../constants/constant';
+import { isEmpty, joinArrayToString, stringToSlugyfy } from '../../../helpers/helpers';
 import Button from '../../button/button';
 import AppError from '../../apperror/error';
-import { getSEOdata } from '../../../lib/contentful-seo';
 import { COPILOT_ONBORADING_LINK } from '../../../constants/externalLinks';
 import { CardAuto, Cardbottom, DirectoryButton, DirectoryCard } from '../../../styles/automationStyles';
 import { SliderIcon, SliderSub } from '../../FeatureSlider/styles';
-import { getAllAutomationCategories, getAllAutomations } from '../../../lib/contentful-automation';
 
 export default function AutomationDirectoryPage({ featuredApps, allCategoryWithPost, allPosts }) {
   const [selected_category, setSelected_category] = useState();
@@ -106,13 +102,7 @@ export default function AutomationDirectoryPage({ featuredApps, allCategoryWithP
                     );
                   })}
                 </SliderIcon>
-                <Cardbottom>
-                  {joinArrayToString({
-                    list: item?.automationCategoriesCollection?.items,
-                    fieldName: 'name',
-                    seprator: ', '
-                  })}
-                </Cardbottom>
+                <Cardbottom>{item?.automationsCategories.join()}</Cardbottom>
               </DirectoryCard>
             </CardAuto>
           </Link>
@@ -124,15 +114,15 @@ export default function AutomationDirectoryPage({ featuredApps, allCategoryWithP
   const renderCategoryList = useMemo(() => {
     if (isEmpty(allCategoryWithPost)) return null;
     return allCategoryWithPost?.map((item, index) => {
-      let isActive = item?.category?.slug === selected_category;
+      let isActive = item?.category === selected_category;
       return (
         <Catagoryitem key={`categorylist_index_${index}`} isActive={isActive}>
           <Link
-            href={`#${item?.category?.slug}`}
+            href={`#${stringToSlugyfy(item?.category)}`}
             onClick={() => {
-              setSelected_category(item?.category?.slug);
+              setSelected_category(item?.category);
             }}>
-            {item?.category?.name}
+            {item?.category}
           </Link>
         </Catagoryitem>
       );
@@ -177,8 +167,8 @@ export default function AutomationDirectoryPage({ featuredApps, allCategoryWithP
     if (isEmpty(allCategoryWithPost)) return null;
     return allCategoryWithPost?.map((item, index) => {
       return (
-        <ExtensionsSection id={item?.category?.slug} key={`allCategoryappsview_index_${index}`}>
-          <AppHeader3>{item?.category?.name}</AppHeader3>
+        <ExtensionsSection id={stringToSlugyfy(item?.category)} key={`allCategoryappsview_index_${index}`}>
+          <AppHeader3>{item?.category}</AppHeader3>
           <ExtensionCard isAutomationDirectoryCard>{renderPartnerAppsView(item?.list)}</ExtensionCard>
         </ExtensionsSection>
       );

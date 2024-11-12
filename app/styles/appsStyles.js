@@ -278,7 +278,7 @@ const InputWrap = styled.form`
   img {
     position: absolute;
     top: 15px;
-    left: 20px;
+    left: 44px;
   }
   @media only screen and (max-width: 820px) {
     div {

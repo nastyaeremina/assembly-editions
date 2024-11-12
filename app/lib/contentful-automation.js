@@ -1,7 +1,6 @@
 import { CONTENTFUL_API_TAG, PER_API_LIMIT_FOR_AUTOMATION } from '../constants/constant';
-import { fetchGraphQL } from './contentful';
+import { fetchGraphQL, getContentTypeDetail } from './contentful';
 import { POST_GRAPHQL_FAQ_COLLECTION_FIELDS } from './contentful-faq';
-import { POST_GRAPHQL_PARTNER_APPS_DETAILS_FIELDS } from './contentful-partnerApps';
 
 const POST_GRAPHQL_PAGE_AUTOMATION_DETAILS_FIELDS_SECTION_1 = `
     
@@ -132,9 +131,6 @@ sectionHeader1
       }
     }
 `;
-const POST_GRAPHQL_AUTOMATION_CATEGORY_FIELDS = `
-name
-slug`;
 
 const POST_GRAPHQL_AUTOMATIONS_LIST_FIELDS = `
 name
@@ -145,12 +141,7 @@ name
           url
         }
       }
-      automationCategoriesCollection{
-        items{
-          name
-          slug
-        }
-      }
+      automationsCategories
       isFeatures
 `;
 
@@ -192,19 +183,24 @@ export async function getPageAutomationDetail(id, preview) {
   return { ...entries1?.data?.pageFeature2, ...entries2?.data?.pageFeature2 };
 }
 
+/**
+ * fetch all predefine  automation category on contentful model
+ * @returns {Array} - The array of Automation Category.
+ */
+
 export async function getAllAutomationCategories(preview) {
-  const entries = await fetchGraphQL(
-    `query {
-      automationCategoriesCollection( order:name_ASC,preview: ${preview ? 'true' : 'false'}) {
-        items {
-          ${POST_GRAPHQL_AUTOMATION_CATEGORY_FIELDS}
-        }
-      }
-    }`,
-    preview,
-    [CONTENTFUL_API_TAG.AUTOMATION]
-  );
-  return entries?.data?.automationCategoriesCollection?.items;
+  const contentTypeId = 'automations';
+  const data = await getContentTypeDetail(contentTypeId);
+
+  if (data) {
+    const defaultValue = data.fields
+      .find((field) => field.id === 'automationsCategories')
+      ?.items?.validations?.find((item) => item?.in)
+      ?.in?.sort();
+
+    return defaultValue;
+  }
+  return [];
 }
 export async function getAllAutomations(skip, preview) {
   const entries = await fetchGraphQL(
