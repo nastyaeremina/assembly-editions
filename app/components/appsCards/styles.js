@@ -191,7 +191,6 @@ const Tooltip = styled.div`
   position: absolute;
   width: 220px;
   top: 22px;
-  left: -65px;
   padding: 12px;
   background-color: var(--dark-green);
   color: var(--light-green);
@@ -210,12 +209,13 @@ const Tooltip = styled.div`
     props.isApptooltip &&
     css`
       top: 24px;
+      left: -6px;
     `}
   @media only screen and (max-width: 768px) {
     ${(props) =>
       props.isAutoAdjust &&
       css`
-        left: -32px;
+        left: -32px !important;
         width: calc(100% + 32px);
       `}
   }
@@ -224,7 +224,6 @@ const Tooltip = styled.div`
 const Line = styled.div`
   position: absolute;
   top: -10px;
-  left: 70px;
   .line {
     background-color: var(--dark-green);
     width: 2px;
