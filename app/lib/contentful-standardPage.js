@@ -103,6 +103,11 @@ contentCollection{
         ...on ComponentFaq{
             ${POST_GRAPHQL_FAQ_COMPONENT_FIELDS}
           }
+          ...on SectionRedirect{
+            sys{
+              id
+            }
+          }
     }
 }
 
@@ -159,6 +164,24 @@ const POST_GRAPHQL_SECTION_CTA_FIELDS = `
   secondaryButtonLink
   banner{
     url
+  }
+`;
+
+const POST_GRAPHQL_SECTION_REDIRECT_FIELDS = `
+  title
+  description
+  primaryButtonText
+  primaryButtonLink
+  secondaryButtonText
+  secondaryButtonLink
+  featuresCollection{
+    items{
+      title
+      description
+      image{
+        url
+      }
+    }
   }
 `;
 export async function getFeatureComponentContent(id, preview) {
@@ -242,4 +265,18 @@ export async function getSectionCTAContent(id, preview) {
     [CONTENTFUL_API_TAG.STANDARD_PAGE]
   );
   return entries?.data?.sectionCta || {};
+}
+
+export async function getSectionRedirectContent(id, preview) {
+  const entries = await fetchGraphQL(
+    `query {
+        sectionRedirect(id:"${id}",preview: ${preview ? 'true' : 'false'}) {
+         ${POST_GRAPHQL_SECTION_REDIRECT_FIELDS}
+      }
+    }`,
+    preview,
+    [CONTENTFUL_API_TAG.STANDARD_PAGE]
+  );
+
+  return entries?.data?.sectionRedirect || {};
 }

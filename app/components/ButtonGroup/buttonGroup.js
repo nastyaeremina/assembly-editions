@@ -8,7 +8,8 @@ export default function ButtonGroup({
   primaryButtonLink,
   secondaryButtonText,
   secondaryButtonLink,
-  hasMarginTop
+  hasMarginTop,
+  className
 }) {
   const showPrimaryButton = !isEmpty(primaryButtonText) && !isEmpty(primaryButtonLink);
   const showSecondaryButton = !isEmpty(secondaryButtonText) && !isEmpty(secondaryButtonLink);
@@ -17,7 +18,7 @@ export default function ButtonGroup({
   }
   return (
     <>
-      <ButtonGroups hasMarginTop={hasMarginTop}>
+      <ButtonGroups hasMarginTop={hasMarginTop} className={className}>
         {showPrimaryButton && <Button text={primaryButtonText} href={primaryButtonLink} />}
         {showSecondaryButton && (
           <Button

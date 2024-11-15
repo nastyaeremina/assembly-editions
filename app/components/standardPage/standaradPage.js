@@ -3,6 +3,7 @@ import {
   getFeatureComponentContent,
   getSectionBoxesComponentContent,
   getSectionCTAContent,
+  getSectionRedirectContent,
   getSectionTabContent
 } from '../../lib/contentful-standardPage';
 import Modern from '../solution/modern/modern';
@@ -13,6 +14,7 @@ import TabsComponent from '../tabsComponent/tabscomponent';
 import CustomerTestimonial from '../customer/testimonials';
 import StandardHero from '../standardHero/standardHero';
 import AutomationCardSection from '../automationcard';
+import RedirectsComponent from '../Redirects/redirectsComponent';
 import CTA from '../cta/newCTA';
 
 export default async function StandardPage({ data }) {
@@ -101,6 +103,20 @@ export default async function StandardPage({ data }) {
             highlightsData={componentData?.highlights}
             slug={componentData?.slug}
             isStandardPage={true}
+          />
+        );
+      case 'SectionRedirect':
+        const redirectData = (await getSectionRedirectContent(componentData?.sys?.id)) ?? {};
+
+        return (
+          <RedirectsComponent
+            Heading={redirectData?.title}
+            description={redirectData?.description}
+            primaryButtonText={redirectData?.primaryButtonText}
+            primaryButtonLink={redirectData?.primaryButtonLink}
+            secondaryButtonText={redirectData?.secondaryButtonText}
+            secondaryButtonLink={redirectData?.secondaryButtonLink}
+            redirectsData={redirectData?.featuresCollection?.items}
           />
         );
       case 'SectionCta':

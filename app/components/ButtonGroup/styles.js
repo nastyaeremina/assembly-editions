@@ -10,6 +10,7 @@ const ButtonGroups = styled.div`
     `}
   @media only screen and (max-width: 449px) {
     gap: 12px;
+    flex-wrap: wrap;
   }
 `;
 
