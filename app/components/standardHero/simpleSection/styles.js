@@ -100,7 +100,8 @@ const VideoPlay = styled.div`
   .play {
     position: absolute;
     left: 50%;
-    transform: translate(-50%, 50%);
+    top: 50%; 
+    transform: translate(-50%, -50%);
     max-width: 819px;
     max-height: 461px;
     width: 100%;

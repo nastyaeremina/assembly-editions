@@ -13,7 +13,7 @@ import {
   VideoClose,
   VideoPlay
 } from './styles';
-import { isEmpty } from '../../../helpers/helpers';
+import { extractYouTubeVideoId, isEmpty } from '../../../helpers/helpers';
 import ButtonGroup from '../../ButtonGroup/buttonGroup';
 
 /**
@@ -47,6 +47,8 @@ export default function SimpleSection({
   };
 
   const shouldShowVideo = !isEmpty(videoUrl) && !isEmpty(banner);
+  const videoId = !isEmpty(videoUrl) && extractYouTubeVideoId(videoUrl);
+
   return (
     <SimpleMainSection>
       <Container>
@@ -69,7 +71,7 @@ export default function SimpleSection({
               <div className='play'>
                 <iframe
                   className='iframecss'
-                  src={videoUrl}
+                  src={videoId}
                   title='YouTube video player'
                   frameborder='0'
                   allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share'
