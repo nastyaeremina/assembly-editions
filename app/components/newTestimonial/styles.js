@@ -162,8 +162,18 @@ const TestimonialSection = styled.div`
   flex-direction: column;
   gap: 40px;
   padding: 50px 0;
+  ${(props) =>
+    props.isStandardPage &&
+    css`
+      padding: 0 0 100px;
+    `}
   @media only screen and (max-width: 768px) {
     padding: 40px 0;
+    ${(props) =>
+      props.isStandardPage &&
+      css`
+        padding: 0 0 80px;
+      `}
   }
 `;
 export {

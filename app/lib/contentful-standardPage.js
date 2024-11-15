@@ -103,6 +103,11 @@ contentCollection{
         ...on ComponentFaq{
             ${POST_GRAPHQL_FAQ_COMPONENT_FIELDS}
           }
+        ...on SectionTestimonialGroup {
+          sys{
+           id
+          }
+        }   
           ...on SectionRedirect{
             sys{
               id
@@ -165,6 +170,28 @@ const POST_GRAPHQL_SECTION_CTA_FIELDS = `
   banner{
     url
   }
+`;
+const POST_GRAPHQL_SECTION_TESTIMONIAL_GROUP_FIELDS = `
+  title
+  description
+  primaryButtonText
+  primaryButtonLink
+  secondaryButtonText
+  secondaryButtonLink
+  contentCollection{
+    items{
+      name
+      role
+      industry
+      imageHeadshot{
+        url
+      }
+      logo{
+        url
+      }
+      quoteNew
+    }
+  } 
 `;
 
 const POST_GRAPHQL_SECTION_REDIRECT_FIELDS = `
@@ -265,6 +292,19 @@ export async function getSectionCTAContent(id, preview) {
     [CONTENTFUL_API_TAG.STANDARD_PAGE]
   );
   return entries?.data?.sectionCta || {};
+}
+
+export async function getSectionTestimonialGroupContent(id, preview) {
+  const entries = await fetchGraphQL(
+    `query {
+        sectionTestimonialGroup(id:"${id}",preview: ${preview ? 'true' : 'false'}) {
+         ${POST_GRAPHQL_SECTION_TESTIMONIAL_GROUP_FIELDS}
+      }
+    }`,
+    preview,
+    [CONTENTFUL_API_TAG.STANDARD_PAGE]
+  );
+  return entries?.data?.sectionTestimonialGroup || {};
 }
 
 export async function getSectionRedirectContent(id, preview) {

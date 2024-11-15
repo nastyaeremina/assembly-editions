@@ -3,8 +3,9 @@ import {
   getFeatureComponentContent,
   getSectionBoxesComponentContent,
   getSectionCTAContent,
-  getSectionRedirectContent,
-  getSectionTabContent
+  getSectionTabContent,
+  getSectionTestimonialGroupContent,
+  getSectionRedirectContent
 } from '../../lib/contentful-standardPage';
 import Modern from '../solution/modern/modern';
 import Quote from '../quote/quote';
@@ -16,6 +17,7 @@ import StandardHero from '../standardHero/standardHero';
 import AutomationCardSection from '../automationcard';
 import RedirectsComponent from '../Redirects/redirectsComponent';
 import CTA from '../cta/newCTA';
+import TestimonialTableSection from '../newTestimonial/testimonialTableSection';
 
 export default async function StandardPage({ data }) {
   const renderComponent = async (componentData) => {
@@ -134,6 +136,24 @@ export default async function StandardPage({ data }) {
           ) : null;
         }
         return null;
+      case 'SectionTestimonialGroup':
+        if (componentData?.sys?.id) {
+          const data = (await getSectionTestimonialGroupContent(componentData?.sys?.id)) ?? {};
+          return !isEmpty(data) ? (
+            <TestimonialTableSection
+              title={data?.title}
+              description={data?.description}
+              primaryButtonText={data?.primaryButtonText}
+              primaryButtonLink={data?.primaryButtonLink}
+              secondaryButtonText={data?.secondaryButtonText}
+              secondaryButtonLink={data?.secondaryButtonLink}
+              tableData={data?.contentCollection?.items}
+              isStandardPage
+            />
+          ) : null;
+        }
+        return null;
+
       default:
         return null;
     }
