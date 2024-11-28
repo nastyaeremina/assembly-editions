@@ -1,5 +1,5 @@
 import styled, { css } from 'styled-components';
-import { Body1, Body5, Heading3, Heading4, Heading5, Heading6, MbBody3, MobileH4 } from '../../styles/styles';
+import { Body1, Body4, Body5, Heading3, Heading4, MbBody3, MobileH4 } from '../../styles/styles';
 
 const FaqSection = styled.div`
   padding: 100px 0 60px 0;
@@ -103,7 +103,7 @@ const FaqTitle = styled.div`
     ${(props) =>
       props.isGuideFAQ &&
       css`
-        ${Heading5};
+        ${Body1};
         font-weight: 400;
       `}
   }
@@ -112,6 +112,12 @@ const FaqTitle = styled.div`
     h2 {
       font-size: 50px;
       line-height: 55px;
+      ${(props) =>
+        props.isGuideFAQ &&
+        css`
+          ${Body1};
+          font-weight: 400;
+        `}
     }
   }
   @media only screen and (max-width: 749px) {
@@ -120,9 +126,7 @@ const FaqTitle = styled.div`
       props.isGuideFAQ &&
       css`
         h2 {
-          font-weight: 400;
-          font-size: 32px;
-          line-height: 34px;
+          ${MobileH4}
         }
       `}
   }
@@ -165,13 +169,14 @@ const DivFAQ = styled.div`
     ${(props) =>
       props.isGuideFAQ &&
       css`
-        ${Heading6};
+        ${Body4};
+        line-height: 24px;
         font-weight: 400;
         display: inline-flex;
         gap: 10px;
         align-items: center;
         @media only screen and (max-width: 449px) {
-          ${MobileH4}
+          ${Body4};
         }
       `}
   }
@@ -211,6 +216,15 @@ const FAQAnsware = styled.div`
       css`
         ${Body5};
         padding: 0 32px 24px 0;
+        p {
+          margin-top: 0;
+          :last-child {
+            margin-bottom: 0;
+          }
+          :first-child {
+            margin-top: -4px;
+          }
+        }
       `}
     @media only screen and (max-width: 426px) {
       ${MbBody3}

@@ -1,5 +1,5 @@
-import styled, { css } from 'styled-components';
-import { Body3, Body4, Body5, HeaderFont, Heading3, Heading4, Heading5, MbBody3, MbBody4 } from '../../styles/styles';
+import styled from 'styled-components';
+import { Body1, Body3, Body4, Body5, HeaderFont, Heading3, MbBody3, MbBody4, MobileH4 } from '../../styles/styles';
 
 const GuideCenter = styled.div`
   max-width: 740px;
@@ -42,7 +42,7 @@ const GuideDetail = styled.div`
   padding: 40px 0;
   h3 > b,
   h3 {
-    ${Heading4};
+    ${Body1};
     font-weight: 400;
     color: var(--title);
     margin: 40px 0 0;
@@ -59,11 +59,14 @@ const GuideDetail = styled.div`
         transition: all 0.3s;
       }
     }
+    @media screen and (max-width: 768px) {
+      ${MobileH4}
+    }
   }
   h4 > b,
   h4 {
-    ${Heading5};
-    font-weight: 400;
+    ${Body4};
+    line-height: 24px;
     color: var(--title);
     margin: 20px 0 0;
     display: inline-flex;
@@ -93,7 +96,7 @@ const GuideDetail = styled.div`
     }
   }
   p {
-    ${Body4};
+    ${Body5};
     color: var(--body);
     margin: 8px 0 0;
     a {
@@ -204,7 +207,7 @@ const GuideDetail = styled.div`
       color: var(--title);
       vertical-align: top;
       p {
-        ${Body4};
+        ${Body5};
         color: var(--title);
         padding-top: 20px;
         :first-child {

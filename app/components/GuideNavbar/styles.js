@@ -463,7 +463,7 @@ const BtnIcon = styled.div`
 `;
 
 const Main = styled.div`
-  background: var(--white);
+  background: var(--white-overlay-color);
   backdrop-filter: blur(2px);
   position: fixed;
   z-index: 9999;
