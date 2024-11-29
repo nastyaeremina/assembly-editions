@@ -178,6 +178,7 @@ const POST_GRAPHQL_SECTION_TAB_FIELDS = `
 
 const POST_GRAPHQL_SECTION_CTA_FIELDS = `
   title
+  description
   primaryButtonText
   primaryButtonLink
   secondaryButtonText

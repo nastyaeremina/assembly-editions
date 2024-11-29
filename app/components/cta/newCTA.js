@@ -1,14 +1,25 @@
 'use client';
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 import ReactMarkdown from 'react-markdown';
 import { isEmpty } from '../../helpers/helpers';
 import { Container } from '../../styles/commonStyles';
 import { Gradient } from '../../../public/js/Gradient';
 import Button from '../button/button';
-import { ButtonSection, Content, CtaAnimation, CtaWrap, Image, ImageSection, TextSection, Title } from './newCTAStyles';
+import {
+  ButtonSection,
+  Content,
+  CtaAnimation,
+  CtaWrap,
+  Description,
+  Image,
+  ImageSection,
+  TextSection,
+  Title
+} from './newCTAStyles';
 
 export default function NewCTA({
   title,
+  description,
   primaryButtonText,
   primaryButtonLink,
   secondaryButtonText,
@@ -18,43 +29,31 @@ export default function NewCTA({
 }) {
   const showPrimaryButton = !isEmpty(primaryButtonText) && !isEmpty(primaryButtonLink);
   const showSecondaryButton = !isEmpty(secondaryButtonText) && !isEmpty(secondaryButtonLink);
+
   useEffect(() => {
-    // Initialize background animation for the CTA section
     const gradient = new Gradient();
     gradient.initGradient('#gradient-canvas');
   }, []);
 
   const imageSectionRef = useRef(null);
-  const [height, setHeight] = useState(0);
+  const [height, setHeight] = useState(() => {
+    // Set a default height that fits most screens
+    return window.innerHeight > 768 ? 400 : 300;
+  });
 
-  // Function to calculate and update the height of the CtaAnimation element
-  const updateHeight = () => {
+  const updateHeight = useCallback(() => {
     if (imageSectionRef.current) {
-      let imageHeight = imageSectionRef.current.offsetHeight; // Get the current height of the image section
-
-      // Add additional space based on the window height
-      if (window.innerHeight > 768) {
-        // Add 180 pixels if the window height is greater than 768px
-        imageHeight += 180; // 180 is spacing of CTA
-      } else {
-        // Add 148 pixels if the window height is 768px or less
-        imageHeight += 148; // 148 is spacing of CTA
-      }
-
-      setHeight(imageHeight); // Update state with the new height
+      let imageHeight = imageSectionRef.current.offsetHeight;
+      const additionalSpacing = window.innerHeight > 768 ? 180 : 148;
+      setHeight(imageHeight + additionalSpacing);
     }
-  };
+  }, []);
 
   useEffect(() => {
-    // Update height on initial load
-    updateHeight();
-
-    // Add event listener to handle window resize
-    window.addEventListener('resize', updateHeight);
-
-    // Clean up the event listener on component unmount
+    updateHeight(); // Update height on mount
+    window.addEventListener('resize', updateHeight); // Handle window resize
     return () => {
-      window.removeEventListener('resize', updateHeight);
+      window.removeEventListener('resize', updateHeight); // Cleanup event listener
     };
   }, []);
 
@@ -64,18 +63,19 @@ export default function NewCTA({
         <canvas
           id='gradient-canvas'
           data-transition-in
-          className={moduleName ? moduleName : 'entrance'}
+          className={moduleName || 'entrance'}
           style={{ height: `${height}px` }}
         />
         <CtaWrap>
           <Container ref={imageSectionRef}>
-            <Content>
-              <TextSection>
-                <Title>
+            <Content isNoImage={isEmpty(banner)}>
+              <TextSection isNoImage={isEmpty(banner)}>
+                <Title isNoImage={isEmpty(banner)}>
                   <ReactMarkdown>{title}</ReactMarkdown>
+                  {isEmpty(banner) && <Description>{description}</Description>}
                 </Title>
                 {(showPrimaryButton || showSecondaryButton) && (
-                  <ButtonSection>
+                  <ButtonSection isNoImage={isEmpty(banner)}>
                     {showPrimaryButton && <Button text={primaryButtonText} href={primaryButtonLink} />}
                     {showSecondaryButton && (
                       <Button

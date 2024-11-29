@@ -128,12 +128,13 @@ if(isEmpty(redirectData)) return null
           const data = (await getSectionCTAContent(componentData.sys?.id)) ?? {};
           return !isEmpty(data) ? (
             <CTA
-              title={data?.title}
-              primaryButtonText={data?.primaryButtonText}
-              primaryButtonLink={data?.primaryButtonLink}
-              secondaryButtonText={data?.secondaryButtonText}
-              secondaryButtonLink={data?.secondaryButtonLink}
-              banner={data?.banner?.url}
+              title={data.title}
+              description={data.description}
+              primaryButtonText={data.primaryButtonText}
+              primaryButtonLink={data.primaryButtonLink}
+              secondaryButtonText={data.secondaryButtonText}
+              secondaryButtonLink={data.secondaryButtonLink}
+              banner={data.banner?.url}
             />
           ) : null;
         }

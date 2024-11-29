@@ -1,24 +1,50 @@
-import styled from 'styled-components';
-import { Heading3 } from '../../styles/styles';
+import styled, { css } from 'styled-components';
+import { Body3, Heading3, MbBody3 } from '../../styles/styles';
 
 const Content = styled.div`
   border: 1px solid var(--white);
   border-radius: 4px;
   display: flex;
+  align-items: center;
+  ${(props) =>
+    props.isNoImage &&
+    css`
+      border: none;
+      align-items: center;
+      justify-content: center;
+    `}
 `;
 const TextSection = styled.div`
-  padding: 40px;
+  padding: 80px;
   width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   @media only screen and (max-width: 768px) {
-    padding: 20px;
+    padding: 24px;
+  }
+  ${(props) =>
+    props.isNoImage &&
+    css`
+      width: unset;
+    `}
+`;
+
+const Description = styled.div`
+  margin-top: 16px;
+  ${Body3};
+  color: var(--white);
+  text-align: center;
+  @media screen and (max-width: 768px) {
+    ${MbBody3};
   }
 `;
+
 const ImageSection = styled.div`
   display: flex;
   width: 100%;
+  max-height: 310px;
+  height: 100%;
   @media only screen and (max-width: 768px) {
     display: none;
   }
@@ -28,6 +54,12 @@ const Title = styled.div`
     ${Heading3};
     color: var(--white);
     margin: 0;
+    ${(props) =>
+      props.isNoImage &&
+      css`
+        max-width: 724px;
+        text-align: center;
+      `}
   }
 `;
 const ButtonSection = styled.div`
@@ -41,6 +73,12 @@ const ButtonSection = styled.div`
   @media only screen and (max-width: 375px) {
     gap: 6px;
   }
+  ${(props) =>
+    props.isNoImage &&
+    css`
+      align-items: center;
+      justify-content: center;
+    `}
 `;
 const Image = styled.img`
   max-width: 612px;
@@ -69,4 +107,4 @@ const CtaWrap = styled.div`
   -webkit-backdrop-filter: blur(50px);
   backdrop-filter: blur(50px);
 `;
-export { Content, TextSection, ImageSection, Title, ButtonSection, Image, CtaAnimation, CtaWrap };
+export { Content, TextSection, ImageSection, Title, ButtonSection, Image, CtaAnimation, CtaWrap, Description };
