@@ -6,7 +6,7 @@ import { getAllPartnerApps } from '../../lib/contentful-partnerApps';
 import Navbar from '../../components/navbar/navbar';
 import CTA from '../../components/cta/cta';
 
-export async function getAppDirectoryContent() {
+async function getAppDirectoryContent() {
   const allClientPosts = (await getAllPartnerApps(APPS_TYPE.CLIENT)) ?? [];
   const allInternalPosts = (await getAllPartnerApps(APPS_TYPE.INTERNAL)) ?? [];
   const featuredApps = allClientPosts?.filter((item) => item?.isFeatured === true);

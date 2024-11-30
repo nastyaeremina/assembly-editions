@@ -15,7 +15,7 @@ const Content = styled.div`
     `}
 `;
 const TextSection = styled.div`
-  padding: 80px;
+  padding: 0 40px;
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -43,8 +43,6 @@ const Description = styled.div`
 const ImageSection = styled.div`
   display: flex;
   width: 100%;
-  max-height: 310px;
-  height: 100%;
   @media only screen and (max-width: 768px) {
     display: none;
   }
@@ -95,6 +93,22 @@ const CtaAnimation = styled.div`
     max-height: 464px;
     height: 100%;
   }
+  canvas {
+    margin: -30px !important;
+    @media (max-width: 768px) {
+      margin: -50px !important;
+    }
+  }
+  ${(props) =>
+    props.isNoImage &&
+    css`
+      canvas {
+        margin: 0 !important;
+        @media (max-width: 768px) {
+          margin: -50px !important;
+        }
+      }
+    `}
 `;
 const CtaWrap = styled.div`
   position: absolute;

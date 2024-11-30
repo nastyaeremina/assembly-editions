@@ -104,7 +104,6 @@ const NavMenu = styled.div`
     }
   }
   @media only screen and (max-width: 991px) {
-    display: none;
     ${(props) =>
       props.mobile &&
       css`
@@ -122,10 +121,11 @@ const NavigationBlock = styled.ul`
     width: 100%;
     align-items: flex-start;
     margin: 0;
+    /* border-bottom: 1px solid var(--black); */
   }
 
   ${(props) =>
-    props.isResourcemenu &&
+    props.isWithOutHeading &&
     css`
       li {
         background-color: unset;
@@ -134,7 +134,7 @@ const NavigationBlock = styled.ul`
           border-top: 1px solid var(--black);
         }
         :last-child {
-          border-bottom: none;
+          box-shadow: 0px 4px 12px var(--black-shadow-20); /* Adjust color and opacity as needed */
         }
       }
     `}
@@ -158,8 +158,9 @@ const LineMenuImg = styled.div`
   position: absolute;
   visibility: 0;
   opacity: 0;
-  left: -10px;
-  bottom: -27px;
+  left: -13px;
+  bottom: -30px;
+  width: calc(100% + 4px);
   display: none;
   ${(props) =>
     props.lineColor &&
@@ -170,10 +171,18 @@ const LineMenuImg = styled.div`
         }
       }
     `}
+  img {
+    width: 100%;
+  }
 `;
 const SpanLink = styled.li`
   position: relative;
   transition: color 300ms;
+  ${(props) =>
+    props.isOpenMenu &&
+    css`
+      display: none;
+    `}
   a {
     ${HeaderFont}
     margin: 0 14px;
@@ -355,6 +364,10 @@ const InnerList = styled.ul`
       border: 1px solid var(--dark-green);
       box-shadow: 0px 8px 24px var(--black-shadow-35);
     `}
+  .footer-items-div {
+    display: flex;
+    justify-content: space-between;
+  }
 `;
 const ListLi = styled.li`
   @media only screen and (max-width: 991px) {
@@ -386,6 +399,11 @@ const Listright = styled.div`
     css`
       /* min-width: 277px; */
       /* white-space: nowrap; */
+    `}
+  ${(props) =>
+    props.isWidth &&
+    css`
+      max-width: 350px;
     `}
 `;
 const HeaderBtnGroup = styled.div`
@@ -591,6 +609,15 @@ const MenuWrap = styled(Link)`
   @media only screen and (max-width: 991px) {
     width: 100%;
   }
+  &.footer-item-main-div {
+    :hover {
+      background-color: unset;
+      h5,
+      span {
+        color: var(--title);
+      }
+    }
+  }
   :hover {
     background-color: var(--dark-green);
     h5,
@@ -693,6 +720,28 @@ const LeftImg = styled.div`
 const RightText = styled.div`
   color: var(--title);
   padding-left: 20px;
+  &.footer-item {
+    padding-left: unset;
+    display: flex;
+    align-items: center;
+    h5 {
+      margin: unset;
+    }
+    svg path {
+      transition: all 300ms ease;
+    }
+  }
+  :hover .HoverArrow__linePath {
+    opacity: 1;
+    fill: none;
+    fill: black;
+  }
+  :hover .HoverArrow__tipPath {
+    transform: translateX(2px);
+    @media only screen and (max-width: 749px) {
+      transform: none;
+    }
+  }
   ${(props) =>
     props.resourcetext &&
     css`
@@ -715,6 +764,24 @@ const RightText = styled.div`
     display: block;
     color: var(--title);
   }
+  .HoverArrow__linePath {
+    opacity: 0;
+    fill: none;
+  }
+  .HoverArrow {
+    stroke-width: 2px;
+    fill: none;
+    stroke: currentColor;
+    position: relative;
+    margin-left: var(--arrowSpacing);
+    stroke-width: 2px;
+    fill: none;
+    stroke: currentColor;
+    margin-left: 8px;
+    --arrowSpacing: 5px;
+    --arrowHoverTransition: 150ms cubic-bezier(0.215, 0.61, 0.355, 1);
+    --arrowHoverOffset: translateX(3px);
+  }
 `;
 const SignInMobile = styled.ul`
   display: none;
@@ -736,10 +803,12 @@ const MobileListLi = styled.li`
     width: 100%;
     border-bottom: 1px solid var(--border);
     background-color: var(--neutral);
-    :first-child {
-    }
     :last-of-type {
-      border-bottom: 0;
+      border-bottom: 1px solid var(--black);
+      border-top: 1px solid var(--black);
+    }
+    :nth-last-of-type(2) {
+      border-bottom: none;
     }
     ${(props) =>
       props.isSolutionmenu &&
@@ -764,6 +833,9 @@ const MobileTextLink = styled(Link)`
         color: ${props.hoverColor} !important;
       `}
   }
+`;
+const ResourcesSubMenuDiv = styled.div`
+  border-top: 1px solid var(--black);
 `;
 const MobileText = styled.div`
   ${HeaderFont}
@@ -882,6 +954,7 @@ const BackWrap = styled.div`
   display: flex;
   align-items: center;
   gap: 4px;
+  cursor: pointer;
   span {
     ${MbButtonText};
     color: var(--black);
@@ -1012,6 +1085,10 @@ const Last = styled.div`
 const LastDroplist = styled.div`
   border-top: 1px solid var(--dark-green);
   padding: 12px 20px;
+  width: 100%;
+  :nth-child(2) {
+    border-left: 1px solid var(--dark-green);
+  }
   @media only screen and (max-width: 991px) {
     ${(props) =>
       props.Mobilemenu &&
@@ -1046,6 +1123,8 @@ const LastDroplist = styled.div`
     color: var(--title);
     cursor: pointer;
     transition: none;
+    display: flex;
+    align-items: center;
     :hover .HoverArrow__linePath {
       opacity: 1;
       fill: none;
@@ -1118,9 +1197,10 @@ const DropDownHeading = styled.div`
   padding: 12px 20px;
   min-width: 280px;
   ${(props) =>
-    props.isFeatureWidth &&
+    props.isWidth &&
     css`
-      min-width: 360px;
+      max-width: 350px;
+      min-width: 350px;
     `}
 `;
 
@@ -1187,5 +1267,6 @@ export {
   DropDownHeading,
   BorderLine,
   FeatureDropdown,
-  Dropdown
+  Dropdown,
+  ResourcesSubMenuDiv
 };

@@ -2,16 +2,17 @@ import { notFound } from 'next/navigation';
 import { cookies } from 'next/headers';
 import Layout from '../../../components/layout';
 import Navbar from '../../../components/navbar/navbar';
-import { getPartnerAppDetail } from '../../../lib/contentful-partnerApps';
+import { getAllPartnerApps, getPartnerAppDetail } from '../../../lib/contentful-partnerApps';
 import { getRandomUniqueElements, getSEOData, isEmpty } from '../../../helpers/helpers';
 import AppsDetailPage from '../../../components/PageComponent/Apps/appDetailPage';
 import CTA from '../../../components/cta/cta';
-import { getAppDirectoryContent } from '../page.js';
 import { APPS_TYPE, STRING_END_OF_APP } from '../../../constants/constant.js';
 
 async function getContent({ slug }) {
   const appDetail = (await getPartnerAppDetail(slug)) ?? {};
-  const { clientApps, internalApps } = await getAppDirectoryContent();
+  const clientApps = (await getAllPartnerApps(APPS_TYPE.CLIENT)) ?? [];
+  const internalApps = (await getAllPartnerApps(APPS_TYPE.INTERNAL)) ?? [];
+
   //create new app list that have all apps except current app
   const otherApps = [...clientApps, ...internalApps].filter((item) => item.slug !== slug);
   const relatedApps = getRandomUniqueElements(otherApps, 8);

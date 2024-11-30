@@ -2,35 +2,65 @@
 
 import Image from 'next/image';
 import { useMemo } from 'react';
-import { NavigationBlock, NavMenu, MobileListLi, MenuWrap, LeftImg, RightText, Last, LastDroplist } from './styles';
+import { isEmpty } from '../../helpers/helpers';
+import { NavigationBlock, NavMenu, MobileListLi, MenuWrap, LeftImg, RightText } from './styles';
 
-export default function FeatureSubMenu({ mobile, data }) {
+export default function FeatureSubMenu({ mobile, data, footerData, isWithOutHeading, iconSize }) {
   const renderFeatureView = useMemo(() => {
-    return data?.map((item, index) => {
-      return (
-        <MobileListLi key={`feature_navbar_index_${index}`}>
-          <MenuWrap href={`/apps/directory/${item?.slug}`}>
-            <LeftImg>
-              <Image src={item?.icon?.url} alt='msg-icon' width={32} height={32} />
-            </LeftImg>
-            <RightText>
-              <h5>{item?.name}</h5>
-              <span>{item?.navbarDescription}</span>
-            </RightText>
-          </MenuWrap>
-        </MobileListLi>
-      );
-    });
-  }, [data]);
-  return (
-    <>
-      <NavMenu mobile={mobile}>
-        <NavigationBlock>
-          {renderFeatureView}
-          <LastDroplist Mobilemenu>
-            <Last className='icon-link'>
-              <a href={'/apps/directory'} className='learn-link mb0'>
-                Go to App Store
+    return (
+      <>
+        {data?.map((item, index) => {
+          console.log('item.isFooter', item.isFooter);
+
+          return (
+            <>
+              {item.isFooter ? (
+                <MobileListLi>
+                  <MenuWrap href={item.Link} className='footer-item-main-div'>
+                    <RightText className='footer-item'>
+                      <h5>{item?.Title}</h5>
+                      <svg width='16' height='12' viewBox='0 0 16 12' fill='none' class='HoverArrow'>
+                        <path
+                          d='M5.7998 1.37109L10.4283 5.99958L5.7998 10.6281'
+                          stroke-width='1.92854'
+                          stroke-linecap='round'
+                          stroke-linejoin='round'
+                          class='HoverArrow__tipPath'
+                        />
+                        <path
+                          d='M10.33 5.99951H1.5'
+                          stroke-width='2'
+                          stroke-linecap='round'
+                          stroke-linejoin='round'
+                          class='HoverArrow__linePath'
+                        />
+                      </svg>
+                    </RightText>
+                  </MenuWrap>
+                </MobileListLi>
+              ) : (
+                <MobileListLi key={`feature_navbar_index_${index}`}>
+                  <MenuWrap href={item.Link}>
+                    {item.Icon && (
+                      <LeftImg>
+                        <Image src={item?.Icon} alt='msg-icon' width={iconSize} height={iconSize} />
+                      </LeftImg>
+                    )}
+                    <RightText>
+                      <h5>{item?.Title}</h5>
+                      <span>{item?.Description}</span>
+                    </RightText>
+                  </MenuWrap>
+                </MobileListLi>
+              )}
+            </>
+          );
+        })}
+        {!isEmpty(footerData) && (
+          <MobileListLi>
+            <MenuWrap href={footerData.Link} className='footer-item-main-div'>
+              <RightText className='footer-item'>
+                <h5>{footerData?.Title}</h5>
                 <svg width='16' height='12' viewBox='0 0 16 12' fill='none' class='HoverArrow'>
                   <path
                     d='M5.7998 1.37109L10.4283 5.99958L5.7998 10.6281'
@@ -47,10 +77,17 @@ export default function FeatureSubMenu({ mobile, data }) {
                     class='HoverArrow__linePath'
                   />
                 </svg>
-              </a>
-            </Last>
-          </LastDroplist>
-        </NavigationBlock>
+              </RightText>
+            </MenuWrap>
+          </MobileListLi>
+        )}
+      </>
+    );
+  }, [data, footerData, iconSize]);
+  return (
+    <>
+      <NavMenu mobile={mobile}>
+        <NavigationBlock isWithOutHeading={isWithOutHeading}>{renderFeatureView}</NavigationBlock>
       </NavMenu>
     </>
   );

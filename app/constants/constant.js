@@ -434,6 +434,7 @@ export const TEMPLATE_PAGE_ID = '6JOXBgDQWb5uazPg8n98ea';
 export const CUSTOM_CODE_HEAD_ID = '7v9PqjbDuvaFz4Mm2cxQTX';
 export const CUSTOM_CODE_BEFORE_BODY_TAG_ID = '6CMLDvTPrgvrVzpv5O8XPc';
 export const CUSTOM_CODE_AFTER_BODY_TAG_ID = '2GQxmuzDZhGcXGB5FbgoGa';
+export const NAVBAR_CONTENT_ID = '6VWgUONRpobtJQfGck3Ncq';
 /*
 Regex varibles
 */

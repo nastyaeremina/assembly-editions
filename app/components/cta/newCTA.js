@@ -44,10 +44,10 @@ export default function NewCTA({
   const updateHeight = useCallback(() => {
     if (imageSectionRef.current) {
       let imageHeight = imageSectionRef.current.offsetHeight;
-      const additionalSpacing = window.innerHeight > 768 ? 180 : 148;
+      const additionalSpacing = window.innerHeight > 768 ? (isEmpty(banner) ? 100 : 140) : 200;
       setHeight(imageHeight + additionalSpacing);
     }
-  }, []);
+  }, [banner]);
 
   useEffect(() => {
     updateHeight(); // Update height on mount
@@ -55,11 +55,11 @@ export default function NewCTA({
     return () => {
       window.removeEventListener('resize', updateHeight); // Cleanup event listener
     };
-  }, []);
+  }, [updateHeight]);
 
   return (
     <>
-      <CtaAnimation>
+      <CtaAnimation isNoImage={isEmpty(banner)}>
         <canvas
           id='gradient-canvas'
           data-transition-in

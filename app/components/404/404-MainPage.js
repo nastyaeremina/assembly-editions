@@ -1,19 +1,13 @@
 'use client';
 import Footer from '../footer/footer';
-import NavbarComponent from '../navbar/mainNavbar';
 import ErrorPage from './404-page';
 
-export default function NotFoundPage({ topbarContent, solutionDataList, isAuthenticated, footerData }) {
+export default function NotFoundPage({ footerData, children }) {
   return (
     <>
       <div>
         <main>
-          <NavbarComponent
-            isEnterPrice={false}
-            isAuthenticated={isAuthenticated}
-            topbarContent={topbarContent}
-            solutionDataList={solutionDataList}
-          />
+          {children}
           <ErrorPage />
         </main>
       </div>

@@ -4,7 +4,6 @@ import { getCTAContent, getNavbarSolutionList, getTopBarContent } from './appSer
 export const appInit = () => async (dispatch) => {
   await dispatch(getTopBarContent());
   await dispatch(getCTAContent());
-  await dispatch(getNavbarSolutionList());
   //fetch cookie
   fetch('/api/userAuthenticated')
     .then((response) => response.json())
