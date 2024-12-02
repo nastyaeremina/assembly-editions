@@ -27,6 +27,10 @@ const HeroSection = styled.div`
   @media only screen and (max-width: 768px) {
     /* margin-bottom: 40px; */
   }
+  .social-proof {
+    display: flex;
+    justify-content: center;
+  }
 `;
 
 const HeroHeading = styled.h1`

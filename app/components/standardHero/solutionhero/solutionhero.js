@@ -15,6 +15,7 @@ import {
   MobileView,
   Mobilenew
 } from './styles';
+import SocialProofProperty from '../../socialProofProperty/socialProofProperty';
 
 /**
  * SolutionHero Component
@@ -40,7 +41,8 @@ export default function SolutionHero({
   secondaryButtonLink,
   secondaryButtonText,
   primaryButtonLink,
-  primaryButtonText
+  primaryButtonText,
+  isShowSocialProof
 }) {
   const finalTitle = separateSpecialChar(title);
   const showPrimaryButton = !isEmpty(primaryButtonText) && !isEmpty(primaryButtonLink);
@@ -74,6 +76,7 @@ export default function SolutionHero({
                     )}
                   </BtnWrap>
                 )}
+                {isShowSocialProof && <SocialProofProperty rateCount='1000+' />}
               </TextSection>
             </LeftWrap>
             <RightWrap>

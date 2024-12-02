@@ -19,6 +19,7 @@ import {
 import bgleft from '../../../public/images/bgleft.png';
 import bgright from '../../../public/images/bgright.png';
 import { isEmpty, transformArray } from '../../helpers/helpers';
+import SocialProofProperty from '../socialProofProperty/socialProofProperty';
 
 /**
  * HomeHeroSection Component
@@ -51,7 +52,8 @@ export default function HomeHeroSection({
   primaryButtonText,
   primaryButtonLink,
   secondaryButtonText,
-  secondaryButtonLink
+  secondaryButtonLink,
+  isShowSocialProof
 }) {
   let ratingData = transformArray(ratingList);
 
@@ -99,7 +101,12 @@ export default function HomeHeroSection({
       <Container>
         <HeroHeading isLight={isLight}>{title}</HeroHeading>
         <Para isLight={isLight}>{body}</Para>
-        {!isEmpty(ratingData) && <ReviewLogo>{renderRatingView}</ReviewLogo>}{' '}
+        {!isEmpty(ratingData) && <ReviewLogo>{renderRatingView}</ReviewLogo>}
+        {isShowSocialProof && (
+          <div className='social-proof'>
+            <SocialProofProperty rateCount='1000+' />
+          </div>
+        )}
         {(showPrimaryButton || showSecondaryButton) && (
           <HeroBtnBlock>
             {showPrimaryButton && (

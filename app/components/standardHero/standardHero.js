@@ -26,6 +26,7 @@ export default function StandardHero({ type, data }) {
             secondaryButtonText={data?.secondaryButtonText} // Text for the secondary button
             secondaryButtonLink={data?.secondaryButtonLink} // Link for the secondary button
             isStandardPage={true}
+            isShowSocialProof={data.showSocialProof}
           />
         );
       case HeroTypes.CENTER:
@@ -41,6 +42,7 @@ export default function StandardHero({ type, data }) {
             primaryButtonLink={data?.primaryButtonLink}
             secondaryButtonText={data?.secondaryButtonText}
             secondaryButtonLink={data?.secondaryButtonLink}
+            isShowSocialProof={data.showSocialProof}
           />
         );
       case HeroTypes.SIMPLE:

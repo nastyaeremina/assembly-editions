@@ -17,7 +17,9 @@ banner1{
 }
 banner2{
   url
-}`;
+}
+showSocialProof
+`;
 
 export const POST_GRAPHQL_SIMPLE_COMPONENT_FIELDS = `
 heroTitle
