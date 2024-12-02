@@ -4,16 +4,15 @@ import FAQ from './../components/faq/faq';
 import Layout from './../components/layout';
 import Navbar from './../components/navbar/navbar';
 import { JOB_PAGE_ID } from './../constants/constant';
-import { getSEOData } from './../helpers/helpers';
+import { extractTableData, getSEOData } from './../helpers/helpers';
 import { NO_OF_JOBS_PER_PAGE } from './../lib/constants';
-import { getAllJobBlogPosts, getJobDetail } from './../lib/contentful-jobBlogPosts';
-import { getAllJobImages, getAllJobs } from './../lib/contentful-jobsListing';
+import { getJobDetail } from './../lib/contentful-jobBlogPosts';
+import { getAllJobs } from './../lib/contentful-jobsListing';
 
 async function getContent() {
   const details = (await getJobDetail(JOB_PAGE_ID)) ?? {};
   const jobImagesList = details.jobImagesCollection?.items ?? [];
   delete details.jobImagesCollection;
-  const jobBlogPostList = (await getAllJobBlogPosts()) ?? [];
   let allPosts = [];
   let data = [];
   let page = 0;
@@ -41,7 +40,7 @@ async function getContent() {
     }
   });
 
-  return { jobList, jobImagesList, jobBlogPostList, details };
+  return { jobList, jobImagesList, details };
 }
 
 export async function generateMetadata() {
@@ -54,8 +53,10 @@ export async function generateMetadata() {
 }
 
 export default async function Jobs() {
-  const { details, jobList, jobImagesList, jobBlogPostList } = await getContent();
+  const { details, jobList, jobImagesList } = await getContent();
   const faqData = await getFAQsData({ data: details?.faQsCollection?.items });
+
+  const jobBlogPostList = extractTableData(details.jobBlogPost.json);
 
   return (
     <>

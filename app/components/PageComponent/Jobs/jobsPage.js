@@ -3,7 +3,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useCallback, useMemo, useState } from 'react';
 import { ReactMarkdown } from 'react-markdown/lib/react-markdown';
-import { dateToMonthYear, isEmpty } from '../../../helpers/helpers';
+import { isEmpty } from '../../../helpers/helpers';
 import { Container } from '../../../styles/commonStyles';
 import {
   HeroJobSection,
@@ -41,6 +41,7 @@ import Modern from '../../solution/modern/modern';
 
 export default function JobsPage({ details, jobList, jobImagesList, jobBlogPostList }) {
   const [selectedImageIndex, setSelectedImageIndex] = useState(0);
+
   const renderJobsListingView = useCallback((list) => {
     if (isEmpty(list)) return null;
     return list?.map((item, index) => {
@@ -136,12 +137,12 @@ export default function JobsPage({ details, jobList, jobImagesList, jobBlogPostL
       if (!isEmpty(item?.author)) {
         authorList = item?.author.split(',');
       }
-      const link = item?.blogLink; //?.split('copilot.com/')?.[1];
+      const link = item?.link;
       return (
         <TitleWrap key={`jobblogpostitem_index_${index}`}>
           <TeamLine>
             <Link href={link ?? ''}>{item?.name}</Link>
-            <p>{dateToMonthYear(item?.date)}</p>
+            <p>{item?.date}</p>
           </TeamLine>
           {!isEmpty(authorList) && <NameView>{renderAuthorListView(authorList)}</NameView>}
         </TitleWrap>

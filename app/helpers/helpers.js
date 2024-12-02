@@ -602,3 +602,37 @@ export function parseData(data) {
 
   return mapList;
 }
+
+/**
+ * Extracts table data from a Contentful RichText JSON and converts it into an array of objects.
+ * The first row of the table is treated as the header and used as keys for the objects.
+ *
+ * @param {Object} richTextJson - The Contentful RichText JSON containing the table data.
+ * @returns {Array<Object>} - An array of objects, where each object represents a row of the table.
+ */
+
+export function extractTableData(richTextJson) {
+  const tableNode = richTextJson.content.find((node) => node.nodeType === 'table');
+  if (!tableNode) return [];
+
+  // Extract rows from the table
+  const rows = tableNode.content.map((rowNode) =>
+    rowNode.content.map((cellNode) => {
+      const content = joinArrayToString({ list: cellNode.content[0].content, fieldName: 'value', seprator: ' ' });
+
+      return content || '';
+    })
+  );
+
+  // First row is the header
+  const [header, ...dataRows] = rows;
+
+  // Map each data row to an object using the header as keys
+  return dataRows.map((row) => {
+    return row.reduce((acc, cell, index) => {
+      const newHeader = header[index].replace(' ', '');
+      acc[newHeader] = cell;
+      return acc;
+    }, {});
+  });
+}

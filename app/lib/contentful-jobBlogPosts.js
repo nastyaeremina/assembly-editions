@@ -3,13 +3,6 @@ import { fetchGraphQL } from './contentful';
 import { POST_GRAPHQL_FAQ_COLLECTION_FIELDS } from './contentful-faq';
 import { POST_GRAPHQL_SEOMETADATA_FIELDS } from './contentful-seo';
 
-const POST_GRAPHQL_JOB_BLOG_POST_DETAILS_FIELDS = `
-name
-author
-date
-blogLink
-`;
-
 const POST_GRAPHQL_INTERNAL_FEATURES_COLLECTION_FIELDS = `
 internalFeaturesCollection{
   items{
@@ -40,30 +33,14 @@ const POST_GRAPHQL_JOB_DETAILS_FIELDS = `
       items{
       ${POST_GRAPHQL_JOB_IMAGES_FIELDS}
       }
-    }     
+    }
+    jobBlogPost{
+    json
+    }
     seoMetadata{
         ${POST_GRAPHQL_SEOMETADATA_FIELDS}
     }
     `;
-function extractPostEntries(fetchResponse) {
-  return fetchResponse?.data?.jobBlogPostsCollection?.items;
-}
-
-export async function getAllJobBlogPosts(preview) {
-  const entries = await fetchGraphQL(
-    `query {
-            jobBlogPostsCollection(order:[order_ASC],preview: ${preview ? 'true' : 'false'}) {
-        items {
-          ${POST_GRAPHQL_JOB_BLOG_POST_DETAILS_FIELDS}
-        }
-      }
-    }`,
-    preview,
-    [CONTENTFUL_API_TAG.JOB]
-  );
-
-  return extractPostEntries(entries);
-}
 
 export async function getJobDetail(id, preview) {
   const entries = await fetchGraphQL(
@@ -76,5 +53,6 @@ export async function getJobDetail(id, preview) {
     preview,
     [CONTENTFUL_API_TAG.JOB]
   );
+
   return entries?.data?.pageJob;
 }
