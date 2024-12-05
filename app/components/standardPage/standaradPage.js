@@ -5,7 +5,8 @@ import {
   getSectionCTAContent,
   getSectionTabContent,
   getSectionTestimonialGroupContent,
-  getSectionRedirectContent
+  getSectionRedirectContent,
+  getSectionHighlightContent
 } from '../../lib/contentful-standardPage';
 import Modern from '../solution/modern/modern';
 import Quote from '../quote/quote';
@@ -19,6 +20,7 @@ import RedirectsComponent from '../Redirects/redirectsComponent';
 import CTA from '../cta/newCTA';
 import SimpleSection from '../standardHero/simpleSection/simpleSection';
 import TestimonialTableSection from '../newTestimonial/testimonialTableSection';
+import HighlightSection from '../highlightSection/highlightSection';
 
 export default async function StandardPage({ data }) {
   const renderComponent = async (componentData) => {
@@ -111,7 +113,7 @@ export default async function StandardPage({ data }) {
         );
       case 'SectionRedirect':
         const redirectData = (await getSectionRedirectContent(componentData.sys?.id)) ?? {};
-if(isEmpty(redirectData)) return null
+        if (isEmpty(redirectData)) return null;
         return (
           <RedirectsComponent
             Heading={redirectData.title}
@@ -170,7 +172,14 @@ if(isEmpty(redirectData)) return null
           ) : null;
         }
         return null;
-
+      case 'SectionHighlight':
+        const data = (await getSectionHighlightContent(componentData.sys?.id)) ?? {};
+        if (isEmpty(data?.content?.json)) return null;
+        return (
+          <>
+            <HighlightSection data={data.content.json} />
+          </>
+        );
       default:
         return null;
     }

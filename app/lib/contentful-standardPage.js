@@ -93,6 +93,11 @@ contentCollection{
            id
            }
           }
+           ...on SectionHighlight{
+           sys{
+           id
+           }
+           }
           ...on ComponentFeature{
             sys{
               id
@@ -337,4 +342,18 @@ export async function getSectionRedirectContent(id, preview) {
   );
 
   return entries?.data?.sectionRedirect || {};
+}
+
+export async function getSectionHighlightContent(id, preview) {
+  const entries = await fetchGraphQL(
+    `query {
+        sectionHighlight(id:"${id}",preview: ${preview ? 'true' : 'false'}) {
+        content{
+        json}
+      }
+    }`,
+    preview,
+    [CONTENTFUL_API_TAG.STANDARD_PAGE]
+  );
+  return entries?.data?.sectionHighlight || {};
 }
