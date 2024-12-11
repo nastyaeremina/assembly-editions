@@ -10,8 +10,6 @@ export default function FeatureSubMenu({ mobile, data, footerData, isWithOutHead
     return (
       <>
         {data?.map((item, index) => {
-          console.log('item.isFooter', item.isFooter);
-
           return (
             <>
               {item.isFooter ? (

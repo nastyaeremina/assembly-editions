@@ -12,7 +12,7 @@ const HeroSection = styled.div`
       }
     `}
   @media only screen and (max-width: 749px) {
-    padding-top: 148px;
+    padding-top: 116px;
     ${(props) =>
       props.isStandardPage &&
       css`
@@ -58,7 +58,10 @@ const SolutionWrap = styled.div`
     background-color: var(--light-green);
   }
 `;
-const LeftWrap = styled.div``;
+const LeftWrap = styled.div`
+  margin: 0 auto;
+  max-width: 808px;
+`;
 const RightWrap = styled.div`
   .comparison-img {
     padding-bottom: 0px;
@@ -79,6 +82,7 @@ const RightWrap = styled.div`
   }
 `;
 const TextSection = styled.div`
+  text-align: center;
   h1 {
     ${Heading2};
     color: var(--title);
@@ -92,7 +96,7 @@ const TextSection = styled.div`
     ${Body2};
     color: var(--body);
     letter-spacing: 0.02em;
-    margin: 20px 0 32px;
+    margin: 20px 0 0;
   }
   @media only screen and (max-width: 749px) {
     h1 {

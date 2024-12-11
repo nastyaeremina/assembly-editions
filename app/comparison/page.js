@@ -3,17 +3,24 @@ import { getSEOData } from '../helpers/helpers';
 import Layout from '../components/layout';
 import Navbar from '../components/navbar/navbar';
 import {
+  getAllComparisonCategories,
   getAllCompetitor,
-  getAllCompetitorComparisonDetail,
   getMasterComparisonDetail
 } from './../lib/contentful-comparison';
 import CTA from '../components/cta/cta';
 
 async function getContent() {
+  const categories = (await getAllComparisonCategories()) ?? [];
+
   const featuredCompetitorList = await getAllCompetitor();
   const details = await getMasterComparisonDetail();
-  const comparisonList = await getAllCompetitorComparisonDetail();
-  return { featuredCompetitorList, details, comparisonList };
+
+  const comparisonListWithCategory = categories.map((category) => ({
+    category,
+    items: featuredCompetitorList.filter((item) => item.category === category)
+  }));
+
+  return { featuredCompetitorList: comparisonListWithCategory, details };
 }
 
 export async function generateMetadata({ params, searchParams }, parent) {
@@ -23,17 +30,13 @@ export async function generateMetadata({ params, searchParams }, parent) {
 }
 
 export default async function Comparison() {
-  const { featuredCompetitorList, details, comparisonList } = await getContent();
+  const { featuredCompetitorList, details } = await getContent();
 
   return (
     <>
       <Layout>
         <Navbar />
-        <ComparisonPage
-          featuredCompetitorList={featuredCompetitorList}
-          details={details}
-          comparisonList={comparisonList}
-        />
+        <ComparisonPage featuredCompetitorList={featuredCompetitorList} details={details} />
         <CTA />
       </Layout>
     </>

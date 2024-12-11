@@ -46,16 +46,17 @@ const QuoteTxt = styled.div`
   flex-direction: column;
   justify-content: space-between;
   padding: 40px;
+  gap: 30px;
   p {
     ${Quote};
-    margin: 0px 0 30px 0;
+    margin: 0px;
     color: var(--title);
   }
   @media only screen and (max-width: 749px) {
     padding: 30px;
     p {
       ${MobileH3};
-      margin: 0px 0 30px 0;
+      margin: 0px;
       color: var(--title);
     }
   }
@@ -63,7 +64,7 @@ const QuoteTxt = styled.div`
 const QuoteSubTxt = styled.div`
   span {
     display: block;
-    margin: 0 0 5px 0;
+    margin: 0 0 4px 0;
     ${ButtonText};
     color: var(--title);
   }

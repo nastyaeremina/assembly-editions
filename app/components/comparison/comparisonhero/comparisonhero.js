@@ -27,27 +27,8 @@ export default function ComparisonHero({ title, description, image }) {
                   </h1>
                 )}
                 {description && <p>{description}</p>}
-                <BtnWrap>
-                  <PrimaryButton>
-                    <Link href={COPILOT_ONBORADING_LINK}>Start trial</Link>
-                  </PrimaryButton>
-                </BtnWrap>
               </TextSection>
             </LeftWrap>
-            <RightWrap>
-              <ImageView className='comparison-img'>
-                <Image src={image} alt='main-logo' width={378} height={328} />
-                {/* <MobileImg>
-                  <Image src={mobileImage} alt='main-logo' width={310} height={655} />
-                </MobileImg> */}
-              </ImageView>
-              <MobileView className='comparison-img'>
-                <Image src={image} alt='main-logo' width={327} height={284} />
-                {/* <Mobilenew>
-                  <Image src={mobileImage} alt='main-logo' width={174} height={367} />
-                </Mobilenew> */}
-              </MobileView>
-            </RightWrap>
           </SolutionWrap>
         </Container>
       </HeroSection>

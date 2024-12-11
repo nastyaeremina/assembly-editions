@@ -1,5 +1,5 @@
 import { CONTENTFUL_API_TAG } from '../constants/constant';
-import { fetchGraphQL } from './contentful';
+import { fetchGraphQL, getContentTypeDetail } from './contentful';
 import { POST_GRAPHQL_FAQ_COLLECTION_FIELDS } from './contentful-faq';
 
 const POST_GRAPHQL_COMPARISON_DETAILS_FIELDS = `
@@ -56,6 +56,7 @@ seoMetadata{
 
 const POST_GRAPHQL_COMPARISON_ALL_COMPITITOE_DETAILS_FIELDS = `
 slug
+category
 logo{
   url
 }
@@ -187,4 +188,24 @@ export async function getMasterComparisonDetail(preview) {
     [CONTENTFUL_API_TAG.COMPARISON]
   );
   return entry?.data?.masterComparisonCollection?.items?.[0];
+}
+
+/**
+ * fetch all predefine  automation category on contentful model
+ * @returns {Array} - The array of Automation Category.
+ */
+
+export async function getAllComparisonCategories(preview) {
+  const contentTypeId = 'pageComparision';
+  const data = await getContentTypeDetail(contentTypeId);
+
+  if (data) {
+    const defaultValue = data.fields
+      .find((field) => field.id === 'category')
+      ?.validations?.find((item) => item?.in)
+      ?.in?.sort();
+
+    return defaultValue;
+  }
+  return [];
 }

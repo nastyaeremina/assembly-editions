@@ -1,16 +1,5 @@
 import styled, { css } from 'styled-components';
-import {
-  Body2,
-  Body3,
-  Body4,
-  Body5,
-  Heading2,
-  Heading3,
-  Heading4,
-  Heading6,
-  MbBody3,
-  Quote
-} from '../../styles/styles';
+import { Body2, Body3, Body4, Body5, Heading3, Heading4, Heading6, MbBody2, MbBody3, Quote } from '../../styles/styles';
 
 const QuoteSection = styled.div`
   padding: 100px 0 0px;
@@ -269,49 +258,73 @@ const MobileViewTable = styled.div`
   }
 `;
 const Carditem = styled.div`
-  width: 366px;
-  display: flex;
-  flex-direction: column;
-  border: 1px solid var(--dark-green);
-  @media only screen and (max-width: 768px) {
-    width: 327px;
-    .mobilecard {
-      width: 203px;
-      height: 44px;
-    }
-  }
-`;
-const CardLogo = styled.div`
-  background-color: var(--dark-green);
-  height: 183px;
   display: flex;
   align-items: center;
-  justify-content: center;
-  @media only screen and (max-width: 768px) {
-    height: 150px;
+  border: 1px solid var(--dark-green);
+  border-radius: 4px;
+  overflow: hidden;
+  padding: 24px 26px;
+  p {
+    border-right: 1px solid var(--dark-green);
+    padding-right: 24px;
+    margin: 0;
+    margin-right: 24px;
+    align-items: center;
+    display: flex;
+    ${Body2};
+    color: var(--title);
+    @media (max-width: 449px) {
+      ${MbBody2};
+      height: 28px;
+    }
+  }
+  @media (max-width: 768px) {
+    padding: 24px;
   }
 `;
 const ComparisonLogo = styled.div`
   background-color: var(--white);
-  height: 183px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  @media only screen and (max-width: 768px) {
-    height: 150px;
+  img {
+    height: 38px;
+    width: 100%;
+    object-fit: contain;
+    @media (max-width: 449px) {
+      height: 28px;
+    }
   }
 `;
-const Allcard = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  gap: 63px;
-  padding-top: 100px;
+
+const CardMainDiv = styled.div`
+  padding-top: 60px;
+  :first-child {
+    padding-top: 100px;
+  }
   @media only screen and (max-width: 450px) {
-    gap: 40px;
-    justify-content: center;
-    padding-bottom: 40px;
+    padding-top: 40px;
+    :first-child {
+      padding-top: 80px;
+    }
   }
 `;
+
+const Allcard = styled.div`
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
+  padding-top: 40px;
+  @media only screen and (max-width: 450px) {
+    gap: 20px;
+    justify-content: center;
+    padding-top: 28px;
+    grid-template-columns: repeat(1, 1fr);
+  }
+`;
+
+const Title = styled.div`
+  ${Heading4};
+  color: var(--title);
+`;
+
 const TableDropdown = styled.div`
   width: 100%;
   display: flex;
@@ -385,10 +398,11 @@ export {
   Comparisontabledata,
   MobileViewTable,
   Carditem,
-  CardLogo,
   ComparisonLogo,
   Allcard,
   TableDropdown,
   Dropdownbox,
-  Comparisonname
+  Comparisonname,
+  Title,
+  CardMainDiv
 };
