@@ -16,7 +16,7 @@ const Tabbutton = styled.div`
     color: var(--tab-text-color);
     border-radius: 2rem;
 
-    @media (max-width: 769px) {
+    @media only screen and (max-width: 769px) {
       padding: 2rem 0;
     }
   }
@@ -189,7 +189,7 @@ const Nav = styled.div`
     color: var(--black);
     padding-left: 0px;
     display: flex;
-    @media (max-width: 449px) {
+    @media only screen and (max-width: 449px) {
       ${MbPrimaryBtn}
       overflow: auto;
       display: flex;
@@ -303,11 +303,11 @@ const RightContent = styled.div`
     color: var(--black);
     padding-left: 0px;
     display: flex;
-    @media (max-width: 1440px) {
+    @media only screen and (max-width: 1440px) {
       overflow: auto;
       display: flex;
     }
-    @media (max-width: 1024px) {
+    @media only screen and (max-width: 1024px) {
       overflow: auto;
       display: flex;
     }

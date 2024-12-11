@@ -11,7 +11,7 @@ const Tabbutton = styled.div`
     margin: 3.5rem auto 1.5rem;
     color: var(--tab-text-color);
     border-radius: 2rem;
-    @media (max-width: 769px) {
+    @media only screen and (max-width: 769px) {
       padding: 2rem 0;
     }
   }
@@ -20,7 +20,7 @@ const Tabbutton = styled.div`
     color: var(--medium-gray);
     padding-left: 0px;
     display: flex;
-    @media (max-width: 1440px) {
+    @media only screen and (max-width: 1440px) {
       margin: 0 -24px;
       padding: 0 24px;
       overflow: auto;

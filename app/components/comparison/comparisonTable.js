@@ -1,166 +1,78 @@
-import Image from 'next/image';
-import { useCallback, useMemo, useState } from 'react';
+import { useMemo } from 'react';
+import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
+import { BLOCKS } from '@contentful/rich-text-types';
 import { CopilotLogo } from '../navbar/styles';
-import checkmark from '../../../public/images/Check-mark.svg';
-import cancelmark from '../../../public/images/cancelmark.svg';
 import CopilotLogos from '../../../public/images/blacklogo.svg';
+import SVGComponent from '../../../public/images/svg/SVGComponent';
 import { isEmpty } from '../../helpers/helpers';
-import {
-  ComparisonHide,
-  Comparisonname,
-  ComparisonTable,
-  Comparisontabledata,
-  Details,
-  Dropdownbox,
-  Headingpart,
-  MobileViewTable,
-  TableDropdown
-} from './styles';
+import { TableMainDiv, LeftSection, TitleSection, MainTabbleSection, MainTableSection } from './styles';
 
-export default function ComparisonTableView({ data, src, slug }) {
-  const [isOpen, setIsOpen] = useState(false);
-  const [currentCompititor, setCurrentCompititor] = useState(data[0]);
+export default function ComparisonTableView({ details, competitorLogo }) {
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  const options = {
+    renderNode: {
+      [BLOCKS.PARAGRAPH]: (node, children) => {
+        if (node.content && node.content[0]?.value) {
+          const value = node.content[0]?.value;
 
-  const onclick = () => {
-    setIsOpen(!isOpen);
+          switch (value) {
+            case 'true':
+              return (
+                <div className='icon-div'>
+                  <SVGComponent name='check-mark-icon' width='20' height='20' viewBox='0 0 20 20' fill='none' />
+                </div>
+              );
+            case '[copilotLogo]':
+              return (
+                <div className='icon-div'>
+                  <CopilotLogo alt='copilot logo' loading='lazy' width='111' height='24' src={CopilotLogos.src} />
+                </div>
+              );
+            case '[compititorLogo]':
+              return (
+                <div className='icon-div'>
+                  <CopilotLogo alt='copilot logo' loading='lazy' width='111' height='24' src={competitorLogo} />
+                </div>
+              );
+            case 'false':
+              return (
+                <div className='icon-div'>
+                  <SVGComponent name='close-check-icon' width='20' height='20' viewBox='0 0 20 20' fill='none' />
+                </div>
+              );
+            default:
+              return <p>{value}</p>;
+          }
+        }
+      }
+    }
   };
-  const onClickCompetitor = useCallback((item) => {
-    setCurrentCompititor(item);
-    setIsOpen(false);
-  }, []);
 
-  const renderCompitiorList = useMemo(() => {
-    return data?.map((item, index) => (
-      <Comparisonname
-        isActive={currentCompititor?.compititorName === item?.compititorName}
-        key={`competitor_index_${index}`}
-        onClick={() => onClickCompetitor(data[index])}>
-        {item?.compititorName}
-      </Comparisonname>
-    ));
-  }, [currentCompititor?.compititorName, data, onClickCompetitor]);
+  const renderFeatureView = useMemo(() => {
+    if (isEmpty(details)) return null;
+    return details.map((item, index) => {
+      const isTitleSectionHide = isEmpty(item.header) && isEmpty(item.description);
 
-  const renderTableData = useMemo(() => {
-    return currentCompititor?.comparisonTableCollection?.items?.map((item, index) => {
       return (
-        <tr key={`g2comparisonrow_${index}`}>
-          <td colSpan={3} className='leftside'>
-            {item?.name}
-          </td>
-          <td>
-            {item?.copilotValue?.toLowerCase() === 'yes' ? (
-              <Image src={checkmark} alt='check-mark' />
-            ) : item?.copilotValue?.toLowerCase() === 'no' ? (
-              ''
-            ) : (
-              item?.copilotValue
-            )}
-          </td>
-          <td>
-            {item?.partnerValue?.toLowerCase() === 'yes' ? (
-              <Image src={checkmark} alt='check-mark' />
-            ) : item?.partnerValue?.toLowerCase() === 'no' ? (
-              ''
-            ) : (
-              item?.partnerValue
-            )}
-          </td>
-        </tr>
+        <>
+          <TableMainDiv>
+            <LeftSection>
+              {/* {!isEmpty(item.icon?.url) && ( */}
+              <SVGComponent name='capabilities-icon' width='48' height='48' viewBox='0 0 48 49' fill='none' />
+              {/* )} */}
+              {!isEmpty(item.title) && <h4>{item.title}</h4>}
+              {!isTitleSectionHide && (
+                <TitleSection>
+                  {!isEmpty(item.header) && <h3>{item.header}</h3>}
+                  {!isEmpty(item.description) && <p>{item.description}</p>}
+                </TitleSection>
+              )}
+            </LeftSection>
+            <div className='table'>{documentToReactComponents(item.featureDetail?.json, options)}</div>
+          </TableMainDiv>
+        </>
       );
     });
-  }, [currentCompititor?.comparisonTableCollection?.items]);
-
-  const renderTableContentMobileView = useCallback(
-    (isCopilot = false) => {
-      if (isEmpty(currentCompititor?.comparisonTableCollection?.items)) return null;
-      return currentCompititor?.comparisonTableCollection?.items?.map((item, index) => {
-        const value = isCopilot ? item?.copilotValue : item?.partnerValue;
-        const isUpdateTilte = value?.toLowerCase() !== 'yes' && value?.toLowerCase() !== 'no';
-
-        return (
-          <Details key={`g2comparisonrow_${index}`}>
-            <img
-              src={isEmpty(value) || value?.toLowerCase() === 'no' ? cancelmark : checkmark}
-              alt='check-mark'
-              className='mobilecheckmark'
-            />
-            <p>{isUpdateTilte && !isEmpty(value) ? `${value} ${item?.name}` : item?.name}</p>
-          </Details>
-        );
-      });
-    },
-    [currentCompititor?.comparisonTableCollection?.items]
-  );
-  return (
-    <>
-      <ComparisonTable>
-        <h2>Compare client portal providers</h2>
-        <p>
-          Copilot stands out from all its competitors by offering a complete technology stack, perfect for any use-case.
-        </p>
-        <table>
-          <thead>
-            <tr>
-              <th colSpan={3} className='leftheader'></th>
-              <th className='radius'>
-                <CopilotLogo alt='copilot logo' loading='lazy' width='188' height='40' src={CopilotLogos.src} />
-              </th>
-              <th className='secondheading'>
-                <TableDropdown onClick={onclick} isFocus={isOpen}>
-                  <p>{currentCompititor?.compititorName}</p>
-                  <Image
-                    src='/images/dropdownarrow.svg'
-                    alt='logo'
-                    width={20}
-                    height={20}
-                    layout={'fixed'}
-                    className='dropdownicon'
-                  />
-                </TableDropdown>
-                {isOpen ? (
-                  <Dropdownbox>
-                    {renderCompitiorList}
-                    {/* <Comparisonname>HoneyBook</Comparisonname>
-                    <Comparisonname>Softr</Comparisonname>
-                    <Comparisonname>MOXO</Comparisonname>
-                    <Comparisonname>Clientportal</Comparisonname>
-                    <Comparisonname>Clinked</Comparisonname> */}
-                  </Dropdownbox>
-                ) : (
-                  ''
-                )}
-              </th>
-            </tr>
-          </thead>
-          <tbody>{renderTableData}</tbody>
-        </table>
-        <MobileViewTable>
-          <ComparisonHide>
-            <Headingpart>
-              <CopilotLogo alt='copilot logo' loading='lazy' width='188' height='40' src={CopilotLogos.src} />
-            </Headingpart>
-            <Comparisontabledata>{renderTableContentMobileView(true)}</Comparisontabledata>
-          </ComparisonHide>
-          <ComparisonHide className='mobilesecondtable'>
-            <Headingpart>
-              {/* <h2>{details?.compititorName}</h2> */}
-              <TableDropdown onClick={onclick}>
-                <p>{currentCompititor?.compititorName}</p>
-                <img
-                  src='/images/dropdownarrow.svg'
-                  alt='logo'
-                  width={20}
-                  height={20}
-                  layout={'fixed'}
-                  className='dropdownicon'
-                />
-              </TableDropdown>
-              {isOpen ? <Dropdownbox>{renderCompitiorList}</Dropdownbox> : ''}
-            </Headingpart>
-            <Comparisontabledata>{renderTableContentMobileView()}</Comparisontabledata>
-          </ComparisonHide>
-        </MobileViewTable>
-      </ComparisonTable>
-    </>
-  );
+  }, [details, options]);
+  return <MainTableSection>{renderFeatureView}</MainTableSection>;
 }

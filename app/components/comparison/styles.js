@@ -1,5 +1,18 @@
 import styled, { css } from 'styled-components';
-import { Body2, Body3, Body4, Body5, Heading3, Heading4, Heading6, MbBody2, MbBody3, Quote } from '../../styles/styles';
+import {
+  Body1,
+  Body2,
+  Body3,
+  Body4,
+  Body5,
+  Heading3,
+  Heading4,
+  Heading6,
+  MbBody2,
+  MbBody3,
+  MobileH4,
+  Quote
+} from '../../styles/styles';
 
 const QuoteSection = styled.div`
   padding: 100px 0 0px;
@@ -18,9 +31,10 @@ const ComparisonTable = styled.div`
     padding-top: 100px;
     ${Heading3}
     color: var(--title);
-    padding-bottom: 40px;
+    padding-bottom: 60px;
     @media only screen and (max-width: 450px) {
-      padding-top: 40px;
+      padding-top: 80px;
+      padding-bottom: 40px;
     }
   }
   p {
@@ -32,184 +46,342 @@ const ComparisonTable = styled.div`
       ${MbBody3}
     }
   }
-  .secondheading {
-    border-top-right-radius: 4px;
-    border-style: solid solid none none;
-    border-width: 1px;
-    /* border-right: none; */
-    ${Quote}
-    position: relative;
-  }
-  table {
-    border-collapse: separate;
-    width: 100%;
-    @media only screen and (max-width: 450px) {
-      display: none;
-    }
-    .radius {
-      border-radius: 4px 0px 0px 0px;
-      border-style: solid solid none solid;
-      border-width: 1px;
-    }
+`;
 
-    td {
-      border: 1px solid black;
-      border-style: none solid solid none;
-      text-align: right;
-      padding: 16px 20px;
-      ${Body3}
-      color: var(--title);
+const MainTableSection = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 60px;
+  @media only screen and (max-width: 449px) {
+    gap: 40px;
+  }
+`;
+
+const TableMainDiv = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 40px;
+  @media only screen and (max-width: 768px) {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .table {
+    max-width: 661px;
+    width: 100%;
+    border: 1px solid var(--dark-green);
+    padding: 20px;
+    border-radius: 4px;
+    position: relative;
+    .icon-div {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    ::after {
+      content: '';
+      position: absolute;
+      border-top: 1px solid var(--dark-green);
+      max-width: 100vw;
+      width: 100vw;
+      top: 50%;
+      left: 100%;
+      @media only screen and (max-width: 768px) {
+        display: none;
+      }
     }
     th {
-      padding: 26px 25px;
-      border-color: black;
-      text-align: center;
-      @media only screen and (max-width: 1024px) {
-        padding: 16px 20px;
+      @media only screen and (max-width: 449px) {
+        display: none;
       }
     }
-    tr {
-      .leftside {
-        text-align: left;
-      }
-      &:nth-child(1) {
-        td {
-          &:nth-child(1) {
-            border-style: none;
-          }
-          &:nth-child(2) {
-            border-style: solid solid solid none;
-          }
-          &:nth-child(3) {
-            border-style: solid solid solid none;
-          }
-        }
-      }
-      &:nth-child(1) {
-        td {
-          &:nth-child(1) {
-            border-style: solid;
-          }
-        }
-      }
+    p {
+      margin: 0;
+      ${Body4}
+      color: var(--title);
+    }
+    table {
+      border-collapse: collapse;
+      width: 100%;
       td {
-        &:nth-child(1) {
-          border-style: none solid solid solid;
+        text-align: center;
+        padding: 16px;
+        ${Body4}
+        color: var(--title);
+        :nth-child(4) {
+          background-color: var(--light-green);
+        }
+        :first-child {
+          padding-left: unset;
+          text-align: start;
+        }
+        :nth-child(2),
+        :nth-child(3) {
+          display: none;
+        }
+        @media only screen and (max-width: 449px) {
+          display: block;
+          padding: 16px;
+
+          :nth-child(2) {
+            background-color: unset;
+          }
+          :first-child {
+            background-color: var(--light-green);
+            padding-left: 16px;
+            border-radius: 2px;
+            margin-top: 32px;
+          }
+          :nth-child(2),
+          :nth-child(3) {
+            width: 50%;
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            padding: 18px;
+            border-bottom: 1px solid var(--border);
+          }
+          :nth-child(4),
+          :nth-child(5) {
+            width: 50%;
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            padding: 18px;
+            border-bottom: 1px solid var(--border);
+          }
+          :nth-child(4) {
+            background-color: unset;
+          }
         }
       }
+      tbody {
+        tr {
+          :last-child {
+            td {
+              :nth-child(4)  {
+                border-bottom-left-radius: 4px;
+                border-bottom-right-radius: 4px;
+                @media only screen and (max-width: 449px) {
+                  border-radius: unset;
+                }
+              }
+            }
+          }
+          :nth-child(2) {
+            td {
+              :first-child {
+                margin-top: unset;
+              }
+            }
+          }
+        }
+      }
+      th {
+        padding: 15px 20px;
+        border-color: black;
+        text-align: center;
+        width: 100%;
+        :nth-child(2),
+        :nth-child(3) {
+          display: none;
+        }
+        :nth-child(4) {
+          background-color: var(--light-green);
+          border-top-right-radius: 4px;
+          border-top-left-radius: 4px;
+        }
+      }
+      tr {
+        border-top: 1px solid var(--border);
+        .leftside {
+          text-align: left;
+        }
+        :first-child {
+          border-top: none;
+        }
+        @media only screen and (max-width: 449px) {
+          border-top: none;
+        }
+      }
+    }
+    @media only screen and (max-width: 768px) {
+      max-width: unset;
+      img {
+        height: 24px;
+        object-fit: contain;
+      }
+    }
+  }
+`;
+
+const LeftSection = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  max-width: 503px;
+  h4 {
+    ${Body1};
+    color: var(--primary);
+    margin: 0;
+    @media only screen and (max-width: 449px) {
+      ${MobileH4};
+    }
+  }
+  @media only screen and (max-width: 768px) {
+    gap: 16px;
+    h4 {
+      margin-top: 4px;
+    }
+  }
+`;
+
+const TitleSection = styled.div`
+  h3 {
+    ${Heading4};
+    color: var(--Title);
+    margin: 0;
+  }
+  p {
+    margin: 0;
+    margin-top: 12px;
+    ${Body4};
+    color: var(--body);
+    @media only screen and (max-width: 768px) {
+      ${Body5};
+      margin-top: 8px;
     }
   }
 `;
 
 const G2section = styled.div`
+  max-width: 1272px;
+  width: 100%;
+  margin: 0 auto;
+  overflow: visible;
+  padding: 0 24px;
   h2 {
     margin: 0;
-    padding-top: 50px;
+    padding-top: 100px;
     ${Heading3}
     color: var(--title);
-    padding-bottom: 40px;
     @media only screen and (max-width: 426px) {
-      padding-top: 40px;
+      padding-top: 80px;
+    }
+  }
+  .description {
+    padding-top: 16px;
+    margin: 0;
+    padding-bottom: 32px;
+    ${Body3};
+    max-width: 780px;
+    color: var(--body);
+  }
+  @media only screen and (max-width: 991px) {
+    width: unset;
+    overflow: hidden;
+    .description {
+      ${MbBody3};
+      padding-bottom: 16px;
     }
   }
 `;
 const G2group = styled.div`
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-between;
+  align-items: flex-end;
   gap: 24px;
-  padding-bottom: 32px;
+  padding-bottom: 40px;
   @media only screen and (max-width: 426px) {
-    justify-content: flex-end;
     gap: 12px;
-    padding-bottom: 28px;
+  }
+`;
+const ButtonGroup = styled.div`
+  @media only screen and (max-width: 449px) {
+    display: none;
   }
 `;
 const Groupdetail = styled.div`
   display: flex;
   align-items: center;
   gap: 8px;
-  .reporticon {
-    width: 24px;
-    height: 24px;
-  }
-  @media only screen and (max-width: 1024px) {
-    svg {
-      width: 13px;
-      height: 13px;
-    }
-    .reporticon {
-      width: 18px;
-      height: 18px;
-    }
-  }
   @media only screen and (max-width: 426px) {
     gap: 6px;
     svg {
-      width: 10px;
-      height: 10px;
-    }
-    .reporticon {
       width: 18px;
       height: 18px;
     }
   }
   p {
-    ${Body3}
+    ${Heading6}
     margin:0;
     color: var(--title);
-    @media only screen and (max-width: 426px) {
-      ${Body5}
-    }
   }
   .report {
     color: var(--hover);
   }
 `;
 const G2criteria = styled.div`
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 60px 80px;
+  display: flex;
+  gap: 28px;
+  width: 1272px;
+  margin: 0 auto;
+  overflow: visible;
+  transition: transform 500ms ease;
   @media only screen and (max-width: 768px) {
-    grid-template-columns: 1fr;
-  }
-  @media only screen and (max-width: 426px) {
-    gap: 40px;
+    width: unset;
   }
 `;
 const G2text = styled.div`
+  border: 1px solid var(--title);
+  border-radius: 4px;
+  padding: 24px;
   display: flex;
   flex-direction: column;
-  /* max-width: 572px; */
-  width: 100%;
-  @media only screen and (max-width: 768px) {
-    /* max-width: 375px; */
-    max-width: 100%;
-  }
+  justify-content: space-between;
+  min-width: 400px;
   h3 {
     margin: 0;
-    ${Heading4}
+    ${Body1}
     color: var(--title);
+  }
+  @media only screen and (max-width: 449px) {
+    min-width: 100%;
+    h3 {
+      ${MobileH4}
+    }
   }
 `;
 const G2progressbar = styled.div`
   display: flex;
-  gap: 10px;
+  gap: 20px;
   flex-direction: column;
-  margin-top: 12px;
-  @media only screen and (max-width: 1024px) {
-    margin-top: 6px;
-  }
+  margin-top: 20px;
 `;
 const Processdata = styled.div`
+  .progress-number-div {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
   .seconddata {
     color: var(--medium-gray);
   }
   span {
-    ${Heading6}
+    ${Body3}
     display: flex;
-    justify-content: flex-end;
     padding-bottom: 5px;
     color: var(--black);
+    @media only screen and (max-width: 449px) {
+      ${Body4}
+    }
+  }
+  .item-title {
+    ${Body4};
+    color: var(--medium-gray);
+    @media only screen and (max-width: 449px) {
+      ${MbBody3}
+    }
   }
 `;
 const ComparisonHide = styled.div`
@@ -273,12 +445,12 @@ const Carditem = styled.div`
     display: flex;
     ${Body2};
     color: var(--title);
-    @media (max-width: 449px) {
+    @media only screen and (max-width: 449px) {
       ${MbBody2};
       height: 28px;
     }
   }
-  @media (max-width: 768px) {
+  @media only screen and (max-width: 768px) {
     padding: 24px;
   }
 `;
@@ -288,7 +460,7 @@ const ComparisonLogo = styled.div`
     height: 38px;
     width: 100%;
     object-fit: contain;
-    @media (max-width: 449px) {
+    @media only screen and (max-width: 449px) {
       height: 28px;
     }
   }
@@ -404,5 +576,10 @@ export {
   Dropdownbox,
   Comparisonname,
   Title,
-  CardMainDiv
+  CardMainDiv,
+  TableMainDiv,
+  ButtonGroup,
+  LeftSection,
+  TitleSection,
+  MainTableSection
 };

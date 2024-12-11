@@ -53,7 +53,7 @@ export default function SolutionHero({
         <Container>
           <SolutionWrap>
             <LeftWrap>
-              <TextSection>
+              <TextSection className='details-hero'>
                 <h1>
                   <div dangerouslySetInnerHTML={{ __html: finalTitle }} />
                 </h1>

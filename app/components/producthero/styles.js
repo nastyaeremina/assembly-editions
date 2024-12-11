@@ -54,7 +54,7 @@ const BLockImg = styled.div`
   ${(props) =>
     props.lineColor &&
     css`
-      border: 1.5px solid ${props.lineColor};
+      border: 1.5px solid var(${props.lineColor});
     `}
   border-radius: 10px;
   cursor: pointer;
@@ -68,7 +68,7 @@ const BLockImg = styled.div`
     ${(props) =>
       props.lineColor &&
       css`
-        border-top: 1.5px solid ${props.lineColor};
+        border-top: 1.5px solid var(${props.lineColor});
       `}
 
     max-width: 100vw;

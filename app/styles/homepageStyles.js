@@ -1085,6 +1085,11 @@ const SliderButton = styled.div`
     padding-top: 32px;
     padding-bottom: 0;
   }
+  ${(props) =>
+    props.isComparisonDetails &&
+    css`
+      padding-bottom: 0;
+    `}
 `;
 
 const Arrow = styled.div`

@@ -110,8 +110,8 @@ const FaqTitle = styled.div`
   margin-bottom: 20px;
   @media only screen and (max-width: 991px) {
     h2 {
-      font-size: 50px;
-      line-height: 55px;
+      font-size: 28px;
+      line-height: 31px;
       ${(props) =>
         props.isGuideFAQ &&
         css`
@@ -205,12 +205,15 @@ const DivFAQ = styled.div`
   :last-child {
     border-bottom: none;
   }
+  .active {
+    padding-bottom: unset;
+  }
 `;
 const FAQAnsware = styled.div`
   div {
     ${Body1}
     color: var(--body);
-    padding: 0 32px 40px 0;
+    padding: 20px 32px 40px 0;
     ${(props) =>
       props.isGuideFAQ &&
       css`
@@ -226,6 +229,9 @@ const FAQAnsware = styled.div`
           }
         }
       `}
+    p {
+      margin: 0;
+    }
     @media only screen and (max-width: 426px) {
       ${MbBody3}
     }
@@ -238,6 +244,7 @@ const FAQAnsware = styled.div`
     opacity: 1;
     overflow: visible;
     max-height: 2000px;
+    padding-bottom: unset;
   }
   ol {
     padding-left: 18px;
@@ -260,6 +267,9 @@ const FAQAnsware = styled.div`
     :hover {
       color: var(--dark-green);
     }
+  }
+  p {
+    margin: 0;
   }
 `;
 export { FaqSection, FaqTitle, DivFAQ, FAQAnsware };

@@ -18,7 +18,7 @@ export default function ComparisonPage({ featuredCompetitorList, details }) {
   return (
     <>
       <MainWrap>
-        <ComparisonHero title={details?.title} description={details?.description} image={details?.image?.url} />
+        <ComparisonHero title={details?.title} description={details?.description} />
         <Container>{renderComparisonListView}</Container>
         {!isEmpty(details?.testimonial) && <Quote data={details?.testimonial} isMasterComparison />}
       </MainWrap>

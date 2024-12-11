@@ -35,7 +35,7 @@ const Description = styled.div`
   ${Body3};
   color: var(--white);
   text-align: center;
-  @media screen and (max-width: 768px) {
+  @media only screen and (max-width: 768px) {
     ${MbBody3};
   }
 `;
@@ -95,7 +95,7 @@ const CtaAnimation = styled.div`
   }
   canvas {
     margin: -30px !important;
-    @media (max-width: 768px) {
+    @media only screen and (max-width: 768px) {
       margin: -50px !important;
     }
   }
@@ -104,7 +104,7 @@ const CtaAnimation = styled.div`
     css`
       canvas {
         margin: 0 !important;
-        @media (max-width: 768px) {
+        @media only screen and (max-width: 768px) {
           margin: -50px !important;
         }
       }

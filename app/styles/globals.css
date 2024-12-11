@@ -130,6 +130,7 @@ html {
 body {
   margin: 0;
   font-family: 'Bagoss', Arial, sans-serif;
+  overflow-x: hidden !important;
 }
 
 :root {

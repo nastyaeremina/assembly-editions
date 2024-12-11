@@ -5,7 +5,7 @@ import { useWindowDimensions } from '../../hooks/useMobileDevice';
 
 //sliderItemWidth represent the hight of single slide
 const sliderItemWidth = 528;
-export default function SliderButtonSection({ xPos, setXpos, noOfSlide }) {
+export default function SliderButtonSection({ xPos, setXpos, noOfSlide, isComparisonDetails }) {
   const { width } = useWindowDimensions();
   // calculate slider position based on the slide item to  prevent the next slide show
   const minimumSlidePosition = width > 1024 ? (noOfSlide - 2) * -sliderItemWidth : (noOfSlide - 1) * -sliderItemWidth;
@@ -27,10 +27,10 @@ export default function SliderButtonSection({ xPos, setXpos, noOfSlide }) {
       //set previous slide  card width + padding size
       if (xPos !== 0) setXpos(xPos + (width + 27));
     }
-  }, [width, xPos]);
+  }, [setXpos, width, xPos]);
 
   return (
-    <SliderButton>
+    <SliderButton isComparisonDetails={isComparisonDetails}>
       <Arrow onClick={onClickNext} isDisabled={xPos === 0}>
         <SVGComponent name='left-arrow-icon' width='16' height='16' viewBox='16' />
       </Arrow>

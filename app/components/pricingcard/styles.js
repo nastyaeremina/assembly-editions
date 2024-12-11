@@ -39,7 +39,7 @@ const PriceSection = styled.div`
     ${Body1}
     color: var(--title);
     margin: 0 0 4px 0;
-    @media screen and (max-width: 768px) {
+    @media only screen and (max-width: 768px) {
       margin: 0 0 8px 0;
     }
   }
@@ -47,7 +47,7 @@ const PriceSection = styled.div`
     ${Body5}
     color: var(--dark-gray);
     margin: 0;
-    @media screen and (max-width: 449px) {
+    @media only screen and (max-width: 449px) {
       height: unset;
     }
   }
@@ -73,7 +73,7 @@ const Pricenumber = styled.h3`
     ${Body4};
     color: var(--title);
   }
-  @media (max-width: 479px) {
+  @media only screen and (max-width: 479px) {
     font-size: 32px;
     line-height: 34px;
   }
@@ -82,7 +82,7 @@ const Caption = styled.h5`
   ${Body5}
   color: var(--dark-gray);
   margin: 16px 0 0;
-  @media screen and (max-width: 768px) {
+  @media only screen and (max-width: 768px) {
     margin: 24px 0 0;
   }
 `;
@@ -102,10 +102,10 @@ const GridItem = styled.div`
   width: 100%;
 
   grid-template-rows: repeat(2, 1fr);
-  @media screen and (max-width: 768px) {
+  @media only screen and (max-width: 768px) {
     grid-template-rows: repeat(1, 1fr);
   }
-  @media screen and (max-width: 449px) {
+  @media only screen and (max-width: 449px) {
     grid-template-rows: repeat(1, 1fr);
   }
 `;
@@ -123,7 +123,7 @@ const PricePlan = styled.div`
   .grid-item:nth-child(-n + 4) {
     padding: 0;
   }
-  @media screen and (max-width: 800px) {
+  @media only screen and (max-width: 800px) {
     padding: unset;
     grid-template-columns: repeat(2, 1fr);
     column-gap: 24px;
@@ -146,7 +146,7 @@ const PricePlan = styled.div`
       margin-top: 24px;
     }
   }
-  @media screen and (max-width: 449px) {
+  @media only screen and (max-width: 449px) {
     grid-template-columns: repeat(1, 1fr);
     .grid-item:nth-child(4n + 1) {
       order: 1;
@@ -173,7 +173,7 @@ const PricePlan = styled.div`
   .empty-p {
     height: 27px;
   }
-  @media (max-width: 449px) {
+  @media only screen and (max-width: 449px) {
     padding: unset;
     margin: 0 auto 0;
   }
@@ -212,12 +212,12 @@ const PricePlan = styled.div`
         background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M7.49804 14.791C7.49721 14.791 7.49637 14.791 7.49554 14.791C7.32887 14.7902 7.16971 14.7235 7.05221 14.6043L3.71887 11.2193C3.47637 10.9735 3.47971 10.5777 3.72554 10.3352C3.97137 10.0935 4.36804 10.096 4.60971 10.3418L7.50055 13.2785L15.3889 5.39016C15.633 5.14599 16.0289 5.14599 16.273 5.39016C16.5172 5.63432 16.5172 6.03019 16.273 6.27435L7.93971 14.6077C7.82304 14.7252 7.66388 14.791 7.49804 14.791Z" fill="%235B5B5B" stroke="%235B5B5B" stroke-width="0.5"/></svg>');
         background-size: contain;
         background-repeat: no-repeat;
-        @media screen and (max-width: 768px) {
+        @media only screen and (max-width: 768px) {
           left: -32px;
         }
       }
     }
-    @media screen and (max-width: 768px) {
+    @media only screen and (max-width: 768px) {
       padding-left: 32px;
     }
   }
@@ -258,7 +258,7 @@ const CardBtn = styled.div`
     .button {
       cursor: pointer;
     }
-    @media screen and (max-width: 449px) {
+    @media only screen and (max-width: 449px) {
       height: unset;
     }
   }

@@ -6,7 +6,15 @@ const POST_GRAPHQL_COMPARISON_DETAILS_FIELDS = `
 name
 slug
 compititorName
+primaryButtonText
+primaryButtonLink
+secondaryButtonText
+secondaryButtonLink
+headerTag
 image{
+  url
+}
+logo{
   url
 }
 description
@@ -22,13 +30,20 @@ solutionValueCollection{
   }
 }
 section2Header
-comparisonTableCollection{
-  items{
-    name
-    copilotValue
-    partnerValue
-  }
+featuresCollection{
+        items{
+          title
+          header
+          description
+          icon{
+            url
+          }
+featureDetail{
+  json
 }
+ }
+        
+      }
 g2ComparisonLink
 g2GroupCollection{
   items{
@@ -50,8 +65,14 @@ ${POST_GRAPHQL_FAQ_COLLECTION_FIELDS}
 seoMetadata{
   sys{
     id
-  }
+  } 
 }
+  copilotValue
+  comparisonTag
+  competitorValue
+  smallLogo{
+  url
+  }
 `;
 
 const POST_GRAPHQL_COMPARISON_ALL_COMPITITOE_DETAILS_FIELDS = `

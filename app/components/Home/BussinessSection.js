@@ -1,5 +1,6 @@
 'use client';
 import { ReactMarkdown } from 'react-markdown/lib/react-markdown';
+import { useCallback, useMemo, useState } from 'react';
 import {
   BusinessSection,
   BusinessSectionText,
@@ -14,7 +15,6 @@ import HeadingText from '../header/headingText';
 import CopilotBlock from '../../components/CopilotBlock/copilotblock';
 import SliderButtonSection from '../../components/CopilotBlock/SliderButtonSection';
 import { isEmpty } from '../../helpers/helpers';
-import { useCallback, useMemo, useState } from 'react';
 
 export default function BussinessSectionComponent({
   title,

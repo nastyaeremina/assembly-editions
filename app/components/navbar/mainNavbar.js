@@ -193,7 +193,7 @@ export default function NavbarComponent({
                   <Link href={item.link}>{item.title}</Link>
                 </SpanLink>
               );
-            if (!isEmpty(item.subsections)) console.log('item.title', item.title);
+            if (!isEmpty(item.subsections));
             return (
               <SpanLink
                 key={`navbar_${item.title}`}
@@ -230,7 +230,7 @@ export default function NavbarComponent({
                         : '--white'
                     }
                     text={'Open Dashboard'}
-                    borderColor={'transparent'}
+                    borderColor={'--black'}
                     href={OPEN_COPILOT_LINK}
                     hoverColor={'--secondary-hover-color'}
                     className='hederbtn'
