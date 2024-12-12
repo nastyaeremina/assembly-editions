@@ -11,6 +11,7 @@ import {
   LinkTxt,
   MbBody3,
   MbBody4,
+  MbPrimaryBtn,
   MobileH4
 } from '../../styles/styles';
 
@@ -21,13 +22,12 @@ const MainSection = styled.div`
   background-color: var(--main-bg-color);
   @media only screen and (max-width: 991px) {
     height: 100%;
-    margin-bottom: 50px;
     max-width: 100%;
     padding: 28px 160px 22px;
   }
   @media only screen and (max-width: 600px) {
     max-width: 100%;
-    padding: 28px 24px 22px;
+    padding: 28px 24px 20px;
   }
 `;
 const LastText = styled.div`
@@ -109,11 +109,15 @@ const LastText = styled.div`
   }
 `;
 const FormSection = styled.form`
-  max-width: 370px;
+  max-width: 480px;
   margin: 0 auto;
   .btnposition {
     width: 100%;
     text-align: center;
+    button {
+      padding: 7px;
+      ${HeaderFont};
+    }
     a {
       width: 100%;
       text-align: center;
@@ -125,30 +129,37 @@ const FormSection = styled.form`
   }
 `;
 const FormTxt = styled.div`
-  padding: 30px 0;
+  h2 {
+    ${Heading3};
+    color: var(--title);
+    margin: 0;
+    padding-top: 32px;
+  }
   h4 {
     ${Heading4};
     color: var(--title);
     margin: 0 0 12px 0;
   }
   p {
-    ${Body5};
+    ${Body3};
     color: var(--body);
     margin: 0;
+    padding-top: 16px;
+    padding-bottom: 28px;
   }
   @media only screen and (max-width: 768px) {
-    padding: 48px 0 28px;
     h4 {
       ${MobileH4};
       margin-bottom: 8px;
     }
     p {
-      ${MbBody4};
+      ${MbBody3};
     }
   }
 `;
 const FormDetail = styled.div`
-  padding-bottom: 30px;
+  padding-bottom: 28px;
+  position: relative;
   ${(props) =>
     props.isWeeklyform &&
     css`
@@ -156,12 +167,9 @@ const FormDetail = styled.div`
     `}
   label {
     display: block;
-    ${CardTxt};
+    ${MbPrimaryBtn};
     color: var(--sub-title);
     margin: 0 0 5px 0;
-  }
-  span {
-    color: var(--primary);
   }
   select {
     margin-bottom: 20px;
@@ -173,11 +181,11 @@ const FormDetail = styled.div`
     background-position: 0 0;
     background-size: auto;
     background-repeat: repeat;
-    font-size: 15px;
-    line-height: 16px;
+    ${Body5};
     outline: 0;
     appearance: none;
     width: 100%;
+    position: relative;
     :hover {
       border-color: var(--primary);
     }
@@ -190,9 +198,7 @@ const FormDetail = styled.div`
     width: 100%;
     height: 32px;
     padding: 7px 12px;
-    font-size: 12px;
-    line-height: 14px;
-    letter-spacing: 0.02em;
+    ${Body5};
     color: var(--title);
     font-weight: 400px;
     /* vertical-align: middle; */
@@ -201,8 +207,7 @@ const FormDetail = styled.div`
   }
   .sm {
     border-radius: 4px;
-    font-size: 12px;
-    line-height: 14px;
+    ${Body5};
   }
   textarea {
     width: 100%;
@@ -236,12 +241,6 @@ const FormDetail = styled.div`
       css`
         padding-bottom: 8px;
       `}
-    label {
-      font-size: 12px;
-      margin-bottom: 6px;
-      font-weight: 500;
-      line-height: 16px;
-    }
   }
 `;
 
@@ -253,8 +252,7 @@ const Input = styled.input`
   outline: 0;
   height: 32px;
   margin-bottom: 20px;
-  font-size: 12px;
-  line-height: 14px;
+  ${Body5};
   width: 100%;
   color: var(--title);
   :hover {
@@ -287,13 +285,9 @@ const ValidationForm = styled.div`
 `;
 const NameBlock = styled.div`
   display: flex;
-  gap: 20px;
+  gap: 16px;
   .firstlable {
     width: 100%;
-  }
-  @media only screen and (max-width: 768px) {
-    flex-direction: column;
-    gap: 0;
   }
 `;
 const NameInfo = styled.div`
@@ -307,6 +301,9 @@ const NameInfo = styled.div`
 const ImgWrap = styled.div`
   display: inline-flex;
   max-height: 24px;
+  img {
+    height: 100%;
+  }
   @media only screen and (max-width: 768px) {
     .desktop {
       display: none;
@@ -324,7 +321,7 @@ const HelpLink = styled.div`
   align-items: center;
 `;
 const SubmitSection = styled.div`
-  max-width: 504px;
+  max-width: 480px;
   width: 100%;
   margin: 0 auto;
   height: 100%;
@@ -335,36 +332,55 @@ const ThanksWrap = styled.div`
   height: 100%;
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
 `;
 
 const CardView = styled.div`
-  background-color: var(--light-green);
-  padding: 50px 0;
-  border-radius: 10px;
+  background-color: var(--white);
+  padding: 40px 60px;
+  border-radius: 4px;
+  border: 1px solid var(--black);
   width: 100%;
+  display: flex;
+  align-items: center;
+  max-height: 653px;
+  height: 100%;
+  .button-group {
+    padding-top: 32px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    a {
+      width: 100%;
+      justify-content: center;
+      padding: 7px;
+      ${HeaderFont};
+    }
+    @media (max-width: 768px) {
+      padding-top: 20px;
+    }
+  }
   @media only screen and (max-width: 749px) {
-    padding: 40px 0;
+    padding: 40px 20px;
   }
 `;
 const CardList = styled.div`
   text-align: center;
+  width: 100%;
 `;
 const ImgLine = styled.div``;
 const TextWrap = styled.div`
-  padding: 40px 80px;
   h1,
   h2,
   h3 {
-    ${Heading3};
-    margin: 0 0 14px;
+    ${Heading4};
+    margin: 32px 0 0;
     color: var(--black);
   }
   p {
-    ${Body3};
+    ${Body4};
     max-width: 335px;
-    margin: 16px auto 0;
+    margin: 12px auto 0;
     display: inline-block;
     color: var(--title);
     &:first-child {
@@ -374,29 +390,39 @@ const TextWrap = styled.div`
   a {
     display: initial;
     color: var(--title);
-    ${Body3};
+    ${Body4};
     text-decoration: underline;
   }
   @media only screen and (max-width: 749px) {
-    padding: 30px 40px;
     h1,
     h2,
     h3 {
-      margin: 0 0 20px;
+      margin: 20px 0 0;
     }
     p {
-      ${MbBody3};
+      ${MbBody4};
       max-width: 100%;
-      margin: 10px auto 0;
+      margin: 12px auto 0;
       display: inline-block;
       color: var(--title);
     }
     a {
-      ${MbBody3};
+      ${MbBody4};
       display: inline-block;
     }
   }
 `;
+
+const ItemDiv = styled.div`
+  position: relative;
+  .icon-div {
+    position: absolute;
+    right: 12px;
+    top: 33px;
+    z-index: 1;
+  }
+`;
+
 export {
   MainSection,
   FormSection,
@@ -414,5 +440,6 @@ export {
   CardView,
   CardList,
   ImgLine,
-  TextWrap
+  TextWrap,
+  ItemDiv
 };

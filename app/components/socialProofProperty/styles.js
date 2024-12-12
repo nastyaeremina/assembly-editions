@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { Body4, Body5 } from '../../styles/styles';
 
 const PropertyMainDiv = styled.div`
@@ -16,6 +16,11 @@ const PropertyMainDiv = styled.div`
       ${Body5};
     }
   }
+  ${(props) =>
+    props.isBookDemo &&
+    css`
+      margin: 0;
+    `}
   @media only screen and (max-width: 449px) {
     gap: 8px;
   }

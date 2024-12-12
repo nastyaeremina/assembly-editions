@@ -1,24 +1,27 @@
+'use client';
 import React, { useState, useEffect } from 'react';
 import StarList from '../reviewSection/starList';
-import { Logos, PropertyMainDiv } from './styles';
 import SVGComponent from '../../../public/images/svg/SVGComponent';
 import { SCREEN_SIZE_THRESHOLD } from '../../constants/constant';
+import { Logos, PropertyMainDiv } from './styles';
 
-function SocialProofProperty({ rateCount }) {
-  const [isBig, setIsBig] = useState(window.innerWidth >= SCREEN_SIZE_THRESHOLD);
+function SocialProofProperty({ rateCount, isBookDemo }) {
+  const [isBig, setIsBig] = useState(true);
 
   useEffect(() => {
-    const updateResponsive = () => {
-      setIsBig(window.innerWidth >= SCREEN_SIZE_THRESHOLD);
-    };
+    if (window && typeof window !== 'undefined') {
+      const updateResponsive = () => {
+        setIsBig(window.innerWidth >= SCREEN_SIZE_THRESHOLD);
+      };
 
-    window.addEventListener('resize', updateResponsive);
+      window.addEventListener('resize', updateResponsive);
 
-    return () => window.removeEventListener('resize', updateResponsive);
+      return () => window.removeEventListener('resize', updateResponsive);
+    }
   }, []);
 
   return (
-    <PropertyMainDiv>
+    <PropertyMainDiv isBookDemo={isBookDemo}>
       <StarList rate={4.5} isBig={isBig} />
       <h6>based on {rateCount} reviews</h6>
       <Logos>

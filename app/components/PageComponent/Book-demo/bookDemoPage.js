@@ -1,26 +1,36 @@
 'use client';
-import { BookSection, ImageSection, DemoContain, BottomName, BgOverlay } from '../../../styles/bookdemoStyles';
+import Image from 'next/image';
+import { BookSection, ImageSection, DemoContain, BottomName, PropertyDiv } from '../../../styles/bookdemoStyles';
 import BookDemoForm from '../../bookdemo/bookDemo';
+import BookDemoImage from '../../../../public/images/bookdemo.png';
+import SocialProofProperty from '../../socialProofProperty/socialProofProperty';
+import UserAvtar from '../../../../public/images/useravtar.png';
 
 export default function BookDemoPage({ productDemoSlug, data, thankYouMessage }) {
   return (
     <>
       <BookSection>
         <BookDemoForm productDemoSlug={productDemoSlug} data={data} thankYouMessage={thankYouMessage} />
-        <ImageSection>
-          <BgOverlay></BgOverlay>
-          <DemoContain>
-            <p>
-              “Copilot is the ultimate sidekick for us. It lets us streamline client communication, manage projects, and
-              create a special on-brand experience for our clients. The platform is user-friendly, easy to set up, and
-              the support team is always there to help.”
-            </p>
-            <BottomName>
-              <p>Joshua Brueckner</p>
-              <p>Trulytell</p>
-            </BottomName>
-          </DemoContain>
-        </ImageSection>
+        <div className='image-section'>
+          <ImageSection>
+            <div className='img'>
+              <Image src={BookDemoImage} width={752} height={771} alt='' />
+            </div>
+            <PropertyDiv>
+              <SocialProofProperty rateCount='1000+' isBookDemo={true} />
+            </PropertyDiv>
+            <DemoContain>
+              <p>
+                “A modern, fast, and intuitive tool to engage with clients and get work done. A natural extension of our
+                brand and business.”
+              </p>
+              <BottomName>
+                <Image src={UserAvtar} width={32} height={32} alt='' />
+                <p>Lachlan Nicolson, Waymaker Finance</p>
+              </BottomName>
+            </DemoContain>
+          </ImageSection>
+        </div>
       </BookSection>
     </>
   );

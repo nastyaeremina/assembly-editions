@@ -166,7 +166,7 @@ export default function BlogNavbar({ isModule, headerIndex, isEnterPrice, tagDat
         <HeaderBtnGroup></HeaderBtnGroup>
       </NavMenu>
     );
-  }, [colorList?.fontColor, colorList?.primaryColor, tagData]);
+  }, [colorList?.fontColor, colorList?.primaryColor, mobile, tagData]);
 
   useEffect(() => {
     if (headerIndex) setColorList(NAVBAR_COLOR_LIST[headerIndex]);

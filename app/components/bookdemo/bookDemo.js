@@ -4,14 +4,13 @@ import Image from 'next/image';
 import { useCallback, useEffect, useState } from 'react';
 import Script from 'next/script';
 import { useDispatch, useSelector } from 'react-redux';
-import { ReactMarkdown } from 'react-markdown/lib/react-markdown';
-import { checkValidation, sendEmail } from '../../services/bookDemoService';
+import { checkValidation } from '../../services/bookDemoService';
 import { setformValidationError, updateBookDemoItem } from '../../actions/bookDemoActions';
 import { BOOK_DEMO_CONTENT_TYPE } from '../../constants/constant';
-import { COPILOT_ONBORADING_LINK } from '../../constants/externalLinks';
 import Button from '../button/button';
 import Validation from '../Validation/validation';
 import { isEmpty } from '../../helpers/helpers';
+import SVGComponent from '../../../public/images/svg/SVGComponent';
 import {
   MainSection,
   FormSection,
@@ -20,17 +19,13 @@ import {
   Input,
   NameBlock,
   NameInfo,
-  LastText,
   ImgWrap,
-  HelpLink,
   SubmitSection,
   CardView,
   CardList,
-  ImgLine,
   TextWrap,
-  ContactText,
   ThanksWrap,
-  ValidationForm
+  ItemDiv
 } from './styles';
 
 export default function BookDemoForm({ productDemoSlug, data, thankYouMessage }) {
@@ -120,25 +115,40 @@ export default function BookDemoForm({ productDemoSlug, data, thankYouMessage })
           <SubmitSection>
             <Link href='/'>
               <ImgWrap>
-                <Image src='/images/booklogo.svg' alt='book-logo' width={107} height={24} className='desktop' />
-                <Image src='/images/booklogomb.svg' alt='book-logo' width={96} height={21} className='mbicon' />
+                <Image src='/images/booklogo.svg' alt='book-logo' width={140} height={30} className='desktop' />
+                <Image src='/images/booklogomb.svg' alt='book-logo' width={140} height={30} className='mbicon' />
               </ImgWrap>
             </Link>
+            <FormTxt>
+              <h2>Book a demo</h2>
+              <p>Speak to a Copilot expert to learn more and experience a demo.</p>
+            </FormTxt>
             <ThanksWrap>
               <CardView>
                 <CardList>
-                  <ImgLine>
-                    <Image src='/images/upline.svg' alt='line-icon' width={200} height={25} />
-                  </ImgLine>
                   {!isEmpty(thankYouMessage) && (
-                    <TextWrap>
-                      {/* render markdown text */}
-                      <ReactMarkdown>{thankYouMessage}</ReactMarkdown>
-                    </TextWrap>
+                    <>
+                      <TextWrap>
+                        <SVGComponent name='success-icon' width='60' height='60' viewBox='0 0 60 60' />
+                        <h1>Thank you!</h1>
+                        <p>
+                          We look forward to meeting you. Until then, please consider starting a free trial or watching
+                          the product demo.
+                        </p>
+                      </TextWrap>
+                      <div className='button-group'>
+                        <Button text={'Start trial'} href={'/'} />
+                        <Button
+                          text={'Watch demo'}
+                          href={'/'}
+                          bgColor={'transparent'}
+                          fontColor={'--black'}
+                          borderColor={'--black'}
+                          hoverColor={'--hover-color'}
+                        />
+                      </div>
+                    </>
                   )}
-                  <ImgLine>
-                    <Image src='/images/downline.svg' alt='line-icon' width={200} height={25} />
-                  </ImgLine>
                 </CardList>
               </CardView>
             </ThanksWrap>
@@ -147,11 +157,12 @@ export default function BookDemoForm({ productDemoSlug, data, thankYouMessage })
           <FormSection onSubmit={onSubmit}>
             <Link href='/'>
               <ImgWrap>
-                <Image src='/images/booklogo.svg' alt='book-logo' width={107} height={24} className='desktop' />
-                <Image src='/images/booklogomb.svg' alt='book-logo' width={96} height={21} className='mbicon' />
+                <Image src='/images/booklogo.svg' alt='book-logo' width={140} height={30} className='desktop' />
+                <Image src='/images/booklogomb.svg' alt='book-logo' width={140} height={30} className='mbicon' />
               </ImgWrap>
             </Link>
             <FormTxt>
+              <h2>Book a demo</h2>
               <p>Speak to a Copilot expert to learn more and experience a demo.</p>
             </FormTxt>
             <FormDetail>
@@ -169,6 +180,7 @@ export default function BookDemoForm({ productDemoSlug, data, thankYouMessage })
                     name={'First-Name'}
                     onChange={(e) => onChangeInfo('firstName', e.target.value)}
                     required={true}
+                    placeholder='First name'
                   />
                   {validationError?.name === 'firstName' && <Validation error={validationError?.message} />}
                 </NameInfo>
@@ -184,7 +196,8 @@ export default function BookDemoForm({ productDemoSlug, data, thankYouMessage })
                     name={'Last-Name'}
                     value={bookDemoData?.lastName}
                     onChange={(e) => onChangeInfo('lastName', e.target.value)}
-                    required
+                    required={true}
+                    placeholder='Last name'
                   />
                   {validationError?.name === 'lastName' && <Validation error={validationError?.message} />}
                 </NameInfo>
@@ -196,7 +209,7 @@ export default function BookDemoForm({ productDemoSlug, data, thankYouMessage })
                 type='email'
                 name='Email'
                 data-name='Email'
-                placeholder=''
+                placeholder='Work email address'
                 id='Email'
                 required=''
                 className='inputtext'
@@ -211,60 +224,93 @@ export default function BookDemoForm({ productDemoSlug, data, thankYouMessage })
               <Input
                 type='text'
                 name={'Company-name'}
-                placeholder=''
+                placeholder='Your company name'
                 required=''
                 className='inputtext'
                 value={bookDemoData?.companyName}
                 onChange={(e) => onChangeInfo('companyName', e.target.value)}
               />
               {validationError?.name === 'companyName' && <Validation error={validationError?.message} />}
-              <label for='Last-Name-'>
-                How did you find us? <span>*</span>
-              </label>
-              <select
-                id='source'
-                name='How-did-you-find-us'
-                data-name='How did you find us?'
-                required=''
-                class='wselect'
-                onChange={(e) => onChangeInfo('howDidYouFindUs', e.target.value)}>
-                <option value=''>Please select...</option>
-                {data?.[BOOK_DEMO_CONTENT_TYPE.FIND_US]?.map((item, index) => {
-                  return (
-                    <option value={item} key={`industry_index_${index}`}>
-                      {item}
-                    </option>
-                  );
-                })}
-
-                <option value='other'>Other</option>
-              </select>
-              {validationError?.name === 'howDidYouFindUs' && <Validation error={validationError?.message} />}
-              <label for='Last-Name-'>
-                What industry are you in? <span>*</span>
-              </label>
-              <select
-                id='industry'
-                name='What-industry-are-you-in'
-                data-name='What industry are you in?'
-                required=''
-                class='wselect'
-                onChange={(e) => {
-                  onChangeInfo('industry', e.target.value);
-                  onChangeIndustry();
-                }}>
-                <option value=''>Please select...</option>
-                {data?.[BOOK_DEMO_CONTENT_TYPE.INDUSTRY]?.map((item, index) => {
-                  return (
-                    <option value={item} key={`industry_index_${index}`}>
-                      {item}
-                    </option>
-                  );
-                })}
-
-                <option value='other'>Other</option>
-              </select>
-              {validationError?.name === 'industry' && <Validation error={validationError?.message} />}
+              <ItemDiv>
+                <label for='Last-Name-'>
+                  Company size <span>*</span>
+                </label>
+                <div className='icon-div'>
+                  <SVGComponent name='drop-down-arrow-icon' width='12' height='12' viewBox='0 0 12 13' />
+                </div>
+                <select
+                  id='company_size'
+                  name='How-large-is-your-company'
+                  data-name='How large is your company?'
+                  required=''
+                  class='wselect'
+                  onChange={(e) => onChangeInfo('companySize', e.target.value)}>
+                  <option value=''>Select...</option>
+                  {data?.[BOOK_DEMO_CONTENT_TYPE.COMPANY_SIZE]?.map((item, index) => {
+                    return (
+                      <option value={item} key={`industry_index_${index}`}>
+                        {item}
+                      </option>
+                    );
+                  })}
+                </select>
+                {validationError?.name === 'companySize' && <Validation error={validationError?.message} />}
+              </ItemDiv>
+              <ItemDiv>
+                <label for='Last-Name-'>
+                  Industry <span>*</span>
+                </label>
+                <div className='icon-div'>
+                  <SVGComponent name='drop-down-arrow-icon' width='12' height='12' viewBox='0 0 12 13' />
+                </div>
+                <select
+                  id='industry'
+                  name='What-industry-are-you-in'
+                  data-name='What industry are you in?'
+                  required=''
+                  class='wselect'
+                  onChange={(e) => {
+                    onChangeInfo('industry', e.target.value);
+                    onChangeIndustry();
+                  }}>
+                  <option value=''>Select...</option>
+                  {data?.[BOOK_DEMO_CONTENT_TYPE.INDUSTRY]?.map((item, index) => {
+                    return (
+                      <option value={item} key={`industry_index_${index}`}>
+                        {item}
+                      </option>
+                    );
+                  })}
+                  <option value='other'>Other</option>
+                </select>
+                {validationError?.name === 'industry' && <Validation error={validationError?.message} />}
+              </ItemDiv>
+              <ItemDiv>
+                <label for='Last-Name-'>
+                  How did you find us? <span>*</span>
+                </label>
+                <div className='icon-div'>
+                  <SVGComponent name='drop-down-arrow-icon' width='12' height='12' viewBox='0 0 12 13' />
+                </div>
+                <select
+                  id='source'
+                  name='How-did-you-find-us'
+                  data-name='How did you find us?'
+                  required=''
+                  class='wselect'
+                  onChange={(e) => onChangeInfo('howDidYouFindUs', e.target.value)}>
+                  <option value=''>Select...</option>
+                  {data?.[BOOK_DEMO_CONTENT_TYPE.FIND_US]?.map((item, index) => {
+                    return (
+                      <option value={item} key={`industry_index_${index}`}>
+                        {item}
+                      </option>
+                    );
+                  })}
+                  <option value='other'>Other</option>
+                </select>
+                {validationError?.name === 'howDidYouFindUs' && <Validation error={validationError?.message} />}
+              </ItemDiv>
               {bookDemoData?.industry === 'other' && (
                 <>
                   <label for='Industry-Name-'>
@@ -283,26 +329,6 @@ export default function BookDemoForm({ productDemoSlug, data, thankYouMessage })
               )}
 
               <label for='Last-Name-'>
-                How large is your company? <span>*</span>
-              </label>
-              <select
-                id='company_size'
-                name='How-large-is-your-company'
-                data-name='How large is your company?'
-                required=''
-                class='wselect'
-                onChange={(e) => onChangeInfo('companySize', e.target.value)}>
-                <option value=''>Please select...</option>
-                {data?.[BOOK_DEMO_CONTENT_TYPE.COMPANY_SIZE]?.map((item, index) => {
-                  return (
-                    <option value={item} key={`industry_index_${index}`}>
-                      {item}
-                    </option>
-                  );
-                })}
-              </select>
-              {validationError?.name === 'companySize' && <Validation error={validationError?.message} />}
-              <label for='Last-Name-'>
                 What should we know about your situation or objectives? <span>*</span>
               </label>
               <textarea
@@ -310,7 +336,7 @@ export default function BookDemoForm({ productDemoSlug, data, thankYouMessage })
                 name='What-should-we-know-about-your-situation-or-objectives'
                 maxlength='255'
                 data-name='What should we know about your situation or objectives?'
-                placeholder=''
+                placeholder='Type a description here...'
                 required=''
                 class='sm'
                 rows={3}
@@ -320,40 +346,7 @@ export default function BookDemoForm({ productDemoSlug, data, thankYouMessage })
               {validationError?.name === 'objectives' && <Validation isLast={true} error={validationError?.message} />}
             </FormDetail>
 
-            <Button text={'Let’s talk'} className='btnposition' type={'submit'} />
-            <LastText>
-              <span>or</span>
-              <HelpLink className='icon-link'>
-                <Link href={COPILOT_ONBORADING_LINK} className='learn-link mb0'>
-                  start your 14-day free trial
-                  <svg width='16' height='12' viewBox='0 0 16 12' fill='none' class='HoverArrow'>
-                    <path
-                      d='M5.7998 1.37109L10.4283 5.99958L5.7998 10.6281'
-                      stroke-width='1.92854'
-                      stroke-linecap='round'
-                      stroke-linejoin='round'
-                      class='HoverArrow__tipPath'
-                    />
-                    <path
-                      d='M10.33 5.99951H1.5'
-                      stroke-width='2'
-                      stroke-linecap='round'
-                      stroke-linejoin='round'
-                      class='HoverArrow__linePath'
-                    />
-                  </svg>
-                  <svg width='8' height='14' viewBox='0 0 8 14' fill='none' class='mobilearrow'>
-                    <path
-                      d='M2 3L6 7L2 11'
-                      stroke='#09AA6C'
-                      stroke-width='1.85714'
-                      stroke-linecap='round'
-                      stroke-linejoin='round'
-                    />
-                  </svg>
-                </Link>
-              </HelpLink>
-            </LastText>
+            <Button text={'Submit'} className='btnposition' type={'submit'} />
           </FormSection>
         )}
       </MainSection>
