@@ -22,6 +22,7 @@ const HeroSection = styled.div`
 `;
 const SolutionWrap = styled.div`
   display: flex;
+  align-items: center;
   gap: 163px;
   &.details-hero {
     justify-content: space-between;
@@ -43,7 +44,7 @@ const SolutionWrap = styled.div`
     width: 100%;
   }
   @media only screen and (max-width: 768px) {
-    gap: 82px;
+    gap: 40px;
     ${(props) =>
       props.isWeeklycontainer &&
       css`
@@ -239,9 +240,17 @@ const RightWrap = styled.div`
   @media only screen and (max-width: 991px) {
     width: 100%;
     text-align: center;
+    img {
+      width: 100%;
+    }
   }
   @media only screen and (max-width: 768px) {
     text-align: right;
+    ${(props) =>
+      props.emptyMobileImage &&
+      css`
+        text-align: center;
+      `}
   }
   @media only screen and (max-width: 749px) {
     display: block;
@@ -336,6 +345,11 @@ const ImageView = styled.div`
   background-color: var(--white);
   padding-bottom: 174px;
   z-index: 2;
+  ${(props) =>
+    props.emptyMobileImage &&
+    css`
+      padding-bottom: 0;
+    `}
   @media only screen and (max-width: 449px) {
     display: none;
   }
@@ -384,6 +398,11 @@ const MobileView = styled.div`
     background-color: var(--white);
     padding-bottom: 90px;
     z-index: 2;
+    ${(props) =>
+      props.emptyMobileImage &&
+      css`
+        padding-bottom: 0;
+      `}
   }
 `;
 export {

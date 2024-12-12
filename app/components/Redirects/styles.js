@@ -42,7 +42,8 @@ const Description = styled.p`
   }
 `;
 
-const Card = styled.div`
+const Card = styled.a`
+  cursor: pointer;
   padding: 24px;
   display: flex;
   gap: 24px;

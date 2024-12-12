@@ -2,9 +2,9 @@ import React from 'react';
 import { isEmpty } from '../../helpers/helpers';
 import { Caption, Card, CardData, Heading, Icon, Image } from './styles';
 
-export default function RedirectsCard({ title, caption, imageUrl }) {
+export default function RedirectsCard({ title, caption, imageUrl, link }) {
   return (
-    <Card>
+    <Card href={link}>
       {!isEmpty(imageUrl) && (
         <Icon>
           <Image src={imageUrl} alt='card-icon' width='36px' height='36px' />

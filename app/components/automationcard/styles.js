@@ -115,5 +115,7 @@ const Body = styled.div`
 `;
 const HeaderSection = styled.div`
   margin-bottom: 40px;
+  max-width: 811px;
+  width: 100%;
 `;
 export { CardSection, CardSectionHead, Card, CardTop, Head, Description, Cards, Body, HeaderSection };

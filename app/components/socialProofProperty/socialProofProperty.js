@@ -20,10 +20,16 @@ function SocialProofProperty({ rateCount, isBookDemo }) {
     }
   }, []);
 
+  // Format rateCount if it's a numeric value
+  const formattedRateCount =
+    typeof rateCount === 'string' && rateCount.includes('+')
+      ? `${Number(rateCount.replace('+', '')).toLocaleString()}+`
+      : Number(rateCount).toLocaleString();
+
   return (
     <PropertyMainDiv isBookDemo={isBookDemo}>
       <StarList rate={4.5} isBig={isBig} />
-      <h6>based on {rateCount} reviews</h6>
+      <h6>based on {formattedRateCount} reviews</h6>
       <Logos>
         <SVGComponent name='g2-logo-icon' width='24' height='24' viewBox='0 0 24 25' />
         <SVGComponent name='capterra-logo-icon' width='24' height='24' viewBox='0 0 24 25' />

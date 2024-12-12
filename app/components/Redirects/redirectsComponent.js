@@ -34,7 +34,13 @@ export default function RedirectsComponent({
         </RedirectsHeading>
         <RedirectsCardSection>
           {redirectsData.map((data, index) => (
-            <RedirectsCard key={index} title={data?.title} caption={data?.description} imageUrl={data?.image?.url} />
+            <RedirectsCard
+              key={index}
+              title={data?.title}
+              caption={data?.description}
+              imageUrl={data?.image?.url}
+              link={data?.url}
+            />
           ))}
         </RedirectsCardSection>
       </Redirects>

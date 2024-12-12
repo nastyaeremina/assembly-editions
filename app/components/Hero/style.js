@@ -123,7 +123,7 @@ const SubHeroSection = styled.div`
   display: flex;
   flex-direction: column;
   gap: 16px;
-  max-width: 918px;
+  max-width: 811px;
   width: 100%;
   h1 {
     font-family: 'Bagoss';
@@ -134,11 +134,6 @@ const SubHeroSection = styled.div`
   .button-section {
     margin-top: 8px;
   }
-  ${(props) =>
-    props.hasFullWidth &&
-    css`
-      max-width: 100%;
-    `}
   @media only screen and (max-width: 768px) {
     h1 {
       ${MobileH2}

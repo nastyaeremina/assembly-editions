@@ -231,6 +231,7 @@ const POST_GRAPHQL_SECTION_REDIRECT_FIELDS = `
       image{
         url
       }
+      url
     }
   }
 `;
