@@ -26,7 +26,7 @@ export default function Quote({ gradientImage, data, caseStudies = false, isStan
             </QuoteImg>
           )}
           <QuoteTxt>
-            <p>{data?.quote}</p>
+            <p>{data?.quoteNew}</p>
             <QuoteSubTxt>
               <span>{data?.name}</span>
               <p>{data?.role}</p>

@@ -120,7 +120,7 @@ contentCollection{
               url
             }
             industry
-            quote
+            quoteNew
         }
         ...on ComponentFaq{
             ${POST_GRAPHQL_FAQ_COMPONENT_FIELDS}
