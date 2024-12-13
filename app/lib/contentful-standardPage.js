@@ -142,6 +142,10 @@ contentCollection{
 const POST_GRAPHQL_FEATURE_COMPONENT_LIST_FIELDS = `
 title
 description
+primaryButtonText
+primaryButtonLink
+secondaryButtonText
+secondaryButtonLink
 featuresCollection{
   items{
     title

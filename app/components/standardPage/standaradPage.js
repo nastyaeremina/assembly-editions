@@ -43,7 +43,12 @@ export default async function StandardPage({ data }) {
                   <Modern
                     data={featureData.featuresCollection?.items}
                     title={featureData.title}
+                    description={featureData.description}
                     isStandardPage={true} // isStandardPage props use for standard Page wise spacing design
+                    primaryButtonText={featureData.primaryButtonText}
+                    primaryButtonLink={featureData.primaryButtonLink}
+                    secondaryButtonLink={featureData.secondaryButtonLink}
+                    secondaryButtonText={featureData.secondaryButtonText}
                   />
                 )}
               </>
