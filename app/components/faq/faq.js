@@ -57,9 +57,7 @@ export default function FAQ({ enterprise, isGuideFAQ, currentpath, faqList: allP
       return (
         <>
           <DivFAQ isGuideFAQ={isGuideFAQ}>
-            <div
-              className={`accordion-title ${activeAccordion === faqId ? 'active' : ''}`}
-              onClick={() => onClickQuestion(faqId)}>
+            <div className={'accordion-title'} onClick={() => onClickQuestion(faqId)}>
               <div style={{ display: 'inline-flex', alignItems: 'center' }} id={faqId}>
                 <div className='accordion-heading'>
                   {item?.question}{' '}

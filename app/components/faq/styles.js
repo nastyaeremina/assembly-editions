@@ -134,22 +134,28 @@ const FaqTitle = styled.div`
 
 const DivFAQ = styled.div`
   border-bottom: 1px solid black;
+  padding-bottom: 40px;
+  ${(props) =>
+    props.isGuideFAQ &&
+    css`
+      padding-bottom: 24px;
+    `}
   .accordion-title {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 40px 0px;
+    padding: 40px 0px 0;
     cursor: pointer;
     ${(props) =>
       props.isGuideFAQ &&
       css`
-        padding: 24px 0px;
+        padding: 24px 0px 0;
         > div > svg {
           width: 20px;
           height: 20px;
         }
         @media only screen and (max-width: 449px) {
-          padding: 40px 0px;
+          padding: 40px 0px 0;
           > div > svg {
             width: 24px;
             height: 24px;
@@ -187,7 +193,7 @@ const DivFAQ = styled.div`
     height: 18px;
     /* margin-left: -10px; */
     opacity: 0;
-    transition: all 0.3s;
+    transition: all 0.5s;
   }
   @media only screen and (max-width: 426px) {
     svg {
@@ -196,7 +202,7 @@ const DivFAQ = styled.div`
     }
   }
   svg path {
-    transition: all 0.2s ease;
+    transition: all 0.5s ease;
     transform-origin: center;
   }
   svg .active {
@@ -205,20 +211,26 @@ const DivFAQ = styled.div`
   :last-child {
     border-bottom: none;
   }
-  .active {
-    padding-bottom: unset;
-  }
 `;
 const FAQAnsware = styled.div`
+  max-height: 0;
+  transition: max-height 0.5s ease;
+  overflow: hidden;
+
+  &.active {
+    max-height: 1000px;
+  }
+
   div {
     ${Body1}
     color: var(--body);
-    padding: 20px 32px 40px 0;
+    padding: 20px 32px 0 0;
+
     ${(props) =>
       props.isGuideFAQ &&
       css`
         ${Body5};
-        padding: 0 32px 24px 0;
+        padding: 20px 32px 0 0;
         p {
           margin-top: 0;
           :last-child {
@@ -231,27 +243,24 @@ const FAQAnsware = styled.div`
       `}
     p {
       margin: 0;
+      margin-top: 20px;
+      :first-child {
+        margin-top: 0;
+      }
     }
+
     @media only screen and (max-width: 426px) {
       ${MbBody3}
     }
   }
-  opacity: 0;
-  max-height: 0;
-  transition: opacity 400ms ease-in-out 0s, max-height 400ms ease-in-out 0s;
-  overflow: hidden;
-  &&.active {
-    opacity: 1;
-    overflow: visible;
-    max-height: 2000px;
-    padding-bottom: unset;
-  }
+
   ol {
     padding-left: 18px;
     li {
       margin-top: 6px;
     }
   }
+
   ul {
     list-style-type: disc;
     list-style-position: outside;
@@ -260,16 +269,20 @@ const FAQAnsware = styled.div`
       margin-top: 6px;
     }
   }
+
   a {
     color: var(--primary);
     display: initial;
     cursor: pointer;
+
     :hover {
       color: var(--dark-green);
     }
   }
+
   p {
     margin: 0;
   }
 `;
+
 export { FaqSection, FaqTitle, DivFAQ, FAQAnsware };
