@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { Body4, Heading4 } from '../../styles/styles';
+import { Body4, Body5, Heading4 } from '../../styles/styles';
 
 const SectionDiv = styled.div`
   padding-bottom: 100px;
@@ -29,16 +29,15 @@ const SectionDiv = styled.div`
         ${Heading4};
         color: var(--title);
         margin: 0;
-        @media (max-width: 449px) {
-          font-size: 32px;
-          line-height: 34px;
-        }
       }
       :nth-child(2) {
         ${Body4};
         color: var(--body);
         margin: 0;
         margin-top: 12px;
+        @media only screen and (max-width: 449px) {
+          ${Body5}
+        }
       }
     }
     :first-child {
@@ -52,6 +51,7 @@ const SectionDiv = styled.div`
       border: none;
       border-top: 0.5px solid var(--dark-green);
       border-bottom: 0.5px solid var(--dark-green);
+      padding: 20px;
       :first-child {
         border-top: none;
       }

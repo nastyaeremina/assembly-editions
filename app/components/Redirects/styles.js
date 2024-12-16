@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { Body3, Body5, Heading3, Heading6, MbBody3, MobileH3, MobileH4 } from '../../styles/styles';
+import { Body3, Body4, Body5, Heading3, Heading4, MbBody3, MobileH4 } from '../../styles/styles';
 
 const Redirects = styled.div`
   padding-bottom: 100px;
@@ -89,7 +89,7 @@ const Card = styled.a`
   }
 `;
 const Heading = styled.h3`
-  ${Heading6};
+  ${Heading4};
   color: var(--title);
   margin: 0;
   @media only screen and (max-width: 479px) {
@@ -97,14 +97,25 @@ const Heading = styled.h3`
   }
 `;
 const Caption = styled.p`
-  ${Body5};
+  ${Body4};
   color: var(--body);
-  margin: 8px 0 0;
+  margin: 12px 0 0;
   @media only screen and (max-width: 449px) {
     margin: 6px 0 0;
+    ${Body5};
   }
 `;
-const Icon = styled.div``;
+const Icon = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 36px;
+  @media only screen and (max-width: 449px) {
+    width: 24px;
+    height: 24px;
+  }
+`;
 const CardData = styled.div``;
 const RedirectsCardSection = styled.div`
   display: grid;
@@ -121,8 +132,8 @@ const RedirectsCardSection = styled.div`
   }
 `;
 const Image = styled.img`
-  width: 36px;
-  height: 36px;
+  width: 32px;
+  height: 32px;
   @media only screen and (max-width: 449px) {
     width: 24px;
     height: 24px;
