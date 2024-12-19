@@ -193,7 +193,7 @@ const DivFAQ = styled.div`
     height: 18px;
     /* margin-left: -10px; */
     opacity: 0;
-    transition: all 0.5s;
+    transition: all 0.6s;
   }
   @media only screen and (max-width: 426px) {
     svg {
@@ -202,30 +202,26 @@ const DivFAQ = styled.div`
     }
   }
   svg path {
-    transition: all 0.5s ease;
+    transition: all 0.6s ease;
     transform-origin: center;
   }
   svg .active {
     transform: rotate(90deg);
+    transition: all 0.6s ease;
   }
   :last-child {
     border-bottom: none;
   }
 `;
-const FAQAnsware = styled.div`
-  max-height: 0;
-  transition: max-height 0.5s ease;
+const FAQAnswer = styled.div`
+  max-height: ${(props) => (props.isActive ? `${props.height}px` : '0')};
   overflow: hidden;
-
-  &.active {
-    max-height: 1000px;
-  }
+  transition: max-height 0.6s ease;
 
   div {
     ${Body1}
     color: var(--body);
     padding: 20px 32px 0 0;
-
     ${(props) =>
       props.isGuideFAQ &&
       css`
@@ -285,4 +281,4 @@ const FAQAnsware = styled.div`
   }
 `;
 
-export { FaqSection, FaqTitle, DivFAQ, FAQAnsware };
+export { FaqSection, FaqTitle, DivFAQ, FAQAnswer };
