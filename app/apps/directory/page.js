@@ -5,6 +5,7 @@ import AppDirectoryPage from '../../components/PageComponent/Apps/directoryPage'
 import { getAllPartnerApps } from '../../lib/contentful-partnerApps';
 import Navbar from '../../components/navbar/navbar';
 import CTA from '../../components/cta/cta';
+import AggregateRating from '../../components/aggregateRating';
 
 async function getAppDirectoryContent() {
   const allClientPosts = (await getAllPartnerApps(APPS_TYPE.CLIENT)) ?? [];
@@ -25,6 +26,7 @@ export default async function Apps() {
 
   return (
     <>
+      <AggregateRating id={APP_SEO_ID} />
       <Layout>
         <div style={{ backgroundcolor: 'var(--main-bg-color)' }}>
           <Navbar />

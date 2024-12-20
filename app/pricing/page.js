@@ -4,6 +4,7 @@ import Navbar from '../components/navbar/navbar';
 import FAQ from '../components/faq/faq';
 import CTA from '../components/cta/cta';
 import { getFAQsData } from '../services/faq';
+import AggregateRating from '../components/aggregateRating';
 import { PRICING_PAGE_ID } from './../constants/constant';
 import { getSEOData } from './../helpers/helpers';
 import { getPricingPageDetail } from './../lib/contentful-pricing';
@@ -25,6 +26,7 @@ export default async function NewIndex() {
 
   return (
     <>
+      <AggregateRating data={details?.seoMetadata} />
       <Layout>
         <Navbar />
         <PricingPage details={details} />

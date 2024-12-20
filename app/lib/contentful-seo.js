@@ -9,7 +9,8 @@ noFollow
 openGraphImage
 {
   url
-}`;
+}
+isEnableReviewSnippet`;
 
 function extractData(fetchResponse) {
   return fetchResponse?.data?.seoMetadata;

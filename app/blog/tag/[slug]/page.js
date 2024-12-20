@@ -1,9 +1,9 @@
+import { notFound } from 'next/navigation';
 import Layout from '../../../components/layout';
 import BlogNavbar from '../../../components/navbar/blognavbar';
 import { getAllTagWithSlug, getBlogByTag, getTagDetail } from '../../../lib/blog-content';
 import { customSort, isEmpty } from '../../../helpers/helpers';
 import TagPage from '../../../components/PageComponent/Blog/tagsPage';
-import { notFound } from 'next/navigation';
 import { BLOG_TAG_SORTED_LIST } from '../../../constants/constant';
 
 async function getContent({ slug }) {

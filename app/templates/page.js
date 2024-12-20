@@ -2,9 +2,11 @@ import Layout from '../components/layout';
 import { TEMPLATE_PAGE_ID } from '../constants/constant';
 import { getTemplateHomeContent } from '../lib/contentful-template';
 import TemplateListSection from '../components/template/templateListSection';
+import HeroComponent from '../components/standardHero/hero';
+import AggregateRating from '../components/aggregateRating';
 import { getSEOData, isEmpty, removeEmptyElement } from './../helpers/helpers';
 import Navbar from './../components/navbar/navbar';
-import HeroComponent from '../components/standardHero/hero';
+
 async function getTemplateContent() {
   return (await getTemplateHomeContent(TEMPLATE_PAGE_ID)) ?? {};
 }
@@ -23,6 +25,7 @@ export default async function University() {
   const section3TemplateList = removeEmptyElement(templateData?.section3TemplatesCollection?.items);
   return (
     <>
+      <AggregateRating data={templateData?.seoMetadata} />
       <Layout>
         <Navbar />
         <HeroComponent data={templateData?.templateHeroSection} />

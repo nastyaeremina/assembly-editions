@@ -4,6 +4,7 @@ import { getSEOData } from '../helpers/helpers';
 import { GUIDE_PAGE_ID } from '../constants/constant';
 import { getArticleData, getGuideHomePageContent, getGuidePageContent } from '../lib/contentful-guide';
 import GuideMainHome from '../components/GuideHome/guidemainHome';
+import AggregateRating from '../components/aggregateRating';
 
 async function getContent() {
   const detail = (await getGuideHomePageContent({ id: GUIDE_PAGE_ID })) ?? {};
@@ -17,9 +18,10 @@ export async function generateMetadata() {
   return seoData;
 }
 export default async function Guide() {
-  const { data } = await getContent();
+  const { data, seoMetadata } = await getContent();
   return (
     <>
+      <AggregateRating data={seoMetadata} />
       <GuideMainHome data={data} />
     </>
   );

@@ -8,6 +8,7 @@ import { getSEOData, isEmpty } from '../helpers/helpers';
 import ProductDemoPage from '../components/PageComponent/ProductDemo/productDemoPage';
 import { getStandardPageContent } from '../lib/contentful-standardPage';
 import StandardPage from '../components/standardPage/standaradPage';
+import AggregateRating from '../components/aggregateRating';
 
 const PAGE_TYPE = {
   DEFAULT: 0,
@@ -45,15 +46,18 @@ export default async function WeeklyDemo({ params }) {
   if (data?.slug !== combinedSlug) return notFound();
 
   return (
-    <Layout>
-      <Navbar />
-      {type === PAGE_TYPE.WEEKLY_DEMO && <WeeklyHero data={data} />}
-      {type === PAGE_TYPE.PRODUCT_DEMO && <ProductDemoPage details={data} />}
-      {type === PAGE_TYPE.STANDARD_PAGE && (
-        <>
-          <StandardPage data={data?.contentCollection?.items} />
-        </>
-      )}
-    </Layout>
+    <>
+      <AggregateRating data={data.seoMetadata} />
+      <Layout>
+        <Navbar />
+        {type === PAGE_TYPE.WEEKLY_DEMO && <WeeklyHero data={data} />}
+        {type === PAGE_TYPE.PRODUCT_DEMO && <ProductDemoPage details={data} />}
+        {type === PAGE_TYPE.STANDARD_PAGE && (
+          <>
+            <StandardPage data={data?.contentCollection?.items} />
+          </>
+        )}
+      </Layout>
+    </>
   );
 }

@@ -4,6 +4,7 @@ import Navbar from '../../components/navbar/navbar';
 import Referral from '../../components/referral';
 import { REFERRAL_SEO_ID } from '../../constants/constant';
 import { getSEOData } from '../../helpers/helpers';
+import AggregateRating from '../../components/aggregateRating';
 
 export async function generateMetadata() {
   const seoData = await getSEOData({ id: REFERRAL_SEO_ID });
@@ -15,6 +16,7 @@ export default async function ReferralPage() {
   const host = headers().get('host').replace('www.', '');
   return (
     <>
+      <AggregateRating id={REFERRAL_SEO_ID} />
       <Layout>
         <Navbar />
         <Referral hostName={host} />

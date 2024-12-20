@@ -3,7 +3,7 @@ import Navbar from './components/navbar/navbar';
 import CTA from './components/cta/cta';
 import { HOME_CLIENT_DARK_ID } from './constants/constant';
 import { getHomeContent } from './lib/contentful-home';
-import { getAllPartnerAppsWithSlug } from './lib/contentful-partnerApps';
+import AggregateRating from './components/aggregateRating';
 
 import HomePage from './components/Home/homepage/homepage';
 import { createArrayWithFixedLength, getSEOData, removeEmptyElement } from './helpers/helpers';
@@ -40,6 +40,7 @@ export default async function Home() {
   );
   return (
     <>
+      <AggregateRating id={content?.seoMetadata.sys.id} />
       <script type='application/ld+json' dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       <Layout>
         <Navbar />

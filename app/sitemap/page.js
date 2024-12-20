@@ -4,6 +4,7 @@ import { HEADER_LIST, SITEMAP_CONTENT_ID, SITEMAP_SEO_ID } from '../constants/co
 import { getSEOData, isEmpty, removeEmptyElement } from '../helpers/helpers';
 import { getSitemap } from '../lib/contentful-sitemap';
 import SiteMapPage from '../components/PageComponent/Sitemap/sitemapPage';
+import AggregateRating from '../components/aggregateRating';
 
 async function getSitemapContent() {
   // Retrieve data from the sitemap
@@ -66,6 +67,7 @@ export default async function Sitemap() {
 
   return (
     <>
+      <AggregateRating id={SITEMAP_SEO_ID} />
       <Layout>
         <Navbar isEnterPrice={true} headerIndex={HEADER_LIST.ENTERPRICE} />
         <SiteMapPage data={content} />

@@ -2,12 +2,13 @@ import ComparisonPage from '../components/PageComponent/Comparison/comparisonPag
 import { getSEOData } from '../helpers/helpers';
 import Layout from '../components/layout';
 import Navbar from '../components/navbar/navbar';
+import CTA from '../components/cta/cta';
+import AggregateRating from '../components/aggregateRating';
 import {
   getAllComparisonCategories,
   getAllCompetitor,
   getMasterComparisonDetail
 } from './../lib/contentful-comparison';
-import CTA from '../components/cta/cta';
 
 async function getContent() {
   const categories = (await getAllComparisonCategories()) ?? [];
@@ -34,6 +35,7 @@ export default async function Comparison() {
 
   return (
     <>
+      <AggregateRating data={details?.seoMetadata} />
       <Layout>
         <Navbar />
         <ComparisonPage featuredCompetitorList={featuredCompetitorList} details={details} />

@@ -7,6 +7,7 @@ import TemplateListSection from '../../components/template/templateListSection';
 import TemplateDetailHero from '../../components/templateDetailHero/templatedetailhero';
 import TemplateBodySection from '../../components/template/templateBodySection';
 import BackComponent from '../../components/backComponent/backComponent';
+import AggregateRating from '../../components/aggregateRating';
 
 async function getTemplateDetail({ slug }) {
   return (await getTemplateDetailContent({ slug })) ?? {};
@@ -27,6 +28,7 @@ export default async function TemplateDetail({ params }) {
   const relatedTemplateList = removeEmptyElement(tempalateDetail?.relatedTemplatesCollection?.items);
   return (
     <>
+      <AggregateRating data={tempalateDetail?.seoMetadata} />
       <Layout>
         <Navbar />
         <BackComponent backtext={'Back to templates'} href={'/templates'} />

@@ -1,4 +1,6 @@
 import Layout from '../components/layout';
+import { UNIVERSITY_SEO_ID } from '../constants/constant';
+import AggregateRating from '../components/aggregateRating';
 import Navbar from './../components/navbar/navbar';
 import UniversityPage from './../components/PageComponent/University/universityPage';
 import { getAllUniversityVideos, getUniversityVideoCategory } from './../lib/contentful-universityVideos';
@@ -42,7 +44,7 @@ async function getContent() {
 }
 
 export async function generateMetadata({ params, searchParams }, parent) {
-  const seoData = await getSEOData({ id: '2hMkBVQBYcMCmHLQyxzo8o' });
+  const seoData = await getSEOData({ id: UNIVERSITY_SEO_ID });
   seoData.alternates = { canonical: 'https://www.copilot.com/university' };
   return seoData;
 }
@@ -52,6 +54,7 @@ export default async function University() {
 
   return (
     <>
+      <AggregateRating id={UNIVERSITY_SEO_ID} />
       <Layout>
         <Navbar />
         <UniversityPage allPosts={allPosts} universityVideosList={universityVideosList} />

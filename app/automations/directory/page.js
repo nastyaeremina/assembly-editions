@@ -5,6 +5,7 @@ import AutomationDirectoryPage from '../../components/PageComponent/Automation/d
 import Layout from '../../components/layout';
 import CTA from '../../components/cta/cta';
 import Navbar from '../../components/navbar/navbar';
+import AggregateRating from '../../components/aggregateRating';
 
 async function getContent() {
   let allPosts = [];
@@ -45,6 +46,7 @@ export default async function AutomationDirectory() {
 
   return (
     <>
+      <AggregateRating id={AUTOMATION_SEO_ID} />
       <Layout>
         <div style={{ backgroundColor: 'var(--main-bg-color)' }}>
           <Navbar />

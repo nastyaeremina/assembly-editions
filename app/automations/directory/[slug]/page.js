@@ -1,9 +1,9 @@
+import { notFound } from 'next/navigation';
 import Layout from '../../../components/layout';
 import Navbar from '../../../components/navbar/navbar';
 import { getAllAutomations, getAutomationDetail } from '../../../lib/contentful-automation';
 import { getSEOData, isEmpty } from '../../../helpers/helpers';
 import AutomationDetailPage from '../../../components/PageComponent/Automation/directoryDetailsPage';
-import { notFound } from 'next/navigation';
 import CTA from '../../../components/cta/cta';
 
 async function getContent({ slug }) {

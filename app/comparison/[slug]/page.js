@@ -6,6 +6,7 @@ import { getSEOData, isEmpty } from '../../helpers/helpers';
 import ComparisonDetailPage from '../../components/PageComponent/Comparison/coparisonDetailPage';
 import { getFAQsData } from '../../services/faq';
 import CTA from '../../components/cta/cta';
+import AggregateRating from '../../components/aggregateRating';
 
 async function getContent({ slug }) {
   const details = (await getComparisonDetail(slug)) ?? [];
@@ -25,6 +26,7 @@ export default async function Comparison({ params }) {
 
   return (
     <>
+      <AggregateRating id={details?.seoMetadata?.sys?.id} />
       <Layout>
         <Navbar />
         <ComparisonDetailPage details={details} faqList={faqData} />

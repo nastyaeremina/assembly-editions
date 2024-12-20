@@ -1,7 +1,7 @@
 import Layout from '../../../components/layout';
 import BlogNavbar from '../../../components/navbar/blognavbar';
 import { getAllTagWithSlug, getAuthorDetail, getBlogByAuthor } from '../../../lib/blog-content';
-import { customSort, getSEOData, isEmpty } from '../../../helpers/helpers';
+import { customSort, isEmpty } from '../../../helpers/helpers';
 import AuthorPage from '../../../components/PageComponent/Blog/authorPage';
 import { BLOG_TAG_SORTED_LIST } from '../../../constants/constant';
 

@@ -5,6 +5,7 @@ import { GLOSSARY_PAGE_ID } from '../constants/constant';
 import GlossaryPage from '../components/PageComponent/Glossary/glossarypage';
 import { getAllGlossaryContent, getGlossaryPageContent } from '../lib/contentful-glossary';
 import { getSEOData } from '../helpers/helpers';
+import AggregateRating from '../components/aggregateRating';
 
 async function getContent() {
   const data = await getGlossaryPageContent(GLOSSARY_PAGE_ID);
@@ -42,9 +43,10 @@ export async function generateMetadata({ params, searchParams }, parent) {
   return seoData;
 }
 export default async function Glossary() {
-  const { glossaryList } = await getContent();
+  const { glossaryList, seoMetadata } = await getContent();
   return (
     <>
+      <AggregateRating data={seoMetadata} />
       <Layout>
         <Navbar />
         <GlossaryPage data={glossaryList} />

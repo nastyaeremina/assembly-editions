@@ -1,6 +1,7 @@
 import { CONTENTFUL_API_TAG, PER_API_LIMIT_FOR_AUTOMATION } from '../constants/constant';
 import { fetchGraphQL, getContentTypeDetail } from './contentful';
 import { POST_GRAPHQL_FAQ_COLLECTION_FIELDS } from './contentful-faq';
+import { POST_GRAPHQL_SEOMETADATA_FIELDS } from './contentful-seo';
 
 const POST_GRAPHQL_PAGE_AUTOMATION_DETAILS_FIELDS_SECTION_1 = `
     
@@ -9,14 +10,7 @@ const POST_GRAPHQL_PAGE_AUTOMATION_DETAILS_FIELDS_SECTION_1 = `
     demoPortalUrl
     ${POST_GRAPHQL_FAQ_COLLECTION_FIELDS}
     seoMetadata {
-        seoTitle
-        description
-        noIndex
-        noFollow
-        openGraphImage
-        {
-          url
-        }
+          ${POST_GRAPHQL_SEOMETADATA_FIELDS}
       }
     
     sectionCaseStudyHeader

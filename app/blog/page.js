@@ -2,6 +2,7 @@ import BlogPage from '../components/PageComponent/Blog/blogPage';
 import BlogNavbar from '../components/navbar/blognavbar';
 import Layout from '../components/layout';
 import { getTopBarContent } from '../components/navbar/navbar';
+import AggregateRating from '../components/aggregateRating';
 import { getAllTagWithSlug, getBlogPosts } from './../lib/blog-content';
 import { customSort, getSEOData, isEmpty } from './../helpers/helpers';
 import { BLOG_SEO_ID, BLOG_TAG_SORTED_LIST } from './../constants/constant';
@@ -40,6 +41,7 @@ export default async function Blog() {
   };
   return (
     <>
+      <AggregateRating id={BLOG_SEO_ID} />
       <script type='application/ld+json' dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
 
       <Layout>

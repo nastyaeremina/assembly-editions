@@ -3,6 +3,7 @@ import { getSitemap } from '../../lib/contentful-sitemap';
 import { getSEOData } from '../../helpers/helpers';
 import PrivacyPolicyPage from '../../components/PageComponent/Legal/privacyPolicyPage';
 import Navbar from '../../components/navbar/navbar';
+import AggregateRating from '../../components/aggregateRating';
 
 async function getContent() {
   const data = await getSitemap(PRIVCY_POLICY_ID);
@@ -18,6 +19,7 @@ export default async function PrivacyPolicy() {
   const { content } = await getContent();
   return (
     <>
+      <AggregateRating id={PRIVACY_POLICY_SEO_ID} />
       <main>
         <Navbar isEnterPrice={true} headerIndex={HEADER_LIST.ENTERPRICE} />
         <PrivacyPolicyPage content={content} />

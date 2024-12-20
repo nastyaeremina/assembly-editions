@@ -2,6 +2,7 @@ import { CONTENTFUL_API_TAG } from '../constants/constant';
 import { fetchGraphQL } from './contentful';
 import { POST_GRAPHQL_FAQ_COLLECTION_FIELDS } from './contentful-faq';
 import { POST_GRAPHQL_GUIDE_ARTICLE_CONTENT_FIELDS } from './contentful-guide';
+import { POST_GRAPHQL_SEOMETADATA_FIELDS } from './contentful-seo';
 export const POST_GRAPHQL_PARTNER_APPS_CARD_ITEM_FIELDS = `
 name
 slug
@@ -76,16 +77,8 @@ const POST_GRAPHQL_PAGE_APPS_DETAILS_FIELDS_SECTION_1 = `
    ${POST_GRAPHQL_FAQ_COLLECTION_FIELDS}
     demoPortalUrl
     seoMetadata {
-        seoTitle
-        description
-        noIndex
-        noFollow
-        openGraphImage
-        {
-          url
-        }
+       ${POST_GRAPHQL_SEOMETADATA_FIELDS}
       }
-    
     sectionCaseStudyHeader
     sectionCaseStudyContent{
       sys{
@@ -325,5 +318,3 @@ export async function getAllAppsWithIcon(preview) {
   );
   return extractPostEntries(entries);
 }
-
-

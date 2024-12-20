@@ -1,4 +1,5 @@
 import JobsPage from '../components/PageComponent/Jobs/jobsPage';
+import AggregateRating from '../components/aggregateRating';
 import { getFAQsData } from '../services/faq';
 import FAQ from './../components/faq/faq';
 import Layout from './../components/layout';
@@ -60,6 +61,7 @@ export default async function Jobs() {
 
   return (
     <>
+      <AggregateRating data={details?.seoMetadata} />
       <Layout>
         <Navbar />
         <JobsPage jobList={jobList} jobImagesList={jobImagesList} jobBlogPostList={jobBlogPostList} details={details} />

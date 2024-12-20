@@ -7,6 +7,8 @@ import { getAllAppsWithIcon, getPageAppDetail } from '../lib/contentful-partnerA
 import AppPage from '../components/PageComponent/Apps/appPage';
 import { getFAQsData } from '../services/faq';
 import CTA from '../components/cta/cta';
+import AggregateRating from '../components/aggregateRating';
+
 async function getContent() {
   const details = (await getPageAppDetail(APP_PAGE_ID)) ?? [];
   const appsList = (await getAllAppsWithIcon()) ?? [];
@@ -31,6 +33,7 @@ export default async function Automation() {
 
   return (
     <>
+      <AggregateRating data={details.seoMetadata} />
       <SEO seoData={details?.seoMetadata}></SEO>
       <Layout>
         <Navbar isEnterPrice headerIndex={HEADER_LIST.ENTERPRICE} />
