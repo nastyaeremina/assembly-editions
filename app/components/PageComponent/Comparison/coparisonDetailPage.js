@@ -62,14 +62,14 @@ export default function ComparisonDetailPage({ details, faqList }) {
           <G2progressbar>
             <Processdata>
               <div className='progress-number-div'>
-                <span>{item?.copilotValue}</span>
+                <span>{item?.copilotValue.toFixed(1)}</span>
                 <span className='item-title'>Copilot</span>
               </div>
               <BorderLinearProgress variant='determinate' value={item?.copilotValue * 10} />
             </Processdata>
             <Processdata>
               <div className='progress-number-div'>
-                <span className='seconddata'>{item?.copilotValue}</span>
+                <span className='seconddata'>{item?.partnerValue.toFixed(1)}</span>
                 <span className='item-title'>{details.compititorName}</span>
               </div>
               <BorderProgress variant='determinate' value={item?.partnerValue * 10} />

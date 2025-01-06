@@ -37,7 +37,7 @@ export async function generateMetadata({ params }) {
     data: {
       seoTitle,
       description: appDetail?.description,
-      canonical: 'https://www.copilot.com/apps/directory' + appDetail?.slug
+      canonical: 'https://www.copilot.com/apps/directory/' + appDetail?.slug
     }
   });
   return seoData;

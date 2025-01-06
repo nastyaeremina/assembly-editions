@@ -41,7 +41,7 @@ export async function generateMetadata({ params }) {
     data: {
       seoTitle: detail?.name,
       description: detail?.description,
-      canonical: 'https://www.copilot.com/automations/directory' + detail?.slug
+      canonical: 'https://www.copilot.com/automations/directory/' + detail?.slug
     }
   });
   return seoData;
