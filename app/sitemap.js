@@ -43,6 +43,7 @@ export default async function sitemap() {
 
   const staticPages = [
     'apps',
+    'apps/directory',
     'automations',
     'automations/directory',
     'blog',
@@ -60,7 +61,6 @@ export default async function sitemap() {
     'sitemap',
     'university',
     'updates',
-    'weekly-demo',
     'glossary',
     'guide'
   ];

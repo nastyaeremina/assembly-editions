@@ -7,9 +7,8 @@ import { getAllUniversityVideoWithSlug } from '../../lib/contentful-universityVi
 import { getAllAuthorWithSlug, getAllBlogWithSlug, getAllTagWithSlug } from '../../lib/blog-content';
 import { getUpdatesPosts, getUpdatesWithSlug } from '../../lib/updates-content';
 import { getAllComparisonWithSlug } from '../../lib/contentful-comparison';
-import { PER_UPDATE_PAGE_POST, WEEKLY_DEMO_PAGE_ID } from '../../constants/constant';
+import { PER_UPDATE_PAGE_POST } from '../../constants/constant';
 import { getAllAutomationsWithSlug } from '../../lib/contentful-automation';
-import { getWeeklyDemoContent } from '../../lib/contentful-weeklyDemo';
 
 export async function getServerSideProps(ctx) {
   const appsPost = (await getAllPartnerAppsWithSlug()) ?? []; // appa
@@ -22,7 +21,6 @@ export async function getServerSideProps(ctx) {
   const tagPost = (await getAllTagWithSlug()) ?? []; // blog/tag
   const comparisonPost = (await getAllComparisonWithSlug()) ?? []; // /comparison
   const automationsPost = (await getAllAutomationsWithSlug()) ?? []; // automationsPost
-  const weeklydemoData = (await getWeeklyDemoContent(WEEKLY_DEMO_PAGE_ID)) ?? []; //weekly-demo
 
   const appsPostsPathList = appsPost?.map((item) => `apps/directory/${item?.slug}`);
   const jobsPostsPathList = jobPosts?.map((item) => `jobs/${item?.slug}`);
@@ -34,7 +32,6 @@ export async function getServerSideProps(ctx) {
   const tagPostsPathList = tagPost?.map((item) => `blog/tag/${item?.slug}`);
   const comparisonPostsPathList = comparisonPost?.map((item) => `comparison/${item?.slug}`);
   const automationsPostsPathList = automationsPost?.map((item) => `automations/directory/${item?.slug}`);
-  const weeklydemoDataPathList = [`${weeklydemoData?.slug}`];
 
   let allUpdateWithPagination = [];
   const totalCount = updatesPost?.meta?.pagination?.total;
@@ -53,8 +50,7 @@ export async function getServerSideProps(ctx) {
     tagPostsPathList,
     comparisonPostsPathList,
     allUpdateWithPagination,
-    automationsPostsPathList,
-    weeklydemoDataPathList
+    automationsPostsPathList
   );
   return getServerSideSitemapIndex(
     ctx,

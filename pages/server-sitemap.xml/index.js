@@ -50,6 +50,7 @@ export async function getServerSideProps(ctx) {
   }
   const staticPages = [
     'apps',
+    'apps/directory',
     'automations',
     'automations/directory',
     'blog',
@@ -62,7 +63,6 @@ export async function getServerSideProps(ctx) {
     'sitemap',
     'university',
     'updates',
-    'weekly-demo',
     'glossary',
     'guide',
     'templates'
