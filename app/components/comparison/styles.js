@@ -269,7 +269,7 @@ const G2section = styled.div`
       padding-top: 80px;
     }
   }
-  .description {
+  p {
     padding-top: 16px;
     margin: 0;
     padding-bottom: 32px;
@@ -280,7 +280,7 @@ const G2section = styled.div`
   @media only screen and (max-width: 991px) {
     width: unset;
     overflow: hidden;
-    .description {
+    p {
       ${MbBody3};
       padding-bottom: 16px;
     }
@@ -316,6 +316,7 @@ const Groupdetail = styled.div`
     ${Heading6}
     margin:0;
     color: var(--title);
+    padding: 0;
   }
   .report {
     color: var(--hover);
@@ -471,10 +472,16 @@ const CardMainDiv = styled.div`
   :first-child {
     padding-top: 100px;
   }
+  :last-child {
+    padding-bottom: 100px;
+  }
   @media only screen and (max-width: 450px) {
     padding-top: 40px;
     :first-child {
       padding-top: 80px;
+    }
+    :last-child {
+      padding-bottom: 80px;
     }
   }
 `;

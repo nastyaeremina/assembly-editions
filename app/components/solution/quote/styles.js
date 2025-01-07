@@ -7,12 +7,12 @@ const QuoteSection = styled.div`
   ${(props) =>
     props.isComparison &&
     css`
-      padding: 100px 0 0px;
+      padding: 0 0 100px;
     `}
   ${(props) =>
     props.isMasterComparison &&
     css`
-      padding: 100px 0 100px;
+      padding: 0 0 100px;
     `}
   overflow: hidden;
   @media only screen and (max-width: 991px) {
@@ -20,12 +20,12 @@ const QuoteSection = styled.div`
     ${(props) =>
       props.isComparison &&
       css`
-        padding: 80px 0 0px;
+        padding: 0 0 80px;
       `}
     ${(props) =>
       props.isMasterComparison &&
       css`
-        padding: 80px 0 80px;
+        padding: 0 0 80px;
       `}
   }
 `;

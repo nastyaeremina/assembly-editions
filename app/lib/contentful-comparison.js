@@ -2,6 +2,7 @@ import { CONTENTFUL_API_TAG } from '../constants/constant';
 import { fetchGraphQL, getContentTypeDetail } from './contentful';
 import { POST_GRAPHQL_FAQ_COLLECTION_FIELDS } from './contentful-faq';
 import { POST_GRAPHQL_SEOMETADATA_FIELDS } from './contentful-seo';
+import { POST_GRAPHQL_SECTION_CTA_FIELDS } from './contentful-standardPage';
 
 const POST_GRAPHQL_COMPARISON_DETAILS_FIELDS = `
 name
@@ -42,9 +43,10 @@ featuresCollection{
 featureDetail{
   json
 }
+ }   
  }
-        
-      }
+g2SectionTitle
+g2SectionDescription
 g2ComparisonLink
 g2GroupCollection{
   items{
@@ -74,6 +76,9 @@ seoMetadata{
   smallLogo{
   url
   }
+ctaSection{
+  ${POST_GRAPHQL_SECTION_CTA_FIELDS}
+}
 `;
 
 const POST_GRAPHQL_COMPARISON_ALL_COMPITITOE_DETAILS_FIELDS = `
@@ -113,7 +118,9 @@ testimonial{
 }
 seoMetadata{
   ${POST_GRAPHQL_SEOMETADATA_FIELDS}
-
+}
+ctaSection{
+  ${POST_GRAPHQL_SECTION_CTA_FIELDS}  
 }
 `;
 function extractPostEntry(fetchResponse) {

@@ -3,9 +3,14 @@ import { Arrow, SliderButton } from '../../styles/homepageStyles';
 import SVGComponent from '../../../public/images/svg/SVGComponent';
 import { useWindowDimensions } from '../../hooks/useMobileDevice';
 
-//sliderItemWidth represent the hight of single slide
-const sliderItemWidth = 528;
-export default function SliderButtonSection({ xPos, setXpos, noOfSlide, isComparisonDetails }) {
+export default function SliderButtonSection({
+  xPos,
+  setXpos,
+  noOfSlide,
+  isComparisonDetails,
+  sliderItemWidth = 528,
+  padding = 22
+}) {
   const { width } = useWindowDimensions();
   // calculate slider position based on the slide item to  prevent the next slide show
   const minimumSlidePosition = width > 1024 ? (noOfSlide - 2) * -sliderItemWidth : (noOfSlide - 1) * -sliderItemWidth;
@@ -15,7 +20,7 @@ export default function SliderButtonSection({ xPos, setXpos, noOfSlide, isCompar
       //set next slide position
       if (xPos > minimumSlidePosition) setXpos(xPos - sliderItemWidth);
     } else {
-      if (xPos > -(width * (noOfSlide - 1))) setXpos(xPos - (width + 27));
+      if (xPos > -(width * (noOfSlide - 1))) setXpos(xPos - width + padding);
     }
   }, [minimumSlidePosition, noOfSlide, setXpos, width, xPos]);
 
@@ -25,7 +30,7 @@ export default function SliderButtonSection({ xPos, setXpos, noOfSlide, isCompar
       if (xPos !== 0) setXpos(xPos + sliderItemWidth);
     } else {
       //set previous slide  card width + padding size
-      if (xPos !== 0) setXpos(xPos + (width + 27));
+      if (xPos !== 0) setXpos(xPos + width - padding);
     }
   }, [setXpos, width, xPos]);
 

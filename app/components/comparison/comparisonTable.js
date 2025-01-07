@@ -6,6 +6,7 @@ import CopilotLogos from '../../../public/images/blacklogo.svg';
 import SVGComponent from '../../../public/images/svg/SVGComponent';
 import { isEmpty } from '../../helpers/helpers';
 import { TableMainDiv, LeftSection, TitleSection, MainTabbleSection, MainTableSection } from './styles';
+import Image from 'next/image';
 
 export default function ComparisonTableView({ details, competitorLogo }) {
   // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -57,9 +58,7 @@ export default function ComparisonTableView({ details, competitorLogo }) {
         <>
           <TableMainDiv>
             <LeftSection>
-              {/* {!isEmpty(item.icon?.url) && ( */}
-              <SVGComponent name='capabilities-icon' width='48' height='48' viewBox='0 0 48 49' fill='none' />
-              {/* )} */}
+              {!isEmpty(item.icon?.url) && <Image src={item.icon?.url} alt='image' width={48} height={48} />}
               {!isEmpty(item.title) && <h4>{item.title}</h4>}
               {!isTitleSectionHide && (
                 <TitleSection>

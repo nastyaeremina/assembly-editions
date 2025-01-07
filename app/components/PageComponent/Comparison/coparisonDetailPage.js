@@ -1,13 +1,12 @@
 'use client';
 
-import Image from 'next/image';
 import { styled } from '@mui/material/styles';
-import { useCallback, useMemo, useState } from 'react';
+import { useMemo, useState } from 'react';
 import Link from 'next/link';
 import LinearProgress, { linearProgressClasses } from '@mui/material/LinearProgress';
+import ReactMarkdown from 'react-markdown';
 import {
   ComparisonTable,
-  Details,
   G2criteria,
   G2group,
   G2progressbar,
@@ -87,6 +86,8 @@ export default function ComparisonDetailPage({ details, faqList }) {
         setXpos={setXpos}
         noOfSlide={details?.g2GroupCollection?.items.length}
         isComparisonDetails={true}
+        sliderItemWidth={428}
+        padding={20}
       />
     );
   }, [details?.g2GroupCollection?.items.length, xPos]);
@@ -112,10 +113,8 @@ export default function ComparisonDetailPage({ details, faqList }) {
         {!isEmpty(details?.g2GroupCollection?.items) && (
           <div className='main-section'>
             <G2section>
-              <h2>What do customer say on G2?</h2>
-              <p className='description'>
-                Modern service companies choose Copilot over Suitedash due to lala Your dedicated account manager.
-              </p>
+              {!isEmpty(details.g2SectionTitle) && <h2>{details.g2SectionTitle}</h2>}
+              {!isEmpty(details.g2SectionDescription) && <ReactMarkdown>{details.g2SectionDescription}</ReactMarkdown>}
               <G2group>
                 <Groupdetail>
                   <SVGComponent name='g2-logo-icon' width='24' height='24' viewBox='0 0 24 24' />

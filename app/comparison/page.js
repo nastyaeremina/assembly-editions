@@ -2,8 +2,8 @@ import ComparisonPage from '../components/PageComponent/Comparison/comparisonPag
 import { getSEOData } from '../helpers/helpers';
 import Layout from '../components/layout';
 import Navbar from '../components/navbar/navbar';
-import CTA from '../components/cta/cta';
 import AggregateRating from '../components/aggregateRating';
+import NewCTA from '../components/cta/newCTA';
 import {
   getAllComparisonCategories,
   getAllCompetitor,
@@ -39,7 +39,15 @@ export default async function Comparison() {
       <Layout>
         <Navbar />
         <ComparisonPage featuredCompetitorList={featuredCompetitorList} details={details} />
-        <CTA />
+        <NewCTA
+          title={details.ctaSection.title}
+          description={details.ctaSection.description}
+          primaryButtonText={details.ctaSection.primaryButtonText}
+          primaryButtonLink={details.ctaSection.primaryButtonLink}
+          secondaryButtonText={details.ctaSection.secondaryButtonText}
+          secondaryButtonLink={details.ctaSection.secondaryButtonLink}
+          banner={details.ctaSection.banner?.url}
+        />
       </Layout>
     </>
   );

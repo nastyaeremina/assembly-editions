@@ -7,7 +7,6 @@ import { BLockImage, BlockCard, BlockDescription, BlockDescriptionTop, Last, Las
 export default function CopilotBlockItem({ title, description, imageUrl, link }) {
   return (
     <>
-      <>
         <BlockCard href={link}>
           <BLockImage>
             <Image src={imageUrl} alt='slider-image' width={180} height={180} />
@@ -26,7 +25,6 @@ export default function CopilotBlockItem({ title, description, imageUrl, link })
             </LastDroplist>
           </BlockDescription>
         </BlockCard>
-      </>
     </>
   );
 }

@@ -44,7 +44,7 @@ export default function NewCTA({
   const updateHeight = useCallback(() => {
     if (imageSectionRef.current) {
       let imageHeight = imageSectionRef.current.offsetHeight;
-      const additionalSpacing = window.innerHeight > 768 ? (isEmpty(banner) ? 100 : 140) : 200;
+      const additionalSpacing = window.innerHeight > 768 ? (isEmpty(banner) ? 160 : 140) : 150;
       setHeight(imageHeight + additionalSpacing);
     }
   }, [banner]);
@@ -76,7 +76,9 @@ export default function NewCTA({
                 </Title>
                 {(showPrimaryButton || showSecondaryButton) && (
                   <ButtonSection isNoImage={isEmpty(banner)}>
-                    {showPrimaryButton && <Button text={primaryButtonText} href={primaryButtonLink} />}
+                    {showPrimaryButton && (
+                      <Button text={primaryButtonText} href={primaryButtonLink} isCamelCase={false} />
+                    )}
                     {showSecondaryButton && (
                       <Button
                         text={secondaryButtonText}
@@ -85,6 +87,7 @@ export default function NewCTA({
                         fontColor={'--light-green'}
                         borderColor={'--light-green'}
                         hoverColor={'--secondary-hover-color'}
+                        isCamelCase={false}
                       />
                     )}
                   </ButtonSection>

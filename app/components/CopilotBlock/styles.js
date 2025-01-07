@@ -16,7 +16,6 @@ const BlockCard = styled(Link)`
   }
   @media only screen and (max-width: 449px) {
     min-width: calc(100vw - 50px);
-    margin: 0 25px;
     padding: 20px;
     flex-direction: column;
   }
@@ -101,7 +100,8 @@ const MainBlock = styled.div`
   }
   padding: 0 24px;
   @media only screen and (max-width: 449px) {
-    padding: 0;
+    /* padding: 0; */
+    width: unset;
   }
 `;
 

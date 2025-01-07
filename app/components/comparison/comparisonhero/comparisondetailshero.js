@@ -63,10 +63,10 @@ export default function ComparisonDetailsHero({
                     <Button
                       text={secondaryButtonText}
                       href={secondaryButtonLink}
-                      bgColor='transparent'
-                      fontColor='--light-green'
-                      borderColor='--light-green'
-                      hoverColor='--secondary-hover-color'
+                      bgColor={'transparent'}
+                      fontColor={'--black'}
+                      borderColor={'--black'}
+                      hoverColor={'--hover-color'}
                     />
                   )}
                 </ButtonGroup>
