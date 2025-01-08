@@ -1,5 +1,5 @@
 import ComparisonPage from '../components/PageComponent/Comparison/comparisonPage';
-import { getSEOData } from '../helpers/helpers';
+import { getSEOData, isEmpty } from '../helpers/helpers';
 import Layout from '../components/layout';
 import Navbar from '../components/navbar/navbar';
 import AggregateRating from '../components/aggregateRating';
@@ -39,15 +39,17 @@ export default async function Comparison() {
       <Layout>
         <Navbar />
         <ComparisonPage featuredCompetitorList={featuredCompetitorList} details={details} />
-        <NewCTA
-          title={details.ctaSection.title}
-          description={details.ctaSection.description}
-          primaryButtonText={details.ctaSection.primaryButtonText}
-          primaryButtonLink={details.ctaSection.primaryButtonLink}
-          secondaryButtonText={details.ctaSection.secondaryButtonText}
-          secondaryButtonLink={details.ctaSection.secondaryButtonLink}
-          banner={details.ctaSection.banner?.url}
-        />
+        {!isEmpty(details.ctaSection) && (
+          <NewCTA
+            title={details.ctaSection.title}
+            description={details.ctaSection.description}
+            primaryButtonText={details.ctaSection.primaryButtonText}
+            primaryButtonLink={details.ctaSection.primaryButtonLink}
+            secondaryButtonText={details.ctaSection.secondaryButtonText}
+            secondaryButtonLink={details.ctaSection.secondaryButtonLink}
+            banner={details.ctaSection.banner?.url}
+          />
+        )}
       </Layout>
     </>
   );

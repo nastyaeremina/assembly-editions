@@ -2,7 +2,7 @@ import styled, { css } from 'styled-components';
 import { Body3, Body4, Body5, Heading2, Heading5, Heading6, MbBody2, MbBody3, MobileH2 } from '../../../styles/styles';
 
 const HeroSection = styled.div`
-  padding: 180px 0 0 0;
+  padding: 180px 0 100px 0;
   ${(props) =>
     props.isStandardPage &&
     css`
@@ -13,11 +13,12 @@ const HeroSection = styled.div`
     `}
   @media only screen and (max-width: 749px) {
     padding-top: 116px;
+    padding-bottom: 80px;
     ${(props) =>
       props.isStandardPage &&
       css`
         padding: 0 0 80px;
-      `}
+      `};
   }
 `;
 const SolutionWrap = styled.div`
@@ -30,6 +31,7 @@ const SolutionWrap = styled.div`
     width: 100%;
     @media only screen and (max-width: 991px) {
       justify-content: center;
+      gap: 80px;
     }
   }
   ${(props) =>

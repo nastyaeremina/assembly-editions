@@ -101,8 +101,8 @@ export default function FAQ({ enterprise, isGuideFAQ, currentpath, faqList: allP
 
   return (
     <>
-      <FaqSection enterprise={enterprise} isGuideFAQ={isGuideFAQ} isStandardPage={isStandardPage}>
-        {!isEmpty(allPosts) && (
+      {!isEmpty(allPosts) && (
+        <FaqSection enterprise={enterprise} isGuideFAQ={isGuideFAQ} isStandardPage={isStandardPage}>
           <Container>
             <FaqTitle isGuideFAQ={isGuideFAQ} id='faq'>
               <h2 className='faqtitle'>{!isEmpty(title) ? title : 'Frequently Asked Questions'}</h2>
@@ -121,8 +121,8 @@ export default function FAQ({ enterprise, isGuideFAQ, currentpath, faqList: allP
             </FaqTitle>
             {faqView}
           </Container>
-        )}
-      </FaqSection>
+        </FaqSection>
+      )}
     </>
   );
 }

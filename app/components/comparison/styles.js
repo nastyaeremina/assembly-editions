@@ -23,17 +23,16 @@ const QuoteSection = styled.div`
 `;
 
 const ComparisonTable = styled.div`
+  padding-bottom: 100px;
   .mobilesecondtable {
     margin-top: 30px;
   }
   h2 {
     margin: 0;
-    padding-top: 100px;
     ${Heading3}
     color: var(--title);
     padding-bottom: 60px;
     @media only screen and (max-width: 450px) {
-      padding-top: 80px;
       padding-bottom: 40px;
     }
   }
@@ -45,6 +44,9 @@ const ComparisonTable = styled.div`
     @media only screen and (max-width: 450px) {
       ${MbBody3}
     }
+  }
+  @media only screen and (max-width: 449px) {
+    padding-bottom: 80px;
   }
 `;
 
@@ -259,15 +261,11 @@ const G2section = styled.div`
   width: 100%;
   margin: 0 auto;
   overflow: visible;
-  padding: 0 24px;
+  padding: 0 24px 100px;
   h2 {
     margin: 0;
-    padding-top: 100px;
     ${Heading3}
     color: var(--title);
-    @media only screen and (max-width: 426px) {
-      padding-top: 80px;
-    }
   }
   p {
     padding-top: 16px;
@@ -280,6 +278,7 @@ const G2section = styled.div`
   @media only screen and (max-width: 991px) {
     width: unset;
     overflow: hidden;
+    padding-bottom: 80px;
     p {
       ${MbBody3};
       padding-bottom: 16px;
@@ -470,15 +469,18 @@ const ComparisonLogo = styled.div`
 const CardMainDiv = styled.div`
   padding-top: 60px;
   :first-child {
-    padding-top: 100px;
+    padding-top: 0;
+  }
+  :last-child {
+    padding-bottom: 100px;
   }
   :last-child {
     padding-bottom: 100px;
   }
   @media only screen and (max-width: 450px) {
     padding-top: 40px;
-    :first-child {
-      padding-top: 80px;
+    :last-child {
+      padding-bottom: 80px;
     }
     :last-child {
       padding-bottom: 80px;

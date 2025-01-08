@@ -58,7 +58,9 @@ export default function ComparisonDetailsHero({
               </TextSection>
               {(showPrimaryButton || showSecondaryButton) && (
                 <ButtonGroup>
-                  {showPrimaryButton && <Button text={primaryButtonText} href={primaryButtonLink} />}
+                  {showPrimaryButton && (
+                    <Button text={primaryButtonText} href={primaryButtonLink} isCamelCase={false} />
+                  )}
                   {showSecondaryButton && (
                     <Button
                       text={secondaryButtonText}
@@ -67,6 +69,7 @@ export default function ComparisonDetailsHero({
                       fontColor={'--black'}
                       borderColor={'--black'}
                       hoverColor={'--hover-color'}
+                      isCamelCase={false}
                     />
                   )}
                 </ButtonGroup>
