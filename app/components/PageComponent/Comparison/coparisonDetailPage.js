@@ -140,7 +140,7 @@ export default function ComparisonDetailPage({ details, faqList }) {
           </Container>
         </div>
         {!isEmpty(details?.testimonial) && <Quote data={details?.testimonial} isComparison />}
-        <FAQ faqList={faqList} />
+        <FAQ faqList={faqList} isStandardPage={true} />
       </MainWrap>
     </>
   );

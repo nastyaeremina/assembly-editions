@@ -2,7 +2,7 @@ import styled, { css } from 'styled-components';
 import { Body1, Body4, Body5, Heading3, Heading4, MbBody3, MobileH4 } from '../../styles/styles';
 
 const FaqSection = styled.div`
-  padding: 0 0 60px 0;
+  padding: 100px 0 60px;
   ${(props) =>
     props.isStandardPage &&
     css`
@@ -45,7 +45,7 @@ const FaqSection = styled.div`
     border-bottom: none;
   }
   @media only screen and (max-width: 991px) {
-    padding: 0 0 40px;
+    padding: 80px 0 40px;
     .listtitle {
       font-size: 28px !important;
       line-height: 34px !important;
