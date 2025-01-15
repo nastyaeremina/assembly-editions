@@ -9,11 +9,16 @@ export default async function AggregateRating({ id, data }) {
   if (isEmpty(seoData) || seoData?.isEnableReviewSnippet !== true) return null;
   const jsonLd = {
     '@context': 'https://schema.org/',
-    '@type': 'AggregateRating',
-    ratingValue: 4.9,
-    bestRating: '5',
-    worstRating: '1',
-    ratingCount: 622
+    '@type': 'Organization',
+    name: 'Copilot',
+    url: 'https://www.copilot.com',
+    aggregateRating: {
+      '@type': 'AggregateRating',
+      ratingValue: 4.9,
+      bestRating: '5',
+      worstRating: '1',
+      ratingCount: 622
+    }
   };
 
   return <script type='application/ld+json' dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />;
