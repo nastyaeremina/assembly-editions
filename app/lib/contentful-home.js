@@ -1,5 +1,6 @@
 import { CONTENTFUL_API_TAG } from '../constants/constant';
 import { fetchGraphQL } from './contentful';
+import { POST_GRAPHQL_SECTION_CTA_FIELDS } from './contentful-standardPage';
 
 function extractData(fetchResponse) {
   return fetchResponse?.data?.pageHome;
@@ -113,9 +114,11 @@ export async function getHomeContent(id) {
             id
           }
         }
+        ctaSection{
+          ${POST_GRAPHQL_SECTION_CTA_FIELDS}  
+        }   
       }
     }
-      
     `,
     false,
     [CONTENTFUL_API_TAG.HOME]

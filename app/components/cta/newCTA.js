@@ -44,7 +44,7 @@ export default function NewCTA({
   const updateHeight = useCallback(() => {
     if (imageSectionRef.current) {
       let imageHeight = imageSectionRef.current.offsetHeight;
-      const additionalSpacing = window.innerHeight > 768 ? (isEmpty(banner) ? 160 : 140) : 150;
+      const additionalSpacing = window.innerHeight > 768 ? (isEmpty(banner) ? 157 : 135) : isEmpty(banner) ? 98 : 140;
       setHeight(imageHeight + additionalSpacing);
     }
   }, [banner]);

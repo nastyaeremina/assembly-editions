@@ -1,12 +1,12 @@
 import Layout from './components/layout';
 import Navbar from './components/navbar/navbar';
-import CTA from './components/cta/cta';
 import { HOME_CLIENT_DARK_ID } from './constants/constant';
 import { getHomeContent } from './lib/contentful-home';
 import AggregateRating from './components/aggregateRating';
 
 import HomePage from './components/Home/homepage/homepage';
 import { createArrayWithFixedLength, getSEOData, removeEmptyElement } from './helpers/helpers';
+import NewCTA from './components/cta/newCTA';
 
 async function getContent() {
   return await getHomeContent(HOME_CLIENT_DARK_ID);
@@ -45,7 +45,15 @@ export default async function Home() {
       <Layout>
         <Navbar />
         <HomePage content={content} testimonialTableData={testimonialTableData}></HomePage>
-        <CTA />
+        <NewCTA
+          title={content.ctaSection.title}
+          description={content.ctaSection.description}
+          primaryButtonText={content.ctaSection.primaryButtonText}
+          primaryButtonLink={content.ctaSection.primaryButtonLink}
+          secondaryButtonText={content.ctaSection.secondaryButtonText}
+          secondaryButtonLink={content.ctaSection.secondaryButtonLink}
+          banner={content.ctaSection.banner?.url}
+        />
       </Layout>
     </>
   );

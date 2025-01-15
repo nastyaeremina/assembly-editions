@@ -20,18 +20,6 @@ logo{
   url
 }
 description
-section1Header
-solutionValueCollection{
-  items{
-    name
-    title
-  description
-    image{
-      url
-    }
-  }
-}
-section2Header
 featuresCollection{
         items{
           title
@@ -89,24 +77,9 @@ logo{
 }
 `;
 
-const POST_GRAPHQL_COMPARISON_ALL_COMPITITOE_COMPARISON_DETAILS_FIELDS = `
-slug
-comparisonTableCollection{
-  items{
-    name
-    copilotValue
-    partnerValue
-  }
-}
-compititorName
-`;
-
 const POST_GRAPHQL_MASTER_COMPARISON_DETAILS_FIELDS = `
 title
 description
-image{
-  url
-}
 testimonial{
   name
   role
@@ -182,21 +155,6 @@ export async function getAllCompetitor(preview) {
       }
     }`,
     preview
-  );
-  return extractPostEntries(entry);
-}
-
-export async function getAllCompetitorComparisonDetail(preview) {
-  const entry = await fetchGraphQL(
-    `query {
-        pageComparisionCollection(preview: ${preview ? 'true' : 'false'}) {
-        items {
-          ${POST_GRAPHQL_COMPARISON_ALL_COMPITITOE_COMPARISON_DETAILS_FIELDS}
-        }
-      }
-    }`,
-    preview,
-    [CONTENTFUL_API_TAG.COMPARISON]
   );
   return extractPostEntries(entry);
 }

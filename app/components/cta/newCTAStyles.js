@@ -21,7 +21,7 @@ const TextSection = styled.div`
   flex-direction: column;
   justify-content: center;
   @media only screen and (max-width: 768px) {
-    padding: 24px;
+    padding: 20px;
   }
   ${(props) =>
     props.isNoImage &&
@@ -43,6 +43,9 @@ const Description = styled.div`
 const ImageSection = styled.div`
   display: flex;
   width: 100%;
+  img {
+    height: 310px;
+  }
   @media only screen and (max-width: 768px) {
     display: none;
   }
