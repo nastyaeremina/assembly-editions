@@ -364,10 +364,11 @@ const InnerList = styled.ul`
       border: 1px solid var(--dark-green);
       box-shadow: 0px 8px 24px var(--black-shadow-35);
     `}
-  .footer-items-div {
-    display: flex;
-    justify-content: space-between;
-  }
+`;
+
+const FooterItem = styled.div`
+  display: grid;
+  grid-template-columns: ${({ itemCount }) => `repeat(${itemCount}, 1fr)`};
 `;
 const ListLi = styled.li`
   @media only screen and (max-width: 991px) {
@@ -391,8 +392,6 @@ const Listleft = styled.div`
     `}
 `;
 const Listright = styled.div`
-  /* max-width: 200px; */
-  width: 100%;
   padding: 8px 0;
   ${(props) =>
     props.solutionright &&
@@ -605,6 +604,7 @@ const MenuWrap = styled(Link)`
   padding: 12px 20px;
   margin: 0 !important;
   transition: all 300ms;
+  gap: 12px;
 
   @media only screen and (max-width: 991px) {
     width: 100%;
@@ -719,7 +719,6 @@ const LeftImg = styled.div`
 `;
 const RightText = styled.div`
   color: var(--title);
-  padding-left: 20px;
   &.footer-item {
     padding-left: unset;
     display: flex;
@@ -748,7 +747,7 @@ const RightText = styled.div`
       padding-left: 12px;
     `}
   h5 {
-    margin: 0 0 4px 0;
+    margin: 0;
     ${Body5};
     letter-spacing: 0.02em;
     color: var(--title);
@@ -763,6 +762,7 @@ const RightText = styled.div`
     ${FooterText};
     display: block;
     color: var(--title);
+    margin-top: 4px;
   }
   .HoverArrow__linePath {
     opacity: 0;
@@ -1073,9 +1073,8 @@ const Dspace = styled.div`
 `;
 
 const Drop = styled.div`
-  display: flex;
-  /* min-width: 400px; */
-  width: 100%;
+  display: grid;
+  grid-template-columns: ${({ itemCount }) => `repeat(${itemCount}, 1fr)`};
 `;
 const Last = styled.div`
   display: flex;
@@ -1214,6 +1213,7 @@ const FeatureDropdown = styled.div`
   flex-direction: column;
   justify-content: space-between;
   border-left: 1px solid var(--dark-green);
+  max-width: 360px;
   :first-child {
     border-left: none;
   }
@@ -1268,5 +1268,6 @@ export {
   BorderLine,
   FeatureDropdown,
   Dropdown,
-  ResourcesSubMenuDiv
+  ResourcesSubMenuDiv,
+  FooterItem
 };

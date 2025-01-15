@@ -44,7 +44,8 @@ import {
   AnnounceBar,
   HelpLink,
   Dspace,
-  Drop
+  Drop,
+  FooterItem
 } from './styles';
 import DropDownComponent from './dropdown';
 import DropdownFooter from './dropdownFooter';
@@ -126,14 +127,14 @@ export default function NavbarComponent({
                 <Image
                   src={item?.Icon}
                   alt='msg-icon'
-                  width={title?.toLowerCase() === 'platforms' ? 32 : title?.toLowerCase() === 'apps' ? 32 : 20}
-                  height={title?.toLowerCase() === 'platforms' ? 32 : title?.toLowerCase() === 'apps' ? 32 : 20}
+                  width={!isEmpty(item?.Description) ? 32 : 20}
+                  height={!isEmpty(item?.Description) ? 32 : 20}
                 />
               </LeftImg>
             )}
             <RightText>
               <h5>{item?.Title}</h5>
-              <span>{item?.Description}</span>
+              {!isEmpty(item?.Description) && <span>{item?.Description}</span>}
             </RightText>
           </MenuWrap>
         </ListLi>
@@ -152,9 +153,10 @@ export default function NavbarComponent({
     (data) => {
       if (isEmpty(data)) return null;
       const footerData = data.find((item) => item.title.toLowerCase() === 'footer');
+      const totalItems = data.filter((item) => item.title.toLowerCase() !== 'footer').length;
       return (
         <>
-          <Drop>
+          <Drop itemCount={totalItems}>
             {data.map((item, index) => {
               if (item.title.toLowerCase() === 'footer') return null;
               return (
@@ -162,15 +164,14 @@ export default function NavbarComponent({
                   title={item.title}
                   key={`navbar_sub_item_${item.title}`}
                   viewRenderer={renderSubItemView(item.items, item.title)} // Pass title here
-                  isWidth={item.title.toLowerCase() === 'apps' || (item.title.toLowerCase() === 'platforms' && true)}
                 />
               );
             })}
           </Drop>
           {/* footer */}
-          <div className='footer-items-div'>
+          <FooterItem itemCount={footerData?.items.length}>
             {!isEmpty(footerData?.items) && renderDropdownFooter(footerData.items)}
-          </div>
+          </FooterItem>
         </>
       );
     },

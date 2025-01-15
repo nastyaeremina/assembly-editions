@@ -14,7 +14,7 @@ function ResponsiveDropdown({ onClick, title, className, dropDownClass, mobile, 
   return (
     <>
       {isEmpty(title) ? (
-        <FeatureSubMenu data={subSectionData} mobile={mobile} isWithOutHeading={true} iconSize={20} />
+        <FeatureSubMenu data={subSectionData} mobile={mobile} isWithOutHeading={true} />
       ) : (
         <>
           <SpanLink textColor={colorList?.fontColor} hoverColor={colorList?.primaryColor}>
@@ -31,12 +31,7 @@ function ResponsiveDropdown({ onClick, title, className, dropDownClass, mobile, 
             </MobileText>
           </SpanLink>
           <Dropdown className={dropDownClass} style={{ height: totalHeight + (isEmpty(footerData) ? 0 : 45) }}>
-            <FeatureSubMenu
-              data={subSectionData}
-              mobile={mobile}
-              footerData={footerData}
-              iconSize={title.toLowerCase() === 'apps' ? 32 : title.toLowerCase() === 'platforms' ? 32 : 20}
-            />
+            <FeatureSubMenu data={subSectionData} mobile={mobile} footerData={footerData} />
           </Dropdown>
         </>
       )}

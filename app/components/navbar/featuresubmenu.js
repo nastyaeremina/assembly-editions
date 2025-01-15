@@ -5,7 +5,7 @@ import { useMemo } from 'react';
 import { isEmpty } from '../../helpers/helpers';
 import { NavigationBlock, NavMenu, MobileListLi, MenuWrap, LeftImg, RightText } from './styles';
 
-export default function FeatureSubMenu({ mobile, data, footerData, isWithOutHeading, iconSize }) {
+export default function FeatureSubMenu({ mobile, data, footerData, isWithOutHeading }) {
   const renderFeatureView = useMemo(() => {
     return (
       <>
@@ -41,7 +41,12 @@ export default function FeatureSubMenu({ mobile, data, footerData, isWithOutHead
                   <MenuWrap href={item.Link}>
                     {item.Icon && (
                       <LeftImg>
-                        <Image src={item?.Icon} alt='msg-icon' width={iconSize} height={iconSize} />
+                        <Image
+                          src={item?.Icon}
+                          alt='msg-icon'
+                          width={!isEmpty(item?.Description) ? 32 : 20}
+                          height={!isEmpty(item?.Description) ? 32 : 20}
+                        />
                       </LeftImg>
                     )}
                     <RightText>
@@ -81,7 +86,7 @@ export default function FeatureSubMenu({ mobile, data, footerData, isWithOutHead
         )}
       </>
     );
-  }, [data, footerData, iconSize]);
+  }, [data, footerData]);
   return (
     <>
       <NavMenu mobile={mobile}>
