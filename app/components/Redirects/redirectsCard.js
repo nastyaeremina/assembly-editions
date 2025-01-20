@@ -7,7 +7,7 @@ export default function RedirectsCard({ title, caption, imageUrl, link }) {
     <Card href={link}>
       {!isEmpty(imageUrl) && (
         <Icon>
-          <Image src={imageUrl} alt='card-icon' width='32px' height='32px' />
+          <Image src={imageUrl} alt='card-icon' width={28} height={28} />
         </Icon>
       )}
       <CardData>

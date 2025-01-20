@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { Body3, Body4, Body5, Heading3, Heading4, MbBody3, MobileH4 } from '../../styles/styles';
+import { Body1, Body3, Body4, Body5, Heading3, MbBody3, MobileH4 } from '../../styles/styles';
 
 const Redirects = styled.div`
   padding-bottom: 100px;
@@ -46,7 +46,7 @@ const Card = styled.a`
   cursor: pointer;
   padding: 24px;
   display: flex;
-  gap: 24px;
+  gap: 16px;
   border-right: 1px solid var(--title);
   border-bottom: 1px solid var(--title);
   :nth-child(3n) {
@@ -74,7 +74,6 @@ const Card = styled.a`
   }
   @media only screen and (max-width: 449px) {
     border-right: none;
-    gap: 16px;
     padding: 20px;
     :nth-child(3) {
       border-right: none;
@@ -89,7 +88,7 @@ const Card = styled.a`
   }
 `;
 const Heading = styled.h3`
-  ${Heading4};
+  ${Body1};
   color: var(--title);
   margin: 0;
   @media only screen and (max-width: 479px) {
@@ -99,7 +98,7 @@ const Heading = styled.h3`
 const Caption = styled.p`
   ${Body4};
   color: var(--body);
-  margin: 12px 0 0;
+  margin: 8px 0 0;
   @media only screen and (max-width: 449px) {
     margin: 6px 0 0;
     ${Body5};
@@ -109,8 +108,8 @@ const Icon = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 32px;
-  height: 36px;
+  width: 28px;
+  height: 31px;
   @media only screen and (max-width: 449px) {
     width: 24px;
     height: 24px;
@@ -132,8 +131,8 @@ const RedirectsCardSection = styled.div`
   }
 `;
 const Image = styled.img`
-  width: 32px;
-  height: 32px;
+  width: 28px;
+  height: 28px;
   @media only screen and (max-width: 449px) {
     width: 24px;
     height: 24px;
