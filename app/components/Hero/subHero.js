@@ -21,7 +21,7 @@ export default function SubHeroComponent({ data, hasFullWidth = false }) {
       <MainHero>
         <>
           <SubHeroSection hasFullWidth={hasFullWidth}>
-            <h1>{data?.heroTitle}</h1>
+            <h2>{data?.heroTitle}</h2>
             <SubHeroCaption hasFullWidth={hasFullWidth}>
               <ReactMarkdown>{data?.heroDescription}</ReactMarkdown>
             </SubHeroCaption>

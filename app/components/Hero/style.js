@@ -125,7 +125,7 @@ const SubHeroSection = styled.div`
   gap: 16px;
   max-width: 811px;
   width: 100%;
-  h1 {
+  h2 {
     font-family: 'Bagoss';
     ${Heading3};
     color: var(--title);
