@@ -8,6 +8,7 @@ import { isEmpty } from '../../../helpers/helpers';
 import { Container } from '../../../styles/commonStyles';
 import {
   Detail,
+  Details,
   Left,
   Pagination,
   UpadtePage,
@@ -21,12 +22,13 @@ export default function UpdatesPage({ allPosts }) {
   const renderPosts = useMemo(() => {
     if (isEmpty(allPosts)) return null;
     return allPosts?.map((item, index) => {
+      const isLast = index === allPosts.length - 1;
       return (
         <UpdateDes key={`updatesitem_index_${index}`}>
           <svg width='14' height='7' viewBox='0 0 14 7' fill='none' xmlns='http://www.w3.org/2000/svg'>
             <path d='M14 0L7 7L0 0H14Z' fill='black' />
           </svg>
-          <Detail>
+          <Detail className={isLast ? 'last-item' : ''}>
             <UpdateDate href={'/updates/' + item?.slug}>
               {moment(new Date(item?.published_at)).format('MMMM D, YYYY')}
             </UpdateDate>
@@ -54,7 +56,7 @@ export default function UpdatesPage({ allPosts }) {
             />
           </UpdateSubscribe>
           {renderPosts}
-          <Detail>
+          <Details>
             <Left></Left>
             <UpdateDetail>
               <Pagination>
@@ -69,7 +71,7 @@ export default function UpdatesPage({ allPosts }) {
                 />
               </Pagination>
             </UpdateDetail>
-          </Detail>
+          </Details>
         </Container>
       </UpadtePage>
     </>
