@@ -1,7 +1,6 @@
 'use client';
 import React, { useCallback, useMemo, useState } from 'react';
 import Link from 'next/link';
-import { useRouter } from 'next/navigation';
 import { FacebookShareButton, LinkedinShareButton, TwitterShareButton } from 'next-share';
 import { CopyBlock, dracula } from 'react-code-blocks';
 import copy from 'copy-to-clipboard';
@@ -32,7 +31,6 @@ import LegacyBlogDetailHero from '../../blogdetailHero/legacyBlogDetailHero';
 export default function BlogdetailPage({ blogDetail, htmlData, ctaTitle, ctaDescription }) {
   const [isShowData, setShowData] = useState(true);
   const [CopyBlockData, setCopyBlock] = useState([]);
-  const router = useRouter();
 
   const shouldShowBlogCTA = !isEmpty(ctaDescription) && !isEmpty(ctaTitle);
   const shouldShowTOC = blogDetail?.custom_template !== 'custom-no-toc';
@@ -60,7 +58,6 @@ export default function BlogdetailPage({ blogDetail, htmlData, ctaTitle, ctaDesc
     if (isEmpty(newList)) return null;
     return newList?.map((item, index) => {
       const headingList = item?.split('>');
-      console.log('headingList?.[1]', headingList?.[1]);
       return (
         <li key={`tableDataHeading_index_${index}`}>
           <Link href={`#${headingList?.[0]?.replace(/['"]+/g, '').replace('<h2 id=', '')}`}>

@@ -1,9 +1,9 @@
 import Link from 'next/link';
 import React from 'react';
-import { Backlink, BlogImage, BlogTime, DetailHero, Image, Post } from './styles';
 import moment from 'moment';
-import { isEmpty } from '../../helpers/helpers';
 import { useRouter } from 'next/navigation';
+import { isEmpty } from '../../helpers/helpers';
+import { Backlink, BlogImage, BlogTime, DetailHero, Image, Post } from './styles';
 
 export default function LegacyBlogDetailHero({ blogDetail }) {
   const router = useRouter();
@@ -24,7 +24,7 @@ export default function LegacyBlogDetailHero({ blogDetail }) {
             <p>Back to Blog</p>
           </Backlink>
         </Link>
-        <h1>{blogDetail?.title}</h1>
+        {!isEmpty(blogDetail?.title) && <h1>{blogDetail?.title}</h1>}{' '}
       </DetailHero>
       {!isEmpty(blogDetail?.feature_image) && (
         <BlogImage>
@@ -33,15 +33,19 @@ export default function LegacyBlogDetailHero({ blogDetail }) {
       )}
       <BlogTime>
         <Post>
-          {blogDetail?.published_at && moment(new Date(blogDetail?.published_at)).format('MMM DD, YYYY')}
-          <svg width='3' height='3' viewBox='0 0 3 3' fill='none' xmlns='http://www.w3.org/2000/svg'>
-            <circle cx='1.5' cy='1.5' r='1.5' fill='#757575' />
-          </svg>
-          {blogDetail?.reading_time && <li>{`${blogDetail?.reading_time} min read`}</li>}
+          {!isEmpty(blogDetail?.published_at) && moment(new Date(blogDetail?.published_at)).format('MMM DD, YYYY')}
+          {!isEmpty(blogDetail?.published_at) && !isEmpty(blogDetail?.reading_time) && (
+            <svg width='3' height='3' viewBox='0 0 3 3' fill='none' xmlns='http://www.w3.org/2000/svg'>
+              <circle cx='1.5' cy='1.5' r='1.5' fill='#757575' />
+            </svg>
+          )}
+          {!isEmpty(blogDetail?.reading_time) && <li>{`${blogDetail?.reading_time} min read`}</li>}
         </Post>
-        <span onClick={() => router.push(`/blog/author/${blogDetail?.authors?.[0]?.slug}`)}>
-          {blogDetail?.authors?.[0]?.name}
-        </span>
+        {!isEmpty(blogDetail?.authors?.[0]?.name) && (
+          <span onClick={() => router.push(`/blog/author/${blogDetail?.authors?.[0]?.slug}`)}>
+            {blogDetail?.authors?.[0]?.name}
+          </span>
+        )}
       </BlogTime>
     </>
   );
