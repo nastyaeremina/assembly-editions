@@ -2,13 +2,13 @@ import { headers } from 'next/headers';
 import Layout from '../../components/layout';
 import Navbar from '../../components/navbar/navbar';
 import Referral from '../../components/referral';
-import { REFERRAL_SEO_ID } from '../../constants/constant';
+import { CURRENT_SITE_URL, REFERRAL_SEO_ID } from '../../constants/constant';
 import { getSEOData } from '../../helpers/helpers';
 import AggregateRating from '../../components/aggregateRating';
 
 export async function generateMetadata() {
   const seoData = await getSEOData({ id: REFERRAL_SEO_ID });
-  seoData.alternates = { canonical: 'https://www.copilot.com/referrals' };
+  seoData.alternates = { canonical: `${CURRENT_SITE_URL}/referrals` };
 
   return seoData;
 }

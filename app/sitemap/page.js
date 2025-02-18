@@ -1,6 +1,6 @@
 import Layout from '../components/layout';
 import Navbar from '../components/navbar/navbar';
-import { HEADER_LIST, SITEMAP_CONTENT_ID, SITEMAP_SEO_ID } from '../constants/constant';
+import { CURRENT_SITE_URL, HEADER_LIST, SITEMAP_CONTENT_ID, SITEMAP_SEO_ID } from '../constants/constant';
 import { getSEOData, isEmpty, removeEmptyElement } from '../helpers/helpers';
 import { getSitemap } from '../lib/contentful-sitemap';
 import SiteMapPage from '../components/PageComponent/Sitemap/sitemapPage';
@@ -58,7 +58,7 @@ async function getSitemapContent() {
 
 export async function generateMetadata() {
   const seoData = await getSEOData({ id: SITEMAP_SEO_ID });
-  seoData.alternates = { canonical: 'https://www.copilot.com/sitemap' };
+  seoData.alternates = { canonical: `${CURRENT_SITE_URL}/sitemap` };
   return seoData;
 }
 

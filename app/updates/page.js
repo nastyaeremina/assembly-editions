@@ -1,4 +1,4 @@
-import { UPDATES_SEO_ID } from '../constants/constant';
+import { CURRENT_SITE_URL, UPDATES_SEO_ID } from '../constants/constant';
 import { getUpdatesPosts } from '../lib/updates-content';
 import { getSEOData } from '../helpers/helpers';
 import UpdatesPage from '../components/PageComponent/Updates/updatesPage';
@@ -14,7 +14,7 @@ async function getContent() {
 
 export async function generateMetadata() {
   const seoData = await getSEOData({ id: UPDATES_SEO_ID });
-  seoData.alternates = { canonical: 'https://www.copilot.com/updates' };
+  seoData.alternates = { canonical: `${CURRENT_SITE_URL}/updates` };
   return seoData;
 }
 

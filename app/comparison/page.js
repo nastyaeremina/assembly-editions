@@ -4,6 +4,7 @@ import Layout from '../components/layout';
 import Navbar from '../components/navbar/navbar';
 import AggregateRating from '../components/aggregateRating';
 import NewCTA from '../components/cta/newCTA';
+import { CURRENT_SITE_URL } from '../constants/constant';
 import {
   getAllComparisonCategories,
   getAllCompetitor,
@@ -27,6 +28,8 @@ async function getContent() {
 export async function generateMetadata({ params, searchParams }, parent) {
   const { details } = await getContent();
   const seoData = await getSEOData({ data: details?.seoMetadata });
+  seoData.alternates = { canonical: `${CURRENT_SITE_URL}/comparison` };
+
   return seoData;
 }
 

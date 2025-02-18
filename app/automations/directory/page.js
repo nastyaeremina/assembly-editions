@@ -1,5 +1,5 @@
 import { getSEOData, isEmpty } from '../../helpers/helpers';
-import { AUTOMATION_SEO_ID, PER_API_LIMIT_FOR_AUTOMATION } from '../../constants/constant';
+import { AUTOMATION_SEO_ID, CURRENT_SITE_URL, PER_API_LIMIT_FOR_AUTOMATION } from '../../constants/constant';
 import { getAllAutomationCategories, getAllAutomations } from '../../lib/contentful-automation';
 import AutomationDirectoryPage from '../../components/PageComponent/Automation/directoryPage';
 import Layout from '../../components/layout';
@@ -38,6 +38,7 @@ async function getContent() {
 
 export async function generateMetadata({ params, searchParams }, parent) {
   const seoData = await getSEOData({ id: AUTOMATION_SEO_ID });
+  seoData.alternates = { canonical: `${CURRENT_SITE_URL}/automations/directory` };
   return seoData;
 }
 

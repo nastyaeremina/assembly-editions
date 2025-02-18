@@ -4,7 +4,7 @@ import Layout from '../components/layout';
 import Navbar from '../components/navbar/navbar';
 import CTA from '../components/cta/cta';
 import AggregateRating from '../components/aggregateRating';
-import { CUSTOMER_SEO_ID } from './../constants/constant';
+import { CURRENT_SITE_URL, CUSTOMER_SEO_ID } from './../constants/constant';
 import { getAllFeaturedCaseStudies, getAllFeaturedTestimonial } from './../lib/contentful-testimonial';
 import { getSEOData } from './../helpers/helpers';
 
@@ -16,6 +16,8 @@ async function getContent() {
 
 export async function generateMetadata() {
   const seoData = await getSEOData({ id: CUSTOMER_SEO_ID });
+  seoData.alternates = { canonical: `${CURRENT_SITE_URL}/customers` };
+
   return seoData;
 }
 

@@ -5,6 +5,7 @@ import Navbar from '../../components/navbar/navbar';
 import GlossaryDetailsPage from '../../components/PageComponent/Glossary/glossaryDetailsPage';
 import { getGlossaryDetails } from '../../lib/contentful-glossary';
 import { isEmpty } from '../../helpers/helpers';
+import { CURRENT_SITE_URL } from '../../constants/constant';
 
 async function getContent({ slug }) {
   const data = (await getGlossaryDetails(slug)) || {};
@@ -15,7 +16,8 @@ export async function generateMetadata({ params }) {
 
   return {
     title: data?.metaTitle ? data?.metaTitle : `${data?.name} | Definition and examples`,
-    description: data?.metaDescription
+    description: data?.metaDescription,
+    alternates: { canonical: `${CURRENT_SITE_URL}/glossary/${params?.slug}` }
   };
 }
 export default async function GlossaryDetails({ params }) {

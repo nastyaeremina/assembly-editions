@@ -4,7 +4,7 @@ import { getFAQsData } from '../services/faq';
 import FAQ from './../components/faq/faq';
 import Layout from './../components/layout';
 import Navbar from './../components/navbar/navbar';
-import { JOB_PAGE_ID } from './../constants/constant';
+import { CURRENT_SITE_URL, JOB_PAGE_ID } from './../constants/constant';
 import { extractTableData, getSEOData } from './../helpers/helpers';
 import { NO_OF_JOBS_PER_PAGE } from './../lib/constants';
 import { getJobDetail } from './../lib/contentful-jobBlogPosts';
@@ -48,7 +48,7 @@ export async function generateMetadata() {
   const { details } = await getContent();
 
   const seoData = await getSEOData({ data: details?.seoMetadata });
-  seoData.alternates = { canonical: 'https://www.copilot.com/jobs' };
+  seoData.alternates = { canonical: `${CURRENT_SITE_URL}/jobs` };
 
   return seoData;
 }

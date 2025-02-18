@@ -1,6 +1,6 @@
 import Layout from './components/layout';
 import Navbar from './components/navbar/navbar';
-import { HOME_CLIENT_DARK_ID } from './constants/constant';
+import { CURRENT_SITE_URL, HOME_CLIENT_DARK_ID } from './constants/constant';
 import { getHomeContent } from './lib/contentful-home';
 import AggregateRating from './components/aggregateRating';
 
@@ -15,6 +15,8 @@ async function getContent() {
 export async function generateMetadata({ params, searchParams }, parent) {
   const data = await getContent();
   const seoData = await getSEOData({ id: data.seoMetadata.sys.id, data: data.seoMetadata });
+  seoData.alternates = { canonical: CURRENT_SITE_URL };
+
   return seoData;
 }
 
@@ -24,8 +26,8 @@ export default async function Home() {
     '@context': 'https://schema.org',
     '@type': 'Organization',
     name: 'Copilot',
-    url: 'https://www.copilot.com',
-    logo: 'https://www.copilot.com/_next/static/media/blacklogo.370e156c.svg',
+    url: CURRENT_SITE_URL,
+    logo: `${CURRENT_SITE_URL}/_next/static/media/blacklogo.370e156c.svg`,
     sameAs: [
       'https://twitter.com/copilot',
       'https://www.linkedin.com/company/copilotplatforms/',

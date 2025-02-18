@@ -5,6 +5,7 @@ import { getAllAutomations, getAutomationDetail } from '../../../lib/contentful-
 import { getSEOData, isEmpty } from '../../../helpers/helpers';
 import AutomationDetailPage from '../../../components/PageComponent/Automation/directoryDetailsPage';
 import CTA from '../../../components/cta/cta';
+import { CURRENT_SITE_URL } from '../../../constants/constant';
 
 async function getContent({ slug }) {
   const detail = (await getAutomationDetail(slug)) ?? {};
@@ -41,7 +42,7 @@ export async function generateMetadata({ params }) {
     data: {
       seoTitle: detail?.name,
       description: detail?.description,
-      canonical: 'https://www.copilot.com/automations/directory/' + detail?.slug
+      canonical: `${CURRENT_SITE_URL}/automations/directory/${detail?.slug}`
     }
   });
   return seoData;

@@ -1,9 +1,9 @@
 import Cookies from 'js-cookie';
-import { FIELD_SCORE, MONTH_LIST } from '../constants/constant';
+import slugify from 'slugify';
+import { CURRENT_DOMAIN, FIELD_SCORE, MONTH_LIST } from '../constants/constant';
 import { COOKIE_NAME } from '../../app/lib/constants';
 import { setUserAuth } from '../../app/actions/appActions';
 import { getSEOdata } from '../lib/contentful-seo';
-import slugify from 'slugify';
 
 export function isEmpty(value) {
   if (
@@ -125,7 +125,7 @@ export const getSEOData = async ({ id, data }) => {
     openGraph: {
       type: 'website',
       locale: 'en_IE',
-      site_name: 'copilot.com',
+      site_name: CURRENT_DOMAIN,
       images: isEmpty(seoData?.openGraphImage)
         ? ['/images/opengraph_Image.jpeg']
         : [

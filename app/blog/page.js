@@ -5,7 +5,7 @@ import { getTopBarContent } from '../components/navbar/navbar';
 import AggregateRating from '../components/aggregateRating';
 import { getAllTagWithSlug, getBlogPosts } from './../lib/blog-content';
 import { customSort, getSEOData, isEmpty } from './../helpers/helpers';
-import { BLOG_SEO_ID, BLOG_TAG_SORTED_LIST } from './../constants/constant';
+import { BLOG_SEO_ID, BLOG_TAG_SORTED_LIST, CURRENT_SITE_URL } from './../constants/constant';
 
 async function getContent() {
   const allPosts = (await getBlogPosts()) || [];
@@ -18,7 +18,7 @@ async function getContent() {
 
 export async function generateMetadata({ params, searchParams }, parent) {
   const seoData = await getSEOData({ id: BLOG_SEO_ID });
-  seoData.alternates = { canonical: 'https://www.copilot.com/blog' };
+  seoData.alternates = { canonical: `${CURRENT_SITE_URL}/blog` };
   return seoData;
 }
 
@@ -29,8 +29,8 @@ export default async function Blog() {
     '@context': 'https://schema.org',
     '@type': 'Organization',
     name: 'Copilot',
-    url: 'https://www.copilot.com',
-    logo: 'https://www.copilot.com/_next/static/media/blacklogo.370e156c.svg',
+    url: CURRENT_SITE_URL,
+    logo: `${CURRENT_SITE_URL}/_next/static/media/blacklogo.370e156c.svg`,
     sameAs: [
       'https://twitter.com/copilot',
       'https://www.linkedin.com/company/copilotplatforms/',

@@ -2,7 +2,7 @@ import AutomationPage from '../components/PageComponent/Automation/automationPag
 import Navbar from '../components/navbar/navbar';
 import Layout from '../components/layout';
 import CTA from '../components/cta/cta';
-import { HEADER_LIST } from '../constants/constant';
+import { CURRENT_SITE_URL, HEADER_LIST } from '../constants/constant';
 import FAQ from '../components/faq/faq';
 import { getFAQsData } from '../services/faq';
 import AggregateRating from '../components/aggregateRating';
@@ -17,6 +17,8 @@ async function getContent() {
 export async function generateMetadata({ params, searchParams }, parent) {
   const data = await getContent();
   const seoData = await getSEOData({ id: data?.seoMetadata?.sys?.id, data: data?.seoMetadata });
+  seoData.alternates = { canonical: `${CURRENT_SITE_URL}/automations` };
+
   return seoData;
 }
 

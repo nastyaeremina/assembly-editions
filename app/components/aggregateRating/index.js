@@ -1,6 +1,7 @@
 import React from 'react';
 import { getSEOdata } from '../../lib/contentful-seo';
 import { isEmpty } from '../../helpers/helpers';
+import { CURRENT_SITE_URL } from '../../constants/constant';
 
 export default async function AggregateRating({ id, data }) {
   let seoData;
@@ -11,7 +12,7 @@ export default async function AggregateRating({ id, data }) {
     '@context': 'https://schema.org/',
     '@type': 'Organization',
     name: 'Copilot',
-    url: 'https://www.copilot.com',
+    url: CURRENT_SITE_URL,
     aggregateRating: {
       '@type': 'AggregateRating',
       ratingValue: 4.9,

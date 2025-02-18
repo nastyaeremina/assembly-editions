@@ -1,6 +1,6 @@
 import Layout from '../../components/layout';
 import { getSEOData } from '../../helpers/helpers';
-import { APPS_TYPE, APP_SEO_ID } from '../../constants/constant';
+import { APPS_TYPE, APP_SEO_ID, CURRENT_SITE_URL } from '../../constants/constant';
 import AppDirectoryPage from '../../components/PageComponent/Apps/directoryPage';
 import { getAllPartnerApps } from '../../lib/contentful-partnerApps';
 import Navbar from '../../components/navbar/navbar';
@@ -17,7 +17,7 @@ async function getAppDirectoryContent() {
 
 export async function generateMetadata() {
   const seoData = await getSEOData({ id: APP_SEO_ID });
-  seoData.alternates = { canonical: 'https://www.copilot.com/apps' };
+  seoData.alternates = { canonical: `${CURRENT_SITE_URL}/apps/directory` };
   return seoData;
 }
 

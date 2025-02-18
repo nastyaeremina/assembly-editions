@@ -5,7 +5,7 @@ import FAQ from '../components/faq/faq';
 import CTA from '../components/cta/cta';
 import { getFAQsData } from '../services/faq';
 import AggregateRating from '../components/aggregateRating';
-import { PRICING_PAGE_ID } from './../constants/constant';
+import { CURRENT_SITE_URL, PRICING_PAGE_ID } from './../constants/constant';
 import { getSEOData } from './../helpers/helpers';
 import { getPricingPageDetail } from './../lib/contentful-pricing';
 
@@ -17,6 +17,8 @@ async function getContent() {
 export async function generateMetadata() {
   const details = await getContent();
   const seoData = await getSEOData({ data: details?.seoMetadata });
+  seoData.alternates = { canonical: `${CURRENT_SITE_URL}/pricing` };
+
   return seoData;
 }
 

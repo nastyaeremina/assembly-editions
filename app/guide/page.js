@@ -1,7 +1,7 @@
 import React from 'react';
 import GuidePage from '../components/PageComponent/GuideModule/guidePage';
 import { getSEOData } from '../helpers/helpers';
-import { GUIDE_PAGE_ID } from '../constants/constant';
+import { CURRENT_SITE_URL, GUIDE_PAGE_ID } from '../constants/constant';
 import { getArticleData, getGuideHomePageContent, getGuidePageContent } from '../lib/contentful-guide';
 import GuideMainHome from '../components/GuideHome/guidemainHome';
 import AggregateRating from '../components/aggregateRating';
@@ -14,6 +14,7 @@ async function getContent() {
 export async function generateMetadata() {
   const { seoMetadata } = await getContent();
   const seoData = await getSEOData({ data: seoMetadata });
+  seoData.alternates = { canonical: `${CURRENT_SITE_URL}/guide` };
 
   return seoData;
 }

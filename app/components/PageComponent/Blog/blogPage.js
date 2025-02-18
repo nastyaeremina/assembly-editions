@@ -10,6 +10,7 @@ import { FirstBlog, Last, MainContent, Par, PostDetail, Right, Text, Top } from 
 import Blogcard from '../../Blogcard';
 import { isEmpty } from '../../../helpers/helpers';
 import BlogCTA from '../../blogCTA';
+import { CURRENT_SITE_URL } from '../../../constants/constant';
 
 export default function BlogPage({ allPosts, tags }) {
   const [isOpen, setIsOpen] = useState(false);
@@ -95,8 +96,8 @@ export default function BlogPage({ allPosts, tags }) {
       <OrganizationJsonLd
         type={'Organization'}
         name='Copilot'
-        url='https://www.copilot.com'
-        logo='https://www.copilot.com/_next/static/media/blacklogo.370e156c.svg'
+        url={CURRENT_SITE_URL}
+        logo={`${CURRENT_SITE_URL}/_next/static/media/blacklogo.370e156c.svg`}
         sameAs={[
           'https://twitter.com/copilot',
           'https://www.linkedin.com/company/copilotplatforms/',

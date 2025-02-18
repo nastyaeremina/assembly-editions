@@ -4,7 +4,7 @@ import BlogNavbar from '../../../components/navbar/blognavbar';
 import { getAllTagWithSlug, getBlogByTag, getTagDetail } from '../../../lib/blog-content';
 import { customSort, isEmpty } from '../../../helpers/helpers';
 import TagPage from '../../../components/PageComponent/Blog/tagsPage';
-import { BLOG_TAG_SORTED_LIST } from '../../../constants/constant';
+import { BLOG_TAG_SORTED_LIST, CURRENT_SITE_URL, CURRENT_DOMAIN } from '../../../constants/constant';
 
 async function getContent({ slug }) {
   const allPosts = (await getBlogByTag(slug)) ?? [];
@@ -16,7 +16,7 @@ async function getContent({ slug }) {
   const og_des = tagDetail?.meta_description ?? tagDetail?.description;
   const og_image = tagDetail?.feature_image;
   const description = tagDetail?.meta_description ?? tagDetail?.description;
-  const canonical = 'https://www.copilot.com/blog/tag/' + tagDetail?.slug;
+  const canonical = `${CURRENT_SITE_URL}/blog/tag/${tagDetail?.slug}`;
   const seoData = {
     title,
     og_title,
@@ -44,7 +44,7 @@ export async function generateMetadata({ params }) {
     openGraph: {
       type: 'website',
       locale: 'en_IE',
-      site_name: 'copilot.com',
+      site_name: CURRENT_DOMAIN,
       title: seoData?.og_title,
       description: seoData?.og_des,
       images: isEmpty(seoData?.og_image)

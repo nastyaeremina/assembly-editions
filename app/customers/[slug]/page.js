@@ -7,6 +7,7 @@ import CaseStudiesPage from '../../components/PageComponent/Customers/customerDe
 import { getSEOData, isEmpty } from '../../helpers/helpers';
 import CTA from '../../components/cta/cta';
 import AggregateRating from '../../components/aggregateRating';
+import { CURRENT_SITE_URL } from '../../constants/constant';
 
 async function getContent({ slug }) {
   const details = await getCaseStudyDetail({ slug });
@@ -16,6 +17,7 @@ async function getContent({ slug }) {
 export async function generateMetadata({ params }) {
   const details = await getContent({ slug: params?.slug });
   const seoData = await getSEOData({ id: details?.seoMetadata?.sys?.id });
+  seoData.alternates = { canonical: `${CURRENT_SITE_URL}/customers/${params?.slug}` };
   return seoData;
 }
 

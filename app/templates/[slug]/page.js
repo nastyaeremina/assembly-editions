@@ -8,6 +8,7 @@ import TemplateDetailHero from '../../components/templateDetailHero/templatedeta
 import TemplateBodySection from '../../components/template/templateBodySection';
 import BackComponent from '../../components/backComponent/backComponent';
 import AggregateRating from '../../components/aggregateRating';
+import { CURRENT_SITE_URL } from '../../constants/constant';
 
 async function getTemplateDetail({ slug }) {
   return (await getTemplateDetailContent({ slug })) ?? {};
@@ -16,7 +17,7 @@ async function getTemplateDetail({ slug }) {
 export async function generateMetadata({ params }) {
   const data = await getTemplateDetail({ slug: params?.slug });
   const seoData = await getSEOData({ data: data?.seoMetadata });
-  seoData.alternates = { canonical: `https://www.copilot.com/templates/${params?.slug}` };
+  seoData.alternates = { canonical: `${CURRENT_SITE_URL}/templates/${params?.slug}` };
 
   return seoData;
 }

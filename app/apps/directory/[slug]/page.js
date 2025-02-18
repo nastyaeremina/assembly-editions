@@ -6,7 +6,7 @@ import { getAllPartnerApps, getPartnerAppDetail } from '../../../lib/contentful-
 import { getRandomUniqueElements, getSEOData, isEmpty } from '../../../helpers/helpers';
 import AppsDetailPage from '../../../components/PageComponent/Apps/appDetailPage';
 import CTA from '../../../components/cta/cta';
-import { APPS_TYPE, STRING_END_OF_APP } from '../../../constants/constant.js';
+import { APPS_TYPE, CURRENT_SITE_URL, STRING_END_OF_APP } from '../../../constants/constant.js';
 
 async function getContent({ slug }) {
   const appDetail = (await getPartnerAppDetail(slug)) ?? {};
@@ -37,7 +37,7 @@ export async function generateMetadata({ params }) {
     data: {
       seoTitle,
       description: appDetail?.description,
-      canonical: 'https://www.copilot.com/apps/directory/' + appDetail?.slug
+      canonical: `${CURRENT_SITE_URL}/apps/directory/${appDetail?.slug}`
     }
   });
   return seoData;

@@ -5,6 +5,7 @@ import Navbar from '../../components/navbar/navbar';
 import { getSEOData, isEmpty } from '../../helpers/helpers';
 import UpdatedetailPage from '../../components/PageComponent/Updates/updateDetailPage';
 import CTA from '../../components/cta/cta';
+import { CURRENT_SITE_URL } from '../../constants/constant';
 
 async function getContent({ slug }) {
   const updateDetails = (await getUpdateDetail(slug)) ?? [];
@@ -20,7 +21,7 @@ export async function generateMetadata({ params }) {
     data: {
       seoTitle: updateDetails?.title,
       description: updateDetails?.meta_description,
-      canonical: `https://www.copilot.com/updates/${updateDetails?.slug}`
+      canonical: `${CURRENT_SITE_URL}/updates/${updateDetails?.slug}`
     }
   });
   return seoData;

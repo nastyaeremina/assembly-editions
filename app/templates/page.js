@@ -1,5 +1,5 @@
 import Layout from '../components/layout';
-import { TEMPLATE_PAGE_ID } from '../constants/constant';
+import { CURRENT_SITE_URL, TEMPLATE_PAGE_ID } from '../constants/constant';
 import { getTemplateHomeContent } from '../lib/contentful-template';
 import TemplateListSection from '../components/template/templateListSection';
 import HeroComponent from '../components/standardHero/hero';
@@ -14,7 +14,7 @@ async function getTemplateContent() {
 export async function generateMetadata() {
   const data = await getTemplateContent();
   const seoData = await getSEOData({ data: data?.seoMetadata });
-  seoData.alternates = { canonical: 'https://www.copilot.com/templates' };
+  seoData.alternates = { canonical: `${CURRENT_SITE_URL}/templates` };
   return seoData;
 }
 

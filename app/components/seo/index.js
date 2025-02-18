@@ -3,6 +3,7 @@
 import { NextSeo } from 'next-seo';
 import React, { useCallback, useEffect, useState } from 'react';
 import { isEmpty } from '../../helpers/helpers';
+import { CURRENT_DOMAIN } from '../../constants/constant';
 
 export default function SEO({ seoData }) {
   return (
@@ -14,7 +15,7 @@ export default function SEO({ seoData }) {
         openGraph={{
           type: 'website',
           locale: 'en_IE',
-          site_name: 'copilot.com',
+          site_name: CURRENT_DOMAIN,
           images: isEmpty(seoData?.openGraphImage)
             ? []
             : [

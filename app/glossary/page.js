@@ -1,7 +1,7 @@
 import React from 'react';
 import Layout from '../components/layout';
 import Navbar from '../components/navbar/navbar';
-import { GLOSSARY_PAGE_ID } from '../constants/constant';
+import { CURRENT_SITE_URL, GLOSSARY_PAGE_ID } from '../constants/constant';
 import GlossaryPage from '../components/PageComponent/Glossary/glossarypage';
 import { getAllGlossaryContent, getGlossaryPageContent } from '../lib/contentful-glossary';
 import { getSEOData } from '../helpers/helpers';
@@ -40,6 +40,8 @@ async function getContent() {
 export async function generateMetadata({ params, searchParams }, parent) {
   const { seoMetadata } = await getContent();
   const seoData = await getSEOData({ data: seoMetadata });
+  seoData.alternates = { canonical: `${CURRENT_SITE_URL}/glossary` };
+
   return seoData;
 }
 export default async function Glossary() {

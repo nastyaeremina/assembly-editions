@@ -1,4 +1,10 @@
-import { BOOK_DEMO_ID, BOOK_DEMO_SEO_ID, BOOK_DEMO_THANK_YOU_ID, PRODUCT_DEMO_PAGE_ID } from '../constants/constant';
+import {
+  BOOK_DEMO_ID,
+  BOOK_DEMO_SEO_ID,
+  BOOK_DEMO_THANK_YOU_ID,
+  CURRENT_SITE_URL,
+  PRODUCT_DEMO_PAGE_ID
+} from '../constants/constant';
 import { getSEOData, removeEmptyElement } from '../helpers/helpers';
 import BookDemoPage from '../components/PageComponent/Book-demo/bookDemoPage';
 import { getProductDemoContent } from '../lib/contentful-weeklyDemo';
@@ -8,7 +14,7 @@ import AggregateRating from '../components/aggregateRating';
 export async function generateMetadata({ params, searchParams }, parent) {
   const seoData = await getSEOData({ id: BOOK_DEMO_SEO_ID });
 
-  seoData.alternates = { canonical: 'https://www.copilot.com/book-demo' };
+  seoData.alternates = { canonical: `${CURRENT_SITE_URL}/book-demo` };
   return seoData;
 }
 

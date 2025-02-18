@@ -7,6 +7,7 @@ import { getCustomeCode } from './lib/contentful-staticCode';
 import { isEmpty } from './helpers/helpers';
 import { Providers } from './redux/provider';
 import {
+  CURRENT_SITE_URL,
   CUSTOM_CODE_AFTER_BODY_TAG_ID,
   CUSTOM_CODE_BEFORE_BODY_TAG_ID,
   CUSTOM_CODE_HEAD_ID
@@ -22,7 +23,7 @@ async function getContent() {
 }
 
 export const metadata = {
-  metadataBase: new URL('https://www.copilot.com')
+  metadataBase: new URL(CURRENT_SITE_URL)
 };
 
 export default async function Layout({ children }) {

@@ -1,7 +1,7 @@
 import SEO from '../components/seo';
 import Navbar from '../components/navbar/navbar';
 import Layout from '../components/layout';
-import { APP_PAGE_ID, HEADER_LIST } from '../constants/constant';
+import { APP_PAGE_ID, CURRENT_SITE_URL, HEADER_LIST } from '../constants/constant';
 import { createArrayWithFixedLength, getSEOData } from '../helpers/helpers';
 import { getAllAppsWithIcon, getPageAppDetail } from '../lib/contentful-partnerApps';
 import AppPage from '../components/PageComponent/Apps/appPage';
@@ -21,6 +21,8 @@ async function getContent() {
 export async function generateMetadata() {
   const { details } = await getContent();
   const seoData = await getSEOData({ data: details.seoMetadata });
+  seoData.alternates = { canonical: `${CURRENT_SITE_URL}/apps` };
+
   return seoData;
 }
 export default async function Automation() {

@@ -5,6 +5,7 @@ import { getAllUniversityVideos, getUniversityVideoDetail } from '../../lib/cont
 import { getSEOData, isEmpty } from '../../helpers/helpers';
 import 'react-lite-youtube-embed/dist/LiteYouTubeEmbed.css';
 import UniversityDetailPage from '../../components/PageComponent/University/universityDetailPage';
+import { CURRENT_SITE_URL } from '../../constants/constant';
 
 async function getContent({ slug }) {
   let allPosts = [];
@@ -37,7 +38,7 @@ export async function generateMetadata({ params }) {
     data: {
       seoTitle: `Copilot Video Tutorial • ${universityVideoDetail?.name}`,
       description: universityVideoDetail?.description,
-      canonical: 'https://www.copilot.com/university/' + universityVideoDetail?.slug
+      canonical: `${CURRENT_SITE_URL}/university/${universityVideoDetail?.slug}`
     }
   });
   return seoData;

@@ -6,7 +6,7 @@ import { getAllTagWithSlug, getBlogDetail } from '../../lib/blog-content';
 import { customSort, isEmpty } from '../../helpers/helpers';
 import { isSameDomain } from '../../helpers/serverSideHelpers';
 import BlogdetailPage from '../../components/PageComponent/Blog/blogDetailPage';
-import { BLOG_TAG_SORTED_LIST } from '../../constants/constant';
+import { BLOG_TAG_SORTED_LIST, CURRENT_SITE_URL, CURRENT_DOMAIN } from '../../constants/constant';
 
 async function getContent({ slug }) {
   const blogDetail = (await getBlogDetail(slug)) ?? [];
@@ -38,11 +38,11 @@ export async function generateMetadata({ params, searchParams }, parent) {
   return {
     title: blogDetail?.meta_title ?? blogDetail?.title,
     description: blogDetail?.meta_description,
-    canonical: `https://www.copilot.com/blog/${blogDetail?.slug}`,
+    alternates: { canonical: `${CURRENT_SITE_URL}/blog/${blogDetail?.slug}` },
     openGraph: {
       type: 'website',
       locale: 'en_IE',
-      site_name: 'copilot.com',
+      site_name: CURRENT_DOMAIN,
       title: og_title,
       description: og_des,
       images: isEmpty(og_image)
@@ -67,7 +67,7 @@ export default async function Blogdetail({ params }) {
     '@type': 'Article',
     mainEntityOfPage: {
       '@type': 'WebPage',
-      '@id': `https://www.copilot.com/blog/${blogDetail?.slug}/`
+      '@id': `${CURRENT_SITE_URL}/blog/${blogDetail?.slug}/`
     },
     headline: blogDetail?.title,
     description: blogDetail?.excerpt,
@@ -82,7 +82,7 @@ export default async function Blogdetail({ params }) {
       name: 'Copilot',
       logo: {
         '@type': 'ImageObject',
-        url: 'https://www.copilot.com/blog/assets/images/logo-copilot.svg?v=d96fa6b44d'
+        url: `${CURRENT_SITE_URL}/blog/assets/images/logo-copilot.svg?v=d96fa6b44d`
       }
     },
     datePublished: blogDetail?.created_at,

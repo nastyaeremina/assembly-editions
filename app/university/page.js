@@ -1,5 +1,5 @@
 import Layout from '../components/layout';
-import { UNIVERSITY_SEO_ID } from '../constants/constant';
+import { CURRENT_SITE_URL, UNIVERSITY_SEO_ID } from '../constants/constant';
 import AggregateRating from '../components/aggregateRating';
 import Navbar from './../components/navbar/navbar';
 import UniversityPage from './../components/PageComponent/University/universityPage';
@@ -45,7 +45,7 @@ async function getContent() {
 
 export async function generateMetadata({ params, searchParams }, parent) {
   const seoData = await getSEOData({ id: UNIVERSITY_SEO_ID });
-  seoData.alternates = { canonical: 'https://www.copilot.com/university' };
+  seoData.alternates = { canonical: `${CURRENT_SITE_URL}/university` };
   return seoData;
 }
 

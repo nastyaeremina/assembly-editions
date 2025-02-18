@@ -1,7 +1,7 @@
 import { notFound } from 'next/navigation';
 import Layout from '../../../components/layout';
 import Navbar from '../../../components/navbar/navbar';
-import { UPDATES_SEO_ID } from '../../../constants/constant';
+import { CURRENT_SITE_URL, UPDATES_SEO_ID } from '../../../constants/constant';
 import { getSEOData, isEmpty } from '../../../helpers/helpers';
 import { getUpdatesPosts } from '../../../lib/updates-content';
 import UpdatesPaginationPage from '../../../components/PageComponent/Updates/updatePaginationPage';
@@ -21,7 +21,7 @@ export async function generateMetadata({ params }) {
   const seoData = await getSEOData({
     id: UPDATES_SEO_ID
   });
-  seoData.alternates = { canonical: 'https://www.copilot.com/updates' };
+  seoData.alternates = { canonical: `${CURRENT_SITE_URL}/updates` };
 
   return seoData;
 }

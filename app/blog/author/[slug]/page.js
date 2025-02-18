@@ -3,7 +3,7 @@ import BlogNavbar from '../../../components/navbar/blognavbar';
 import { getAllTagWithSlug, getAuthorDetail, getBlogByAuthor } from '../../../lib/blog-content';
 import { customSort, isEmpty } from '../../../helpers/helpers';
 import AuthorPage from '../../../components/PageComponent/Blog/authorPage';
-import { BLOG_TAG_SORTED_LIST } from '../../../constants/constant';
+import { BLOG_TAG_SORTED_LIST, CURRENT_SITE_URL, CURRENT_DOMAIN } from '../../../constants/constant';
 
 async function getContent({ slug }) {
   const allPosts = (await getBlogByAuthor(slug)) ?? [];
@@ -30,11 +30,11 @@ export async function generateMetadata({ params }) {
   return {
     title: authorDetail?.meta_title ?? title,
     description: authorDetail?.meta_description ?? authorDetail?.description,
-    canonical: 'https://www.copilot.com/blog/author/' + authorDetail?.slug,
+    canonical: `${CURRENT_SITE_URL}/blog/author/${authorDetail?.slug}`,
     openGraph: {
       type: 'website',
       locale: 'en_IE',
-      site_name: 'copilot.com',
+      site_name: CURRENT_DOMAIN,
       title: og_title,
       description: og_des,
       images: isEmpty(authorDetail?.og_image)

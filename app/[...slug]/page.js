@@ -2,7 +2,7 @@ import { notFound } from 'next/navigation';
 import Layout from '../components/layout';
 import Navbar from '../components/navbar/navbar';
 import WeeklyHero from '../components/weeklyhero/weeklyhero';
-import { PRODUCT_DEMO_PAGE_ID } from '../constants/constant';
+import { CURRENT_SITE_URL, PRODUCT_DEMO_PAGE_ID } from '../constants/constant';
 import { getProductDemoContent } from '../lib/contentful-weeklyDemo';
 import { getSEOData, isEmpty } from '../helpers/helpers';
 import ProductDemoPage from '../components/PageComponent/ProductDemo/productDemoPage';
@@ -35,8 +35,11 @@ async function getContent({ slug }) {
 
 export async function generateMetadata({ params }) {
   const { data } = await getContent({ slug: params.slug });
+  const combinedSlug = params.slug.join('/');
 
   const seoData = await getSEOData({ data: data?.seoMetadata });
+  seoData.alternates = { canonical: `${CURRENT_SITE_URL}/${combinedSlug}` };
+
   return seoData;
 }
 export default async function WeeklyDemo({ params }) {

@@ -4,6 +4,7 @@ import Navbar from '../../components/navbar/navbar';
 import { getSEOData, isEmpty } from '../../helpers/helpers';
 import { getJobDetails } from '../../lib/contentful-jobsListing';
 import JobDetailPage from '../../components/PageComponent/Jobs/jobDetailPage';
+import { CURRENT_SITE_URL } from '../../constants/constant';
 
 async function getContent({ slug }) {
   const data = (await getJobDetails(slug)) || {};
@@ -16,7 +17,7 @@ export async function generateMetadata({ params }) {
     data: {
       seoTitle: `Copilot Jobs • ${jobDetail?.name}`,
       description: `Join the Copilot team as a ${jobDetail?.name}.`,
-      canonical: 'https://www.copilot.com/jobs/' + jobDetail?.slug
+      canonical: `${CURRENT_SITE_URL}/jobs/${jobDetail?.slug}`
     }
   });
   return seoData;
