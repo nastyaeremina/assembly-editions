@@ -1,12 +1,9 @@
-const siteURL = "https://www.copilot.com";
+const CURRENT_SITE_URL = 'https://copilot.app';
 
 module.exports = {
-  siteUrl: siteURL,
+  siteUrl: CURRENT_SITE_URL,
   generateRobotsTxt: true,
   robotsTxtOptions: {
-    additionalSitemaps: [
-      "https://www.copilot.com/sitemap.xml",
-      "https://www.copilot.com/server-sitemap.xml",
-    ],
-  },
+    additionalSitemaps: [`${CURRENT_SITE_URL}/sitemap.xml`, `${CURRENT_SITE_URL}/server-sitemap.xml`]
+  }
 };

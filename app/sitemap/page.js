@@ -1,6 +1,12 @@
 import Layout from '../components/layout';
 import Navbar from '../components/navbar/navbar';
-import { CURRENT_SITE_URL, HEADER_LIST, SITEMAP_CONTENT_ID, SITEMAP_SEO_ID } from '../constants/constant';
+import {
+  CURRENT_DOMAIN,
+  CURRENT_SITE_URL,
+  HEADER_LIST,
+  SITEMAP_CONTENT_ID,
+  SITEMAP_SEO_ID
+} from '../constants/constant';
 import { getSEOData, isEmpty, removeEmptyElement } from '../helpers/helpers';
 import { getSitemap } from '../lib/contentful-sitemap';
 import SiteMapPage from '../components/PageComponent/Sitemap/sitemapPage';
@@ -37,7 +43,7 @@ async function getSitemapContent() {
         // Split the element using regex to extract relevant parts
         const newObject = element.split(/[\[\]\(\)]/);
         // Extract the URL, considering it might be internal or external
-        const url = newObject[3]?.split('www.copilot.com')?.[1] || newObject[3];
+        const url = newObject[3]?.split(CURRENT_DOMAIN)?.[1] || newObject[3];
         // Push the extracted data into mapList
         mapList?.push({ name: newObject[1], url, isExternal: url === newObject[3] });
       });

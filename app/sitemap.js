@@ -4,7 +4,7 @@ import { getAllUniversityVideoWithSlug } from './lib/contentful-universityVideos
 import { getAllAuthorWithSlug, getAllBlogWithSlug, getAllTagWithSlug } from './lib/blog-content';
 import { getUpdatesWithSlug } from './lib/updates-content';
 import { getAllComparisonWithSlug } from './lib/contentful-comparison';
-import { PER_UPDATE_PAGE_POST } from './constants/constant';
+import { CURRENT_SITE_URL, PER_UPDATE_PAGE_POST } from './constants/constant';
 import { getAllAutomationsWithSlug } from './lib/contentful-automation';
 import { getAllGlossaryContent } from './lib/contentful-glossary';
 import { getAllGuideArticleSlug } from './lib/contentful-guide';
@@ -85,7 +85,7 @@ export default async function sitemap() {
   );
   return finalList?.map((item) => {
     return {
-      url: `https://www.copilot.com/${item}`,
+      url: `${CURRENT_SITE_URL}/${item}`,
       lastModified: new Date()
     };
   });

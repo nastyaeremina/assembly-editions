@@ -1,4 +1,4 @@
-This is the Copilot marketing website project that runs [copilot.com](https://www.copilot.com)
+This is the Copilot marketing website project that runs [copilot.app](https://copilot.app)
 
 ## Getting Started
 

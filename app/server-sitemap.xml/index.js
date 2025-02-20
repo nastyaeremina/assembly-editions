@@ -9,6 +9,7 @@ import { getUpdatesPosts, getUpdatesWithSlug } from '../../lib/updates-content';
 import { getAllComparisonWithSlug } from '../../lib/contentful-comparison';
 import { PER_UPDATE_PAGE_POST } from '../../constants/constant';
 import { getAllAutomationsWithSlug } from '../../lib/contentful-automation';
+import { CURRENT_SITE_URL } from '../constants/constant';
 
 export async function getServerSideProps(ctx) {
   const appsPost = (await getAllPartnerAppsWithSlug()) ?? []; // appa
@@ -54,7 +55,7 @@ export async function getServerSideProps(ctx) {
   );
   return getServerSideSitemapIndex(
     ctx,
-    finalList?.map((item) => `https://www.copilot.com/${item}`)
+    finalList?.map((item) => `${CURRENT_SITE_URL}/${item}`)
   );
 }
 

@@ -5,7 +5,7 @@ import { getAllUniversityVideoWithSlug } from '../../app/lib/contentful-universi
 import { getAllAuthorWithSlug, getAllBlogWithSlug, getAllTagWithSlug } from '../../app/lib/blog-content';
 import { getUpdatesWithSlug } from '../../app/lib/updates-content';
 import { getAllComparisonWithSlug } from '../../app/lib/contentful-comparison';
-import { PER_UPDATE_PAGE_POST } from '../../app/constants/constant';
+import { CURRENT_SITE_URL, PER_UPDATE_PAGE_POST } from '../../app/constants/constant';
 import { getAllAutomationsWithSlug } from '../../app/lib/contentful-automation';
 import { getAllGlossaryContent } from '../../app/lib/contentful-glossary';
 import { getAllGuideArticleSlug } from '../../app/lib/contentful-guide';
@@ -85,7 +85,7 @@ export async function getServerSideProps(ctx) {
   );
   return getServerSideSitemapIndex(
     ctx,
-    finalList?.map((item) => `https://www.copilot.com/${item}`)
+    finalList?.map((item) => `${CURRENT_SITE_URL}/${item}`)
   );
 }
 
