@@ -4,7 +4,7 @@ import { useCallback, useMemo, useState } from 'react';
 import { ExtensionsSection, SearchEmpty } from '../../../styles/appsStyles';
 import { isEmpty } from '../../../helpers/helpers';
 import AppError from '../../../components/apperror/error';
-import { COPILOT_ONBORADING_LINK } from '../../../constants/externalLinks';
+import { COPILOT_ONBOARDING_LINK } from '../../../constants/externalLinks';
 import AppsCardSection from '../../appsCards/appsCardSection';
 import SearchInput from './searchInput';
 import HeroComponent from '../../standardHero/hero';
@@ -81,7 +81,7 @@ export default function AppDirectoryPage({ clientApps, internalApps, featuredApp
           heroDescription:
             'Copilot covers the foundational features every business needs. For everything else, there’s a variety of apps to choose from. ',
           primaryButtonText: 'Start trial',
-          primaryButtonLink: { COPILOT_ONBORADING_LINK }
+          primaryButtonLink: { COPILOT_ONBOARDING_LINK }
         }}
       />
       <SearchInput value={query} onChangeValue={onSeachQueryChange} onSubmit={onSubmitSeachQuery} />

@@ -2,7 +2,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import ReactMarkdown from 'react-markdown';
 import { Container, PrimaryButton } from '../../../styles/commonStyles';
-import { COPILOT_ONBORADING_LINK } from '../../../constants/externalLinks';
+import { COPILOT_ONBOARDING_LINK } from '../../../constants/externalLinks';
 import { HeroSection, LeftWrap, SolutionWrap, TextSection } from '../../standardHero/solutionhero/styles';
 
 export default function ComparisonHero({ title, description, image }) {

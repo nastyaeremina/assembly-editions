@@ -15,7 +15,7 @@ import useMobileDevice from '../../hooks/useMobileDevice';
 import { isEmpty } from '../../helpers/helpers';
 import Button from '../button/button';
 import Line from '../../../public/images/navbar-line.png';
-import { COPILOT_DASHBOARD_LINK, COPILOT_ONBORADING_LINK, OPEN_COPILOT_LINK } from '../../constants/externalLinks';
+import { COPILOT_DASHBOARD_LINK, COPILOT_ONBOARDING_LINK, OPEN_COPILOT_LINK } from '../../constants/externalLinks';
 import {
   NavbarWrapper,
   NavbarInner,
@@ -261,7 +261,7 @@ export default function NavbarComponent({
                     }
                     text={'Start Trial'}
                     borderColor={'--transparent'}
-                    href={COPILOT_ONBORADING_LINK}
+                    href={COPILOT_ONBOARDING_LINK}
                     hoverColor={'--secondary-hover-color'}
                     className='hederbtn'
                   />
@@ -425,7 +425,7 @@ export default function NavbarComponent({
                       <BlackButton
                         textColor={isModule ? colorList?.fontColor : '--white'}
                         backgroundColor={colorList?.buttonColor}>
-                        <Link href={COPILOT_ONBORADING_LINK}>Start trial</Link>
+                        <Link href={COPILOT_ONBOARDING_LINK}>Start trial</Link>
                       </BlackButton>
                     </>
                   )}

@@ -5,7 +5,7 @@ import CustomerTestimonial from '../../customer/testimonials';
 import { Container } from '../../../styles/commonStyles';
 import { Heading, HeroBtnBlock, HeroHeading, HeroSection, Para, LastSection } from '../../../styles/customerstyles';
 import { isEmpty } from '../../../helpers/helpers';
-import { COPILOT_ONBORADING_LINK } from '../../../constants/externalLinks';
+import { COPILOT_ONBOARDING_LINK } from '../../../constants/externalLinks';
 import { Banner } from '../../feedback/banner';
 
 export default function CustomerPage({ testimonialPosts, casestudiesPosts }) {
@@ -40,7 +40,7 @@ export default function CustomerPage({ testimonialPosts, casestudiesPosts }) {
               fontColor={'--white'}
               borderColor={'--primary'}
               text={'Start trial'}
-              href={COPILOT_ONBORADING_LINK}
+              href={COPILOT_ONBOARDING_LINK}
               hoverColor={'--hover-color'}
             />
           </HeroBtnBlock>

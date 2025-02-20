@@ -3,7 +3,7 @@ import Image from 'next/image';
 import { Container } from '../../styles/commonStyles';
 import Button from '../button/button';
 import heroImage from '../../../public/images/heroimage.png';
-import { COPILOT_ONBORADING_LINK } from '../../constants/externalLinks';
+import { COPILOT_ONBOARDING_LINK } from '../../constants/externalLinks';
 import {
   BLockImg,
   BlockLeft,
@@ -33,7 +33,7 @@ export default function ProductHero({ colorList, title, description, videoUrl })
               bgColor={colorList?.buttonBgColor}
               borderColor={colorList?.buttonBgColor}
               fontColor={colorList?.buttonFontColor}
-              href={COPILOT_ONBORADING_LINK}
+              href={COPILOT_ONBOARDING_LINK}
               text={'Try for free'}
             />
           </BlockLeft>

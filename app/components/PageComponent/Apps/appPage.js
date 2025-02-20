@@ -18,7 +18,7 @@ import CustomerTestimonial from '../../../components/customer/testimonials';
 import FAQ from '../../../components/faq/faq';
 import { TopView } from '../../../components/solution/clienttab/styles';
 import AppsSlider from '../../../components/appsSlider';
-import { COPILOT_ONBORADING_LINK } from '../../../constants/externalLinks';
+import { COPILOT_ONBOARDING_LINK } from '../../../constants/externalLinks';
 import AppsHeroSlider from '../../../components/appsSlider/appsheroSlider';
 import { AppSliderSection } from '../../../styles/appsStyles';
 
@@ -38,7 +38,7 @@ export default function AppPage({ details, appsList, faqList }) {
               fontColor={'--white'}
               borderColor={'--priamry'}
               text={'Start Trial'}
-              href={COPILOT_ONBORADING_LINK}
+              href={COPILOT_ONBOARDING_LINK}
               hoverColor={'--secondary-hover-color'}
             />
             <Button

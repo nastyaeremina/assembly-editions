@@ -27,7 +27,7 @@ import HighlightSectionComponents from '../../casestudies/highlightSection';
 import { isEmpty } from '../../../helpers/helpers';
 import Quote from '../../quote/quote';
 import { FEATURE_THEME_LIST } from '../../../constants/constant';
-import { COPILOT_ONBORADING_LINK } from '../../../constants/externalLinks';
+import { COPILOT_ONBOARDING_LINK } from '../../../constants/externalLinks';
 
 export default function CaseStudiesPage({ details }) {
   return (
@@ -42,7 +42,7 @@ export default function CaseStudiesPage({ details }) {
               fontColor={'--white'}
               borderColor={'--primary'}
               text={'Start trial'}
-              href={COPILOT_ONBORADING_LINK}
+              href={COPILOT_ONBOARDING_LINK}
               hoverColor={'--hover-color'}
             />
           </HeroBtnBlock>

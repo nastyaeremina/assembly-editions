@@ -45,7 +45,7 @@ import BussinessSectionComponent from '../BussinessSection';
 import PartnerAppsComponent from '../../partnerApps/partnerApps';
 import FeatureSection from '../../featureSection/featureSection';
 import TestimonialTableSection from '../../newTestimonial/testimonialTableSection';
-import { COPILOT_ONBORADING_LINK } from '../../../constants/externalLinks';
+import { COPILOT_ONBOARDING_LINK } from '../../../constants/externalLinks';
 import { CURRENT_SITE_URL } from '../../../constants/constant';
 
 export default function HomePage({ content, testimonialTableData }) {
@@ -61,7 +61,7 @@ export default function HomePage({ content, testimonialTableData }) {
           rightImageTitle={content?.heroImage2?.title}
           isLight={true}
           primaryButtonText={'Try for free'}
-          primaryButtonLink={COPILOT_ONBORADING_LINK}
+          primaryButtonLink={COPILOT_ONBOARDING_LINK}
         />
         <BussinessSectionComponent
           title={content?.heading1}

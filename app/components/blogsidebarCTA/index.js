@@ -1,6 +1,6 @@
 import React from 'react';
 import Button from '../../components/button/button';
-import { COPILOT_ONBORADING_LINK } from '../../constants/externalLinks.js';
+import { COPILOT_ONBOARDING_LINK } from '../../constants/externalLinks.js';
 import SVGComponent from '../../../public/images/svg/SVGComponent';
 import StartList from '../../components/reviewSection/starList';
 import { isEmpty } from '../../helpers/helpers.js';
@@ -28,7 +28,7 @@ export default function BlogSidebarCTA({ headerText, bodyText }) {
         fontColor={'--white'}
         borderColor={'--primary'}
         text={'Start trial'}
-        href={COPILOT_ONBORADING_LINK}
+        href={COPILOT_ONBOARDING_LINK}
         hoverColor={'--secondary-hover-color'}
         className={'CTA-button'}
       />

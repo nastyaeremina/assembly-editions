@@ -1,5 +1,5 @@
 import React from 'react';
-import { COPILOT_ONBORADING_LINK } from '../../../constants/externalLinks';
+import { COPILOT_ONBOARDING_LINK } from '../../../constants/externalLinks';
 import { Container } from '../../../styles/commonStyles';
 import {
   HeroBtnBlock,
@@ -28,7 +28,7 @@ export default function DefaultHeroSection({ title, body }) {
             fontColor={'--white'}
             borderColor={'--primary'}
             text={'Start Trial'}
-            href={COPILOT_ONBORADING_LINK}
+            href={COPILOT_ONBOARDING_LINK}
             hoverColor={'--secondary-hover-color'}
           />
           <Button

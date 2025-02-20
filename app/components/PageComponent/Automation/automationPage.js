@@ -14,7 +14,7 @@ import {
 } from '../../../styles/automationStyles';
 import { Container } from '../../../styles/commonStyles';
 import Button from '../../button/button';
-import { COPILOT_ONBORADING_LINK } from '../../../constants/externalLinks';
+import { COPILOT_ONBOARDING_LINK } from '../../../constants/externalLinks';
 import TabView from '../../tab/tab';
 import { MODULE_COLOR_LIST } from '../../../constants/constant';
 import AutomationCardSection from '../../automationcard';
@@ -49,7 +49,7 @@ export default function AutomationPage({ details }) {
               fontColor={'--white'}
               borderColor={'--primary'}
               text={'Start Trial'}
-              href={COPILOT_ONBORADING_LINK}
+              href={COPILOT_ONBOARDING_LINK}
               hoverColor={'--secondary-hover-color'}
             />
             <Button

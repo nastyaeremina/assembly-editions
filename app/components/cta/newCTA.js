@@ -37,8 +37,12 @@ export default function NewCTA({
 
   const imageSectionRef = useRef(null);
   const [height, setHeight] = useState(() => {
-    // Set a default height that fits most screens
-    return window.innerHeight > 768 ? 400 : 300;
+    if (typeof window !== 'undefined') {
+      // Set a default height that fits most screens
+
+      return window.innerHeight > 768 ? 400 : 300;
+    }
+    return 300;
   });
 
   const updateHeight = useCallback(() => {
@@ -50,11 +54,13 @@ export default function NewCTA({
   }, [banner]);
 
   useEffect(() => {
-    updateHeight(); // Update height on mount
-    window.addEventListener('resize', updateHeight); // Handle window resize
-    return () => {
-      window.removeEventListener('resize', updateHeight); // Cleanup event listener
-    };
+    if (typeof window !== 'undefined') {
+      updateHeight(); // Update height on mount
+      window.addEventListener('resize', updateHeight); // Handle window resize
+      return () => {
+        window.removeEventListener('resize', updateHeight); // Cleanup event listener
+      };
+    }
   }, [updateHeight]);
 
   return (

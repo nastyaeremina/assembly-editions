@@ -5,7 +5,7 @@ import Image from 'next/image';
 import { Gradient } from '../../../public/js/Gradient.js';
 import { MODULE_COLOR_LIST } from '../../constants/constant';
 import Button from '../button/button';
-import { COPILOT_ONBORADING_LINK } from '../../constants/externalLinks.js';
+import { COPILOT_ONBOARDING_LINK } from '../../constants/externalLinks.js';
 import { CtaInner, CtaBtn, CtaAnimation, CtaWrap, LeftImg, MainCta, RightImg } from './styles';
 
 export default function MainCTA({ moduleName, colorList, ctaContent }) {
@@ -43,7 +43,7 @@ export default function MainCTA({ moduleName, colorList, ctaContent }) {
                     }
                     borderColor={'transparent'}
                     text={'Start Trial'}
-                    href={COPILOT_ONBORADING_LINK}
+                    href={COPILOT_ONBOARDING_LINK}
                     hoverColor={'white'}
                   />
                   <Button

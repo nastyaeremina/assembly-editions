@@ -25,6 +25,7 @@ import {
 } from './styles';
 import ImageSection from './ImageSection';
 import AppsDetailDescription from './appsDetailDescription';
+import { COPILOT_DASHBOARD_LINK } from '../../constants/externalLinks';
 
 export default function AppsDetailComponent({ detail, content, isUserAuthenticated, reviewList }) {
   const imageList = removeEmptyElement(content?.imageListCollection?.items);
@@ -47,7 +48,7 @@ export default function AppsDetailComponent({ detail, content, isUserAuthenticat
           {isUserAuthenticated && (
             <Button
               text={'Install'}
-              href={`https://dashboard.copilot.com/install/${content?.slug}`}
+              href={`${COPILOT_DASHBOARD_LINK}/install/${content?.slug}`}
               target='_blank'
               className={'install-button'}
               bgColor={'--black'}

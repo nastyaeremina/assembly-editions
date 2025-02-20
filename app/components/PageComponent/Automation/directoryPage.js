@@ -24,7 +24,7 @@ import { Container } from '../../../styles/commonStyles';
 import { isEmpty, joinArrayToString, stringToSlugyfy } from '../../../helpers/helpers';
 import Button from '../../button/button';
 import AppError from '../../apperror/error';
-import { COPILOT_ONBORADING_LINK } from '../../../constants/externalLinks';
+import { COPILOT_ONBOARDING_LINK } from '../../../constants/externalLinks';
 import { CardAuto, Cardbottom, DirectoryButton, DirectoryCard } from '../../../styles/automationStyles';
 import { SliderIcon, SliderSub } from '../../FeatureSlider/styles';
 
@@ -199,7 +199,7 @@ export default function AutomationDirectoryPage({ featuredApps, allCategoryWithP
             <h1>Automation Directory</h1>
             <p>Choose from many recipes that will help you save time and scale your business</p>
             <DirectoryButton>
-              <Button text={'Start Trial'} href={COPILOT_ONBORADING_LINK} />
+              <Button text={'Start Trial'} href={COPILOT_ONBOARDING_LINK} />
               <Button
                 bgColor={'transparent'}
                 fontColor={'--black'}
