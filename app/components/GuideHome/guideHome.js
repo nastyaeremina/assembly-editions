@@ -5,13 +5,14 @@ import 'react-medium-image-zoom/dist/styles.css';
 import FAQ from '../../components/faq/faq';
 import { isEmpty } from '../../helpers/helpers';
 import RichTextDetail from '../richTextDetail/richText';
+import { CURRENT_SITE_URL } from '../../constants/constant';
 import { Caption, FAQSection, GuideCenter, GuideDetail, HeroSection, MainContent, PageTitle } from './styles';
 
 export default function GuideHome({ detail }) {
   const currentPath = usePathname();
   //extract assets block from article content
 
-  let currentDomain = 'https://www.copilot.com';
+  let currentDomain = CURRENT_SITE_URL;
   if (typeof window !== 'undefined') currentDomain = window?.location?.host;
 
   const scrollToSection = useCallback((sectionId) => {

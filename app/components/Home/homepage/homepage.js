@@ -46,6 +46,7 @@ import PartnerAppsComponent from '../../partnerApps/partnerApps';
 import FeatureSection from '../../featureSection/featureSection';
 import TestimonialTableSection from '../../newTestimonial/testimonialTableSection';
 import { COPILOT_ONBORADING_LINK } from '../../../constants/externalLinks';
+import { CURRENT_SITE_URL } from '../../../constants/constant';
 
 export default function HomePage({ content, testimonialTableData }) {
   return (
@@ -107,7 +108,7 @@ export default function HomePage({ content, testimonialTableData }) {
                 fontColor={'--white'}
                 borderColor={'--primary'}
                 text={'See automations'}
-                href={'https://www.copilot.com/guide/recommended-workflows'}
+                href={`${CURRENT_SITE_URL}/guide/recommended-workflows`}
                 hoverColor={'--secondary-hover-color'}
                 className={'automation-button'}
               />

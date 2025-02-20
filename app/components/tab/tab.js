@@ -8,6 +8,7 @@ import TabContent from '../tabbutton/TabContent';
 import TabNavItem from '../tabbutton/TabNavItem';
 import { Tabbutton } from '../tabbutton/tabstyled';
 import ZoomImg from '../zoomImage';
+import { CURRENT_DOMAIN } from '../../constants/constant';
 
 export default function TabView({ bgColor, textColor, isHome, tabData: allPosts, isAutomation }) {
   const [activeTab, setActiveTab] = useState(0);
@@ -38,7 +39,7 @@ export default function TabView({ bgColor, textColor, isHome, tabData: allPosts,
         </ul>
         <div className='outlet'>
           {allPosts?.map((item, index) => {
-            const link = item?.link?.split('copilot.com/')?.[1];
+            const link = item?.link?.split(`${CURRENT_DOMAIN}/`)?.[1];
             var extension = item?.image?.url?.split('.').pop();
             let isGifFile = extension === 'gif';
             return (

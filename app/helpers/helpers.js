@@ -77,7 +77,7 @@ export const convertSitemapDataToKeyValue = (value) => {
     const mapList = [];
     newItemList?.forEach((element) => {
       const newObject = element?.split(/[\[\]\(\)]/);
-      const url = newObject[3]?.split('www.copilot.com')?.[1] || newObject[3];
+      const url = newObject[3]?.split(`www.${CURRENT_DOMAIN}`)?.[1] || newObject[3];
       mapList?.push({ name: newObject[1], url, isExternal: url === newObject[3] });
     });
     sitemapList?.push({ title, list: mapList });
@@ -586,8 +586,8 @@ export function parseData(data) {
     // Extract name, URL, and icon using a regular expression
     const [_, name, url, icon] = element.match(/\[(.*?)\]\((.*?)\)\(.*?\((.*?)\)\)/) || [];
     if (name && url && icon) {
-      // Check if the URL contains 'www.copilot.com' and format it accordingly
-      const formattedUrl = url.includes('www.copilot.com') ? url.split('www.copilot.com/')[1] : url;
+      // Check if the URL contains 'www.copilot.app' and format it accordingly
+      const formattedUrl = url.includes(`www.${CURRENT_DOMAIN}`) ? url.split(`www.${CURRENT_DOMAIN}/`)[1] : url;
       // Ensure the icon URL has a protocol (default to https if it starts with //)
       const iconUrl = icon && icon.startsWith('//') ? 'https:' + icon : icon;
 
