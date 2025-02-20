@@ -444,7 +444,7 @@ export const EXTRACT_CODE_TAG_FROM_HTML_REGEX = /(<pre><code[^>]*>.*?<\/code><\/
 export const EXTRACT_LEADING_DIGIT_REGEX = /^[0-9]./;
 export const EXTRACT_SQUARE_BRACKET_AND_TAG_TEXT_REGEX = /(\[.*?\]|\(Tag\))/g;
 export const STRING_END_OF_APP = /\bapp$/i;
-export const CURRENT_SITE_URL = 'https://copilot.app';
+export const CURRENT_SITE_URL = 'https://www.copilot.app';
 export const CURRENT_DOMAIN = 'copilot.app';
 export const AppInfoMessage =
   'Apps are tailor-made for Copilot platform and typically come with rich functionality including notifications.';
