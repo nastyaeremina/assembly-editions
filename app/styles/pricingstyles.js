@@ -212,6 +212,9 @@ const PriceTable = styled.div`
       background-color: var(--white);
       border-bottom-left-radius: 0;
       border-bottom-right-radius: 0;
+      &.topbarContent {
+        top: 126px;
+      }
     }
     thead > tr > td {
       border: 1px solid var(--border);

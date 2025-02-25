@@ -289,7 +289,7 @@ export default function NavbarComponent({
     if (isEmpty(topbarContent)) return null;
     return (
       <>
-        <div>
+        <div id='topbarContent'>
           <Dspace></Dspace>
           <TopBar>
             <Container>

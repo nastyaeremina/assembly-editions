@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useCallback, useMemo } from 'react';
+import React, { useState, useCallback, useMemo, useEffect } from 'react';
 import Image from 'next/image';
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
 import { Container } from '../../../styles/commonStyles';
@@ -20,8 +20,8 @@ import AppTooltip from '../../appsCards/appTooltip';
 import Button from '../../button/button';
 import DownArrow from '../../../../public/images/down-arrow.svg';
 import UpArrow from '../../../../public/images/up-arrow.svg';
-import YearlyToggleComponent from './yearlyToggleComponent';
 import { PlanList } from '../../../constants/constant';
+import YearlyToggleComponent from './yearlyToggleComponent';
 
 export default function PricingPage({ details }) {
   // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -38,6 +38,7 @@ export default function PricingPage({ details }) {
 
   const [isYearly, setIsYearly] = useState(true);
   const [isShowFeature, setShowFeature] = useState(true);
+  const [isTopbarPresent, setIsTopbarPresent] = useState(false);
 
   const toggleShowFeature = useCallback(() => {
     setShowFeature(!isShowFeature);
@@ -146,9 +147,14 @@ export default function PricingPage({ details }) {
     });
   }, [details?.plansCollection?.items]);
 
+  useEffect(() => {
+    const topbarContent = document.getElementById('topbarContent');
+    setIsTopbarPresent(!!topbarContent); // Set state based on element presence
+  }, []); // Run once when the component mounts
+
   const renderTableHeader = useMemo(() => {
     return (
-      <table>
+      <table className={isTopbarPresent ? 'topbarContent' : ''}>
         <thead>
           <tr className='bordercolor'>
             <th colSpan={3}></th>
@@ -157,7 +163,7 @@ export default function PricingPage({ details }) {
         </thead>
       </table>
     );
-  }, [renderTablePlanNameView]);
+  }, [isTopbarPresent, renderTablePlanNameView]);
 
   return (
     <>
