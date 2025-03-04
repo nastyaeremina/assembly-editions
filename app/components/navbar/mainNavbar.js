@@ -15,7 +15,7 @@ import useMobileDevice from '../../hooks/useMobileDevice';
 import { isEmpty } from '../../helpers/helpers';
 import Button from '../button/button';
 import Line from '../../../public/images/navbar-line.png';
-import { COPILOT_DASHBOARD_LINK, COPILOT_ONBOARDING_LINK, OPEN_COPILOT_LINK } from '../../constants/externalLinks';
+import { COPILOT_DASHBOARD_LINK, COPILOT_ONBOARDING_LINK } from '../../constants/externalLinks';
 import {
   NavbarWrapper,
   NavbarInner,
@@ -232,7 +232,7 @@ export default function NavbarComponent({
                     }
                     text={'Open Dashboard'}
                     borderColor={'--black'}
-                    href={OPEN_COPILOT_LINK}
+                    href={COPILOT_DASHBOARD_LINK}
                     hoverColor={'--secondary-hover-color'}
                     className='hederbtn'
                     isCamelCase={false}
@@ -414,7 +414,7 @@ export default function NavbarComponent({
                       <BlackButton
                         textColor={isModule ? colorList?.fontColor : '--white'}
                         backgroundColor={colorList?.buttonColor}>
-                        <Link href={OPEN_COPILOT_LINK}>Open Dashboard</Link>
+                        <Link href={COPILOT_DASHBOARD_LINK}>Open Dashboard</Link>
                       </BlackButton>
                     </>
                   ) : (
