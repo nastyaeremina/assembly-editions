@@ -7,6 +7,7 @@ import AggregateRating from './components/aggregateRating';
 import HomePage from './components/Home/homepage/homepage';
 import { createArrayWithFixedLength, getSEOData, removeEmptyElement } from './helpers/helpers';
 import NewCTA from './components/cta/newCTA';
+import { COPILOT_TWITTER_LINK } from './constants/externalLinks';
 
 async function getContent() {
   return await getHomeContent(HOME_CLIENT_DARK_ID);
@@ -29,7 +30,7 @@ export default async function Home() {
     url: CURRENT_SITE_URL,
     logo: `${CURRENT_SITE_URL}/_next/static/media/blacklogo.370e156c.svg`,
     sameAs: [
-      'https://twitter.com/copilot',
+      COPILOT_TWITTER_LINK,
       'https://www.linkedin.com/company/copilotplatforms/',
       'https://www.youtube.com/@copilotplatforms',
       'https://www.facebook.com/copilotplatforms',
