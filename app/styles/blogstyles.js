@@ -425,7 +425,7 @@ const Content = styled.div`
   }
   .code-block {
     position: relative;
-    margin-top: 12px;
+    margin: 12px 0 16px;
   }
   .code-block > div {
     padding: 0px;
