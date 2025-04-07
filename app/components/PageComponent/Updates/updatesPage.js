@@ -17,12 +17,15 @@ import {
   UpdateDetail,
   UpdateSubscribe
 } from '../../../styles/updatestyle';
+import { renderContentWithVideos } from '../../../helpers/clientSideHelpers';
 
 export default function UpdatesPage({ allPosts }) {
   const renderPosts = useMemo(() => {
     if (isEmpty(allPosts)) return null;
     return allPosts?.map((item, index) => {
       const isLast = index === allPosts.length - 1;
+      const contentWithVideos = renderContentWithVideos(item?.html);
+
       return (
         <UpdateDes key={`updatesitem_index_${index}`}>
           <svg width='14' height='7' viewBox='0 0 14 7' fill='none' xmlns='http://www.w3.org/2000/svg'>
@@ -32,7 +35,7 @@ export default function UpdatesPage({ allPosts }) {
             <UpdateDate href={'/updates/' + item?.slug}>
               {moment(new Date(item?.published_at)).format('MMMM D, YYYY')}
             </UpdateDate>
-            <UpdateDetail dangerouslySetInnerHTML={{ __html: item?.html }}></UpdateDetail>
+            <UpdateDetail dangerouslySetInnerHTML={{ __html: contentWithVideos }}></UpdateDetail>
           </Detail>
         </UpdateDes>
       );

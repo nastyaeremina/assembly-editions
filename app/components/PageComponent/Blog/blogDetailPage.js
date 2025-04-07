@@ -18,6 +18,7 @@ import {
   TableHeading
 } from '../../../styles/blogstyles';
 import { isEmpty } from '../../../helpers/helpers';
+import { renderContentWithVideos } from '../../../helpers/clientSideHelpers';
 import {
   EXTRACT_CODE_TAG_FROM_HTML_REGEX,
   EXTRACT_H2_TAG_FROM_HTML_REGEX,
@@ -74,8 +75,7 @@ export default function BlogdetailPage({ blogDetail, htmlData, ctaTitle, ctaDesc
 
   const renderHTMLContent = useCallback(() => {
     // Split the HTML content into segments using a regex
-    const segments = htmlData?.split(EXTRACT_CODE_TAG_FROM_HTML_REGEX) || [];
-
+    const segments = renderContentWithVideos(htmlData)?.split(EXTRACT_CODE_TAG_FROM_HTML_REGEX) || [];
     // If there are no segments, return null
     if (isEmpty(segments)) return null;
 

@@ -16,6 +16,7 @@ import {
   MobileH3,
   MobileH4
 } from './styles';
+import ReactDOMServer from 'react-dom/server';
 
 const UpadtePage = styled.div`
   padding-top: 180px;
@@ -113,6 +114,18 @@ const UpdateDetail = styled.div`
   ${Body4}
   *:last-child {
     margin-bottom: 0 !important;
+  }
+  .kg-video-player-container {
+    display: none;
+  }
+  .kg-video-overlay {
+    display: none;
+  }
+  video {
+    width: 100%;
+    height: 100%;
+    border-radius: 6px;
+    border: 1px solid var(--black);
   }
   code {
     padding: 2px 6px;

@@ -4,8 +4,11 @@ import Link from 'next/link';
 import { Container } from '../../../styles/commonStyles';
 import { Backlink, MainContent } from '../../../styles/blogstyles';
 import { DetailSlug, UpdateDate, UpdateDes, UpdateDetail } from '../../../styles/updatestyle';
+import { renderContentWithVideos } from '../../../helpers/clientSideHelpers';
 
 export default function UpdatedetailPage({ details: updateDetails }) {
+  const contentWithVideos = renderContentWithVideos(updateDetails?.html);
+
   return (
     <>
       <MainContent>
@@ -30,7 +33,7 @@ export default function UpdatedetailPage({ details: updateDetails }) {
             </svg>
             <DetailSlug>
               <UpdateDate href='#'>{moment(new Date(updateDetails?.published_at)).format('MMMM D, YYYY')}</UpdateDate>
-              <UpdateDetail dangerouslySetInnerHTML={{ __html: updateDetails?.html }}></UpdateDetail>
+              <UpdateDetail dangerouslySetInnerHTML={{ __html: contentWithVideos }}></UpdateDetail>
             </DetailSlug>
           </UpdateDes>
         </Container>

@@ -231,6 +231,18 @@ const Content = styled.div`
   @media only screen and (max-width: 450px) {
     ${MbBody3}
   }
+  .kg-video-player-container {
+    display: none;
+  }
+  .kg-video-overlay {
+    display: none;
+  }
+  video {
+    width: 100%;
+    height: 100%;
+    border-radius: 6px;
+    border: 1px solid var(--black);
+  }
   strong {
     font-weight: 500;
   }
