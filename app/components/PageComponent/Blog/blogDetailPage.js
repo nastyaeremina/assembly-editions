@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { FacebookShareButton, LinkedinShareButton, TwitterShareButton } from 'next-share';
 import { CopyBlock, dracula } from 'react-code-blocks';
 import copy from 'copy-to-clipboard';
+import { usePathname } from 'next/navigation';
 import { Container } from '../../../styles/commonStyles';
 import {
   BlogContent,
@@ -20,6 +21,7 @@ import {
 import { isEmpty } from '../../../helpers/helpers';
 import { renderContentWithVideos } from '../../../helpers/clientSideHelpers';
 import {
+  CURRENT_SITE_URL,
   EXTRACT_CODE_TAG_FROM_HTML_REGEX,
   EXTRACT_H2_TAG_FROM_HTML_REGEX,
   EXTRACT_LEADING_DIGIT_REGEX
@@ -36,6 +38,9 @@ export default function BlogdetailPage({ blogDetail, htmlData, ctaTitle, ctaDesc
   const shouldShowBlogCTA = !isEmpty(ctaDescription) && !isEmpty(ctaTitle);
   const shouldShowTOC = blogDetail?.custom_template !== 'custom-no-toc';
   const shouldShowLestSection = shouldShowBlogCTA || shouldShowTOC;
+  const pathname = usePathname();
+  const currentPath = CURRENT_SITE_URL + pathname;
+
   const onChangeCopy = useCallback(
     ({ index, isCopy }) => {
       const newList = JSON.parse(JSON.stringify(CopyBlockData));
@@ -68,10 +73,6 @@ export default function BlogdetailPage({ blogDetail, htmlData, ctaTitle, ctaDesc
       );
     });
   }, [htmlData]);
-
-  const currentPath = useMemo(() => {
-    if (typeof window === 'object') return window.location.href;
-  }, []);
 
   const renderHTMLContent = useCallback(() => {
     // Split the HTML content into segments using a regex
