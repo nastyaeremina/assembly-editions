@@ -11,6 +11,7 @@ import Button from '../button/button';
 import Validation from '../Validation/validation';
 import { isEmpty } from '../../helpers/helpers';
 import SVGComponent from '../../../public/images/svg/SVGComponent';
+import { COPILOT_ONBOARDING_LINK } from '../../constants/externalLinks.js';
 import {
   MainSection,
   FormSection,
@@ -132,15 +133,15 @@ export default function BookDemoForm({ productDemoSlug, data, thankYouMessage })
                         <SVGComponent name='success-icon' width='60' height='60' viewBox='0 0 60 60' />
                         <h1>Thank you!</h1>
                         <p>
-                          We look forward to meeting you. Until then, please consider starting a free trial or watching
-                          the product demo.
+                          We received your submission and will be in touch if your business is a good fit. Until then,
+                          please consider starting a full-access free trial below.
                         </p>
                       </TextWrap>
                       <div className='button-group'>
-                        <Button text={'Start trial'} href={'/'} />
+                        <Button text={'Start trial'} href={COPILOT_ONBOARDING_LINK} />
                         <Button
-                          text={'Watch demo'}
-                          href={'/'}
+                          text={'Read the Guide'}
+                          href={'/guide'}
                           bgColor={'transparent'}
                           fontColor={'--black'}
                           borderColor={'--black'}
