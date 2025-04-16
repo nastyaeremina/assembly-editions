@@ -74,23 +74,24 @@ export default function BlogPage({ allPosts, tags }) {
 
   const renderData = useMemo(() => {
     if (isEmpty(allPosts)) return null;
-    return allPosts?.map((item, index) => {
-      if (isEmpty(item) && item.featured) return null;
-      const finalTagList = filterTagList(item.tags);
-      return (
-        <Blogcard
-          key={`blog_list_index_${index}`}
-          name={item?.title}
-          date={moment(new Date(item?.published_at)).format('MMM DD, YYYY')} //'Apr 28, 2022'
-          read={`${item?.reading_time} min read`}
-          desc={item?.excerpt}
-          image={item?.feature_image}
-          tags={finalTagList}
-          slug={item?.slug}
-        />
-      );
-    });
-  }, [allPosts]);
+    return allPosts
+      ?.filter((item) => item && !item.featured)
+      .map((item, index) => {
+        const finalTagList = filterTagList(item.tags);
+        return (
+          <Blogcard
+            key={`blog_list_index_${index}`}
+            name={item?.title}
+            date={moment(new Date(item?.published_at)).format('MMM DD, YYYY')} //'Apr 28, 2022'
+            read={`${item?.reading_time} min read`}
+            desc={item?.excerpt}
+            image={item?.feature_image}
+            tags={finalTagList}
+            slug={item?.slug}
+          />
+        );
+      });
+  }, [allPosts, filterTagList]);
 
   return (
     <>
