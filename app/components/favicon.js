@@ -6,6 +6,8 @@ export default function Favicon() {
       <link rel='apple-touch-icon' sizes='180x180' href='/favicons/apple-touch-icon.png' />
       <link rel='icon' type='image/png' sizes='32x32' href='/favicons/favicon32x32.png' />
       <link rel='icon' type='image/png' sizes='16x16' href='/favicons/favicon16x16.png' />
+      <link rel='icon' type='image/png' sizes='64x64' href='/favicons/favicon-64X64.png' />
+      <link rel='icon' type='image/png' sizes='128x128' href='/favicons/favicon-128x128.png' />
       <link rel='mask-icon' href='/favicons/safari-pinned-tab.svg' color='#000000' />
       <link rel='manifest' href='/favicons/site.webmanifest' />
       <link rel='shortcut icon' href='/favicons/favicon.ico' />
