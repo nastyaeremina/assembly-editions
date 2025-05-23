@@ -63,7 +63,8 @@ export async function getBlogByAuthor(authorSlug) {
 export async function getAllTagWithSlug() {
   return await api.tags
     .browse({
-      limit: 'all'
+      limit: 'all',
+      filter: 'visibility:public'
     })
     .catch((err) => {
       console.error('err', err);
