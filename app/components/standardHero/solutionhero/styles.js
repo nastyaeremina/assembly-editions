@@ -347,6 +347,10 @@ const ImageView = styled.div`
   background-color: var(--white);
   padding-bottom: 174px;
   z-index: 2;
+  img {
+    object-fit: cover;
+    border-radius: 30px;
+  }
   ${(props) =>
     props.emptyMobileImage &&
     css`
@@ -364,7 +368,6 @@ const MobileImg = styled.div`
   left: -103px;
   border-radius: 21.0831px;
   background: transparent;
-  height: -webkit-fill-available;
   img {
     box-shadow: 0px 15px 64px var(--black-shadow-15), 0px 0px 15.6171px var(--black-shadow-8),
       inset 0px 0px 6.24685px var(--black-shadow-16);
@@ -384,7 +387,6 @@ const Mobilenew = styled.div`
     left: 0px;
     border-radius: 21.0831px;
     background: transparent;
-    height: -webkit-fill-available;
     img {
       box-shadow: 0px 15px 64px var(--black-shadow-15), 0px 0px 15.6171px var(--black-shadow-8),
         inset 0px 0px 6.24685px var(--black-shadow-16);

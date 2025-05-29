@@ -3,6 +3,7 @@ import Image from 'next/image';
 import { Container } from '../../../styles/commonStyles';
 import { isEmpty, separateSpecialChar } from '../../../helpers/helpers';
 import Button from '../../button/button';
+import SocialProofProperty from '../../socialProofProperty/socialProofProperty';
 import {
   HeroSection,
   SolutionWrap,
@@ -15,7 +16,6 @@ import {
   MobileView,
   Mobilenew
 } from './styles';
-import SocialProofProperty from '../../socialProofProperty/socialProofProperty';
 
 /**
  * SolutionHero Component
