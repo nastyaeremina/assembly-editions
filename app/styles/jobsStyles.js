@@ -323,6 +323,9 @@ const ImgBorder = styled.div`
   overflow: hidden;
   background-color: var(--white);
   max-height: 320px;
+  img {
+    height: auto;
+  }
 `;
 const TabList = styled.div`
   margin-top: 20px;

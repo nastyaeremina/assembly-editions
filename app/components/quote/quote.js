@@ -1,8 +1,9 @@
 'use client';
 import Image from 'next/image';
+import ReactMarkdown from 'react-markdown';
 import { Container } from '../../styles/commonStyles';
-import { QuoteMain, Mainss, QuoteTxt, QuoteSubTxt, QuoteImg } from './styles';
 import { isEmpty } from '../../helpers/helpers';
+import { QuoteMain, Mainss, QuoteTxt, QuoteSubTxt, QuoteImg } from './styles';
 
 /**
  * Quote Component
@@ -26,7 +27,7 @@ export default function Quote({ gradientImage, data, caseStudies = false, isStan
             </QuoteImg>
           )}
           <QuoteTxt>
-            <p>{data?.quoteNew}</p>
+            <ReactMarkdown>{data?.quoteNew}</ReactMarkdown>
             <QuoteSubTxt>
               <span>{data?.name}</span>
               <p>{data?.role}</p>

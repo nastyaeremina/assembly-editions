@@ -1,5 +1,5 @@
 import styled, { css } from 'styled-components';
-import { Body4, ButtonText, MobileH3, Quote } from '../../styles/styles';
+import { Body4, ButtonText, Heading3, Heading4, MobileH3, Quote } from '../../styles/styles';
 
 const QuoteMain = styled.div`
   ${(props) =>
@@ -68,6 +68,49 @@ const QuoteTxt = styled.div`
     ${Quote};
     margin: 0px 0 30px 0;
     color: var(--title);
+  }
+  strong {
+    font-weight: 500;
+  }
+  h2 {
+    ${Heading3}
+    margin: 0px 0 30px 0;
+    color: var(--title);
+  }
+  h3 {
+    ${Heading4}
+    margin: 0px 0 30px 0;
+    color: var(--title);
+  }
+  ul {
+    margin: 12px 0 30px 0;
+    list-style-type: none;
+    gap: 12px;
+    display: flex;
+    flex-direction: column;
+    padding-left: 0;
+    li {
+      color: var(--title);
+      padding-left: 30px;
+      display: flex;
+      position: relative;
+      flex-direction: column;
+      p {
+        color: var(--title);
+        margin: 0;
+      }
+      &::before {
+        content: '';
+        position: absolute;
+        width: 6px;
+        height: 6px;
+        background-color: var(--title);
+        border-radius: 50%;
+        left: 12px;
+        top: 6px;
+        padding-inline-end: 0;
+      }
+    }
   }
   @media only screen and (max-width: 768px) {
     padding: 30px 28px;

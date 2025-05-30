@@ -176,6 +176,7 @@ const UpdateDetail = styled.div`
       border-radius: 0.375rem;
       border: 1px solid black;
       width: 100%;
+      height: auto;
     }
     iframe {
       border-radius: 0.375rem;

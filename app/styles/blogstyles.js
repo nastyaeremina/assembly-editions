@@ -252,6 +252,7 @@ const Content = styled.div`
       width: 100%;
       border-radius: 8px;
       border: 1px solid var(--blog-img-border);
+      height: auto;
     }
     iframe {
       border-radius: 0.375rem;
