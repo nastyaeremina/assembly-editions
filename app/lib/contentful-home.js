@@ -32,6 +32,10 @@ export async function getHomeContent(id) {
       pageHome(id: "${id}") {
         heroTitle
         heroBody
+        heroPrimaryButtonText
+        heroPrimaryButtonLink
+        heroSecondaryButtonText
+        heroSecondaryButtonLink
         heading1
         body1
         heading2
@@ -44,6 +48,10 @@ export async function getHomeContent(id) {
         body3
         heading4
         body4
+        primaryButtonText4
+        primaryButtonLink4
+        secondaryButtonText4
+        secondaryButtonLink4
         heroImage1{
           url
           title

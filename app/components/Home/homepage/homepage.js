@@ -3,12 +3,6 @@
 import Image from 'next/image';
 import { ReactMarkdown } from 'react-markdown/lib/react-markdown';
 import {
-  BusinessSection,
-  BusinessText,
-  Functionality,
-  TopFunctionWrap,
-  BottomFunction,
-  Extension,
   AutomateSection,
   AutomateText,
   BottomList,
@@ -26,18 +20,10 @@ import {
   Line1,
   Line,
   Line2,
-  Block,
-  SliderBlock,
-  ButtonGroup,
-  ResponsiveButtonGroup
+  AutomationMarkdownContent
 } from '../../../styles/homepageStyles';
 import { Container } from '../../../styles/commonStyles';
-import Slider from '../../../components/businessSlider/homeSlider';
-import ExtensionSlider from '../../../components/extensionslider/extensionslider';
-import TabView from '../../../components/tab/tab';
-import Button from '../../../components/button/button';
 import HomeHeroSection from '../../standardHero/hybrid';
-
 import { isEmpty } from '../../../helpers/helpers';
 import SupportItem from '../supportSection/support';
 import HeadingText from '../../header/headingText';
@@ -45,8 +31,7 @@ import BussinessSectionComponent from '../BussinessSection';
 import PartnerAppsComponent from '../../partnerApps/partnerApps';
 import FeatureSection from '../../featureSection/featureSection';
 import TestimonialTableSection from '../../newTestimonial/testimonialTableSection';
-import { COPILOT_ONBOARDING_LINK } from '../../../constants/externalLinks';
-import { CURRENT_SITE_URL } from '../../../constants/constant';
+import ButtonGroup from '../../ButtonGroup/buttonGroup';
 
 export default function HomePage({ content, testimonialTableData }) {
   return (
@@ -60,8 +45,10 @@ export default function HomePage({ content, testimonialTableData }) {
           leftImageTitle={content?.heroImage1?.title}
           rightImageTitle={content?.heroImage2?.title}
           isLight={true}
-          primaryButtonText={'Try for free'}
-          primaryButtonLink={COPILOT_ONBOARDING_LINK}
+          primaryButtonText={content?.heroPrimaryButtonText}
+          primaryButtonLink={content?.heroPrimaryButtonLink}
+          secondaryButtonText={content?.heroSecondaryButtonText}
+          secondaryButtonLink={content?.heroSecondaryButtonLink}
         />
         <BussinessSectionComponent
           title={content?.heading1}
@@ -102,15 +89,15 @@ export default function HomePage({ content, testimonialTableData }) {
           <Container>
             <AutomateText>
               <HeadingText title={content?.heading4} />
-              <ReactMarkdown>{content?.body4}</ReactMarkdown>
-              <Button
-                bgColor={'--primary'}
-                fontColor={'--white'}
-                borderColor={'--primary'}
-                text={'See automations'}
-                href={`${CURRENT_SITE_URL}/guide/recommended-workflows`}
-                hoverColor={'--secondary-hover-color'}
-                className={'automation-button'}
+              <AutomationMarkdownContent>
+                <ReactMarkdown>{content?.body4}</ReactMarkdown>
+              </AutomationMarkdownContent>
+              <ButtonGroup
+                primaryButtonLink={content?.primaryButtonLink4}
+                primaryButtonText={content?.primaryButtonText4}
+                secondaryButtonLink={content?.secondaryButtonLink4}
+                secondaryButtonText={content?.secondaryButtonText4}
+                hasMarginTop={28}
               />
             </AutomateText>
             <BottomList>

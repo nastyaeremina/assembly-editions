@@ -365,30 +365,13 @@ const AutomateText = styled.div`
   .active:hover {
     color: var(--title);
   }
-  a {
-    color: var(--primary);
-    display: inline-block;
-    :hover {
-      color: var(--dark-green);
-    }
-  }
   h2 {
     ${Heading3};
     margin: 0;
     color: var(--title);
     padding-bottom: 16px;
   }
-  p {
-    ${Body3};
-    margin: 0;
-    color: var(--body);
-    letter-spacing: 0.02em;
-    max-width: 933px;
-    width: 100%;
-  }
-  span {
-    color: var(--primary);
-  }
+
   @media only screen and (max-width: 768px) {
     max-width: 100%;
     margin-bottom: 0;
@@ -405,6 +388,28 @@ const AutomateText = styled.div`
     }
   }
 `;
+
+const AutomationMarkdownContent = styled.div`
+  a {
+    color: var(--primary);
+    display: inline-block;
+    :hover {
+      color: var(--dark-green);
+    }
+  }
+  p {
+    ${Body3};
+    margin: 0;
+    color: var(--body);
+    letter-spacing: 0.02em;
+    max-width: 933px;
+    width: 100%;
+  }
+  span {
+    color: var(--primary);
+  }
+`;
+
 const BottomList = styled.div`
   width: 100%;
   display: flex;
@@ -1227,5 +1232,6 @@ export {
   SliderBlock,
   ButtonGroup,
   ResponsiveButtonGroup,
-  BusinessSectionText
+  BusinessSectionText,
+  AutomationMarkdownContent
 };
