@@ -30,6 +30,7 @@ import BlogCTA from '../../blogCTA';
 import BlogSidebarCTA from '../../../components/blogsidebarCTA/index';
 import NewBlogDetailHero from '../../../components/blogdetailHero/newBlogDetailHero';
 import LegacyBlogDetailHero from '../../blogdetailHero/legacyBlogDetailHero';
+import SVGComponent from '../../../../public/images/svg/SVGComponent';
 
 export default function BlogdetailPage({ blogDetail, htmlData, ctaTitle, ctaDescription }) {
   const [isShowData, setShowData] = useState(true);
@@ -167,12 +168,7 @@ export default function BlogdetailPage({ blogDetail, htmlData, ctaTitle, ctaDesc
                   <Icon>
                     <TwitterShareButton url={currentPath} title={blogDetail?.title}>
                       <div>
-                        <svg width='18' height='16' viewBox='0 0 18 16' fill='none' xmlns='http://www.w3.org/2000/svg'>
-                          <path
-                            d='M8.74003 4.5571L8.77904 5.20048L8.12875 5.1217C5.76165 4.8197 3.6937 3.79553 1.93789 2.07546L1.0795 1.22198L0.858395 1.85224C0.39018 3.25719 0.689318 4.74092 1.66477 5.73883C2.18501 6.2903 2.06795 6.36909 1.17054 6.04083C0.858396 5.93578 0.58527 5.857 0.559258 5.89639C0.468216 5.98831 0.78036 7.18317 1.02747 7.65586C1.36563 8.31238 2.05495 8.95577 2.80929 9.33655L3.44659 9.63855L2.69224 9.65168C1.9639 9.65168 1.93789 9.66481 2.01593 9.94055C2.27605 10.794 3.30352 11.7 4.44805 12.0939L5.25442 12.3697L4.5521 12.7898C3.51162 13.3938 2.28905 13.7352 1.06649 13.7615C0.481222 13.7746 0 13.8271 0 13.8665C0 13.9978 1.58673 14.7331 2.51016 15.022C5.28043 15.8755 8.57095 15.5078 11.0421 14.0504C12.7979 13.0131 14.5537 10.9516 15.3731 8.95577C15.8153 7.89221 16.2575 5.94891 16.2575 5.01666C16.2575 4.41266 16.2965 4.33388 17.0248 3.61171C17.454 3.19154 17.8572 2.73197 17.9353 2.60067C18.0653 2.35119 18.0523 2.35119 17.389 2.57441C16.2835 2.96832 16.1274 2.9158 16.6737 2.32493C17.0769 1.90476 17.5581 1.1432 17.5581 0.919983C17.5581 0.880592 17.363 0.946244 17.1419 1.06442C16.9078 1.19572 16.3876 1.39268 15.9974 1.51085L15.295 1.73407L14.6578 1.30076C14.3066 1.06442 13.8124 0.80181 13.5522 0.723027C12.8889 0.539202 11.8745 0.565463 11.2762 0.775549C9.65045 1.36642 8.62297 2.88954 8.74003 4.5571Z'
-                            fill='white'
-                          />
-                        </svg>
+                        <SVGComponent name='blog-twitter-logo' width='18' height='18' viewBox='0 0 18 18' />
                       </div>
                     </TwitterShareButton>
                     <FacebookShareButton url={currentPath} title={blogDetail?.title}>
