@@ -36,6 +36,7 @@ const Leftside = styled.div`
   .image {
     object-fit: cover;
     border-radius: 3px 0px 0px 3px;
+    height: auto;
     @media only screen and (max-width: 749px) {
       border-right: none;
       display: flex;

@@ -605,7 +605,7 @@ const getPath = (name, props) => {
           </defs>
         </>
       );
-    case 'twitter-logo-grey':
+    case 'x-logo-grey':
       return (
         <>
           <g clipPath='url(#a)'>
@@ -621,7 +621,7 @@ const getPath = (name, props) => {
           </defs>
         </>
       );
-    case 'twitter-logo-dark':
+    case 'x-logo-dark':
       return (
         <>
           <g clipPath='url(#a)'>
@@ -637,7 +637,7 @@ const getPath = (name, props) => {
           </defs>
         </>
       );
-    case 'twitter-logo-white':
+    case 'x-logo-black':
       return (
         <>
           <g clipPath='url(#a)'>
@@ -653,7 +653,7 @@ const getPath = (name, props) => {
           </defs>
         </>
       );
-    case 'twitter-logo-white-small':
+    case 'x-logo-white-small':
       return (
         <>
           <path

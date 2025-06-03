@@ -168,7 +168,7 @@ export default function BlogdetailPage({ blogDetail, htmlData, ctaTitle, ctaDesc
                   <Icon>
                     <TwitterShareButton url={currentPath} title={blogDetail?.title}>
                       <div>
-                        <SVGComponent name='blog-twitter-logo' width='18' height='18' viewBox='0 0 18 18' />
+                        <SVGComponent name='x-logo-white-small' width='18' height='18' viewBox='0 0 18 18' />
                       </div>
                     </TwitterShareButton>
                     <FacebookShareButton url={currentPath} title={blogDetail?.title}>

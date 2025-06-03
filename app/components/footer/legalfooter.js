@@ -21,9 +21,9 @@ export default function LegalFooter({ isEnterPrice }) {
               <Link href={COPILOT_TWITTER_LINK}>
                 <FooterSocialItem isEnterPrice={isEnterPrice}>
                   {isEnterPrice ? (
-                    <SVGComponent name='enterprise-twitter-logo' width='24' height='24' viewBox='0 0 24 24' />
+                    <SVGComponent name='x-logo-dark' width='24' height='24' viewBox='0 0 24 24' />
                   ) : (
-                    <SVGComponent name='twitter-logo' width='24' height='24' viewBox='0 0 24 24' />
+                    <SVGComponent name='x-logo-grey' width='24' height='24' viewBox='0 0 24 24' />
                   )}
                 </FooterSocialItem>
               </Link>

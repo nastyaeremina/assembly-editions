@@ -135,9 +135,9 @@ export default function Footer({ isEnterPrice, footerData: footerDataList }) {
                 <Link href={COPILOT_TWITTER_LINK} aria-label={'Twitter'}>
                   <FooterSocialItem isEnterPrice={isEnterPrice}>
                     {isEnterPrice ? (
-                      <SVGComponent name='enterprise-twitter-logo' width='24' height='24' viewBox='0 0 24 24' />
+                      <SVGComponent name='x-logo-dark' width='24' height='24' viewBox='0 0 24 24' />
                     ) : (
-                      <SVGComponent name='twitter-logo' width='24' height='24' viewBox='0 0 24 24' />
+                      <SVGComponent name='x-logo-grey' width='24' height='24' viewBox='0 0 24 24' />
                     )}
                   </FooterSocialItem>
                 </Link>

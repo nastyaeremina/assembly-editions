@@ -49,7 +49,7 @@ const Banner = ({ images, speed = 5000, data }) => {
           </svg>
         );
       case 'Twitter':
-        return <SVGComponent name='twitter-brand-logo' width='28' height='28' viewBox='0 0 28 28' />;
+        return <SVGComponent name='x-logo-black' width='28' height='28' viewBox='0 0 28 28' />;
       default:
         return '';
     }
