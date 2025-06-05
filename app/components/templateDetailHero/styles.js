@@ -1,4 +1,4 @@
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 import Image from 'next/image';
 import { Body2, Body6, Heading2, MbBody2, MobileH2, MobileH3 } from '../../styles/styles';
 
@@ -114,19 +114,6 @@ const FeatureImage = styled(Image)`
   }
 `;
 
-const ButtonSection = styled.div`
-  display: flex;
-  gap: 20px;
-  margin-bottom: 100px;
-  @media only screen and (max-width: 1024px) {
-    margin-bottom: 0;
-  }
-  @media only screen and (max-width: 449px) {
-    flex-direction: column;
-    gap: 12px;
-  }
-`;
-
 const ActiveTab = styled.div`
   position: absolute;
   top: -21px;
@@ -165,7 +152,6 @@ export {
   TabView,
   BLockImg,
   FeatureImage,
-  ButtonSection,
   ActiveTab,
   TabSection,
   HeroBody

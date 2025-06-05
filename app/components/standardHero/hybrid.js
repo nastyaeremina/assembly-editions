@@ -1,7 +1,6 @@
 import Image from 'next/image';
-import React, { useEffect, useMemo, useState } from 'react';
+import React, { useMemo } from 'react';
 import { Container } from '../../styles/commonStyles';
-import Button from '../button/button';
 import {
   Hero,
   HeroBtnBlock,
@@ -20,6 +19,7 @@ import bgleft from '../../../public/images/bgleft.png';
 import bgright from '../../../public/images/bgright.png';
 import { isEmpty, transformArray } from '../../helpers/helpers';
 import SocialProofProperty from '../socialProofProperty/socialProofProperty';
+import ButtonGroup from '../ButtonGroup/buttonGroup';
 
 /**
  * HomeHeroSection Component
@@ -109,26 +109,12 @@ export default function HomeHeroSection({
         )}
         {(showPrimaryButton || showSecondaryButton) && (
           <HeroBtnBlock>
-            {showPrimaryButton && (
-              <Button
-                bgColor={isLight ? '--primary' : '--light-green'}
-                fontColor={isLight ? '--white' : '--dark-green'}
-                borderColor={isLight ? '--primary' : '--light-green'}
-                text={primaryButtonText}
-                href={primaryButtonLink}
-                hoverColor={isLight ? '--secondary-hover-color' : '--hover-color'}
-              />
-            )}
-            {showSecondaryButton && (
-              <Button
-                bgColor={'transparent'}
-                fontColor={isLight ? '--dark-green' : '--white'}
-                borderColor={isLight ? '--dark-green' : '--white'}
-                text={secondaryButtonText}
-                href={secondaryButtonLink}
-                hoverColor={isLight ? '--hover-color' : '--secondary-hover-color'}
-              />
-            )}
+            <ButtonGroup
+              primaryButtonLink={primaryButtonLink}
+              primaryButtonText={primaryButtonText}
+              secondaryButtonLink={secondaryButtonLink}
+              secondaryButtonText={secondaryButtonText}
+            />
           </HeroBtnBlock>
         )}
         {isEmpty(image2) ? (

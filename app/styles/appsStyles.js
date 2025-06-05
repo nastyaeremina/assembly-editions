@@ -26,6 +26,10 @@ const HeroSection = styled.div`
 `;
 const AppsHeroWrap = styled.div`
   text-align: center;
+  .button-group {
+    align-items: center;
+    justify-content: center;
+  }
   h1 {
     ${Heading2};
     color: var(--title);
@@ -77,6 +81,7 @@ const Input = styled.input`
   border-radius: 48px;
   width: 306px;
   outline: 0;
+  margin: 0 24px;
   ::placeholder {
     color: var(--medium-gray);
   }
@@ -269,7 +274,6 @@ const InputWrap = styled.form`
   position: relative;
   width: 100%;
   max-width: 1272px;
-  padding: 0 24px;
   margin: 0 auto;
   div {
     position: absolute;

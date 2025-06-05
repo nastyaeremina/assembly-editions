@@ -1,5 +1,6 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react';
 import SubHeroComponent from '../Hero/subHero';
+import { Container } from '../../styles/commonStyles';
 import {
   BgImage,
   Caption,
@@ -14,7 +15,6 @@ import {
   Title,
   ToolsTab
 } from './styles';
-import { Container } from '../../styles/commonStyles';
 
 export default function TabsHorizontal({ heroSectionData, featuresList }) {
   const [selectedTab, setSelectedTab] = useState(0);

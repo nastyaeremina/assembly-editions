@@ -1,21 +1,10 @@
 import React, { useCallback, useState } from 'react';
 import Image from 'next/image';
 import { useHotkeys } from 'react-hotkeys-hook';
-import Button from '../button/button';
-import { isEmpty } from '../../helpers/helpers';
-
 import ZoomImageSlider from '../../components/zoomImage/zoomImageslider';
 import SVGComponent from '../../../public/images/svg/SVGComponent';
 import SliderButton from '../businessSlider/SliderButton';
-import {
-  ArrowIcon,
-  ButtonImage,
-  ImageSection,
-  ImageSlider,
-  LastImage,
-  ResponsiveImageSection,
-  SmallImageSection
-} from './styles';
+import { ArrowIcon, ImageSection, ImageSlider } from './styles';
 
 function AppImageSection({ imageList }) {
   const [isOpen, setIsOpen] = useState(false);

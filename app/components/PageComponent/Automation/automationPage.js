@@ -3,7 +3,6 @@
 import Image from 'next/image';
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
 import {
-  AutomationButton,
   AutomationHero,
   Caption,
   CardSec,
@@ -35,6 +34,7 @@ import {
   Line2
 } from '../../../styles/homepageStyles';
 import FeatureAnimated from '../../FeatureSlider/featureanimated';
+import ButtonGroup from '../../ButtonGroup/buttonGroup';
 
 export default function AutomationPage({ details }) {
   return (
@@ -43,24 +43,15 @@ export default function AutomationPage({ details }) {
         <Container>
           <Title>{details?.header}</Title>
           <Caption>{details?.body}</Caption>
-          <AutomationButton>
-            <Button
-              bgColor={'--primary'}
-              fontColor={'--white'}
-              borderColor={'--primary'}
-              text={'Start Trial'}
-              href={COPILOT_ONBOARDING_LINK}
-              hoverColor={'--secondary-hover-color'}
-            />
-            <Button
-              bgColor={'transparent'}
-              fontColor={'--light-green'}
-              borderColor={'--light-green'}
-              text={'View all Automations'}
-              href={'automations/directory'}
-              hoverColor={'--secondary-hover-color'}
-            />
-          </AutomationButton>
+          <ButtonGroup
+            primaryButtonLink={COPILOT_ONBOARDING_LINK}
+            primaryButtonText={'Start Trial'}
+            secondaryButtonLink={'automations/directory'}
+            secondaryButtonText={'View all Automations'}
+            secondaryButtonVariant='white'
+            marginTop={32}
+            className={'button-group'}
+          />
           <BottomList isAnimated>
             <CardWrapper>
               <CardItem isAnimated>

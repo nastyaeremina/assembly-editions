@@ -1,4 +1,6 @@
 import React, { useLayoutEffect, useMemo, useRef, useState } from 'react';
+import SubHeroComponent from '../Hero/subHero';
+import { Container } from '../../styles/commonStyles';
 import {
   BgImage,
   Caption,
@@ -16,8 +18,6 @@ import {
   Title,
   ToolsTab
 } from './styles';
-import SubHeroComponent from '../Hero/subHero';
-import { Container } from '../../styles/commonStyles';
 
 export default function TabsVertical({ heroSectionData, featuresList }) {
   const [selectedTab, setSelectedTab] = useState(0);

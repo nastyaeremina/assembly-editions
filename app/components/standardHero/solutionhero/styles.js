@@ -332,15 +332,6 @@ const ListItem = styled.div`
     color: var(--body);
   }
 `;
-const BtnWrap = styled.div`
-  display: flex;
-  gap: 20px;
-  padding-top: 32px;
-  @media only screen and (max-width: 449px) {
-    gap: 12px;
-    flex-wrap: wrap;
-  }
-`;
 
 const ImageView = styled.div`
   position: relative;
@@ -415,7 +406,6 @@ export {
   LeftWrap,
   RightWrap,
   TextSection,
-  BtnWrap,
   ImageView,
   MobileImg,
   MobileView,

@@ -23,6 +23,10 @@ const TextSection = styled.div`
   @media only screen and (max-width: 768px) {
     padding: 20px;
   }
+  .button-group {
+    align-items: center;
+    justify-content: center;
+  }
   ${(props) =>
     props.isNoImage &&
     css`
@@ -63,24 +67,7 @@ const Title = styled.div`
       `}
   }
 `;
-const ButtonSection = styled.div`
-  margin-top: 28px;
-  display: flex;
-  gap: 20px;
-  @media only screen and (max-width: 449px) {
-    flex-wrap: wrap;
-    gap: 12px;
-  }
-  @media only screen and (max-width: 375px) {
-    gap: 6px;
-  }
-  ${(props) =>
-    props.isNoImage &&
-    css`
-      align-items: center;
-      justify-content: center;
-    `}
-`;
+
 const Image = styled.img`
   max-width: 612px;
   width: 100%;
@@ -124,4 +111,4 @@ const CtaWrap = styled.div`
   -webkit-backdrop-filter: blur(50px);
   backdrop-filter: blur(50px);
 `;
-export { Content, TextSection, ImageSection, Title, ButtonSection, Image, CtaAnimation, CtaWrap, Description };
+export { Content, TextSection, ImageSection, Title, Image, CtaAnimation, CtaWrap, Description };

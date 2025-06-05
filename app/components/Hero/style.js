@@ -1,16 +1,5 @@
 import styled, { css } from 'styled-components';
-import {
-  Body2,
-  Body3,
-  Heading2,
-  Heading3,
-  Heading4,
-  Heading5,
-  MbBody3,
-  MobileH2,
-  MobileH3,
-  MobileH4
-} from '../../styles/styles';
+import { Body2, Body3, Heading2, Heading3, Heading4, Heading5, MbBody3, MobileH2, MobileH3 } from '../../styles/styles';
 
 const PageTitle = styled.h2`
   ${Heading3};
@@ -113,12 +102,6 @@ const HeroCaption = styled.div`
   }
 `;
 
-const ButtonGroup = styled.div`
-  display: flex;
-  gap: 20px;
-  justify-content: flex-start;
-`;
-
 const SubHeroSection = styled.div`
   display: flex;
   flex-direction: column;
@@ -198,4 +181,4 @@ const SubHeroCaption = styled.div`
     }
   }
 `;
-export { HeroSection, PageTitle, Caption, MainHero, HeroCaption, ButtonGroup, SubHeroSection, SubHeroCaption };
+export { HeroSection, PageTitle, Caption, MainHero, HeroCaption, SubHeroSection, SubHeroCaption };

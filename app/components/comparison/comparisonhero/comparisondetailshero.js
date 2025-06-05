@@ -3,7 +3,6 @@ import ReactMarkdown from 'react-markdown';
 import { Container } from '../../../styles/commonStyles';
 import {
   BottomDiv,
-  ButtonGroup,
   Card,
   HeroSection,
   ImageSection,
@@ -14,10 +13,10 @@ import {
   TopDiv
 } from '../../standardHero/solutionhero/styles';
 import GraphImage from '../../../../public/images/hero-graph.png';
-import Button from '../../button/button';
 import SVGComponent from '../../../../public/images/svg/SVGComponent';
 import SmallLogo from '../../../../public/images/Copilot_Icon_Circle.png';
 import { isEmpty } from '../../../helpers/helpers';
+import ButtonGroup from '../../ButtonGroup/buttonGroup';
 
 export default function ComparisonDetailsHero({
   title,
@@ -56,24 +55,14 @@ export default function ComparisonDetailsHero({
                 )}
                 {description && <ReactMarkdown>{description}</ReactMarkdown>}
               </TextSection>
-              {(showPrimaryButton || showSecondaryButton) && (
-                <ButtonGroup>
-                  {showPrimaryButton && (
-                    <Button text={primaryButtonText} href={primaryButtonLink} isCamelCase={false} />
-                  )}
-                  {showSecondaryButton && (
-                    <Button
-                      text={secondaryButtonText}
-                      href={secondaryButtonLink}
-                      bgColor={'transparent'}
-                      fontColor={'--black'}
-                      borderColor={'--black'}
-                      hoverColor={'--hover-color'}
-                      isCamelCase={false}
-                    />
-                  )}
-                </ButtonGroup>
-              )}
+              <ButtonGroup
+                primaryButtonLink={primaryButtonLink}
+                primaryButtonText={primaryButtonText}
+                secondaryButtonText={secondaryButtonText}
+                secondaryButtonLink={secondaryButtonLink}
+                marginTop={32}
+                isCamelCase={false}
+              />
             </LeftWrap>
             <ImageSection>
               <Image src={GraphImage} alt='' width={274} height={389} className='graph-img' />

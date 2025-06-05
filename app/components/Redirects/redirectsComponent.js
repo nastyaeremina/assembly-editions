@@ -28,7 +28,7 @@ export default function RedirectsComponent({
             primaryButtonLink={primaryButtonLink}
             secondaryButtonText={secondaryButtonText}
             secondaryButtonLink={secondaryButtonLink}
-            hasMarginTop={28}
+            marginTop={28}
             className={'button-center'}
           />
         </RedirectsHeading>

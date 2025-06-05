@@ -4,18 +4,8 @@ import ReactMarkdown from 'react-markdown';
 import { isEmpty } from '../../helpers/helpers';
 import { Container } from '../../styles/commonStyles';
 import { Gradient } from '../../../public/js/Gradient';
-import Button from '../button/button';
-import {
-  ButtonSection,
-  Content,
-  CtaAnimation,
-  CtaWrap,
-  Description,
-  Image,
-  ImageSection,
-  TextSection,
-  Title
-} from './newCTAStyles';
+import ButtonGroup from '../ButtonGroup/buttonGroup';
+import { Content, CtaAnimation, CtaWrap, Description, Image, ImageSection, TextSection, Title } from './newCTAStyles';
 
 export default function NewCTA({
   title,
@@ -27,9 +17,6 @@ export default function NewCTA({
   banner,
   moduleName
 }) {
-  const showPrimaryButton = !isEmpty(primaryButtonText) && !isEmpty(primaryButtonLink);
-  const showSecondaryButton = !isEmpty(secondaryButtonText) && !isEmpty(secondaryButtonLink);
-
   useEffect(() => {
     const gradient = new Gradient();
     gradient.initGradient('#gradient-canvas');
@@ -80,24 +67,16 @@ export default function NewCTA({
                   <ReactMarkdown>{title}</ReactMarkdown>
                   {isEmpty(banner) && <Description>{description}</Description>}
                 </Title>
-                {(showPrimaryButton || showSecondaryButton) && (
-                  <ButtonSection isNoImage={isEmpty(banner)}>
-                    {showPrimaryButton && (
-                      <Button text={primaryButtonText} href={primaryButtonLink} isCamelCase={false} />
-                    )}
-                    {showSecondaryButton && (
-                      <Button
-                        text={secondaryButtonText}
-                        href={secondaryButtonLink}
-                        bgColor={'transparent'}
-                        fontColor={'--light-green'}
-                        borderColor={'--light-green'}
-                        hoverColor={'--secondary-hover-color'}
-                        isCamelCase={false}
-                      />
-                    )}
-                  </ButtonSection>
-                )}
+                <ButtonGroup
+                  primaryButtonLink={primaryButtonLink}
+                  primaryButtonText={primaryButtonText}
+                  secondaryButtonLink={secondaryButtonLink}
+                  secondaryButtonText={secondaryButtonText}
+                  secondaryButtonVariant='white'
+                  isCamelCase={false}
+                  marginTop={28}
+                  className={isEmpty(banner) ? 'button-group' : ''}
+                />
               </TextSection>
               {!isEmpty(banner) && (
                 <ImageSection>

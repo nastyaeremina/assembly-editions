@@ -5,8 +5,8 @@ import { documentToReactComponents } from '@contentful/rich-text-react-renderer'
 import ReactMarkdown from 'react-markdown';
 import { isEmpty, separateSpecialChar } from '../../../helpers/helpers';
 import { Container } from '../../../styles/commonStyles';
-import Button from '../../button/button';
 import ZoomImg from '../../zoomImage';
+import ButtonGroup from '../../ButtonGroup/buttonGroup';
 import {
   ExploreSection,
   TopView,
@@ -53,8 +53,6 @@ export default function ExploreTab({
   isStandardPage = false
 }) {
   const [selectedTabIbndex, setSelectedTabIbndex] = useState(0);
-  const showPrimaryButton = !isEmpty(primaryButtonText) && !isEmpty(primaryButtonLink);
-  const showSecondaryButton = !isEmpty(secondaryButtonText) && !isEmpty(secondaryButtonLink);
   const onClickTab = useCallback((index) => {
     setSelectedTabIbndex(index);
   }, []);
@@ -122,25 +120,12 @@ export default function ExploreTab({
             ) : (
               <ReactMarkdown>{description}</ReactMarkdown>
             )}
-
-            {(showPrimaryButton || showSecondaryButton) && (
-              <BtnWrap>
-                {showPrimaryButton && (
-                  <Button text={primaryButtonText} href={primaryButtonLink} className={'button-section'} />
-                )}
-                {showSecondaryButton && (
-                  <Button
-                    text={secondaryButtonText}
-                    href={secondaryButtonLink}
-                    className={'button-section'}
-                    bgColor={'transparent'}
-                    fontColor={'--black'}
-                    borderColor={'--black'}
-                    hoverColor={'--hover-color'}
-                  />
-                )}
-              </BtnWrap>
-            )}
+            <ButtonGroup
+              primaryButtonLink={primaryButtonLink}
+              primaryButtonText={primaryButtonText}
+              secondaryButtonLink={secondaryButtonLink}
+              secondaryButtonText={secondaryButtonText}
+            />
           </TopView>
         </Container>
         <BottomSection>

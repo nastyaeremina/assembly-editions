@@ -17,6 +17,10 @@ const AutomationHero = styled.div`
     max-width: 1224px;
     width: 100%;
   }
+  .button-group {
+    align-items: center;
+    justify-content: center;
+  }
   @media only screen and (max-width: 749px) {
     padding: 148px 0 0px 0;
     .automation-image {
@@ -53,19 +57,6 @@ const Caption = styled.div`
   color: var(--light-green);
   @media only screen and (max-width: 426px) {
     ${MbBody2}
-  }
-`;
-const AutomationButton = styled.div`
-  display: flex;
-  gap: 20px;
-  justify-content: center;
-  margin-top: 32px;
-  @media only screen and (max-width: 768px) {
-    padding-bottom: 40px;
-  }
-  @media only screen and (max-width: 426px) {
-    flex-direction: column;
-    gap: 12px;
   }
 `;
 const SetupAutomation = styled.div`
@@ -215,7 +206,6 @@ export {
   AutomationHero,
   Title,
   Caption,
-  AutomationButton,
   SetupAutomation,
   Cards,
   CardSec,

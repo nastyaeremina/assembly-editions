@@ -1,11 +1,12 @@
 'use client';
 import React, { useState } from 'react';
 import { Container } from '../../../styles/commonStyles';
+import { extractYouTubeVideoId, isEmpty } from '../../../helpers/helpers';
+import ButtonGroup from '../../ButtonGroup/buttonGroup';
 import {
   BlockImg,
   BlockLeft,
   BlockRight,
-  ButtonSection,
   FeatureImage,
   HeroBlock,
   HeroBody,
@@ -13,8 +14,6 @@ import {
   VideoClose,
   VideoPlay
 } from './styles';
-import { extractYouTubeVideoId, isEmpty } from '../../../helpers/helpers';
-import ButtonGroup from '../../ButtonGroup/buttonGroup';
 
 /**
  * SimpleSection Component

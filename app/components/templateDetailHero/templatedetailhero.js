@@ -3,15 +3,14 @@ import React, { useCallback, useMemo, useState } from 'react';
 import Image from 'next/image';
 import ReactMarkdown from 'react-markdown';
 import { Container } from '../../styles/commonStyles';
-import Button from '../../components/button/button';
 import { isEmpty } from '../../helpers/helpers';
 import ZoomImageSlider from '../../components/zoomImage/zoomImageslider';
+import ButtonGroup from '../ButtonGroup/buttonGroup';
 import {
   ActiveTab,
   BLockImg,
   BlockLeft,
   BlockRight,
-  ButtonSection,
   FeatureImage,
   HeroBlock,
   HeroBody,
@@ -78,28 +77,12 @@ export default function TemplateDetailHero({
             <BlockLeft>
               {!isEmpty(title) && <h1>{title}</h1>}
               <HeroBody>{!isEmpty(description) && <ReactMarkdown>{description}</ReactMarkdown>}</HeroBody>
-              <ButtonSection>
-                {!isEmpty(primaryButtonText) && !isEmpty(primaryButtonLink) && (
-                  <Button
-                    text={primaryButtonText}
-                    href={primaryButtonLink}
-                    bgColor={'--primary'}
-                    fontColor={'--white'}
-                    borderColor={'--primary'}
-                    hoverColor='--secondary-hover-color'
-                  />
-                )}
-                {!isEmpty(secondaryButtonText) && !isEmpty(secondaryButtonLink) && (
-                  <Button
-                    text={secondaryButtonText}
-                    href={secondaryButtonLink}
-                    bgColor={'transparent'}
-                    fontColor={'--black'}
-                    borderColor={'--black'}
-                    hoverColor={'--hover-color'}
-                  />
-                )}
-              </ButtonSection>
+              <ButtonGroup
+                primaryButtonLink={primaryButtonLink}
+                primaryButtonText={primaryButtonText}
+                secondaryButtonLink={secondaryButtonLink}
+                secondaryButtonText={secondaryButtonText}
+              />
             </BlockLeft>
             <BlockRight>
               <BLockImg>

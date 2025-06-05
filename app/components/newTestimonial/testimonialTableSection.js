@@ -2,9 +2,9 @@
 import React from 'react';
 import { Container } from '../../styles/commonStyles';
 import SubHeroComponent from '../Hero/subHero';
+import { createArrayWithFixedLength, removeEmptyElement } from '../../helpers/helpers';
 import { TestimonialSection } from './styles';
 import TestimonialTable from './TestimonialTable';
-import { createArrayWithFixedLength, removeEmptyElement } from '../../helpers/helpers';
 
 export default function TestimonialTableSection({
   title,

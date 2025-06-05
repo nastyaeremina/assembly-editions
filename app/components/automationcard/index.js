@@ -4,7 +4,7 @@ import ReactMarkdown from 'react-markdown';
 import { isEmpty, separateSpecialChar } from '../../helpers/helpers';
 import { Container } from '../../styles/commonStyles';
 import ButtonGroup from '../ButtonGroup/buttonGroup';
-import { Body, CardSection, CardSectionHead, Cards, Description, HeaderSection } from './styles';
+import { Body, CardSection, CardSectionHead, Cards, HeaderSection } from './styles';
 import AutomationCard from './card';
 
 /**
@@ -63,7 +63,7 @@ export default function AutomationCardSection({
             primaryButtonText={primaryButtonText}
             secondaryButtonLink={secondaryButtonLink}
             secondaryButtonText={secondaryButtonText}
-            hasMarginTop={28}
+            marginTop={28}
           />
         </HeaderSection>
         <Cards>{renderCardView}</Cards>

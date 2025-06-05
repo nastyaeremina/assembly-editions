@@ -2,15 +2,14 @@
 import Image from 'next/image';
 import { Container } from '../../../styles/commonStyles';
 import { isEmpty, separateSpecialChar } from '../../../helpers/helpers';
-import Button from '../../button/button';
 import SocialProofProperty from '../../socialProofProperty/socialProofProperty';
+import ButtonGroup from '../../ButtonGroup/buttonGroup';
 import {
   HeroSection,
   SolutionWrap,
   LeftWrap,
   RightWrap,
   TextSection,
-  BtnWrap,
   ImageView,
   MobileImg,
   MobileView,
@@ -45,8 +44,6 @@ export default function SolutionHero({
   isShowSocialProof
 }) {
   const finalTitle = separateSpecialChar(title);
-  const showPrimaryButton = !isEmpty(primaryButtonText) && !isEmpty(primaryButtonLink);
-  const showSecondaryButton = !isEmpty(secondaryButtonText) && !isEmpty(secondaryButtonLink);
   return (
     <>
       <HeroSection isStandardPage={isStandardPage}>
@@ -58,24 +55,13 @@ export default function SolutionHero({
                   <div dangerouslySetInnerHTML={{ __html: finalTitle }} />
                 </h1>
                 <p>{description}</p>
-                {(showPrimaryButton || showSecondaryButton) && (
-                  <BtnWrap>
-                    {showPrimaryButton && (
-                      <Button text={primaryButtonText} href={primaryButtonLink} className={'button-section'} />
-                    )}
-                    {showSecondaryButton && (
-                      <Button
-                        text={secondaryButtonText}
-                        href={secondaryButtonLink}
-                        className={'button-section'}
-                        bgColor={'transparent'}
-                        fontColor={'--black'}
-                        borderColor={'--black'}
-                        hoverColor={'--hover-color'}
-                      />
-                    )}
-                  </BtnWrap>
-                )}
+                <ButtonGroup
+                  primaryButtonLink={primaryButtonLink}
+                  primaryButtonText={primaryButtonText}
+                  secondaryButtonLink={secondaryButtonLink}
+                  secondaryButtonText={secondaryButtonText}
+                  marginTop={32}
+                />
                 {isShowSocialProof && <SocialProofProperty rateCount='1000+' />}
               </TextSection>
             </LeftWrap>

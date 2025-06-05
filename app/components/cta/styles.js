@@ -31,22 +31,12 @@ const CtaInner = styled.div`
       /* display: block; */
     }
   }
-`;
-
-const CtaBtn = styled.div`
-  display: flex;
-  justify-content: center;
-  gap: 16px;
-
-  @media only screen and (max-width: 749px) {
-    flex-direction: column;
-    .paddingbtn {
-      a {
-        padding: 7px 38px;
-      }
-    }
+  .button-group {
+    align-items: center;
+    justify-content: center;
   }
 `;
+
 const CtaAnimation = styled.div`
   position: relative;
   top: 0;
@@ -122,4 +112,4 @@ const RightImg = styled.div`
     }
   }
 `;
-export { CtaInner, CtaBtn, CtaAnimation, CtaWrap, LeftImg, MainCta, RightImg };
+export { CtaInner, CtaAnimation, CtaWrap, LeftImg, MainCta, RightImg };

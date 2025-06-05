@@ -31,7 +31,7 @@ export default function HeroComponent({
               primaryButtonLink={primaryButtonLink}
               secondaryButtonText={secondaryButtonText}
               secondaryButtonLink={secondaryButtonLink}
-              hasMarginTop={32}
+              marginTop={32}
             />
           </HeroSection>
         </Container>

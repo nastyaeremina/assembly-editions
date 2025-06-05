@@ -11,6 +11,7 @@ const Extention = styled.a`
   }
   .logo {
     width: 140px;
+    height: auto;
     /* height: 140px; */
     @media only screen and (max-width: 449px) {
       /* height: 110px; */

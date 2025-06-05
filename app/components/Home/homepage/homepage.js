@@ -97,7 +97,7 @@ export default function HomePage({ content, testimonialTableData }) {
                 primaryButtonText={content?.primaryButtonText4}
                 secondaryButtonLink={content?.secondaryButtonLink4}
                 secondaryButtonText={content?.secondaryButtonText4}
-                hasMarginTop={28}
+                marginTop={28}
               />
             </AutomateText>
             <BottomList>

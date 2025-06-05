@@ -21,12 +21,12 @@ import {
   AppHeader3
 } from '../../../styles/appsStyles';
 import { Container } from '../../../styles/commonStyles';
-import { isEmpty, joinArrayToString, stringToSlugyfy } from '../../../helpers/helpers';
-import Button from '../../button/button';
+import { isEmpty, stringToSlugyfy } from '../../../helpers/helpers';
 import AppError from '../../apperror/error';
 import { COPILOT_ONBOARDING_LINK } from '../../../constants/externalLinks';
 import { CardAuto, Cardbottom, DirectoryButton, DirectoryCard } from '../../../styles/automationStyles';
 import { SliderIcon, SliderSub } from '../../FeatureSlider/styles';
+import ButtonGroup from '../../ButtonGroup/buttonGroup';
 
 export default function AutomationDirectoryPage({ featuredApps, allCategoryWithPost, allPosts }) {
   const [selected_category, setSelected_category] = useState();
@@ -198,17 +198,13 @@ export default function AutomationDirectoryPage({ featuredApps, allCategoryWithP
           <AppsHeroWrap>
             <h1>Automation Directory</h1>
             <p>Choose from many recipes that will help you save time and scale your business</p>
-            <DirectoryButton>
-              <Button text={'Start Trial'} href={COPILOT_ONBOARDING_LINK} />
-              <Button
-                bgColor={'transparent'}
-                fontColor={'--black'}
-                borderColor={'--black'}
-                text={'Back to overview'}
-                href={'/automations'}
-                hoverColor={'--hover-color'}
-              />
-            </DirectoryButton>
+            <ButtonGroup
+              primaryButtonLink={COPILOT_ONBOARDING_LINK}
+              primaryButtonText={'Start Trial'}
+              secondaryButtonLink={'/automations'}
+              secondaryButtonText={'Back to overview'}
+              className={'button-group'}
+            />
           </AppsHeroWrap>
         </Container>
       </HeroSection>

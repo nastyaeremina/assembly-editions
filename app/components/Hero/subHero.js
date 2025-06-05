@@ -1,10 +1,9 @@
 'use client';
 
 import ReactMarkdown from 'react-markdown';
-import Button from '../button/button';
+import ButtonGroup from '../ButtonGroup/buttonGroup';
 import { isEmpty } from '../../helpers/helpers';
-import { MainHero, ButtonGroup, SubHeroSection, SubHeroCaption } from './style';
-
+import { MainHero, SubHeroSection, SubHeroCaption } from './style';
 /**
  * SubHeroComponent
  * @param {Object} props - Component props
@@ -14,35 +13,23 @@ import { MainHero, ButtonGroup, SubHeroSection, SubHeroCaption } from './style';
  */
 
 export default function SubHeroComponent({ data, hasFullWidth = false }) {
-  const showPrimaryButton = !isEmpty(data?.primaryButtonText) && !isEmpty(data?.primaryButtonLink);
-  const showSecondaryButton = !isEmpty(data?.secondaryButtonText) && !isEmpty(data?.secondaryButtonLink);
+  if (isEmpty(data)) return null;
   return (
     <>
       <MainHero>
         <>
           <SubHeroSection hasFullWidth={hasFullWidth}>
-            <h2>{data?.heroTitle}</h2>
+            <h2>{data.heroTitle}</h2>
             <SubHeroCaption hasFullWidth={hasFullWidth}>
-              <ReactMarkdown>{data?.heroDescription}</ReactMarkdown>
+              <ReactMarkdown>{data.heroDescription}</ReactMarkdown>
             </SubHeroCaption>
-            {(showPrimaryButton || showSecondaryButton) && (
-              <ButtonGroup>
-                {showPrimaryButton && (
-                  <Button text={data?.primaryButtonText} href={data?.primaryButtonLink} className={'button-section'} />
-                )}
-                {showSecondaryButton && (
-                  <Button
-                    text={data?.secondaryButtonText}
-                    href={data?.secondaryButtonLink}
-                    className={'button-section'}
-                    bgColor={'transparent'}
-                    fontColor={'--black'}
-                    borderColor={'--black'}
-                    hoverColor={'--hover-color'}
-                  />
-                )}
-              </ButtonGroup>
-            )}
+            <ButtonGroup
+              primaryButtonLink={data.primaryButtonLink}
+              primaryButtonText={data.primaryButtonText}
+              secondaryButtonLink={data.secondaryButtonLink}
+              secondaryButtonText={data.secondaryButtonText}
+              marginTop={28}
+            />
           </SubHeroSection>
         </>
       </MainHero>
