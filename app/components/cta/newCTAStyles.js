@@ -1,5 +1,6 @@
 import styled, { css } from 'styled-components';
 import { Body3, Heading3, MbBody3 } from '../../styles/styles';
+import image from '../../../public/images/cta-bg.svg';
 
 const Content = styled.div`
   border: 1px solid var(--white);
@@ -79,26 +80,12 @@ const CtaAnimation = styled.div`
   right: 0;
   left: 0;
   overflow: hidden;
+  max-height: 390px;
+  background-image: url('/images/cta-bg.svg');
   @media only screen and (max-width: 991px) {
     max-height: 464px;
     height: 100%;
   }
-  canvas {
-    margin: -30px !important;
-    @media only screen and (max-width: 768px) {
-      margin: -50px !important;
-    }
-  }
-  ${(props) =>
-    props.isNoImage &&
-    css`
-      canvas {
-        margin: 0 !important;
-        @media only screen and (max-width: 768px) {
-          margin: -50px !important;
-        }
-      }
-    `}
 `;
 const CtaWrap = styled.div`
   position: absolute;

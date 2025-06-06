@@ -32,6 +32,8 @@ const AutomationHero = styled.div`
     .automation-image {
       display: none;
     }
+    .button-group{
+      margin-bottom: 40px;
   }
   @media only screen and (max-width: 768px) {
     .appsbutton {

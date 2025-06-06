@@ -484,23 +484,19 @@ th {
 }
 
 #gradient-canvas {
-  /* max-width: 1440px; */
   overflow: hidden;
   width: 120%;
   position: relative;
-  max-height: 512px;
+  max-height: 412px;
   height: 100%;
-  margin: -50px;
 }
 
 .gradient-canvas_cta {
-  /* max-width: 1440px; */
   overflow: hidden;
   width: 120%;
   position: relative;
-  max-height: 512px;
+  max-height: 412px;
   height: 100%;
-  margin: -50px;
 }
 .entrance {
   --gradient-color-1: var(--primary);

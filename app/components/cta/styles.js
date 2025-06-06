@@ -44,6 +44,8 @@ const CtaAnimation = styled.div`
   right: 0;
   left: 0;
   overflow: hidden;
+  max-height: 412px;
+  background-image: url('/images/cta-bg.svg');
   @media only screen and (max-width: 991px) {
     max-height: 464px;
     height: 100%;

@@ -22,45 +22,12 @@ export default function NewCTA({
     gradient.initGradient('#gradient-canvas');
   }, []);
 
-  const imageSectionRef = useRef(null);
-  const [height, setHeight] = useState(() => {
-    if (typeof window !== 'undefined') {
-      // Set a default height that fits most screens
-
-      return window.innerHeight > 768 ? 400 : 300;
-    }
-    return 300;
-  });
-
-  const updateHeight = useCallback(() => {
-    if (imageSectionRef.current) {
-      let imageHeight = imageSectionRef.current.offsetHeight;
-      const additionalSpacing = window.innerHeight > 768 ? (isEmpty(banner) ? 157 : 135) : isEmpty(banner) ? 98 : 140;
-      setHeight(imageHeight + additionalSpacing);
-    }
-  }, [banner]);
-
-  useEffect(() => {
-    if (typeof window !== 'undefined') {
-      updateHeight(); // Update height on mount
-      window.addEventListener('resize', updateHeight); // Handle window resize
-      return () => {
-        window.removeEventListener('resize', updateHeight); // Cleanup event listener
-      };
-    }
-  }, [updateHeight]);
-
   return (
     <>
-      <CtaAnimation isNoImage={isEmpty(banner)}>
-        <canvas
-          id='gradient-canvas'
-          data-transition-in
-          className={moduleName || 'entrance'}
-          style={{ height: `${height}px` }}
-        />
+      <CtaAnimation>
+        <canvas id='gradient-canvas' data-transition-in className={moduleName || 'entrance'} />
         <CtaWrap>
-          <Container ref={imageSectionRef}>
+          <Container>
             <Content isNoImage={isEmpty(banner)}>
               <TextSection isNoImage={isEmpty(banner)}>
                 <Title isNoImage={isEmpty(banner)}>
