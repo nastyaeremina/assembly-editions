@@ -244,6 +244,7 @@ const RightWrap = styled.div`
     text-align: center;
     img {
       width: 100%;
+      height: 100%;
     }
   }
   @media only screen and (max-width: 768px) {
@@ -336,8 +337,8 @@ const ListItem = styled.div`
 const ImageView = styled.div`
   position: relative;
   background-color: var(--white);
-  padding-bottom: 174px;
   z-index: 2;
+  height: 633px;
   img {
     object-fit: cover;
     border-radius: 30px;
@@ -346,7 +347,16 @@ const ImageView = styled.div`
     props.emptyMobileImage &&
     css`
       padding-bottom: 0;
+      margin-left: 0;
     `}
+  @media only screen and (max-width: 991px) {
+    margin-left: 70px;
+    ${(props) =>
+      props.emptyMobileImage &&
+      css`
+        margin-left: 0;
+      `}
+  }
   @media only screen and (max-width: 449px) {
     display: none;
   }
@@ -355,51 +365,60 @@ const MobileImg = styled.div`
   display: inline-flex;
   position: absolute;
   left: 0;
-  top: 152px;
+  bottom: 25px;
   left: -103px;
-  border-radius: 21.0831px;
   background: transparent;
   img {
-    box-shadow: 0px 15px 64px var(--black-shadow-15), 0px 0px 15.6171px var(--black-shadow-8),
-      inset 0px 0px 6.24685px var(--black-shadow-16);
-    border-radius: 21px;
+    box-shadow: 0px 2px 8px 0px var(--black-shadow-8);
+    border-radius: 12px;
+    height: auto;
+    max-height: 583px;
   }
   @media only screen and (max-width: 991px) {
-    left: 0;
+    left: -70px;
   }
 `;
-const Mobilenew = styled.div`
-  display: none;
-  @media only screen and (max-width: 749px) {
-    display: inline-flex;
-    position: absolute;
-    left: 0;
-    top: 80px;
-    left: 0px;
-    border-radius: 21.0831px;
-    background: transparent;
-    img {
-      box-shadow: 0px 15px 64px var(--black-shadow-15), 0px 0px 15.6171px var(--black-shadow-8),
-        inset 0px 0px 6.24685px var(--black-shadow-16);
-      border-radius: 21px;
-    }
-  }
-`;
+
 const MobileView = styled.div`
   display: none;
   @media only screen and (max-width: 449px) {
     display: block;
     position: relative;
     background-color: var(--white);
-    padding-bottom: 90px;
     z-index: 2;
+    height: 354px;
+    margin-left: 70px;
+    img {
+      object-fit: cover;
+      border-radius: 30px;
+    }
     ${(props) =>
       props.emptyMobileImage &&
       css`
         padding-bottom: 0;
+        margin-left: 0;
       `}
   }
 `;
+
+const Mobilenew = styled.div`
+  display: none;
+  @media only screen and (max-width: 749px) {
+    display: inline-flex;
+    position: absolute;
+    left: 0;
+    bottom: 25px;
+    left: -70px;
+    background: transparent;
+    img {
+      box-shadow: 0px 2px 8px 0px var(--black-shadow-8);
+      border-radius: 12px;
+      height: auto;
+      max-height: 304px;
+    }
+  }
+`;
+
 export {
   HeroSection,
   SolutionWrap,

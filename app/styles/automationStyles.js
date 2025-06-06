@@ -202,8 +202,23 @@ const CardAuto = styled.div`
     }
   }
 `;
+const AutomationButton = styled.div`
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  margin-top: 32px;
+  @media only screen and (max-width: 768px) {
+    padding-bottom: 40px;
+  }
+  @media only screen and (max-width: 426px) {
+    flex-direction: column;
+    gap: 12px;
+  }
+`;
+
 export {
   AutomationHero,
+  AutomationButton,
   Title,
   Caption,
   SetupAutomation,

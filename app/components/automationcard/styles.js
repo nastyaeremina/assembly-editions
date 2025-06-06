@@ -48,6 +48,7 @@ const Card = styled.div`
     width: 100%;
     border-top: 1px solid var(--dark-green);
     border-radius: 0 0 3px 3px;
+    height: auto;
   }
   ${(props) =>
     props.isTwoCard &&

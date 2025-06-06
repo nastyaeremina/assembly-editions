@@ -189,10 +189,12 @@ export default async function StandardPage({ data }) {
         return null;
     }
   };
+  // Await all async component renderings
+  const renderedComponents = await Promise.all(data.map((componentData) => renderComponent(componentData)));
   return (
     <div className='standard-page'>
-      {data?.map((componentData) => (
-        <>{renderComponent(componentData)}</>
+      {renderedComponents.map((Component, index) => (
+        <>{Component}</>
       ))}
     </div>
   );
