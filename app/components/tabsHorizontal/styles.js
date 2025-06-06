@@ -132,7 +132,7 @@ const ShowImage = styled.div`
   opacity: 0;
   scale: 1;
   visibility: hidden;
-  transition: opacity 0.3s ease 0s, scale 0.3s ease-in-out 0s, visibility 1ms ease 0.3s;
+  transition: scale 0.3s ease-in-out 0s, visibility 1ms ease 0.3s;
   padding: 60px 24px 0px;
   display: flex;
   justify-content: center;
@@ -150,7 +150,7 @@ const ShowImage = styled.div`
       opacity: 1;
       scale: 1;
       visibility: visible;
-      transition: opacity 0.3s ease 0s, scale 0.4s ease-in-out 0s;
+      transition: scale 0.4s ease-in-out 0s;
     `};
   @media only screen and (max-width: 1024px) {
     img {

@@ -85,7 +85,16 @@ export default function TabsComponent({ type, content }) {
       default: // or some default component or message
         return null;
     }
-  }, []);
+  }, [
+    content?.description,
+    content?.primaryButtonLink,
+    content?.primaryButtonText,
+    content?.secondaryButtonLink,
+    content?.secondaryButtonText,
+    content?.tabsCollection?.items,
+    content?.title,
+    type
+  ]);
 
   return <div>{renderComponent}</div>;
 }
