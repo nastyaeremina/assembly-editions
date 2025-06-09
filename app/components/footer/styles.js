@@ -4,11 +4,6 @@ import { Body4, FooterText, Heading2, Body1, Body2, Body3 } from '../../styles/s
 const FooterSection = styled.div`
   background-color: var(--neutral);
   padding: 40px 0 60px;
-  ${(props) =>
-    props.isEnterPrice &&
-    css`
-      background-color: var(--dark-green);
-    `}
   @media only screen and (max-width: 749px) {
     padding: 50px 0;
   }
@@ -38,13 +33,6 @@ const FooterMenu = styled.ul`
     margin: 0;
     padding-bottom: 10px;
   }
-  ${(props) =>
-    props.isEnterPrice &&
-    css`
-      p {
-        color: var(--mid-light-green);
-      }
-    `}
 `;
 
 const FooterSocialList = styled.ul`
@@ -69,17 +57,6 @@ const FooterSocialItem = styled.li`
       }
     }
   }
-  ${(props) =>
-    props.isEnterPrice &&
-    css`
-      :hover {
-        svg {
-          path {
-            fill: var(--mid-light-green);
-          }
-        }
-      }
-    `}
   a {
     display: inline-block;
     overflow: hidden;
@@ -118,19 +95,12 @@ const FooterFirst = styled.div`
     color: var(--medium-gray);
     margin: 20px 0 24px 0;
   }
-  ${(props) =>
-    props.isEnterPrice &&
-    css`
-      p {
-        color: var(--light-green);
-      }
-    `}
   @media only screen and (max-width: 768px) {
     width: 100%;
     max-width: 100%;
   }
 `;
-const FotterMenuLeft = styled.div`
+const FooterMenuLeft = styled.div`
   max-width: 290px;
   width: 100%;
   .padding {
@@ -152,16 +122,6 @@ const FooterMenuList = styled.li`
       color: var(--title);
     }
   }
-  ${(props) =>
-    props.isEnterPrice &&
-    css`
-      a {
-        color: var(--light-green);
-        :hover {
-          color: var(--mid-light-green);
-        }
-      }
-    `}
 `;
 const FooterMobile = styled.div`
   display: none;
@@ -171,7 +131,7 @@ const FooterMobile = styled.div`
     gap: 16px;
   }
 `;
-const FotterMenuMobile = styled.div`
+const FooterMenuMobile = styled.div`
   max-width: 50%;
   width: 100%;
   .padding {
@@ -197,10 +157,10 @@ export {
   FooterFirst,
   FooterRight,
   FooterMenu,
-  FotterMenuLeft,
+  FooterMenuLeft,
   FooterMenuList,
   FooterMobile,
-  FotterMenuMobile,
+  FooterMenuMobile,
   FooterSectionLegal,
   FooterSub
 };
