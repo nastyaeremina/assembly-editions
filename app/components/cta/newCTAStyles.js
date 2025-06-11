@@ -24,9 +24,13 @@ const TextSection = styled.div`
   @media only screen and (max-width: 768px) {
     padding: 20px;
   }
+  .button {
+    margin-top: 28px;
+  }
   .button-group {
     align-items: center;
     justify-content: center;
+    margin-top: 28px;
   }
   ${(props) =>
     props.isNoImage &&

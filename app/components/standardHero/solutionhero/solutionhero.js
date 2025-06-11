@@ -60,7 +60,7 @@ export default function SolutionHero({
                   primaryButtonText={primaryButtonText}
                   secondaryButtonLink={secondaryButtonLink}
                   secondaryButtonText={secondaryButtonText}
-                  marginTop={32}
+                  className='button-group'
                 />
                 {isShowSocialProof && <SocialProofProperty rateCount='1000+' />}
               </TextSection>

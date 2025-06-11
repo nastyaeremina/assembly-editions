@@ -353,6 +353,9 @@ const AutomateText = styled.div`
   max-width: 975px;
   width: 100%;
   margin-bottom: 40px;
+  .button-group {
+    margin-top: 28px;
+  }
   .automation-button {
     margin-top: 28px;
     a {
@@ -489,7 +492,7 @@ const CardTextView = styled.div`
       `}
   }
 `;
-const HelpSection = styled.div`
+const HelpContainerSection = styled.div`
   padding: 50px 0;
   @media only screen and (max-width: 749px) {
     padding: 40px 0 80px;
@@ -889,7 +892,7 @@ const AnimatedIcon = styled(Iconview)`
     }
   }
 `;
-const Line1 = styled.div`
+const AnimatedLine = styled.div`
   position: absolute;
   width: 100%;
   background: linear-gradient(90deg, black 50%, transparent 50%);
@@ -899,7 +902,7 @@ const Line1 = styled.div`
   opacity: 0.3;
   animation: dash 15s linear infinite;
   ${(props) =>
-    props.isAnimationline2 &&
+    props.isSecondaryAnimation &&
     css`
       width: 125px;
       top: 56px;
@@ -908,7 +911,7 @@ const Line1 = styled.div`
       transform: rotate(90deg);
     `}
   ${(props) =>
-    props.isAnimationline3 &&
+    props.isFinalAnimation &&
     css`
       width: 50%;
       bottom: -15px;
@@ -944,7 +947,7 @@ const Line1 = styled.div`
     }
   }
 `;
-const Line2 = styled.div`
+const StaticLine = styled.div`
   position: absolute;
   width: 100%;
   background: linear-gradient(90deg, black 50%, transparent 50%);
@@ -954,7 +957,7 @@ const Line2 = styled.div`
   opacity: 0.3;
   animation: dash2 15s linear infinite;
   ${(props) =>
-    props.isAnimationline2 &&
+    props.isSecondaryAnimation &&
     css`
       width: 125px;
       top: 56px;
@@ -963,7 +966,7 @@ const Line2 = styled.div`
       transform: rotate(90deg);
     `}
   ${(props) =>
-    props.isAnimationline3 &&
+    props.isFinalAnimation &&
     css`
       width: 50%;
       bottom: -15px;
@@ -1204,7 +1207,7 @@ export {
   CardWrapper,
   CardItem,
   CardTextView,
-  HelpSection,
+  HelpContainerSection,
   HelpMain,
   HelpLeft,
   HelpLeftSub,
@@ -1219,8 +1222,8 @@ export {
   LeftSvg,
   RightWrap,
   AnimatedIcon,
-  Line1,
-  Line2,
+  AnimatedLine,
+  StaticLine,
   Line,
   ZoomImage,
   ImageDiv,

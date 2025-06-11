@@ -63,7 +63,7 @@ export default function AutomationCardSection({
             primaryButtonText={primaryButtonText}
             secondaryButtonLink={secondaryButtonLink}
             secondaryButtonText={secondaryButtonText}
-            marginTop={28}
+            className='button-group'
           />
         </HeaderSection>
         <Cards>{renderCardView}</Cards>

@@ -41,8 +41,7 @@ export default function NewCTA({
                   secondaryButtonText={secondaryButtonText}
                   secondaryButtonVariant='white'
                   isCamelCase={false}
-                  marginTop={28}
-                  className={isEmpty(banner) ? 'button-group' : ''}
+                  className={isEmpty(banner) ? 'button-group' : 'button'}
                 />
               </TextSection>
               {!isEmpty(banner) && (

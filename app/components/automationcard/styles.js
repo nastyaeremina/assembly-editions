@@ -118,5 +118,8 @@ const HeaderSection = styled.div`
   margin-bottom: 40px;
   max-width: 811px;
   width: 100%;
+  .button-group {
+    margin-top: 28px;
+  }
 `;
 export { CardSection, CardSectionHead, Card, CardTop, Head, Description, Cards, Body, HeaderSection };

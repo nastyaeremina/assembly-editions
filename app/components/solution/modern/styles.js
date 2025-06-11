@@ -22,6 +22,9 @@ const HeadView = styled.div`
   max-width: 918px;
   width: 100%;
   margin-bottom: 40px;
+  .button-group {
+    margin-top: 28px;
+  }
   h2 {
     ${Heading3};
     color: var(--title);

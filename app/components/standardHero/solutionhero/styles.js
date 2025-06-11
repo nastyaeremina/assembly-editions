@@ -140,6 +140,9 @@ const BottomDiv = styled.div`
 const LeftWrap = styled.div`
   margin: 0 auto;
   max-width: 808px;
+  .button-group {
+    margin-top: 32px;
+  }
   &.details-hero {
     max-width: 786px;
     margin: unset;

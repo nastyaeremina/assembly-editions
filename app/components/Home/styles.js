@@ -33,6 +33,7 @@ const HeroSection = styled.div`
   .button-group {
     align-items: center;
     justify-content: center;
+    margin-top: 32px;
     @media only screen and (max-width: 449px) {
       margin-top: 28px;
     }

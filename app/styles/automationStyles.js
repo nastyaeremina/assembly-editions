@@ -20,6 +20,7 @@ const AutomationHero = styled.div`
   .button-group {
     align-items: center;
     justify-content: center;
+    margin-top: 32px;
   }
   @media only screen and (max-width: 749px) {
     padding: 148px 0 0px 0;

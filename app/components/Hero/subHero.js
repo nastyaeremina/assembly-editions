@@ -28,7 +28,7 @@ export default function SubHeroComponent({ data, hasFullWidth = false }) {
               primaryButtonText={data.primaryButtonText}
               secondaryButtonLink={data.secondaryButtonLink}
               secondaryButtonText={data.secondaryButtonText}
-              marginTop={28}
+              className='button-group'
             />
           </SubHeroSection>
         </>

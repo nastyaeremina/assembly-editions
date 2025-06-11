@@ -74,7 +74,7 @@ export default function Modern({
                 primaryButtonText={primaryButtonText}
                 secondaryButtonLink={secondaryButtonLink}
                 secondaryButtonText={secondaryButtonText}
-                marginTop={28}
+                className='button-group'
               />
             </HeadView>
             <BoxWrap>{BoxListView}</BoxWrap>

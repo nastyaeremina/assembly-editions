@@ -12,6 +12,7 @@ const RedirectsHeading = styled.div`
   margin: 0 auto;
   .button-center {
     justify-content: center;
+    margin-top: 28px;
     @media only screen and (max-width: 449px) {
       justify-content: flex-start;
     }

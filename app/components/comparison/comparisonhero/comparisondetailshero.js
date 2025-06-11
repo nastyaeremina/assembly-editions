@@ -60,7 +60,7 @@ export default function ComparisonDetailsHero({
                 primaryButtonText={primaryButtonText}
                 secondaryButtonText={secondaryButtonText}
                 secondaryButtonLink={secondaryButtonLink}
-                marginTop={32}
+                className='button-group'
                 isCamelCase={false}
               />
             </LeftWrap>

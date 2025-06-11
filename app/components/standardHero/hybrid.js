@@ -113,7 +113,6 @@ export default function HomeHeroSection({
             primaryButtonText={primaryButtonText}
             secondaryButtonLink={secondaryButtonLink}
             secondaryButtonText={secondaryButtonText}
-            marginTop={32}
             className={'button-group'}
           />
         )}

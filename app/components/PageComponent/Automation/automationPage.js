@@ -30,8 +30,8 @@ import {
   CardTextView,
   CardWrapper,
   Line,
-  Line1,
-  Line2
+  AnimatedLine,
+  StaticLine
 } from '../../../styles/homepageStyles';
 import FeatureAnimated from '../../FeatureSlider/featureanimated';
 import ButtonGroup from '../../ButtonGroup/buttonGroup';
@@ -49,7 +49,6 @@ export default function AutomationPage({ details }) {
             secondaryButtonLink={'automations/directory'}
             secondaryButtonText={'View all Automations'}
             secondaryButtonVariant='white'
-            marginTop={32}
             className={'button-group'}
           />
           <BottomList isAnimated>
@@ -62,15 +61,15 @@ export default function AutomationPage({ details }) {
                 </CardTextView>
                 <AnimatedIcon className={'done card1'} isAnimated={true} />
                 <Line>
-                  <Line1 isAnimated>
+                  <AnimatedLine isAnimated>
                     <p />
-                  </Line1>
-                  <Line1 isAnimationline2={true} isAnimated>
+                  </AnimatedLine>
+                  <AnimatedLine isSecondaryAnimation={true} isAnimated>
                     <p />
-                  </Line1>
-                  <Line1 isAnimationline3={true} isAnimated>
+                  </AnimatedLine>
+                  <AnimatedLine isFinalAnimation={true} isAnimated>
                     <p />
-                  </Line1>
+                  </AnimatedLine>
                 </Line>
               </CardItem>
             </CardWrapper>
@@ -83,9 +82,9 @@ export default function AutomationPage({ details }) {
                 </CardTextView>
                 <AnimatedIcon className={'default card2'} isAnimated={true} />
                 <Line>
-                  <Line2 isAnimated={true}>
+                  <StaticLine isAnimated={true}>
                     <p />
-                  </Line2>
+                  </StaticLine>
                 </Line>
               </CardItem>
               <CardItem isAnimated>
@@ -95,15 +94,15 @@ export default function AutomationPage({ details }) {
                   <span>Condition</span>
                 </CardTextView>
                 <Line>
-                  <Line2 isAnimated={true}>
+                  <StaticLine isAnimated={true}>
                     <p />
-                  </Line2>
-                  <Line2 isAnimationline2={true} isAnimated>
+                  </StaticLine>
+                  <StaticLine isSecondaryAnimation={true} isAnimated>
                     <p />
-                  </Line2>
-                  <Line2 isAnimationline3={true} isAnimated>
+                  </StaticLine>
+                  <StaticLine isFinalAnimation={true} isAnimated>
                     <p />
-                  </Line2>
+                  </StaticLine>
                 </Line>
                 <AnimatedIcon className={'default card2'} isAnimated={true} />
               </CardItem>

@@ -9,7 +9,6 @@ import { ButtonGroups } from './styles';
  * @param {string} primaryButtonText - Text displayed on the primary button
  * @param {string} secondaryButtonLink - URL for the secondary button
  * @param {string} secondaryButtonText - Text displayed on the secondary button
- * @param {number} marginTop - Determines if the button group has a top margin
  * @param {string} className - Additional CSS class names to apply to the button group.
  * @param {'white' | 'black'} secondaryButtonVariant - Indicates if the button should have a white style, affecting the font color and border color.
  * @param {boolean} isCamelCase - Determines if the button text should be displayed in camel case.
@@ -20,7 +19,6 @@ export default function ButtonGroup({
   primaryButtonLink,
   secondaryButtonText,
   secondaryButtonLink,
-  marginTop,
   className,
   secondaryButtonVariant = 'black',
   isCamelCase
@@ -33,7 +31,7 @@ export default function ButtonGroup({
   return (
     <>
       {(showPrimaryButton || showSecondaryButton) && (
-        <ButtonGroups marginTop={marginTop} className={className}>
+        <ButtonGroups className={className}>
           {showPrimaryButton && <Button text={primaryButtonText} href={primaryButtonLink} />}
           {showSecondaryButton && (
             <Button
