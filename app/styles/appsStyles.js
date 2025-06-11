@@ -81,7 +81,6 @@ const Input = styled.input`
   border-radius: 48px;
   width: 306px;
   outline: 0;
-  margin: 0 24px;
   ::placeholder {
     color: var(--medium-gray);
   }
@@ -97,9 +96,12 @@ const Input = styled.input`
     border: 1.5px solid var(--title);
     box-shadow: 0px 4px 8px var(--black-shadow-7);
   }
+  @media only screen and (max-width: 991px) {
+    width: calc(100% - 48px);
+    margin: 0 24px;
+  }
   @media only screen and (max-width: 449px) {
     padding: 10px 50px 10px 52px;
-    width: 100%;
     ${MbBody4}
   }
 `;
@@ -282,7 +284,7 @@ const InputWrap = styled.form`
   img {
     position: absolute;
     top: 15px;
-    left: 45px;
+    left: 20px;
   }
   @media only screen and (max-width: 820px) {
     div {
@@ -291,8 +293,8 @@ const InputWrap = styled.form`
       margin: 0 auto;
       margin-bottom: 30px;
     }
-    input {
-      width: 100%;
+    img {
+      left: 45px;
     }
   }
   @media only screen and (max-width: 449px) {

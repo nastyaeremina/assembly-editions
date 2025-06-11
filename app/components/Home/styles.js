@@ -4,7 +4,6 @@ import { Body2, Body5, FooterText, Heading2, MbBody1, MobileH2 } from '../../sty
 const HeroSection = styled.div`
   width: 100%;
   padding: 180px 0 0px 0;
-  /* margin-bottom: 50px; */
   text-align: center;
   overflow: hidden;
   background-color: var(--dark-green);
@@ -21,15 +20,22 @@ const HeroSection = styled.div`
         padding: 0 0 80px !important;
       }
     `}
-  @media only screen and (max-width: 749px) {
-    padding: 148px 0 0px 0;
-  }
   @media only screen and (max-width: 768px) {
-    /* margin-bottom: 40px; */
+    padding: 148px 0 40px 0;
+  }
+  @media only screen and (max-width: 449px) {
+    padding: 116px 0 40px 0;
   }
   .social-proof {
     display: flex;
     justify-content: center;
+  }
+  .button-group {
+    align-items: center;
+    justify-content: center;
+    @media only screen and (max-width: 449px) {
+      margin-top: 28px;
+    }
   }
 `;
 

@@ -108,14 +108,14 @@ export default function HomeHeroSection({
           </div>
         )}
         {(showPrimaryButton || showSecondaryButton) && (
-          <HeroBtnBlock>
-            <ButtonGroup
-              primaryButtonLink={primaryButtonLink}
-              primaryButtonText={primaryButtonText}
-              secondaryButtonLink={secondaryButtonLink}
-              secondaryButtonText={secondaryButtonText}
-            />
-          </HeroBtnBlock>
+          <ButtonGroup
+            primaryButtonLink={primaryButtonLink}
+            primaryButtonText={primaryButtonText}
+            secondaryButtonLink={secondaryButtonLink}
+            secondaryButtonText={secondaryButtonText}
+            marginTop={32}
+            className={'button-group'}
+          />
         )}
         {isEmpty(image2) ? (
           <>

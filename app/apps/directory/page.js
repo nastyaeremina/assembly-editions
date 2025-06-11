@@ -28,7 +28,7 @@ export default async function Apps() {
     <>
       <AggregateRating id={APP_SEO_ID} />
       <Layout>
-        <div style={{ backgroundcolor: 'var(--main-bg-color)' }}>
+        <div style={{ backgroundColor: 'var(--main-bg-color)' }}>
           <Navbar />
           <AppDirectoryPage clientApps={clientApps} internalApps={internalApps} featuredApps={featuredApps} />
           <CTA />

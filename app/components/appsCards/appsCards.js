@@ -18,6 +18,7 @@ import {
   RatingSection,
   Tooltip
 } from './styles';
+import AppTooltip from './appTooltip';
 
 export default function AppsCards({
   appVisibility,
@@ -62,28 +63,7 @@ export default function AppsCards({
                   <>
                     <AppInformativeSection>
                       <p>{appType}</p>
-                      <Informative>
-                        <SVGComponent
-                          name='informative-icon'
-                          width='13'
-                          height='13'
-                          viewBox='13'
-                          fill='var(--dark-gray)'
-                        />
-                        <Tooltip className='tooltiptext' isApptooltip>
-                          <Line>
-                            <svg
-                              width='2'
-                              height='16'
-                              viewBox='0 0 2 16'
-                              fill='none'
-                              xmlns='http://www.w3.org/2000/svg'>
-                              <line x1='1' y1='4.37114e-08' x2='0.999997' y2='57' stroke='#00160E' stroke-width='2' />
-                            </svg>
-                          </Line>
-                          {appTypeInfo}
-                        </Tooltip>
-                      </Informative>
+                      <AppTooltip message={appTypeInfo} iconSize='13' fill='var(--dark-gray)' style={{ top: 26 }} />
                     </AppInformativeSection>
                   </>
                 )}
@@ -98,17 +78,7 @@ export default function AppsCards({
         </CardTop>
         <CardEnd isBottom={isBottom}>
           <p>{appVisibility}</p>
-          <Informative>
-            <SVGComponent name='information-icon' width='13' height='13' viewBox='13' />
-            <Tooltip className='tooltiptext' style={{ left: -6 }}>
-              <Line>
-                <svg width='2' height='16' viewBox='0 0 2 16' fill='none' xmlns='http://www.w3.org/2000/svg'>
-                  <line x1='1' y1='4.37114e-08' x2='0.999997' y2='57' stroke='#00160E' stroke-width='2' />
-                </svg>
-              </Line>
-              <p>{appVisibilityInfo}</p>
-            </Tooltip>
-          </Informative>
+          <AppTooltip message={appVisibilityInfo} iconSize='13' fill='var(--dark-gray)' style={{ top: 24 }} />
         </CardEnd>
       </Link>
     </CardSub>

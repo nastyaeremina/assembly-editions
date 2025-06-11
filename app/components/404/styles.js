@@ -18,6 +18,7 @@ const ErrorMain = styled.div`
     color: var(--body);
     ${Body3};
     margin: 0 0 24px 0;
+    text-align: center;
   }
 `;
 export { MainHeroSection, ErrorMain };

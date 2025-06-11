@@ -2,10 +2,10 @@ import Layout from '../components/layout';
 import { CURRENT_SITE_URL, TEMPLATE_PAGE_ID } from '../constants/constant';
 import { getTemplateHomeContent } from '../lib/contentful-template';
 import TemplateListSection from '../components/template/templateListSection';
-import HeroComponent from '../components/standardHero/hero';
 import AggregateRating from '../components/aggregateRating';
 import { getSEOData, isEmpty, removeEmptyElement } from './../helpers/helpers';
 import Navbar from './../components/navbar/navbar';
+import StandardHero from '../components/standardHero/standardHero';
 
 async function getTemplateContent() {
   return (await getTemplateHomeContent(TEMPLATE_PAGE_ID)) ?? {};
@@ -28,7 +28,9 @@ export default async function University() {
       <AggregateRating data={templateData?.seoMetadata} />
       <Layout>
         <Navbar />
-        <HeroComponent data={templateData?.templateHeroSection} />
+        <div className='standard-page'>
+          <StandardHero data={templateData?.templateHeroSection} type={templateData?.templateHeroSection?.type} />
+        </div>
         {!isEmpty(section1TemplateList) && (
           <TemplateListSection title={templateData?.section1Title} data={section1TemplateList} isBigCard={true} />
         )}

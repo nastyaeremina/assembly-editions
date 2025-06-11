@@ -6,8 +6,8 @@ import { isEmpty } from '../../../helpers/helpers';
 import AppError from '../../../components/apperror/error';
 import { COPILOT_ONBOARDING_LINK } from '../../../constants/externalLinks';
 import AppsCardSection from '../../appsCards/appsCardSection';
-import HeroComponent from '../../standardHero/hero';
 import SearchInput from './searchInput';
+import StandardHero, { HeroTypes } from '../../standardHero/standardHero';
 
 export default function AppDirectoryPage({ clientApps, internalApps, featuredApps }) {
   let allPosts = clientApps.concat(internalApps);
@@ -75,17 +75,19 @@ export default function AppDirectoryPage({ clientApps, internalApps, featuredApp
 
   return (
     <>
-      <HeroComponent
-        data={{
-          heroTitle: 'App Store',
-          heroDescription:
-            'Copilot covers the foundational features every business needs. For everything else, there’s a variety of apps to choose from. ',
-          primaryButtonText: 'Start trial',
-          primaryButtonLink: { COPILOT_ONBOARDING_LINK }
-        }}
-      />
+      <div className='standard-page'>
+        <StandardHero
+          data={{
+            heroTitle: 'App Store',
+            primaryButtonText: 'Start trial',
+            primaryButtonLink: COPILOT_ONBOARDING_LINK,
+            heroDescription:
+              'Copilot covers the foundational features every business needs. For everything else, there’s a variety of apps to choose from.'
+          }}
+          type={HeroTypes.CENTER}
+        />
+      </div>
       <SearchInput value={query} onChangeValue={onSeachQueryChange} onSubmit={onSubmitSeachQuery} />
-
       {isSearch ? (
         renderResultView
       ) : (

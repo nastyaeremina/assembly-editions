@@ -4,8 +4,8 @@ import { Body2, Body3, Heading2, Heading3, Heading4, Heading5, MbBody3, MobileH2
 const MainHero = styled.div`
   padding: 80px 0 50px 0;
   @media only screen and (max-width: 769px) {
-    padding-bottom: 40px;
-    padding-top: 112px;
+    padding-bottom: 80px;
+    padding-top: 116px;
   }
   ${(props) =>
     props.isStandardPage &&
@@ -25,8 +25,15 @@ const HeroSection = styled.div`
     color: var(--title);
     margin: 0;
   }
+  .button-group {
+    align-items: center;
+    justify-content: center;
+    @media only screen and (max-width: 449px) {
+      margin-top: 28px;
+    }
+  }
   @media only screen and (max-width: 769px) {
-    padding: 36px 0 40px;
+    padding: 0;
     h1 {
       ${MobileH2}
     }

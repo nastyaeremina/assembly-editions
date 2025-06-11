@@ -33,7 +33,7 @@ export default function StandardHero({ type, data }) {
         return (
           <HomeHeroSection
             title={data?.heroTitle}
-            body={data?.heroBody}
+            body={data?.heroDescription}
             image1={data?.banner1?.url}
             isLight={true}
             isStandardPage={true}
