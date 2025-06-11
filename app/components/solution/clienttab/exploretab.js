@@ -125,6 +125,7 @@ export default function ExploreTab({
               primaryButtonText={primaryButtonText}
               secondaryButtonLink={secondaryButtonLink}
               secondaryButtonText={secondaryButtonText}
+              className={'button-group'}
             />
           </TopView>
         </Container>

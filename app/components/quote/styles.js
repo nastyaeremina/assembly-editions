@@ -113,7 +113,7 @@ const QuoteTxt = styled.div`
     }
   }
   @media only screen and (max-width: 768px) {
-    padding: 30px 28px;
+    padding: 20px;
     p {
       ${MobileH3};
       padding-bottom: 0px;
@@ -122,7 +122,7 @@ const QuoteTxt = styled.div`
 `;
 const QuoteSubTxt = styled.div`
   span {
-    margin: 0 0 5px 0;
+    margin: 0 0 4px 0;
     display: block;
     ${ButtonText};
     color: var(--title);
@@ -136,6 +136,7 @@ const QuoteSubTxt = styled.div`
     span {
       font-size: 16px;
       line-height: 24px;
+      margin: 0;
     }
     p {
       font-size: 16px;

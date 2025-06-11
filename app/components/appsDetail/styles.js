@@ -148,6 +148,15 @@ const ImageSection = styled.div`
   @media only screen and (max-width: 449px) {
     margin: 0 -24px;
     width: unset;
+    &.single-image-display {
+      margin: 0;
+      border: 0.5px solid var(--platinum-gray);
+      border-radius: 4px;
+      overflow: hidden;
+      img {
+        border: none;
+      }
+    }
     img {
       border-radius: 0px;
       border: 1px var(--border);

@@ -24,7 +24,8 @@ export default function TabsHorizontal({ heroSectionData, featuresList }) {
     if (mainSectionRef.current) {
       setCurrentHeight(mainSectionRef.current.offsetHeight);
     }
-  }, [selectedTab, featuresList]);
+  }, [selectedTab, featuresList, currentHeight]);
+
   const renderMainSection = useMemo(() => {
     return (
       <MainSection id='mainSection' ref={mainSectionRef}>

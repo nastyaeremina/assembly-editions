@@ -338,7 +338,7 @@ const ImageView = styled.div`
   position: relative;
   background-color: var(--white);
   z-index: 2;
-  height: 633px;
+  display: flex;
   img {
     object-fit: cover;
     border-radius: 30px;
@@ -386,7 +386,7 @@ const MobileView = styled.div`
     position: relative;
     background-color: var(--white);
     z-index: 2;
-    height: 354px;
+    display: flex;
     margin-left: 70px;
     img {
       object-fit: cover;

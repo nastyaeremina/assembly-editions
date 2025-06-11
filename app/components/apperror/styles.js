@@ -5,6 +5,9 @@ const AppMain = styled.div`
   text-align: center;
   margin: auto;
   width: 100%;
+  img {
+    width: calc(100% - 48px);
+  }
   h4 {
     ${Body1};
     color: var(--dark-green);

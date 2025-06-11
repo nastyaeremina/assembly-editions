@@ -35,7 +35,7 @@ function AppImageSection({ imageList }) {
   return (
     <>
       <ImageSlider>
-        <ImageSection isHide={imageList?.length <= 1}>
+        <ImageSection isHide={imageList?.length <= 1} className={imageList?.length === 1 ? 'single-image-display' : ''}>
           <ArrowIcon className='left-arrow' onClick={goToPreviousImage}>
             <SVGComponent name='left-arrow-icon' width='16' height='16' viewBox='16' />
           </ArrowIcon>

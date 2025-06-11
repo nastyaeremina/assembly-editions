@@ -286,7 +286,7 @@ const InputWrap = styled.form`
     top: 15px;
     left: 20px;
   }
-  @media only screen and (max-width: 820px) {
+  @media only screen and (max-width: 991px) {
     div {
       position: relative;
       right: 0;

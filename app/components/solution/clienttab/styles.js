@@ -38,6 +38,9 @@ const TopView = styled.div`
     color: var(--body);
     margin: 16px 0 28px;
   }
+  .button-group {
+    margin-bottom: 28px;
+  }
   @media only screen and (max-width: 749px) {
     p {
       ${MbBody3};
@@ -46,7 +49,7 @@ const TopView = styled.div`
 `;
 const BottomSection = styled.div``;
 const SignatureSection = styled.div`
-  padding-top: 40px;
+  padding-top: 12px;
   display: flex;
   align-items: flex-end;
   justify-content: space-between;

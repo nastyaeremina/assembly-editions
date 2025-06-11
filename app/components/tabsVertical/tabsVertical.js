@@ -1,4 +1,4 @@
-import React, { useLayoutEffect, useMemo, useRef, useState } from 'react';
+import React, { useCallback, useLayoutEffect, useRef, useState } from 'react';
 import SubHeroComponent from '../Hero/subHero';
 import { Container } from '../../styles/commonStyles';
 import {
@@ -24,18 +24,29 @@ export default function TabsVertical({ heroSectionData, featuresList }) {
   const [currentHeight, setCurrentHeight] = useState(0);
   const [currentCaptionHeight, setCurrentCaptionHeight] = useState();
   const mainSectionRef = useRef(null);
+  const responsiveMainSectionRef = useRef(null);
   const captionRef = useRef(null);
+
   useLayoutEffect(() => {
     if (mainSectionRef.current) {
       setCurrentHeight(mainSectionRef.current.offsetHeight);
     }
+    if (responsiveMainSectionRef.current) {
+      setCurrentHeight(responsiveMainSectionRef.current.offsetHeight);
+    }
     if (captionRef.current) {
       setCurrentCaptionHeight(captionRef.current.offsetHeight);
     }
-  }, [selectedTab, featuresList]);
-  const renderMainSection = useMemo(
-    () => (
-      <MainSection id='mainSection' ref={mainSectionRef}>
+  }, [selectedTab, featuresList, currentHeight]);
+
+  /**
+   * @param {Object} props - The props object.
+   * @param {React.RefObject} props.ref - The ref object.
+   * @returns {React.ReactNode} The rendered main section.
+   */
+  const renderMainSection = useCallback(
+    ({ref}) => (
+      <MainSection id='mainSection' ref={ref}>
         <BgImage>
           {featuresList.slice(0, 3).map((item, index) => (
             <Image
@@ -72,6 +83,7 @@ export default function TabsVertical({ heroSectionData, featuresList }) {
     ),
     [featuresList, selectedTab]
   );
+
   return (
     <Container>
       <TabsVerticalSection>
@@ -93,14 +105,14 @@ export default function TabsVertical({ heroSectionData, featuresList }) {
                   <ResponsiveImageSection
                     className={index === selectedTab && 'responsive-image'}
                     style={{ height: index === selectedTab && currentHeight }}>
-                    {index === selectedTab && renderMainSection}
+                    {index === selectedTab && renderMainSection({ ref: responsiveMainSectionRef })}
                   </ResponsiveImageSection>
                 </>
               );
             })}
           </TabsSection>
         </TabsVerticalLeft>
-        <TabsVerticalRight>{renderMainSection}</TabsVerticalRight>
+        <TabsVerticalRight>{renderMainSection({ ref: mainSectionRef })}</TabsVerticalRight>
       </TabsVerticalSection>
     </Container>
   );

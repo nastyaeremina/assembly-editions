@@ -110,8 +110,6 @@ const FaqTitle = styled.div`
   margin-bottom: 20px;
   @media only screen and (max-width: 991px) {
     h2 {
-      font-size: 28px;
-      line-height: 31px;
       ${(props) =>
         props.isGuideFAQ &&
         css`
@@ -155,10 +153,10 @@ const DivFAQ = styled.div`
           height: 20px;
         }
         @media only screen and (max-width: 449px) {
-          padding: 40px 0px 0;
+          padding: 28px 0px 0;
           > div > svg {
-            width: 24px;
-            height: 24px;
+            width: 20px;
+            height: 20px;
           }
         }
       `}
@@ -166,6 +164,13 @@ const DivFAQ = styled.div`
       .faq-copy-icon {
         opacity: 1;
         transition: all 0.3s;
+      }
+    }
+    @media only screen and (max-width: 449px) {
+      padding: 28px 0 0;
+      > div > svg {
+        width: 20px;
+        height: 20px;
       }
     }
   }
@@ -195,7 +200,8 @@ const DivFAQ = styled.div`
     opacity: 0;
     transition: all 0.6s;
   }
-  @media only screen and (max-width: 426px) {
+  @media only screen and (max-width: 449px) {
+    padding-bottom: 28px;
     svg {
       height: 24px;
       width: 24px;
@@ -211,6 +217,9 @@ const DivFAQ = styled.div`
   }
   :last-child {
     border-bottom: none;
+    @media only screen and (max-width: 449px) {
+      padding-bottom: 40px;
+    }
   }
 `;
 const FAQAnswer = styled.div`

@@ -42,6 +42,7 @@ const AutomationHero = styled.div`
     }
   }
 `;
+
 const Title = styled.div`
   ${Heading2}
   text-align: center;

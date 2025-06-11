@@ -1083,10 +1083,11 @@ const Last = styled.div`
 
 const LastDroplist = styled.div`
   border-top: 1px solid var(--dark-green);
+  border-right: 1px solid var(--dark-green);
   padding: 12px 20px;
-  width: 100%;
-  :nth-child(2) {
-    border-left: 1px solid var(--dark-green);
+  width: calc(100% + 1px);
+  :last-child {
+    border-right: none;
   }
   @media only screen and (max-width: 991px) {
     ${(props) =>
