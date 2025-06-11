@@ -35,7 +35,7 @@ export default function Blogcard(props) {
                   <circle cx='1.5' cy='1.5' r='1.5' fill='#757575' />
                 </svg>
               )}
-              {!isEmpty(props?.read) && <li>{`${props?.read} min read`}</li>}
+              {!isEmpty(props?.read) && <li>{`${props?.read}`}</li>}
             </PostDetail>
             <Par>{props?.desc}</Par>
           </Textarea>
