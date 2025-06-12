@@ -5,12 +5,14 @@ import { getAllUniversityVideoWithSlug } from '../../app/lib/contentful-universi
 import { getAllAuthorWithSlug, getAllBlogWithSlug, getAllTagWithSlug } from '../../app/lib/blog-content';
 import { getUpdatesWithSlug } from '../../app/lib/updates-content';
 import { getAllComparisonWithSlug } from '../../app/lib/contentful-comparison';
-import { CURRENT_SITE_URL, PER_UPDATE_PAGE_POST } from '../../app/constants/constant';
+import { CURRENT_SITE_URL, HOME_VARIANT_CONTENT_ID, PER_UPDATE_PAGE_POST } from '../../app/constants/constant';
 import { getAllAutomationsWithSlug } from '../../app/lib/contentful-automation';
 import { getAllGlossaryContent } from '../../app/lib/contentful-glossary';
 import { getAllGuideArticleSlug } from '../../app/lib/contentful-guide';
 import { getAllTemplatesWithSlug } from '../../app/lib/contentful-template';
 import { getAllStandardPageWithSlug } from '../../app/lib/contentful-standardPage';
+import { getCommonContent } from '../../app/lib/contentful-common';
+import { getAllVariantEntryIds, parseVariants } from '../../app/helpers/helpers';
 
 export async function getServerSideProps(ctx) {
   const appsPost = (await getAllPartnerAppsWithSlug()) ?? []; // appa
@@ -26,6 +28,7 @@ export async function getServerSideProps(ctx) {
   const guidesPost = (await getAllGuideArticleSlug()) ?? []; // guide
   const templatesPost = await getAllTemplatesWithSlug(); //templates
   const standardPagesPost = (await getAllStandardPageWithSlug()) || []; //standard pages
+ 
 
   const appsPostsPathList = appsPost?.map((item) => `apps/directory/${item?.slug}`);
   const jobsPostsPathList = jobPosts?.map((item) => `jobs/${item?.slug}`);
@@ -39,8 +42,28 @@ export async function getServerSideProps(ctx) {
   const glossaryPostsPathList = glossarysPost?.map((item) => `glossary/${item?.slug}`);
   const guidePostsPathList = guidesPost?.map((item) => `guide/${item?.slug}`);
   const templatePostsPathList = templatesPost?.map((item) => `templates/${item?.slug}`);
-  const standardPagesPathList = standardPagesPost?.map((item) => `${item?.slug}`);
-
+  let standardPagesPathList = standardPagesPost?.map((item) => `${item?.slug}`);
+  
+  const abTestContent = await getCommonContent(HOME_VARIANT_CONTENT_ID);
+  let allExperimentPaths = [];
+  if(abTestContent !== null) {
+    const abTestExperiment = parseVariants(abTestContent);
+    // Create array of page paths from experiments
+    // Note: In A/B testing, multiple variants can have the same page path
+    // For example: variant-a and variant-b can both be for "/pricing"
+    allExperimentPaths = abTestExperiment.map((item) => item.pagePath.trim('/'));
+    
+    // Get all variant entry IDs to exclude them from standard pages
+    // This prevents duplicate entries in sitemap since A/B test variants
+    // should share the same URL/slug as their original page
+    const allVariantIds = getAllVariantEntryIds(abTestExperiment);
+    
+    // Remove variant entries from standard pages list
+    // This ensures we don't have duplicate URLs in the sitemap
+    // For example: if we have a pricing page and its A/B test variants,
+    // we only want the main pricing page URL in the sitemap
+    standardPagesPathList = standardPagesPost.filter((item) => !allVariantIds.includes(item.sys.id));
+  }
   let allUpdateWithPagination = [];
   const totalCount = updatesPost?.meta?.pagination?.total;
   const totalPageCount = Math.ceil(totalCount / PER_UPDATE_PAGE_POST);
@@ -81,11 +104,14 @@ export async function getServerSideProps(ctx) {
     glossaryPostsPathList,
     guidePostsPathList,
     templatePostsPathList,
-    standardPagesPathList
+    standardPagesPathList,
+    allExperimentPaths
   );
+  // make finallist unique
+  const uniqueFinalList = [...new Set(finalList)];
   return getServerSideSitemapIndex(
     ctx,
-    finalList?.map((item) => `${CURRENT_SITE_URL}/${item}`)
+    uniqueFinalList?.map((item) => `${CURRENT_SITE_URL}/${item}`)
   );
 }
 

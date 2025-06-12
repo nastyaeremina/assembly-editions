@@ -379,6 +379,7 @@ export const SOLUTION_TYPE = {
   INDUSTRY: 'Industry',
   USE_CASE: 'Use case'
 };
+export const HOME_VARIANT_CONTENT_ID = '2zuSDy7dfLvetT9Ka7YNrC';
 export const HOME_CONTENT_ID = '1cPG7VsMO1XCahxAnz3rne';
 export const HOME_HYBIRD_CONTENT_ID = '1w6IZ3ILFiLQAbCmjHQX6Q';
 export const HOME_INTERNAL_CONTENT_ID = '2XZ0KqhzxydyrIOQtIi2rv';
@@ -405,6 +406,7 @@ export const TOP_BAR_CONTENT_ID = '4dKbgVv11cTh8aJaZ8VBP1';
 export const CTA_CONTENT_ID = '3nv4WphdHbk3tIU88tLbbo';
 export const BOOK_DEMO_ID = '2VEqFdR8kt9HMtIm3EeQhO';
 export const SOLUTION_CONTENT_ID = '2lhiF03KbI8ck0GuZDzXov';
+export const COMPARISON_PAGE_ID = '3I3r1S5xb6uAFblwWt9UlC';
 
 export const HOME_SEO_ID = '2jwCsXd1zP2HEDJlQCIKUG';
 export const APP_SEO_ID = '1YuaTMgNnzacoBjygKg4nk';

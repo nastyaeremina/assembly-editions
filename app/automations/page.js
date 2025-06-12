@@ -6,16 +6,27 @@ import { CURRENT_SITE_URL, HEADER_LIST } from '../constants/constant';
 import FAQ from '../components/faq/faq';
 import { getFAQsData } from '../services/faq';
 import AggregateRating from '../components/aggregateRating';
+import { getABTestInfoFromCookie } from '../helpers/serverSideHelpers';
 import { getPageAutomationDetail } from './../lib/contentful-automation';
 import { getSEOData } from './../helpers/helpers';
 import { AUTOMATION_ID } from './../constants/constant';
 
 async function getContent() {
-  return await getPageAutomationDetail(AUTOMATION_ID);
+  const {
+    contentId,
+    abTestContentLabel,
+    abTestExperimentName
+  } = getABTestInfoFromCookie({
+    cookieKey: 'automation',
+    fallbackContentId: AUTOMATION_ID
+  });
+
+  const details = await getPageAutomationDetail(contentId);
+  return { details, abTestContentLabel, abTestExperimentName };
 }
 
 export async function generateMetadata({ params, searchParams }, parent) {
-  const data = await getContent();
+  const { details:data } = await getContent();
   const seoData = await getSEOData({ id: data?.seoMetadata?.sys?.id, data: data?.seoMetadata });
   seoData.alternates = { canonical: `${CURRENT_SITE_URL}/automations` };
 
@@ -23,12 +34,12 @@ export async function generateMetadata({ params, searchParams }, parent) {
 }
 
 export default async function Automation() {
-  const details = await getContent();
+  const {details, abTestContentLabel, abTestExperimentName} = await getContent();
   const faqData = await getFAQsData({ data: details?.faQsCollection?.items });
   return (
     <>
       <AggregateRating data={details?.seoMetadata} />
-      <Layout>
+      <Layout abTestContentLabel={abTestContentLabel} abTestExperimentName={abTestExperimentName}>
         <Navbar isEnterPrice headerIndex={HEADER_LIST.ENTERPRICE} />
         <AutomationPage details={details} />
         <FAQ faqList={faqData} />

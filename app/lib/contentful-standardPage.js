@@ -1,4 +1,5 @@
 import { CONTENTFUL_API_TAG } from '../constants/constant';
+import { isEmpty } from '../helpers/helpers';
 import { fetchGraphQL } from './contentful';
 import { POST_GRAPHQL_SEOMETADATA_FIELDS } from './contentful-seo';
 
@@ -279,10 +280,11 @@ export async function getSectionTabContent(id, preview) {
   return entries?.data?.sectionTab || {};
 }
 
-export async function getStandardPageContent(slug, preview) {
+export async function getStandardPageContent({slug,id, preview}) {
+  const condition =isEmpty(id) ? `where:{slug:"${slug}"}` : `where:{sys:{id:"${id}"}}`;
   const entries = await fetchGraphQL(
     `query {
-          pageTemplateCollection(where:{slug:"${slug}"},limit:1,preview: ${preview ? 'true' : 'false'}) {
+          pageTemplateCollection(${condition},limit:1,preview: ${preview ? 'true' : 'false'}) {
           items {
            ${POST_GRAPHQL_STANDARD_PAGE_LIST_FIELDS}
           }
@@ -300,6 +302,9 @@ export async function getAllStandardPageWithSlug() {
       pageTemplateCollection(preview: false) {
         items {
          slug
+         sys{
+          id
+         }
         }
       }
     }`,

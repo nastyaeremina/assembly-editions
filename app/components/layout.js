@@ -2,6 +2,7 @@ import { FOOTER_CONTENT_ID } from '../constants/constant';
 import { isEmpty } from '../helpers/helpers';
 import { getCommonContent } from '../lib/contentful-common';
 import Footer from './footer/footer';
+import Analytics from './analytics/analytics';
 
 export async function getContent() {
   const footerData = (await getCommonContent(FOOTER_CONTENT_ID)) ?? [];
@@ -14,7 +15,13 @@ export async function getContent() {
   return { footerData: [] };
 }
 function getFooterData() {}
-export default async function Layout({ children = <></>, isGlossary = false }) {
+
+export default async function Layout({
+  children,
+  isGlossary = false,
+  abTestContentLabel = '',
+  abTestExperimentName = ''
+}) {
   const { footerData } = await getContent();
 
   return (
@@ -23,6 +30,9 @@ export default async function Layout({ children = <></>, isGlossary = false }) {
         <main>{children}</main>
       </div>
       {!isGlossary && <Footer footerData={footerData} />}
+      {!isEmpty(abTestExperimentName) && !isEmpty(abTestContentLabel) && (
+        <Analytics experimentName={abTestExperimentName} contentLabel={abTestContentLabel} />
+      )}
     </>
   );
 }

@@ -6,9 +6,20 @@ import GlossaryPage from '../components/PageComponent/Glossary/glossarypage';
 import { getAllGlossaryContent, getGlossaryPageContent } from '../lib/contentful-glossary';
 import { getSEOData } from '../helpers/helpers';
 import AggregateRating from '../components/aggregateRating';
+import { getABTestInfoFromCookie } from '../helpers/serverSideHelpers';
 
 async function getContent() {
-  const data = await getGlossaryPageContent(GLOSSARY_PAGE_ID);
+
+  const {
+    contentId,
+    abTestContentLabel,
+    abTestExperimentName
+  } = getABTestInfoFromCookie({
+    cookieKey: 'glossary',
+    fallbackContentId: GLOSSARY_PAGE_ID
+  });
+
+  const data = await getGlossaryPageContent(contentId);
 
   const definations = await getAllGlossaryContent();
   let newList = [];
@@ -34,7 +45,7 @@ async function getContent() {
     item.list.sort((x, y) => x.name.localeCompare(y.name));
   });
 
-  return { glossaryList: newList, seoMetadata: data?.seoMetadata };
+  return { glossaryList: newList, seoMetadata: data?.seoMetadata, abTestContentLabel, abTestExperimentName };
 }
 
 export async function generateMetadata({ params, searchParams }, parent) {
@@ -45,11 +56,11 @@ export async function generateMetadata({ params, searchParams }, parent) {
   return seoData;
 }
 export default async function Glossary() {
-  const { glossaryList, seoMetadata } = await getContent();
+  const { glossaryList, seoMetadata, abTestContentLabel, abTestExperimentName } = await getContent();
   return (
     <>
       <AggregateRating data={seoMetadata} />
-      <Layout>
+      <Layout abTestContentLabel={abTestContentLabel} abTestExperimentName={abTestExperimentName}>
         <Navbar />
         <GlossaryPage data={glossaryList} />
       </Layout>

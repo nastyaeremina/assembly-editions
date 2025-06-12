@@ -3,18 +3,32 @@ import Navbar from './components/navbar/navbar';
 import { CURRENT_SITE_URL, HOME_CLIENT_DARK_ID } from './constants/constant';
 import { getHomeContent } from './lib/contentful-home';
 import AggregateRating from './components/aggregateRating';
-
+import { getABTestInfoFromCookie } from './helpers/serverSideHelpers';
 import HomePage from './components/Home/homepage/homepage';
-import { createArrayWithFixedLength, getSEOData, removeEmptyElement } from './helpers/helpers';
+import { createArrayWithFixedLength, getSEOData, isEmpty, removeEmptyElement } from './helpers/helpers';
 import NewCTA from './components/cta/newCTA';
 import { COPILOT_TWITTER_LINK } from './constants/externalLinks';
 
 async function getContent() {
-  return await getHomeContent(HOME_CLIENT_DARK_ID);
+  const {
+    contentId,
+    abTestContentLabel,
+    abTestExperimentName
+  } = getABTestInfoFromCookie({
+    cookieKey: 'home',
+    fallbackContentId: HOME_CLIENT_DARK_ID
+  });
+
+  const content = await getHomeContent(contentId);
+  return {
+    content,
+    abTestContentLabel,
+    abTestExperimentName
+  };
 }
 
 export async function generateMetadata({ params, searchParams }, parent) {
-  const data = await getContent();
+  const { content: data } = await getContent();
   const seoData = await getSEOData({ id: data.seoMetadata.sys.id, data: data.seoMetadata });
   seoData.alternates = { canonical: CURRENT_SITE_URL };
 
@@ -22,7 +36,7 @@ export async function generateMetadata({ params, searchParams }, parent) {
 }
 
 export default async function Home() {
-  const content = await getContent();
+  const { content, abTestContentLabel, abTestExperimentName } = await getContent();
   const jsonLd = {
     '@context': 'https://schema.org',
     '@type': 'Organization',
@@ -45,9 +59,9 @@ export default async function Home() {
     <>
       <AggregateRating id={content?.seoMetadata.sys.id} />
       <script type='application/ld+json' dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
-      <Layout>
+      <Layout abTestContentLabel={abTestContentLabel} abTestExperimentName={abTestExperimentName}>
         <Navbar />
-        <HomePage content={content} testimonialTableData={testimonialTableData}></HomePage>
+        <HomePage content={content} testimonialTableData={testimonialTableData} />
         <NewCTA
           title={content.ctaSection.title}
           description={content.ctaSection.description}

@@ -12,4 +12,4 @@ export const isDev = () => {
 
 export const NO_OF_JOBS_PER_PAGE = 50;
 
-export const COOKIE_NAME = 'ab-home-hero-client'
+export const COOKIE_NAME = 'ab-test'

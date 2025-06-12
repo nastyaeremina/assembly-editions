@@ -4,7 +4,8 @@ import Layout from '../components/layout';
 import Navbar from '../components/navbar/navbar';
 import AggregateRating from '../components/aggregateRating';
 import NewCTA from '../components/cta/newCTA';
-import { CURRENT_SITE_URL } from '../constants/constant';
+import { COMPARISON_PAGE_ID, CURRENT_SITE_URL } from '../constants/constant';
+import { getABTestInfoFromCookie } from '../helpers/serverSideHelpers';
 import {
   getAllComparisonCategories,
   getAllCompetitor,
@@ -12,17 +13,26 @@ import {
 } from './../lib/contentful-comparison';
 
 async function getContent() {
+  const {
+    contentId,
+    abTestContentLabel,
+    abTestExperimentName
+  } = getABTestInfoFromCookie({
+    cookieKey: 'comparison',
+    fallbackContentId: COMPARISON_PAGE_ID
+  });
+
   const categories = (await getAllComparisonCategories()) ?? [];
 
   const featuredCompetitorList = await getAllCompetitor();
-  const details = await getMasterComparisonDetail();
+  const details = await getMasterComparisonDetail({id: contentId});
 
   const comparisonListWithCategory = categories.map((category) => ({
     category,
     items: featuredCompetitorList.filter((item) => item.category === category)
   }));
 
-  return { featuredCompetitorList: comparisonListWithCategory, details };
+  return { featuredCompetitorList: comparisonListWithCategory, details, abTestContentLabel, abTestExperimentName };
 }
 
 export async function generateMetadata({ params, searchParams }, parent) {
@@ -34,12 +44,12 @@ export async function generateMetadata({ params, searchParams }, parent) {
 }
 
 export default async function Comparison() {
-  const { featuredCompetitorList, details } = await getContent();
+  const { featuredCompetitorList, details, abTestContentLabel, abTestExperimentName } = await getContent();
 
   return (
     <>
       <AggregateRating data={details?.seoMetadata} />
-      <Layout>
+      <Layout abTestContentLabel={abTestContentLabel} abTestExperimentName={abTestExperimentName}>
         <Navbar />
         <ComparisonPage featuredCompetitorList={featuredCompetitorList} details={details} />
         {!isEmpty(details.ctaSection) && (

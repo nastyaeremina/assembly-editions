@@ -6,12 +6,25 @@ import Layout from './../components/layout';
 import Navbar from './../components/navbar/navbar';
 import { CURRENT_SITE_URL, JOB_PAGE_ID } from './../constants/constant';
 import { extractTableData, getSEOData } from './../helpers/helpers';
-import { NO_OF_JOBS_PER_PAGE } from './../lib/constants';
+import { getABTestInfoFromCookie } from './../helpers/serverSideHelpers';
+import {  NO_OF_JOBS_PER_PAGE } from './../lib/constants';
 import { getJobDetail } from './../lib/contentful-jobBlogPosts';
 import { getAllJobs } from './../lib/contentful-jobsListing';
 
 async function getContent() {
-  const details = (await getJobDetail(JOB_PAGE_ID)) ?? {};
+  const {
+    contentId,
+    abTestContentLabel,
+    abTestExperimentName
+  } = getABTestInfoFromCookie({
+    cookieKey: 'jobs',
+    fallbackContentId: JOB_PAGE_ID
+  });
+
+  //get job detail
+  const details = (await getJobDetail(contentId)) ?? {};
+
+  //get job images list
   const jobImagesList = details.jobImagesCollection?.items ?? [];
   delete details.jobImagesCollection;
   let allPosts = [];
@@ -40,8 +53,8 @@ async function getContent() {
       jobList?.push(newItem);
     }
   });
-
-  return { jobList, jobImagesList, details };
+  
+  return { jobList, jobImagesList, details, abTestContentLabel, abTestExperimentName };
 }
 
 export async function generateMetadata() {
@@ -54,7 +67,7 @@ export async function generateMetadata() {
 }
 
 export default async function Jobs() {
-  const { details, jobList, jobImagesList } = await getContent();
+  const { details, jobList, jobImagesList, abTestContentLabel, abTestExperimentName } = await getContent();
   const faqData = await getFAQsData({ data: details?.faQsCollection?.items });
 
   const jobBlogPostList = extractTableData(details.jobBlogPost.json);
@@ -62,7 +75,7 @@ export default async function Jobs() {
   return (
     <>
       <AggregateRating data={details?.seoMetadata} />
-      <Layout>
+      <Layout abTestContentLabel={abTestContentLabel} abTestExperimentName={abTestExperimentName}>
         <Navbar />
         <JobsPage jobList={jobList} jobImagesList={jobImagesList} jobBlogPostList={jobBlogPostList} details={details} />
         <FAQ faqList={faqData} />

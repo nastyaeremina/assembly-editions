@@ -636,3 +636,123 @@ export function extractTableData(richTextJson) {
     }, {});
   });
 }
+
+/** 
+ * Parses a given markdown string to extract experiment and variant information.
+ * The markdown is expected to contain sections with the heading '#ExperimentName (page path)'
+ * followed by variant entries in the format [ENTRY_ID]<VARIANT_NAME>(WEIGHT)
+ * @param {string} markdown - The markdown string to parse.
+ * @returns {Array} - An array of objects containing experimentName, pagePath, and variants array.
+ */
+export function parseVariants(markdown) {
+  const lines = markdown.split('\n');
+  const experiments = [];
+  let currentExperiment = null;
+
+  for (const line of lines) {
+    const trimmed = line.trim();
+    
+    // Extract experiment name and page path from lines starting with #
+    if (trimmed.startsWith('#')) {
+      // If we have a previous experiment, add it to the results
+      if (currentExperiment) {
+        experiments.push(currentExperiment);
+      }
+      
+      // Parse the new experiment line
+      const match = trimmed.match(/^#(.*?)\s*\((.*?)\)$/);
+      if (match) {
+        currentExperiment = {
+          experimentName: match[1].trim(),
+          pagePath: match[2].trim(),
+          variants: []
+        };
+      }
+      continue;
+    }
+
+    if (trimmed && currentExperiment) {
+      // [ENTRY_ID]<VARIANT_NAME>(WEIGHT)
+      const match = trimmed.match(/^\[([^\]]+)\]<([^>]+)>\((\d+)\)$/);
+      if (match) {
+        const entryId = match[1];
+        const variantName = match[2];
+        const weight = isNaN(parseFloat(match[3])) ? 0 : parseFloat(match[3]);
+        currentExperiment.variants.push({ entryId, variantName, weight });
+      }
+    }
+  }
+
+  // Add the last experiment if it exists
+  if (currentExperiment) {
+    experiments.push(currentExperiment);
+  }
+
+  return experiments;
+}
+
+/**
+ * Generates a cookie name based on the given pathname.
+ * Converts the pathname to a slugified format and appends it to the cookie name.
+ * Examples:
+ * - "/" -> "COOKIE_NAME-home"
+ * - "/pricing" -> "COOKIE_NAME-pricing"
+ * - "/abc/test" -> "COOKIE_NAME-abc-test"
+ * 
+ * @param {string} pathname - The pathname to convert (e.g., "/", "/pricing", "/abc/test")
+ * @returns {string} - The generated cookie name
+ */
+export function getPathCookieName(pathname) {
+  if (!pathname) return '';
+
+  // no need to do this for the home page
+  // Convert pathname to slug format
+  let slug = pathname
+    .replace(/^\/|\/$/g, '') // Remove leading and trailing slashes
+    .replace(/\//g, '-'); // Replace remaining slashes with hyphens
+
+  // If pathname is just "/", set slug to "home"
+  if (!slug) {
+    slug = 'home';
+  }
+
+  // Use stringToSlugyfy for consistent slug formatting
+  slug = stringToSlugyfy(slug);
+
+  // Return the full cookie name
+  return `${COOKIE_NAME}-${slug}`;
+}
+
+/**
+ * Extracts all variant entry IDs from the abTestExperiment array.
+ * 
+ * @param {Array} experiments - Array of experiment objects from parseVariants
+ * @returns {Array} - Array of unique entry IDs from all experiments and their variants
+ */
+export function getAllVariantEntryIds(experiments) {
+  if (!experiments || !Array.isArray(experiments)) return [];
+
+  // Extract all entry IDs from all experiments and their variants
+  const entryIds = experiments.reduce((ids, experiment) => {
+    const variantIds = experiment.variants.map(variant => variant.entryId);
+    return [...ids, ...variantIds];
+  }, []);
+
+  // Return unique entry IDs
+  return [...new Set(entryIds)];
+}
+
+/**
+ * Chooses a variant from an array of variants based on their weight.
+ * 
+ * @param {Array} variants - Array of variant objects with weight property.
+ * @returns {Object} - The chosen variant object.
+ */
+export function chooseVariant(variants) {
+  let n = Math.random() * 100;
+  const variant = variants.find((v) => {
+    if (v.weight >= n) return true;
+    n -= v.weight;
+  });
+  return variant;
+}
