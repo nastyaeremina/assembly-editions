@@ -21,8 +21,11 @@ import CTA from '../cta/newCTA';
 import SimpleSection from '../standardHero/simpleSection/simpleSection';
 import TestimonialTableSection from '../newTestimonial/testimonialTableSection';
 import HighlightSection from '../highlightSection/highlightSection';
+import { draftMode } from 'next/headers';
 
 export default async function StandardPage({ data }) {
+  const { isEnabled } = await draftMode()
+
   const renderComponent = async (componentData) => {
     if (isEmpty(componentData)) return null;
     // eslint-disable-next-line no-underscore-dangle
@@ -35,7 +38,7 @@ export default async function StandardPage({ data }) {
         );
       case 'ComponentFeature':
         if (componentData.sys?.id) {
-          const featureData = (await getFeatureComponentContent(componentData.sys?.id)) ?? {};
+          const featureData = (await getFeatureComponentContent(componentData.sys?.id, isEnabled)) ?? {};
           if (!isEmpty(featureData))
             return (
               <>
@@ -65,13 +68,13 @@ export default async function StandardPage({ data }) {
         return null;
       case 'SectionTab':
         if (componentData.sys?.id) {
-          const tabData = (await getSectionTabContent(componentData.sys?.id)) ?? {};
+          const tabData = (await getSectionTabContent(componentData.sys?.id, isEnabled)) ?? {};
           return !isEmpty(tabData) ? <TabsComponent type={tabData.type} content={tabData} /> : null;
         }
         return null;
       case 'SectionBoxes':
         if (componentData.sys?.id) {
-          const data = (await getSectionBoxesComponentContent(componentData.sys?.id)) ?? {};
+          const data = (await getSectionBoxesComponentContent(componentData.sys?.id, isEnabled)) ?? {};
           const content = [
             {
               header: data?.box1Title,
@@ -117,7 +120,7 @@ export default async function StandardPage({ data }) {
           />
         );
       case 'SectionRedirect':
-        const redirectData = (await getSectionRedirectContent(componentData.sys?.id)) ?? {};
+        const redirectData = (await getSectionRedirectContent(componentData.sys?.id, isEnabled)) ?? {};
         if (isEmpty(redirectData)) return null;
         return (
           <RedirectsComponent
@@ -132,7 +135,7 @@ export default async function StandardPage({ data }) {
         );
       case 'SectionCta':
         if (componentData.sys?.id) {
-          const data = (await getSectionCTAContent(componentData.sys?.id)) ?? {};
+          const data = (await getSectionCTAContent(componentData.sys?.id, isEnabled)) ?? {};
           return !isEmpty(data) ? (
             <CTA
               title={data.title}
@@ -162,7 +165,7 @@ export default async function StandardPage({ data }) {
         );
       case 'SectionTestimonialGroup':
         if (componentData.sys?.id) {
-          const data = (await getSectionTestimonialGroupContent(componentData.sys?.id)) ?? {};
+          const data = (await getSectionTestimonialGroupContent(componentData.sys?.id, isEnabled)) ?? {};
           return !isEmpty(data) ? (
             <TestimonialTableSection
               title={data.title}
@@ -178,7 +181,7 @@ export default async function StandardPage({ data }) {
         }
         return null;
       case 'SectionHighlight':
-        const data = (await getSectionHighlightContent(componentData.sys?.id)) ?? {};
+        const data = (await getSectionHighlightContent(componentData.sys?.id, isEnabled)) ?? {};
         if (isEmpty(data?.content?.json)) return null;
         return (
           <>

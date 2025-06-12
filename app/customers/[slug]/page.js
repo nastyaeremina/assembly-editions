@@ -1,5 +1,6 @@
 import React from 'react';
 import { notFound } from 'next/navigation';
+import { draftMode } from 'next/headers';
 import Layout from '../../components/layout';
 import Navbar from '../../components/navbar/navbar';
 import { getCaseStudyDetail } from '../../lib/contentful-casestudies';
@@ -10,7 +11,8 @@ import AggregateRating from '../../components/aggregateRating';
 import { CURRENT_SITE_URL } from '../../constants/constant';
 
 async function getContent({ slug }) {
-  const details = await getCaseStudyDetail({ slug });
+  const { isEnabled } = await draftMode()
+  const details = await getCaseStudyDetail({ slug, isEnabled });
   return details;
 }
 

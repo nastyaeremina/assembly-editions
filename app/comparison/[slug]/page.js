@@ -1,4 +1,5 @@
 import { notFound } from 'next/navigation';
+import { draftMode } from 'next/headers';
 import Layout from '../../components/layout';
 import Navbar from '../../components/navbar/navbar';
 import { getComparisonDetail } from '../../lib/contentful-comparison';
@@ -10,7 +11,8 @@ import NewCTA from '../../components/cta/newCTA';
 import { CURRENT_SITE_URL } from '../../constants/constant';
 
 async function getContent({ slug }) {
-  const details = (await getComparisonDetail(slug)) ?? [];
+  const { isEnabled } = await draftMode()
+  const details = (await getComparisonDetail(slug, isEnabled)) ?? [];
   return details;
 }
 

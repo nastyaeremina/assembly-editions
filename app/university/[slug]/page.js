@@ -1,4 +1,5 @@
 import { notFound } from 'next/navigation';
+import { draftMode } from 'next/headers';
 import Layout from '../../components/layout';
 import Navbar from '../../components/navbar/navbar';
 import { getAllUniversityVideos, getUniversityVideoDetail } from '../../lib/contentful-universityVideos';
@@ -8,12 +9,13 @@ import UniversityDetailPage from '../../components/PageComponent/University/univ
 import { CURRENT_SITE_URL } from '../../constants/constant';
 
 async function getContent({ slug }) {
+  const { isEnabled } = await draftMode()
   let allPosts = [];
   let data = [];
   let page = 0;
   do {
     const skip = page * 100;
-    data = (await getAllUniversityVideos(skip)) || [];
+    data = (await getAllUniversityVideos(skip, isEnabled)) || [];
     allPosts = allPosts.concat(data);
 
     if (data?.length !== 100) break;
@@ -21,7 +23,7 @@ async function getContent({ slug }) {
     else page++;
   } while (data?.length !== 0);
 
-  const universityVideoDetail = (await getUniversityVideoDetail(slug)) || {};
+  const universityVideoDetail = (await getUniversityVideoDetail(slug, isEnabled)) || {};
 
   const relatedVideos = allPosts
     ?.filter(

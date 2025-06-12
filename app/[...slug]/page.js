@@ -1,4 +1,5 @@
 import { notFound } from 'next/navigation';
+import { draftMode } from 'next/headers'
 import Layout from '../components/layout';
 import Navbar from '../components/navbar/navbar';
 import WeeklyHero from '../components/weeklyhero/weeklyhero';
@@ -35,7 +36,8 @@ async function getContent({ slug }) {
   try {
     // Combine slug segments into a single path
     const combinedSlug = slug.join('/');
-    
+    const { isEnabled } = await draftMode()
+
     const {
       contentId,
       abTestContentLabel,
@@ -62,9 +64,9 @@ async function getContent({ slug }) {
     // If not a product demo page, try to get standard page content
     // If we have a variant ID, use it to fetch the variant content
     // Otherwise, fetch content by slug
-    const standardPageContent = isEmpty(contentId)
-      ? await getStandardPageContent({ slug: combinedSlug })
-      : await getStandardPageContent({ id: contentId, slug: combinedSlug }) ?? {};
+    const standardPageContent = isEmpty(contentId)|| isEnabled
+      ? await getStandardPageContent({ slug: combinedSlug, preview: isEnabled })
+      : await getStandardPageContent({ id: contentId, slug: combinedSlug, preview: isEnabled }) ?? {};
     
     // If we found standard page content, return it with A/B test information
     if (!isEmpty(standardPageContent)) {

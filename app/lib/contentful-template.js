@@ -114,16 +114,16 @@ export async function getTemplateHomeContent(id, preview) {
   return entries?.data?.templateHome;
 }
 
-export async function getTemplateDetailContent({ slug }) {
+export async function getTemplateDetailContent({ slug, preview }) {
   const entries1 = await fetchGraphQL(
     `query {
-      templateCollection(where:{slug:"${slug}"},limit:1) {
+      templateCollection(where:{slug:"${slug}"},limit:1,preview: ${preview ? 'true' : 'false'}) {
         items {
           ${POST_GRAPHQL_TEMPLATE_DETAIL_FIELDS}       
          }
       }
     }`,
-    false,
+    preview,
     [CONTENTFUL_API_TAG.TEMPLATE]
   );
 

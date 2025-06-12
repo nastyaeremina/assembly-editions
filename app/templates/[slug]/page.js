@@ -1,4 +1,5 @@
 import { notFound } from 'next/navigation';
+import { draftMode } from 'next/headers';
 import Layout from '../../components/layout';
 import Navbar from '../../components/navbar/navbar';
 import { getTemplateDetailContent } from '../../lib/contentful-template';
@@ -11,7 +12,8 @@ import AggregateRating from '../../components/aggregateRating';
 import { CURRENT_SITE_URL } from '../../constants/constant';
 
 async function getTemplateDetail({ slug }) {
-  return (await getTemplateDetailContent({ slug })) ?? {};
+  const { isEnabled } = await draftMode()
+  return (await getTemplateDetailContent({ slug, preview: isEnabled })) ?? {};
 }
 
 export async function generateMetadata({ params }) {

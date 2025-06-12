@@ -1,12 +1,14 @@
 import React from 'react';
 import { notFound } from 'next/navigation';
+import { draftMode } from 'next/headers';
 import GuidePage from '../../components/PageComponent/GuideModule/guidePage';
 import { getSEOData, isEmpty } from '../../helpers/helpers';
 import { getArticleData } from '../../lib/contentful-guide';
 import { CURRENT_SITE_URL } from '../../constants/constant';
 
 async function getContent(slug) {
-  const articleData = (await getArticleData(slug)) ?? {};
+  const { isEnabled } = await draftMode()
+  const articleData = (await getArticleData(slug, isEnabled)) ?? {};
   return { articleData };
 }
 

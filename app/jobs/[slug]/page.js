@@ -1,4 +1,5 @@
 import { notFound } from 'next/navigation';
+import { draftMode } from 'next/headers'
 import Layout from '../../components/layout';
 import Navbar from '../../components/navbar/navbar';
 import { getSEOData, isEmpty } from '../../helpers/helpers';
@@ -7,7 +8,8 @@ import JobDetailPage from '../../components/PageComponent/Jobs/jobDetailPage';
 import { CURRENT_SITE_URL } from '../../constants/constant';
 
 async function getContent({ slug }) {
-  const data = (await getJobDetails(slug)) || {};
+  const { isEnabled } = await draftMode()
+  const data = (await getJobDetails(slug, isEnabled)) || {};
   return data;
 }
 export async function generateMetadata({ params }) {

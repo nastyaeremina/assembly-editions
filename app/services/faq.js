@@ -1,3 +1,4 @@
+import { draftMode } from 'next/headers';
 import { PER_API_LIMIT_FOR_FAQ_SECTION } from '../constants/constant';
 import { getFAQData } from '../lib/contentful-faq';
 
@@ -8,6 +9,7 @@ import { getFAQData } from '../lib/contentful-faq';
  */
 export async function getFAQsData({ data: faqData }) {
   try {
+    const { isEnabled } = await draftMode()
     let posts = []; // An array to store the final result (FAQ data).
     let allPosts = []; // An array to accumulate all retrieved FAQ data.
 
@@ -20,7 +22,7 @@ export async function getFAQsData({ data: faqData }) {
     for (let i = 0; i < dataIdList.length; i += PER_API_LIMIT_FOR_FAQ_SECTION) {
       const batch = dataIdList.slice(i, i + PER_API_LIMIT_FOR_FAQ_SECTION);
       // Create promises for each batch, each containing an API request to fetch FAQ data.
-      batchPromises.push(Promise.all(batch.map((id) => getFAQData(`id_in: [${id}]`))));
+      batchPromises.push(Promise.all(batch.map((id) => getFAQData(`id_in: [${id}]`, isEnabled))));
     }
 
     // Wait for all batch API requests to complete and accumulate their results.

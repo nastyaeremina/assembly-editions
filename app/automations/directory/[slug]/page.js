@@ -1,4 +1,5 @@
 import { notFound } from 'next/navigation';
+import { draftMode } from 'next/headers';
 import Layout from '../../../components/layout';
 import Navbar from '../../../components/navbar/navbar';
 import { getAllAutomations, getAutomationDetail } from '../../../lib/contentful-automation';
@@ -8,7 +9,8 @@ import CTA from '../../../components/cta/cta';
 import { CURRENT_SITE_URL } from '../../../constants/constant';
 
 async function getContent({ slug }) {
-  const detail = (await getAutomationDetail(slug)) ?? {};
+  const { isEnabled } = await draftMode()
+  const detail = (await getAutomationDetail(slug, isEnabled)) ?? {};
   let relatedApps = [];
   if (!isEmpty(detail)) {
     let allPosts = [];
@@ -16,7 +18,7 @@ async function getContent({ slug }) {
     let page = 0;
     do {
       const skip = page * 100;
-      data = (await getAllAutomations(skip)) || [];
+      data = (await getAllAutomations(skip, isEnabled)) || [];
       allPosts = allPosts.concat(data);
 
       if (data?.length !== 100) break;
