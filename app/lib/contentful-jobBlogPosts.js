@@ -42,7 +42,7 @@ const POST_GRAPHQL_JOB_DETAILS_FIELDS = `
     }
     `;
 
-export async function getJobDetail(id, preview) {
+export async function getJobDetail({ id, preview }) {
   const entries = await fetchGraphQL(
     `query {
             pageJob(id:"${id}",preview: ${preview ? 'true' : 'false'}) {

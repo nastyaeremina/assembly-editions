@@ -47,7 +47,7 @@ async function getContent({ slug }) {
   
     // Try to get product demo content first
     // Use variant ID if available, otherwise use default product demo page ID
-    const productdetails = await getProductDemoContent(contentId || PRODUCT_DEMO_PAGE_ID);
+    const productdetails = await getProductDemoContent({id: contentId || PRODUCT_DEMO_PAGE_ID, slug:isEnabled ? combinedSlug : '', preview: isEnabled}  );
     
     // Check if this is a product demo page
     // Either the slug matches or we have a variant content ID

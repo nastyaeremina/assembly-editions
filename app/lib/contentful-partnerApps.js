@@ -177,7 +177,7 @@ export async function getAllParrtnerAppsCategories(preview) {
   return entries?.data?.partnerAppCategoryCollection?.items;
 }
 
-export async function getPageAppDetail(id, preview) {
+export async function getPageAppDetail({ id, preview }) {
   const entries1 = await fetchGraphQL(
     `query {
       pageApps(id:"${id}",preview: ${preview ? 'true' : 'false'}) {

@@ -1,3 +1,4 @@
+import { draftMode } from 'next/headers';
 import Layout from '../components/layout';
 import { CURRENT_SITE_URL, UNIVERSITY_SEO_ID } from '../constants/constant';
 import AggregateRating from '../components/aggregateRating';
@@ -7,12 +8,13 @@ import { getAllUniversityVideos, getUniversityVideoCategory } from './../lib/con
 import { customSort, getSEOData } from './../helpers/helpers';
 
 async function getContent() {
+  const {isEnabled} = await draftMode();
   let allPosts = [];
   let data = [];
   let page = 0;
   do {
     const skip = page * 100;
-    data = (await getAllUniversityVideos(skip)) || [];
+    data = (await getAllUniversityVideos(skip, isEnabled)) || [];
     allPosts = allPosts.concat(data);
 
     if (data?.length !== 100) break;

@@ -5,34 +5,35 @@ import FAQ from '../components/faq/faq';
 import CTA from '../components/cta/cta';
 import { getFAQsData } from '../services/faq';
 import AggregateRating from '../components/aggregateRating';
-import { getABTestInfoFromCookie } from '../helpers/serverSideHelpers';
+import { getABTestInfoFromCookie, getPageContent } from '../helpers/serverSideHelpers';
 import { CURRENT_SITE_URL, PRICING_PAGE_ID } from './../constants/constant';
 import { getSEOData } from './../helpers/helpers';
 import { getPricingPageDetail } from './../lib/contentful-pricing';
 
-async function getContent() {
+async function getContent({searchParams}) {
   const {
-    contentId,
+    content: details,
     abTestContentLabel,
     abTestExperimentName
-  } = getABTestInfoFromCookie({
+  } = await getPageContent({
+    searchParams,
     cookieKey: 'pricing',
-    fallbackContentId: PRICING_PAGE_ID
+    fallbackContentId: PRICING_PAGE_ID,
+    getContentFn: getPricingPageDetail
   });
-  const details = await getPricingPageDetail({ id: contentId });
   return { details, abTestContentLabel, abTestExperimentName };
 }
 
-export async function generateMetadata() {
-  const { details } = await getContent();
+export async function generateMetadata({ searchParams }) {
+  const { details } = await getContent({ searchParams });
   const seoData = await getSEOData({ data: details?.seoMetadata });
   seoData.alternates = { canonical: `${CURRENT_SITE_URL}/pricing` };
 
   return seoData;
 }
 
-export default async function NewIndex() {
-  const { details, abTestContentLabel, abTestExperimentName } = await getContent();
+export default async function NewIndex({searchParams}) {
+  const { details, abTestContentLabel, abTestExperimentName } = await getContent({searchParams});
   const faqData = await getFAQsData({ data: details?.faQsCollection?.items });
 
   return (

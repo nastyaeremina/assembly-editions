@@ -6,35 +6,35 @@ import { CURRENT_SITE_URL, HEADER_LIST } from '../constants/constant';
 import FAQ from '../components/faq/faq';
 import { getFAQsData } from '../services/faq';
 import AggregateRating from '../components/aggregateRating';
-import { getABTestInfoFromCookie } from '../helpers/serverSideHelpers';
+import { getPageContent } from '../helpers/serverSideHelpers';
 import { getPageAutomationDetail } from './../lib/contentful-automation';
 import { getSEOData } from './../helpers/helpers';
 import { AUTOMATION_ID } from './../constants/constant';
 
-async function getContent() {
+async function getContent({ searchParams }) {
   const {
-    contentId,
+    content: details,
     abTestContentLabel,
     abTestExperimentName
-  } = getABTestInfoFromCookie({
+  } = await getPageContent({
+    searchParams,
     cookieKey: 'automation',
-    fallbackContentId: AUTOMATION_ID
+    fallbackContentId: AUTOMATION_ID,
+    getContentFn: getPageAutomationDetail
   });
-
-  const details = await getPageAutomationDetail(contentId);
   return { details, abTestContentLabel, abTestExperimentName };
 }
 
-export async function generateMetadata({ params, searchParams }, parent) {
-  const { details:data } = await getContent();
+export async function generateMetadata({ searchParams }) {
+  const { details: data } = await getContent({ searchParams });
   const seoData = await getSEOData({ id: data?.seoMetadata?.sys?.id, data: data?.seoMetadata });
   seoData.alternates = { canonical: `${CURRENT_SITE_URL}/automations` };
 
   return seoData;
 }
 
-export default async function Automation() {
-  const {details, abTestContentLabel, abTestExperimentName} = await getContent();
+export default async function Automation({ searchParams }) {
+  const { details, abTestContentLabel, abTestExperimentName } = await getContent({ searchParams });
   const faqData = await getFAQsData({ data: details?.faQsCollection?.items });
   return (
     <>

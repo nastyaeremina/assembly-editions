@@ -1,3 +1,4 @@
+import { draftMode } from 'next/headers';
 import JobsPage from '../components/PageComponent/Jobs/jobsPage';
 import AggregateRating from '../components/aggregateRating';
 import { getFAQsData } from '../services/faq';
@@ -6,23 +7,23 @@ import Layout from './../components/layout';
 import Navbar from './../components/navbar/navbar';
 import { CURRENT_SITE_URL, JOB_PAGE_ID } from './../constants/constant';
 import { extractTableData, getSEOData } from './../helpers/helpers';
-import { getABTestInfoFromCookie } from './../helpers/serverSideHelpers';
-import {  NO_OF_JOBS_PER_PAGE } from './../lib/constants';
+import { getPageContent } from './../helpers/serverSideHelpers';
+import { NO_OF_JOBS_PER_PAGE } from './../lib/constants';
 import { getJobDetail } from './../lib/contentful-jobBlogPosts';
 import { getAllJobs } from './../lib/contentful-jobsListing';
 
-async function getContent() {
+async function getContent({ searchParams }) {
+  const { isEnabled } = await draftMode();
   const {
-    contentId,
+    content: details,
     abTestContentLabel,
     abTestExperimentName
-  } = getABTestInfoFromCookie({
+  } = await getPageContent({
+    searchParams,
     cookieKey: 'jobs',
-    fallbackContentId: JOB_PAGE_ID
+    fallbackContentId: JOB_PAGE_ID,
+    getContentFn: getJobDetail
   });
-
-  //get job detail
-  const details = (await getJobDetail(contentId)) ?? {};
 
   //get job images list
   const jobImagesList = details.jobImagesCollection?.items ?? [];
@@ -32,7 +33,7 @@ async function getContent() {
   let page = 0;
   do {
     const skip = page * NO_OF_JOBS_PER_PAGE;
-    data = (await getAllJobs(skip)) || [];
+    data = (await getAllJobs(skip, isEnabled)) || [];
     allPosts = allPosts.concat(data);
 
     if (data?.length !== NO_OF_JOBS_PER_PAGE) break;
@@ -53,12 +54,12 @@ async function getContent() {
       jobList?.push(newItem);
     }
   });
-  
+
   return { jobList, jobImagesList, details, abTestContentLabel, abTestExperimentName };
 }
 
-export async function generateMetadata() {
-  const { details } = await getContent();
+export async function generateMetadata({ searchParams }) {
+  const { details } = await getContent({ searchParams });
 
   const seoData = await getSEOData({ data: details?.seoMetadata });
   seoData.alternates = { canonical: `${CURRENT_SITE_URL}/jobs` };
@@ -66,8 +67,10 @@ export async function generateMetadata() {
   return seoData;
 }
 
-export default async function Jobs() {
-  const { details, jobList, jobImagesList, abTestContentLabel, abTestExperimentName } = await getContent();
+export default async function Jobs({ searchParams }) {
+  const { details, jobList, jobImagesList, abTestContentLabel, abTestExperimentName } = await getContent({
+    searchParams
+  });
   const faqData = await getFAQsData({ data: details?.faQsCollection?.items });
 
   const jobBlogPostList = extractTableData(details.jobBlogPost.json);

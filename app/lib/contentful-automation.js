@@ -156,14 +156,15 @@ function extractPostEntry(fetchResponse) {
 function extractPostEntries(fetchResponse) {
   return fetchResponse?.data?.automationsCollection?.items;
 }
-export async function getPageAutomationDetail(id, preview) {
+export async function getPageAutomationDetail({ id, preview }) {
   const entries1 = await fetchGraphQL(
     `query {
       pageFeature2(id:"${id}",preview: ${preview ? 'true' : 'false'}) {
                ${POST_GRAPHQL_PAGE_AUTOMATION_DETAILS_FIELDS_SECTION_1}
       }
     }`,
-    preview
+    preview,
+    [CONTENTFUL_API_TAG.AUTOMATION]
   );
   const entries2 = await fetchGraphQL(
     `query {

@@ -20,14 +20,16 @@ body{
 metaDescription
 metaTitle
 `;
-export async function getGlossaryPageContent(id) {
+export async function getGlossaryPageContent({ id, preview }) {
   const entries = await fetchGraphQL(
     `query {
-        pageGlossary(id: "${id}") {
+        pageGlossary(id: "${id}" ,preview: ${preview ? 'true' : 'false'}) {
             ${POST_GRAPHQL_PAGE_GLOSSARY_DETAILS_FIELDS}
         }
     }         
-    `
+    `,
+    preview,
+    [CONTENTFUL_API_TAG.GLOSSARY]
   );
   return entries?.data?.pageGlossary;
 }
@@ -42,7 +44,9 @@ export async function getAllGlossaryContent(preview) {
              }
           }
       }         
-      `
+      `,
+    preview,
+    [CONTENTFUL_API_TAG.GLOSSARY]
   );
   return entries?.data?.glossaryDefinitionsCollection?.items;
 }

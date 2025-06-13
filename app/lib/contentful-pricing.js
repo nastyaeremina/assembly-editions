@@ -58,15 +58,15 @@ function extractData(fetchResponse) {
   return fetchResponse?.data?.pagePricing;
 }
 
-export async function getPricingPageDetail({ id }) {
+export async function getPricingPageDetail({ id, preview }) {
   const entries = await fetchGraphQL(
     `query {
-        pagePricing(id: "${id}" ) {
+        pagePricing(id: "${id}" ,preview: ${preview ? 'true' : 'false'}) {
         ${POST_GRAPHQL_PRICING_DETAILS_FIELDS}
         }
       }      
     `,
-    false,
+    preview,
     [CONTENTFUL_API_TAG.PRICING]
   );
   return extractData(entries);

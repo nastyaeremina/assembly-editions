@@ -26,10 +26,10 @@ items {
   }
 }
 `;
-export async function getHomeContent(id) {
+export async function getHomeContent({id, preview}) {
   const entries = await fetchGraphQL(
     `query {
-      pageHome(id: "${id}") {
+      pageHome(id: "${id}", preview: ${preview ? 'true' : 'false'}) {
         heroTitle
         heroBody
         heroPrimaryButtonText
@@ -128,7 +128,7 @@ export async function getHomeContent(id) {
       }
     }
     `,
-    false,
+    preview,
     [CONTENTFUL_API_TAG.HOME]
   );
   return extractData(entries);

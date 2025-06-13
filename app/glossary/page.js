@@ -6,22 +6,23 @@ import GlossaryPage from '../components/PageComponent/Glossary/glossarypage';
 import { getAllGlossaryContent, getGlossaryPageContent } from '../lib/contentful-glossary';
 import { getSEOData } from '../helpers/helpers';
 import AggregateRating from '../components/aggregateRating';
-import { getABTestInfoFromCookie } from '../helpers/serverSideHelpers';
+import { getPageContent } from '../helpers/serverSideHelpers';
+import { draftMode } from 'next/headers';
 
-async function getContent() {
-
+async function getContent({ searchParams }) {
+  const { isEnabled } = await draftMode();
   const {
-    contentId,
+    content: data,
     abTestContentLabel,
     abTestExperimentName
-  } = getABTestInfoFromCookie({
+  } = await getPageContent({
+    searchParams,
     cookieKey: 'glossary',
-    fallbackContentId: GLOSSARY_PAGE_ID
+    fallbackContentId: GLOSSARY_PAGE_ID,
+    getContentFn: getGlossaryPageContent
   });
 
-  const data = await getGlossaryPageContent(contentId);
-
-  const definations = await getAllGlossaryContent();
+  const definations = await getAllGlossaryContent(isEnabled);
   let newList = [];
   await definations?.forEach((item) => {
     const char = item?.name?.charAt(0);
@@ -48,15 +49,15 @@ async function getContent() {
   return { glossaryList: newList, seoMetadata: data?.seoMetadata, abTestContentLabel, abTestExperimentName };
 }
 
-export async function generateMetadata({ params, searchParams }, parent) {
-  const { seoMetadata } = await getContent();
+export async function generateMetadata({ searchParams }) {
+  const { seoMetadata } = await getContent({ searchParams });
   const seoData = await getSEOData({ data: seoMetadata });
   seoData.alternates = { canonical: `${CURRENT_SITE_URL}/glossary` };
 
   return seoData;
 }
-export default async function Glossary() {
-  const { glossaryList, seoMetadata, abTestContentLabel, abTestExperimentName } = await getContent();
+export default async function Glossary({ searchParams }) {
+  const { glossaryList, seoMetadata, abTestContentLabel, abTestExperimentName } = await getContent({ searchParams });
   return (
     <>
       <AggregateRating data={seoMetadata} />

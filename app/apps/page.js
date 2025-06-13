@@ -1,3 +1,4 @@
+import { draftMode } from 'next/headers';
 import SEO from '../components/seo';
 import Navbar from '../components/navbar/navbar';
 import Layout from '../components/layout';
@@ -8,38 +9,35 @@ import AppPage from '../components/PageComponent/Apps/appPage';
 import { getFAQsData } from '../services/faq';
 import CTA from '../components/cta/cta';
 import AggregateRating from '../components/aggregateRating';
-import { getABTestInfoFromCookie } from '../helpers/serverSideHelpers';
+import { getPageContent } from '../helpers/serverSideHelpers';
 
-async function getContent() {
-
-  const {
-    contentId,
-    abTestContentLabel,
-    abTestExperimentName
-  } = getABTestInfoFromCookie({
+async function getContent({ searchParams }) {
+  const { isEnabled } = await draftMode();
+  const { content, abTestContentLabel, abTestExperimentName } = await getPageContent({
+    searchParams,
     cookieKey: 'apps',
-    fallbackContentId: APP_PAGE_ID
+    fallbackContentId: APP_PAGE_ID,
+    getContentFn: getPageAppDetail
   });
-
-  const details = (await getPageAppDetail(contentId)) ?? [];
-  const appsList = (await getAllAppsWithIcon()) ?? [];
+  const appsList = (await getAllAppsWithIcon(isEnabled)) ?? [];
   return {
-    details,
+    details: content,
     appsList,
     abTestContentLabel,
     abTestExperimentName
   };
 }
 
-export async function generateMetadata() {
-  const { details } = await getContent();
+export async function generateMetadata({ searchParams }) {
+  const { details } = await getContent({ searchParams });
   const seoData = await getSEOData({ data: details.seoMetadata });
   seoData.alternates = { canonical: `${CURRENT_SITE_URL}/apps` };
 
   return seoData;
 }
-export default async function Automation() {
-  const { details, appsList, abTestContentLabel, abTestExperimentName } = await getContent();
+
+export default async function App({ searchParams }) {
+  const { details, appsList, abTestContentLabel, abTestExperimentName } = await getContent({ searchParams });
   const faqData = await getFAQsData({ data: details?.faQsCollection?.items });
   // Create a new array with a fixed length of 50 items to support continuous sliding
   // The larger array size ensures that the slider runs smoothly on larger screens,

@@ -100,7 +100,7 @@ seoMetadata{
 }
 `;
 
-export async function getTemplateHomeContent(id, preview) {
+export async function getTemplateHomeContent({ id, preview }) {
   const entries = await fetchGraphQL(
     `query {
         templateHome(id:"${id}",preview: ${preview ? 'true' : 'false'}) {

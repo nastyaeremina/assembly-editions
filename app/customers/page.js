@@ -1,4 +1,5 @@
 import React from 'react';
+import { draftMode } from 'next/headers';
 import CustomerPage from '../components/PageComponent/Customers/customersPage';
 import Layout from '../components/layout';
 import Navbar from '../components/navbar/navbar';
@@ -9,8 +10,9 @@ import { getAllFeaturedCaseStudies, getAllFeaturedTestimonial } from './../lib/c
 import { getSEOData } from './../helpers/helpers';
 
 async function getContent() {
-  const testimonialPosts = await getAllFeaturedTestimonial();
-  const casestudiesPosts = await getAllFeaturedCaseStudies();
+  const { isEnabled } = await draftMode();
+  const testimonialPosts = await getAllFeaturedTestimonial(isEnabled);
+  const casestudiesPosts = await getAllFeaturedCaseStudies(isEnabled);
   return { testimonialPosts, casestudiesPosts };
 }
 

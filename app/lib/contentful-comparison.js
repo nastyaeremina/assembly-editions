@@ -154,7 +154,8 @@ export async function getAllCompetitor(preview) {
         }
       }
     }`,
-    preview
+    preview,
+    [CONTENTFUL_API_TAG.COMPARISON]
   );
   return extractPostEntries(entry);
 }

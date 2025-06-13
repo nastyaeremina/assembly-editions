@@ -3,40 +3,43 @@ import { CURRENT_SITE_URL, TEMPLATE_PAGE_ID } from '../constants/constant';
 import { getTemplateHomeContent } from '../lib/contentful-template';
 import TemplateListSection from '../components/template/templateListSection';
 import AggregateRating from '../components/aggregateRating';
-import { getABTestInfoFromCookie } from '../helpers/serverSideHelpers';
+import { getPageContent } from '../helpers/serverSideHelpers';
 import StandardHero from '../components/standardHero/standardHero';
 import { getSEOData, isEmpty, removeEmptyElement } from './../helpers/helpers';
 import Navbar from './../components/navbar/navbar';
 import { notFound } from 'next/navigation';
 
-async function getTemplateContent() {
-  const {
-    contentId,
-    abTestContentLabel,
-    abTestExperimentName
-  } = getABTestInfoFromCookie({
+async function getTemplateContent({ searchParams }) {
+  const { content, abTestContentLabel, abTestExperimentName } = await getPageContent({
+    searchParams,
     cookieKey: 'templates',
-    fallbackContentId: TEMPLATE_PAGE_ID
+    fallbackContentId: TEMPLATE_PAGE_ID,
+    getContentFn: getTemplateHomeContent
   });
-  const content = await getTemplateHomeContent(contentId);
   return { content, abTestContentLabel, abTestExperimentName };
 }
 
-export async function generateMetadata() {
-  const data = await getTemplateContent();
+export async function generateMetadata({ searchParams }) {
+  const { content: data } = await getTemplateContent({ searchParams });
   const seoData = await getSEOData({ data: data?.seoMetadata });
   seoData.alternates = { canonical: `${CURRENT_SITE_URL}/templates` };
   return seoData;
 }
 
-export default async function University() {
-  const { content: templateData, abTestContentLabel, abTestExperimentName } = await getTemplateContent();
-  if (isEmpty(templateData)) return notFound();
-  const section1TemplateList = removeEmptyElement(templateData?.section1TemplatesCollection?.items);
-  const section2TemplateList = removeEmptyElement(templateData?.section2TemplatesCollection?.items);
-  const section3TemplateList = removeEmptyElement(templateData?.section3TemplatesCollection?.items);
+export default async function Page({ searchParams }) {
+  const {
+    content: templateData,
+    abTestContentLabel,
+    abTestExperimentName
+  } = await getTemplateContent({ searchParams });
 
-  if (isEmpty(section1TemplateList) && isEmpty(section2TemplateList) && isEmpty(section3TemplateList)) return notFound();
+  if (isEmpty(templateData)) return notFound();
+  const section1TemplateList = removeEmptyElement(templateData.section1TemplatesCollection?.items);
+  const section2TemplateList = removeEmptyElement(templateData.section2TemplatesCollection?.items);
+  const section3TemplateList = removeEmptyElement(templateData.section3TemplatesCollection?.items);
+
+  if (isEmpty(section1TemplateList) && isEmpty(section2TemplateList) && isEmpty(section3TemplateList))
+    return notFound();
   return (
     <>
       <AggregateRating data={templateData.seoMetadata} />

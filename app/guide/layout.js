@@ -7,6 +7,7 @@ import {
   PER_API_LIMIT_FOR_GUIDE_SECTION
 } from '../constants/constant';
 import { isEmpty, removeEmptyElement } from '../helpers/helpers';
+import { draftMode } from 'next/headers';
 
 function mergeArticlesWithFAQs(articlesArray, faqCollections) {
   // Create a dictionary for faster lookups
@@ -53,14 +54,14 @@ function mergeArticlesWithFAQs(articlesArray, faqCollections) {
  * Retrieves all FAQ posts from the API with pagination.
  * @returns {Promise<Array>} An array containing all FAQ posts.
  */
-async function getArticleFAQData() {
+async function getArticleFAQData({ preview }) {
   let allFAQPosts = [];
   let faqdata = [];
   let page = 0;
   // Loop until all FAQ posts are retrieved
   do {
     const skip = page * PER_API_LIMIT_FOR_GUIDE_ARTICLE_FAQ;
-    faqdata = (await getAllArticleFAQ({ skip })) || [];
+    faqdata = (await getAllArticleFAQ({ skip, preview })) || [];
     allFAQPosts = allFAQPosts.concat(faqdata);
 
     if (faqdata?.length !== PER_API_LIMIT_FOR_GUIDE_ARTICLE_FAQ) break;
@@ -72,8 +73,9 @@ async function getArticleFAQData() {
 }
 //This will collect allguide content including section and  articles from contentful.
 async function getguideContent() {
+  const { isEnabled } = await draftMode();
   // get all sections with section name and id
-  const guidePageContent = (await getGuidePageContent({ id: GUIDE_PAGE_ID })) ?? {};
+  const guidePageContent = (await getGuidePageContent({ id: GUIDE_PAGE_ID, preview: isEnabled })) ?? {};
   let allSectionContent = [];
   let data = [];
   //remove empty sections
@@ -86,7 +88,7 @@ async function getguideContent() {
   for (let i = 0; i < sectionIdList.length; i += PER_API_LIMIT_FOR_GUIDE_SECTION) {
     // Slice section IDs for pagination
     const sectionContentBatch = sectionIdList.slice(i, i + PER_API_LIMIT_FOR_GUIDE_SECTION);
-    data = (await getAllGuideSectionContent({ idList: `id_in: [${sectionContentBatch}]` })) || [];
+    data = (await getAllGuideSectionContent({ idList: `id_in: [${sectionContentBatch}]`, preview: isEnabled })) || [];
     allSectionContent = allSectionContent.concat(data);
   }
 
@@ -100,10 +102,10 @@ async function getguideContent() {
   const filteredSections = removeEmptyElement(orderedSections) || [];
 
   // Retrieveall article FAQ data
-  const articleFAQData = await getArticleFAQData();
+  const articleFAQData = await getArticleFAQData({ preview: isEnabled });
 
   // Merge sections with FAQ data
-  const mergedData = mergeArticlesWithFAQs(filteredSections, articleFAQData);
+  const mergedData = mergeArticlesWithFAQs(filteredSections, articleFAQData, isEnabled);
   return { guideSectionData: filteredSections, articleData: mergedData };
 }
 

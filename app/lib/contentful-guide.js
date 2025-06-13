@@ -224,16 +224,16 @@ export async function getAllArticleFAQ({ skip, preview }) {
   );
   return entries?.data?.guideArticleCollection?.items;
 }
-export async function getGuideHomePageContent({ id }) {
+export async function getGuideHomePageContent({ id, preview }) {
   const entries = await fetchGraphQL(
     `query {
-        pageDocs(id: "${id}") {
+        pageDocs(id: "${id}",preview: ${preview ? 'true' : 'false'}) {
             ${POST_GRAPHQL_GUIDE_PAGE_FIELDS}
             ${POST_GRAPHQL_PAGE_GUIDE_DETAILS_FIELDS}
         }
     }         
     `,
-    false,
+    preview,
     [CONTENTFUL_API_TAG.GUIDE]
   );
   return entries?.data?.pageDocs;
