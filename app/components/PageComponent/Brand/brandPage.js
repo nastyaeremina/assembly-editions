@@ -5,7 +5,6 @@ import copy from 'copy-to-clipboard';
 import { useMemo, useState } from 'react';
 import { Container } from '../../../styles/commonStyles';
 import {
-  BrandHeroSection,
   BrandName,
   BrandImage,
   BrandImageLeft,
@@ -21,7 +20,8 @@ import {
   BrandMain,
   ImgWrap
 } from '../../../styles/brandStyles';
-import Button from '../../button/button';
+import StandardHero from '../../standardHero/standardHero';
+import { HeroTypes } from '../../../constants/constant';
 
 export default function BrandPage() {
   const [copy1, setCopy1] = useState('Copy');
@@ -95,12 +95,18 @@ export default function BrandPage() {
     <>
       <BrandMain>
         <Container>
-          <BrandHeroSection>
-            <h1>Copilot Brand Guidelines</h1>
-            <p>Resources for presenting the Copilot brand consistently and professionally.</p>
-            <Button text={'Download Brand Assets'} href={'/images/Copilot_Brand_Assets.zip'} isDownload={true} />
-          </BrandHeroSection>
-          <BrandName>
+          <div className='standard-page'>
+            <StandardHero
+              type={HeroTypes.CENTER}
+              data={{
+                heroTitle: 'Copilot Brand Guidelines',
+                heroDescription: 'Resources for presenting the Copilot brand consistently and professionally.',
+                primaryButtonLink: '/images/Copilot_Brand_Assets.zip',
+                primaryButtonText: 'Download Brand Assets'
+              }}
+            />
+          </div>
+          <BrandName className='first-item'>
             <h2>Naming</h2>
             <p>
               “Copilot” is a single word that is always spelled with a capital “C”, lowercase “p”, and without a dash.

@@ -27,7 +27,14 @@ const BlockLeft = styled.div`
         ${Heading2}
       `}
   }
+  @media only screen and (max-width: 768px) {
+    max-width: unset;
+    width: 100%;
+  }
   @media only screen and (max-width: 749px) {
+    .button-group {
+      margin-top: 24px;
+    }
     h2 {
       ${MobileH3}
       ${(props) =>
@@ -42,11 +49,12 @@ const BlockRight = styled.div``;
 const HeroBody = styled.div`
   color: var(--body);
   ${Body3}
-  margin: 16px 0 28px 0;
+  margin: 0;
+  margin-top: 20px;
   ${(props) =>
     props.isHeading1 &&
     css`
-      margin: 20px 0 32px 0;
+      margin-top: 20px;
     `}
   @media only screen and (max-width: 749px) {
     ${MbBody3}
@@ -73,6 +81,9 @@ const BlockImg = styled.div`
     width: 100vw;
     top: 50%;
     left: 100%;
+    @media only screen and (max-width: 449px) {
+      display: none;
+    }
   }
   .icon {
     position: absolute;
@@ -100,7 +111,7 @@ const VideoPlay = styled.div`
   .play {
     position: absolute;
     left: 50%;
-    top: 50%; 
+    top: 50%;
     transform: translate(-50%, -50%);
     max-width: 819px;
     max-height: 461px;

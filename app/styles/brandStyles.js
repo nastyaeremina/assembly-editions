@@ -1,13 +1,7 @@
 import styled from 'styled-components';
 import { Body2, Body3, ButtonText, Heading2, Heading4, LinkTxt, MbBody2, MbBody3, MobileH2, MobileH4 } from './styles';
 
-const BrandMain = styled.div`
-  padding: 80px 0 50px 0;
-  @media only screen and (max-width: 769px) {
-    padding-bottom: 40px;
-    padding-top: 112px;
-  }
-`;
+const BrandMain = styled.div``;
 const BrandHeroSection = styled.div`
   padding-top: 100px;
   padding-bottom: 50px;
@@ -34,6 +28,9 @@ const BrandHeroSection = styled.div`
 `;
 const BrandName = styled.div`
   padding: 50px 0;
+  &.first-item {
+    padding-top: 0;
+  }
   h2 {
     ${Heading4};
     color: var(--title);

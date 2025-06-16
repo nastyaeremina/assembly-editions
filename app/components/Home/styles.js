@@ -29,6 +29,7 @@ const HeroSection = styled.div`
   .social-proof {
     display: flex;
     justify-content: center;
+    margin-top: 4px;
   }
   .button-group {
     align-items: center;
@@ -103,7 +104,7 @@ const ImageHover = styled.a`
   :hover {
     svg {
       path {
-        fill: var(--light-green);
+        fill: var(--mid-dark-green);
       }
     }
     ${(props) =>
@@ -200,6 +201,7 @@ const ReviewLogo = styled.div`
   margin-top: 32px;
   @media only screen and (max-width: 450px) {
     gap: 30px;
+    margin-top: 28px;
   }
 `;
 
@@ -214,7 +216,7 @@ const RightWrap = styled.div`
     font-weight: 500;
     font-size: 15px;
     line-height: 24px;
-    color: var(--white);
+    color: var(--dark-green);
     margin: 0 0 0 0px;
     text-align: center;
     letter-spacing: 0.02em;
@@ -257,7 +259,7 @@ const MainImage = styled.div`
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
     max-width: 1000px;
-    width: 100%;
+    width: auto;
     max-height: 415px;
     height: 100%;
     margin-bottom: -4px;

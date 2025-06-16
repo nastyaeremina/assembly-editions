@@ -81,6 +81,9 @@ const TableMainDiv = styled.div`
       justify-content: center;
       img {
         height: auto;
+        @media only screen and (max-width: 449px) {
+          height: 24px;
+        }
       }
     }
     ::after {

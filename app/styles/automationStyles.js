@@ -216,6 +216,7 @@ const AutomationButton = styled.div`
   @media only screen and (max-width: 426px) {
     flex-direction: column;
     gap: 12px;
+    margin-top: 28px;
   }
 `;
 

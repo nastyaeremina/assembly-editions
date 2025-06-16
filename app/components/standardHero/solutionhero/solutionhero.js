@@ -2,19 +2,8 @@
 import Image from 'next/image';
 import { Container } from '../../../styles/commonStyles';
 import { isEmpty, separateSpecialChar } from '../../../helpers/helpers';
-import SocialProofProperty from '../../socialProofProperty/socialProofProperty';
-import ButtonGroup from '../../ButtonGroup/buttonGroup';
-import {
-  HeroSection,
-  SolutionWrap,
-  LeftWrap,
-  RightWrap,
-  TextSection,
-  ImageView,
-  MobileImg,
-  MobileView,
-  Mobilenew
-} from './styles';
+import Heading from '../heading/heading';
+import { HeroSection, SolutionWrap, RightWrap, ImageView, MobileImg, MobileView, Mobilenew } from './styles';
 
 /**
  * SolutionHero Component
@@ -49,22 +38,15 @@ export default function SolutionHero({
       <HeroSection isStandardPage={isStandardPage}>
         <Container>
           <SolutionWrap>
-            <LeftWrap>
-              <TextSection className='details-hero'>
-                <h1>
-                  <div dangerouslySetInnerHTML={{ __html: finalTitle }} />
-                </h1>
-                <p>{description}</p>
-                <ButtonGroup
-                  primaryButtonLink={primaryButtonLink}
-                  primaryButtonText={primaryButtonText}
-                  secondaryButtonLink={secondaryButtonLink}
-                  secondaryButtonText={secondaryButtonText}
-                  className='button-group'
-                />
-                {isShowSocialProof && <SocialProofProperty rateCount='1000+' />}
-              </TextSection>
-            </LeftWrap>
+            <Heading
+              title={finalTitle}
+              description={description}
+              primaryButtonLink={primaryButtonLink}
+              primaryButtonText={primaryButtonText}
+              secondaryButtonLink={secondaryButtonLink}
+              secondaryButtonText={secondaryButtonText}
+              isShowSocialProof={isShowSocialProof}
+            />
             <RightWrap emptyMobileImage={isEmpty(mobileImage)}>
               <ImageView emptyMobileImage={isEmpty(mobileImage)}>
                 <Image src={webImage} alt='main-logo' width={479} height={633} />

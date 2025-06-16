@@ -274,6 +274,11 @@ const TextSection = styled.div`
       }
     }
   }
+  @media only screen and (max-width: 449px) {
+    .button-group {
+      margin-top: 24px;
+    }
+  }
   h1 {
     ${Heading2};
     color: var(--title);

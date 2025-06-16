@@ -2,18 +2,8 @@
 import React, { useState } from 'react';
 import { Container } from '../../../styles/commonStyles';
 import { extractYouTubeVideoId, isEmpty } from '../../../helpers/helpers';
-import ButtonGroup from '../../ButtonGroup/buttonGroup';
-import {
-  BlockImg,
-  BlockLeft,
-  BlockRight,
-  FeatureImage,
-  HeroBlock,
-  HeroBody,
-  SimpleMainSection,
-  VideoClose,
-  VideoPlay
-} from './styles';
+import Heading from '../heading/heading';
+import { BlockImg, BlockRight, FeatureImage, HeroBlock, SimpleMainSection, VideoClose, VideoPlay } from './styles';
 
 /**
  * SimpleSection Component
@@ -52,17 +42,14 @@ export default function SimpleSection({
     <SimpleMainSection>
       <Container>
         <HeroBlock>
-          <BlockLeft isHeading1={isHeading1}>
-            {!isEmpty(title) && <h2>{title}</h2>}
-            {!isEmpty(description) && <HeroBody isHeading1={isHeading1}>{description}</HeroBody>}
-            {/* button group for primary and secondary  */}
-            <ButtonGroup
-              primaryButtonText={primaryButtonText}
-              primaryButtonLink={primaryButtonLink}
-              secondaryButtonText={secondaryButtonText}
-              secondaryButtonLink={secondaryButtonLink}
-            />
-          </BlockLeft>
+          <Heading
+            title={title}
+            description={description}
+            primaryButtonLink={primaryButtonLink}
+            primaryButtonText={primaryButtonText}
+            secondaryButtonLink={secondaryButtonLink}
+            secondaryButtonText={secondaryButtonText}
+          />
           {/* when video open tha show this section */}
           {isOpen ? (
             <VideoPlay>

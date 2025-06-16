@@ -2,21 +2,24 @@
 
 import React from 'react';
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
-import { MODULE_COLOR_LIST } from '../../../constants/constant';
 import Client from '../../client/client';
-import ProductHero from '../../producthero';
-import { extractYouTubeVideoId } from '../../../helpers/helpers';
+import SimpleSection from '../../standardHero/simpleSection/simpleSection';
+import { COPILOT_ONBOARDING_LINK } from '../../../constants/externalLinks';
+import heroImage from '../../../../public/images/heroimage.png';
 
 export default function ProductDemoPage({ details }) {
-  const videoId = extractYouTubeVideoId(details?.videoUrl);
   return (
     <>
-      <ProductHero
-        colorList={MODULE_COLOR_LIST.Productdemo}
-        title={details?.header}
-        description={documentToReactComponents(details?.body?.json)}
-        videoUrl={videoId}
-      />
+      <div className='standard-page'>
+        <SimpleSection
+          title={details?.header}
+          description={documentToReactComponents(details?.body?.json)}
+          videoUrl={details?.videoUrl}
+          primaryButtonLink={COPILOT_ONBOARDING_LINK}
+          primaryButtonText='Try for free'
+          banner={heroImage.src}
+        />
+      </div>
       <Client title={null} isProductdemo={true} />
     </>
   );

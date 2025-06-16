@@ -23,6 +23,7 @@ const PropertyMainDiv = styled.div`
     `}
   @media only screen and (max-width: 449px) {
     gap: 8px;
+    margin-top: 28px;
   }
 `;
 

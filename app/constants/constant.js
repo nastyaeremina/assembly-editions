@@ -454,3 +454,10 @@ export const EmbedInfoMessage = 'Copilot supports embedding any external applica
 export const InternalAppInfoMessage = 'Internal-facing apps are only visible to your internal team.';
 export const ClientAppInfoMessage = 'Client-facing apps are visible to clients as well as your internal team.';
 export const PlanList = ['Starter', 'Professional', 'Advanced', 'Supersonic'];
+
+export const HeroTypes = {
+  LEFT: 'Hero - Left',
+  CENTER: 'Hero - Center',
+  SIMPLE: 'Hero - Simple',
+  SIMPLE_ALT: 'Simple'
+};

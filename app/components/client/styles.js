@@ -3,7 +3,7 @@ import Link from 'next/link';
 import { Body1, Body4, Heading3, Heading4, LinkTxt } from '../../styles/styles';
 
 const ClientMain = styled.div`
-  padding: 50px 0 100px 0;
+  padding: 0 0 100px 0;
   &::before {
     position: absolute;
     width: 0;
@@ -14,7 +14,7 @@ const ClientMain = styled.div`
       url(/images/hoverform.svg) url(/images/hoverbase.svg) url(/images/hovermessage.svg);
   }
   @media only screen and (max-width: 769px) {
-    padding: 40px 0 80px 0;
+    padding: 0 0 80px 0;
   }
 `;
 const ClientHero = styled.div`
@@ -43,8 +43,6 @@ const CardSection = styled.div`
   justify-content: stretch;
   align-content: stretch;
   width: 100%;
-  padding-bottom: 16px;
-  padding-top: 40px;
   ${(props) =>
     props.isProductdemo &&
     css`

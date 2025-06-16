@@ -1,15 +1,10 @@
 'use client';
 import React, { useMemo } from 'react';
+import { HeroTypes } from '../../constants/constant';
 import SolutionHero from './solutionhero/solutionhero';
 import HomeHeroSection from './hybrid';
 import SimpleSection from './simpleSection/simpleSection';
 
-export const HeroTypes = {
-  LEFT: 'Hero - Left',
-  CENTER: 'Hero - Center',
-  SIMPLE: 'Hero - Simple',
-  SIMPLE_ALT: 'Simple'
-};
 export default function StandardHero({ type, data }) {
   // useMemo to memoize the component to be rendered based on the type prop
   const renderComponent = useMemo(() => {
@@ -78,7 +73,6 @@ export default function StandardHero({ type, data }) {
   }, [
     data?.banner1?.url,
     data?.banner2?.url,
-    data?.heroBody,
     data?.heroDescription,
     data?.heroTitle,
     data?.primaryButtonLink,
@@ -86,6 +80,7 @@ export default function StandardHero({ type, data }) {
     data?.rating,
     data?.secondaryButtonLink,
     data?.secondaryButtonText,
+    data.showSocialProof,
     data?.videoUrl,
     type
   ]);
