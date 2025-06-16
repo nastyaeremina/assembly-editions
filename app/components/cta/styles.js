@@ -24,7 +24,6 @@ const CtaInner = styled.div`
       font-size: 42px;
       line-height: 40px;
       padding-bottom: 28px;
-      max-width: 188px;
     }
     span {
       color: var(--primary);
@@ -44,12 +43,7 @@ const CtaAnimation = styled.div`
   right: 0;
   left: 0;
   overflow: hidden;
-  max-height: 412px;
   background-image: url('/images/cta-bg.svg');
-  @media only screen and (max-width: 991px) {
-    max-height: 464px;
-    height: 100%;
-  }
 `;
 
 const LeftImg = styled.div`
@@ -75,15 +69,20 @@ const LeftImg = styled.div`
   }
 `;
 const CtaWrap = styled.div`
-  position: absolute;
+  position: relative;
   left: 0;
   top: 0;
   right: 0;
   bottom: 0;
+  z-index: 3;
   display: flex;
   align-items: center;
   -webkit-backdrop-filter: blur(50px);
   backdrop-filter: blur(50px);
+  padding: 62px 24px;
+  @media only screen and (max-width: 991px) {
+    padding: 38px 24px;
+  }
 `;
 const MainCta = styled.div`
   display: flex;

@@ -7,6 +7,10 @@ const Content = styled.div`
   border-radius: 4px;
   display: flex;
   align-items: center;
+  max-width: 1224px;
+  margin: 0 auto;
+  width: 100%;
+  overflow: hidden;
   ${(props) =>
     props.isNoImage &&
     css`
@@ -23,9 +27,23 @@ const TextSection = styled.div`
   justify-content: center;
   @media only screen and (max-width: 768px) {
     padding: 20px;
+    ${(props) =>
+      props.isNoImage &&
+      css`
+        padding: 0;
+      `}
   }
   .button {
     margin-top: 28px;
+    @media only screen and (max-width: 400px) {
+      div {
+        width: 100%;
+        a {
+          width: 100%;
+          justify-content: center;
+        }
+      }
+    }
   }
   .button-group {
     align-items: center;
@@ -84,22 +102,47 @@ const CtaAnimation = styled.div`
   right: 0;
   left: 0;
   overflow: hidden;
-  max-height: 390px;
   background-image: url('/images/cta-bg.svg');
-  @media only screen and (max-width: 991px) {
-    max-height: 464px;
-    height: 100%;
-  }
 `;
 const CtaWrap = styled.div`
-  position: absolute;
+  position: relative;
   left: 0;
   top: 0;
   right: 0;
   bottom: 0;
   display: flex;
   align-items: center;
+  z-index: 3;
   -webkit-backdrop-filter: blur(50px);
   backdrop-filter: blur(50px);
+  padding: 40px 24px;
+  ${(props) =>
+    props.isNoImage &&
+    css`
+      padding: 80px 24px;
+    `}
+  @media only screen and (max-width: 991px) {
+    padding: 24px;
+    ${(props) =>
+      props.isNoImage &&
+      css`
+        padding: 32px 24px;
+      `}
+  }
 `;
-export { Content, TextSection, ImageSection, Title, Image, CtaAnimation, CtaWrap, Description };
+
+const Canvas = styled.canvas`
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 2;
+  pointer-events: none;
+  ${(props) =>
+    props.isGradientReady &&
+    css`
+      opacity: 1;
+    `}
+`;
+
+export { Content, TextSection, ImageSection, Title, Image, CtaAnimation, CtaWrap, Description, Canvas };

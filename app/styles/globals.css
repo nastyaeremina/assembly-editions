@@ -486,16 +486,12 @@ th {
 #gradient-canvas {
   overflow: hidden;
   width: 120%;
-  position: relative;
-  max-height: 412px;
   height: 100%;
 }
 
 .gradient-canvas_cta {
   overflow: hidden;
   width: 120%;
-  position: relative;
-  max-height: 412px;
   height: 100%;
 }
 .entrance {
@@ -539,12 +535,6 @@ th {
   --gradient-color-2: var(--dark-magenta);
   --gradient-color-3: var(--mid-dark-magenta);
   --gradient-color-4: var(--mid-light-magenta);
-}
-@media only screen and (max-width: 749px) {
-  #gradient-canvas {
-    /* max-width: 1440px; */
-    max-height: 564px;
-  }
 }
 
 .guideSection {
