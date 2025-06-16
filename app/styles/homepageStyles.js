@@ -526,7 +526,7 @@ const HelpLeft = styled.div`
     padding: 30px;
   }
   @media only screen and (max-width: 749px) {
-    padding: 20px 20px 28px 20px;
+    padding: 20px;
     max-width: 100%;
     h2 {
       max-width: 100%;
@@ -542,7 +542,7 @@ const HelpLeft = styled.div`
 const HelpLeftSub = styled.div`
   max-width: 315px;
   width: 100%;
-  / .learn-link,
+  .learn-link,
   .learn-link svg path {
     transition: all 300ms ease;
   }
@@ -626,7 +626,7 @@ const HelpLeftSub = styled.div`
     }
     p {
       ${MbBody4};
-      margin: 0 0 16px 0;
+      margin: 0 0 12px 0;
       color: var(--body);
     }
     a {

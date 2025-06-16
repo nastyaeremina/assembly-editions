@@ -184,7 +184,7 @@ const ImageSection = styled.div`
 const CardAuto = styled.div`
   -webkit-transition: all 0.2ms ease-in-out;
   transition: all 0.2ms ease-in-out;
-  border: 1px solid transparent;
+  border: 1px solid var(--dark-green);
   border-radius: 4px;
   cursor: pointer;
   background-color: var(--white);
@@ -193,18 +193,15 @@ const CardAuto = styled.div`
   .directorycard {
     -webkit-transition: all 0.2ms ease-in-out;
     transition: all 0.2ms ease-in-out;
-    border: 1px solid var(--dark-green);
     border-radius: 4px;
   }
   :hover {
     -webkit-transition: all 0.2ms ease-in-out;
     transition: all 0.2ms ease-in-out;
-    border: 2px solid var(--dark-green);
     box-shadow: 0px 4px 16px var(--black-shadow-10);
     .directorycard {
       -webkit-transition: all 0.2ms ease-in-out;
       transition: all 0.2ms ease-in-out;
-      border: 0px solid var(--dark-green);
     }
   }
 `;

@@ -237,6 +237,15 @@ const Content = styled.div`
   .kg-video-overlay {
     display: none;
   }
+  blockquote {
+    border-left: 4px solid var(--neutral);
+    padding-left: 20px;
+    margin: 20px 0;
+    font-style: italic;
+    @media only screen and (max-width: 449px) {
+      padding-left: 16px;
+    }
+  }
   video {
     width: 100%;
     height: 100%;

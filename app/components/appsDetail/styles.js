@@ -100,7 +100,7 @@ const ImageSection = styled.div`
     border-radius: 4px;
     border: 1px solid var(--border);
     object-fit: cover;
-    cursor: pointer;
+    cursor: zoom-in;
     user-select: none;
   }
   .big-image {
@@ -324,10 +324,11 @@ const AppDetailContent = styled.div`
   }
   img {
     width: 100%;
-    height: 100%;
+    height: auto;
     margin-top: 16px;
     border-radius: 4px;
     border: 0.4px solid var(--platinum-gray);
+    cursor: zoom-in;
   }
   video {
     width: 100%;
@@ -434,6 +435,15 @@ const AppDetailContent = styled.div`
           font-style: italic !important;
         }
       }
+    }
+  }
+  blockquote {
+    border-left: 4px solid var(--neutral);
+    padding-left: 20px;
+    margin: 20px 0;
+    font-style: italic;
+    @media only screen and (max-width: 449px) {
+      padding-left: 16px;
     }
   }
   .copy-icon {

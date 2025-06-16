@@ -1,15 +1,26 @@
 'use client';
-import React from 'react';
+import React, { useCallback, useState } from 'react';
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
 import { BLOCKS, INLINES } from '@contentful/rich-text-types';
 import Image from 'next/image';
-import Zoom from 'react-medium-image-zoom';
 import 'react-medium-image-zoom/dist/styles.css';
 import { extractTagId, isEmpty } from '../../helpers/helpers';
 import CopyLink from '../copyLink/copyLink';
 import VideoComponent from '../../components/videoComponent';
+import ZoomImageSlider from '../zoomImage/zoomImageslider';
 import IframeView from './iframeView';
+
 export default function RichTextDetail({ assets = [], data, shouldHeadingCopy = true }) {
+  const [isOpen, setIsOpen] = useState(false);
+
+  const onCloseModal = useCallback(() => {
+    setIsOpen(false);
+  }, []);
+
+  const onOpenModal = useCallback(() => {
+    setIsOpen(true);
+  }, []);
+
   const assetData = assets?.assets?.block || [];
   const videoEntries = assets?.entries?.inline || [];
   const options = {
@@ -97,10 +108,17 @@ export default function RichTextDetail({ assets = [], data, shouldHeadingCopy = 
           const src = asset?.url;
           //check current asset is image
           if (asset?.contentType?.startsWith('image/'))
-            return (
-              <Zoom>
-                <Image src={src} alt={asset?.fileName} width={753} height={266} className='content-image' />
-              </Zoom>
+            return isOpen ? (
+              <ZoomImageSlider isSlideButtonHide imageUrl={src} onCloseModal={onCloseModal} />
+            ) : (
+              <Image
+                src={src}
+                alt={asset?.fileName}
+                width={753}
+                height={266}
+                className='content-image'
+                onClick={onOpenModal}
+              />
             );
           //check current asset is video
           else if (asset?.contentType?.startsWith('video/'))
