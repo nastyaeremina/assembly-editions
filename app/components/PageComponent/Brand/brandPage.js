@@ -98,6 +98,7 @@ export default function BrandPage() {
           <div className='standard-page'>
             <StandardHero
               type={HeroTypes.CENTER}
+              isDownload={true}
               data={{
                 heroTitle: 'Copilot Brand Guidelines',
                 heroDescription: 'Resources for presenting the Copilot brand consistently and professionally.',

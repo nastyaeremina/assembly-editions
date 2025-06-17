@@ -25,6 +25,7 @@ import Heading from './heading/heading';
  * @param {string} props.primaryButtonLink - The link for the primary button
  * @param {string} props.secondaryButtonText - The text for the secondary button
  * @param {string} props.secondaryButtonLink - The link for the secondary button
+ * @param {boolean} isDownload - Indicates whether the secondary button should link to a download.
  */
 
 export default function HomeHeroSection({
@@ -41,7 +42,8 @@ export default function HomeHeroSection({
   primaryButtonLink,
   secondaryButtonText,
   secondaryButtonLink,
-  isShowSocialProof
+  isShowSocialProof,
+  isDownload = false
 }) {
   let ratingData = transformArray(ratingList);
 
@@ -56,6 +58,7 @@ export default function HomeHeroSection({
           primaryButtonText={primaryButtonText}
           secondaryButtonText={secondaryButtonText}
           ratingData={ratingData}
+          isDownload={isDownload}
           variant={HeroTypes.CENTER}>
           {isShowSocialProof && (
             <div className='social-proof'>

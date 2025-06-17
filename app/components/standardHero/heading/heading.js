@@ -21,6 +21,7 @@ import SVGComponent from '../../../../public/images/svg/SVGComponent';
  * @param {string} secondaryButtonLink - The link for the secondary button.
  * @param {'center' | 'left'} variant - Determines the alignment of the heading and buttons.
  * @param {React.ReactNode} children - Optional additional content to be rendered within the component.
+ * @param {boolean} isDownload - Indicates whether the secondary button should link to a download.
  * @param {React.ReactNode[]} ratingData - An array of objects representing rating items,
  * each containing a link and a title to be displayed as part of the rating view.
  */
@@ -35,7 +36,8 @@ function Heading({
   secondaryButtonText,
   variant = HeroTypes.LEFT,
   children,
-  ratingData
+  ratingData,
+  isDownload
 }) {
   const renderRatingView = useMemo(() => {
     return ratingData?.map((item, index) => {
@@ -64,6 +66,7 @@ function Heading({
         secondaryButtonLink={secondaryButtonLink}
         secondaryButtonText={secondaryButtonText}
         className={variant === HeroTypes.CENTER ? 'center-button-group' : 'button-group'}
+        isDownload={isDownload}
       />
       {isShowSocialProof && <SocialProofProperty rateCount='1000+' />}
     </LeftHeroSectionMainDiv>

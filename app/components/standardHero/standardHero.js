@@ -5,7 +5,7 @@ import SolutionHero from './solutionhero/solutionhero';
 import HomeHeroSection from './hybrid';
 import SimpleSection from './simpleSection/simpleSection';
 
-export default function StandardHero({ type, data }) {
+export default function StandardHero({ type, data, isDownload = false }) {
   // useMemo to memoize the component to be rendered based on the type prop
   const renderComponent = useMemo(() => {
     switch (type) {
@@ -38,6 +38,7 @@ export default function StandardHero({ type, data }) {
             secondaryButtonText={data?.secondaryButtonText}
             secondaryButtonLink={data?.secondaryButtonLink}
             isShowSocialProof={data.showSocialProof}
+            isDownload={isDownload}
           />
         );
       case HeroTypes.SIMPLE:

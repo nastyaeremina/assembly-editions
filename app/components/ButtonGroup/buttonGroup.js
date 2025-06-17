@@ -12,6 +12,7 @@ import { ButtonGroups } from './styles';
  * @param {string} className - Additional CSS class names to apply to the button group.
  * @param {'white' | 'black'} secondaryButtonVariant - Indicates if the button should have a white style, affecting the font color and border color.
  * @param {boolean} isCamelCase - Determines if the button text should be displayed in camel case.
+ * @param {boolean} isDownload - Indicates whether the secondary button should link to a download.
  */
 
 export default function ButtonGroup({
@@ -21,7 +22,8 @@ export default function ButtonGroup({
   secondaryButtonLink,
   className,
   secondaryButtonVariant = 'black',
-  isCamelCase
+  isCamelCase,
+  isDownload = false
 }) {
   const showPrimaryButton = !isEmpty(primaryButtonText) && !isEmpty(primaryButtonLink);
   const showSecondaryButton = !isEmpty(secondaryButtonText) && !isEmpty(secondaryButtonLink);
@@ -32,7 +34,7 @@ export default function ButtonGroup({
     <>
       {(showPrimaryButton || showSecondaryButton) && (
         <ButtonGroups className={className}>
-          {showPrimaryButton && <Button text={primaryButtonText} href={primaryButtonLink} />}
+          {showPrimaryButton && <Button text={primaryButtonText} href={primaryButtonLink} isDownload={isDownload} />}
           {showSecondaryButton && (
             <Button
               text={secondaryButtonText}
@@ -42,6 +44,7 @@ export default function ButtonGroup({
               borderColor={secondaryButtonVariant === 'white' ? '--light-green' : '--black'}
               hoverColor={secondaryButtonVariant === 'white' ? '--secondary-hover-color' : '--hover-color'}
               isCamelCase={isCamelCase}
+              isDownload={isDownload}
             />
           )}
         </ButtonGroups>
