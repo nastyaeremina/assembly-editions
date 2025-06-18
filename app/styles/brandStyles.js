@@ -1,7 +1,12 @@
 import styled from 'styled-components';
 import { Body2, Body3, ButtonText, Heading2, Heading4, LinkTxt, MbBody2, MbBody3, MobileH2, MobileH4 } from './styles';
 
-const BrandMain = styled.div``;
+const BrandMain = styled.div`
+  padding-bottom: 50px;
+  @media only screen and (max-width: 769px) {
+    padding-bottom: 40px;
+  }
+`;
 const BrandHeroSection = styled.div`
   padding-top: 100px;
   padding-bottom: 50px;
@@ -116,7 +121,7 @@ const BrandImageLeft = styled.div`
     }
   }
   @media only screen and (max-width: 749px) {
-    padding: 89px 0 88px;
+    padding: 72px 0 107px;
   }
 `;
 const HoverSection = styled.div`
@@ -267,7 +272,7 @@ const BrandImageRight = styled.div`
     }
   }
   @media only screen and (max-width: 749px) {
-    padding: 89px 0 88px;
+    padding: 72px 0 107px;
   }
 `;
 const CompanyIcon = styled.div`
@@ -300,7 +305,7 @@ const CompanyIcon = styled.div`
     }
   }
   @media only screen and (max-width: 749px) {
-    padding: 62px 0;
+    padding: 52px 0 87px;
   }
 `;
 const ColorSection = styled.div`
