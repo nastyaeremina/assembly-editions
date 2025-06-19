@@ -69,7 +69,7 @@ const JobsMobi = styled.div`
   @media only screen and (max-width: 749px) {
     display: block;
     border-radius: 8px;
-    background-image: linear-gradient(180deg, var(--black) 51.28%, var(--black) 70.01%), url('/images/jobmobi.svg');
+    background-image: linear-gradient(180deg, var(--black) 51.28%, var(--black-shadow-0) 70.01%),url('/images/jobmobi.svg');
     background-position: 0 0, 50% 50%;
     background-size: auto, cover;
     background-repeat: repeat, no-repeat;
@@ -135,7 +135,7 @@ const CareerBlock = styled.div`
   }
   @media only screen and (max-width: 749px) {
     flex-wrap: wrap;
-    gap: 66px;
+    gap: 80px;
   }
 `;
 const RoleBlock = styled.div`
@@ -188,7 +188,10 @@ const RoleWrap = styled.div`
 `;
 const JobDetailWrap = styled.div``;
 const JobView = styled.div`
-  margin-bottom: 14px;
+  margin-bottom: 28px;
+  :last-child {
+    margin-bottom: 0;
+  }
   h3 {
     margin: 0;
     ${HeaderFont};
@@ -201,11 +204,13 @@ const JobView = styled.div`
   }
 `;
 const RoleList = styled.div`
-  margin: 14px 0px 0px;
+  margin: 12px 0px 0px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
 `;
 const RoleRow = styled.div`
   padding: 6px 0px;
-  margin-bottom: 4px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -221,7 +226,7 @@ const RoleRow = styled.div`
     }
   }
   @media only screen and (max-width: 749px) {
-    margin-bottom: 2px;
+    padding: 0;
   }
 `;
 const LeftRow = styled.div`
@@ -276,9 +281,6 @@ const TitleWrap = styled.div`
   :last-child {
     margin-bottom: 0;
   }
-  @media only screen and (max-width: 749px) {
-    margin-bottom: 12px;
-  }
 `;
 const TeamLine = styled.div`
   display: flex;
@@ -307,9 +309,9 @@ const TeamLine = styled.div`
 const NameView = styled.div`
   display: flex;
   align-items: center;
-  margin-top: 4px;
+  margin-top: 6px;
   p {
-    ${Name};
+    ${FooterText};
     margin: 0;
     color: var(--medium-gray);
   }
@@ -322,9 +324,15 @@ const ImgBorder = styled.div`
   border-radius: 4px;
   overflow: hidden;
   background-color: var(--white);
-  max-height: 320px;
+  display: flex;
   img {
-    height: auto;
+    height: 100%;
+    width: 100%;
+    max-height: 320px;
+    object-fit: cover;
+    @media only screen and (max-width: 449px) {
+      max-height: 200px;
+    }
   }
 `;
 const TabList = styled.div`
