@@ -84,40 +84,55 @@ const BannerSection = styled.div`
   @media only screen and (max-width: 768px) {
     padding-bottom: 80px;
   }
-  .inner {
-    position: relative;
-    width: 100%;
-    overflow: hidden;
-    height: 100%;
-  }
-  .wrapper {
-    display: flex;
-    gap: 20px;
-  }
   section {
     display: flex;
     flex-direction: column;
     gap: 20px;
-    animation: swipe var(--speed) linear infinite backwards;
   }
-  @-webkit-keyframes swipe {
+`;
+
+const MarqueeContainer = styled.div`
+  overflow: hidden;
+  position: relative;
+`;
+
+const MarqueeContent = styled.ul`
+  list-style: none;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  animation: ${({ direction }) => (direction === 'reverse' ? 'scrollingReverseHorizontal' : 'scrollingHorizontal')}
+    var(--marquee-animation-duration) linear infinite;
+  width: 100%;
+
+  @keyframes scrollingHorizontal {
     0% {
       transform: translateX(0);
     }
     100% {
-      transform: translateX(calc(-300px * 6));
+      transform: translateX(calc(-1 * var(--marquee-element-width) * var(--marquee-elements)));
     }
   }
 
-  @keyframes swipe {
+  @keyframes scrollingReverseHorizontal {
     0% {
-      transform: translateX(0);
+      transform: translateX(calc(-1 * var(--marquee-element-width) * var(--marquee-elements)));
     }
     100% {
-      transform: translateX(calc(-300px * 6));
+      transform: translateX(0);
     }
   }
 `;
+
+const MarqueeItem = styled.li`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-shrink: 0;
+  width: var(--marquee-element-width);
+  height: 100%;
+`;
+
 export {
   Feedbackcard,
   CardHeader,
@@ -132,5 +147,8 @@ export {
   Rating,
   Main,
   Sub,
-  BannerSection
+  BannerSection,
+  MarqueeContainer,
+  MarqueeContent,
+  MarqueeItem
 };
