@@ -7,7 +7,7 @@ export default function CopilotBlock({ xPos, sliderData }) {
   const filteredSliderData = sliderData.filter((item) => !isEmpty(item?.hiddenAttributes?.content));
   return (
     <>
-      <MainBlock style={{ transform: `translateX(${xPos}px)` }}>
+      <MainBlock style={{ transform: `translateX(${xPos}px)` }} className='slider-main-block'>
         {filteredSliderData.map((item, index) => {
           const data = parseMarkdown(item?.hiddenAttributes?.content);
           return (

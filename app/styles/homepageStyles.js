@@ -1082,22 +1082,19 @@ const Block = styled.div`
   display: flex;
   align-items: end;
   gap: 32px;
+  padding-bottom: 40px;
+  @media only screen and (max-width: 560px) {
+    padding-bottom: 32px;
+  }
 `;
 
 const SliderButton = styled.div`
   display: flex;
   gap: 10px;
-  padding-bottom: 40px;
-  @media only screen and (max-width: 449px) {
+  @media only screen and (max-width: 560px) {
     justify-content: center;
     padding-top: 32px;
-    padding-bottom: 0;
   }
-  ${(props) =>
-    props.isComparisonDetails &&
-    css`
-      padding-bottom: 0;
-    `}
 `;
 
 const Arrow = styled.div`
@@ -1138,19 +1135,18 @@ const Arrow = styled.div`
 const SliderBlock = styled.div``;
 
 const ButtonGroup = styled.div`
-  @media only screen and (max-width: 449px) {
+  @media only screen and (max-width: 560px) {
     display: none;
   }
 `;
 const ResponsiveButtonGroup = styled.div`
   display: none;
-  @media only screen and (max-width: 449px) {
+  @media only screen and (max-width: 560px) {
     display: block;
   }
 `;
 const BusinessSectionText = styled.div`
   width: 100%;
-  padding-bottom: 40px;
   h2 {
     ${Heading3};
     margin: 0;
@@ -1177,7 +1173,6 @@ const BusinessSectionText = styled.div`
     margin-top: 28px;
   }
   @media only screen and (max-width: 749px) {
-    padding-bottom: 32px;
     h2 {
       ${MobileH3};
       color: var(--dark-green);

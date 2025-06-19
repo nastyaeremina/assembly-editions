@@ -302,7 +302,7 @@ const G2group = styled.div`
   }
 `;
 const ButtonGroup = styled.div`
-  @media only screen and (max-width: 449px) {
+  @media only screen and (max-width: 560px) {
     display: none;
   }
 `;

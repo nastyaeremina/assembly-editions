@@ -455,6 +455,8 @@ export const InternalAppInfoMessage = 'Internal-facing apps are only visible to 
 export const ClientAppInfoMessage = 'Client-facing apps are visible to clients as well as your internal team.';
 export const PlanList = ['Starter', 'Professional', 'Advanced', 'Supersonic'];
 
+export const WEBSITE_CONTAINER_WIDTH = 1272;
+
 export const HeroTypes = {
   LEFT: 'Hero - Left',
   CENTER: 'Hero - Center',

@@ -14,8 +14,8 @@ const BlockCard = styled(Link)`
     box-shadow: 0px 4px 16px 0px var(--black-shadow-10);
     transition: all 0.3s;
   }
-  @media only screen and (max-width: 449px) {
-    min-width: calc(100vw - 50px);
+  @media only screen and (max-width: 560px) {
+    min-width: 100%;
     padding: 20px;
     flex-direction: column;
   }
@@ -33,10 +33,10 @@ const BLockImage = styled.div`
     height: 180px;
     object-fit: cover;
   }
-  @media only screen and (max-width: 449px) {
+  @media only screen and (max-width: 560px) {
     overflow: unset;
     width: 100%;
-    max-width: 400px;
+    max-width: 100%;
     height: calc(100vw - 92px);
     img {
       width: 100%;
@@ -82,7 +82,7 @@ const BlockDescription = styled.div`
   justify-content: space-between;
   width: 100%;
   gap: 4px;
-  @media only screen and (max-width: 449px) {
+  @media only screen and (max-width: 560px) {
     gap: 12px;
     height: 100%;
   }
@@ -98,9 +98,7 @@ const MainBlock = styled.div`
   ::-webkit-scrollbar {
     display: none;
   }
-  padding: 0 24px;
-  @media only screen and (max-width: 449px) {
-    /* padding: 0; */
+  @media only screen and (max-width: 560px) {
     width: unset;
   }
 `;

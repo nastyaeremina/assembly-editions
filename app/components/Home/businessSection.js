@@ -39,6 +39,7 @@ export default function BusinessSectionComponent({
   const renderSliderButton = useMemo(() => {
     return <SliderButtonSection xPos={xPos} setXpos={setXpos} noOfSlide={sliderData.length} />;
   }, [sliderData.length, xPos]);
+
   return (
     <>
       <BusinessSection>
@@ -61,12 +62,12 @@ export default function BusinessSectionComponent({
             </BusinessSectionText>
             <ButtonGroup>{renderSliderButton}</ButtonGroup>
           </Block>
-        </Container>
 
-        <SliderBlock>
-          <CopilotBlock xPos={xPos} sliderData={sliderData} />
-          <ResponsiveButtonGroup>{renderSliderButton}</ResponsiveButtonGroup>
-        </SliderBlock>
+          <SliderBlock>
+            <CopilotBlock xPos={xPos} sliderData={sliderData} />
+            <ResponsiveButtonGroup>{renderSliderButton}</ResponsiveButtonGroup>
+          </SliderBlock>
+        </Container>
       </BusinessSection>
     </>
   );

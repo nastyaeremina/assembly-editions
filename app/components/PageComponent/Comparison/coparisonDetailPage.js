@@ -80,16 +80,7 @@ export default function ComparisonDetailPage({ details, faqList }) {
   }, [details.compititorName, details?.g2GroupCollection?.items]);
 
   const renderSliderButton = useMemo(() => {
-    return (
-      <SliderButtonSection
-        xPos={xPos}
-        setXpos={setXpos}
-        noOfSlide={details?.g2GroupCollection?.items.length}
-        isComparisonDetails={true}
-        sliderItemWidth={428}
-        padding={20}
-      />
-    );
+    return <SliderButtonSection xPos={xPos} setXpos={setXpos} noOfSlide={details?.g2GroupCollection?.items.length} />;
   }, [details?.g2GroupCollection?.items.length, xPos]);
 
   return (
@@ -125,7 +116,9 @@ export default function ComparisonDetailPage({ details, faqList }) {
                 <ButtonGroup>{renderSliderButton}</ButtonGroup>
               </G2group>
               <div>
-                <G2criteria style={{ transform: `translateX(${xPos}px)` }}>{g2ComparisonGroupView}</G2criteria>
+                <G2criteria style={{ transform: `translateX(${xPos}px)` }} className='slider-main-block'>
+                  {g2ComparisonGroupView}
+                </G2criteria>
                 <ResponsiveButtonGroup>{renderSliderButton}</ResponsiveButtonGroup>
               </div>
             </G2section>
