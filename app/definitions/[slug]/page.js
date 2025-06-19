@@ -19,7 +19,7 @@ export async function generateMetadata({ params }) {
   return {
     title: data?.metaTitle ? data?.metaTitle : `${data?.name} | Definition and examples`,
     description: data?.metaDescription,
-    alternates: { canonical: `${CURRENT_SITE_URL}/glossary/${params?.slug}` }
+    alternates: { canonical: `${CURRENT_SITE_URL}/definitions/${params?.slug}` }
   };
 }
 export default async function GlossaryDetails({ params }) {

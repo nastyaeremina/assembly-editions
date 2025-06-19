@@ -19,7 +19,7 @@ export default function GlossaryDetailsPage({ detail }) {
     <Container>
       <GlossaryContainer>
         <PageBack>
-          <Link href='/glossary'>
+          <Link href='/definitions'>
             <DetailLink>
               <svg width='12' height='12' viewBox='0 0 12 12' fill='none' xmlns='http://www.w3.org/2000/svg'>
                 <path
@@ -30,7 +30,7 @@ export default function GlossaryDetailsPage({ detail }) {
                   stroke-linejoin='round'
                 />
               </svg>
-              <p>Back to Glossary</p>
+              <p>Back to Definitions</p>
             </DetailLink>
           </Link>
         </PageBack>

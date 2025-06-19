@@ -17,7 +17,7 @@ async function getContent({ searchParams }) {
     abTestExperimentName
   } = await getPageContent({
     searchParams,
-    cookieKey: 'glossary',
+    cookieKey: 'definitions',
     fallbackContentId: GLOSSARY_PAGE_ID,
     getContentFn: getGlossaryPageContent
   });
@@ -46,24 +46,25 @@ async function getContent({ searchParams }) {
     item.list.sort((x, y) => x.name.localeCompare(y.name));
   });
 
-  return { glossaryList: newList, seoMetadata: data?.seoMetadata, abTestContentLabel, abTestExperimentName };
+  return { glossaryList: newList, seoMetadata: data?.seoMetadata, abTestContentLabel, abTestExperimentName, data };
 }
 
 export async function generateMetadata({ searchParams }) {
   const { seoMetadata } = await getContent({ searchParams });
   const seoData = await getSEOData({ data: seoMetadata });
-  seoData.alternates = { canonical: `${CURRENT_SITE_URL}/glossary` };
+  seoData.alternates = { canonical: `${CURRENT_SITE_URL}/definitions` };
 
   return seoData;
 }
 export default async function Glossary({ searchParams }) {
-  const { glossaryList, seoMetadata, abTestContentLabel, abTestExperimentName } = await getContent({ searchParams });
+  const { glossaryList, data, seoMetadata, abTestContentLabel, abTestExperimentName } = await getContent({ searchParams });
+  
   return (
     <>
       <AggregateRating data={seoMetadata} />
       <Layout abTestContentLabel={abTestContentLabel} abTestExperimentName={abTestExperimentName}>
         <Navbar />
-        <GlossaryPage data={glossaryList} />
+        <GlossaryPage data={glossaryList} heroSectionDetail={data?.heroSection}/>
       </Layout>
     </>
   );

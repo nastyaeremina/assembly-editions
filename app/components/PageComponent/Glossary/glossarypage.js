@@ -1,14 +1,20 @@
 'use client';
 
 import React from 'react';
-import GlossaryHero from '../../glossaryhero/glossaryhero';
 import GlossarySearch from '../../glossaryhero/glossarysearch';
+import StandardHero from '../../standardHero/standardHero';
+import { HeroTypes } from '../../../constants/constant';
+import { isEmpty } from '../../../helpers/helpers';
 
-export default function GlossaryPage({ data }) {
+export default function GlossaryPage({ data, heroSectionDetail }) {
   return (
     <>
-      <GlossaryHero />
-      <GlossarySearch data={data} />
+      <div className='standard-page'>
+        {!isEmpty(heroSectionDetail) && (
+          <StandardHero type={heroSectionDetail.type ?? HeroTypes.CENTER} data={heroSectionDetail} />
+        )}
+        <GlossarySearch data={data} />
+      </div>
     </>
   );
 }

@@ -36,7 +36,7 @@ export default function GlossarySearch({ data: glossaryList }) {
           <SearchListData>
             {item?.list?.map((glossary, glossaryIndex) => (
               <SearchList key={`${glossary?.slug}_index_${glossaryIndex}`}>
-                <a href={`/glossary/${glossary?.slug}`}> {glossary?.name}</a>
+                <a href={`/definitions/${glossary?.slug}`}> {glossary?.name}</a>
               </SearchList>
             ))}
           </SearchListData>
@@ -93,7 +93,7 @@ export default function GlossarySearch({ data: glossaryList }) {
             <>
               <InputWrap onSubmit={onSubmitSeachQuery}>
                 <Image src='/images/searchicon.svg' alt='search-icon' width={20} height={20} />
-                <Input placeholder='Search the glossary...' type='search' value={query} onChange={onSeachQueryChange} />
+                <Input placeholder='Search the definitions...' type='search' value={query} onChange={onSeachQueryChange} />
               </InputWrap>
             </>
           </Search>

@@ -2,9 +2,12 @@ import { CONTENTFUL_API_TAG } from '../constants/constant';
 import { fetchGraphQL } from './contentful';
 import { POST_GRAPHQL_VIDEO_CONTENT_FIELDS } from './contentful-guide';
 import { POST_GRAPHQL_SEOMETADATA_FIELDS } from './contentful-seo';
+import { POST_GRAPHQL_HERO_COMPONENT_FIELDS } from './contentful-standardPage';
 
 const POST_GRAPHQL_PAGE_GLOSSARY_DETAILS_FIELDS = `
-
+heroSection{
+  ${POST_GRAPHQL_HERO_COMPONENT_FIELDS}
+}
 seoMetadata{
     ${POST_GRAPHQL_SEOMETADATA_FIELDS}
 }
@@ -25,6 +28,7 @@ export async function getGlossaryPageContent({ id, preview }) {
     `query {
         pageGlossary(id: "${id}" ,preview: ${preview ? 'true' : 'false'}) {
             ${POST_GRAPHQL_PAGE_GLOSSARY_DETAILS_FIELDS}
+
         }
     }         
     `,

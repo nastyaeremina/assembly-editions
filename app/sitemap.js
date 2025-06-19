@@ -34,7 +34,7 @@ export default async function sitemap() {
   const tagPostsPathList = tagPost?.map((item) => `blog/tag/${item?.slug}`);
   const comparisonPostsPathList = comparisonPost?.map((item) => `comparison/${item?.slug}`);
   const automationsPostsPathList = automationsPost?.map((item) => `automations/directory/${item?.slug}`);
-  const glossaryPostsPathList = glossarysPost?.map((item) => `glossary/${item?.slug}`);
+  const glossaryPostsPathList = glossarysPost?.map((item) => `definitions/${item?.slug}`);
   const guidePostsPathList = guidesPost?.map((item) => `guide/${item?.slug}`);
 
   let allUpdateWithPagination = [];
@@ -61,7 +61,7 @@ export default async function sitemap() {
     'sitemap',
     'university',
     'updates',
-    'glossary',
+    'definitions',
     'guide'
   ];
 

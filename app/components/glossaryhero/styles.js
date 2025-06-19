@@ -32,7 +32,6 @@ const HeroBody = styled.p`
 const Search = styled.div`
   position: sticky;
   top: 82px;
-  padding-top: 20px;
   background: linear-gradient(180deg, var(--main-bg-color) 11.98%, var(--transparent-color) 100%);
   backdrop-filter: blur(12px);
   @media (max-width: 449px) {

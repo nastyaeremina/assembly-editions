@@ -39,7 +39,7 @@ export async function getServerSideProps(ctx) {
   const tagPostsPathList = tagPost?.map((item) => `blog/tag/${item?.slug}`);
   const comparisonPostsPathList = comparisonPost?.map((item) => `comparison/${item?.slug}`);
   const automationsPostsPathList = automationsPost?.map((item) => `automations/directory/${item?.slug}`);
-  const glossaryPostsPathList = glossarysPost?.map((item) => `glossary/${item?.slug}`);
+  const glossaryPostsPathList = glossarysPost?.map((item) => `definitions/${item?.slug}`);
   const guidePostsPathList = guidesPost?.map((item) => `guide/${item?.slug}`);
   const templatePostsPathList = templatesPost?.map((item) => `templates/${item?.slug}`);
   let standardPagesPathList = standardPagesPost?.map((item) => `${item?.slug}`);
@@ -86,7 +86,7 @@ export async function getServerSideProps(ctx) {
     'sitemap',
     'university',
     'updates',
-    'glossary',
+    'definitions',
     'guide',
     'templates'
   ];
