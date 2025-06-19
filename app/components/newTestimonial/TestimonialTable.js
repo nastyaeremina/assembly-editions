@@ -1,6 +1,4 @@
-import React, { useState } from 'react';
-import logo1 from '../../../public/images/newtestimoniallogo1.svg';
-import logo2 from '../../../public/images/newtestimoniallogo2.svg';
+import React, { useState, useEffect } from 'react';
 import { TestimonialMainBox } from './styles';
 import TableData from './tableData';
 import TestimonialCenterBox from './testimonialCenterBox';
@@ -21,7 +19,17 @@ import { stringToSlugyfy } from '../../helpers/helpers';
 }] */
 export default function TestimonialTable({ tableData }) {
   const mobile = useMobileDevice();
-  const [currentTestimonial, setCurrentTestimomial] = useState(tableData[0]);
+  const [currentTestimonial, setCurrentTestimonial] = useState(tableData[0]);
+
+  useEffect(()=>{
+    if(mobile){
+      //in mobile show only last 8 cards sothat active card is 11th card
+      setCurrentTestimonial(tableData[10]);
+    }else{
+      setCurrentTestimonial(tableData[0]);
+    }
+  },[mobile,tableData])
+
   return (
     <TestimonialMainBox>
       {tableData.map((item, index) => {
@@ -40,9 +48,8 @@ export default function TestimonialTable({ tableData }) {
             <TableData
               isActive={currentTestimonial === item}
               logoUrl={item.logo?.url}
-              isHideMobile={mobile && index < 10}
               onClick={() => {
-                setCurrentTestimomial(item);
+                setCurrentTestimonial(item);
               }}
             />
           </React.Fragment>

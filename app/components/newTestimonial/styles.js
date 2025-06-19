@@ -49,6 +49,11 @@ const TestimonialBox = styled.div`
       width: 100%;
     }
   }
+  @media only screen and (max-width: 991px) {
+    &:nth-child(-n + 11) {
+      display: none;
+    }
+  }
 `;
 
 const TestimonialCenter = styled.div`
@@ -66,7 +71,7 @@ const TestimonialCenter = styled.div`
     width: auto;
     height: 52px;
   }
-  @media only screen and (max-width: 449px) {
+  @media only screen and (max-width: 991px) {
     padding: 20px;
     gap: 24px;
     .main-logo {
