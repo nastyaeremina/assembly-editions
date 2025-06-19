@@ -1,5 +1,5 @@
 import styled, { css } from 'styled-components';
-import { Body4, Body5, Heading4, MobileH3 } from '../../styles/styles';
+import { Body4, Body5, Heading4, Heading6, MobileH3 } from '../../styles/styles';
 
 const BlogCTACard = styled.div`
   max-width: 880px;
@@ -38,13 +38,15 @@ const BlogLeftCTA = styled.div`
   .blogerror {
     margin-top: 12px;
     margin-bottom: 0;
-    margin-left: 15px;
-    font-size: 18px;
-    line-height: 24px;
+    margin-left: 20px;
+    align-items: center;
+    ${Heading6}
     font-weight: 400;
-    svg {
-      width: 20px;
-      height: 20px;
+    @media only screen and (max-width: 449px) {
+      margin-left: 0;
+    }
+    @media only screen and (max-width: 412px) {
+      align-items: flex-start;
     }
   }
   @media only screen and (max-width: 479px) {
@@ -55,16 +57,14 @@ const BlogLeftCTA = styled.div`
     p {
       ${Body5}
     }
-    .blogerror {
-      font-size: 15px;
-      line-height: 24px;
-      font-weight: 400;
-    }
   }
 `;
 const BlogRightCTA = styled.div`
   display: flex;
   padding-right: 40px;
+  img {
+    height: 100%;
+  }
   @media only screen and (max-width: 749px) {
     display: none;
   }
@@ -106,7 +106,6 @@ const Form = styled.form`
   }
   @media only screen and (max-width: 449px) {
     flex-direction: column;
-    gap: 16px;
     button {
       width: 100%;
       justify-content: center;

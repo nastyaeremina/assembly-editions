@@ -789,6 +789,24 @@ const getPath = (name, props) => {
           />
         </>
       );
+    case 'error-icon':
+      return (
+        <>
+          <path
+            fill='#FF5644'
+            fillRule='evenodd'
+            d='M10 2a8 8 0 0 1 8 8 8 8 0 0 1-8 8 8 8 0 0 1-8-8 8 8 0 0 1 8-8Z'
+            clipRule='evenodd'
+          />
+          <path
+            stroke='#fff'
+            strokeLinecap='round'
+            strokeLinejoin='round'
+            strokeWidth={1.942}
+            d='M9.917 10.167V6M9.916 13.083a.208.208 0 1 0 .002.417.208.208 0 0 0-.002-.417'
+          />
+        </>
+      );
     case 'slack-logo-icon':
       return (
         <>

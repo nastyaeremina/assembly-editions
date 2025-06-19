@@ -32,11 +32,13 @@ const Leftside = styled.div`
   padding: 0;
   margin: 0;
   overflow: hidden;
-  width: 360px;
+  width: 100%;
+  max-width: 270px;
   .image {
     object-fit: cover;
     border-radius: 3px 0px 0px 3px;
     height: auto;
+    width: 100%;
     @media only screen and (max-width: 749px) {
       border-right: none;
       display: flex;
@@ -49,6 +51,7 @@ const Leftside = styled.div`
     border-right: none;
     display: flex;
     width: 100%;
+    max-width: unset;
   }
 `;
 const Rightside = styled.div`

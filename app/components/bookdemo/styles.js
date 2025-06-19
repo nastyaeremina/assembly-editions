@@ -3,12 +3,10 @@ import {
   Body3,
   Body4,
   Body5,
-  Body6,
-  CardTxt,
   HeaderFont,
   Heading3,
   Heading4,
-  LinkTxt,
+  Heading6,
   MbBody3,
   MbBody4,
   MbPrimaryBtn,
@@ -270,12 +268,8 @@ const ValidationForm = styled.div`
   font-size: 12px;
   line-height: 14px;
   letter-spacing: 0.02em;
+  gap: 8px;
   color: var(--delete-text);
-  svg {
-    display: inline-flex;
-    margin-right: 4px;
-    justify-content: center;
-  }
   ${(props) =>
     props.isLast &&
     css`
@@ -283,6 +277,13 @@ const ValidationForm = styled.div`
       margin-bottom: 0px;
     `}
 `;
+
+const Icon = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+
 const NameBlock = styled.div`
   display: flex;
   gap: 16px;
@@ -441,5 +442,6 @@ export {
   CardList,
   ImgLine,
   TextWrap,
-  ItemDiv
+  ItemDiv,
+  Icon
 };
