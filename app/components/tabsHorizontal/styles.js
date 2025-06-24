@@ -9,15 +9,25 @@ const TabsHorizontalSection = styled.div`
 `;
 
 const TabsSection = styled.div`
-  display: grid;
+  display: flex;
   gap: 20px;
-  grid-template-columns: 1fr 1fr 1fr;
   margin-top: 40px;
+  overflow-x: auto;
+  flex-wrap: nowrap;
+
+  & > * {
+    flex: 1 0 calc((100% - 80px) / 3); /* 3 cards fit perfectly with 2 gaps */
+  }
+  ::-webkit-scrollbar {
+    display: none;
+  }
   @media only screen and (max-width: 768px) {
     grid-template-columns: 1fr;
     gap: 0;
+    display: grid;
   }
 `;
+
 const ToolsTab = styled.div`
   padding: 20px 0;
   border-top: 1px solid var(--border);

@@ -1,4 +1,4 @@
-import React, { useCallback, useLayoutEffect, useRef, useState } from 'react';
+import React, { useCallback, useLayoutEffect, useRef, useState, useEffect } from 'react';
 import SubHeroComponent from '../Hero/subHero';
 import { Container } from '../../styles/commonStyles';
 import {
@@ -23,6 +23,7 @@ export default function TabsVertical({ heroSectionData, featuresList }) {
   const [selectedTab, setSelectedTab] = useState(0);
   const [currentHeight, setCurrentHeight] = useState(0);
   const [currentCaptionHeight, setCurrentCaptionHeight] = useState();
+  const [maxHeight, setMaxHeight] = useState(0);
   const mainSectionRef = useRef(null);
   const responsiveMainSectionRef = useRef(null);
   const captionRef = useRef(null);
@@ -39,16 +40,41 @@ export default function TabsVertical({ heroSectionData, featuresList }) {
     }
   }, [selectedTab, featuresList, currentHeight]);
 
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const handleResize = () => {
+        if (featuresList.length > 0 && window.innerWidth > 768) {
+          const totalHeight = featuresList.slice(0, 3).reduce((acc, item, index) => {
+            const element = document.getElementById(`item-${index}`);
+            return acc + (element ? element.offsetHeight + 12 : 0);
+          }, 0);
+          setMaxHeight(totalHeight);
+        } else {
+          setMaxHeight(''); // Reset maxHeight for non-desktop screens
+        }
+      };
+
+      // Initial calculation
+      handleResize();
+
+      // Add resize event listener
+      window.addEventListener('resize', handleResize);
+
+      // Cleanup event listener on unmount
+      return () => window.removeEventListener('resize', handleResize);
+    }
+  }, [featuresList]);
+
   /**
    * @param {Object} props - The props object.
    * @param {React.RefObject} props.ref - The ref object.
    * @returns {React.ReactNode} The rendered main section.
    */
   const renderMainSection = useCallback(
-    ({ref}) => (
+    ({ ref }) => (
       <MainSection id='mainSection' ref={ref}>
         <BgImage>
-          {featuresList.slice(0, 3).map((item, index) => (
+          {featuresList.map((item, index) => (
             <Image
               key={index}
               src={item?.backgroundImage?.url}
@@ -62,7 +88,7 @@ export default function TabsVertical({ heroSectionData, featuresList }) {
         </BgImage>
         <Tabbutton>
           <div className='outlet'>
-            {featuresList.slice(0, 3).map((item, index) => {
+            {featuresList.map((item, index) => {
               let isSelectedTab = selectedTab === index;
               return (
                 <ShowImage key={index} isSelectedTab={isSelectedTab}>
@@ -89,11 +115,14 @@ export default function TabsVertical({ heroSectionData, featuresList }) {
       <TabsVerticalSection>
         <TabsVerticalLeft>
           <SubHeroComponent data={heroSectionData} hasFullWidth />
-          <TabsSection>
-            {featuresList.slice(0, 3).map((item, index) => {
+          <TabsSection style={{ maxHeight: maxHeight }}>
+            {featuresList.map((item, index) => {
               return (
                 <>
-                  <ToolsTab onClick={() => setSelectedTab(index)} selectedTab={index === selectedTab}>
+                  <ToolsTab
+                    id={`item-${index}`}
+                    onClick={() => setSelectedTab(index)}
+                    selectedTab={index === selectedTab}>
                     <Title selectedTab={index === selectedTab}>{item.subTitle}</Title>
                     <DesktopCaption style={{ height: index === selectedTab ? currentCaptionHeight : 0 }}>
                       {index === selectedTab && <Caption ref={captionRef}>{item.description}</Caption>}

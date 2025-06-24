@@ -30,7 +30,7 @@ export default function TabsHorizontal({ heroSectionData, featuresList }) {
     return (
       <MainSection id='mainSection' ref={mainSectionRef}>
         <BgImage>
-          {featuresList.slice(0, 3).map((item, index) => {
+          {featuresList.map((item, index) => {
             return (
               <>
                 <Image
@@ -48,7 +48,7 @@ export default function TabsHorizontal({ heroSectionData, featuresList }) {
         </BgImage>
         <Tabbutton>
           <div className='outlet'>
-            {featuresList.slice(0, 3).map((item, index) => {
+            {featuresList.map((item, index) => {
               let isSelectedTab = selectedTab === index;
               return (
                 <>
@@ -76,7 +76,7 @@ export default function TabsHorizontal({ heroSectionData, featuresList }) {
         <SubHeroComponent data={heroSectionData} hasFullWidth />
         <DesktopImageSection>{renderMainSection}</DesktopImageSection>
         <TabsSection>
-          {featuresList.slice(0, 3).map((item, index) => (
+          {featuresList.map((item, index) => (
             <>
               <ToolsTab onClick={() => setSelectedTab(index)} selectedTab={index === selectedTab}>
                 <Title selectedTab={index === selectedTab}>{item.subTitle}</Title>

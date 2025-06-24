@@ -14,10 +14,8 @@ const TabsVerticalLeft = styled.div`
   width: 100%;
   display: flex;
   flex-direction: column;
-  gap: 60px;
-  @media only screen and (max-width: 449px) {
-    gap: 40px;
-  }
+  gap: 40px;
+  justify-content: space-between;
 `;
 const TabsVerticalRight = styled.div`
   width: 100%;
@@ -197,6 +195,10 @@ const Caption = styled.p`
 const TabsSection = styled.div`
   display: flex;
   flex-direction: column;
+  overflow: auto;
+  ::-webkit-scrollbar {
+    display: none;
+  }
 `;
 
 const ResponsiveImageSection = styled.div`
