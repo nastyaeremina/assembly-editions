@@ -2,6 +2,7 @@ import React from 'react';
 import Button from '../button/button';
 import { isEmpty } from '../../helpers/helpers';
 import { ButtonGroups } from './styles';
+import { SecondaryButtonVariant } from '../../constants/constant';
 
 /**
  * Automation section
@@ -21,7 +22,7 @@ export default function ButtonGroup({
   secondaryButtonText,
   secondaryButtonLink,
   className,
-  secondaryButtonVariant = 'black',
+  secondaryButtonVariant = SecondaryButtonVariant.BLACK,
   isCamelCase,
   isDownload = false
 }) {
@@ -40,9 +41,11 @@ export default function ButtonGroup({
               text={secondaryButtonText}
               href={secondaryButtonLink}
               bgColor={'transparent'}
-              fontColor={secondaryButtonVariant === 'white' ? '--light-green' : '--black'}
-              borderColor={secondaryButtonVariant === 'white' ? '--light-green' : '--black'}
-              hoverColor={secondaryButtonVariant === 'white' ? '--secondary-hover-color' : '--hover-color'}
+              fontColor={secondaryButtonVariant === SecondaryButtonVariant.WHITE ? '--light-green' : '--black'}
+              borderColor={secondaryButtonVariant === SecondaryButtonVariant.WHITE ? '--light-green' : '--black'}
+              hoverColor={
+                secondaryButtonVariant === SecondaryButtonVariant.WHITE ? '--secondary-hover-color' : '--hover-color'
+              }
               isCamelCase={isCamelCase}
               isDownload={isDownload}
             />

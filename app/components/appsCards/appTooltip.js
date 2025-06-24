@@ -1,6 +1,6 @@
 import React, { useRef, useEffect, useState } from 'react';
 import SVGComponent from 'public/images/svg/SVGComponent';
-import { Informative, Line, Tooltip } from './styles';
+import { Icon, Informative, Line, Tooltip } from './styles';
 
 function AppTooltip({ message, iconSize = '13', fill = 'var(--body)', style, mainDivStyle, isAutoAdjust = false }) {
   const tooltipIconRef = useRef(null);
@@ -23,9 +23,9 @@ function AppTooltip({ message, iconSize = '13', fill = 'var(--body)', style, mai
 
   return (
     <Informative style={mainDivStyle} isAutoAdjust={isAutoAdjust}>
-      <div ref={tooltipIconRef} style={{ width: `${iconSize}px`, height: `${iconSize}px` }}>
+      <Icon ref={tooltipIconRef} iconSize={iconSize}>
         <SVGComponent name='informative-icon' width={iconSize} height={iconSize} viewBox='0 0 13 13' fill={fill} />
-      </div>
+      </Icon>
       <Tooltip className='tooltiptext' style={{ ...style, ...tooltipPosition }} isAutoAdjust={isAutoAdjust}>
         <Line isAutoAdjust={isAutoAdjust} style={{ ...tooltipLinePosition }}>
           <div className='line' />

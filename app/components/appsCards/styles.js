@@ -263,6 +263,13 @@ const Informative = styled.div`
       `}
   }
 `;
+
+const Icon = styled.div`
+  display: flex;
+  width: ${({ iconSize }) => `${iconSize}px`};
+  height: ${({ iconSize }) => `${iconSize}px`};
+`;
+
 export {
   CardSub,
   CardDescription,
@@ -280,5 +287,6 @@ export {
   SectionHeading,
   Tooltip,
   Line,
-  Informative
+  Informative,
+  Icon
 };

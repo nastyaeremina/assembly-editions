@@ -94,6 +94,7 @@ const BannerSection = styled.div`
 const MarqueeContainer = styled.div`
   overflow: hidden;
   position: relative;
+  z-index: 1;
 `;
 
 const MarqueeContent = styled.ul`
@@ -104,6 +105,10 @@ const MarqueeContent = styled.ul`
   animation: ${({ direction }) => (direction === 'reverse' ? 'scrollingReverseHorizontal' : 'scrollingHorizontal')}
     var(--marquee-animation-duration) linear infinite;
   width: 100%;
+
+  :hover {
+    animation-play-state: ${({ isHoverPause }) => (isHoverPause ? 'paused' : 'running')};
+  }
 
   @keyframes scrollingHorizontal {
     0% {
@@ -130,7 +135,7 @@ const MarqueeItem = styled.li`
   align-items: center;
   flex-shrink: 0;
   width: var(--marquee-element-width);
-  height: 100%;
+  height: ${({ height }) => (height === 'auto' ? 'auto' : '100%')};
 `;
 
 export {

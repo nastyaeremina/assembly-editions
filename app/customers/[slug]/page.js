@@ -12,7 +12,7 @@ import { CURRENT_SITE_URL } from '../../constants/constant';
 
 async function getContent({ slug }) {
   const { isEnabled } = await draftMode()
-  const details = await getCaseStudyDetail({ slug, isEnabled });
+  const details = await getCaseStudyDetail({ slug, preview:isEnabled });
   return details;
 }
 

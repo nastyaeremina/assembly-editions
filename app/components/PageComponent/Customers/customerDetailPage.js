@@ -95,11 +95,11 @@ export default function CaseStudiesPage({ details }) {
                   )}
                 </DetailSection>
               </Top>
-              {(!isEmpty(details?.copilotAppsCollection?.items) || !isEmpty(details?.appsCollection?.items)) && (
+              {(!isEmpty(details?.appsCollection?.items) || !isEmpty(details?.appsCollection?.items)) && (
                 <Bottom>
                   <Head>Apps in use</Head>
                   <AppCardSection
-                    copilotAppList={details?.copilotAppsCollection?.items}
+                    copilotAppList={details?.appsCollection?.items}
                     appsList={details?.appsCollection?.items}
                   />
                 </Bottom>

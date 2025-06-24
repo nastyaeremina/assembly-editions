@@ -1,4 +1,5 @@
 import React, { useEffect, useRef } from 'react';
+import { SliderHeight } from '../../constants/constant';
 import { MarqueeContainer, MarqueeContent, MarqueeItem } from './styles';
 
 /**
@@ -8,9 +9,18 @@ import { MarqueeContainer, MarqueeContent, MarqueeItem } from './styles';
  * @param {'normal' | 'reverse'} direction - Direction for sliding the items (normal or reverse).
  * @param {number} gap - The gap between each child item in the slider.
  * @param {number} speed - The speed of the sliding animation (in seconds).
+ * @param {'full' | 'auto'} height - Determines whether the item should have a height of 100% or auto. Use this prop to control the height behavior of the item.
+ * @param {boolean} isPause - isPause props use for animation pause on hover.
  */
 
-function Slider({ children, direction = 'normal', gap = 20, speed = 1 }) {
+function Slider({
+  children,
+  direction = 'normal',
+  gap = 20,
+  speed = 1,
+  height = SliderHeight.FULL,
+  isHoverPause = false
+}) {
   const marqueeRef = useRef(null);
 
   useEffect(() => {
@@ -57,9 +67,11 @@ function Slider({ children, direction = 'normal', gap = 20, speed = 1 }) {
 
   return (
     <MarqueeContainer>
-      <MarqueeContent ref={marqueeRef} direction={direction}>
+      <MarqueeContent ref={marqueeRef} direction={direction} isHoverPause={isHoverPause}>
         {React.Children.map(children, (child, index) => (
-          <MarqueeItem key={index}>{child}</MarqueeItem>
+          <MarqueeItem key={index} height={height}>
+            {child}
+          </MarqueeItem>
         ))}
       </MarqueeContent>
     </MarqueeContainer>

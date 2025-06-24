@@ -1,7 +1,7 @@
 'use client';
 import React, { useCallback, useState } from 'react';
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
-import { BLOCKS, INLINES } from '@contentful/rich-text-types';
+import { BLOCKS, INLINES, MARKS } from '@contentful/rich-text-types';
 import Image from 'next/image';
 import 'react-medium-image-zoom/dist/styles.css';
 import { extractTagId, isEmpty } from '../../helpers/helpers';
@@ -24,6 +24,13 @@ export default function RichTextDetail({ assets = [], data, shouldHeadingCopy = 
   const assetData = assets?.assets?.block || [];
   const videoEntries = assets?.entries?.inline || [];
   const options = {
+    renderMark: {
+      [MARKS.CODE]: (text) => (
+        <pre>
+          <code>{text}</code>
+        </pre>
+      )
+    },
     renderNode: {
       [BLOCKS.HEADING_1]: (node, children) => {
         const tagId = extractTagId(children[0]);

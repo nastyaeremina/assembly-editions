@@ -463,3 +463,13 @@ export const HeroTypes = {
   SIMPLE: 'Hero - Simple',
   SIMPLE_ALT: 'Simple'
 };
+
+export const SecondaryButtonVariant = {
+  WHITE: 'white',
+  BLACK: 'black'
+};
+
+export const SliderHeight = {
+  FULL: '100%',
+  AUTO: 'auto'
+};

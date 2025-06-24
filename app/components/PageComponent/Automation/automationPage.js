@@ -15,7 +15,7 @@ import { Container } from '../../../styles/commonStyles';
 import Button from '../../button/button';
 import { COPILOT_ONBOARDING_LINK } from '../../../constants/externalLinks';
 import TabView from '../../tab/tab';
-import { MODULE_COLOR_LIST } from '../../../constants/constant';
+import { MODULE_COLOR_LIST, SecondaryButtonVariant } from '../../../constants/constant';
 import AutomationCardSection from '../../automationcard';
 import ExploreTab from '../../solution/clienttab/exploretab';
 import { isEmpty, removeEmptyElement, separateSpecialChar } from '../../../helpers/helpers';
@@ -48,7 +48,7 @@ export default function AutomationPage({ details }) {
             primaryButtonText={'Start Trial'}
             secondaryButtonLink={'automations/directory'}
             secondaryButtonText={'View all Automations'}
-            secondaryButtonVariant='white'
+            secondaryButtonVariant={SecondaryButtonVariant.WHITE}
             className={'button-group'}
           />
           <BottomList isAnimated>

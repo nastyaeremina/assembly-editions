@@ -471,6 +471,18 @@ const AppDetailContent = styled.div`
       transition: all 0.3s;
     }
   }
+  pre {
+    border: 1px solid var(--neutral);
+    padding: 10px 12px;
+    margin: 12px 0;
+    background-color: var(--table-color);
+    border-radius: 2px;
+    width: max-content;
+  }
+  code {
+    color: var(--body);
+    font-family: 'Azeret Mono', monospace !important;
+  }
   @media only screen and (max-width: 449px) {
     h3 {
       margin: 20px 0 0;

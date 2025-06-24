@@ -377,7 +377,7 @@ const AppSliderSection = styled.div`
     }
   }
   @media only screen and (max-width: 449px) {
-    margin: 40px 0 80px;
+    margin: 80px 0;
   }
 `;
 

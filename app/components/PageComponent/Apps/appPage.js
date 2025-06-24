@@ -1,17 +1,10 @@
 'use client';
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
-import {
-  AutomationButton,
-  AutomationHero,
-  Caption,
-  Featured,
-  SetupAutomation,
-  Title
-} from '../../../styles/automationStyles';
+import { AutomationHero, Caption, Featured, Title } from '../../../styles/automationStyles';
 import { Container } from '../../../styles/commonStyles';
 import Button from '../../../components/button/button';
 import TabView from '../../../components/tab/tab';
-import { MODULE_COLOR_LIST } from '../../../constants/constant';
+import { MODULE_COLOR_LIST, SecondaryButtonVariant } from '../../../constants/constant';
 import AutomationCardSection from '../../../components/automationcard';
 import { isEmpty, removeEmptyElement, separateSpecialChar } from '../../../helpers/helpers';
 import CustomerTestimonial from '../../../components/customer/testimonials';
@@ -21,35 +14,25 @@ import AppsSlider from '../../../components/appsSlider';
 import { COPILOT_ONBOARDING_LINK } from '../../../constants/externalLinks';
 import AppsHeroSlider from '../../../components/appsSlider/appsheroSlider';
 import { AppSliderSection } from '../../../styles/appsStyles';
+import ButtonGroup from '../../ButtonGroup/buttonGroup';
+import SectionHeading from './sectionHeading';
 
 export default function AppPage({ details, appsList, faqList }) {
+  if (isEmpty(details)) return null;
   return (
     <>
       <AutomationHero>
         <Container>
-          <Title>{details?.header}</Title>
-          <Caption>
-            {/* <div dangerouslySetInnerHTML={{ __html: separateSpecialChar(heading) }} /> */}
-            {details?.body}
-          </Caption>
-          <AutomationButton className='appsbutton'>
-            <Button
-              bgColor={'--primary'}
-              fontColor={'--white'}
-              borderColor={'--priamry'}
-              text={'Start Trial'}
-              href={COPILOT_ONBOARDING_LINK}
-              hoverColor={'--secondary-hover-color'}
-            />
-            <Button
-              bgColor={'transparent'}
-              fontColor={'--light-green'}
-              borderColor={'--light-green'}
-              text={'View all Apps'}
-              href={'/apps/directory'}
-              hoverColor={'--secondary-hover-color'}
-            />
-          </AutomationButton>
+          <Title>{details.header}</Title>
+          <Caption>{details.body}</Caption>
+          <ButtonGroup
+            primaryButtonText={'Start Trial'}
+            primaryButtonLink={COPILOT_ONBOARDING_LINK}
+            secondaryButtonText={'View all Apps'}
+            secondaryButtonLink={'/apps/directory'}
+            secondaryButtonVariant={SecondaryButtonVariant.WHITE}
+            className={'button-group'}
+          />
         </Container>
         {!isEmpty(appsList) && (
           <AppSliderSection>
@@ -58,78 +41,59 @@ export default function AppPage({ details, appsList, faqList }) {
           </AppSliderSection>
         )}
       </AutomationHero>
-      <Container>
-        <SetupAutomation istitle>
-          <div
-            dangerouslySetInnerHTML={{
-              __html: separateSpecialChar(details?.sectionHeader1)
-            }}
-          />
-        </SetupAutomation>
-        {!isEmpty(details?.sectionContent1Collection?.items) && (
-          <TabView
-            tabData={details?.sectionContent1Collection?.items || []}
-            bgColor={MODULE_COLOR_LIST.Automation.bgColor}
-            textColor={MODULE_COLOR_LIST.Automation.fontColor}
-            isAutomation={true}
-          />
-        )}
-      </Container>
-      {!isEmpty(details?.sectionContent2Collection?.items) && (
+      {!isEmpty(details.sectionHeader1) && (
+        <Container>
+          <SectionHeading details={details.sectionHeader1} isTitle />
+          {!isEmpty(details.sectionContent1Collection?.items) && (
+            <TabView
+              tabData={details.sectionContent1Collection?.items || []}
+              bgColor={MODULE_COLOR_LIST.Automation.bgColor}
+              textColor={MODULE_COLOR_LIST.Automation.fontColor}
+              isAutomation={true}
+            />
+          )}
+        </Container>
+      )}
+      {!isEmpty(details.sectionContent2Collection?.items) && (
         <AutomationCardSection
-          title={details?.sectionHeader2}
-          data={details?.sectionContent2Collection?.items}
+          title={details.sectionHeader2}
+          data={details.sectionContent2Collection?.items}
           isAppExplore
         />
-      )}{' '}
-      {/* <ExploreTab
-          data={removeEmptyElement(details?.sectionContent3Collection?.items)}
-          demoUrl={details?.demoPortalUrl}
-        /> */}
-      <Container>
-        {!isEmpty(details?.sectionCaseStudyContent) && (
-          <>
-            <SetupAutomation>
-              <div
-                dangerouslySetInnerHTML={{
-                  __html: separateSpecialChar(details?.sectionCaseStudyHeader)
-                }}
+      )}
+      {!isEmpty(details.sectionCaseStudyHeader) && (
+        <Container>
+          {!isEmpty(details.sectionCaseStudyContent) && (
+            <>
+              <SectionHeading details={details.sectionCaseStudyHeader} />
+              <CustomerTestimonial
+                logo={details.sectionCaseStudyContent?.customerLogo?.imageAsset?.url}
+                banner={details.sectionCaseStudyContent?.caseStudyImage?.url}
+                body={details.sectionCaseStudyContent?.description}
+                highlightsData={details.sectionCaseStudyContent?.highlights}
+                slug={details.sectionCaseStudyContent?.slug}
               />
-            </SetupAutomation>
-
-            <CustomerTestimonial
-              logo={details?.sectionCaseStudyContent?.customerLogo?.imageAsset?.url}
-              banner={details?.sectionCaseStudyContent?.caseStudyImage?.url}
-              body={details?.sectionCaseStudyContent?.description}
-              highlightsData={details?.sectionCaseStudyContent?.highlights}
-              slug={details?.sectionCaseStudyContent?.slug}
-            />
-          </>
-        )}
-        <Featured>
-          <TopView>
-            <h2>
-              <div
-                dangerouslySetInnerHTML={{
-                  __html: separateSpecialChar(details?.sectionFeaturedHeader)
-                }}
+            </>
+          )}
+          <Featured>
+            <TopView>
+              <SectionHeading details={details.sectionFeaturedHeader} isRemovePadding />
+              {!isEmpty(details.sectionFeaturedBody?.json) &&
+                documentToReactComponents(details.sectionFeaturedBody?.json)}
+              <Button
+                bgColor={'transparent'}
+                fontColor={'--black'}
+                borderColor={'--black'}
+                text={'View all apps'}
+                href={'/apps/directory'}
+                hoverColor={'--hover-color'}
               />
-            </h2>
-            {!isEmpty(details?.sectionFeaturedBody?.json) &&
-              documentToReactComponents(details?.sectionFeaturedBody?.json)}
-            <Button
-              bgColor={'transparent'}
-              fontColor={'--black'}
-              borderColor={'--black'}
-              text={'View all apps'}
-              href={'/apps/directory'}
-              hoverColor={'--hover-color'}
-            />
-          </TopView>
-        </Featured>
-      </Container>
-      {!isEmpty(details?.sectionFeaturedContentCollection?.items) && (
-        <AppsSlider data={removeEmptyElement(details?.sectionFeaturedContentCollection?.items)} isDetailSlider={true} />
+            </TopView>
+          </Featured>
+        </Container>
+      )}
+      {!isEmpty(details.sectionFeaturedContentCollection?.items) && (
+        <AppsSlider data={removeEmptyElement(details.sectionFeaturedContentCollection?.items)} isDetailSlider={true} />
       )}
       {!isEmpty(faqList) && <FAQ faqList={faqList} />}
     </>

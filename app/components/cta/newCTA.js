@@ -15,6 +15,7 @@ import {
   TextSection,
   Title
 } from './newCTAStyles';
+import { SecondaryButtonVariant } from '../../constants/constant';
 
 export default function NewCTA({
   title,
@@ -54,7 +55,7 @@ export default function NewCTA({
               primaryButtonText={primaryButtonText}
               secondaryButtonLink={secondaryButtonLink}
               secondaryButtonText={secondaryButtonText}
-              secondaryButtonVariant='white'
+              secondaryButtonVariant={SecondaryButtonVariant.WHITE}
               isCamelCase={false}
               className={isEmpty(banner) ? 'button-group' : 'button'}
             />

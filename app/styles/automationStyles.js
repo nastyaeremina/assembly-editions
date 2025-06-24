@@ -21,9 +21,11 @@ const AutomationHero = styled.div`
     align-items: center;
     justify-content: center;
     margin-top: 32px;
+    z-index: 11;
+    position: relative;
   }
   @media only screen and (max-width: 749px) {
-    padding: 148px 0 0px 0;
+    padding: 116px 0 0px 0;
     .automation-image {
       display: none;
     }
@@ -78,6 +80,11 @@ const SetupAutomation = styled.div`
     props.istitle &&
     css`
       max-width: 100%;
+    `}
+  ${(props) =>
+    props.isRemovePadding &&
+    css`
+      padding: 0;
     `}
 `;
 const Cards = styled.div`

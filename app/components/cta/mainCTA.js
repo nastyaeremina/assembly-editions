@@ -7,6 +7,7 @@ import { COPILOT_ONBOARDING_LINK } from '../../constants/externalLinks.js';
 import ButtonGroup from '../ButtonGroup/buttonGroup.js';
 import { CtaInner, CtaAnimation, CtaWrap, LeftImg, MainCta, RightImg } from './styles';
 import { Canvas } from './newCTAStyles.js';
+import { SecondaryButtonVariant } from '../../constants/constant.js';
 
 export default function MainCTA({ moduleName, ctaContent }) {
   const [isGradientReady, setIsGradientReady] = useState(false);
@@ -38,7 +39,7 @@ export default function MainCTA({ moduleName, ctaContent }) {
               primaryButtonText={'Start Trial'}
               secondaryButtonLink={'/book-demo'}
               secondaryButtonText={'Book Demo'}
-              secondaryButtonVariant='white'
+              secondaryButtonVariant={SecondaryButtonVariant.WHITE}
               isCamelCase={false}
               className={'button-group'}
             />

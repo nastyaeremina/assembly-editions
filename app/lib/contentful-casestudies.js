@@ -28,17 +28,6 @@ industry{
   title
   slug
 }
-copilotAppsCollection{
-  items{
-    featureIcon{
-      url
-    }
-    name
-  sys{
-    id
-  }
-  }
-}
 appsCollection{
   items{
     slug
