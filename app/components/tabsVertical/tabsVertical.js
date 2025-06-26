@@ -46,7 +46,7 @@ export default function TabsVertical({ heroSectionData, featuresList }) {
         if (featuresList.length > 0 && window.innerWidth > 768) {
           const totalHeight = featuresList.slice(0, 3).reduce((acc, item, index) => {
             const element = document.getElementById(`item-${index}`);
-            return acc + (element ? element.offsetHeight + 12 : 0);
+            return acc + (element ? element.offsetHeight + 15 : 0);
           }, 0);
           setMaxHeight(totalHeight);
         } else {

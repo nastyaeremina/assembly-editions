@@ -4,6 +4,7 @@ import Image from 'next/image';
 import { convertHighlights, isEmpty } from '../../helpers/helpers';
 import { Container } from '../../styles/commonStyles';
 import { Detail, Last, LastDroplist, LeftCard, Percentage, RightCard, Section, TestimonialCard, Top } from './styles';
+import ReactMarkdown from 'react-markdown';
 
 /**
  * CustomerTestimonial Component
@@ -39,7 +40,9 @@ export default function CustomerTestimonial({ logo, body, slug, highlightsData, 
         <LeftCard>
           <Top>
             <Image src={logo} alt='customer' width={218} height={50} className='top-logo' />
-            <Detail>{body}</Detail>
+            <Detail>
+              <ReactMarkdown>{body}</ReactMarkdown>
+            </Detail>
             {!isEmpty(highlightsData) && renderHighlightView}
           </Top>
           <LastDroplist>

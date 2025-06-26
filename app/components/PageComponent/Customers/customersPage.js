@@ -17,7 +17,7 @@ export default function CustomerPage({ testimonialPosts, casestudiesPosts }) {
           key={`casestudy_index_${index}`}
           logo={item?.customerLogo?.imageAsset?.url}
           banner={item?.caseStudyImage?.url}
-          body={item?.description}
+          body={item?.heroSection.heroDescription}
           highlightsData={item?.highlights}
           slug={item?.slug}
         />

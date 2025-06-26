@@ -22,9 +22,5 @@ export default function HighlightSectionComponents({ data }) {
     });
   }, [data]);
 
-  return (
-    <>
-      <HighlightSection>{!isEmpty(data) && renderHighlightView}</HighlightSection>
-    </>
-  );
+  return <>{!isEmpty(data) && <HighlightSection>{renderHighlightView}</HighlightSection>}</>;
 }

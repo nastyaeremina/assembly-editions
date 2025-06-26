@@ -1,5 +1,5 @@
 import styled, { css } from 'styled-components';
-import { Body3, HeaderFont, Heading3, MbBody3, MobileH3 } from '../../styles/styles';
+import { Body3, HeaderFont, Heading3, Heading4, MbBody3, MobileH3 } from '../../styles/styles';
 
 const TestimonialCard = styled.div`
   border: 1px solid var(--title);
@@ -33,8 +33,10 @@ const RightCard = styled.div`
   .right {
     max-width: 405px;
     width: 100%;
+    height: 100%;
     border-left: 1px solid var(--title);
     border-radius: 0px 3px 3px 0px;
+    object-fit: cover;
     @media only screen and (max-width: 768px) {
       max-width: 100%;
       border-left: none;
@@ -42,14 +44,31 @@ const RightCard = styled.div`
     }
   }
 `;
-const Detail = styled.p`
-  ${Body3}
-  margin: 20px 0 38px;
-  color: var(--body);
+const Detail = styled.div`
+  p {
+    ${Body3}
+    margin: 20px 0 38px;
+    color: var(--body);
+  }
+  strong {
+    font-weight: 500;
+  }
+  h2 {
+    ${Heading3}
+    margin: 0px 0 30px 0;
+    color: var(--title);
+  }
+  h3 {
+    ${Heading4}
+    margin: 0px 0 30px 0;
+    color: var(--title);
+  }
   @media only screen and (max-width: 768px) {
-    ${MbBody3}
-    letter-spacing: 0.02em;
-    margin-bottom: 32px;
+    p {
+      ${MbBody3}
+      letter-spacing: 0.02em;
+      margin-bottom: 32px;
+    }
   }
 `;
 
@@ -171,7 +190,7 @@ const Top = styled.div`
   padding: 28px 28px 56px;
   .top-logo {
     max-width: 218px;
-    width: 100%;
+    width: auto;
     max-height: 50px;
     height: 100%;
   }
@@ -179,9 +198,7 @@ const Top = styled.div`
     padding: 28px 20px;
     .top-logo {
       max-width: 175px;
-      width: 100%;
       max-height: 40px;
-      height: 100%;
     }
   }
 `;

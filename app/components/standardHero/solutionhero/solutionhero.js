@@ -47,24 +47,26 @@ export default function SolutionHero({
               secondaryButtonText={secondaryButtonText}
               isShowSocialProof={isShowSocialProof}
             />
-            <RightWrap emptyMobileImage={isEmpty(mobileImage)}>
-              <ImageView emptyMobileImage={isEmpty(mobileImage)}>
-                <Image src={webImage} alt='main-logo' width={479} height={633} />
-                {mobileImage && (
-                  <MobileImg>
-                    <Image src={mobileImage} alt='main-logo' width={310} height={655} />
-                  </MobileImg>
-                )}
-              </ImageView>
-              <MobileView emptyMobileImage={isEmpty(mobileImage)}>
-                <Image src={webImage} alt='main-logo' width={269} height={354} />
-                {mobileImage && (
-                  <Mobilenew>
-                    <Image src={mobileImage} alt='main-logo' width={174} height={367} />
-                  </Mobilenew>
-                )}
-              </MobileView>
-            </RightWrap>
+            {!isEmpty(webImage) && (
+              <RightWrap emptyMobileImage={isEmpty(mobileImage)}>
+                <ImageView emptyMobileImage={isEmpty(mobileImage)}>
+                  <Image src={webImage} alt='main-logo' width={479} height={633} />
+                  {mobileImage && (
+                    <MobileImg>
+                      <Image src={mobileImage} alt='main-logo' width={310} height={655} />
+                    </MobileImg>
+                  )}
+                </ImageView>
+                <MobileView emptyMobileImage={isEmpty(mobileImage)}>
+                  <Image src={webImage} alt='main-logo' width={269} height={354} />
+                  {mobileImage && (
+                    <Mobilenew>
+                      <Image src={mobileImage} alt='main-logo' width={174} height={367} />
+                    </Mobilenew>
+                  )}
+                </MobileView>
+              </RightWrap>
+            )}
           </SolutionWrap>
         </Container>
       </HeroSection>

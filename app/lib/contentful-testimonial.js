@@ -1,5 +1,6 @@
 import { CONTENTFUL_API_TAG } from '../constants/constant';
 import { fetchGraphQL } from './contentful';
+import { POST_GRAPHQL_HERO_COMPONENT_FIELDS } from './contentful-standardPage';
 
 const POST_GRAPHQL_TESTIMONIAL_DETAILS_FIELDS = `
 name
@@ -21,7 +22,9 @@ const POST_GRAPHQL_CASESTUDY_DETAILS_FIELDS = `
     id
   }
   slug
-  description
+  heroSection{
+  ${POST_GRAPHQL_HERO_COMPONENT_FIELDS}
+ }
   highlights
   caseStudyImage{
     url

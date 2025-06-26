@@ -83,6 +83,7 @@ export default function StandardHero({ type, data, isDownload = false }) {
     data?.secondaryButtonText,
     data.showSocialProof,
     data?.videoUrl,
+    isDownload,
     type
   ]);
 

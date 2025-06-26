@@ -6,6 +6,7 @@ import {
   Body5,
   Heading2,
   Heading3,
+  Heading4,
   Heading5,
   Heading6,
   MbBody1,
@@ -82,6 +83,10 @@ const Highlight = styled.div`
   width: 100%;
   color: var(--light-green);
   text-align: center;
+  border-right: 1px solid var(--light-green);
+  :last-child {
+    border-right: none;
+  }
   ${(props) =>
     props.ishighlight1 &&
     css`
@@ -90,8 +95,6 @@ const Highlight = styled.div`
   ${(props) =>
     props.ishighlight2 &&
     css`
-      border-right: 1px solid var(--light-green);
-      border-left: 1px solid var(--light-green);
       padding: 12px 40px;
     `}
     ${(props) =>
@@ -100,6 +103,11 @@ const Highlight = styled.div`
       padding: 12px 20px 12px 40px;
     `}
   @media only screen and (max-width: 450px) {
+    border-right: none;
+    border-bottom: 1px solid var(--light-green);
+    :last-child {
+      border-bottom: none;
+    }
     ${(props) =>
       props.ishighlight1 &&
       css`
@@ -108,17 +116,13 @@ const Highlight = styled.div`
     ${(props) =>
       props.ishighlight2 &&
       css`
-        border-top: 1px solid var(--light-green);
-        border-bottom: 1px solid var(--light-green);
-        border-left: none;
-        border-right: none;
         padding: 20px 0px;
       `}
-    ${(props) =>
+      ${(props) =>
       props.ishighlight3 &&
       css`
         padding: 20px 0px;
-      `}
+      `};
   }
   h2 {
     ${Heading5}
@@ -166,13 +170,71 @@ const RightSection = styled.div`
     ${Heading3};
     color: var(--title);
     margin: 0;
-    padding-top: 60px;
-    margin-bottom: -16px;
+    margin-top: 60px;
     :first-child {
-      padding-top: 0;
+      margin-top: 0;
     }
   }
-
+  h1 {
+    ${Heading3};
+    color: var(--title);
+    margin: 0;
+    margin-top: 60px;
+    :first-child {
+      margin-top: 0;
+    }
+  }
+  h1 + p {
+    margin-top: 12px;
+  }
+  h2 + p {
+    margin-top: 12px;
+  }
+  h3 + p {
+    margin-top: 12px;
+  }
+  h3 {
+    ${Heading4};
+    font-weight: 400;
+    color: var(--title);
+    margin: 40px 0 0;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: fit-content;
+    :first-child {
+      margin: 0;
+    }
+  }
+  h4 {
+    ${Heading5};
+    line-height: 24px;
+    color: var(--title);
+    margin: 20px 0 0;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    :first-child {
+      margin: 0;
+    }
+  }
+  h4 + p {
+    margin: 6px 0 0;
+  }
+  a {
+    color: var(--primary);
+    display: initial;
+    :hover {
+      color: var(--dark-green);
+    }
+  }
+  img {
+    width: 100%;
+    height: 100%;
+    margin-top: 16px;
+    border-radius: 4px;
+    border: 0.4px solid var(--platinum-gray);
+  }
   b {
     font-weight: 400;
     color: var(--title);
@@ -193,13 +255,7 @@ const RightSection = styled.div`
   }
   @media only screen and (max-width: 768px) {
     h2 {
-      ${MobileH2};
-      color: var(--title);
-      margin: 0;
-      padding-top: 40px;
-      :first-child {
-        padding-top: 0;
-      }
+      margin-top: 40px;
     }
     p {
       margin-top: 16px;
@@ -212,7 +268,12 @@ const RightSection = styled.div`
     }
   }
 `;
-const CustomerLogo = styled.div``;
+const CustomerLogo = styled.div`
+  img {
+    width: auto;
+    height: 50px;
+  }
+`;
 const Head = styled.h2`
   ${Heading6}
   padding-bottom:16px;
