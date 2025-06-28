@@ -72,6 +72,16 @@ faQsCollection{
     }
   }
 }`;
+
+export const POST_GRAPHQL_TESTIMONIAL_CARD_FIELDS=`
+ name
+ role
+ image{
+  url
+ }
+ industry
+ quoteNew
+`
 const POST_GRAPHQL_STANDARD_PAGE_LIST_FIELDS = `
 slug
 seoMetadata {
@@ -115,13 +125,7 @@ contentCollection{
             }
           }
         ...on   Testimonial{
-            name
-            role
-            image{
-              url
-            }
-            industry
-            quoteNew
+           ${POST_GRAPHQL_TESTIMONIAL_CARD_FIELDS}
         }
         ...on ComponentFaq{
             ${POST_GRAPHQL_FAQ_COMPONENT_FIELDS}

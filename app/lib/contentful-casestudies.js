@@ -1,19 +1,13 @@
 import { CONTENTFUL_API_TAG } from '../constants/constant';
 import { fetchGraphQL } from './contentful';
 import { POST_GRAPHQL_VIDEO_CONTENT_FIELDS } from './contentful-guide';
-import { POST_GRAPHQL_HERO_COMPONENT_FIELDS } from './contentful-standardPage';
+import { POST_GRAPHQL_HERO_COMPONENT_FIELDS, POST_GRAPHQL_TESTIMONIAL_CARD_FIELDS } from './contentful-standardPage';
 const POST_GRAPHQL_CASESTUDY_DETAILS_FIELDS = `
 slug
 title
 description
 testimonial{
-   name
-  role
-  industry
-  quote
-  image{
-    url
-  }
+   ${POST_GRAPHQL_TESTIMONIAL_CARD_FIELDS}
 }
 body{
   json

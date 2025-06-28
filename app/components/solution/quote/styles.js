@@ -1,6 +1,16 @@
 import styled from 'styled-components';
 import css from 'styled-jsx/css';
-import { Body4, ButtonText, HeaderFont, MbBody3, MobileH3, Quote } from '../../../styles/styles';
+import {
+  Body3,
+  Body4,
+  ButtonText,
+  HeaderFont,
+  Heading3,
+  Heading4,
+  MbBody3,
+  MobileH3,
+  Quote
+} from '../../../styles/styles';
 
 const QuoteSection = styled.div`
   padding: 50px 0 100px;
@@ -49,15 +59,107 @@ const QuoteTxt = styled.div`
   gap: 30px;
   p {
     ${Quote};
-    margin: 0px;
+    margin: 0px 0 30px 0;
     color: var(--title);
+  }
+  strong {
+    font-weight: 500;
+  }
+  h2 {
+    ${Heading3}
+    margin: 0px 0 30px 0;
+    color: var(--title);
+  }
+  h3 {
+    ${Heading4}
+    margin: 0px 0 30px 0;
+    color: var(--title);
+  }
+  ul {
+    margin: 12px 0 30px 0;
+    list-style-type: none;
+    gap: 12px;
+    display: flex;
+    flex-direction: column;
+    padding-left: 0;
+    li {
+      color: var(--title);
+      padding-left: 30px;
+      position: relative;
+      ${Body3}
+      p {
+        color: var(--title);
+        margin: 0;
+      }
+      &::before {
+        content: '';
+        position: absolute;
+        width: 6px;
+        height: 6px;
+        background-color: var(--title);
+        border-radius: 50%;
+        left: 12px;
+        top: 6px;
+        padding-inline-end: 0;
+        @media only screen and (max-width: 449px) {
+          left: 0;
+        }
+      }
+      @media only screen and (max-width: 449px) {
+        padding-left: 22px;
+      }
+    }
+  }
+  ol {
+    margin: 12px 0 30px 0;
+    gap: 12px;
+    display: flex;
+    flex-direction: column;
+    padding-left: 0;
+    list-style-type: none;
+    counter-reset: item;
+    li {
+      color: var(--title);
+      padding-left: 30px;
+      position: relative;
+      ${Body3}
+      p {
+        color: var(--title);
+        margin: 0;
+      }
+      &::before {
+        content: counter(item) '.';
+        counter-increment: item;
+        position: absolute;
+        left: 12px;
+        padding-inline-end: 0;
+        @media only screen and (max-width: 449px) {
+          left: 0;
+        }
+      }
+      @media only screen and (max-width: 449px) {
+        padding-left: 22px;
+      }
+    }
+  }
+  blockquote {
+    border-left: 4px solid var(--neutral);
+    padding-left: 20px;
+    margin: 20px 0;
+    font-style: italic;
+    p {
+      margin: 0;
+      ${Body3}
+    }
+    @media only screen and (max-width: 449px) {
+      padding-left: 16px;
+    }
   }
   @media only screen and (max-width: 749px) {
     padding: 30px;
     p {
       ${MobileH3};
-      margin: 0px;
-      color: var(--title);
+      padding-bottom: 0px;
     }
   }
 `;

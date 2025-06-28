@@ -79,7 +79,7 @@ export default function CustomerFeedBack({ data }) {
                 logoicon={logo(item?.reviewSource)}
                 name={item?.name}
                 caption={item?.role}
-                body={item?.quote}
+                body={item?.quoteNew}
                 isStar={item?.reviewSource === 'G2'}
               />
             );

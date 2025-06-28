@@ -1,21 +1,16 @@
 import { CONTENTFUL_API_TAG } from '../constants/constant';
 import { fetchGraphQL } from './contentful';
-import { POST_GRAPHQL_HERO_COMPONENT_FIELDS } from './contentful-standardPage';
+import { POST_GRAPHQL_HERO_COMPONENT_FIELDS, POST_GRAPHQL_TESTIMONIAL_CARD_FIELDS } from './contentful-standardPage';
 
 const POST_GRAPHQL_TESTIMONIAL_DETAILS_FIELDS = `
-name
-role
-industry
-quote
+${POST_GRAPHQL_TESTIMONIAL_CARD_FIELDS}
 reviewSource
 imageHeadshot
 {
   url
 }
-image{
-  url
-}
 `;
+
 
 const POST_GRAPHQL_CASESTUDY_DETAILS_FIELDS = `
   sys{

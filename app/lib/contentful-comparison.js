@@ -2,7 +2,7 @@ import { CONTENTFUL_API_TAG } from '../constants/constant';
 import { fetchGraphQL, getContentTypeDetail } from './contentful';
 import { POST_GRAPHQL_FAQ_COLLECTION_FIELDS } from './contentful-faq';
 import { POST_GRAPHQL_SEOMETADATA_FIELDS } from './contentful-seo';
-import { POST_GRAPHQL_SECTION_CTA_FIELDS } from './contentful-standardPage';
+import { POST_GRAPHQL_SECTION_CTA_FIELDS, POST_GRAPHQL_TESTIMONIAL_CARD_FIELDS } from './contentful-standardPage';
 
 const POST_GRAPHQL_COMPARISON_DETAILS_FIELDS = `
 name
@@ -44,13 +44,7 @@ g2GroupCollection{
   }
 }
 testimonial{
-  name
-  role
-  image{
-    url
-  }
-  industry
-  quote
+  ${POST_GRAPHQL_TESTIMONIAL_CARD_FIELDS}
 }
 ${POST_GRAPHQL_FAQ_COLLECTION_FIELDS}
 seoMetadata{
@@ -81,13 +75,7 @@ const POST_GRAPHQL_MASTER_COMPARISON_DETAILS_FIELDS = `
 title
 description
 testimonial{
-  name
-  role
-  quote
-  image
-  {
-    url
-  }
+  ${POST_GRAPHQL_TESTIMONIAL_CARD_FIELDS}
 }
 seoMetadata{
   ${POST_GRAPHQL_SEOMETADATA_FIELDS}
