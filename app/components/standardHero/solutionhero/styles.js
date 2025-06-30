@@ -358,7 +358,7 @@ const ImageView = styled.div`
       margin-left: 0;
     `}
   @media only screen and (max-width: 991px) {
-    margin-left: 70px;
+    margin-left: 100px;
     ${(props) =>
       props.emptyMobileImage &&
       css`
@@ -374,16 +374,15 @@ const MobileImg = styled.div`
   position: absolute;
   left: 0;
   bottom: 25px;
-  left: -103px;
+  left: -100px;
   background: transparent;
   img {
     box-shadow: 0px 2px 8px 0px var(--black-shadow-8);
     border-radius: 12px;
     height: auto;
     max-height: 583px;
-  }
-  @media only screen and (max-width: 991px) {
-    left: -70px;
+    max-width: 220px;
+    width: auto;
   }
 `;
 
@@ -398,7 +397,7 @@ const MobileView = styled.div`
     margin-left: 70px;
     img {
       object-fit: cover;
-      border-radius: 30px;
+      border-radius: 16px;
     }
     ${(props) =>
       props.emptyMobileImage &&
@@ -423,6 +422,11 @@ const Mobilenew = styled.div`
       border-radius: 12px;
       height: auto;
       max-height: 304px;
+      max-width: 190px;
+      width: auto;
+      @media only screen and (max-width: 385px) {
+        max-height: 260px;
+      }
     }
   }
 `;
