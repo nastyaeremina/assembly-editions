@@ -756,3 +756,18 @@ export function chooseVariant(variants) {
   });
   return variant;
 }
+
+/**
+ * Checks if a given string is a valid URL.
+ * 
+ * @param {string} str - The string to check.
+ * @returns {boolean} - True if the string is a valid URL, false otherwise.
+ */
+export function isValidUrl(href) {
+  try {
+    new URL(href);
+    return true;
+  } catch (_) {
+    return false;
+  }
+}

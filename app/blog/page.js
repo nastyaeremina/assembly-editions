@@ -10,7 +10,7 @@ import { COPILOT_TWITTER_LINK } from '../constants/externalLinks';
 
 async function getContent() {
   const allPosts = (await getBlogPosts()) || [];
-  const tagsData = await getAllTagWithSlug();
+  const tagsData = (await getAllTagWithSlug()) || [];
   const tags = tagsData?.filter((tagsData) => tagsData?.name?.trim()?.[0] !== '#');
 
   customSort(tags, BLOG_TAG_SORTED_LIST);

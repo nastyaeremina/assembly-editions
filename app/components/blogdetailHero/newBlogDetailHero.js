@@ -27,20 +27,30 @@ export default function NewBlogDetailHero({ blogDetail }) {
         {!isEmpty(blogDetail?.title) && <h1>{blogDetail?.title}</h1>}
         <BlogTime isNewHero>
           <Post>
-            {!isEmpty(blogDetail?.published_at) && moment(new Date(blogDetail?.published_at)).format('MMM DD, YYYY')}
-            {!isEmpty(blogDetail?.published_at) && !isEmpty(blogDetail?.authors?.[0]?.name) && (
-              <svg width='4' height='4' viewBox='0 0 3 3' fill='none' xmlns='http://www.w3.org/2000/svg'>
-                <circle cx='1.5' cy='1.5' r='1.5' fill='#757575' />
-              </svg>
+            {!isEmpty(blogDetail?.published_at) && (
+              <>
+                {moment(new Date(blogDetail?.published_at)).format('MMM DD, YYYY')}
+                {(!isEmpty(blogDetail?.authors?.[0]?.name) || !isEmpty(blogDetail?.reading_time)) && (
+                  <svg width='4' height='4' viewBox='0 0 3 3' fill='none' xmlns='http://www.w3.org/2000/svg'>
+                    <circle cx='1.5' cy='1.5' r='1.5' fill='#757575' />
+                  </svg>
+                )}
+              </>
             )}
+            
             {!isEmpty(blogDetail?.authors?.[0]?.name) && (
-              <span onClick={() => router.push(`/blog/author/${blogDetail?.authors?.[0]?.slug}`)}>
-                {blogDetail?.authors?.[0]?.name}
-              </span>
+              <>
+                <span onClick={() => router.push(`/blog/author/${blogDetail?.authors?.[0]?.slug}`)}>
+                  {blogDetail?.authors?.[0]?.name}
+                </span>
+                {!isEmpty(blogDetail?.reading_time) && (
+                  <svg width='4' height='4' viewBox='0 0 3 3' fill='none' xmlns='http://www.w3.org/2000/svg'>
+                    <circle cx='1.5' cy='1.5' r='1.5' fill='#757575' />
+                  </svg>
+                )}
+              </>
             )}
-            <svg width='4' height='4' viewBox='0 0 3 3' fill='none' xmlns='http://www.w3.org/2000/svg'>
-              <circle cx='1.5' cy='1.5' r='1.5' fill='#757575' />
-            </svg>
+            
             {!isEmpty(blogDetail?.reading_time) && <li>{`${blogDetail?.reading_time} min read`}</li>}
           </Post>
         </BlogTime>

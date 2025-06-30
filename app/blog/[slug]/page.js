@@ -3,21 +3,29 @@ import { parse } from 'node-html-parser';
 import Layout from '../../components/layout';
 import BlogNavbar from '../../components/navbar/blognavbar';
 import { getAllTagWithSlug, getBlogDetail } from '../../lib/blog-content';
-import { customSort, isEmpty } from '../../helpers/helpers';
+import { customSort, isEmpty, isValidUrl } from '../../helpers/helpers';
 import { isSameDomain } from '../../helpers/serverSideHelpers';
 import BlogdetailPage from '../../components/PageComponent/Blog/blogDetailPage';
 import { BLOG_TAG_SORTED_LIST, CURRENT_SITE_URL, CURRENT_DOMAIN } from '../../constants/constant';
 
 async function getContent({ slug }) {
-  const blogDetail = (await getBlogDetail(slug)) ?? [];
-  const tags = (await getAllTagWithSlug()) ?? [];
-  const finalTagList = tags?.filter((tag) => tag?.name?.trim()?.[0] !== '#');
-  customSort(finalTagList, BLOG_TAG_SORTED_LIST);
+  try {
+    const blogDetail = (await getBlogDetail(slug)) ?? [];
+    const tags = (await getAllTagWithSlug()) ?? [];
+    const finalTagList = tags?.filter((tag) => tag?.name?.trim()?.[0] !== '#');
+    customSort(finalTagList, BLOG_TAG_SORTED_LIST);
 
-  return {
-    blogDetail,
-    tags: finalTagList
-  };
+    return {
+      blogDetail,
+      tags: finalTagList
+    };
+  } catch (error) {
+    console.error('Error fetching content:', error);
+    return {
+      blogDetail: null,
+      tags: []
+    };
+  }
 }
 
 /* 
@@ -57,7 +65,6 @@ export async function generateMetadata({ params, searchParams }, parent) {
 }
 export default async function Blogdetail({ params }) {
   const { blogDetail, tags } = await getContent({ slug: params?.slug });
-
   // Check if the fetched blog content is empty; if so, return a 404 response
   if (isEmpty(blogDetail)) return notFound();
 
@@ -88,48 +95,55 @@ export default async function Blogdetail({ params }) {
     datePublished: blogDetail?.created_at,
     dateModified: blogDetail?.updated_at
   };
-  // Define a regular expression to match the <cta> tag and its contents,
-  // specifically targeting nested <title> and <description> tags
-  const ctaRegex = /<cta>\s*<title>([^<]+)<\/title>\s*<description>([^<]+)<\/description>\s*<\/cta>/;
 
-  // Attempt to match the regular expression against the HTML content
-  const match = blogDetail?.html.match(ctaRegex);
+  let ctaTitle = '';
+  let ctaDescription = '';
+  let modifiedHtmlData = '';
 
-  // Extract the title from the <title> tag if a match is found, otherwise set to an empty string
-  const ctaTitle = match ? match[1] : '';
+  try {
+    // Define a regular expression to match the <cta> tag and its contents
+    const ctaRegex = /<cta>\s*<title>([^<]+)<\/title>\s*<description>([^<]+)<\/description>\s*<\/cta>/;
 
-  // Extract the description from the <description> tag if a match is found, otherwise set to an empty string
-  const ctaDescription = match ? match[2] : '';
+    // Attempt to match the regular expression against the HTML content
+    const match = blogDetail?.html?.match(ctaRegex);
 
-  // Remove the <cta> tag and its contents from the original HTML string
-  const cleanedHtmlString = blogDetail?.html?.replace(ctaRegex, '');
+    // Extract the title and description from the match if found
+    ctaTitle = match ? match[1] : '';
+    ctaDescription = match ? match[2] : '';
 
-  // Use Cheerio to load the blog content's HTML
-  const root = parse(cleanedHtmlString);
-  // List of allowed routes where links should open in the same tab
-  const allowedRoutes = ['/blog', '/pricing'];
+    // Remove the <cta> tag and its contents from the original HTML string
+    const cleanedHtmlString = blogDetail?.html?.replace(ctaRegex, '') || '';
 
-  // Process anchor elements within the content
-  root.querySelectorAll('a').forEach((element) => {
-    const href = element.getAttribute('href');
+    // Use Cheerio to load the blog content's HTML
+    const root = parse(cleanedHtmlString);
+    // List of allowed routes where links should open in the same tab
+    const allowedRoutes = ['/blog', '/pricing'];
 
-    if (href) {
+    // Process anchor elements within the content
+    root.querySelectorAll('a').forEach((element) => {
+      const href = element.getAttribute('href');
       // Check if href is a valid URL or a fragment identifier
-      const isFragmentIdentifier = href.startsWith('#');
-      if (!isFragmentIdentifier) {
-        // Extract the pathname from the URL and set the 'target' attribute
-        const linkPathname = new URL(href)?.pathname;
-        if (isSameDomain(href) && allowedRoutes.some((route) => linkPathname.startsWith(route))) {
-          // If it's the same domain and matches an allowed route, set target to "_self"
-          element.setAttribute('target', '_self');
-        } else {
-          // If it's a different domain or doesn't match an allowed route, set target to "_blank"
-          element.setAttribute('target', '_blank');
+      if (href && isValidUrl(href)) {
+        const isFragmentIdentifier = href.startsWith('#');
+        if (!isFragmentIdentifier) {
+          // Extract the pathname from the URL and set the 'target' attribute
+          const linkPathname = new URL(href)?.pathname;
+          if (isSameDomain(href) && allowedRoutes.some((route) => linkPathname.startsWith(route))) {
+            // If it's the same domain and matches an allowed route, set target to "_self"
+            element.setAttribute('target', '_self');
+          } else {
+            // If it's a different domain or doesn't match an allowed route, set target to "_blank"
+            element.setAttribute('target', '_blank');
+          }
         }
       }
-    }
-  });
-  const modifiedHtmlData = root.toString();
+    });
+    modifiedHtmlData = root.toString();
+  } catch (error) {
+    console.error('Error processing HTML content:', error);
+    // If HTML processing fails, use the original HTML content
+    modifiedHtmlData = blogDetail?.html || '';
+  }
 
   return (
     <>

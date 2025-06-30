@@ -14,26 +14,13 @@ import { CURRENT_SITE_URL } from '../../../constants/constant';
 import { COPILOT_TWITTER_LINK } from '../../../constants/externalLinks';
 
 export default function BlogPage({ allPosts, tags }) {
-  const [isOpen, setIsOpen] = useState(false);
-  const [issubscribe, setIsSubscribe] = useState(false);
   const router = useRouter();
-
-  const onOpenModel = useCallback(() => {
-    setIsOpen(true);
-  }, []);
-
-  const onSubscribe = useCallback(() => {
-    setIsSubscribe(true);
-  }, []);
-
-  const onrequestCloseModel = useCallback(() => {
-    setIsOpen(false);
-  }, []);
 
   const filterTagList = useCallback((tagList) => {
     if (isEmpty(tagList)) return null;
     return tagList.filter((tag) => !isEmpty(tag?.name) && tag.name.trim()?.[0] !== '#');
   }, []);
+
   const renderFeaturedBlog = useMemo(() => {
     const featuredBlogList = allPosts?.filter((item) => item?.featured);
     if (isEmpty(featuredBlogList)) return null;
@@ -83,7 +70,7 @@ export default function BlogPage({ allPosts, tags }) {
             key={`blog_list_index_${index}`}
             name={item?.title}
             date={moment(new Date(item?.published_at)).format('MMM DD, YYYY')} //'Apr 28, 2022'
-            read={`${item?.reading_time} min read`}
+            read={isEmpty(item?.reading_time) ? '' : `${item?.reading_time} min read`}
             desc={item?.excerpt}
             image={item?.feature_image}
             tags={finalTagList}
@@ -92,6 +79,8 @@ export default function BlogPage({ allPosts, tags }) {
         );
       });
   }, [allPosts, filterTagList]);
+
+  if (isEmpty(allPosts)) return null;
 
   return (
     <>
