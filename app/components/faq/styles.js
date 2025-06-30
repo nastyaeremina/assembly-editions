@@ -59,6 +59,11 @@ const FaqSection = styled.div`
       css`
         padding: 0px 0 40px;
       `}
+    ${(props) =>
+      props.isGuideFAQ &&
+      css`
+        padding: 40px 0;
+      `}
   }
   @media only screen and (max-width: 749px) {
     .listtitle {

@@ -157,6 +157,7 @@ const NavItem = styled.li`
     display: flex;
     gap: 10px;
     width: 100%;
+    align-items: center;
   }
   .close {
     transform: rotate(90deg);
@@ -431,6 +432,7 @@ const GuideMobileNavbar = styled.div`
     height: 100%;
     background: var(--main-bg-color);
     border-bottom: 0px solid rgb(204, 204, 208);
+    z-index: 11;
     &&.scroll {
       backdrop-filter: blur(6px);
       border-width: 1px;
@@ -456,7 +458,7 @@ const MobileNavMenu = styled.div`
 
 const BtnIcon = styled.div`
   position: absolute;
-  top: 12px;
+  top: 11px;
   right: 20px;
   display: flex;
   gap: 4px;
@@ -679,7 +681,7 @@ const InputWrap = styled.form`
   cursor: pointer;
   .ask-icon {
     position: absolute;
-    top: 10px;
+    top: 9px;
     left: 20px;
   }
 `;

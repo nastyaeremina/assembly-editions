@@ -158,6 +158,11 @@ const GuideDetail = styled.div`
     margin-top: 20px;
     box-shadow: var(--border) 0px 0px 0px 1px;
     border-radius: 3px;
+    overflow: auto;
+    display: block;
+    ::-webkit-scrollbar {
+      display: none;
+    }
     p {
       margin: 0;
     }
