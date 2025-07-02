@@ -584,3 +584,6 @@ th {
     padding: 116px 0 0;
   }
 }
+html {
+  scroll-behavior: smooth;
+}

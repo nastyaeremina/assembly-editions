@@ -23,18 +23,19 @@ import { renderContentWithVideos } from '../../../helpers/clientSideHelpers';
 import {
   CURRENT_SITE_URL,
   EXTRACT_CODE_TAG_FROM_HTML_REGEX,
-  EXTRACT_H2_TAG_FROM_HTML_REGEX,
-  EXTRACT_LEADING_DIGIT_REGEX
+  EXTRACT_H2_TAG_FROM_HTML_REGEX
 } from '../../../constants/constant';
 import BlogCTA from '../../blogCTA';
 import BlogSidebarCTA from '../../../components/blogsidebarCTA/index';
 import NewBlogDetailHero from '../../../components/blogdetailHero/newBlogDetailHero';
 import LegacyBlogDetailHero from '../../blogdetailHero/legacyBlogDetailHero';
 import SVGComponent from '../../../../public/images/svg/SVGComponent';
+import useActiveHeading from '../../../hooks/useActiveHeading';
 
 export default function BlogdetailPage({ blogDetail, htmlData, ctaTitle, ctaDescription }) {
   const [isShowData, setShowData] = useState(true);
   const [CopyBlockData, setCopyBlock] = useState([]);
+  const activeId = useActiveHeading({ selector: 'h2' });
 
   const shouldShowBlogCTA = !isEmpty(ctaDescription) && !isEmpty(ctaTitle);
   const shouldShowTOC = blogDetail?.custom_template !== 'custom-no-toc';
@@ -65,15 +66,20 @@ export default function BlogdetailPage({ blogDetail, htmlData, ctaTitle, ctaDesc
     if (isEmpty(newList)) return null;
     return newList?.map((item, index) => {
       const headingList = item?.split('>');
+      const id = `${headingList?.[0]?.replace(/['"]+/g, '').replace('<h2 id=', '')}`;
+      const isActive = activeId === id;
+
       return (
-        <li key={`tableDataHeading_index_${index}`}>
-          <Link href={`#${headingList?.[0]?.replace(/['"]+/g, '').replace('<h2 id=', '')}`}>
-            <span dangerouslySetInnerHTML={{ __html: headingList?.[1]?.replace(EXTRACT_LEADING_DIGIT_REGEX, '') }} />
-          </Link>
-        </li>
+        !isEmpty(headingList?.[1]) && (
+          <li key={`tableDataHeading_index_${index}`} className={isActive ? 'active' : ''}>
+            <Link href={`#${id}`} className={isActive ? 'active' : ''}>
+              {headingList?.[1]}
+            </Link>
+          </li>
+        )
       );
     });
-  }, [htmlData]);
+  }, [activeId, htmlData]);
 
   const renderHTMLContent = useCallback(() => {
     // Split the HTML content into segments using a regex

@@ -12,11 +12,8 @@ import {
   CardTitle,
   CardTop,
   ImgView,
-  Informative,
-  Line,
   RatingNumber,
-  RatingSection,
-  Tooltip
+  RatingSection
 } from './styles';
 import AppTooltip from './appTooltip';
 
@@ -63,7 +60,7 @@ export default function AppsCards({
                   <>
                     <AppInformativeSection>
                       <p>{appType}</p>
-                      <AppTooltip message={appTypeInfo} iconSize='13' fill='var(--dark-gray)' style={{ top: 26 }} />
+                      <AppTooltip message={appTypeInfo} iconSize='13' fill='var(--dark-gray)' style={{ top: 24 }} />
                     </AppInformativeSection>
                   </>
                 )}
@@ -78,7 +75,7 @@ export default function AppsCards({
         </CardTop>
         <CardEnd isBottom={isBottom}>
           <p>{appVisibility}</p>
-          <AppTooltip message={appVisibilityInfo} iconSize='13' fill='var(--dark-gray)' style={{ top: 24 }} />
+          <AppTooltip message={appVisibilityInfo} iconSize='13' fill='var(--dark-gray)' style={{ top: 22 }} />
         </CardEnd>
       </Link>
     </CardSub>

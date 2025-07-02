@@ -15,6 +15,7 @@ import { COPILOT_TWITTER_LINK } from '../../../constants/externalLinks';
 
 export default function BlogPage({ allPosts, tags }) {
   const router = useRouter();
+  const [imageHeight, setImageHeight] = useState(0);
 
   const filterTagList = useCallback((tagList) => {
     if (isEmpty(tagList)) return null;
@@ -30,8 +31,16 @@ export default function BlogPage({ allPosts, tags }) {
       return (
         <FirstBlog onClick={() => router.push(`/blog/${item.slug}`)} key={`featuredblog_index_${index}`}>
           {!isEmpty(item.feature_image) && (
-            <Top>
-              <Image src={item.feature_image} className='image' alt='blog' width={880} height={354} />
+            <Top maxHeight={imageHeight}>
+              <Image
+                src={item.feature_image}
+                className='image'
+                alt='blog'
+                width={880}
+                height={354}
+                priority={true}
+                onLoad={(e) => setImageHeight(e.target.offsetHeight)}
+              />
             </Top>
           )}
           <Text>
@@ -57,7 +66,7 @@ export default function BlogPage({ allPosts, tags }) {
         </FirstBlog>
       );
     });
-  }, [allPosts, filterTagList, router]);
+  }, [allPosts, filterTagList, router, imageHeight]);
 
   const renderData = useMemo(() => {
     if (isEmpty(allPosts)) return null;

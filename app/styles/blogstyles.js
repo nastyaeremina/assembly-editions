@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import {
   Body1,
   Body3,
@@ -6,8 +6,6 @@ import {
   Body5,
   FooterText,
   HeaderFont,
-  Heading2,
-  Heading3,
   Heading4,
   LinkTxt,
   MbBody1,
@@ -29,7 +27,7 @@ const FirstBlog = styled.div`
   margin-bottom: 28px;
   cursor: pointer;
   .image {
-    height: 354px;
+    height: auto;
     object-fit: cover;
     max-width: 100%;
     border-radius: 3px 3px 0px 0px;
@@ -53,12 +51,14 @@ const FirstBlog = styled.div`
 `;
 const Top = styled.div`
   object-fit: cover;
-  height: 354px;
   overflow: hidden;
   border-radius: 3px 3px 0px 0px;
-  @media only screen and (max-width: 749px) {
-    height: 248px;
-  }
+  height: 100%;
+  ${(props) =>
+    props.maxHeight &&
+    css`
+      max-height: ${props.maxHeight}px;
+    `}
 `;
 const Text = styled.div`
   margin: 20px 25px;
@@ -165,6 +165,9 @@ const Table = styled.div`
   @media only screen and (max-width: 450px) {
     padding: 20px 16px;
   }
+  .active {
+    color: var(--title);
+  }
   ol {
     margin-top: 8px;
     margin-bottom: 0px;
@@ -180,17 +183,18 @@ const Table = styled.div`
     }
     li {
       margin: 12px 0 0;
+      color: var(--primary);
       a {
         display: contents;
         color: var(--primary);
-        :hover {
-          color: var(--title);
-        }
       }
     }
     li:hover {
       cursor: pointer;
       color: var(--title);
+      a {
+        color: var(--title);
+      }
     }
   }
 `;
@@ -328,8 +332,8 @@ const Content = styled.div`
   h2 {
     font-size: 50px;
     line-height: 55px;
-    margin-top: -4rem;
-    padding-top: 6rem;
+    margin-top: -12px;
+    padding-top: 40px;
     margin-bottom: 8px;
     color: var(--title);
     font-weight: 400;
