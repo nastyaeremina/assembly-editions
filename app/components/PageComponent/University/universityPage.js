@@ -5,7 +5,6 @@ import Image from 'next/image';
 import { useCallback, useMemo, useState } from 'react';
 import {
   UniversitySection,
-  UniversityHero,
   FeatureWrap,
   FeatureLeft,
   LeftWrap,
@@ -19,53 +18,37 @@ import {
   ExtensionsSection,
   Overlay,
   HoverButton,
-  EmptySection
+  EmptySection,
+  ResponsiveInputWrap,
+  ResponsiveInput,
+  RightWrap
 } from '../../../styles/universityStyles';
 import { Container } from '../../../styles/commonStyles';
 import { isEmpty, stringToSlugyfy } from '../../../helpers/helpers';
 import AppError from '../../../components/apperror/error';
+import StandardHero from '../../standardHero/standardHero';
+import { HeroTypes } from '../../../constants/constant';
+import useActiveHeading from '../../../hooks/useActiveHeading';
 
 export default function UniversityPage({ universityVideosList, allPosts }) {
-  const [selected_category, setSelected_categry] = useState(null);
   const [query, setQuery] = useState('');
   const [searchResult, setSearchResult] = useState([]);
   const [isSearch, setIsSearch] = useState(false);
-
-  const handleScroll = useCallback(() => {
-    if (!selected_category) return;
-    setSelected_categry(null);
-  }, [selected_category]);
-
-  const onClickCategories = useCallback((name) => {
-    setSelected_categry(name);
-    setTimeout(() => {
-      setSelected_categry(null);
-    }, 1000);
-  }, []);
+  const activeId = useActiveHeading({ selector: 'h2' });
 
   const renderCategoryView = useMemo(() => {
     if (isEmpty(universityVideosList)) return null;
 
     return universityVideosList?.map((item, index) => {
-      let isActive = stringToSlugyfy(item?.category) === selected_category;
+      const id = stringToSlugyfy(item?.category);
+      const isActive = activeId === id;
       return (
-        <Catagoryitem
-          key={`rendercategoryitem_index_${index}`}
-          onClick={() => {
-            onClickCategories(stringToSlugyfy(item?.category));
-          }}
-          isActive={isActive}>
-          <Link
-            href={`#${stringToSlugyfy(item?.category)}`}
-            onClick={() => {
-              onClickCategories(stringToSlugyfy(item?.category));
-            }}>
-            {item?.category}
-          </Link>
+        <Catagoryitem key={`rendercategoryitem_index_${index}`} isActive={isActive}>
+          <Link href={`#${id}`}>{item?.category}</Link>
         </Catagoryitem>
       );
     });
-  }, [onClickCategories, universityVideosList, selected_category]);
+  }, [universityVideosList, activeId]);
 
   const renderUniversityVideosView = useCallback((videoList) => {
     if (isEmpty(videoList)) return null;
@@ -89,17 +72,16 @@ export default function UniversityPage({ universityVideosList, allPosts }) {
     return universityVideosList?.map((item, index) => {
       return (
         <ExtensionsSection
-          id={stringToSlugyfy(item?.category)}
+          data-section-index={index}
           key={`renderuniversityvideoslistiten_index_${index}`}
-          isSelected={stringToSlugyfy(item?.category) === selected_category}
           isNotFirst={index !== 0}>
-          <h2>{item?.category}</h2>
+          <h2 id={stringToSlugyfy(item?.category)}>{item?.category}</h2>
           <FeatureMenu>{renderUniversityVideosView(item?.list)}</FeatureMenu>
         </ExtensionsSection>
       );
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [renderUniversityVideosView, universityVideosList, selected_category]);
+  }, [renderUniversityVideosView, universityVideosList]);
 
   const onSubmitSeachQuery = useCallback((e) => {
     e.preventDefault();
@@ -152,14 +134,17 @@ export default function UniversityPage({ universityVideosList, allPosts }) {
   return (
     <>
       <UniversitySection>
+        <div className='standard-page'>
+          <StandardHero
+            type={HeroTypes.CENTER}
+            data={{
+              heroTitle: 'Copilot University',
+              heroDescription:
+                'Search from our library of lessons covering everything from initial setup and customization to Partner Apps and automations.'
+            }}
+          />
+        </div>
         <Container>
-          <UniversityHero>
-            <h1>Copilot University</h1>
-            <p>
-              Search from our library of lessons covering everything from initial setup and customization to Partner
-              Apps and automations.
-            </p>
-          </UniversityHero>
           <FeatureWrap>
             <FeatureLeft>
               <LeftWrap>
@@ -167,10 +152,6 @@ export default function UniversityPage({ universityVideosList, allPosts }) {
                   <Image src='/images/searchicon.svg' alt='search-icon' width={20} height={20} />
                   <Input placeholder='Find a video...' value={query} onChange={onSeachQueryChange} type='search' />
                 </InputWrap>
-                {/* <InputWrap>
-                    <Image src='/images/searchicon.svg' alt='search-icon' width={20} height={20} />
-                    <Input placeholder='Find a video...' />
-                  </InputWrap> */}
                 {!isEmpty(universityVideosList) && (
                   <Catagory>
                     <h4>Categories</h4>
@@ -180,9 +161,31 @@ export default function UniversityPage({ universityVideosList, allPosts }) {
               </LeftWrap>
             </FeatureLeft>
             {isSearch ? (
-              <FeatureRight>{renderResultView}</FeatureRight>
+              <RightWrap>
+                <ResponsiveInputWrap onSubmit={onSubmitSeachQuery}>
+                  <Image src='/images/searchicon.svg' alt='search-icon' width={20} height={20} />
+                  <ResponsiveInput
+                    placeholder='Find a video...'
+                    value={query}
+                    onChange={onSeachQueryChange}
+                    type='search'
+                  />
+                </ResponsiveInputWrap>
+                <FeatureRight>{renderResultView}</FeatureRight>
+              </RightWrap>
             ) : (
-              <FeatureRight>{renderUniversityVideosListView}</FeatureRight>
+              <RightWrap>
+                <ResponsiveInputWrap onSubmit={onSubmitSeachQuery}>
+                  <Image src='/images/searchicon.svg' alt='search-icon' width={20} height={20} />
+                  <ResponsiveInput
+                    placeholder='Find a video...'
+                    value={query}
+                    onChange={onSeachQueryChange}
+                    type='search'
+                  />
+                </ResponsiveInputWrap>
+                <FeatureRight>{renderUniversityVideosListView}</FeatureRight>
+              </RightWrap>
             )}
           </FeatureWrap>
         </Container>

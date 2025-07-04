@@ -14,11 +14,9 @@ import {
 } from './styles';
 
 const UniversitySection = styled.div`
-  padding-top: 80px;
   padding-bottom: 100px;
   @media only screen and (max-width: 749px) {
     padding-bottom: 80px;
-    padding-top: 48px;
   }
 `;
 const UniversityHero = styled.div`
@@ -52,12 +50,8 @@ const UniversityHero = styled.div`
 const FeatureWrap = styled.div`
   display: flex;
   gap: 36px;
-  padding-top: 100px;
   @media only screen and (max-width: 991px) {
     width: 100%;
-  }
-  @media only screen and (max-width: 749px) {
-    padding-top: 80px;
   }
 `;
 const FeatureLeft = styled.div`
@@ -68,7 +62,7 @@ const FeatureLeft = styled.div`
 `;
 const LeftWrap = styled.div`
   position: sticky;
-  top: 148px;
+  top: 150px;
 `;
 const InputWrap = styled.div`
   position: relative;
@@ -76,6 +70,18 @@ const InputWrap = styled.div`
     position: absolute;
     top: 15px;
     left: 20px;
+  }
+`;
+const ResponsiveInputWrap = styled.div`
+  display: none;
+  @media only screen and (max-width: 768px) {
+    display: flex;
+    position: relative;
+    img {
+      position: absolute;
+      top: 15px;
+      left: 20px;
+    }
   }
 `;
 const Input = styled.input`
@@ -89,6 +95,35 @@ const Input = styled.input`
   border: 1.5px solid var(--ghost-gray);
   border-radius: 48px;
   width: 306px;
+  outline: 0;
+  transition: 0.3s all;
+  ::placeholder {
+    color: var(--medium-gray);
+  }
+  :hover {
+    border: 1.5px solid var(--border);
+    box-shadow: 0px 4px 8px var(--black-shadow-7);
+  }
+  :active {
+    border: 1.5px solid var(--title);
+    box-shadow: 0px 4px 8px var(--black-shadow-7);
+  }
+  :focus {
+    border: 1.5px solid var(--title);
+    box-shadow: 0px 4px 8px var(--black-shadow-7);
+  }
+`;
+const ResponsiveInput = styled.input`
+  ${Value};
+  color: var(--title);
+  letter-spacing: 0.01em;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 26px;
+  padding: 11px 20px 11px 55px;
+  border: 1.5px solid var(--ghost-gray);
+  border-radius: 48px;
+  width: 100%;
   outline: 0;
   transition: 0.3s all;
   ::placeholder {
@@ -126,23 +161,33 @@ const Catagory = styled.ul`
 const Catagoryitem = styled.li`
   padding: 16px 0;
   border-bottom: 1px solid var(--black);
+  ${LinkTxt};
+  letter-spacing: 0.02em;
+  color: var(--primary);
+  margin: 0;
+  cursor: pointer;
+  transition: color 0.6s ease;
   a {
-    ${LinkTxt};
-    letter-spacing: 0.02em;
     color: var(--primary);
-    margin: 0;
-    :hover {
-      color: var(--title);
-    }
-    :active {
-      color: var(--title);
-    }
-    ${(props) =>
-      props.isActive &&
-      css`
-        color: var(--title);
-      `}
   }
+
+  :hover {
+    color: var(--title);
+    a {
+      color: var(--title);
+    }
+  }
+  :active {
+    color: var(--title);
+  }
+  ${(props) =>
+    props.isActive &&
+    css`
+      color: var(--title);
+      a {
+        color: var(--title);
+      }
+    `}
 `;
 const FeatureRight = styled.div`
   width: 100%;
@@ -155,27 +200,30 @@ const FeatureRight = styled.div`
   }
   @media only screen and (max-width: 991px) {
     width: 100%;
+    margin-top: 0;
   }
 `;
 
 const FeatureMenu = styled.div`
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
   gap: 36px;
   row-gap: 28px;
-  @media only screen and (max-width: 991px) {
-    grid-template-columns: 1fr 1fr;
-  }
   @media only screen and (max-width: 749px) {
     grid-template-columns: 1fr;
+    gap: 24px;
     row-gap: 24px;
   }
 `;
 const FeatureCard = styled.div`
   border-radius: 4px;
-  max-height: 152px;
   height: 100%;
   position: relative;
+  overflow: hidden;
+  img {
+    height: 100%;
+    width: 100%;
+  }
   :hover .hovericon {
     display: block;
     opacity: 0.4;
@@ -185,7 +233,6 @@ const FeatureCard = styled.div`
     opacity: 1;
   }
   @media only screen and (max-width: 991px) {
-    max-height: 192px;
     img {
       width: 100%;
       height: 100%;
@@ -202,26 +249,31 @@ const FeatureCard = styled.div`
 `;
 const ExtensionsSection = styled.div`
   padding-top: 40px;
+  h2 {
+    scroll-margin-top: 70px;
+  }
   ${(props) =>
     props.isNotFirst &&
     css`
       padding-top: 40px;
     `}
-  ${(props) =>
-    props.isSelected &&
-    css`
-      padding-top: 100px;
-    `}
-    @media only screen and (max-width: 991px) {
+  @media only screen and (max-width: 991px) {
     width: 100%;
+    padding: 0;
+  }
+  @media only screen and (max-width: 768px) {
+    width: 100%;
+    padding-top: 40px;
   }
 `;
-
+const RightWrap = styled.div`
+  width: 100%;
+`;
 const DetailVideoMain = styled.div`
-  padding-top: 80px;
+  /* padding-top: 80px; */
 `;
 const DetailVideoHero = styled.div`
-  padding: 40px 0;
+  padding: 0 0 40px;
   h1 {
     ${Heading3};
     color: var(--title);
@@ -285,42 +337,44 @@ const VideoSection = styled.div`
   .yt-lite {
     border-radius: 4px;
     transition: opacity 0.35s ease;
-    :hover {
-      ::before {
-        content: '';
-        background-color: var(--black);
-        opacity: 0.4;
-        position: absolute;
-        left: 0;
-        top: 0;
-        right: 0;
-        bottom: 0;
-        @media only screen and (max-width: 749px) {
-          display: none;
+    @media only screen and (min-width: 991px) {
+      :hover {
+        ::before {
+          content: '';
+          background-color: var(--black);
+          opacity: 0.4;
+          position: absolute;
+          left: 0;
+          top: 0;
+          right: 0;
+          bottom: 0;
+          @media only screen and (max-width: 991px) {
+            display: none;
+          }
         }
-      }
-      .icon-player {
-        background-image: url('/images/ytbicon.svg');
-        width: 137px;
-        height: 96px;
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        opacity: 1;
-        @media only screen and (max-width: 749px) {
-          background-image: url('/images/mobileytb.svg');
-          width: 66px;
-          height: 46px;
+        .icon-player {
+          background-image: url('/images/ytbicon.svg');
+          width: 137px;
+          height: 96px;
           position: absolute;
           top: 50%;
           left: 50%;
           transform: translate(-50%, -50%);
           opacity: 1;
+          @media only screen and (max-width: 991px) {
+            background-image: url('/images/mobileytb.svg');
+            width: 66px;
+            height: 46px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            opacity: 1;
+          }
         }
       }
     }
-    @media only screen and (max-width: 749px) {
+    @media only screen and (max-width: 991px) {
       ::before {
         content: '';
         background-color: var(--black);
@@ -357,15 +411,15 @@ const VIdeoWrap = styled.div`
 `;
 const UniversityVideo = styled.div`
   display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
   gap: 48px;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
+  row-gap: 28px;
   padding-top: 40px;
-  @media only screen and (max-width: 769px) {
-    grid-template-columns: 1fr 1fr;
-    padding-top: 28px;
-  }
-  @media only screen and (max-width: 376px) {
+  @media only screen and (max-width: 749px) {
     grid-template-columns: 1fr;
+    gap: 24px;
+    row-gap: 24px;
+    padding-top: 28px;
   }
 `;
 const Overlay = styled.div`
@@ -378,7 +432,6 @@ const Overlay = styled.div`
   border-radius: 4px;
   transition: background 0.3s ease;
   @media only screen and (max-width: 769px) {
-    max-height: 192px;
     height: 100%;
   }
 `;
@@ -458,5 +511,8 @@ export {
   HoverButton,
   OverLay,
   YoutubeWrap,
-  EmptySection
+  EmptySection,
+  ResponsiveInputWrap,
+  ResponsiveInput,
+  RightWrap
 };

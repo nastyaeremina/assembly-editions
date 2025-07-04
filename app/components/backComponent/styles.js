@@ -7,7 +7,7 @@ const DetailLink = styled.div`
     gap: 8px;
     align-items: center;
   }
-  padding-bottom: 60px;
+  padding-bottom: 30px;
   padding-top: 120px;
   p {
     ${LinkTxt};
@@ -29,7 +29,7 @@ const DetailLink = styled.div`
   }
   @media only screen and (max-width: 749px) {
     padding-top: 100px;
-    padding-bottom: 30px;
+    padding-bottom: 28px;
   }
   @media only screen and (max-width: 449px) {
     display: none;
