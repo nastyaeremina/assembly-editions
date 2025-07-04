@@ -45,7 +45,8 @@ import {
   HelpLink,
   Dspace,
   Drop,
-  FooterItem
+  FooterItem,
+  NavigationMainDiv
 } from './styles';
 import DropDownComponent from './dropdown';
 import DropdownFooter from './dropdownFooter';
@@ -68,9 +69,11 @@ export default function NavbarComponent({
   if (navbarColorList) colorList = navbarColorList;
   else if (headerIndex) colorList = NAVBAR_COLOR_LIST[headerIndex];
   else colorList = NAVBAR_COLOR_LIST[HEADER_LIST.DEFAULT];
+
   const closeSubMenu = useCallback(() => {
     setOpenDropdownIndex(null);
   }, []);
+
   const handleMobileMenu = useCallback(() => {
     const body = document.querySelector('body');
     if (isOpenMobileMenu) {
@@ -100,7 +103,7 @@ export default function NavbarComponent({
     isScrollPage = false;
   }
 
-  const MobileNavigation = useMemo(() => {
+  const renderMobileNavigation = useMemo(() => {
     if (isEmpty(navbarData)) return null;
     return (
       <>
@@ -117,6 +120,7 @@ export default function NavbarComponent({
       </>
     );
   }, [mobile, navbarData, openDropdownIndex]);
+
   const renderSubItemView = useCallback((data, title) => {
     return data?.map((item, index) => {
       return (
@@ -178,7 +182,7 @@ export default function NavbarComponent({
     [renderDropdownFooter, renderSubItemView]
   );
 
-  const Navigation = useCallback(() => {
+  const renderNavigation = useMemo(() => {
     if (isEmpty(navbarData)) return null;
 
     return (
@@ -398,14 +402,9 @@ export default function NavbarComponent({
               </Link>
             )}
 
-            {isOpenMobileMenu ? (
-              <OverLayBlock>
-                {MobileNavigation}
-                {/* <MobileNavigation></MobileNavigation> */}
-              </OverLayBlock>
-            ) : null}
+            {isOpenMobileMenu && <OverLayBlock>{renderMobileNavigation}</OverLayBlock>}
+            <NavigationMainDiv>{renderNavigation}</NavigationMainDiv>
 
-            {!mobile ? <Navigation className='hide' /> : null}
             <MobileRight>
               <SignInMobile>
                 <>

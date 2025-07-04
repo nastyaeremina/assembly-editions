@@ -85,7 +85,6 @@ const NavMenu = styled.div`
     right: 0;
     padding: 0;
     background: var(--bg-pages);
-
     animation: 0.2s ease-out 0s 1 slideInFromTop;
     ${(props) =>
       props.isBoxShadow &&
@@ -587,16 +586,27 @@ const ThirdLine = styled.span`
 `;
 
 const OverLayBlock = styled.div`
-  position: absolute;
-  overflow: hidden;
-  left: 0;
-  right: 0;
+  display: none;
+  @media only screen and (max-width: 991px) {
+    position: absolute;
+    overflow: hidden;
+    left: 0;
+    right: 0;
+    width: 100%;
+    padding-top: 8px;
+    transition: color 200ms ease-in-out;
+    top: 76px;
+    height: calc(100vh - 76px);
+    padding-top: 0;
+    display: flex;
+  }
+`;
+const NavigationMainDiv = styled.div`
+  display: flex;
   width: 100%;
-  padding-top: 8px;
-  transition: color 200ms ease-in-out;
-  top: 76px;
-  height: calc(100vh - 76px);
-  padding-top: 0;
+  @media only screen and (max-width: 991px) {
+    display: none;
+  }
 `;
 const MenuWrap = styled(Link)`
   display: flex;
@@ -645,13 +655,6 @@ const MenuWrap = styled(Link)`
         fill: var(--dark-green);
       }
     }
-    /* .brand {
-      g {
-        path {
-          fill: var(--light-green);
-        }
-      }
-    } */
     h6 {
       color: var(--light-green);
     }
@@ -1129,26 +1132,17 @@ const LastDroplist = styled.div`
       opacity: 1;
       fill: none;
       fill: black;
-      /* @media only screen and (max-width: 749px) {
-        opacity: 0;
-      } */
     }
     @media only screen and (max-width: 991px) {
       width: 100%;
     }
     :hover .HoverArrow__tipPath {
       transform: translateX(2px);
-      /* @media only screen and (max-width: 749px) {
-        transform: none;
-      } */
     }
   }
 
   .learn-link:hover {
     color: black;
-    /* @media only screen and (max-width: 749px) {
-      color: var(--primary);
-    } */
   }
   .learn-link svg path {
     transition: all 300ms ease;
@@ -1170,19 +1164,9 @@ const LastDroplist = styled.div`
     --arrowSpacing: 5px;
     --arrowHoverTransition: 150ms cubic-bezier(0.215, 0.61, 0.355, 1);
     --arrowHoverOffset: translateX(3px);
-    /* @media only screen and (max-width: 749px) {
-      display: none;
-    } */
-    /* @media only screen and (max-width: 376px) {
-      margin-left: 4px;
-    } */
   }
   .mobilearrow {
     display: none;
-    /* @media only screen and (max-width: 749px) {
-      position: relative;
-      display: block;
-    } */
   }
 `;
 
@@ -1270,5 +1254,6 @@ export {
   FeatureDropdown,
   Dropdown,
   ResourcesSubMenuDiv,
-  FooterItem
+  FooterItem,
+  NavigationMainDiv
 };
