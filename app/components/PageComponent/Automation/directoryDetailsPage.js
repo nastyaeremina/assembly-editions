@@ -1,8 +1,7 @@
 'use client';
 
-import Link from 'next/link';
 import Image from 'next/image';
-import { DetailLink, AppsDetailMain } from '../../../styles/appsStyles';
+import { AppsDetailMain } from '../../../styles/appsStyles';
 import { Container } from '../../../styles/commonStyles';
 import {
   DetailButtonSection,
@@ -18,6 +17,7 @@ import { isEmpty } from '../../../helpers/helpers';
 import BackComponent from '../../backComponent/backComponent';
 
 export default function AutomationDetailPage({ detail, relatedApps }) {
+  if (isEmpty(detail)) return null;
   return (
     <>
       <AppsDetailMain>
@@ -25,7 +25,7 @@ export default function AutomationDetailPage({ detail, relatedApps }) {
       </AppsDetailMain>
       <Container>
         <LogoSection>
-          {detail?.productLogosCollection?.items?.map((logo, index) => {
+          {detail.productLogosCollection?.items?.map((logo, index) => {
             return (
               <Image
                 key={`automation_logo_${index}`}
@@ -38,16 +38,16 @@ export default function AutomationDetailPage({ detail, relatedApps }) {
             );
           })}
         </LogoSection>
-        <DetailTitle>{detail?.name}</DetailTitle>
-        <DetailCaption>{detail?.description}</DetailCaption>
+        <DetailTitle>{detail.name}</DetailTitle>
+        <DetailCaption>{detail.description}</DetailCaption>
         <DetailButtonSection>
-          {!isEmpty(detail?.zapierLink) && (
+          {!isEmpty(detail.zapierLink) && (
             <Button
               bgColor={'--primary'}
               fontColor={'--white'}
               borderColor={'--primary'}
               text={'Go to Zapier'}
-              href={detail?.zapierLink}
+              href={detail.zapierLink}
               hoverColor={'--secondary-hover-color'}
               target={'_blank'}
               isicon={true}
@@ -56,13 +56,13 @@ export default function AutomationDetailPage({ detail, relatedApps }) {
               isCamelCase={false}
             />
           )}
-          {!isEmpty(detail?.makeLink) && (
+          {!isEmpty(detail.makeLink) && (
             <Button
               bgColor={'--primary'}
               fontColor={'--white'}
               borderColor={'--primary'}
               text={'Go to Make'}
-              href={detail?.makeLink}
+              href={detail.makeLink}
               hoverColor={'--secondary-hover-color'}
               target={'_blank'}
               isicon={true}
@@ -70,13 +70,13 @@ export default function AutomationDetailPage({ detail, relatedApps }) {
               isCamelCase={false}
             />
           )}
-          {!isEmpty(detail?.apiLink) && (
+          {!isEmpty(detail.apiLink) && (
             <Button
               bgColor={'transparent'}
               fontColor={'--black'}
               borderColor={'--black'}
               text={'Read setup instructions'}
-              href={detail?.apiLink}
+              href={detail.apiLink}
               hoverColor={'--hover-color'}
               target={'_blank'}
             />
@@ -86,7 +86,7 @@ export default function AutomationDetailPage({ detail, relatedApps }) {
       <ImageSection>
         <Container>
           <Image
-            src={detail?.automationImage?.url}
+            src={detail.automationImage?.url}
             alt='detail-image'
             width={849}
             height={232}

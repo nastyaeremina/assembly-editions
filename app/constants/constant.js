@@ -473,3 +473,8 @@ export const SliderHeight = {
   FULL: '100%',
   AUTO: 'auto'
 };
+
+export const AutomationCardVariant = {
+  GREEN: 'green',
+  WHITE: 'white'
+};

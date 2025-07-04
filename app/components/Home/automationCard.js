@@ -2,6 +2,7 @@
 import React from 'react';
 import Image from 'next/image';
 import { CardItem, CardTextView, AnimatedIcon } from '../../styles/homepageStyles';
+import { AutomationCardVariant } from '../../constants/constant';
 
 /**
  * Automation card
@@ -13,11 +14,19 @@ import { CardItem, CardTextView, AnimatedIcon } from '../../styles/homepageStyle
  * @param {string} animationClass - Class for the animation
  * **/
 
-function AutomationCard({ children, title, tag, imageSrc, imageAlt, animationClass }) {
+function AutomationCard({
+  children,
+  title,
+  tag,
+  imageSrc,
+  imageAlt,
+  animationClass,
+  variant = AutomationCardVariant.WHITE
+}) {
   return (
-    <CardItem>
+    <CardItem variant={variant}>
       <Image src={imageSrc} width={35} height={35} alt={imageAlt} />
-      <CardTextView>
+      <CardTextView variant={variant}>
         <p>{title}</p>
         <span>{tag}</span>
       </CardTextView>

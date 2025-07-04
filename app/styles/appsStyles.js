@@ -122,22 +122,31 @@ const Catagory = styled.ul`
 const Catagoryitem = styled.li`
   padding: 16px 0;
   border-bottom: 1px solid var(--black);
+  ${LinkTxt};
+  letter-spacing: 0.02em;
+  color: var(--primary);
+  margin: 0;
+  cursor: pointer;
+  transition: color 0.6s ease;
   a {
-    ${LinkTxt};
-    letter-spacing: 0.02em;
     color: var(--primary);
-    ${(props) =>
-      props.isActive &&
-      css`
+  }
+  ${(props) =>
+    props.isActive &&
+    css`
+      color: var(--title);
+      a {
         color: var(--title);
-      `}
-    margin: 0;
-    :hover {
+      }
+    `}
+  :hover {
+    color: var(--title);
+    a {
       color: var(--title);
     }
-    :active {
-      color: var(--title);
-    }
+  }
+  :active {
+    color: var(--title);
   }
 `;
 const FeatureLeft = styled.div`
@@ -240,7 +249,10 @@ const FeatureImg = styled.div`
     justify-content: center;
   }
 `;
-const Featured = styled.div``;
+const Featured = styled.div`
+  padding-top: 40px;
+  margin-top: -40px;
+`;
 const ExtensionsSection = styled.div`
   width: 100%;
   padding-top: 40px;
@@ -304,9 +316,72 @@ const InputWrap = styled.form`
   }
 `;
 
+const ResponsiveInputWrap = styled.div`
+  display: none;
+  @media only screen and (max-width: 991px) {
+    display: flex;
+    position: relative;
+    width: 100%;
+    max-width: 1272px;
+    margin: 0 auto 40px;
+    div {
+      position: absolute;
+      right: 24px;
+    }
+    img {
+      position: absolute;
+      top: 15px;
+      left: 20px;
+    }
+    @media only screen and (max-width: 991px) {
+      div {
+        position: relative;
+        right: 0;
+        margin: 0 auto;
+        margin-bottom: 30px;
+      }
+    }
+    @media only screen and (max-width: 449px) {
+      img {
+        top: 11px;
+      }
+    }
+  }
+`;
+
+const ResponsiveInput = styled.input`
+  ${Value};
+  color: var(--title);
+  letter-spacing: 0.01em;
+  padding: 11px 55px 11px 55px;
+  border: 1.5px solid var(--ghost-gray);
+  border-radius: 48px;
+  width: 100%;
+  outline: 0;
+  ::placeholder {
+    color: var(--medium-gray);
+  }
+  :hover {
+    border: 1.5px solid var(--border);
+    box-shadow: 0px 4px 8px var(--black-shadow-7);
+  }
+  :active {
+    border: 1.5px solid var(--title);
+    box-shadow: 0px 4px 8px var(--black-shadow-7);
+  }
+  :focus {
+    border: 1.5px solid var(--title);
+    box-shadow: 0px 4px 8px var(--black-shadow-7);
+  }
+  @media only screen and (max-width: 449px) {
+    padding: 10px 50px 10px 52px;
+    ${MbBody4}
+  }
+`;
+
 const LeftWrap = styled.div`
   position: sticky;
-  top: 95px;
+  top: 150px;
 `;
 const DetailLink = styled.div`
   display: inline-flex;
@@ -339,6 +414,10 @@ const AppsDetailMain = styled.div`
 const AppHeader3 = styled.h2`
   ${Heading4}
   margin-top: 0;
+  scroll-margin-top: 70px;
+  &.first-h2 {
+    scroll-margin-top: -15px;
+  }
   &&::before {
     display: block;
     content: ' ';
@@ -412,5 +491,7 @@ export {
   AppsHeroWrap,
   AppHeader3,
   AppSliderSection,
-  SearchEmpty
+  SearchEmpty,
+  ResponsiveInputWrap,
+  ResponsiveInput
 };

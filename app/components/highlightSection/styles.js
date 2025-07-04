@@ -24,6 +24,7 @@ const SectionDiv = styled.div`
     border-bottom: none;
     text-align: center;
     padding: 32px;
+    border-bottom: 1px solid var(--dark-green);
     p {
       :first-child {
         ${Heading4};
@@ -46,18 +47,25 @@ const SectionDiv = styled.div`
     :last-child {
       border-right: none;
     }
-    @media screen and (max-width: 768px) {
+    @media only screen and (max-width: 768px) {
       display: block;
       border: none;
       border-top: 0.5px solid var(--dark-green);
       border-bottom: 0.5px solid var(--dark-green);
       padding: 20px;
-      :first-child {
-        border-top: none;
-      }
-      :last-child {
-        border-bottom: none;
-      }
+    }
+  }
+  @media only screen and (max-width: 768px) {
+    tr:nth-child(2) td:first-child {
+      border-top: none;
+    }
+    tr:last-child td:last-child {
+      border-bottom: none;
+    }
+  }
+  @media only screen and (min-width: 769px) {
+    tr:last-child td {
+      border-bottom: none;
     }
   }
 `;

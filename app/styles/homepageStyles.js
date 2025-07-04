@@ -23,6 +23,7 @@ import {
   MbButtonText,
   MbBody2
 } from './styles';
+import { AutomationCardVariant } from '../constants/constant';
 
 const HomeMain = styled.div`
   background-color: var(--bg-pages);
@@ -419,7 +420,7 @@ const BottomList = styled.div`
   gap: 63px;
   position: relative;
   ${(props) =>
-    props.isAnimated &&
+    props.variant === AutomationCardVariant.GREEN &&
     css`
       text-align: left !important;
       filter: drop-shadow(0px 4.68797px 157.047px var(--primary));
@@ -454,7 +455,7 @@ const CardItem = styled.div`
   margin-bottom: 40px;
   width: 100%;
   ${(props) =>
-    props.isAnimated &&
+    props.variant === AutomationCardVariant.GREEN &&
     css`
       background: var(--dark-green);
       border: 1px solid var(--light-green);
@@ -475,7 +476,7 @@ const CardTextView = styled.div`
     color: var(--title);
     letter-spacing: 0.02em;
     ${(props) =>
-      props.isAnimated &&
+      props.variant === AutomationCardVariant.GREEN &&
       css`
         color: var(--light-green);
       `}
@@ -486,7 +487,7 @@ const CardTextView = styled.div`
     color: var(--body);
     letter-spacing: 0.02em;
     ${(props) =>
-      props.isAnimated &&
+      props.variant === AutomationCardVariant.GREEN &&
       css`
         color: var(--light-green);
       `}
@@ -918,7 +919,7 @@ const AnimatedLine = styled.div`
       right: 0;
     `}
     ${(props) =>
-    props.isAnimated &&
+    props.variant === AutomationCardVariant.GREEN &&
     css`
       background: linear-gradient(90deg, var(--light-green) 50%, transparent 50%);
       background-repeat: repeat-x;
@@ -973,7 +974,7 @@ const StaticLine = styled.div`
       right: 0;
     `}
     ${(props) =>
-    props.isAnimated &&
+    props.variant === AutomationCardVariant.GREEN &&
     css`
       background: linear-gradient(90deg, var(--light-green) 50%, transparent 50%);
       background-repeat: repeat-x;

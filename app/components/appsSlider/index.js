@@ -42,7 +42,7 @@ const AppsSlider = ({ data, isDetailSlider }) => {
   return (
     <>
       <Animated isDetailSlider={isDetailSlider}>
-        <Slider speed={6} height={SliderHeight.AUTO} isHoverPause={true}>
+        <Slider speed={6} height={SliderHeight.AUTO} isHoverPause={true} gap={36} responsiveGap={20}>
           {featurecontentView}
         </Slider>
         <SliderLine></SliderLine>

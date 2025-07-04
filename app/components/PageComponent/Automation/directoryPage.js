@@ -1,10 +1,8 @@
 'use client';
 import Image from 'next/image';
-import { useCallback, useEffect, useMemo, useState } from 'react';
+import { useCallback, useMemo, useState } from 'react';
 import Link from 'next/link';
 import {
-  HeroSection,
-  FeatureSection,
   FeatureWrap,
   Input,
   Catagory,
@@ -17,29 +15,25 @@ import {
   Featured,
   ExtensionsSection,
   ExtensionCard,
-  AppsHeroWrap,
-  AppHeader3
+  AppHeader3,
+  ResponsiveInputWrap,
+  ResponsiveInput
 } from '../../../styles/appsStyles';
 import { Container } from '../../../styles/commonStyles';
 import { isEmpty, stringToSlugyfy } from '../../../helpers/helpers';
 import AppError from '../../apperror/error';
 import { COPILOT_ONBOARDING_LINK } from '../../../constants/externalLinks';
-import { CardAuto, Cardbottom, DirectoryButton, DirectoryCard } from '../../../styles/automationStyles';
+import { CardAuto, Cardbottom, DirectoryCard, RightWrapper } from '../../../styles/automationStyles';
 import { SliderIcon, SliderSub } from '../../FeatureSlider/styles';
-import ButtonGroup from '../../ButtonGroup/buttonGroup';
+import StandardHero from '../../standardHero/standardHero';
+import { HeroTypes } from '../../../constants/constant';
+import useActiveHeading from '../../../hooks/useActiveHeading';
 
 export default function AutomationDirectoryPage({ featuredApps, allCategoryWithPost, allPosts }) {
-  const [selected_category, setSelected_category] = useState();
   const [query, setQuery] = useState('');
   const [searchResult, setSearchResult] = useState([]);
   const [isSearch, setIsSearch] = useState(false);
-  useEffect(() => {
-    if (typeof window !== 'undefined') {
-      let hash = window.location.hash;
-      let result = hash.replace(/#/g, '');
-      setSelected_category(result);
-    }
-  }, []);
+  const activeId = useActiveHeading({ selector: 'h2' });
 
   const searchQuery = useCallback(
     (value) => {
@@ -114,20 +108,17 @@ export default function AutomationDirectoryPage({ featuredApps, allCategoryWithP
   const renderCategoryList = useMemo(() => {
     if (isEmpty(allCategoryWithPost)) return null;
     return allCategoryWithPost?.map((item, index) => {
-      let isActive = item?.category === selected_category;
+      const id = stringToSlugyfy(item?.category);
+      const isActive = activeId === id;
       return (
         <Catagoryitem key={`categorylist_index_${index}`} isActive={isActive}>
-          <Link
-            href={`#${stringToSlugyfy(item?.category)}`}
-            onClick={() => {
-              setSelected_category(item?.category);
-            }}>
+          <Link href={`#${id}`} className=''>
             {item?.category}
           </Link>
         </Catagoryitem>
       );
     });
-  }, [allCategoryWithPost, selected_category]);
+  }, [activeId, allCategoryWithPost]);
 
   const renderPartnerAppsView = useCallback((appList) => {
     if (isEmpty(appList)) return null;
@@ -167,8 +158,8 @@ export default function AutomationDirectoryPage({ featuredApps, allCategoryWithP
     if (isEmpty(allCategoryWithPost)) return null;
     return allCategoryWithPost?.map((item, index) => {
       return (
-        <ExtensionsSection id={stringToSlugyfy(item?.category)} key={`allCategoryappsview_index_${index}`}>
-          <AppHeader3>{item?.category}</AppHeader3>
+        <ExtensionsSection key={`allCategoryappsview_index_${index}`} data-section-index={index + 1}>
+          <AppHeader3 id={stringToSlugyfy(item?.category)}>{item?.category}</AppHeader3>
           <ExtensionCard isAutomationDirectoryCard>{renderPartnerAppsView(item?.list)}</ExtensionCard>
         </ExtensionsSection>
       );
@@ -193,61 +184,77 @@ export default function AutomationDirectoryPage({ featuredApps, allCategoryWithP
 
   return (
     <>
-      <HeroSection>
-        <Container>
-          <AppsHeroWrap>
-            <h1>Automation Directory</h1>
-            <p>Choose from many recipes that will help you save time and scale your business</p>
-            <ButtonGroup
-              primaryButtonLink={COPILOT_ONBOARDING_LINK}
-              primaryButtonText={'Start Trial'}
-              secondaryButtonLink={'/automations'}
-              secondaryButtonText={'Back to overview'}
-              className={'button-group'}
-            />
-          </AppsHeroWrap>
-        </Container>
-      </HeroSection>
-      <FeatureSection>
-        <Container>
-          <FeatureWrap isAutomation>
-            <FeatureLeft>
-              <LeftWrap>
-                <InputWrap onSubmit={onSubmitSeachQuery}>
-                  <Image src='/images/searchicon.svg' alt='search-icon' width={20} height={20} />
-                  <Input placeholder='Find a recipe' value={query} onChange={onSeachQueryChange} type='search' />
-                </InputWrap>
-                <Catagory>
-                  <h4>Categories</h4>
-                  {!isEmpty(featuredApps) && (
-                    <Catagoryitem
-                      isActive={selected_category === 'featured'}
-                      onClick={() => {
-                        setSelected_category('featured');
-                      }}>
-                      <Link href={'#featured'}>Featured</Link>
-                    </Catagoryitem>
-                  )}
-                  {renderCategoryList}
-                </Catagory>
-              </LeftWrap>
-            </FeatureLeft>
-            {isSearch ? (
-              <FeatureRight isSearch={!isEmpty(searchResult)}>{renderResultView}</FeatureRight>
-            ) : (
-              <FeatureRight>
+      <div className='standard-page'>
+        <StandardHero
+          type={HeroTypes.CENTER}
+          data={{
+            heroTitle: 'Automation Directory',
+            heroDescription: 'Choose from many recipes that will help you save time and scale your business',
+            primaryButtonText: 'Start Trial',
+            primaryButtonLink: { COPILOT_ONBOARDING_LINK },
+            secondaryButtonLink: '/automations',
+            secondaryButtonText: 'Back to overview'
+          }}
+        />
+      </div>
+      <Container>
+        <FeatureWrap isAutomation>
+          <FeatureLeft>
+            <LeftWrap>
+              <InputWrap onSubmit={onSubmitSeachQuery}>
+                <Image src='/images/searchicon.svg' alt='search-icon' width={20} height={20} />
+                <Input placeholder='Find a recipe' value={query} onChange={onSeachQueryChange} type='search' />
+              </InputWrap>
+              <Catagory>
+                <h4>Categories</h4>
                 {!isEmpty(featuredApps) && (
-                  <Featured id='featured'>
-                    <AppHeader3>Featured</AppHeader3>
+                  <Catagoryitem isActive={activeId === 'feature'}>
+                    <Link href={`#featured`}>Featured</Link>
+                  </Catagoryitem>
+                )}
+                {renderCategoryList}
+              </Catagory>
+            </LeftWrap>
+          </FeatureLeft>
+          {isSearch ? (
+            <RightWrapper>
+              <ResponsiveInputWrap onSubmit={onSubmitSeachQuery}>
+                <Image src='/images/searchicon.svg' alt='search-icon' width={20} height={20} />
+                <ResponsiveInput
+                  placeholder='Find a recipe'
+                  value={query}
+                  onChange={onSeachQueryChange}
+                  type='search'
+                />
+              </ResponsiveInputWrap>
+              <FeatureRight isSearch={!isEmpty(searchResult)}>{renderResultView}</FeatureRight>
+            </RightWrapper>
+          ) : (
+            <RightWrapper>
+              <ResponsiveInputWrap onSubmit={onSubmitSeachQuery}>
+                <Image src='/images/searchicon.svg' alt='search-icon' width={20} height={20} />
+                <ResponsiveInput
+                  placeholder='Find a recipe'
+                  value={query}
+                  onChange={onSeachQueryChange}
+                  type='search'
+                />
+              </ResponsiveInputWrap>
+              <FeatureRight id={'automation-content-section'}>
+                {!isEmpty(featuredApps) && (
+                  <Featured data-section-index={0}>
+                    <AppHeader3 id='featured' className='first-h2'>
+                      Featured
+                    </AppHeader3>
                     <FeatureMenu isAutomationDirectoryCard>{renderFeaturedView}</FeatureMenu>
                   </Featured>
                 )}
                 {renderAllCategoryAppsView}
               </FeatureRight>
-            )}
-          </FeatureWrap>
-        </Container>
-      </FeatureSection>
+            </RightWrapper>
+          )}
+        </FeatureWrap>
+      </Container>
     </>
   );
 }

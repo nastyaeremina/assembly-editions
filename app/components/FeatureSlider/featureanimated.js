@@ -1,6 +1,8 @@
 import React, { useEffect, useMemo } from 'react';
 import Image from 'next/image';
 import { isEmpty } from '../../helpers/helpers';
+import Slider from '../feedback/slider';
+import { SliderHeight } from '../../constants/constant';
 import { Animated, SliderIcon, SliderInner, SliderLine, SliderSub } from './styles';
 
 export default function FeatureAnimated({ data, isDetailSlider }) {
@@ -36,69 +38,11 @@ export default function FeatureAnimated({ data, isDetailSlider }) {
     });
   }, [data]);
 
-  useEffect(() => {
-    // Your code goes here
-    const items = [...document.getElementsByClassName('list__item')];
-    const containerElem = document.getElementById('containerElem');
-    const leftSideOfContainer = containerElem.getBoundingClientRect().left;
-    const listElem = document.getElementById('list');
-    let currentLeftValue = 0;
-
-    // Kick off for the animation function.
-    let intervalId = setInterval(animationLoop, 10);
-
-    // Add hover event listener to pause animation on hover
-    containerElem.addEventListener('mouseenter', handleHover);
-    containerElem.addEventListener('mouseleave', handleHover);
-
-    function animationLoop() {
-      const firstListItem = listElem.querySelector('.list__item:first-child');
-
-      let rightSideOfFirstItem = firstListItem.getBoundingClientRect().right;
-
-      if (rightSideOfFirstItem === leftSideOfContainer) {
-        currentLeftValue = -1;
-        listElem.appendChild(firstListItem);
-      }
-
-      listElem.style.marginLeft = `${currentLeftValue}px`;
-      currentLeftValue -= 1;
-    }
-
-    function handleHover(event) {
-      if (event.type === 'mouseenter') {
-        clearInterval(intervalId); // Pause animation on hover
-      } else if (event.type === 'mouseleave') {
-        intervalId = setInterval(animationLoop, 10); // Resume animation on mouse leave
-      }
-    }
-
-    // Cleanup the interval and remove event listeners on component unmount
-    return () => {
-      clearInterval(intervalId);
-      containerElem.removeEventListener('mouseenter', handleHover);
-      containerElem.removeEventListener('mouseleave', handleHover);
-    };
-  }, []);
-
   return (
     <Animated isDetailSlider={isDetailSlider}>
-      <div class='wrap wrap--logobar' id='containerElem'>
-        <ul class='list' id='list'>
-          <li class='list__item'>
-            <div className='card-gap'>{featurecontentView}</div>
-          </li>
-          <li class='list__item'>
-            <div className='card-gap'>{featurecontentView}</div>
-          </li>
-          <li class='list__item'>
-            <div className='card-gap'>{featurecontentView}</div>
-          </li>
-          <li class='list__item'>
-            <div className='card-gap'>{featurecontentView}</div>
-          </li>
-        </ul>
-      </div>
+      <Slider speed={6} height={SliderHeight.AUTO} isHoverPause={true} gap={36} responsiveGap={20}>
+        {featurecontentView}
+      </Slider>
       <SliderLine></SliderLine>
     </Animated>
   );
