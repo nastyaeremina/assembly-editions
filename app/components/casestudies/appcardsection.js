@@ -18,7 +18,7 @@ export default function AppCardSection({ appsList }) {
           name={item?.name}
           applogo={item?.icon?.url}
           key={`copilotapps_index_${index}`}
-          url={`/apps/${item?.slug}`}
+          url={`/apps/directory/${item?.slug}`}
         />
       );
     });
