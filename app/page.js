@@ -7,7 +7,7 @@ import { getPageContent } from './helpers/serverSideHelpers';
 import HomePage from './components/Home/homepage/homepage';
 import { createArrayWithFixedLength, getSEOData, isEmpty, removeEmptyElement } from './helpers/helpers';
 import NewCTA from './components/cta/newCTA';
-import { COPILOT_TWITTER_LINK } from './constants/externalLinks';
+import { COPILOT_INSTAGRAM_LINK, COPILOT_TWITTER_LINK } from './constants/externalLinks';
 
 
 async function getContent({ searchParams }) {
@@ -43,7 +43,7 @@ export default async function Home({ searchParams }) {
       'https://www.linkedin.com/company/copilotplatforms/',
       'https://www.youtube.com/@copilotplatforms',
       'https://www.facebook.com/copilotplatforms',
-      'https://www.instagram.com/copilotplatforms/'
+      COPILOT_INSTAGRAM_LINK
     ]
   };
   const testimonialTableData = createArrayWithFixedLength(

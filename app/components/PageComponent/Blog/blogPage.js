@@ -11,7 +11,7 @@ import Blogcard from '../../Blogcard';
 import { isEmpty } from '../../../helpers/helpers';
 import BlogCTA from '../../blogCTA';
 import { CURRENT_SITE_URL } from '../../../constants/constant';
-import { COPILOT_TWITTER_LINK } from '../../../constants/externalLinks';
+import { COPILOT_INSTAGRAM_LINK, COPILOT_TWITTER_LINK } from '../../../constants/externalLinks';
 
 export default function BlogPage({ allPosts, tags }) {
   const router = useRouter();
@@ -103,7 +103,7 @@ export default function BlogPage({ allPosts, tags }) {
           'https://www.linkedin.com/company/copilotplatforms/',
           'https://www.youtube.com/@copilotplatforms',
           'https://www.facebook.com/copilotplatforms',
-          'https://www.instagram.com/copilotplatforms/'
+          COPILOT_INSTAGRAM_LINK
         ]}
       />
       <MainContent>
