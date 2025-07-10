@@ -69,7 +69,7 @@ export default function AppPage({ details, appsList, faqList }) {
               <CustomerTestimonial
                 logo={details.sectionCaseStudyContent?.customerLogo?.imageAsset?.url}
                 banner={details.sectionCaseStudyContent?.caseStudyImage?.url}
-                body={details.sectionCaseStudyContent?.description}
+                body={details.sectionCaseStudyContent?.heroSection?.heroDescription}
                 highlightsData={details.sectionCaseStudyContent?.highlights}
                 slug={details.sectionCaseStudyContent?.slug}
               />

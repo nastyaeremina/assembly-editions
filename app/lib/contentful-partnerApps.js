@@ -81,10 +81,13 @@ const POST_GRAPHQL_PAGE_APPS_DETAILS_FIELDS_SECTION_1 = `
       }
     sectionCaseStudyHeader
     sectionCaseStudyContent{
+      slug
       sys{
     id
   }
-  description
+  heroSection{
+   heroDescription
+  }
   highlights
   caseStudyImage{
     url

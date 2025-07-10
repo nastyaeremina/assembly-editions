@@ -36,7 +36,9 @@ videoUrl
 `;
 const POST_GRAPHQL_CASESTUDY_COMPONENT_FIELDS = ` 
 slug
-description
+heroSection{
+heroDescription
+}
 highlights
 caseStudyImage{
   url

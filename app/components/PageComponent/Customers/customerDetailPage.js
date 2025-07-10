@@ -2,7 +2,6 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
-import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
 import {
   Bottom,
   CustomerLogo,
@@ -22,6 +21,7 @@ import { isEmpty } from '../../../helpers/helpers';
 import Quote from '../../quote/quote';
 import { FEATURE_THEME_LIST, HeroTypes } from '../../../constants/constant';
 import StandardHero from '../../standardHero/standardHero';
+import RichTextDetail from '../../richTextDetail/richText';
 
 export default function CaseStudiesPage({ details }) {
   if (isEmpty(details)) return;
@@ -86,7 +86,9 @@ export default function CaseStudiesPage({ details }) {
               )}
             </Left>
           </LeftSection>
-          <RightSection>{documentToReactComponents(details.body?.json)}</RightSection>
+          <RightSection>
+            <RichTextDetail data={details.body?.json} assets={details.body?.links} shouldHeadingCopy={false} />
+          </RightSection>
         </CustomerSection>
       </Container>
       {!isEmpty(details.testimonial) && (

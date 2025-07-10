@@ -230,10 +230,10 @@ const RightSection = styled.div`
   }
   img {
     width: 100%;
-    height: 100%;
+    height: auto;
     margin-top: 16px;
     border-radius: 4px;
-    border: 0.4px solid var(--platinum-gray);
+    border: 1px solid var(--platinum-gray);
   }
   b {
     font-weight: 400;
@@ -247,11 +247,68 @@ const RightSection = styled.div`
       display: inline-block;
       color: var(--primary);
     }
+    /* Remove margin-top when paragraph contains media elements or is empty */
+    &:has(video),
+    &:has(iframe),
+    &:has(img),
+    &:empty {
+      margin-top: 0;
+    }
   }
   span {
     ${Body3};
     color: var(--primary);
     margin: 0;
+  }
+  blockquote {
+    border-left: 4px solid var(--neutral);
+    padding-left: 20px;
+    margin: 20px 0;
+    font-style: italic;
+    p {
+      margin: 0;
+    }
+    @media only screen and (max-width: 449px) {
+      padding-left: 16px;
+    }
+  }
+  ul {
+    list-style-type: disc;
+    padding-left: 20px;
+    margin: 12px 0 0px;
+    li {
+      ${Body5};
+      color: var(--body);
+      p {
+        margin: 8px 0 0;
+      }
+      ::marker {
+        font-size: 18px;
+        color: var(--body);
+      }
+    }
+  }
+  ol {
+    padding-left: 20px;
+    margin: 12px 0 20px;
+    li {
+      p {
+        margin: 8px 0 0;
+      }
+      ::marker {
+        font-size: 18px;
+        color: var(--body);
+      }
+    }
+  }
+  video {
+    width: 100%;
+    margin-top: 16px;
+    border-radius: 4px;
+    border: 1px solid var(--black);
+  }
+  iframe {
+    margin-top: 16px;
   }
   @media only screen and (max-width: 768px) {
     h2 {

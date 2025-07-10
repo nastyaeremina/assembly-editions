@@ -113,7 +113,7 @@ export default async function StandardPage({ data }) {
             componentData={componentData}
             logo={componentData.customerLogo?.imageAsset?.url}
             banner={componentData.caseStudyImage?.url}
-            body={componentData.description}
+            body={componentData.heroSection?.heroDescription}
             highlightsData={componentData.highlights}
             slug={componentData.slug}
             isStandardPage={true}

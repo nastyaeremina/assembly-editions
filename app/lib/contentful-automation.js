@@ -12,17 +12,19 @@ const POST_GRAPHQL_PAGE_AUTOMATION_DETAILS_FIELDS_SECTION_1 = `
     seoMetadata {
           ${POST_GRAPHQL_SEOMETADATA_FIELDS}
       }
-    
     sectionCaseStudyHeader
     sectionCaseStudyContent{
+      slug
       sys{
-    id
-  }
-  description
-  highlights
-  caseStudyImage{
-    url
-  }
+        id
+      }
+      heroSection{
+        heroDescription
+      }
+      highlights
+      caseStudyImage{
+        url
+      }
   customerLogo{
     name
     companyWebsite
