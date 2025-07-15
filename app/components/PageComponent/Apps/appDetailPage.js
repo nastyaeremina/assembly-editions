@@ -36,6 +36,7 @@ export default function AppsDetailPage({ appDetail, relatedAppList, isUserAuthen
               averageRate={averageRate}
               isAuthenticated={isUserAuthenticated}
               appId={appDetail?.sys.id}
+              isReviewVisible={appDetail.isReviewVisible}
               setReviewList={setReviewList}
             />
           )}

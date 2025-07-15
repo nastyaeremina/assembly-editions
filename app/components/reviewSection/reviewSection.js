@@ -20,7 +20,7 @@ import {
   SectionHeading
 } from './styles';
 
-export default function ReviewSection({ appId, averageRate = 0, reviewList, isAuthenticated = false, setReviewList }) {
+export default function ReviewSection({ appId, averageRate = 0, reviewList, isAuthenticated = false, setReviewList,isReviewVisible }) {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   // Function to handle button click
@@ -44,7 +44,7 @@ export default function ReviewSection({ appId, averageRate = 0, reviewList, isAu
         <SectionHeading>
           <h3>Reviews</h3>
         </SectionHeading>
-        {reviewList?.length > 0 ? (
+        {isReviewVisible && reviewList?.length > 0 ? (
           <Content>
             <OverAllRating>
               <Left>
