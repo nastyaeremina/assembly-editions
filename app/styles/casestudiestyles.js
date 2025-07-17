@@ -261,15 +261,22 @@ const RightSection = styled.div`
     margin: 0;
   }
   blockquote {
-    border-left: 4px solid var(--neutral);
-    padding-left: 20px;
-    margin: 20px 0;
-    font-style: italic;
+    border-left: none;
+    padding: 20px;
+    margin: 28px 0 0;
+    font-style: normal;
     p {
       margin: 0;
+      ${Heading4}
+      line-height: 36px;
+      color: var(--mid-dark-green);
+      @media only screen and (max-width: 449px) {
+        line-height: 25px;
+      }
     }
     @media only screen and (max-width: 449px) {
-      padding-left: 16px;
+      padding: 16px;
+      margin: 16px 0 0;
     }
   }
   ul {
