@@ -29,7 +29,8 @@ const defaltDescription =
 /**
  * ExploreTab Component
  * @param {Object} props - Component props
- * @param {Array} props.data - Array of data for tabs
+ * @param {Array} props.tabItems - Array of tab items to display in the tabs. Each item should be an object with the following shape:
+ *   { title: string, description: string, image: { url: string } }
  * @param {string} props.title - Title of the section
  * @param {string} props.description - Description of the section
  * @param {string} props.secondaryButtonLink - URL for the secondary button
@@ -42,7 +43,7 @@ const defaltDescription =
  */
 
 export default function ExploreTab({
-  data,
+  tabItems,
   title = 'Explore the client experience.',
   description = defaltDescription,
   secondaryButtonLink,
@@ -58,7 +59,7 @@ export default function ExploreTab({
   }, []);
 
   const tabListView = useMemo(() => {
-    return data?.map((item, index) => {
+    return tabItems?.map((item, index) => {
       return (
         <TabView
           className={index === selectedTabIbndex ? 'activetab' : ''}
@@ -73,31 +74,31 @@ export default function ExploreTab({
         </TabView>
       );
     });
-  }, [data, onClickTab, selectedTabIbndex]);
+  }, [tabItems, onClickTab, selectedTabIbndex]);
 
   const tabDetailView = useMemo(() => {
-    if (isEmpty(data?.[selectedTabIbndex])) return null;
+    if (isEmpty(tabItems?.[selectedTabIbndex])) return null;
     return (
       <LeftWrap>
-        <h3>{data?.[selectedTabIbndex]?.title}</h3>
-        <p>{data?.[selectedTabIbndex]?.description}</p>
+        <h3>{tabItems?.[selectedTabIbndex]?.title}</h3>
+        <p>{tabItems?.[selectedTabIbndex]?.description}</p>
       </LeftWrap>
     );
-  }, [data, selectedTabIbndex]);
+  }, [tabItems, selectedTabIbndex]);
 
   const tabImageView = useMemo(() => {
-    if (isEmpty(data?.[selectedTabIbndex]?.image?.url)) return null;
+    if (isEmpty(tabItems?.[selectedTabIbndex]?.image?.url)) return null;
     return (
       <Container>
         <SignBox>
           <SignImgView>
-            {/* <Image src={data?.[selectedTabIbndex]?.image?.url} alt='main-logo' width={1154} height={725} /> */}
-            <ZoomImg src={data?.[selectedTabIbndex]?.image?.url} alt='main-logo' width={1154} height={725} />
+            {/* <Image src={tabItems?.[selectedTabIbndex]?.image?.url} alt='main-logo' width={1154} height={725} /> */}
+            <ZoomImg src={tabItems?.[selectedTabIbndex]?.image?.url} alt='main-logo' width={1154} height={725} />
           </SignImgView>
         </SignBox>
       </Container>
     );
-  }, [data, selectedTabIbndex]);
+  }, [tabItems, selectedTabIbndex]);
 
   return (
     <>
@@ -133,9 +134,9 @@ export default function ExploreTab({
           <Container>
             <SignatureSection>
               {tabDetailView}
-              <RightWrap>
+             {tabItems.length> 1 && <RightWrap>
                 <TabWrap>{tabListView}</TabWrap>
-              </RightWrap>
+              </RightWrap>}
             </SignatureSection>
           </Container>
         </BottomSection>

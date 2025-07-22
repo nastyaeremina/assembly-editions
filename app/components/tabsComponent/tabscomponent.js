@@ -42,7 +42,7 @@ export default function TabsComponent({ type, content }) {
         return (
           <ExploreTab
             title={content?.title}
-            data={content?.tabsCollection?.items}
+            tabItems={content?.tabsCollection?.items}
             description={content?.description}
             primaryButtonText={content?.primaryButtonText}
             secondaryButtonText={content?.secondaryButtonText}
