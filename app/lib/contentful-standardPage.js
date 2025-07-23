@@ -64,6 +64,7 @@ const POST_GRAPHQL_SECTIONBOX_COMPONENT_FIELDS = `
     box2Image{
     url
     }
+    box2Description
 `;
 export const POST_GRAPHQL_FAQ_COMPONENT_FIELDS = `
 title
