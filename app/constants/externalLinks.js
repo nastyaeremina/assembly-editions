@@ -14,3 +14,4 @@ export const COPILOT_SECURITY_LINK = 'https://security.copilot.app/';
 export const COPILOT_UPDATE_LINK = 'https://copilot.app/updates';
 export const UPDATE_SUBSCRIBE_LINK = 'https://x.com/intent/user?screen_name=copilotplatform';
 export const CUSTOM_APP_LINK = 'https://docs.copilot.app/docs/custom-apps-overview';
+export const COPILOT_COMMUNITY_LINK = 'https://community.copilot.app/';

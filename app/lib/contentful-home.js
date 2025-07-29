@@ -109,14 +109,6 @@ export async function getHomeContent({id, preview}) {
         supportSectionImage{
           url
         }
-         supportSectionCollection(limit:4){
-          items{
-            title
-            body
-            linkText
-            linkUrl
-          }
-        }
         seoMetadata {
           sys {
             id

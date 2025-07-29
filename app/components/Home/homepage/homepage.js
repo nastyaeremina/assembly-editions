@@ -9,6 +9,7 @@ import FeatureSection from '../../featureSection/featureSection';
 import TestimonialTableSection from '../../newTestimonial/testimonialTableSection';
 import AutomationSection from '../automationSection';
 import HelpSection from '../helpSection';
+import { SupportSectionData } from '../../../constants/raw';
 
 export default function HomePage({ content, testimonialTableData }) {
   if (isEmpty(content)) return null;
@@ -81,7 +82,7 @@ export default function HomePage({ content, testimonialTableData }) {
         <HelpSection
           title={content.heading5}
           image={content.supportSectionImage?.url}
-          data={content.supportSectionCollection?.items}
+          data={SupportSectionData.items}
         />
       </HomeMain>
     </>
