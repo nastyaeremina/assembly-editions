@@ -73,10 +73,6 @@ export default function AppsDetailComponent({ detail, content, isUserAuthenticat
               content={content}
               data={[
                 {
-                  label: 'Launched',
-                  value: isEmpty(content?.launchDate) ? '' : moment(content?.launchDate).format('MMMM DD, YYYY')
-                },
-                {
                   label: 'Type',
                   value: content.appType,
                   valueInfo: content.appType === APPS_TYPE.EMBED ? EmbedInfoMessage : AppInfoMessage

@@ -248,7 +248,6 @@ icon{
 guideArticle{
   ${POST_GRAPHQL_GUIDE_ARTICLE_CONTENT_FIELDS}
 }
-      launchDate
       isPlatformApp
       requirements
       builtBy
