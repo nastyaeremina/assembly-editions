@@ -100,6 +100,7 @@ export default function ExploreTab({
     );
   }, [tabItems, selectedTabIbndex]);
 
+  if(isEmpty(tabItems)) return null
   return (
     <>
       <ExploreSection isStandardPage={isStandardPage}>

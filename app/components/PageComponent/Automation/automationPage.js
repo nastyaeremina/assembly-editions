@@ -46,7 +46,7 @@ export default function AutomationPage({ details }) {
         title={details.sectionHeader4}
         description={details.sectionBody4?.json}
         isRichText={true}
-        data={removeEmptyElement(details.sectionContent4Collection?.items)}
+        tabItems={removeEmptyElement(details.sectionContent4Collection?.items)}
         secondaryButtonLink={details.demoPortalUrl}
       />
       <Container>
