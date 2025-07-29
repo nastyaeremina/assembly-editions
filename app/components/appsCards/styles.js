@@ -197,11 +197,6 @@ const Tooltip = styled.div`
   box-shadow: 0px 4px 16px var(--black-shadow-25);
   border-radius: 4px;
   opacity: 0;
-  p {
-    ${Body5}
-    color: var(--light-green);
-    margin: 0;
-  }
   span {
     ${Body4}
   }
@@ -219,6 +214,12 @@ const Tooltip = styled.div`
         width: calc(100% + 32px);
       `}
   }
+`;
+
+const TooltipText = styled.div`
+  ${Body5}
+  color: var(--light-green);
+  margin: 0;
 `;
 
 const Line = styled.div`
@@ -288,5 +289,6 @@ export {
   Tooltip,
   Line,
   Informative,
-  Icon
+  Icon,
+  TooltipText
 };

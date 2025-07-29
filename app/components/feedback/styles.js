@@ -188,7 +188,6 @@ const BannerSection = styled.div`
 `;
 
 const MarqueeContainer = styled.div`
-  overflow: hidden;
   position: relative;
   z-index: 1;
 `;

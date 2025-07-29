@@ -116,7 +116,7 @@ export default function PricingPage({ details }) {
                           message={documentToReactComponents(featuresItem?.description?.json)}
                           iconSize='16'
                           fill='var(--dark-gray)'
-                          style={{ top: 29 }}
+                          style={{ top: 24 }}
                         />
                       )}
                     </div>

@@ -3,14 +3,17 @@ import { useMemo } from 'react';
 import { isEmpty } from '../../helpers/helpers';
 import { CardEnd, CardText, FeatureImg } from '../../styles/appsStyles';
 import Slider from '../../components/feedback/slider';
-import { SliderHeight } from '../../constants/constant';
+import { APPS_TYPE, ClientAppInfoMessage, InternalAppInfoMessage, SliderHeight } from '../../constants/constant';
 import { Animated, SliderInner, SliderLine } from './styles';
+import AppTooltip from '../appsCards/appTooltip';
 
 const AppsSlider = ({ data, isDetailSlider }) => {
   const featurecontentView = useMemo(() => {
     if (isEmpty(data)) return null;
     return data?.map((item, index) => {
       if (isEmpty(item)) return null;
+      const appVisibility = item?.appType === APPS_TYPE.CLIENT ? 'Client-facing' : 'Internal-facing';
+      const appVisibilityInfo = item?.appType === APPS_TYPE.CLIENT ? ClientAppInfoMessage : InternalAppInfoMessage;
       return (
         <>
           <SliderInner href={`/apps/directory/${item?.slug}`} key={`slider_index_${index}`}>
@@ -30,7 +33,8 @@ const AppsSlider = ({ data, isDetailSlider }) => {
                 <p>{item?.description}</p>
               </CardText>
               <CardEnd>
-                <p>{item?.partnerAppCategoriesCollection?.items[0]?.name}</p>
+                <p>{appVisibility}</p>
+                <AppTooltip message={appVisibilityInfo} iconSize='13' fill='var(--dark-gray)' style={{ top: 22 }} />
               </CardEnd>
             </div>
           </SliderInner>

@@ -353,6 +353,9 @@ const PriceTable = styled.div`
       }
     }
   }
+  p {
+    margin: 0;
+  }
   table.active {
     display: block;
   }

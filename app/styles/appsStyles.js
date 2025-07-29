@@ -224,6 +224,9 @@ const CardEnd = styled.div`
   bottom: 0;
   left: 0;
   right: 0;
+  display: flex;
+  align-items: center;
+  gap: 6px;
   p {
     ${CardTxt};
     color: var(--dark-purple);

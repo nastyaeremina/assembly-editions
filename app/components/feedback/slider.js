@@ -73,7 +73,7 @@ function Slider({
         children.slice(marqueeElementsDisplayed).forEach((child) => child.remove());
       };
     }
-  }, [gap, speed]);
+  }, [gap, responsiveGap, speed]);
 
   return (
     <MarqueeContainer>
