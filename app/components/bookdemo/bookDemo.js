@@ -29,7 +29,7 @@ import {
   ItemDiv
 } from './styles';
 
-export default function BookDemoForm({ productDemoSlug, data, thankYouMessage }) {
+export default function BookDemoForm({ data, thankYouMessage }) {
   const bookDemoSelector = useSelector((state) => state.bookDemo);
   const { validationError, bookDemoData } = bookDemoSelector;
   const [isSubmit, setIsSubmit] = useState(false);

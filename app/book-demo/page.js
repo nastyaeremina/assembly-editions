@@ -1,13 +1,6 @@
-import {
-  BOOK_DEMO_ID,
-  BOOK_DEMO_SEO_ID,
-  BOOK_DEMO_THANK_YOU_ID,
-  CURRENT_SITE_URL,
-  PRODUCT_DEMO_PAGE_ID
-} from '../constants/constant';
+import { BOOK_DEMO_ID, BOOK_DEMO_SEO_ID, BOOK_DEMO_THANK_YOU_ID, CURRENT_SITE_URL } from '../constants/constant';
 import { getSEOData, removeEmptyElement } from '../helpers/helpers';
 import BookDemoPage from '../components/PageComponent/Book-demo/bookDemoPage';
-import { getProductDemoContent } from '../lib/contentful-weeklyDemo';
 import { getSitemap } from '../lib/contentful-sitemap';
 import AggregateRating from '../components/aggregateRating';
 
@@ -20,26 +13,23 @@ export async function generateMetadata({ params, searchParams }, parent) {
 
 async function getContent() {
   // Start both API calls concurrently
-  const [productDetailsResponse, contentResponse, thankYouMessageResponse] = await Promise.all([
-    getProductDemoContent(PRODUCT_DEMO_PAGE_ID),
+  const [contentResponse, thankYouMessageResponse] = await Promise.all([
     getSitemap(BOOK_DEMO_ID),
     getSitemap(BOOK_DEMO_THANK_YOU_ID)
   ]);
 
   // Handle the responses
-  const productdetails = productDetailsResponse ?? '';
   const content = contentResponse ?? '';
   const thankYouMessage = thankYouMessageResponse ?? '';
 
   return {
-    productDemoSlug: productdetails?.slug,
     content: content?.content,
     thankYouMessage: thankYouMessage?.content
   };
 }
 
 export default async function BookDemo() {
-  const { productDemoSlug, content, thankYouMessage } = await getContent();
+  const { content, thankYouMessage } = await getContent();
   const newContent = '\n' + content;
   const list = newContent?.split('\n#');
   list?.shift();
@@ -52,7 +42,7 @@ export default async function BookDemo() {
   return (
     <>
       <AggregateRating id={BOOK_DEMO_SEO_ID} />
-      <BookDemoPage productDemoSlug={productDemoSlug} data={dataList} thankYouMessage={thankYouMessage} />
+      <BookDemoPage data={dataList} thankYouMessage={thankYouMessage} />
     </>
   );
 }

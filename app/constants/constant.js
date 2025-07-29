@@ -355,7 +355,6 @@ export const CONTENTFUL_API_TAG = {
   SITEMAP: 'sitemap',
   SOLUTION: 'solution',
   UNIVERSITY: 'university',
-  WEEKLY_DEMO: 'weekly-demo',
   OTHER: 'other',
   STANDARD_PAGE: 'standard-page',
   TEMPLATE: 'template'
@@ -427,7 +426,6 @@ export const AUTOMATION_SEO_ID = '2S0c1CDc7mUs5wFY6yqpL3';
 export const AUTOMATION_ID = '3tQZ0zurolpvj9N43yXCIF';
 export const APP_PAGE_ID = 'zHpvQW60FYupSGIasksht';
 export const WEEKLY_DEMO_PAGE_ID = '6yTkSs6vPA4UtptzHbvw3r';
-export const PRODUCT_DEMO_PAGE_ID = '2qbT95AIpVDChNTKj0PnfY';
 export const PRICING_PAGE_ID = '30oDBQnjjxGSi17XmAtD8j';
 export const GLOSSARY_PAGE_ID = '59RJugqUUkgTppwv6aoA9I';
 export const GUIDE_PAGE_ID = '21aIyPkZ2efko1hJU4Qeep';

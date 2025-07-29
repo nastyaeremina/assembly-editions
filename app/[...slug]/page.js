@@ -2,21 +2,15 @@ import { notFound } from 'next/navigation';
 import { draftMode } from 'next/headers'
 import Layout from '../components/layout';
 import Navbar from '../components/navbar/navbar';
-import WeeklyHero from '../components/weeklyhero/weeklyhero';
-import { CURRENT_SITE_URL, PRODUCT_DEMO_PAGE_ID } from '../constants/constant';
-import { getProductDemoContent } from '../lib/contentful-weeklyDemo';
+import { CURRENT_SITE_URL } from '../constants/constant';
 import { getSEOData, isEmpty } from '../helpers/helpers';
-import ProductDemoPage from '../components/PageComponent/ProductDemo/productDemoPage';
 import { getStandardPageContent } from '../lib/contentful-standardPage';
 import StandardPage from '../components/standardPage/standaradPage';
 import AggregateRating from '../components/aggregateRating';
 import { getABTestInfoFromCookie } from '../helpers/serverSideHelpers';
-
 const PAGE_TYPE = {
   DEFAULT: 0,
-  STANDARD_PAGE: 1,
-  WEEKLY_DEMO: 2,
-  PRODUCT_DEMO: 3
+  STANDARD_PAGE: 1
 };
 
 /**
@@ -27,7 +21,7 @@ const PAGE_TYPE = {
  * @param {string[]} params.slug - Array of path segments
  * @returns {Object} Object containing:
  *   - data: The page content
- *   - type: The page type (PRODUCT_DEMO or STANDARD_PAGE)
+ *   - type: The page type (STANDARD_PAGE)
  *   - isABTest: Whether the content is from an A/B test
  *   - abTestContentLabel: The variant name if A/B test is active
  *   - abTestExperimentName: The experiment name if A/B test is active
@@ -45,22 +39,6 @@ async function getContent({ slug }) {
     } = getABTestInfoFromCookie({
       cookieKey: `${combinedSlug.replace(/\//g, '-')}`    });
   
-    // Try to get product demo content first
-    // Use variant ID if available, otherwise use default product demo page ID
-    const productdetails = await getProductDemoContent({id: contentId || PRODUCT_DEMO_PAGE_ID, slug:isEnabled ? combinedSlug : '', preview: isEnabled}  );
-    
-    // Check if this is a product demo page
-    // Either the slug matches or we have a variant content ID
-    if (!isEmpty(productdetails) && (productdetails.slug === combinedSlug || !isEmpty(contentId))) {
-      return {
-        data: productdetails,
-        type: PAGE_TYPE.PRODUCT_DEMO,
-        isABTest: !isEmpty(contentId),
-        abTestContentLabel,
-        abTestExperimentName
-      };
-    }
-    
     // If not a product demo page, try to get standard page content
     // If we have a variant ID, use it to fetch the variant content
     // Otherwise, fetch content by slug
@@ -96,6 +74,7 @@ export async function generateMetadata({ params }) {
 
   return seoData;
 }
+
 export default async function WeeklyDemo({ params }) {
   const { data, type, isABTest, abTestContentLabel, abTestExperimentName } = await getContent({ slug: params.slug });
   const combinedSlug = params.slug.join('/');
@@ -107,8 +86,6 @@ export default async function WeeklyDemo({ params }) {
       <AggregateRating data={data.seoMetadata} />
       <Layout abTestContentLabel={abTestContentLabel} abTestExperimentName={abTestExperimentName}>
         <Navbar />
-        {type === PAGE_TYPE.WEEKLY_DEMO && <WeeklyHero data={data} />}
-        {type === PAGE_TYPE.PRODUCT_DEMO && <ProductDemoPage details={data} />}
         {type === PAGE_TYPE.STANDARD_PAGE && (
           <>
             <StandardPage data={data?.contentCollection?.items} />
