@@ -94,6 +94,45 @@
   font-weight: 500;
   font-display: swap;
 }
+@font-face {
+  font-family: 'PPMori';
+  src: url('../../public/fonts/PPMori-Extralight.otf') format('opentype');
+  font-weight: 200;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'PPMori';
+  src: url('../../public/fonts/PPMori-ExtralightItalic.otf') format('opentype');
+  font-weight: 200;
+  font-display: swap;
+  font-style: italic;
+}
+@font-face {
+  font-family: 'PPMori';
+  src: url('../../public/fonts/PPMori-Regular.otf') format('opentype');
+  font-weight: 400;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'PPMori';
+  src: url('../../public/fonts/PPMori-ExtralightItalic.otf') format('opentype');
+  font-weight: 400;
+  font-display: swap;
+  font-style: italic;
+}
+@font-face {
+  font-family: 'PPMori';
+  src: url('../../public/fonts/PPMori-SemiBold.otf') format('opentype');
+  font-weight: 600;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'PPMori';
+  src: url('../../public/fonts/PPMori-SemiBoldItalic.otf') format('opentype');
+  font-weight: 600;
+  font-display: swap;
+  font-style: italic;
+}
 @import url('https://fonts.googleapis.com/css2?family=Azeret+Mono&family=Inter:wght@300;400;500;600&display=swap');
 
 *,
