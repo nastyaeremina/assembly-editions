@@ -1,8 +1,8 @@
 import styled, { css } from 'styled-components';
-import { Body1, Body4, Body5, Heading3, Heading4, MbBody3, MobileH4 } from '../../styles/styles';
+import { body_regular, h2_semibold, h4_regular, label_regular } from '../../styles/typography';
 
 const FaqSection = styled.div`
-  padding: 100px 0 60px;
+  padding: var(--space-120) 0;
   ${(props) =>
     props.isStandardPage &&
     css`
@@ -45,7 +45,6 @@ const FaqSection = styled.div`
     border-bottom: none;
   }
   @media only screen and (max-width: 991px) {
-    padding: 80px 0 40px;
     .listtitle {
       font-size: 28px !important;
       line-height: 34px !important;
@@ -77,6 +76,7 @@ const FaqSection = styled.div`
   }
 `;
 const FaqTitle = styled.div`
+  margin-bottom: var(--space-48);
   :hover {
     .copy-icon-h4 {
       opacity: 1;
@@ -102,52 +102,40 @@ const FaqTitle = styled.div`
       }
     `}
   h2 {
-    ${Heading3};
+    ${h2_semibold};
     margin: 0;
     color: var(--title);
+    text-align: center;
     ${(props) =>
       props.isGuideFAQ &&
       css`
-        ${Body1};
-        font-weight: 400;
-      `}
-  }
-  margin-bottom: 20px;
-  @media only screen and (max-width: 991px) {
-    h2 {
-      ${(props) =>
-        props.isGuideFAQ &&
-        css`
-          ${Body1};
-          font-weight: 400;
-        `}
+        ${body_regular};
+      `};
+    @media only screen and (max-width: 449px) {
+      text-align: left;
+      padding-top: var(--space-10);
     }
   }
-  @media only screen and (max-width: 749px) {
-    margin-bottom: 0;
-    ${(props) =>
-      props.isGuideFAQ &&
-      css`
-        h2 {
-          ${MobileH4}
-        }
-      `}
+  @media only screen and (max-width: 449px) {
+    margin-bottom: var(--space-24);
   }
 `;
 
 const DivFAQ = styled.div`
-  border-bottom: 1px solid black;
-  padding-bottom: 40px;
+  border: 1px solid transparent;
+  border-bottom-color: var(--border-default);
+  padding-bottom: var(--space-20);
+  transition: all 0.6s ease;
   ${(props) =>
     props.isGuideFAQ &&
     css`
-      padding-bottom: 24px;
+      padding-bottom: var(--space-24);
     `}
   .accordion-title {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 40px 0px 0;
+    padding: var(--space-20) var(--space-24) 0;
     cursor: pointer;
     ${(props) =>
       props.isGuideFAQ &&
@@ -172,28 +160,24 @@ const DivFAQ = styled.div`
       }
     }
     @media only screen and (max-width: 449px) {
-      padding: 28px 0 0;
+      padding: var(--space-20) 0 0;
       > div > svg {
-        width: 20px;
-        height: 20px;
+        width: 18px;
+        height: 18px;
       }
     }
   }
   .accordion-heading {
-    ${Heading4}
-    margin:0 30px 0 0;
+    ${h4_regular}
+    color: var(--title);
+    margin: 0 var(--space-20) 0 0;
     ${(props) =>
       props.isGuideFAQ &&
       css`
-        ${Body4};
-        line-height: 24px;
-        font-weight: 400;
+        ${body_regular};
         display: inline-flex;
-        gap: 10px;
+        gap: var(--space-10);
         align-items: center;
-        @media only screen and (max-width: 449px) {
-          ${Body4};
-        }
       `}
   }
   .accordion-content {
@@ -204,13 +188,6 @@ const DivFAQ = styled.div`
     /* margin-left: -10px; */
     opacity: 0;
     transition: all 0.6s;
-  }
-  @media only screen and (max-width: 449px) {
-    padding-bottom: 28px;
-    svg {
-      height: 24px;
-      width: 24px;
-    }
   }
   svg path {
     transition: all 0.6s ease;
@@ -233,13 +210,13 @@ const FAQAnswer = styled.div`
   transition: max-height 0.6s ease;
 
   div {
-    ${Body1}
-    color: var(--body);
-    padding: 20px 32px 0 0;
+    ${body_regular}
+    color: var(--text-secondary);
+    padding: var(--space-8) var(--space-62) 0 var(--space-24);
     ${(props) =>
       props.isGuideFAQ &&
       css`
-        ${Body5};
+        ${label_regular};
         padding: 20px 32px 0 0;
         p {
           margin-top: 0;
@@ -258,9 +235,8 @@ const FAQAnswer = styled.div`
         margin-top: 0;
       }
     }
-
-    @media only screen and (max-width: 426px) {
-      ${MbBody3}
+    @media only screen and (max-width: 449px) {
+      padding: var(--space-16) 0 0 0;
     }
   }
 

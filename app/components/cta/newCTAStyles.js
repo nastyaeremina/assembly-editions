@@ -1,30 +1,19 @@
 import styled, { css } from 'styled-components';
-import { Body3, Heading3, MbBody3 } from '../../styles/styles';
-import image from '../../../public/images/cta-bg.svg';
+import {
+  body_regular,
+  button_regular,
+  button_semibold,
+  h1_regular,
+  h2_regular,
+  h3_regular
+} from '../../styles/typography';
 
-const Content = styled.div`
-  border: 1px solid var(--white);
-  border-radius: 4px;
-  display: flex;
-  align-items: center;
-  max-width: 1224px;
-  margin: 0 auto;
-  width: 100%;
-  overflow: hidden;
-  ${(props) =>
-    props.isNoImage &&
-    css`
-      border: none;
-      align-items: center;
-      justify-content: center;
-    `}
-`;
 const TextSection = styled.div`
-  padding: 0 40px;
   width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  gap: var(--space-24);
   @media only screen and (max-width: 768px) {
     padding: 20px;
     ${(props) =>
@@ -57,14 +46,12 @@ const TextSection = styled.div`
     `}
 `;
 
-const Description = styled.div`
-  margin-top: 16px;
-  ${Body3};
-  color: var(--white);
+const Description = styled.p`
+  ${body_regular};
+  color: var(--off-white-100);
   text-align: center;
-  @media only screen and (max-width: 768px) {
-    ${MbBody3};
-  }
+  margin: 0;
+  max-width: 724px;
 `;
 
 const ImageSection = styled.div`
@@ -78,14 +65,47 @@ const ImageSection = styled.div`
   }
 `;
 const Title = styled.div`
-  p {
-    ${Heading3};
-    color: var(--white);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-24);
+  max-width: 724px;
+  h1 {
+    ${h1_regular};
+    color: var(--off-white-100);
     margin: 0;
     ${(props) =>
       props.isNoImage &&
       css`
-        max-width: 724px;
+        text-align: center;
+      `}
+  }
+  h2 {
+    ${h2_regular};
+    color: var(--off-white-100);
+    margin: 0;
+    ${(props) =>
+      props.isNoImage &&
+      css`
+        text-align: center;
+      `}
+  }
+  h3 {
+    ${h3_regular};
+    color: var(--off-white-100);
+    margin: 0;
+    ${(props) =>
+      props.isNoImage &&
+      css`
+        text-align: center;
+      `}
+  }
+  p {
+    ${h2_regular};
+    color: var(--off-white-100);
+    margin: 0;
+    ${(props) =>
+      props.isNoImage &&
+      css`
         text-align: center;
       `}
   }
@@ -97,36 +117,37 @@ const Image = styled.img`
 `;
 const CtaAnimation = styled.div`
   position: relative;
-  top: 0;
-  bottom: 0;
-  right: 0;
-  left: 0;
   overflow: hidden;
-  background-image: url('/images/cta-bg.svg');
+  margin-bottom: var(--space-120);
 `;
 const CtaWrap = styled.div`
-  position: relative;
-  left: 0;
-  top: 0;
-  right: 0;
-  bottom: 0;
+  background-image: url('/images/new-CTA-BG.png');
+  background-color: var(--title);
+  border-radius: var(--radius-16);
+  background-position-x: -303px;
+  background-position-y: -70px;
+  background-repeat: no-repeat;
   display: flex;
   align-items: center;
-  z-index: 3;
-  -webkit-backdrop-filter: blur(50px);
-  backdrop-filter: blur(50px);
-  padding: 40px 24px;
+  justify-content: center;
+  padding: var(--space-40);
   ${(props) =>
     props.isNoImage &&
     css`
-      padding: 80px 24px;
+      padding: var(--space-64);
     `}
-  @media only screen and (max-width: 991px) {
-    padding: 24px;
+  @media only screen and (max-width: 768px) {
+    background-position-x: -417px;
+    background-position-y: -94px;
+  }
+  @media only screen and (max-width: 449px) {
+    padding: var(--space-24);
+    background-image: url('/images/new-CTA-mobile-BG.png');
+    background-position: unset;
     ${(props) =>
       props.isNoImage &&
       css`
-        padding: 32px 24px;
+        padding: var(--space-64) var(--space-24);
       `}
   }
 `;
@@ -145,4 +166,59 @@ const Canvas = styled.canvas`
     `}
 `;
 
-export { Content, TextSection, ImageSection, Title, Image, CtaAnimation, CtaWrap, Description, Canvas };
+const ButtonGroup = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: var(--space-16);
+  ${(props) =>
+    props.isNoImage &&
+    css`
+      justify-content: center;
+    `}
+  @media only screen and (max-width: 395px) {
+    flex-wrap: wrap;
+  }
+`;
+
+const PrimaryButton = styled.a`
+  padding: var(--space-14) var(--space-24) var(--space-10);
+  background-color: var(--off-white-200);
+  ${button_semibold}
+  color: var(--title);
+  border-radius: var(--radius-30);
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  &:hover {
+    background-color: var(--bg-primary-hover);
+  }
+`;
+
+const SecondaryButton = styled.a`
+  padding: var(--space-14) var(--space-24) var(--space-10);
+  ${button_semibold}
+  color: var(--off-white-100);
+  display: flex;
+  align-items: center;
+  border-radius: var(--radius-30);
+  gap: var(--space-8);
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  &:hover {
+    background-color: var(--bg-card-dark-hover);
+  }
+`;
+
+export {
+  TextSection,
+  ImageSection,
+  Title,
+  Image,
+  CtaAnimation,
+  CtaWrap,
+  Description,
+  Canvas,
+  ButtonGroup,
+  PrimaryButton,
+  SecondaryButton
+};

@@ -1,49 +1,46 @@
 'use client';
 import Link from 'next/link';
-import Image from 'next/image';
 import { useMemo } from 'react';
 import { Container } from '../../styles/commonStyles';
 import { convertSitemapDataToKeyValue, isEmpty } from '../../helpers/helpers';
+import SVGComponent from '../../../public/images/svg/SVGComponent';
 import {
   FooterSection,
   FooterInnerBlock,
   FooterFirst,
   FooterRight,
   FooterMenu,
-  FooterMenuLeft,
   FooterMenuList,
   FooterMobile,
   FooterMenuMobile
 } from './styles';
 import SocialMediaListItems from './socialMediaListItems';
 
-export default function Footer({ footerData: footerDataList }) {
+export default function Footer({ footerData: footerDataList, description }) {
   const renderDesktopFooterList = useMemo(() => {
     if (isEmpty(footerDataList)) return null;
     return footerDataList?.map((item, index) => {
       const newItem = convertSitemapDataToKeyValue(item);
       return (
         <>
-          <FooterMenuLeft key={`footer_index_${index}`}>
-            {newItem?.map((category, categoryIndex) => {
-              return (
-                <FooterMenu
-                  key={`footer_${category?.title}_${categoryIndex}`}
-                  className={categoryIndex !== 0 && 'padding'}>
-                  <p>{category?.title}</p>
-                  <FooterMenuList>
-                    {category?.list?.map((subCategory, subCategoryIndex) => {
-                      return (
-                        <Link href={subCategory?.url} key={`subcategory_${category?.title}_${subCategoryIndex}`}>
-                          {subCategory?.name}
-                        </Link>
-                      );
-                    })}
-                  </FooterMenuList>
-                </FooterMenu>
-              );
-            })}
-          </FooterMenuLeft>
+          {newItem?.map((category, categoryIndex) => {
+            return (
+              <FooterMenu
+                key={`footer_${category?.title}_${categoryIndex}`}
+                className={categoryIndex !== 0 && 'padding'}>
+                <p>{category?.title}</p>
+                <FooterMenuList>
+                  {category?.list?.map((subCategory, subCategoryIndex) => {
+                    return (
+                      <Link href={subCategory?.url} key={`subcategory_${category?.title}_${subCategoryIndex}`}>
+                        {subCategory?.name}
+                      </Link>
+                    );
+                  })}
+                </FooterMenuList>
+              </FooterMenu>
+            );
+          })}
         </>
       );
     });
@@ -107,10 +104,9 @@ export default function Footer({ footerData: footerDataList }) {
           <FooterInnerBlock>
             <FooterFirst>
               <Link href='/'>
-                <Image src='/images/blacklogo.svg' alt='main-logo' height={31} width={143} />
+                <SVGComponent name='assembly-big-logo' width='200' height='38' viewBox='0 0 200 38' />
               </Link>
-
-              <p>The new standard for modern services business.</p>
+              {!isEmpty(description) && <p>{description}</p>}
               <SocialMediaListItems />
             </FooterFirst>
             <FooterRight>{renderDesktopFooterList}</FooterRight>

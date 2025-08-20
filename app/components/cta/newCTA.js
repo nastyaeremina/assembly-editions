@@ -1,21 +1,21 @@
 'use client';
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import ReactMarkdown from 'react-markdown';
 import { isEmpty } from '../../helpers/helpers';
-import { Gradient } from '../../../public/js/Gradient';
-import ButtonGroup from '../ButtonGroup/buttonGroup';
 import {
-  Canvas,
-  Content,
+  ButtonGroup,
   CtaAnimation,
   CtaWrap,
   Description,
   Image,
   ImageSection,
+  PrimaryButton,
+  SecondaryButton,
   TextSection,
   Title
 } from './newCTAStyles';
-import { SecondaryButtonVariant } from '../../constants/constant';
+import { Container } from '../../styles/commonStyles';
+import SVGComponent from '../../../public/images/svg/SVGComponent';
 
 export default function NewCTA({
   title,
@@ -24,49 +24,32 @@ export default function NewCTA({
   primaryButtonLink,
   secondaryButtonText,
   secondaryButtonLink,
-  banner,
-  moduleName
+  banner
 }) {
-  const [isGradientReady, setIsGradientReady] = useState(false);
-
-  useEffect(() => {
-    const gradient = new Gradient();
-    gradient.initGradient('#gradient-canvas');
-    setIsGradientReady(true);
-  }, []);
-
   return (
     <CtaAnimation>
-      <Canvas
-        id='gradient-canvas'
-        data-transition-in
-        className={moduleName || 'entrance'}
-        isGradientReady={isGradientReady}
-      />
-      <CtaWrap isNoImage={isEmpty(banner)}>
-        <Content isNoImage={isEmpty(banner)}>
+      <Container>
+        <CtaWrap isNoImage={isEmpty(banner)}>
           <TextSection isNoImage={isEmpty(banner)}>
             <Title isNoImage={isEmpty(banner)}>
               <ReactMarkdown>{title}</ReactMarkdown>
-              {isEmpty(banner) && <Description>{description}</Description>}
             </Title>
-            <ButtonGroup
-              primaryButtonLink={primaryButtonLink}
-              primaryButtonText={primaryButtonText}
-              secondaryButtonLink={secondaryButtonLink}
-              secondaryButtonText={secondaryButtonText}
-              secondaryButtonVariant={SecondaryButtonVariant.WHITE}
-              isCamelCase={false}
-              className={isEmpty(banner) ? 'button-group' : 'button'}
-            />
+            {isEmpty(banner) && <Description>{description}</Description>}
+            <ButtonGroup isNoImage={isEmpty(banner)}>
+              <PrimaryButton href={primaryButtonLink}>{primaryButtonText}</PrimaryButton>
+              <SecondaryButton href={secondaryButtonLink}>
+                {secondaryButtonText}
+                <SVGComponent name='cta-button-arrow' width='15' height='13' viewBox='0 0 15 13' />
+              </SecondaryButton>
+            </ButtonGroup>
           </TextSection>
           {!isEmpty(banner) && (
             <ImageSection>
               <Image src={banner} alt='CTA Image' width='612' height='310' />
             </ImageSection>
           )}
-        </Content>
-      </CtaWrap>
+        </CtaWrap>
+      </Container>
     </CtaAnimation>
   );
 }

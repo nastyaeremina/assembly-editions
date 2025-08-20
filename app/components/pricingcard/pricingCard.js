@@ -29,10 +29,10 @@ export default function PricingCard({ data, isYearly, planIndex }) {
             <AppTooltip
               message={squareBracketMatch[1]} // Content inside brackets
               iconSize='14'
-              fill='var(--dark-gray)'
+              fill='var(--text-secondary)'
               style={{ top: 23 }}
               key={`tooltip_${data?.name}_${index}`}
-              mainDivStyle={{ bottom: -2, marginLeft: 6 }}
+              mainDivStyle={{ top: 2, marginLeft: 3 }}
               isAutoAdjust
             />
           );

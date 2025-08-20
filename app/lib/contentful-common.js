@@ -5,15 +5,15 @@ function extractData(fetchResponse) {
   return fetchResponse?.data?.commonContent?.content;
 }
 
-export async function getCommonContent(id) {
+export async function getCommonContent(id, preview) {
   const entries = await fetchGraphQL(
     `query {
-        commonContent(id: "${id}") {
+        commonContent(id: "${id}",preview: ${preview ? 'true' : 'false'}) {
             content
             }
         }
     `,
-    false,
+    preview,
     [CONTENTFUL_API_TAG.COMMON_CONTENT]
   );
   return extractData(entries);

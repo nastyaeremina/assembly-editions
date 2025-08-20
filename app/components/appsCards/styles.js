@@ -1,5 +1,6 @@
 import styled, { css } from 'styled-components';
 import { Body4, Body5, CardTxt, FooterText, Heading3, Value } from '../../styles/styles';
+import { label_regular } from '../../styles/typography';
 
 const CardSub = styled.div`
   display: block;
@@ -190,15 +191,15 @@ const SectionHeading = styled.div`
 const Tooltip = styled.div`
   position: absolute;
   width: 220px;
-  top: 22px;
-  padding: 12px;
-  background-color: var(--dark-green);
-  color: var(--light-green);
-  box-shadow: 0px 4px 16px var(--black-shadow-25);
-  border-radius: 4px;
+  top: var(--space-22);
+  padding: var(--space-10) var(--space-12) var(--space-8);
+  background-color: var(--title);
+  color: var(--off-white-100);
+  box-shadow: 0px 4px 16px 0px var(--tooltip-box-shadow);
+  border-radius: var(--radius-12);
   opacity: 0;
   span {
-    ${Body4}
+    ${label_regular}
   }
   ${(props) =>
     props.isApptooltip &&
@@ -217,8 +218,8 @@ const Tooltip = styled.div`
 `;
 
 const TooltipText = styled.div`
-  ${Body5}
-  color: var(--light-green);
+  ${label_regular}
+  color: var(--off-white-100);
   margin: 0;
 `;
 
@@ -226,7 +227,7 @@ const Line = styled.div`
   position: absolute;
   top: -10px;
   .line {
-    background-color: var(--dark-green);
+    background-color: var(--title);
     width: 2px;
     height: 16px;
   }

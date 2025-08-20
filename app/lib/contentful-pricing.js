@@ -2,6 +2,7 @@ import { CONTENTFUL_API_TAG } from '../constants/constant';
 import { fetchGraphQL } from './contentful';
 import { POST_GRAPHQL_FAQ_COLLECTION_FIELDS } from './contentful-faq';
 import { POST_GRAPHQL_SEOMETADATA_FIELDS } from './contentful-seo';
+import { POST_GRAPHQL_SECTION_CTA_FIELDS } from './contentful-standardPage';
 
 const POST_GRAPHQL_PRICING_PLAN_DETAILS_FIELDS = `
     name
@@ -33,8 +34,6 @@ const POST_GRAPHQL_PLAN_FEATURES_FIELDS = `
     planSupersonic
 `;
 const POST_GRAPHQL_PRICING_DETAILS_FIELDS = `
-name
-slug
 header
 body
 ${POST_GRAPHQL_FAQ_COLLECTION_FIELDS}
@@ -51,6 +50,9 @@ planFeaturesCollection{
   items{
     ${POST_GRAPHQL_PLAN_FEATURES_FIELDS}
   }
+}
+ctaSection{
+  ${POST_GRAPHQL_SECTION_CTA_FIELDS}
 }
 `;
 

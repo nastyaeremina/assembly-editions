@@ -1,149 +1,61 @@
 const { css } = require('styled-components');
 
 const Heading1 = css`
-  font-size: 64px;
-  line-height: 70px;
-  font-weight: 600;
-  font-family: 'PPMori';
-  @media only screen and (max-width: 449px) {
-    font-size: 40px;
-    line-height: 44px;
+  font-weight: 400;
+  font-size: 150px;
+  line-height: 135px;
+  @media only screen and (max-width: 991px) {
+    font-size: 80px;
+    line-height: 76px;
+  }
+  @media only screen and (max-width: 768px) {
+    font-size: 60px;
+    line-height: 54px;
+  }
+  @media only screen and (max-width: 479px) {
+    font-size: 60px;
+    line-height: 54px;
   }
 `;
 
 const Heading2 = css`
   font-weight: 400;
-  font-size: 48px;
-  line-height: 56px;
-  font-family: 'PPMori';
-  @media only screen and (max-width: 449px) {
-    font-size: 32px;
-    line-height: 37px;
+  font-size: 80px;
+  line-height: 76px;
+  @media only screen and (max-width: 768px) {
+    /* font-size: 36px;
+    line-height: 42px; */
+  }
+  @media only screen and (max-width: 479px) {
+    font-size: 28px;
+    line-height: 32px;
   }
 `;
 
 const Heading3 = css`
   font-weight: 400;
-  font-size: 32px;
-  line-height: 38px;
-  font-family: 'PPMori';
-  @media only screen and (max-width: 449px) {
-    font-size: 24px;
-    line-height: 29px;
+  font-size: 50px;
+  line-height: 55px;
+  @media only screen and (max-width: 991px) {
+    font-size: 44px;
+    line-height: 50px;
   }
-`;
-
-const Heading3_Semibold = css`
-  font-weight: 600;
-  font-size: 32px;
-  line-height: 38px;
-  font-family: 'PPMori';
-  @media only screen and (max-width: 449px) {
-    font-size: 24px;
-    line-height: 29px;
+  @media only screen and (max-width: 479px) {
+    font-size: 28px;
+    line-height: 31px;
   }
 `;
 
 const Heading4 = css`
   font-weight: 400;
-  font-size: 24px;
-  line-height: 31px;
-  font-family: 'PPMori';
-  @media only screen and (max-width: 449px) {
-    font-size: 20px;
-    line-height: 26px;
+  font-size: 32px;
+  line-height: 34px;
+  @media only screen and (max-width: 479px) {
+    font-size: 22px;
+    line-height: 23px;
   }
 `;
 
-const Heading4_Semibold = css`
-  font-weight: 600;
-  font-size: 24px;
-  line-height: 31px;
-  font-family: 'PPMori';
-  @media only screen and (max-width: 449px) {
-    font-size: 20px;
-    line-height: 26px;
-  }
-`;
-
-const Body1 = css`
-  font-weight: 600;
-  font-size: 20px;
-  line-height: 25px;
-  letter-spacing: 0.02em;
-  font-family: 'PPMori';
-  @media only screen and (max-width: 449px) {
-    font-size: 18px;
-    line-height: 27px;
-  }
-`;
-
-const Body1_Regular = css`
-  font-weight: 400;
-  font-size: 20px;
-  line-height: 25px;
-  letter-spacing: 0.02em;
-  font-family: 'PPMori';
-  @media only screen and (max-width: 449px) {
-    font-size: 18px;
-    line-height: 27px;
-  }
-`;
-
-const Body2_Regular = css`
-  font-weight: 400;
-  font-size: 15px;
-  line-height: 19px;
-  letter-spacing: 0.02em;
-  font-family: 'PPMori';
-`;
-
-const Body2_Semibold = css`
-  font-weight: 600;
-  font-size: 15px;
-  line-height: 19px;
-  letter-spacing: 0.02em;
-  font-family: 'PPMori';
-`;
-
-const Body3_Regular = css`
-  font-weight: 400;
-  font-size: 13px;
-  line-height: 17px;
-  font-family: 'PPMori';
-`;
-
-const ButtonText = css`
-  font-weight: 400;
-  font-size: 18px;
-  line-height: 27px;
-  letter-spacing: 0.02em;
-  font-family: 'PPMori';
-  @media only screen and (max-width: 449px) {
-    font-size: 16px;
-    line-height: 24px;
-  }
-`;
-
-const Caption = css`
-  font-weight: 400;
-  font-size: 14px;
-  line-height: 20px;
-  font-family: 'PPMori';
-  @media only screen and (max-width: 449px) {
-    font-size: 12px;
-    line-height: 17px;
-  }
-`;
-
-const LabelText = css`
-  font-weight: 400;
-  font-size: 16px;
-  line-height: 22px;
-  font-family: 'PPMori';
-`;
-
-// following font styles are not used in the Assembly website.
 const Heading5 = css`
   font-weight: 500;
   font-size: 24px;
@@ -153,6 +65,7 @@ const Heading5 = css`
     line-height: 22px;
   }
 `;
+
 const Heading6 = css`
   font-weight: 500;
   font-size: 18px;
@@ -161,6 +74,12 @@ const Heading6 = css`
     font-size: 16px;
     line-height: 20px;
   }
+`;
+const Body1 = css`
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 31px;
+  letter-spacing: 0.02em;
 `;
 const Body2 = css`
   font-weight: 400;
@@ -185,7 +104,6 @@ const Body5 = css`
   font-size: 15px;
   line-height: 19px;
   letter-spacing: 0.02em;
-  font-family: 'PPMori';
 `;
 const Quote = css`
   font-weight: 400;
@@ -202,11 +120,22 @@ const FooterText = css`
   font-size: 13px;
   line-height: 17px;
 `;
+const ButtonText = css`
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 26px;
+  letter-spacing: 0.02em;
+`;
 const Label = css`
   font-weight: 500;
   font-size: 17px;
   line-height: 21px;
   letter-spacing: 0.01em;
+`;
+const Caption = css`
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 24px;
 `;
 const Heading = css`
   font-weight: 400;
@@ -263,10 +192,9 @@ const MbBody1 = css`
   letter-spacing: 0.02em;
 `;
 const MbPrimaryBtn = css`
-  font-weight: 400;
-  font-size: 16px;
-  line-height: 22px;
-  font-family: 'PPMori';
+  font-weight: 500;
+  font-size: 15px;
+  line-height: 24px;
 `;
 const MobileH2 = css`
   font-weight: 400;
@@ -328,19 +256,12 @@ export {
   Heading1,
   Heading2,
   Heading3,
-  Heading3_Semibold,
   Heading4,
-  Heading4_Semibold,
   Heading5,
   Heading6,
   Body1,
-  Body1_Regular,
-  LabelText,
   Body2,
-  Body2_Regular,
-  Body2_Semibold,
   Body3,
-  Body3_Regular,
   Body4,
   Body5,
   Body6,

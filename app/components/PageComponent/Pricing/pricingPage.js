@@ -1,7 +1,6 @@
 'use client';
 
 import React, { useState, useCallback, useMemo, useEffect } from 'react';
-import Image from 'next/image';
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
 import { Container } from '../../../styles/commonStyles';
 import {
@@ -11,10 +10,11 @@ import {
   PriceButton,
   WrapSlide,
   PriceTable,
-  PlanButton
+  PlanButton,
+  TableTitle
 } from '../../../styles/pricingstyles';
 import PricingCardSection from '../../pricingcard/pricingCardSection';
-import { isEmpty, formatPlanPrice } from '../../../helpers/helpers';
+import { isEmpty } from '../../../helpers/helpers';
 import SVGComponent from '../../../../public/images/svg/SVGComponent';
 import AppTooltip from '../../appsCards/appTooltip';
 import Button from '../../button/button';
@@ -39,6 +39,7 @@ export default function PricingPage({ details }) {
   const [isYearly, setIsYearly] = useState(true);
   const [isShowFeature, setShowFeature] = useState(true);
   const [isTopbarPresent, setIsTopbarPresent] = useState(false);
+  const [isSticky, setIsSticky] = useState(false);
 
   const toggleShowFeature = useCallback(() => {
     setShowFeature(!isShowFeature);
@@ -90,12 +91,11 @@ export default function PricingPage({ details }) {
     return planFeatures?.map((item, index) => {
       return (
         <>
+          <TableTitle>{item?.section}</TableTitle>
           <table className={!isShowFeature && 'active'}>
             <thead key={`planfeatures_index_${index}`}>
               <tr>
-                <th colSpan={3} className='tablepadding tab'>
-                  {item?.section}
-                </th>
+                <th colSpan={3} className='tablepadding tab'></th>
                 {details?.plansCollection?.items?.map((item) => {
                   return (
                     <>
@@ -115,7 +115,7 @@ export default function PricingPage({ details }) {
                         <AppTooltip
                           message={documentToReactComponents(featuresItem?.description?.json)}
                           iconSize='16'
-                          fill='var(--dark-gray)'
+                          fill='var(--text-secondary)'
                           style={{ top: 24 }}
                         />
                       )}
@@ -130,7 +130,6 @@ export default function PricingPage({ details }) {
               ))}
             </tbody>
           </table>
-          <div style={{ height: 24 }}></div>
         </>
       );
     });
@@ -152,18 +151,34 @@ export default function PricingPage({ details }) {
     setIsTopbarPresent(!!topbarContent); // Set state based on element presence
   }, []); // Run once when the component mounts
 
+  useEffect(() => {
+    const handleScroll = () => {
+      const topbarContent = document.getElementById('table-header');
+      if (topbarContent) {
+        const rect = topbarContent.getBoundingClientRect();
+        const isSticky = rect.top <= 81 || rect.top <= 126; // Check if sticky for both conditions
+        setIsSticky(isSticky);
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
+
   const renderTableHeader = useMemo(() => {
     return (
-      <table className={isTopbarPresent ? 'topbarContent' : ''}>
+      <table className={`${isTopbarPresent ? 'topbarContent' : ''}${isSticky ? 'sticky' : ''}`} id='table-header'>
         <thead>
           <tr className='bordercolor'>
-            <th colSpan={3}></th>
+            <th colSpan={3}>Compare all features</th>
             {renderTablePlanNameView}
           </tr>
         </thead>
       </table>
     );
-  }, [isTopbarPresent, renderTablePlanNameView]);
+  }, [isTopbarPresent, renderTablePlanNameView, isSticky]);
 
   return (
     <>

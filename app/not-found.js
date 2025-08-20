@@ -9,11 +9,11 @@ export async function metadata() {
   };
 }
 export default async function NotFound() {
-  const { footerData } = await getContent();
+  const { footerData, footerDescription } = await getContent();
 
   return (
     <>
-      <NotFoundPage footerData={footerData}>
+      <NotFoundPage footerData={footerData} footerDescription={footerDescription}>
         <Navbar />
       </NotFoundPage>
     </>

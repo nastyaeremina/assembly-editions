@@ -386,7 +386,7 @@ export const HOME_INTERNAL_CONTENT_ID = '2XZ0KqhzxydyrIOQtIi2rv';
 export const HOME_CLIENT_CONTENT_ID = '58ZcfzgUaFZoKtfHcplGZE';
 export const HOME_CLIENT_DARK_ID = '4v9rcyZvdqtmPqcGSZcpAW';
 export const HOME_CLIENT_LIGHT_ID = '5Cx8ph9a63VN0oti4GzZFi';
-export const FOOTER_CONTENT_ID = '3RHReFxS9ZP8NAfqPOwaxs';
+export const FOOTER_CONTENT_ID = '4B1mLHzG4mJqIyUUAW645w';
 
 export const FEATURES_MESSAG_ID = '3j6okJbvtbNtRAXhtQC869';
 export const FEATURES_BILLING_ID = '2biTe250v3ZnEWb49koKtb';

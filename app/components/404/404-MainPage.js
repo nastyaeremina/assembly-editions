@@ -2,7 +2,7 @@
 import Footer from '../footer/footer';
 import ErrorPage from './404-page';
 
-export default function NotFoundPage({ footerData, children }) {
+export default function NotFoundPage({ footerData, footerDescription, children }) {
   return (
     <>
       <div>
@@ -11,7 +11,7 @@ export default function NotFoundPage({ footerData, children }) {
           <ErrorPage />
         </main>
       </div>
-      <Footer isEnterPrice={false} footerData={footerData} />
+      <Footer isEnterPrice={false} footerData={footerData} description={footerDescription} />
     </>
   );
 }

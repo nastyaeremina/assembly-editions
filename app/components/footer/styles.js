@@ -1,37 +1,39 @@
-import styled, { css } from 'styled-components';
-import { Body4, FooterText, Heading2, Body1, Body2, Body3 } from '../../styles/styles';
+import styled from 'styled-components';
+import { button_regular, label_regular, label_semibold } from '../../styles/typography';
 
 const FooterSection = styled.div`
-  background-color: var(--neutral);
-  padding: 40px 0 60px;
+  background-color: var(--off-white-500);
+  padding: var(--space-64) 0 var(--space-120);
+  @media only screen and (max-width: 768px) {
+    padding: var(--space-64) 0 var(--space-96);
+  }
   @media only screen and (max-width: 749px) {
-    padding: 50px 0;
+    padding: var(--space-40) 0;
   }
 `;
+
 const FooterSectionLegal = styled.div`
   background-color: var(--neutral);
-  padding: 40px 0 40px 0;
+  padding: var(--space-40) 0;
 `;
+
 const FooterInnerBlock = styled.div`
   display: flex;
-  gap: 36px;
-  @media only screen and (max-width: 749px) {
+  gap: var(--space-120);
+  @media only screen and (max-width: 768px) {
     flex-wrap: wrap;
-    gap: 40px;
+    gap: var(--space-40);
   }
 `;
 
 const FooterMenu = styled.ul`
   margin: 0;
-  :last-child {
-    /* padding-top: 40px; */
-  }
   list-style: none;
   p {
-    ${FooterText};
-    color: var(--title);
+    ${label_semibold};
+    color: var(--text-secondary);
     margin: 0;
-    padding-bottom: 10px;
+    padding-bottom: var(--space-12);
   }
 `;
 
@@ -39,7 +41,7 @@ const FooterSocialList = styled.ul`
   list-style: none;
   display: flex;
   align-items: center;
-  gap: 24px;
+  gap: var(--space-24);
 `;
 const FooterSocialItem = styled.li`
   display: flex;
@@ -48,13 +50,15 @@ const FooterSocialItem = styled.li`
   svg {
     path {
       transition: 0.3s;
+      fill: var(--title);
     }
   }
   :hover {
     svg {
       path {
-        fill: var(--black);
+        fill: var(--text-secondary);
       }
+      fill: var(--text-secondary);
     }
   }
   a {
@@ -79,21 +83,32 @@ const FooterSocialItem = styled.li`
   }
 `;
 const FooterRight = styled.div`
-  display: flex;
-  gap: 16px;
   width: 100%;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  row-gap: var(--space-80);
+  column-gap: var(--space-40);
+  grid-auto-flow: column;
+  grid-template-rows: repeat(3, auto);
+  @media only screen and (max-width: 991px) {
+    grid-template-rows: repeat(4, auto);
+    grid-template-columns: repeat(2, 1fr);
+    row-gap: var(--space-48);
+  }
   @media only screen and (max-width: 749px) {
     display: none;
   }
 `;
 const FooterFirst = styled.div`
-  max-width: 270px;
+  max-width: 242px;
   width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-24);
   p {
-    ${Body4};
-    letter-spacing: 0.02em;
-    color: var(--medium-gray);
-    margin: 20px 0 24px 0;
+    ${button_regular};
+    color: var(--title);
+    margin: 0;
   }
   @media only screen and (max-width: 768px) {
     width: 100%;
@@ -103,39 +118,42 @@ const FooterFirst = styled.div`
 const FooterMenuLeft = styled.div`
   max-width: 290px;
   width: 100%;
+  display: grid;
   .padding {
-    padding-top: 40px;
+    padding-top: var(--space-94);
   }
 `;
 const FooterMenuList = styled.li`
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-8);
   a {
-    ${FooterText};
-    color: var(--medium-gray);
+    ${label_regular};
+    color: var(--title);
     display: block;
-    padding-bottom: 10px;
     transition: all 300ms;
     cursor: pointer;
     :last-child {
       padding: 0;
     }
     :hover {
-      color: var(--title);
+      color: var(--text-secondary);
     }
   }
 `;
 const FooterMobile = styled.div`
   display: none;
   @media only screen and (max-width: 749px) {
-    display: flex;
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
     width: 100%;
-    gap: 16px;
+    row-gap: var(--space-40);
   }
 `;
 const FooterMenuMobile = styled.div`
-  max-width: 50%;
   width: 100%;
   .padding {
-    padding-top: 30px;
+    padding-top: var(--space-40);
   }
 `;
 const FooterSub = styled.div`
@@ -144,7 +162,7 @@ const FooterSub = styled.div`
   align-items: center;
 
   p {
-    ${FooterText};
+    ${label_regular};
     margin: 0;
     color: var(--medium-gray);
   }

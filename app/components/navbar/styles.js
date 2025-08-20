@@ -1071,7 +1071,7 @@ const AnnounceBar = styled.div`
 const HelpLink = styled.div``;
 
 const Dspace = styled.div`
-  height: 34px;
+  height: 44px;
   display: block;
 `;
 

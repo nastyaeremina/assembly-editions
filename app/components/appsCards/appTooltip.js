@@ -4,7 +4,7 @@ import { Icon, Informative, Line, Tooltip, TooltipText } from './styles';
 
 function AppTooltip({ message, iconSize = '13', fill = 'var(--body)', style, mainDivStyle, isAutoAdjust = false }) {
   const tooltipIconRef = useRef(null);
-  const [tooltipPosition, setTooltipPosition] = useState({ left: '-7px' });
+  const [tooltipPosition, setTooltipPosition] = useState({ left: '-6px' });
   const [tooltipLinePosition, setTooltipLinePosition] = useState({});
 
   useEffect(() => {
@@ -24,7 +24,7 @@ function AppTooltip({ message, iconSize = '13', fill = 'var(--body)', style, mai
   return (
     <Informative style={mainDivStyle} isAutoAdjust={isAutoAdjust}>
       <Icon ref={tooltipIconRef} iconSize={iconSize}>
-        <SVGComponent name='informative-icon' width={iconSize} height={iconSize} viewBox='0 0 13 13' fill={fill} />
+        <SVGComponent name='informative-icon' width={iconSize} height={iconSize} viewBox='0 0 14 14' fill={fill} />
       </Icon>
       <Tooltip className='tooltiptext' style={{ ...style, ...tooltipPosition }} isAutoAdjust={isAutoAdjust}>
         <Line isAutoAdjust={isAutoAdjust} style={{ ...tooltipLinePosition }}>

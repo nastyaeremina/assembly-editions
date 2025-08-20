@@ -1,28 +1,41 @@
 import styled, { css } from 'styled-components';
-import { Body1, Body4, Body5, FooterText, Heading4, MbBody4, MbPrimaryBtn } from '../../styles/styles';
+import { button_regular, button_semibold, h3_semibold, h4_semibold, label_regular } from '../../styles/typography';
 
 const PriceMenu = styled.div`
   width: 100%;
-  border: 1px solid var(--border);
-  border-top-right-radius: 4px;
-  border-top-left-radius: 4px;
+  border: 1px solid var(--border-default);
+  border-top-right-radius: var(--radius-12);
+  border-top-left-radius: var(--radius-12);
   border-bottom: none;
   position: relative;
+  overflow: hidden;
+  background-color: var(--off-white-100);
   ${(props) => {
     return props.index && css``;
   }}
 `;
 const PlanSection = styled.div`
+  background-color: var(--off-white-100);
+  .list-item {
+    ${button_semibold}
+    color: var(--title);
+  }
+  li {
+    .list-item {
+      ${button_regular}
+      color: var(--text-secondary);
+    }
+  }
   &.last-section {
-    border-bottom: 1px solid var(--border);
-    border-bottom-left-radius: 4px;
-    border-bottom-right-radius: 4px;
+    border-bottom: 1px solid var(--border-default);
+    border-bottom-left-radius: var(--radius-12);
+    border-bottom-right-radius: var(--radius-12);
   }
   ${(props) => {
     return (
       props.isFirst &&
       css`
-        padding-top: 16px !important;
+        padding-top: var(--space-8) !important;
       `
     );
   }}
@@ -30,22 +43,20 @@ const PlanSection = styled.div`
     .list-item {
       display: flex;
       align-items: center;
+      gap: var(--space-3);
     }
   }
 `;
 const PriceSection = styled.div`
-  padding: 16px 16px 8px;
-  h2 {
-    ${Body1}
+  padding: var(--space-16) var(--space-16) var(--space-12);
+  h4 {
+    ${h4_semibold}
     color: var(--title);
-    margin: 0 0 4px 0;
-    @media only screen and (max-width: 768px) {
-      margin: 0 0 8px 0;
-    }
+    margin: 0 0 var(--space-4) 0;
   }
   p {
-    ${Body5}
-    color: var(--dark-gray);
+    ${button_regular}
+    color: var(--text-secondary);
     margin: 0;
     @media only screen and (max-width: 449px) {
       height: unset;
@@ -54,79 +65,68 @@ const PriceSection = styled.div`
   ${(props) =>
     props.isSupersonic &&
     css`
-      background: linear-gradient(180deg, var(--green-shadow-20) 0%, var(--transparent-color-2) 50%);
+      background: linear-gradient(180deg, var(--neutral) 0%, var(--white) 50%);
     `}
-
-  @media screen and (max-width: 768px) {
-    padding: 24px;
-    border-bottom: 1px solid var(--border);
-  }
 `;
+
 const Pricenumber = styled.h3`
-  ${Heading4}
+  ${h3_semibold}
   color: var(--title);
-  margin: 4px 0 0;
+  padding-top: var(--space-4);
   display: flex;
-  gap: 8px;
-  align-items: end;
+  gap: var(--space-8);
+  align-items: baseline;
   span {
-    ${Body4};
+    ${button_regular};
     color: var(--title);
   }
-  @media only screen and (max-width: 479px) {
-    font-size: 32px;
-    line-height: 34px;
-  }
 `;
+
 const Caption = styled.h5`
-  ${Body5}
-  color: var(--dark-gray);
-  margin: 16px 0 0;
-  @media only screen and (max-width: 768px) {
-    margin: 24px 0 0;
-  }
+  ${button_regular}
+  color: var(--text-secondary);
+  margin: var(--space-16) 0 0;
 `;
 
 const PriceTag = styled.span`
-  background-color: var(--footer);
+  background-color: var(--extra-light-gray);
   width: max-content;
-  padding: 2px 6px;
-  border-radius: 4px;
+  padding: 0 var(--space-6);
+  border-radius: var(--radius-4);
   text-decoration: none;
-  ${FooterText};
-  color: var(--text-primary);
+  ${label_regular};
+  color: var(--title);
   margin-left: 3px;
+  height: 20px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 `;
-const GridItem = styled.div`
-  display: grid;
-  width: 100%;
 
-  grid-template-rows: repeat(2, 1fr);
-  @media only screen and (max-width: 768px) {
-    grid-template-rows: repeat(1, 1fr);
-  }
-  @media only screen and (max-width: 449px) {
-    grid-template-rows: repeat(1, 1fr);
-  }
-`;
 const PricePlan = styled.div`
   width: 100%;
   margin: 0 auto;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  column-gap: 12px;
+  column-gap: var(--space-10);
   .grid-item {
-    border-left: 1px solid var(--border);
-    border-right: 1px solid var(--border);
-    padding: 0 16px;
+    border-left: 1px solid var(--border-default);
+    border-right: 1px solid var(--border-default);
+    padding: 0 var(--space-16);
   }
   .grid-item:nth-child(-n + 4) {
     padding: 0;
   }
+  .empty-p {
+    height: 24px;
+    @media only screen and (max-width: 768px) {
+      height: 16px;
+    }
+  }
   @media only screen and (max-width: 800px) {
     padding: unset;
     grid-template-columns: repeat(2, 1fr);
-    column-gap: 24px;
+    column-gap: var(--space-24);
     .grid-item:nth-child(4n + 1) {
       order: 1;
     }
@@ -140,10 +140,10 @@ const PricePlan = styled.div`
       order: 2;
     }
     .grid-item-head:nth-child(4n + 3) {
-      margin-top: 24px;
+      margin-top: var(--space-24);
     }
     .grid-item-head:nth-child(4n + 4) {
-      margin-top: 24px;
+      margin-top: var(--space-24);
     }
   }
   @media only screen and (max-width: 449px) {
@@ -161,17 +161,14 @@ const PricePlan = styled.div`
       order: 13;
     }
     .grid-item-head:nth-child(4n + 2) {
-      margin-top: 24px;
+      margin-top: var(--space-24);
     }
     .grid-item-head:nth-child(4n + 3) {
-      margin-top: 24px;
+      margin-top: var(--space-24);
     }
     .grid-item-head:nth-child(4n + 4) {
-      margin-top: 24px;
+      margin-top: var(--space-24);
     }
-  }
-  .empty-p {
-    height: 27px;
   }
   @media only screen and (max-width: 449px) {
     padding: unset;
@@ -180,38 +177,39 @@ const PricePlan = styled.div`
   h3,
   p {
     b {
-      ${MbPrimaryBtn};
-      line-height: 19px;
+      ${button_semibold};
       color: var(--title);
     }
-
     margin: 0;
   }
   hr {
     border: none;
-    background-color: var(--footer);
+    background-color: var(--border-default);
     height: 1px;
     margin: 0;
-    margin-bottom: 16px;
-    margin-top: 16px;
+    margin-bottom: var(--space-16);
+    margin-top: var(--space-16);
   }
   ul {
-    padding-left: 26px;
-    margin-top: 8px;
+    padding-left: var(--space-20);
+    margin-top: var(--space-8);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-8);
     li {
       position: relative;
-      margin-top: 8px;
-      ${Body5}
-      color: var(--dark-gray);
+      ${button_regular}
+      color: var(--text-secondary);
       ::before {
-        left: -26px;
+        left: -24px;
         content: '';
         position: absolute;
         width: 20px;
         height: 20px;
-        background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M7.49804 14.791C7.49721 14.791 7.49637 14.791 7.49554 14.791C7.32887 14.7902 7.16971 14.7235 7.05221 14.6043L3.71887 11.2193C3.47637 10.9735 3.47971 10.5777 3.72554 10.3352C3.97137 10.0935 4.36804 10.096 4.60971 10.3418L7.50055 13.2785L15.3889 5.39016C15.633 5.14599 16.0289 5.14599 16.273 5.39016C16.5172 5.63432 16.5172 6.03019 16.273 6.27435L7.93971 14.6077C7.82304 14.7252 7.66388 14.791 7.49804 14.791Z" fill="%235B5B5B" stroke="%235B5B5B" stroke-width="0.5"/></svg>');
+        background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M7.49804 14.791C7.49721 14.791 7.49637 14.791 7.49554 14.791C7.32887 14.7902 7.16971 14.7235 7.05221 14.6043L3.71887 11.2193C3.47637 10.9735 3.47971 10.5777 3.72554 10.3352C3.97137 10.0935 4.36804 10.096 4.60971 10.3418L7.50055 13.2785L15.3889 5.39016C15.633 5.14599 16.0289 5.14599 16.273 5.39016C16.5172 5.63432 16.5172 6.03019 16.273 6.27435L7.93971 14.6077C7.82304 14.7252 7.66388 14.791 7.49804 14.791Z" fill="%23101010"/></svg>');
         background-size: contain;
         background-repeat: no-repeat;
+        top: var(--space-1);
         @media only screen and (max-width: 768px) {
           left: -32px;
         }
@@ -221,20 +219,6 @@ const PricePlan = styled.div`
       padding-left: 32px;
     }
   }
-`;
-
-const BulletImage = styled.div`
-  padding: 5px 10px;
-  margin-top: 7px;
-  background-color: var(--mid-light-green);
-  @media only screen and (max-width: 749px) {
-    padding: 4px 8px;
-  }
-`;
-
-const Pricedetail = styled.div`
-  display: flex;
-  flex-direction: column;
 `;
 
 const Description = styled.div`
@@ -252,9 +236,9 @@ const CardBtn = styled.div`
   width: 100%;
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: var(--space-12);
   .terriarybtn-div {
-    height: 19px;
+    height: var(--space-19);
     .button {
       cursor: pointer;
     }
@@ -266,51 +250,12 @@ const CardBtn = styled.div`
     a {
       width: 100%;
       justify-content: center;
-      margin-top: 14px;
+      margin-top: var(--space-16);
       padding: 8px;
       font-size: 16px;
       line-height: 24px;
     }
   }
-  .contact-button {
-    ${MbBody4};
-    color: var(--dark-gray);
-    text-decoration: underline;
-    margin-top: 12px;
-  }
 `;
 
-const PriceOption = styled.div`
-  /* ${(props) =>
-    props.is4Card &&
-    css`
-      grid-template-columns: repeat(auto-fill, minmax(252px, 1fr));
-    `}
-  @media only screen and (max-width: 1175px) {
-    grid-template-columns: repeat(auto-fill, minmax(274px, 1fr));
-    gap: 24px;
-    ${(props) =>
-    props.is4Card &&
-    css`
-      grid-template-columns: repeat(auto-fill, minmax(356px, 1fr));
-    `}
-  }
-  @media only screen and (max-width: 789px) {
-    grid-template-columns: repeat(auto-fill, minmax(262px, 1fr));
-  } */
-`;
-export {
-  PriceMenu,
-  PriceSection,
-  Pricenumber,
-  Caption,
-  PricePlan,
-  BulletImage,
-  Pricedetail,
-  CardBtn,
-  PriceOption,
-  Description,
-  PriceTag,
-  PlanSection,
-  GridItem
-};
+export { PriceMenu, PriceSection, Pricenumber, Caption, PricePlan, CardBtn, Description, PriceTag, PlanSection };

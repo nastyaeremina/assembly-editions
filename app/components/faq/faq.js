@@ -72,15 +72,20 @@ export default function FAQ({ enterprise, isGuideFAQ, currentpath, faqList: allP
                 </div>
               </div>
               <div>
-                <svg width='32' height='32' viewBox='0 0 32 32' fill='none' xmlns='http://www.w3.org/2000/svg'>
+                <svg width='20' height='20' viewBox='0 0 20 20' fill='none' xmlns='http://www.w3.org/2000/svg'>
                   <path
-                    className={faqId !== activeAccordion ? 'active' : ''}
-                    d='M1.70703 16L30.2904 16'
-                    stroke='black'
-                    stroke-width='2'
-                    stroke-linecap='round'
+                    fill-rule='evenodd'
+                    clip-rule='evenodd'
+                    d='M10.0014 1.87524C10.4822 1.87524 10.8719 2.265 10.8719 2.74578V17.2547C10.8719 17.7355 10.4822 18.1252 10.0014 18.1252C9.52061 18.1252 9.13086 17.7355 9.13086 17.2547V2.74578C9.13086 2.265 9.52061 1.87524 10.0014 1.87524Z'
+                    fill='var(--title)'
+                    className={faqId == activeAccordion ? 'active' : ''}
                   />
-                  <path d='M1.70703 16L30.2904 16' stroke='black' stroke-width='2' stroke-linecap='round' />
+                  <path
+                    fill-rule='evenodd'
+                    clip-rule='evenodd'
+                    d='M1.87695 10.0004C1.87695 9.51963 2.26671 9.12988 2.74749 9.12988H17.2564C17.7372 9.12988 18.127 9.51963 18.127 10.0004C18.127 10.4812 17.7372 10.871 17.2564 10.871H2.74749C2.26671 10.871 1.87695 10.4812 1.87695 10.0004Z'
+                    fill='var(--title)'
+                  />
                 </svg>
               </div>
             </div>
@@ -105,7 +110,7 @@ export default function FAQ({ enterprise, isGuideFAQ, currentpath, faqList: allP
         <FaqSection enterprise={enterprise} isGuideFAQ={isGuideFAQ} isStandardPage={isStandardPage}>
           <Container>
             <FaqTitle isGuideFAQ={isGuideFAQ} id='faq'>
-              <h2 className='faqtitle'>{!isEmpty(title) ? title : 'Frequently Asked Questions'}</h2>
+              <h2 className='faqtitle'>{!isEmpty(title) ? title : 'Frequently asked questions'}</h2>
               {isGuideFAQ && currentpath && (
                 <Image
                   src={CopyIcon}

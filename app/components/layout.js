@@ -5,16 +5,31 @@ import Footer from './footer/footer';
 import Analytics from './analytics/analytics';
 
 export async function getContent() {
-  const footerData = (await getCommonContent(FOOTER_CONTENT_ID)) ?? [];
+  const footerData = (await getCommonContent(FOOTER_CONTENT_ID, true)) ?? [];
   //conver footerdata as row wise
   if (!isEmpty(footerData)) {
-    const rowWiseFooterData = footerData?.split(/[\{\}]/);
-    const finalFooterList = rowWiseFooterData?.filter((item) => item?.startsWith('\n'));
-    return { footerData: finalFooterList };
+    const sections = footerData.split(/\{\d+\}/); // Split on {0}, {1}, {2}, etc.
+
+    let description = '';
+    let footerDataList = [];
+
+    sections.forEach((section) => {
+      if (section.includes('#Description')) {
+        const lines = section.split('\n').filter((line) => line.trim() !== '');
+
+        if (lines[0] === '#Description') {
+          lines.shift(); // remove the label
+        }
+
+        description = lines.join(' ').trim();
+      } else if (section.includes('#')) {
+        footerDataList.push(section);
+      }
+    });
+    return { footerDescription: description, footerData: footerDataList };
   }
-  return { footerData: [] };
+  return { footerData: [], footerDescription: '' };
 }
-function getFooterData() {}
 
 export default async function Layout({
   children,
@@ -22,14 +37,13 @@ export default async function Layout({
   abTestContentLabel = '',
   abTestExperimentName = ''
 }) {
-  const { footerData } = await getContent();
-
+  const { footerData, footerDescription } = await getContent();
   return (
     <>
       <div>
         <main>{children}</main>
       </div>
-      {!isGlossary && <Footer footerData={footerData} />}
+      {!isGlossary && <Footer footerData={footerData} description={footerDescription} />}
       {!isEmpty(abTestExperimentName) && !isEmpty(abTestContentLabel) && (
         <Analytics experimentName={abTestExperimentName} contentLabel={abTestContentLabel} />
       )}

@@ -1,70 +1,30 @@
 import styled, { css } from 'styled-components';
-import {
-  Body1,
-  Body2,
-  Body3,
-  Body4,
-  Body5,
-  FooterText,
-  Heading2,
-  Heading3,
-  Heading4,
-  Label,
-  MbBody3,
-  MbPrimaryBtn,
-  MobileH1,
-  MobileH2,
-  MobileH4,
-  TableText
-} from './styles';
+import { body_regular, body_semibold, button_regular, h1_semibold, label_regular } from './typography';
 
 const HeroSection = styled.div`
-  padding: 180px 0 0 0;
+  padding: var(--space-152) 0 0 0;
   text-align: center;
   margin: 0 auto;
   h1 {
-    ${Heading3};
+    ${h1_semibold};
     color: var(--title);
-    margin: 0 0 40px 0;
-    max-width: 780px;
+    margin: 0 0 var(--space-40) 0;
+    max-width: 900px;
     width: 100%;
     margin: 0 auto;
   }
-  span {
-    margin: 0;
-    color: var(--primary);
-    ${Heading2}
-  }
   p {
-    ${Body2};
-    color: var(--body);
-    letter-spacing: 0.02em;
-    margin: 16px 0 40px 0;
+    ${body_regular};
+    color: var(--text-secondary);
+    margin: var(--space-24) auto var(--space-64) auto;
+    max-width: 720px;
+    text-align: center;
   }
-  @media only screen and (max-width: 991px) {
-    padding: 180px 0px 80px;
-  }
-  @media only screen and (max-width: 749px) {
-    padding: 116px 0px 0;
-    h1 {
-      ${MobileH2};
-      color: var(--title);
-      margin: 0 0 40px 0;
-      max-width: 780px;
-      width: 100%;
-      margin: 0 auto;
-    }
-    span {
-      margin: 0;
-      color: var(--primary);
-      ${MobileH2}
-    }
+  @media only screen and (max-width: 449px) {
+    text-align: left;
     p {
-      font-size: 17px;
-      line-height: 21px;
-      color: var(--body);
-      letter-spacing: 0.02em;
-      margin: 20px 0 32px 0;
+      margin: var(--space-24) 0;
+      text-align: left;
     }
   }
 `;
@@ -73,83 +33,31 @@ const PricingSection = styled.div``;
 const PriceMenu = styled.div``;
 const PriceButton = styled.div`
   display: flex;
-  justify-content: flex-end;
-  padding-bottom: 20px;
-  gap: 5px;
+  justify-content: center;
+  padding-bottom: var(--space-40);
   @media only screen and (max-width: 449px) {
-    justify-content: center;
+    justify-content: flex-start;
   }
-`;
-const YearlyButton = styled.div`
-  padding: 4px 12px;
-  border-radius: 4px;
-  button {
-    color: var(--medium-gray);
-    letter-spacing: 0.01em;
-    ${Label};
-  }
-  &.active {
-    background-color: var(--light-green);
-    button {
-      color: var(--black);
-    }
-  }
-`;
-
-const SaveButton = styled.div`
-  padding: 4px 12px;
-  border-radius: 4px;
-  background-color: var(--light-green);
-  ${MbPrimaryBtn};
 `;
 
 const ToggleContainer = styled.div`
   display: flex;
   align-items: center;
-  gap: 5px;
   cursor: pointer;
-  padding-left: 5px;
+  padding: var(--space-4);
+  background-color: var(--extra-light-gray);
+  border-radius: var(--radius-16);
 `;
 
 const ToggleOption = styled.span`
-  ${MbPrimaryBtn};
-  font-weight: ${({ active }) => (active ? '500' : '400')};
-  color: ${({ active }) => (active ? 'var(--title)' : 'var(--body)')};
-`;
-
-const ToggleSwitch = styled.div`
-  width: 28px;
-  height: 16px;
-  background-color: var(--title);
-  border-radius: 12px;
-  position: relative;
-  transition: background-color 0.3s ease;
-  &:after {
-    content: '';
-    position: absolute;
-    top: 2px;
-    left: ${({ active }) => (active ? '14px' : '2px')};
-    width: 12px;
-    height: 12px;
-    background-color: #fff;
-    border-radius: 50%;
-    transition: left 0.3s ease;
-  }
-`;
-
-const MonthlyButton = styled.div`
-  padding: 7px 20px;
-  border-radius: 4px;
-  button {
-    color: var(--medium-gray);
-    ${Label};
-    letter-spacing: 0.01em;
-  }
-  &.active {
-    background-color: var(--light-green);
-    button {
-      color: var(--black);
-    }
+  ${button_regular};
+  color: ${({ active }) => (active ? 'var(--title)' : 'var(--text-secondary)')};
+  padding: var(--space-10) var(--space-16) var(--space-7);
+  background-color: ${({ active }) => (active ? 'var(--white)' : 'transparent')};
+  border-radius: var(--radius-12);
+  transition: all 0.3s ease;
+  :hover {
+    color: var(--title);
   }
 `;
 
@@ -165,16 +73,14 @@ const PlanButton = styled.div`
   margin: 0 auto;
   display: flex;
   justify-content: center;
-  padding-top: 100px;
+  padding-top: var(--space-64);
   position: relative;
   a {
     cursor: pointer;
     display: flex;
     flex-direction: row-reverse;
-    padding: 10px 0;
+    padding: var(--space-10) 0;
     justify-content: center;
-    font-size: 17px !important;
-    line-height: 21px !important;
     gap: 8px;
     width: 209px;
     white-space: nowrap;
@@ -186,38 +92,43 @@ const PlanButton = styled.div`
     display: none;
   }
 `;
+
+const TableTitle = styled.p`
+  ${body_semibold}
+  color: var(--title);
+  padding: var(--space-12) var(--space-20);
+  margin-top: var(--space-24) !important;
+`;
+
 const PriceTable = styled.div`
-  padding: 25px 0 0;
+  padding: var(--space-40) 0 0;
   display: block;
   table {
     display: block;
     width: 100%;
     border-collapse: collapse;
-    border: 1px solid var(--border);
-    border-style: none solid solid;
-    border-radius: 2px;
+    border: 1px solid var(--border-default);
+    border-radius: var(--radius-12);
     :nth-child(2) {
       th {
         border-top: none;
-        border-top-right-radius: 0;
-        border-top-left-radius: 0;
         margin-top: -1px;
       }
     }
     :first-child {
       position: sticky;
       top: 81px;
-      border-style: none solid none solid;
       z-index: 9;
-      background-color: var(--white);
-      border-bottom-left-radius: 0;
-      border-bottom-right-radius: 0;
+      background-color: var(--off-white-100);
       &.topbarContent {
         top: 126px;
       }
+      &.sticky {
+        border-radius: 0;
+      }
     }
     thead > tr > td {
-      border: 1px solid var(--border);
+      border: 1px solid var(--border-default);
       border-style: none solid none none;
       :last-child {
         border-style: none;
@@ -233,9 +144,11 @@ const PriceTable = styled.div`
       justify-content: space-between;
       position: relative;
       align-items: center;
+      gap: var(--space-12);
     }
     th {
-      border: 1px solid var(--border);
+      border: 1px solid var(--border-default);
+      border-style: none solid;
       :first-child {
         border-left: none;
       }
@@ -244,7 +157,7 @@ const PriceTable = styled.div`
       }
     }
     td {
-      border: 1px solid var(--border);
+      border: 1px solid var(--border-default);
       border-style: none solid;
       :first-child {
         border-left: none;
@@ -255,14 +168,17 @@ const PriceTable = styled.div`
     }
     .bordercolor {
       th {
-        padding: 19px 20px;
+        padding: var(--space-20);
         text-align: center;
-        ${Body1};
+        ${body_regular};
         :last-child {
           border-right: none;
         }
         &.isactive {
-          background: linear-gradient(180deg, var(--green-shadow-20) 0%, var(--transparent-color-2) 70%);
+          background: linear-gradient(180deg, var(--neutral) 0%, var(--white) 100%);
+        }
+        :first-child {
+          text-align: left;
         }
       }
     }
@@ -271,40 +187,22 @@ const PriceTable = styled.div`
       align-items: center;
       justify-content: center;
     }
-    .tablepadding {
-      padding: 12px 20px;
-    }
     .tab {
       z-index: -1;
-      background-color: var(--table-color);
-      ${Body3};
+      ${body_regular};
       color: var(--title);
-      padding: 12px 20px;
       vertical-align: top;
       letter-spacing: 0.02em;
       border: none;
-      border-top: 1px solid var(--border);
-      border-bottom: 1px solid var(--border);
     }
     .tablehead {
       background-color: var(--white);
       padding: 16px 20px;
     }
-    .leftradius {
-      border-radius: 4px 0px 0px 0px;
-    }
-    .tabletext {
-      ${TableText};
-      color: var(--dark-green);
-    }
-    .subtext {
-      ${FooterText};
-      color: var(--dark-gray);
-    }
     th {
-      ${Body3};
+      ${body_regular};
+      color: var(--title);
       letter-spacing: 0.02em;
-      padding: 12px 20px;
       text-align: left;
       width: 18%;
       ${(props) =>
@@ -312,32 +210,23 @@ const PriceTable = styled.div`
         css`
           word-break: break-all;
         `}
-      .amount {
-        margin: 0 0 4px 0;
-        color: var(--title);
-        ${TableText};
-      }
-      .spantext {
-        ${FooterText};
-        color: var(--dark-gray);
-        display: block;
-      }
     }
     td {
-      ${Body3};
+      ${button_regular};
       color: var(--title);
-      padding: 12px 20px;
-      vertical-align: top;
+      padding: var(--space-12) var(--space-20);
       letter-spacing: 0.02em;
+      background-color: var(--off-white-100);
+      border-radius: var(--radius-12);
       span {
-        ${Body5};
+        ${label_regular};
         color: var(--title);
         display: block;
         letter-spacing: 0.02em;
       }
       h4 {
         margin: 0;
-        ${Body4};
+        ${button_regular};
         color: var(--title);
       }
       .spanpadding {
@@ -366,28 +255,16 @@ const PriceTable = styled.div`
     display: none;
   }
 `;
-const PricingButton = styled.div`
-  display: flex;
-  justify-content: center;
-  gap: 20px;
-  @media only screen and (max-width: 449px) {
-    gap: 12px;
-  }
-`;
 
 export {
   HeroSection,
   PricingSection,
   PriceMenu,
   PriceButton,
-  YearlyButton,
-  MonthlyButton,
   WrapSlide,
   PlanButton,
   PriceTable,
-  PricingButton,
-  SaveButton,
-  ToggleSwitch,
   ToggleOption,
-  ToggleContainer
+  ToggleContainer,
+  TableTitle
 };

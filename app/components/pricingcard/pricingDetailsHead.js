@@ -9,7 +9,7 @@ export default function PricingDetailsHead({ data, isYearly, descriptionMaxHeigh
     <>
       <PriceMenu className='grid-item grid-item-head'>
         <PriceSection isSupersonic={data?.colorScheme === 'Dark'}>
-          <h2>{data?.name}</h2>
+          <h4>{data?.name}</h4>
           <Description height={descriptionMaxHeight}>
             <p id={stringToSlugyfy(data?.name)}>{data?.description}</p>
           </Description>
@@ -27,11 +27,11 @@ export default function PricingDetailsHead({ data, isYearly, descriptionMaxHeigh
                 hoverColor={'--secondary-hover-color'}
               />
             )}
-            <div className='terriarybtn-div'>
-              {!isEmpty(data?.secondaryCtaText) && (
+            {!isEmpty(data?.secondaryCtaText) && (
+              <div className='terriarybtn-div'>
                 <Button text={data?.secondaryCtaText} href={data?.secondaryCtaLink} type={'link'} className='button' />
-              )}
-            </div>
+              </div>
+            )}
           </CardBtn>
         </PriceSection>
       </PriceMenu>
