@@ -11,7 +11,7 @@ import Blogcard from '../../Blogcard';
 import { isEmpty } from '../../../helpers/helpers';
 import BlogCTA from '../../blogCTA';
 import { CURRENT_SITE_URL } from '../../../constants/constant';
-import { COPILOT_INSTAGRAM_LINK, COPILOT_TWITTER_LINK } from '../../../constants/externalLinks';
+import { COPILOT_FACEBOOK_LINK, COPILOT_INSTAGRAM_LINK, COPILOT_LINKEDIN_LINK, COPILOT_TWITTER_LINK, COPILOT_YOUTUBE_CHANNEL_LINK } from '../../../constants/externalLinks';
 
 export default function BlogPage({ allPosts, tags }) {
   const router = useRouter();
@@ -100,9 +100,9 @@ export default function BlogPage({ allPosts, tags }) {
         logo={`${CURRENT_SITE_URL}/_next/static/media/blacklogo.370e156c.svg`}
         sameAs={[
           COPILOT_TWITTER_LINK,
-          'https://www.linkedin.com/company/copilotplatforms/',
-          'https://www.youtube.com/@copilotplatforms',
-          'https://www.facebook.com/copilotplatforms',
+          COPILOT_LINKEDIN_LINK,
+          COPILOT_YOUTUBE_CHANNEL_LINK,
+          COPILOT_FACEBOOK_LINK,
           COPILOT_INSTAGRAM_LINK
         ]}
       />

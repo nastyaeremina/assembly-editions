@@ -7,7 +7,7 @@ import { getPageContent } from './helpers/serverSideHelpers';
 import HomePage from './components/Home/homepage/homepage';
 import { createArrayWithFixedLength, getSEOData, isEmpty, removeEmptyElement } from './helpers/helpers';
 import NewCTA from './components/cta/newCTA';
-import { COPILOT_INSTAGRAM_LINK, COPILOT_TWITTER_LINK } from './constants/externalLinks';
+import { COPILOT_FACEBOOK_LINK, COPILOT_INSTAGRAM_LINK, COPILOT_LINKEDIN_LINK, COPILOT_TWITTER_LINK, COPILOT_YOUTUBE_CHANNEL_LINK } from './constants/externalLinks';
 
 
 async function getContent({ searchParams }) {
@@ -40,9 +40,9 @@ export default async function Home({ searchParams }) {
     logo: `${CURRENT_SITE_URL}/_next/static/media/blacklogo.370e156c.svg`,
     sameAs: [
       COPILOT_TWITTER_LINK,
-      'https://www.linkedin.com/company/copilotplatforms/',
-      'https://www.youtube.com/@copilotplatforms',
-      'https://www.facebook.com/copilotplatforms',
+      COPILOT_LINKEDIN_LINK,
+      COPILOT_YOUTUBE_CHANNEL_LINK,
+      COPILOT_FACEBOOK_LINK,
       COPILOT_INSTAGRAM_LINK
     ]
   };

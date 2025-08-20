@@ -133,7 +133,11 @@ export const getSEOData = async ({ id, data }) => {
               url: seoData?.openGraphImage?.url
             }
           ]
-    }
+    },
+    robots: {
+      index: !seoData?.noIndex,
+      follow: !seoData?.noFollow,
+    },
   };
 };
 
