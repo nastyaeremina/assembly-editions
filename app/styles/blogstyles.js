@@ -3,57 +3,47 @@ import {
   Body1,
   Body3,
   Body4,
-  Body5,
-  FooterText,
   HeaderFont,
-  Heading4,
   LinkTxt,
   MbBody1,
   MbBody3,
   MbBody4,
-  MbBody5,
   MbButtonText,
   MobileH2,
   MobileH3,
   MobileH4
 } from './styles';
+import { button_regular, h1_regular, h3_semibold, label_semibold, tag } from './typography';
 
 const FirstBlog = styled.div`
-  border: 1px solid var(--dark-purple);
-  border-radius: 4px;
-  max-width: 882px;
+  background-color: var(--gray-50);
   width: 100%;
-  margin: auto;
-  margin-bottom: 28px;
   cursor: pointer;
-  .image {
-    height: auto;
-    object-fit: cover;
-    max-width: 100%;
-    border-radius: 3px 3px 0px 0px;
-    @media only screen and (max-width: 749px) {
-      height: 248px;
-      object-fit: cover;
-    }
+  padding: var(--space-152) 0 var(--space-80);
+  h1 {
+    ${h1_regular}
+    color: var(--title);
+    margin: 0;
   }
-  @media only screen and (max-width: 749px) {
-    margin: 0px auto 28px;
-  }
-  :hover {
-    h2 {
-      color: var(--title);
-    }
-    .image {
-      transform: scale(1.1);
-      transition: transform 0.2s;
-    }
+  @media only screen and (max-width: 650px) {
+    padding-bottom: var(--space-32);
   }
 `;
 const Top = styled.div`
   object-fit: cover;
   overflow: hidden;
-  border-radius: 3px 3px 0px 0px;
+  border-radius: var(--radius-12);
+  border: 1px solid var(--border-default);
   height: 100%;
+  display: flex;
+  .image {
+    height: auto;
+    object-fit: cover;
+    max-width: 100%;
+    @media only screen and (max-width: 991px) {
+      width: 100%;
+    }
+  }
   ${(props) =>
     props.maxHeight &&
     css`
@@ -61,74 +51,106 @@ const Top = styled.div`
     `}
 `;
 const Text = styled.div`
-  margin: 20px 25px;
-  @media only screen and (max-width: 749px) {
-    margin: 20px 16px;
+  max-width: 464px;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-12);
+  h3 {
+    ${h3_semibold}
+    color: var(--title);
+    margin: 0;
   }
-  h2 {
-    ${Body4}
-    color: var(--primary);
-    margin-bottom: 4px;
-    margin-top: 0px;
-    @media only screen and (max-width: 749px) {
-      ${MbBody4}
-    }
+  @media only screen and (max-width: 991px) {
+    gap: var(--space-12);
+    max-width: 100%;
   }
 `;
-const Textarea = styled.div`
-  margin: 20px 25px;
-  margin-bottom: 0px;
-  @media only screen and (max-width: 749px) {
-    margin: 20px 16px;
-    margin-bottom: 0px;
+
+const BlogCardDiv = styled.div`
+  display: flex;
+  align-items: center;
+  gap: var(--space-40);
+  padding-top: var(--space-40);
+  position: relative;
+  @media only screen and (max-width: 991px) {
+    flex-direction: column;
+    align-items: flex-start;
   }
-  h2 {
-    ${Body4}
-    color: var(--primary);
-    margin-bottom: 4px;
-    margin-top: 0px;
-    @media only screen and (max-width: 749px) {
-      ${MbBody4}
-    }
+  @media only screen and (max-width: 449px) {
+    padding-top: var(--space-24);
+    gap: var(--space-24);
+  }
+`;
+
+const Textarea = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-8);
+  h3 {
+    ${h3_semibold}
+    color: var(--title);
+    margin: 0;
+    margin-top: var(--space-4);
+  }
+  @media only screen and (max-width: 449px) {
+    gap: var(--space-8);
   }
 `;
 
 const PostDetail = styled.div`
-  ${FooterText}
+  ${tag}
   display:flex;
-  color: var(--medium-gray);
-  gap: 8px;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+  gap: var(--space-4);
   align-items: center;
+  justify-content: space-between;
   li {
     list-style-type: none;
+  }
+  .svg-icon {
+    transform: translateX(-2px) scale(0.98);
+    transition: transform 0.25s, opacity 0.25s;
+    transition-timing-function: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    opacity: 0;
   }
 `;
 const Par = styled.div`
   display: -webkit-box;
   overflow: hidden;
   -webkit-box-orient: vertical;
-  -webkit-line-clamp: 4;
-  ${Body5}
-  margin-top:16px;
-  color: var(--body);
-  @media only screen and (max-width: 749px) {
-    ${MbBody5}
-    margin-top:8px;
+  -webkit-line-clamp: 2;
+  ${button_regular}
+  color: var(--text-secondary);
+  @media only screen and (max-width: 768px) {
+    -webkit-line-clamp: 4;
   }
 `;
 
 const Last = styled.div`
-  border-top: 1px solid var(--dark-purple);
-  border-radius: 0px 0px 4px 4px;
-  background-color: var(--light-green);
-  padding: 8px 25px;
-  @media only screen and (max-width: 749px) {
-    padding: 8px 16px;
-  }
+  position: absolute;
+  left: 0;
+  top: 0;
+  opacity: 0;
   p {
-    ${MbButtonText}
-    margin:0px;
+    ${button_regular}
+    color: var(--title);
+    margin: 0px;
   }
+`;
+
+const BlogListDiv = styled.div`
+  padding: var(--space-80) 0 var(--space-120);
+  @media only screen and (max-width: 650px) {
+    padding-top: var(--space-60);
+  }
+`;
+
+const IconDiv = styled.div`
+  width: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `;
 
 const Backlink = styled.div`
@@ -225,6 +247,7 @@ const TableHeading = styled.div`
 const Details = styled.div`
   margin: auto;
   width: 100%;
+  padding-top: var(--space-152);
 `;
 
 const Content = styled.div`
@@ -516,14 +539,6 @@ const Content = styled.div`
   }
 `;
 
-const Textcontent = styled.div`
-  ${Body4}
-  color: var(--body);
-  @media only screen and (max-width: 450px) {
-    ${MbBody4}
-  }
-`;
-
 const ShareButton = styled.div`
   margin: 80px auto 0;
   max-width: 156px;
@@ -565,40 +580,9 @@ const OverLayDiv = styled.div`
   z-index: 0.1;
 `;
 
-const Leftsec = styled.div`
-  margin: 72px 40px auto 40px;
-  text-align: center;
-  h1 {
-    ${Heading4}
-    margin-top:0px;
-    margin-bottom: 12px;
-    color: var(--black);
-    @media only screen and (max-width: 450px) {
-      ${MobileH4}
-    }
-  }
-  p {
-    ${Body5}
-    margin-bottom:40px;
-    margin-top: 30px;
-    color: var(--body);
-    @media only screen and (max-width: 450px) {
-      margin-bottom: 0px;
-      ${Body5}
-    }
-  }
-  @media only screen and (max-width: 768px) {
-    margin: 40px 24px;
-  }
-`;
-
 const MainContent = styled.div`
-  padding-top: 120px;
   .without-toc {
     max-width: 880px;
-  }
-  @media only screen and (max-width: 768px) {
-    padding-top: 115px;
   }
 `;
 const BlogDetailsidebar = styled.div`
@@ -640,6 +624,46 @@ const Rightcontent = styled.div`
   max-width: 880px;
   width: 100%;
 `;
+
+const BlogCardsDiv = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 65px 1fr;
+  row-gap: var(--space-64);
+  padding-top: var(--space-40);
+  @media only screen and (max-width: 650px) {
+    grid-template-columns: repeat(1, 1fr);
+    row-gap: var(--space-40);
+  }
+`;
+
+const LoadMoreButton = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-12) var(--space-24);
+  background-color: var(--title);
+  width: fit-content;
+  margin: var(--space-80) auto 0;
+  border-radius: var(--radius-30);
+  cursor: pointer;
+  ${label_semibold}
+  color: var(--off-white-100);
+  @media only screen and (max-width: 650px) {
+    margin: var(--space-40) auto 0;
+  }
+`;
+
+const ListDiv = styled.div`
+  padding-bottom: var(--space-120);
+`;
+
+const Divider = styled.div`
+  width: 1px;
+  height: 100%;
+  background-color: var(--border-default);
+  margin: 0 var(--space-32);
+`;
+
 export {
   FirstBlog,
   Top,
@@ -653,14 +677,19 @@ export {
   TableHeading,
   Details,
   Content,
-  Textcontent,
   ShareButton,
   Icon,
-  Leftsec,
   OverLayDiv,
   MainContent,
   BlogDetailsidebar,
   BlogContent,
   HeroLeft,
-  Rightcontent
+  Rightcontent,
+  BlogCardDiv,
+  IconDiv,
+  BlogListDiv,
+  BlogCardsDiv,
+  LoadMoreButton,
+  ListDiv,
+  Divider
 };

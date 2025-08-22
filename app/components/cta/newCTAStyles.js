@@ -13,6 +13,7 @@ const TextSection = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
+  align-items: center;
   gap: var(--space-24);
   @media only screen and (max-width: 768px) {
     padding: 20px;
@@ -68,7 +69,7 @@ const Title = styled.div`
   display: flex;
   flex-direction: column;
   gap: var(--space-24);
-  max-width: 724px;
+  max-width: 573px;
   h1 {
     ${h1_regular};
     color: var(--off-white-100);

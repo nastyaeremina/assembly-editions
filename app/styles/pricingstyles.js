@@ -45,7 +45,7 @@ const ToggleContainer = styled.div`
   align-items: center;
   cursor: pointer;
   padding: var(--space-4);
-  background-color: var(--extra-light-gray);
+  background-color: var(--gray-50);
   border-radius: var(--radius-16);
 `;
 

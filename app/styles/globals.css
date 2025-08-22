@@ -186,11 +186,13 @@ body {
   --off-white-200: #fefefc;
   --off-white-300: #fdfdf9;
   --off-white-500: #fbfbf5;
-  --extra-light-gray: #f3f3f0;
+  --off-white-600: #f2f2e8;
+  --gray-50: #f3f3f0;
   --border-default: #cfcfcf;
   --bg-primary-hover: #f2f2e8;
   --bg-card-dark-hover: #404040;
   --tooltip-box-shadow: #00000040;
+  --link-default: #2b53a4;
 
   /* Old website color */
   --text-primary: #212b36;
@@ -313,10 +315,12 @@ body {
   --space-16: 16px;
   --space-20: 20px;
   --space-24: 24px;
+  --space-28: 28px;
   --space-30: 30px;
   --space-32: 32px;
   --space-40: 40px;
   --space-48: 48px;
+  --space-60: 60px;
   --space-62: 62px;
   --space-64: 64px;
   --space-80: 80px;
@@ -326,6 +330,7 @@ body {
 
   /* radius variable */
   --radius-4: 4px;
+  --radius-8: 8px;
   --radius-12: 12px;
   --radius-16: 16px;
   --radius-20: 20px;
@@ -360,7 +365,7 @@ body {
 
   @media only screen and (max-width: 449px) {
     --space-152: 134px;
-    --space-120: 64px;
+    --space-120: 60px;
     /* Font size variable */
     --font-size-h1: 40px;
     --font-size-h2: 32px;

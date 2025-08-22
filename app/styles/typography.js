@@ -89,6 +89,7 @@ export const tag = css`
   font-size: var(--font-size-tag);
   line-height: var(--line-height-16);
   font-weight: var(--font-weight-regular);
+  letter-spacing: 0.28px;
 `;
 
 export const label_regular = css`

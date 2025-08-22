@@ -1,12 +1,12 @@
 import { notFound } from 'next/navigation';
 import { parse } from 'node-html-parser';
 import Layout from '../../components/layout';
-import BlogNavbar from '../../components/navbar/blognavbar';
 import { getAllTagWithSlug, getBlogDetail } from '../../lib/blog-content';
 import { customSort, isEmpty, isValidUrl } from '../../helpers/helpers';
 import { isSameDomain } from '../../helpers/serverSideHelpers';
 import BlogdetailPage from '../../components/PageComponent/Blog/blogDetailPage';
 import { BLOG_TAG_SORTED_LIST, CURRENT_SITE_URL, CURRENT_DOMAIN } from '../../constants/constant';
+import Navbar from '../../components/navbar/navbar';
 
 async function getContent({ slug }) {
   try {
@@ -150,7 +150,7 @@ export default async function Blogdetail({ params }) {
       <script type='application/ld+json' dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
 
       <Layout>
-        <BlogNavbar tagData={tags} />
+        <Navbar />
         <BlogdetailPage
           blogDetail={blogDetail}
           htmlData={modifiedHtmlData}

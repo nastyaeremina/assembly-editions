@@ -28,3 +28,12 @@ export const SupportSectionData = {
     }
   ]
 };
+
+export const CTAData = {
+  title: 'Where client experiences come together',
+  description: 'Try Assembly free for 14 days, no credit card required.',
+  primaryButtonLink: '/',
+  primaryButtonText: 'Get Started',
+  secondaryButtonLink: 'https://www.copilot.app/book-demo',
+  secondaryButtonText: 'Book Demo'
+};

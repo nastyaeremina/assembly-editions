@@ -7,7 +7,7 @@ const Container = styled.div`
   width: 100%;
   max-width: 1272px;
   margin: 0 auto;
-  padding: 0 24px;
+  padding: 0 var(--space-20);
 `;
 
 const PrimaryButton = styled.div`

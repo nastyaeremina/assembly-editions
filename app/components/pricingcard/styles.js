@@ -89,7 +89,7 @@ const Caption = styled.h5`
 `;
 
 const PriceTag = styled.span`
-  background-color: var(--extra-light-gray);
+  background-color: var(--gray-50);
   width: max-content;
   padding: 0 var(--space-6);
   border-radius: var(--radius-4);

@@ -4,9 +4,9 @@ export async function getBlogPosts() {
   return await api.posts
     .browse({
       limit: 'all',
-      include: 'tags',
+      include: 'tags,authors',
       order: 'published_at desc',
-      filter: `tags:['announcements','inside-copilot']`
+      filter: `visibility:public`
 
       // fields: ['reading_time', 'slug', 'title', 'featured', 'feature_image', 'published_at', 'excerpt', 'comment_id']
     })

@@ -5,7 +5,7 @@ import { notFound } from 'next/navigation';
 import { Container } from '../../../styles/commonStyles';
 import Blogcard from '../../../components/Blogcard';
 import { isEmpty } from '../../../helpers/helpers';
-import { MainContent } from '../../../styles/blogstyles';
+import { BlogCardsDiv, MainContent } from '../../../styles/blogstyles';
 
 export default function AuthorPage({ allPosts }) {
   const renderData = useMemo(() => {
@@ -30,7 +30,9 @@ export default function AuthorPage({ allPosts }) {
   return (
     <>
       <MainContent>
-        <Container>{renderData}</Container>
+        <Container>
+          <BlogCardsDiv>{renderData}</BlogCardsDiv>
+        </Container>
       </MainContent>
     </>
   );

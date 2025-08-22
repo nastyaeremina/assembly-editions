@@ -3,9 +3,10 @@
 import Image from 'next/image';
 import { useMemo } from 'react';
 import { useRouter } from 'next/navigation';
-import { Par, PostDetail, Textarea } from '../../styles/blogstyles';
+import { IconDiv, Par, PostDetail, Textarea } from '../../styles/blogstyles';
 import { isEmpty } from '../../helpers/helpers';
-import { BlogDetail, Bottom, Leftside, Rightside } from './styles';
+import SVGComponent from '../../../public/images/svg/SVGComponent';
+import { BlogDetail, Bottom, DetailLeftDiv, Leftside } from './styles';
 
 export default function Blogcard(props) {
   const router = useRouter();
@@ -16,8 +17,8 @@ export default function Blogcard(props) {
       return <span key={`tag_list_index_${index}`}>{item?.name}</span>;
     });
   }, [props.tags]);
-  
-  if(isEmpty(props)) return null;
+
+  if (isEmpty(props)) return null;
 
   return (
     <>
@@ -27,22 +28,23 @@ export default function Blogcard(props) {
             <Image src={props.image} width={266} height={266} className='image' alt='blog' />
           </Leftside>
         )}
-        <Rightside>
-          <Textarea>
-            <h2>{props.name}</h2>
-            <PostDetail>
+        <Textarea>
+          <PostDetail>
+            <DetailLeftDiv>
               {!isEmpty(props.date) && props.date}
-              {!isEmpty(props.date) && !isEmpty(props.read) && (
-                <svg width='3' height='3' viewBox='0 0 3 3' fill='none' xmlns='http://www.w3.org/2000/svg'>
-                  <circle cx='1.5' cy='1.5' r='1.5' fill='#757575' />
-                </svg>
+              {!isEmpty(props.date) && !isEmpty(props.authorName) && (
+                <IconDiv>
+                  <SVGComponent name='dot-icon' width='6' height='6' viewBox='0 0 6 6' />
+                </IconDiv>
               )}
-              {!isEmpty(props.read) && <li>{`${props.read}`}</li>}
-            </PostDetail>
-            <Par>{props.desc}</Par>
-          </Textarea>
-          {!isEmpty(props.tags) && <Bottom>{tagListReder}</Bottom>}
-        </Rightside>
+              {!isEmpty(props.authorName) && <li>{`${props.authorName}`}</li>}
+            </DetailLeftDiv>
+            <SVGComponent name='blog-card-hover-arrow-icon' width='16' height='16' viewBox='0 0 16 16' className='svg-icon'/>
+          </PostDetail>
+          <h3>{props.name}</h3>
+          <Par>{props.desc}</Par>
+        </Textarea>
+        {!isEmpty(props.tags) && <Bottom>{tagListReder}</Bottom>}
       </BlogDetail>
     </>
   );

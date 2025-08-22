@@ -1,12 +1,17 @@
 import BlogPage from '../components/PageComponent/Blog/blogPage';
-import BlogNavbar from '../components/navbar/blognavbar';
 import Layout from '../components/layout';
-import { getTopBarContent } from '../components/navbar/navbar';
+import Navbar, { getTopBarContent } from '../components/navbar/navbar';
 import AggregateRating from '../components/aggregateRating';
+import {
+  COPILOT_FACEBOOK_LINK,
+  COPILOT_INSTAGRAM_LINK,
+  COPILOT_LINKEDIN_LINK,
+  COPILOT_TWITTER_LINK,
+  COPILOT_YOUTUBE_CHANNEL_LINK
+} from '../constants/externalLinks';
 import { getAllTagWithSlug, getBlogPosts } from './../lib/blog-content';
 import { customSort, getSEOData, isEmpty } from './../helpers/helpers';
 import { BLOG_SEO_ID, BLOG_TAG_SORTED_LIST, CURRENT_SITE_URL } from './../constants/constant';
-import { COPILOT_FACEBOOK_LINK, COPILOT_INSTAGRAM_LINK, COPILOT_LINKEDIN_LINK, COPILOT_TWITTER_LINK, COPILOT_YOUTUBE_CHANNEL_LINK } from '../constants/externalLinks';
 
 async function getContent() {
   const allPosts = (await getBlogPosts()) || [];
@@ -44,9 +49,8 @@ export default async function Blog() {
     <>
       <AggregateRating id={BLOG_SEO_ID} />
       <script type='application/ld+json' dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
-
       <Layout>
-        <BlogNavbar tagData={tags} topbarContent={topbarContent} />
+        <Navbar />
         <BlogPage allPosts={allPosts} tags={tags} />
       </Layout>
     </>

@@ -1,9 +1,9 @@
 import Layout from '../../../components/layout';
-import BlogNavbar from '../../../components/navbar/blognavbar';
 import { getAllTagWithSlug, getAuthorDetail, getBlogByAuthor } from '../../../lib/blog-content';
 import { customSort, isEmpty } from '../../../helpers/helpers';
 import AuthorPage from '../../../components/PageComponent/Blog/authorPage';
 import { BLOG_TAG_SORTED_LIST, CURRENT_SITE_URL, CURRENT_DOMAIN } from '../../../constants/constant';
+import Navbar from '../../../components/navbar/navbar';
 
 async function getContent({ slug }) {
   const allPosts = (await getBlogByAuthor(slug)) ?? [];
@@ -54,7 +54,7 @@ export default async function Author({ params }) {
   return (
     <>
       <Layout>
-        <BlogNavbar tagData={tags} />
+        <Navbar />
         <AuthorPage allPosts={allPosts} />
       </Layout>
     </>
