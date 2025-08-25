@@ -31,8 +31,6 @@
     "cross-env": "7.0.3",
     "customerio-node": "^4.1.1",
     "dotenv": "^16.0.3",
-    "eslint": "8.26.0",
-    "eslint-config-next": "13.0.1",
     "html-react-parser": "^3.0.8",
     "js-cookie": "^3.0.1",
     "marked": "^15.0.1",
@@ -49,7 +47,7 @@
     "react-dom": "18.2.0",
     "react-hotkeys-hook": "^4.4.4",
     "react-lite-youtube-embed": "^2.3.52",
-    "react-markdown": "^8.0.4",
+    "react-markdown": "^9.0.1",
     "react-medium-image-zoom": "^5.1.10",
     "react-redux": "^8.0.5",
     "react-scripts": "^5.0.1",
@@ -62,9 +60,10 @@
     "styletron-react": "^6.1.0"
   },
   "devDependencies": {
-    "eslint": "8.24.0",
+    "@types/react": "19.1.11",
+    "eslint": "8.26.0",
     "eslint-config-airbnb": "^19.0.4",
-    "eslint-config-next": "12.3.1",
+    "eslint-config-next": "13.5.1",
     "eslint-config-prettier": "^8.5.0",
     "eslint-config-react-app": "^7.0.1",
     "eslint-loader": "^4.0.2",
@@ -85,5 +84,8 @@
     "fs": false,
     "os": false,
     "path": false
+  },
+  "engines": {
+    "node": "20.x"
   }
 }

@@ -13,6 +13,9 @@ import { getAllTagWithSlug, getBlogPosts } from './../lib/blog-content';
 import { customSort, getSEOData, isEmpty } from './../helpers/helpers';
 import { BLOG_SEO_ID, BLOG_TAG_SORTED_LIST, CURRENT_SITE_URL } from './../constants/constant';
 
+// Force dynamic rendering to prevent static generation issues
+export const dynamic = 'force-dynamic';
+
 async function getContent() {
   const allPosts = (await getBlogPosts()) || [];
   const tagsData = (await getAllTagWithSlug()) || [];

@@ -3,12 +3,12 @@
 import Link from 'next/link';
 import { useState, useEffect, useCallback, useMemo } from 'react';
 import Image from 'next/image';
-import CopilotLogos from 'public/images/blacklogo.svg';
-import GreenLogos from 'public/images/greenlogo.svg';
-import WhiteLogos from 'public/images/whitelogo.svg';
-import MobileBlackLogos from 'public/images/mobileblacklogo.svg';
-import MobileWhiteLogos from 'public/images/whitemobilelogo.svg';
-import MobileGreenLogos from 'public/images/greenmblogo.svg';
+import CopilotLogos from '../../../public/images/blacklogo.svg';
+import GreenLogos from '../../../public/images/greenlogo.svg';
+import WhiteLogos from '../../../public/images/whitelogo.svg';
+import MobileBlackLogos from '../../../public/images/mobileblacklogo.svg';
+import MobileWhiteLogos from '../../../public/images/whitemobilelogo.svg';
+import MobileGreenLogos from '../../../public/images/greenmblogo.svg';
 import { BlackButton, Container } from '../../styles/commonStyles';
 import { HEADER_LIST, NAVBAR_COLOR_LIST } from '../../constants/constant';
 import useMobileDevice from '../../hooks/useMobileDevice';

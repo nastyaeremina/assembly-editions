@@ -1,5 +1,5 @@
 'use client';
-import { ReactMarkdown } from 'react-markdown/lib/react-markdown';
+import ReactMarkdown from 'react-markdown';
 import { useMemo, useState } from 'react';
 import {
   BusinessSection,
