@@ -1,6 +1,6 @@
 'use client';
 
-import { ReactMarkdown } from 'react-markdown/lib/react-markdown';
+import ReactMarkdown from 'react-markdown';
 import LegalFooter from '../../footer/legalfooter';
 import { Container } from '../../../styles/commonStyles';
 import { MainSection, PrivacuHero, PostContent, PrivacyContent, FooterSection } from '../../../styles/resourcesStyles';

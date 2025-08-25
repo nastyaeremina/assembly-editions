@@ -1,5 +1,5 @@
 import React from 'react';
-import SVGComponent from 'public/images/svg/SVGComponent';
+import SVGComponent from '../../../public/images/svg/SVGComponent';
 import { Star } from './styles';
 
 export default function StartList({ rate, isBig }) {

@@ -1,27 +1,29 @@
 /** @type {import('next').NextConfig} */
 const purgecss = require('@fullhuman/postcss-purgecss');
+
 async function fetchGraphQL({ preview = false, query, type = ['other'] }) {
-  return fetch(`https://graphql.contentful.com/content/v1/spaces/${process.env.CONTENTFUL_SPACE_ID}`, {
-    method: 'POST',
-    next: { tags: type },
-    headers: {
-      'Content-Type': 'application/json',
-      Authorization: `Bearer ${process.env.CONTENTFUL_PREVIEW_ACCESS_TOKEN}`
-    },
-    body: JSON.stringify({ query })
-  }).then((response) => response.json());
+  try {
+    const response = await fetch(`https://graphql.contentful.com/content/v1/spaces/${process.env.CONTENTFUL_SPACE_ID}`, {
+      method: 'POST',
+      next: { tags: type },
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${process.env.CONTENTFUL_PREVIEW_ACCESS_TOKEN}`
+      },
+      body: JSON.stringify({ query })
+    });
+    return response.json();
+  } catch (error) {
+    console.error('Error fetching from Contentful:', error);
+    return { data: { redirectCollection: { items: [] } } };
+  }
 }
+
 const nextConfig = {
   reactStrictMode: true,
-  experimental: { appDir: true },
   compiler: {
     styledComponents: true
   },
-  plugins: [
-    purgecss({
-      content: ['./**/*.html']
-    })
-  ],
   images: {
     domains: ['images.ctfassets.net', 'copilot-blog.ghost.io', 'images.unsplash.com', 'firebasestorage.googleapis.com']
   },

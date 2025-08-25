@@ -1,6 +1,6 @@
 import React from 'react';
 import Image from 'next/image';
-import { ReactMarkdown } from 'react-markdown/lib/react-markdown';
+import ReactMarkdown from 'react-markdown';
 import { Caption, Founder, FounderPosition, FounderSection, Name, TestimonialCenter } from './styles';
 
 export default function TestimonialCenterBox({ personProfile, personRole, personName, quote, logoUrl }) {

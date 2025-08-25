@@ -1,7 +1,7 @@
 'use client';
 import Image from 'next/image';
 import React, { useState } from 'react';
-import { ReactMarkdown } from 'react-markdown/lib/react-markdown';
+import ReactMarkdown from 'react-markdown';
 import { ContainWrap, IconSvg, IconWrap, LeftDetail, RightDetail } from '../../styles/homepageStyles';
 import Button from '../button/button';
 import TabContent from '../tabbutton/TabContent';

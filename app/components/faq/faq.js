@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
-import { ReactMarkdown } from 'react-markdown/lib/react-markdown';
+import ReactMarkdown from 'react-markdown';
 import Image from 'next/image';
 import copy from 'copy-to-clipboard';
 import { isEmpty, stringToSlugyfy } from '../../helpers/helpers';

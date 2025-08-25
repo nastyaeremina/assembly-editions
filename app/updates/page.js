@@ -7,6 +7,9 @@ import Navbar from '../components/navbar/navbar';
 import CTA from '../components/cta/cta';
 import AggregateRating from '../components/aggregateRating';
 
+// Force dynamic rendering to prevent static generation issues
+export const dynamic = 'force-dynamic';
+
 async function getContent() {
   const allPosts = await getUpdatesPosts({ page: 1 });
   return allPosts;

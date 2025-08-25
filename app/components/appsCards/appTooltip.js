@@ -1,5 +1,5 @@
 import React, { useRef, useEffect, useState } from 'react';
-import SVGComponent from 'public/images/svg/SVGComponent';
+import SVGComponent from '../../../public/images/svg/SVGComponent';
 import { Icon, Informative, Line, Tooltip, TooltipText } from './styles';
 
 function AppTooltip({ message, iconSize = '13', fill = 'var(--body)', style, mainDivStyle, isAutoAdjust = false }) {
