@@ -237,10 +237,16 @@ const CardBtn = styled.div`
   display: flex;
   flex-direction: column;
   gap: var(--space-12);
+  margin-top: var(--space-16);
   .terriarybtn-div {
     height: var(--space-19);
-    .button {
-      cursor: pointer;
+    a {
+      ${button_regular}
+      color: var(--text-secondary);
+      transition: color 0.3s ease;
+      :hover {
+        color: var(--title);
+      }
     }
     @media only screen and (max-width: 449px) {
       height: unset;

@@ -75,18 +75,8 @@ const PlanButton = styled.div`
   justify-content: center;
   padding-top: var(--space-64);
   position: relative;
-  a {
-    cursor: pointer;
-    display: flex;
-    flex-direction: row-reverse;
-    padding: var(--space-10) 0;
-    justify-content: center;
-    gap: 8px;
-    width: 209px;
-    white-space: nowrap;
-    img {
-      margin-right: unset !important;
-    }
+  .button {
+    width: 223px;
   }
   @media only screen and (max-width: 768px) {
     display: none;

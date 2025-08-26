@@ -16,6 +16,8 @@ import {
 } from './newCTAStyles';
 import { Container } from '../../styles/commonStyles';
 import SVGComponent from '../../../public/images/svg/SVGComponent';
+import ButtonV2Component from '../button/buttonV2/buttonV2';
+import { ButtonTone, ButtonVariant } from '../../constants/constant';
 
 export default function NewCTA({
   title,
@@ -36,11 +38,15 @@ export default function NewCTA({
             </Title>
             {isEmpty(banner) && <Description>{description}</Description>}
             <ButtonGroup isNoImage={isEmpty(banner)}>
-              <PrimaryButton href={primaryButtonLink}>{primaryButtonText}</PrimaryButton>
-              <SecondaryButton href={secondaryButtonLink}>
-                {secondaryButtonText}
-                <SVGComponent name='cta-button-arrow' width='15' height='13' viewBox='0 0 15 13' />
-              </SecondaryButton>
+              <ButtonV2Component title={primaryButtonText} tone={ButtonTone.DARK} href={primaryButtonLink} />
+              <ButtonV2Component
+                title={secondaryButtonText}
+                variant={ButtonVariant.SECONDARY}
+                tone={ButtonTone.DARK}
+                iconName={'cta-button-arrow'}
+                href={secondaryButtonLink}
+                iconSize='16'
+              />
             </ButtonGroup>
           </TextSection>
           {!isEmpty(banner) && (

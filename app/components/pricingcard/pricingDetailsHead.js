@@ -1,8 +1,10 @@
 import React from 'react';
-import Button from '../button/button';
 import { isEmpty, stringToSlugyfy } from '../../helpers/helpers';
 import { Caption, CardBtn, Description, PriceMenu, PriceSection } from './styles';
 import PricingCardLabel from './pricingCardLabel';
+import ButtonV2Component from '../button/buttonV2/buttonV2';
+import Link from 'next/link';
+import { ButtonSize } from '../../constants/constant';
 
 export default function PricingDetailsHead({ data, isYearly, descriptionMaxHeight }) {
   return (
@@ -17,19 +19,16 @@ export default function PricingDetailsHead({ data, isYearly, descriptionMaxHeigh
           <PricingCardLabel price={isYearly ? data?.annualPrice : data?.monthlyPrice} />
           <CardBtn>
             {!isEmpty(data?.primaryCtaText) && (
-              <Button
-                text={data?.primaryCtaText}
+              <ButtonV2Component
+                title={data?.primaryCtaText}
                 href={data?.primaryCtaLink}
-                className={'cardbtn'}
-                bgColor={'--black'}
-                fontColor={'--white'}
-                borderColor={'--black'}
-                hoverColor={'--secondary-hover-color'}
+                size={ButtonSize.SMALL}
+                isWidth
               />
             )}
             {!isEmpty(data?.secondaryCtaText) && (
               <div className='terriarybtn-div'>
-                <Button text={data?.secondaryCtaText} href={data?.secondaryCtaLink} type={'link'} className='button' />
+                <Link href={data?.secondaryCtaLink}>{data?.secondaryCtaText}</Link>
               </div>
             )}
           </CardBtn>

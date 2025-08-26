@@ -640,14 +640,7 @@ const LoadMoreButton = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: var(--space-12) var(--space-24);
-  background-color: var(--title);
-  width: fit-content;
   margin: var(--space-80) auto 0;
-  border-radius: var(--radius-30);
-  cursor: pointer;
-  ${label_semibold}
-  color: var(--off-white-100);
   @media only screen and (max-width: 650px) {
     margin: var(--space-40) auto 0;
   }

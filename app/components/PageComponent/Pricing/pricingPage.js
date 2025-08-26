@@ -17,11 +17,9 @@ import PricingCardSection from '../../pricingcard/pricingCardSection';
 import { isEmpty } from '../../../helpers/helpers';
 import SVGComponent from '../../../../public/images/svg/SVGComponent';
 import AppTooltip from '../../appsCards/appTooltip';
-import Button from '../../button/button';
-import DownArrow from '../../../../public/images/down-arrow.svg';
-import UpArrow from '../../../../public/images/up-arrow.svg';
-import { PlanList } from '../../../constants/constant';
+import { ButtonVariant, PlanList } from '../../../constants/constant';
 import YearlyToggleComponent from './yearlyToggleComponent';
+import ButtonV2Component from '../../button/buttonV2/buttonV2';
 
 export default function PricingPage({ details }) {
   // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -206,16 +204,12 @@ export default function PricingPage({ details }) {
               )}
             </>
             <PlanButton>
-              <Button
-                isLink={false}
+              <ButtonV2Component
+                title={isShowFeature ? 'Show plan details' : 'Hide plan details'}
                 onClick={toggleShowFeature}
-                bgColor={'--white'}
-                fontColor={'--black'}
-                borderColor={'--black'}
-                text={isShowFeature ? 'Show plan details' : 'Hide plan details'}
-                hoverColor={'--hover-color'}
-                isicon={true}
-                imgUrl={!isShowFeature && !isEmpty(planFeatures) ? UpArrow : DownArrow}
+                variant={ButtonVariant.SECONDARY_WITH_BORDER}
+                iconName={!isShowFeature && !isEmpty(planFeatures) ? 'down-arrow-icon' : 'up-arrow-icon'}
+                className='button'
               />
             </PlanButton>
           </PriceMenu>

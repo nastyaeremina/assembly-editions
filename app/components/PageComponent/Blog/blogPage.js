@@ -7,7 +7,7 @@ import { Container } from '../../../styles/commonStyles';
 import { MainContent, BlogListDiv, BlogCardsDiv, LoadMoreButton, Divider } from '../../../styles/blogstyles';
 import Blogcard from '../../Blogcard';
 import { isEmpty } from '../../../helpers/helpers';
-import { CURRENT_SITE_URL } from '../../../constants/constant';
+import { ButtonVariant, CURRENT_SITE_URL } from '../../../constants/constant';
 import {
   COPILOT_FACEBOOK_LINK,
   COPILOT_INSTAGRAM_LINK,
@@ -21,6 +21,7 @@ import { CTAData } from '../../../constants/raw';
 import DropDown from '../../dropdownComponent/index';
 import { useIsMobile } from '../../../hooks/useMobileDevice';
 import FeatureBlogCard from '../../Blogcard/fetaureBlogCard';
+import ButtonV2Component from '../../button/buttonV2/buttonV2';
 
 export default function BlogPage({ allPosts, tags }) {
   const [selectedTag, setSelectedTag] = useState('All');
@@ -128,7 +129,13 @@ export default function BlogPage({ allPosts, tags }) {
             <BlogCardsDiv>{renderData}</BlogCardsDiv>
             {/* Show button only if there are more posts left */}
             {filteredPosts.length > visibleCount && (
-              <LoadMoreButton onClick={() => setVisibleCount((prev) => prev + 8)}>Load more</LoadMoreButton>
+              <LoadMoreButton>
+                <ButtonV2Component
+                  title={'Load more'}
+                  variant={ButtonVariant.SECONDARY_WITH_BORDER}
+                  onClick={() => setVisibleCount((prev) => prev + 8)}
+                />
+              </LoadMoreButton>
             )}
           </BlogListDiv>
         </Container>

@@ -477,3 +477,19 @@ export const AutomationCardVariant = {
   GREEN: 'green',
   WHITE: 'white'
 };
+
+export const ButtonVariant = {
+  PRIMARY: 'primary',
+  SECONDARY: 'secondary',
+  SECONDARY_WITH_BORDER: 'secondary-with-border'
+};
+
+export const ButtonTone = {
+  REGULAR: 'regular',
+  DARK: 'dark'
+};
+
+export const ButtonSize = {
+  SMALL: 'small',
+  MEDIUM: 'medium'
+};
