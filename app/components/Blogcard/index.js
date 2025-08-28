@@ -20,10 +20,10 @@ export default function Blogcard(props) {
 
   return (
     <>
-      <Link href={`/blog/${props.slug}`}>
-        <BlogDetail>
+      <BlogDetail>
+        <Link href={`/blog/${props.slug}`}>
           {!isEmpty(props.image) && (
-            <Leftside>
+            <Leftside isAuthorPage={props.isAuthorPage}>
               <Image src={props.image} width={266} height={266} className='image' alt='blog' />
             </Leftside>
           )}
@@ -50,8 +50,8 @@ export default function Blogcard(props) {
             <Par>{props.desc}</Par>
           </Textarea>
           {!isEmpty(props.tags) && <Bottom>{tagListReder}</Bottom>}
-        </BlogDetail>
-      </Link>
+        </Link>
+      </BlogDetail>
     </>
   );
 }

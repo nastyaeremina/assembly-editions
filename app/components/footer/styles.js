@@ -42,6 +42,13 @@ const FooterSocialList = styled.ul`
   display: flex;
   align-items: center;
   gap: var(--space-24);
+  a {
+    :focus-visible {
+      outline: none;
+      border: 2px solid var(--link-default);
+      border-radius: var(--radius-12);
+    }
+  }
 `;
 const FooterSocialItem = styled.li`
   display: flex;
@@ -109,6 +116,13 @@ const FooterFirst = styled.div`
     ${button_regular};
     color: var(--title);
     margin: 0;
+  }
+  a {
+    :focus-visible {
+      outline: none;
+      border: 2px solid var(--link-default);
+      border-radius: var(--radius-12);
+    }
   }
   @media only screen and (max-width: 768px) {
     width: 100%;

@@ -14,11 +14,11 @@ export default function FeatureBlogCard({ slug, title, excerpt, featureImage, pu
   const [imageHeight, setImageHeight] = useState();
 
   return (
-    <Link href={`/blog/${slug}`}>
-      <FirstBlog>
-        <Container>
-          <h1>Blog</h1>
-          <BlogCardDiv>
+    <FirstBlog>
+      <Container>
+        <h1>Blog</h1>
+        <BlogCardDiv>
+          <Link href={`/blog/${slug}`}>
             {!isEmpty(featureImage) && (
               <Top maxHeight={imageHeight}>
                 <Image
@@ -54,9 +54,9 @@ export default function FeatureBlogCard({ slug, title, excerpt, featureImage, pu
                 ))}
               </Last>
             )}
-          </BlogCardDiv>
-        </Container>
-      </FirstBlog>
-    </Link>
+          </Link>
+        </BlogCardDiv>
+      </Container>
+    </FirstBlog>
   );
 }

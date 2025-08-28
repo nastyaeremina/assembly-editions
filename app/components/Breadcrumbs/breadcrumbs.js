@@ -1,14 +1,16 @@
 import React, { useMemo } from 'react';
 import { BreadcrumbItemsWrapper, BreadcrumbLink, Line } from './styles';
+import { isEmpty } from '../../helpers/helpers';
 
 /**
  * Breadcrumbs Component
  * @param {Object} props - Component props
  * @param {Array} props.breadcrumbs - Array of breadcrumb items
  * @param {string} props.breadcrumbs[].label - Display text for the breadcrumb
- * @param {string} props.breadcrumbs[].href - URL for the breadcrumb link (ignored for last item)
+ * @param {string} props.breadcrumbs[].href - URL for the breadcrumb link
+ * @param {string} props.currentLabel - The label for the current (last) item in the breadcrumbs.
  */
-export default function Breadcrumbs({ breadcrumbs = [] }) {
+export default function Breadcrumbs({ breadcrumbs = [], currentLabel }) {
   // Memoize breadcrumb items to prevent unnecessary re-renders
   const breadcrumbItems = useMemo(() => {
     return breadcrumbs.map((item, index) => (
@@ -20,5 +22,14 @@ export default function Breadcrumbs({ breadcrumbs = [] }) {
     ));
   }, [breadcrumbs]);
 
-  return <BreadcrumbItemsWrapper>{breadcrumbItems}</BreadcrumbItemsWrapper>;
+  return (
+    <BreadcrumbItemsWrapper>
+      {breadcrumbItems}
+      {!isEmpty(currentLabel) && (
+        <>
+          <Line>/</Line> <span>{currentLabel}</span>
+        </>
+      )}
+    </BreadcrumbItemsWrapper>
+  );
 }

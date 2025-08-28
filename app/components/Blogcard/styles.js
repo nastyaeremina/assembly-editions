@@ -1,14 +1,16 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { button_regular } from '../../styles/typography';
 
 const BlogDetail = styled.div`
-  display: flex;
-  flex-direction: column;
   width: 100%;
   cursor: pointer;
   position: relative;
-  gap: var(--space-24);
   border-radius: var(--radius-12);
+  a {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-24);
+  }
   @media only screen and (min-width: 449px) {
     :hover {
       .svg-icon {
@@ -34,6 +36,14 @@ const Leftside = styled.div`
       height: 184px;
     }
   }
+  ${(props) =>
+    props.isAuthorPage &&
+    css`
+      .image {
+        height: 206px;
+        max-height: 206px;
+      }
+    `}
 `;
 const Bottom = styled.div`
   ${button_regular}

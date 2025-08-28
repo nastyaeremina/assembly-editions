@@ -1,38 +1,32 @@
 'use client';
-import { useMemo } from 'react';
-import moment from 'moment';
-import { notFound } from 'next/navigation';
-import { Container } from '../../../styles/commonStyles';
-import Blogcard from '../../../components/Blogcard';
-import { isEmpty } from '../../../helpers/helpers';
-import { BlogCardsDiv, MainContent } from '../../../styles/blogstyles';
+import { MainContent } from '../../../styles/blogstyles';
+import AuthorHeroSection from '../../blogdetailHero/authorHeroSection';
+import { AuthorPagHeroSection, CTAData } from '../../../constants/raw';
+import NewCTA from '../../cta/newCTA';
+import BlogListSection from './blogListSection';
 
 export default function AuthorPage({ allPosts }) {
-  const renderData = useMemo(() => {
-    if (isEmpty(allPosts)) return notFound();
-    return allPosts?.map((item, index) => {
-      const finalTagList = item?.tags?.filter((tag) => tag?.name?.trim()?.[0] !== '#');
-      return (
-        <Blogcard
-          key={`blog_list_index_${index}`}
-          name={item?.title}
-          date={moment(new Date(item?.published_at)).format('MMM DD, YYYY')}
-          read={`${item?.reading_time} min read`}
-          desc={item?.excerpt}
-          image={item?.feature_image}
-          tags={finalTagList}
-          slug={item?.slug}
-        />
-      );
-    });
-  }, [allPosts]);
-
   return (
     <>
       <MainContent>
-        <Container>
-          <BlogCardsDiv>{renderData}</BlogCardsDiv>
-        </Container>
+        <AuthorHeroSection
+          authorImage={allPosts?.[0]?.authors?.[0]?.profile_image}
+          authorName={allPosts?.[0]?.authors?.[0]?.name}
+          designation={AuthorPagHeroSection.designation}
+          articleName={'Blog'}
+          articleHref={'/blog'}
+          twitter={allPosts?.[0]?.authors?.[0]?.twitter}
+          linkedin={allPosts?.[0]?.authors?.[0]?.linkedin}
+        />
+        <BlogListSection authorName={allPosts?.[0]?.authors?.[0]?.name} allPosts={allPosts} />
+        <NewCTA
+          title={CTAData.title}
+          description={CTAData.description}
+          primaryButtonLink={CTAData.primaryButtonLink}
+          primaryButtonText={CTAData.primaryButtonText}
+          secondaryButtonLink={CTAData.secondaryButtonLink}
+          secondaryButtonText={CTAData.secondaryButtonText}
+        />
       </MainContent>
     </>
   );

@@ -13,12 +13,12 @@ const Tag = styled(Link)`
   color: var(--text-secondary);
   transition: color 0.3s ease;
   cursor: pointer;
-  border-radius: var(--radius-8);
   :hover {
     color: var(--title);
   }
   :focus-visible {
-    outline: 2px solid var(--link-default);
+    outline: 1px solid var(--link-default);
+    border-radius: var(--radius-8);
   }
   &.active {
     color: var(--title);

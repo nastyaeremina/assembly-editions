@@ -1,10 +1,9 @@
 import styled, { css } from 'styled-components';
-import { button_regular, h1_regular, h3_semibold, label_semibold, tag, label_regular } from './typography';
+import { button_regular, h1_regular, h3_semibold, tag, label_regular, h2_semibold } from './typography';
 
 const FirstBlog = styled.div`
   background-color: var(--gray-50);
   width: 100%;
-  cursor: pointer;
   padding: var(--space-152) 0 var(--space-80);
   h1 {
     ${h1_regular}
@@ -54,11 +53,18 @@ const Text = styled.div`
 `;
 
 const BlogCardDiv = styled.div`
-  display: flex;
-  align-items: center;
-  gap: var(--space-40);
   padding-top: var(--space-40);
   position: relative;
+  a {
+    display: flex;
+    align-items: center;
+    gap: var(--space-40);
+    :focus-visible {
+      outline: none;
+      border: 2px solid var(--link-default);
+      border-radius: var(--radius-12);
+    }
+  }
   @media only screen and (max-width: 991px) {
     flex-direction: column;
     align-items: flex-start;
@@ -322,6 +328,16 @@ const BlogCardsDiv = styled.div`
   grid-template-columns: 1fr 65px 1fr;
   row-gap: var(--space-64);
   padding-top: var(--space-40);
+  &.author-page {
+    grid-template-columns: 1fr 65px 1fr 65px 1fr;
+    @media only screen and (max-width: 991px) {
+      grid-template-columns: 1fr 65px 1fr;
+    }
+    @media only screen and (max-width: 650px) {
+      grid-template-columns: repeat(1, 1fr);
+      row-gap: var(--space-40);
+    }
+  }
   @media only screen and (max-width: 650px) {
     grid-template-columns: repeat(1, 1fr);
     row-gap: var(--space-40);
@@ -338,6 +354,74 @@ const LoadMoreButton = styled.div`
   }
 `;
 
+const AuthorMainHeroSection = styled.div`
+  padding-top: var(--space-152);
+  padding-bottom: var(--space-120);
+`;
+
+const InnerHeroSection = styled.div`
+  display: flex;
+  align-items: center;
+  gap: var(--space-40);
+  padding-top: var(--space-24);
+  .author-image {
+    border-radius: var(--radius-12);
+    border: 1px solid var(--border-default);
+    @media only screen and (max-width: 449px) {
+      width: 95px;
+      height: 95px;
+    }
+  }
+  @media only screen and (max-width: 449px) {
+    gap: var(--space-16);
+  }
+`;
+
+const DetailsSection = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-12);
+  @media only screen and (max-width: 449px) {
+    gap: var(--space-8);
+  }
+`;
+
+const Title = styled.h3`
+  ${h3_semibold}
+  color: var(--title);
+  margin: 0;
+`;
+
+const Designation = styled.p`
+  ${button_regular}
+  color: var(--text-secondary);
+  margin: 0;
+`;
+
+const SocialMediaDiv = styled.div`
+  display: flex;
+  align-items: center;
+  gap: var(--space-24);
+  margin-top: var(--space-8);
+  a {
+    :focus-visible {
+      outline: 2px solid var(--link-default);
+      border-radius: var(--radius-8);
+    }
+  }
+  svg {
+    path {
+      transition: 0.3s;
+      fill: var(--text-secondary);
+    }
+    :hover {
+      path {
+        fill: var(--title);
+      }
+    }
+  }
+`;
+
 const ListDiv = styled.div`
   padding-bottom: var(--space-120);
 `;
@@ -347,6 +431,15 @@ const Divider = styled.div`
   height: 100%;
   background-color: var(--border-default);
   margin: 0 var(--space-32);
+  @media only screen and (max-width: 650px) {
+    display: none;
+  }
+`;
+
+const AuthorTitle = styled.div`
+  ${h2_semibold}
+  color: var(--title);
+  margin: 0;
 `;
 const Textarea = styled.div`
   display: flex;
@@ -422,8 +515,15 @@ export {
   BlogListDiv,
   BlogCardsDiv,
   LoadMoreButton,
+  AuthorMainHeroSection,
+  InnerHeroSection,
+  DetailsSection,
+  Title,
+  Designation,
+  SocialMediaDiv,
   ListDiv,
   Divider,
+  AuthorTitle,
   Textarea,
   Backlink,
   CopyIcon

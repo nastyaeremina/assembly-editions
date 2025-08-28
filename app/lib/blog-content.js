@@ -55,7 +55,7 @@ export async function getBlogByAuthor(authorSlug) {
   try {
     return await api.posts.browse({
       limit: 'all',
-      include: 'tags',
+      include: 'tags,authors',
       filter: `authors:[${authorSlug}]`,
       order: 'published_at desc'
     });

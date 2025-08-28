@@ -1,4 +1,5 @@
 import { COPILOT_COMMUNITY_LINK, COPILOT_SECURITY_LINK } from './externalLinks';
+import slide2 from '../../public/images/slide2.png';
 
 export const SupportSectionData = {
   items: [
@@ -36,4 +37,10 @@ export const CTAData = {
   primaryButtonText: 'Get Started',
   secondaryButtonLink: 'https://www.copilot.app/book-demo',
   secondaryButtonText: 'Book Demo'
+};
+
+export const AuthorPagHeroSection = {
+  authorImage: slide2,
+  authorName: 'Marlon Misra',
+  designation: 'Co-founder & CEO, Assembly'
 };
