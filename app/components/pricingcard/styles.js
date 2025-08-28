@@ -210,13 +210,10 @@ const PricePlan = styled.div`
         background-size: contain;
         background-repeat: no-repeat;
         top: var(--space-1);
-        @media only screen and (max-width: 768px) {
-          left: -32px;
-        }
       }
     }
     @media only screen and (max-width: 768px) {
-      padding-left: 32px;
+      padding-left: var(--space-24);
     }
   }
 `;

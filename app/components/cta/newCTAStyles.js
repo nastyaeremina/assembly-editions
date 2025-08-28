@@ -17,11 +17,15 @@ const TextSection = styled.div`
   gap: var(--space-24);
   @media only screen and (max-width: 768px) {
     padding: 20px;
+    gap: var(--space-20);
     ${(props) =>
       props.isNoImage &&
       css`
         padding: 0;
       `}
+  }
+  @media only screen and (max-width: 449px) {
+    gap: var(--space-24);
   }
   .button {
     margin-top: 28px;
@@ -53,6 +57,9 @@ const Description = styled.p`
   text-align: center;
   margin: 0;
   max-width: 724px;
+  @media only screen and (max-width: 768px) and (min-width: 450px) {
+    margin-bottom: var(--space-4);
+  }
 `;
 
 const ImageSection = styled.div`
@@ -177,6 +184,12 @@ const ButtonGroup = styled.div`
     css`
       justify-content: center;
     `}
+  @media only screen and (max-width: 768px) {
+    gap: var(--space-12);
+  }
+  @media only screen and (max-width: 449px) {
+    gap: var(--space-4);
+  }
   @media only screen and (max-width: 395px) {
     flex-wrap: wrap;
   }

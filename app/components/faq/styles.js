@@ -113,7 +113,6 @@ const FaqTitle = styled.div`
       `};
     @media only screen and (max-width: 449px) {
       text-align: left;
-      padding-top: var(--space-10);
     }
   }
   @media only screen and (max-width: 449px) {
@@ -134,9 +133,13 @@ const DivFAQ = styled.div`
   .accordion-title {
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    align-items: flex-start;
     padding: var(--space-20) var(--space-24) 0;
     cursor: pointer;
+    > div > svg {
+      margin-top: var(--space-4);
+      display: flex;
+    }
     ${(props) =>
       props.isGuideFAQ &&
       css`
@@ -162,6 +165,7 @@ const DivFAQ = styled.div`
     @media only screen and (max-width: 449px) {
       padding: var(--space-20) 0 0;
       > div > svg {
+        margin-top: var(--space-5);
         width: 18px;
         height: 18px;
       }
