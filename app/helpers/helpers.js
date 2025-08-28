@@ -775,3 +775,36 @@ export function isValidUrl(href) {
     return false;
   }
 }
+
+/**
+ * Extracts featured blog from allPosts and returns filtered posts without the featured blog.
+ * First reorders all posts: featured blogs first, then other blogs by published date.
+ * Then sets the first blog as featured blog and filters out the rest.
+ * 
+ * @param {Array} allPosts - Array of blog post objects
+ * @returns {Object} - Object containing featuredBlog and filteredPosts
+ */
+export function getFeaturedBlogAndFilteredPosts(allPosts) {
+  if (!allPosts || !Array.isArray(allPosts) || allPosts.length === 0) {
+    return { featuredBlog: null, filteredPosts: [] };
+  }
+
+  // Step 1: Reorder all posts - featured blogs first, then other blogs by published date
+  const reorderedPosts = [...allPosts].sort((a, b) => {
+    // If both are featured or both are not featured, sort by published date (most recent first)
+    if (!!a.featured === !!b.featured) {
+      return new Date(b.published_at) - new Date(a.published_at);
+    }
+    // Featured blogs come first
+    return a.featured ? -1 : 1;
+  });
+
+  // Step 2: Set the first blog as featured blog
+  const featuredBlog = reorderedPosts[0];
+
+  // Step 3: Filter out the featured blog from the remaining posts
+  const filteredPosts = reorderedPosts.slice(1);
+    
+  return { featuredBlog, filteredPosts };
+}
+

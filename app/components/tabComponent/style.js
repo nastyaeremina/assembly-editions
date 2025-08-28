@@ -1,5 +1,6 @@
 import styled from 'styled-components';
-import { body_regular, button_regular } from '../../styles/typography';
+import { body_regular } from '../../styles/typography';
+import Link from 'next/link';
 
 const TagDiv = styled.div`
   display: flex;
@@ -7,7 +8,7 @@ const TagDiv = styled.div`
   gap: var(--space-24);
 `;
 
-const Tag = styled.div`
+const Tag = styled(Link)`
   ${body_regular}
   color: var(--text-secondary);
   transition: color 0.3s ease;
@@ -17,7 +18,7 @@ const Tag = styled.div`
     color: var(--title);
   }
   :focus-visible {
-    outline: 1px solid var(--link-default);
+    outline: 2px solid var(--link-default);
   }
   &.active {
     color: var(--title);

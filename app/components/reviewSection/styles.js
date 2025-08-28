@@ -152,7 +152,7 @@ const PersonReview = styled.div`
 `;
 const Star = styled.div`
   display: flex;
-  gap: 4px;
+  gap: var(--space-4);
 `;
 const ReviewDetail = styled.div`
   ${Body4};

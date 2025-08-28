@@ -113,9 +113,6 @@ const Buttons = styled.button`
         color: var(--off-white-100);
       `}
   }
-  :focus-visible {
-    outline: 2px solid var(--link-default);
-  }
 `;
 
 export { ButtonWrap, Buttons };

@@ -3,19 +3,27 @@ import React, { useState, useRef, useEffect, useCallback, useMemo } from 'react'
 import { DropDownWrapper, DropDownHeader, DropDownListContainer, DropDownList, ListItem } from './style';
 import SVGComponent from '../../../public/images/svg/SVGComponent';
 
+// Customizable dropdown menu component
 function DropDown({ items = [], placeholder = 'Select', onSelect, defaultValue = null, labelKey = 'name' }) {
-  // ✅ find "All" from items, or use defaultValue, or fallback to null
+  // Calculate default selected item (All, defaultValue, or null)
   const getDefaultItem = useMemo(() => {
     if (defaultValue) return defaultValue;
     const allItem = items.find((item) => item[labelKey] === 'All');
     return allItem || null;
-  }, []);
+  }, [defaultValue, items, labelKey]);
 
   const ref = useRef(null);
   const [isOpen, setIsOpen] = useState(false);
   const [selectedItem, setSelectedItem] = useState(getDefaultItem);
 
-  // Close dropdown on outside click
+  // Update selectedItem when defaultValue changes
+  useEffect(() => {
+    if (defaultValue) {
+      setSelectedItem(defaultValue);
+    }
+  }, [defaultValue]);
+
+  // Close dropdown when clicking outside
   useEffect(() => {
     const handleClickOutside = (e) => {
       if (ref.current && !ref.current.contains(e.target)) {
@@ -26,8 +34,10 @@ function DropDown({ items = [], placeholder = 'Select', onSelect, defaultValue =
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
 
+  // Toggle dropdown open/close state
   const toggleDropdown = useCallback(() => setIsOpen(!isOpen), []);
 
+  // Handle item selection and close dropdown
   const handleSelect = (item) => {
     setSelectedItem(item);
     onSelect && onSelect(item);

@@ -16,7 +16,7 @@ export default function AuthorPage({ allPosts }) {
         <Blogcard
           key={`blog_list_index_${index}`}
           name={item?.title}
-          date={moment(new Date(item?.published_at)).format('MMM DD, YYYY')} //'Apr 28, 2022'
+          date={moment(new Date(item?.published_at)).format('MMM DD, YYYY')}
           read={`${item?.reading_time} min read`}
           desc={item?.excerpt}
           image={item?.feature_image}

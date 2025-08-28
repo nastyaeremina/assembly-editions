@@ -1,10 +1,11 @@
 import styled from 'styled-components';
-import { Body5, Heading6, MbPrimaryBtn } from '../../styles/styles';
+import { MbPrimaryBtn } from '../../styles/styles';
+import { body_regular, label_regular } from '../../styles/typography';
 
 const SideBarCTA = styled.div`
-  padding: 24px;
-  border: 1px solid var(--black);
-  border-radius: 4px;
+  padding: var(--space-20) var(--space-20) var(--space-24);
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-20);
   .CTA-button {
     a {
       width: 100%;
@@ -18,44 +19,40 @@ const SideBarCTA = styled.div`
   }
 `;
 const Image = styled.img`
-  box-shadow: 0px 4px 16px 0px var(--black-shadow-10);
-  border: 0.5px solid var(--footer);
-  border-radius: 4px;
+  box-shadow: 0px 0px 0px 1px #0000000f;
+  border-radius: var(--radius-8);
 `;
 const ImageDiv = styled.div``;
 const Content = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 8px;
-  margin: 24px 0;
 `;
 const Title = styled.h4`
-  ${Heading6};
-  font-weight: 400;
+  ${body_regular};
   color: var(--title);
-  margin: 0;
+  margin: var(--space-24) 0 0;
 `;
 const Caption = styled.p`
-  ${Body5};
-  color: var(--body);
-  margin: 0;
+  ${label_regular};
+  color: var(--text-secondary);
+  margin: var(--space-8) 0 0;
 `;
 
 const G2Section = styled.div`
   display: flex;
-  gap: 8px;
-  margin-top: 8px;
+  gap: var(--space-12);
+  padding: var(--space-4) 0;
+  margin: var(--space-20) 0 var(--space-24);
   p {
-    ${Body5};
+    ${label_regular};
     color: var(--title);
     margin: 0;
+    padding-top: var(--space-4);
   }
 `;
 const ReviewText = styled.div`
   display: flex;
   align-items: center;
-  gap: 8px;
-  padding-left: 8px;
-  border-left: 1px solid var(--border);
+  gap: var(--space-12);
 `;
 export { SideBarCTA, Image, ImageDiv, Content, Title, Caption, G2Section, ReviewText };

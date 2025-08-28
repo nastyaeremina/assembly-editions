@@ -2,16 +2,13 @@
 import React from 'react';
 import { Tag, TagDiv } from './style';
 
-function TabComponent({ items = [], onTagClick, selectedTag }) {
+function TabComponent({ items = [], selectedTag }) {
   return (
     <TagDiv>
-      <Tag key='__all__' onClick={() => onTagClick('All')} className={selectedTag === 'All' ? 'active' : ''}>
-        All
-      </Tag>
       {items?.map((item) => (
         <Tag
           key={item.name}
-          onClick={() => onTagClick(item.name)}
+          href={item.slug === 'all' ? '/blog' : `/blog/tag/${item.slug}`}
           className={selectedTag === item.name ? 'active' : ''}>
           {item.name}
         </Tag>

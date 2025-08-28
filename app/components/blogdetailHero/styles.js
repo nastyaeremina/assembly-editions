@@ -1,73 +1,31 @@
 import styled, { css } from 'styled-components';
-import { Body4, HeaderFont, Heading2, Heading3, LinkTxt, MbBody4, MobileH2 } from '../../styles/styles';
-
-const Backlink = styled.div`
-  display: inline-flex;
-  gap: 8px;
-  align-items: center;
-  margin-bottom: 28px;
-  p {
-    ${LinkTxt};
-    margin: 0px;
-    color: var(--medium-gray);
-  }
-  :hover {
-    p {
-      color: var(--title);
-    }
-    svg path {
-      stroke: var(--title);
-    }
-  }
-  ${(props) =>
-    props.isNewHero &&
-    css`
-      margin-bottom: 42px;
-    `}
-  @media only screen and (max-width: 769px) {
-    margin-bottom: 28px;
-    p {
-      ${HeaderFont}
-    }
-  }
-`;
+import { h2_semibold, button_regular } from '../../styles/typography';
+import Link from 'next/link';
 
 const DetailHero = styled.div`
-  margin: 0px 0 40px;
+  max-width: 804px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-24);
+  margin: 0px auto;
   h1 {
-    ${Heading2};
+    ${h2_semibold};
     color: var(--title);
     margin: 0;
-    @media only screen and (max-width: 769px) {
-      ${MobileH2}
-    }
+    text-align: center;
   }
   a {
     display: inline;
   }
-  ${(props) =>
-    props.isNewHero &&
-    css`
-      display: flex;
-      gap: 38px;
-      padding: 0px 0 100px;
-      max-width: 100%;
-      margin: 0;
-      h1 {
-        ${Heading3};
-      }
-      @media only screen and (max-width: 768px) {
-        h1 {
-          ${MobileH2}
-        }
-        padding-bottom: 28px;
-        flex-direction: column;
-        gap: 28px;
-      }
-    `}
-  @media only screen and (max-width: 768px) {
-    margin: 0;
-    padding-bottom: 28px;
+  @media only screen and (max-width: 449px) {
+    align-items: flex-start;
+    gap: var(--space-16);
+    h1 {
+      text-align: left;
+    }
   }
 `;
 
@@ -79,65 +37,85 @@ const BlogImage = styled.div`
     height: auto;
     max-width: 100%;
     object-fit: cover;
-    border-radius: 8px;
-    border: 1px solid var(--black);
+    border-radius: var(--radius-20);
+    border: 1px solid var(--border-default);
     @media only screen and (max-width: 768px) {
       width: 100%;
+    }
+    @media only screen and (max-width: 449px) {
+      border-radius: var(--radius-12);
     }
   }
 `;
 const BlogTime = styled.div`
-  ${Body4}
-  width: 100%;
   display: flex;
   justify-content: space-between;
-  margin-top: 20px;
-  margin-bottom: 40px;
-  color: var(--medium-gray);
-  @media only screen and (max-width: 768px) {
-    margin-bottom: 12px;
-  }
-  @media only screen and (max-width: 449px) {
-    ${MbBody4}
-    margin-top:16px;
-  }
-  ${(props) =>
-    props.isNewHero &&
-    css`
-      justify-content: unset;
-      @media only screen and (max-width: 768px) {
-        margin-bottom: 0px;
-      }
-      @media only screen and (max-width: 449px) {
-        margin-top: 20px;
-      }
-    `}
   span:hover {
     color: var(--title);
     cursor: pointer;
   }
 `;
 const Post = styled.div`
-  ${Body4}
+  ${button_regular}
   display:flex;
-  color: var(--medium-gray);
-  gap: 8px;
+  color: var(--text-secondary);
+  gap: var(--space-10);
   align-items: center;
-  @media only screen and (max-width: 450px) {
-    ${MbBody4}
+  justify-content: center;
+  span {
+    ${button_regular};
+    color: var(--text-secondary);
+    &:hover {
+      color: var(--title);
+    }
+  }
+  a {
+    display: inline;
+    ${button_regular};
+    color: var(--text-secondary);
+    transition: color 0.3s ease;
+
+    &:hover {
+      color: var(--title);
+    }
+    :focus-visible {
+      outline: 1px solid var(--link-default);
+      border-radius: var(--radius-8);
+    }
   }
   li {
     list-style-type: none;
   }
-`;
-
-const HeroLeft = styled.div`
-  max-width: 574px;
-  width: 100%;
-  a {
-    display: inline;
+  button {
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+    padding: 0;
+    span {
+      ${button_regular};
+      color: var(--text-secondary);
+      &:hover {
+        color: var(--title);
+      }
+    }
+    :focus-visible {
+      outline: 1px solid var(--link-default);
+      border-radius: var(--radius-8);
+    }
   }
 `;
 
 const Image = styled.img``;
-export { Backlink, DetailHero, BlogImage, BlogTime, Post, HeroLeft, Image };
+const HeroWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-64);
+  padding-bottom: var(--space-120);
+  @media only screen and (max-width: 449px) {
+    gap: var(--space-24);
+  }
+`;
+
+export { DetailHero, BlogImage, BlogTime, Post, Image, HeroWrapper };

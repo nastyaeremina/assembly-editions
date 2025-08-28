@@ -1,19 +1,5 @@
 import styled, { css } from 'styled-components';
-import {
-  Body1,
-  Body3,
-  Body4,
-  HeaderFont,
-  LinkTxt,
-  MbBody1,
-  MbBody3,
-  MbBody4,
-  MbButtonText,
-  MobileH2,
-  MobileH3,
-  MobileH4
-} from './styles';
-import { button_regular, h1_regular, h3_semibold, label_semibold, tag } from './typography';
+import { button_regular, h1_regular, h3_semibold, label_semibold, tag, label_regular } from './typography';
 
 const FirstBlog = styled.div`
   background-color: var(--gray-50);
@@ -35,6 +21,7 @@ const Top = styled.div`
   border-radius: var(--radius-12);
   border: 1px solid var(--border-default);
   height: 100%;
+  max-height: 405px;
   display: flex;
   .image {
     height: auto;
@@ -79,21 +66,6 @@ const BlogCardDiv = styled.div`
   @media only screen and (max-width: 449px) {
     padding-top: var(--space-24);
     gap: var(--space-24);
-  }
-`;
-
-const Textarea = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-8);
-  h3 {
-    ${h3_semibold}
-    color: var(--title);
-    margin: 0;
-    margin-top: var(--space-4);
-  }
-  @media only screen and (max-width: 449px) {
-    gap: var(--space-8);
   }
 `;
 
@@ -153,62 +125,37 @@ const IconDiv = styled.div`
   justify-content: center;
 `;
 
-const Backlink = styled.div`
-  display: inline-flex;
-  gap: 8px;
-  align-items: center;
-  margin-bottom: 42px;
-  p {
-    ${LinkTxt};
-    margin: 0px;
-    color: var(--medium-gray);
-  }
-  :hover {
-    p {
-      color: var(--title);
-    }
-    svg path {
-      stroke: var(--title);
-    }
-  }
-  @media only screen and (max-width: 769px) {
-    margin-bottom: 28px;
-    p {
-      ${HeaderFont}
-    }
-  }
-`;
-
 const Table = styled.div`
   width: 100%;
-  border: 1px solid var(--black);
-  border-radius: 4px;
-  padding: 30px 24px;
-  @media only screen and (max-width: 450px) {
-    padding: 20px 16px;
-  }
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-20);
+  margin-bottom: var(--space-16);
+
   .active {
     color: var(--title);
+    ${button_regular}
   }
   ol {
-    margin-top: 8px;
-    margin-bottom: 0px;
-    display: inline-block;
-    ${Body4}
-    padding-left:0px;
-    list-style-position: inside;
-    color: var(--primary);
-    @media only screen and (max-width: 450px) {
-      margin-top: 4px;
-      margin-bottom: 0px;
-      ${MbBody4}
-    }
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-20);
+    padding-left: 0px;
+    list-style-type: none;
+    margin-top: 0;
+    margin-bottom: 0;
+    position: relative;
     li {
-      margin: 12px 0 0;
-      color: var(--primary);
+      color: var(--text-secondary);
+      ${button_regular}
+      padding-left: var(--space-14);
       a {
-        display: contents;
-        color: var(--primary);
+        color: var(--text-secondary);
+        ${button_regular}
+        transition: color 0.3s ease-in-out;
+        :focus-visible {
+          border-radius: var(--radius-8);
+        }
       }
     }
     li:hover {
@@ -222,27 +169,9 @@ const Table = styled.div`
 `;
 
 const TableHeading = styled.div`
-  ${Body1}
-  color: var(--title);
-  display: flex;
-  gap: 8px;
-  align-items: center;
-  @media only screen and (max-width: 450px) {
-    ${MbBody1}
-  }
-  p {
-    ${Body4}
-    margin:0px;
-    @media only screen and (max-width: 450px) {
-      ${MbButtonText}
-    }
-    :hover {
-      cursor: pointer;
-    }
-  }
-  span {
-    color: var(--primary);
-  }
+  ${tag}
+  color: var(--text-secondary);
+  text-transform: uppercase;
 `;
 const Details = styled.div`
   margin: auto;
@@ -250,327 +179,6 @@ const Details = styled.div`
   padding-top: var(--space-152);
 `;
 
-const Content = styled.div`
-  width: 100%;
-  font-feature-settings: normal;
-  ${Body3}
-  color: var(--body);
-  @media only screen and (max-width: 450px) {
-    ${MbBody3}
-  }
-  .kg-video-player-container {
-    display: none;
-  }
-  .kg-video-overlay {
-    display: none;
-  }
-  blockquote {
-    border-left: 4px solid var(--neutral);
-    padding-left: 20px;
-    margin: 20px 0;
-    font-style: italic;
-    @media only screen and (max-width: 449px) {
-      padding-left: 16px;
-    }
-  }
-  video {
-    width: 100%;
-    height: 100%;
-    border-radius: 6px;
-    border: 1px solid var(--black);
-  }
-  strong {
-    font-weight: 500;
-  }
-  figure {
-    margin: 0px;
-    img {
-      width: 100%;
-      border-radius: 8px;
-      border: 1px solid var(--blog-img-border);
-      height: auto;
-    }
-    iframe {
-      border-radius: 0.375rem;
-      border: 1px solid var(--black);
-      width: 100%;
-      height: 496px;
-      @media only screen and (max-width: 450px) {
-        height: 180px;
-      }
-    }
-  }
-  figure + h2 {
-    margin-top: -36px;
-    @media only screen and (max-width: 450px) {
-      margin-top: -50px;
-    }
-  }
-  figure + h3 {
-    margin-top: 60px;
-    @media only screen and (max-width: 450px) {
-      margin-top: 40px;
-    }
-  }
-  a {
-    display: inline-block;
-    ${Body3}
-    color: var(--primary);
-    @media only screen and (max-width: 450px) {
-      ${MbBody3}
-    }
-    :hover {
-      color: var(--title);
-    }
-  }
-  ul {
-    list-style-type: disc;
-    margin-left: 15px;
-    li {
-      margin-top: 8px;
-      strong {
-        font-weight: 500;
-        color: var(--title);
-      }
-      a {
-        display: inline-block;
-        ${Body3}
-        color: var(--primary);
-        @media only screen and (max-width: 450px) {
-          ${MbBody3}
-        }
-        :hover {
-          color: var(--title);
-        }
-      }
-    }
-    li::marker {
-      color: var(--body);
-    }
-    span {
-      font-weight: 500;
-      color: var(--title);
-    }
-  }
-  h2 {
-    font-size: 50px;
-    line-height: 55px;
-    margin-top: -12px;
-    padding-top: 40px;
-    margin-bottom: 8px;
-    color: var(--title);
-    font-weight: 400;
-    strong {
-      font-weight: 400;
-    }
-    @media only screen and (max-width: 991px) {
-      ${MobileH2}
-    }
-    @media only screen and (max-width: 479px) {
-      ${MobileH3}
-    }
-  }
-  h2 + p {
-    margin-top: 8px;
-  }
-  h2 + ol {
-    margin-top: 8px;
-  }
-  h2 + figure {
-    margin-top: 42px;
-    @media only screen and (max-width: 450px) {
-      margin-top: 22px;
-    }
-  }
-  h3 {
-    font-size: 32px;
-    line-height: 105%;
-    margin-bottom: 8px;
-    margin-top: 2rem;
-    font-weight: 400;
-    color: var(--title);
-    strong {
-      font-weight: 400;
-    }
-    @media only screen and (max-width: 479px) {
-      ${MobileH4}
-    }
-  }
-  h3 + p {
-    margin-top: 8px;
-  }
-  h3 + ol {
-    margin-top: 8px;
-  }
-  h3 + figure {
-    margin-top: 42px;
-    @media only screen and (max-width: 450px) {
-      margin-top: 22px;
-    }
-  }
-  ol + figure {
-    margin-top: 20px;
-  }
-  ul + figure {
-    margin-top: 20px;
-  }
-  h4 {
-    font-size: 24px;
-    font-weight: 400;
-    line-height: 31px;
-    letter-spacing: 0.02em;
-    color: var(--title);
-    strong {
-      font-weight: 400;
-    }
-    @media only screen and (max-width: 479px) {
-      ${Body3}
-    }
-  }
-  p {
-    color: var(--body);
-    margin-bottom: 1rem;
-    margin-top: 1rem;
-    ${Body3}
-    @media only screen and (max-width: 450px) {
-      font-size: 15px;
-      line-height: 130%;
-    }
-    strong {
-      font-weight: 500;
-      color: var(--title);
-    }
-  }
-  p + figure {
-    margin-top: 20px;
-  }
-  ol {
-    padding-left: 20px;
-    li {
-      margin-top: 8px;
-      strong {
-        font-weight: 500;
-        color: var(--title);
-      }
-      a {
-        display: inline-block;
-        ${Body3}
-        color: var(--primary);
-        @media only screen and (max-width: 450px) {
-          ${MbBody3}
-        }
-        :hover {
-          color: var(--title);
-        }
-      }
-    }
-    li::marker {
-      color: var(--body);
-    }
-    span {
-      font-weight: 500;
-      color: var(--title);
-    }
-  }
-  .code-block {
-    position: relative;
-    margin: 12px 0 16px;
-  }
-  .code-block > div {
-    padding: 0px;
-    border-radius: 4px;
-    border: 1px solid var(--neutral);
-    background: var(--other-bg-color);
-  }
-  .code-block > div > span {
-    background: var(--other-bg-color) !important;
-    padding: 10px 12px;
-  }
-  .code-block > div > button {
-    display: none;
-  }
-  .copy-icon {
-    display: none;
-    @media only screen and (max-width: 991px) {
-      display: block;
-    }
-  }
-  .code-block:hover {
-    .copy-icon {
-      display: block;
-    }
-  }
-  .copy-icon {
-    position: absolute;
-    top: -8px;
-    right: 12px;
-    cursor: pointer;
-  }
-  pre {
-    background-color: var(--other-bg-color);
-    font-family: monospace;
-    color: var(--body);
-    padding: 15px !important;
-    font-family: 'Azeret Mono', monospace !important;
-    font-size: 15px !important;
-    font-weight: 400;
-    line-height: 20px !important;
-  }
-  code {
-    color: var(--body);
-    font-family: 'Azeret Mono', monospace !important;
-  }
-  p {
-    :first-child {
-      padding-top: 0;
-      margin-top: 0;
-    }
-  }
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6 {
-    :first-child {
-      padding-top: 0;
-      margin-top: 0;
-    }
-  }
-`;
-
-const ShareButton = styled.div`
-  margin: 80px auto 0;
-  max-width: 156px;
-  width: 100%;
-  text-align: center;
-  @media only screen and (max-width: 450px) {
-    ${MbBody4}
-    max-width:122px;
-    width: 100%;
-  }
-`;
-const Icon = styled.div`
-  display: flex;
-  justify-content: space-between;
-  div {
-    width: 36px;
-    height: 36px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: var(--dark-green);
-    border-radius: 50%;
-    :hover {
-      cursor: pointer;
-      background-color: var(--primary);
-    }
-    @media only screen and (max-width: 450px) {
-      width: 30px;
-      height: 30px;
-    }
-  }
-`;
 const OverLayDiv = styled.div`
   position: absolute;
   top: 0;
@@ -582,28 +190,33 @@ const OverLayDiv = styled.div`
 
 const MainContent = styled.div`
   .without-toc {
-    max-width: 880px;
+    max-width: 1224px;
   }
 `;
 const BlogDetailsidebar = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 20px;
-  max-width: 306px;
-  margin-bottom: 100px;
+  gap: var(--space-24);
+  max-width: 376px;
+  width: 100%;
+  margin-bottom: var(--space-100);
   height: 100%;
   position: sticky;
-  top: 100px;
+  top: var(--space-120);
   @media only screen and (max-width: 768px) {
-    max-width: 100%;
-    margin-bottom: 0px;
-    position: relative;
-    top: 0;
+    display: none;
   }
 `;
 const BlogContent = styled.div`
   display: flex;
-  gap: 38px;
+  justify-content: space-between;
+  gap: var(--space-120);
+  width: 100%;
+  margin: 0 auto;
+  &.without-toc {
+    max-width: 728px;
+    gap: var(--space-38);
+  }
   @media only screen and (max-width: 768px) {
     flex-direction: column;
   }
@@ -612,19 +225,98 @@ const BlogContent = styled.div`
   }
 `;
 
-const HeroLeft = styled.div`
-  max-width: 574px;
+const Rightcontent = styled.div`
+  max-width: 728px;
   width: 100%;
+`;
+
+const Post = styled.div`
+  ${button_regular}
+  display:flex;
+  color: var(--text-secondary);
+  gap: var(--space-10);
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  span {
+    ${button_regular};
+    color: var(--text-secondary);
+    transition: color 0.3s ease;
+    &:hover {
+      color: var(--title);
+    }
+  }
   a {
-    display: inline;
+    ${button_regular};
+    color: var(--text-secondary);
+    transition: color 0.3s ease;
+    &:hover {
+      color: var(--title);
+    }
+    :focus-visible {
+      outline: 1px solid var(--link-default);
+      border-radius: var(--radius-8);
+    }
   }
 `;
 
-const Rightcontent = styled.div`
-  max-width: 880px;
-  width: 100%;
+const BlogTime = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-32);
+  padding-top: var(--space-24);
+  border-top: 1px solid var(--border-default);
+  margin-top: var(--space-64);
+  margin-bottom: var(--space-120);
+  span {
+    ${button_regular};
+    color: var(--text-secondary);
+    cursor: pointer;
+    &:hover {
+      color: var(--title);
+    }
+  }
+  button {
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+    padding: 0;
+    span {
+      ${button_regular};
+      color: var(--text-secondary);
+      &:hover {
+        color: var(--title);
+      }
+    }
+    :focus-visible {
+      outline: 1px solid var(--link-default);
+      border-radius: var(--radius-8);
+    }
+  }
+  @media only screen and (max-width: 449px) {
+    margin-top: var(--space-40);
+  }
 `;
 
+const ActiveBorder = styled.div`
+  position: absolute;
+  left: -2px;
+  width: 2px;
+  height: 30px;
+  background-color: var(--title);
+  transition: top 0.3s ease-in-out, height 0.3s ease-in-out;
+  border-radius: var(--radius-12);
+`;
+
+const TOCDivider = styled.div`
+  width: 2px;
+  background-color: var(--border-primary);
+  border-radius: var(--radius-12);
+`;
+const TableContentWrapper = styled.div`
+  display: flex;
+`;
 const BlogCardsDiv = styled.div`
   display: grid;
   grid-template-columns: 1fr 65px 1fr;
@@ -656,33 +348,83 @@ const Divider = styled.div`
   background-color: var(--border-default);
   margin: 0 var(--space-32);
 `;
+const Textarea = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-8);
+  h3 {
+    ${h3_semibold}
+    color: var(--title);
+    margin: 0;
+    margin-top: var(--space-4);
+  }
+  @media only screen and (max-width: 449px) {
+    gap: var(--space-8);
+  }
+`;
+
+const Backlink = styled.div`
+  display: inline-flex;
+  gap: 8px;
+  align-items: center;
+  margin-bottom: 42px;
+  p {
+    ${label_regular};
+    margin: 0px;
+    color: var(--text-secondary);
+  }
+  :hover {
+    p {
+      color: var(--title);
+    }
+    svg path {
+      stroke: var(--title);
+    }
+  }
+  @media only screen and (max-width: 769px) {
+    margin-bottom: 28px;
+  }
+`;
+
+const CopyIcon = styled.span`
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--off-white-200);
+  border-radius: var(--radius-8);
+  cursor: pointer;
+`;
 
 export {
   FirstBlog,
   Top,
   Text,
-  Textarea,
   PostDetail,
   Par,
   Last,
-  Backlink,
   Table,
   TableHeading,
   Details,
-  Content,
-  ShareButton,
-  Icon,
   OverLayDiv,
   MainContent,
   BlogDetailsidebar,
   BlogContent,
-  HeroLeft,
   Rightcontent,
+  Post,
+  BlogTime,
+  ActiveBorder,
+  TOCDivider,
+  TableContentWrapper,
   BlogCardDiv,
   IconDiv,
   BlogListDiv,
   BlogCardsDiv,
   LoadMoreButton,
   ListDiv,
-  Divider
+  Divider,
+  Textarea,
+  Backlink,
+  CopyIcon
 };

@@ -53,11 +53,6 @@ const ListItem = styled.li`
   &.active {
     background-color: var(--off-white-600);
   }
-  &:focus-visible {
-    border: 2px solid var(--link-default);
-    outline: none;
-    background-color: var(--off-white-300);
-  }
 `;
 
 export { ListItem, DropDownHeader, DropDownList, DropDownListContainer, DropDownWrapper };

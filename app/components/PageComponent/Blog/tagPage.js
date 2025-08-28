@@ -1,0 +1,194 @@
+'use client';
+import { useCallback, useMemo, useState, useEffect } from 'react';
+import { useRouter, usePathname } from 'next/navigation';
+import moment from 'moment';
+import { Container } from '../../../styles/commonStyles';
+import Blogcard from '../../../components/Blogcard';
+import { BlogCardsDiv, BlogListDiv, Divider, LoadMoreButton, MainContent } from '../../../styles/blogstyles';
+import FeatureBlogCard from '../../Blogcard/fetaureBlogCard';
+import { isEmpty } from '../../../helpers/helpers';
+import DropDown from '../../dropdownComponent';
+import TabComponent from '../../tabComponent';
+import { useIsMobile } from '../../../hooks/useMobileDevice';
+
+// Tag-specific blog page with filtering
+export default function TagPage({ allPosts, tags, featuredBlog, currentTagSlug }) {
+  const [selectedTag, setSelectedTag] = useState('All');
+  const [visibleCount, setVisibleCount] = useState(8);
+  const router = useRouter();
+  const pathname = usePathname();
+  const isMobile = useIsMobile();
+
+  // Create dropdown items with All option and tags
+  const dropdownItems = useMemo(() => {
+    return [{ id: 'all', name: 'All', slug: 'all' }, ...tags];
+  }, [tags]);
+
+  // Set selectedTag based on current tag slug
+  useEffect(() => {
+    if (currentTagSlug && tags.length > 0) {
+      const currentTag = tags.find((tag) => tag.slug === currentTagSlug);
+      if (currentTag) {
+        setSelectedTag(currentTag.name);
+      }
+    }
+  }, [currentTagSlug, tags]);
+
+  // Handle pathname changes for direct navigation
+  useEffect(() => {
+    if (pathname.startsWith('/blog/tag/')) {
+      const tagSlug = pathname.split('/blog/tag/')[1];
+      const tag = tags.find((t) => t.slug === tagSlug);
+      if (tag) {
+        setSelectedTag(tag.name);
+      }
+    }
+  }, [pathname, tags]);
+
+  // Filter tag list to remove empty and hashtag tags
+  const filterTagList = useCallback((tagList) => {
+    if (isEmpty(tagList)) return null;
+    return tagList.filter((tag) => !isEmpty(tag?.name) && tag.name.trim()?.[0] !== '#');
+  }, []);
+
+  // Filter posts based on selected tag
+  const filteredPosts = useMemo(() => {
+    if (isEmpty(allPosts)) return [];
+
+    if (selectedTag === 'All') {
+      return allPosts.filter((item) => item && !item.featured);
+    } else {
+      return allPosts.filter((item) => {
+        if (!item || item.featured) return false;
+        return item.tags && item.tags.some((tag) => tag.name === selectedTag);
+      });
+    }
+  }, [allPosts, selectedTag]);
+
+  // Handle dropdown clicks for tag filtering
+  const handleDropdownClick = useCallback(
+    (tag) => {
+      setSelectedTag(tag.name);
+      setVisibleCount(8);
+
+      // Navigate to the correct page
+      if (tag.slug === 'all') {
+        router.push('/blog');
+      } else {
+        router.push(`/blog/tag/${tag.slug}`);
+      }
+    },
+    [router]
+  );
+
+  // Render featured blog post
+  const renderFeaturedBlog = useMemo(() => {
+    if (isEmpty(featuredBlog)) return null;
+
+    const finalTagList = filterTagList(featuredBlog.tags);
+    const authorName = featuredBlog?.authors?.[0]?.name || '';
+
+    return (
+      <FeatureBlogCard
+        key={featuredBlog.title}
+        slug={featuredBlog.slug}
+        title={featuredBlog.title}
+        excerpt={featuredBlog.excerpt}
+        featureImage={featuredBlog.feature_image}
+        publishedAt={featuredBlog.published_at}
+        authorName={authorName}
+        tags={finalTagList}
+      />
+    );
+  }, [featuredBlog, filterTagList]);
+
+  // Render blog post cards with pagination
+  const renderData = useMemo(() => {
+    if (filteredPosts.length === 0) {
+      return <div>No posts found for this tag.</div>;
+    }
+
+    return filteredPosts.slice(0, visibleCount).map((item, index) => {
+      const finalTagList = filterTagList(item.tags);
+      const authorName = item?.authors?.[0]?.name || '';
+      return (
+        <>
+          <Blogcard
+            key={`blog_list_index_${index}`}
+            name={item?.title}
+            date={moment(new Date(item?.published_at)).format('MMM DD, YYYY')}
+            authorName={authorName}
+            desc={item?.excerpt}
+            image={item?.feature_image}
+            tags={finalTagList}
+            slug={item?.slug}
+          />
+          {/* Show divider only after odd indexes */}
+          {(index + 1) % 2 !== 0 && <Divider />}
+        </>
+      );
+    });
+  }, [filteredPosts, visibleCount, filterTagList]);
+
+  // Get current tag object for dropdown defaultValue
+  const getCurrentTagForDropdown = useMemo(() => {
+    // Try to find tag by slug from pathname first
+    if (pathname.startsWith('/blog/tag/')) {
+      const tagSlug = pathname.split('/blog/tag/')[1];
+      const foundBySlug = dropdownItems.find((item) => item.slug === tagSlug);
+      if (foundBySlug) {
+        return foundBySlug;
+      }
+    }
+
+    // Try to find by currentTagSlug prop
+    if (currentTagSlug) {
+      const foundBySlug = dropdownItems.find((item) => item.slug === currentTagSlug);
+      if (foundBySlug) {
+        return foundBySlug;
+      }
+    }
+
+    // Return All item if selectedTag is All
+    if (selectedTag === 'All') {
+      return dropdownItems.find((item) => item.slug === 'all');
+    }
+
+    // Try to find by name match
+    const foundByName = dropdownItems.find((item) => item.name === selectedTag);
+    if (foundByName) {
+      return foundByName;
+    }
+
+    // Fallback to All
+    return dropdownItems.find((item) => item.slug === 'all');
+  }, [selectedTag, dropdownItems, pathname, currentTagSlug]);
+
+  return (
+    <>
+      <MainContent>
+        {renderFeaturedBlog}
+        <Container>
+          <BlogListDiv>
+            {/* Render dropdown on mobile, tabs on desktop */}
+            {isMobile ? (
+              <DropDown
+                items={dropdownItems}
+                placeholder='Select Option'
+                onSelect={handleDropdownClick}
+                defaultValue={getCurrentTagForDropdown}
+              />
+            ) : (
+              <TabComponent items={dropdownItems} selectedTag={selectedTag} />
+            )}
+            <BlogCardsDiv>{renderData}</BlogCardsDiv>
+            {/* Show button only if there are more posts left */}
+            {filteredPosts.length > visibleCount && (
+              <LoadMoreButton onClick={() => setVisibleCount((prev) => prev + 8)}>Load more</LoadMoreButton>
+            )}
+          </BlogListDiv>
+        </Container>
+      </MainContent>
+    </>
+  );
+}

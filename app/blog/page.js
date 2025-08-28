@@ -1,6 +1,6 @@
 import BlogPage from '../components/PageComponent/Blog/blogPage';
 import Layout from '../components/layout';
-import Navbar, { getTopBarContent } from '../components/navbar/navbar';
+import Navbar from '../components/navbar/navbar';
 import AggregateRating from '../components/aggregateRating';
 import {
   COPILOT_FACEBOOK_LINK,
@@ -10,7 +10,7 @@ import {
   COPILOT_YOUTUBE_CHANNEL_LINK
 } from '../constants/externalLinks';
 import { getAllTagWithSlug, getBlogPosts } from './../lib/blog-content';
-import { customSort, getSEOData, isEmpty } from './../helpers/helpers';
+import { customSort, getFeaturedBlogAndFilteredPosts, getSEOData } from './../helpers/helpers';
 import { BLOG_SEO_ID, BLOG_TAG_SORTED_LIST, CURRENT_SITE_URL } from './../constants/constant';
 
 // Force dynamic rendering to prevent static generation issues
@@ -21,8 +21,10 @@ async function getContent() {
   const tagsData = (await getAllTagWithSlug()) || [];
   const tags = tagsData?.filter((tagsData) => tagsData?.name?.trim()?.[0] !== '#');
 
+    const { featuredBlog, filteredPosts } = getFeaturedBlogAndFilteredPosts(allPosts);
+
   customSort(tags, BLOG_TAG_SORTED_LIST);
-  return { allPosts, tags };
+  return { allPosts:filteredPosts, tags, featuredBlog  };
 }
 
 export async function generateMetadata({ params, searchParams }, parent) {
@@ -32,8 +34,7 @@ export async function generateMetadata({ params, searchParams }, parent) {
 }
 
 export default async function Blog() {
-  const { allPosts, tags } = await getContent();
-  const { topbarContent } = await getTopBarContent();
+  const { allPosts, tags, featuredBlog } = await getContent();
   const jsonLd = {
     '@context': 'https://schema.org',
     '@type': 'Organization',
@@ -54,7 +55,7 @@ export default async function Blog() {
       <script type='application/ld+json' dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       <Layout>
         <Navbar />
-        <BlogPage allPosts={allPosts} tags={tags} />
+        <BlogPage allPosts={allPosts} tags={tags} featuredBlog={featuredBlog} />
       </Layout>
     </>
   );

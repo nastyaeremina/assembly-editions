@@ -66,7 +66,7 @@ const FooterSocialItem = styled.li`
     overflow: hidden;
     border-radius: 50%;
     transform: translateY(0);
-    transition: all 300ms;
+    transition: color 0.3s ease;
     :hover {
       transform: translateY(-6px);
     }
@@ -131,13 +131,17 @@ const FooterMenuList = styled.li`
     ${label_regular};
     color: var(--title);
     display: block;
-    transition: all 300ms;
+    transition: color 0.3s ease;
     cursor: pointer;
     :last-child {
       padding: 0;
     }
     :hover {
       color: var(--text-secondary);
+    }
+    :focus-visible {
+      outline: 1px solid var(--link-default);
+      border-radius: var(--radius-4);
     }
   }
 `;

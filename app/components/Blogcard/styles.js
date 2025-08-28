@@ -9,10 +9,6 @@ const BlogDetail = styled.div`
   position: relative;
   gap: var(--space-24);
   border-radius: var(--radius-12);
-  :focus-visible {
-    outline: none;
-    border: 2px solid var(--link-default);
-  }
   @media only screen and (min-width: 449px) {
     :hover {
       .svg-icon {

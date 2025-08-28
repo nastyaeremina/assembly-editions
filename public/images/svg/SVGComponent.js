@@ -167,9 +167,9 @@ const getPath = (name, props) => {
       return (
         <>
           <path
-            fill='#09AA6C'
+            fill='var(--title)'
             fillRule='evenodd'
-            stroke='#09AA6C'
+            stroke='var(--title)'
             strokeLinecap='round'
             strokeLinejoin='round'
             strokeWidth={0.875}
@@ -233,9 +233,9 @@ const getPath = (name, props) => {
       return (
         <>
           <path
-            fill='#09AA6C'
+            fill='var(--title)'
             fillRule='evenodd'
-            stroke='#09AA6C'
+            stroke='var(--title)'
             strokeLinecap='round'
             strokeLinejoin='round'
             strokeWidth={1.5}
@@ -249,7 +249,7 @@ const getPath = (name, props) => {
         <>
           <path
             fill='#fff'
-            stroke='#A5ABA9'
+            stroke='var(--text-secondary)'
             strokeLinecap='round'
             strokeLinejoin='round'
             strokeWidth={1.5}
@@ -262,9 +262,9 @@ const getPath = (name, props) => {
       return (
         <>
           <path
-            fill='#09AA6C'
+            fill='var(--title)'
             fillRule='evenodd'
-            stroke='#09AA6C'
+            stroke='var(--title)'
             strokeLinecap='round'
             strokeLinejoin='round'
             strokeWidth={1.25}
@@ -277,7 +277,7 @@ const getPath = (name, props) => {
       return (
         <>
           <path
-            stroke='#A5ABA9'
+            stroke='var(--text-secondary)'
             strokeLinecap='round'
             strokeLinejoin='round'
             strokeWidth={1.5}
@@ -292,7 +292,7 @@ const getPath = (name, props) => {
         <>
           <path
             fill='#fff'
-            stroke='#A5ABA9'
+            stroke='var(--text-secondary)'
             strokeLinecap='round'
             strokeLinejoin='round'
             strokeWidth={1.5}
@@ -300,8 +300,8 @@ const getPath = (name, props) => {
             clipRule='evenodd'
           />
           <path
-            fill='#09AA6C'
-            stroke='#09AA6C'
+            fill='var(--title)'
+            stroke='var(--title)'
             strokeLinecap='round'
             strokeLinejoin='round'
             strokeWidth={1.5}
@@ -313,7 +313,7 @@ const getPath = (name, props) => {
       return (
         <>
           <path
-            stroke='#A5ABA9'
+            stroke='var(--text-secondary)'
             strokeLinecap='round'
             strokeLinejoin='round'
             strokeWidth={1.5}
@@ -322,8 +322,8 @@ const getPath = (name, props) => {
             clipRule='evenodd'
           />
           <path
-            fill='#09AA6C'
-            stroke='#09AA6C'
+            fill='var(--title)'
+            stroke='var(--title)'
             strokeLinecap='round'
             strokeLinejoin='round'
             strokeWidth={1.5}
@@ -405,11 +405,11 @@ const getPath = (name, props) => {
       return (
         <>
           <path
-            fill='#131313'
+            fill='var(--title)'
             d='M16.145 6.813h-2.426c.066-.381.3-.593.777-.835l.448-.228c.798-.41 1.223-.872 1.223-1.627 0-.477-.183-.85-.55-1.123-.359-.27-.798-.402-1.305-.402-.404 0-.77.102-1.106.315-.33.206-.58.47-.733.8l.704.703c.27-.55.667-.821 1.188-.821.44 0 .71.228.71.542 0 .265-.131.484-.638.74l-.285.14c-.624.316-1.056.675-1.306 1.086-.248.403-.373.924-.373 1.547v.169h3.673V6.813h-.001ZM15.823 8.98h-4.019l-2.01 3.48h4.02l2.009 3.481 2.009-3.48-2.01-3.48Z'
           />
           <path
-            fill='#131313'
+            fill='var(--title)'
             d='M10.141 14.78a4.646 4.646 0 0 1-4.64-4.641c0-2.56 2.081-4.641 4.64-4.641l1.588-3.325a8.12 8.12 0 1 0 3.195 14.526l-1.76-3.047a4.61 4.61 0 0 1-3.023 1.127Z'
           />
         </>
@@ -856,6 +856,41 @@ const getPath = (name, props) => {
           <path
             fill='#101010'
             d='M14.769 8.546a.754.754 0 0 0 0-1.088l-5.5-5.25a.75.75 0 0 0-1.034 1.084l4.143 3.96H1.75a.748.748 0 0 0-.75.75c0 .415.334.75.75.75h10.628l-4.147 3.956a.75.75 0 0 0 1.035 1.084l5.5-5.25.003.004Z'
+          />
+        </>
+      );
+    // viewBox='0 0 4 4'
+    case 'small-dot-icon':
+      return (
+        <>
+          <path
+            fill='var(--text-secondary)'
+            d='M1.997 3.608A1.558 1.558 0 0 1 .413 2.024c0-.896.688-1.584 1.584-1.584.896 0 1.584.688 1.584 1.584 0 .896-.688 1.584-1.584 1.584Z'
+          />
+        </>
+      );
+    case 'copy-icon':
+      return (
+        <>
+          <g clipPath='url(#clip0_2338_8798)'>
+            <path
+              fill='var(--text-secondary)'
+              d='M16.25 13.313h-7.5a.627.627 0 0 1-.625-.626v-10c0-.343.281-.624.625-.624h5.473l2.652 2.652v7.973a.627.627 0 0 1-.625.624Zm-7.5 1.874h7.5c1.379 0 2.5-1.12 2.5-2.5V4.715c0-.496-.2-.973-.55-1.324L15.55.738a1.875 1.875 0 0 0-1.323-.55H8.75a2.502 2.502 0 0 0-2.5 2.5v10c0 1.378 1.121 2.5 2.5 2.5Zm-5-10a2.502 2.502 0 0 0-2.5 2.5v10c0 1.38 1.121 2.5 2.5 2.5h7.5c1.379 0 2.5-1.12 2.5-2.5v-1.25h-1.875v1.25a.627.627 0 0 1-.625.625h-7.5a.627.627 0 0 1-.625-.625v-10c0-.343.281-.625.625-.625H5V5.188H3.75Z'
+            />
+          </g>
+          <defs>
+            <clipPath id='clip0_2338_8798'>
+              <path fill='#fff' d='M0 .188h20v20H0z' />
+            </clipPath>
+          </defs>
+        </>
+      );
+    case 'correct-icon':
+      return (
+        <>
+          <path
+            fill='var(--text-secondary)'
+            d='m6.668 10.115 6.128-6.129.944.943L6.668 12 2.426 7.757l.942-.942 3.3 3.3Z'
           />
         </>
       );

@@ -1,52 +1,61 @@
-import Link from 'next/link';
-import React from 'react';
+import React, { useMemo, useCallback, useState } from 'react';
 import moment from 'moment';
-import { useRouter } from 'next/navigation';
+import Link from 'next/link';
 import { isEmpty } from '../../helpers/helpers';
-import { Backlink, BlogImage, BlogTime, DetailHero, Image, Post } from './styles';
+import Breadcrumbs from '../Breadcrumbs/breadcrumbs';
+import SVGComponent from '../../../public/images/svg/SVGComponent';
+import ToastMessage from '../ToastMessage/toastMessage';
+import { BlogImage, BlogTime, DetailHero, Image, Post, HeroWrapper } from './styles';
 
-export default function LegacyBlogDetailHero({ blogDetail }) {
-  const router = useRouter();
+export default function LegacyBlogDetailHero({ blogDetail, onCopyLink }) {
+  // Create breadcrumbs with blog tags
+  const breadcrumbs = useMemo(() => {
+    const baseBreadcrumbs = [{ label: 'Blog home', href: '/blog' }];
+
+    if (blogDetail?.tags && blogDetail.tags.length > 0) {
+      // Get the first tag for breadcrumb
+      const firstTag = blogDetail.tags[0];
+      const { name, slug } = firstTag || {};
+      if (firstTag) {
+        baseBreadcrumbs.push({ label: name, href: `/blog/tag/${slug}` });
+      }
+    } else {
+      // Fallback if no tags
+      baseBreadcrumbs.push({ label: 'Blog Post' });
+    }
+
+    return baseBreadcrumbs;
+  }, [blogDetail]);
+
   return (
-    <>
+    <HeroWrapper>
       <DetailHero>
-        <Link href='/blog'>
-          <Backlink>
-            <svg width='12' height='12' viewBox='0 0 12 12' fill='none' xmlns='http://www.w3.org/2000/svg'>
-              <path
-                d='M8.42969 1.37109L3.8012 5.99958L8.42969 10.6281'
-                stroke='#757575'
-                stroke-width='1.92854'
-                stroke-linecap='round'
-                stroke-linejoin='round'
-              />
-            </svg>
-            <p>Back to Blog</p>
-          </Backlink>
-        </Link>
+        {/* breadcrumbs */}
+        <Breadcrumbs breadcrumbs={breadcrumbs} />
         {!isEmpty(blogDetail?.title) && <h1>{blogDetail?.title}</h1>}{' '}
+        <BlogTime>
+          <Post>
+            {!isEmpty(blogDetail?.authors?.[0]?.name) && (
+              <Link href={`/blog/author/${blogDetail?.authors?.[0]?.slug}`}>{blogDetail?.authors?.[0]?.name}</Link>
+            )}
+            {!isEmpty(blogDetail?.published_at) && !isEmpty(blogDetail?.reading_time) && (
+              <SVGComponent name='small-dot-icon' width='4' height='4' viewBox='0 0 4 4' />
+            )}
+            {!isEmpty(blogDetail?.published_at) && moment(new Date(blogDetail?.published_at)).format('MMM DD, YYYY')}
+            {!isEmpty(blogDetail?.published_at) && !isEmpty(blogDetail?.reading_time) && (
+              <SVGComponent name='small-dot-icon' width='4' height='4' viewBox='0 0 4 4' />
+            )}
+            <button onClick={onCopyLink}>
+              <span>Copy link</span>
+            </button>
+          </Post>
+        </BlogTime>
       </DetailHero>
       {!isEmpty(blogDetail?.feature_image) && (
         <BlogImage>
-          <Image src={blogDetail?.feature_image} alt='blogdetail' className='image' width={880} height={496} />
+          <Image src={blogDetail?.feature_image} alt='blogdetail' className='image' width={1224} height={688} />
         </BlogImage>
       )}
-      <BlogTime>
-        <Post>
-          {!isEmpty(blogDetail?.published_at) && moment(new Date(blogDetail?.published_at)).format('MMM DD, YYYY')}
-          {!isEmpty(blogDetail?.published_at) && !isEmpty(blogDetail?.reading_time) && (
-            <svg width='3' height='3' viewBox='0 0 3 3' fill='none' xmlns='http://www.w3.org/2000/svg'>
-              <circle cx='1.5' cy='1.5' r='1.5' fill='#757575' />
-            </svg>
-          )}
-          {!isEmpty(blogDetail?.reading_time) && <li>{`${blogDetail?.reading_time} min read`}</li>}
-        </Post>
-        {!isEmpty(blogDetail?.authors?.[0]?.name) && (
-          <span onClick={() => router.push(`/blog/author/${blogDetail?.authors?.[0]?.slug}`)}>
-            {blogDetail?.authors?.[0]?.name}
-          </span>
-        )}
-      </BlogTime>
-    </>
+    </HeroWrapper>
   );
 }
