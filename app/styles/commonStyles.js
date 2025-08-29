@@ -125,6 +125,19 @@ const Content = styled.div`
   ${body_regular}
   color: var(--title);
 
+  ${(props) =>
+    props.hasTopBar
+      ? css`
+          h2[id] {
+            scroll-margin-top: 70px;
+          }
+        `
+      : css`
+          h2[id] {
+            scroll-margin-top: 40px;
+          }
+        `}
+
   .code-block + div {
     margin: 0;
     h2 {

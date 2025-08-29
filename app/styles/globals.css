@@ -333,6 +333,7 @@ body {
   --space-100: 100px;
   --space-120: 120px;
   --space-152: 152px;
+  --space-160: 160px;
 
   /* radius variable */
   --radius-4: 4px;
@@ -738,7 +739,4 @@ th {
   .standard-page {
     padding: 116px 0 0;
   }
-}
-html {
-  scroll-behavior: smooth;
 }

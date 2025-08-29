@@ -7,6 +7,7 @@ import { isSameDomain } from '../../helpers/serverSideHelpers';
 import BlogdetailPage from '../../components/PageComponent/Blog/blogDetailPage';
 import { BLOG_TAG_SORTED_LIST, CURRENT_SITE_URL, CURRENT_DOMAIN } from '../../constants/constant';
 import Navbar from '../../components/navbar/navbar';
+import { getTopBarContent } from '../../components/navbar/navbar';
 
 async function getContent({ slug }) {
   try {
@@ -67,6 +68,10 @@ export default async function Blogdetail({ params }) {
   const { blogDetail, tags } = await getContent({ slug: params?.slug });
   // Check if the fetched blog content is empty; if so, return a 404 response
   if (isEmpty(blogDetail)) return notFound();
+
+  // Get topbar content to determine spacing
+  const { topbarContent } = await getTopBarContent();
+  const hasTopBar = !isEmpty(topbarContent);
 
   // Create a JSON-LD script for structured data related to the blog post
   const jsonLd = {
@@ -156,6 +161,7 @@ export default async function Blogdetail({ params }) {
           htmlData={modifiedHtmlData}
           ctaTitle={ctaTitle}
           ctaDescription={ctaDescription}
+          hasTopBar={hasTopBar}
         />
       </Layout>
     </>

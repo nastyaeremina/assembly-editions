@@ -11,38 +11,28 @@ import {
   Details,
   MainContent,
   Rightcontent,
-  Table,
-  TableHeading,
   Post,
   BlogTime,
-  ActiveBorder,
-  TableContentWrapper,
-  TOCDivider,
   CopyIcon
 } from '../../../styles/blogstyles';
 import { isEmpty } from '../../../helpers/helpers';
 import { renderContentWithVideos } from '../../../helpers/clientSideHelpers';
-import { EXTRACT_CODE_TAG_FROM_HTML_REGEX, EXTRACT_H2_TAG_FROM_HTML_REGEX } from '../../../constants/constant';
-import BlogSidebarCTA from '../../../components/blogsidebarCTA/index';
+import { EXTRACT_CODE_TAG_FROM_HTML_REGEX } from '../../../constants/constant';
 import LegacyBlogDetailHero from '../../blogdetailHero/legacyBlogDetailHero';
 import SVGComponent from '../../../../public/images/svg/SVGComponent';
 import useActiveHeading from '../../../hooks/useActiveHeading';
 import NewCTA from '../../cta/newCTA';
 import { CTAData } from '../../../constants/raw';
 import ToastMessage from '../../ToastMessage/toastMessage';
+import TableOfContents from './TableOfContents';
 
-export default function BlogdetailPage({ blogDetail, htmlData, ctaTitle, ctaDescription }) {
+export default function BlogdetailPage({ blogDetail, htmlData, ctaTitle, ctaDescription, hasTopBar }) {
   const [CopyBlockData, setCopyBlock] = useState([]);
-  const [activeIndex, setActiveIndex] = useState(0);
   const [showToast, setShowToast] = useState(false);
-  const activeId = useActiveHeading({ selector: 'h2' });
 
   const shouldShowBlogCTA = !isEmpty(ctaDescription) && !isEmpty(ctaTitle);
   const shouldShowTOC = blogDetail?.custom_template !== 'custom-no-toc';
   const shouldShowLestSection = shouldShowBlogCTA || shouldShowTOC;
-
-  // ref for active border
-  const itemBorderRefs = useRef([]);
 
   const onChangeCopy = useCallback(
     ({ index, isCopy }) => {
@@ -60,61 +50,6 @@ export default function BlogdetailPage({ blogDetail, htmlData, ctaTitle, ctaDesc
     },
     [CopyBlockData]
   );
-
-  const renderTableData = useMemo(() => {
-    if (isEmpty(htmlData)) return null;
-    const newList = htmlData?.match(EXTRACT_H2_TAG_FROM_HTML_REGEX);
-    if (isEmpty(newList)) return null;
-    return newList?.map((item, index) => {
-      const headingList = item?.split('>');
-      const id = `${headingList?.[0]?.replace(/['"]+/g, '').replace('<h2 id=', '')}`;
-      const isActive = index === activeIndex;
-
-      return (
-        !isEmpty(headingList?.[1]) && (
-          <li
-            key={`tableDataHeading_index_${index}`}
-            className={isActive ? 'active' : ''}
-            ref={(item) => {
-              itemBorderRefs.current[index] = item;
-            }}>
-            <Link href={`#${id}`} className={isActive ? 'active' : ''}>
-              {headingList?.[1]}
-            </Link>
-          </li>
-        )
-      );
-    });
-  }, [htmlData, activeIndex]);
-
-  // for active border (from scrolling and clicking)
-  useEffect(() => {
-    // Update activeIndex when activeId changes (from scrolling)
-    if (activeId && renderTableData) {
-      const activeItemIndex = renderTableData.findIndex((item) => {
-        const linkElement = item?.props?.children?.props;
-        if (linkElement?.href) {
-          const id = linkElement.href.replace('#', '');
-          return id === activeId;
-        }
-        return false;
-      });
-      if (activeItemIndex !== -1 && activeItemIndex !== activeIndex) {
-        setActiveIndex(activeItemIndex);
-        return; // Exit early to avoid positioning border twice
-      }
-    }
-
-    // Position the active border
-    if (itemBorderRefs.current[activeIndex]) {
-      const { offsetTop, offsetHeight } = itemBorderRefs.current[activeIndex];
-      const activeBorder = document.getElementById('active-border');
-      if (activeBorder) {
-        activeBorder.style.top = `${offsetTop}px`;
-        activeBorder.style.height = `${offsetHeight}px`;
-      }
-    }
-  }, [activeId, renderTableData, activeIndex]);
 
   // copy link function
   const handleCopyLink = useCallback(() => {
@@ -134,7 +69,7 @@ export default function BlogdetailPage({ blogDetail, htmlData, ctaTitle, ctaDesc
     if (isEmpty(segments)) return null;
     // Render the content
     return (
-      <Content applyMargin={!shouldShowTOC}>
+      <Content applyMargin={!shouldShowTOC} hasTopBar={hasTopBar}>
         {segments.map((segment, index) => {
           if (segment?.startsWith('<pre><code')) {
             // Remove HTML tags and extract code content
@@ -187,20 +122,18 @@ export default function BlogdetailPage({ blogDetail, htmlData, ctaTitle, ctaDesc
 
             <BlogContent className={!shouldShowTOC ? 'without-toc' : ''}>
               {shouldShowLestSection && (
-                <BlogDetailsidebar>
+                <BlogDetailsidebar hasTopBar={hasTopBar}>
+                  {/* table of content and cta of bottom  */}
                   {shouldShowTOC && (
-                    <Table>
-                      <TableHeading>JUMP TO SECTION</TableHeading>
-                      <TableContentWrapper>
-                        <TOCDivider />
-                        <ol>
-                          <ActiveBorder id='active-border' />
-                          {renderTableData}
-                        </ol>
-                      </TableContentWrapper>
-                    </Table>
+                    <TableOfContents
+                      htmlData={htmlData}
+                      hasTopBar={hasTopBar}
+                      ctaTitle={ctaTitle}
+                      ctaDescription={ctaDescription}
+                      shouldShowBlogCTA={shouldShowBlogCTA}
+                      sectionTitle='JUMP TO SECTION'
+                    />
                   )}
-                  {shouldShowBlogCTA && <BlogSidebarCTA headerText={ctaTitle} bodyText={ctaDescription} />}
                 </BlogDetailsidebar>
               )}
               <Rightcontent>

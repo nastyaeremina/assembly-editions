@@ -208,7 +208,7 @@ const BlogDetailsidebar = styled.div`
   margin-bottom: var(--space-100);
   height: 100%;
   position: sticky;
-  top: var(--space-120);
+  top: ${(props) => (props.hasTopBar ? 'var(--space-160)' : 'var(--space-120)')};
   @media only screen and (max-width: 768px) {
     display: none;
   }
