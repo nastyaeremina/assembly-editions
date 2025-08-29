@@ -25,6 +25,7 @@ function BlogListSection({ authorName, allPosts }) {
             name={item?.title}
             date={moment(new Date(item?.published_at)).format('MMM DD, YYYY')}
             authorName={authorName}
+            authorSlug={item?.authors?.[0]?.slug}
             desc={item?.excerpt}
             image={item?.feature_image}
             tags={finalTagList}

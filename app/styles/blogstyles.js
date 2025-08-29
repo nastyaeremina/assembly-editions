@@ -59,19 +59,18 @@ const BlogCardDiv = styled.div`
     display: flex;
     align-items: center;
     gap: var(--space-40);
-    :focus-visible {
-      outline: none;
-      border: 2px solid var(--link-default);
-      border-radius: var(--radius-12);
-    }
   }
   @media only screen and (max-width: 991px) {
-    flex-direction: column;
-    align-items: flex-start;
+    a {
+      flex-direction: column;
+      align-items: flex-start;
+    }
   }
   @media only screen and (max-width: 449px) {
     padding-top: var(--space-24);
-    gap: var(--space-24);
+    a {
+      gap: var(--space-24);
+    }
   }
 `;
 

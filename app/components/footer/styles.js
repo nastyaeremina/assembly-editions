@@ -44,9 +44,8 @@ const FooterSocialList = styled.ul`
   gap: var(--space-24);
   a {
     :focus-visible {
-      outline: none;
-      border: 2px solid var(--link-default);
-      border-radius: var(--radius-12);
+      border-radius: var(--radius-4);
+      outline: 1px solid var(--link-default);
     }
   }
 `;
@@ -119,9 +118,8 @@ const FooterFirst = styled.div`
   }
   a {
     :focus-visible {
-      outline: none;
-      border: 2px solid var(--link-default);
-      border-radius: var(--radius-12);
+      border-radius: var(--radius-8);
+      outline: 1px solid var(--link-default);
     }
   }
   @media only screen and (max-width: 768px) {

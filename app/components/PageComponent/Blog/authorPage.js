@@ -5,7 +5,7 @@ import { AuthorPagHeroSection, CTAData } from '../../../constants/raw';
 import NewCTA from '../../cta/newCTA';
 import BlogListSection from './blogListSection';
 
-export default function AuthorPage({ allPosts }) {
+export default function AuthorPage({ allPosts, breadcrumbText = 'Blog', breadcrumbLink = '/blog' }) {
   return (
     <>
       <MainContent>
@@ -13,8 +13,8 @@ export default function AuthorPage({ allPosts }) {
           authorImage={allPosts?.[0]?.authors?.[0]?.profile_image}
           authorName={allPosts?.[0]?.authors?.[0]?.name}
           designation={AuthorPagHeroSection.designation}
-          articleName={'Blog'}
-          articleHref={'/blog'}
+          breadcrumbText={breadcrumbText}
+          breadcrumbLink={breadcrumbLink}
           twitter={allPosts?.[0]?.authors?.[0]?.twitter}
           linkedin={allPosts?.[0]?.authors?.[0]?.linkedin}
         />

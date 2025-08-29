@@ -10,6 +10,10 @@ import { isEmpty } from '../../../helpers/helpers';
 import DropDown from '../../dropdownComponent';
 import TabComponent from '../../tabComponent';
 import { useIsMobile } from '../../../hooks/useMobileDevice';
+import ButtonV2Component from '../../button/buttonV2/buttonV2';
+import { ButtonVariant } from '../../../constants/constant';
+import NewCTA from '../../cta/newCTA';
+import { CTAData } from '../../../constants/raw';
 
 // Tag-specific blog page with filtering
 export default function TagPage({ allPosts, tags, featuredBlog, currentTagSlug }) {
@@ -86,7 +90,7 @@ export default function TagPage({ allPosts, tags, featuredBlog, currentTagSlug }
     if (isEmpty(featuredBlog)) return null;
 
     const finalTagList = filterTagList(featuredBlog.tags);
-    const authorName = featuredBlog?.authors?.[0]?.name || '';
+    const author = featuredBlog?.authors?.[0] || {};
 
     return (
       <FeatureBlogCard
@@ -96,7 +100,7 @@ export default function TagPage({ allPosts, tags, featuredBlog, currentTagSlug }
         excerpt={featuredBlog.excerpt}
         featureImage={featuredBlog.feature_image}
         publishedAt={featuredBlog.published_at}
-        authorName={authorName}
+        author={author}
         tags={finalTagList}
       />
     );
@@ -118,6 +122,7 @@ export default function TagPage({ allPosts, tags, featuredBlog, currentTagSlug }
             name={item?.title}
             date={moment(new Date(item?.published_at)).format('MMM DD, YYYY')}
             authorName={authorName}
+            authorSlug={item?.authors?.[0]?.slug}
             desc={item?.excerpt}
             image={item?.feature_image}
             tags={finalTagList}
@@ -184,10 +189,24 @@ export default function TagPage({ allPosts, tags, featuredBlog, currentTagSlug }
             <BlogCardsDiv>{renderData}</BlogCardsDiv>
             {/* Show button only if there are more posts left */}
             {filteredPosts.length > visibleCount && (
-              <LoadMoreButton onClick={() => setVisibleCount((prev) => prev + 8)}>Load more</LoadMoreButton>
+              <LoadMoreButton>
+                <ButtonV2Component
+                  title={'Load more'}
+                  variant={ButtonVariant.SECONDARY_WITH_BORDER}
+                  onClick={() => setVisibleCount((prev) => prev + 8)}
+                />
+              </LoadMoreButton>
             )}
           </BlogListDiv>
         </Container>
+        <NewCTA
+          title={CTAData.title}
+          description={CTAData.description}
+          primaryButtonLink={CTAData.primaryButtonLink}
+          primaryButtonText={CTAData.primaryButtonText}
+          secondaryButtonLink={CTAData.secondaryButtonLink}
+          secondaryButtonText={CTAData.secondaryButtonText}
+        />
       </MainContent>
     </>
   );

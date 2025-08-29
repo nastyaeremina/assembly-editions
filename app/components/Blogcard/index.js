@@ -6,7 +6,7 @@ import Link from 'next/link';
 import { IconDiv, Par, PostDetail, Textarea } from '../../styles/blogstyles';
 import { isEmpty } from '../../helpers/helpers';
 import SVGComponent from '../../../public/images/svg/SVGComponent';
-import { BlogDetail, Bottom, DetailLeftDiv, Leftside } from './styles';
+import { BlogDetail, Bottom, DetailLeftDiv, Leftside, AuthorLink } from './styles';
 
 export default function Blogcard(props) {
   const tagListReder = useMemo(() => {
@@ -36,7 +36,9 @@ export default function Blogcard(props) {
                     <SVGComponent name='dot-icon' width='6' height='6' viewBox='0 0 6 6' />
                   </IconDiv>
                 )}
-                {!isEmpty(props.authorName) && <li>{`${props.authorName}`}</li>}
+                {!isEmpty(props.authorName) && (
+                  <AuthorLink href={`/blog/author/${props.authorSlug}`}>{`${props.authorName}`}</AuthorLink>
+                )}
               </DetailLeftDiv>
               <SVGComponent
                 name='blog-card-hover-arrow-icon'

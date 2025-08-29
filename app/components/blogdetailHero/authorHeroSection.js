@@ -15,8 +15,8 @@ import Breadcrumbs from '../Breadcrumbs/breadcrumbs';
 import SVGComponent from '../../../public/images/svg/SVGComponent';
 import { isEmpty } from '../../helpers/helpers';
 
-function AuthorHeroSection({ authorImage, authorName, designation, articleName, articleHref, twitter, linkedin }) {
-  const BreadcrumbItem = [{ label: articleName, href: articleHref }];
+function AuthorHeroSection({ authorImage, authorName, designation, breadcrumbText, breadcrumbLink, twitter, linkedin }) {
+  const BreadcrumbItem = [{ label: breadcrumbText, href: breadcrumbLink }];
   return (
     <AuthorMainHeroSection>
       <Container>

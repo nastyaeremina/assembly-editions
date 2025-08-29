@@ -140,3 +140,35 @@ export async function getPageContent({ searchParams, cookieKey, fallbackContentI
     abTestExperimentName: abTestInfo.abTestExperimentName
   };
 }
+
+/**
+ * Determines breadcrumb text and link based on the referer URL.
+ * 
+ * @param {string} referer - The referer URL from headers
+ * @param {string} currentDomain - The current domain for fallback logic
+ * @returns {Object} - Object containing breadcrumbText and breadcrumbLink
+ */
+export function getBreadcrumbFromReferer(referer, currentDomain) {
+  let breadcrumbText = 'Blog Home';
+  let breadcrumbLink = '/blog';
+  
+  if (referer && referer.includes('/blog/')) {
+    // Check if it's a blog detail page (has a slug after /blog/)
+    const blogPath = referer.split('/blog/')[1];
+    if (blogPath && blogPath.split('/').length === 1) {
+      // This is a blog detail page like /blog/xyz
+      breadcrumbText = 'Article';
+      breadcrumbLink = referer; // Link back to the specific blog post
+    } else {
+      // This is the main blog page or other blog pages
+      breadcrumbText = 'Blog Home';
+      breadcrumbLink = '/blog';
+    }
+  } else if (!referer || (currentDomain && referer.includes(currentDomain))) {
+    // Default fallback for direct access or internal navigation
+    breadcrumbText = 'Blog Home';
+    breadcrumbLink = '/blog';
+  }
+  
+  return { breadcrumbText, breadcrumbLink };
+}

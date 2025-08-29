@@ -8,9 +8,9 @@ import { BlogCardDiv, FirstBlog, IconDiv, Last, Par, PostDetail, Text, Top } fro
 import { isEmpty } from '../../helpers/helpers';
 import { Container } from '../../styles/commonStyles';
 import SVGComponent from '../../../public/images/svg/SVGComponent';
-import { DetailLeftDiv } from './styles';
+import { AuthorLink, DetailLeftDiv } from './styles';
 
-export default function FeatureBlogCard({ slug, title, excerpt, featureImage, publishedAt, authorName, tags = [] }) {
+export default function FeatureBlogCard({ slug, title, excerpt, featureImage, publishedAt, author, tags = [] }) {
   const [imageHeight, setImageHeight] = useState();
 
   return (
@@ -41,7 +41,7 @@ export default function FeatureBlogCard({ slug, title, excerpt, featureImage, pu
                       <SVGComponent name='dot-icon' width='6' height='6' viewBox='0 0 6 6' />
                     </IconDiv>
                   )}
-                  {!isEmpty(authorName) && <li>{authorName}</li>}
+                  {!isEmpty(author) && <AuthorLink href={`/blog/author/${author.slug}`}>{author.name}</AuthorLink>}
                 </DetailLeftDiv>
               </PostDetail>
               <h3>{title}</h3>

@@ -113,6 +113,9 @@ const Buttons = styled.button`
         color: var(--off-white-100);
       `}
   }
+  :focus-visible {
+    border-radius: var(--radius-30);
+  }
 `;
 
 export { ButtonWrap, Buttons };

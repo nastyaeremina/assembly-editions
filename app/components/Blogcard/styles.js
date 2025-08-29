@@ -1,5 +1,6 @@
 import styled, { css } from 'styled-components';
-import { button_regular } from '../../styles/typography';
+import { button_regular, tag } from '../../styles/typography';
+import Link from 'next/link';
 
 const BlogDetail = styled.div`
   width: 100%;
@@ -60,4 +61,18 @@ const DetailLeftDiv = styled.div`
   gap: var(--space-4);
 `;
 
-export { BlogDetail, Leftside, Bottom, DetailLeftDiv };
+const AuthorLink = styled(Link)`
+  ${tag}
+  color: var(--text-secondary);
+  transition: color 0.3s ease;
+  cursor: pointer;
+  &:hover {
+    color: var(--title);
+  }
+  &:focus-visible {
+    outline: 1px solid var(--link-default);
+    border-radius: var(--radius-4);
+  }
+`;
+
+export { BlogDetail, Leftside, Bottom, DetailLeftDiv, AuthorLink };

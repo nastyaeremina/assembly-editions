@@ -120,7 +120,7 @@ export default function BlogPage({ allPosts, tags, featuredBlog }) {
     if (isEmpty(featuredBlog)) return null;
 
     const finalTagList = filterTagList(featuredBlog.tags);
-    const authorName = featuredBlog?.authors?.[0]?.name || '';
+    const author = featuredBlog?.authors?.[0] || {};
 
     return (
       <FeatureBlogCard
@@ -130,7 +130,7 @@ export default function BlogPage({ allPosts, tags, featuredBlog }) {
         excerpt={featuredBlog.excerpt}
         featureImage={featuredBlog.feature_image}
         publishedAt={featuredBlog.published_at}
-        authorName={authorName}
+        author={author}
         tags={finalTagList}
       />
     );
@@ -175,6 +175,7 @@ export default function BlogPage({ allPosts, tags, featuredBlog }) {
             name={item?.title}
             date={moment(new Date(item?.published_at)).format('MMM DD, YYYY')}
             authorName={authorName}
+            authorSlug={item?.authors?.[0]?.slug}
             desc={item?.excerpt}
             image={item?.feature_image}
             tags={finalTagList}
