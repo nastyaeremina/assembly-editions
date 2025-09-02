@@ -1,7 +1,6 @@
 import { notFound } from 'next/navigation';
 import Layout from '../../components/layout';
 import { getUpdateDetail } from '../../lib/updates-content';
-import Navbar from '../../components/navbar/navbar';
 import { getSEOData, isEmpty } from '../../helpers/helpers';
 import UpdatedetailPage from '../../components/PageComponent/Updates/updateDetailPage';
 import CTA from '../../components/cta/cta';
@@ -33,7 +32,6 @@ export default async function Updatedetail({ params }) {
   return (
     <>
       <Layout>
-        <Navbar isModule={false} />
         <UpdatedetailPage details={updateDetails} />
         <CTA />
       </Layout>

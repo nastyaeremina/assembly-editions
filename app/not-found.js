@@ -1,5 +1,4 @@
-import { getContent } from './components/layout';
-import Navbar from './components/navbar/navbar';
+import Layout from './components/layout';
 import NotFoundPage from './components/404/404-MainPage';
 
 export async function metadata() {
@@ -9,13 +8,9 @@ export async function metadata() {
   };
 }
 export default async function NotFound() {
-  const { footerData, footerDescription } = await getContent();
-
   return (
-    <>
-      <NotFoundPage footerData={footerData} footerDescription={footerDescription}>
-        <Navbar />
-      </NotFoundPage>
-    </>
+    <Layout>
+      <NotFoundPage />
+    </Layout>
   );
 }

@@ -4,7 +4,6 @@ import AggregateRating from '../components/aggregateRating';
 import { getFAQsData } from '../services/faq';
 import FAQ from './../components/faq/faq';
 import Layout from './../components/layout';
-import Navbar from './../components/navbar/navbar';
 import { CURRENT_SITE_URL, JOB_PAGE_ID } from './../constants/constant';
 import { extractTableData, getSEOData } from './../helpers/helpers';
 import { getPageContent } from './../helpers/serverSideHelpers';
@@ -79,7 +78,6 @@ export default async function Jobs({ searchParams }) {
     <>
       <AggregateRating data={details?.seoMetadata} />
       <Layout abTestContentLabel={abTestContentLabel} abTestExperimentName={abTestExperimentName}>
-        <Navbar />
         <JobsPage jobList={jobList} jobImagesList={jobImagesList} jobBlogPostList={jobBlogPostList} details={details} />
         <FAQ faqList={faqData} />
       </Layout>

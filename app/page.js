@@ -1,5 +1,4 @@
 import Layout from './components/layout';
-import Navbar from './components/navbar/navbar';
 import { CURRENT_SITE_URL, HOME_CLIENT_DARK_ID } from './constants/constant';
 import { getHomeContent } from './lib/contentful-home';
 import AggregateRating from './components/aggregateRating';
@@ -7,8 +6,13 @@ import { getPageContent } from './helpers/serverSideHelpers';
 import HomePage from './components/Home/homepage/homepage';
 import { createArrayWithFixedLength, getSEOData, isEmpty, removeEmptyElement } from './helpers/helpers';
 import NewCTA from './components/cta/newCTA';
-import { COPILOT_FACEBOOK_LINK, COPILOT_INSTAGRAM_LINK, COPILOT_LINKEDIN_LINK, COPILOT_TWITTER_LINK, COPILOT_YOUTUBE_CHANNEL_LINK } from './constants/externalLinks';
-
+import {
+  COPILOT_FACEBOOK_LINK,
+  COPILOT_INSTAGRAM_LINK,
+  COPILOT_LINKEDIN_LINK,
+  COPILOT_TWITTER_LINK,
+  COPILOT_YOUTUBE_CHANNEL_LINK
+} from './constants/externalLinks';
 
 async function getContent({ searchParams }) {
   return getPageContent({
@@ -21,7 +25,7 @@ async function getContent({ searchParams }) {
 
 export async function generateMetadata({ params, searchParams }, parent) {
   const { content: data } = await getContent({ searchParams });
-  if(isEmpty(data.seoMetadata)) {
+  if (isEmpty(data.seoMetadata)) {
     return;
   }
   const seoData = await getSEOData({ id: data.seoMetadata.sys.id, data: data.seoMetadata });
@@ -52,20 +56,21 @@ export default async function Home({ searchParams }) {
   );
   return (
     <>
-     {!isEmpty(content?.seoMetadata) && <AggregateRating id={content?.seoMetadata.sys.id} />}
+      {!isEmpty(content?.seoMetadata) && <AggregateRating id={content?.seoMetadata.sys.id} />}
       <script type='application/ld+json' dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       <Layout abTestContentLabel={abTestContentLabel} abTestExperimentName={abTestExperimentName}>
-        <Navbar />
         <HomePage content={content} testimonialTableData={testimonialTableData} />
-        {!isEmpty(content?.ctaSection) && <NewCTA
-          title={content.ctaSection.title}
-          description={content.ctaSection.description}
-          primaryButtonText={content.ctaSection.primaryButtonText}
-          primaryButtonLink={content.ctaSection.primaryButtonLink}
-          secondaryButtonText={content.ctaSection.secondaryButtonText}
-          secondaryButtonLink={content.ctaSection.secondaryButtonLink}
-          banner={content.ctaSection.banner?.url}
-        />}
+        {!isEmpty(content?.ctaSection) && (
+          <NewCTA
+            title={content.ctaSection.title}
+            description={content.ctaSection.description}
+            primaryButtonText={content.ctaSection.primaryButtonText}
+            primaryButtonLink={content.ctaSection.primaryButtonLink}
+            secondaryButtonText={content.ctaSection.secondaryButtonText}
+            secondaryButtonLink={content.ctaSection.secondaryButtonLink}
+            banner={content.ctaSection.banner?.url}
+          />
+        )}
       </Layout>
     </>
   );

@@ -24,7 +24,7 @@ import HighlightSection from '../highlightSection/highlightSection';
 import { draftMode } from 'next/headers';
 
 export default async function StandardPage({ data }) {
-  const { isEnabled } = await draftMode()
+  const { isEnabled } = await draftMode();
 
   const renderComponent = async (componentData) => {
     if (isEmpty(componentData)) return null;

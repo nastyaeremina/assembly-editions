@@ -37,6 +37,7 @@ const PostContent = styled.div`
   }
 `;
 const PrivacyContent = styled.div`
+  margin-bottom: 60px;
   h4 {
     ${Heading4};
     color: var(--title);

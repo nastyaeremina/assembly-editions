@@ -4,13 +4,14 @@ import { button_regular, h1_regular, h3_semibold, tag, label_regular, h2_semibol
 const FirstBlog = styled.div`
   background-color: var(--gray-50);
   width: 100%;
-  padding: var(--space-152) 0 var(--space-80);
+  padding: var(--space-80) 0;
   h1 {
     ${h1_regular}
     color: var(--title);
     margin: 0;
   }
   @media only screen and (max-width: 650px) {
+    padding-top: var(--space-60);
     padding-bottom: var(--space-32);
   }
 `;
@@ -181,7 +182,10 @@ const TableHeading = styled.div`
 const Details = styled.div`
   margin: auto;
   width: 100%;
-  padding-top: var(--space-152);
+  padding-top: var(--space-80);
+  @media only screen and (max-width: 449px) {
+    padding-top: var(--space-24);
+  }
 `;
 
 const OverLayDiv = styled.div`
@@ -354,8 +358,11 @@ const LoadMoreButton = styled.div`
 `;
 
 const AuthorMainHeroSection = styled.div`
-  padding-top: var(--space-152);
+  padding-top: var(--space-80);
   padding-bottom: var(--space-120);
+  @media only screen and (max-width: 449px) {
+    padding-top: var(--space-40);
+  }
 `;
 
 const InnerHeroSection = styled.div`

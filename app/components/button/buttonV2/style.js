@@ -9,6 +9,12 @@ const ButtonWrap = styled.div`
     css`
       width: 100%;
     `}
+  a {
+    :focus-visible {
+      outline: 2px solid var(--link-default);
+      border-radius: var(--radius-30);
+    }
+  }
 `;
 
 const Buttons = styled.button`
@@ -19,7 +25,7 @@ const Buttons = styled.button`
   display: flex;
   align-items: center;
   gap: var(--space-8);
-  padding: 0 var(--space-32);
+  padding: var(--space-2) var(--space-32) 0;
   border-radius: var(--radius-30);
   transition: background-color 0.3s ease;
 
@@ -35,7 +41,7 @@ const Buttons = styled.button`
     props.size === ButtonSize.SMALL &&
     css`
       height: 40px;
-      padding: 0 var(--space-16);
+      padding: var(--space-2) var(--space-16) 0;
       ${label_semibold}
     `}
 

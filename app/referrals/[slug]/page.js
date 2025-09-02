@@ -1,6 +1,5 @@
 import { headers } from 'next/headers';
 import Layout from '../../components/layout';
-import Navbar from '../../components/navbar/navbar';
 import Referral from '../../components/referral';
 import { CURRENT_SITE_URL, REFERRAL_SEO_ID } from '../../constants/constant';
 import { getSEOData } from '../../helpers/helpers';
@@ -18,7 +17,6 @@ export default async function ReferralPage() {
     <>
       <AggregateRating id={REFERRAL_SEO_ID} />
       <Layout>
-        <Navbar />
         <Referral hostName={host} />
       </Layout>
     </>

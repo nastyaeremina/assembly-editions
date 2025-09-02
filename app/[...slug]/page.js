@@ -1,7 +1,6 @@
 import { notFound } from 'next/navigation';
-import { draftMode } from 'next/headers'
+import { draftMode } from 'next/headers';
 import Layout from '../components/layout';
-import Navbar from '../components/navbar/navbar';
 import { CURRENT_SITE_URL } from '../constants/constant';
 import { getSEOData, isEmpty } from '../helpers/helpers';
 import { getStandardPageContent } from '../lib/contentful-standardPage';
@@ -16,7 +15,7 @@ const PAGE_TYPE = {
 /**
  * Fetches content for dynamic pages with A/B testing support.
  * Handles both product demo pages and standard pages with variant content.
- * 
+ *
  * @param {Object} params - The route parameters
  * @param {string[]} params.slug - Array of path segments
  * @returns {Object} Object containing:
@@ -30,22 +29,20 @@ async function getContent({ slug }) {
   try {
     // Combine slug segments into a single path
     const combinedSlug = slug.join('/');
-    const { isEnabled } = await draftMode()
+    const { isEnabled } = await draftMode();
 
-    const {
-      contentId,
-      abTestContentLabel,
-      abTestExperimentName
-    } = getABTestInfoFromCookie({
-      cookieKey: `${combinedSlug.replace(/\//g, '-')}`    });
-  
+    const { contentId, abTestContentLabel, abTestExperimentName } = getABTestInfoFromCookie({
+      cookieKey: `${combinedSlug.replace(/\//g, '-')}`
+    });
+
     // If not a product demo page, try to get standard page content
     // If we have a variant ID, use it to fetch the variant content
     // Otherwise, fetch content by slug
-    const standardPageContent = isEmpty(contentId)|| isEnabled
-      ? await getStandardPageContent({ slug: combinedSlug, preview: isEnabled })
-      : await getStandardPageContent({ id: contentId, slug: combinedSlug, preview: isEnabled }) ?? {};
-    
+    const standardPageContent =
+      isEmpty(contentId) || isEnabled
+        ? await getStandardPageContent({ slug: combinedSlug, preview: isEnabled })
+        : (await getStandardPageContent({ id: contentId, slug: combinedSlug, preview: isEnabled })) ?? {};
+
     // If we found standard page content, return it with A/B test information
     if (!isEmpty(standardPageContent)) {
       return {
@@ -56,7 +53,7 @@ async function getContent({ slug }) {
         abTestExperimentName
       };
     }
-    
+
     // Return empty object if no content found
     return {};
   } catch (error) {
@@ -79,13 +76,12 @@ export default async function WeeklyDemo({ params }) {
   const { data, type, isABTest, abTestContentLabel, abTestExperimentName } = await getContent({ slug: params.slug });
   const combinedSlug = params.slug.join('/');
 
-  if (!isABTest &&data?.slug !== combinedSlug) return notFound();
+  if (!isABTest && data?.slug !== combinedSlug) return notFound();
 
   return (
     <>
       <AggregateRating data={data.seoMetadata} />
       <Layout abTestContentLabel={abTestContentLabel} abTestExperimentName={abTestExperimentName}>
-        <Navbar />
         {type === PAGE_TYPE.STANDARD_PAGE && (
           <>
             <StandardPage data={data?.contentCollection?.items} />

@@ -6,7 +6,6 @@ import AggregateRating from '../components/aggregateRating';
 import { getPageContent } from '../helpers/serverSideHelpers';
 import StandardHero from '../components/standardHero/standardHero';
 import { getSEOData, isEmpty, removeEmptyElement } from './../helpers/helpers';
-import Navbar from './../components/navbar/navbar';
 import { notFound } from 'next/navigation';
 
 async function getTemplateContent({ searchParams }) {
@@ -44,7 +43,6 @@ export default async function Page({ searchParams }) {
     <>
       <AggregateRating data={templateData.seoMetadata} />
       <Layout abTestContentLabel={abTestContentLabel} abTestExperimentName={abTestExperimentName}>
-        <Navbar />
         <div className='standard-page'>
           <StandardHero data={templateData.templateHeroSection} type={templateData.templateHeroSection?.type} />
         </div>

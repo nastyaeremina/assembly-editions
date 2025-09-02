@@ -436,7 +436,7 @@ export const CUSTOM_CODE_HEAD_ID = '7v9PqjbDuvaFz4Mm2cxQTX';
 export const CUSTOM_CODE_BEFORE_BODY_TAG_ID = '6CMLDvTPrgvrVzpv5O8XPc';
 export const CUSTOM_CODE_AFTER_BODY_TAG_ID = '2GQxmuzDZhGcXGB5FbgoGa';
 export const SCREEN_SIZE_THRESHOLD = 768;
-export const NAVBAR_CONTENT_ID = '6VWgUONRpobtJQfGck3Ncq';
+export const NAVBAR_CONTENT_ID = '7nxamR1RaXCKCsoweOBGmm';
 /*
 Regex varibles
 */

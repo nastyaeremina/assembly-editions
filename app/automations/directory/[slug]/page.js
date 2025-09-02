@@ -1,7 +1,6 @@
 import { notFound } from 'next/navigation';
 import { draftMode } from 'next/headers';
 import Layout from '../../../components/layout';
-import Navbar from '../../../components/navbar/navbar';
 import { getAllAutomations, getAutomationDetail } from '../../../lib/contentful-automation';
 import { getSEOData, isEmpty } from '../../../helpers/helpers';
 import AutomationDetailPage from '../../../components/PageComponent/Automation/directoryDetailsPage';
@@ -9,7 +8,7 @@ import CTA from '../../../components/cta/cta';
 import { CURRENT_SITE_URL } from '../../../constants/constant';
 
 async function getContent({ slug }) {
-  const { isEnabled } = await draftMode()
+  const { isEnabled } = await draftMode();
   const detail = (await getAutomationDetail(slug, isEnabled)) ?? {};
   let relatedApps = [];
   if (!isEmpty(detail)) {
@@ -58,7 +57,6 @@ export default async function AutomationDetail({ params }) {
   return (
     <>
       <Layout>
-        <Navbar />
         <AutomationDetailPage detail={detail} relatedApps={relatedApps} />
         <CTA />
       </Layout>

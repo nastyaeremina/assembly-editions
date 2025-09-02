@@ -3,7 +3,6 @@ import { getSEOData } from '../../helpers/helpers';
 import { APPS_TYPE, APP_SEO_ID, CURRENT_SITE_URL } from '../../constants/constant';
 import AppDirectoryPage from '../../components/PageComponent/Apps/directoryPage';
 import { getAllPartnerApps } from '../../lib/contentful-partnerApps';
-import Navbar from '../../components/navbar/navbar';
 import CTA from '../../components/cta/cta';
 import AggregateRating from '../../components/aggregateRating';
 
@@ -29,7 +28,6 @@ export default async function Apps() {
       <AggregateRating id={APP_SEO_ID} />
       <Layout>
         <div style={{ backgroundColor: 'var(--main-bg-color)' }}>
-          <Navbar />
           <AppDirectoryPage clientApps={clientApps} internalApps={internalApps} featuredApps={featuredApps} />
           <CTA />
         </div>

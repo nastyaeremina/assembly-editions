@@ -1,11 +1,9 @@
 import PricingPage from '../components/PageComponent/Pricing/pricingPage';
 import Layout from '../components/layout';
-import Navbar from '../components/navbar/navbar';
 import FAQ from '../components/faq/faq';
-import CTA from '../components/cta/cta';
 import { getFAQsData } from '../services/faq';
 import AggregateRating from '../components/aggregateRating';
-import { getABTestInfoFromCookie, getPageContent } from '../helpers/serverSideHelpers';
+import { getPageContent } from '../helpers/serverSideHelpers';
 import { CURRENT_SITE_URL, PRICING_PAGE_ID } from './../constants/constant';
 import { getSEOData, isEmpty } from './../helpers/helpers';
 import { getPricingPageDetail } from './../lib/contentful-pricing';
@@ -42,7 +40,6 @@ export default async function NewIndex({ searchParams }) {
     <>
       <AggregateRating data={details.seoMetadata} />
       <Layout abTestContentLabel={abTestContentLabel} abTestExperimentName={abTestExperimentName}>
-        <Navbar />
         <PricingPage details={details} />
         <FAQ faqList={faqData} />
         <NewCTA

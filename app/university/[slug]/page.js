@@ -1,7 +1,6 @@
 import { notFound } from 'next/navigation';
 import { draftMode } from 'next/headers';
 import Layout from '../../components/layout';
-import Navbar from '../../components/navbar/navbar';
 import { getAllUniversityVideos, getUniversityVideoDetail } from '../../lib/contentful-universityVideos';
 import { getSEOData, isEmpty } from '../../helpers/helpers';
 import 'react-lite-youtube-embed/dist/LiteYouTubeEmbed.css';
@@ -9,7 +8,7 @@ import UniversityDetailPage from '../../components/PageComponent/University/univ
 import { CURRENT_SITE_URL } from '../../constants/constant';
 
 async function getContent({ slug }) {
-  const { isEnabled } = await draftMode()
+  const { isEnabled } = await draftMode();
   let allPosts = [];
   let data = [];
   let page = 0;
@@ -54,7 +53,6 @@ export default async function UniversityDetail({ params }) {
   return (
     <>
       <Layout>
-        <Navbar />
         <UniversityDetailPage universityVideoDetail={universityVideoDetail} relatedVideos={relatedVideos} />
       </Layout>
     </>

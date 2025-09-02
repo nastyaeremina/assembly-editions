@@ -1,32 +1,21 @@
 'use client';
 
 import Link from 'next/link';
-import { useState, useEffect, useCallback, useMemo } from 'react';
+import { useState, useEffect, useCallback, useMemo, useRef } from 'react';
 import Image from 'next/image';
-import CopilotLogos from '../../../public/images/blacklogo.svg';
-import GreenLogos from '../../../public/images/greenlogo.svg';
-import WhiteLogos from '../../../public/images/whitelogo.svg';
-import MobileBlackLogos from '../../../public/images/mobileblacklogo.svg';
-import MobileWhiteLogos from '../../../public/images/whitemobilelogo.svg';
-import MobileGreenLogos from '../../../public/images/greenmblogo.svg';
-import { BlackButton, Container } from '../../styles/commonStyles';
-import { HEADER_LIST, NAVBAR_COLOR_LIST } from '../../constants/constant';
+import { Container } from '../../styles/commonStyles';
 import useMobileDevice from '../../hooks/useMobileDevice';
 import { isEmpty } from '../../helpers/helpers';
-import Button from '../button/button';
-import Line from '../../../public/images/navbar-line.png';
 import { COPILOT_DASHBOARD_LINK, COPILOT_ONBOARDING_LINK } from '../../constants/externalLinks';
+import { useRouter, usePathname } from 'next/navigation';
 import {
   NavbarWrapper,
   NavbarInner,
-  CopilotLogo,
   NavMenu,
   NavigationBlock,
   SpanLink,
   HeaderBtnGroup,
   SignInSignUpBtn,
-  SignIn,
-  MobileMenu,
   FirstLine,
   ThirdLine,
   OverLayBlock,
@@ -38,37 +27,48 @@ import {
   LineMenuImg,
   SignInMobile,
   MobileRight,
-  BackWrap,
-  SvgIcon,
   TopBar,
   AnnounceBar,
   HelpLink,
-  Dspace,
   Drop,
-  FooterItem,
-  NavigationMainDiv
+  NavigationMainDiv,
+  ParentMenuDiv,
+  LinkText,
+  BergerMenu,
+  SecondLine,
+  NavbarMainDiv,
+  Icon
 } from './styles';
 import DropDownComponent from './dropdown';
-import DropdownFooter from './dropdownFooter';
 import ResponsiveNavbar from './responsiveNavbar';
+import SVGComponent from '../../../public/images/svg/SVGComponent';
+import ButtonV2Component from '../button/buttonV2/buttonV2';
+import HighlightSection from './highlighSection';
+import { BottomButtonSection } from './styles';
 
-export default function NavbarComponent({
-  isModule,
-  headerIndex,
-  isEnterPrice,
-  isAuthenticated: userAuth,
-  topbarContent,
-  navbarColorList,
-  navbarData
-}) {
+export default function NavbarComponent({ isAuthenticated: userAuth, topbarContent, navbarData }) {
   const mobile = useMobileDevice();
   const [isOpenMobileMenu, setIsOpenMobileMenu] = useState(false);
   const [openDropdownIndex, setOpenDropdownIndex] = useState(null);
+  const [isActive, setIsActive] = useState(false);
+  const topbarRef = useRef(null);
+  const navbarRef = useRef(null);
+  const [topbarHeight, setTopbarHeight] = useState(0);
+  const [navbarHeight, setNavbarHeight] = useState(0);
 
-  var colorList = NAVBAR_COLOR_LIST[0];
-  if (navbarColorList) colorList = navbarColorList;
-  else if (headerIndex) colorList = NAVBAR_COLOR_LIST[headerIndex];
-  else colorList = NAVBAR_COLOR_LIST[HEADER_LIST.DEFAULT];
+  useEffect(() => {
+    document.documentElement.style.setProperty('--topbar-height', `${topbarHeight}px`);
+    document.documentElement.style.setProperty('--navbar-height', `${navbarHeight}px`);
+  }, [topbarHeight, navbarHeight]);
+
+  const router = useRouter();
+  const pathname = usePathname();
+
+  useEffect(() => {
+    setIsOpenMobileMenu(false);
+    setIsActive(false);
+    setOpenDropdownIndex(null);
+  }, [pathname]);
 
   const closeSubMenu = useCallback(() => {
     setOpenDropdownIndex(null);
@@ -81,6 +81,7 @@ export default function NavbarComponent({
     } else {
       body.style.overflow = 'hidden';
     }
+    setIsActive(!isActive);
     setIsOpenMobileMenu(!isOpenMobileMenu);
     closeSubMenu();
   }, [closeSubMenu, isOpenMobileMenu]);
@@ -95,6 +96,17 @@ export default function NavbarComponent({
     const body = document.querySelector('body');
     body.style.overflow = 'auto';
     window.addEventListener('scroll', handleScroll);
+
+    if (topbarRef.current) {
+      setTopbarHeight(topbarRef.current.offsetHeight);
+    }
+    if (navbarRef.current) {
+      setNavbarHeight(navbarRef.current.offsetHeight);
+    }
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
   }, []);
 
   if (clientWindowHeight > 10) {
@@ -107,32 +119,50 @@ export default function NavbarComponent({
     if (isEmpty(navbarData)) return null;
     return (
       <>
-        <NavMenu mobile={mobile} isBoxShadow>
-          <NavigationBlock>
-            <ResponsiveNavbar
-              mobile={mobile}
-              navbarData={navbarData}
-              openDropdownIndex={openDropdownIndex}
-              setOpenDropdownIndex={setOpenDropdownIndex}
-            />
-          </NavigationBlock>
-        </NavMenu>
+        <ResponsiveNavbar
+          mobile={mobile}
+          navbarData={navbarData}
+          openDropdownIndex={openDropdownIndex}
+          setOpenDropdownIndex={setOpenDropdownIndex}
+        />
       </>
     );
   }, [mobile, navbarData, openDropdownIndex]);
 
   const renderSubItemView = useCallback((data, title) => {
+    if (title.toLowerCase() === 'highlight')
+      return (
+        <div key={`highlight_section_${title}`}>
+          {data &&
+            data.map((highlightItem, index) => {
+              return (
+                <HighlightSection
+                  key={`highlight_${index}`}
+                  href={highlightItem.Link}
+                  title={highlightItem.Title}
+                  description={highlightItem.Description}
+                  image={highlightItem.Image}
+                />
+              );
+            })}
+        </div>
+      );
+
     return data?.map((item, index) => {
+      let itemIcon = item?.Icon;
+      if (itemIcon && itemIcon.startsWith('//')) {
+        itemIcon = `https:${itemIcon}`;
+      }
       return (
         <ListLi key={`feature_navbar_index_${index}`}>
           <MenuWrap href={item?.Link}>
-            {!isEmpty(item?.Icon) && (
-              <LeftImg>
+            {!isEmpty(itemIcon) && (
+              <LeftImg isSmallImage={isEmpty(item?.Description)}>
                 <Image
-                  src={item?.Icon}
+                  src={itemIcon}
                   alt='msg-icon'
-                  width={!isEmpty(item?.Description) ? 32 : 20}
-                  height={!isEmpty(item?.Description) ? 32 : 20}
+                  width={!isEmpty(item?.Description) ? 18 : 14}
+                  height={!isEmpty(item?.Description) ? 18 : 14}
                 />
               </LeftImg>
             )}
@@ -146,40 +176,31 @@ export default function NavbarComponent({
     });
   }, []);
 
-  const renderDropdownFooter = useCallback((data) => {
-    if (isEmpty(data)) return null;
-    return data.map((item, index) => {
-      return <DropdownFooter key={`navbar_dropdown_${item.Title}`} linkName={item.Title} href={item.Link} />;
-    });
-  }, []);
-
   const renderNavbarSubItems = useCallback(
     (data) => {
       if (isEmpty(data)) return null;
-      const footerData = data.find((item) => item.title.toLowerCase() === 'footer');
       const totalItems = data.filter((item) => item.title.toLowerCase() !== 'footer').length;
       return (
         <>
-          <Drop itemCount={totalItems}>
-            {data.map((item, index) => {
-              if (item.title.toLowerCase() === 'footer') return null;
-              return (
-                <DropDownComponent
-                  title={item.title}
-                  key={`navbar_sub_item_${item.title}`}
-                  viewRenderer={renderSubItemView(item.items, item.title)} // Pass title here
-                />
-              );
-            })}
+          <Drop>
+            <ParentMenuDiv itemCount={totalItems}>
+              {data.map((item) => {
+                if (item.title.toLowerCase() === 'footer') return null;
+                return (
+                  <DropDownComponent
+                    title={item.title}
+                    shouldTitleShow={item.title.toLowerCase() !== 'highlight'}
+                    key={`navbar_sub_item_${item.title}`}
+                    viewRenderer={renderSubItemView(item.items, item.title)}
+                  />
+                );
+              })}
+            </ParentMenuDiv>
           </Drop>
-          {/* footer */}
-          <FooterItem itemCount={footerData?.items.length}>
-            {!isEmpty(footerData?.items) && renderDropdownFooter(footerData.items)}
-          </FooterItem>
         </>
       );
     },
-    [renderDropdownFooter, renderSubItemView]
+    [renderSubItemView]
   );
 
   const renderNavigation = useMemo(() => {
@@ -191,28 +212,18 @@ export default function NavbarComponent({
           {navbarData.map((item, index) => {
             if (isEmpty(item.subsections) && item.link)
               return (
-                <SpanLink
-                  textColor={colorList?.fontColor}
-                  hoverColor={colorList?.primaryColor}
-                  key={`navbar_${item.title}`}>
-                  <Link href={item.link}>{item.title}</Link>
+                <SpanLink key={`navbar_${item.title}`}>
+                  <LinkText href={item.link}>{item.title}</LinkText>
                 </SpanLink>
               );
             if (!isEmpty(item.subsections));
             return (
-              <SpanLink
-                key={`navbar_${item.title}`}
-                textColor={colorList?.fontColor}
-                hoverColor={colorList?.primaryColor}>
-                <Link href='#' className='hovernone'>
-                  {item.title}
-                </Link>
+              <SpanLink key={`navbar_${item.title}`} className='SpanLink'>
+                <LinkText href='#'>{item.title}</LinkText>
                 <InnerList solution className='innerlist'>
                   {renderNavbarSubItems(item.subsections, index, item.title)}
                 </InnerList>
-                <LineMenuImg className='img-line' lineColor={colorList?.lineColor}>
-                  <Image src={Line.src} width={93} height={30} alt='' />
-                </LineMenuImg>
+                <LineMenuImg></LineMenuImg>
               </SpanLink>
             );
           })}
@@ -222,53 +233,20 @@ export default function NavbarComponent({
             <>
               {userAuth ? (
                 <>
-                  <SignIn textColor={colorList?.fontColor} hoverColor={colorList?.primaryColor}>
-                    <Link href={'/book-demo'}>Contact sales</Link>
-                  </SignIn>
-                  <Button
-                    bgColor={colorList?.buttonColor}
-                    fontColor={
-                      isEnterPrice
-                        ? colorList?.fontColor
-                        : colorList?.buttontextColor
-                        ? colorList?.buttontextColor
-                        : '--white'
-                    }
-                    text={'Open Dashboard'}
-                    borderColor={'--black'}
-                    href={COPILOT_DASHBOARD_LINK}
-                    hoverColor={'--secondary-hover-color'}
-                    className='hederbtn'
-                    isCamelCase={false}
-                    target='blank'
-                  />
+                  <SpanLink>
+                    <LinkText href={'/book-demo'}>Contact sales</LinkText>
+                  </SpanLink>
+                  <ButtonV2Component title={'Open Dashboard'} href={COPILOT_DASHBOARD_LINK} size='small' />
                 </>
               ) : (
                 <>
-                  <SignIn textColor={colorList?.fontColor} hoverColor={colorList?.primaryColor}>
-                    <Link href={'/book-demo'}>Contact sales</Link>
-                  </SignIn>
-                  <SignIn textColor={colorList?.fontColor} hoverColor={colorList?.primaryColor}>
-                    <Link href={COPILOT_DASHBOARD_LINK}>Log in</Link>
-                  </SignIn>
-                  {/* <SignIn textColor={colorList?.fontColor} hoverColor={colorList?.primaryColor}>
-                    <Link href='/book-demo'>Book demo</Link>
-                  </SignIn> */}
-                  <Button
-                    bgColor={colorList?.buttonColor}
-                    fontColor={
-                      isEnterPrice
-                        ? colorList?.fontColor
-                        : colorList?.buttontextColor
-                        ? colorList?.buttontextColor
-                        : '--white'
-                    }
-                    text={'Start Trial'}
-                    borderColor={'--transparent'}
-                    href={COPILOT_ONBOARDING_LINK}
-                    hoverColor={'--secondary-hover-color'}
-                    className='hederbtn'
-                  />
+                  <SpanLink>
+                    <LinkText href={'/book-demo'}>Contact sales</LinkText>
+                  </SpanLink>
+                  <SpanLink>
+                    <LinkText href={COPILOT_DASHBOARD_LINK}>Log in</LinkText>
+                  </SpanLink>
+                  <ButtonV2Component title={'Start Trial'} href={COPILOT_ONBOARDING_LINK} size='small' />
                 </>
               )}
             </>
@@ -276,56 +254,22 @@ export default function NavbarComponent({
         </HeaderBtnGroup>
       </NavMenu>
     );
-  }, [
-    colorList?.buttonColor,
-    colorList?.buttontextColor,
-    colorList?.fontColor,
-    colorList?.lineColor,
-    colorList?.primaryColor,
-    isEnterPrice,
-    mobile,
-    navbarData,
-    renderNavbarSubItems,
-    userAuth
-  ]);
+  }, [mobile, navbarData, renderNavbarSubItems, userAuth]);
 
   const renderTopBarView = useMemo(() => {
     if (isEmpty(topbarContent)) return null;
     return (
       <>
         <div id='topbarContent'>
-          <Dspace></Dspace>
-          <TopBar>
+          <TopBar ref={topbarRef}>
             <Container>
               <AnnounceBar>
                 <HelpLink className='icon-link'>
                   <Link href={topbarContent?.url} className='learn-link mb0' target={'_blank'}>
                     {topbarContent?.title}
-                    <svg width='16' height='12' viewBox='0 0 16 12' fill='none' class='HoverArrow'>
-                      <path
-                        d='M5.7998 1.37109L10.4283 5.99958L5.7998 10.6281'
-                        stroke-width='1.92854'
-                        stroke-linecap='round'
-                        stroke-linejoin='round'
-                        class='HoverArrow__tipPath'
-                      />
-                      <path
-                        d='M10.33 5.99951H1.5'
-                        stroke-width='2'
-                        stroke-linecap='round'
-                        stroke-linejoin='round'
-                        class='HoverArrow__linePath'
-                      />
-                    </svg>
-                    <svg width='8' height='14' viewBox='0 0 8 14' fill='none' class='mobilearrow'>
-                      <path
-                        d='M2 3L6 7L2 11'
-                        stroke='#ffffff'
-                        stroke-width='1.85714'
-                        stroke-linecap='round'
-                        stroke-linejoin='round'
-                      />
-                    </svg>
+                    <Icon>
+                      <SVGComponent name='blog-card-hover-arrow-icon' width='12' height='12' viewBox='0 0 16 16' />
+                    </Icon>
                   </Link>
                 </HelpLink>
               </AnnounceBar>
@@ -337,72 +281,34 @@ export default function NavbarComponent({
   }, [topbarContent]);
 
   return (
-    <>
+    <NavbarMainDiv>
       {renderTopBarView}
-      <NavbarWrapper
-        className={isScrollPage ? 'scroll' : ''}
-        colorList={colorList}
-        isAnnouncebar={!isEmpty(topbarContent)}>
+      <NavbarWrapper className={isScrollPage ? 'scroll' : ''} ref={navbarRef}>
         <Container>
           <NavbarInner>
-            {isModule ? (
-              mobile ? (
-                !isEmpty(openDropdownIndex) ? (
-                  <BackWrap textColor={colorList?.fontColor} onClick={closeSubMenu}>
-                    <SvgIcon>
-                      <Image src='/images/moduleback.svg' width={10} height={10} alt='back-icon' />
-                    </SvgIcon>
-                    <span>Back</span>
-                  </BackWrap>
-                ) : (
-                  <Link href='/' aria-label={'Navigate to Home'}>
-                    <CopilotLogo alt='copilot logo' loading='eager' width='96' height='21' src={MobileWhiteLogos.src} />
-                  </Link>
-                )
-              ) : (
-                <Link href='/' aria-label={'Navigate to Home'}>
-                  <CopilotLogo alt='copilot logo' loading='eager' width='143' height='31' src={WhiteLogos.src} />
-                </Link>
-              )
-            ) : isEnterPrice ? (
-              mobile ? (
-                !isEmpty(openDropdownIndex) ? (
-                  <BackWrap textColor={colorList?.fontColor} onClick={closeSubMenu}>
-                    <SvgIcon>
-                      <Image src='/images/moduleback.svg' width={10} height={10} alt='back-icon' />
-                    </SvgIcon>
-                    <span>Back</span>
-                  </BackWrap>
-                ) : (
-                  <Link href='/' aria-label={'Navigate to Home'}>
-                    <CopilotLogo alt='copilot logo' loading='eager' width='96' height='21' src={MobileGreenLogos.src} />
-                  </Link>
-                )
-              ) : (
-                <Link href='/' aria-label={'Navigate to Home'}>
-                  <CopilotLogo alt='copilot logo' loading='eager' width='143' height='31' src={GreenLogos.src} />
-                </Link>
-              )
-            ) : mobile ? (
-              !isEmpty(openDropdownIndex) ? (
-                <BackWrap onClick={closeSubMenu}>
-                  <SvgIcon>
-                    <Image src='/images/iconback.svg' width={10} height={10} alt='back-icon' />
-                  </SvgIcon>
-                  <span>Back</span>
-                </BackWrap>
-              ) : (
-                <Link href='/' aria-label={'Navigate to Home'}>
-                  <CopilotLogo alt='copilot logo' loading='eager' width='96' height='21' src={MobileBlackLogos.src} />
-                </Link>
-              )
+            {mobile ? (
+              <Link href='/' aria-label={'Navigate to Home'}>
+                <SVGComponent
+                  name='assembly-big-logo'
+                  width='174'
+                  height='32'
+                  viewBox='0 0 200 38'
+                  className='logo-icon'
+                />
+              </Link>
             ) : (
               <Link href='/' aria-label={'Navigate to Home'}>
-                <CopilotLogo alt='copilot logo' loading='eager' width='143' height='31' src={CopilotLogos.src} />{' '}
+                <SVGComponent name='assembly-big-logo' width='174' height='32' viewBox='0 0 200 38' />
               </Link>
             )}
 
-            {isOpenMobileMenu && <OverLayBlock>{renderMobileNavigation}</OverLayBlock>}
+            <OverLayBlock top={topbarHeight + navbarHeight} isOpenModal={isOpenMobileMenu}>
+              {renderMobileNavigation}
+              <BottomButtonSection isOpenModal={isOpenMobileMenu}>
+                <ButtonV2Component title={'Start free trial'} href={COPILOT_ONBOARDING_LINK} isWidth />
+                <ButtonV2Component title={'Log in'} href={COPILOT_DASHBOARD_LINK} isWidth variant='secondary' />
+              </BottomButtonSection>
+            </OverLayBlock>
             <NavigationMainDiv>{renderNavigation}</NavigationMainDiv>
 
             <MobileRight>
@@ -410,40 +316,27 @@ export default function NavbarComponent({
                 <>
                   {userAuth ? (
                     <>
-                      <BlackButton
-                        textColor={isModule ? colorList?.fontColor : '--white'}
-                        backgroundColor={colorList?.buttonColor}>
-                        <Link href={COPILOT_DASHBOARD_LINK}>Open Dashboard</Link>
-                      </BlackButton>
+                      <ButtonV2Component title={'Open Dashboard'} href={COPILOT_DASHBOARD_LINK} size='small' />
                     </>
                   ) : (
                     <>
-                      <SignIn textColor={colorList?.fontColor} hoverColor={colorList?.primaryColor}>
-                        <Link href={COPILOT_DASHBOARD_LINK}>Log in</Link>
-                      </SignIn>
-                      <BlackButton
-                        textColor={isModule ? colorList?.fontColor : '--white'}
-                        backgroundColor={colorList?.buttonColor}>
-                        <Link href={COPILOT_ONBOARDING_LINK}>Start trial</Link>
-                      </BlackButton>
+                      <SpanLink className='login-link'>
+                        <LinkText href={COPILOT_DASHBOARD_LINK}>Log in</LinkText>
+                      </SpanLink>
+                      <ButtonV2Component title={'Start Trial'} href={COPILOT_ONBOARDING_LINK} size='small' />
                     </>
                   )}
                 </>
               </SignInMobile>
-              <MobileMenu onClick={handleMobileMenu}>
-                <FirstLine
-                  isOpenMobileMenu={isOpenMobileMenu}
-                  isEnterPrice={isEnterPrice}
-                  textColor={colorList?.fontColor}></FirstLine>
-                <ThirdLine
-                  isOpenMobileMenu={isOpenMobileMenu}
-                  isEnterPrice={isEnterPrice}
-                  textColor={colorList?.fontColor}></ThirdLine>
-              </MobileMenu>
+              <BergerMenu onClick={handleMobileMenu} aria-label='navbar menu button'>
+                <FirstLine isActive={isActive} />
+                <SecondLine isActive={isActive} />
+                <ThirdLine isActive={isActive} />
+              </BergerMenu>
             </MobileRight>
           </NavbarInner>
         </Container>
       </NavbarWrapper>
-    </>
+    </NavbarMainDiv>
   );
 }

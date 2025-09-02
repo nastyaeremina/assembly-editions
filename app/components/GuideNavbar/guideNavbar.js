@@ -7,7 +7,7 @@ import { useHotkeys } from 'react-hotkeys-hook';
 import Image from 'next/image';
 import CopilotLogos from '../../../public/images/blacklogo.svg';
 import { addGuideSiderItem, deleteGuideSiderItem } from '../../actions/guideActions';
-import { FirstLine, MobileMenu, ThirdLine } from '../navbar/styles';
+import { BergerMenu, FirstLine, SecondLine, ThirdLine } from '../navbar/styles';
 import { isEmpty, removeEmptyElement } from '../../helpers/helpers';
 import {
   BtnIcon,
@@ -41,6 +41,7 @@ export default function GuideNavbar({ sectionData, articleData }) {
   const [isOpenMobileMenu, setIsOpenMobileMenu] = useState(false);
   const [isSecOpen, setIsSecOpen] = useState(false);
   const [isSearchModalOpen, setIsSearchModalOpen] = useState(false);
+  const [isActive, setIsActive] = useState(false);
 
   // State to store the hotkey combination based on the operating system
   const [hotkeyCombination, setHotkeyCombination] = useState('ctrl+k');
@@ -164,7 +165,8 @@ export default function GuideNavbar({ sectionData, articleData }) {
       body.style.overflow = 'hidden';
       setIsOpenMobileMenu(true);
     }
-  }, [isOpenMobileMenu]);
+    setIsActive(!isActive);
+  }, [isOpenMobileMenu, isActive]);
 
   // Function to render the article items
   const renderArticleItemView = useCallback(
@@ -338,10 +340,11 @@ export default function GuideNavbar({ sectionData, articleData }) {
                 </Link>
               </NavTitle>
             </SideNavbarHead>
-            <MobileMenu onClick={handleMobileMenu}>
-              <FirstLine isOpenMobileMenu={isOpenMobileMenu}></FirstLine>
-              <ThirdLine isOpenMobileMenu={isOpenMobileMenu}></ThirdLine>
-            </MobileMenu>
+            <BergerMenu onClick={handleMobileMenu} aria-label='navbar menu button'>
+              <FirstLine isActive={isActive} />
+              <SecondLine isActive={isActive} />
+              <ThirdLine isActive={isActive} />
+            </BergerMenu>
           </NavbarHeader>
           {isOpenMobileMenu && (
             <MobileNavMenu>

@@ -2,7 +2,6 @@ import React from 'react';
 import { draftMode } from 'next/headers';
 import CustomerPage from '../components/PageComponent/Customers/customersPage';
 import Layout from '../components/layout';
-import Navbar from '../components/navbar/navbar';
 import CTA from '../components/cta/cta';
 import AggregateRating from '../components/aggregateRating';
 import { CURRENT_SITE_URL, CUSTOMER_SEO_ID } from './../constants/constant';
@@ -30,7 +29,6 @@ export default async function Customer() {
     <>
       <AggregateRating id={CUSTOMER_SEO_ID} />
       <Layout>
-        <Navbar />
         <CustomerPage testimonialPosts={testimonialPosts} casestudiesPosts={casestudiesPosts} />
         <CTA />
       </Layout>

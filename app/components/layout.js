@@ -3,6 +3,7 @@ import { isEmpty } from '../helpers/helpers';
 import { getCommonContent } from '../lib/contentful-common';
 import Footer from './footer/footer';
 import Analytics from './analytics/analytics';
+import Navbar from './navbar/navbar';
 
 export async function getContent() {
   const footerData = (await getCommonContent(FOOTER_CONTENT_ID, true)) ?? [];
@@ -40,6 +41,7 @@ export default async function Layout({
   const { footerData, footerDescription } = await getContent();
   return (
     <>
+      <Navbar />
       <div>
         <main>{children}</main>
       </div>

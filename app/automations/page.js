@@ -1,8 +1,7 @@
 import AutomationPage from '../components/PageComponent/Automation/automationPage';
-import Navbar from '../components/navbar/navbar';
 import Layout from '../components/layout';
 import CTA from '../components/cta/cta';
-import { CURRENT_SITE_URL, HEADER_LIST } from '../constants/constant';
+import { CURRENT_SITE_URL } from '../constants/constant';
 import FAQ from '../components/faq/faq';
 import { getFAQsData } from '../services/faq';
 import AggregateRating from '../components/aggregateRating';
@@ -40,7 +39,6 @@ export default async function Automation({ searchParams }) {
     <>
       <AggregateRating data={details?.seoMetadata} />
       <Layout abTestContentLabel={abTestContentLabel} abTestExperimentName={abTestExperimentName}>
-        <Navbar isEnterPrice headerIndex={HEADER_LIST.ENTERPRICE} />
         <AutomationPage details={details} />
         <FAQ faqList={faqData} />
         <CTA />

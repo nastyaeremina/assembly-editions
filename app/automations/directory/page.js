@@ -4,7 +4,6 @@ import { getAllAutomationCategories, getAllAutomations } from '../../lib/content
 import AutomationDirectoryPage from '../../components/PageComponent/Automation/directoryPage';
 import Layout from '../../components/layout';
 import CTA from '../../components/cta/cta';
-import Navbar from '../../components/navbar/navbar';
 import AggregateRating from '../../components/aggregateRating';
 
 // Force dynamic rendering to prevent static generation issues
@@ -53,7 +52,6 @@ export default async function AutomationDirectory() {
       <AggregateRating id={AUTOMATION_SEO_ID} />
       <Layout>
         <div style={{ backgroundColor: 'var(--main-bg-color)' }}>
-          <Navbar />
           <AutomationDirectoryPage
             featuredApps={featuredApps}
             allCategoryWithPost={allCategoryWithPost}

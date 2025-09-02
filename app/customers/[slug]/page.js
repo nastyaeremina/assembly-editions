@@ -2,7 +2,6 @@ import React from 'react';
 import { notFound } from 'next/navigation';
 import { draftMode } from 'next/headers';
 import Layout from '../../components/layout';
-import Navbar from '../../components/navbar/navbar';
 import { getCaseStudyDetail } from '../../lib/contentful-casestudies';
 import CaseStudiesPage from '../../components/PageComponent/Customers/customerDetailPage';
 import { getSEOData, isEmpty } from '../../helpers/helpers';
@@ -11,8 +10,8 @@ import AggregateRating from '../../components/aggregateRating';
 import { CURRENT_SITE_URL } from '../../constants/constant';
 
 async function getContent({ slug }) {
-  const { isEnabled } = await draftMode()
-  const details = await getCaseStudyDetail({ slug, preview:isEnabled });
+  const { isEnabled } = await draftMode();
+  const details = await getCaseStudyDetail({ slug, preview: isEnabled });
   return details;
 }
 
@@ -30,7 +29,6 @@ export default async function CaseStudies({ params }) {
     <>
       <AggregateRating id={details?.seoMetadata?.sys?.id} />
       <Layout>
-        <Navbar />
         <CaseStudiesPage details={details} />
         <CTA />
       </Layout>

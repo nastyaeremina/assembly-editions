@@ -149,12 +149,14 @@ const CardDetail = styled.div`
     }
   }
 `;
+
 const Customer = styled.div`
   padding-bottom: 100px;
   @media only screen and (max-width: 768px) {
     padding-bottom: 80px;
   }
 `;
+
 const Section = styled.div`
   display: flex !important;
   flex-direction: column;
@@ -166,6 +168,7 @@ const Rating = styled.div`
   margin-top: 20px;
   display: flex;
 `;
+
 const Main = styled.div`
   padding-bottom: 100px;
   @media only screen and (max-width: 768px) {
@@ -177,6 +180,7 @@ const Sub = styled.div``;
 
 const BannerSection = styled.div`
   padding-bottom: 100px;
+  overflow: hidden;
   @media only screen and (max-width: 768px) {
     padding-bottom: 80px;
   }

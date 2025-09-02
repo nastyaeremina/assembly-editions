@@ -3,7 +3,6 @@ import { getUpdatesPosts } from '../lib/updates-content';
 import { getSEOData } from '../helpers/helpers';
 import UpdatesPage from '../components/PageComponent/Updates/updatesPage';
 import Layout from '../components/layout';
-import Navbar from '../components/navbar/navbar';
 import CTA from '../components/cta/cta';
 import AggregateRating from '../components/aggregateRating';
 
@@ -27,7 +26,6 @@ export default async function Updates() {
     <>
       <AggregateRating id={UPDATES_SEO_ID} />
       <Layout>
-        <Navbar />
         <UpdatesPage allPosts={allPosts} />
         <CTA />
       </Layout>

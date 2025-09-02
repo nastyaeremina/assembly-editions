@@ -1,7 +1,6 @@
 'use client';
 
 import ReactMarkdown from 'react-markdown';
-import LegalFooter from '../../footer/legalfooter';
 import { Container } from '../../../styles/commonStyles';
 import { PrivacuHero, MainSection, SubData } from '../../../styles/legalStyles';
 
@@ -18,7 +17,6 @@ export default function TermsOfServicePage({ content }) {
           <SubData>{<ReactMarkdown>{content}</ReactMarkdown>}</SubData>
         </Container>
       </MainSection>
-      <LegalFooter />
     </>
   );
 }

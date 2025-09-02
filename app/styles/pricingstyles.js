@@ -2,7 +2,7 @@ import styled, { css } from 'styled-components';
 import { body_regular, body_semibold, button_regular, h1_semibold, label_regular } from './typography';
 
 const HeroSection = styled.div`
-  padding: var(--space-152) 0 0 0;
+  padding: var(--space-80) 0 0 0;
   text-align: center;
   margin: 0 auto;
   h1 {
@@ -22,6 +22,7 @@ const HeroSection = styled.div`
   }
   @media only screen and (max-width: 449px) {
     text-align: left;
+    padding: var(--space-64) 0 0 0;
     p {
       margin: var(--space-24) 0;
       text-align: left;

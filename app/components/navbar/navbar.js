@@ -82,16 +82,13 @@ export async function getTopBarContent() {
   return { topbarContent, navbarItems };
 }
 
-export default async function Navbar({ colorList, isModule, headerIndex, isEnterPrice }) {
+export default async function Navbar({ headerIndex }) {
   const cookie = cookies().get('current-portal-session');
   const { topbarContent, navbarItems } = await getTopBarContent();
   return (
     <>
       <NavbarComponent
-        isModule={isModule}
         headerIndex={headerIndex}
-        navbarColorList={colorList}
-        isEnterPrice={isEnterPrice}
         isAuthenticated={!isEmpty(cookie?.value)}
         topbarContent={topbarContent}
         navbarData={navbarItems}

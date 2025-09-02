@@ -1,7 +1,6 @@
 import { notFound } from 'next/navigation';
 import { cookies, draftMode } from 'next/headers';
 import Layout from '../../../components/layout';
-import Navbar from '../../../components/navbar/navbar';
 import { getAllPartnerApps, getPartnerAppDetail } from '../../../lib/contentful-partnerApps';
 import { getRandomUniqueElements, getSEOData, isEmpty } from '../../../helpers/helpers';
 import AppsDetailPage from '../../../components/PageComponent/Apps/appDetailPage';
@@ -9,7 +8,7 @@ import CTA from '../../../components/cta/cta';
 import { APPS_TYPE, CURRENT_SITE_URL, STRING_END_OF_APP } from '../../../constants/constant.js';
 
 async function getContent({ slug }) {
-  const { isEnabled } = await draftMode()
+  const { isEnabled } = await draftMode();
   const appDetail = (await getPartnerAppDetail(slug, isEnabled)) ?? {};
   const clientApps = (await getAllPartnerApps(APPS_TYPE.CLIENT, isEnabled)) ?? [];
   const internalApps = (await getAllPartnerApps(APPS_TYPE.INTERNAL, isEnabled)) ?? [];
@@ -52,7 +51,6 @@ export default async function AppsDetail({ params }) {
   return (
     <>
       <Layout>
-        <Navbar />
         <AppsDetailPage isUserAuthenticated={isUserAuthenticated} appDetail={appDetail} relatedAppList={relatedApps} />
         <CTA />
       </Layout>

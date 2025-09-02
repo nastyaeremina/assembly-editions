@@ -1,12 +1,5 @@
 import Layout from '../components/layout';
-import Navbar from '../components/navbar/navbar';
-import {
-  CURRENT_DOMAIN,
-  CURRENT_SITE_URL,
-  HEADER_LIST,
-  SITEMAP_CONTENT_ID,
-  SITEMAP_SEO_ID
-} from '../constants/constant';
+import { CURRENT_DOMAIN, CURRENT_SITE_URL, SITEMAP_CONTENT_ID, SITEMAP_SEO_ID } from '../constants/constant';
 import { getSEOData, isEmpty, removeEmptyElement } from '../helpers/helpers';
 import { getSitemap } from '../lib/contentful-sitemap';
 import SiteMapPage from '../components/PageComponent/Sitemap/sitemapPage';
@@ -75,7 +68,6 @@ export default async function Sitemap() {
     <>
       <AggregateRating id={SITEMAP_SEO_ID} />
       <Layout>
-        <Navbar isEnterPrice={true} headerIndex={HEADER_LIST.ENTERPRICE} />
         <SiteMapPage data={content} />
       </Layout>
     </>

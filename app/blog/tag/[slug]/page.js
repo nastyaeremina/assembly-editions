@@ -4,7 +4,6 @@ import { getAllTagWithSlug, getBlogByTag, getTagDetail } from '../../../lib/blog
 import { customSort, getFeaturedBlogAndFilteredPosts, isEmpty } from '../../../helpers/helpers';
 import TagPage from '../../../components/PageComponent/Blog/tagPage';
 import { BLOG_TAG_SORTED_LIST, CURRENT_SITE_URL, CURRENT_DOMAIN } from '../../../constants/constant';
-import Navbar from '../../../components/navbar/navbar';
 
 async function getContent({ slug }) {
   try {
@@ -97,7 +96,6 @@ export default async function Tag({ params }) {
     return (
       <>
         <Layout>
-          <Navbar />
           <TagPage allPosts={allPosts} tags={tags} featuredBlog={featuredBlog} currentTagSlug={params?.slug} />
         </Layout>
       </>

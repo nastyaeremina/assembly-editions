@@ -1,6 +1,5 @@
 import BlogPage from '../components/PageComponent/Blog/blogPage';
 import Layout from '../components/layout';
-import Navbar from '../components/navbar/navbar';
 import AggregateRating from '../components/aggregateRating';
 import {
   COPILOT_FACEBOOK_LINK,
@@ -21,10 +20,10 @@ async function getContent() {
   const tagsData = (await getAllTagWithSlug()) || [];
   const tags = tagsData?.filter((tagsData) => tagsData?.name?.trim()?.[0] !== '#');
 
-    const { featuredBlog, filteredPosts } = getFeaturedBlogAndFilteredPosts(allPosts);
+  const { featuredBlog, filteredPosts } = getFeaturedBlogAndFilteredPosts(allPosts);
 
   customSort(tags, BLOG_TAG_SORTED_LIST);
-  return { allPosts:filteredPosts, tags, featuredBlog  };
+  return { allPosts: filteredPosts, tags, featuredBlog };
 }
 
 export async function generateMetadata({ params, searchParams }, parent) {
@@ -54,7 +53,6 @@ export default async function Blog() {
       <AggregateRating id={BLOG_SEO_ID} />
       <script type='application/ld+json' dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       <Layout>
-        <Navbar />
         <BlogPage allPosts={allPosts} tags={tags} featuredBlog={featuredBlog} />
       </Layout>
     </>

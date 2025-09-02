@@ -1,6 +1,5 @@
 import { draftMode } from 'next/headers';
 import SEO from '../components/seo';
-import Navbar from '../components/navbar/navbar';
 import Layout from '../components/layout';
 import { APP_PAGE_ID, CURRENT_SITE_URL, HEADER_LIST } from '../constants/constant';
 import { createArrayWithFixedLength, getSEOData } from '../helpers/helpers';
@@ -49,7 +48,6 @@ export default async function App({ searchParams }) {
       <AggregateRating data={details.seoMetadata} />
       <SEO seoData={details?.seoMetadata}></SEO>
       <Layout abTestContentLabel={abTestContentLabel} abTestExperimentName={abTestExperimentName}>
-        <Navbar isEnterPrice headerIndex={HEADER_LIST.ENTERPRICE} />
         <AppPage details={details} appsList={sliderAppList} faqList={faqData} />
         <CTA />
       </Layout>

@@ -1,7 +1,6 @@
 import { notFound } from 'next/navigation';
 import { draftMode } from 'next/headers';
 import Layout from '../../components/layout';
-import Navbar from '../../components/navbar/navbar';
 import { getComparisonDetail } from '../../lib/contentful-comparison';
 import { getSEOData, isEmpty } from '../../helpers/helpers';
 import ComparisonDetailPage from '../../components/PageComponent/Comparison/coparisonDetailPage';
@@ -11,7 +10,7 @@ import NewCTA from '../../components/cta/newCTA';
 import { CURRENT_SITE_URL } from '../../constants/constant';
 
 async function getContent({ slug }) {
-  const { isEnabled } = await draftMode()
+  const { isEnabled } = await draftMode();
   const details = (await getComparisonDetail(slug, isEnabled)) ?? [];
   return details;
 }
@@ -32,7 +31,6 @@ export default async function Comparison({ params }) {
     <>
       <AggregateRating id={details?.seoMetadata?.sys?.id} />
       <Layout>
-        <Navbar />
         <ComparisonDetailPage details={details} faqList={faqData} />
         {!isEmpty(details.ctaSection) && (
           <NewCTA

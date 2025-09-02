@@ -1,9 +1,8 @@
 'use client';
 
 import ReactMarkdown from 'react-markdown';
-import LegalFooter from '../../footer/legalfooter';
 import { Container } from '../../../styles/commonStyles';
-import { MainSection, PrivacuHero, PostContent, PrivacyContent, FooterSection } from '../../../styles/resourcesStyles';
+import { MainSection, PrivacuHero, PostContent, PrivacyContent } from '../../../styles/resourcesStyles';
 
 export default function PrivacyPolicyPage({ content }) {
   return (
@@ -22,9 +21,6 @@ export default function PrivacyPolicyPage({ content }) {
           </Container>
         </PostContent>
       </MainSection>
-      <FooterSection>
-        <LegalFooter />
-      </FooterSection>
     </>
   );
 }

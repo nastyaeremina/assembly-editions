@@ -9,13 +9,10 @@ import {
   Description,
   Image,
   ImageSection,
-  PrimaryButton,
-  SecondaryButton,
   TextSection,
   Title
 } from './newCTAStyles';
 import { Container } from '../../styles/commonStyles';
-import SVGComponent from '../../../public/images/svg/SVGComponent';
 import ButtonV2Component from '../button/buttonV2/buttonV2';
 import { ButtonTone, ButtonVariant } from '../../constants/constant';
 

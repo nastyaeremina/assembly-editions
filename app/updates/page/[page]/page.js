@@ -1,6 +1,5 @@
 import { notFound } from 'next/navigation';
 import Layout from '../../../components/layout';
-import Navbar from '../../../components/navbar/navbar';
 import { CURRENT_SITE_URL, UPDATES_SEO_ID } from '../../../constants/constant';
 import { getSEOData, isEmpty } from '../../../helpers/helpers';
 import { getUpdatesPosts } from '../../../lib/updates-content';
@@ -34,7 +33,6 @@ export default async function Updates({ params }) {
     <>
       <AggregateRating id={UPDATES_SEO_ID} />
       <Layout>
-        <Navbar />
         <UpdatesPaginationPage allPosts={allPosts} pagination={pagination} />
         <CTA />
       </Layout>

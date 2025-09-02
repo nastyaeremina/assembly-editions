@@ -1,7 +1,6 @@
 import { notFound } from 'next/navigation';
 import { draftMode } from 'next/headers';
 import Layout from '../../components/layout';
-import Navbar from '../../components/navbar/navbar';
 import { getTemplateDetailContent } from '../../lib/contentful-template';
 import { getSEOData, isEmpty, removeEmptyElement } from '../../helpers/helpers';
 import TemplateListSection from '../../components/template/templateListSection';
@@ -12,7 +11,7 @@ import AggregateRating from '../../components/aggregateRating';
 import { CURRENT_SITE_URL } from '../../constants/constant';
 
 async function getTemplateDetail({ slug }) {
-  const { isEnabled } = await draftMode()
+  const { isEnabled } = await draftMode();
   return (await getTemplateDetailContent({ slug, preview: isEnabled })) ?? {};
 }
 
@@ -33,7 +32,6 @@ export default async function TemplateDetail({ params }) {
     <>
       <AggregateRating data={tempalateDetail?.seoMetadata} />
       <Layout>
-        <Navbar />
         <BackComponent backtext={'Back to templates'} href={'/templates'} />
         <TemplateDetailHero
           title={tempalateDetail?.title}

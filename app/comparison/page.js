@@ -2,7 +2,6 @@ import { draftMode } from 'next/headers';
 import ComparisonPage from '../components/PageComponent/Comparison/comparisonPage';
 import { getSEOData, isEmpty } from '../helpers/helpers';
 import Layout from '../components/layout';
-import Navbar from '../components/navbar/navbar';
 import AggregateRating from '../components/aggregateRating';
 import NewCTA from '../components/cta/newCTA';
 import { COMPARISON_PAGE_ID, CURRENT_SITE_URL } from '../constants/constant';
@@ -56,7 +55,6 @@ export default async function Comparison({ searchParams }) {
     <>
       <AggregateRating data={details?.seoMetadata} />
       <Layout abTestContentLabel={abTestContentLabel} abTestExperimentName={abTestExperimentName}>
-        <Navbar />
         <ComparisonPage featuredCompetitorList={featuredCompetitorList} details={details} />
         {!isEmpty(details.ctaSection) && (
           <NewCTA

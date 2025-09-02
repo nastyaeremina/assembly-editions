@@ -1,6 +1,5 @@
 import React from 'react';
 import Layout from '../components/layout';
-import Navbar from '../components/navbar/navbar';
 import { CURRENT_SITE_URL, GLOSSARY_PAGE_ID } from '../constants/constant';
 import GlossaryPage from '../components/PageComponent/Glossary/glossarypage';
 import { getAllGlossaryContent, getGlossaryPageContent } from '../lib/contentful-glossary';
@@ -57,14 +56,15 @@ export async function generateMetadata({ searchParams }) {
   return seoData;
 }
 export default async function Glossary({ searchParams }) {
-  const { glossaryList, data, seoMetadata, abTestContentLabel, abTestExperimentName } = await getContent({ searchParams });
-  
+  const { glossaryList, data, seoMetadata, abTestContentLabel, abTestExperimentName } = await getContent({
+    searchParams
+  });
+
   return (
     <>
       <AggregateRating data={seoMetadata} />
       <Layout abTestContentLabel={abTestContentLabel} abTestExperimentName={abTestExperimentName}>
-        <Navbar />
-        <GlossaryPage data={glossaryList} heroSectionDetail={data?.heroSection}/>
+        <GlossaryPage data={glossaryList} heroSectionDetail={data?.heroSection} />
       </Layout>
     </>
   );

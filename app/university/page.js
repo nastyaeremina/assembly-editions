@@ -2,13 +2,12 @@ import { draftMode } from 'next/headers';
 import Layout from '../components/layout';
 import { CURRENT_SITE_URL, UNIVERSITY_SEO_ID } from '../constants/constant';
 import AggregateRating from '../components/aggregateRating';
-import Navbar from './../components/navbar/navbar';
 import UniversityPage from './../components/PageComponent/University/universityPage';
 import { getAllUniversityVideos, getUniversityVideoCategory } from './../lib/contentful-universityVideos';
 import { customSort, getSEOData } from './../helpers/helpers';
 
 async function getContent() {
-  const {isEnabled} = await draftMode();
+  const { isEnabled } = await draftMode();
   let allPosts = [];
   let data = [];
   let page = 0;
@@ -58,7 +57,6 @@ export default async function University() {
     <>
       <AggregateRating id={UNIVERSITY_SEO_ID} />
       <Layout>
-        <Navbar />
         <UniversityPage allPosts={allPosts} universityVideosList={universityVideosList} />
       </Layout>
     </>

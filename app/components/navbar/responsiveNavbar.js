@@ -1,15 +1,43 @@
 import React, { useCallback } from 'react';
-import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import { NAVBAR_COLOR_LIST } from '../../constants/constant';
 import { isEmpty } from '../../helpers/helpers';
-import { NavMenu, NavigationBlock, SpanLink, MobileText, MobileTextLink, SpanMobileLink } from './styles';
+import {
+  NavMenu,
+  NavigationBlock,
+  SpanLink,
+  MobileText,
+  MobileTextLink,
+  SpanMobileLink,
+  ResponsiveSpanLink,
+  Dropdown,
+  DropdownContainer
+} from './styles';
 import ResponsiveSubsection from './responsiveSubsection';
+import { Container } from '../../styles/commonStyles';
+import SVGComponent from '../../../public/images/svg/SVGComponent';
 
 function ResponsiveNavbar({ mobile, navbarData, setOpenDropdownIndex, openDropdownIndex }) {
-  const colorList = NAVBAR_COLOR_LIST[0];
   const router = useRouter();
-  const isAnyDropdownOpen = openDropdownIndex !== null;
+
+  const calculateDropdownHeight = useCallback((subsections) => {
+    let height = 0;
+    subsections.forEach((section) => {
+      const isHighlightSection = section.title?.toLowerCase() === 'highlight';
+
+      if (section.title && !isHighlightSection) {
+        height += 50; // Title + margin
+      }
+
+      section.items.forEach((item) => {
+        if (isHighlightSection) {
+          height += 650; // Approximate height for HighlightSection card
+        } else {
+          height += item.Description ? 64 : 47;
+        }
+      });
+    });
+    return height + 48; // padding
+  }, []);
 
   const toggleDropdown = useCallback(
     (index) => {
@@ -19,56 +47,52 @@ function ResponsiveNavbar({ mobile, navbarData, setOpenDropdownIndex, openDropdo
   );
 
   return (
-    <NavMenu mobile={mobile} isBoxShadow>
-      <NavigationBlock>
-        {navbarData.map((item, index) => {
-          const isDropdownOpen = openDropdownIndex === index;
+    <>
+      <NavMenu mobile={mobile}>
+        <Container>
+          <NavigationBlock>
+            {navbarData.map((item, index) => {
+              const isDropdownOpen = openDropdownIndex === index;
 
-          if (!isAnyDropdownOpen && isEmpty(item.subsections) && item.link) {
-            return (
-              <SpanLink
-                textColor={colorList?.fontColor}
-                hoverColor={colorList?.primaryColor}
-                key={`navbar_${item.title}`}>
-                <MobileTextLink href={item.link} hoverColor={colorList?.primaryColor}>
-                  {item.title}
-                </MobileTextLink>
-              </SpanLink>
-            );
-          }
-          if (!isEmpty(item.subsections)) {
-            return (
-              <>
-                {!isAnyDropdownOpen && (
-                  <>
-                    <SpanLink
-                      textColor={colorList?.fontColor}
-                      hoverColor={colorList?.primaryColor}
-                      onClick={() => toggleDropdown(index)}>
-                      <MobileText>{item.title}</MobileText>
-                    </SpanLink>
-                  </>
-                )}
-                {isDropdownOpen && (
-                  <>
-                    <ResponsiveSubsection subsectionData={item.subsections} isDropdownOpen={isDropdownOpen} />
-                  </>
-                )}
-              </>
-            );
-          }
-          return null;
-        })}
-        {!isAnyDropdownOpen && (
-          <SpanMobileLink
-            textColor={colorList?.fontColor}
-            hoverColor={colorList?.primaryColor}
-            className={router.pathname === '/book-demo' ? 'active' : ''}>
-            <Link href='/book-demo'>Book Demo</Link>
-          </SpanMobileLink>
-        )}
-      </NavigationBlock>
-    </NavMenu>
+              if (!isEmpty(item.subsections)) {
+                return (
+                  <DropdownContainer key={`navbar_${item.title}`}>
+                    <ResponsiveSpanLink onClick={() => toggleDropdown(index)}>
+                      <MobileText>
+                        {item.title}
+                        <SVGComponent
+                          name='angle-right-arrow-icon'
+                          width='16'
+                          height='16'
+                          viewBox='0 0 16 16'
+                          className={isDropdownOpen ? 'rotate-icon' : ''}
+                        />
+                      </MobileText>
+                    </ResponsiveSpanLink>
+                    <Dropdown
+                      className={isDropdownOpen ? 'open' : ''}
+                      calculatedHeight={calculateDropdownHeight(item.subsections)}>
+                      <ResponsiveSubsection subsectionData={item.subsections} />
+                    </Dropdown>
+                  </DropdownContainer>
+                );
+              }
+              if (item.link) {
+                return (
+                  <SpanLink key={`navbar_${item.title}`}>
+                    <MobileTextLink href={item.link}>{item.title}</MobileTextLink>
+                  </SpanLink>
+                );
+              }
+              return null;
+            })}
+            <SpanMobileLink className={router.pathname === '/book-demo' ? 'active' : ''}>
+              <MobileTextLink href='/book-demo'>Book Demo</MobileTextLink>
+            </SpanMobileLink>
+          </NavigationBlock>
+        </Container>
+      </NavMenu>
+    </>
   );
 }
 
