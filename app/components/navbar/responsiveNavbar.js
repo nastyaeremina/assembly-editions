@@ -32,11 +32,11 @@ function ResponsiveNavbar({ mobile, navbarData, setOpenDropdownIndex, openDropdo
         if (isHighlightSection) {
           height += 650; // Approximate height for HighlightSection card
         } else {
-          height += item.Description ? 64 : 47;
+          height += item.Description ? 75 : 55;
         }
       });
     });
-    return height + 48; // padding
+    return height + 55; // padding
   }, []);
 
   const toggleDropdown = useCallback(

@@ -34,12 +34,12 @@ export default function FeatureSubMenu({ data }) {
                     <MobileListLi key={`feature_navbar_index_${sectionIndex}_${itemIndex}`}>
                       <MenuWrap href={item.Link}>
                         {item.Icon && (
-                          <LeftImg>
+                          <LeftImg isSmallImage={isEmpty(item?.Description)}>
                             <Image
                               src={item?.Icon}
                               alt='icon'
-                              width={!isEmpty(item?.Description) ? 32 : 20}
-                              height={!isEmpty(item?.Description) ? 32 : 20}
+                              width={!isEmpty(item?.Description) ? 18 : 14}
+                              height={!isEmpty(item?.Description) ? 18 : 14}
                             />
                           </LeftImg>
                         )}
