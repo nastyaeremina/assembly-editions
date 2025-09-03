@@ -4,6 +4,7 @@ import { customSort, isEmpty } from '../../../helpers/helpers';
 import { getBreadcrumbFromReferer } from '../../../helpers/serverSideHelpers';
 import AuthorPage from '../../../components/PageComponent/Blog/authorPage';
 import { BLOG_TAG_SORTED_LIST, CURRENT_SITE_URL, CURRENT_DOMAIN } from '../../../constants/constant';
+import { headers } from 'next/headers';
 
 async function getContent({ slug }) {
   const allPosts = (await getBlogByAuthor(slug)) ?? [];
@@ -50,11 +51,11 @@ export async function generateMetadata({ params }) {
 
 export default async function Author({ params }) {
   const { allPosts, tags } = await getContent({ slug: params?.slug });
-  
+
   // Get the referer to determine where user came from
   const headersList = headers();
   const referer = headersList.get('referer') || '';
-  
+
   // Get breadcrumb information using helper function
   const { breadcrumbText, breadcrumbLink } = getBreadcrumbFromReferer(referer, CURRENT_DOMAIN);
 
