@@ -6,7 +6,8 @@ import {
   getSectionTabContent,
   getSectionTestimonialGroupContent,
   getSectionRedirectContent,
-  getSectionHighlightContent
+  getSectionHighlightContent,
+  getSectionBentoBoxComponentContent
 } from '../../lib/contentful-standardPage';
 import Modern from '../solution/modern/modern';
 import Quote from '../quote/quote';
@@ -22,6 +23,7 @@ import SimpleSection from '../standardHero/simpleSection/simpleSection';
 import TestimonialTableSection from '../newTestimonial/testimonialTableSection';
 import HighlightSection from '../highlightSection/highlightSection';
 import { draftMode } from 'next/headers';
+import FeatureBentoBoxSection from '../featureBentoBoxSection/featureBentoBoxSection';
 
 export default async function StandardPage({ data }) {
   const { isEnabled } = await draftMode();
@@ -188,6 +190,23 @@ export default async function StandardPage({ data }) {
             <HighlightSection data={data.content.json} />
           </>
         );
+
+      case 'SectionBentoBox':
+        if (componentData.sys?.id) {
+          const data = (await getSectionBentoBoxComponentContent(componentData.sys?.id, isEnabled)) ?? {};
+          return !isEmpty(data) ? (
+            <FeatureBentoBoxSection
+              title={data.title}
+              description={data.description}
+              primaryButtonText={data.primaryButtonText}
+              primaryButtonLink={data.primaryButtonLink}
+              secondaryButtonText={data.secondaryButtonText}
+              secondaryButtonLink={data.secondaryButtonLink}
+              features={data.contentCollection?.items}
+            />
+          ) : null;
+        }
+        return null;
       default:
         return null;
     }

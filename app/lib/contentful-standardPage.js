@@ -3,6 +3,15 @@ import { isEmpty } from '../helpers/helpers';
 import { fetchGraphQL } from './contentful';
 import { POST_GRAPHQL_SEOMETADATA_FIELDS } from './contentful-seo';
 
+const POST_GRAPHQL_SECTION_COMMON_FIELDS = `
+title
+description
+primaryButtonText
+primaryButtonLink
+secondaryButtonText
+secondaryButtonLink
+`
+
 export const POST_GRAPHQL_HERO_COMPONENT_FIELDS = `
 heroTitle
 heroDescription
@@ -143,10 +152,16 @@ contentCollection{
               id
             }
           }
+          ...on SectionBentoBox{
+           sys{
+           id
+           }
+          } 
     }
 }
 
 `;
+
 const POST_GRAPHQL_FEATURE_COMPONENT_LIST_FIELDS = `
 title
 description
@@ -247,6 +262,29 @@ const POST_GRAPHQL_SECTION_REDIRECT_FIELDS = `
     }
   }
 `;
+
+const POST_GRAPHQL_BENTO_BOX_FIELDS = `
+title
+description
+link: url
+icon: image{
+  url
+}
+image:boxImage{
+  url
+}
+columnSpan
+`
+
+const POST_GRAPHQL_SECTION_BENTO_BOX_FIELDS = `
+${POST_GRAPHQL_SECTION_COMMON_FIELDS}
+contentCollection{
+  items{
+    ${POST_GRAPHQL_BENTO_BOX_FIELDS}
+  }
+}
+`
+
 export async function getFeatureComponentContent(id, preview) {
   const entries = await fetchGraphQL(
     `query {
@@ -373,4 +411,20 @@ export async function getSectionHighlightContent(id, preview) {
     [CONTENTFUL_API_TAG.STANDARD_PAGE]
   );
   return entries?.data?.sectionHighlight || {};
+}
+
+export async function getSectionBentoBoxComponentContent(id, preview) {
+  const entries = await fetchGraphQL(
+    `query {
+        sectionBentoBox(id:"${id}",preview: ${preview ? 'true' : 'false'}) {
+         ${POST_GRAPHQL_SECTION_BENTO_BOX_FIELDS}
+      }
+    }`,
+    preview,
+    [CONTENTFUL_API_TAG.STANDARD_PAGE]
+  );
+  console.log("entries==",entries);
+  // console.log("sectionBentoBox==",entries.data.sectionBentoBox);
+  
+  return entries?.data?.sectionBentoBox || {};
 }
