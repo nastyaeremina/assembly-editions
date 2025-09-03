@@ -19,11 +19,7 @@ export default function HomePage({ content, testimonialTableData }) {
         <HomeHeroSection
           title={content.heroTitle}
           body={content.heroBody}
-          image1={content.heroImage1?.url}
-          image2={content.heroImage2?.url}
-          leftImageTitle={content.heroImage1?.title}
-          rightImageTitle={content.heroImage2?.title}
-          isLight={true}
+          image={content.heroImage1?.url}
           primaryButtonText={content.heroPrimaryButtonText}
           primaryButtonLink={content.heroPrimaryButtonLink}
           secondaryButtonText={content.heroSecondaryButtonText}

@@ -3,7 +3,7 @@ import { Body2, Body3, CardTxt, Heading2, Heading3, MbBody2, MbBody3, TableText 
 
 const AutomationHero = styled.div`
   width: 100%;
-  padding: 180px 0 0px 0;
+  padding: var(--space-80) 0 0px 0;
   margin-bottom: 50px;
   text-align: center;
   overflow: hidden;
@@ -24,13 +24,8 @@ const AutomationHero = styled.div`
     z-index: 11;
     position: relative;
   }
-  @media only screen and (max-width: 749px) {
-    padding: 116px 0 0px 0;
-    .automation-image {
-      display: none;
-    }
-  }
   @media only screen and (max-width: 768px) {
+    padding: var(--space-64) 0 0px 0;
     margin-bottom: 30px;
     .automation-image {
       display: none;
@@ -38,8 +33,9 @@ const AutomationHero = styled.div`
     .button-group {
       margin-bottom: 40px;
     }
-  }
-  @media only screen and (max-width: 768px) {
+    .automation-image {
+      display: none;
+    }
     .appsbutton {
       flex-direction: row;
     }

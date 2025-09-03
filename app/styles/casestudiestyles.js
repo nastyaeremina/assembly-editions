@@ -18,11 +18,11 @@ import {
 
 const HeroSection = styled.div`
   width: 100%;
-  padding: 180px 0 0px 0;
+  padding: var(--space-80) 0 0px 0;
   text-align: center;
   overflow: hidden;
-  @media only screen and (max-width: 749px) {
-    padding: 148px 0 0px 0;
+  @media only screen and (max-width: 768px) {
+    padding: var(--space-64) 0 0px 0;
   }
 `;
 

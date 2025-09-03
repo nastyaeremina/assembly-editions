@@ -1,78 +1,82 @@
 import styled, { css } from 'styled-components';
-import { Body2, Heading2, MbBody1, MobileH2 } from '../../../styles/styles';
 import { HeroTypes } from '../../../constants/constant';
+import { body_regular, h1_semibold } from '../../../styles/typography';
 
 const LeftHeroSectionMainDiv = styled.div`
   display: flex;
   flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
   ${(props) =>
     props.variant === HeroTypes.CENTER &&
     css`
       align-items: center;
       justify-content: center;
+      @media only screen and (max-width: 449px) {
+        justify-content: flex-start;
+        align-items: flex-start;
+      }
     `}
-  .button-group {
-    margin-top: 32px;
-    @media only screen and (max-width: 449px) {
-      margin-top: 28px;
-    }
-  }
-  .center-button-group {
-    align-items: center;
-    justify-content: center;
-    margin-top: 32px;
-    @media only screen and (max-width: 449px) {
-      margin-top: 28px;
-    }
-  }
 `;
 
 const HeroHeading = styled.h1`
-  ${Heading2};
+  ${h1_semibold};
   color: var(--title);
-  margin: 0 0 20px;
-  max-width: 1000px;
+  margin: 0 0 var(--space-20);
+  max-width: 900px;
+  text-align: left;
+
   span {
-    color: var(--primary);
+    color: var(--title);
+  }
+  &.center-title {
+    margin: 0 0 var(--space-24);
   }
   ${(props) =>
     props.variant === HeroTypes.CENTER &&
     css`
       text-align: center;
+      @media only screen and (max-width: 449px) {
+        text-align: left;
+      }
     `}
-  @media only screen and (max-width: 991px) {
-    ${Heading2}
-  }
-  @media only screen and (max-width: 749px) {
-    margin-bottom: 20px;
-    ${MobileH2}
+  @media only screen and (max-width: 449px) {
+    margin: 0 0 var(--space-24);
+    text-align: left;
+    letter-spacing: -0.8px;
   }
 `;
 
 const Para = styled.p`
-  max-width: 880px;
+  max-width: 720px;
   width: 100%;
-  ${Body2}
-  letter-spacing: 0.02em;
+  ${body_regular}
   margin: 0;
-  color: var(--body);
+  color: var(--text-secondary);
+  text-align: left;
   p {
     margin: 0;
   }
   p + p {
-    margin-top: 16px;
+    margin-top: var(--space-16);
   }
   ${(props) =>
     props.variant === HeroTypes.CENTER &&
     css`
       text-align: center;
+      @media only screen and (max-width: 449px) {
+        text-align: left;
+      }
     `}
-  @media only screen and (max-width: 991px) {
-    ${Body2}
-  }
-  @media only screen and (max-width: 749px) {
-    ${MbBody1};
+`;
+
+const ButtonGroups = styled.div`
+  display: flex;
+  gap: var(--space-8);
+  margin-top: var(--space-24);
+  @media only screen and (max-width: 449px) {
+    margin-top: var(--space-32);
   }
 `;
 
-export { LeftHeroSectionMainDiv, HeroHeading, Para };
+export { LeftHeroSectionMainDiv, HeroHeading, Para, ButtonGroups };

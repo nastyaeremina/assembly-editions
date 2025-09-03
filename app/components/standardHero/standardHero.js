@@ -29,15 +29,12 @@ export default function StandardHero({ type, data, isDownload = false }) {
           <HomeHeroSection
             title={data?.heroTitle}
             body={data?.heroDescription}
-            image1={data?.banner1?.url}
-            isLight={true}
+            image={data?.banner1?.url}
             isStandardPage={true}
-            ratingList={data?.rating}
             primaryButtonText={data?.primaryButtonText}
             primaryButtonLink={data?.primaryButtonLink}
             secondaryButtonText={data?.secondaryButtonText}
             secondaryButtonLink={data?.secondaryButtonLink}
-            isShowSocialProof={data.showSocialProof}
             isDownload={isDownload}
           />
         );

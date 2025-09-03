@@ -747,15 +747,10 @@ th {
 }
 
 .standard-page {
-  padding: 180px 0 0;
+  padding: var(--space-80) 0 0;
 }
 @media only screen and (max-width: 768px) {
   .standard-page {
-    padding: 148px 0 0;
-  }
-}
-@media only screen and (max-width: 449px) {
-  .standard-page {
-    padding: 116px 0 0;
+    padding: var(--space-64) 0 0;
   }
 }

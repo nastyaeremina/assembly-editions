@@ -1,12 +1,10 @@
 'use client';
-import React, { useMemo } from 'react';
-import ButtonGroup from '../../ButtonGroup/buttonGroup';
-import SocialProofProperty from '../../socialProofProperty/socialProofProperty';
+import React from 'react';
 import { isEmpty } from '../../../helpers/helpers';
-import { HeroTypes } from '../../../constants/constant';
-import { HeroHeading, LeftHeroSectionMainDiv, Para } from './style';
-import { ImageHover, ReviewLogo, RightWrap } from '../../Home/styles';
-import SVGComponent from '../../../../public/images/svg/SVGComponent';
+import { ButtonSize, ButtonVariant, HeroTypes } from '../../../constants/constant';
+import { ButtonGroups, HeroHeading, LeftHeroSectionMainDiv, Para } from './style';
+import ButtonV2Component from '../../button/buttonV2/buttonV2';
+import { useIsMobile } from '../../../hooks/useMobileDevice';
 
 /**
  * Heading Component
@@ -22,53 +20,61 @@ import SVGComponent from '../../../../public/images/svg/SVGComponent';
  * @param {'center' | 'left'} variant - Determines the alignment of the heading and buttons.
  * @param {React.ReactNode} children - Optional additional content to be rendered within the component.
  * @param {boolean} isDownload - Indicates whether the secondary button should link to a download.
- * @param {React.ReactNode[]} ratingData - An array of objects representing rating items,
  * each containing a link and a title to be displayed as part of the rating view.
  */
 
 function Heading({
   title,
   description,
-  isShowSocialProof = false,
   primaryButtonLink,
   primaryButtonText,
   secondaryButtonLink,
   secondaryButtonText,
   variant = HeroTypes.LEFT,
   children,
-  ratingData,
   isDownload
 }) {
-  const renderRatingView = useMemo(() => {
-    return ratingData?.map((item, index) => {
-      return (
-        <>
-          <ImageHover href={item?.link} target='_blank' key={index}>
-            <RightWrap>
-              <SVGComponent name='rating-star' width='112' height='20' viewBox='0 0 112 20' />
-              <p>{item.title}</p>
-            </RightWrap>
-          </ImageHover>
-        </>
-      );
-    });
-  }, [ratingData]);
+  // button empty state
+  const showPrimaryButton = !isEmpty(primaryButtonText) && !isEmpty(primaryButtonLink);
+  const showSecondaryButton = !isEmpty(secondaryButtonText) && !isEmpty(secondaryButtonLink);
+  const isShowButton = showPrimaryButton || showSecondaryButton;
+
+  // mobile state
+  const isMobile = useIsMobile();
 
   return (
     <LeftHeroSectionMainDiv variant={variant}>
-      {!isEmpty(title) && <HeroHeading dangerouslySetInnerHTML={{ __html: title }} />}
-      {!isEmpty(description) && <Para>{description}</Para>}
-      {!isEmpty(ratingData) && <ReviewLogo>{renderRatingView}</ReviewLogo>}
+      {!isEmpty(title) && (
+        <HeroHeading
+          dangerouslySetInnerHTML={{ __html: title }}
+          className={variant === HeroTypes.CENTER ? 'center-title' : ''}
+          variant={variant}
+        />
+      )}
+      {!isEmpty(description) && <Para variant={variant}>{description}</Para>}
       {children}
-      <ButtonGroup
-        primaryButtonLink={primaryButtonLink}
-        primaryButtonText={primaryButtonText}
-        secondaryButtonLink={secondaryButtonLink}
-        secondaryButtonText={secondaryButtonText}
-        className={variant === HeroTypes.CENTER ? 'center-button-group' : 'button-group'}
-        isDownload={isDownload}
-      />
-      {isShowSocialProof && <SocialProofProperty rateCount='1000+' />}
+      {isShowButton && (
+        <ButtonGroups>
+          {showPrimaryButton && (
+            <ButtonV2Component
+              title={primaryButtonText}
+              href={primaryButtonLink}
+              download={isDownload}
+              size={isMobile ? ButtonSize.SMALL : ButtonSize.MEDIUM}
+            />
+          )}
+          {showSecondaryButton && (
+            <ButtonV2Component
+              title={secondaryButtonText}
+              href={secondaryButtonLink}
+              variant={showPrimaryButton ? ButtonVariant.SECONDARY : ButtonVariant.SECONDARY_WITH_BORDER}
+              iconName='blog-card-hover-arrow-icon'
+              download={isDownload}
+              size={isMobile ? ButtonSize.SMALL : ButtonSize.MEDIUM}
+            />
+          )}
+        </ButtonGroups>
+      )}
     </LeftHeroSectionMainDiv>
   );
 }

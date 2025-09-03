@@ -6,12 +6,9 @@ import {
   Body3,
   Body4,
   Body5,
-  Caption,
   Heading1,
   Heading3,
   Heading4,
-  Body2,
-  Label,
   LinkTxt,
   MbBody1,
   MobileH3,
@@ -19,14 +16,11 @@ import {
   MbBody4,
   HeaderFont,
   MobileH4,
-  MobileH2,
-  MbButtonText,
-  MbBody2
+  MobileH2
 } from './styles';
 import { AutomationCardVariant } from '../constants/constant';
 
 const HomeMain = styled.div`
-  background-color: var(--bg-pages);
   padding-bottom: 50px;
   @media only screen and (max-width: 749px) {
     padding-bottom: 0;
@@ -101,7 +95,6 @@ const ReviewLogo = styled.div`
   max-height: 43px;
 `;
 const BusinessSection = styled.div`
-  box-shadow: 0px -26px 32px var(--black-shadow-8);
   position: relative;
   z-index: 1;
   padding: 100px 0 100px;

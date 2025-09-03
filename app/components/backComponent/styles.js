@@ -7,8 +7,8 @@ const DetailLink = styled.div`
     gap: 8px;
     align-items: center;
   }
-  padding-bottom: 30px;
-  padding-top: 120px;
+  padding-bottom: var(--space-30);
+  padding-top: var(--space-80);
   p {
     ${LinkTxt};
     margin: 0;
@@ -27,9 +27,9 @@ const DetailLink = styled.div`
       }
     }
   }
-  @media only screen and (max-width: 749px) {
-    padding-top: 100px;
-    padding-bottom: 28px;
+  @media only screen and (max-width: 768px) {
+    padding-top: var(--space-64);
+    padding-bottom: var(--space-28);
   }
   @media only screen and (max-width: 449px) {
     display: none;

@@ -1,42 +1,31 @@
 import styled, { css } from 'styled-components';
-import { Body2, Body5, FooterText, Heading2, MbBody1, MobileH2 } from '../../styles/styles';
+import { Body2, Heading2, MbBody1, MobileH2 } from '../../styles/styles';
 
 const HeroSection = styled.div`
   width: 100%;
-  padding: 180px 0 0px 0;
+  padding: var(--space-80) 0 0px 0;
   text-align: center;
   overflow: hidden;
-  background-color: var(--dark-green);
-  ${(props) =>
-    props.isLight &&
-    css`
-      background-color: var(--white);
-    `}
   ${(props) =>
     props.isStandardPage &&
     css`
-      padding: 0 0 100px;
+      padding: 0 0 var(--space-100);
       @media only screen and (max-width: 768px) {
-        padding: 0 0 80px !important;
+        padding: 0 0 var(--space-80) !important;
       }
     `}
-  @media only screen and (max-width: 768px) {
-    padding: 148px 0 40px 0;
+  @media only screen and (max-width: 991px) {
+    padding: var(--space-64) 0 var(--space-20) 0;
   }
   @media only screen and (max-width: 449px) {
-    padding: 116px 0 40px 0;
-  }
-  .social-proof {
-    display: flex;
-    justify-content: center;
-    margin-top: 4px;
+    padding: var(--space-64) 0 var(--space-24) 0;
   }
   .button-group {
     align-items: center;
     justify-content: center;
-    margin-top: 32px;
+    margin-top: var(--space-32);
     @media only screen and (max-width: 449px) {
-      margin-top: 28px;
+      margin-top: var(--space-28);
     }
   }
 `;
@@ -247,184 +236,27 @@ const HeroBtnBlock = styled.div`
 
 const MainImage = styled.div`
   width: 100%;
-  /* filter: drop-shadow(0px 4px 112px var(--primary)); */
-  ${(props) =>
-    props.isLight &&
-    css`
-      filter: drop-shadow(0px 0px 60px var(--black-shadow-12));
-    `}
+  overflow: hidden;
+  margin-top: var(--space-64);
+  max-height: 582px;
   .heromain-image {
-    /* box-shadow: 0px 4px 112px var(--primary); */
-    box-shadow: 0px 0px 66.61846160888672px 0px #0000001f;
-    border-top-left-radius: 10px;
-    border-top-right-radius: 10px;
-    max-width: 1000px;
-    width: auto;
-    max-height: 415px;
-    height: 100%;
-    margin-bottom: -4px;
-    margin-top: 40px;
-    ${(props) =>
-      props.isLight &&
-      css`
-        border-bottom: none;
-      `}
+    border-radius: var(--radius-8);
+    max-width: 1224px;
+    width: 100%;
+    height: auto;
+    border: 1px solid var(--border-default);
   }
   @media only screen and (max-width: 768px) {
-    display: none;
-  }
-`;
-
-const Hero = styled.div`
-  display: flex;
-  @media only screen and (max-width: 768px) {
-    display: none;
-  }
-  .bgleft {
-    z-index: 1;
-  }
-  .hybridleft {
-    position: absolute;
-    max-width: 560px;
-    width: 100%;
-    max-height: 267px;
-    height: 100%;
-    border-radius: 7px 7px 0 0;
-    margin-top: 117px;
-    margin-left: 92px;
-    z-index: 2;
-    @media only screen and (max-width: 1024px) {
-      position: absolute;
-      max-width: 442px;
-      width: 100%;
-      max-height: 210px;
-      height: 100%;
-      margin-top: 96px;
-      margin-left: 76px;
-      z-index: 2;
+    max-height: unset;
+    .heromain-image {
+      margin-bottom: 0;
     }
   }
-  .bgright {
-    /* position: relative; */
-    z-index: 1;
-  }
-  .hybridright {
-    position: absolute;
-    max-width: 230px;
-    width: 100%;
-    max-height: 267px;
-    height: 100%;
-    border-radius: 7px 7px 0 0;
-    margin-left: 890px;
-    margin-top: 117px;
-    z-index: 2;
-    @media only screen and (max-width: 1024px) {
-      position: absolute;
-      max-width: 181px;
-      width: 100%;
-      max-height: 210px;
-      height: 100%;
-      margin-left: 710px;
-      margin-top: 96px;
-      z-index: 2;
+  @media only screen and (max-width: 449px) {
+    .heromain-image {
+      border-radius: var(--radius-4);
     }
   }
 `;
 
-const HeroImage = styled.div``;
-const HeroLine = styled.div`
-  margin-top: 150px;
-  .first-line {
-    position: absolute;
-    left: 0;
-  }
-  .second-line {
-    position: absolute;
-    margin-top: 64px;
-    margin-left: 600px;
-  }
-  .third-line {
-    position: absolute;
-    margin-top: 128px;
-    margin-left: 600px;
-  }
-  .last-line {
-    position: absolute;
-    margin-top: 192px;
-    right: 0;
-  }
-  @media only screen and (max-width: 1024px) {
-    margin-top: 125px;
-    .first-line {
-      width: 900px;
-    }
-    .second-line {
-      position: absolute;
-      margin-top: 44px;
-      margin-left: 400px;
-    }
-    .third-line {
-      position: absolute;
-      margin-top: 88px;
-      margin-left: 400px;
-    }
-    .last-line {
-      position: absolute;
-      margin-top: 132px;
-      right: 0;
-      width: 500px;
-    }
-  }
-`;
-const LeftHeading = styled.p`
-  ${Body5}
-  position: absolute;
-  margin-top: 58px;
-  margin-left: 74px;
-  padding: 10px 6px;
-  background-color: var(--dark-green);
-  color: var(--light-green);
-  border: 1px solid var(--light-green);
-  border-radius: 4px 4px 0px 0px;
-  border-bottom: none;
-  z-index: 2;
-  @media only screen and (max-width: 1024px) {
-    ${FooterText}
-    margin-top:40px;
-    margin-left: 59px;
-  }
-`;
-
-const RightHeading = styled.p`
-  ${Body5}
-  position: absolute;
-  margin-top: 58px;
-  margin-left: 903px;
-  padding: 10px 6px;
-  background-color: var(--dark-green);
-  color: var(--light-green);
-  border: 1px solid var(--light-green);
-  border-radius: 4px 4px 0px 0px;
-  border-bottom: none;
-  z-index: 2;
-  @media only screen and (max-width: 1024px) {
-    ${FooterText}
-    margin-top: 40px;
-    margin-left: 702px;
-  }
-`;
-export {
-  HeroSection,
-  HeroHeading,
-  Para,
-  ImageHover,
-  ReviewLogo,
-  RightWrap,
-  HeroBtnBlock,
-  MainImage,
-  Hero,
-  HeroImage,
-  HeroLine,
-  LeftHeading,
-  RightHeading
-};
+export { HeroSection, HeroHeading, Para, ImageHover, ReviewLogo, RightWrap, HeroBtnBlock, MainImage };

@@ -16,6 +16,7 @@ import { ButtonSize, ButtonTone, ButtonVariant } from '../../../constants/consta
  * @param {boolean} isWidth - Determines if the button should take full width.
  * @param {'regular' | 'dark'} tone - Sets the tone of the button.
  * @param {string} className - Additional class names for styling.
+ * @param {boolean} download - Download attribute for anchor tags (filename or true for default).
  */
 
 function ButtonV2Component({
@@ -28,7 +29,8 @@ function ButtonV2Component({
   href,
   isWidth,
   tone = ButtonTone.REGULAR,
-  className
+  className,
+  download = false
 }) {
   return (
     <ButtonWrap isWidth={isWidth}>
@@ -41,7 +43,8 @@ function ButtonV2Component({
         href={href}
         aria-label={title}
         tone={tone}
-        className={className}>
+        className={className}
+        {...(href && download && { download })}>
         <span>{title}</span>
         {iconName && (
           <SVGComponent name={iconName} width={iconSize} height={iconSize} viewBox={`0 0 ${iconSize} ${iconSize}`} />

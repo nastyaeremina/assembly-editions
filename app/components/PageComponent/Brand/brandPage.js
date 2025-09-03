@@ -94,19 +94,19 @@ export default function BrandPage() {
   return (
     <>
       <BrandMain>
+        <div className='standard-page'>
+          <StandardHero
+            type={HeroTypes.CENTER}
+            isDownload={true}
+            data={{
+              heroTitle: 'Copilot Brand Guidelines',
+              heroDescription: 'Resources for presenting the Copilot brand consistently and professionally.',
+              primaryButtonLink: '/images/Copilot_Brand_Assets.zip',
+              primaryButtonText: 'Download Brand Assets'
+            }}
+          />
+        </div>
         <Container>
-          <div className='standard-page'>
-            <StandardHero
-              type={HeroTypes.CENTER}
-              isDownload={true}
-              data={{
-                heroTitle: 'Copilot Brand Guidelines',
-                heroDescription: 'Resources for presenting the Copilot brand consistently and professionally.',
-                primaryButtonLink: '/images/Copilot_Brand_Assets.zip',
-                primaryButtonText: 'Download Brand Assets'
-              }}
-            />
-          </div>
           <BrandName className='first-item'>
             <h2>Naming</h2>
             <p>
