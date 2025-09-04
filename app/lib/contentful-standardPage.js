@@ -191,7 +191,6 @@ const POST_GRAPHQL_SECTION_TAB_FIELDS = `
       items{
         name
         title
-        slug
         subTitle
         description
         image{
@@ -203,10 +202,6 @@ const POST_GRAPHQL_SECTION_TAB_FIELDS = `
         sys {
           id
         }
-        icon{
-          url
-        }
-        link
       }
     }`;
 

@@ -102,16 +102,11 @@ sectionHeader1
       items{
         name
         title
-        slug
         subTitle
         description
         image{
           url
         }
-        icon{
-          url
-        }
-        link
       }
     }
     sectionHeader5
