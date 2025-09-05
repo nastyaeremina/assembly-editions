@@ -51,6 +51,11 @@ const Buttons = styled.button`
     css`
       background-color: var(--off-white-200);
       color: var(--title);
+      svg {
+        path {
+          fill: var(--white);
+        }
+      }
     `}
 
   //Secondary button
@@ -66,6 +71,11 @@ const Buttons = styled.button`
     css`
       background-color: transparent;
       color: var(--off-white-100);
+      svg {
+        path {
+          fill: var(--white);
+        }
+      }
     `}
 
     //Secondary button with border
@@ -83,6 +93,11 @@ const Buttons = styled.button`
       border: 1px solid var(--bg-card-dark-hover);
       background-color: transparent;
       color: var(--off-white-100);
+      svg {
+        path {
+          fill: var(--white);
+        }
+      }
     `}
   :hover {
     background-color: var(--bg-card-dark-hover);
@@ -91,6 +106,11 @@ const Buttons = styled.button`
       css`
         background-color: var(--bg-primary-hover);
         color: var(--title);
+        svg {
+          path {
+            fill: var(--white);
+          }
+        }
       `}
     ${(props) =>
       props.variant === ButtonVariant.SECONDARY &&
@@ -104,6 +124,11 @@ const Buttons = styled.button`
       css`
         background-color: var(--bg-card-dark-hover);
         color: var(--off-white-100);
+        svg {
+          path {
+            fill: var(--white);
+          }
+        }
       `}
       ${(props) =>
       props.variant === ButtonVariant.SECONDARY_WITH_BORDER &&
@@ -117,6 +142,11 @@ const Buttons = styled.button`
       css`
         background-color: var(--bg-card-dark-hover);
         color: var(--off-white-100);
+        svg {
+          path {
+            fill: var(--white);
+          }
+        }
       `}
   }
   :focus-visible {

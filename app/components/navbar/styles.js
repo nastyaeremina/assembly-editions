@@ -653,6 +653,7 @@ const HighlightSectionDiv = styled.div`
   display: flex;
   flex-direction: column;
   gap: var(--space-20);
+  align-items: flex-start;
 `;
 
 const ContentDiv = styled.div`
@@ -683,29 +684,6 @@ const Description = styled.p`
   margin: 0;
   ${button_regular}
   color: var(--text-secondary);
-`;
-
-const ReadMoreLink = styled(Link)`
-  display: flex;
-  align-items: center;
-  gap: var(--space-4);
-  ${button_regular}
-  color: var(--text-secondary);
-  transform: all 0.3s ease;
-  svg {
-    path {
-      transform: all 0.3s ease;
-      fill: var(--text-secondary);
-    }
-  }
-  :hover {
-    color: var(--title);
-    svg {
-      path {
-        fill: var(--title);
-      }
-    }
-  }
 `;
 
 const Section = styled.div`
@@ -769,7 +747,6 @@ export {
   Content,
   Title,
   Description,
-  ReadMoreLink,
   BergerMenu,
   SecondLine,
   Icon,

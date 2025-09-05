@@ -5,7 +5,7 @@ import PricingDetailsHead from './pricingDetailsHead';
 import { PricePlan } from './styles';
 
 export default function PricingCardSection({ data, cardSize, isYearly }) {
-  const [maxHeight, setMaxHeight] = useState(19);
+  const [maxHeight, setMaxHeight] = useState(24);
 
   useEffect(() => {
     setTimeout(() => {

@@ -17,10 +17,6 @@ items {
   image{
     url
   }
-  icon{
-    url
-  }
-  link
   sys {
     id
   }

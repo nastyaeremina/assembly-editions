@@ -50,7 +50,7 @@ function BlogListSection({ authorName, allPosts }) {
             <ButtonV2Component
               title={'Load more'}
               variant={ButtonVariant.SECONDARY_WITH_BORDER}
-              onClick={() => setVisibleCount((prev) => prev + 8)}
+              onClick={() => setVisibleCount((prev) => prev + 6)}
             />
           </LoadMoreButton>
         )}

@@ -107,26 +107,6 @@ sectionHeader1
       }
     }
     }
-    sectionHeader3
-    sectionBody3{
-      json
-    }
-    sectionContent3Collection{
-      items{
-        name
-        title
-        slug
-        subTitle
-        description
-        image{
-          url
-        }
-        icon{
-          url
-        }
-        link
-      }
-    }
 `;
 
 function extractPostEntry(fetchResponse) {

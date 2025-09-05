@@ -32,6 +32,7 @@ export default function HomePage({ content, testimonialTableData }) {
           PrimaryButtonLink={content.primaryButtonLink1}
           sliderData={content.section1Collection?.items}
         />
+
         <FeatureSection
           featuresList={content.featuresCollection?.items}
           heroSectionData={{

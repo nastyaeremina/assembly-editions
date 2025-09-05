@@ -493,3 +493,21 @@ export const ButtonSize = {
   SMALL: 'small',
   MEDIUM: 'medium'
 };
+
+export const SectionTone = {
+  LIGHT: 'light',
+  DARK: 'dark'
+};
+
+export const LinkTone = {
+  BLUE: 'blue',
+  WHITE: 'white',
+  BLACK: 'black',
+  GRAY: 'gray'
+};
+
+export const LinkSize = {
+  LARGE: 'large',
+  MEDIUM: 'medium',
+  SMALL: 'small'
+};

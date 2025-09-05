@@ -13,7 +13,6 @@ import {
   Tabbutton,
   TabbuttonTop
 } from '../tabbutton/hometabstyle';
-import featurebackground from '/public/images/Featurbackgroundimage.png';
 import useMobileDevice from '../../hooks/useMobileDevice';
 
 export default function HomeTabView({ tabData: allPosts, isAutomation }) {
@@ -24,11 +23,6 @@ export default function HomeTabView({ tabData: allPosts, isAutomation }) {
   const [maxHeight, setMaxHeight] = useState(0);
   const [isDesktopView, setIsDesktopView] = useState(false);
 
-  const [isOpen, setIsOpen] = useState(false);
-
-  const onClick = () => {
-    setIsOpen(!isOpen);
-  };
   // Check is mobile or not
   const isMobile = useMobileDevice();
 
@@ -183,8 +177,6 @@ export default function HomeTabView({ tabData: allPosts, isAutomation }) {
           </TabbuttonTop>
           <div className='outlet'>
             {allPosts?.map((item, index) => {
-              var extension = item?.image?.url?.split('.').pop();
-              let isGifFile = extension === 'gif';
               let isSelectedTab = activeTabId === index;
               return (
                 <>

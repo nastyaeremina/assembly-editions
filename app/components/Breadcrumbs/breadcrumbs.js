@@ -1,6 +1,8 @@
 import React, { useMemo } from 'react';
-import { BreadcrumbItemsWrapper, BreadcrumbLink, Line } from './styles';
+import { BreadcrumbItemsWrapper, Line } from './styles';
 import { isEmpty } from '../../helpers/helpers';
+import LinkComponent from '../linkComponent/linkComponent';
+import { LinkTone } from '../../constants/constant';
 
 /**
  * Breadcrumbs Component
@@ -15,7 +17,7 @@ export default function Breadcrumbs({ breadcrumbs = [], currentLabel }) {
   const breadcrumbItems = useMemo(() => {
     return breadcrumbs.map((item, index) => (
       <React.Fragment key={index}>
-        <BreadcrumbLink href={item.href}>{item.label}</BreadcrumbLink>
+        <LinkComponent linkHref={item.href} title={item.label} tone={LinkTone.GRAY} />
         {/* Add separator between items, but not after the last one */}
         {index < breadcrumbs.length - 1 && <Line>/</Line>}
       </React.Fragment>
