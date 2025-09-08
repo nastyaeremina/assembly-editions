@@ -12,34 +12,14 @@ const HeaderSection = styled.div`
   }
 `;
 
-const Title = styled.div`
-  h1 {
-    ${h1_semibold}
-    color: var(--title);
-    margin: 0;
-  }
-  h2 {
-    ${h2_semibold}
-    color: var(--title);
-    margin: 0;
-  }
-  p {
-    ${body_semibold}
-    color: var(--title);
-    margin: 0;
-  }
+const Title = styled.h2`
+  ${h2_semibold}
+  color: var(--title);
+  margin: 0;
   ${({ tone }) =>
     tone === SectionTone.DARK &&
     css`
-      h1 {
-        color: var(--off-white-100);
-      }
-      h2 {
-        color: var(--off-white-100);
-      }
-      p {
-        color: var(--off-white-100);
-      }
+      color: var(--off-white-100);
     `}
 `;
 

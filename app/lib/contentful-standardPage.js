@@ -10,7 +10,7 @@ primaryButtonText
 primaryButtonLink
 secondaryButtonText
 secondaryButtonLink
-`
+`;
 
 export const POST_GRAPHQL_HERO_COMPONENT_FIELDS = `
 heroTitle
@@ -85,7 +85,7 @@ faQsCollection{
   }
 }`;
 
-export const POST_GRAPHQL_TESTIMONIAL_CARD_FIELDS=`
+export const POST_GRAPHQL_TESTIMONIAL_CARD_FIELDS = `
  name
  role
  image{
@@ -93,7 +93,7 @@ export const POST_GRAPHQL_TESTIMONIAL_CARD_FIELDS=`
  }
  industry
  quoteNew
-`
+`;
 const POST_GRAPHQL_STANDARD_PAGE_LIST_FIELDS = `
 slug
 seoMetadata {
@@ -153,6 +153,11 @@ contentCollection{
             }
           }
           ...on SectionBentoBox{
+           sys{
+           id
+           }
+          } 
+          ...on SectionStoryModeSectionComponent{
            sys{
            id
            }
@@ -269,7 +274,7 @@ image:boxImage{
   url
 }
 columnSpan
-`
+`;
 
 const POST_GRAPHQL_SECTION_BENTO_BOX_FIELDS = `
 ${POST_GRAPHQL_SECTION_COMMON_FIELDS}
@@ -278,7 +283,33 @@ contentCollection{
     ${POST_GRAPHQL_BENTO_BOX_FIELDS}
   }
 }
-`
+`;
+
+const POST_GRAPHQL_TAB_FIELDS = `
+title
+subTitle
+description
+image{
+  url
+}
+primaryButtonText
+primaryButtonLink
+secondaryButtonText
+secondaryButtonLink
+link
+quoteBlock{
+  ${POST_GRAPHQL_TESTIMONIAL_CARD_FIELDS}
+}
+`;
+const POST_GRAPHQL_SECTION_STORY_MODE_AND_SECTION_COMPONENT_FIELDS = `
+${POST_GRAPHQL_SECTION_COMMON_FIELDS}
+type
+contentCollection{
+  items{
+    ${POST_GRAPHQL_TAB_FIELDS}
+  }
+}
+`;
 
 export async function getFeatureComponentContent(id, preview) {
   const entries = await fetchGraphQL(
@@ -320,8 +351,8 @@ export async function getSectionTabContent(id, preview) {
   return entries?.data?.sectionTab || {};
 }
 
-export async function getStandardPageContent({slug,id, preview}) {
-  const condition =isEmpty(id) ? `where:{slug:"${slug}"}` : `where:{sys:{id:"${id}"}}`;
+export async function getStandardPageContent({ slug, id, preview }) {
+  const condition = isEmpty(id) ? `where:{slug:"${slug}"}` : `where:{sys:{id:"${id}"}}`;
   const entries = await fetchGraphQL(
     `query {
           pageTemplateCollection(${condition},limit:1,preview: ${preview ? 'true' : 'false'}) {
@@ -333,6 +364,7 @@ export async function getStandardPageContent({slug,id, preview}) {
     preview,
     [CONTENTFUL_API_TAG.STANDARD_PAGE]
   );
+
   return entries?.data?.pageTemplateCollection?.items?.[0];
 }
 
@@ -418,8 +450,20 @@ export async function getSectionBentoBoxComponentContent(id, preview) {
     preview,
     [CONTENTFUL_API_TAG.STANDARD_PAGE]
   );
-  console.log("entries==",entries);
-  // console.log("sectionBentoBox==",entries.data.sectionBentoBox);
-  
+
   return entries?.data?.sectionBentoBox || {};
+}
+
+export async function getSectionStoryModeSectionComponentContent(id, preview) {
+  const entries = await fetchGraphQL(
+    `query {
+        sectionStoryModeSectionComponent(id:"${id}",preview: ${preview ? 'true' : 'false'}) {
+         ${POST_GRAPHQL_SECTION_STORY_MODE_AND_SECTION_COMPONENT_FIELDS}
+      }
+    }`,
+    preview,
+    [CONTENTFUL_API_TAG.STANDARD_PAGE]
+  );
+
+  return entries?.data?.sectionStoryModeSectionComponent || {};
 }

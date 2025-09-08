@@ -11,6 +11,8 @@ import {
 } from './style';
 import LinkComponent from '../linkComponent/linkComponent';
 import { LinkSize, LinkTone, SectionTone } from '../../constants/constant';
+import { isEmpty } from '../../helpers/helpers';
+import ReactMarkdown from 'react-markdown';
 
 /**
  * QuoteSectionComponent for displaying a quote section.
@@ -18,30 +20,36 @@ import { LinkSize, LinkTone, SectionTone } from '../../constants/constant';
  * @param {SectionTone} [props.tone=SectionTone.LIGHT] - The visual tone of the section, either light or dark.
  * @param {number} props.imageHeight - The height of the image.
  * @param {string} props.name - The name of the person being quoted.
- * @param {string} props.companyName - The company name of the person being quoted.
+ * @param {string} props.role - The company name of the person being quoted.
  * @param {string} props.description - The quote description.
- * @param {string} props.linkHref - The URL for the "Read More" link.
+ * @param {string} props.link - The URL for the "Read More" link.
  */
 
-const QuoteSectionComponent = ({ tone, imageSrc, name, companyName, description, linkHref }) => {
+const QuoteSectionComponent = ({ tone, imageSrc, name, role, description, link }) => {
   return (
     <QuoteSection tone={tone}>
-      <Image src={imageSrc} width={313} height={479} className='quote-image' />
+      {!isEmpty(imageSrc) && <Image src={imageSrc} width={313} height={479} className='quote-image' />}
       <QuoteContentDiv>
         <TitleContentSection>
           <NameSection>
-            <Name tone={tone}>{name}</Name>
-            <CompanyName tone={tone}>{companyName}</CompanyName>
+            {!isEmpty(name) && <Name tone={tone}>{name}</Name>}
+            {!isEmpty(role) && <CompanyName tone={tone}>{role}</CompanyName>}
           </NameSection>
-          <Description tone={tone}>“{description}”</Description>
+          {!isEmpty(description) && (
+            <Description tone={tone}>
+              <ReactMarkdown>{description}</ReactMarkdown>
+            </Description>
+          )}
         </TitleContentSection>
-        <LinkComponent
-          isIcon
-          title={'Read More'}
-          linkHref={linkHref}
-          tone={tone === SectionTone.LIGHT ? LinkTone.WHITE : LinkTone.BLACK}
-          size={LinkSize.LARGE}
-        />
+        {!isEmpty(link) && (
+          <LinkComponent
+            isIcon
+            title={'Read More'}
+            linkHref={link}
+            tone={tone === SectionTone.LIGHT ? LinkTone.WHITE : LinkTone.BLACK}
+            size={LinkSize.LARGE}
+          />
+        )}
       </QuoteContentDiv>
     </QuoteSection>
   );

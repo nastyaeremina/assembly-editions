@@ -511,3 +511,9 @@ export const LinkSize = {
   MEDIUM: 'medium',
   SMALL: 'small'
 };
+
+export const SectionStoryModeSectionComponentType={
+    STORY_MODE_DARK:"Story Mode - Dark",
+    SECTION_COMPONENT_DARK: "Section Component - Dark",
+    SECTION_COMPONENT_LIGHT: "Section Component - Light",
+}

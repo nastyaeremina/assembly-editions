@@ -7,7 +7,8 @@ import {
   getSectionTestimonialGroupContent,
   getSectionRedirectContent,
   getSectionHighlightContent,
-  getSectionBentoBoxComponentContent
+  getSectionBentoBoxComponentContent,
+  getSectionStoryModeSectionComponentContent
 } from '../../lib/contentful-standardPage';
 import Modern from '../solution/modern/modern';
 import Quote from '../quote/quote';
@@ -24,7 +25,7 @@ import TestimonialTableSection from '../newTestimonial/testimonialTableSection';
 import HighlightSection from '../highlightSection/highlightSection';
 import { draftMode } from 'next/headers';
 import FeatureBentoBoxSection from '../featureBentoBoxSection/featureBentoBoxSection';
-
+import SectionComponentAndStoryModeRenderer from '../sectionComponentAndStoryMode'
 export default async function StandardPage({ data }) {
   const { isEnabled } = await draftMode();
 
@@ -207,6 +208,15 @@ export default async function StandardPage({ data }) {
           ) : null;
         }
         return null;
+        case 'SectionStoryModeSectionComponent':          
+          if (componentData.sys?.id) {
+            const data = (await getSectionStoryModeSectionComponentContent(componentData.sys?.id, isEnabled)) ?? {};
+           
+            return !isEmpty(data) ? (
+              <SectionComponentAndStoryModeRenderer data={data}/>
+            ) : null;
+          }
+          return null;  
       default:
         return null;
     }

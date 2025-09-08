@@ -82,17 +82,17 @@ function SectionComponent({
             <GridSection ref={containerRef} style={{ height }} tone={tone}>
               {tabItems.map((tabItem, index) => (
                 <GridItemSection key={index} isActive={index === activeIndex} data-active={index === activeIndex}>
-                  {tabItem.image && (
-                    <Image src={tabItem.image} width={877} height={827} className='image' alt='Section' />
+                  {!isEmpty(tabItem.image) && (
+                    <Image src={tabItem.image.url} width={877} height={827} className='image' alt='Section' />
                   )}
-                  {!isEmpty(tabItem.quoteSection) && (
+                  {!isEmpty(tabItem.quoteBlock) && (
                     <QuoteSectionComponent
                       tone={tone}
-                      imageSrc={tabItem.quoteSection.imageSrc}
-                      name={tabItem.quoteSection.name}
-                      companyName={tabItem.quoteSection.companyName}
-                      description={tabItem.quoteSection.description}
-                      linkHref={tabItem.quoteSection.linkHref}
+                      imageSrc={tabItem.quoteBlock.image.url}
+                      name={tabItem.quoteBlock.name}
+                      role={tabItem.quoteBlock.role}
+                      description={tabItem.quoteBlock.quoteNew}
+                      link={tabItem.link }
                     />
                   )}
                 </GridItemSection>

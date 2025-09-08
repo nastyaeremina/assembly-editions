@@ -1,7 +1,6 @@
 import styled, { css } from 'styled-components';
 import { SectionTone } from '../../constants/constant';
-import { body_regular, h4_regular } from '../../styles/typography';
-import Link from 'next/link';
+import { body_regular, h2_regular, h2_semibold, h3_regular, h4_regular } from '../../styles/typography';
 
 const QuoteSection = styled.div`
   grid-column: span 1;
@@ -83,14 +82,34 @@ const CompanyName = styled.p`
     `}
 `;
 
-const Description = styled.p`
-  margin: 0;
-  ${body_regular}
-  color: var(--off-white-100);
+const Description = styled.div`
+  p {
+    margin: 0;
+    ${body_regular}
+    color: var(--off-white-100);
+  }
+  h2 {
+    ${h2_regular}
+    color: var(--title);
+    margin: 0;
+  }
+  h3 {
+    ${h3_regular}
+    color: var(--title);
+    margin: 0;
+  }
   ${({ tone }) =>
     tone === SectionTone.DARK &&
     css`
-      color: var(--title);
+      p {
+        color: var(--title);
+      }
+      h2 {
+        color: var(--title);
+      }
+      h3 {
+        color: var(--title);
+      }
     `}
 `;
 
