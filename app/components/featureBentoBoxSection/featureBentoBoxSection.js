@@ -9,7 +9,6 @@ import FeatureBentoBox from './featureBentoBox';
 
 /**
  * FeatureBentoBoxSection renders a section with a title, description, two buttons, and a dynamic set of features.
- *
  * @param {string} title - The main title of the section.
  * @param {string} description - The description text for the section.
  * @param {string} primaryButtonLink - The URL for the primary button.
@@ -61,8 +60,8 @@ function FeatureBentoBoxSection({
               title={feature.title}
               description={feature.description}
               href={feature.link}
-              icon={feature.icon.url}
-              image={feature.image.url}
+              icon={feature.icon?.url}
+              image={feature.image?.url}
               columnSpan={feature.columnSpan}
             />
           ))}

@@ -13,7 +13,7 @@ import {
 import SVGComponent from '../../../public/images/svg/SVGComponent';
 
 /**
- * FeatureBentoBox renders a single feature card with an icon, title, description, and image.
+ * Feature Bento Box renders a single feature card with an icon, title, description, and image.
  * @param {string} icon.url - The URL of the icon image.
  * @param {string} title - The title of the feature.
  * @param {string} description - The description of the feature.
