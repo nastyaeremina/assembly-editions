@@ -240,16 +240,13 @@ const MainImage = styled.div`
   width: 100%;
   overflow: hidden;
   margin-top: var(--space-64);
-  max-height: 582px;
   .heromain-image {
     border-radius: var(--radius-8);
-    max-width: 1224px;
     width: 100%;
     height: auto;
     border: 1px solid var(--border-default);
   }
   @media only screen and (max-width: 768px) {
-    max-height: unset;
     .heromain-image {
       margin-bottom: 0;
     }
