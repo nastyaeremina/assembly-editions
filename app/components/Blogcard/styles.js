@@ -24,17 +24,18 @@ const BlogDetail = styled.div`
 const Leftside = styled.div`
   display: inline-flex;
   align-items: stretch;
-  border: 1px solid var(--border-default);
   overflow: hidden;
   width: 100%;
-  border-radius: var(--radius-12);
+  max-height: 288px;
   .image {
     object-fit: cover;
-    height: 326px;
-    max-height: 326px;
+    height: 288px;
+    max-height: 288px;
     width: 100%;
-    @media only screen and (max-width: 768px) {
-      height: 184px;
+    border: 1px solid var(--border-default);
+    border-radius: var(--radius-12);
+    @media only screen and (max-width: 991px) {
+      height: 180px;
     }
   }
   ${(props) =>

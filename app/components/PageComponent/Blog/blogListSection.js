@@ -33,7 +33,9 @@ function BlogListSection({ authorName, allPosts }) {
             isAuthorPage
           />
           {/* Show divider only after odd indexes */}
-          {isMobile ? (index + 1) % 2 !== 0 && <Divider /> : (index + 1) % 3 !== 0 && <Divider />}
+          {isMobile
+            ? (index + 1) % 2 !== 0 && <Divider isAuthorPage />
+            : (index + 1) % 3 !== 0 && <Divider isAuthorPage />}
         </>
       );
     });

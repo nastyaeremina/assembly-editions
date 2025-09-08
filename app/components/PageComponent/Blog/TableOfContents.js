@@ -14,7 +14,6 @@ import BlogSidebarCTA from '../../../components/blogsidebarCTA/index';
  * @param {ctaDescription} ctaDescription - description of cta(bottom of cta section)
  * @param {shouldShowBlogCTA} shouldShowBlogCTA - check if blog cta should be shown at bottom of jump to section
  * @param {sectionTitle} sectionTitle - title of jump to section
- * @returns
  */
 
 export default function TableOfContents({

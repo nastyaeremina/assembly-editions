@@ -9,13 +9,15 @@ const HeroSection = styled.div`
   ${(props) =>
     props.isStandardPage &&
     css`
-      padding: 0 0 var(--space-100);
-      @media only screen and (max-width: 768px) {
-        padding: 0 0 var(--space-80) !important;
-      }
+      padding: 0 0 var(--space-64);
     `}
   @media only screen and (max-width: 991px) {
     padding: var(--space-64) 0 var(--space-20) 0;
+    ${(props) =>
+      props.isStandardPage &&
+      css`
+        padding: 0 0 var(--space-40);
+      `}
   }
   @media only screen and (max-width: 449px) {
     padding: var(--space-64) 0 var(--space-24) 0;

@@ -152,6 +152,14 @@ const Buttons = styled.button`
   :focus-visible {
     border-radius: var(--radius-30);
   }
+  @media only screen and (max-width: 449px) {
+    padding: var(--space-2) var(--space-24) 0;
+    ${(props) =>
+      props.size === ButtonSize.SMALL &&
+      css`
+        padding: var(--space-2) var(--space-16) 0;
+      `}
+  }
 `;
 
 export { ButtonWrap, Buttons };

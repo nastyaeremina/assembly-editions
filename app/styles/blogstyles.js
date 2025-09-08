@@ -328,18 +328,21 @@ const TableContentWrapper = styled.div`
 `;
 const BlogCardsDiv = styled.div`
   display: grid;
-  grid-template-columns: 1fr 65px 1fr;
+  grid-template-columns: 1fr 200px 1fr;
   row-gap: var(--space-64);
   padding-top: var(--space-40);
   &.author-page {
-    grid-template-columns: 1fr 65px 1fr 65px 1fr;
+    grid-template-columns: 1fr 64px 1fr 64px 1fr;
     @media only screen and (max-width: 991px) {
-      grid-template-columns: 1fr 65px 1fr;
+      grid-template-columns: 1fr 64px 1fr;
     }
     @media only screen and (max-width: 650px) {
       grid-template-columns: repeat(1, 1fr);
       row-gap: var(--space-40);
     }
+  }
+  @media only screen and (max-width: 991px) {
+    grid-template-columns: 1fr 64px 1fr;
   }
   @media only screen and (max-width: 650px) {
     grid-template-columns: repeat(1, 1fr);
@@ -436,7 +439,15 @@ const Divider = styled.div`
   width: 1px;
   height: 100%;
   background-color: var(--border-default);
-  margin: 0 var(--space-32);
+  margin: 0 var(--space-100);
+  ${(props) =>
+    props.isAuthorPage &&
+    css`
+      margin: 0 var(--space-32);
+    `}
+  @media only screen and (max-width: 991px) {
+    margin: 0 var(--space-32);
+  }
   @media only screen and (max-width: 650px) {
     display: none;
   }
