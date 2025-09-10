@@ -1,6 +1,5 @@
 import styled, { css } from 'styled-components';
 import { body_regular, h2_semibold, h4_regular } from '../../styles/typography';
-import Link from 'next/link';
 
 const MainSection = styled.div`
   padding: var(--space-64) 0;
@@ -65,7 +64,7 @@ const HoverArrowIcon = styled.div`
   }
 `;
 
-const FeatureBentoBoxContainer = styled(Link)`
+const FeatureBentoBoxContainer = styled.div`
   position: relative;
   display: flex;
   flex-direction: column;

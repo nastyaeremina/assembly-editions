@@ -42,7 +42,7 @@ export async function getServerSideProps(ctx) {
   const glossaryPostsPathList = glossarysPost?.map((item) => `definitions/${item?.slug}`);
   const guidePostsPathList = guidesPost?.map((item) => `guide/${item?.slug}`);
   const templatePostsPathList = templatesPost?.map((item) => `templates/${item?.slug}`);
-  let standardPagesPathList = standardPagesPost?.map((item) => `${item?.slug}`);
+  let standardPagesPathList = standardPagesPost?.map((item) =>  `${item?.slug}`).filter((slug) => slug !== 'newhome'); //remove newhome page from sitemap
   
   const abTestContent = await getCommonContent(HOME_VARIANT_CONTENT_ID);
   let allExperimentPaths = [];

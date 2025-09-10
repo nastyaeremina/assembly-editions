@@ -26,7 +26,7 @@ export default async function sitemap() {
 
   const appsPostsPathList = appsPost?.map((item) => `apps/directory/${item?.slug}`);
   const jobsPostsPathList = jobPosts?.map((item) => `jobs/${item?.slug}`);
-  const standardPagesPathList = standardPagesPost?.map((item) => `${item?.slug}`);
+  const standardPagesPathList = standardPagesPost?.map((item) =>  `${item?.slug}`).filter((slug) => slug !== 'newhome'); //remove newhome page from sitemap
   const universityPostsPathList = universityPosts?.map((item) => `university/${item?.slug}`);
   const blogPostsPathList = blogPost?.map((item) => `blog/${item?.slug}`);
   const updatesPostsPathList = updatesPost?.map((item) => `updates/${item?.slug}`);

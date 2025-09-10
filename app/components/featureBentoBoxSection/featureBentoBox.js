@@ -11,6 +11,7 @@ import {
   ImageWrapper
 } from './style';
 import SVGComponent from '../../../public/images/svg/SVGComponent';
+import Link from 'next/link';
 
 /**
  * Feature Bento Box renders a single feature card with an icon, title, description, and image.
@@ -22,8 +23,10 @@ import SVGComponent from '../../../public/images/svg/SVGComponent';
  */
 
 function FeatureBentoBox({ icon, title, description, image, columnSpan = 1, href }) {
+  const isLink = Boolean(href);
+
   return (
-    <FeatureBentoBoxContainer columnSpan={columnSpan} href={href}>
+    <FeatureBentoBoxContainer columnSpan={columnSpan} href={href} as={isLink ? Link : 'div'}>
       <ContentDiv>
         {!isEmpty(icon) && (
           <IconWrapper>

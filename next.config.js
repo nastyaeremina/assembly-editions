@@ -80,12 +80,16 @@ const nextConfig = {
     }
   },
   async rewrites() {
-    return [
+    return {beforeFiles:[
       {
         source: '/experts/:path*',
         destination: 'https://copilotplatforms.partnerpage.io/experts/:path*'
+      },
+      {
+        source: '/',
+        destination: '/newhome'
       }
-    ];
+    ]};
   }
 };
 
