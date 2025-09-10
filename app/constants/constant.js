@@ -517,3 +517,5 @@ export const SectionStoryModeSectionComponentType={
     SECTION_COMPONENT_DARK: "Section Component - Dark",
     SECTION_COMPONENT_LIGHT: "Section Component - Light",
 }
+
+export const CAROUSEL_SLIDER = 'carousel-slider';
