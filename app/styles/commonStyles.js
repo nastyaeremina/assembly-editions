@@ -2,7 +2,7 @@
 
 import styled, { css } from 'styled-components';
 import { ButtonText, HeaderFont, MbButtonText, MbPrimaryBtn } from './styles';
-import { body_regular, h3_semibold, h4_semibold, tag } from './typography';
+import { body_regular, h3_semibold, h4_semibold, label_semibold, tag } from './typography';
 
 const Container = styled.div`
   width: 100%;
@@ -150,6 +150,38 @@ const Content = styled.div`
 
   .code-block + .code-block {
     margin-top: var(--space-20);
+  }
+  .kg-button-card {
+    background-color: var(--title);
+    width: max-content;
+    border-radius: var(--radius-30);
+    height: 40px;
+    padding: 0 var(--space-24);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: var(--space-48) 0;
+    &:hover {
+      background-color: var(--bg-card-dark-hover);
+      a {
+        color: var(--off-white-100);
+      }
+    }
+    a {
+      ${label_semibold}
+      color: var(--off-white-100);
+      &:focus-visible {
+        outline: none;
+        border-radius: var(--radius-30);
+      }
+    }
+    @media only screen and (max-width: 449px) {
+      padding: 0 var(--space-16);
+      margin: var(--space-40) 0;
+    }
+  }
+  .kg-align-center {
+    margin: var(--space-48) auto;
   }
 
   .kg-video-player-container {
