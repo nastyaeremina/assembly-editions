@@ -261,7 +261,7 @@ export default function NavbarComponent({ isAuthenticated: userAuth, topbarConte
     return (
       <>
         <div id='topbarContent'>
-          <TopBar ref={topbarRef}>
+          <TopBar ref={topbarRef} data-topbar='true'>
             <Container>
               <AnnounceBar>
                 <HelpLink className='icon-link'>
@@ -283,7 +283,7 @@ export default function NavbarComponent({ isAuthenticated: userAuth, topbarConte
   return (
     <NavbarMainDiv>
       {renderTopBarView}
-      <NavbarWrapper className={isScrollPage ? 'scroll' : ''} ref={navbarRef}>
+      <NavbarWrapper className={isScrollPage ? 'scroll' : ''} ref={navbarRef} data-navbar='true'>
         <Container>
           <NavbarInner>
             {mobile ? (

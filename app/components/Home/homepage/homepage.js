@@ -13,6 +13,7 @@ import { SupportSectionData } from '../../../constants/raw';
 
 export default function HomePage({ content, testimonialTableData }) {
   if (isEmpty(content)) return null;
+
   return (
     <>
       <HomeMain>

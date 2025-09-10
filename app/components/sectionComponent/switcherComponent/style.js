@@ -158,11 +158,22 @@ const TabItems = styled.button`
   color: var(--title);
   position: relative;
   z-index: 1;
+  transition: color 0.3s ease;
   ${({ tone }) =>
     tone === SectionTone.DARK &&
     css`
       color: var(--off-white-100);
     `}
+  @media only screen and (min-width: 991px) {
+    :hover {
+      color: ${({ selected }) => (selected ? 'var(--title)' : 'var(--text-secondary)')};
+      ${({ tone }) =>
+        tone === SectionTone.DARK &&
+        css`
+          color: ${({ selected }) => (selected ? 'var(--off-white-100)' : 'var(--text-secondary)')};
+        `}
+    }
+  }
 `;
 
 export {
