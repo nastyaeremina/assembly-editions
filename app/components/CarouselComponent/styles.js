@@ -1,4 +1,3 @@
-import Link from 'next/link';
 import styled, { css } from 'styled-components';
 import { body_regular, body_semibold } from '../../styles/typography';
 
@@ -64,7 +63,7 @@ const Details = styled.div`
   gap: var(--space-16);
 `;
 
-const Card = styled(Link)`
+const Card = styled.div`
   max-width: 237px;
   min-width: 237px;
   height: 100%;

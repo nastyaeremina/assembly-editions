@@ -1,4 +1,4 @@
-import { CONTENTFUL_API_TAG } from '../constants/constant';
+import { CONTENTFUL_API_TAG, FEATURE_COMPONENT_TYPE } from '../constants/constant';
 import { isEmpty } from '../helpers/helpers';
 import { fetchGraphQL } from './contentful';
 import { POST_GRAPHQL_SEOMETADATA_FIELDS } from './contentful-seo';
@@ -125,6 +125,7 @@ contentCollection{
             sys{
               id
             }
+            type
         }
             ...on SectionTab{
             sys{
@@ -167,23 +168,38 @@ contentCollection{
 
 `;
 
-const POST_GRAPHQL_FEATURE_COMPONENT_LIST_FIELDS = `
+ const POST_GRAPHQL_CAROUSEL_BOX_FIELDS = `
 title
 description
-primaryButtonText
-primaryButtonLink
-secondaryButtonText
-secondaryButtonLink
-featuresCollection{
-  items{
-    title
-    description
-    image{
-      url
-    }
-  }
+url
+image:boxImage{
+  url
 }
 `;
+
+const POST_GRAPHQL_BOX_GROUP_BOX_FIELDS = `
+title
+description
+url
+image{
+  url
+}
+`;
+// Map feature type to GraphQL field string
+function getFeatureComponentFields(type) {
+  let itemFields= `sys{ id }`
+ if(type=== FEATURE_COMPONENT_TYPE.BOX_GROUP_COMPONENT) itemFields=POST_GRAPHQL_BOX_GROUP_BOX_FIELDS
+ else if(type=== FEATURE_COMPONENT_TYPE.CAROUSEL_COMPONENT) itemFields=POST_GRAPHQL_CAROUSEL_BOX_FIELDS
+  return `
+  ${POST_GRAPHQL_SECTION_COMMON_FIELDS}
+  type
+  featuresCollection(limit:20){
+    items{
+      ${itemFields}
+    }
+  }`
+}
+
 const POST_GRAPHQL_SECTION_TAB_FIELDS = `
   title
     description
@@ -311,7 +327,19 @@ contentCollection{
 }
 `;
 
-export async function getFeatureComponentContent(id, preview) {
+/**
+ * Fetches a feature component from Contentful based on the given ID and type.
+ * Dynamically builds the GraphQL query fields based on the provided component type.
+ *
+ * @param {string} id - The ID of the feature component to fetch from Contentful.
+ * @param {boolean} preview - Whether to fetch the preview version (draft content).
+ * @param {string} type - The type of the feature component (used to select field structure).
+ * @returns {Promise<Object|null>} The fetched feature component data, or null if not found.
+ */
+
+export async function getFeatureComponentContent(id, preview,type) {
+  const POST_GRAPHQL_FEATURE_COMPONENT_LIST_FIELDS = getFeatureComponentFields(type);
+
   const entries = await fetchGraphQL(
     `query {
         componentFeature(id:"${id}",preview: ${preview ? 'true' : 'false'}) {

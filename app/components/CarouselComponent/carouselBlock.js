@@ -1,6 +1,5 @@
 'use client';
 import React, { useEffect, useState } from 'react';
-import { isEmpty } from '../../helpers/helpers';
 import { MainDiv } from './styles';
 import CarouselCard from './carouselCard';
 import { CAROUSEL_SLIDER } from '../../constants/constant';
@@ -16,7 +15,6 @@ import { CAROUSEL_SLIDER } from '../../constants/constant';
 export default function CarouselBlock({ xPos, carouselData }) {
   // Measured dimensions used for visibility math
   const [cardWidth, setCardWidth] = useState(237);
-  const [containerWidth, setContainerWidth] = useState(0);
   const [containerLeft, setContainerLeft] = useState(0); // container's left relative to viewport
   const [viewportWidth, setViewportWidth] = useState(0); // current screen width
   const sliderItemGap = 24;
@@ -38,7 +36,6 @@ export default function CarouselBlock({ xPos, carouselData }) {
       }
 
       const parent = mainBlock.parentElement || mainBlock;
-      setContainerWidth(parent.offsetWidth);
 
       const rect = parent.getBoundingClientRect();
       setContainerLeft(rect.left);
@@ -55,16 +52,12 @@ export default function CarouselBlock({ xPos, carouselData }) {
     };
   }, []);
 
-  // Filter out hidden/empty items (only render meaningful cards)
-  const filteredSliderData = carouselData.filter((item) =>
-    item?.hiddenAttributes?.content ? !isEmpty(item.hiddenAttributes.content) : true
-  );
 
   return (
     <>
       {/* Track: translate by xPos; cards are laid out in a horizontal row with gaps */}
       <MainDiv style={{ transform: `translateX(${xPos}px)` }} className={CAROUSEL_SLIDER}>
-        {filteredSliderData.map((card, index) => {
+        {carouselData.map((card, index) => {
           // Position of the card relative to the track (in pixels)
           const left = xPos + index * (cardWidth + sliderItemGap);
           const right = left + cardWidth;
@@ -91,8 +84,8 @@ export default function CarouselBlock({ xPos, carouselData }) {
               key={index}
               title={card.title}
               description={card.description}
-              carouselImage={card.carouselImage}
-              linkHref={card.linkHref}
+              carouselImage={card.image?.url}
+              linkHref={card.url}
               // This flag drives the blur and disables interaction via styles
               isPartial={isPartial}
             />

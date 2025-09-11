@@ -25,7 +25,10 @@ import TestimonialTableSection from '../newTestimonial/testimonialTableSection';
 import HighlightSection from '../highlightSection/highlightSection';
 import { draftMode } from 'next/headers';
 import FeatureBentoBoxSection from '../featureBentoBoxSection/featureBentoBoxSection';
-import SectionComponentAndStoryModeRenderer from '../sectionComponentAndStoryMode'
+import SectionComponentAndStoryModeRenderer from '../sectionComponentAndStoryMode';
+import { FEATURE_COMPONENT_TYPE } from '../../constants/constant';
+import CarouselSection from '../CarouselSection/carouselSection';
+
 export default async function StandardPage({ data }) {
   const { isEnabled } = await draftMode();
 
@@ -40,25 +43,40 @@ export default async function StandardPage({ data }) {
           </>
         );
       case 'ComponentFeature':
-        if (componentData.sys?.id) {
-          const featureData = (await getFeatureComponentContent(componentData.sys?.id, isEnabled)) ?? {};
+        if (componentData.sys?.id && componentData.type) {
+          const featureData =
+            (await getFeatureComponentContent(componentData.sys?.id, isEnabled, componentData.type)) ?? {};
           if (!isEmpty(featureData))
-            return (
-              <>
-                {!isEmpty(featureData.featuresCollection?.items) && (
-                  <Modern
-                    data={featureData.featuresCollection?.items}
+            if (featureData.type === FEATURE_COMPONENT_TYPE.BOX_GROUP_COMPONENT) {
+              return (
+                <>
+                  {!isEmpty(featureData.featuresCollection?.items) && (
+                    <Modern
+                      data={featureData.featuresCollection?.items}
+                      title={featureData.title}
+                      description={featureData.description}
+                      isStandardPage={true} // isStandardPage props use for standard Page wise spacing design
+                      primaryButtonText={featureData.primaryButtonText}
+                      primaryButtonLink={featureData.primaryButtonLink}
+                      secondaryButtonLink={featureData.secondaryButtonLink}
+                      secondaryButtonText={featureData.secondaryButtonText}
+                    />
+                  )}
+                </>
+              );
+            } else if (featureData.type === FEATURE_COMPONENT_TYPE.CAROUSEL_COMPONENT) {
+              return (
+                <>
+                  <CarouselSection
                     title={featureData.title}
                     description={featureData.description}
-                    isStandardPage={true} // isStandardPage props use for standard Page wise spacing design
-                    primaryButtonText={featureData.primaryButtonText}
                     primaryButtonLink={featureData.primaryButtonLink}
-                    secondaryButtonLink={featureData.secondaryButtonLink}
-                    secondaryButtonText={featureData.secondaryButtonText}
+                    primaryButtonText={featureData.primaryButtonText}
+                    carouselData={featureData.featuresCollection?.items}
                   />
-                )}
-              </>
-            );
+                </>
+              );
+            }
         }
         return null;
       case 'Testimonial':
@@ -208,15 +226,13 @@ export default async function StandardPage({ data }) {
           ) : null;
         }
         return null;
-        case 'SectionStoryModeSectionComponent':          
-          if (componentData.sys?.id) {
-            const data = (await getSectionStoryModeSectionComponentContent(componentData.sys?.id, isEnabled)) ?? {};
-           
-            return !isEmpty(data) ? (
-              <SectionComponentAndStoryModeRenderer data={data}/>
-            ) : null;
-          }
-          return null;  
+      case 'SectionStoryModeSectionComponent':
+        if (componentData.sys?.id) {
+          const data = (await getSectionStoryModeSectionComponentContent(componentData.sys?.id, isEnabled)) ?? {};
+
+          return !isEmpty(data) ? <SectionComponentAndStoryModeRenderer data={data} /> : null;
+        }
+        return null;
       default:
         return null;
     }

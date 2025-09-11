@@ -519,3 +519,8 @@ export const SectionStoryModeSectionComponentType={
 }
 
 export const CAROUSEL_SLIDER = 'carousel-slider';
+
+export const FEATURE_COMPONENT_TYPE = {
+  BOX_GROUP_COMPONENT: 'Box Group Component',
+  CAROUSEL_COMPONENT: 'Carousel Component'
+}
