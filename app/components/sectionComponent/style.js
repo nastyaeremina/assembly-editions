@@ -11,6 +11,9 @@ const SectionDiv = styled.div`
   @media only screen and (max-width: 991px) {
     padding: var(--space-40) 0;
   }
+  @media only screen and (max-width: 449px) {
+    padding: var(--space-48) 0;
+  }
 `;
 
 const SectionContentDiv = styled.div`

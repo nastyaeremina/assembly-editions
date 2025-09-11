@@ -6,22 +6,24 @@ const HeroSection = styled.div`
   padding: var(--space-80) 0 0px 0;
   text-align: center;
   overflow: hidden;
-  ${(props) =>
-    props.isStandardPage &&
-    css`
-      padding: 0 0 var(--space-64);
-    `}
   @media only screen and (max-width: 991px) {
     padding: var(--space-64) 0 var(--space-20) 0;
-    ${(props) =>
-      props.isStandardPage &&
-      css`
-        padding: 0 0 var(--space-40);
-      `}
   }
   @media only screen and (max-width: 449px) {
     padding: var(--space-64) 0 var(--space-24) 0;
   }
+  ${(props) =>
+    props.isStandardPage &&
+    css`
+      padding: 0 0 var(--space-24);
+      @media only screen and (max-width: 991px) {
+        padding: 0 0 var(--space-20);
+      }
+      @media only screen and (max-width: 449px) {
+        padding: 0 0 var(--space-24);
+      }
+    `}
+
   .button-group {
     align-items: center;
     justify-content: center;

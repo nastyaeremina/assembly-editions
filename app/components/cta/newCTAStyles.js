@@ -1,34 +1,22 @@
 import styled, { css } from 'styled-components';
-import {
-  body_regular,
-  button_regular,
-  button_semibold,
-  h1_regular,
-  h2_regular,
-  h3_regular
-} from '../../styles/typography';
+import { body_regular, button_semibold, h1_regular, h2_regular, h3_regular } from '../../styles/typography';
 
 const TextSection = styled.div`
-  width: 100%;
+  width: unset;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   gap: var(--space-24);
   @media only screen and (max-width: 768px) {
-    padding: 20px;
+    padding: 0;
     gap: var(--space-20);
-    ${(props) =>
-      props.isNoImage &&
-      css`
-        padding: 0;
-      `}
   }
   @media only screen and (max-width: 449px) {
     gap: var(--space-24);
   }
   .button {
-    margin-top: 28px;
+    margin-top: var(--space-28);
     @media only screen and (max-width: 400px) {
       div {
         width: 100%;
@@ -42,13 +30,8 @@ const TextSection = styled.div`
   .button-group {
     align-items: center;
     justify-content: center;
-    margin-top: 28px;
+    margin-top: var(--space-28);
   }
-  ${(props) =>
-    props.isNoImage &&
-    css`
-      width: unset;
-    `}
 `;
 
 const Description = styled.p`
@@ -62,16 +45,6 @@ const Description = styled.p`
   }
 `;
 
-const ImageSection = styled.div`
-  display: flex;
-  width: 100%;
-  img {
-    height: 310px;
-  }
-  @media only screen and (max-width: 768px) {
-    display: none;
-  }
-`;
 const Title = styled.div`
   display: flex;
   flex-direction: column;
@@ -91,42 +64,32 @@ const Title = styled.div`
     ${h2_regular};
     color: var(--off-white-100);
     margin: 0;
-    ${(props) =>
-      props.isNoImage &&
-      css`
-        text-align: center;
-      `}
+    text-align: center;
   }
   h3 {
     ${h3_regular};
     color: var(--off-white-100);
     margin: 0;
-    ${(props) =>
-      props.isNoImage &&
-      css`
-        text-align: center;
-      `}
+    text-align: center;
   }
   p {
     ${h2_regular};
     color: var(--off-white-100);
     margin: 0;
-    ${(props) =>
-      props.isNoImage &&
-      css`
-        text-align: center;
-      `}
+    text-align: center;
   }
 `;
 
-const Image = styled.img`
-  max-width: 612px;
-  width: 100%;
-`;
 const CtaAnimation = styled.div`
   position: relative;
   overflow: hidden;
-  margin-bottom: var(--space-120);
+  padding: var(--space-64) 0;
+  @media only screen and (max-width: 991px) {
+    padding: var(--space-40) 0;
+  }
+  @media only screen and (max-width: 449px) {
+    padding: var(--space-48) 0;
+  }
 `;
 const CtaWrap = styled.div`
   background-image: url('/images/new-CTA-BG.png');
@@ -138,25 +101,15 @@ const CtaWrap = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: var(--space-40);
-  ${(props) =>
-    props.isNoImage &&
-    css`
-      padding: var(--space-64);
-    `}
+  padding: var(--space-64);
   @media only screen and (max-width: 768px) {
     background-position-x: -417px;
     background-position-y: -94px;
   }
   @media only screen and (max-width: 449px) {
-    padding: var(--space-24);
+    padding: var(--space-64) var(--space-24);
     background-image: url('/images/new-CTA-mobile-BG.png');
     background-position: unset;
-    ${(props) =>
-      props.isNoImage &&
-      css`
-        padding: var(--space-64) var(--space-24);
-      `}
   }
 `;
 
@@ -177,17 +130,14 @@ const Canvas = styled.canvas`
 const ButtonGroup = styled.div`
   display: flex;
   align-items: center;
-  justify-content: flex-start;
   gap: var(--space-16);
-  ${(props) =>
-    props.isNoImage &&
-    css`
-      justify-content: center;
-    `}
+  justify-content: center;
   @media only screen and (max-width: 768px) {
+    padding-top: var(--space-4);
     gap: var(--space-12);
   }
   @media only screen and (max-width: 449px) {
+    padding-top: 0;
     gap: var(--space-4);
   }
   @media only screen and (max-width: 395px) {
@@ -223,16 +173,4 @@ const SecondaryButton = styled.a`
   }
 `;
 
-export {
-  TextSection,
-  ImageSection,
-  Title,
-  Image,
-  CtaAnimation,
-  CtaWrap,
-  Description,
-  Canvas,
-  ButtonGroup,
-  PrimaryButton,
-  SecondaryButton
-};
+export { TextSection, Title, CtaAnimation, CtaWrap, Description, Canvas, ButtonGroup, PrimaryButton, SecondaryButton };

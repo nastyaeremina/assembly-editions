@@ -3,12 +3,12 @@ import { button_regular, label_regular, label_semibold } from '../../styles/typo
 
 const FooterSection = styled.div`
   background-color: var(--off-white-500);
-  padding: var(--space-64) 0 var(--space-120);
-  @media only screen and (max-width: 768px) {
-    padding: var(--space-64) 0 var(--space-96);
+  padding: var(--space-64) 0;
+  @media only screen and (max-width: 991px) {
+    padding: var(--space-40) 0;
   }
   @media only screen and (max-width: 749px) {
-    padding: var(--space-40) 0;
+    padding: var(--space-48) 0;
   }
 `;
 

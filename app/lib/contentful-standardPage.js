@@ -233,9 +233,6 @@ export const POST_GRAPHQL_SECTION_CTA_FIELDS = `
   primaryButtonLink
   secondaryButtonText
   secondaryButtonLink
-  banner{
-    url
-  }
 `;
 const POST_GRAPHQL_SECTION_TESTIMONIAL_GROUP_FIELDS = `
   title
