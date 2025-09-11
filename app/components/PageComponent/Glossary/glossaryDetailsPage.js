@@ -11,10 +11,10 @@ import {
   GlossaryDetailcontent,
   PageBack
 } from '../../../styles/glossaryStyles';
-import { COPILOT_ONBOARDING_LINK } from '../../../constants/externalLinks';
 import { isEmpty } from '../../../helpers/helpers';
+import { EXTERNAL_LINK_KEYS } from '../../../constants/constant';
 
-export default function GlossaryDetailsPage({ detail }) {
+export default function GlossaryDetailsPage({ detail, externalLinks = {} }) {
   return (
     <Container>
       <GlossaryContainer>
@@ -43,7 +43,7 @@ export default function GlossaryDetailsPage({ detail }) {
             Copilot’s product suite gives businesses an all-in-one solution for client management, messaging, payments,
             file-sharing, contracts, forms, help desks, and more. Additionally, Copilot enables businesses to offer
             their clients a unified experience with a branded client portal. To give Copilot a try you can start a free
-            14-day trial <Link href={COPILOT_ONBOARDING_LINK}>here</Link>.
+            14-day trial <Link href={externalLinks?.[EXTERNAL_LINK_KEYS.OnboardingLink] || '#'}>here</Link>.
           </p>
         </GlossaryDetailcontent>
       </GlossaryContainer>

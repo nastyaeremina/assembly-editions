@@ -4,13 +4,13 @@ import { useCallback, useMemo, useState } from 'react';
 import { ExtensionsSection, SearchEmpty } from '../../../styles/appsStyles';
 import { isEmpty } from '../../../helpers/helpers';
 import AppError from '../../../components/apperror/error';
-import { COPILOT_ONBOARDING_LINK } from '../../../constants/externalLinks';
 import AppsCardSection from '../../appsCards/appsCardSection';
 import StandardHero from '../../standardHero/standardHero';
+import { EXTERNAL_LINK_KEYS } from '../../../constants/constant';
 import SearchInput from './searchInput';
 import { HeroTypes } from '../../../constants/constant';
 
-export default function AppDirectoryPage({ clientApps, internalApps, featuredApps }) {
+export default function AppDirectoryPage({ clientApps, internalApps, featuredApps, externalLinks = {} }) {
   let allPosts = clientApps.concat(internalApps);
   const [query, setQuery] = useState(null);
   const [searchResult, setSearchResult] = useState([]);
@@ -81,7 +81,7 @@ export default function AppDirectoryPage({ clientApps, internalApps, featuredApp
           data={{
             heroTitle: 'App Store',
             primaryButtonText: 'Start trial',
-            primaryButtonLink: COPILOT_ONBOARDING_LINK,
+            primaryButtonLink: externalLinks?.[EXTERNAL_LINK_KEYS.OnboardingLink] || '#',
             heroDescription:
               'Copilot covers the foundational features every business needs. For everything else, there’s a variety of apps to choose from.'
           }}

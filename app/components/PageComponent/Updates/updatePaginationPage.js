@@ -2,8 +2,8 @@
 import moment from 'moment';
 import { useMemo } from 'react';
 import Button from '../../../components/button/button';
-import { UPDATE_SUBSCRIBE_LINK } from '../../../constants/externalLinks';
 import { isEmpty } from '../../../helpers/helpers';
+import { EXTERNAL_LINK_KEYS } from '../../../constants/constant';
 import { Container } from '../../../styles/commonStyles';
 import {
   Detail,
@@ -16,7 +16,7 @@ import {
   UpdateSubscribe
 } from '../../../styles/updatestyle';
 
-export default function UpdatesPaginationPage({ allPosts, pagination }) {
+export default function UpdatesPaginationPage({ allPosts, pagination, externalLinks = {} }) {
   const renderPosts = useMemo(() => {
     if (isEmpty(allPosts)) return null;
     return allPosts?.map((item, index) => {
@@ -48,7 +48,7 @@ export default function UpdatesPaginationPage({ allPosts, pagination }) {
               fontColor={'--black'}
               borderColor={'--black'}
               text={'Subscribe to updates'}
-              href={UPDATE_SUBSCRIBE_LINK}
+              href={externalLinks?.[EXTERNAL_LINK_KEYS.SubscribeLink] || '#'}
               hoverColor={'--hover-color'}
             />
           </UpdateSubscribe>

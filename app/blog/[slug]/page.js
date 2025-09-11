@@ -3,7 +3,7 @@ import { parse } from 'node-html-parser';
 import Layout from '../../components/layout';
 import { getAllTagWithSlug, getBlogDetail } from '../../lib/blog-content';
 import { customSort, isEmpty, isValidUrl } from '../../helpers/helpers';
-import { isSameDomain } from '../../helpers/serverSideHelpers';
+import { getExternalLinks, isSameDomain } from '../../helpers/serverSideHelpers';
 import BlogdetailPage from '../../components/PageComponent/Blog/blogDetailPage';
 import { BLOG_TAG_SORTED_LIST, CURRENT_SITE_URL, CURRENT_DOMAIN } from '../../constants/constant';
 import { getTopBarContent } from '../../components/navbar/navbar';
@@ -12,18 +12,22 @@ async function getContent({ slug }) {
   try {
     const blogDetail = (await getBlogDetail(slug)) ?? [];
     const tags = (await getAllTagWithSlug()) ?? [];
+    const externalLinks = await getExternalLinks({ asMap: true });
+
     const finalTagList = tags?.filter((tag) => tag?.name?.trim()?.[0] !== '#');
     customSort(finalTagList, BLOG_TAG_SORTED_LIST);
 
     return {
       blogDetail,
-      tags: finalTagList
+      tags: finalTagList,
+      externalLinks
     };
   } catch (error) {
     console.error('Error fetching content:', error);
     return {
       blogDetail: null,
-      tags: []
+      tags: [],
+      externalLinks: {}
     };
   }
 }
@@ -64,7 +68,7 @@ export async function generateMetadata({ params, searchParams }, parent) {
   };
 }
 export default async function Blogdetail({ params }) {
-  const { blogDetail, tags } = await getContent({ slug: params?.slug });
+  const { blogDetail, externalLinks } = await getContent({ slug: params?.slug });
   // Check if the fetched blog content is empty; if so, return a 404 response
   if (isEmpty(blogDetail)) return notFound();
 
@@ -160,6 +164,7 @@ export default async function Blogdetail({ params }) {
           ctaTitle={ctaTitle}
           ctaDescription={ctaDescription}
           hasTopBar={hasTopBar}
+          externalLinks={externalLinks}
         />
       </Layout>
     </>

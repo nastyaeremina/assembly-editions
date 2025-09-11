@@ -22,7 +22,8 @@ export default function TableOfContents({
   ctaTitle,
   ctaDescription,
   shouldShowBlogCTA,
-  sectionTitle
+  sectionTitle,
+  externalLinks = {}
 }) {
   const [activeIndex, setActiveIndex] = useState(0);
   const itemBorderRefs = useRef([]);
@@ -106,7 +107,7 @@ export default function TableOfContents({
           </ol>
         </TableContentWrapper>
       </Table>
-      {shouldShowBlogCTA && <BlogSidebarCTA headerText={ctaTitle} bodyText={ctaDescription} />}
+      {shouldShowBlogCTA && <BlogSidebarCTA headerText={ctaTitle} bodyText={ctaDescription} externalLinks={externalLinks} />}
     </>
   );
 }

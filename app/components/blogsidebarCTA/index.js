@@ -1,13 +1,13 @@
 import React from 'react';
 import Button from '../../components/button/button';
-import { COPILOT_ONBOARDING_LINK } from '../../constants/externalLinks.js';
 import SVGComponent from '../../../public/images/svg/SVGComponent';
 import StartList from '../../components/reviewSection/starList';
 import { isEmpty } from '../../helpers/helpers.js';
+import { EXTERNAL_LINK_KEYS } from '../../constants/constant';
 import BlogCTAImage from '../../../public/images/blogcta.png';
 import { Caption, Content, G2Section, Image, ImageDiv, ReviewText, SideBarCTA, Title } from './style';
 
-export default function BlogSidebarCTA({ headerText, bodyText }) {
+export default function BlogSidebarCTA({ headerText, bodyText, externalLinks = {} }) {
   return (
     <SideBarCTA>
       <ImageDiv>
@@ -28,7 +28,7 @@ export default function BlogSidebarCTA({ headerText, bodyText }) {
         fontColor={'--off-white-100'}
         borderColor={'--title'}
         text={'Try for free'}
-        href={COPILOT_ONBOARDING_LINK}
+        href={externalLinks?.[EXTERNAL_LINK_KEYS.OnboardingLink] || '#'}
         hoverColor={'--secondary-hover-color'}
         className={'CTA-button'}
       />

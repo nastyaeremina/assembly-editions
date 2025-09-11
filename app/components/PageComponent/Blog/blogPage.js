@@ -9,13 +9,6 @@ import { MainContent, BlogListDiv, BlogCardsDiv, LoadMoreButton, Divider } from 
 import Blogcard from '../../Blogcard';
 import { isEmpty } from '../../../helpers/helpers';
 import { ButtonVariant, CURRENT_SITE_URL } from '../../../constants/constant';
-import {
-  COPILOT_FACEBOOK_LINK,
-  COPILOT_INSTAGRAM_LINK,
-  COPILOT_LINKEDIN_LINK,
-  COPILOT_TWITTER_LINK,
-  COPILOT_YOUTUBE_CHANNEL_LINK
-} from '../../../constants/externalLinks';
 import NewCTA from '../../cta/newCTA';
 import TabComponent from '../../tabComponent';
 import { CTAData } from '../../../constants/raw';
@@ -24,7 +17,7 @@ import { useIsMobile } from '../../../hooks/useMobileDevice';
 import FeatureBlogCard from '../../Blogcard/fetaureBlogCard';
 import ButtonV2Component from '../../button/buttonV2/buttonV2';
 
-export default function BlogPage({ allPosts, tags, featuredBlog }) {
+export default function BlogPage({ allPosts, tags, featuredBlog, socialMediaLinks=[] }) {
   const [selectedTag, setSelectedTag] = useState('All');
   const [visibleCount, setVisibleCount] = useState(8);
   const router = useRouter();
@@ -197,13 +190,7 @@ export default function BlogPage({ allPosts, tags, featuredBlog }) {
         name='Copilot'
         url={CURRENT_SITE_URL}
         logo={`${CURRENT_SITE_URL}/_next/static/media/blacklogo.370e156c.svg`}
-        sameAs={[
-          COPILOT_TWITTER_LINK,
-          COPILOT_LINKEDIN_LINK,
-          COPILOT_YOUTUBE_CHANNEL_LINK,
-          COPILOT_FACEBOOK_LINK,
-          COPILOT_INSTAGRAM_LINK
-        ]}
+        sameAs={socialMediaLinks}
       />
       <MainContent>
         {renderFeaturedBlog}

@@ -26,7 +26,7 @@ import { CTAData } from '../../../constants/raw';
 import ToastMessage from '../../ToastMessage/toastMessage';
 import TableOfContents from './TableOfContents';
 
-export default function BlogdetailPage({ blogDetail, htmlData, ctaTitle, ctaDescription, hasTopBar }) {
+export default function BlogdetailPage({ blogDetail, htmlData, ctaTitle, ctaDescription, hasTopBar, externalLinks = {} }) {
   const [CopyBlockData, setCopyBlock] = useState([]);
   const [showToast, setShowToast] = useState(false);
 
@@ -132,6 +132,7 @@ export default function BlogdetailPage({ blogDetail, htmlData, ctaTitle, ctaDesc
                       ctaDescription={ctaDescription}
                       shouldShowBlogCTA={shouldShowBlogCTA}
                       sectionTitle='JUMP TO SECTION'
+                      externalLinks={externalLinks}
                     />
                   )}
                 </BlogDetailsidebar>

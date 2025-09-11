@@ -5,10 +5,10 @@ import CustomerTestimonial from '../../customer/testimonials';
 import { Container } from '../../../styles/commonStyles';
 import { Heading, HeroBtnBlock, HeroHeading, HeroSection, Para, LastSection } from '../../../styles/customerstyles';
 import { isEmpty } from '../../../helpers/helpers';
-import { COPILOT_ONBOARDING_LINK } from '../../../constants/externalLinks';
+import { EXTERNAL_LINK_KEYS } from '../../../constants/constant';
 import { Banner } from '../../feedback/banner';
 
-export default function CustomerPage({ testimonialPosts, casestudiesPosts }) {
+export default function CustomerPage({ testimonialPosts, casestudiesPosts, externalLinks = {} }) {
   const casestudiesView = useMemo(() => {
     if (isEmpty(casestudiesPosts)) return null;
     return casestudiesPosts?.map((item, index) => {
@@ -40,7 +40,7 @@ export default function CustomerPage({ testimonialPosts, casestudiesPosts }) {
               fontColor={'--white'}
               borderColor={'--primary'}
               text={'Start trial'}
-              href={COPILOT_ONBOARDING_LINK}
+              href={externalLinks?.[EXTERNAL_LINK_KEYS.OnboardingLink]}
               hoverColor={'--hover-color'}
             />
           </HeroBtnBlock>

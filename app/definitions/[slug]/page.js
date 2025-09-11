@@ -6,14 +6,32 @@ import GlossaryDetailsPage from '../../components/PageComponent/Glossary/glossar
 import { getGlossaryDetails } from '../../lib/contentful-glossary';
 import { isEmpty } from '../../helpers/helpers';
 import { CURRENT_SITE_URL } from '../../constants/constant';
+import { getExternalLinks } from '../../helpers/serverSideHelpers';
 
 async function getContent({ slug }) {
-  const { isEnabled } = await draftMode();
-  const data = (await getGlossaryDetails(slug, isEnabled)) || {};
-  return data;
+  try {
+    const { isEnabled } = await draftMode();
+
+    const [data, externalLinks] = await Promise.all([
+      getGlossaryDetails(slug, isEnabled),
+      getExternalLinks({ asMap: true }),
+    ]);
+
+    return {
+      detail: data ?? {},
+      externalLinks: externalLinks ?? {},
+    };
+  } catch (error) {
+    console.error('Error in getContent:', error);
+    return {
+      detail: {},
+      externalLinks: {},
+    };
+  }
 }
+
 export async function generateMetadata({ params }) {
-  const data = await getContent({ slug: params?.slug });
+  const {detail:data} = await getContent({ slug: params?.slug });
 
   return {
     title: data?.metaTitle ? data?.metaTitle : `${data?.name} | Definition and examples`,
@@ -22,12 +40,12 @@ export async function generateMetadata({ params }) {
   };
 }
 export default async function GlossaryDetails({ params }) {
-  const detail = await getContent({ slug: params?.slug });
+  const {detail, externalLinks} = await getContent({ slug: params?.slug });
   if (isEmpty(detail)) return notFound();
 
   return (
     <Layout>
-      <GlossaryDetailsPage detail={detail} />
+      <GlossaryDetailsPage detail={detail} externalLinks={externalLinks} />
     </Layout>
   );
 }

@@ -2,25 +2,59 @@ import Layout from './components/layout';
 import { CURRENT_SITE_URL, HOME_CLIENT_DARK_ID } from './constants/constant';
 import { getHomeContent } from './lib/contentful-home';
 import AggregateRating from './components/aggregateRating';
-import { getPageContent } from './helpers/serverSideHelpers';
+import { getPageContent, getSocialMediaLinks, getExternalLinks } from './helpers/serverSideHelpers';
 import HomePage from './components/Home/homepage/homepage';
 import { createArrayWithFixedLength, getSEOData, isEmpty, removeEmptyElement } from './helpers/helpers';
 import NewCTA from './components/cta/newCTA';
-import {
-  COPILOT_FACEBOOK_LINK,
-  COPILOT_INSTAGRAM_LINK,
-  COPILOT_LINKEDIN_LINK,
-  COPILOT_TWITTER_LINK,
-  COPILOT_YOUTUBE_CHANNEL_LINK
-} from './constants/externalLinks';
 
+/**
+ * Fetches home page content and social media links concurrently.
+ * Uses Promise.all for better performance and includes error handling.
+ * 
+ * @param {Object} params - Function parameters
+ * @param {Object} params.searchParams - URL search parameters
+ * @returns {Promise<Object>} - Promise that resolves to home page content object
+ * @returns {Object} returns.content - The home page content
+ * @returns {string} returns.abTestContentLabel - AB test content label
+ * @returns {string} returns.abTestExperimentName - AB test experiment name
+ * @returns {Array} returns.socialMediaLinks - Array of social media links
+ * 
+ * @example
+ * const { content, abTestContentLabel, abTestExperimentName, socialMediaLinks } = await getContent({ searchParams });
+ */
 async function getContent({ searchParams }) {
-  return getPageContent({
-    searchParams,
-    cookieKey: 'home',
-    fallbackContentId: HOME_CLIENT_DARK_ID,
-    getContentFn: getHomeContent
-  });
+  try {
+    // Fetch home page content and social media links concurrently
+    const [{ content, abTestContentLabel, abTestExperimentName }, socialMediaLinks, externalLinks] = await Promise.all([
+      getPageContent({
+        searchParams,
+        cookieKey: 'home',
+        fallbackContentId: HOME_CLIENT_DARK_ID,
+        getContentFn: getHomeContent
+      }),
+      getSocialMediaLinks({ linksOnly: true }),
+      getExternalLinks({ asMap: true })
+    ]);
+
+    return { 
+      content, 
+      abTestContentLabel, 
+      abTestExperimentName, 
+      socialMediaLinks: socialMediaLinks || [],
+      externalLinks: externalLinks || {}
+    };
+  } catch (error) {
+    console.error('Error fetching home page content:', error);
+    
+    // Return empty data as fallback in case of error
+    return { 
+      content: {}, 
+      abTestContentLabel: '', 
+      abTestExperimentName: '', 
+      socialMediaLinks: [],
+      externalLinks: {}
+    };
+  }
 }
 
 export async function generateMetadata({ params, searchParams }, parent) {
@@ -35,20 +69,15 @@ export async function generateMetadata({ params, searchParams }, parent) {
 }
 
 export default async function Home({ searchParams }) {
-  const { content, abTestContentLabel, abTestExperimentName } = await getContent({ searchParams });
+  const { content, abTestContentLabel, abTestExperimentName ,socialMediaLinks, externalLinks} = await getContent({ searchParams });
+
   const jsonLd = {
     '@context': 'https://schema.org',
     '@type': 'Organization',
     name: 'Copilot',
     url: CURRENT_SITE_URL,
     logo: `${CURRENT_SITE_URL}/_next/static/media/blacklogo.370e156c.svg`,
-    sameAs: [
-      COPILOT_TWITTER_LINK,
-      COPILOT_LINKEDIN_LINK,
-      COPILOT_YOUTUBE_CHANNEL_LINK,
-      COPILOT_FACEBOOK_LINK,
-      COPILOT_INSTAGRAM_LINK
-    ]
+    sameAs: socialMediaLinks
   };
   const testimonialTableData = createArrayWithFixedLength(
     removeEmptyElement(content?.section7DataCollection?.items),
@@ -59,7 +88,7 @@ export default async function Home({ searchParams }) {
       {!isEmpty(content?.seoMetadata) && <AggregateRating id={content?.seoMetadata.sys.id} />}
       <script type='application/ld+json' dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       <Layout abTestContentLabel={abTestContentLabel} abTestExperimentName={abTestExperimentName}>
-        <HomePage content={content} testimonialTableData={testimonialTableData} />
+        <HomePage content={content} testimonialTableData={testimonialTableData} externalLinks={externalLinks} />
         {!isEmpty(content?.ctaSection) && (
           <NewCTA
             title={content.ctaSection.title}

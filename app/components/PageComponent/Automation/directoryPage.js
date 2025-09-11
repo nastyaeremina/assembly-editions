@@ -22,14 +22,14 @@ import {
 import { Container } from '../../../styles/commonStyles';
 import { isEmpty, stringToSlugyfy } from '../../../helpers/helpers';
 import AppError from '../../apperror/error';
-import { COPILOT_ONBOARDING_LINK } from '../../../constants/externalLinks';
+import { EXTERNAL_LINK_KEYS } from '../../../constants/constant';
 import { CardAuto, Cardbottom, DirectoryCard, RightWrapper } from '../../../styles/automationStyles';
 import { SliderIcon, SliderSub } from '../../FeatureSlider/styles';
 import StandardHero from '../../standardHero/standardHero';
 import { HeroTypes } from '../../../constants/constant';
 import useActiveHeading from '../../../hooks/useActiveHeading';
 
-export default function AutomationDirectoryPage({ featuredApps, allCategoryWithPost, allPosts }) {
+export default function AutomationDirectoryPage({ featuredApps, allCategoryWithPost, allPosts, externalLinks = {} }) {
   const [query, setQuery] = useState('');
   const [searchResult, setSearchResult] = useState([]);
   const [isSearch, setIsSearch] = useState(false);
@@ -191,7 +191,7 @@ export default function AutomationDirectoryPage({ featuredApps, allCategoryWithP
             heroTitle: 'Automation Directory',
             heroDescription: 'Choose from many recipes that will help you save time and scale your business',
             primaryButtonText: 'Start Trial',
-            primaryButtonLink: { COPILOT_ONBOARDING_LINK },
+            primaryButtonLink: externalLinks?.[EXTERNAL_LINK_KEYS.OnboardingLink] || '#',
             secondaryButtonLink: '/automations',
             secondaryButtonText: 'Back to overview'
           }}

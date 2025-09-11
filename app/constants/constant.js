@@ -437,6 +437,47 @@ export const CUSTOM_CODE_BEFORE_BODY_TAG_ID = '6CMLDvTPrgvrVzpv5O8XPc';
 export const CUSTOM_CODE_AFTER_BODY_TAG_ID = '2GQxmuzDZhGcXGB5FbgoGa';
 export const SCREEN_SIZE_THRESHOLD = 768;
 export const NAVBAR_CONTENT_ID = '7nxamR1RaXCKCsoweOBGmm';
+export const EXTERNAL_LINKS_CONTENT_ID = '4kfsvaroAErob4gf6lFsDl'
+
+// Canonical keys for external links fetched from Contentful
+export const EXTERNAL_LINK_KEYS = {
+  Twitter: 'Twitter',
+  X: 'X',
+  Facebook: 'Facebook',
+  Linkedin: 'Linkedin',
+  Youtube: 'Youtube',
+  Instagram: 'Instagram',
+  OnboardingLink: 'OnboardingLink',
+  SystemStatusLink: 'SystemStatusLink',
+  DashboardLink: 'DashboardLink',
+  ZapierLink: 'ZapierLink',
+  ReferenceAPILink: 'ReferenceAPILink',
+  JoinCommunityLink: 'JoinCommunityLink',
+  SecurityLink: 'SecurityLink',
+  SubscribeLink: 'SubscribeLink',
+  CustomAppDocsLink: 'CustomAppDocsLink',
+  CommunityForumLink: 'CommunityForumLink'
+};
+
+// Aliases mapped (case-insensitive) to canonical keys
+export const EXTERNAL_LINK_ALIASES = {
+  twitter: 'Twitter',
+  x: 'Twitter',
+  facebook: 'Facebook',
+  linkedin: 'Linkedin',
+  youtube: 'Youtube',
+  instagram: 'Instagram',
+  onboardinglink: 'OnboardingLink',
+  systemstatuslink: 'SystemStatusLink',
+  dashboardlink: 'DashboardLink',
+  zapierlink: 'ZapierLink',
+  referenceapilink: 'ReferenceAPILink',
+  joincommunitylink: 'JoinCommunityLink',
+  securitylink: 'SecurityLink',
+  subscribelink: 'SubscribeLink',
+  customappdocslink: 'CustomAppDocsLink',
+  communityforumlink: 'CommunityForumLink'
+};
 /*
 Regex varibles
 */

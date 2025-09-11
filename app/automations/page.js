@@ -5,7 +5,7 @@ import { CURRENT_SITE_URL } from '../constants/constant';
 import FAQ from '../components/faq/faq';
 import { getFAQsData } from '../services/faq';
 import AggregateRating from '../components/aggregateRating';
-import { getPageContent } from '../helpers/serverSideHelpers';
+import { getPageContent, getExternalLinks } from '../helpers/serverSideHelpers';
 import { getPageAutomationDetail } from './../lib/contentful-automation';
 import { getSEOData } from './../helpers/helpers';
 import { AUTOMATION_ID } from './../constants/constant';
@@ -33,13 +33,16 @@ export async function generateMetadata({ searchParams }) {
 }
 
 export default async function Automation({ searchParams }) {
-  const { details, abTestContentLabel, abTestExperimentName } = await getContent({ searchParams });
+  const [{ details, abTestContentLabel, abTestExperimentName }, externalLinks] = await Promise.all([
+    getContent({ searchParams }),
+    getExternalLinks({ asMap: true })
+  ]);
   const faqData = await getFAQsData({ data: details?.faQsCollection?.items });
   return (
     <>
       <AggregateRating data={details?.seoMetadata} />
       <Layout abTestContentLabel={abTestContentLabel} abTestExperimentName={abTestExperimentName}>
-        <AutomationPage details={details} />
+        <AutomationPage details={details} externalLinks={externalLinks} />
         <FAQ faqList={faqData} />
         <CTA />
       </Layout>

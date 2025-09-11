@@ -10,8 +10,8 @@ import { BOOK_DEMO_CONTENT_TYPE } from '../../constants/constant';
 import Button from '../button/button';
 import Validation from '../Validation/validation';
 import { isEmpty } from '../../helpers/helpers';
+import { EXTERNAL_LINK_KEYS } from '../../constants/constant';
 import SVGComponent from '../../../public/images/svg/SVGComponent';
-import { COPILOT_ONBOARDING_LINK } from '../../constants/externalLinks.js';
 import {
   MainSection,
   FormSection,
@@ -29,7 +29,7 @@ import {
   ItemDiv
 } from './styles';
 
-export default function BookDemoForm({ data, thankYouMessage }) {
+export default function BookDemoForm({ data, thankYouMessage, externalLinks = {} }) {
   const bookDemoSelector = useSelector((state) => state.bookDemo);
   const { validationError, bookDemoData } = bookDemoSelector;
   const [isSubmit, setIsSubmit] = useState(false);
@@ -138,7 +138,7 @@ export default function BookDemoForm({ data, thankYouMessage }) {
                         </p>
                       </TextWrap>
                       <div className='button-group'>
-                        <Button text={'Start trial'} href={COPILOT_ONBOARDING_LINK} />
+                        <Button text={'Start trial'} href={externalLinks?.[EXTERNAL_LINK_KEYS.OnboardingLink] || '#'} />
                         <Button
                           text={'Read the Guide'}
                           href={'/guide'}

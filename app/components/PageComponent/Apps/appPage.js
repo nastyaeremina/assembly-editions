@@ -4,20 +4,19 @@ import { AutomationHero, Caption, Featured, Title } from '../../../styles/automa
 import { Container } from '../../../styles/commonStyles';
 import Button from '../../../components/button/button';
 import TabView from '../../../components/tab/tab';
-import { MODULE_COLOR_LIST, SecondaryButtonVariant } from '../../../constants/constant';
+import { MODULE_COLOR_LIST, SecondaryButtonVariant, EXTERNAL_LINK_KEYS } from '../../../constants/constant';
 import AutomationCardSection from '../../../components/automationcard';
 import { isEmpty, removeEmptyElement, separateSpecialChar } from '../../../helpers/helpers';
 import CustomerTestimonial from '../../../components/customer/testimonials';
 import FAQ from '../../../components/faq/faq';
 import { TopView } from '../../../components/solution/clienttab/styles';
 import AppsSlider from '../../../components/appsSlider';
-import { COPILOT_ONBOARDING_LINK } from '../../../constants/externalLinks';
 import AppsHeroSlider from '../../../components/appsSlider/appsheroSlider';
 import { AppSliderSection } from '../../../styles/appsStyles';
 import ButtonGroup from '../../ButtonGroup/buttonGroup';
 import SectionHeading from './sectionHeading';
 
-export default function AppPage({ details, appsList, faqList }) {
+export default function AppPage({ details, appsList, faqList, externalLinks = {} }) {
   if (isEmpty(details)) return null;
   return (
     <>
@@ -27,7 +26,7 @@ export default function AppPage({ details, appsList, faqList }) {
           <Caption>{details.body}</Caption>
           <ButtonGroup
             primaryButtonText={'Start Trial'}
-            primaryButtonLink={COPILOT_ONBOARDING_LINK}
+            primaryButtonLink={externalLinks?.[EXTERNAL_LINK_KEYS.OnboardingLink] || '#'}
             secondaryButtonText={'View all Apps'}
             secondaryButtonLink={'/apps/directory'}
             secondaryButtonVariant={SecondaryButtonVariant.WHITE}

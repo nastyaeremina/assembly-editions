@@ -6,11 +6,11 @@ import BookDemoImage from '../../../../public/images/bookdemo.png';
 import SocialProofProperty from '../../socialProofProperty/socialProofProperty';
 import UserAvtar from '../../../../public/images/useravtar.png';
 
-export default function BookDemoPage({ data, thankYouMessage }) {
+export default function BookDemoPage({ data, thankYouMessage, externalLinks = {} }) {
   return (
     <>
       <BookSection>
-        <BookDemoForm  data={data} thankYouMessage={thankYouMessage} />
+        <BookDemoForm  data={data} thankYouMessage={thankYouMessage} externalLinks={externalLinks} />
         <div className='image-section'>
           <ImageSection>
             <div className='img'>

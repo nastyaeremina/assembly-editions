@@ -8,7 +8,7 @@ import AppsDetailComponent from '../../appsDetail/appsDetailComponent';
 import AppsCardSection from '../../appsCards/appsCardSection';
 import ReviewSection from '../../reviewSection/reviewSection';
 
-export default function AppsDetailPage({ appDetail, relatedAppList, isUserAuthenticated }) {
+export default function AppsDetailPage({ appDetail, relatedAppList, isUserAuthenticated, externalLinks = {} }) {
   const [reviewList, setReviewList] = useState(appDetail?.reviewsCollection?.items || []);
 
   //calculate average rate
@@ -26,6 +26,7 @@ export default function AppsDetailPage({ appDetail, relatedAppList, isUserAuthen
             reviewList={reviewList}
             content={{ ...appDetail, averageRate }}
             isUserAuthenticated={isUserAuthenticated}
+            externalLinks={externalLinks}
           />
           {/* show review section only if user is authenticated (case of no review exist user can add first one)
           show review section if review list is not exist */}

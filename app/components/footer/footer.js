@@ -16,7 +16,7 @@ import {
 } from './styles';
 import SocialMediaListItems from './socialMediaListItems';
 
-export default function Footer({ footerData: footerDataList, description }) {
+export default function Footer({ footerData: footerDataList, description, socialMediaLinks = [] }) {
   const renderDesktopFooterList = useMemo(() => {
     if (isEmpty(footerDataList)) return null;
     return footerDataList?.map((item, index) => {
@@ -107,7 +107,7 @@ export default function Footer({ footerData: footerDataList, description }) {
                 <SVGComponent name='assembly-big-logo' width='200' height='38' viewBox='0 0 200 38' />
               </Link>
               {!isEmpty(description) && <p>{description}</p>}
-              <SocialMediaListItems />
+              <SocialMediaListItems socialMediaLinks={socialMediaLinks} />
             </FooterFirst>
             <FooterRight>{renderDesktopFooterList}</FooterRight>
             {renderMobileFooterList}

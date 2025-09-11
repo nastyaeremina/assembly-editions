@@ -2,14 +2,14 @@ import { Container } from '../../styles/commonStyles';
 import { FooterSectionLegal, FooterSub } from './styles';
 import SocialMediaListItems from './socialMediaListItems';
 
-export default function LegalFooter() {
+export default function LegalFooter({socialMediaLinks=[]}) {
   return (
     <>
       <FooterSectionLegal>
         <Container>
           <FooterSub>
             <p>Copilot Resources © 2022 </p>
-            <SocialMediaListItems />
+            <SocialMediaListItems socialMediaLinks={socialMediaLinks} />
           </FooterSub>
         </Container>
       </FooterSectionLegal>

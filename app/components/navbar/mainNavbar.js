@@ -6,7 +6,7 @@ import Image from 'next/image';
 import { Container } from '../../styles/commonStyles';
 import useMobileDevice from '../../hooks/useMobileDevice';
 import { isEmpty } from '../../helpers/helpers';
-import { COPILOT_DASHBOARD_LINK, COPILOT_ONBOARDING_LINK } from '../../constants/externalLinks';
+import { EXTERNAL_LINK_KEYS } from '../../constants/constant';
 import { useRouter, usePathname } from 'next/navigation';
 import {
   NavbarWrapper,
@@ -46,7 +46,7 @@ import ButtonV2Component from '../button/buttonV2/buttonV2';
 import HighlightSection from './highlighSection';
 import { BottomButtonSection } from './styles';
 
-export default function NavbarComponent({ isAuthenticated: userAuth, topbarContent, navbarData }) {
+export default function NavbarComponent({ isAuthenticated: userAuth, topbarContent, navbarData, externalLinks = {} }) {
   const mobile = useMobileDevice();
   const [isOpenMobileMenu, setIsOpenMobileMenu] = useState(false);
   const [openDropdownIndex, setOpenDropdownIndex] = useState(null);
@@ -236,7 +236,7 @@ export default function NavbarComponent({ isAuthenticated: userAuth, topbarConte
                   <SpanLink>
                     <LinkText href={'/book-demo'}>Contact sales</LinkText>
                   </SpanLink>
-                  <ButtonV2Component title={'Open Dashboard'} href={COPILOT_DASHBOARD_LINK} size='small' />
+                  <ButtonV2Component title={'Open Dashboard'} href={externalLinks?.[EXTERNAL_LINK_KEYS.DashboardLink] || '#'} size='small' />
                 </>
               ) : (
                 <>
@@ -244,9 +244,9 @@ export default function NavbarComponent({ isAuthenticated: userAuth, topbarConte
                     <LinkText href={'/book-demo'}>Contact sales</LinkText>
                   </SpanLink>
                   <SpanLink>
-                    <LinkText href={COPILOT_DASHBOARD_LINK}>Log in</LinkText>
+                    <LinkText href={externalLinks?.[EXTERNAL_LINK_KEYS.DashboardLink] || '#'}>Log in</LinkText>
                   </SpanLink>
-                  <ButtonV2Component title={'Start Trial'} href={COPILOT_ONBOARDING_LINK} size='small' />
+                  <ButtonV2Component title={'Start Trial'} href={externalLinks?.[EXTERNAL_LINK_KEYS.OnboardingLink] || '#'} size='small' />
                 </>
               )}
             </>
@@ -305,8 +305,8 @@ export default function NavbarComponent({ isAuthenticated: userAuth, topbarConte
             <OverLayBlock top={topbarHeight + navbarHeight} isOpenModal={isOpenMobileMenu}>
               {renderMobileNavigation}
               <BottomButtonSection isOpenModal={isOpenMobileMenu}>
-                <ButtonV2Component title={'Start free trial'} href={COPILOT_ONBOARDING_LINK} isWidth />
-                <ButtonV2Component title={'Log in'} href={COPILOT_DASHBOARD_LINK} isWidth variant='secondary' />
+                <ButtonV2Component title={'Start free trial'} href={externalLinks?.[EXTERNAL_LINK_KEYS.OnboardingLink] || '#'} isWidth />
+                <ButtonV2Component title={'Log in'} href={externalLinks?.[EXTERNAL_LINK_KEYS.DashboardLink] || '#'} isWidth variant='secondary' />
               </BottomButtonSection>
             </OverLayBlock>
             <NavigationMainDiv>{renderNavigation}</NavigationMainDiv>
@@ -316,14 +316,14 @@ export default function NavbarComponent({ isAuthenticated: userAuth, topbarConte
                 <>
                   {userAuth ? (
                     <>
-                      <ButtonV2Component title={'Open Dashboard'} href={COPILOT_DASHBOARD_LINK} size='small' />
+                      <ButtonV2Component title={'Open Dashboard'} href={externalLinks?.[EXTERNAL_LINK_KEYS.DashboardLink] || '#'} size='small' />
                     </>
                   ) : (
                     <>
                       <SpanLink className='login-link'>
-                        <LinkText href={COPILOT_DASHBOARD_LINK}>Log in</LinkText>
+                        <LinkText href={externalLinks?.[EXTERNAL_LINK_KEYS.DashboardLink] || '#'}>Log in</LinkText>
                       </SpanLink>
-                      <ButtonV2Component title={'Start Trial'} href={COPILOT_ONBOARDING_LINK} size='small' />
+                      <ButtonV2Component title={'Start Trial'} href={externalLinks?.[EXTERNAL_LINK_KEYS.OnboardingLink] || '#'} size='small' />
                     </>
                   )}
                 </>

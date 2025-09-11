@@ -541,6 +541,46 @@ export function transformArray(inputArray) {
 }
 
 /**
+ * Parses markdown lines formatted as (Name)[URL] into an array of objects.
+ * Accepts separated entries by "\n".
+ * Example line: (Twitter)[https://x.com/copilotplatform]
+ *
+ * @param {string} markdown - The markdown string containing external links.
+ * @returns {Array<{name: string, link: string}>}
+ */
+export function parseExternalLinks(markdown) {
+  if (isEmpty(markdown)) return [];
+  const lines = markdown.split('\n').map((l) => l.trim()).filter((l) => !isEmpty(l));
+  const result = [];
+  for (const line of lines) {
+    const match = line.match(/^\(([^)]+)\)\[(.+)\]$/);
+    if (match) {
+      const name = match[1].trim();
+      const link = match[2].trim();
+      if (!isEmpty(name) && !isEmpty(link)) {
+        result.push({ name, link });
+      }
+    }
+  }
+  return result;
+}
+
+/**
+ * Parses markdown lines formatted as (Name)[URL] into a key-value map.
+ * Keys are case-sensitive as provided; lookups should normalize as needed.
+ *
+ * @param {string} markdown - The markdown string containing external links.
+ * @returns {{[key: string]: string}} - Map of name -> link
+ */
+export function parseExternalLinksMap(markdown) {
+  const list = parseExternalLinks(markdown);
+  return list.reduce((acc, item) => {
+    acc[item.name] = item.link;
+    return acc;
+  }, {});
+}
+
+/**
  * Parses a Markdown string to extract the heading, normal text, and image URL.
  * @param {string} markdown - The Markdown string to parse.
  * @returns {Object} An object containing the heading, text, and image URL.

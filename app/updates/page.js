@@ -2,6 +2,7 @@ import { CURRENT_SITE_URL, UPDATES_SEO_ID } from '../constants/constant';
 import { getUpdatesPosts } from '../lib/updates-content';
 import { getSEOData } from '../helpers/helpers';
 import UpdatesPage from '../components/PageComponent/Updates/updatesPage';
+import { getExternalLinks } from '../helpers/serverSideHelpers';
 import Layout from '../components/layout';
 import CTA from '../components/cta/cta';
 import AggregateRating from '../components/aggregateRating';
@@ -21,12 +22,12 @@ export async function generateMetadata() {
 }
 
 export default async function Updates() {
-  const allPosts = await getContent();
+  const [allPosts, externalLinks] = await Promise.all([getContent(), getExternalLinks({ asMap: true })]);
   return (
     <>
       <AggregateRating id={UPDATES_SEO_ID} />
       <Layout>
-        <UpdatesPage allPosts={allPosts} />
+        <UpdatesPage allPosts={allPosts} externalLinks={externalLinks} />
         <CTA />
       </Layout>
     </>

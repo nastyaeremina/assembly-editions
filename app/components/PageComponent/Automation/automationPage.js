@@ -5,7 +5,7 @@ import { CardSec, Cards, Featured, SetupAutomation } from '../../../styles/autom
 import { Container } from '../../../styles/commonStyles';
 import Button from '../../button/button';
 import TabView from '../../tab/tab';
-import { MODULE_COLOR_LIST } from '../../../constants/constant';
+import { MODULE_COLOR_LIST, EXTERNAL_LINK_KEYS } from '../../../constants/constant';
 import AutomationCardSection from '../../automationcard';
 import ExploreTab from '../../solution/clienttab/exploretab';
 import { isEmpty, removeEmptyElement } from '../../../helpers/helpers';
@@ -15,10 +15,9 @@ import { TopView } from '../../solution/clienttab/styles';
 import { RightSection } from '../../../styles/casestudiestyles';
 import FeatureAnimated from '../../FeatureSlider/featureanimated';
 import SectionHeading from '../Apps/sectionHeading';
-import { COPILOT_ONBOARDING_LINK } from '../../../constants/externalLinks';
 import AutomationHeroSection from './automationHeroSection';
 
-export default function AutomationPage({ details }) {
+export default function AutomationPage({ details, externalLinks = {} }) {
   if (isEmpty(details)) return null;
 
   return (
@@ -26,7 +25,7 @@ export default function AutomationPage({ details }) {
       <AutomationHeroSection
         title={details.header}
         description={details.body}
-        primaryButtonLink={COPILOT_ONBOARDING_LINK}
+        primaryButtonLink={externalLinks?.[EXTERNAL_LINK_KEYS.OnboardingLink] || '#'}
         primaryButtonText={'Start Trial'}
         secondaryButtonLink={'automations/directory'}
         secondaryButtonText={'View all Automations'}

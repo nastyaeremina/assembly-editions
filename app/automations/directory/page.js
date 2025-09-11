@@ -5,6 +5,7 @@ import AutomationDirectoryPage from '../../components/PageComponent/Automation/d
 import Layout from '../../components/layout';
 import CTA from '../../components/cta/cta';
 import AggregateRating from '../../components/aggregateRating';
+import { getExternalLinks } from '../../helpers/serverSideHelpers';
 
 // Force dynamic rendering to prevent static generation issues
 export const dynamic = 'force-dynamic';
@@ -45,7 +46,10 @@ export async function generateMetadata({ params, searchParams }, parent) {
 }
 
 export default async function AutomationDirectory() {
-  const { featuredApps, allCategoryWithPost, allPosts } = await getContent();
+  const [{ featuredApps, allCategoryWithPost, allPosts }, externalLinks] = await Promise.all([
+    getContent(),
+    getExternalLinks({ asMap: true })
+  ]);
 
   return (
     <>
@@ -56,6 +60,7 @@ export default async function AutomationDirectory() {
             featuredApps={featuredApps}
             allCategoryWithPost={allCategoryWithPost}
             allPosts={allPosts}
+            externalLinks={externalLinks}
           />
           <CTA />
         </div>

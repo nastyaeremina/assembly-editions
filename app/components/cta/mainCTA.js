@@ -3,13 +3,12 @@
 import { useEffect, useState } from 'react';
 import Image from 'next/image';
 import { Gradient } from '../../../public/js/Gradient.js';
-import { COPILOT_ONBOARDING_LINK } from '../../constants/externalLinks.js';
 import ButtonGroup from '../ButtonGroup/buttonGroup.js';
 import { CtaInner, CtaAnimation, CtaWrap, LeftImg, MainCta, RightImg } from './styles';
 import { Canvas } from './newCTAStyles.js';
-import { SecondaryButtonVariant } from '../../constants/constant.js';
+import { SecondaryButtonVariant, EXTERNAL_LINK_KEYS } from '../../constants/constant.js';
 
-export default function MainCTA({ moduleName, ctaContent }) {
+export default function MainCTA({ moduleName, ctaContent, externalLinks = {} }) {
   const [isGradientReady, setIsGradientReady] = useState(false);
 
   useEffect(() => {
@@ -35,7 +34,7 @@ export default function MainCTA({ moduleName, ctaContent }) {
           <CtaInner>
             <h2>{ctaContent ? ctaContent : ''}</h2>
             <ButtonGroup
-              primaryButtonLink={COPILOT_ONBOARDING_LINK}
+              primaryButtonLink={externalLinks?.[EXTERNAL_LINK_KEYS.OnboardingLink] || '#'}
               primaryButtonText={'Start Trial'}
               secondaryButtonLink={'/book-demo'}
               secondaryButtonText={'Book Demo'}

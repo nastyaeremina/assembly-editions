@@ -4,6 +4,7 @@ import { CURRENT_SITE_URL, UPDATES_SEO_ID } from '../../../constants/constant';
 import { getSEOData, isEmpty } from '../../../helpers/helpers';
 import { getUpdatesPosts } from '../../../lib/updates-content';
 import UpdatesPaginationPage from '../../../components/PageComponent/Updates/updatePaginationPage';
+import { getExternalLinks } from '../../../helpers/serverSideHelpers';
 import CTA from '../../../components/cta/cta';
 import AggregateRating from '../../../components/aggregateRating';
 
@@ -26,14 +27,17 @@ export async function generateMetadata({ params }) {
 }
 
 export default async function Updates({ params }) {
-  const { allPosts, pagination } = await getContent({ page: params?.page });
+  const [{ allPosts, pagination }, externalLinks] = await Promise.all([
+    getContent({ page: params?.page }),
+    getExternalLinks({ asMap: true })
+  ]);
   if (isEmpty(allPosts) || allPosts?.meta?.pagination?.page > allPosts?.meta?.pagination?.pages) return notFound();
 
   return (
     <>
       <AggregateRating id={UPDATES_SEO_ID} />
       <Layout>
-        <UpdatesPaginationPage allPosts={allPosts} pagination={pagination} />
+        <UpdatesPaginationPage allPosts={allPosts} pagination={pagination} externalLinks={externalLinks} />
         <CTA />
       </Layout>
     </>

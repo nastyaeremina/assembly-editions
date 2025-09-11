@@ -3,6 +3,7 @@ import { getSEOData, removeEmptyElement } from '../helpers/helpers';
 import BookDemoPage from '../components/PageComponent/Book-demo/bookDemoPage';
 import { getSitemap } from '../lib/contentful-sitemap';
 import AggregateRating from '../components/aggregateRating';
+import { getExternalLinks } from '../helpers/serverSideHelpers';
 
 export async function generateMetadata({ params, searchParams }, parent) {
   const seoData = await getSEOData({ id: BOOK_DEMO_SEO_ID });
@@ -29,7 +30,10 @@ async function getContent() {
 }
 
 export default async function BookDemo() {
-  const { content, thankYouMessage } = await getContent();
+  const [{ content, thankYouMessage }, externalLinks] = await Promise.all([
+    getContent(),
+    getExternalLinks({ asMap: true })
+  ]);
   const newContent = '\n' + content;
   const list = newContent?.split('\n#');
   list?.shift();
@@ -42,7 +46,7 @@ export default async function BookDemo() {
   return (
     <>
       <AggregateRating id={BOOK_DEMO_SEO_ID} />
-      <BookDemoPage data={dataList} thankYouMessage={thankYouMessage} />
+      <BookDemoPage data={dataList} thankYouMessage={thankYouMessage} externalLinks={externalLinks} />
     </>
   );
 }

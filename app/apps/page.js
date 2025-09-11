@@ -8,7 +8,7 @@ import AppPage from '../components/PageComponent/Apps/appPage';
 import { getFAQsData } from '../services/faq';
 import CTA from '../components/cta/cta';
 import AggregateRating from '../components/aggregateRating';
-import { getPageContent } from '../helpers/serverSideHelpers';
+import { getExternalLinks, getPageContent } from '../helpers/serverSideHelpers';
 
 async function getContent({ searchParams }) {
   const { isEnabled } = await draftMode();
@@ -36,7 +36,10 @@ export async function generateMetadata({ searchParams }) {
 }
 
 export default async function App({ searchParams }) {
-  const { details, appsList, abTestContentLabel, abTestExperimentName } = await getContent({ searchParams });
+  const [{ details, appsList, abTestContentLabel, abTestExperimentName }, externalLinks] = await Promise.all([
+    getContent({ searchParams }),
+    getExternalLinks({ asMap: true })
+  ]);
   const faqData = await getFAQsData({ data: details?.faQsCollection?.items });
   // Create a new array with a fixed length of 50 items to support continuous sliding
   // The larger array size ensures that the slider runs smoothly on larger screens,
@@ -48,7 +51,7 @@ export default async function App({ searchParams }) {
       <AggregateRating data={details.seoMetadata} />
       <SEO seoData={details?.seoMetadata}></SEO>
       <Layout abTestContentLabel={abTestContentLabel} abTestExperimentName={abTestExperimentName}>
-        <AppPage details={details} appsList={sliderAppList} faqList={faqData} />
+        <AppPage details={details} appsList={sliderAppList} faqList={faqData} externalLinks={externalLinks} />
         <CTA />
       </Layout>
     </>

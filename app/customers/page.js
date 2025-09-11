@@ -7,12 +7,24 @@ import AggregateRating from '../components/aggregateRating';
 import { CURRENT_SITE_URL, CUSTOMER_SEO_ID } from './../constants/constant';
 import { getAllFeaturedCaseStudies, getAllFeaturedTestimonial } from './../lib/contentful-testimonial';
 import { getSEOData } from './../helpers/helpers';
+import { getExternalLinks } from '../helpers/serverSideHelpers';
 
 async function getContent() {
-  const { isEnabled } = await draftMode();
-  const testimonialPosts = await getAllFeaturedTestimonial(isEnabled);
-  const casestudiesPosts = await getAllFeaturedCaseStudies(isEnabled);
-  return { testimonialPosts, casestudiesPosts };
+  try {
+    const { isEnabled } = await draftMode();
+
+    // Fetch all data concurrently
+    const [testimonialPosts = [], casestudiesPosts = [], externalLinks = {}] = await Promise.all([
+      getAllFeaturedTestimonial(isEnabled),
+      getAllFeaturedCaseStudies(isEnabled),
+      getExternalLinks({ asMap: true })
+    ]);
+
+    return { testimonialPosts, casestudiesPosts, externalLinks };
+  } catch (error) {
+    console.error('Error fetching content:', error);
+    return { testimonialPosts: [], casestudiesPosts: [], externalLinks: {} };
+  }
 }
 
 export async function generateMetadata() {
@@ -23,13 +35,17 @@ export async function generateMetadata() {
 }
 
 export default async function Customer() {
-  const { testimonialPosts, casestudiesPosts } = await getContent();
+  const { testimonialPosts, casestudiesPosts, externalLinks } = await getContent();
 
   return (
     <>
       <AggregateRating id={CUSTOMER_SEO_ID} />
       <Layout>
-        <CustomerPage testimonialPosts={testimonialPosts} casestudiesPosts={casestudiesPosts} />
+        <CustomerPage
+          testimonialPosts={testimonialPosts}
+          casestudiesPosts={casestudiesPosts}
+          externalLinks={externalLinks}
+        />
         <CTA />
       </Layout>
     </>

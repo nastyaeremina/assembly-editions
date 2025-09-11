@@ -2,8 +2,8 @@
 
 import moment from 'moment';
 import { useMemo } from 'react';
+import { EXTERNAL_LINK_KEYS } from '../../../constants/constant';
 import Button from '../../button/button';
-import { UPDATE_SUBSCRIBE_LINK } from '../../../constants/externalLinks';
 import { isEmpty } from '../../../helpers/helpers';
 import { Container } from '../../../styles/commonStyles';
 import {
@@ -19,7 +19,7 @@ import {
 } from '../../../styles/updatestyle';
 import { renderContentWithVideos } from '../../../helpers/clientSideHelpers';
 
-export default function UpdatesPage({ allPosts }) {
+export default function UpdatesPage({ allPosts, externalLinks = {} }) {
   const renderPosts = useMemo(() => {
     if (isEmpty(allPosts)) return null;
     return allPosts?.map((item, index) => {
@@ -54,7 +54,7 @@ export default function UpdatesPage({ allPosts }) {
               fontColor={'--black'}
               borderColor={'--black'}
               text={'Subscribe to updates'}
-              href={UPDATE_SUBSCRIBE_LINK}
+              href={externalLinks?.[EXTERNAL_LINK_KEYS.SubscribeLink] || '#'}
               hoverColor={'--hover-color'}
             />
           </UpdateSubscribe>

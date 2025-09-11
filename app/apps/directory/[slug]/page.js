@@ -4,6 +4,7 @@ import Layout from '../../../components/layout';
 import { getAllPartnerApps, getPartnerAppDetail } from '../../../lib/contentful-partnerApps';
 import { getRandomUniqueElements, getSEOData, isEmpty } from '../../../helpers/helpers';
 import AppsDetailPage from '../../../components/PageComponent/Apps/appDetailPage';
+import { getExternalLinks } from '../../../helpers/serverSideHelpers';
 import CTA from '../../../components/cta/cta';
 import { APPS_TYPE, CURRENT_SITE_URL, STRING_END_OF_APP } from '../../../constants/constant.js';
 
@@ -44,14 +45,17 @@ export async function generateMetadata({ params }) {
 }
 
 export default async function AppsDetail({ params }) {
-  const { appDetail, relatedApps } = await getContent({ slug: params.slug });
+  const [{ appDetail, relatedApps }, externalLinks] = await Promise.all([
+    getContent({ slug: params.slug }),
+    getExternalLinks({ asMap: true })
+  ]);
   if (isEmpty(appDetail)) return notFound();
   const cookie = cookies().get('current-portal-session');
   const isUserAuthenticated = !isEmpty(cookie?.value);
   return (
     <>
       <Layout>
-        <AppsDetailPage isUserAuthenticated={isUserAuthenticated} appDetail={appDetail} relatedAppList={relatedApps} />
+        <AppsDetailPage isUserAuthenticated={isUserAuthenticated} appDetail={appDetail} relatedAppList={relatedApps} externalLinks={externalLinks} />
         <CTA />
       </Layout>
     </>
