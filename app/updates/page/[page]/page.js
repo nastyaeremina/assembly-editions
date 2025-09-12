@@ -5,7 +5,6 @@ import { getSEOData, isEmpty } from '../../../helpers/helpers';
 import { getUpdatesPosts } from '../../../lib/updates-content';
 import UpdatesPaginationPage from '../../../components/PageComponent/Updates/updatePaginationPage';
 import { getExternalLinks } from '../../../helpers/serverSideHelpers';
-import CTA from '../../../components/cta/cta';
 import AggregateRating from '../../../components/aggregateRating';
 
 async function getContent({ page }) {
@@ -38,7 +37,6 @@ export default async function Updates({ params }) {
       <AggregateRating id={UPDATES_SEO_ID} />
       <Layout>
         <UpdatesPaginationPage allPosts={allPosts} pagination={pagination} externalLinks={externalLinks} />
-        <CTA />
       </Layout>
     </>
   );

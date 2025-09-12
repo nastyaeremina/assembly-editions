@@ -1,16 +1,14 @@
 'use client';
 
 import moment from 'moment';
-import { useMemo } from 'react';
-import { EXTERNAL_LINK_KEYS } from '../../../constants/constant';
-import Button from '../../button/button';
+import { useEffect, useMemo, useState } from 'react';
+import { ButtonVariant, EXTERNAL_LINK_KEYS } from '../../../constants/constant';
 import { isEmpty } from '../../../helpers/helpers';
-import { Container } from '../../../styles/commonStyles';
+import { Container, Content } from '../../../styles/commonStyles';
 import {
   Detail,
-  Details,
-  Left,
   Pagination,
+  PostContent,
   UpadtePage,
   UpdateDate,
   UpdateDes,
@@ -18,8 +16,35 @@ import {
   UpdateSubscribe
 } from '../../../styles/updatestyle';
 import { renderContentWithVideos } from '../../../helpers/clientSideHelpers';
+import ButtonV2Component from '../../button/buttonV2/buttonV2';
+import NewCTA from '../../cta/newCTA';
+import { CTAData } from '../../../constants/raw';
 
 export default function UpdatesPage({ allPosts, externalLinks = {} }) {
+  const [stickyTop, setStickyTop] = useState(0);
+
+  // Calculate navbar height for sticky positioning
+  useEffect(() => {
+    const updateHeight = () => {
+      // Find navbar and topbar elements
+      const navbar = document.querySelector('[data-navbar="true"]');
+      const topbar = document.querySelector('[data-topbar="true"]');
+
+      // Calculate total height needed for sticky positioning
+      const totalHeight = (navbar?.offsetHeight || 0) + (topbar?.offsetHeight || 0);
+      setStickyTop(totalHeight);
+    };
+
+    // Initial calculation
+    updateHeight();
+
+    // Update on window resize
+    window.addEventListener('resize', updateHeight);
+
+    // Cleanup event listener
+    return () => window.removeEventListener('resize', updateHeight);
+  }, []);
+
   const renderPosts = useMemo(() => {
     if (isEmpty(allPosts)) return null;
     return allPosts?.map((item, index) => {
@@ -28,19 +53,18 @@ export default function UpdatesPage({ allPosts, externalLinks = {} }) {
 
       return (
         <UpdateDes key={`updatesitem_index_${index}`}>
-          <svg width='14' height='7' viewBox='0 0 14 7' fill='none' xmlns='http://www.w3.org/2000/svg'>
-            <path d='M14 0L7 7L0 0H14Z' fill='black' />
-          </svg>
           <Detail className={isLast ? 'last-item' : ''}>
-            <UpdateDate href={'/updates/' + item?.slug}>
+            <UpdateDate href={'/updates/' + item?.slug} stickyTop={stickyTop}>
               {moment(new Date(item?.published_at)).format('MMMM D, YYYY')}
             </UpdateDate>
-            <UpdateDetail dangerouslySetInnerHTML={{ __html: contentWithVideos }}></UpdateDetail>
+            <UpdateDetail>
+              <Content dangerouslySetInnerHTML={{ __html: contentWithVideos }}></Content>
+            </UpdateDetail>
           </Detail>
         </UpdateDes>
       );
     });
-  }, [allPosts]);
+  }, [allPosts, stickyTop]);
 
   return (
     <>
@@ -48,34 +72,36 @@ export default function UpdatesPage({ allPosts, externalLinks = {} }) {
         <Container>
           <UpdateSubscribe>
             <h1>Updates</h1>
-            <p>New updates and improvements to Copilot.</p>
-            <Button
-              bgColor={'transparent'}
-              fontColor={'--black'}
-              borderColor={'--black'}
-              text={'Subscribe to updates'}
+            <p>
+              Trusted by consulting, accounting, real estate, law, marketing, and tech firms with 1M+ clients and
+              counting.
+            </p>
+            <ButtonV2Component
+              title={'Subscribe to updates'}
               href={externalLinks?.[EXTERNAL_LINK_KEYS.SubscribeLink] || '#'}
-              hoverColor={'--hover-color'}
             />
           </UpdateSubscribe>
-          {renderPosts}
-          <Details>
-            <Left></Left>
-            <UpdateDetail>
-              <Pagination>
-                <Button
-                  bgColor={'transparent'}
-                  fontColor={'--black'}
-                  borderColor={'--black'}
-                  text={'Next Page'}
-                  href={`/updates/page/2`}
-                  hoverColor={'--hover-color'}
-                  className={'pagination-button'}
-                />
-              </Pagination>
-            </UpdateDetail>
-          </Details>
         </Container>
+        <Container>
+          <PostContent>
+            {renderPosts}
+            <Pagination>
+              <ButtonV2Component
+                title={'Next page'}
+                variant={ButtonVariant.SECONDARY_WITH_BORDER}
+                href={`/updates/page/2`}
+              />
+            </Pagination>
+          </PostContent>
+        </Container>
+        <NewCTA
+          title={CTAData.title}
+          description={CTAData.description}
+          primaryButtonLink={CTAData.primaryButtonLink}
+          primaryButtonText={CTAData.primaryButtonText}
+          secondaryButtonLink={CTAData.secondaryButtonLink}
+          secondaryButtonText={CTAData.secondaryButtonText}
+        />
       </UpadtePage>
     </>
   );

@@ -4,7 +4,6 @@ import { getSEOData } from '../helpers/helpers';
 import UpdatesPage from '../components/PageComponent/Updates/updatesPage';
 import { getExternalLinks } from '../helpers/serverSideHelpers';
 import Layout from '../components/layout';
-import CTA from '../components/cta/cta';
 import AggregateRating from '../components/aggregateRating';
 
 // Force dynamic rendering to prevent static generation issues
@@ -28,7 +27,6 @@ export default async function Updates() {
       <AggregateRating id={UPDATES_SEO_ID} />
       <Layout>
         <UpdatesPage allPosts={allPosts} externalLinks={externalLinks} />
-        <CTA />
       </Layout>
     </>
   );

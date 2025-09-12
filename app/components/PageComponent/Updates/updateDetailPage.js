@@ -1,43 +1,70 @@
 'use client';
 import moment from 'moment';
-import Link from 'next/link';
-import { Container } from '../../../styles/commonStyles';
-import { Backlink, MainContent } from '../../../styles/blogstyles';
-import { DetailSlug, UpdateDate, UpdateDes, UpdateDetail } from '../../../styles/updatestyle';
+import { Container, Content } from '../../../styles/commonStyles';
+import { DetailSlug, LinkDiv, MainContent, UpdateDate, UpdateDes, UpdateDetail } from '../../../styles/updatestyle';
 import { renderContentWithVideos } from '../../../helpers/clientSideHelpers';
+import Breadcrumbs from '../../Breadcrumbs/breadcrumbs';
+import NewCTA from '../../cta/newCTA';
+import { CTAData } from '../../../constants/raw';
+import { useEffect, useState } from 'react';
 
 export default function UpdatedetailPage({ details: updateDetails }) {
   const contentWithVideos = renderContentWithVideos(updateDetails?.html);
 
+  const BreadcrumbItem = [{ label: 'All updates', href: '/updates' }];
+
+  const [stickyTop, setStickyTop] = useState(0);
+
+  // Calculate navbar height for sticky positioning
+  useEffect(() => {
+    const updateHeight = () => {
+      // Find navbar and topbar elements
+      const navbar = document.querySelector('[data-navbar="true"]');
+      const topbar = document.querySelector('[data-topbar="true"]');
+
+      // Calculate total height needed for sticky positioning
+      const totalHeight = (navbar?.offsetHeight || 0) + (topbar?.offsetHeight || 0);
+      setStickyTop(totalHeight);
+    };
+
+    // Initial calculation
+    updateHeight();
+
+    // Update on window resize
+    window.addEventListener('resize', updateHeight);
+
+    // Cleanup event listener
+    return () => window.removeEventListener('resize', updateHeight);
+  }, []);
+
   return (
-    <>
-      <MainContent>
-        <Container>
-          <Link href='/updates'>
-            <Backlink>
-              <svg width='12' height='12' viewBox='0 0 12 12' fill='none' xmlns='http://www.w3.org/2000/svg'>
-                <path
-                  d='M8.42969 1.37109L3.8012 5.99958L8.42969 10.6281'
-                  stroke='#757575'
-                  stroke-width='1.92854'
-                  stroke-linecap='round'
-                  stroke-linejoin='round'
-                />
-              </svg>
-              <p>Back to Updates</p>
-            </Backlink>
-          </Link>
-          <UpdateDes>
-            <svg width='14' height='7' viewBox='0 0 14 7' fill='none' xmlns='http://www.w3.org/2000/svg'>
-              <path d='M14 0L7 7L0 0H14Z' fill='black' />
-            </svg>
-            <DetailSlug>
-              <UpdateDate href='#'>{moment(new Date(updateDetails?.published_at)).format('MMMM D, YYYY')}</UpdateDate>
-              <UpdateDetail dangerouslySetInnerHTML={{ __html: contentWithVideos }}></UpdateDetail>
-            </DetailSlug>
-          </UpdateDes>
-        </Container>
-      </MainContent>
-    </>
+    <MainContent>
+      <Container>
+        <LinkDiv>
+          <Breadcrumbs
+            breadcrumbs={BreadcrumbItem}
+            currentLabel={moment(new Date(updateDetails?.published_at)).format('MMMM D, YYYY')}
+          />
+        </LinkDiv>
+        <UpdateDes>
+          <DetailSlug>
+            <UpdateDate href='#' stickyTop={stickyTop}>
+              {moment(new Date(updateDetails?.published_at)).format('MMMM D, YYYY')}
+            </UpdateDate>
+            <UpdateDetail>
+              <Content dangerouslySetInnerHTML={{ __html: contentWithVideos }}></Content>
+            </UpdateDetail>
+          </DetailSlug>
+        </UpdateDes>
+      </Container>
+      <NewCTA
+        title={CTAData.title}
+        description={CTAData.description}
+        primaryButtonLink={CTAData.primaryButtonLink}
+        primaryButtonText={CTAData.primaryButtonText}
+        secondaryButtonLink={CTAData.secondaryButtonLink}
+        secondaryButtonText={CTAData.secondaryButtonText}
+      />
+    </MainContent>
   );
 }

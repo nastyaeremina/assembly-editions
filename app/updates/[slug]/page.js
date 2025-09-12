@@ -3,7 +3,6 @@ import Layout from '../../components/layout';
 import { getUpdateDetail } from '../../lib/updates-content';
 import { getSEOData, isEmpty } from '../../helpers/helpers';
 import UpdatedetailPage from '../../components/PageComponent/Updates/updateDetailPage';
-import CTA from '../../components/cta/cta';
 import { CURRENT_SITE_URL } from '../../constants/constant';
 
 async function getContent({ slug }) {
@@ -33,7 +32,6 @@ export default async function Updatedetail({ params }) {
     <>
       <Layout>
         <UpdatedetailPage details={updateDetails} />
-        <CTA />
       </Layout>
     </>
   );
