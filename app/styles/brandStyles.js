@@ -1,457 +1,290 @@
-import styled from 'styled-components';
-import { Body2, Body3, ButtonText, Heading2, Heading4, LinkTxt, MbBody2, MbBody3, MobileH2, MobileH4 } from './styles';
+import styled, { css } from 'styled-components';
+import { body_regular, body_semibold, h3_semibold, label_semibold } from './typography';
+import { BRAND_PAGE_ASSET_TONE } from '../constants/constant';
 
-const BrandMain = styled.div`
-  padding-bottom: 50px;
-  @media only screen and (max-width: 769px) {
-    padding-bottom: 40px;
-  }
-`;
-const BrandHeroSection = styled.div`
-  padding-top: 100px;
-  padding-bottom: 50px;
-  text-align: center;
-  h1 {
-    ${Heading2};
-    color: var(--title);
-    margin: 0 0 20px 0;
-  }
-  p {
-    ${Body2};
-    color: var(--body);
-    margin: 0 0 32px 0;
-  }
-  @media only screen and (max-width: 769px) {
-    padding: 36px 0 40px;
-    h1 {
-      ${MobileH2}
-    }
-    p {
-      ${MbBody2}
-    }
-  }
-`;
+const BrandMain = styled.div``;
+
 const BrandName = styled.div`
-  padding: 50px 0;
   &.first-item {
-    padding-top: 0;
+    h2 {
+      margin-top: 0;
+    }
   }
   h2 {
-    ${Heading4};
+    ${h3_semibold};
     color: var(--title);
-    margin: 0 0 12px 0;
+    margin: 0 0 var(--space-16) 0;
+    margin-top: var(--space-64);
   }
   p {
-    margin: 0;
-    color: var(--body);
-    ${Body3};
+    margin: var(--space-16) 0 0 0;
+    color: var(--title);
+    ${body_regular};
   }
-  @media only screen and (max-width: 749px) {
-    padding: 40px 0;
+  p + p {
+    margin-top: var(--space-24);
+  }
+  @media only screen and (max-width: 449px) {
     h2 {
-      ${MobileH4}
+      margin-top: var(--space-48);
+      margin-bottom: var(--space-12);
     }
     p {
-      ${MbBody3}
+      margin-top: var(--space-12);
+    }
+    p + p {
+      margin-top: var(--space-20);
+    }
+    &.first-item {
+      h2 {
+        margin-top: 0;
+      }
     }
   }
 `;
-const BrandImage = styled.div`
-  display: flex;
-  gap: 50px;
-  padding-top: 40px;
+
+const Block1 = styled.button`
   width: 100%;
-  .hide {
-    display: none;
-  }
-  .effect-goliath {
-    cursor: pointer;
-  }
-  .hover-name {
-    transform: translate3d(0, 70px, 0);
-    @media only screen and (max-width: 769px) {
-      transform: none;
-    }
-  }
-  .effect-goliath:hover .hover-name {
-    -webkit-transform: translate3d(0, 0px, 0);
-    transform: translate3d(0, 0px, 0);
-    transition: transform 0.35s;
-    @media only screen and (max-width: 769px) {
-      transform: none;
-    }
-    img {
-      transform: translate3d(0, 0px, 0);
-      -webkit-transform: translate3d(0, 0, 0);
-    }
-  }
-  .hover-name {
-    backface-visibility: hidden;
-    transition: transform 0.35s;
-  }
-  p {
-    margin: 0;
-  }
-  @media only screen and (max-width: 769px) {
-    flex-wrap: wrap;
-    gap: 28px;
-    padding-top: 28px;
-  }
-`;
-const BrandImageLeft = styled.div`
-  padding: 160px 0;
-  background-color: var(--dark-green);
-  border-radius: 10px;
-  width: 100%;
-  text-align: center;
-  position: relative;
-  display: inline-flex;
-  justify-content: center;
-  margin-top: -2px;
-  .firsticon {
-    display: block;
-    @media only screen and (max-width: 749px) {
-      display: none;
-    }
-  }
-  .mobileshow {
-    display: none;
-    @media only screen and (max-width: 749px) {
-      display: block;
-    }
-  }
-  @media only screen and (max-width: 749px) {
-    padding: 72px 0 107px;
-  }
-`;
-const HoverSection = styled.div`
-  gap: 12px;
-  background-color: var(--light-green);
-  padding: 17px 24px;
-  border-radius: 0px 0px 7px 7px;
+  height: 252px;
+  padding: var(--space-80) var(--space-24) var(--space-24);
+  background-color: var(--title);
+  border-radius: var(--radius-12);
+  border: 1px solid var(--border-default);
   display: flex;
-  align-items: center;
-  right: 0;
-  left: 0;
-  bottom: 0;
-  position: absolute;
-  text-align: center;
-  p {
-    ${LinkTxt};
-    color: var(--dark-green);
+  flex-direction: column;
+  .download-button {
+    margin: 0 auto;
   }
-  img {
-    max-width: 20px;
-    max-height: 20px;
+  &:hover {
+    .download-button {
+      opacity: 1;
+      transition: opacity 0.4s ease;
+    }
   }
+  &:focus-visible {
+    outline: 2px solid var(--link-default);
+    border-radius: var(--radius-12);
+  }
+  ${(props) =>
+    props.tone === BRAND_PAGE_ASSET_TONE.DARK &&
+    css`
+      background-color: var(--title);
+    `}
+  ${(props) =>
+    props.tone === BRAND_PAGE_ASSET_TONE.LIGHT &&
+    css`
+      background-color: var(--off-white-500);
+    `}
+  ${(props) =>
+    props.tone === BRAND_PAGE_ASSET_TONE.BLUE &&
+    css`
+      background-color: var(--assembly-blue);
+    `}
+  @media only screen and (max-width: 449px) {
+    height: 240px;
+  }
+`;
+
+const SectionWrapper = styled.div`
+  max-width: 728px;
+  width: 100%;
+  margin: 0 auto;
+  padding: var(--space-64) 0;
   @media only screen and (max-width: 991px) {
-    right: -1px;
-    left: -1px;
-    bottom: -1px;
+    padding: var(--space-40) 0;
   }
-  @media only screen and (max-width: 749px) {
-    right: -1px;
-    left: -1px;
-    bottom: -1px;
+  @media only screen and (max-width: 449px) {
+    padding: var(--space-48) 0;
   }
-  @media only screen and (max-width: 749px) {
-    padding: 10px 13px;
-    p {
-      font-weight: 500;
-      font-size: 12px;
-      line-height: 15px;
+`;
+
+const BrandImageSection = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-24);
+  margin-top: var(--space-24);
+`;
+
+const Card = styled.a`
+  background-color: var(--title);
+  border-radius: var(--radius-12);
+  border: 1px solid var(--border-default);
+  padding: var(--space-96) var(--space-24) var(--space-24);
+  width: 100%;
+  height: 256px;
+  &:focus-visible {
+    outline: 2px solid var(--link-default);
+    border-radius: var(--radius-12);
+  }
+  &:hover {
+    .download-button {
+      opacity: 1;
+      transition: opacity 0.4s ease;
     }
   }
-  .downdesk {
-    display: block;
-    @media only screen and (max-width: 749px) {
-      display: none;
-    }
-  }
-  .downmobi {
-    display: none;
-    @media only screen and (max-width: 749px) {
-      display: block;
+  ${(props) =>
+    props.tone === BRAND_PAGE_ASSET_TONE.DARK &&
+    css`
+      background-color: var(--title);
+      .logo-icon {
+        path {
+          fill: var(--off-white-100);
+        }
+      }
+      .circle-logo-icon {
+        path {
+          fill: var(--title);
+        }
+        circle {
+          fill: var(--off-white-500);
+        }
+      }
+    `}
+  ${(props) =>
+    props.tone === BRAND_PAGE_ASSET_TONE.LIGHT &&
+    css`
+      background-color: var(--off-white-500);
+    `}
+  ${(props) =>
+    props.tone === BRAND_PAGE_ASSET_TONE.BLUE &&
+    css`
+      background-color: var(--assembly-blue);
+    `}
+`;
+
+const Content = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-32);
+  justify-content: center;
+  align-items: center;
+`;
+
+const LogoIcon = styled.div`
+  display: flex;
+  padding: var(--space-7);
+  @media only screen and (max-width: 991px) {
+    padding: var(--space-12);
+    .logo-icon {
+      width: 218px;
+      height: 40px;
     }
   }
 `;
-const HoverLink = styled.div`
-  padding: 17px 24px;
-  border-radius: 0px 0px 7px 7px;
+
+const DownloadButton = styled.div`
+  ${label_semibold};
+  color: var(--title);
+  background-color: var(--off-white-200);
+  height: 40px;
+  padding: var(--space-2) var(--space-24) 0;
   display: flex;
   align-items: center;
-  right: 0;
-  left: 0;
-  bottom: 0;
-  position: absolute;
-  text-align: center;
-  gap: 12px;
-  background-color: var(--primary);
-  p {
-    ${LinkTxt};
-    color: var(--white);
-  }
-  @media only screen and (max-width: 749px) {
-    padding: 10px 13px;
-    p {
-      font-weight: 500;
-      font-size: 12px;
-      line-height: 15px;
-    }
-  }
-  .downdesk {
-    display: block;
-    @media only screen and (max-width: 749px) {
-      display: none;
-    }
-  }
-  .downmobi {
-    display: none;
-    @media only screen and (max-width: 749px) {
-      display: block;
-    }
-  }
-`;
-const BlackHover = styled.div`
-  gap: 12px;
-  background-color: var(--dark-green);
-  padding: 17px 24px;
-  border-radius: 0px 0px 7px 7px;
-  display: flex;
-  align-items: center;
-  right: 0;
-  left: 0;
-  bottom: 0;
-  position: absolute;
-  text-align: center;
-  p {
-    ${LinkTxt};
-    color: var(--light-green);
-  }
-  @media only screen and (max-width: 749px) {
-    padding: 10px 13px;
-    p {
-      font-weight: 500;
-      font-size: 12px;
-      line-height: 15px;
-    }
-  }
-  .downdesk {
-    display: block;
-    @media only screen and (max-width: 749px) {
-      display: none;
-    }
-  }
-  .downmobi {
-    display: none;
-    @media only screen and (max-width: 749px) {
-      display: block;
-    }
-  }
-`;
-const BrandImageRight = styled.div`
-  padding: 160px 0;
-  background-color: var(--light-green);
-  border-radius: 10px;
-  width: 100%;
-  text-align: center;
-  position: relative;
-  display: inline-flex;
   justify-content: center;
-  margin-top: -2px;
-  .firsticon {
-    display: block;
-    @media only screen and (max-width: 749px) {
-      display: none;
-    }
-  }
-  .mobileshow {
+  border-radius: var(--radius-30);
+  opacity: 0;
+
+  ${(props) =>
+    props.tone === BRAND_PAGE_ASSET_TONE.DARK &&
+    css`
+      color: var(--title);
+      &:hover {
+        background-color: var(--bg-primary-hover);
+      }
+    `}
+  ${(props) =>
+    props.tone === BRAND_PAGE_ASSET_TONE.LIGHT &&
+    css`
+      color: var(--off-white-100);
+      background-color: var(--title);
+      &:hover {
+        background-color: var(--bg-card-dark-hover);
+      }
+    `}
+  ${(props) =>
+    props.tone === BRAND_PAGE_ASSET_TONE.BLUE &&
+    css`
+      color: var(--off-white-100);
+      background-color: var(--title);
+      &:hover {
+        background-color: var(--bg-card-dark-hover);
+      }
+    `}
+    @media only screen and (max-width: 991px) {
     display: none;
-    @media only screen and (max-width: 749px) {
-      display: block;
-    }
-  }
-  @media only screen and (max-width: 749px) {
-    padding: 72px 0 107px;
   }
 `;
-const CompanyIcon = styled.div`
-  padding: 112px 0;
-  background-color: var(--neutral);
-  border-radius: 10px;
-  width: 100%;
-  text-align: center;
-  position: relative;
-  display: inline-flex;
-  justify-content: center;
-  :hover .hide {
-    position: absolute;
-    bottom: 0;
-    display: flex;
-    transform: translate3d(0, 0, 0);
-    right: 0;
-    left: 0;
-  }
-  .companyicon {
-    display: block;
-    @media only screen and (max-width: 749px) {
-      display: none;
-    }
-  }
-  .companyiconmobi {
-    display: none;
-    @media only screen and (max-width: 749px) {
-      display: block;
-    }
-  }
-  @media only screen and (max-width: 749px) {
-    padding: 52px 0 87px;
-  }
-`;
-const ColorSection = styled.div`
+
+const LogoSection = styled.div`
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  gap: 63px;
-  padding-top: 40px;
-  .block2color {
-    background-color: var(--light-green);
-  }
-  .block3color {
-    background-color: var(--dark-green);
-  }
-  .effect-goliath {
-    cursor: pointer;
-  }
-  .hover-name {
-    transform: translate3d(0, 70px, 0);
-    @media only screen and (max-width: 769px) {
-      transform: none;
-    }
-  }
-  .effect-goliath:hover .hover-name {
-    -webkit-transform: translate3d(0, 0px, 0);
-    transform: translate3d(0, 0px, 0);
-    transition: transform 0.35s;
-    img {
-      transform: translate3d(0, 0px, 0);
-      -webkit-transform: translate3d(0, 0, 0);
-    }
-    @media only screen and (max-width: 769px) {
-      transform: none;
-    }
-  }
-  .hover-name {
-    backface-visibility: hidden;
-    transition: transform 0.35s;
-  }
-  @media only screen and (max-width: 991px) {
-    grid-template-columns: 1fr 1fr;
-    gap: 40px;
-    padding-top: 28px;
-    border-radius: 10px;
-  }
+  gap: var(--space-24);
+  margin-top: var(--space-24);
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
   @media only screen and (max-width: 749px) {
-    grid-template-columns: 1fr;
-    gap: 28px;
+    grid-template-columns: repeat(1, 1fr);
   }
 `;
-const Block1 = styled.div`
-  height: 366px;
-  width: 366px;
-  background-color: var(--primary);
-  border-radius: 10px;
-  position: relative;
-  @media only screen and (max-width: 769px) {
-    height: 335px;
-    width: 100%;
-  }
-`;
-const BlockSub = styled.div`
-  background-color: var(--dark-green);
-  border-radius: 0px 0px 7px 7px;
-  padding: 8px 20px;
-  position: absolute;
-  bottom: 0px;
-  right: 0;
-  left: 0;
-  display: flex;
-  justify-content: space-between;
 
-  align-items: center;
-  right: 0;
-  left: 0;
-  bottom: 0;
-  position: absolute;
-  text-align: center;
-  gap: 12px;
-  p {
-    ${ButtonText};
-    color: var(--light-green);
-  }
-  span {
-    color: var(--light-green);
-    ${Body2};
-    letter-spacing: 0;
-  }
-
-  @media only screen and (max-width: 749px) {
-    p {
-      font-size: 16px;
-      line-height: 23px;
-    }
-    span {
-      font-size: 19px;
-      line-height: 25px;
-    }
-  }
-`;
-const BlockLight = styled.div`
-  background-color: var(--light-green);
-  border-radius: 0px 0px 10px 10px;
-  padding: 8px 20px;
-  position: absolute;
-  bottom: -2px;
-  right: 0;
-  left: 0;
+const Logo = styled.div`
   display: flex;
-  justify-content: space-between;
+`;
+
+const Detail = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-16);
+`;
+const ColorCode = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-4);
   p {
-    ${ButtonText};
-    color: var(--dark-green);
+    margin: 0 !important;
+    ${body_regular}
+    color: var(--off-white-100);
   }
-  span {
-    color: var(--dark-green);
-    ${Body2}
-  }
-  @media only screen and (max-width: 749px) {
-    p {
-      font-size: 16px;
-      line-height: 23px;
-    }
-    span {
-      font-size: 19px;
-      line-height: 25px;
+  p {
+    &.color-name {
+      ${body_semibold}
     }
   }
+  ${(props) =>
+    props.tone === BRAND_PAGE_ASSET_TONE.DARK &&
+    css`
+      p {
+        color: var(--off-white-100);
+      }
+    `}
+  ${(props) =>
+    props.tone === BRAND_PAGE_ASSET_TONE.LIGHT &&
+    css`
+      p {
+        color: var(--title);
+      }
+    `}
+    ${(props) =>
+    props.tone === BRAND_PAGE_ASSET_TONE.BLUE &&
+    css`
+      p {
+        color: var(--title);
+      }
+    `}
 `;
-const ImgWrap = styled.div`
-  width: 100%;
-  overflow: hidden;
-`;
+
 export {
-  BrandHeroSection,
   BrandName,
-  BrandImage,
-  BrandImageLeft,
-  HoverSection,
-  BlackHover,
-  BrandImageRight,
-  CompanyIcon,
-  HoverLink,
-  ColorSection,
   Block1,
-  BlockSub,
-  BlockLight,
   BrandMain,
-  ImgWrap
+  SectionWrapper,
+  BrandImageSection,
+  Card,
+  Content,
+  LogoIcon,
+  DownloadButton,
+  LogoSection,
+  Logo,
+  Detail,
+  ColorCode
 };

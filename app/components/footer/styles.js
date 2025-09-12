@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { button_regular, label_regular, label_semibold } from '../../styles/typography';
 
 const FooterSection = styled.div`
-  background-color: var(--off-white-500);
+  background-color: var(--off-white-300);
   padding: var(--space-64) 0;
   @media only screen and (max-width: 991px) {
     padding: var(--space-40) 0;

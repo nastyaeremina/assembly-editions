@@ -437,7 +437,7 @@ export const CUSTOM_CODE_BEFORE_BODY_TAG_ID = '6CMLDvTPrgvrVzpv5O8XPc';
 export const CUSTOM_CODE_AFTER_BODY_TAG_ID = '2GQxmuzDZhGcXGB5FbgoGa';
 export const SCREEN_SIZE_THRESHOLD = 768;
 export const NAVBAR_CONTENT_ID = '7nxamR1RaXCKCsoweOBGmm';
-export const EXTERNAL_LINKS_CONTENT_ID = '4kfsvaroAErob4gf6lFsDl'
+export const EXTERNAL_LINKS_CONTENT_ID = '4kfsvaroAErob4gf6lFsDl';
 
 // Canonical keys for external links fetched from Contentful
 export const EXTERNAL_LINK_KEYS = {
@@ -553,15 +553,27 @@ export const LinkSize = {
   SMALL: 'small'
 };
 
-export const SectionStoryModeSectionComponentType={
-    STORY_MODE_DARK:"Story Mode - Dark",
-    SECTION_COMPONENT_DARK: "Section Component - Dark",
-    SECTION_COMPONENT_LIGHT: "Section Component - Light",
-}
+export const SectionStoryModeSectionComponentType = {
+  STORY_MODE_DARK: 'Story Mode - Dark',
+  SECTION_COMPONENT_DARK: 'Section Component - Dark',
+  SECTION_COMPONENT_LIGHT: 'Section Component - Light'
+};
 
 export const CAROUSEL_SLIDER = 'carousel-slider';
 
 export const FEATURE_COMPONENT_TYPE = {
   BOX_GROUP_COMPONENT: 'Box Group Component',
   CAROUSEL_COMPONENT: 'Carousel Component'
-}
+};
+
+export const BRAND_PAGE_ASSET_TYPE = {
+  LOGO_WORDMARK: 'logo_wordmark',
+  LOGO: 'logo',
+  COMPANY_ICON: 'company_icon'
+};
+
+export const BRAND_PAGE_ASSET_TONE = {
+  DARK: 'dark',
+  BLUE: 'blue',
+  LIGHT: 'light'
+};

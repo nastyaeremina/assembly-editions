@@ -1,93 +1,87 @@
 'use client';
-
-import Image from 'next/image';
 import copy from 'copy-to-clipboard';
 import { useMemo, useState } from 'react';
 import { Container } from '../../../styles/commonStyles';
 import {
   BrandName,
-  BrandImage,
-  BrandImageLeft,
-  HoverSection,
-  BlackHover,
-  BrandImageRight,
-  CompanyIcon,
-  HoverLink,
   Block1,
-  ColorSection,
-  BlockSub,
-  BlockLight,
   BrandMain,
-  ImgWrap
+  SectionWrapper,
+  BrandImageSection,
+  LogoSection,
+  DownloadButton,
+  Detail,
+  ColorCode
 } from '../../../styles/brandStyles';
 import StandardHero from '../../standardHero/standardHero';
-import { HeroTypes } from '../../../constants/constant';
+import { BRAND_PAGE_ASSET_TONE, BRAND_PAGE_ASSET_TYPE, HeroTypes } from '../../../constants/constant';
+import AssetCard from './assetCard';
+import ToastMessage from '../../ToastMessage/toastMessage';
 
 export default function BrandPage() {
   const [copy1, setCopy1] = useState('Copy');
   const [copy2, setCopy2] = useState('Copy');
   const [copy3, setCopy3] = useState('Copy');
+  const [showToast, setShowToast] = useState(false);
 
+  const handleCopy = (colorCode, setCopyState) => {
+    copy(colorCode);
+    setShowToast(true);
+
+    const interval = setInterval(() => {
+      setCopyState('Copy');
+    }, 5000);
+  };
+
+  // copy block
   const copyBlock1 = useMemo(() => {
     return (
-      <ImgWrap>
-        <Block1 className='effect-goliath'>
-          <BlockSub
-            className='hover-name'
-            onClick={() => {
-              copy('--primary');
-              setCopy1('Copied!');
-              const interval = setInterval(() => {
-                setCopy1('Copy');
-              }, 5000);
-            }}>
-            <p>{copy1}</p>
-            <span>#09AA6C</span>
-          </BlockSub>
-        </Block1>
-      </ImgWrap>
+      <Block1 tone={BRAND_PAGE_ASSET_TONE.DARK} onClick={() => handleCopy('#101010', setCopy1, 'Off-black')}>
+        <Detail>
+          <ColorCode tone={BRAND_PAGE_ASSET_TONE.DARK}>
+            <p className='color-name'>Off-black</p>
+            <p>RGB 16, 16, 16</p>
+            <p>#101010</p>
+          </ColorCode>
+          <DownloadButton className='download-button' tone={BRAND_PAGE_ASSET_TONE.DARK}>
+            {copy1}
+          </DownloadButton>
+        </Detail>
+      </Block1>
     );
   }, [copy1]);
 
   const copyBlock2 = useMemo(() => {
     return (
-      <ImgWrap>
-        <Block1 className='block2color effect-goliath'>
-          <BlockSub
-            className='hover-name'
-            onClick={() => {
-              copy('--light-green');
-              setCopy2('Copied!');
-              const interval = setInterval(() => {
-                setCopy2('Copy');
-              }, 5000);
-            }}>
-            <p>{copy2}</p>
-            <span>#E3FFEE</span>
-          </BlockSub>
-        </Block1>
-      </ImgWrap>
+      <Block1 tone={BRAND_PAGE_ASSET_TONE.BLUE} onClick={() => handleCopy('#BCE7F4', setCopy2, 'Assembly-blue')}>
+        <Detail>
+          <ColorCode tone={BRAND_PAGE_ASSET_TONE.BLUE}>
+            <p className='color-name'>Assembly-blue</p>
+            <p>RGB 188, 231, 244</p>
+            <p>#BCE7F4</p>
+          </ColorCode>
+          <DownloadButton className='download-button' tone={BRAND_PAGE_ASSET_TONE.BLUE}>
+            {copy2}
+          </DownloadButton>
+        </Detail>
+      </Block1>
     );
   }, [copy2]);
 
   const copyBlock3 = useMemo(() => {
     return (
-      <ImgWrap>
-        <Block1 className='block3color effect-goliath'>
-          <BlockLight
-            className='hover-name'
-            onClick={() => {
-              copy('--dark-green');
-              setCopy3('Copied!');
-              const interval = setInterval(() => {
-                setCopy3('Copy');
-              }, 5000);
-            }}>
-            <p>{copy3}</p>
-            <span>#00160E</span>
-          </BlockLight>
-        </Block1>
-      </ImgWrap>
+      <Block1 tone={BRAND_PAGE_ASSET_TONE.LIGHT} onClick={() => handleCopy('#FBFBF5', setCopy3, 'Off-white')}>
+        <Detail>
+          <ColorCode tone={BRAND_PAGE_ASSET_TONE.LIGHT}>
+            <p className='color-name'>Off-white</p>
+            <p>RGB 251, 251, 245</p>
+            <p>#FBFBF5</p>
+          </ColorCode>
+          <DownloadButton className='download-button' tone={BRAND_PAGE_ASSET_TONE.LIGHT}>
+            {copy3}
+          </DownloadButton>
+        </Detail>
+      </Block1>
     );
   }, [copy3]);
 
@@ -99,306 +93,116 @@ export default function BrandPage() {
             type={HeroTypes.CENTER}
             isDownload={true}
             data={{
-              heroTitle: 'Copilot Brand Guidelines',
+              heroTitle: 'Assembly Brand Guidelines',
               heroDescription: 'Resources for presenting the Copilot brand consistently and professionally.',
-              primaryButtonLink: '/images/Copilot_Brand_Assets.zip',
-              primaryButtonText: 'Download Brand Assets'
+              primaryButtonLink: '/images/Assembly_Brand_Assets.zip',
+              primaryButtonText: 'Download brand assets'
             }}
           />
-        </div>
-        <Container>
-          <BrandName className='first-item'>
-            <h2>Naming</h2>
-            <p>
-              “Copilot” is a single word that is always spelled with a capital “C”, lowercase “p”, and without a dash.
-              It is the brand name of our company and product. The company legal name is Copilot Platforms Inc.
-            </p>
-          </BrandName>
-          <BrandName>
-            <h2>Wordmark</h2>
-            <p>
-              The Copilot wordmark should be used in all references to Copilot as space allows. Monochrome usage is also
-              acceptable, preferably using the brand colors below.
-            </p>
-            <BrandImage>
-              <ImgWrap>
-                <BrandImageLeft className='effect-goliath'>
-                  <Image
-                    src='/images/logo.svg'
-                    alt='logo'
-                    width={405}
-                    height={90}
-                    layout={'fixed'}
-                    className='firsticon'
-                  />
-                  <Image
-                    src='/images/brandmobi.svg'
-                    alt='logo'
-                    width={226}
-                    height={50}
-                    layout={'fixed'}
-                    className='mobileshow'
-                  />
-                  <a href='/images/Copilot_Wordmark_LightGreen.png' download>
-                    <HoverSection className='hover-name'>
-                      <p>Download</p>
-                      <Image
-                        src='/images/download.svg'
-                        alt='download'
-                        width={20}
-                        height={20}
-                        layout={'fixed'}
-                        className='downdesk'
-                      />
-                      <Image
-                        src='/images/mobidown.svg'
-                        alt='download'
-                        width={12}
-                        height={12}
-                        layout={'fixed'}
-                        className='downmobi'
-                      />
-                    </HoverSection>
-                  </a>
-                </BrandImageLeft>
-              </ImgWrap>
-              <ImgWrap>
-                <BrandImageRight className='effect-goliath'>
-                  <Image
-                    src='/images/blacklogo.svg'
-                    alt='logo'
-                    width={405}
-                    height={90}
-                    layout={'fixed'}
-                    className='firsticon'
-                  />
-                  <Image
-                    src='/images/logoblackbg.svg'
-                    alt='logo'
-                    width={226}
-                    height={50}
-                    layout={'fixed'}
-                    className='mobileshow'
-                  />
-                  <a href='/images/Copilot_Wordmark_DarkGreen.png' download>
-                    <BlackHover className='hover-name'>
-                      <p>Download</p>
-                      <Image
-                        src='/images/whitedownload.svg'
-                        alt='download'
-                        width={20}
-                        height={20}
-                        layout={'fixed'}
-                        className='downdesk'
-                      />
-                      <Image
-                        src='/images/lightdown.svg'
-                        alt='download'
-                        width={12}
-                        height={12}
-                        layout={'fixed'}
-                        className='downmobi'
-                      />
-                    </BlackHover>
-                  </a>
-                </BrandImageRight>
-              </ImgWrap>
-            </BrandImage>
-          </BrandName>
-          <BrandName>
-            <h2>Logo</h2>
-            <p>
-              For tight layouts or logo-only grids, the Coplilot logomark is a concise way to refer to Copilot. Use with
-              good judgment for your audience, as the Copilot wordmark has a stronger brand recognition.
-            </p>
-            <BrandImage>
-              <ImgWrap>
-                <BrandImageLeft className='effect-goliath'>
-                  <Image
-                    src='/images/smalllogo.svg'
-                    alt='logo'
-                    width={133}
-                    height={90}
-                    layout={'fixed'}
-                    className='firsticon'
-                  />
-                  <Image
-                    src='/images/smalllogo.svg'
-                    alt='logo'
-                    width={74}
-                    height={50}
-                    layout={'fixed'}
-                    className='mobileshow'
-                  />
-                  <a href='/images/Copilot_Symbol_Light-Green.png' download>
-                    <HoverSection className='hover-name'>
-                      <p>Download</p>
-                      <Image
-                        src='/images/download.svg'
-                        alt='download'
-                        width={20}
-                        height={20}
-                        layout={'fixed'}
-                        className='downdesk'
-                      />
-                      <Image
-                        src='/images/mobidown.svg'
-                        alt='download'
-                        width={12}
-                        height={12}
-                        layout={'fixed'}
-                        className='downmobi'
-                      />
-                    </HoverSection>
-                  </a>
-                </BrandImageLeft>
-              </ImgWrap>
-              <ImgWrap>
-                <BrandImageRight className='effect-goliath'>
-                  <Image
-                    src='/images/brandlogo.svg'
-                    alt='logo'
-                    width={133}
-                    height={90}
-                    layout={'fixed'}
-                    className='firsticon'
-                  />
-                  <Image
-                    src='/images/brandlogo.svg'
-                    alt='logo'
-                    width={74}
-                    height={50}
-                    layout={'fixed'}
-                    className='mobileshow'
-                  />
-                  <a href='/images/Copilot_Symbol_Dark-Green.png' download>
-                    <BlackHover className='hover-name'>
-                      <p>Download</p>
-                      <Image
-                        src='/images/whitedownload.svg'
-                        alt='download'
-                        width={20}
-                        height={20}
-                        layout={'fixed'}
-                        className='downdesk'
-                      />
-                      <Image
-                        src='/images/mobidownl.svg'
-                        alt='download'
-                        width={12}
-                        height={12}
-                        layout={'fixed'}
-                        className='downmobi'
-                      />
-                    </BlackHover>
-                  </a>
-                </BrandImageRight>
-              </ImgWrap>
-            </BrandImage>
-          </BrandName>
-          <BrandName>
-            <h2>Company icon</h2>
-            <p>
-              When referring to Copilot as a company, such as on social media, or where a “chip” design is required, it
-              is acceptable to use this stylized icon with an appropriate corner radius.
-            </p>
-            <BrandImage>
-              <ImgWrap>
-                <CompanyIcon className='effect-goliath'>
-                  <Image
-                    src='/images/primarylogo.svg'
-                    alt='logo'
-                    width={200}
-                    height={200}
-                    layout={'fixed'}
-                    className='companyicon'
-                  />
-                  <Image
-                    src='/images/mobicom.svg'
-                    alt='logo'
-                    width={104}
-                    height={104}
-                    layout={'fixed'}
-                    className='companyiconmobi'
-                  />
 
-                  <a href='/images/Copilot_Icon_Square.png' download>
-                    <HoverLink className='hover-name'>
-                      <p>Download</p>
-                      <Image
-                        src='/images/whitedownload.svg'
-                        alt='download'
-                        width={20}
-                        height={20}
-                        layout={'fixed'}
-                        className='downdesk'
-                      />
-                      <Image
-                        src='/images/mobidownl.svg'
-                        alt='download'
-                        width={12}
-                        height={12}
-                        layout={'fixed'}
-                        className='downmobi'
-                      />
-                    </HoverLink>
-                  </a>
-                </CompanyIcon>
-              </ImgWrap>
-              <ImgWrap>
-                <CompanyIcon className='effect-goliath'>
-                  <Image
-                    src='/images/primarylogo2.svg'
-                    alt='logo'
-                    width={200}
-                    height={200}
-                    layout={'fixed'}
-                    className='companyicon'
+          <Container>
+            <SectionWrapper>
+              <BrandName className='first-item'>
+                <h2>Introduction</h2>
+                <p>
+                  Our brand strategy guides everything we do. It clarifies our purpose, who we serve, and how we stand
+                  apart – while reflecting the essence of our brand.
+                </p>
+              </BrandName>
+              <BrandName>
+                <h2>Naming & Clear Space</h2>
+                <p>
+                  "Assembly" is a single word that is always spelled with a capital "A", lowercase "s", and without a
+                  dash. It is the brand name of our company and product. The company legal name is Assembly Platforms
+                  Inc. On social media, you can refer to us with #Assembly.
+                </p>
+                <p>
+                  We aim to maintain clear space around the logo to ensure visibility and impact. This space prevents
+                  any elements from crowding the logo, allowing it to stand out and be easily recognisable. The clear
+                  space enhances legibility and preserves the integrity of the design across different applications.
+                </p>
+              </BrandName>
+              <BrandName>
+                <h2>Logo wordmark</h2>
+                <p>
+                  The logo serves as the primary brand signifier. It is the cornerstone of our brand identity and
+                  anchors our visual identity in all communications.
+                </p>
+                <BrandImageSection>
+                  <AssetCard href='/images/assembly-logo-dark.png' download />
+                  <AssetCard tone={BRAND_PAGE_ASSET_TONE.BLUE} href='/images/assembly-logo-light.png' download />
+                  <AssetCard tone={BRAND_PAGE_ASSET_TONE.LIGHT} href='/images/assembly-logo-light.png' download />
+                </BrandImageSection>
+              </BrandName>
+              <BrandName>
+                <h2>Logo</h2>
+                <p>
+                  When referring to Copilot as a company, such as on social media, or where a "chip" design is required,
+                  it is acceptable to use this stylized icon with an appropriate corner radius.
+                </p>
+                <LogoSection>
+                  <AssetCard
+                    href='/images/assembly-logo-small-dark.png'
+                    download
+                    variant={BRAND_PAGE_ASSET_TYPE.LOGO}
                   />
-                  <Image
-                    src='/images/radiusmobi.svg'
-                    alt='logo'
-                    width={104}
-                    height={104}
-                    layout={'fixed'}
-                    className='companyiconmobi'
+                  <AssetCard
+                    tone={BRAND_PAGE_ASSET_TONE.BLUE}
+                    href='/images/assembly-logo-small-light.png'
+                    download
+                    variant={BRAND_PAGE_ASSET_TYPE.LOGO}
                   />
-                  <a href='/images/Copilot_Icon_Circle.png' download>
-                    <HoverLink className='hover-name'>
-                      <p>Download</p>
-                      <Image
-                        src='/images/whitedownload.svg'
-                        alt='download'
-                        width={20}
-                        height={20}
-                        layout={'fixed'}
-                        className='downdesk'
-                      />
-                      <Image
-                        src='/images/mobidownl.svg'
-                        alt='download'
-                        width={12}
-                        height={12}
-                        layout={'fixed'}
-                        className='downmobi'
-                      />
-                    </HoverLink>
-                  </a>
-                </CompanyIcon>
-              </ImgWrap>
-            </BrandImage>
-          </BrandName>
-          <BrandName>
-            <h2>Colors</h2>
-            <p>Copilot’s primary brand color is a cool green that’s been slightly desaturated and darkened. </p>
-            <ColorSection>
-              {copyBlock1}
-              {copyBlock2}
-              {copyBlock3}
-            </ColorSection>
-          </BrandName>
-        </Container>
+                  <AssetCard
+                    tone={BRAND_PAGE_ASSET_TONE.LIGHT}
+                    href='/images/assembly-logo-small-light.png'
+                    download
+                    variant={BRAND_PAGE_ASSET_TYPE.LOGO}
+                  />
+                </LogoSection>
+              </BrandName>
+              <BrandName>
+                <h2>Company icon</h2>
+                <p>
+                  When referring to Copilot as a company, such as on social media, or where a "chip" design is required,
+                  it is acceptable to use this stylized icon with an appropriate corner radius.
+                </p>
+                <LogoSection>
+                  <AssetCard
+                    href='/images/assembly-logo-circle-dark.png'
+                    download
+                    variant={BRAND_PAGE_ASSET_TYPE.COMPANY_ICON}
+                  />
+                  <AssetCard
+                    tone={BRAND_PAGE_ASSET_TONE.BLUE}
+                    href='/images/assembly-logo-circle-light.png'
+                    download
+                    variant='company_icon'
+                  />
+                  <AssetCard
+                    tone={BRAND_PAGE_ASSET_TONE.LIGHT}
+                    href='/images/assembly-logo-circle-light.png'
+                    download
+                    variant='company_icon'
+                  />
+                </LogoSection>
+              </BrandName>
+              <BrandName>
+                <h2>Colors</h2>
+                <p>
+                  When referring to Copilot as a company, such as on social media, or where a "chip" design is required,
+                  it is acceptable to use this stylized icon with an appropriate corner radius.
+                </p>
+                <BrandImageSection>
+                  {copyBlock1}
+                  {copyBlock2}
+                  {copyBlock3}
+                </BrandImageSection>
+              </BrandName>
+            </SectionWrapper>
+          </Container>
+        </div>
       </BrandMain>
+      {showToast && <ToastMessage message={'Hex code copied to clipboard'} onClose={() => setShowToast(false)} />}
     </>
   );
 }
