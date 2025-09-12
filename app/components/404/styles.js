@@ -1,24 +1,41 @@
 import styled from 'styled-components';
-import { Body3, Heading3 } from '../../styles/styles';
+import { body_regular, h1_semibold } from '../../styles/typography';
 
-const MainHeroSection = styled.div``;
+const MainHeroSection = styled.div`
+  padding: var(--space-80) 0;
+  @media only screen and (max-width: 991px) {
+    padding: var(--space-64) 0;
+  }
+  @media only screen and (max-width: 749px) {
+    padding: var(--space-48) 0;
+  }
+`;
 const ErrorMain = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+  gap: var(--space-24);
   flex-direction: column;
-  height: calc(100vh - 250px);
-  h3 {
-    ${Heading3};
-    margin: 0 0 16px 0;
+  padding: var(--space-64) 0;
+  h1 {
+    ${h1_semibold};
+    margin: 0;
     color: var(--title);
   }
   p {
-    color: var(--body);
-    ${Body3};
-    margin: 0 0 24px 0;
+    color: var(--text-secondary);
+    ${body_regular};
+    margin: 0;
     text-align: center;
+  }
+  @media only screen and (max-width: 991px) {
+    padding: var(--space-40) 0;
+  }
+  @media only screen and (max-width: 749px) {
+    padding: var(--space-48) 0;
+    p {
+      margin-bottom: var(--space-8);
+    }
   }
 `;
 export { MainHeroSection, ErrorMain };
