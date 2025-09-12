@@ -25,6 +25,7 @@ import StoryModeNavigation from './StoryModeNavigation/storyModeNavigation';
  * Click tab to scroll to section, scroll to update active tab
  */
 export default function StoryMode({ tabsData }) {
+  if (isEmpty(tabsData)) return null;
   // State for active tab and sticky positioning
   const [activeIndex, setActiveIndex] = useState(0);
   const [stickyTop, setStickyTop] = useState(0);
@@ -44,7 +45,7 @@ export default function StoryMode({ tabsData }) {
           <TabSection key={sectionIndex} ref={(el) => (sectionRefs.current[sectionIndex] = el)}>
             {/* Section Title and Description */}
             <SectionHeader
-              title={tabData.title}
+              title={tabData.subTitle}
               description={tabData.description}
               primaryButtonLink={tabData.primaryButtonLink}
               primaryButtonText={tabData.primaryButtonText}
@@ -56,24 +57,18 @@ export default function StoryMode({ tabsData }) {
             {/* Section Image and Quote */}
             <BottomSection>
               <LeftImage>
-                <Image
-                  src={tabData.storyModeImage.url}
-                  alt={tabData.storyModeImage.alt}
-                  width={877}
-                  height={827}
-                  className='image'
-                />
+                <Image src={tabData.image.url} alt={'Banner Image'} width={877} height={827} className='image' />
               </LeftImage>
 
               {/* Testimonial Quote */}
-              {!isEmpty(tabData.quoteData) && (
+              {!isEmpty(tabData.quoteBlock) && (
                 <QuoteSectionComponent
                   tone={SectionTone.DARK}
-                  imageSrc={tabData.quoteData.imageSrc}
-                  name={tabData.quoteData.name}
-                  companyName={tabData.quoteData.companyName}
-                  description={tabData.quoteData.description}
-                  linkHref={tabData.quoteData.linkHref}
+                  imageSrc={tabData.quoteBlock.image?.url}
+                  name={tabData.quoteBlock.name}
+                  role={tabData.quoteBlock.role}
+                  description={tabData.quoteBlock.quoteNew}
+                  link={tabData.link}
                 />
               )}
             </BottomSection>

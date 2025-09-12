@@ -139,8 +139,8 @@ export default function StoryModeNavigation({ tabs, activeIndex, setActiveIndex 
                 : setActiveIndex(index) // Desktop: select clicked tab
           }
           active={index === activeIndex}>
-          <Numbers>{item.number}</Numbers>
-          <TabName active={index === activeIndex}>{item.name}</TabName>
+          <Numbers>{(index + 1).toString().padStart(2, '0')}</Numbers>
+          <TabName active={index === activeIndex}>{item.title}</TabName>
         </Tab>
       );
     });

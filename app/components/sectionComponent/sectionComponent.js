@@ -88,11 +88,11 @@ function SectionComponent({
                   {!isEmpty(tabItem.quoteBlock) && (
                     <QuoteSectionComponent
                       tone={tone}
-                      imageSrc={tabItem.quoteBlock.image.url}
+                      imageSrc={tabItem.quoteBlock.image?.url}
                       name={tabItem.quoteBlock.name}
                       role={tabItem.quoteBlock.role}
                       description={tabItem.quoteBlock.quoteNew}
-                      link={tabItem.link }
+                      link={tabItem.link}
                     />
                   )}
                 </GridItemSection>

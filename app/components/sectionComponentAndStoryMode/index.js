@@ -1,14 +1,14 @@
 import { SectionStoryModeSectionComponentType, SectionTone } from '../../constants/constant';
 import SectionComponent from '../sectionComponent/sectionComponent';
+import StoryMode from '../StoryMode/storymode';
 
 export default function SectionComponentAndStoryModeRenderer({ data }) {
   if (!data?.type) return null;
 
   switch (data.type) {
     case SectionStoryModeSectionComponentType.STORY_MODE_DARK:
-      return <></>;
+      return <StoryMode tabsData={data.contentCollection?.items} />;
     case SectionStoryModeSectionComponentType.SECTION_COMPONENT_DARK:
-      
       return (
         <SectionComponent
           tone={SectionTone.DARK}
