@@ -10,6 +10,7 @@ const LinkSection = styled(Link)`
   ${body_regular}
   color: var(--off-white-100);
   transition: color 0.3s ease;
+  white-space: nowrap;
   svg {
     path {
       transition: fill 0.3s ease;

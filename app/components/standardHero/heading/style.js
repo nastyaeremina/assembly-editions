@@ -22,16 +22,14 @@ const LeftHeroSectionMainDiv = styled.div`
 const HeroHeading = styled.h1`
   ${h1_semibold};
   color: var(--title);
-  margin: 0 0 var(--space-20);
+  margin: 0 0 var(--space-24);
   max-width: 900px;
   text-align: left;
 
   span {
     color: var(--title);
   }
-  &.center-title {
-    margin: 0 0 var(--space-24);
-  }
+
   ${(props) =>
     props.variant === HeroTypes.CENTER &&
     css`

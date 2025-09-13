@@ -2,7 +2,13 @@ import styled, { css } from 'styled-components';
 import { body_regular, h2_semibold, h4_regular, label_regular } from '../../styles/typography';
 
 const FaqSection = styled.div`
-  padding: var(--space-120) 0;
+  padding: var(--space-64) 0;
+  @media only screen and (max-width: 991px) {
+    padding: var(--space-40) 0;
+  }
+  @media only screen and (max-width: 749px) {
+    padding: var(--space-48) 0;
+  }
   ${(props) =>
     props.isStandardPage &&
     css`
@@ -121,8 +127,7 @@ const FaqTitle = styled.div`
 `;
 
 const DivFAQ = styled.div`
-  border: 1px solid transparent;
-  border-bottom-color: var(--border-default);
+  border-bottom: 1px solid var(--border-default);
   padding-bottom: var(--space-20);
   transition: all 0.6s ease;
   ${(props) =>
@@ -134,7 +139,7 @@ const DivFAQ = styled.div`
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
-    padding: var(--space-20) var(--space-24) 0;
+    padding-top: var(--space-20);
     cursor: pointer;
     > div > svg {
       margin-top: var(--space-4);
@@ -201,12 +206,6 @@ const DivFAQ = styled.div`
     transform: rotate(90deg);
     transition: all 0.6s ease;
   }
-  :last-child {
-    border-bottom: none;
-    @media only screen and (max-width: 449px) {
-      padding-bottom: 40px;
-    }
-  }
 `;
 const FAQAnswer = styled.div`
   max-height: ${(props) => (props.isActive ? `${props.height}px` : '0')};
@@ -216,7 +215,7 @@ const FAQAnswer = styled.div`
   div {
     ${body_regular}
     color: var(--text-secondary);
-    padding: var(--space-8) var(--space-62) 0 var(--space-24);
+    padding: var(--space-8) var(--space-38) 0 0;
     ${(props) =>
       props.isGuideFAQ &&
       css`
@@ -234,7 +233,7 @@ const FAQAnswer = styled.div`
       `}
     p {
       margin: 0;
-      margin-top: 20px;
+      margin-top: var(--space-8);
       :first-child {
         margin-top: 0;
       }
@@ -245,18 +244,18 @@ const FAQAnswer = styled.div`
   }
 
   ol {
-    padding-left: 18px;
+    padding-left: var(--space-18);
     li {
-      margin-top: 6px;
+      margin-top: var(--space-6);
     }
   }
 
   ul {
     list-style-type: disc;
     list-style-position: outside;
-    padding-left: 18px;
+    padding-left: var(--space-18);
     li {
-      margin-top: 6px;
+      margin-top: var(--space-6);
     }
   }
 

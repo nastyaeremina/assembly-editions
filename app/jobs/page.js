@@ -2,7 +2,6 @@ import { draftMode } from 'next/headers';
 import JobsPage from '../components/PageComponent/Jobs/jobsPage';
 import AggregateRating from '../components/aggregateRating';
 import { getFAQsData } from '../services/faq';
-import FAQ from './../components/faq/faq';
 import Layout from './../components/layout';
 import { CURRENT_SITE_URL, JOB_PAGE_ID } from './../constants/constant';
 import { extractTableData, getSEOData } from './../helpers/helpers';
@@ -78,8 +77,13 @@ export default async function Jobs({ searchParams }) {
     <>
       <AggregateRating data={details?.seoMetadata} />
       <Layout abTestContentLabel={abTestContentLabel} abTestExperimentName={abTestExperimentName}>
-        <JobsPage jobList={jobList} jobImagesList={jobImagesList} jobBlogPostList={jobBlogPostList} details={details} />
-        <FAQ faqList={faqData} />
+        <JobsPage
+          jobList={jobList}
+          jobImagesList={jobImagesList}
+          jobBlogPostList={jobBlogPostList}
+          details={details}
+          faqData={faqData}
+        />
       </Layout>
     </>
   );

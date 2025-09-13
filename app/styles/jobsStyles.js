@@ -1,6 +1,5 @@
 import styled, { css } from 'styled-components';
 import {
-  Body1,
   Body2,
   Body3,
   Body4,
@@ -16,16 +15,26 @@ import {
   MbBody2,
   MbBody3,
   MbBody4,
-  MbBody5,
-  MbPrimaryBtn,
   MobileH2,
   MobileH3,
-  MobileH4,
-  Name
+  MobileH4
 } from './styles';
+import { body_regular, body_semibold, h2_semibold } from './typography';
 
 const MainWrap = styled.div`
-  background: var(--main-bg-color);
+  background: var(--off-white-300);
+  padding: var(--space-80) 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-80);
+  @media only screen and (max-width: 991px) {
+    padding: var(--space-64) 0;
+    gap: var(--space-64);
+  }
+  @media only screen and (max-width: 449px) {
+    padding: var(--space-64) 0 var(--space-48);
+    gap: var(--space-48);
+  }
 `;
 const HeroJobSection = styled.div`
   padding: 144px 0 50px;
@@ -69,7 +78,8 @@ const JobsMobi = styled.div`
   @media only screen and (max-width: 749px) {
     display: block;
     border-radius: 8px;
-    background-image: linear-gradient(180deg, var(--black) 51.28%, var(--black-shadow-0) 70.01%),url('/images/jobmobi.svg');
+    background-image: linear-gradient(180deg, var(--black) 51.28%, var(--black-shadow-0) 70.01%),
+      url('/images/jobmobi.svg');
     background-position: 0 0, 50% 50%;
     background-size: auto, cover;
     background-repeat: repeat, no-repeat;
@@ -122,30 +132,23 @@ const UseCaseWrapMobi = styled.div`
   }
 `;
 const CareerSection = styled.div`
-  padding-top: 50px;
-  @media only screen and (max-width: 749px) {
-    padding: 40px 0;
-  }
-`;
-const CareerBlock = styled.div`
-  display: flex;
-  gap: 60px;
+  padding: var(--space-64) 0;
   @media only screen and (max-width: 991px) {
-    gap: 30px;
+    padding: var(--space-40) 0;
   }
   @media only screen and (max-width: 749px) {
-    flex-wrap: wrap;
-    gap: 80px;
+    padding: var(--space-48) 0;
   }
 `;
+const CareerBlock = styled.div``;
 const RoleBlock = styled.div`
-  max-width: 612px;
   width: 100%;
-  @media only screen and (max-width: 991px) {
-    max-width: 50%;
-  }
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-64);
+  align-items: flex-start;
   @media only screen and (max-width: 749px) {
-    max-width: 100%;
+    gap: var(--space-32);
   }
 `;
 const TeamBlock = styled.div`
@@ -159,65 +162,48 @@ const TeamBlock = styled.div`
   }
 `;
 const RoleWrap = styled.div`
-  margin-bottom: 40px;
+  max-width: 600px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-32);
+  align-items: flex-start;
   h2 {
-    ${Heading4};
+    ${h2_semibold};
     color: var(--title);
-    margin: 0 0 12px 0;
-  }
-  p {
-    ${Body5};
-    color: var(--body);
-    letter-spacing: 0.02em;
     margin: 0;
   }
-  @media only screen and (max-width: 991px) {
-    h2 {
-      font-size: 26px;
-      line-height: 34px;
-    }
-  }
-  @media only screen and (max-width: 749px) {
-    h2 {
-      ${MobileH4};
-    }
-    p {
-      ${MbBody5};
-    }
+  p {
+    ${body_regular};
+    color: var(--title);
+    margin: 0;
   }
 `;
-const JobDetailWrap = styled.div``;
+const JobDetailWrap = styled.div`
+  width: 100%;
+`;
 const JobView = styled.div`
-  margin-bottom: 28px;
+  margin-bottom: var(--space-32);
   :last-child {
     margin-bottom: 0;
   }
-  h3 {
-    margin: 0;
-    ${HeaderFont};
-    color: var(--title);
-  }
   @media only screen and (max-width: 749px) {
-    h3 {
-      ${MbPrimaryBtn}
-    }
+    margin-bottom: var(--space-24);
   }
 `;
 const RoleList = styled.div`
-  margin: 12px 0px 0px;
+  margin: var(--space-8) 0px 0px;
   display: flex;
   flex-direction: column;
-  gap: 16px;
 `;
 const RoleRow = styled.div`
-  padding: 6px 0px;
+  margin: var(--space-20) 0px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  border-bottom: 1px dashed transparent;
-  cursor: pointer;
+  gap: var(--space-40);
+
   :hover {
-    border-bottom: 1px dashed var(--black);
     p {
       color: var(--black);
     }
@@ -225,24 +211,28 @@ const RoleRow = styled.div`
       background-color: var(--black);
     }
   }
-  @media only screen and (max-width: 749px) {
-    padding: 0;
-  }
 `;
 const LeftRow = styled.div`
+  width: 100%;
   p {
     margin: 0;
-    ${Body5};
-    color: var(--body);
+    ${body_regular};
+    color: var(--title);
+  }
+  @media only screen and (max-width: 749px) {
+    width: unset;
+    max-width: unset;
   }
 `;
 const RightRow = styled.div`
-  display: flex;
-  align-items: center;
+  width: 100%;
   p {
     margin: 0;
-    ${FooterText};
-    color: var(--medium-gray);
+    ${body_regular};
+    color: var(--title);
+  }
+  @media only screen and (max-width: 991px) {
+    display: none;
   }
 `;
 const Dot = styled.div`
@@ -578,6 +568,18 @@ const DetailRIghtText = styled.div`
 const DetailPosition = styled.div`
   position: relative;
 `;
+
+const JobTitle = styled.p`
+  margin: 0;
+  ${body_semibold};
+  color: var(--title);
+  padding: var(--space-12) 0 var(--space-20) 0;
+  border-bottom: 1px solid var(--border-default);
+`;
+const Icon = styled.div`
+  width: 16px;
+  height: 16px;
+`;
 export {
   HeroJobSection,
   JobsWrap,
@@ -617,5 +619,7 @@ export {
   DetailRIghtText,
   DetailPosition,
   JobsMobi,
-  UseCaseWrapMobi
+  UseCaseWrapMobi,
+  JobTitle,
+  Icon
 };
