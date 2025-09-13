@@ -1,50 +1,46 @@
+'use client';
 import React from 'react';
 import GuideHome from '../../GuideHome/guideHome';
-import GuideRightSection from '../../GuideNavbar/guideRightSection';
+import TableOfContents from '../Blog/TableOfContents';
 import { isEmpty, stringToSlugyfy } from '../../../helpers/helpers';
+import { Container } from '../../../styles/commonStyles';
+import { SectionWrapper, TableOfContentSection } from './styles';
 
 export default function GuidePage({ defaultArticle: article }) {
   function tableContents() {
     const newList = [];
     article?.content?.json?.content?.forEach((item) => {
-      if (['heading-3', 'heading-4'].includes(item?.nodeType) && item?.content?.[0]?.value) {
+      if (['heading-2', 'heading-3'].includes(item?.nodeType) && item?.content?.[0]?.value) {
         newList?.push({ title: item?.content?.[0]?.value, type: item?.nodeType?.replace('heading-', 'h') });
       }
     });
     return newList;
   }
 
-  function createHierarchy(inputArray) {
-    const hierarchy = [];
-    const stack = [];
-    let currentLevel = 1; // Initialize the current level
-    inputArray?.forEach((item) => {
-      if (!isEmpty(item)) {
-        while (stack.length > 0 && stack[stack.length - 1].type >= item?.type) {
-          stack.pop();
-          currentLevel--; // Decrease the level when popping
-        }
-        const id = `${stringToSlugyfy(item?.title)}`;
-        const newItem = { ...item, items: [], id, level: currentLevel };
-        if (stack.length === 0) {
-          hierarchy.push(newItem);
-        } else {
-          stack[stack.length - 1].items.push(newItem);
-        }
-        stack.push(newItem);
-        currentLevel++; // Increase the level for the next item
-      }
+  // Convert the guide content to HTML format that TableOfContents can understand
+  function convertToHtmlFormat() {
+    const headings = tableContents();
+    let htmlContent = '';
+
+    headings.forEach((heading) => {
+      const id = stringToSlugyfy(heading.title);
+      htmlContent += `<${heading.type} id="${id}">${heading.title}</${heading.type}>`;
     });
-    return hierarchy;
+    return htmlContent;
   }
 
   return (
-    <>
-      {/* <div className='guideSection'>
-        <GuideNavbar data={data} selectedArticleId={article?.sys?.id} section={defaultsection} /> */}
-      <GuideHome detail={article} />
-      <GuideRightSection data={createHierarchy(tableContents())} isFAQs={!isEmpty(article?.faQsCollection?.items)} />
-      {/* </div> */}
-    </>
+    <Container>
+      <SectionWrapper>
+        <GuideHome detail={article} />
+        <TableOfContentSection>
+          <TableOfContents
+            htmlData={convertToHtmlFormat()}
+            isFAQs={!isEmpty(article?.faQsCollection?.items)}
+            isShowH3={true}
+          />
+        </TableOfContentSection>
+      </SectionWrapper>
+    </Container>
   );
 }

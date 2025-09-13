@@ -2,7 +2,7 @@
 
 import styled, { css } from 'styled-components';
 import { ButtonText, HeaderFont, MbButtonText, MbPrimaryBtn } from './styles';
-import { body_regular, h3_semibold, h4_semibold, label_semibold, tag } from './typography';
+import { body_regular, body_semibold, h3_semibold, h4_semibold, tag, label_semibold } from './typography';
 
 const Container = styled.div`
   width: 100%;
@@ -299,7 +299,7 @@ const Content = styled.div`
     margin-top: var(--space-24);
     li {
       margin-top: var(--space-12);
-      padding-left: var(--space-4);
+      padding-left: var(--space-3);
       strong {
         font-weight: 500;
         color: var(--title);
@@ -570,6 +570,233 @@ const Content = styled.div`
       margin-top: 0;
     }
   }
+  // isThemedContent enables special styling for rich text content like guide pages
+  ${(props) =>
+    props.isThemedContent &&
+    css`
+      p {
+        @media only screen and (max-width: 991px) {
+          word-break: break-word;
+        }
+      }
+
+      h2 {
+        position: relative;
+        display: flex;
+        align-items: flex-start;
+        gap: var(--space-10);
+        a {
+          margin-top: var(--space-6);
+          :focus-visible {
+            border-radius: var(--radius-4);
+            .copy-icon {
+              opacity: 1;
+              transition: all 0.3s;
+            }
+          }
+          @media only screen and (max-width: 449px) {
+            margin-top: var(--space-3);
+          }
+        }
+        :hover {
+          .copy-icon {
+            opacity: 1;
+            transition: all 0.3s;
+          }
+        }
+      }
+      h3 {
+        position: relative;
+        display: flex;
+        align-items: flex-start;
+        gap: var(--space-10);
+        a {
+          margin-top: var(--space-4);
+          &:focus-visible {
+            border-radius: var(--radius-4);
+            .copy-icon {
+              opacity: 1;
+              transition: all 0.3s;
+            }
+          }
+          @media only screen and (max-width: 449px) {
+            margin-top: var(--space-1);
+          }
+        }
+        :hover {
+          .copy-icon {
+            opacity: 1;
+            transition: all 0.3s;
+          }
+        }
+      }
+      h4 {
+        position: relative;
+        display: flex;
+        align-items: flex-start;
+        gap: var(--space-10);
+        margin: var(--space-24) 0;
+        a {
+          margin-top: var(--space-1);
+          :focus-visible {
+            border-radius: var(--radius-4);
+            .copy-icon {
+              opacity: 1;
+              transition: all 0.3s;
+            }
+            .copy-icon-h4 {
+              opacity: 1;
+              transition: all 0.3s;
+            }
+          }
+          @media only screen and (max-width: 449px) {
+            margin-top: 0;
+          }
+        }
+        .copy-icon {
+          margin-top: 0;
+        }
+        :hover {
+          .copy-icon {
+            opacity: 1;
+            transition: all 0.3s;
+          }
+          .copy-icon-h4 {
+            opacity: 1;
+            transition: all 0.3s;
+          }
+        }
+      }
+      i {
+        ${body_regular}
+      }
+      ul,
+      ol {
+        li {
+          p {
+            margin: 0;
+          }
+        }
+      }
+      ol {
+        ol {
+          margin-top: var(--space-12);
+        }
+      }
+      .copy-icon {
+        position: unset;
+        width: 24px;
+        height: 24px;
+        opacity: 0;
+        cursor: pointer;
+        transition: all 0.3s;
+        border: none;
+        margin-top: 0;
+        display: flex;
+      }
+      .copy-icon-h4 {
+        width: 18px;
+        height: 18px;
+        opacity: 0;
+        cursor: pointer;
+        transition: all 0.3s;
+        position: unset;
+      }
+      pre {
+        padding: var(--space-20) !important;
+        border-radius: var(--radius-12);
+        border: 1px solid var(--border-default);
+        background: var(--off-white-200);
+        margin: var(--space-16) 0 !important;
+      }
+      * {
+        :last-child {
+          margin-bottom: 0;
+        }
+      }
+      table {
+        width: 100%;
+        margin-top: var(--space-24);
+        box-shadow: var(--border-default) 0px 0px 0px 1px;
+        border-radius: var(--radius-12);
+        background-color: var(--off-white-200);
+        overflow: auto;
+        display: block;
+        ::-webkit-scrollbar {
+          display: none;
+        }
+        p {
+          margin: 0;
+        }
+        @media only screen and (max-width: 449px) {
+          margin-top: var(--space-20);
+          margin-bottom: 0px;
+        }
+        tr {
+          border-bottom: 1px solid var(--border-default);
+
+          :last-child {
+            td {
+              :first-child {
+                border-radius: 0 0 0 var(--radius-12);
+              }
+              :last-child {
+                border-radius: 0 0 var(--radius-12) 0;
+              }
+            }
+          }
+          :last-child {
+            border-bottom: none;
+          }
+        }
+        th {
+          background-color: var(--gray-50);
+          padding: var(--space-12) var(--space-20);
+          text-align: left;
+          ${body_semibold};
+          color: var(--title);
+          p > b,
+          p {
+            ${body_semibold};
+            color: var(--title);
+            word-break: normal;
+          }
+          :first-child {
+            border-radius: var(--radius-12) 0 0 0;
+          }
+          :last-child {
+            border-radius: 0 var(--radius-12) 0 0;
+          }
+        }
+        td {
+          padding: var(--space-16) var(--space-20);
+          ${body_regular};
+          color: var(--title);
+          vertical-align: top;
+          p {
+            ${body_regular};
+            color: var(--title);
+            padding-top: var(--space-20);
+            word-break: normal;
+            :first-child {
+              padding-top: 0;
+            }
+            i {
+              font-style: italic !important;
+            }
+          }
+          a {
+            ${body_regular};
+            color: var(--link-default);
+            transition: color 0.3s ease;
+
+            :hover {
+              color: var(--link-hover);
+            }
+          }
+        }
+      }
+    `}
 `;
 
 export { PrimaryButton, BlackButton, Container, SecondryButton, Content };

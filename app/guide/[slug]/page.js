@@ -7,7 +7,7 @@ import { getArticleData } from '../../lib/contentful-guide';
 import { CURRENT_SITE_URL } from '../../constants/constant';
 
 async function getContent(slug) {
-  const { isEnabled } = await draftMode()
+  const { isEnabled } = await draftMode();
   const articleData = (await getArticleData(slug, isEnabled)) ?? {};
   return { articleData };
 }
@@ -27,7 +27,7 @@ export default async function Guide({ params }) {
   const { articleData } = await getContent(params?.slug);
   if (isEmpty(articleData)) return notFound();
   return (
-    <div className='guidehome'>
+    <div>
       <GuidePage defaultArticle={articleData} />
     </div>
   );

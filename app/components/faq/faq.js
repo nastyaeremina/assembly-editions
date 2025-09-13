@@ -63,11 +63,11 @@ export default function FAQ({ enterprise, isGuideFAQ, currentpath, faqList: allP
             <div className={'accordion-title'} onClick={() => onClickQuestion(faqId)}>
               <div style={{ display: 'inline-flex', alignItems: 'center' }} id={faqId}>
                 <div className='accordion-heading'>
-                  {item.question}
+                  <p>{item.question}</p>
                   {isGuideFAQ && (
-                    <>
+                    <div className='copy-icon'>
                       <CopyLink tagId={faqId} className='faq-copy-icon' size={18} />
-                    </>
+                    </div>
                   )}
                 </div>
               </div>
@@ -108,24 +108,34 @@ export default function FAQ({ enterprise, isGuideFAQ, currentpath, faqList: allP
     <>
       {!isEmpty(allPosts) && (
         <FaqSection enterprise={enterprise} isGuideFAQ={isGuideFAQ} isStandardPage={isStandardPage}>
-          <Container>
-            <FaqTitle isGuideFAQ={isGuideFAQ} id='faq'>
-              <h2 className='faqtitle'>{!isEmpty(title) ? title : 'Frequently asked questions'}</h2>
-              {isGuideFAQ && currentpath && (
-                <Image
-                  src={CopyIcon}
-                  alt='copy-icon'
-                  width={24}
-                  height={24}
-                  className='copy-icon-h4'
-                  onClick={() => {
-                    copy(`${currentpath}#faqs`);
-                  }}
-                />
-              )}
-            </FaqTitle>
-            {faqView}
-          </Container>
+          {isGuideFAQ ? (
+            <>
+              <FaqTitle isGuideFAQ={isGuideFAQ} id='faq'>
+                <h2 className='faqtitle'>{!isEmpty(title) ? title : 'Frequently asked questions'}</h2>
+                {isGuideFAQ && currentpath && <CopyLink tagId={`faqs`} className='copy-icon' size={24} />}
+              </FaqTitle>
+              {faqView}
+            </>
+          ) : (
+            <Container>
+              <FaqTitle isGuideFAQ={isGuideFAQ} id='faq'>
+                <h2 className='faqtitle'>{!isEmpty(title) ? title : 'Frequently asked questions'}</h2>
+                {isGuideFAQ && currentpath && (
+                  <Image
+                    src={CopyIcon}
+                    alt='copy-icon'
+                    width={24}
+                    height={24}
+                    className='copy-icon-h4'
+                    onClick={() => {
+                      copy(`${currentpath}#faqs`);
+                    }}
+                  />
+                )}
+              </FaqTitle>
+              {faqView}
+            </Container>
+          )}
         </FaqSection>
       )}
     </>

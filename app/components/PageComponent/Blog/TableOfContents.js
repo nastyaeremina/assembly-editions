@@ -2,7 +2,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
 import { isEmpty } from '../../../helpers/helpers';
-import { EXTRACT_H2_TAG_FROM_HTML_REGEX } from '../../../constants/constant';
 import { Table, TableHeading, TableContentWrapper, TOCDivider, ActiveBorder } from '../../../styles/blogstyles';
 import BlogSidebarCTA from '../../../components/blogsidebarCTA/index';
 
@@ -16,6 +15,10 @@ import BlogSidebarCTA from '../../../components/blogsidebarCTA/index';
  * @param {sectionTitle} sectionTitle - title of jump to section
  */
 
+// Regex patterns for different heading levels
+const EXTRACT_H2_TAG_FROM_HTML_REGEX = /(?:<h2 id\=\s*)\S.*?(?=\s*<\/h2|$)/gs;
+const EXTRACT_H3_TAG_FROM_HTML_REGEX = /(?:<h3 id\=\s*)\S.*?(?=\s*<\/h3|$)/gs;
+
 export default function TableOfContents({
   htmlData,
   hasTopBar,
@@ -23,24 +26,88 @@ export default function TableOfContents({
   ctaDescription,
   shouldShowBlogCTA,
   sectionTitle,
+  isFAQs = false,
+  faqId = 'faqs',
+  faqLabel = 'FAQ',
+  isShowH2 = true,
+  isShowH3 = false,
   externalLinks = {}
 }) {
   const [activeIndex, setActiveIndex] = useState(0);
   const itemBorderRefs = useRef([]);
 
+  // Extract all headings (H2, H3) and maintain their order
+  const extractAllHeadings = (htmlData) => {
+    if (isEmpty(htmlData)) return [];
+
+    const headings = [];
+
+    // Extract H2 headings
+    if (isShowH2) {
+      const h2Matches = htmlData.match(EXTRACT_H2_TAG_FROM_HTML_REGEX) || [];
+      h2Matches.forEach((match) => {
+        const headingList = match.split('>');
+        const id = headingList[0]?.replace(/['"]+/g, '').replace('<h2 id=', '');
+        const text = headingList[1];
+        if (!isEmpty(text)) {
+          headings.push({ id, text, level: 2, originalMatch: match });
+        }
+      });
+    }
+
+    // Extract H3 headings
+    if (isShowH3) {
+      const h3Matches = htmlData.match(EXTRACT_H3_TAG_FROM_HTML_REGEX) || [];
+      h3Matches.forEach((match) => {
+        const headingList = match.split('>');
+        const id = headingList[0]?.replace(/['"]+/g, '').replace('<h3 id=', '');
+        const text = headingList[1];
+        if (!isEmpty(text)) {
+          headings.push({ id, text, level: 3, originalMatch: match });
+        }
+      });
+    }
+
+    // Sort headings by their position in the HTML document
+    return headings.sort((a, b) => {
+      const aIndex = htmlData.indexOf(a.originalMatch);
+      const bIndex = htmlData.indexOf(b.originalMatch);
+      return aIndex - bIndex;
+    });
+  };
+
   // Direct scroll-based border positioning
   useEffect(() => {
     const handleScroll = () => {
-      const headings = document.querySelectorAll('h2[id]');
+      const headings = extractAllHeadings(htmlData);
       let newActiveIndex = 0;
+      const offset = hasTopBar ? 200 : 160;
+      let decided = false;
 
       for (let i = 0; i < headings.length; i++) {
-        const heading = headings[i];
-        const rect = heading.getBoundingClientRect();
+        const el = document.getElementById(headings[i].id);
+        if (!el) continue;
+        const rect = el.getBoundingClientRect();
 
-        // Check if heading is in view (with offset for header)
-        if (rect.top <= (hasTopBar ? 200 : 160)) {
-          newActiveIndex = i;
+        if (rect.top > offset) {
+          newActiveIndex = Math.max(0, i - 1);
+          decided = true;
+          break;
+        }
+      }
+
+      if (!decided && headings.length > 0) {
+        newActiveIndex = headings.length - 1;
+      }
+
+      // If FAQ is enabled, consider it as an extra item at the end
+      if (isFAQs) {
+        const faqEl = document.getElementById(faqId);
+        if (faqEl) {
+          const faqRect = faqEl.getBoundingClientRect();
+          if (faqRect.top <= offset) {
+            newActiveIndex = headings.length; // FAQ item is rendered last
+          }
         }
       }
 
@@ -49,12 +116,11 @@ export default function TableOfContents({
       }
     };
 
-    // Add scroll listener
     window.addEventListener('scroll', handleScroll, { passive: true });
-    handleScroll(); // Initial call
+    handleScroll();
 
     return () => window.removeEventListener('scroll', handleScroll);
-  }, [hasTopBar, activeIndex]);
+  }, [hasTopBar, activeIndex, isFAQs, faqId, htmlData, isShowH2, isShowH3]);
 
   // Immediate border positioning when activeIndex changes
   useEffect(() => {
@@ -70,35 +136,49 @@ export default function TableOfContents({
 
   const renderTableData = () => {
     if (isEmpty(htmlData)) return null;
-    const newList = htmlData?.match(EXTRACT_H2_TAG_FROM_HTML_REGEX);
-    if (isEmpty(newList)) return null;
 
-    return newList?.map((item, index) => {
-      const headingList = item?.split('>');
-      const id = `${headingList?.[0]?.replace(/['"]+/g, '').replace('<h2 id=', '')}`;
-      const isActive = index === activeIndex;
+    const headings = extractAllHeadings(htmlData);
+    if (isEmpty(headings) && !isFAQs) return null;
 
-      return (
-        !isEmpty(headingList?.[1]) && (
+    return (
+      <>
+        {headings.map((heading, index) => {
+          const isActive = index === activeIndex;
+          const indentClass = `level-${heading.level}`;
+
+          return (
+            <li
+              key={`tableDataHeading_index_${index}`}
+              className={`${isActive ? 'active' : ''} ${indentClass}`}
+              ref={(item) => {
+                itemBorderRefs.current[index] = item;
+              }}>
+              <Link href={`#${heading.id}`} className={isActive ? 'active' : ''}>
+                {heading.text}
+              </Link>
+            </li>
+          );
+        })}
+        {isFAQs && (
           <li
-            key={`tableDataHeading_index_${index}`}
-            className={isActive ? 'active' : ''}
+            key={`tableDataHeading_faq`}
+            className={`${activeIndex === headings.length ? 'active' : ''} level-2`}
             ref={(item) => {
-              itemBorderRefs.current[index] = item;
+              itemBorderRefs.current[headings.length] = item;
             }}>
-            <Link href={`#${id}`} className={isActive ? 'active' : ''}>
-              {headingList?.[1]}
+            <Link href={`#${faqId}`} className={activeIndex === headings.length ? 'active' : ''}>
+              {faqLabel}
             </Link>
           </li>
-        )
-      );
-    });
+        )}
+      </>
+    );
   };
 
   return (
     <>
       <Table>
-        <TableHeading>{sectionTitle}</TableHeading>
+        {!isEmpty(sectionTitle) && <TableHeading>{sectionTitle}</TableHeading>}
         <TableContentWrapper>
           <TOCDivider />
           <ol>
@@ -107,7 +187,9 @@ export default function TableOfContents({
           </ol>
         </TableContentWrapper>
       </Table>
-      {shouldShowBlogCTA && <BlogSidebarCTA headerText={ctaTitle} bodyText={ctaDescription} externalLinks={externalLinks} />}
+      {shouldShowBlogCTA && (
+        <BlogSidebarCTA headerText={ctaTitle} bodyText={ctaDescription} externalLinks={externalLinks} />
+      )}
     </>
   );
 }

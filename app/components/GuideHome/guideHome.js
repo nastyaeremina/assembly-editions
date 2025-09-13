@@ -6,7 +6,8 @@ import FAQ from '../../components/faq/faq';
 import { isEmpty } from '../../helpers/helpers';
 import RichTextDetail from '../richTextDetail/richText';
 import { CURRENT_SITE_URL } from '../../constants/constant';
-import { Caption, FAQSection, GuideCenter, GuideDetail, HeroSection, MainContent, PageTitle } from './styles';
+import { Caption, FAQSection, GuideCenter, HeroSection, MainContent, PageTitle } from './styles';
+import { Content } from '../../styles/commonStyles';
 
 export default function GuideHome({ detail }) {
   const currentPath = usePathname();
@@ -37,9 +38,9 @@ export default function GuideHome({ detail }) {
             {!isEmpty(detail?.header) && <Caption>{detail?.header}</Caption>}
           </HeroSection>
           {!isEmpty(detail?.content?.json) && (
-            <GuideDetail>
-              <RichTextDetail data={detail?.content?.json} assets={detail?.content?.links} />
-            </GuideDetail>
+            <Content isThemedContent>
+              <RichTextDetail data={detail?.content?.json} assets={detail?.content?.links} shouldHeadingCopy />
+            </Content>
           )}
         </GuideCenter>
         {!isEmpty(detail?.faQsCollection?.items) && (

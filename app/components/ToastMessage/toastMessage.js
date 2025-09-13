@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState, useEffect, useCallback } from 'react';
-import { MessageWrapper } from './styles';
+import { MessageWrapper, Text } from './styles';
 
 export default function ToastMessage({ message, onClose }) {
   const [isVisible, setIsVisible] = useState(false);
@@ -42,7 +42,9 @@ export default function ToastMessage({ message, onClose }) {
 
   return (
     <MessageWrapper isVisible={isVisible} isExitingMessage={isExitingMessage}>
-      <p>{message}</p>
+      <Text>
+        <span>{message}</span>
+      </Text>
     </MessageWrapper>
   );
 }

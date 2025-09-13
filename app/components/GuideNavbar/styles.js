@@ -354,8 +354,9 @@ const GuideSectionItem = styled.div`
 `;
 const NavSection = styled.ul``;
 const GuideRight = styled.div`
-  width: 220px;
-  padding: 90px 20px 30px 0px;
+  max-width: 284px;
+  width: 100%;
+  padding-top: var(--space-80);
   position: sticky;
   top: 0;
   overflow: scroll;

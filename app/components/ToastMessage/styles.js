@@ -12,6 +12,7 @@ const MessageWrapper = styled.div`
   max-width: 300px;
   box-shadow: 0px 0px 12px 0px #1010100f;
   position: fixed;
+  z-index: 1;
   bottom: var(--space-24);
   right: var(--space-24);
   transform: ${(props) => {
@@ -28,12 +29,15 @@ const MessageWrapper = styled.div`
   transform-origin: bottom right;
   will-change: transform, opacity;
   backface-visibility: hidden;
+`;
 
-  p {
+const Text = styled.div`
+  display: flex;
+  span {
     color: var(--title);
     ${button_regular}
     margin: 0;
   }
 `;
 
-export { MessageWrapper };
+export { MessageWrapper, Text };

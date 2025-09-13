@@ -164,6 +164,9 @@ const Table = styled.div`
         }
       }
     }
+    li.level-3 {
+      padding-left: var(--space-30);
+    }
     li:hover {
       cursor: pointer;
       color: var(--title);
@@ -319,6 +322,7 @@ const ActiveBorder = styled.div`
 `;
 
 const TOCDivider = styled.div`
+  min-width: 2px;
   width: 2px;
   background-color: var(--border-primary);
   border-radius: var(--radius-12);

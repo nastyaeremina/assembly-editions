@@ -1,42 +1,57 @@
 import styled from 'styled-components';
-import { Body1, Body3, Body4, Body5, HeaderFont, Heading3, MbBody3, MbBody4, MobileH4 } from '../../styles/styles';
+import { Body1, Body4, Body5, HeaderFont, MbBody4, MobileH4 } from '../../styles/styles';
+import { body_regular, h2_semibold } from '../../styles/typography';
 
 const GuideCenter = styled.div`
-  max-width: 740px;
+  max-width: 728px;
   width: 100%;
-  padding: 90px 50px 0px 50px;
-  margin: 0 auto;
-  @media only screen and (max-width: 749px) {
-    padding: 40px 24px 40px;
+  padding-top: var(--space-80);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-64);
+  @media only screen and (max-width: 991px) {
+    padding-top: var(--space-64);
+  }
+  @media only screen and (max-width: 449px) {
+    gap: var(--space-48);
   }
 `;
-const MainContent = styled.div``;
+const MainContent = styled.div`
+  width: 100%;
+  max-width: 728px;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-80);
+  padding-bottom: var(--space-60);
+  @media only screen and (max-width: 991px) {
+    gap: var(--space-40);
+  }
+  @media only screen and (max-width: 449px) {
+    gap: var(--space-48);
+  }
+`;
 const FAQSection = styled.div`
-  max-width: 740px;
+  max-width: 728px;
   width: 100%;
   margin: 0 auto;
-  padding: 0 26px;
-  @media only screen and (max-width: 749px) {
-    padding: 0;
-  }
 `;
 const HeroSection = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: var(--space-24);
+  @media only screen and (max-width: 449px) {
+    gap: var(--space-20);
+  }
 `;
-const PageTitle = styled.h2`
-  ${Heading3};
+const PageTitle = styled.h1`
+  ${h2_semibold};
   color: var(--title);
   margin: 0;
 `;
 const Caption = styled.p`
-  ${Body3};
-  color: var(--body);
+  ${body_regular};
+  color: var(--title);
   margin: 0;
-  @media only screen and (max-width: 449px) {
-    ${MbBody3}
-  }
 `;
 const GuideDetail = styled.div`
   padding: 40px 0;

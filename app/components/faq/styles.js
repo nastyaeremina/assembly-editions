@@ -1,5 +1,5 @@
 import styled, { css } from 'styled-components';
-import { body_regular, h2_semibold, h4_regular, label_regular } from '../../styles/typography';
+import { body_regular, h2_semibold, h3_semibold, h4_regular, label_regular } from '../../styles/typography';
 
 const FaqSection = styled.div`
   padding: var(--space-64) 0;
@@ -42,7 +42,13 @@ const FaqSection = styled.div`
   ${(props) =>
     props.isGuideFAQ &&
     css`
-      padding: 60px 0 100px 0;
+      padding: var(--space-64) 0;
+      @media only screen and (max-width: 991px) {
+        padding: var(--space-64) 0;
+      }
+      @media only screen and (max-width: 449px) {
+        padding: var(--space-48) 0;
+      }
     `}
   .ak:last-child {
     border-bottom: none;
@@ -64,11 +70,6 @@ const FaqSection = styled.div`
       css`
         padding: 0px 0 40px;
       `}
-    ${(props) =>
-      props.isGuideFAQ &&
-      css`
-        padding: 40px 0;
-      `}
   }
   @media only screen and (max-width: 749px) {
     .listtitle {
@@ -84,8 +85,17 @@ const FaqSection = styled.div`
 const FaqTitle = styled.div`
   margin-bottom: var(--space-48);
   :hover {
-    .copy-icon-h4 {
+    .copy-icon {
       opacity: 1;
+    }
+  }
+  h2 {
+    ${h2_semibold};
+    margin: 0;
+    color: var(--title);
+    text-align: center;
+    @media only screen and (max-width: 449px) {
+      text-align: left;
     }
   }
   ${(props) =>
@@ -94,33 +104,33 @@ const FaqTitle = styled.div`
       display: inline-flex;
       align-items: center;
       gap: 10px;
-
-      .copy-icon-h4 {
+      h2 {
+        ${h3_semibold}
+      }
+      .copy-icon {
         opacity: 0;
         cursor: pointer;
         transition: all 0.3s;
       }
-      .copy-icon-h4 {
+      .copy-icon {
         :hover {
           opacity: 1;
           transition: all 0.3s;
         }
       }
+      a {
+        display: flex;
+        :focus-visible {
+          .copy-icon {
+            opacity: 1;
+            transition: all 0.3s;
+          }
+          outline: 1px solid var(--link-default);
+          border-radius: var(--radius-4);
+        }
+      }
     `}
-  h2 {
-    ${h2_semibold};
-    margin: 0;
-    color: var(--title);
-    text-align: center;
-    ${(props) =>
-      props.isGuideFAQ &&
-      css`
-        ${body_regular};
-      `};
-    @media only screen and (max-width: 449px) {
-      text-align: left;
-    }
-  }
+
   @media only screen and (max-width: 449px) {
     margin-bottom: var(--space-24);
   }
@@ -133,7 +143,15 @@ const DivFAQ = styled.div`
   ${(props) =>
     props.isGuideFAQ &&
     css`
-      padding-bottom: var(--space-24);
+      border: none;
+      border-bottom: 1px solid var(--border-default);
+      :last-child {
+        border-bottom: 1px solid var(--border-default) !important;
+
+        @media only screen and (max-width: 449px) {
+          padding-bottom: var(--space-20) !important ;
+        }
+      }
     `}
   .accordion-title {
     display: flex;
@@ -148,17 +166,15 @@ const DivFAQ = styled.div`
     ${(props) =>
       props.isGuideFAQ &&
       css`
-        padding: 24px 0px 0;
+        padding: var(--space-20) 0px 0;
+        gap: var(--space-20);
         > div > svg {
           width: 20px;
           height: 20px;
         }
+
         @media only screen and (max-width: 449px) {
           padding: 28px 0px 0;
-          > div > svg {
-            width: 20px;
-            height: 20px;
-          }
         }
       `}
     :hover {
@@ -180,13 +196,30 @@ const DivFAQ = styled.div`
     ${h4_regular}
     color: var(--title);
     margin: 0 var(--space-20) 0 0;
+    p {
+      margin: 0;
+      ${h4_regular}
+      color: var(--title);
+      display: inline;
+    }
     ${(props) =>
       props.isGuideFAQ &&
       css`
-        ${body_regular};
-        display: inline-flex;
-        gap: var(--space-10);
-        align-items: center;
+        .copy-icon {
+          display: inline-flex;
+          margin-left: var(--space-10);
+          a {
+            display: flex;
+            :focus-visible {
+              .faq-copy-icon {
+                opacity: 1;
+                transition: all 0.3s;
+              }
+              outline: 1px solid var(--link-default);
+              border-radius: var(--radius-4);
+            }
+          }
+        }
       `}
   }
   .accordion-content {
@@ -219,8 +252,8 @@ const FAQAnswer = styled.div`
     ${(props) =>
       props.isGuideFAQ &&
       css`
-        ${label_regular};
-        padding: 20px 32px 0 0;
+        ${body_regular};
+        padding: var(--space-8) var(--space-38) 0 0;
         p {
           margin-top: 0;
           :last-child {
@@ -230,10 +263,20 @@ const FAQAnswer = styled.div`
             margin-top: -4px;
           }
         }
+        a {
+          color: var(--link-default);
+          :hover {
+            color: var(--link-hover);
+          }
+        }
+        em {
+          ${body_regular};
+          color: var(--text-secondary);
+        }
       `}
     p {
       margin: 0;
-      margin-top: var(--space-8);
+      margin-top: var(--space-20);
       :first-child {
         margin-top: 0;
       }
@@ -260,12 +303,12 @@ const FAQAnswer = styled.div`
   }
 
   a {
-    color: var(--primary);
+    color: var(--link-default);
     display: initial;
     cursor: pointer;
 
     :hover {
-      color: var(--dark-green);
+      color: var(--link-hover);
     }
   }
 
