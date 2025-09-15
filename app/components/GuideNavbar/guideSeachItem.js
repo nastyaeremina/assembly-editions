@@ -21,7 +21,7 @@ export default function GuideSearchList({ filteredList, onCloseSearch }) {
               <SearchList>
                 <div>
                   <div key={index} className='list'>
-                    <Icon className='svgicon'>
+                    <Icon className='svgicon-search'>
                       <div dangerouslySetInnerHTML={{ __html: item?.iconCode }} />
                     </Icon>
                     <SearchListText>

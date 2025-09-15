@@ -14,7 +14,7 @@ seoMetadata{
 const POST_GRAPHQL_ARTICLE_CARD_FIELDS = `
 slug
 name
-iconCode
+iconCode : iconSvg
 header
 `;
 const POST_GRAPHQL_GUIDE_PAGE_FIELDS = `
@@ -51,7 +51,7 @@ sys{
 slug
 name
 header
-iconCode
+iconCode: iconSvg
 content{
   json
 }
@@ -235,6 +235,6 @@ export async function getGuideHomePageContent({ id, preview }) {
     `,
     preview,
     [CONTENTFUL_API_TAG.GUIDE]
-  );
+  );  
   return entries?.data?.pageDocs;
 }

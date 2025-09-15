@@ -7,8 +7,10 @@ import {
   PopularCard,
   PopularDetail,
   PopularImageDiv,
-  PopularTitle
+  PopularTitle,
+  TitleSection
 } from './styles';
+import SVGComponent from '../../../public/images/svg/SVGComponent';
 
 /**
  * GuideArticleCard Component
@@ -27,14 +29,23 @@ export default function GuideArticleCard({ isLargeCard = false, iconCode, title,
   const renderCardBody = useMemo(() => {
     return (
       <PopularDetail isLargeCard={isLargeCard}>
-        <PopularTitle>{title}</PopularTitle>
+        <TitleSection>
+          <PopularTitle>{title}</PopularTitle>
+          <SVGComponent
+            name='blog-card-hover-arrow-icon'
+            width='16'
+            height='16'
+            viewBox='0 0 16 16'
+            className='svg-icon'
+          />
+        </TitleSection>
         <PopularCaption>{caption}</PopularCaption>
       </PopularDetail>
     );
   }, [isLargeCard, caption, title]);
   return (
     <>
-      <PopularCard href={href}>
+      <PopularCard href={href} isLargeCard={isLargeCard}>
         {isLargeCard ? (
           <>
             <PopularImageDiv>

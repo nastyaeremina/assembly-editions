@@ -1,39 +1,68 @@
 import styled, { css } from 'styled-components';
 import Link from 'next/link';
-import { Body1, Body4, Body5 } from '../../styles/styles';
+import { body_regular, body_semibold, button_regular, h4_semibold } from '../../styles/typography';
 
 const PopularCard = styled(Link)`
-  /* max-width: 306px; */
   width: 100%;
-  border-radius: 4px;
-  border: 1px solid var(--border);
+  overflow: hidden;
   :hover {
-    border-color: var(--dark-green);
+    ${(props) =>
+      props.isLargeCard &&
+      css`
+        .svg-icon {
+          transform: none;
+          opacity: 1;
+        }
+      `}
+  }
+  @media only screen and (max-width: 449px) {
+    border: 1px solid var(--border-default);
+    border-radius: var(--radius-12);
   }
 `;
-const PopularImageDiv = styled.div`
+
+const TitleSection = styled.div`
   display: flex;
-  justify-content: center;
   align-items: center;
-  background-image: url('/images/popularcardbg.svg');
-  background-repeat: no-repeat;
-  background-size: cover;
-  height: 160px;
-  border-radius: 3px 3px 0 0;
+  justify-content: space-between;
+`;
+
+const PopularImageDiv = styled.div`
+  padding: var(--space-20);
+  background-color: var(--gray-50);
+  height: 152px;
+  border-radius: var(--radius-12);
+  @media only screen and (max-width: 449px) {
+    border-bottom: 1px solid var(--border-default);
+    border-radius: 0;
+    height: unset;
+  }
 `;
 const PopularDetail = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: var(--space-4);
   ${(props) =>
     props.isLargeCard &&
     css`
-      padding: 20px;
+      padding-top: var(--space-20);
+      .svg-icon {
+        transform: translateX(-2px) scale(0.98);
+        transition: transform 0.25s, opacity 0.25s;
+        transition-timing-function: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        opacity: 0;
+      }
+      @media only screen and (max-width: 449px) {
+        padding: var(--space-20);
+      }
     `}
+  .svg-icon {
+    opacity: 0;
+  }
 `;
-const PopularTitle = styled.h3`
+const PopularTitle = styled.p`
   margin: 0;
-  ${Body4}
+  ${body_semibold}
   color: var(--title);
 `;
 const PopularCaption = styled.p`
@@ -42,33 +71,29 @@ const PopularCaption = styled.p`
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 2;
   overflow: hidden;
-  ${Body5};
-  color: var(--body);
+  ${button_regular};
+  color: var(--text-secondary);
 `;
 
 const ArticleCardSection = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: var(--space-40);
 `;
 
 const CenterImage = styled.div`
-  background-image: url('/images/popularcardicon.svg');
-  background-repeat: no-repeat;
-  width: 108px;
-  height: 76px;
   display: flex;
-  justify-content: center;
-  > div {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-  }
   svg {
-    width: 42px;
-    height: 42px;
+    width: 28px;
+    height: 28px;
     path {
-      stroke: var(--light-green);
+      fill: var(--text-secondary);
+    }
+  }
+  @media only screen and (max-width: 449px) {
+    svg {
+      width: 24px;
+      height: 24px;
     }
   }
 `;
@@ -76,30 +101,41 @@ const CenterImage = styled.div`
 const SectionHead = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: var(--space-8);
 `;
-const PopularHeading = styled.h2`
+const PopularHeading = styled.h4`
   margin: 0;
-  ${Body1};
+  ${h4_semibold};
   color: var(--title);
 `;
 const PopularBody = styled.div`
   p {
     margin: 0;
-    ${Body5};
-    color: var(--body);
+    ${body_regular};
+    color: var(--text-secondary);
   }
 `;
 const GuideCard = styled.div`
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-  gap: 20px;
+  gap: var(--space-24);
 `;
 
 const CardSection = styled.div`
-  padding: 20px;
+  padding: var(--space-20);
   display: flex;
-  gap: 12px;
+  flex-direction: column;
+  gap: var(--space-20);
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-12);
+  height: 100%;
+  transition: background 0.3s ease;
+  :hover {
+    background-color: var(--bg-primary-hover);
+  }
+  @media only screen and (max-width: 449px) {
+    border: unset;
+  }
 `;
 
 const ArticaleIcon = styled.div`
@@ -109,7 +145,15 @@ const ArticaleIcon = styled.div`
     width: 28px;
     height: 28px;
     path {
-      stroke: var(--medium-gray);
+      fill: var(--text-secondary);
+    }
+  }
+  @media only screen and (max-width: 449px) {
+    width: 24px;
+    height: 24px;
+    svg {
+      width: 24px;
+      height: 24px;
     }
   }
 `;
@@ -126,5 +170,6 @@ export {
   PopularBody,
   GuideCard,
   CardSection,
-  ArticaleIcon
+  ArticaleIcon,
+  TitleSection
 };

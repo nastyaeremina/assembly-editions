@@ -4,12 +4,16 @@ const MainHomePage = styled.div`
   max-width: 1008px;
   width: 100%;
   margin: 0 auto;
-  padding: 90px 24px 40px;
+  padding: var(--space-80) 0;
   display: flex;
   flex-direction: column;
-  gap: 40px;
-  @media only screen and (max-width: 768px) {
-    padding: 40px 24px 40px;
+  gap: var(--space-80);
+  @media only screen and (max-width: 991px) {
+    padding: var(--space-40) 0;
+    gap: var(--space-64);
+  }
+  @media only screen and (max-width: 449px) {
+    gap: var(--space-48);
   }
 `;
 export { MainHomePage };

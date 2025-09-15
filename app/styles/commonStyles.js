@@ -721,7 +721,6 @@ const Content = styled.div`
         border-radius: var(--radius-12);
         background-color: var(--off-white-200);
         overflow: auto;
-        display: block;
         ::-webkit-scrollbar {
           display: none;
         }
@@ -731,6 +730,7 @@ const Content = styled.div`
         @media only screen and (max-width: 449px) {
           margin-top: var(--space-20);
           margin-bottom: 0px;
+          display: block;
         }
         tr {
           border-bottom: 1px solid var(--border-default);

@@ -179,13 +179,15 @@ export default function TableOfContents({
     <>
       <Table>
         {!isEmpty(sectionTitle) && <TableHeading>{sectionTitle}</TableHeading>}
-        <TableContentWrapper>
-          <TOCDivider />
-          <ol>
-            <ActiveBorder id='active-border' />
-            {renderTableData()}
-          </ol>
-        </TableContentWrapper>
+        {!isEmpty(htmlData) && (
+          <TableContentWrapper>
+            <TOCDivider />
+            <ol>
+              <ActiveBorder id='active-border' />
+              {renderTableData()}
+            </ol>
+          </TableContentWrapper>
+        )}
       </Table>
       {shouldShowBlogCTA && (
         <BlogSidebarCTA headerText={ctaTitle} bodyText={ctaDescription} externalLinks={externalLinks} />

@@ -1,17 +1,14 @@
 'use client';
-import React, { useCallback, useEffect, useMemo, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useState, useRef, useLayoutEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Link from 'next/link';
 import { useSelectedLayoutSegment } from 'next/navigation';
 import { useHotkeys } from 'react-hotkeys-hook';
-import Image from 'next/image';
-import CopilotLogos from '../../../public/images/blacklogo.svg';
 import { addGuideSiderItem, deleteGuideSiderItem } from '../../actions/guideActions';
 import { BergerMenu, FirstLine, SecondLine, ThirdLine } from '../navbar/styles';
 import { isEmpty, removeEmptyElement } from '../../helpers/helpers';
 import {
-  BtnIcon,
-  CopilotGuideLogo,
+  Divider,
   GuideMobileNavbar,
   GuideSectionItem,
   Icon,
@@ -26,11 +23,15 @@ import {
   NavmenuSection,
   OptionIcon,
   OptionName,
+  ResponsiveInputWrap,
+  SearchBarContent,
   SideNavbar,
   SideNavbarHead,
   Text
 } from './styles';
 import GuideSearch from './guideSearch';
+import SVGComponent from '../../../public/images/svg/SVGComponent';
+import LinkComponent from '../linkComponent/linkComponent';
 
 export default function GuideNavbar({ sectionData, articleData }) {
   const guideSelector = useSelector((state) => state?.guide);
@@ -39,9 +40,9 @@ export default function GuideNavbar({ sectionData, articleData }) {
   const [isClick, setIsClick] = useState(false);
   // State to manage the mobile menu's open/closed state
   const [isOpenMobileMenu, setIsOpenMobileMenu] = useState(false);
-  const [isSecOpen, setIsSecOpen] = useState(false);
   const [isSearchModalOpen, setIsSearchModalOpen] = useState(false);
   const [isActive, setIsActive] = useState(false);
+  const [rowHeight, setRowHeight] = useState(32);
 
   // State to store the hotkey combination based on the operating system
   const [hotkeyCombination, setHotkeyCombination] = useState('ctrl+k');
@@ -50,6 +51,11 @@ export default function GuideNavbar({ sectionData, articleData }) {
   let selectedArticleId, section, parentArticleId;
   const slug = useSelectedLayoutSegment();
   const dispatch = useDispatch();
+
+  const navContainerRef = useRef(null);
+  const responsiveNavContainerRef = useRef(null);
+  const [measuredHeights, setMeasuredHeights] = useState({});
+  const measureHeightsRef = useRef(null);
 
   const handleScroll = () => {
     setClientWindowHeight(window.scrollY);
@@ -96,6 +102,16 @@ export default function GuideNavbar({ sectionData, articleData }) {
       }
       if (findIndex === -1) {
         dispatch(addGuideSiderItem({ id }));
+        // Focus the first focusable element in the opened dropdown after a short delay
+        setTimeout(() => {
+          const sectionElement = document.querySelector(`[data-section-id="${id}"]`);
+          if (sectionElement) {
+            const firstFocusableElement = sectionElement.querySelector('a.guidelink');
+            if (firstFocusableElement) {
+              firstFocusableElement.focus();
+            }
+          }
+        }, 200);
       } else {
         dispatch(deleteGuideSiderItem(id));
       }
@@ -147,13 +163,132 @@ export default function GuideNavbar({ sectionData, articleData }) {
     isScrollPage = false;
   }
 
-  //calculate total article of perticluar section
-  const calculateTotalSubArticle = useCallback((sectionData) => {
-    const total = sectionData?.items?.reduce((accumulator, element) => {
-      return accumulator + 1;
-    }, 0);
-    return total;
+  useEffect(() => {
+    const updateRowHeight = () => {
+      setRowHeight(window.innerWidth <= 991 ? 48 : 32);
+    };
+
+    updateRowHeight(); // initial check
+    window.addEventListener('resize', updateRowHeight);
+    return () => window.removeEventListener('resize', updateRowHeight);
   }, []);
+
+  // FIXED useLayoutEffect to recalc parent height when sub opens
+  useLayoutEffect(() => {
+    const desktopRoot = navContainerRef.current;
+    const mobileRoot = responsiveNavContainerRef.current;
+    if (!desktopRoot && !mobileRoot) return;
+
+    const measure = () => {
+      const newHeights = {};
+
+      // helper fn for reusability
+      const measureRoot = (root) => {
+        if (!root) return;
+        sectionData?.forEach((sectionItem) => {
+          const sectionId = sectionItem?.sys?.id;
+          const sectionWrapper = root.querySelector(`[data-section-id="${sectionId}"]`);
+          if (!sectionWrapper) return; // 🚀 important: no overwrite if not found
+
+          const sectionUl = sectionWrapper.querySelector(':scope > ul');
+          let totalHeight = 0;
+          if (sectionUl) {
+            const clone = sectionUl.cloneNode(true);
+            clone.style.height = 'auto';
+            clone.style.visibility = 'hidden';
+            clone.style.position = 'absolute';
+            clone.style.pointerEvents = 'none';
+            clone.style.width = sectionUl.offsetWidth + 'px'; // Ensure same width for accurate text wrapping
+            sectionUl.parentNode.appendChild(clone);
+            totalHeight = clone.scrollHeight;
+            sectionUl.parentNode.removeChild(clone);
+          }
+
+          // Section height save (merge instead of overwrite)
+          newHeights[`section_${sectionId}`] = Math.max(newHeights[`section_${sectionId}`] || 0, totalHeight);
+
+          // Sub-dropdowns
+          const subUls = sectionWrapper.querySelectorAll('ul.subitem-dropdown');
+          subUls.forEach((subUl) => {
+            const articleId = subUl.getAttribute('data-article-id');
+            if (!articleId) return;
+
+            const clone = subUl.cloneNode(true);
+            clone.style.height = 'auto';
+            clone.style.visibility = 'hidden';
+            clone.style.position = 'absolute';
+            clone.style.pointerEvents = 'none';
+            clone.style.width = subUl.offsetWidth + 'px'; // Ensure same width for accurate text wrapping
+            subUl.parentNode.appendChild(clone);
+            const subHeight = clone.scrollHeight;
+            subUl.parentNode.removeChild(clone);
+
+            newHeights[`article_${articleId}`] = Math.max(newHeights[`article_${articleId}`] || 0, subHeight);
+          });
+        });
+      };
+
+      measureRoot(desktopRoot);
+      measureRoot(mobileRoot);
+
+      setMeasuredHeights(newHeights);
+    };
+
+    measureHeightsRef.current = measure;
+    measure();
+
+    const onResize = () => measure();
+    window.addEventListener('resize', onResize);
+
+    let roDesktop, roMobile;
+    try {
+      if (desktopRoot) {
+        roDesktop = new ResizeObserver(measure);
+        roDesktop.observe(desktopRoot);
+      }
+      if (mobileRoot) {
+        roMobile = new ResizeObserver(measure);
+        roMobile.observe(mobileRoot);
+      }
+    } catch (e) {}
+
+    return () => {
+      window.removeEventListener('resize', onResize);
+      if (roDesktop) roDesktop.disconnect();
+      if (roMobile) roMobile.disconnect();
+    };
+  }, [sectionData, rowHeight, articleData, guideSectionData]);
+
+  // Additional effect to trigger height measurement when guideSectionData changes
+  useLayoutEffect(() => {
+    if (measureHeightsRef.current) {
+      // Use a small delay to ensure DOM has updated
+      const timeoutId = setTimeout(() => {
+        measureHeightsRef.current();
+      }, 10);
+
+      return () => clearTimeout(timeoutId);
+    }
+  }, [guideSectionData]);
+
+  const calculateSubHeight = useCallback(
+    (collection) => {
+      if (!collection?.items?.length) return 0;
+      return collection.items.length * rowHeight;
+    },
+    [rowHeight]
+  );
+
+  // Calculate parent section height with proper text wrapping consideration
+  const calculateSectionHeight = useCallback(
+    (collection) => {
+      if (!collection?.items?.length) return 0;
+      // Use a more generous height calculation for parent sections to account for potential text wrapping
+      // Each item could potentially wrap to 2 lines, so we use 1.5x the base row height
+      return collection.items.length * rowHeight * 1.5;
+    },
+    [rowHeight]
+  );
 
   // Function to toggle the mobile menu
   const handleMobileMenu = useCallback(() => {
@@ -168,113 +303,113 @@ export default function GuideNavbar({ sectionData, articleData }) {
     setIsActive(!isActive);
   }, [isOpenMobileMenu, isActive]);
 
-  // Function to render the article items
+  // Render child articles
   const renderArticleItemView = useCallback(
-    (item, index, isSub = false) => {
-      return item?.items?.map((childItem, childIndex) => {
+    (collection, index, isSub = false, parentSectionId = null) => {
+      if (!collection?.items?.length) return null;
+
+      return collection.items.map((childItem) => {
         if (isEmpty(childItem?.name)) return null;
-        //check is current section open or not
-        let isOpen = isSectionOpen(childItem?.sys?.id);
-        let height = calculateTotalSubArticle(childItem?.childArticlesCollection) * 34;
+
+        const isOpen = isSectionOpen(childItem?.sys?.id);
+        const subHeight =
+          measuredHeights[`article_${childItem?.sys?.id}`] ?? calculateSubHeight(childItem?.childArticlesCollection);
+
+        // Determine if this item should be focusable
+        // For top-level articles, check if their parent section is open
+        // For sub-articles, check if their parent article is open
+        const shouldBeFocusable = parentSectionId ? isSectionOpen(parentSectionId) : isSectionOpen(childItem?.sys?.id);
+
         return (
-          <>
-            <NavItem
-              key={`guidearticle_index${childItem?.sys?.id}`}
-              isSubItem={isSub}
-              onClick={() => {
-                onOpenSection(childItem?.sys?.id);
-                isOpen = isSectionOpen(childItem?.sys?.id);
-                setIsSecOpen(true);
-                setIsOpenMobileMenu(false);
-              }}>
-              <Link href={`/guide/${childItem?.slug}`} className='guidelink' shallow={true}>
+          <React.Fragment key={`guidearticle_${childItem?.sys?.id}`}>
+            <Link
+              href={`/guide/${childItem?.slug}`}
+              className='guidelink'
+              shallow
+              tabIndex={shouldBeFocusable ? 0 : -1}>
+              <NavItem
+                isSubItem={isSub}
+                onClick={() => {
+                  onOpenSection(childItem?.sys?.id);
+                  setIsOpenMobileMenu(false);
+                  setIsActive(false);
+                }}>
                 {!isEmpty(childItem?.iconCode) && (
-                  <Icon className='svgicon' isSelected={selectedArticleId === childItem?.slug}>
+                  <Icon isSelected={selectedArticleId === childItem?.slug}>
                     <div dangerouslySetInnerHTML={{ __html: childItem?.iconCode }} />
                   </Icon>
                 )}
                 <IconText isSelected={selectedArticleId === childItem?.slug} className='secondhead'>
                   {childItem?.name}
                 </IconText>
-              </Link>
+              </NavItem>
 
-              {childItem?.childArticlesCollection?.total > 0 && (
+              {childItem?.childArticlesCollection?.items?.length > 0 && (
                 <OptionIcon className={isOpen && 'close'}>
-                  <svg width='12' height='12' viewBox='0 0 12 12' fill='none' xmlns='http://www.w3.org/2000/svg'>
-                    <g id='Icon - home-outline'>
-                      <path
-                        id='Vector'
-                        d='M3.80078 1.37109L8.42927 5.99958L3.80078 10.6281'
-                        stroke='#757575'
-                        stroke-width='1.25'
-                        stroke-linecap='round'
-                        stroke-linejoin='round'
-                      />
-                    </g>
-                  </svg>
+                  <SVGComponent
+                    name='angle-right-arrow-icon'
+                    width='14'
+                    height='14'
+                    viewBox='0 0 16 16'
+                    className={isOpen ? 'rotate-icon' : ''}
+                  />
                 </OptionIcon>
               )}
-            </NavItem>
-            <ul className={isOpen ? 'open' : ''} style={{ height: height }}>
-              {isOpen && <>{renderArticleItemView(childItem?.childArticlesCollection, index, true)}</>}
-            </ul>
-          </>
+            </Link>
+
+            {/* Only render <ul> if there are sub-articles */}
+            {childItem?.childArticlesCollection?.items?.length > 0 && (
+              <ul
+                className={isOpen ? 'open subitem-dropdown' : 'subitem-dropdown'}
+                data-article-id={childItem?.sys?.id}
+                style={{ height: isOpen ? `${subHeight}px` : 0 }}>
+                {renderArticleItemView(childItem?.childArticlesCollection, index, true, childItem?.sys?.id)}
+              </ul>
+            )}
+          </React.Fragment>
         );
       });
     },
-    [calculateTotalSubArticle, isSectionOpen, onOpenSection, selectedArticleId]
+    [calculateSubHeight, isSectionOpen, onOpenSection, selectedArticleId, measuredHeights]
   );
 
   const navbarRenderView = useMemo(() => {
     if (isEmpty(sectionData)) return null;
+
     return sectionData.map((item, index) => {
       if (isEmpty(item?.name)) return null;
-      // calulate total height of section one section need 34px
-      const total = item?.articlesCollection?.total;
-      let hegith = total * 34;
-      item?.articlesCollection?.items?.forEach((x) => {
-        if (isSectionOpen(x?.sys?.id)) {
-          hegith = x?.childArticlesCollection?.total * 34 + hegith;
-        }
-      });
 
-      let isOpen = isSectionOpen(item?.sys?.id);
+      const isOpen = isSectionOpen(item?.sys?.id);
+      const measuredSectionHeight =
+        measuredHeights[`section_${item?.sys?.id}`] ?? calculateSectionHeight(item?.articlesCollection);
+
       return (
-        <>
-          <GuideSectionItem totalHeight={hegith}>
-            <NavHead
-              onClick={() => {
-                onOpenSection(item?.sys?.id);
-                isOpen = isSectionOpen(item?.sys?.id);
-              }}
-              key={index}
-              className='nav-button'>
-              <OptionName isSelected={isOpen} className='head'>
-                {item?.name}
-              </OptionName>
-              <OptionIcon className={isOpen && 'close'}>
-                <svg width='12' height='12' viewBox='0 0 12 12' fill='none' xmlns='http://www.w3.org/2000/svg'>
-                  <g id='Icon - home-outline'>
-                    <path
-                      id='Vector'
-                      d='M3.80078 1.37109L8.42927 5.99958L3.80078 10.6281'
-                      stroke='#757575'
-                      stroke-width='1.25'
-                      stroke-linecap='round'
-                      stroke-linejoin='round'
-                    />
-                  </g>
-                </svg>
-              </OptionIcon>
-            </NavHead>
-            <ul className={isOpen ? 'open' : ''} style={{ height: hegith }}>
-              {isOpen && renderArticleItemView(item?.articlesCollection, index)}
+        <GuideSectionItem data-section-id={item?.sys?.id} totalHeight={measuredSectionHeight} key={`section_${index}`}>
+          <NavHead onClick={() => onOpenSection(item?.sys?.id)} className='nav-button' tabIndex={0}>
+            <OptionName isSelected={isOpen} className='head'>
+              {item?.name}
+            </OptionName>
+            <OptionIcon className={isOpen && 'close'}>
+              <SVGComponent
+                name='angle-right-arrow-icon'
+                width='14'
+                height='14'
+                viewBox='0 0 16 16'
+                className={isOpen ? 'rotate-icon' : ''}
+              />
+            </OptionIcon>
+          </NavHead>
+
+          {/* Render children only if exist */}
+          {item?.articlesCollection?.items?.length > 0 && (
+            <ul className={isOpen ? 'open' : ''} style={{ height: isOpen ? `${measuredSectionHeight}px` : 0 }}>
+              {renderArticleItemView(item?.articlesCollection, index, false, item?.sys?.id)}
             </ul>
-          </GuideSectionItem>
-        </>
+          )}
+        </GuideSectionItem>
       );
     });
-  }, [sectionData, isSectionOpen, onOpenSection, renderArticleItemView]);
+  }, [sectionData, isSectionOpen, onOpenSection, renderArticleItemView, measuredHeights, calculateSectionHeight]);
 
   // Effect to determine the hotkey combination based on the user agent (OS)
   useEffect(() => {
@@ -308,22 +443,21 @@ export default function GuideNavbar({ sectionData, articleData }) {
 
       <>
         <SideNavbar>
-          <Maindiv>
+          <Maindiv ref={navContainerRef}>
             <SideNavbarHead>
               <Link href='/' aria-label={'Navigate to Home'}>
-                <CopilotGuideLogo alt='copilot logo' loading='lazy' width='142' height='30' src={CopilotLogos.src} />
+                <SVGComponent name='assembly-small-icon' width='24' height='24' viewBox='0 0 24 24' />
               </Link>
+              <Divider />
               <NavTitle>
-                <Link href={'/guide'}>Guide</Link>
+                <LinkComponent title='Help Guides' linkHref='/guide' />
               </NavTitle>
             </SideNavbarHead>
-            <InputWrap onClick={setIsSearchModalOpen}>
-              <Image src='/images/guideask.svg' alt='search-icon' width={24} height={24} className='ask-icon' />
-              <Text>Search guide...</Text>
-              <BtnIcon>
-                <Image src='/images/command.svg' alt='search-icon' width={20} height={20} />
-                <Image src='/images/commandk.svg' alt='search-icon' width={20} height={20} />
-              </BtnIcon>
+            <InputWrap onClick={() => setIsSearchModalOpen(true)}>
+              <div className='desktop-search-icon'>
+                <SVGComponent name='search-icon' width='20' height='20' viewBox='0 0 20 20' className='search-icon' />
+              </div>
+              <Text>Search</Text>
             </InputWrap>
             <NavmenuSection>{navbarRenderView}</NavmenuSection>
           </Maindiv>
@@ -332,25 +466,29 @@ export default function GuideNavbar({ sectionData, articleData }) {
           <NavbarHeader>
             <SideNavbarHead>
               <Link href='/' aria-label={'Navigate to Home'}>
-                <CopilotGuideLogo alt='copilot logo' loading='lazy' width='142' height='30' src={CopilotLogos.src} />
+                <SVGComponent name='assembly-small-icon' width='24' height='24' viewBox='0 0 24 24' />
               </Link>
+              <Divider />
               <NavTitle>
                 <Link href={'/guide'} onClick={() => setIsOpenMobileMenu(false)}>
-                  Guide
+                  Help Guides
                 </Link>
               </NavTitle>
             </SideNavbarHead>
-            <BergerMenu onClick={handleMobileMenu} aria-label='navbar menu button'>
-              <FirstLine isActive={isActive} />
-              <SecondLine isActive={isActive} />
-              <ThirdLine isActive={isActive} />
-            </BergerMenu>
+            <SearchBarContent>
+              <ResponsiveInputWrap onClick={() => setIsSearchModalOpen(true)}>
+                <SVGComponent name='search-icon' width='20' height='20' viewBox='0 0 20 20' className='search-icon' />
+              </ResponsiveInputWrap>
+              <BergerMenu onClick={handleMobileMenu} aria-label='navbar menu button'>
+                <FirstLine isActive={isActive} />
+                <SecondLine isActive={isActive} />
+                <ThirdLine isActive={isActive} />
+              </BergerMenu>
+            </SearchBarContent>
           </NavbarHeader>
-          {isOpenMobileMenu && (
-            <MobileNavMenu>
-              <NavmenuSection>{navbarRenderView}</NavmenuSection>
-            </MobileNavMenu>
-          )}
+          <MobileNavMenu isOpenMobile={isOpenMobileMenu} ref={responsiveNavContainerRef}>
+            <NavmenuSection>{navbarRenderView}</NavmenuSection>
+          </MobileNavMenu>
         </GuideMobileNavbar>
       </>
     </>

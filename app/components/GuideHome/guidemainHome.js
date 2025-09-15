@@ -4,13 +4,14 @@ import GuideCardSection from '../guideArticleCard/guideArticleCardSection';
 import GuideHeroComponent from '../Hero/guideHero';
 import { isEmpty, removeEmptyElement } from '../../helpers/helpers';
 import { MainHomePage } from './guidemainHomeStyles';
+import { Container } from '../../styles/commonStyles';
 
 export default function GuideMainHome({ data }) {
   const mostPopularArticleData = removeEmptyElement(data?.sectionContent1Collection?.items);
   const appGuideArticleData = removeEmptyElement(data?.sectionContent2Collection?.items);
   const isShowHeroSection = !isEmpty(data?.title) || !isEmpty(data?.description);
   return (
-    <>
+    <Container>
       <MainHomePage>
         {isShowHeroSection && <GuideHeroComponent title={data?.title} description={data?.description} />}
         {!isEmpty(mostPopularArticleData) && (
@@ -29,6 +30,6 @@ export default function GuideMainHome({ data }) {
           />
         )}
       </MainHomePage>
-    </>
+    </Container>
   );
 }

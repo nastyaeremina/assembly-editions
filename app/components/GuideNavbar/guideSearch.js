@@ -1,4 +1,4 @@
-import React, { useCallback, useState, useEffect, useMemo } from 'react';
+import React, { useCallback, useState, useEffect } from 'react';
 import { Command } from 'cmdk';
 import {
   SearachResultItem,
@@ -12,6 +12,9 @@ import {
 } from '../../helpers/helpers';
 import { Main, OverLayDiv, PopUp } from './styles';
 import GuideSearchList from './guideSeachItem';
+import SVGComponent from '../../../public/images/svg/SVGComponent';
+import { SearchInputWrapper, SearchListWrapper } from './styles';
+
 export default function GuideSearch({ articleData, onCloseSearch }) {
   const ref = React.useRef(null);
   const [inputValue, setInputValue] = React.useState('');
@@ -193,21 +196,16 @@ export default function GuideSearch({ articleData, onCloseSearch }) {
           <div className='vercel'>
             <Command ref={ref} loop={true} shouldFilter={false}>
               <div className='search-icon'>
-                <svg
-                  class='sc-1cffe3d4-12 bUXUSd'
-                  width='16'
-                  height='16'
-                  viewBox='0 0 16 16'
-                  fill='#8A8F98'
-                  role='img'
-                  focusable='false'
-                  aria-hidden='true'>
-                  <path d='M9.8 6.8C9.8 5.14315 8.45685 3.8 6.8 3.8C5.14315 3.8 3.8 5.14315 3.8 6.8C3.8 8.45685 5.14315 9.8 6.8 9.8C8.45685 9.8 9.8 8.45685 9.8 6.8ZM9.49786 10.7707C8.72901 11.2941 7.80023 11.6 6.8 11.6C4.14903 11.6 2 9.45097 2 6.8C2 4.14903 4.14903 2 6.8 2C9.45097 2 11.6 4.14903 11.6 6.8C11.6 7.80023 11.2941 8.72901 10.7707 9.49786L13.7364 12.4636C14.0879 12.8151 14.0879 13.3849 13.7364 13.7364C13.3849 14.0879 12.8151 14.0879 12.4636 13.7364L9.49786 10.7707Z'></path>
-                </svg>
+                <SVGComponent name='search-icon' width='20' height='20' viewBox='0 0 20 20' />
               </div>
+              {!isEmpty(inputValue) && (
+                <div className='close-icon' onClick={() => handleSearch('')}>
+                  <SVGComponent name='search-close-icon' width='16' height='16' viewBox='0 0 16 16' />
+                </div>
+              )}
               <Command.Input
                 autoFocus
-                placeholder='Search guide…'
+                placeholder='Search'
                 value={inputValue}
                 onValueChange={(value) => {
                   handleSearch(value);
@@ -220,7 +218,9 @@ export default function GuideSearch({ articleData, onCloseSearch }) {
               />
               {!isEmpty(inputValue) && isEmpty(filteredList) && (
                 <Command.List>
-                  <Command.Empty>No results found for {inputValue}.</Command.Empty>
+                  <Command.Empty>
+                    No results found for ‘{inputValue}’. <p> Try a different keyword?</p>
+                  </Command.Empty>
                 </Command.List>
               )}
 
