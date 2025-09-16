@@ -40,16 +40,7 @@ export default async function NewIndex({ searchParams }) {
     <>
       <AggregateRating data={details.seoMetadata} />
       <Layout abTestContentLabel={abTestContentLabel} abTestExperimentName={abTestExperimentName}>
-        <PricingPage details={details} />
-        <FAQ faqList={faqData} />
-        <NewCTA
-          title={details.ctaSection?.title}
-          description={details.ctaSection?.description}
-          primaryButtonLink={details.ctaSection?.primaryButtonLink}
-          primaryButtonText={details.ctaSection?.primaryButtonText}
-          secondaryButtonLink={details.ctaSection?.secondaryButtonLink}
-          secondaryButtonText={details.ctaSection?.secondaryButtonText}
-        />
+        <PricingPage details={details} faqData={faqData} />
       </Layout>
     </>
   );

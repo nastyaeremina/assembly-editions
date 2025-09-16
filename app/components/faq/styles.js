@@ -1,5 +1,5 @@
 import styled, { css } from 'styled-components';
-import { body_regular, h2_semibold, h3_semibold, h4_regular, label_regular } from '../../styles/typography';
+import { body_regular, h2_semibold, h3_semibold, h4_regular } from '../../styles/typography';
 
 const FaqSection = styled.div`
   padding: var(--space-64) 0;
@@ -12,7 +12,7 @@ const FaqSection = styled.div`
   ${(props) =>
     props.isStandardPage &&
     css`
-      padding: 0px 0 60px;
+      padding: 0px 0 var(--space-64);
     `}
   li {
     padding-bottom: 0;
@@ -20,66 +20,27 @@ const FaqSection = styled.div`
       border-bottom: 0;
     }
   }
-  .listtitle {
-    margin-right: 30px;
-  }
-  .listcaption {
-    padding-bottom: 40px;
-    padding-right: 72px;
-    @media only screen and (max-width: 991px) {
-      padding-right: 70px;
-    }
-    @media only screen and (max-width: 749px) {
-      padding-right: 70px;
-    }
-  }
-  ${(props) =>
-    props.enterprise &&
-    css`
-      padding: 100px 0 60px 0;
-      background-color: var(--light-green);
-    `}
   ${(props) =>
     props.isGuideFAQ &&
     css`
       padding: var(--space-64) 0;
-      @media only screen and (max-width: 991px) {
-        padding: var(--space-64) 0;
-      }
       @media only screen and (max-width: 449px) {
         padding: var(--space-48) 0;
       }
     `}
-  .ak:last-child {
-    border-bottom: none;
-  }
-  .c2:last-child {
-    border-bottom: none;
-  }
   @media only screen and (max-width: 991px) {
-    .listtitle {
-      font-size: 28px !important;
-      line-height: 34px !important;
-    }
-    .listcaption {
-      font-size: 18px !important;
-      line-height: 22px !important;
-    }
     ${(props) =>
       props.isStandardPage &&
       css`
-        padding: 0px 0 40px;
+        padding: 0px 0 var(--space-40);
       `}
   }
-  @media only screen and (max-width: 749px) {
-    .listtitle {
-      font-size: 22px !important;
-      line-height: 23px !important;
-    }
-    .listcaption {
-      font-size: 16px !important;
-      line-height: 21px !important;
-    }
+  @media only screen and (max-width: 449px) {
+    ${(props) =>
+      props.isStandardPage &&
+      css`
+        padding: 0px 0 var(--space-48);
+      `}
   }
 `;
 const FaqTitle = styled.div`
@@ -227,7 +188,6 @@ const DivFAQ = styled.div`
   .faq-copy-icon {
     width: 18px;
     height: 18px;
-    /* margin-left: -10px; */
     opacity: 0;
     transition: all 0.6s;
   }
@@ -259,9 +219,6 @@ const FAQAnswer = styled.div`
           :last-child {
             margin-bottom: 0;
           }
-          :first-child {
-            margin-top: -4px;
-          }
         }
         a {
           color: var(--link-default);
@@ -276,7 +233,7 @@ const FAQAnswer = styled.div`
       `}
     p {
       margin: 0;
-      margin-top: var(--space-20);
+      margin-top: var(--space-8);
       :first-child {
         margin-top: 0;
       }

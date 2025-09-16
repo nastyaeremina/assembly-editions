@@ -11,7 +11,8 @@ import {
   WrapSlide,
   PriceTable,
   PlanButton,
-  TableTitle
+  TableTitle,
+  PricingPageWrapper
 } from '../../../styles/pricingstyles';
 import PricingCardSection from '../../pricingcard/pricingCardSection';
 import { isEmpty } from '../../../helpers/helpers';
@@ -20,8 +21,10 @@ import AppTooltip from '../../appsCards/appTooltip';
 import { ButtonVariant, PlanList } from '../../../constants/constant';
 import YearlyToggleComponent from './yearlyToggleComponent';
 import ButtonV2Component from '../../button/buttonV2/buttonV2';
+import FAQ from '../../faq/faq';
+import NewCTA from '../../cta/newCTA';
 
-export default function PricingPage({ details }) {
+export default function PricingPage({ details, faqData }) {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const planFeatures = [];
   details?.planFeaturesCollection?.items?.forEach((element) => {
@@ -179,48 +182,59 @@ export default function PricingPage({ details }) {
   }, [isTopbarPresent, renderTablePlanNameView, isSticky]);
 
   return (
-    <>
-      <HeroSection>
-        <Container>
-          {!isEmpty(details?.header) && <h1>{details.header}</h1>}
-          {!isEmpty(details?.body) && <p>{details.body}</p>}
-        </Container>
-      </HeroSection>
-      <PricingSection>
-        <Container>
-          <PriceMenu>
-            <PriceButton>
-              <WrapSlide>
-                <YearlyToggleComponent onClick={toggleBillingCycle} isYearly={isYearly} />
-              </WrapSlide>
-            </PriceButton>
-            <>
-              {!isEmpty(details?.plansCollection?.items) && (
-                <PricingCardSection
-                  data={details?.plansCollection?.items}
-                  cardSize={details?.plansCollection?.total || 0}
-                  isYearly={isYearly}
+    <PricingPageWrapper>
+      <div>
+        <HeroSection>
+          <Container>
+            {!isEmpty(details?.header) && <h1>{details.header}</h1>}
+            {!isEmpty(details?.body) && <p>{details.body}</p>}
+          </Container>
+        </HeroSection>
+        <PricingSection>
+          <Container>
+            <PriceMenu>
+              <PriceButton>
+                <WrapSlide>
+                  <YearlyToggleComponent onClick={toggleBillingCycle} isYearly={isYearly} />
+                </WrapSlide>
+              </PriceButton>
+              <>
+                {!isEmpty(details?.plansCollection?.items) && (
+                  <PricingCardSection
+                    data={details?.plansCollection?.items}
+                    cardSize={details?.plansCollection?.total || 0}
+                    isYearly={isYearly}
+                  />
+                )}
+              </>
+              <PlanButton>
+                <ButtonV2Component
+                  title={isShowFeature ? 'Show plan details' : 'Hide plan details'}
+                  onClick={toggleShowFeature}
+                  variant={ButtonVariant.SECONDARY_WITH_BORDER}
+                  iconName={!isShowFeature && !isEmpty(planFeatures) ? 'down-arrow-icon' : 'up-arrow-icon'}
+                  className='button'
                 />
-              )}
-            </>
-            <PlanButton>
-              <ButtonV2Component
-                title={isShowFeature ? 'Show plan details' : 'Hide plan details'}
-                onClick={toggleShowFeature}
-                variant={ButtonVariant.SECONDARY_WITH_BORDER}
-                iconName={!isShowFeature && !isEmpty(planFeatures) ? 'down-arrow-icon' : 'up-arrow-icon'}
-                className='button'
-              />
-            </PlanButton>
-          </PriceMenu>
-          {!isShowFeature && !isEmpty(planFeatures) && (
-            <PriceTable is4Card={details?.plansCollection?.total === 4}>
-              {renderTableHeader}
-              {renderPlanFeaturesView}
-            </PriceTable>
-          )}
-        </Container>
-      </PricingSection>
-    </>
+              </PlanButton>
+            </PriceMenu>
+            {!isShowFeature && !isEmpty(planFeatures) && (
+              <PriceTable is4Card={details?.plansCollection?.total === 4}>
+                {renderTableHeader}
+                {renderPlanFeaturesView}
+              </PriceTable>
+            )}
+          </Container>
+        </PricingSection>
+      </div>
+      <FAQ faqList={faqData} />
+      <NewCTA
+        title={details.ctaSection?.title}
+        description={details.ctaSection?.description}
+        primaryButtonLink={details.ctaSection?.primaryButtonLink}
+        primaryButtonText={details.ctaSection?.primaryButtonText}
+        secondaryButtonLink={details.ctaSection?.secondaryButtonLink}
+        secondaryButtonText={details.ctaSection?.secondaryButtonText}
+      />
+    </PricingPageWrapper>
   );
 }

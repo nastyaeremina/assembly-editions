@@ -1,6 +1,21 @@
 import styled, { css } from 'styled-components';
 import { body_regular, body_semibold, button_regular, h1_semibold, label_regular } from './typography';
 
+const PricingPageWrapper = styled.div`
+  padding-bottom: var(--space-80);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-80);
+  @media only screen and (max-width: 991px) {
+    padding-bottom: var(--space-64);
+    gap: var(--space-64);
+  }
+  @media only screen and (max-width: 449px) {
+    padding-bottom: var(--space-48);
+    gap: var(--space-48);
+  }
+`;
+
 const HeroSection = styled.div`
   padding: var(--space-80) 0 0 0;
   text-align: center;
@@ -30,7 +45,15 @@ const HeroSection = styled.div`
   }
 `;
 
-const PricingSection = styled.div``;
+const PricingSection = styled.div`
+  padding-bottom: var(--space-64);
+  @media only screen and (max-width: 991px) {
+    padding-bottom: var(--space-40);
+  }
+  @media only screen and (max-width: 449px) {
+    padding-bottom: var(--space-48);
+  }
+`;
 const PriceMenu = styled.div``;
 const PriceButton = styled.div`
   display: flex;
@@ -108,11 +131,11 @@ const PriceTable = styled.div`
     }
     :first-child {
       position: sticky;
-      top: 81px;
+      top: 80px;
       z-index: 9;
       background-color: var(--off-white-100);
       &.topbarContent {
-        top: 126px;
+        top: 120px;
       }
       &.sticky {
         border-radius: 0;
@@ -248,6 +271,7 @@ const PriceTable = styled.div`
 `;
 
 export {
+  PricingPageWrapper,
   HeroSection,
   PricingSection,
   PriceMenu,
