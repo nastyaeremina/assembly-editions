@@ -6,7 +6,7 @@ const Validation = ({ children, style, error, success, disabled = false, isLast 
   return (
     <ValidationForm isLast={isLast} className={className}>
       <Icon>
-        <SVGComponent name='error-icon' width='20' height='20' viewBox='0 0 20 20' />
+        <SVGComponent name='new-error-icon' width='12' height='12' viewBox='0 0 12 12' />
       </Icon>
       {error && error}
     </ValidationForm>

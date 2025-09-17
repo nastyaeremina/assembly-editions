@@ -1,36 +1,75 @@
 'use client';
 import Image from 'next/image';
-import { BookSection, ImageSection, DemoContain, BottomName, PropertyDiv } from '../../../styles/bookdemoStyles';
+import {
+  BookSection,
+  ImageSection,
+  DemoContain,
+  BottomName,
+  PropertyDiv,
+  SectionWrapper,
+  ImageSectionWrapper,
+  ImageDiv,
+  DotIcon,
+  TextBox,
+  LeftSection,
+  DotIconLarge,
+  LogoSection,
+  LogoDiv
+} from '../../../styles/bookdemoStyles';
 import BookDemoForm from '../../bookdemo/bookDemo';
-import BookDemoImage from '../../../../public/images/bookdemo.png';
-import SocialProofProperty from '../../socialProofProperty/socialProofProperty';
-import UserAvtar from '../../../../public/images/useravtar.png';
+import BookDemoImage from '../../../../public/images/new-bookdemo.png';
+import { Container } from '../../../styles/commonStyles';
+import G2Logo from '../../../../public/images/round-g2logo.png';
+import CapterraLogo from '../../../../public/images/round-capterra-logo.png';
+import ProductHuntLogo from '../../../../public/images/round-product-hunt-logo.png';
 
 export default function BookDemoPage({ data, thankYouMessage, externalLinks = {} }) {
   return (
     <>
       <BookSection>
-        <BookDemoForm  data={data} thankYouMessage={thankYouMessage} externalLinks={externalLinks} />
-        <div className='image-section'>
-          <ImageSection>
-            <div className='img'>
-              <Image src={BookDemoImage} width={752} height={771} alt='' />
-            </div>
-            <PropertyDiv>
-              <SocialProofProperty rateCount='1000+' isBookDemo={true} />
-            </PropertyDiv>
-            <DemoContain>
-              <p>
-                “A modern, fast, and intuitive tool to engage with clients and get work done. A natural extension of our
-                brand and business.”
-              </p>
-              <BottomName>
-                <Image src={UserAvtar} width={32} height={32} alt='' />
-                <p>Lachlan Nicolson, Waymaker Finance</p>
-              </BottomName>
-            </DemoContain>
-          </ImageSection>
-        </div>
+        <Container>
+          <SectionWrapper>
+            <BookDemoForm data={data} thankYouMessage={thankYouMessage} externalLinks={externalLinks} />
+            <ImageSectionWrapper>
+              <ImageSection>
+                <ImageDiv>
+                  <Image src={BookDemoImage} width={648} height={1010} alt='' className='img' />
+                </ImageDiv>
+                <TextBox>
+                  <PropertyDiv>
+                    <LeftSection>
+                      <p>1000+ reviews</p>
+                      <DotIconLarge />
+                      <p>4.8 (5)</p>
+                    </LeftSection>
+                    <LogoSection>
+                      <LogoDiv>
+                        <Image src={G2Logo} alt='g2-icon' width={33} height={33} />
+                      </LogoDiv>
+                      <LogoDiv>
+                        <Image src={CapterraLogo} alt='capterra-icon' width={33} height={33} />
+                      </LogoDiv>
+                      <LogoDiv>
+                        <Image src={ProductHuntLogo} alt='producthunt-icon' width={33} height={33} />
+                      </LogoDiv>
+                    </LogoSection>
+                  </PropertyDiv>
+                  <DemoContain>
+                    <p>
+                      “Assembly eliminates all the clutter.It keeps everything streamlined, centralized, and easy to
+                      manage. Clients also love it at first glance because of its convenience.”
+                    </p>
+                    <BottomName>
+                      <p>Mallory Durrick</p>
+                      <DotIcon />
+                      <p>Founder Durrick Designs</p>
+                    </BottomName>
+                  </DemoContain>
+                </TextBox>
+              </ImageSection>
+            </ImageSectionWrapper>
+          </SectionWrapper>
+        </Container>
       </BookSection>
     </>
   );

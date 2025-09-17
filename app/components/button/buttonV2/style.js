@@ -34,6 +34,7 @@ const Buttons = styled.button`
     css`
       justify-content: center;
       text-align: center;
+      width: 100%;
     `}
 
   // size of button

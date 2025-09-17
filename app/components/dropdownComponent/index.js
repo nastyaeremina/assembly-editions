@@ -4,7 +4,18 @@ import { DropDownWrapper, DropDownHeader, DropDownListContainer, DropDownList, L
 import SVGComponent from '../../../public/images/svg/SVGComponent';
 
 // Customizable dropdown menu component
-function DropDown({ items = [], placeholder = 'Select', onSelect, defaultValue = null, labelKey = 'name' }) {
+function DropDown({
+  items = [],
+  placeholder = 'Select',
+  onSelect,
+  defaultValue = null,
+  labelKey = 'name',
+  applyDropdownCss = false,
+  isError = false,
+  id,
+  name,
+  dataName
+}) {
   // Calculate default selected item (All, defaultValue, or null)
   const getDefaultItem = useMemo(() => {
     if (defaultValue) return defaultValue;
@@ -46,13 +57,37 @@ function DropDown({ items = [], placeholder = 'Select', onSelect, defaultValue =
 
   return (
     <DropDownWrapper ref={ref}>
-      <DropDownHeader onClick={toggleDropdown}>
+      <DropDownHeader
+        onClick={toggleDropdown}
+        applyDropdownCss={applyDropdownCss}
+        isError={isError}
+        isOpen={isOpen}
+        isPlaceholderColor={!selectedItem}
+        tabIndex={0}
+        role='button'
+        aria-expanded={isOpen}
+        aria-haspopup='listbox'
+        id={id}
+        name={name}
+        data-name={dataName}
+        onKeyDown={(e) => {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            toggleDropdown();
+          }
+        }}>
         {selectedItem ? selectedItem[labelKey] : placeholder}
-        <SVGComponent name='dropdown-arrow-icon' width='16' height='16' viewBox='0 0 16 17' />
+        <SVGComponent
+          name='dropdown-arrow-icon'
+          width='16'
+          height='16'
+          viewBox='0 0 16 17'
+          className={isOpen ? 'rotate-icon' : ''}
+        />
       </DropDownHeader>
       {isOpen && (
-        <DropDownListContainer>
-          <DropDownList>
+        <DropDownListContainer applyDropdownCss={applyDropdownCss}>
+          <DropDownList applyDropdownCss={applyDropdownCss}>
             {items.map((item, index) => (
               <ListItem
                 key={item.id || index}

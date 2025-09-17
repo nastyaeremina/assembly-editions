@@ -209,6 +209,8 @@ body {
   --assembly-blue: #bce7f4;
   --tap-highlight-color: rgba(255, 255, 255, 0);
   --scroll-thumb-color: #625e5e;
+  --off-white-100-thirty-percentage-opacity: #fefefd4d;
+  --error-color: #ff5644;
 
   /* Old website color */
   --text-primary: #212b36;

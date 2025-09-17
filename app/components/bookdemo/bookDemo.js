@@ -1,17 +1,16 @@
 'use client';
 import Link from 'next/link';
-import Image from 'next/image';
 import { useCallback, useEffect, useState } from 'react';
 import Script from 'next/script';
 import { useDispatch, useSelector } from 'react-redux';
 import { checkValidation } from '../../services/bookDemoService';
 import { setformValidationError, updateBookDemoItem } from '../../actions/bookDemoActions';
-import { BOOK_DEMO_CONTENT_TYPE } from '../../constants/constant';
-import Button from '../button/button';
+import { BOOK_DEMO_CONTENT_TYPE, ButtonSize, ButtonTone } from '../../constants/constant';
 import Validation from '../Validation/validation';
 import { isEmpty } from '../../helpers/helpers';
 import { EXTERNAL_LINK_KEYS } from '../../constants/constant';
 import SVGComponent from '../../../public/images/svg/SVGComponent';
+import DropDown from '../dropdownComponent';
 import {
   MainSection,
   FormSection,
@@ -26,13 +25,20 @@ import {
   CardList,
   TextWrap,
   ThanksWrap,
-  ItemDiv
+  ItemDiv,
+  Details,
+  SuccessIcon,
+  Textarea
 } from './styles';
+import ButtonV2Component from '../button/buttonV2/buttonV2';
+import { useIsMobile } from '../../hooks/useMobileDevice';
 
 export default function BookDemoForm({ data, thankYouMessage, externalLinks = {} }) {
   const bookDemoSelector = useSelector((state) => state.bookDemo);
   const { validationError, bookDemoData } = bookDemoSelector;
   const [isSubmit, setIsSubmit] = useState(false);
+
+  const isMobile = useIsMobile();
 
   const dispatch = useDispatch();
 
@@ -47,6 +53,27 @@ export default function BookDemoForm({ data, thankYouMessage, externalLinks = {}
     onChangeInfo('industry_other', '');
     onChangeInfo('youInerestedBusiness', '');
   }, [onChangeInfo]);
+
+  useEffect(() => {
+    const onPointerDown = () => {
+      document.body.classList.add('using-mouse');
+      document.body.classList.remove('using-keyboard');
+    };
+    const onKeyDown = (e) => {
+      if (e.key === 'Tab') {
+        document.body.classList.add('using-keyboard');
+        document.body.classList.remove('using-mouse');
+      }
+    };
+
+    window.addEventListener('pointerdown', onPointerDown, true);
+    window.addEventListener('keydown', onKeyDown, true);
+
+    return () => {
+      window.removeEventListener('pointerdown', onPointerDown, true);
+      window.removeEventListener('keydown', onKeyDown, true);
+    };
+  }, []);
 
   const showHideChiliPiper = useCallback(() => {
     function q(a) {
@@ -116,238 +143,262 @@ export default function BookDemoForm({ data, thankYouMessage, externalLinks = {}
           <SubmitSection>
             <Link href='/'>
               <ImgWrap>
-                <Image src='/images/booklogo.svg' alt='book-logo' width={140} height={30} className='desktop' />
-                <Image src='/images/booklogomb.svg' alt='book-logo' width={140} height={30} className='mbicon' />
+                <SVGComponent
+                  name='assembly-big-logo'
+                  width='174'
+                  height='32'
+                  viewBox='0 0 200 38'
+                  className='logo-icon'
+                />
               </ImgWrap>
             </Link>
-            <FormTxt>
-              <h2>Book a demo</h2>
-              <p>Speak to a Copilot expert to learn more and experience a demo.</p>
-            </FormTxt>
-            <ThanksWrap>
-              <CardView>
-                <CardList>
-                  {!isEmpty(thankYouMessage) && (
-                    <>
-                      <TextWrap>
-                        <SVGComponent name='success-icon' width='60' height='60' viewBox='0 0 60 60' />
-                        <h1>Thank you!</h1>
-                        <p>
-                          We received your submission and will be in touch if your business is a good fit. Until then,
-                          please consider starting a full-access free trial below.
-                        </p>
-                      </TextWrap>
-                      <div className='button-group'>
-                        <Button text={'Start trial'} href={externalLinks?.[EXTERNAL_LINK_KEYS.OnboardingLink] || '#'} />
-                        <Button
-                          text={'Read the Guide'}
-                          href={'/guide'}
-                          bgColor={'transparent'}
-                          fontColor={'--black'}
-                          borderColor={'--black'}
-                          hoverColor={'--hover-color'}
-                        />
-                      </div>
-                    </>
-                  )}
-                </CardList>
-              </CardView>
-            </ThanksWrap>
+            <Details>
+              <FormTxt>
+                <h3>Book a demo</h3>
+                <p>Speak to a Assembly expert to learn more and experience a demo.</p>
+              </FormTxt>
+              <ThanksWrap>
+                <CardView>
+                  <CardList>
+                    {!isEmpty(thankYouMessage) && (
+                      <>
+                        <TextWrap>
+                          <SuccessIcon>
+                            <SVGComponent name='new-success-icon' width='60' height='60' viewBox='0 0 60 60' />
+                          </SuccessIcon>
+                          <h4>Booking confirmed</h4>
+                          <p>
+                            We look forward to meet you. In the meantime, get started with the demo or try our product
+                            for free.
+                          </p>
+                        </TextWrap>
+                        <div className='button-group'>
+                          <ButtonV2Component
+                            title={'Start trial'}
+                            href={externalLinks?.[EXTERNAL_LINK_KEYS.OnboardingLink] || '#'}
+                            isWidth
+                            size={isMobile ? ButtonSize.SMALL : ButtonSize.MEDIUM}
+                          />
+                          <ButtonV2Component
+                            title={'Watch demo'}
+                            href={'/'}
+                            isWidth
+                            tone={ButtonTone.DARK}
+                            size={isMobile ? ButtonSize.SMALL : ButtonSize.MEDIUM}
+                          />
+                        </div>
+                      </>
+                    )}
+                  </CardList>
+                </CardView>
+              </ThanksWrap>
+            </Details>
           </SubmitSection>
         ) : (
           <FormSection onSubmit={onSubmit}>
             <Link href='/'>
               <ImgWrap>
-                <Image src='/images/booklogo.svg' alt='book-logo' width={140} height={30} className='desktop' />
-                <Image src='/images/booklogomb.svg' alt='book-logo' width={140} height={30} className='mbicon' />
+                <SVGComponent
+                  name='assembly-big-logo'
+                  width='174'
+                  height='32'
+                  viewBox='0 0 200 38'
+                  className='logo-icon'
+                />
               </ImgWrap>
             </Link>
-            <FormTxt>
-              <h2>Book a demo</h2>
-              <p>Speak to a Copilot expert to learn more and experience a demo.</p>
-            </FormTxt>
-            <FormDetail>
-              <NameBlock>
-                <input type='hidden' id='lead_source' name='Source' value='Book a demo' />
-                <NameInfo className='firstlable'>
-                  <label for='First-Name-'>
-                    First name <span>*</span>
-                  </label>
-                  <Input
-                    type='text'
-                    className='inputtext'
-                    value={bookDemoData?.firstName}
-                    id={`First-Name-`}
-                    name={'First-Name'}
-                    onChange={(e) => onChangeInfo('firstName', e.target.value)}
-                    required={true}
-                    placeholder='First name'
-                  />
-                  {validationError?.name === 'firstName' && <Validation error={validationError?.message} />}
-                </NameInfo>
+            <Details>
+              <FormTxt>
+                <h3>Book a demo</h3>
+                <p>Speak to a Assembly expert to learn more and experience a demo.</p>
+              </FormTxt>
+              <FormDetail>
+                <NameBlock>
+                  <NameInfo className='firstlable'>
+                    <label for='First-Name-'>First name</label>
+                    <Input
+                      type='text'
+                      className='inputtext'
+                      value={bookDemoData?.firstName}
+                      id={`First-Name-`}
+                      name={'First-Name'}
+                      onChange={(e) => onChangeInfo('firstName', e.target.value)}
+                      placeholder='First name'
+                      isError={validationError?.name === 'firstName'}
+                    />
+                    {validationError?.name === 'firstName' && <Validation error={validationError?.message} />}
+                  </NameInfo>
 
-                <NameInfo className='firstlable'>
-                  <label for='lastName'>
-                    Last name <span>*</span>
-                  </label>
-                  <Input
-                    type='text'
-                    id='lastName'
-                    className='inputtext'
-                    name={'Last-Name'}
-                    value={bookDemoData?.lastName}
-                    onChange={(e) => onChangeInfo('lastName', e.target.value)}
-                    required={true}
-                    placeholder='Last name'
-                  />
-                  {validationError?.name === 'lastName' && <Validation error={validationError?.message} />}
-                </NameInfo>
-              </NameBlock>
-              <label for='Email'>
-                Work email <span>*</span>
-              </label>
-              <Input
-                type='email'
-                name='Email'
-                data-name='Email'
-                placeholder='Work email address'
-                id='Email'
-                required=''
-                className='inputtext'
-                value={bookDemoData?.email}
-                onChange={(e) => onChangeInfo('email', e.target.value)}
-              />
-              {validationError?.name === 'email' && <Validation error={validationError?.message} />}
+                  <NameInfo className='firstlable'>
+                    <label for='lastName'>Last name</label>
+                    <Input
+                      type='text'
+                      id='lastName'
+                      className='inputtext'
+                      name={'Last-Name'}
+                      value={bookDemoData?.lastName}
+                      onChange={(e) => onChangeInfo('lastName', e.target.value)}
+                      placeholder='Last name'
+                      isError={validationError?.name === 'lastName'}
+                    />
+                    {validationError?.name === 'lastName' && <Validation error={validationError?.message} />}
+                  </NameInfo>
+                </NameBlock>
+                <label for='Email'>Work email</label>
+                <Input
+                  type='email'
+                  name='Email'
+                  data-name='Email'
+                  placeholder='Work email address'
+                  id='Email'
+                  className='inputtext'
+                  value={bookDemoData?.email}
+                  onChange={(e) => onChangeInfo('email', e.target.value)}
+                  isError={validationError?.name === 'email'}
+                />
+                {validationError?.name === 'email' && <Validation error={validationError?.message} />}
 
-              <label for='Company'>
-                Company name <span>*</span>
-              </label>
-              <Input
-                type='text'
-                name={'Company-name'}
-                placeholder='Your company name'
-                required=''
-                className='inputtext'
-                value={bookDemoData?.companyName}
-                onChange={(e) => onChangeInfo('companyName', e.target.value)}
-              />
-              {validationError?.name === 'companyName' && <Validation error={validationError?.message} />}
-              <ItemDiv>
-                <label for='Last-Name-'>
-                  Company size <span>*</span>
-                </label>
-                <div className='icon-div'>
-                  <SVGComponent name='drop-down-arrow-icon' width='12' height='12' viewBox='0 0 12 13' />
-                </div>
-                <select
+                <label for='Company'>Company name</label>
+                <Input
+                  type='text'
+                  name={'Company-name'}
+                  placeholder='Your company name'
+                  className='inputtext'
+                  value={bookDemoData?.companyName}
+                  onChange={(e) => onChangeInfo('companyName', e.target.value)}
+                  isError={validationError?.name === 'companyName'}
+                />
+                {validationError?.name === 'companyName' && <Validation error={validationError?.message} />}
+                <label for='company_size'>Company size</label>
+                <DropDown
                   id='company_size'
                   name='How-large-is-your-company'
-                  data-name='How large is your company?'
-                  required=''
-                  class='wselect'
-                  onChange={(e) => onChangeInfo('companySize', e.target.value)}>
-                  <option value=''>Select...</option>
-                  {data?.[BOOK_DEMO_CONTENT_TYPE.COMPANY_SIZE]?.map((item, index) => {
-                    return (
-                      <option value={item} key={`industry_index_${index}`}>
-                        {item}
-                      </option>
-                    );
-                  })}
-                </select>
+                  dataName='How large is your company?'
+                  applyDropdownCss={true}
+                  items={
+                    data?.[BOOK_DEMO_CONTENT_TYPE.COMPANY_SIZE]?.map((item, index) => ({
+                      id: `company_size_${index}`,
+                      name: item,
+                      value: item
+                    })) || []
+                  }
+                  placeholder='Select...'
+                  onSelect={(item) => onChangeInfo('companySize', item.value)}
+                  defaultValue={
+                    bookDemoData?.companySize
+                      ? {
+                          id: 'selected_company_size',
+                          name: bookDemoData.companySize,
+                          value: bookDemoData.companySize
+                        }
+                      : null
+                  }
+                  isError={validationError?.name === 'companySize'}
+                />
                 {validationError?.name === 'companySize' && <Validation error={validationError?.message} />}
-              </ItemDiv>
-              <ItemDiv>
-                <label for='Last-Name-'>
-                  Industry <span>*</span>
-                </label>
-                <div className='icon-div'>
-                  <SVGComponent name='drop-down-arrow-icon' width='12' height='12' viewBox='0 0 12 13' />
-                </div>
-                <select
+
+                <label for='industry'>Industry</label>
+                <DropDown
                   id='industry'
                   name='What-industry-are-you-in'
-                  data-name='What industry are you in?'
-                  required=''
-                  class='wselect'
-                  onChange={(e) => {
-                    onChangeInfo('industry', e.target.value);
+                  dataName='What industry are you in?'
+                  applyDropdownCss={true}
+                  items={[
+                    ...(data?.[BOOK_DEMO_CONTENT_TYPE.INDUSTRY]?.map((item, index) => ({
+                      id: `industry_${index}`,
+                      name: item,
+                      value: item
+                    })) || []),
+                    {
+                      id: 'industry_other',
+                      name: 'Other',
+                      value: 'other'
+                    }
+                  ]}
+                  placeholder='Select...'
+                  onSelect={(item) => {
+                    onChangeInfo('industry', item.value);
                     onChangeIndustry();
-                  }}>
-                  <option value=''>Select...</option>
-                  {data?.[BOOK_DEMO_CONTENT_TYPE.INDUSTRY]?.map((item, index) => {
-                    return (
-                      <option value={item} key={`industry_index_${index}`}>
-                        {item}
-                      </option>
-                    );
-                  })}
-                  <option value='other'>Other</option>
-                </select>
+                  }}
+                  defaultValue={
+                    bookDemoData?.industry
+                      ? {
+                          id: 'selected_industry',
+                          name: bookDemoData.industry,
+                          value: bookDemoData.industry
+                        }
+                      : null
+                  }
+                  isError={validationError?.name === 'industry'}
+                />
                 {validationError?.name === 'industry' && <Validation error={validationError?.message} />}
-              </ItemDiv>
-              <ItemDiv>
-                <label for='Last-Name-'>
-                  How did you find us? <span>*</span>
-                </label>
-                <div className='icon-div'>
-                  <SVGComponent name='drop-down-arrow-icon' width='12' height='12' viewBox='0 0 12 13' />
-                </div>
-                <select
+
+                <label for='source'>How did you find us?</label>
+                <DropDown
                   id='source'
                   name='How-did-you-find-us'
                   data-name='How did you find us?'
-                  required=''
-                  class='wselect'
-                  onChange={(e) => onChangeInfo('howDidYouFindUs', e.target.value)}>
-                  <option value=''>Select...</option>
-                  {data?.[BOOK_DEMO_CONTENT_TYPE.FIND_US]?.map((item, index) => {
-                    return (
-                      <option value={item} key={`industry_index_${index}`}>
-                        {item}
-                      </option>
-                    );
-                  })}
-                  <option value='other'>Other</option>
-                </select>
+                  applyDropdownCss={true}
+                  items={[
+                    ...(data?.[BOOK_DEMO_CONTENT_TYPE.FIND_US]?.map((item, index) => ({
+                      id: `find_us_${index}`,
+                      name: item,
+                      value: item
+                    })) || []),
+                    {
+                      id: 'find_us_other',
+                      name: 'Other',
+                      value: 'other'
+                    }
+                  ]}
+                  placeholder='Select...'
+                  onSelect={(item) => onChangeInfo('howDidYouFindUs', item.value)}
+                  defaultValue={
+                    bookDemoData?.howDidYouFindUs
+                      ? {
+                          id: 'selected_find_us',
+                          name: bookDemoData.howDidYouFindUs,
+                          value: bookDemoData.howDidYouFindUs
+                        }
+                      : null
+                  }
+                  isError={validationError?.name === 'howDidYouFindUs'}
+                />
                 {validationError?.name === 'howDidYouFindUs' && <Validation error={validationError?.message} />}
-              </ItemDiv>
-              {bookDemoData?.industry === 'other' && (
-                <>
-                  <label for='Industry-Name-'>
-                    Enter your Industry<span>*</span>
-                  </label>
-                  <Input
-                    type='text'
-                    placeholder=''
-                    required=''
-                    className='inputtext'
-                    value={bookDemoData?.industry_other}
-                    onChange={(e) => onChangeInfo('industry_other', e.target.value)}
-                  />
-                  {validationError?.name === 'industry_other' && <Validation error={validationError?.message} />}
-                </>
-              )}
+                {bookDemoData?.industry === 'other' && (
+                  <>
+                    <label for='Industry-Name-'>Enter your Industry</label>
+                    <Input
+                      type='text'
+                      placeholder='Type a description here...'
+                      className='inputtext'
+                      value={bookDemoData?.industry_other}
+                      onChange={(e) => onChangeInfo('industry_other', e.target.value)}
+                      isError={validationError?.name === 'industry_other'}
+                    />
+                    {validationError?.name === 'industry_other' && <Validation error={validationError?.message} />}
+                  </>
+                )}
 
-              <label for='Last-Name-'>
-                What should we know about your situation or objectives? <span>*</span>
-              </label>
-              <textarea
-                id='What-should-we-know-about-your-situation-or-objectives'
-                name='What-should-we-know-about-your-situation-or-objectives'
-                maxlength='255'
-                data-name='What should we know about your situation or objectives?'
-                placeholder='Type a description here...'
-                required=''
-                class='sm'
-                rows={3}
-                value={bookDemoData?.objectives}
-                onChange={(e) => onChangeInfo('objectives', e.target.value)}
-              />
-              {validationError?.name === 'objectives' && <Validation isLast={true} error={validationError?.message} />}
-            </FormDetail>
+                <label for='Last-Name-'>Your situation or goals</label>
+                <Textarea
+                  id='What-should-we-know-about-your-situation-or-objectives'
+                  name='What-should-we-know-about-your-situation-or-objectives'
+                  maxlength='255'
+                  data-name='What should we know about your situation or objectives?'
+                  placeholder='Type a description here...'
+                  rows={3}
+                  value={bookDemoData?.objectives}
+                  onChange={(e) => onChangeInfo('objectives', e.target.value)}
+                  isError={validationError?.name === 'objectives'}
+                />
+                {validationError?.name === 'objectives' && (
+                  <Validation isLast={true} error={validationError?.message} />
+                )}
+              </FormDetail>
+            </Details>
 
-            <Button text={'Submit'} className='btnposition' type={'submit'} />
+            <ButtonV2Component title='Submit' type='submit' isWidth />
           </FormSection>
         )}
       </MainSection>

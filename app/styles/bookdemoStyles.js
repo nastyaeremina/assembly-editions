@@ -1,45 +1,32 @@
 import styled from 'styled-components';
-import { Body2, Body4, MbBody2, MbBody3, MbBody4, Quote } from './styles';
+import { body_regular, button_regular, h4_regular } from './typography';
 
 const BookSection = styled.div`
   display: flex;
   width: 100%;
-  min-height: 100vh;
-  .image-section {
-    width: 100%;
-  }
+  padding: var(--space-64) 0;
   @media only screen and (max-width: 991px) {
-    height: auto;
+    padding: var(--space-40) 0;
     flex-direction: column;
-    .image-section {
-      padding: 20px 24px;
-    }
+  }
+  @media only screen and (max-width: 449px) {
+    padding: var(--space-48) 0;
   }
 `;
 const ImageSection = styled.div`
   width: 100%;
-  position: sticky;
-  border-left: 1px solid var(--black);
+  position: relative;
   height: 100%;
-  img {
-    width: 100%;
-    height: 771px;
-    object-fit: cover;
-    @media (max-width: 768px) {
-      width: 100%;
-      height: 335px;
-    }
-  }
+`;
+
+const ImageDiv = styled.div`
+  display: flex;
+  height: 100%;
   .img {
-    height: 771px;
-    @media (max-width: 768px) {
-      height: 335px;
-    }
-  }
-  @media (max-width: 768px) {
-    border: 1px solid var(--black);
-    border-radius: 4px;
-    overflow: hidden;
+    width: 100%;
+    height: 100%;
+    border-radius: var(--space-16);
+    object-fit: cover;
   }
 `;
 const DemoContain = styled.div`
@@ -47,42 +34,101 @@ const DemoContain = styled.div`
   display: flex;
   flex-direction: column;
   padding: 24px;
-  border-top: 1px solid var(--black);
   p {
-    ${Body2};
-    color: var(--dark-green);
+    ${h4_regular};
+    color: var(--title);
     margin: 0;
-    @media (max-width: 768px) {
-      ${MbBody2}
-    }
-  }
-  @media (max-width: 768px) {
-    padding: 20px;
   }
 `;
 const BottomName = styled.div`
   display: flex;
-  align-items: center;
-  gap: 12px;
-  padding-top: 24px;
-  img {
-    width: 32px;
-    height: 32px;
-  }
+  align-items: flex-start;
+  gap: var(--space-12);
+  padding-top: var(--space-20);
+
   p {
-    ${Body4};
-    color: var(--dark-green);
+    ${button_regular};
+    color: var(--title);
     margin: 0;
-    @media (max-width: 768px) {
-      ${MbBody4}
-    }
   }
 `;
 const PropertyDiv = styled.div`
-  padding: 24px;
-  border-top: 1px solid var(--black);
-  @media (max-width: 768px) {
-    padding: 20px;
+  padding: var(--space-24);
+  border-bottom: 1px solid var(--off-white-100);
+  display: flex;
+  align-items: center;
+  gap: var(--space-12);
+`;
+const SectionWrapper = styled.div`
+  display: flex;
+  gap: var(--space-96);
+  width: 100%;
+`;
+
+const ImageSectionWrapper = styled.div`
+  max-width: 648px;
+  width: 100%;
+  @media only screen and (max-width: 991px) {
+    display: none;
   }
 `;
-export { BookSection, ImageSection, DemoContain, BottomName, PropertyDiv };
+const DotIcon = styled.div`
+  width: 3px;
+  height: 3px;
+  border-radius: var(--radius-30);
+  background-color: var(--title);
+  margin-top: var(--space-10);
+`;
+
+const TextBox = styled.div`
+  border-radius: var(--radius-12);
+  border: 1px solid var(--off-white-100);
+  background: var(--off-white-100-thirty-percentage-opacity);
+  position: absolute;
+  bottom: var(--space-24);
+  left: var(--space-24);
+  right: var(--space-24);
+`;
+const LeftSection = styled.div`
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-13);
+  p {
+    ${body_regular}
+    margin: 0;
+    color: var(--title);
+  }
+`;
+const DotIconLarge = styled.div`
+  width: 4px;
+  height: 4px;
+  border-radius: var(--radius-30);
+  background-color: var(--title);
+  margin-top: var(--space-12);
+`;
+
+const LogoSection = styled.div`
+  display: flex;
+  margin-left: var(--space-6);
+`;
+
+const LogoDiv = styled.div`
+  display: flex;
+  margin-left: -6px;
+`;
+export {
+  BookSection,
+  ImageSection,
+  DemoContain,
+  BottomName,
+  PropertyDiv,
+  SectionWrapper,
+  ImageSectionWrapper,
+  ImageDiv,
+  DotIcon,
+  TextBox,
+  DotIconLarge,
+  LeftSection,
+  LogoSection,
+  LogoDiv
+};

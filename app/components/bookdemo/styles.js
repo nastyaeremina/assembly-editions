@@ -1,162 +1,39 @@
 import styled, { css } from 'styled-components';
-import {
-  Body3,
-  Body4,
-  Body5,
-  HeaderFont,
-  Heading3,
-  Heading4,
-  Heading6,
-  MbBody3,
-  MbBody4,
-  MbPrimaryBtn,
-  MobileH4
-} from '../../styles/styles';
+import { body_regular, button_regular, h3_regular, h4_semibold, label_regular } from '../../styles/typography';
 
 const MainSection = styled.div`
-  max-width: 50%;
+  max-width: 480px;
   width: 100%;
-  padding: 40px 80px;
-  background-color: var(--main-bg-color);
   @media only screen and (max-width: 991px) {
-    height: 100%;
     max-width: 100%;
-    padding: 28px 160px 22px;
-  }
-  @media only screen and (max-width: 600px) {
-    max-width: 100%;
-    padding: 28px 24px 20px;
   }
 `;
-const LastText = styled.div`
-  text-align: center;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  ${HeaderFont};
-  margin-top: 20px;
-  @media only screen and (max-width: 991px) {
-    margin-top: 16px;
-  }
-  .learn-link,
-  .learn-link svg path {
-    transition: all 300ms ease;
-  }
-  a {
-    ${HeaderFont};
-    margin: 0 0 0 5px;
-    color: var(--primary);
-    cursor: pointer;
-    transition: none;
-    display: flex;
-    align-items: center;
-    :hover .HoverArrow__linePath {
-      opacity: 1;
-      fill: none;
-      fill: black;
-      @media only screen and (max-width: 749px) {
-        opacity: 0;
-      }
-    }
-    :hover .HoverArrow__tipPath {
-      transform: translateX(2px);
-      @media only screen and (max-width: 749px) {
-        transform: none;
-      }
-    }
-  }
 
-  .learn-link:hover {
-    color: black;
-    @media only screen and (max-width: 749px) {
-      color: green;
-    }
-  }
-  .learn-link svg path {
-    transition: all 300ms ease;
-  }
-  .HoverArrow__linePath {
-    opacity: 0;
-    fill: none;
-  }
-  .HoverArrow {
-    stroke-width: 2px;
-    fill: none;
-    stroke: currentColor;
-    position: relative;
-    /* top: 1px; */
-    margin-left: var(--arrowSpacing);
-    stroke-width: 2px;
-    fill: none;
-    stroke: currentColor;
-    margin-left: 4px;
-    --arrowSpacing: 5px;
-    --arrowHoverTransition: 150ms cubic-bezier(0.215, 0.61, 0.355, 1);
-    --arrowHoverOffset: translateX(3px);
-    @media only screen and (max-width: 749px) {
-      display: none;
-    }
-  }
-  .mobilearrow {
-    display: none;
-    @media only screen and (max-width: 749px) {
-      position: relative;
-      display: inline-block;
-      margin-left: 5px;
-    }
-  }
-`;
 const FormSection = styled.form`
   max-width: 480px;
   margin: 0 auto;
-  .btnposition {
-    width: 100%;
-    text-align: center;
-    button {
-      padding: 7px;
-      ${HeaderFont};
-    }
-    a {
-      width: 100%;
-      text-align: center;
-      justify-content: center;
-    }
-  }
-  @media only screen and (max-width: 768px) {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-48);
+  @media only screen and (max-width: 991px) {
     max-width: 100%;
   }
 `;
 const FormTxt = styled.div`
-  h2 {
-    ${Heading3};
+  h3 {
+    ${h3_regular};
     color: var(--title);
     margin: 0;
-    padding-top: 32px;
-  }
-  h4 {
-    ${Heading4};
-    color: var(--title);
-    margin: 0 0 12px 0;
   }
   p {
-    ${Body3};
-    color: var(--body);
+    ${body_regular};
+    color: var(--title);
     margin: 0;
-    padding-top: 16px;
-    padding-bottom: 28px;
-  }
-  @media only screen and (max-width: 768px) {
-    h4 {
-      ${MobileH4};
-      margin-bottom: 8px;
-    }
-    p {
-      ${MbBody3};
-    }
+    padding-top: var(--space-16);
   }
 `;
 const FormDetail = styled.div`
-  padding-bottom: 28px;
   position: relative;
   ${(props) =>
     props.isWeeklyform &&
@@ -165,115 +42,182 @@ const FormDetail = styled.div`
     `}
   label {
     display: block;
-    ${MbPrimaryBtn};
-    color: var(--sub-title);
-    margin: 0 0 5px 0;
+    ${button_regular};
+    color: var(--title);
+    margin: 0 0 var(--space-2) 0;
   }
   select {
-    margin-bottom: 20px;
-    padding: 7px 0;
-    border: 1px solid var(--selected-border-color);
-    border-radius: 4px;
-    background-color: var(--white);
+    margin-bottom: var(--space-20);
+    padding: var(--space-13) var(--space-16) var(--space-9);
+    border: 1px solid var(--border-default);
+    border-radius: var(--radius-8);
+    background-color: var(--off-white-300);
     background-image: none;
     background-position: 0 0;
     background-size: auto;
     background-repeat: repeat;
-    ${Body5};
+    ${button_regular};
+    color: var(--title);
     outline: 0;
     appearance: none;
     width: 100%;
     position: relative;
-    :hover {
-      border-color: var(--primary);
+    &::placeholder {
+      color: var(--gray-200);
     }
     :focus {
-      border-color: var(--primary);
+      border-color: var(--title);
     }
+    :focus-visible {
+      outline: 2px solid var(--link-default);
+      outline-offset: 1px;
+      border-radius: var(--radius-8);
+    }
+    ${(props) =>
+      props.disabled &&
+      css`
+        &::placeholder {
+          color: var(--border-default);
+          pointer-events: none;
+        }
+      `}
+    ${(props) =>
+      props.isError &&
+      css`
+        border: 1px solid var(--error-color);
+        margin-bottom: 0;
+      `}
   }
   .wselect {
     display: block;
     width: 100%;
-    height: 32px;
-    padding: 7px 12px;
-    ${Body5};
+    padding: var(--space-13) var(--space-16) var(--space-9);
+    ${button_regular};
     color: var(--title);
-    font-weight: 400px;
-    /* vertical-align: middle; */
-    background-color: var(--white);
-    border: 1px solid var(--border-gray);
+    background-color: var(--off-white-300);
+    border: 1px solid var(--border-default);
+    option {
+      ${button_regular};
+      color: var(--title);
+    }
   }
+
   .sm {
-    border-radius: 4px;
-    ${Body5};
-  }
-  textarea {
-    width: 100%;
-    max-width: 100%;
-    height: auto;
-    min-height: 32px;
-    /* height: 32px; */
-    padding: 7px 12px;
-    outline: 0;
-    border: 1px solid var(--selected-border-color);
-    overflow: hidden;
-    color: var(--title);
-    :hover {
-      border-color: var(--primary);
-    }
-    :focus {
-      border-color: var(--primary);
-    }
-  }
-  label {
-    font-size: 15px;
-    margin-bottom: 2px;
-    font-weight: 500;
-    line-height: 24px;
+    border-radius: var(--radius-8);
+    ${button_regular};
   }
 
   @media only screen and (max-width: 768px) {
-    padding-bottom: 28px;
     ${(props) =>
       props.isWeeklyform &&
       css`
-        padding-bottom: 8px;
+        padding-bottom: var(--space-8);
       `}
   }
 `;
 
-const Input = styled.input`
-  padding: 7px 12px;
-  background-color: var(--white);
-  border: 1px solid var(--border);
-  border-radius: 4px;
+const Textarea = styled.textarea`
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  min-height: 96px;
+  padding: var(--space-13) var(--space-16) var(--space-9);
   outline: 0;
-  height: 32px;
-  margin-bottom: 20px;
-  ${Body5};
+  border: 1px solid var(--border-default);
+  background-color: var(--off-white-300);
+  overflow: hidden;
+  color: var(--title);
+  border-radius: var(--radius-8);
+  ${button_regular}
+  resize: none;
+  overflow-y: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+  &::placeholder {
+    color: var(--gray-200);
+  }
+
+  body.using-mouse &:focus {
+    border-color: var(--title);
+    outline: none;
+  }
+
+  /* keyboard (Tab) focus */
+  body.using-keyboard &:focus-visible {
+    outline: 2px solid var(--link-default);
+    outline-offset: 1px;
+    border-radius: var(--radius-8);
+  }
+  ${(props) =>
+    props.disabled &&
+    css`
+      &::placeholder {
+        color: var(--border-default);
+        pointer-events: none;
+      }
+    `}
+  ${(props) =>
+    props.isError &&
+    css`
+      border: 1px solid var(--error-color);
+    `}
+`;
+
+const Input = styled.input`
+  padding: var(--space-13) var(--space-16) var(--space-9);
+  background-color: var(--off-white-300);
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-8);
+  outline: 0;
+  margin-bottom: var(--space-20);
+  ${button_regular};
   width: 100%;
   color: var(--title);
-  :hover {
-    border-color: var(--primary);
+  &::placeholder {
+    color: var(--gray-200);
   }
-  :focus {
-    border-color: var(--primary);
+  body.using-mouse &:focus {
+    border-color: var(--title);
+    outline: none;
   }
+
+  /* keyboard (Tab) focus */
+  body.using-keyboard &:focus-visible {
+    outline: 2px solid var(--link-default);
+    outline-offset: 1px;
+    border-radius: var(--radius-8);
+  }
+
+  ${(props) =>
+    props.disabled &&
+    css`
+      &::placeholder {
+        color: var(--border-default);
+        pointer-events: none;
+      }
+    `}
+  ${(props) =>
+    props.isError &&
+    css`
+      border: 1px solid var(--error-color);
+      margin-bottom: 0;
+    `}
 `;
 const ValidationForm = styled.div`
   display: flex;
-  margin-top: -18px;
-  margin-bottom: 20px;
-  font-weight: 400;
-  font-size: 12px;
-  line-height: 14px;
-  letter-spacing: 0.02em;
-  gap: 8px;
-  color: var(--delete-text);
+  align-items: flex-start;
+  margin: var(--space-6) 0 var(--space-20) var(--space-12);
+  margin-bottom: var(--space-20);
+  gap: var(--space-4);
+  ${label_regular}
+  color: var(--error-color);
   ${(props) =>
     props.isLast &&
     css`
-      margin-top: 2px;
+      margin-top: var(--space-2);
       margin-bottom: 0px;
     `}
 `;
@@ -282,106 +226,85 @@ const Icon = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  margin-top: var(--space-1);
 `;
 
 const NameBlock = styled.div`
   display: flex;
-  gap: 16px;
+  gap: var(--space-20);
   .firstlable {
     width: 100%;
   }
 `;
-const NameInfo = styled.div`
-  .inputtext {
-    margin-bottom: 20px;
-    padding: 8px 12px;
-    border-radius: 4px;
-  }
-`;
+const NameInfo = styled.div``;
 
 const ImgWrap = styled.div`
   display: inline-flex;
-  max-height: 24px;
-  img {
-    height: 100%;
-  }
-  @media only screen and (max-width: 768px) {
-    .desktop {
-      display: none;
-    }
-  }
-  .mbicon {
-    display: none;
-    @media only screen and (max-width: 768px) {
-      display: block;
-    }
-  }
 `;
 const HelpLink = styled.div`
   display: flex;
   align-items: center;
 `;
 const SubmitSection = styled.div`
-  max-width: 480px;
-  width: 100%;
-  margin: 0 auto;
-  height: 100%;
   display: flex;
   flex-direction: column;
+  gap: var(--space-48);
+  height: 100%;
 `;
 const ThanksWrap = styled.div`
   height: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
+  width: 100%;
 `;
 
 const CardView = styled.div`
-  background-color: var(--white);
-  padding: 40px 60px;
-  border-radius: 4px;
-  border: 1px solid var(--black);
+  background-color: var(--assembly-blue);
+  padding: var(--space-40);
+  border-radius: var(--radius-12);
   width: 100%;
   display: flex;
   align-items: center;
-  max-height: 653px;
   height: 100%;
   .button-group {
-    padding-top: 32px;
+    padding-top: var(--space-48);
     display: flex;
     flex-direction: column;
-    gap: 16px;
-    a {
-      width: 100%;
-      justify-content: center;
-      padding: 7px;
-      ${HeaderFont};
-    }
-    @media (max-width: 768px) {
-      padding-top: 20px;
-    }
+    gap: var(--space-12);
   }
-  @media only screen and (max-width: 749px) {
-    padding: 40px 20px;
+  @media only screen and (max-width: 991px) {
+    padding: 187px var(--space-40) 211px;
+  }
+  @media only screen and (max-width: 449px) {
+    padding: 156px var(--space-20) 180px;
   }
 `;
 const CardList = styled.div`
   text-align: center;
   width: 100%;
+  @media only screen and (max-width: 991px) {
+    max-width: 400px;
+    margin: 0 auto;
+  }
 `;
 const ImgLine = styled.div``;
 const TextWrap = styled.div`
   h1,
   h2,
   h3 {
-    ${Heading4};
-    margin: 32px 0 0;
-    color: var(--black);
+    ${h4_semibold};
+    margin: var(--space-32) 0 0;
+    color: var(--title);
+  }
+  h4 {
+    ${h4_semibold}
+    margin: var(--space-32) 0 0;
+    color: var(--title);
   }
   p {
-    ${Body4};
-    max-width: 335px;
-    margin: 12px auto 0;
+    ${body_regular};
+    margin: var(--space-20) auto 0;
     display: inline-block;
     color: var(--title);
     &:first-child {
@@ -391,26 +314,8 @@ const TextWrap = styled.div`
   a {
     display: initial;
     color: var(--title);
-    ${Body4};
+    ${body_regular};
     text-decoration: underline;
-  }
-  @media only screen and (max-width: 749px) {
-    h1,
-    h2,
-    h3 {
-      margin: 20px 0 0;
-    }
-    p {
-      ${MbBody4};
-      max-width: 100%;
-      margin: 12px auto 0;
-      display: inline-block;
-      color: var(--title);
-    }
-    a {
-      ${MbBody4};
-      display: inline-block;
-    }
   }
 `;
 
@@ -418,10 +323,24 @@ const ItemDiv = styled.div`
   position: relative;
   .icon-div {
     position: absolute;
-    right: 12px;
-    top: 33px;
+    right: var(--space-16);
+    top: 17px;
     z-index: 1;
+    display: flex;
   }
+`;
+
+const Details = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-40);
+  height: 100%;
+  width: 100%;
+`;
+
+const SuccessIcon = styled.div`
+  display: flex;
+  justify-content: center;
 `;
 
 export {
@@ -433,7 +352,6 @@ export {
   ValidationForm,
   NameBlock,
   NameInfo,
-  LastText,
   ImgWrap,
   ThanksWrap,
   HelpLink,
@@ -443,5 +361,8 @@ export {
   ImgLine,
   TextWrap,
   ItemDiv,
-  Icon
+  Icon,
+  Details,
+  SuccessIcon,
+  Textarea
 };
