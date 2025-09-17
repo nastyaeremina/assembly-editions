@@ -848,3 +848,34 @@ export function getFeaturedBlogAndFilteredPosts(allPosts) {
   return { featuredBlog, filteredPosts };
 }
 
+/**
+ * Transforms raw content data into the format expected by the <StoryMode /> component.
+ * 
+ * Each item in the input array is mapped to a simplified structure, extracting data 
+ * from the first item in the `tabsCollection` for consistency in display.
+ *
+ * @param {Array} data - An array of content items, each containing metadata and a nested tabsCollection.
+ * @returns {Array} - An array of formatted tab data objects ready to be passed to the StoryMode component.
+ */
+export function transformToTabsData(data) {
+  return data.map((item) => {
+    // Return null for invalid or empty entries
+    if (isEmpty(data)) return null;
+
+    // Use only the first tab in the tabsCollection
+    const firstTab = item.tabsCollection.items?.[0] || {};
+
+    return {
+      title: firstTab.title || '', // Used for navigation tab label
+      subTitle: item.subTitle, // Used as section title (shown in SectionHeader)
+      description: item.description, // Section description text
+      primaryButtonText: item.primaryButtonText, // Primary CTA button text
+      primaryButtonLink: item.primaryButtonLink, // Primary CTA button link
+      secondaryButtonText: item.secondaryButtonText, // Secondary CTA button text (optional)
+      secondaryButtonLink: item.secondaryButtonLink, // Secondary CTA button link (optional)
+      image: firstTab.image, // Image shown in the left section
+      quoteBlock: firstTab.quoteBlock, // Quote/testimonial block shown alongside image
+      link: firstTab.link // Used in QuoteSectionComponent for redirection
+    };
+  });
+}

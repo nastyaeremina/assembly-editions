@@ -4,12 +4,14 @@ import ExploreTab from '../solution/clienttab/exploretab';
 import FeatureSection from '../featureSection/featureSection';
 import TabsHorizontal from '../tabsHorizontal/tabsHorizontal';
 import TabsVertical from '../tabsVertical/tabsVertical';
+import { SectionTone } from '../../constants/constant';
 
 export const TAB_SECTION_TYPE = {
   TABS_HORIZONTAL_PILLS: 'Tabs Horizontal Pills',
   TABS_HORIZONTAL_CIRCLES: 'Tabs Horizontal Circles',
   TABS_HORIZONTAL_DETAILS: 'Tabs Horizontal Details',
-  TABS_VERTICAL_DETAILS: 'Tabs Vertical Details'
+  TABS_VERTICAL_DETAILS: 'Tabs Vertical Details',
+  NEW: 'New'
 };
 /**
  * TabsComponent
@@ -81,7 +83,20 @@ export default function TabsComponent({ type, content }) {
             }}
           />
         );
-
+       case TAB_SECTION_TYPE.NEW:
+        return (
+          
+          <SectionComponent
+          tone={content.theme}
+          title={content.title}
+          description={content.description}
+          primaryButtonText={content.primaryButtonText}
+          primaryButtonLink={content.primaryButtonLink}
+          secondaryButtonText={content.secondaryButtonText}
+          secondaryButtonLink={content.secondaryButtonLink}
+          tabItems={content?.tabsCollection?.items}
+        />
+        )
       default: // or some default component or message
         return null;
     }

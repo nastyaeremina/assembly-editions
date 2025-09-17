@@ -1,4 +1,4 @@
-import { isEmpty } from '../../helpers/helpers';
+import { isEmpty, transformToTabsData } from '../../helpers/helpers';
 import {
   getFeatureComponentContent,
   getSectionBoxesComponentContent,
@@ -8,7 +8,7 @@ import {
   getSectionRedirectContent,
   getSectionHighlightContent,
   getSectionBentoBoxComponentContent,
-  getSectionStoryModeSectionComponentContent
+  getSectionStoryModeContent
 } from '../../lib/contentful-standardPage';
 import Modern from '../solution/modern/modern';
 import Quote from '../quote/quote';
@@ -25,9 +25,9 @@ import TestimonialTableSection from '../newTestimonial/testimonialTableSection';
 import HighlightSection from '../highlightSection/highlightSection';
 import { draftMode } from 'next/headers';
 import FeatureBentoBoxSection from '../featureBentoBoxSection/featureBentoBoxSection';
-import SectionComponentAndStoryModeRenderer from '../sectionComponentAndStoryMode';
 import { FEATURE_COMPONENT_TYPE } from '../../constants/constant';
 import CarouselSection from '../CarouselSection/carouselSection';
+import StoryMode from '../StoryMode/storymode';
 
 export default async function StandardPage({ data }) {
   const { isEnabled } = await draftMode();
@@ -226,11 +226,19 @@ export default async function StandardPage({ data }) {
           ) : null;
         }
         return null;
-      case 'SectionStoryModeSectionComponent':
-        if (componentData.sys?.id) {
-          const data = (await getSectionStoryModeSectionComponentContent(componentData.sys?.id, isEnabled)) ?? {};
+      case 'SectionStoryMode':
+        try {
+          if (componentData?.sys?.id) {
+            const data = await getSectionStoryModeContent(componentData.sys.id, isEnabled);
 
-          return !isEmpty(data) ? <SectionComponentAndStoryModeRenderer data={data} /> : null;
+            if (isEmpty(data?.contentCollection?.items)) return null;
+
+            const transformedTabsData = transformToTabsData(data.contentCollection.items);
+
+            return <StoryMode tabsData={transformedTabsData} />;
+          }
+        } catch (error) {
+          console.error('Error rendering SectionStoryMode:', error);
         }
         return null;
       default:

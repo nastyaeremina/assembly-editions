@@ -158,7 +158,7 @@ contentCollection{
            id
            }
           } 
-          ...on SectionStoryModeSectionComponent{
+          ...on SectionStoryMode{
            sys{
            id
            }
@@ -185,6 +185,17 @@ image{
   url
 }
 `;
+const POST_GRAPHQL_TAB_FIELDS = `
+title
+image{
+  url
+}
+link
+quoteBlock{
+  ${POST_GRAPHQL_TESTIMONIAL_CARD_FIELDS}
+}
+`;
+
 // Map feature type to GraphQL field string
 function getFeatureComponentFields(type) {
   let itemFields= `sys{ id }`
@@ -200,6 +211,7 @@ function getFeatureComponentFields(type) {
   }`
 }
 
+
 const POST_GRAPHQL_SECTION_TAB_FIELDS = `
   title
     description
@@ -208,9 +220,10 @@ const POST_GRAPHQL_SECTION_TAB_FIELDS = `
     secondaryButtonText
     secondaryButtonLink
     type
+    theme
     tabsCollection{
       items{
-        name
+       ${POST_GRAPHQL_TAB_FIELDS}
         title
         subTitle
         description
@@ -298,28 +311,21 @@ contentCollection{
 }
 `;
 
-const POST_GRAPHQL_TAB_FIELDS = `
-title
-subTitle
-description
-image{
-  url
-}
-primaryButtonText
-primaryButtonLink
-secondaryButtonText
-secondaryButtonLink
-link
-quoteBlock{
-  ${POST_GRAPHQL_TESTIMONIAL_CARD_FIELDS}
-}
-`;
-const POST_GRAPHQL_SECTION_STORY_MODE_AND_SECTION_COMPONENT_FIELDS = `
-${POST_GRAPHQL_SECTION_COMMON_FIELDS}
-type
+const POST_GRAPHQL_SECTION_STORY_MODE_FIELDS = `
+theme
 contentCollection{
   items{
-    ${POST_GRAPHQL_TAB_FIELDS}
+    subTitle:title
+    description
+    primaryButtonText
+    primaryButtonLink
+    secondaryButtonText
+    secondaryButtonLink
+    tabsCollection(limit:1){
+      items{
+        ${POST_GRAPHQL_TAB_FIELDS}
+      }
+    }
   }
 }
 `;
@@ -479,16 +485,15 @@ export async function getSectionBentoBoxComponentContent(id, preview) {
   return entries?.data?.sectionBentoBox || {};
 }
 
-export async function getSectionStoryModeSectionComponentContent(id, preview) {
+export async function getSectionStoryModeContent(id, preview) {
   const entries = await fetchGraphQL(
     `query {
-        sectionStoryModeSectionComponent(id:"${id}",preview: ${preview ? 'true' : 'false'}) {
-         ${POST_GRAPHQL_SECTION_STORY_MODE_AND_SECTION_COMPONENT_FIELDS}
+        sectionStoryMode(id:"${id}",preview: ${preview ? 'true' : 'false'}) {
+         ${POST_GRAPHQL_SECTION_STORY_MODE_FIELDS}
       }
     }`,
     preview,
     [CONTENTFUL_API_TAG.STANDARD_PAGE]
   );
-
-  return entries?.data?.sectionStoryModeSectionComponent || {};
+  return entries?.data?.sectionStoryMode || {};
 }
