@@ -4,7 +4,7 @@ import ExploreTab from '../solution/clienttab/exploretab';
 import FeatureSection from '../featureSection/featureSection';
 import TabsHorizontal from '../tabsHorizontal/tabsHorizontal';
 import TabsVertical from '../tabsVertical/tabsVertical';
-import { SectionTone } from '../../constants/constant';
+import SectionComponent from '../sectionComponent/sectionComponent';
 
 export const TAB_SECTION_TYPE = {
   TABS_HORIZONTAL_PILLS: 'Tabs Horizontal Pills',
