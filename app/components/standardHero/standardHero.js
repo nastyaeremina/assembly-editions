@@ -5,7 +5,7 @@ import SolutionHero from './solutionhero/solutionhero';
 import HomeHeroSection from './hybrid';
 import SimpleSection from './simpleSection/simpleSection';
 
-export default function StandardHero({ type, data, isDownload = false, variant = HeroTypes.CENTER }) {
+export default function StandardHero({ type, data, isDownload = false }) {
   // useMemo to memoize the component to be rendered based on the type prop
   const renderComponent = useMemo(() => {
     switch (type) {
@@ -36,7 +36,7 @@ export default function StandardHero({ type, data, isDownload = false, variant =
             secondaryButtonText={data?.secondaryButtonText}
             secondaryButtonLink={data?.secondaryButtonLink}
             isDownload={isDownload}
-            variant={variant}
+            variant={HeroTypes.CENTER}
           />
         );
       case HeroTypes.SIMPLE:
@@ -64,6 +64,21 @@ export default function StandardHero({ type, data, isDownload = false, variant =
             secondaryButtonLink={data?.secondaryButtonLink}
             banner={data?.banner1?.url}
             videoUrl={data?.videoUrl}
+          />
+        );
+      case HeroTypes.NEW_LEFT_HERO:        
+        return (
+          <HomeHeroSection
+            title={data?.heroTitle}
+            body={data?.heroDescription}
+            image={data?.banner1?.url}
+            isStandardPage={true}
+            primaryButtonText={data?.primaryButtonText}
+            primaryButtonLink={data?.primaryButtonLink}
+            secondaryButtonText={data?.secondaryButtonText}
+            secondaryButtonLink={data?.secondaryButtonLink}
+            isDownload={isDownload}
+            variant={HeroTypes.LEFT}
           />
         );
       default: // or some default component or message

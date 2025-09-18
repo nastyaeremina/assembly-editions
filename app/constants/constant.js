@@ -501,7 +501,8 @@ export const HeroTypes = {
   LEFT: 'Hero - Left',
   CENTER: 'Hero - Center',
   SIMPLE: 'Hero - Simple',
-  SIMPLE_ALT: 'Simple'
+  SIMPLE_ALT: 'Simple',
+  NEW_LEFT_HERO: 'New - Hero - Left'
 };
 
 export const SecondaryButtonVariant = {

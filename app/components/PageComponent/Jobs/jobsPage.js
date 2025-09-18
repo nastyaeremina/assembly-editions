@@ -83,7 +83,7 @@ export default function JobsPage({ details, jobList, faqData }) {
     <>
       <MainWrap>
         <StandardHero
-          type={HeroTypes.CENTER}
+          type={HeroTypes.NEW_LEFT_HERO}
           data={{
             heroTitle: details?.title,
             heroDescription: details?.description,
@@ -93,7 +93,6 @@ export default function JobsPage({ details, jobList, faqData }) {
             secondaryButtonText: details?.secondaryButtonText,
             secondaryButtonLink: details?.secondaryButtonLink
           }}
-          variant={HeroTypes.LEFT}
         />
         {!isEmpty(details?.internalFeaturesCollection?.items) && (
           <ModernV2 data={details?.internalFeaturesCollection?.items} title={details?.sectionTitle3} />
