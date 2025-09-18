@@ -18,10 +18,11 @@ import BlogSidebarCTA from '../../../components/blogsidebarCTA/index';
 // Regex patterns for different heading levels
 const EXTRACT_H2_TAG_FROM_HTML_REGEX = /(?:<h2 id\=\s*)\S.*?(?=\s*<\/h2|$)/gs;
 const EXTRACT_H3_TAG_FROM_HTML_REGEX = /(?:<h3 id\=\s*)\S.*?(?=\s*<\/h3|$)/gs;
+const EXTRACT_H4_TAG_FROM_HTML_REGEX = /(?:<h4 id\=\s*)\S.*?(?=\s*<\/h4|$)/gs;
 
 export default function TableOfContents({
   htmlData,
-  hasTopBar,
+  hasTopBar = false,
   ctaTitle,
   ctaDescription,
   shouldShowBlogCTA,
@@ -31,112 +32,166 @@ export default function TableOfContents({
   faqLabel = 'FAQ',
   isShowH2 = true,
   isShowH3 = false,
+  isShowH4 = false,
   externalLinks = {}
 }) {
   const [activeIndex, setActiveIndex] = useState(0);
   const itemBorderRefs = useRef([]);
+  const observerRef = useRef(null);
 
-  // Extract all headings (H2, H3) and maintain their order
-  const extractAllHeadings = (htmlData) => {
-    if (isEmpty(htmlData)) return [];
+  // Extract headings function (returns sorted array)
+  const extractAllHeadings = (html) => {
+    if (isEmpty(html)) return [];
 
     const headings = [];
 
-    // Extract H2 headings
     if (isShowH2) {
-      const h2Matches = htmlData.match(EXTRACT_H2_TAG_FROM_HTML_REGEX) || [];
+      const h2Matches = html.match(EXTRACT_H2_TAG_FROM_HTML_REGEX) || [];
       h2Matches.forEach((match) => {
-        const headingList = match.split('>');
-        const id = headingList[0]?.replace(/['"]+/g, '').replace('<h2 id=', '');
-        const text = headingList[1];
-        if (!isEmpty(text)) {
-          headings.push({ id, text, level: 2, originalMatch: match });
-        }
+        const parts = match.split('>');
+        const id = (parts[0] || '').replace(/['"]+/g, '').replace('<h2 id=', '').trim();
+        const text = parts[1] || '';
+        if (!isEmpty(text)) headings.push({ id, text, level: 2, originalMatch: match });
       });
     }
 
-    // Extract H3 headings
     if (isShowH3) {
-      const h3Matches = htmlData.match(EXTRACT_H3_TAG_FROM_HTML_REGEX) || [];
+      const h3Matches = html.match(EXTRACT_H3_TAG_FROM_HTML_REGEX) || [];
       h3Matches.forEach((match) => {
-        const headingList = match.split('>');
-        const id = headingList[0]?.replace(/['"]+/g, '').replace('<h3 id=', '');
-        const text = headingList[1];
-        if (!isEmpty(text)) {
-          headings.push({ id, text, level: 3, originalMatch: match });
-        }
+        const parts = match.split('>');
+        const id = (parts[0] || '').replace(/['"]+/g, '').replace('<h3 id=', '').trim();
+        const text = parts[1] || '';
+        if (!isEmpty(text)) headings.push({ id, text, level: 3, originalMatch: match });
       });
     }
 
-    // Sort headings by their position in the HTML document
+    if (isShowH4) {
+      const h4Matches = html.match(EXTRACT_H4_TAG_FROM_HTML_REGEX) || [];
+      h4Matches.forEach((match) => {
+        const parts = match.split('>');
+        const id = (parts[0] || '').replace(/['"]+/g, '').replace('<h4 id=', '').trim();
+        const text = parts[1] || '';
+        if (!isEmpty(text)) headings.push({ id, text, level: 4, originalMatch: match });
+      });
+    }
+
     return headings.sort((a, b) => {
-      const aIndex = htmlData.indexOf(a.originalMatch);
-      const bIndex = htmlData.indexOf(b.originalMatch);
-      return aIndex - bIndex;
+      return html.indexOf(a.originalMatch) - html.indexOf(b.originalMatch);
     });
   };
 
-  // Direct scroll-based border positioning
+  // IntersectionObserver + bottom-of-page fallback setup
   useEffect(() => {
-    const handleScroll = () => {
-      const headings = extractAllHeadings(htmlData);
-      let newActiveIndex = 0;
-      const offset = hasTopBar ? 200 : 160;
-      let decided = false;
+    const headings = extractAllHeadings(htmlData);
+    const ids = headings.map((h) => h.id);
+    if (isFAQs) ids.push(faqId);
 
-      for (let i = 0; i < headings.length; i++) {
-        const el = document.getElementById(headings[i].id);
-        if (!el) continue;
-        const rect = el.getBoundingClientRect();
+    const offset = hasTopBar ? 200 : 160;
 
-        if (rect.top > offset) {
-          newActiveIndex = Math.max(0, i - 1);
-          decided = true;
-          break;
-        }
+    const observeSections = () => {
+      const sections = ids.map((id) => document.getElementById(id)).filter(Boolean);
+      if (!sections.length) {
+        setTimeout(observeSections, 100);
+        return;
       }
 
-      if (!decided && headings.length > 0) {
-        newActiveIndex = headings.length - 1;
-      }
+      const observer = new IntersectionObserver(
+        (entries) => {
+          // filter visible entries
+          const visible = entries.filter((e) => e.isIntersecting);
 
-      // If FAQ is enabled, consider it as an extra item at the end
-      if (isFAQs) {
-        const faqEl = document.getElementById(faqId);
-        if (faqEl) {
-          const faqRect = faqEl.getBoundingClientRect();
-          if (faqRect.top <= offset) {
-            newActiveIndex = headings.length; // FAQ item is rendered last
+          if (visible.length > 0) {
+            // pick the one closest to top of viewport
+            const closest = visible.reduce((a, b) => {
+              return Math.abs(a.boundingClientRect.top - offset) < Math.abs(b.boundingClientRect.top - offset) ? a : b;
+            });
+            const idx = ids.findIndex((id) => id === closest.target.id);
+            if (idx !== -1) setActiveIndex(idx);
+          } else {
+            // fallback: pick nearest by distance to offset
+            let nearestIdx = 0;
+            let minDist = Infinity;
+            ids.forEach((id, i) => {
+              const el = document.getElementById(id);
+              if (!el) return;
+              const dist = Math.abs(el.getBoundingClientRect().top - offset);
+              if (dist < minDist) {
+                minDist = dist;
+                nearestIdx = i;
+              }
+            });
+            setActiveIndex(nearestIdx);
           }
+        },
+        {
+          root: null,
+          rootMargin: `-${offset}px 0px -50% 0px`,
+          threshold: [0, 0.1, 0.25, 0.5, 0.75, 1]
         }
-      }
+      );
 
-      if (newActiveIndex !== activeIndex) {
-        setActiveIndex(newActiveIndex);
+      sections.forEach((s) => observer.observe(s));
+      observerRef.current = observer;
+    };
+
+    observeSections();
+
+    return () => {
+      if (observerRef.current && observerRef.current.disconnect) observerRef.current.disconnect();
+    };
+  }, [htmlData, hasTopBar, isFAQs, faqId, isShowH2, isShowH3, isShowH4]);
+
+  useEffect(() => {
+    const headings = extractAllHeadings(htmlData);
+    const ids = headings.map((h) => h.id);
+    if (isFAQs) ids.push(faqId);
+
+    const handleScroll = () => {
+      const scrollBottom = window.innerHeight + window.scrollY;
+      const pageHeight = document.documentElement.scrollHeight;
+
+      if (scrollBottom >= pageHeight - 5) {
+        // mark last item active
+        setActiveIndex(ids.length - 1);
       }
     };
 
     window.addEventListener('scroll', handleScroll, { passive: true });
-    handleScroll();
 
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, [hasTopBar, activeIndex, isFAQs, faqId, htmlData, isShowH2, isShowH3]);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, [htmlData, hasTopBar, isFAQs, faqId]);
 
-  // Immediate border positioning when activeIndex changes
+  // Update active border position immediately when activeIndex changes
   useEffect(() => {
-    if (itemBorderRefs.current[activeIndex]) {
-      const { offsetTop, offsetHeight } = itemBorderRefs.current[activeIndex];
-      const activeBorder = document.getElementById('active-border');
-      if (activeBorder) {
-        activeBorder.style.top = `${offsetTop}px`;
-        activeBorder.style.height = `${offsetHeight}px`;
-      }
+    const el = itemBorderRefs.current[activeIndex];
+    const activeBorder = document.getElementById('active-border');
+    if (el && activeBorder) {
+      activeBorder.style.top = `${el.offsetTop}px`;
+      activeBorder.style.height = `${el.offsetHeight}px`;
     }
   }, [activeIndex]);
 
-  const renderTableData = () => {
-    if (isEmpty(htmlData)) return null;
+  // Click handler for anchors (prevents default jump, does smooth scroll & sets active)
+  const handleClick = (e, id, index) => {
+    e.preventDefault();
+    const el = document.getElementById(id);
+    const offset = hasTopBar ? 200 : 160;
+    if (!el) return;
+    // pushState to update URL hash without browser automatic jump
+    if (window.history && window.history.pushState) {
+      window.history.pushState(null, '', `#${id}`);
+    } else {
+      window.location.hash = `#${id}`;
+    }
+    const top = el.getBoundingClientRect().top + window.scrollY - offset;
+    window.scrollTo({ top });
+    setActiveIndex(index);
+  };
 
+  // Render TOC items
+  const renderTableData = () => {
     const headings = extractAllHeadings(htmlData);
     if (isEmpty(headings) && !isFAQs) return null;
 
@@ -144,29 +199,38 @@ export default function TableOfContents({
       <>
         {headings.map((heading, index) => {
           const isActive = index === activeIndex;
-          const indentClass = `level-${heading.level}`;
-
           return (
             <li
-              key={`tableDataHeading_index_${index}`}
-              className={`${isActive ? 'active' : ''} ${indentClass}`}
-              ref={(item) => {
-                itemBorderRefs.current[index] = item;
+              key={`toc_heading_${index}`}
+              className={`${isActive ? 'active' : ''} level-${heading.level}`}
+              ref={(el) => {
+                itemBorderRefs.current[index] = el;
               }}>
-              <Link href={`#${heading.id}`} className={isActive ? 'active' : ''}>
+              {/* use anchor + preventDefault to control smooth scroll */}
+              <Link
+                href={`#${heading.id}`}
+                onClick={(e) => handleClick(e, heading.id, index)}
+                className={isActive ? 'active' : ''}>
                 {heading.text}
               </Link>
             </li>
           );
         })}
+
         {isFAQs && (
           <li
-            key={`tableDataHeading_faq`}
+            key='toc_faq'
             className={`${activeIndex === headings.length ? 'active' : ''} level-2`}
-            ref={(item) => {
-              itemBorderRefs.current[headings.length] = item;
+            ref={(el) => {
+              itemBorderRefs.current[headings.length] = el;
             }}>
-            <Link href={`#${faqId}`} className={activeIndex === headings.length ? 'active' : ''}>
+            <Link
+              href={`#${faqId}`}
+              onClick={(e) => {
+                // force FAQ active
+                handleClick(e, faqId, headings.length);
+              }}
+              className={activeIndex === headings.length ? 'active' : ''}>
               {faqLabel}
             </Link>
           </li>

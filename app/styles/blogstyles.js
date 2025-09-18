@@ -164,7 +164,7 @@ const Table = styled.div`
         }
       }
     }
-    li.level-3 {
+    li.level-4 {
       padding-left: var(--space-30);
     }
     li:hover {

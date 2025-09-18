@@ -10,7 +10,7 @@ export default function GuidePage({ defaultArticle: article }) {
   function tableContents() {
     const newList = [];
     article?.content?.json?.content?.forEach((item) => {
-      if (['heading-2', 'heading-3'].includes(item?.nodeType) && item?.content?.[0]?.value) {
+      if (['heading-2', 'heading-3', 'heading-4'].includes(item?.nodeType) && item?.content?.[0]?.value) {
         newList?.push({ title: item?.content?.[0]?.value, type: item?.nodeType?.replace('heading-', 'h') });
       }
     });
@@ -38,6 +38,7 @@ export default function GuidePage({ defaultArticle: article }) {
             htmlData={convertToHtmlFormat()}
             isFAQs={!isEmpty(article?.faQsCollection?.items)}
             isShowH3={true}
+            isShowH4={true}
           />
         </TableOfContentSection>
       </SectionWrapper>
