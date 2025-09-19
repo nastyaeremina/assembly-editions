@@ -457,7 +457,7 @@ const Divider = styled.div`
   }
 `;
 
-const AuthorTitle = styled.div`
+const AuthorTitle = styled.h1`
   ${h2_semibold}
   color: var(--title);
   margin: 0;
