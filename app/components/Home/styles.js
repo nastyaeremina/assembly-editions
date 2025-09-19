@@ -241,20 +241,23 @@ const HeroBtnBlock = styled.div`
 const MainImage = styled.div`
   width: 100%;
   overflow: hidden;
-  margin-top: var(--space-64);
+  margin-top: var(--space-80);
   display: flex;
+  box-shadow: var(--image-box-shadow);
+  border-radius: var(--radius-8);
   .heromain-image {
     border-radius: var(--radius-8);
     width: 100%;
     height: auto;
-    border: 1px solid var(--border-default);
   }
-  @media only screen and (max-width: 768px) {
+  @media only screen and (max-width: 991px) {
+    margin-top: var(--space-64);
     .heromain-image {
       margin-bottom: 0;
     }
   }
   @media only screen and (max-width: 449px) {
+    border-radius: var(--radius-4);
     .heromain-image {
       border-radius: var(--radius-4);
     }

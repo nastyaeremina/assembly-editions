@@ -22,7 +22,7 @@ const LeftHeroSectionMainDiv = styled.div`
 const HeroHeading = styled.h1`
   ${h1_semibold};
   color: var(--title);
-  margin: 0 0 var(--space-24);
+  margin: 0 0 var(--space-12);
   max-width: 900px;
   text-align: left;
 
@@ -39,7 +39,6 @@ const HeroHeading = styled.h1`
       }
     `}
   @media only screen and (max-width: 449px) {
-    margin: 0 0 var(--space-24);
     text-align: left;
     letter-spacing: -0.8px;
   }
@@ -72,9 +71,6 @@ const ButtonGroups = styled.div`
   display: flex;
   gap: var(--space-8);
   margin-top: var(--space-24);
-  @media only screen and (max-width: 449px) {
-    margin-top: var(--space-32);
-  }
 `;
 
 export { LeftHeroSectionMainDiv, HeroHeading, Para, ButtonGroups };
