@@ -1,10 +1,13 @@
-import styled from 'styled-components';
-import { body_regular, button_semibold, h2_semibold, h4_regular } from '../../styles/typography';
-import Link from 'next/link';
+import styled, { css } from 'styled-components';
+import { SectionTone } from '../../constants/constant';
 
 const MainBlock = styled.div`
-  background-color: var(--title);
   padding: var(--space-48) 0 var(--space-64);
+  ${({ tone }) =>
+    tone === SectionTone.DARK &&
+    css`
+      background-color: var(--title);
+    `}
   @media only screen and (max-width: 991px) {
     padding: var(--space-24) 0 var(--space-40);
   }
@@ -29,7 +32,12 @@ const LeftImage = styled.div`
     width: 100%;
     height: 100%;
     border-radius: var(--radius-16);
-    border: 1px solid var(--bg-card-dark-hover);
+    border: 1px solid var(--border-default);
+    ${({ tone }) =>
+      tone === SectionTone.DARK &&
+      css`
+        border: 1px solid var(--bg-card-dark-hover);
+      `}
   }
   @media only screen and (max-width: 991px) {
     grid-column: auto;
@@ -50,8 +58,13 @@ const SectionWrapper = styled.div`
 const NavigationWrapper = styled.div`
   position: sticky;
   z-index: 11;
-  background-color: var(--title);
   padding: var(--space-16) 0;
+  background-color: var(--off-white-300);
+  ${({ tone }) =>
+    tone === SectionTone.DARK &&
+    css`
+      background-color: var(--title);
+    `}
 `;
 
 const TabSection = styled.div`

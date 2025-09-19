@@ -24,7 +24,7 @@ import StoryModeNavigation from './StoryModeNavigation/storyModeNavigation';
  * Shows all tab contents stacked vertically with sticky navigation
  * Click tab to scroll to section, scroll to update active tab
  */
-export default function StoryMode({ tabsData }) {
+export default function StoryMode({ tabsData, tone }) {
   if (isEmpty(tabsData)) return null;
   // State for active tab and sticky positioning
   const [activeIndex, setActiveIndex] = useState(0);
@@ -51,19 +51,19 @@ export default function StoryMode({ tabsData }) {
               primaryButtonText={tabData.primaryButtonText}
               secondaryButtonLink={tabData.secondaryButtonLink}
               secondaryButtonText={tabData.secondaryButtonText}
-              tone={SectionTone.DARK}
+              tone={tone}
             />
 
             {/* Section Image and Quote */}
             <BottomSection>
-              <LeftImage>
+              <LeftImage tone={tone}>
                 <Image src={tabData.image.url} alt={'Banner Image'} width={877} height={827} className='image' />
               </LeftImage>
 
               {/* Testimonial Quote */}
               {!isEmpty(tabData.quoteBlock) && (
                 <QuoteSectionComponent
-                  tone={SectionTone.DARK}
+                  tone={tone}
                   imageSrc={tabData.quoteBlock.image?.url}
                   name={tabData.quoteBlock.name}
                   role={tabData.quoteBlock.role}
@@ -171,14 +171,15 @@ export default function StoryMode({ tabsData }) {
   }, [stickyTop, tabsData, activeIndex]);
 
   return (
-    <MainBlock>
+    <MainBlock tone={tone}>
       <Container>
         <ContentWrapper>
           {/* Sticky Navigation - stays at top when scrolling */}
-          <NavigationWrapper style={{ top: `${stickyTop}px` }}>
+          <NavigationWrapper style={{ top: `${stickyTop}px` }} tone={tone}>
             <StoryModeNavigation
               tabs={tabsData}
               activeIndex={activeIndex}
+              tone={tone}
               setActiveIndex={(index) => {
                 setActiveIndex(index);
                 scrollToSection(index); // Scroll to section when tab clicked

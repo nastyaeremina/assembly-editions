@@ -411,10 +411,11 @@ const Content = styled.div`
       margin-top: var(--space-48);
     }
   }
-
   h4 {
-    ${body_regular}
+    ${body_semibold}
     color: var(--title);
+    margin-bottom: var(--space-24);
+    margin-top: var(--space-24);
     strong {
       font-weight: 400;
     }
@@ -583,7 +584,7 @@ const Content = styled.div`
         align-items: flex-start;
         gap: var(--space-10);
         a {
-          margin-top: var(--space-6);
+          margin-top: var(--space-6) !important;
           :focus-visible {
             border-radius: var(--radius-4);
             .copy-icon {
@@ -609,7 +610,7 @@ const Content = styled.div`
         gap: var(--space-10);
         ${h3_semibold}
         a {
-          margin-top: var(--space-4);
+          margin-top: var(--space-4) !important;
           &:focus-visible {
             border-radius: var(--radius-4);
             .copy-icon {
@@ -636,7 +637,7 @@ const Content = styled.div`
         margin: var(--space-24) 0;
         ${h4_semibold}
         a {
-          margin-top: var(--space-1);
+          margin-top: var(--space-4) !important;
           :focus-visible {
             border-radius: var(--radius-4);
             .copy-icon {

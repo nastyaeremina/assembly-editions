@@ -51,10 +51,25 @@ function SectionComponent({
       }
     };
 
-    updateHeight(); // Initial height calculation
+    // Initial call
+    updateHeight();
+
+    // Observe changes in active element size
+    let observer;
+    if (containerRef.current) {
+      const activeEl = containerRef.current.querySelector("[data-active='true']");
+      if (activeEl) {
+        observer = new ResizeObserver(() => {
+          updateHeight();
+        });
+        observer.observe(activeEl);
+      }
+    }
+
     window.addEventListener('resize', updateHeight);
 
     return () => {
+      if (observer) observer.disconnect();
       window.removeEventListener('resize', updateHeight);
     };
   }, [activeIndex]);

@@ -1,5 +1,6 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { body_regular } from '../../../styles/typography';
+import { SectionTone } from '../../../constants/constant';
 
 const defaultTabWidth = 175;
 const lightGreyInitialOffset = 105;
@@ -43,20 +44,41 @@ const Tabs = styled.div`
     max-width: 105%;
     background: linear-gradient(
       to right,
-      var(--title) 0%,
-      var(--border-default)
+      var(--off-white-300) 0%,
+      var(--title)
         calc(
           100% -
             ${({ activeTabWidth }) =>
               activeTabWidth ? activeTabWidth - lightGreyScaleOffset : lightGreyInitialOffset}px
         ),
-      var(--bg-card-dark-hover)
+      var(--border-default)
         calc(
           100% -
             ${({ activeTabWidth }) => (activeTabWidth ? activeTabWidth - darkGreyScaleOffset : darkGreyInitialOffset)}px
         ),
-      var(--title) 100%
+      var(--off-white-300) 100%
     );
+    ${({ tone }) =>
+      tone === SectionTone.DARK &&
+      css`
+        background: linear-gradient(
+          to right,
+          var(--title) 0%,
+          var(--border-default)
+            calc(
+              100% -
+                ${({ activeTabWidth }) =>
+                  activeTabWidth ? activeTabWidth - lightGreyScaleOffset : lightGreyInitialOffset}px
+            ),
+          var(--bg-card-dark-hover)
+            calc(
+              100% -
+                ${({ activeTabWidth }) =>
+                  activeTabWidth ? activeTabWidth - darkGreyScaleOffset : darkGreyInitialOffset}px
+            ),
+          var(--title) 100%
+        );
+      `}
     transition: width 0.6s cubic-bezier(0.4, 0, 0.2, 1);
     z-index: 1;
   }
@@ -91,11 +113,22 @@ const Tabs = styled.div`
       width: ${({ progress }) => `${progress}%`};
       background: linear-gradient(
         to right,
-        var(--title) 0%,
-        var(--border-default) 50%,
-        var(--bg-card-dark-hover) 75%,
-        var(--title) 100%
+        var(--off-white-300) 0%,
+        var(--title) 50%,
+        var(--border-default) 75%,
+        var(--off-white-300) 100%
       );
+      ${({ tone }) =>
+        tone === SectionTone.DARK &&
+        css`
+          background: linear-gradient(
+            to right,
+            var(--title) 0%,
+            var(--border-default) 50%,
+            var(--bg-card-dark-hover) 75%,
+            var(--title) 100%
+          );
+        `}
     }
   }
 `;
@@ -108,10 +141,15 @@ const Numbers = styled.p`
 `;
 
 const TabName = styled.p`
-  color: ${({ active }) => (active ? 'var(--off-white-100)' : 'var(--text-secondary)')};
+  color: ${({ active }) => (active ? 'var(--title)' : 'var(--text-secondary)')};
   ${body_regular};
   margin: 0;
   transition: color 600ms cubic-bezier(0.4, 0, 0.2, 1);
+  ${({ tone }) =>
+    tone === SectionTone.DARK &&
+    css`
+      color: ${({ active }) => (active ? 'var(--off-white-100)' : 'var(--text-secondary)')};
+    `}
 `;
 
 const Tab = styled.button`
@@ -131,10 +169,15 @@ const Tab = styled.button`
   @media only screen and (min-width: 992px) {
     &:hover {
       ${Numbers} {
-        color: ${({ active }) => (active ? 'var(--text-secondary)' : 'var(--gray-200)')};
+        color: ${({ active }) => (active ? 'var(--text-secondary)' : 'var(--title)')};
       }
       ${TabName} {
-        color: ${({ active }) => (active ? 'var(--off-white-100)' : 'var(--gray-200)')};
+        color: ${({ active }) => (active ? 'var(--title)' : 'var(--title)')};
+        ${({ tone }) =>
+          tone === SectionTone.DARK &&
+          css`
+            color: ${({ active }) => (active ? 'var(--off-white-100)' : 'var(--gray-200)')};
+          `}
       }
     }
   }

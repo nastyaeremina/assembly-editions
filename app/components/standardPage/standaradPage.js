@@ -235,7 +235,7 @@ export default async function StandardPage({ data }) {
 
             const transformedTabsData = transformToTabsData(data.contentCollection.items);
 
-            return <StoryMode tabsData={transformedTabsData} />;
+            return <StoryMode tabsData={transformedTabsData} tone={data.theme} />;
           }
         } catch (error) {
           console.error('Error rendering SectionStoryMode:', error);

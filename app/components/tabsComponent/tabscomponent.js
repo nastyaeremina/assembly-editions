@@ -83,20 +83,19 @@ export default function TabsComponent({ type, content }) {
             }}
           />
         );
-       case TAB_SECTION_TYPE.NEW:
+      case TAB_SECTION_TYPE.NEW:
         return (
-          
           <SectionComponent
-          tone={content.theme}
-          title={content.title}
-          description={content.description}
-          primaryButtonText={content.primaryButtonText}
-          primaryButtonLink={content.primaryButtonLink}
-          secondaryButtonText={content.secondaryButtonText}
-          secondaryButtonLink={content.secondaryButtonLink}
-          tabItems={content?.tabsCollection?.items}
-        />
-        )
+            tone={content.theme}
+            title={content.title}
+            description={content.description}
+            primaryButtonText={content.primaryButtonText}
+            primaryButtonLink={content.primaryButtonLink}
+            secondaryButtonText={content.secondaryButtonText}
+            secondaryButtonLink={content.secondaryButtonLink}
+            tabItems={content?.tabsCollection?.items}
+          />
+        );
       default: // or some default component or message
         return null;
     }

@@ -47,6 +47,7 @@ const QuoteContentDiv = styled.div`
   gap: var(--space-32);
   width: 100%;
   align-items: flex-start;
+  justify-content: space-between;
 `;
 
 const TitleContentSection = styled.div`
