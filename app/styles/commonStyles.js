@@ -326,6 +326,10 @@ const Content = styled.div`
           border-radius: var(--radius-8);
         }
       }
+      p {
+        margin-bottom: var(--space-12);
+        margin-top: var(--space-12);
+      }
     }
     li::marker {
       color: var(--title);

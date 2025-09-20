@@ -3,34 +3,57 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
 import { isEmpty } from '../../../helpers/helpers';
-import { Container, PrimaryButton } from '../../../styles/commonStyles';
+import { Container, Content } from '../../../styles/commonStyles';
 import {
   JObMain,
-  DetailLink,
   JobDetail,
   DetailLeft,
   DetailWrap,
   ImageWrap,
   DetailRight,
-  DetailRIghtText,
-  DetailPosition
+  DetailPosition,
+  NewHeroSection,
+  Title,
+  HeaderSeciton,
+  ImageDiv,
+  ImageSection,
+  RoleDetails,
+  LogoSection,
+  RoleSection,
+  WrapperDiv,
+  Overlay,
+  RoleTitle,
+  Role,
+  JobDetailSectionWrapper,
+  OverlayDiv,
+  AvtarWrapper
 } from '../../../styles/jobsStyles';
+import Breadcrumbs from '../../Breadcrumbs/breadcrumbs';
+import ButtonV2Component from '../../button/buttonV2/buttonV2';
+import HeroSectionImage from '../../../../public/images/job-detail-hero-profile.png';
+import SVGComponent from '../../../../public/images/svg/SVGComponent';
+import { ButtonSize } from '../../../constants/constant';
 
 export default function JobsDetailPage({ data: jobDetail }) {
+  const BreadcrumbItem = [{ label: 'All jobs', href: '/jobs' }];
+
   const renderTeamMemberView = () => {
     const teamMemberList = jobDetail?.teamMembersCollection?.items || [];
     if (isEmpty(teamMemberList)) return null;
     return teamMemberList?.map((item, index) => {
       return (
         <Link href={item?.profileLink ?? ''} key={`teammember_index_${index}`}>
-          <Image
-            src={item?.profilePicture?.url}
-            alt='bill-icon'
-            width={30}
-            height={30}
-            layout={'fixed'}
-            className='billimage'
-          />
+          <AvtarWrapper>
+            <Image
+              src={item?.profilePicture?.url}
+              alt='bill-icon'
+              width={40}
+              height={40}
+              layout={'fixed'}
+              className='billimage'
+            />
+            <OverlayDiv className='overlay' />
+          </AvtarWrapper>
         </Link>
       );
     });
@@ -40,49 +63,74 @@ export default function JobsDetailPage({ data: jobDetail }) {
     <>
       <JObMain>
         <Container>
-          <JobDetail>
-            <DetailPosition>
-              <DetailLeft>
-                <Link href='/jobs'>
-                  <DetailLink>
-                    <Image src='/images/leftarrow.svg' alt='bill-icon' width={12} height={12} layout={'fixed'} />
-                    <p>Back to all Jobs</p>
-                  </DetailLink>
-                </Link>
-                <h3>{jobDetail?.name}</h3>
-                {!isEmpty(jobDetail?.department) && (
-                  <DetailWrap>
-                    <p>Department</p>
-                    <span>{jobDetail?.department}</span>
-                  </DetailWrap>
+          <JobDetailSectionWrapper>
+            <NewHeroSection>
+              <HeaderSeciton>
+                <Breadcrumbs breadcrumbs={BreadcrumbItem} currentLabel={jobDetail?.department} />
+                <Title>{jobDetail?.name}</Title>
+                {jobDetail?.applyLink && <ButtonV2Component title='Apply now' href={jobDetail?.applyLink ?? ''} />}
+              </HeaderSeciton>
+              <ImageSection>
+                <ImageDiv>
+                  <Image src={HeroSectionImage} alt='hero-image' width={1224} height={398} className='image' />
+                </ImageDiv>
+                <RoleDetails>
+                  <WrapperDiv>
+                    <Overlay />
+                    <LogoSection>
+                      <SVGComponent
+                        name='assembly-big-logo'
+                        width='131'
+                        height='24'
+                        viewBox='0 0 200 38'
+                        className='logo-icon'
+                      />
+                    </LogoSection>
+                  </WrapperDiv>
+                  <RoleSection>
+                    <RoleTitle>Open Role</RoleTitle>
+                    <Role>{jobDetail?.name}</Role>
+                  </RoleSection>
+                </RoleDetails>
+              </ImageSection>
+            </NewHeroSection>
+            <JobDetail>
+              <DetailPosition>
+                <DetailLeft>
+                  {!isEmpty(jobDetail?.department) && (
+                    <DetailWrap>
+                      <p>Department</p>
+                      <span>{jobDetail?.department}</span>
+                    </DetailWrap>
+                  )}
+                  {!isEmpty(jobDetail?.location) && (
+                    <DetailWrap>
+                      <p>Location</p>
+                      <span>{jobDetail?.location}</span>
+                    </DetailWrap>
+                  )}
+                  {!isEmpty(jobDetail?.compensation) && (
+                    <DetailWrap>
+                      <p>Compensation</p>
+                      <span>{jobDetail?.compensation}</span>
+                    </DetailWrap>
+                  )}
+                  {!isEmpty(jobDetail?.teamMembersCollection?.items) && (
+                    <DetailWrap>
+                      <p>Work with</p>
+                      <ImageWrap>{renderTeamMemberView()}</ImageWrap>
+                    </DetailWrap>
+                  )}
+                </DetailLeft>
+              </DetailPosition>
+              <DetailRight>
+                <Content>{documentToReactComponents(jobDetail?.jobDescription?.json)}</Content>
+                {jobDetail?.applyLink && (
+                  <ButtonV2Component title='Apply now' href={jobDetail?.applyLink ?? ''} size={ButtonSize.SMALL} />
                 )}
-                {!isEmpty(jobDetail?.location) && (
-                  <DetailWrap>
-                    <p>Location</p>
-                    <span>{jobDetail?.location}</span>
-                  </DetailWrap>
-                )}
-                {!isEmpty(jobDetail?.compensation) && (
-                  <DetailWrap>
-                    <p>Compensation</p>
-                    <span>{jobDetail?.compensation}</span>
-                  </DetailWrap>
-                )}
-                {!isEmpty(jobDetail?.teamMembersCollection?.items) && (
-                  <DetailWrap>
-                    <p>Work with</p>
-                    <ImageWrap>{renderTeamMemberView()}</ImageWrap>
-                  </DetailWrap>
-                )}
-                <PrimaryButton>
-                  <Link href={jobDetail?.applyLink ?? ''}>Apply now</Link>
-                </PrimaryButton>
-              </DetailLeft>
-            </DetailPosition>
-            <DetailRight>
-              <DetailRIghtText>{documentToReactComponents(jobDetail?.jobDescription?.json)}</DetailRIghtText>
-            </DetailRight>
-          </JobDetail>
+              </DetailRight>
+            </JobDetail>
+          </JobDetailSectionWrapper>
         </Container>
       </JObMain>
     </>

@@ -209,7 +209,8 @@ body {
   --assembly-blue: #bce7f4;
   --tap-highlight-color: rgba(255, 255, 255, 0);
   --scroll-thumb-color: #625e5e;
-  --off-white-100-thirty-percentage-opacity: #fefefd4d;
+  --off-white-100-with-10-opacity: #fefefd1a;
+  --off-white-100-with-30-opacity: #fefefd4d;
   --error-color: #ff5644;
 
   /* Old website color */

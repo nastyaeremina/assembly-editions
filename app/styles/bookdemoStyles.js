@@ -83,7 +83,7 @@ const DotIcon = styled.div`
 const TextBox = styled.div`
   border-radius: var(--radius-12);
   border: 1px solid var(--off-white-100);
-  background: var(--off-white-100-thirty-percentage-opacity);
+  background: var(--off-white-100-with-30-opacity);
   position: absolute;
   bottom: var(--space-24);
   left: var(--space-24);

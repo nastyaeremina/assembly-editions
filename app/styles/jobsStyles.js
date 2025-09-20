@@ -1,25 +1,5 @@
-import styled, { css } from 'styled-components';
-import {
-  Body2,
-  Body3,
-  Body4,
-  Body5,
-  Body6,
-  FooterText,
-  HeaderFont,
-  Heading2,
-  Heading3,
-  Heading4,
-  Label,
-  LinkTxt,
-  MbBody2,
-  MbBody3,
-  MbBody4,
-  MobileH2,
-  MobileH3,
-  MobileH4
-} from './styles';
-import { body_regular, body_semibold, h2_semibold } from './typography';
+import styled from 'styled-components';
+import { body_regular, body_semibold, button_semibold, h1_semibold, h2_semibold, h4_regular } from './typography';
 
 const MainWrap = styled.div`
   background: var(--off-white-300);
@@ -36,101 +16,7 @@ const MainWrap = styled.div`
     gap: var(--space-48);
   }
 `;
-const HeroJobSection = styled.div`
-  padding: 144px 0 50px;
-  @media only screen and (max-width: 749px) {
-    padding: 148px 0 40px;
-  }
-`;
-const JobsWrap = styled.div`
-  border-radius: 8px;
-  ${(props) =>
-    props.imageUrl &&
-    css`
-      background-image: linear-gradient(90deg, var(--black) 18.89%, var(--black-shadow-0) 82.84%),
-        url(${props.imageUrl});
-      @media only screen and (max-width: 991px) {
-        background-image: linear-gradient(90deg, var(--black) 18.89%, var(--black-shadow-0) 82.84%),
-          url(${props.imageUrl});
-      }
-    `}
-  background-position: 0 0, 50% 50%;
-  background-size: auto, cover;
-  background-repeat: repeat, no-repeat;
-  padding-top: 80px;
-  padding-left: 80px;
-  padding-bottom: 141px;
-  @media only screen and (max-width: 991px) {
-    height: 470px;
-    padding-top: 60px;
-    padding-left: 60px;
-    padding-bottom: 0;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-  }
-  @media only screen and (max-width: 749px) {
-    display: none;
-  }
-`;
-const JobsMobi = styled.div`
-  display: none;
-  @media only screen and (max-width: 749px) {
-    display: block;
-    border-radius: 8px;
-    background-image: linear-gradient(180deg, var(--black) 51.28%, var(--black-shadow-0) 70.01%),
-      url('/images/jobmobi.svg');
-    background-position: 0 0, 50% 50%;
-    background-size: auto, cover;
-    background-repeat: repeat, no-repeat;
-    padding: 0 24px;
-    padding-top: 50px;
-    padding-bottom: 304px;
-    height: 634px;
-    width: 100%;
-  }
-`;
-const UseCaseWrap = styled.div`
-  width: 100%;
-  max-width: 580px;
-  h1 {
-    ${Heading2};
-    margin: 0;
-    color: var(--white);
-  }
-  p {
-    ${Body2};
-    color: var(--white);
-    margin: 20px 0 0;
-    letter-spacing: 0.02em;
-  }
-  @media only screen and (max-width: 991px) {
-    max-width: 251px;
-    h1 {
-      font-size: 36px;
-      line-height: 56px;
-    }
-    p {
-      font-size: 18px;
-      line-height: 24px;
-      letter-spacing: 0.02em;
-    }
-  }
-`;
-const UseCaseWrapMobi = styled.div`
-  text-align: center;
-  h1 {
-    ${MobileH2};
-    margin: 0;
-    color: var(--white);
-  }
-  p {
-    ${MbBody2};
-    color: var(--white);
-    margin: 20px 0 0;
-    letter-spacing: 0.02em;
-  }
-`;
+
 const CareerSection = styled.div`
   padding: var(--space-64) 0;
   @media only screen and (max-width: 991px) {
@@ -151,16 +37,7 @@ const RoleBlock = styled.div`
     gap: var(--space-32);
   }
 `;
-const TeamBlock = styled.div`
-  max-width: 552px;
-  width: 100%;
-  @media only screen and (max-width: 991px) {
-    max-width: 50%;
-  }
-  @media only screen and (max-width: 749px) {
-    max-width: 100%;
-  }
-`;
+
 const RoleWrap = styled.div`
   max-width: 600px;
   width: 100%;
@@ -235,338 +112,112 @@ const RightRow = styled.div`
     display: none;
   }
 `;
-const Dot = styled.div`
-  width: 4px;
-  height: 4px;
-  border-radius: 50%;
-  background-color: var(--border);
-  margin: 0 8px;
-`;
-const TeamView = styled.div`
-  h2 {
-    ${Heading4};
-    color: var(--title);
-    margin: 0;
-  }
-  @media only screen and (max-width: 991px) {
-    h2 {
-      font-size: 26px;
-      line-height: 34px;
-    }
-  }
-  @media only screen and (max-width: 749px) {
-    h2 {
-      ${MobileH4};
-    }
-  }
-`;
-const TeamDetail = styled.div`
-  margin-top: 20px;
-  @media only screen and (max-width: 749px) {
-    margin-top: 12px;
-  }
-`;
-const TitleWrap = styled.div`
-  margin-bottom: 16px;
-  :last-child {
-    margin-bottom: 0;
-  }
-`;
-const TeamLine = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  a {
-    ${Body5};
-    color: var(--primary);
-    letter-spacing: 0.02em;
-    :hover {
-      color: var(--title);
-    }
-  }
-  p {
-    ${FooterText};
-    color: var(--medium-gray);
-    margin: 0;
-  }
-  @media only screen and (max-width: 749px) {
-    align-items: flex-start;
-    a {
-      max-width: 224px;
-    }
-  }
-`;
-const NameView = styled.div`
-  display: flex;
-  align-items: center;
-  margin-top: 6px;
-  p {
-    ${FooterText};
-    margin: 0;
-    color: var(--medium-gray);
-  }
-`;
+
 const ImgWrap = styled.div`
   margin-top: 40px;
 `;
-const ImgBorder = styled.div`
-  border: 1px solid var(--black);
-  border-radius: 4px;
-  overflow: hidden;
-  background-color: var(--white);
-  display: flex;
-  img {
-    height: 100%;
-    width: 100%;
-    max-height: 320px;
-    object-fit: cover;
-    @media only screen and (max-width: 449px) {
-      max-height: 200px;
-    }
-  }
-`;
-const TabList = styled.div`
-  margin-top: 20px;
-`;
-const TabWrap = styled.div`
-  display: flex;
-  align-items: center;
-  gap: 11px;
-  justify-content: flex-end;
-  .activetab {
-    position: relative;
-    span {
-      ${Body6};
-      color: var(--black);
-    }
-    border: 1px solid var(--black);
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-`;
-const TabView = styled.div`
-  position: relative;
-  cursor: pointer;
-  span {
-    ${Body6};
-    color: var(--border);
-  }
-  border: 1px solid var(--border);
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-`;
-const ActiveTab = styled.div`
-  position: absolute;
-  bottom: 101%;
-  background: var(--black);
-  width: 1px;
-  height: 21px;
-`;
-const RegionView = styled.div`
-  border-top: 1px solid var(--black);
-  margin-top: 20px;
-  position: relative;
-  padding-top: 15px;
-  ::after {
-    content: '';
-    position: absolute;
-    -webkit-clip-path: polygon(49% 100%, 0 0, 100% 0);
-    clip-path: polygon(49% 100%, 0 0, 100% 0);
-    top: 0;
-    background: black;
-    width: 14px;
-    height: 7px;
-    right: 0;
-  }
-  p {
-    ${Label};
-    letter-spacing: 0.01em;
-    text-align: right;
-    margin: 0;
-  }
-`;
+
 const JObMain = styled.div`
-  padding-top: 164px;
-  padding-bottom: 100px;
-  @media only screen and (max-width: 768px) {
-    padding-top: 148px;
-    padding-bottom: 80px;
+  padding: var(--space-80) 0;
+  @media only screen and (max-width: 991px) {
+    padding: var(--space-64) 0;
+  }
+  @media only screen and (max-width: 449px) {
+    padding: var(--space-48) 0;
   }
 `;
-const DetailLink = styled.div`
-  display: flex;
-  gap: 8px;
-  align-items: center;
-  margin-bottom: 28px;
-  p {
-    ${LinkTxt};
-    margin: 0;
-    color: var(--medium-gray);
-  }
-  @media only screen and (max-width: 375px) {
-    gap: 4px;
-    p {
-      ${HeaderFont}
-    }
-  }
-`;
+
 const JobDetail = styled.div`
   display: flex;
-  gap: 46px;
+  gap: var(--space-96);
+  padding: var(--space-64) 0;
+  @media only screen and (max-width: 991px) {
+    padding: var(--space-40) 0;
+    gap: var(--space-48);
+    flex-direction: column;
+  }
   @media only screen and (max-width: 767px) {
-    flex-wrap: wrap;
+    padding: var(--space-48) 0;
   }
 `;
 const DetailLeft = styled.div`
-  max-width: 260px;
-  width: 100%;
   position: sticky;
-  top: 120px;
-  margin-top: -44px;
-  h3 {
-    ${Heading3};
-    color: var(--title);
-    margin: 0 0 24px 0;
-  }
-  @media only screen and (max-width: 768px) {
-    h3 {
-      font-size: 40px;
-      line-height: 46px;
-    }
+  top: var(--space-120);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-32);
+  max-width: 293px;
+  width: 100%;
+  @media only screen and (max-width: 991px) {
     width: 100%;
+    position: unset;
     max-width: 100%;
   }
-  @media only screen and (max-width: 469px) {
-    h3 {
-      ${MobileH3}
-      margin: 0 0 16px 0;
-    }
+  @media only screen and (max-width: 991px) and (min-width: 600px) {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+  }
+  @media only screen and (max-width: 449px) {
+    gap: var(--space-24);
   }
 `;
 const DetailWrap = styled.div`
   display: flex;
-  gap: 8px;
+  gap: var(--space-8);
   flex-direction: column;
-  padding-bottom: 20px;
   p {
-    ${Body4};
-    margin: 0;
-    color: var(--medium-gray);
-  }
-  span {
-    ${Body4};
+    ${button_semibold};
     margin: 0;
     color: var(--title);
   }
-  @media only screen and (max-width: 749px) {
-    padding-bottom: 16px;
-    p {
-      ${MbBody4};
-    }
-    span {
-      ${MbBody4};
-    }
+  span {
+    ${body_regular};
+    margin: 0;
+    color: var(--title);
   }
 `;
 const ImageWrap = styled.div`
   display: flex;
-  gap: 4px;
-  padding-bottom: 12px;
+  margin-left: 12px;
   a {
-    width: 30px;
-    height: 30px;
+    width: 40px;
+    height: 40px;
+    margin-left: -12px;
+    &:focus-visible {
+      border-radius: var(--radius-30);
+      position: relative;
+      z-index: 2;
+    }
   }
   img {
-    width: 30px;
-    height: 30px;
-    border-radius: 30px;
+    width: 40px;
+    height: 40px;
+    border-radius: var(--radius-30);
+    border: 1px solid var(--off-white-300);
   }
 `;
 const DetailRight = styled.div`
-  margin-top: 10px;
-  @media only screen and (max-width: 375px) {
-    padding-top: 34px;
+  max-width: 835px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-48);
+  align-items: flex-start;
+  @media only screen and (max-width: 991px) {
+    max-width: 100%;
+  }
+  @media only screen and (max-width: 449px) {
+    gap: var(--space-40);
   }
 `;
-const DetailRIghtText = styled.div`
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6 {
-    ${Heading4};
-    color: var(--title);
-    margin: 0;
-    padding-top: 40px;
-    :first-child {
-      padding-top: 0;
-    }
-  }
 
-  b {
-    font-weight: 400;
-    color: var(--title);
-  }
-
-  p {
-    ${Body3};
-    color: var(--body);
-    margin: 24px 0 0 0;
-    :first-child {
-      margin: 20px 0 0 0;
-    }
-    a {
-      display: inline-block;
-      color: var(--primary);
-    }
-  }
-  span {
-    ${Body3};
-    color: var(--primary);
-    margin: 0;
-  }
-  li {
-    position: relative;
-    ::before {
-      content: '';
-      position: absolute;
-      top: 7px;
-      left: 0;
-      width: 20px;
-      height: 10px;
-      background-color: var(--mid-light-green);
-    }
-    p {
-      padding: 0 10px 0 36px;
-      margin-top: 7px;
-      font-weight: 400;
-      font-size: 18px;
-      color: var(--body);
-    }
-  }
-  @media only screen and (max-width: 375px) {
-    p {
-      margin-top: 16px;
-      ${MbBody3}
-    }
-    li {
-      p {
-        ${MbBody4}
-      }
-    }
-  }
-`;
 const DetailPosition = styled.div`
   position: relative;
+  max-width: 293px;
+  width: 100%;
+  @media only screen and (max-width: 991px) {
+    max-width: 100%;
+  }
 `;
 
 const JobTitle = styled.p`
@@ -580,14 +231,196 @@ const Icon = styled.div`
   width: 16px;
   height: 16px;
 `;
+
+const NewHeroSection = styled.div`
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+  gap: var(--space-64);
+  padding-bottom: var(--space-24);
+  @media only screen and (max-width: 991px) and (min-width: 768px) {
+    padding-bottom: var(--space-20);
+  }
+  @media only screen and (max-width: 449px) {
+    gap: var(--space-48);
+    padding-top: var(--space-16);
+  }
+`;
+
+const Title = styled.h1`
+  margin: 0;
+  ${h1_semibold}
+  color: var(--title);
+  max-width: 900px;
+  width: 100%;
+`;
+
+const HeaderSeciton = styled.div`
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+  gap: var(--space-32);
+`;
+
+const ImageDiv = styled.div`
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  .image {
+    width: 100%;
+    height: 100%;
+  }
+`;
+
+const ImageSection = styled.div`
+  position: relative;
+  display: flex;
+  padding: 158px 0;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--border-default);
+  overflow: hidden;
+  border-radius: var(--radius-16);
+  width: 100%;
+  @media only screen and (max-width: 991px) {
+    padding: 78px 32px;
+  }
+  @media only screen and (max-width: 449px) {
+    border-radius: var(--radius-12);
+    padding: var(--space-20);
+  }
+`;
+
+const RoleDetails = styled.div`
+  position: relative;
+  z-index: 1;
+  display: flex;
+  justify-content: center;
+  gap: var(--space-12);
+  width: 100%;
+`;
+
+const LogoSection = styled.div`
+  display: flex;
+  border-radius: var(--radius-16);
+  padding: var(--space-28) var(--space-24);
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  .logo-icon {
+    path {
+      fill: var(--off-white-100);
+    }
+  }
+  @media only screen and (max-width: 991px) {
+    padding: var(--space-22) var(--space-20);
+  }
+`;
+
+const RoleSection = styled.div`
+  display: flex;
+  gap: var(--space-8);
+  padding: var(--space-24);
+  background: var(--off-white-100-with-10-opacity);
+  border-radius: var(--radius-16);
+  backdrop-filter: blur(28px);
+  @media only screen and (max-width: 991px) {
+    padding: var(--space-20);
+    flex-wrap: wrap;
+  }
+  @media only screen and (max-width: 600px) {
+    padding: var(--space-8) var(--space-12);
+    border-radius: var(--radius-8);
+    flex-direction: column;
+    gap: 0;
+    width: 100%;
+  }
+`;
+
+const Overlay = styled.div`
+  background: var(--off-white-100-with-10-opacity);
+  border-radius: var(--radius-16);
+  backdrop-filter: blur(28px);
+  width: 180px;
+  height: 80px;
+  @media only screen and (max-width: 991px) {
+    width: 171px;
+    height: 68px;
+  }
+`;
+
+const WrapperDiv = styled.div`
+  position: relative;
+  @media only screen and (max-width: 991px) {
+    display: none;
+  }
+`;
+
+const RoleTitle = styled.p`
+  margin: 0;
+  color: var(--off-white-100);
+  ${h4_regular}
+  opacity: 50%;
+  white-space: nowrap;
+`;
+const Role = styled.p`
+  margin: 0;
+  color: var(--off-white-100);
+  ${h4_regular}
+  white-space: nowrap;
+  @media only screen and (max-width: 991px) {
+    white-space: normal;
+  }
+`;
+const JobDetailSectionWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-80);
+  @media only screen and (max-width: 991px) {
+    gap: var(--space-64);
+  }
+  @media only screen and (max-width: 449px) {
+    gap: var(--space-48);
+  }
+`;
+
+const OverlayDiv = styled.div`
+  background-color: var(--title);
+  border: 1px solid var(--off-white-300);
+  border-radius: var(--radius-30);
+  width: 40px;
+  height: 40px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transform: scale(0.98);
+  transition: opacity 0.3s ease, transform 0.3s ease, background 0.3s ease, visibility 0s linear 0.3s;
+`;
+
+const AvtarWrapper = styled.div`
+  position: relative;
+  &:hover {
+    .overlay {
+      opacity: 40%;
+      visibility: visible;
+      pointer-events: auto;
+      transform: scale(1);
+      transition: opacity 0.3s ease, transform 0.3s ease, background 0.3s ease, visibility 0s;
+    }
+  }
+`;
+
 export {
-  HeroJobSection,
-  JobsWrap,
-  UseCaseWrap,
   CareerSection,
   CareerBlock,
   RoleBlock,
-  TeamBlock,
   RoleWrap,
   JobDetailWrap,
   JobView,
@@ -595,31 +428,30 @@ export {
   RoleRow,
   LeftRow,
   RightRow,
-  Dot,
-  TeamView,
-  TeamDetail,
-  TitleWrap,
-  TeamLine,
-  NameView,
   ImgWrap,
-  ImgBorder,
-  TabList,
-  TabWrap,
-  TabView,
-  ActiveTab,
-  RegionView,
   MainWrap,
   JObMain,
-  DetailLink,
   JobDetail,
   DetailLeft,
   DetailWrap,
   ImageWrap,
   DetailRight,
-  DetailRIghtText,
   DetailPosition,
-  JobsMobi,
-  UseCaseWrapMobi,
   JobTitle,
-  Icon
+  Icon,
+  NewHeroSection,
+  Title,
+  HeaderSeciton,
+  ImageSection,
+  ImageDiv,
+  RoleDetails,
+  LogoSection,
+  RoleSection,
+  Overlay,
+  WrapperDiv,
+  RoleTitle,
+  Role,
+  JobDetailSectionWrapper,
+  OverlayDiv,
+  AvtarWrapper
 };

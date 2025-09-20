@@ -42,7 +42,7 @@ const Buttons = styled.button`
     props.size === ButtonSize.SMALL &&
     css`
       height: 40px;
-      padding: var(--space-2) var(--space-16) 0;
+      padding: var(--space-2) var(--space-24) 0;
       ${label_semibold}
     `}
 
