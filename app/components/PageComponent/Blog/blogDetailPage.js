@@ -1,5 +1,5 @@
 'use client';
-import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import Link from 'next/link';
 import moment from 'moment';
 import { CopyBlock, dracula } from 'react-code-blocks';
@@ -20,13 +20,20 @@ import { renderContentWithVideos } from '../../../helpers/clientSideHelpers';
 import { EXTRACT_CODE_TAG_FROM_HTML_REGEX } from '../../../constants/constant';
 import LegacyBlogDetailHero from '../../blogdetailHero/legacyBlogDetailHero';
 import SVGComponent from '../../../../public/images/svg/SVGComponent';
-import useActiveHeading from '../../../hooks/useActiveHeading';
 import NewCTA from '../../cta/newCTA';
 import { CTAData } from '../../../constants/raw';
 import ToastMessage from '../../ToastMessage/toastMessage';
 import TableOfContents from './TableOfContents';
 
-export default function BlogdetailPage({ blogDetail, htmlData, ctaTitle, ctaDescription, hasTopBar, externalLinks = {} }) {
+export default function BlogdetailPage({
+  blogDetail,
+  htmlData,
+  ctaTitle,
+  ctaDescription,
+  hasTopBar,
+  externalLinks = {},
+  heroImage
+}) {
   const [CopyBlockData, setCopyBlock] = useState([]);
   const [showToast, setShowToast] = useState(false);
 
@@ -118,7 +125,7 @@ export default function BlogdetailPage({ blogDetail, htmlData, ctaTitle, ctaDesc
       <MainContent>
         <Container>
           <Details id='main_content' className={!shouldShowLestSection && 'without-toc'}>
-            <LegacyBlogDetailHero blogDetail={blogDetail} onCopyLink={handleCopyLink} />
+            <LegacyBlogDetailHero blogDetail={blogDetail} onCopyLink={handleCopyLink} heroImage={heroImage} />
 
             <BlogContent className={!shouldShowTOC ? 'without-toc' : ''}>
               {shouldShowLestSection && (

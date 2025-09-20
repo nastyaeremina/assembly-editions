@@ -3,7 +3,7 @@ import { parse } from 'node-html-parser';
 import Layout from '../../components/layout';
 import { getAllTagWithSlug, getBlogDetail } from '../../lib/blog-content';
 import { customSort, isEmpty, isValidUrl } from '../../helpers/helpers';
-import { getExternalLinks, isSameDomain } from '../../helpers/serverSideHelpers';
+import { extractTopImage, getExternalLinks, isSameDomain } from '../../helpers/serverSideHelpers';
 import BlogdetailPage from '../../components/PageComponent/Blog/blogDetailPage';
 import { BLOG_TAG_SORTED_LIST, CURRENT_SITE_URL, CURRENT_DOMAIN } from '../../constants/constant';
 import { getTopBarContent } from '../../components/navbar/navbar';
@@ -75,6 +75,7 @@ export default async function Blogdetail({ params }) {
   // Get topbar content to determine spacing
   const { topbarContent } = await getTopBarContent();
   const hasTopBar = !isEmpty(topbarContent);
+  let heroImage = null;
 
   // Create a JSON-LD script for structured data related to the blog post
   const jsonLd = {
@@ -110,20 +111,24 @@ export default async function Blogdetail({ params }) {
 
   try {
     // Define a regular expression to match the <cta> tag and its contents
-    const ctaRegex = /<cta>\s*<title>([^<]+)<\/title>\s*<description>([^<]+)<\/description>\s*<\/cta>/;
+    const ctaRegex = /<cta>\s*<title>([\s\S]*?)<\/title>\s*<description>([\s\S]*?)<\/description>\s*<\/cta>/i;
 
     // Attempt to match the regular expression against the HTML content
     const match = blogDetail?.html?.match(ctaRegex);
 
     // Extract the title and description from the match if found
-    ctaTitle = match ? match[1] : '';
-    ctaDescription = match ? match[2] : '';
+    ctaTitle = match?.[1]?.trim() ?? '';
+    ctaDescription = match?.[2]?.trim() ?? '';
 
     // Remove the <cta> tag and its contents from the original HTML string
     const cleanedHtmlString = blogDetail?.html?.replace(ctaRegex, '') || '';
 
+    // 2) pull top image if it's the first block and strip it from HTML
+  const { image, cleanedHtml } = extractTopImage(cleanedHtmlString);
+  heroImage = image;              // {height,width,alt,url,isWidthWide} or null
+
     // Use Cheerio to load the blog content's HTML
-    const root = parse(cleanedHtmlString);
+    const root = parse(cleanedHtml);
     // List of allowed routes where links should open in the same tab
     const allowedRoutes = ['/blog', '/pricing'];
 
@@ -163,6 +168,7 @@ export default async function Blogdetail({ params }) {
           htmlData={modifiedHtmlData}
           ctaTitle={ctaTitle}
           ctaDescription={ctaDescription}
+          heroImage={heroImage}
           hasTopBar={hasTopBar}
           externalLinks={externalLinks}
         />

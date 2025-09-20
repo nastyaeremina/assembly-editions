@@ -1,7 +1,8 @@
 import { cookies, draftMode, headers } from 'next/headers';
+import { parse } from 'node-html-parser';
 import { CURRENT_DOMAIN, EXTERNAL_LINKS_CONTENT_ID, EXTERNAL_LINK_ALIASES, EXTERNAL_LINK_KEYS } from '../constants/constant';
 import { COOKIE_NAME } from '../lib/constants';
-import { isEmpty, parseSocialMediaLinks, parseSocialMediaLinksArray, parseExternalLinks, parseExternalLinksMap } from './helpers';
+import { isEmpty, parseExternalLinks, parseExternalLinksMap } from './helpers';
 import { getCommonContent }  from '../lib/contentful-common';
 
 /**
@@ -265,4 +266,88 @@ export function getBreadcrumbFromReferer(referer, currentDomain) {
   }
   
   return { breadcrumbText, breadcrumbLink };
+}
+
+/**
+ * extractTopImage
+ *
+ * Looks at the blog HTML and checks if the very first top-level block
+ * is an image (either a <figure> with <img>, or a plain <img>).
+ *
+ * If found:
+ *   - Extracts image details (height, width, alt, url).
+ *   - Detects "kg-width-wide" class on <figure>.
+ *   - Removes that image block from the HTML so it won’t render twice.
+ *
+ * Always returns a safe object:
+ *   {
+ *     image: { height, width, alt, url, isWidthWide } OR null,
+ *     cleanedHtml: "the html with that image removed OR untouched"
+ *   }
+ *
+ * This will never throw an error — if parsing fails, you just get image:null.
+ */
+export function extractTopImage(html) {
+  // safe default if input is empty
+  const safe = { image: null, cleanedHtml: html || '' };
+  if (!html) return safe;
+
+  try {
+    // parse HTML safely (node-html-parser)
+    const root = parse(html, { lowerCaseTagName: true, comment: false });
+
+    // find the first element node (skip whitespace/text nodes)
+    const firstEl = root.childNodes.find(
+      (n) => n.nodeType === 1 && n.tagName
+    );
+    if (!firstEl) return safe;
+
+    // helper to safely parse int attributes like width/height
+    const toInt = (v) => {
+      const n = parseInt(v, 10);
+      return Number.isFinite(n) ? n : null;
+    };
+
+    let imgNode = null;
+    let isWidthWide = false;
+
+    // CASE 1: <figure> wrapper (Ghost usually uses this for images)
+    if (firstEl.tagName.toLowerCase() === 'figure') {
+      imgNode = firstEl.querySelector('img');
+      const classStr = (firstEl.getAttribute('class') || '').toLowerCase();
+      // detect Ghost "wide image" flag
+      isWidthWide = classStr.split(/\s+/).includes('kg-width-wide');
+    }
+    // CASE 2: plain <img> tag
+    else if (firstEl.tagName.toLowerCase() === 'img') {
+      imgNode = firstEl;
+    }
+
+    // if no <img> found, nothing to do
+    if (!imgNode) return safe;
+
+    // get all image details safely
+    const url = imgNode.getAttribute('src') || '';
+    if (!url) return safe; // invalid <img> → skip
+
+    const alt = imgNode.getAttribute('alt') || '';
+    const width = toInt(imgNode.getAttribute('width'));
+    const height = toInt(imgNode.getAttribute('height'));
+
+    // remove the figure/img from HTML so it won't duplicate
+    try {
+      firstEl.remove();
+    } catch (_) {
+      // ignore if removal fails
+    }
+
+    // return image object + cleaned html
+    return {
+      image: { height, width, alt, url, isWidthWide },
+      cleanedHtml: root.toString(),
+    };
+  } catch (err) {
+    console.error('extractTopImage error:', err);
+    return safe; // fallback if anything breaks
+  }
 }
