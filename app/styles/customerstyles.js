@@ -1,77 +1,313 @@
 import styled, { css } from 'styled-components';
-import { Body2, Heading2, Heading3, MbBody1, MobileH2 } from './styles';
+import { body_regular, button_regular, h1_semibold } from './typography';
+import Link from 'next/link';
+
+const CustomerPageWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-80);
+  padding-bottom: var(--space-80);
+  @media only screen and (max-width: 991px) {
+    gap: var(--space-64);
+    padding-bottom: var(--space-64);
+  }
+  @media only screen and (max-width: 449px) {
+    gap: var(--space-48);
+    padding-bottom: var(--space-48);
+  }
+`;
+
+const CaseStudyWrapper = styled.div`
+  padding: var(--space-64) 0;
+  @media only screen and (max-width: 991px) {
+    padding: var(--space-40) 0;
+  }
+  @media only screen and (max-width: 449px) {
+    padding: var(--space-48) 0;
+  }
+`;
 
 const HeroSection = styled.div`
-  width: 100%;
-  padding: var(--space-80) 0 0px 0;
-  text-align: center;
+  padding: var(--space-80) 0 var(--space-24) 0;
   overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-32);
+  align-items: center;
   @media only screen and (max-width: 768px) {
-    padding: var(--space-64) 0 0px 0;
+    padding: var(--space-64) 0 var(--space-24) 0;
+  }
+  .hero-image {
+    height: auto;
+    width: 100%;
+    margin-top: -158px;
+    @media only screen and (max-width: 991px) {
+      margin-top: -80px;
+    }
+    @media only screen and (max-width: 449px) {
+      margin-top: var(--space-16);
+      padding-bottom: var(--space-30);
+      transform: scale(1.4);
+    }
+  }
+  @media only screen and (max-width: 449px) {
+    gap: var(--space-24);
+    align-items: flex-start;
   }
 `;
 
 const HeroHeading = styled.h1`
-  ${Heading2};
+  ${h1_semibold};
   color: var(--title);
-  margin: 0 0 20px 0;
-  @media only screen and (max-width: 991px) {
-    text-align: center;
-    ${Heading2}
-  }
-  @media only screen and (max-width: 749px) {
-    margin-bottom: 20px;
-    ${MobileH2}
-    color: var(--title);
+  margin: 0 auto;
+  max-width: 900px;
+  text-align: center;
+  @media only screen and (max-width: 449px) {
+    text-align: left;
   }
 `;
 
 const Para = styled.p`
-  ${Body2}
-  letter-spacing: 0.02em;
+  ${body_regular}
   margin: 0 auto;
-  color: var(--body);
-  ${(props) =>
-    props.mainpagebody &&
-    css`
-      max-width: 780px;
-      width: 100%;
-    `}
-  @media only screen and (max-width: 991px) {
-    text-align: center;
-    ${Body2}
-  }
-  @media only screen and (max-width: 749px) {
-    ${MbBody1};
-  }
-`;
-
-const HeroBtnBlock = styled.div`
-  margin: 32px 0 100px;
-  @media only screen and (max-width: 768px) {
-    margin-bottom: 80px;
-  }
-`;
-
-const Heading = styled.h2`
-  text-align: center;
-  ${Heading3}
   color: var(--title);
-  margin-top: 0;
-  margin-bottom: 60px;
-  @media only screen and (max-width: 768px) {
-    margin-top: 0;
-    margin-bottom: 40px;
+  max-width: 720px;
+  text-align: center;
+  @media only screen and (max-width: 449px) {
+    text-align: left;
   }
 `;
 
 const LastSection = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 40px;
-  padding-bottom: 100px;
-  @media only screen and (max-width: 768px) {
-    padding-bottom: 80px;
+  gap: var(--space-32);
+  padding-top: var(--space-48);
+`;
+
+const TableSection = styled.div`
+  padding: var(--space-64) 0;
+  @media only screen and (max-width: 991px) {
+    padding: var(--space-40) 0;
+  }
+  @media only screen and (max-width: 449px) {
+    padding: var(--space-48) 0;
   }
 `;
-export { HeroSection, HeroHeading, Para, HeroBtnBlock, Heading, LastSection };
+
+const BottomTableSection = styled.div`
+  padding-top: var(--space-64);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-32);
+`;
+
+const TabsSection = styled.div`
+  display: flex;
+  align-items: center;
+  margin: 0 -24px;
+  padding: 0 var(--space-24);
+  gap: var(--space-8);
+  overflow: auto;
+  height: 48px;
+  ::-webkit-scrollbar {
+    display: none;
+  }
+  @media only screen and (max-width: 991px) {
+    margin: 0 -32px;
+    padding: 0 var(--space-32);
+  }
+  @media only screen and (max-width: 449px) {
+    margin: 0 -16px;
+    padding: 0 var(--space-16);
+  }
+`;
+
+const TabItem = styled.button`
+  height: 40px;
+  padding: var(--space-2) var(--space-16) 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--gray-50);
+  ${button_regular}
+  color: var(--title);
+  border-radius: var(--radius-30);
+  border: 1px solid transparent;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out, border 0.3s ease-in-out;
+  :hover {
+    border: 1px solid var(--border-hover);
+  }
+  ${(props) =>
+    props.isSelect &&
+    css`
+      background-color: var(--title);
+      color: var(--off-white-100);
+      border: 1px solid var(--title);
+      :hover {
+        border: 1px solid var(--title);
+      }
+    `}
+  @media only screen and (max-width: 449px) {
+    height: 32px;
+  }
+`;
+
+const Table = styled.div`
+  padding: var(--space-12);
+  display: flex;
+  flex-direction: column;
+  border-radius: var(--radius-16);
+  border: 1px solid var(--border-default);
+  overflow: hidden;
+  @media only screen and (max-width: 449px) {
+    padding: 0;
+  }
+`;
+
+const ContentSection = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-40);
+  padding: var(--space-24) 0;
+  border-bottom: 1px solid var(--border-default);
+  transition: border 0.3s ease-in-out;
+
+  &.hovered-border {
+    border-bottom: 1px solid transparent;
+  }
+  @media only screen and (max-width: 449px) {
+    border-bottom: none;
+    &.hovered-border {
+      border-bottom: none;
+    }
+  }
+`;
+
+const TableItem = styled(Link)`
+  padding: 0 var(--space-20);
+  position: relative;
+  transition: background-color 0.3s ease-in-out;
+  border-radius: var(--radius-8);
+  :last-child {
+    ${ContentSection} {
+      border-bottom: none;
+    }
+  }
+  :focus-visible {
+    border-radius: var(--radius-8);
+  }
+  @media only screen and (max-width: 450px) {
+  }
+  :hover {
+    background-color: var(--bg-primary-hover);
+    ${ContentSection} {
+      border-bottom: 1px solid var(--bg-primary-hover);
+    }
+    :last-child {
+      ${ContentSection} {
+        border-bottom: none;
+      }
+    }
+  }
+  @media only screen and (max-width: 991px) {
+    padding: 0 var(--space-16);
+  }
+  @media only screen and (max-width: 449px) {
+    border-radius: 0;
+    border-bottom: 1px solid var(--border-default);
+    :last-child {
+      border-bottom: none;
+    }
+    :hover {
+      ${ContentSection} {
+        border-bottom: none;
+      }
+    }
+  }
+`;
+
+const LogoDiv = styled.div`
+  display: flex;
+  align-items: center;
+  gap: var(--space-24);
+  width: 100%;
+  .customer-logo {
+    height: auto;
+    @media only screen and (max-width: 449px) {
+      display: none;
+    }
+  }
+`;
+
+const CustomerName = styled.p`
+  margin: 0;
+  ${body_regular}
+  color: var(--title);
+`;
+
+const CustomerDesignation = styled.p`
+  margin: 0;
+  ${body_regular}
+  color: var(--title);
+  width: 100%;
+  @media only screen and (max-width: 991px) {
+    position: absolute;
+    left: 0;
+    top: 0;
+    opacity: 0;
+  }
+`;
+
+const VisitSite = styled.div`
+  gap: var(--space-4);
+  display: flex;
+  align-items: center;
+  ${body_regular}
+  color: var(--title);
+  transition: color 0.3s ease;
+  white-space: nowrap;
+  svg {
+    path {
+      transition: fill 0.3s ease;
+      fill: var(--title);
+    }
+  }
+  :hover {
+    color: var(--text-secondary);
+    svg {
+      path {
+        fill: var(--text-secondary);
+      }
+    }
+  }
+`;
+
+const BlankDiv = styled.div`
+  width: 100%;
+  max-width: 124px;
+`;
+
+export {
+  HeroSection,
+  HeroHeading,
+  Para,
+  LastSection,
+  CustomerPageWrapper,
+  CaseStudyWrapper,
+  TableSection,
+  BottomTableSection,
+  TabsSection,
+  TabItem,
+  Table,
+  TableItem,
+  LogoDiv,
+  CustomerName,
+  CustomerDesignation,
+  ContentSection,
+  VisitSite,
+  BlankDiv
+};

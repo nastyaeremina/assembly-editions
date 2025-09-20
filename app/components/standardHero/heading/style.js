@@ -45,7 +45,7 @@ const HeroHeading = styled.h1`
 `;
 
 const Para = styled.p`
-  max-width: 720px;
+  max-width: 550px;
   width: 100%;
   ${body_regular}
   margin: 0;

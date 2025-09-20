@@ -41,12 +41,7 @@ export default async function Customer() {
     <>
       <AggregateRating id={CUSTOMER_SEO_ID} />
       <Layout>
-        <CustomerPage
-          testimonialPosts={testimonialPosts}
-          casestudiesPosts={casestudiesPosts}
-          externalLinks={externalLinks}
-        />
-        <CTA />
+        <CustomerPage casestudiesPosts={casestudiesPosts} externalLinks={externalLinks} />
       </Layout>
     </>
   );

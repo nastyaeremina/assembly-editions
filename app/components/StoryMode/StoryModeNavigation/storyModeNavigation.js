@@ -153,7 +153,8 @@ export default function StoryModeNavigation({ tabs, activeIndex, setActiveIndex,
                 ? setActiveIndex((activeIndex + 1) % tabs.length) // Mobile: next tab
                 : setActiveIndex(index) // Desktop: select clicked tab
           }
-          active={index === activeIndex}>
+          active={index === activeIndex}
+          tone={tone}>
           <Numbers>{(index + 1).toString().padStart(2, '0')}</Numbers>
           <TabName active={index === activeIndex} tone={tone}>
             {item.title}

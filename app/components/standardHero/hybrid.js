@@ -43,7 +43,8 @@ export default function HomeHeroSection({
           primaryButtonText={primaryButtonText}
           secondaryButtonText={secondaryButtonText}
           isDownload={isDownload}
-          variant={variant}></Heading>
+          variant={variant}
+        />
         {!isEmpty(image) && (
           <MainImage>
             <Image src={image} alt='internal' className='heromain-image' width={1224} height={415} />

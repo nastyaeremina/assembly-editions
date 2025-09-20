@@ -1035,7 +1035,6 @@ const getPath = (name, props) => {
           </defs>
         </>
       );
-
     case 'new-error-icon':
       return (
         <>
@@ -1050,6 +1049,15 @@ const getPath = (name, props) => {
               <path fill='#fff' d='M0 0h12v12H0z' />
             </clipPath>
           </defs>
+        </>
+      );
+    case 'visit-site-icon':
+      return (
+        <>
+          <path
+            fill='var(--title)'
+            d='M12.705 2.464c.46 0 .83.37.83.83v8.303c0 .46-.37.83-.83.83-.46 0-.83-.37-.83-.83v-6.3L3.88 13.292a.83.83 0 0 1-1.173-1.173L10.7 4.128 4.4 4.125c-.46 0-.83-.37-.83-.83 0-.46.37-.831.83-.831h8.306Z'
+          />
         </>
       );
     default:

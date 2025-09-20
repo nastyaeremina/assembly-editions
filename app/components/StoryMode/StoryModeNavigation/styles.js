@@ -167,12 +167,17 @@ const Tab = styled.button`
     z-index: 11;
   }
   @media only screen and (min-width: 992px) {
-    &:hover {
+    :hover {
       ${Numbers} {
         color: ${({ active }) => (active ? 'var(--text-secondary)' : 'var(--title)')};
+        ${({ tone }) =>
+          tone === SectionTone.DARK &&
+          css`
+            color: ${({ active }) => (active ? 'var(--text-secondary)' : 'var(--gray-200)')};
+          `}
       }
       ${TabName} {
-        color: ${({ active }) => (active ? 'var(--title)' : 'var(--title)')};
+        color: var(--title);
         ${({ tone }) =>
           tone === SectionTone.DARK &&
           css`

@@ -20,6 +20,7 @@ const POST_GRAPHQL_CASESTUDY_DETAILS_FIELDS = `
   heroSection{
   ${POST_GRAPHQL_HERO_COMPONENT_FIELDS}
  }
+  isFullWidth
   highlights
   caseStudyImage{
     url

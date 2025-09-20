@@ -1,205 +1,167 @@
 import styled, { css } from 'styled-components';
-import { Body3, HeaderFont, Heading3, Heading4, MbBody3, MobileH3 } from '../../styles/styles';
+import { body_semibold, button_regular, h2_semibold, h3_semibold, h4_semibold } from '../../styles/typography';
+import Link from 'next/link';
 
-const TestimonialCard = styled.div`
-  border: 1px solid var(--title);
-  border-radius: 4px;
-  display: flex;
-  @media only screen and (max-width: 768px) {
-    flex-direction: column-reverse;
-  }
+const TestimonialCard = styled(Link)`
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-16);
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-64);
+  padding: var(--space-32);
+  transition: background-color 0.3s ease-in-out, border 0.3s ease-in-out;
+  ${(props) =>
+    props.isFullWidth &&
+    css`
+      grid-template-columns: 1fr;
+      gap: var(--space-32);
+    `}
   ${(props) =>
     props.isStandardPage &&
     css`
-      margin-bottom: 100px;
+      margin-bottom: var(--space-100);
       @media only screen and (max-width: 768px) {
-        margin-bottom: 80px;
+        margin-bottom: var(--space-80);
       }
     `}
+    :hover {
+    background-color: var(--bg-primary-hover);
+  }
+  @media only screen and (max-width: 991px) {
+    grid-template-columns: 1fr;
+    ${(props) =>
+      props.isFullWidth &&
+      css`
+        grid-template-columns: 1fr;
+        gap: var(--space-64);
+      `}
+  }
+  @media only screen and (max-width: 449px) {
+    padding: var(--space-16);
+    gap: var(--space-16);
+  }
 `;
 const LeftCard = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  gap: var(--space-64);
+  ${(props) =>
+    props.isFullWidth &&
+    css`
+      order: 2;
+      gap: var(--space-32);
+    `}
+  @media only screen and (max-width: 991px) {
+    order: 2;
+    gap: var(--space-64);
+    ${(props) =>
+      props.isFullWidth &&
+      css`
+        gap: var(--space-64);
+      `}
+  }
+  @media only screen and (max-width: 449px) {
+    gap: var(--space-16);
+    ${(props) =>
+      props.isFullWidth &&
+      css`
+        gap: var(--space-16);
+      `}
+  }
 `;
 const RightCard = styled.div`
-  max-width: 405px;
   width: 100%;
   display: flex;
   align-items: stretch;
-  @media only screen and (max-width: 768px) {
+  ${(props) =>
+    props.isFullWidth &&
+    css`
+      order: 1;
+    `}
+  @media only screen and (max-width: 991px) {
+    order: 1;
     max-width: 100%;
   }
   .right {
-    max-width: 405px;
     width: 100%;
-    height: 100%;
-    border-left: 1px solid var(--title);
-    border-radius: 0px 3px 3px 0px;
+    height: auto;
+    border-radius: var(--radius-8);
     object-fit: cover;
-    @media only screen and (max-width: 768px) {
-      max-width: 100%;
-      border-left: none;
-      border-radius: 3px 3px 0px 0px;
-    }
+    border: 1px solid var(--border-default);
   }
 `;
 const Detail = styled.div`
   p {
-    ${Body3}
-    margin: 20px 0 38px;
-    color: var(--body);
+    ${body_semibold}
+    margin: var(--space-24) 0 0;
+    color: var(--title);
+    ${(props) =>
+      props.isFullWidth &&
+      css`
+        max-width: 538px;
+        ${h4_semibold}
+      `}
+    @media only screen and (max-width: 449px) {
+      margin: var(--space-20) 0 0;
+    }
   }
   strong {
     font-weight: 500;
   }
   h2 {
-    ${Heading3}
-    margin: 0px 0 30px 0;
+    ${h2_semibold}
+    margin: var(--space-24) 0;
     color: var(--title);
+    @media only screen and (max-width: 449px) {
+      margin: var(--space-20) 0 0;
+    }
   }
   h3 {
-    ${Heading4}
-    margin: 0px 0 30px 0;
+    ${h3_semibold}
+    margin: var(--space-24) 0;
     color: var(--title);
-  }
-  @media only screen and (max-width: 768px) {
-    p {
-      ${MbBody3}
-      letter-spacing: 0.02em;
-      margin-bottom: 32px;
+    @media only screen and (max-width: 449px) {
+      margin: var(--space-20) 0 0;
     }
   }
 `;
 
 const Percentage = styled.div`
   display: flex;
-  gap: 60px;
-  @media only screen and (max-width: 768px) {
-    flex-direction: column;
-    gap: 28px;
+  gap: var(--space-48);
+  border-bottom: 1px solid var(--border-default);
+  padding: var(--space-20) 0;
+  flex-wrap: wrap;
+  margin-top: var(--space-24);
+  @media only screen and (max-width: 449px) {
+    margin-top: 0;
+    padding: var(--space-24) 0 var(--space-20);
+    gap: var(--space-32);
   }
 `;
 const Section = styled.div`
-  max-width: 210px;
-  width: 100%;
   display: flex;
   flex-direction: column;
+  gap: var(--space-12);
   span {
-    ${Heading3}
+    ${h4_semibold}
     color: var(--title);
   }
   p {
-    ${Body3}
+    ${button_regular}
     margin:0;
-    color: var(--dark-green);
-  }
-  @media only screen and (max-width: 768px) {
-    span {
-      ${MobileH3}
-    }
-    p {
-      ${MbBody3}
-    }
+    color: var(--text-secondary);
   }
 `;
-const LastDroplist = styled.div`
-  border-top: 1px solid var(--dark-green);
-  padding: 28px;
-  @media only screen and (max-width: 768px) {
-    padding: 16px 20px;
-  }
-
-  .learn-link,
-  .learn-link svg path {
-    transition: all 300ms ease;
-  }
-  a {
-    ${Body3};
-    margin: 0;
-    color: var(--title);
-    cursor: pointer;
-    transition: none;
-    @media only screen and (max-width: 768px) {
-      ${HeaderFont}
-    }
-    :hover .HoverArrow__linePath {
-      opacity: 1;
-      fill: none;
-      fill: black;
-      /* @media only screen and (max-width: 749px) {
-        opacity: 0;
-      } */
-    }
-    :hover .HoverArrow__tipPath {
-      transform: translateX(2px);
-      /* @media only screen and (max-width: 749px) {
-        transform: none;
-      } */
-    }
-  }
-
-  .learn-link:hover {
-    color: black;
-    /* @media only screen and (max-width: 749px) {
-      color: var(--primary);
-    } */
-  }
-  .learn-link svg path {
-    transition: all 300ms ease;
-  }
-  .HoverArrow__linePath {
-    opacity: 0;
-    fill: none;
-  }
-  .HoverArrow {
-    stroke-width: 2px;
-    fill: none;
-    stroke: currentColor;
-    position: relative;
-    margin-left: var(--arrowSpacing);
-    stroke-width: 2px;
-    fill: none;
-    stroke: currentColor;
-    margin-left: 8px;
-    --arrowSpacing: 5px;
-    --arrowHoverTransition: 150ms cubic-bezier(0.215, 0.61, 0.355, 1);
-    --arrowHoverOffset: translateX(3px);
-    /* @media only screen and (max-width: 749px) {
-      display: none;
-    } */
-    /* @media only screen and (max-width: 376px) {
-      margin-left: 4px;
-    } */
-  }
-  .mobilearrow {
-    display: none;
-    /* @media only screen and (max-width: 749px) {
-      position: relative;
-      display: block;
-    } */
-  }
-`;
-
-const Last = styled.div`
-  display: flex;
-  align-items: center;
-`;
+const LastDroplist = styled.div``;
 
 const Top = styled.div`
-  padding: 28px 28px 56px;
   .top-logo {
     max-width: 218px;
     width: auto;
-    max-height: 50px;
+    max-height: 48px;
     height: 100%;
   }
-  @media only screen and (max-width: 768px) {
-    padding: 28px 20px;
-    .top-logo {
-      max-width: 175px;
-      max-height: 40px;
-    }
-  }
 `;
-export { TestimonialCard, LeftCard, RightCard, Detail, Percentage, Section, LastDroplist, Last, Top };
+export { TestimonialCard, LeftCard, RightCard, Detail, Percentage, Section, LastDroplist, Top };

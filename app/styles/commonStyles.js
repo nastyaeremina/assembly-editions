@@ -564,13 +564,23 @@ const Content = styled.div`
       margin-top: 0;
     }
   }
-  *:first-child {
-    margin-top: 0;
-    padding-top: 0;
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    :first-child {
+      padding-top: 0;
+      margin-top: 0;
+    }
   }
-  *:last-child {
-    margin-bottom: 0;
-    padding-bottom: 0;
+
+  p {
+    :last-child {
+      margin-bottom: 0;
+      padding-bottom: 0;
+    }
   }
   // isThemedContent enables special styling for rich text content like guide pages
   ${(props) =>
@@ -588,7 +598,7 @@ const Content = styled.div`
         align-items: flex-start;
         gap: var(--space-10);
         a {
-          margin-top: var(--space-6) !important;
+          margin-top: var(--space-6);
           :focus-visible {
             border-radius: var(--radius-4);
             .copy-icon {
@@ -614,7 +624,7 @@ const Content = styled.div`
         gap: var(--space-10);
         ${h3_semibold}
         a {
-          margin-top: var(--space-4) !important;
+          margin-top: var(--space-4);
           &:focus-visible {
             border-radius: var(--radius-4);
             .copy-icon {
@@ -641,7 +651,7 @@ const Content = styled.div`
         margin: var(--space-24) 0;
         ${h4_semibold}
         a {
-          margin-top: var(--space-4) !important;
+          margin-top: var(--space-4);
           :focus-visible {
             border-radius: var(--radius-4);
             .copy-icon {

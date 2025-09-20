@@ -46,6 +46,7 @@ const QuoteContentDiv = styled.div`
   flex-direction: column;
   gap: var(--space-32);
   width: 100%;
+  height: 100%;
   align-items: flex-start;
   justify-content: space-between;
 `;

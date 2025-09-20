@@ -26,7 +26,7 @@ function LinkComponent({ title, linkHref, tone = LinkTone.BLACK, size = LinkSize
             name='blog-card-hover-arrow-icon'
             width={`${iconSize}`}
             height={`${iconSize}`}
-            viewBox='0 0  16 16'
+            viewBox='0 0 16 16'
           />
         )}
       </LinkSection>
