@@ -357,7 +357,8 @@ export const CONTENTFUL_API_TAG = {
   UNIVERSITY: 'university',
   OTHER: 'other',
   STANDARD_PAGE: 'standard-page',
-  TEMPLATE: 'template'
+  TEMPLATE: 'template',
+  CUSTOMER: 'customer'
 };
 
 export const GUIDE_LINK_INFO = {

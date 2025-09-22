@@ -12,7 +12,12 @@ import CustomerPageHero from '../../standardHero/customerPageHero/customerPageHe
 import SectionHeader from '../../sectionHeader/sectionHeader';
 import CustomerTableSection from './customerTableSection';
 
-export default function CustomerPage({ casestudiesPosts, externalLinks = {} }) {
+export default function CustomerPage({
+  casestudiesPosts,
+  externalLinks = {},
+  caseStudiesData = [],
+  designations = []
+}) {
   const casestudiesView = useMemo(() => {
     if (isEmpty(casestudiesPosts)) return null;
     return casestudiesPosts?.map((item, index) => {
@@ -29,74 +34,6 @@ export default function CustomerPage({ casestudiesPosts, externalLinks = {} }) {
         />
       );
     });
-  }, [casestudiesPosts]);
-
-  const fallbackCompanies = [
-    {
-      name: 'Bob Smith',
-      designation: 'Finance',
-      customerLogo: casestudiesPosts[0].customerLogo.imageAsset.url,
-      visitLink: 'https://heritagelawpartners.com'
-    },
-    {
-      name: 'Alice Johnson',
-      designation: 'Technology',
-      customerLogo: casestudiesPosts[1].customerLogo.imageAsset.url,
-      slug: casestudiesPosts[1].slug
-    },
-    {
-      name: 'Catherine Lee',
-      designation: 'Healthcare',
-      customerLogo: casestudiesPosts[2].customerLogo.imageAsset.url,
-      slug: `/customers/${casestudiesPosts[2].slug}`
-    },
-    {
-      name: 'David Brown',
-      designation: 'Education',
-      customerLogo: casestudiesPosts[3].customerLogo.imageAsset.url,
-      slug: `/customers/${casestudiesPosts[3].slug}`
-    },
-    {
-      name: 'Eva Green',
-      designation: 'Marketing',
-      customerLogo: casestudiesPosts[3].customerLogo.imageAsset.url,
-      slug: `/customers/${casestudiesPosts[3].slug}`
-    },
-    {
-      name: 'Frank White',
-      designation: 'Real Estate',
-      customerLogo: casestudiesPosts[4].customerLogo.imageAsset.url,
-      slug: `/customers/${casestudiesPosts[4].slug}`
-    },
-    {
-      name: 'Grace Black',
-      designation: 'Retail',
-      customerLogo: casestudiesPosts[5].customerLogo.imageAsset.url,
-      slug: `/customers/${casestudiesPosts[5].slug}`
-    },
-    {
-      name: 'Grace Black',
-      designation: 'Retail',
-      customerLogo: casestudiesPosts[5].customerLogo.imageAsset.url,
-      slug: `/customers/${casestudiesPosts[5].slug}`
-    },
-    {
-      name: 'Grace',
-      designation: 'Retail',
-      customerLogo: casestudiesPosts[5].customerLogo.imageAsset.url
-    }
-  ];
-
-  const caseStudiesData = useMemo(() => {
-    if (isEmpty(fallbackCompanies)) return null;
-
-    return fallbackCompanies.map((item) => ({
-      customerLogo: item.customerLogo,
-      customerName: item.name,
-      designation: item.designation,
-      slug: item.slug,
-      visitLink: item.visitLink
-    }));
   }, [casestudiesPosts]);
 
   return (
@@ -122,7 +59,7 @@ export default function CustomerPage({ casestudiesPosts, externalLinks = {} }) {
         </CaseStudyWrapper>
       )}
       <CustomerTableSection
-        designations={CustomerTableSectionData.designations}
+        designations={designations}
         caseStudies={caseStudiesData}
         title={CustomerTableSectionData.title}
         description={CustomerTableSectionData.description}

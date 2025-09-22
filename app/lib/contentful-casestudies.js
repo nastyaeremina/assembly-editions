@@ -106,3 +106,21 @@ export async function getCaseStudyWithSlug(preview) {
 
   return extractPostEntries(entries);
 }
+
+export async function getCustomers(preview) {
+  const response = await fetchGraphQL(
+    `query {
+      customerCollection(preview: ${preview ? 'true' : 'false'}) {
+        items {
+          customerName
+          logo { url }
+          industry
+          url
+        }
+      }
+    }`,
+    preview,
+    [CONTENTFUL_API_TAG.CUSTOMER]
+  );
+  return response?.data?.customerCollection?.items || [];
+}

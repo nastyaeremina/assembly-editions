@@ -16,8 +16,6 @@ import {
 import { Container } from '../../../styles/commonStyles';
 import SectionHeader from '../../sectionHeader/sectionHeader';
 import Image from 'next/image';
-import LinkComponent from '../../linkComponent/linkComponent';
-import { LinkSize } from '../../../constants/constant';
 import { isEmpty } from '../../../helpers/helpers';
 import SVGComponent from '../../../../public/images/svg/SVGComponent';
 
@@ -34,11 +32,17 @@ import SVGComponent from '../../../../public/images/svg/SVGComponent';
  */
 
 function CustomerTableSection({ designations, caseStudies, title, description, primaryButtonLink, primaryButtonText }) {
-  const [activeTab, setActiveTab] = useState(designations[0]);
+  // Filter out designations that have no data
+  const designationsWithData = useMemo(() => {
+    if (!designations || !caseStudies) return [];
+    return designations.filter((designation) => caseStudies.some((item) => item?.designation === designation));
+  }, [designations, caseStudies]);
+
+  const [activeTab, setActiveTab] = useState(designationsWithData[0]);
   const tabRefs = useRef({});
 
   const renderTabs = useMemo(() => {
-    return designations?.map((designation) => (
+    return designationsWithData?.map((designation) => (
       <TabItem
         key={`${designation}`}
         ref={(el) => (tabRefs.current[designation] = el)}
@@ -47,7 +51,14 @@ function CustomerTableSection({ designations, caseStudies, title, description, p
         {designation}
       </TabItem>
     ));
-  }, [designations, activeTab]);
+  }, [designationsWithData, activeTab]);
+
+  // Update activeTab if current one is no longer available
+  useEffect(() => {
+    if (designationsWithData.length > 0 && !designationsWithData.includes(activeTab)) {
+      setActiveTab(designationsWithData[0]);
+    }
+  }, [designationsWithData, activeTab]);
 
   useEffect(() => {
     const el = tabRefs.current[activeTab];
@@ -119,7 +130,7 @@ function CustomerTableSection({ designations, caseStudies, title, description, p
   }, [filteredCaseStudies, hoverIndex]);
 
   return (
-    !isEmpty(designations) && (
+    !isEmpty(designationsWithData) && (
       <TableSection>
         <Container>
           <SectionHeader
