@@ -8,10 +8,16 @@ const BreadcrumbItemsWrapper = styled.div`
   span {
     ${button_regular};
     color: var(--text-secondary);
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    word-break: break-all;
   }
 `;
 
-const Line = styled.span`
+const Line = styled.div`
   ${button_regular};
   color: var(--text-secondary);
 `;

@@ -15,6 +15,10 @@ seoMetadata{
 
 const POST_GRAPHQL_GLOSSARY_DETAILS_FIELDS = `
 name
+image {
+  url
+  title
+}
 slug
 body{
   json

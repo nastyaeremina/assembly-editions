@@ -14,24 +14,24 @@ async function getContent({ slug }) {
 
     const [data, externalLinks] = await Promise.all([
       getGlossaryDetails(slug, isEnabled),
-      getExternalLinks({ asMap: true }),
+      getExternalLinks({ asMap: true })
     ]);
 
     return {
       detail: data ?? {},
-      externalLinks: externalLinks ?? {},
+      externalLinks: externalLinks ?? {}
     };
   } catch (error) {
     console.error('Error in getContent:', error);
     return {
       detail: {},
-      externalLinks: {},
+      externalLinks: {}
     };
   }
 }
 
 export async function generateMetadata({ params }) {
-  const {detail:data} = await getContent({ slug: params?.slug });
+  const { detail: data } = await getContent({ slug: params?.slug });
 
   return {
     title: data?.metaTitle ? data?.metaTitle : `${data?.name} | Definition and examples`,
@@ -40,7 +40,7 @@ export async function generateMetadata({ params }) {
   };
 }
 export default async function GlossaryDetails({ params }) {
-  const {detail, externalLinks} = await getContent({ slug: params?.slug });
+  const { detail, externalLinks } = await getContent({ slug: params?.slug });
   if (isEmpty(detail)) return notFound();
 
   return (
