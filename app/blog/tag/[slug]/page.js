@@ -5,10 +5,41 @@ import { customSort, getFeaturedBlogAndFilteredPosts, isEmpty } from '../../../h
 import TagPage from '../../../components/PageComponent/Blog/tagPage';
 import { BLOG_TAG_SORTED_LIST, CURRENT_SITE_URL, CURRENT_DOMAIN } from '../../../constants/constant';
 
-async function getContent({ slug }) {
+// Enable static generation with revalidation
+export const revalidate = 300; // Revalidate every 5 minutes
+
+// Generate static params for popular tags
+export async function generateStaticParams() {
   try {
-    const allPosts = (await getBlogByTag(slug)) ?? [];
-    const { featuredBlog, filteredPosts } = getFeaturedBlogAndFilteredPosts(allPosts);
+    const tags = await getAllTagWithSlug();
+    const popularTags = tags?.slice(0, 10) || []; // Generate for top 10 tags
+    
+    return popularTags.map((tag) => ({
+      slug: tag.slug,
+    }));
+  } catch (error) {
+    console.error('Error generating static params:', error);
+    return [];
+  }
+}
+
+async function getContent({ slug, page = 1, limit = 8 }) {
+  try {
+    // For first page, get a few extra posts to extract featured blog
+    const postsLimit = page === 1 ? limit + 2 : limit;
+    
+    // Fetch initial posts with pagination
+    const initialPosts = (await getBlogByTag(slug, { page, limit: postsLimit })) ?? [];
+    
+    let featuredBlog = null;
+    let filteredPosts = initialPosts;
+    
+    // For first page, extract featured blog and filter posts
+    if (page === 1) {
+      const result = getFeaturedBlogAndFilteredPosts(initialPosts);
+      featuredBlog = result.featuredBlog;
+      filteredPosts = result.filteredPosts?.slice(0, limit) || [];
+    }
 
     const tagDetail = (await getTagDetail(slug)) ?? {};
     const tags = (await getAllTagWithSlug()) ?? [];
@@ -44,7 +75,8 @@ async function getContent({ slug }) {
         title: 'Tag Not Found',
         description: 'The requested tag could not be found.',
         canonical: `${CURRENT_SITE_URL}/blog`
-      }
+      },
+      featuredBlog: null
     };
   }
 }
@@ -82,16 +114,14 @@ export async function generateMetadata({ params }) {
   }
 }
 
-export default async function Tag({ params }) {
+export default async function Tag({ params, searchParams }) {
   try {
-    const { allPosts, tags, featuredBlog } = await getContent({ slug: params?.slug });
+    const page = parseInt(searchParams?.page) || 1;
+    const { allPosts, tags, featuredBlog } = await getContent({ slug: params?.slug, page });
 
-    if (isEmpty(allPosts)) {
+    if (isEmpty(allPosts) && page === 1) {
       return notFound();
     }
-
-    const index = allPosts.findIndex((post) => post?.tags?.[0]?.slug === params?.slug);
-    if (index === -1) return notFound();
 
     return (
       <>

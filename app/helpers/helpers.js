@@ -129,10 +129,10 @@ export const getSEOData = async ({ id, data }) => {
       images: isEmpty(seoData?.openGraphImage)
         ? ['/images/opengraph_Image.jpeg']
         : [
-            {
-              url: seoData?.openGraphImage?.url
-            }
-          ]
+          {
+            url: seoData?.openGraphImage?.url
+          }
+        ]
     },
     robots: {
       index: !seoData?.noIndex,
@@ -695,14 +695,14 @@ export function parseVariants(markdown) {
 
   for (const line of lines) {
     const trimmed = line.trim();
-    
+
     // Extract experiment name and page path from lines starting with #
     if (trimmed.startsWith('#')) {
       // If we have a previous experiment, add it to the results
       if (currentExperiment) {
         experiments.push(currentExperiment);
       }
-      
+
       // Parse the new experiment line
       const match = trimmed.match(/^#(.*?)\s*\((.*?)\)$/);
       if (match) {
@@ -818,8 +818,8 @@ export function isValidUrl(href) {
 
 /**
  * Extracts featured blog from allPosts and returns filtered posts without the featured blog.
- * First reorders all posts: featured blogs first, then other blogs by published date.
- * Then sets the first blog as featured blog and filters out the rest.
+ * Prioritizes the latest published featured blog, or falls back to latest regular blog.
+ * Ensures the selected featured blog doesn't appear in the main blog list.
  * 
  * @param {Array} allPosts - Array of blog post objects
  * @returns {Object} - Object containing featuredBlog and filteredPosts
@@ -829,22 +829,22 @@ export function getFeaturedBlogAndFilteredPosts(allPosts) {
     return { featuredBlog: null, filteredPosts: [] };
   }
 
-  // Step 1: Reorder all posts - featured blogs first, then other blogs by published date
+  // Step 1: Reorder all posts to prioritize latest featured blog
   const reorderedPosts = [...allPosts].sort((a, b) => {
     // If both are featured or both are not featured, sort by published date (most recent first)
     if (!!a.featured === !!b.featured) {
       return new Date(b.published_at) - new Date(a.published_at);
     }
-    // Featured blogs come first
+    // Featured blogs come first (this ensures latest featured blog is at index 0)
     return a.featured ? -1 : 1;
   });
 
-  // Step 2: Set the first blog as featured blog
+  // Step 2: Set the first blog as featured blog (latest featured blog, or latest regular blog if no featured exists)
   const featuredBlog = reorderedPosts[0];
 
-  // Step 3: Filter out the featured blog from the remaining posts
+  // Step 3: Filter out the featured blog from the remaining posts to avoid duplication
   const filteredPosts = reorderedPosts.slice(1);
-    
+
   return { featuredBlog, filteredPosts };
 }
 

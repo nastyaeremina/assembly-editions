@@ -41,7 +41,7 @@ export default function FeatureBlogCard({ slug, title, excerpt, featureImage, pu
                       <SVGComponent name='dot-icon' width='6' height='6' viewBox='0 0 6 6' />
                     </IconDiv>
                   )}
-                  {!isEmpty(author) && <AuthorLink href={`/blog/author/${author.slug}`}>{author.name}</AuthorLink>}
+                  {!isEmpty(author) && <AuthorLink href={`/blog/author/${author.slug}`} as={'div'}>{author.name}</AuthorLink>}
                 </DetailLeftDiv>
               </PostDetail>
               <h3>{title}</h3>

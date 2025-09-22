@@ -15,10 +15,14 @@ import { ButtonVariant } from '../../../constants/constant';
 import NewCTA from '../../cta/newCTA';
 import { CTAData } from '../../../constants/raw';
 
-// Tag-specific blog page with filtering
+// Tag-specific blog page with server-side pagination
 export default function TagPage({ allPosts, tags, featuredBlog, currentTagSlug }) {
   const [selectedTag, setSelectedTag] = useState('All');
-  const [visibleCount, setVisibleCount] = useState(8);
+  const [posts, setPosts] = useState(allPosts || []);
+  const [loading, setLoading] = useState(false);
+  const [hasMore, setHasMore] = useState(true);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [featuredBlogId, setFeaturedBlogId] = useState(featuredBlog?.id || null);
   const router = useRouter();
   const pathname = usePathname();
   const isMobile = useIsMobile();
@@ -55,25 +59,43 @@ export default function TagPage({ allPosts, tags, featuredBlog, currentTagSlug }
     return tagList.filter((tag) => !isEmpty(tag?.name) && tag.name.trim()?.[0] !== '#');
   }, []);
 
-  // Filter posts based on selected tag
-  const filteredPosts = useMemo(() => {
-    if (isEmpty(allPosts)) return [];
-
-    if (selectedTag === 'All') {
-      return allPosts.filter((item) => item && !item.featured);
-    } else {
-      return allPosts.filter((item) => {
-        if (!item || item.featured) return false;
-        return item.tags && item.tags.some((tag) => tag.name === selectedTag);
-      });
+  // Load more posts function
+  const loadMorePosts = useCallback(async () => {
+    if (loading || !hasMore) return;
+    
+    setLoading(true);
+    try {
+      const nextPage = currentPage + 1;
+      const tagParam = currentTagSlug || 'all';
+      
+      // Add featured blog ID to exclude it from results
+      const excludeParam = featuredBlogId ? `&exclude=${featuredBlogId}` : '';
+      
+      const response = await fetch(`/api/blog/posts?page=${nextPage}&limit=8&tag=${tagParam}${excludeParam}`);
+      const data = await response.json();
+      
+      if (data.posts && data.posts.length > 0) {
+        setPosts(prev => [...prev, ...data.posts]);
+        setCurrentPage(nextPage);
+        setHasMore(data.hasMore);
+      } else {
+        setHasMore(false);
+      }
+    } catch (error) {
+      console.error('Error loading more posts:', error);
+      setHasMore(false);
+    } finally {
+      setLoading(false);
     }
-  }, [allPosts, selectedTag]);
+  }, [loading, hasMore, currentPage, currentTagSlug, featuredBlogId]);
 
   // Handle dropdown clicks for tag filtering
   const handleDropdownClick = useCallback(
     (tag) => {
       setSelectedTag(tag.name);
-      setVisibleCount(8);
+      setPosts([]); // Clear current posts
+      setCurrentPage(1);
+      setHasMore(true);
 
       // Navigate to the correct page
       if (tag.slug === 'all') {
@@ -84,6 +106,14 @@ export default function TagPage({ allPosts, tags, featuredBlog, currentTagSlug }
     },
     [router]
   );
+
+  // Update posts when allPosts changes (for initial load and navigation)
+  useEffect(() => {
+    setPosts(allPosts || []);
+    setCurrentPage(1);
+    setHasMore(allPosts?.length >= 8); // Assume more if we got full page
+    setFeaturedBlogId(featuredBlog?.id || null); // Track featured blog ID
+  }, [allPosts, featuredBlog]);
 
   // Render featured blog post
   const renderFeaturedBlog = useMemo(() => {
@@ -106,19 +136,19 @@ export default function TagPage({ allPosts, tags, featuredBlog, currentTagSlug }
     );
   }, [featuredBlog, filterTagList]);
 
-  // Render blog post cards with pagination
+  // Render blog post cards
   const renderData = useMemo(() => {
-    if (filteredPosts.length === 0) {
+    if (posts.length === 0) {
       return <div>No posts found for this tag.</div>;
     }
 
-    return filteredPosts.slice(0, visibleCount).map((item, index) => {
+    return posts.map((item, index) => {
       const finalTagList = filterTagList(item.tags);
       const authorName = item?.authors?.[0]?.name || '';
       return (
         <>
           <Blogcard
-            key={`blog_list_index_${index}`}
+            key={`blog_list_${item.slug}_${index}`}
             name={item?.title}
             date={moment(new Date(item?.published_at)).format('MMM DD, YYYY')}
             authorName={authorName}
@@ -133,7 +163,7 @@ export default function TagPage({ allPosts, tags, featuredBlog, currentTagSlug }
         </>
       );
     });
-  }, [filteredPosts, visibleCount, filterTagList]);
+  }, [posts, filterTagList]);
 
   // Get current tag object for dropdown defaultValue
   const getCurrentTagForDropdown = useMemo(() => {
@@ -187,13 +217,14 @@ export default function TagPage({ allPosts, tags, featuredBlog, currentTagSlug }
               <TabComponent items={dropdownItems} selectedTag={selectedTag} />
             )}
             <BlogCardsDiv>{renderData}</BlogCardsDiv>
-            {/* Show button only if there are more posts left */}
-            {filteredPosts.length > visibleCount && (
+            {/* Show load more button if there are more posts */}
+            {hasMore && (
               <LoadMoreButton>
                 <ButtonV2Component
-                  title={'Load more'}
+                  title={loading ? 'Loading...' : 'Load more'}
                   variant={ButtonVariant.SECONDARY_WITH_BORDER}
-                  onClick={() => setVisibleCount((prev) => prev + 8)}
+                  onClick={loadMorePosts}
+                  disabled={loading}
                 />
               </LoadMoreButton>
             )}

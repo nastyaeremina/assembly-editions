@@ -19,10 +19,18 @@ import ButtonV2Component from '../../button/buttonV2/buttonV2';
 
 export default function BlogPage({ allPosts, tags, featuredBlog, socialMediaLinks=[] }) {
   const [selectedTag, setSelectedTag] = useState('All');
-  const [visibleCount, setVisibleCount] = useState(8);
+  const [posts, setPosts] = useState(allPosts || []);
+  const [loading, setLoading] = useState(false);
+  const [hasMore, setHasMore] = useState(true);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [featuredBlogId, setFeaturedBlogId] = useState(featuredBlog?.id || null);
   const router = useRouter();
   const pathname = usePathname();
   const isMobile = useIsMobile();
+
+
+
+
 
   // Create dropdown items with current tag included
   const dropdownItems = useMemo(() => {
@@ -129,11 +137,46 @@ export default function BlogPage({ allPosts, tags, featuredBlog, socialMediaLink
     );
   }, [featuredBlog, filterTagList]);
 
+
+
+  // Load more posts function
+  const loadMorePosts = useCallback(async () => {
+    if (loading || !hasMore) return;
+    
+    setLoading(true);
+    try {
+      const nextPage = currentPage + 1;
+      const tagParam = selectedTag !== 'All' ? 
+        tags.find(t => t.name === selectedTag)?.slug || 'all' : 'all';
+      
+      // Add featured blog ID to exclude it from results
+      const excludeParam = featuredBlogId ? `&exclude=${featuredBlogId}` : '';
+      
+      const response = await fetch(`/api/blog/posts?page=${nextPage}&limit=8&tag=${tagParam}${excludeParam}`);
+      const data = await response.json();
+      
+      if (data.posts && data.posts.length > 0) {
+        setPosts(prev => [...prev, ...data.posts]);
+        setCurrentPage(nextPage);
+        setHasMore(data.hasMore);
+      } else {
+        setHasMore(false);
+      }
+    } catch (error) {
+      console.error('Error loading more posts:', error);
+      setHasMore(false);
+    } finally {
+      setLoading(false);
+    }
+  }, [loading, hasMore, currentPage, selectedTag, tags, featuredBlogId]);
+
   // Handle dropdown/tab clicks for tag filtering
   const handleDropdownClick = useCallback(
     (tag) => {
       setSelectedTag(tag.name);
-      setVisibleCount(8);
+      setPosts([]); // Clear current posts
+      setCurrentPage(1);
+      setHasMore(true);
 
       if (tag.slug === 'all') {
         // Navigate to main blog page
@@ -146,25 +189,26 @@ export default function BlogPage({ allPosts, tags, featuredBlog, socialMediaLink
     [router]
   );
 
-  // Filter posts based on selected tag
-  const filteredPosts = useMemo(() => {
-    if (isEmpty(allPosts)) return [];
+  // Update posts when allPosts changes (for initial load and navigation)
+  useEffect(() => {
+    setPosts(allPosts || []);
+    setCurrentPage(1);
+    setHasMore(allPosts?.length >= 8); // Assume more if we got full page
+    setFeaturedBlogId(featuredBlog?.id || null); // Track featured blog ID
+  }, [allPosts, featuredBlog]);
 
-    return selectedTag !== 'All'
-      ? allPosts.filter((item) => item.tags.some((tag) => tag.name === selectedTag))
-      : allPosts;
-  }, [allPosts, selectedTag]);
 
-  // Render blog post cards with pagination
+
+  // Render blog post cards
   const renderData = useMemo(() => {
-    return filteredPosts.slice(0, visibleCount).map((item, index) => {
+    return posts.map((item, index) => {
       const finalTagList = filterTagList(item.tags);
       const authorName = item?.authors?.[0]?.name || '';
 
       return (
         <>
           <Blogcard
-            key={`blog_list_index_${index}`}
+            key={`blog_list_${item.slug}_${index}`}
             name={item?.title}
             date={moment(new Date(item?.published_at)).format('MMM DD, YYYY')}
             authorName={authorName}
@@ -179,9 +223,9 @@ export default function BlogPage({ allPosts, tags, featuredBlog, socialMediaLink
         </>
       );
     });
-  }, [filteredPosts, visibleCount, filterTagList]);
+  }, [posts, filterTagList]);
 
-  if (isEmpty(allPosts)) return null;
+  if (isEmpty(posts) && isEmpty(allPosts)) return null;
 
   return (
     <>
@@ -209,12 +253,13 @@ export default function BlogPage({ allPosts, tags, featuredBlog, socialMediaLink
             )}
             <BlogCardsDiv>{renderData}</BlogCardsDiv>
             {/* Show load more button if there are more posts */}
-            {filteredPosts.length > visibleCount && (
+            {hasMore && (
               <LoadMoreButton>
                 <ButtonV2Component
-                  title={'Load more'}
+                  title={loading ? 'Loading...' : 'Load more'}
                   variant={ButtonVariant.SECONDARY_WITH_BORDER}
-                  onClick={() => setVisibleCount((prev) => prev + 8)}
+                  onClick={loadMorePosts}
+                  disabled={loading}
                 />
               </LoadMoreButton>
             )}
