@@ -1,18 +1,6 @@
 import styled, { css } from 'styled-components';
-import {
-  Body1,
-  Body2,
-  Body3,
-  Body4,
-  Body5,
-  Heading3,
-  Heading4,
-  Heading6,
-  MbBody2,
-  MbBody3,
-  MobileH4,
-  Quote
-} from '../../styles/styles';
+import { Body1, Body3, Body4, Body5, Heading3, Heading4, Heading6, MbBody3, MobileH4 } from '../../styles/styles';
+import { body_regular, body_semibold, button_regular, h3_semibold } from '../../styles/typography';
 
 const QuoteSection = styled.div`
   padding: 100px 0 0px;
@@ -437,78 +425,59 @@ const MobileViewTable = styled.div`
 `;
 const Carditem = styled.div`
   display: flex;
-  align-items: center;
-  border: 1px solid var(--dark-green);
-  border-radius: 4px;
-  overflow: hidden;
-  padding: 24px 26px;
-  p {
-    border-right: 1px solid var(--dark-green);
-    padding-right: 24px;
-    margin: 0;
-    margin-right: 24px;
-    align-items: center;
-    display: flex;
-    ${Body2};
-    color: var(--title);
-    @media only screen and (max-width: 449px) {
-      ${MbBody2};
-      height: 28px;
-    }
+  flex-direction: column;
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-12);
+  .svg-icon {
+    opacity: 0;
+    transform: translateX(-2px) scale(0.98);
+    transition: transform 0.25s, opacity 0.25s;
+    transition-timing-function: cubic-bezier(0.25, 0.46, 0.45, 0.94);
   }
-  @media only screen and (max-width: 768px) {
-    padding: 24px;
+  &:hover {
+    .svg-icon {
+      transform: none;
+      opacity: 1;
+    }
   }
 `;
 const ComparisonLogo = styled.div`
-  background-color: var(--white);
+  display: flex;
   img {
-    height: 38px;
-    width: 100%;
-    object-fit: contain;
-    @media only screen and (max-width: 449px) {
-      height: 28px;
-    }
+    height: 36px;
+    width: auto;
   }
 `;
 
 const CardMainDiv = styled.div`
-  padding-top: 60px;
-  :first-child {
-    padding-top: 0;
-  }
-  :last-child {
-    padding-bottom: 100px;
-  }
-  :last-child {
-    padding-bottom: 100px;
-  }
-  @media only screen and (max-width: 450px) {
-    padding-top: 40px;
-    :last-child {
-      padding-bottom: 80px;
-    }
-    :last-child {
-      padding-bottom: 80px;
-    }
-  }
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-40);
+`;
+
+const TitleWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-24);
+  max-width: 600px;
+  width: 100%;
 `;
 
 const Allcard = styled.div`
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 28px;
-  padding-top: 40px;
-  @media only screen and (max-width: 450px) {
-    gap: 20px;
-    justify-content: center;
-    padding-top: 28px;
+  gap: var(--space-24);
+  @media only screen and (max-width: 991px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  @media only screen and (max-width: 650px) {
     grid-template-columns: repeat(1, 1fr);
   }
 `;
 
-const Title = styled.div`
-  ${Heading4};
+const Title = styled.h3`
+  ${h3_semibold};
+  margin: 0;
   color: var(--title);
 `;
 
@@ -569,6 +538,42 @@ const Comparisonname = styled.div`
       background-color: var(--white);
     `}
 `;
+
+const Description = styled.p`
+  ${body_regular};
+  margin: 0;
+  color: var(--title);
+`;
+
+const TopSection = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--space-20);
+`;
+const BottomSection = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-8);
+  padding: var(--space-20);
+  border-top: 1px solid var(--border-default);
+`;
+
+const Icon = styled.div`
+  display: flex;
+`;
+
+const CompareTitle = styled.p`
+  margin: 0;
+  ${body_semibold}
+  color: var(--title);
+`;
+
+const CompareDescription = styled.p`
+  margin: 0;
+  ${button_regular}
+  color: var(--text-secondary);
+`;
 export {
   QuoteSection,
   ComparisonTable,
@@ -596,5 +601,12 @@ export {
   ButtonGroup,
   LeftSection,
   TitleSection,
-  MainTableSection
+  MainTableSection,
+  TitleWrapper,
+  Description,
+  TopSection,
+  BottomSection,
+  Icon,
+  CompareTitle,
+  CompareDescription
 };

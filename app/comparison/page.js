@@ -1,9 +1,8 @@
 import { draftMode } from 'next/headers';
 import ComparisonPage from '../components/PageComponent/Comparison/comparisonPage';
-import { getSEOData, isEmpty } from '../helpers/helpers';
+import { getSEOData } from '../helpers/helpers';
 import Layout from '../components/layout';
 import AggregateRating from '../components/aggregateRating';
-import NewCTA from '../components/cta/newCTA';
 import { COMPARISON_PAGE_ID, CURRENT_SITE_URL } from '../constants/constant';
 import { getPageContent } from '../helpers/serverSideHelpers';
 import {
@@ -56,17 +55,6 @@ export default async function Comparison({ searchParams }) {
       <AggregateRating data={details?.seoMetadata} />
       <Layout abTestContentLabel={abTestContentLabel} abTestExperimentName={abTestExperimentName}>
         <ComparisonPage featuredCompetitorList={featuredCompetitorList} details={details} />
-        {!isEmpty(details.ctaSection) && (
-          <NewCTA
-            title={details.ctaSection.title}
-            description={details.ctaSection.description}
-            primaryButtonText={details.ctaSection.primaryButtonText}
-            primaryButtonLink={details.ctaSection.primaryButtonLink}
-            secondaryButtonText={details.ctaSection.secondaryButtonText}
-            secondaryButtonLink={details.ctaSection.secondaryButtonLink}
-            banner={details.ctaSection.banner?.url}
-          />
-        )}
       </Layout>
     </>
   );

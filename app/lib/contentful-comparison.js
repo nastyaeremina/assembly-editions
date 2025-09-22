@@ -69,6 +69,8 @@ category
 logo{
   url
 }
+compititorName
+compititorShortDescription
 `;
 
 const POST_GRAPHQL_MASTER_COMPARISON_DETAILS_FIELDS = `
@@ -148,7 +150,7 @@ export async function getAllCompetitor(preview) {
   return extractPostEntries(entry);
 }
 
-export async function getMasterComparisonDetail({preview, id}) {
+export async function getMasterComparisonDetail({ preview, id }) {
   const entry = await fetchGraphQL(
     `query {
       masterComparisonCollection(preview: ${preview ? 'true' : 'false'}, where: {sys: {id: "${id}"}},limit: 1) {

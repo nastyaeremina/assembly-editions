@@ -50,7 +50,7 @@ const Para = styled.p`
   width: 100%;
   ${body_regular}
   margin: 0;
-  color: var(--text-secondary);
+  color: var(--title);
   text-align: left;
   p {
     margin: 0;
