@@ -1,201 +1,206 @@
 import styled from 'styled-components';
 import {
-  Body2,
-  Body3,
-  Body4,
-  Body5,
-  HeaderFont,
-  Heading3,
-  Heading4,
-  Heading5,
-  Heading6,
-  MbBody3,
-  MbBody4,
-  MbButtonText,
-  MbPrimaryBtn
-} from '../../styles/styles';
+  body_regular,
+  body_semibold,
+  button_regular,
+  h2_semibold,
+  h4_regular,
+  h4_semibold
+} from '../../styles/typography';
 
 const ReviewContent = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 40px;
-  padding-bottom: 100px;
-  @media only screen and (max-width: 768px) {
-    padding-bottom: 80px;
+  gap: var(--space-40);
+  padding: var(--space-64) 0;
+  @media only screen and (max-width: 991px) {
+    padding: var(--space-40) 0;
   }
-  @media only screen and (max-width: 768px) {
-    gap: 24px;
+  @media only screen and (max-width: 449px) {
+    padding: var(--space-48) 0;
   }
 `;
 const SectionHeading = styled.div`
   display: flex;
-  flex-direction: column;
-  gap: 12px;
   width: 100%;
-  h3 {
-    ${Heading4}
+  h2 {
+    ${h2_semibold}
     color: var(--title);
     margin: 0;
   }
-  p {
-    ${Body4};
-    color: var(--body);
-    margin: 0;
-  }
-  @media only screen and (max-width: 449px) {
-    ${Body5}
-    gap:8px;
-  }
 `;
 
-const Content = styled.div``;
+const Content = styled.div`
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+  width: 100%;
+`;
 const OverAllRating = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 24px;
-  .button {
-    a {
-      padding: 7px 32px;
-      ${HeaderFont}
-    }
-  }
+  gap: var(--space-12);
+  width: 100%;
+  padding-bottom: var(--space-48);
+
   @media only screen and (max-width: 449px) {
     flex-direction: column;
     align-items: flex-start;
-    gap: 16px;
-    margin-bottom: 16px;
+    gap: var(--space-40);
   }
 `;
 const Left = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: var(--space-12);
 
   h4 {
-    ${Body4};
-    color: var(--medium-gray);
+    ${h4_regular};
+    color: var(--title);
     margin: 0;
   }
 `;
 const RatingNumber = styled.div`
   display: flex;
-  align-items: center;
-  gap: 8px;
-  ${Heading5};
-  color: var(--title);
+  align-items: flex-start;
+  gap: var(--space-8);
+  h4 {
+    margin: 0;
+    ${h4_semibold};
+    color: var(--title);
+  }
 `;
 const RatingIcon = styled.div`
   display: flex;
-  gap: 4px;
+  gap: var(--space-4);
+  margin-top: var(--space-5);
+  @media only screen and (max-width: 449px) {
+    margin-top: var(--space-3);
+  }
 `;
 
 const ReviewDiv = styled.div`
   display: flex;
-  gap: 54px;
+  gap: var(--space-48);
   justify-content: space-between;
-  padding: 30px 0;
-  border-bottom: 1px solid var(--border);
-  :last-child {
-    border-bottom: none;
-    padding: 30px 0 0;
+  padding: var(--space-32) 0;
+  border-bottom: 1px solid var(--border-default);
+  @media only screen and (max-width: 991px) {
+    flex-direction: column-reverse;
+    padding: var(--space-24) 0 var(--space-20);
+    gap: var(--space-24);
   }
   @media only screen and (max-width: 449px) {
-    flex-direction: column-reverse;
-    gap: 12px;
-    padding: 20px 0;
-    :last-child {
-      border-bottom: none;
-      padding: 20px 0 0;
-    }
+    gap: var(--space-20);
   }
 `;
 const Info = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: var(--space-8);
   max-width: 306px;
   width: 100%;
-  @media only screen and (max-width: 768px) {
-    max-width: 200px;
-  }
-  @media only screen and (max-width: 449px) {
-    gap: 6px;
+  @media only screen and (max-width: 991px) {
+    max-width: 100%;
+    flex-direction: row;
+    align-items: center;
   }
 `;
 const Review = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: var(--space-16);
   width: 100%;
-  @media only screen and (max-width: 449px) {
-    gap: 12px;
-  }
 `;
-const PersonName = styled.div`
-  ${Heading6};
+const PersonName = styled.p`
+  ${body_semibold};
   color: var(--title);
-  @media only screen and (max-width: 449px) {
-    ${MbPrimaryBtn}
-  }
+  margin: 0;
 `;
-const Body = styled.div`
-  ${Body4};
-  color: var(--medium-gray);
-  @media only screen and (max-width: 449px) {
-    ${MbBody4}
+const Body = styled.p`
+  ${body_regular};
+  color: var(--text-secondary);
+  margin: 0;
+  &.date {
+    ${button_regular}
   }
 `;
 const PersonReview = styled.div`
   display: flex;
   justify-content: space-between;
+  align-items: center;
 `;
 const Star = styled.div`
   display: flex;
   gap: var(--space-4);
 `;
-const ReviewDetail = styled.div`
-  ${Body4};
-  color: var(--body);
-  @media only screen and (max-width: 449px) {
-    ${MbBody3}
-  }
+const ReviewDetail = styled.p`
+  ${body_regular};
+  color: var(--title);
+  margin: 0;
 `;
 
 const EmptyDesign = styled.div`
-  max-width: 524px;
-  margin: 0 auto;
-  .review-empty-logo {
-    margin: 0 auto;
-    display: flex;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-24);
+  padding-top: var(--space-80);
+  @media only screen and (max-width: 991px) {
+    padding-top: var(--space-64);
+  }
+  @media only screen and (max-width: 449px) {
+    padding-top: var(--space-48);
   }
 `;
 
 const EmptyContent = styled.div`
-  margin-top: 40px;
-  .empty-section-button {
-    display: flex;
-    justify-content: center;
-    a {
-      padding: 7px 32px;
-      ${HeaderFont}
-    }
-  }
+  max-width: 376px;
+  width: 100%;
 `;
 
 const Emptyheading = styled.h4`
-  ${Body2}
-  color:var(--dark-green);
+  ${h4_semibold}
+  color:var(--title);
   margin: 0;
   text-align: center;
 `;
 
 const EmptyCaption = styled.p`
-  ${Body4};
-  color: var(--medium-gray);
-  margin: 16px 0 32px;
+  ${body_regular};
+  color: var(--text-secondary);
+  margin: var(--space-12) 0 0;
   text-align: center;
 `;
+
+const Icon = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 44px;
+  height: 44px;
+  border-radius: var(--radius-8);
+  background-color: var(--title);
+  .svg-icon {
+    path {
+      fill: var(--off-white-300);
+      stroke: var(--off-white-300);
+    }
+  }
+`;
+const DotIcon = styled.div`
+  display: none;
+  @media only screen and (max-width: 991px) {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 16px;
+    height: 16px;
+  }
+`;
+
 export {
   ReviewContent,
   SectionHeading,
@@ -215,5 +220,7 @@ export {
   EmptyDesign,
   EmptyContent,
   Emptyheading,
-  EmptyCaption
+  EmptyCaption,
+  Icon,
+  DotIcon
 };

@@ -1,9 +1,6 @@
-import Image from 'next/image';
 import React, { useMemo, useState } from 'react';
 import { Container } from '../../styles/commonStyles';
-import Button from '../button/button';
 import ReviewModal from '../reviewModal/reviewModal';
-import reviewemptylogo from '../../../public/images/reviewemptylogo.svg';
 import StartList from './starList';
 import ReviewInfo from './reviewInfo';
 import {
@@ -12,6 +9,7 @@ import {
   EmptyContent,
   EmptyDesign,
   Emptyheading,
+  Icon,
   Left,
   OverAllRating,
   RatingIcon,
@@ -19,8 +17,18 @@ import {
   ReviewContent,
   SectionHeading
 } from './styles';
+import SVGComponent from '../../../public/images/svg/SVGComponent';
+import ButtonV2Component from '../button/buttonV2/buttonV2';
+import { ButtonSize } from '../../constants/constant';
 
-export default function ReviewSection({ appId, averageRate = 0, reviewList, isAuthenticated = false, setReviewList,isReviewVisible }) {
+export default function ReviewSection({
+  appId,
+  averageRate = 0,
+  reviewList,
+  isAuthenticated = false,
+  setReviewList,
+  isReviewVisible
+}) {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   // Function to handle button click
@@ -38,11 +46,12 @@ export default function ReviewSection({ appId, averageRate = 0, reviewList, isAu
       return <ReviewInfo key={`review_index_${index}`} data={item} />;
     });
   }, [reviewList]);
+
   return (
     <Container>
       <ReviewContent>
         <SectionHeading>
-          <h3>Reviews</h3>
+          <h2>Reviews</h2>
         </SectionHeading>
         {isReviewVisible && reviewList?.length > 0 ? (
           <Content>
@@ -50,63 +59,32 @@ export default function ReviewSection({ appId, averageRate = 0, reviewList, isAu
               <Left>
                 <h4>Overall rating</h4>
                 <RatingNumber>
-                  {averageRate.toFixed(1)}
+                  <h4>{averageRate.toFixed(1)}</h4>
                   <RatingIcon>
-                    <StartList rate={averageRate} isBig={true} />
+                    <StartList rate={averageRate} />
                   </RatingIcon>
                 </RatingNumber>
               </Left>
-              <div>
-                {isAuthenticated && (
-                  <Button
-                    bgColor={'transparent'}
-                    fontColor={'--black'}
-                    borderColor={'--black'}
-                    text={'Write a review'}
-                    hoverColor={'--hover-color'}
-                    onClick={onOpenModal}
-                    className={'button'}
-                  />
-                )}
-                {isModalOpen && (
-                  <ReviewModal
-                    reviewList={reviewList}
-                    onClose={closeModal}
-                    appId={appId}
-                    setReviewList={setReviewList}
-                  />
-                )}
-              </div>
+
+              {isAuthenticated && <ButtonV2Component title='Write a review' onClick={onOpenModal} />}
             </OverAllRating>
             {renderReviewList}
           </Content>
         ) : (
           <EmptyDesign>
-            <Image src={reviewemptylogo} alt='review-empty' width={288} height={150} className='review-empty-logo' />
+            <Icon>
+              <SVGComponent name='new-star-icon' width='20' height='20' viewBox='0 0 20 21' className='svg-icon' />
+            </Icon>
             <EmptyContent>
-              <Emptyheading>No Reviews Yet!</Emptyheading>
-              <EmptyCaption>Be the first to share your thoughts. Your feedback matters to us.</EmptyCaption>
-              <div>
-                <Button
-                  bgColor={'--primary'}
-                  fontColor={'--white'}
-                  borderColor={'--primary'}
-                  text={'Write a review'}
-                  hoverColor={'--secondary-hover-color'}
-                  onClick={onOpenModal}
-                  className={'empty-section-button'}
-                />
-                {isModalOpen && (
-                  <ReviewModal
-                    reviewList={reviewList}
-                    onClose={closeModal}
-                    appId={appId}
-                    setReviewList={setReviewList}
-                  />
-                )}
-              </div>
+              <Emptyheading>No reviews yet</Emptyheading>
+              <EmptyCaption>Your feedback helps others decide. Start by reviewing Jotform.</EmptyCaption>
             </EmptyContent>
+
+            <ButtonV2Component title='Write a review' onClick={onOpenModal} size={ButtonSize.SMALL} />
           </EmptyDesign>
+        )}
+        {isModalOpen && (
+          <ReviewModal reviewList={reviewList} onClose={closeModal} appId={appId} setReviewList={setReviewList} />
         )}
       </ReviewContent>
     </Container>

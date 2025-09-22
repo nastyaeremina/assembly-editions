@@ -1,7 +1,16 @@
-import styled, { css } from 'styled-components';
+import styled, { css, keyframes } from 'styled-components';
 import { button_semibold, label_semibold } from '../../../styles/typography';
 import { ButtonSize, ButtonTone, ButtonVariant } from '../../../constants/constant';
-
+const ball = keyframes`
+  from {
+    -webkit-transform: translateY(0) scaleY(0.8);
+    transform: translateY(0) scaleY(0.8);
+  }
+  to {
+    -webkit-transform: translateY(-10px);
+    transform: translateY(-10px);
+  }
+`;
 const ButtonWrap = styled.div`
   position: relative;
   ${(props) =>
@@ -15,6 +24,75 @@ const ButtonWrap = styled.div`
       border-radius: var(--radius-30);
     }
   }
+  ${(props) =>
+    props.isLoading &&
+    css`
+      &::before {
+        position: absolute;
+        top: 50%;
+        left: calc(50% - 2px);
+        -webkit-transform: translate(-50%, -50%);
+        transform: translate(-50%, -50%);
+        content: '';
+        display: block;
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background-color: var(--off-white-300);
+        z-index: 2;
+        margin-top: 4px;
+        -webkit-animation: 0.45s cubic-bezier(0, 0, 0.15, 1) infinite alternate ${ball};
+        animation: 0.45s cubic-bezier(0, 0, 0.15, 1) infinite alternate ${ball};
+        -webkit-animation-delay: 0.15s;
+        animation-delay: 0.15s;
+      }
+      ${Buttons} {
+        cursor: wait;
+        color: transparent;
+        &:hover {
+          cursor: wait;
+        }
+        &::before {
+          position: absolute;
+          top: 50%;
+          left: calc(50% - 2px);
+          -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+          content: '';
+          display: block;
+          width: 6px;
+          height: 6px;
+          border-radius: 50%;
+          background-color: var(--off-white-300);
+          z-index: 2;
+          margin-top: 4px;
+          -webkit-animation: 0.45s cubic-bezier(0, 0, 0.15, 1) infinite alternate ${ball};
+          animation: 0.45s cubic-bezier(0, 0, 0.15, 1) infinite alternate ${ball};
+          margin-left: -15px;
+          filter: unset;
+        }
+        &::after {
+          position: absolute;
+          top: 50%;
+          left: calc(50% - 2px);
+          -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+          content: '';
+          display: block;
+          width: 6px;
+          height: 6px;
+          border-radius: 50%;
+          background-color: var(--off-white-300);
+          z-index: 2;
+          margin-top: 4px;
+          -webkit-animation: 0.45s cubic-bezier(0, 0, 0.15, 1) infinite alternate ${ball};
+          animation: 0.45s cubic-bezier(0, 0, 0.15, 1) infinite alternate ${ball};
+          margin-left: 15px;
+          -webkit-animation-delay: 0.3s;
+          animation-delay: 0.3s;
+        }
+      }
+    `}
 `;
 
 const Buttons = styled.button`

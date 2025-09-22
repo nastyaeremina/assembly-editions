@@ -202,10 +202,14 @@ const Tooltip = styled.div`
     ${label_regular}
   }
   ${(props) =>
-    props.isApptooltip &&
+    props.isAppDetailtooltip &&
     css`
-      top: 24px;
-      left: -6px;
+      top: var(--space-24);
+      left: -5px !important; // icon is 16px size that is why we are using -5px
+      @media only screen and (max-width: 449px) {
+        top: var(--space-20);
+        left: -7px !important;
+      }
     `}
   @media only screen and (max-width: 768px) {
     ${(props) =>

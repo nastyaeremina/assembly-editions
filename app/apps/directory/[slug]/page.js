@@ -5,8 +5,8 @@ import { getAllPartnerApps, getPartnerAppDetail } from '../../../lib/contentful-
 import { getRandomUniqueElements, getSEOData, isEmpty } from '../../../helpers/helpers';
 import AppsDetailPage from '../../../components/PageComponent/Apps/appDetailPage';
 import { getExternalLinks } from '../../../helpers/serverSideHelpers';
-import CTA from '../../../components/cta/cta';
 import { APPS_TYPE, CURRENT_SITE_URL, STRING_END_OF_APP } from '../../../constants/constant.js';
+import { getTopBarContent } from '../../../components/navbar/navbar';
 
 async function getContent({ slug }) {
   const { isEnabled } = await draftMode();
@@ -52,11 +52,19 @@ export default async function AppsDetail({ params }) {
   if (isEmpty(appDetail)) return notFound();
   const cookie = cookies().get('current-portal-session');
   const isUserAuthenticated = !isEmpty(cookie?.value);
+  // Get topbar content to determine spacing
+  const { topbarContent } = await getTopBarContent();
+  const hasTopbar = !isEmpty(topbarContent);
   return (
     <>
       <Layout>
-        <AppsDetailPage isUserAuthenticated={isUserAuthenticated} appDetail={appDetail} relatedAppList={relatedApps} externalLinks={externalLinks} />
-        <CTA />
+        <AppsDetailPage
+          isUserAuthenticated={isUserAuthenticated}
+          appDetail={appDetail}
+          relatedAppList={relatedApps}
+          externalLinks={externalLinks}
+          hasTopbar={hasTopbar}
+        />
       </Layout>
     </>
   );

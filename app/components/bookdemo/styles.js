@@ -220,6 +220,11 @@ const ValidationForm = styled.div`
       margin-top: var(--space-2);
       margin-bottom: 0px;
     `}
+  ${(props) =>
+    props.isApplyMargin &&
+    css`
+      margin-bottom: 0;
+    `}
 `;
 
 const Icon = styled.div`

@@ -1,94 +1,99 @@
 import styled, { css } from 'styled-components';
-import {
-  Body3,
-  Body4,
-  Body5,
-  HeaderFont,
-  Heading3,
-  Heading4,
-  Heading5,
-  MbBody3,
-  MbBody4,
-  MobileH4
-} from '../../styles/styles';
+import { Body4, Body5, HeaderFont, Heading4, Heading5, MbBody4 } from '../../styles/styles';
+import { body_regular, h2_semibold } from '../../styles/typography';
 
 const AppDetail = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 40px;
-  padding-bottom: 100px;
-  @media only screen and (max-width: 768px) {
-    padding-bottom: 80px;
+  gap: var(--space-80);
+  @media only screen and (max-width: 991px) {
+    gap: var(--space-64);
   }
   @media only screen and (max-width: 449px) {
-    gap: 20px;
+    gap: var(--space-48);
   }
 `;
 const DetailTitleSection = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 16px;
-  @media only screen and (max-width: 449px) {
-    gap: 12px;
-  }
+  gap: var(--space-16);
 `;
 const AppLogo = styled.div`
+  display: flex;
+  img {
+    border: 1px solid var(--border-default);
+    border-radius: var(--radius-8);
+  }
   @media only screen and (max-width: 449px) {
     img {
       width: 40px;
       height: 40px;
+      border-radius: var(--radius-4);
     }
   }
 `;
-const Caption = styled.div`
-  ${Body3};
-  color: var(--body);
-  @media only screen and (max-width: 449px) {
-    ${MbBody3};
-  }
+const Caption = styled.p`
+  ${body_regular};
+  color: var(--text-secondary);
+  margin: 0;
 `;
 const Title = styled.div`
   display: flex;
-  gap: 16px;
+  gap: var(--space-16);
   align-items: center;
-  h3 {
-    ${Heading3};
+  h2 {
+    ${h2_semibold};
     color: var(--title);
     margin: 0;
   }
   @media only screen and (max-width: 449px) {
-    h3 {
-      ${MobileH4}
-    }
+    gap: var(--space-12);
   }
 `;
 
 const DetailContent = styled.div`
   display: flex;
-  gap: 30px;
-  @media only screen and (max-width: 768px) {
+  gap: var(--space-64);
+  padding: var(--space-64) 0;
+  position: relative;
+  @media only screen and (max-width: 991px) {
     flex-direction: column;
-    gap: 80px;
+    padding: var(--space-40) 0;
+  }
+  @media only screen and (max-width: 449px) {
+    padding: var(--space-48) 0;
   }
 `;
 
 const LeftContent = styled.div`
   width: 100%;
+  max-width: 728px;
   display: flex;
   flex-direction: column;
   gap: 40px;
+  @media only screen and (max-width: 991px) {
+    max-width: 100%;
+  }
 `;
 const RightContent = styled.div`
-  max-width: 308px;
+  max-width: 432px;
   width: 100%;
-  @media only screen and (max-width: 768px) {
+  position: sticky;
+  top: ${(props) => (props.hasTopBar ? 'var(--space-160)' : 'var(--space-120)')};
+  height: 100%;
+  @media only screen and (max-width: 1024px) {
+    max-width: 300px;
+  }
+  @media only screen and (max-width: 991px) {
     max-width: 100%;
+    position: unset;
   }
 `;
 const ImageSection = styled.div`
   position: relative;
   display: flex;
-  gap: 24px;
+  flex-direction: column;
+  gap: var(--space-40);
   .left-arrow {
     display: none;
   }
@@ -96,18 +101,16 @@ const ImageSection = styled.div`
     display: none;
   }
 
-  img {
-    border-radius: 4px;
-    border: 1px solid var(--border);
-    object-fit: cover;
-    cursor: zoom-in;
-    user-select: none;
-  }
   .big-image {
     max-height: fit-content;
     height: 100%;
     object-fit: cover;
     width: 100%;
+    border-radius: var(--radius-8);
+    border: 1px solid var(--border-default);
+    object-fit: cover;
+    cursor: zoom-in;
+    user-select: none;
   }
   ${(props) =>
     !props.isHide &&
@@ -146,7 +149,6 @@ const ImageSection = styled.div`
       `}
   }
   @media only screen and (max-width: 449px) {
-    margin: 0 -24px;
     width: unset;
     &.single-image-display {
       margin: 0;
@@ -158,14 +160,13 @@ const ImageSection = styled.div`
       }
     }
     img {
-      border-radius: 0px;
-      border: 1px var(--border);
+      border-radius: var(--radius-4);
       border-style: solid none;
       object-fit: cover;
       cursor: pointer;
     }
     .big-image {
-      /* height: 238px; */
+      border-radius: var(--radius-4);
     }
   }
 `;
@@ -173,77 +174,92 @@ const ImageSection = styled.div`
 const ImageSlider = styled.div`
   .roundbutton-section {
     display: flex;
-    justify-content: center;
-    gap: 12px;
+    gap: var(--space-4);
     width: 100%;
-    margin-top: 20px;
+    margin-top: var(--space-24);
   }
   .round {
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-    background-color: var(--snow-drift-gray);
+    width: 10px;
+    height: 10px;
+    border-radius: var(--radius-30);
+    background-color: var(--border-default);
     cursor: pointer;
   }
   .active-round {
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-    background-color: var(--black);
+    width: 10px;
+    height: 10px;
+    border-radius: var(--radius-30);
+    background-color: var(--title);
     cursor: pointer;
   }
 `;
 
-const CloseIcon = styled.div`
+const CloseIcon = styled.button`
   position: absolute;
-  top: 0%;
-  right: 0%;
+  top: var(--space-20);
+  right: var(--space-20);
   cursor: pointer;
-  font-weight: 500;
-  font-size: 15px;
-  line-height: 24px;
-  letter-spacing: 0.02;
-  color: var(--white);
-  margin: 0;
-  z-index: 1;
-  :hover {
-    svg {
-      path {
-        stroke: var(--white);
-      }
-    }
-  }
-  @media only screen and (min-width: 2160px) {
-    font-size: 1vw;
-  }
-`;
-
-const ArrowIcon = styled.div`
-  position: absolute;
-  top: calc(50% - 19px);
-  width: 38px;
-  height: 38px;
-  border-radius: 50%;
-  background-color: var(--white);
   display: flex;
   align-items: center;
   justify-content: center;
-  cursor: pointer;
-  z-index: 2;
-  box-shadow: 0px 4px 16px 0px var(--black-shadow-10);
-  svg {
+  background-color: var(--gray-200);
+  border-radius: var(--radius-30);
+  width: 40px;
+  height: 40px;
+  margin: 0;
+  z-index: 1;
+  border: none;
+  transition: background-color 0.3s ease-in;
+
+  .close-icon {
+    transition: all 0.3s ease-in;
     path {
-      stroke: var(--title);
+      fill: var(--off-white-100);
     }
   }
+  &:hover {
+    background-color: var(--gray-350);
+  }
+`;
+
+const ArrowIcon = styled.button`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 48px;
+  height: 48px;
+  background-color: var(--gray-50);
+  border-radius: var(--radius-30);
+  border: 1px solid var(--border-hover);
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 2;
+  transition: background-color 0.3s ease-in;
+
   ${(props) =>
     props.isHide &&
     css`
       display: none;
     `}
-  @media only screen and (max-width: 449px) {
-    /* width: 26px;
-    height: 26px; */
+  &:hover {
+    background-color: var(--off-white-400);
+  }
+
+  ${(props) =>
+    props.disabled &&
+    css`
+      border: 1px solid var(--border-default);
+      cursor: not-allowed !important;
+      svg {
+        path {
+          fill: var(--border-default);
+        }
+      }
+    `}
+  @media only screen and (max-width: 991px) {
+    display: none;
   }
 `;
 
@@ -524,29 +540,103 @@ const AboutDescription = styled.div`
 const Section = styled.div`
   display: flex;
   justify-content: space-between;
-  gap: 12px;
-  .install-button {
-    a {
-      padding: 7px 32px;
-      font-size: 16px;
-      line-height: 24px;
-      margin-top: 20px;
-    }
-  }
-  @media only screen and (max-width: 449px) {
+  align-items: center;
+  gap: var(--space-16);
+
+  @media only screen and (max-width: 991px) {
     flex-direction: column;
-    .install-button {
-      a {
-        padding: 9px 16px;
-        font-size: 12px;
-        line-height: 12px;
-        margin-top: 0px;
-      }
+    align-items: flex-start;
+    gap: var(--space-24);
+  }
+`;
+
+const HeroSectionWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-24);
+  align-items: flex-start;
+`;
+const MainHeroSectionWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-80);
+  align-items: flex-start;
+  padding-bottom: var(--space-24);
+  @media only screen and (max-width: 991px) {
+    gap: var(--space-64);
+    padding-bottom: var(--space-20);
+  }
+
+  @media only screen and (max-width: 449px) {
+    padding-top: var(--space-16);
+    padding-bottom: var(--space-24);
+    gap: var(--space-48);
+  }
+`;
+
+const ResponsiveSection = styled.div`
+  display: none;
+  @media only screen and (max-width: 991px) {
+    display: flex;
+  }
+`;
+
+const SmallImageList = styled.div`
+  display: flex;
+  gap: var(--space-8);
+  @media only screen and (max-width: 991px) {
+    display: none;
+  }
+`;
+
+const SmallImage = styled.button`
+  display: flex;
+  cursor: pointer;
+  border: 1px solid var(--border-default);
+  border-radius: var(--space-8);
+  overflow: hidden;
+  user-select: none;
+  position: relative;
+  .image {
+    width: 128px;
+    height: 72px;
+  }
+  :focus-visible {
+    border-radius: var(--radius-8);
+    .overlay {
+      opacity: 1;
+      background-color: transparent;
     }
   }
+  ${(props) =>
+    props.isActive &&
+    css`
+      border: 1px solid var(--border-hover);
+    `}
+`;
+
+const Overlay = styled.div`
+  background-color: var(--off-white-400);
+  opacity: 75%;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  inset: 0;
+  transition: opacity 0.3s ease, background-color 0.3s ease;
+  &:hover {
+    opacity: 1;
+    background-color: transparent;
+  }
+  ${(props) =>
+    props.isActive &&
+    css`
+      opacity: 1;
+      background-color: transparent;
+    `}
 `;
 export {
   AppDetail,
+  Overlay,
   DetailTitleSection,
   AppLogo,
   Caption,
@@ -560,5 +650,10 @@ export {
   ImageSlider,
   AppDetailContent,
   AboutDescription,
-  Section
+  Section,
+  HeroSectionWrapper,
+  MainHeroSectionWrapper,
+  ResponsiveSection,
+  SmallImageList,
+  SmallImage
 };

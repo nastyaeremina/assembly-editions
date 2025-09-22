@@ -11,6 +11,7 @@ import {
   MbBody4,
   MbBody5
 } from '../../styles/styles';
+import { body_regular, button_regular, button_semibold } from '../../styles/typography';
 
 const TemplateBody = styled.div`
   display: flex;
@@ -53,25 +54,19 @@ const AboutSection = styled.div`
     `}
 `;
 const Title = styled.div`
-  padding: 0 12px 16px;
+  padding: 0 var(--space-12) var(--space-16);
   border-bottom: 1px solid var(--title);
   ${Heading6};
   color: var(--title);
   @media only screen and (max-width: 449px) {
-    padding: 0 0 16px;
+    padding: 0 0 var(--space-16);
   }
 `;
 const Info = styled.div`
-  padding: 0 12px;
   display: flex;
   flex-direction: column;
-  gap: 20px;
-  .app-button {
-    a {
-      ${HeaderFont};
-      padding: 8px 32px;
-    }
-  }
+  align-items: flex-start;
+  gap: var(--space-32);
   @media only screen and (max-width: 449px) {
     padding: 0 0 16px;
     ${(props) =>
@@ -81,26 +76,34 @@ const Info = styled.div`
       `}
   }
 `;
-const InfoTitle = styled.h5`
-  ${Body5}
-  color: var(--title);
+const InfoTitle = styled.div`
   margin: 0;
   display: flex;
-  align-items: center;
-  gap: 4px;
+  align-items: flex-start;
+  gap: var(--space-8);
+  p {
+    color: var(--title);
+    ${button_semibold};
+    margin: 0;
+  }
 `;
 const InfoDescription = styled.p`
   display: flex;
-  gap: 4px;
-  align-items: center;
-  ${Body5}
-  color: var(--medium-gray);
+  gap: var(--space-8);
+  align-items: flex-start;
+  ${body_regular}
+  color: var(--title);
   margin: 0;
   a {
-    color: var(--primary);
+    color: var(--link-default);
+    ${body_regular}
     display: inline-flex;
     :hover {
-      color: var(--dark-green);
+      color: var(--link-hover);
+    }
+    :focus-visible {
+      border-radius: var(--radius-8);
+      outline: 1px solid var(--link-default);
     }
   }
 `;
@@ -108,7 +111,7 @@ const InfoDescription = styled.p`
 const InfoDiv = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: var(--space-8);
 `;
 
 const AppsSection = styled.div`

@@ -409,10 +409,18 @@ const DetailLink = styled.div`
   }
 `;
 const AppsDetailMain = styled.div`
-  /* padding-top: 164px;
-  @media only screen and (max-width: 749px) {
-    padding-top: 148px;
-  } */
+  padding: var(--space-80) 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-80);
+  @media only screen and (max-width: 991px) {
+    padding: var(--space-64) 0;
+    gap: var(--space-64);
+  }
+  @media only screen and (max-width: 449px) {
+    padding: var(--space-48) 0;
+    gap: var(--space-48);
+  }
 `;
 const AppHeader3 = styled.h2`
   ${Heading4}

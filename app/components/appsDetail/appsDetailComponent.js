@@ -1,7 +1,6 @@
 import React from 'react';
 import Image from 'next/image';
-import moment from 'moment';
-import { Container } from '../../styles/commonStyles';
+import { Container, Content } from '../../styles/commonStyles';
 import AboutComponent from '../template/aboutComponent';
 import { isEmpty, removeEmptyElement } from '../../helpers/helpers';
 import { EXTERNAL_LINK_KEYS } from '../../constants/constant';
@@ -12,65 +11,72 @@ import {
   EmbedInfoMessage,
   InternalAppInfoMessage
 } from '../../constants/constant';
-import Button from '../button/button';
 import {
   AppDetail,
   AppLogo,
   Caption,
   DetailContent,
   DetailTitleSection,
+  HeroSectionWrapper,
   LeftContent,
+  MainHeroSectionWrapper,
   RightContent,
   Section,
   Title
 } from './styles';
 import ImageSection from './ImageSection';
-import AppsDetailDescription from './appsDetailDescription';
+import Breadcrumbs from '../Breadcrumbs/breadcrumbs';
+import ButtonV2Component from '../button/buttonV2/buttonV2';
+import RichTextDetail from '../richTextDetail/richText';
 
-export default function AppsDetailComponent({ detail, content, isUserAuthenticated, reviewList, externalLinks = {} }) {
+export default function AppsDetailComponent({
+  detail,
+  content,
+  isUserAuthenticated,
+  reviewList,
+  externalLinks = {},
+  hasTopbar
+}) {
   const imageList = removeEmptyElement(content?.imageListCollection?.items);
+
+  const BreadcrumbItem = [{ label: 'All apps', href: '/apps/directory' }];
   return (
     <Container>
       <AppDetail>
-        <Section>
-          <DetailTitleSection>
-            <Title>
-              {!isEmpty(content?.icon?.url) && (
-                <AppLogo>
-                  <Image src={content?.icon?.url} alt='app-logo' width={80} height={80} />
-                </AppLogo>
-              )}
-              <h3>{content?.name}</h3>
-            </Title>
-            <Caption>{content?.description}</Caption>
-          </DetailTitleSection>
+        <MainHeroSectionWrapper>
+          <Section>
+            <HeroSectionWrapper>
+              <Breadcrumbs breadcrumbs={BreadcrumbItem} currentLabel={content?.name} />
+              <DetailTitleSection>
+                <Title>
+                  {!isEmpty(content?.icon?.url) && (
+                    <AppLogo>
+                      <Image src={content?.icon?.url} alt='app-logo' width={80} height={80} />
+                    </AppLogo>
+                  )}
+                  <h2>{content?.name}</h2>
+                </Title>
+                <Caption>{content?.description}</Caption>
+              </DetailTitleSection>
+            </HeroSectionWrapper>
 
-          {isUserAuthenticated && (
-            <Button
-              text={'Install'}
-              href={`${(externalLinks?.[EXTERNAL_LINK_KEYS.DashboardLink] || '')}/install/${content?.slug}`}
-              target='_blank'
-              className={'install-button'}
-              bgColor={'--black'}
-              fontColor={'--white'}
-              borderColor={'--black'}
-              hoverColor={'--secondary-hover-color'}
-            />
-          )}
-        </Section>
+            {isUserAuthenticated && (
+              <ButtonV2Component
+                title={'Install'}
+                href={`${externalLinks?.[EXTERNAL_LINK_KEYS.DashboardLink] || ''}/install/${content?.slug}`}
+                target='_blank'
+              />
+            )}
+          </Section>
+          {!isEmpty(imageList) && <ImageSection imageList={imageList} />}
+        </MainHeroSectionWrapper>
+
         <DetailContent>
-          {(!isEmpty(imageList) || !isEmpty(detail?.content?.json)) && (
-            <LeftContent>
-              {!isEmpty(imageList) && <ImageSection imageList={imageList} />}
-              {!isEmpty(detail?.content?.json) && (
-                <AppsDetailDescription jsonData={detail?.content?.json} assets={detail?.content?.links} isAppdetail />
-              )}
-            </LeftContent>
-          )}
-          <RightContent>
+          <RightContent hasTopbar={hasTopbar}>
             <AboutComponent
               isDirectory={true}
               content={content}
+              showTitle={false}
               data={[
                 {
                   label: 'Type',
@@ -102,6 +108,15 @@ export default function AppsDetailComponent({ detail, content, isUserAuthenticat
               ]}
             />
           </RightContent>
+          {!isEmpty(detail?.content?.json) && (
+            <LeftContent>
+              {!isEmpty(detail?.content?.json) && (
+                <Content>
+                  <RichTextDetail data={detail?.content?.json} assets={detail?.content?.links} />
+                </Content>
+              )}
+            </LeftContent>
+          )}
         </DetailContent>
       </AppDetail>
     </Container>

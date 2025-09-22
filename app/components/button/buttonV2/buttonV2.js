@@ -30,10 +30,12 @@ function ButtonV2Component({
   isWidth,
   tone = ButtonTone.REGULAR,
   className,
-  download = false
+  download = false,
+  target,
+  isLoading = false
 }) {
   return (
-    <ButtonWrap isWidth={isWidth}>
+    <ButtonWrap isWidth={isWidth} isLoading={isLoading}>
       <Buttons
         onClick={onClick}
         size={size}
@@ -44,6 +46,7 @@ function ButtonV2Component({
         aria-label={title}
         tone={tone}
         className={className}
+        target={target}
         {...(href && download && { download })}>
         <span>{title}</span>
         {iconName && (

@@ -3,12 +3,12 @@
 import { useMemo, useState } from 'react';
 import { AppsDetailMain } from '../../../styles/appsStyles';
 import { calculateAverageRate, isEmpty, removeEmptyElement } from '../../../helpers/helpers';
-import BackComponent from '../../backComponent/backComponent';
 import AppsDetailComponent from '../../appsDetail/appsDetailComponent';
-import AppsCardSection from '../../appsCards/appsCardSection';
 import ReviewSection from '../../reviewSection/reviewSection';
+import NewCTA from '../../cta/newCTA';
+import { CTAData } from '../../../constants/raw';
 
-export default function AppsDetailPage({ appDetail, relatedAppList, isUserAuthenticated, externalLinks = {} }) {
+export default function AppsDetailPage({ appDetail, isUserAuthenticated, externalLinks = {}, hasTopbar }) {
   const [reviewList, setReviewList] = useState(appDetail?.reviewsCollection?.items || []);
 
   //calculate average rate
@@ -20,13 +20,13 @@ export default function AppsDetailPage({ appDetail, relatedAppList, isUserAuthen
     <>
       <AppsDetailMain>
         <>
-          <BackComponent backtext={'Back to all apps'} href={'/apps/directory'} isDirectorydetail />
           <AppsDetailComponent
             detail={appDetail?.guideArticle}
             reviewList={reviewList}
             content={{ ...appDetail, averageRate }}
             isUserAuthenticated={isUserAuthenticated}
             externalLinks={externalLinks}
+            hasTopbar={hasTopbar}
           />
           {/* show review section only if user is authenticated (case of no review exist user can add first one)
           show review section if review list is not exist */}
@@ -41,16 +41,14 @@ export default function AppsDetailPage({ appDetail, relatedAppList, isUserAuthen
               setReviewList={setReviewList}
             />
           )}
-          {!isEmpty(relatedAppList) && (
-            <AppsCardSection
-              heading={'More apps like this'}
-              appList={relatedAppList}
-              isBottom
-              is4Card
-              isAppdetail
-              isFeature
-            />
-          )}
+          <NewCTA
+            title={CTAData.title}
+            description={CTAData.description}
+            primaryButtonText={CTAData.primaryButtonText}
+            primaryButtonLink={CTAData.primaryButtonLink}
+            secondaryButtonText={CTAData.secondaryButtonText}
+            secondaryButtonLink={CTAData.secondaryButtonLink}
+          />
         </>
       </AppsDetailMain>
     </>

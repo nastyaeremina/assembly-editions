@@ -2,37 +2,36 @@ import React from 'react';
 import SVGComponent from '../../../public/images/svg/SVGComponent';
 import { Star } from './styles';
 
-export default function StartList({ rate, isBig }) {
-  const svgWidth = isBig ? '24' : '20';
+export default function StartList({ rate, iconSize = '20' }) {
   const renderStar = () => {
     return [...Array(5)].map((_, index) => {
       if (index + 1 <= rate)
         return (
           <SVGComponent
-            name={`green-star-${isBig ? 'big' : 'medium'}-icon`}
-            width={svgWidth}
-            height={svgWidth}
-            viewBox={svgWidth}
+            name={'black-star-icon'}
+            width={iconSize}
+            height={iconSize}
+            viewBox='0 0 18 19'
             key={`start-${index}`}
           />
         );
       else if (rate - index === 0.5)
         return (
           <SVGComponent
-            name={`half-star-${isBig ? 'big' : 'medium'}-icon`}
-            width={svgWidth}
-            height={svgWidth}
-            viewBox={svgWidth}
+            name={'half-star-icon'}
+            width={iconSize}
+            height={iconSize}
+            viewBox='0 0 18 19'
             key={`start-${index}`}
           />
         );
       else
         return (
           <SVGComponent
-            name={`white-star-${isBig ? 'big' : 'medium'}-icon`}
-            width={svgWidth}
-            height={svgWidth}
-            viewBox={svgWidth}
+            name={`white-star-icon`}
+            width={iconSize}
+            height={iconSize}
+            viewBox='0 0 18 19'
             key={`start-${index}`}
           />
         );

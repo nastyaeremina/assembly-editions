@@ -1,5 +1,5 @@
-import styled from 'styled-components';
-import { Body5, HeaderFont, Heading5, Heading6, MbButtonText } from '../../styles/styles';
+import styled, { css } from 'styled-components';
+import { body_regular, body_semibold, button_regular, h4_semibold } from '../../styles/typography';
 
 const Modal = styled.div`
   position: fixed;
@@ -8,119 +8,187 @@ const Modal = styled.div`
   z-index: 99999;
   top: 0;
   left: 0;
-  background-color: var(--modal-bg-color);
+  background: var(--model-background-color);
+  backdrop-filter: blur(16px);
 `;
 
 const ReviewModalCard = styled.div`
   max-width: 480px;
   width: 100%;
-  background-color: var(--white);
+  background-color: var(--off-white-300);
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  border-radius: 4px;
+  border-radius: var(--radius-12);
   z-index: 1;
+  @media only screen and (max-width: 530px) {
+    max-width: calc(100% - 32px);
+  }
 `;
 
-const CloseIcon = styled.div`
+const CloseIcon = styled.button`
   cursor: pointer;
-  width: 20px;
-  height: 20px;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  background-color: transparent;
+  border-radius: var(--radius-30);
+  transition: background-color 0.3s ease-in;
+  &:hover {
+    background-color: var(--off-white-600);
+  }
+  &:focus-visible {
+    background-color: var(--off-white-600);
+  }
 `;
 const Header = styled.div`
-  padding: 20px 30px;
-  border-bottom: 1px solid var(--border);
+  padding: var(--space-20) var(--space-20) var(--space-20) var(--space-24);
+  border-bottom: 1px solid var(--border-default);
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: flex-start;
+  @media only screen and (max-width: 449px) {
+    padding: var(--space-20);
+  }
 `;
 
-const Heading = styled.h3`
+const Heading = styled.p`
   margin: 0;
-  ${Heading6};
+  ${body_semibold};
   color: var(--title);
+  margin-top: var(--space-4);
+  @media only screen and (max-width: 530px) {
+    margin-top: var(--space-6);
+  }
 `;
 const Content = styled.form`
-  padding: 24px 30px;
-  .submit-button {
-    width: max-content;
-    button {
-      padding: 8px 32px;
-      ${HeaderFont}
-    }
+  padding: var(--space-24);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-32);
+  width: 100%;
+  @media only screen and (max-width: 449px) {
+    padding: var(--space-20);
   }
 `;
 
 const NameInfo = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 5px;
-  .inputtext {
-    padding: 8px 12px;
-    border-radius: 4px;
-  }
+  gap: var(--space-2);
+  width: 100%;
   label {
-    ${MbButtonText};
-    color: var(--sub-title);
+    ${button_regular};
+    color: var(--title);
   }
 `;
 
 const Input = styled.input`
-  padding: 7px 12px;
-  background-color: var(--white);
-  border: 1px solid var(--border);
-  border-radius: 4px;
+  padding: var(--space-13) var(--space-16) var(--space-9);
+  background-color: var(--off-white-300);
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-8);
   outline: 0;
-  height: 32px;
-  margin-bottom: 24px;
-  font-size: 12px;
-  line-height: 16px;
-  font-weight: 400;
+  ${button_regular};
   width: 100%;
   color: var(--title);
-  :hover {
-    border-color: var(--primary);
+  &::placeholder {
+    color: var(--gray-200);
   }
-  :focus {
-    border-color: var(--primary);
+  body.using-mouse &:focus {
+    border-color: var(--title);
+    outline: none;
   }
+
+  /* keyboard (Tab) focus */
+  body.using-keyboard &:focus-visible {
+    outline: 2px solid var(--link-default);
+    outline-offset: 1px;
+    border-radius: var(--radius-8);
+  }
+
+  ${(props) =>
+    props.disabled &&
+    css`
+      &::placeholder {
+        color: var(--border-default);
+        pointer-events: none;
+      }
+    `}
+  ${(props) =>
+    props.isError &&
+    css`
+      border: 1px solid var(--error-color);
+      margin-bottom: 0;
+    `}
 `;
 
 const TextArea = styled.textarea`
-  padding: 7px 12px;
-  background-color: var(--white);
-  border: 1px solid var(--border);
-  border-radius: 4px;
-  outline: 0;
-  margin-bottom: 30px;
-  font-size: 12px;
-  line-height: 16px;
-  font-weight: 400;
   width: 100%;
-  min-height: 135px;
-  resize: none;
+  max-width: 100%;
+  height: auto;
+  min-height: 96px;
+  padding: var(--space-13) var(--space-16) var(--space-9);
+  outline: 0;
+  border: 1px solid var(--border-default);
+  background-color: var(--off-white-300);
+  overflow: hidden;
   color: var(--title);
-  :hover {
-    border-color: var(--primary);
-  }
-  :focus {
-    border-color: var(--primary);
-  }
-  ::-webkit-scrollbar {
+  border-radius: var(--radius-8);
+  ${button_regular}
+  resize: none;
+  overflow-y: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  &::-webkit-scrollbar {
     display: none;
   }
+  &::placeholder {
+    color: var(--gray-200);
+  }
+
+  body.using-mouse &:focus {
+    border-color: var(--title);
+    outline: none;
+  }
+
+  /* keyboard (Tab) focus */
+  body.using-keyboard &:focus-visible {
+    outline: 2px solid var(--link-default);
+    outline-offset: 1px;
+    border-radius: var(--radius-8);
+  }
+  ${(props) =>
+    props.disabled &&
+    css`
+      &::placeholder {
+        color: var(--border-default);
+        pointer-events: none;
+      }
+    `}
+  ${(props) =>
+    props.isError &&
+    css`
+      border: 1px solid var(--error-color);
+    `}
 `;
 
 const StarRatingSection = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 8px;
-  margin-bottom: 24px;
+  gap: var(--space-8);
   p {
-    ${MbButtonText};
-    color: var(--sub-title);
+    ${button_regular};
+    color: var(--title);
     margin: 0;
+  }
+  svg {
+    transform: none !important;
   }
 `;
 
@@ -133,45 +201,59 @@ const OverLayDiv = styled.div`
 `;
 
 const ThankYouCard = styled.div`
-  padding: 24px;
+  padding: var(--space-32) var(--space-24);
   max-width: 480px;
   width: 100%;
-  background-color: var(--white);
+  background-color: var(--off-white-300);
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  border-radius: 4px;
+  border-radius: var(--radius-12);
   z-index: 1;
   display: flex;
   flex-direction: column;
   align-items: center;
-  .back-button {
-    a {
-      padding: 7px 32px;
-      ${HeaderFont}
-    }
+  @media only screen and (max-width: 530px) {
+    max-width: calc(100% - 32px);
   }
 `;
 
 const Title = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 8px;
-  margin: 20px 0 24px;
+  gap: var(--space-8);
+  margin: var(--space-24) 0 var(--space-32);
 `;
-const Head = styled.h3`
-  ${Heading5};
-  font-weight: 400;
+const Head = styled.h4`
+  ${h4_semibold};
   color: var(--title);
   margin: 0;
   text-align: center;
 `;
 const Caption = styled.p`
-  ${Body5}
-  color: var(--body);
+  ${body_regular}
+  color: var(--text-secondary);
   margin: 0;
   text-align: center;
+`;
+
+const InputSection = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-24);
+  width: 100%;
+`;
+
+const Icon = styled.div`
+  width: 44px;
+  height: 44px;
+  background-color: var(--title);
+  border-radius: var(--radius-8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `;
 export {
   Modal,
@@ -188,5 +270,7 @@ export {
   ThankYouCard,
   Title,
   Head,
-  Caption
+  Caption,
+  InputSection,
+  Icon
 };

@@ -229,55 +229,10 @@ const getPath = (name, props) => {
           />
         </>
       );
-    case 'green-star-big-icon':
       return (
         <>
           <path
-            fill='var(--title)'
-            fillRule='evenodd'
-            stroke='var(--title)'
-            strokeLinecap='round'
-            strokeLinejoin='round'
-            strokeWidth={1.5}
-            d='m12 3.396 2.935 5.993 6.565.968-4.75 4.662 1.121 6.586L12 18.494l-5.871 3.11L7.25 15.02 2.5 10.357l6.564-.968L12 3.396Z'
-            clipRule='evenodd'
-          />
-        </>
-      );
-    case 'white-star-big-icon':
-      return (
-        <>
-          <path
-            fill='#fff'
-            stroke='var(--text-secondary)'
-            strokeLinecap='round'
-            strokeLinejoin='round'
-            strokeWidth={1.5}
-            d='m12 3.396 2.935 5.993 6.565.968-4.75 4.662 1.121 6.586L12 18.494l-5.871 3.11L7.25 15.02 2.5 10.357l6.564-.968L12 3.396Z'
-            clipRule='evenodd'
-          />
-        </>
-      );
-    case 'green-star-medium-icon':
-      return (
-        <>
-          <path
-            fill='var(--title)'
-            fillRule='evenodd'
-            stroke='var(--title)'
-            strokeLinecap='round'
-            strokeLinejoin='round'
-            strokeWidth={1.25}
-            d='m9.999 2.414 2.445 4.994 5.471.806-3.958 3.885.934 5.488L10 14.995l-4.893 2.592.934-5.488-3.958-3.885 5.47-.806 2.447-4.994Z'
-            clipRule='evenodd'
-          />
-        </>
-      );
-    case 'white-star-medium-icon':
-      return (
-        <>
-          <path
-            stroke='var(--text-secondary)'
+            stroke='var(--border-default)'
             strokeLinecap='round'
             strokeLinejoin='round'
             strokeWidth={1.5}
@@ -287,33 +242,10 @@ const getPath = (name, props) => {
           />
         </>
       );
-    case 'half-star-big-icon':
       return (
         <>
           <path
-            fill='#fff'
-            stroke='var(--text-secondary)'
-            strokeLinecap='round'
-            strokeLinejoin='round'
-            strokeWidth={1.5}
-            d='m12.5 3 2.935 5.993L22 9.96l-4.75 4.662 1.121 6.586-5.871-3.111-5.871 3.111 1.121-6.586L3 9.96l6.564-.967L12.5 3Z'
-            clipRule='evenodd'
-          />
-          <path
-            fill='var(--title)'
             stroke='var(--title)'
-            strokeLinecap='round'
-            strokeLinejoin='round'
-            strokeWidth={1.5}
-            d='m6.629 21.208 5.871-3.111V3L9.564 8.993 3 9.96l4.75 4.662-1.121 6.586Z'
-          />
-        </>
-      );
-    case 'half-star-medium-icon':
-      return (
-        <>
-          <path
-            stroke='var(--text-secondary)'
             strokeLinecap='round'
             strokeLinejoin='round'
             strokeWidth={1.5}
@@ -380,11 +312,8 @@ const getPath = (name, props) => {
       return (
         <>
           <path
-            stroke='#A5ABA9'
-            strokeLinecap='round'
-            strokeLinejoin='round'
-            strokeWidth={2}
-            d='m17 3.5-14 14m14 0L3 3.5l14 14Z'
+            fill='var(--text-secondary)'
+            d='M13.082 4.048a.797.797 0 0 0-1.126-1.126L8.004 6.874 4.048 2.918a.797.797 0 0 0-1.126 1.126l3.953 3.953-3.956 3.956a.797.797 0 0 0 1.126 1.126l3.952-3.953 3.956 3.956a.797.797 0 0 0 1.126-1.126L9.127 8.003l3.955-3.955Z'
           />
         </>
       );
@@ -1051,6 +980,70 @@ const getPath = (name, props) => {
           </defs>
         </>
       );
+    case 'new-star-icon':
+      return (
+        <>
+          <g>
+            <path
+              fill='var(--off-white-300)'
+              d='M10.78 1.423a.877.877 0 0 0-.777-.477.877.877 0 0 0-.778.477L6.549 6.665l-5.812.923a.874.874 0 0 0-.484 1.48l4.159 4.162-.916 5.813a.876.876 0 0 0 1.258.916l5.249-2.669 5.245 2.669a.873.873 0 0 0 1.258-.916l-.92-5.813 4.16-4.163a.87.87 0 0 0 .21-.887.869.869 0 0 0-.694-.592l-5.81-.923-2.671-5.242Z'
+            />
+          </g>
+          <defs>
+            <clipPath id='clip0_5596_90032'>
+              <path fill='#fff' d='M0 .5h20v20H0z' />
+            </clipPath>
+          </defs>
+        </>
+      );
+    case 'black-star-icon':
+      return (
+        <>
+          <g clipPath='url(#clip0_6461_1869)'>
+            <path
+              fill='var(--title)'
+              d='M9.703 1.33a.79.79 0 0 0-.7-.428.79.79 0 0 0-.7.428L5.895 6.048.663 6.88a.787.787 0 0 0-.435 1.332l3.743 3.746-.824 5.231a.788.788 0 0 0 1.132.825l4.724-2.402 4.721 2.402a.786.786 0 0 0 1.132-.825l-.828-5.231 3.743-3.746a.783.783 0 0 0 .19-.798.782.782 0 0 0-.625-.534l-5.228-.83L9.703 1.33Z'
+            />
+          </g>
+          <defs>
+            <clipPath id='clip0_6461_1869'>
+              <path fill='#fff' d='M0 .5h18v18H0z' />
+            </clipPath>
+          </defs>
+        </>
+      );
+    case 'half-star-icon':
+      return (
+        <>
+          <g clipPath='url(#clip0_6461_1901)'>
+            <path
+              fill='var(--title)'
+              d='M9 13.518c.327 0 .651.075.95.23l2.433 1.24-.425-2.7a2.099 2.099 0 0 1 .585-1.806l1.93-1.934-2.698-.428a2.097 2.097 0 0 1-1.538-1.116L8.994 4.57v8.951L9 13.518Zm5.54 4.43a.786.786 0 0 1-.819.065l-4.72-2.401-4.722 2.401a.786.786 0 0 1-1.132-.824l.825-5.232L.229 8.211a.783.783 0 0 1-.19-.798.782.782 0 0 1 .625-.533l5.231-.831L8.303 1.33a.79.79 0 0 1 .7-.429.79.79 0 0 1 .7.429l2.402 4.718 5.232.83a.787.787 0 0 1 .435 1.332l-3.746 3.746.827 5.232a.788.788 0 0 1-.314.759Z'
+            />
+          </g>
+          <defs>
+            <clipPath id='clip0_6461_1901'>
+              <path fill='#fff' d='M0 .5h18v18H0z' />
+            </clipPath>
+          </defs>
+        </>
+      );
+    case 'white-star-icon':
+      return (
+        <>
+          <g clipPath='url(#clip0_6461_3464)'>
+            <path
+              fill='var(--border-default)'
+              d='M9 .902a.79.79 0 0 1 .7.428l2.405 4.718 5.232.831a.787.787 0 0 1 .435 1.332l-3.746 3.746.827 5.231a.788.788 0 0 1-1.132.825l-4.72-2.402-4.722 2.402a.786.786 0 0 1-1.132-.825l.825-5.231L.229 8.211a.783.783 0 0 1-.19-.798.782.782 0 0 1 .625-.534l5.231-.83L8.303 1.33a.79.79 0 0 1 .7-.428H9Zm0 2.513L7.11 7.118a.787.787 0 0 1-.577.419l-4.106.654 2.938 2.941a.785.785 0 0 1 .22.678l-.648 4.106 3.707-1.885a.783.783 0 0 1 .713 0l3.707 1.885-.648-4.106a.785.785 0 0 1 .22-.678l2.937-2.94-4.106-.655a.787.787 0 0 1-.576-.419l-1.89-3.703Z'
+            />
+          </g>
+          <defs>
+            <clipPath id='clip0_6461_3464'>
+              <path fill='#fff' d='M0 .5h18v18H0z' />
+            </clipPath>
+          </defs>
+        </>
+      );
     case 'visit-site-icon':
       return (
         <>
@@ -1058,6 +1051,22 @@ const getPath = (name, props) => {
             fill='var(--title)'
             d='M12.705 2.464c.46 0 .83.37.83.83v8.303c0 .46-.37.83-.83.83-.46 0-.83-.37-.83-.83v-6.3L3.88 13.292a.83.83 0 0 1-1.173-1.173L10.7 4.128 4.4 4.125c-.46 0-.83-.37-.83-.83 0-.46.37-.831.83-.831h8.306Z'
           />
+        </>
+      );
+    case 'correct-sign-icon':
+      return (
+        <>
+          <g clipPath='url(#clip0_6322_148432)'>
+            <path
+              fill='var(--off-white-100)'
+              d='M19.69 3.35c.42.42.42 1.099 0 1.514L7.904 16.654c-.42.42-1.098.42-1.513 0L.315 10.582A1.071 1.071 0 0 1 1.828 9.07l5.313 5.313L18.17 3.35c.42-.42 1.1-.42 1.514 0h.005Z'
+            />
+          </g>
+          <defs>
+            <clipPath id='clip0_6322_148432'>
+              <path fill='#fff' d='M0 0h20v20H0z' />
+            </clipPath>
+          </defs>
         </>
       );
     default:
