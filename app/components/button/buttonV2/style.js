@@ -50,11 +50,11 @@ const Buttons = styled.button`
   ${(props) =>
     props.tone === ButtonTone.DARK &&
     css`
-      background-color: var(--off-white-200);
-      color: var(--title);
+      background-color: var(--gray-400);
+      color: var(--off-white-100);
       svg {
         path {
-          fill: var(--white);
+          fill: var(--off-white-100);
         }
       }
     `}
@@ -74,7 +74,7 @@ const Buttons = styled.button`
       color: var(--off-white-100);
       svg {
         path {
-          fill: var(--white);
+          fill: var(--off-white-100);
         }
       }
     `}
@@ -91,7 +91,7 @@ const Buttons = styled.button`
     props.variant === ButtonVariant.SECONDARY_WITH_BORDER &&
     props.tone === ButtonTone.DARK &&
     css`
-      border: 1px solid var(--bg-card-dark-hover);
+      border: 1px solid var(--gray-400);
       background-color: transparent;
       color: var(--off-white-100);
       svg {
@@ -105,11 +105,11 @@ const Buttons = styled.button`
     ${(props) =>
       props.tone === ButtonTone.DARK &&
       css`
-        background-color: var(--bg-primary-hover);
-        color: var(--title);
+        background-color: var(--gray-350);
+        color: var(--off-white-100);
         svg {
           path {
-            fill: var(--white);
+            fill: var(--off-white-100);
           }
         }
       `}
@@ -123,11 +123,11 @@ const Buttons = styled.button`
       props.variant === ButtonVariant.SECONDARY &&
       props.tone === ButtonTone.DARK &&
       css`
-        background-color: var(--bg-card-dark-hover);
+        background-color: var(--gray-350);
         color: var(--off-white-100);
         svg {
           path {
-            fill: var(--white);
+            fill: var(--off-white-100);
           }
         }
       `}
@@ -141,11 +141,11 @@ const Buttons = styled.button`
       props.variant === ButtonVariant.SECONDARY_WITH_BORDER &&
       props.tone === ButtonTone.DARK &&
       css`
-        background-color: var(--bg-card-dark-hover);
+        background-color: var(--gray-350);
         color: var(--off-white-100);
         svg {
           path {
-            fill: var(--white);
+            fill: var(--off-white-100);
           }
         }
       `}
