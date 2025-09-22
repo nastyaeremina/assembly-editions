@@ -35,10 +35,10 @@ const NavbarInner = styled.div`
   display: flex;
   align-items: center;
   gap: var(--space-64);
-  @media only screen and (max-width: 1024px) {
-    gap: 30px;
+  @media only screen and (max-width: 1110px) {
+    gap: var(--space-24);
   }
-  @media only screen and (max-width: 991px) {
+  @media only screen and (max-width: 1080px) {
     justify-content: space-between;
     gap: unset;
   }
@@ -52,7 +52,7 @@ const NavbarInner = styled.div`
 
 const CopilotLogo = styled(Image)`
   cursor: pointer;
-  @media only screen and (max-width: 991px) {
+  @media only screen and (max-width: 1080px) {
     width: 96px;
     height: 22px;
   }
@@ -63,7 +63,7 @@ const NavMenu = styled.div`
   align-items: center;
   justify-content: space-between;
   width: 100%;
-  @media only screen and (max-width: 991px) {
+  @media only screen and (max-width: 1080px) {
     padding: var(--space-16) 0;
     flex-direction: column;
     background: var(--bg-pages);
@@ -80,7 +80,7 @@ const NavMenu = styled.div`
       opacity: 1;
     }
   }
-  @media only screen and (max-width: 991px) {
+  @media only screen and (max-width: 1080px) {
     ${(props) =>
       props.mobile &&
       css`
@@ -106,8 +106,9 @@ const MobileSectionList = styled.ul`
 const NavigationBlock = styled.ul`
   display: flex;
   align-items: center;
-  gap: var(--space-12);
-  @media only screen and (max-width: 991px) {
+  gap: var(--space-4);
+  @media only screen and (max-width: 1080px) {
+    gap: var(--space-12);
     flex-direction: column;
     width: 100%;
     align-items: flex-start;
@@ -141,7 +142,7 @@ const LineMenuImg = styled.div`
   bottom: -30px;
   width: calc(100% + 4px);
   height: 30px;
-  @media only screen and (max-width: 991px) {
+  @media only screen and (max-width: 1080px) {
     display: none;
   }
 `;
@@ -159,6 +160,9 @@ const LinkText = styled(Link)`
   :focus-visible {
     outline: 2px solid var(--link-default);
     border-radius: var(--radius-30);
+  }
+  @media only screen and (max-width: 1080px) {
+    padding: var(--space-13) var(--space-16) var(--space-11);
   }
 `;
 
@@ -178,11 +182,11 @@ const SpanLink = styled.li`
   :hover .innerlist,
   li {
     display: block;
-    @media only screen and (max-width: 991px) {
+    @media only screen and (max-width: 1080px) {
       display: none;
     }
   }
-  @media only screen and (max-width: 991px) {
+  @media only screen and (max-width: 1080px) {
     width: 100%;
     padding: var(--space-6) 0;
   }
@@ -204,7 +208,7 @@ const ResponsiveSpanLink = styled.button`
   &:hover .innerlist,
   li {
     display: block;
-    @media only screen and (max-width: 991px) {
+    @media only screen and (max-width: 1080px) {
       display: none;
     }
   }
@@ -212,11 +216,11 @@ const ResponsiveSpanLink = styled.button`
     opacity: 1;
     visibility: visible;
     display: block;
-    @media only screen and (max-width: 991px) {
+    @media only screen and (max-width: 1080px) {
       display: none;
     }
   }
-  @media only screen and (max-width: 991px) {
+  @media only screen and (max-width: 1080px) {
     width: 100%;
     padding: var(--space-6) var(--space-12) var(--space-6) 0;
   }
@@ -245,7 +249,7 @@ const SpanMobileLink = styled.li`
     }
   }
 
-  @media only screen and (max-width: 991px) {
+  @media only screen and (max-width: 1080px) {
     margin-bottom: 0px;
     display: block;
     width: 100%;
@@ -254,7 +258,7 @@ const SpanMobileLink = styled.li`
   li {
     display: block;
 
-    @media only screen and (max-width: 991px) {
+    @media only screen and (max-width: 1080px) {
       display: none;
     }
   }
@@ -262,7 +266,7 @@ const SpanMobileLink = styled.li`
     opacity: 1;
     visibility: visible;
     display: block;
-    @media only screen and (max-width: 991px) {
+    @media only screen and (max-width: 1080px) {
       display: none;
     }
   }
@@ -298,7 +302,7 @@ const InnerList = styled.ul`
 `;
 
 const ListLi = styled.li`
-  @media only screen and (max-width: 991px) {
+  @media only screen and (max-width: 1080px) {
     background-color: var(--neutral);
     border-bottom: 1px solid var(--border);
     :last-of-type {
@@ -319,7 +323,7 @@ const Listright = styled.ul`
 `;
 
 const HeaderBtnGroup = styled.div`
-  @media only screen and (max-width: 991px) {
+  @media only screen and (max-width: 1080px) {
     width: 100%;
   }
 `;
@@ -327,10 +331,11 @@ const HeaderBtnGroup = styled.div`
 const SignInSignUpBtn = styled.ul`
   display: flex;
   align-items: center;
-  gap: var(--space-12);
-  @media only screen and (max-width: 991px) {
+  gap: var(--space-4);
+  @media only screen and (max-width: 1080px) {
+    gap: var(--space-12);
     width: 100%;
-    padding: 12px 0;
+    padding: var(--space-12) 0;
     border-top: 1px solid var(--navbar-border-color);
     display: flex;
     align-items: center;
@@ -358,7 +363,6 @@ const FirstLine = styled.span`
   background-color: var(--title);
   border-radius: var(--radius-30);
   margin-bottom: var(--space-4);
-  transition: all 300ms;
   transform: translate3d(0px, 0px, 0px) rotateZ(0deg);
   ${(props) =>
     props.isActive &&
@@ -374,7 +378,6 @@ const SecondLine = styled.span`
   background-color: var(--title);
   border-radius: var(--radius-30);
   margin-bottom: var(--space-4);
-  transition: all 300ms;
   transform: translate3d(0px, 0px, 0px) rotateZ(0deg);
   ${(props) =>
     props.isActive &&
@@ -389,7 +392,6 @@ const ThirdLine = styled.span`
   height: 2px;
   background-color: var(--title);
   border-radius: var(--radius-30);
-  transition: all 300ms;
   transform: translate3d(0px, 0px, 0px) rotateZ(0deg);
   ${(props) =>
     props.isActive &&
@@ -400,14 +402,13 @@ const ThirdLine = styled.span`
 
 const OverLayBlock = styled.div`
   display: none;
-  @media only screen and (max-width: 991px) {
+  @media only screen and (max-width: 1080px) {
     position: absolute;
     overflow: hidden;
     left: 0;
     right: 0;
     width: 100%;
     padding-top: 8px;
-    transition: color 200ms ease-in-out, height 0.4s ease-in-out, opacity 0.3s ease-in-out;
     top: ${(props) => props.top}px;
     height: 0;
     padding-top: 0;
@@ -428,7 +429,7 @@ const OverLayBlock = styled.div`
 const NavigationMainDiv = styled.div`
   display: flex;
   width: 100%;
-  @media only screen and (max-width: 991px) {
+  @media only screen and (max-width: 1080px) {
     display: none;
   }
 `;
@@ -444,7 +445,7 @@ const MenuWrap = styled(Link)`
     outline: 2px solid var(--link-default);
     border-radius: var(--radius-8);
   }
-  @media only screen and (max-width: 991px) {
+  @media only screen and (max-width: 1080px) {
     width: 100%;
   }
   :hover {
@@ -497,7 +498,7 @@ const RightText = styled.div`
 
 const SignInMobile = styled.ul`
   display: none;
-  @media only screen and (max-width: 991px) {
+  @media only screen and (max-width: 1080px) {
     display: flex;
     align-items: center;
     gap: var(--space-12);
@@ -515,7 +516,7 @@ const SignInMobile = styled.ul`
 
 const MobileRight = styled.div`
   display: none;
-  @media only screen and (max-width: 991px) {
+  @media only screen and (max-width: 1080px) {
     display: flex;
     align-items: center;
     gap: var(--space-12);
@@ -523,7 +524,7 @@ const MobileRight = styled.div`
 `;
 
 const MobileListLi = styled.li`
-  @media only screen and (max-width: 991px) {
+  @media only screen and (max-width: 1080px) {
     width: 100%;
   }
 `;
@@ -646,20 +647,64 @@ const ParentMenuDiv = styled.div`
   border-radius: var(--radius-16);
   display: grid;
   grid-template-columns: ${({ itemCount }) => `repeat(${itemCount}, 1fr)`};
+  overflow: hidden;
+`;
+
+const VisitSite = styled.div`
+  gap: var(--space-4);
+  display: flex;
+  align-items: center;
+  ${button_regular}
+  color: var(--text-secondary);
+  transition: color 0.3s ease;
+  white-space: nowrap;
+  svg {
+    path {
+      transition: fill 0.3s ease;
+      fill: var(--text-secondary);
+    }
+  }
+  :hover {
+    color: var(--title);
+    svg {
+      path {
+        fill: var(--title);
+      }
+    }
+  }
 `;
 
 const HighlightSectionDiv = styled.div`
-  padding: var(--space-8);
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-20);
-  align-items: flex-start;
+  padding: var(--space-20);
+  transition: background-color 0.3s ease-in-out;
+  margin: -12px;
+  a {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-20);
+    align-items: flex-start;
+    :focus-visible {
+      border-radius: var(--radius-8);
+    }
+  }
+  &:hover {
+    background-color: var(--bg-primary-hover);
+    ${VisitSite} {
+      color: var(--title);
+      svg {
+        path {
+          fill: var(--title);
+        }
+      }
+    }
+  }
 `;
 
 const ContentDiv = styled.div`
   display: flex;
   flex-direction: column;
   gap: var(--space-12);
+  width: 100%;
   .hightLight-image {
     border: 1px solid var(--border-default);
     border-radius: var(--radius-8);
@@ -691,6 +736,7 @@ const Section = styled.div`
   border-radius: var(--radius-16);
   padding: var(--space-12);
   margin-top: var(--space-12);
+  overflow: hidden;
 `;
 
 const BottomButtonSection = styled.div`
@@ -699,7 +745,7 @@ const BottomButtonSection = styled.div`
   display: flex;
   flex-direction: column;
   gap: var(--space-8);
-  @media only screen and (max-width: 991px) {
+  @media only screen and (max-width: 1080px) {
     padding: var(--space-16) var(--space-32);
   }
   @media only screen and (max-width: 449px) {
@@ -755,5 +801,6 @@ export {
   MobileSectionList,
   DropdownContainer,
   Section,
-  BottomButtonSection
+  BottomButtonSection,
+  VisitSite
 };

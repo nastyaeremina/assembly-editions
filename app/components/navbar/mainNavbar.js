@@ -234,19 +234,27 @@ export default function NavbarComponent({ isAuthenticated: userAuth, topbarConte
               {userAuth ? (
                 <>
                   <SpanLink>
-                    <LinkText href={'/book-demo'}>Contact sales</LinkText>
+                    <LinkText href={'/book-demo'}>Book demo</LinkText>
                   </SpanLink>
-                  <ButtonV2Component title={'Open Dashboard'} href={externalLinks?.[EXTERNAL_LINK_KEYS.DashboardLink] || '#'} size='small' />
+                  <ButtonV2Component
+                    title={'Open Dashboard'}
+                    href={externalLinks?.[EXTERNAL_LINK_KEYS.DashboardLink] || '#'}
+                    size='small'
+                  />
                 </>
               ) : (
                 <>
                   <SpanLink>
-                    <LinkText href={'/book-demo'}>Contact sales</LinkText>
+                    <LinkText href={'/book-demo'}>Book demo</LinkText>
                   </SpanLink>
                   <SpanLink>
                     <LinkText href={externalLinks?.[EXTERNAL_LINK_KEYS.DashboardLink] || '#'}>Log in</LinkText>
                   </SpanLink>
-                  <ButtonV2Component title={'Start Trial'} href={externalLinks?.[EXTERNAL_LINK_KEYS.OnboardingLink] || '#'} size='small' />
+                  <ButtonV2Component
+                    title={'Start Trial'}
+                    href={externalLinks?.[EXTERNAL_LINK_KEYS.OnboardingLink] || '#'}
+                    size='small'
+                  />
                 </>
               )}
             </>
@@ -305,8 +313,17 @@ export default function NavbarComponent({ isAuthenticated: userAuth, topbarConte
             <OverLayBlock top={topbarHeight + navbarHeight} isOpenModal={isOpenMobileMenu}>
               {renderMobileNavigation}
               <BottomButtonSection isOpenModal={isOpenMobileMenu}>
-                <ButtonV2Component title={'Start free trial'} href={externalLinks?.[EXTERNAL_LINK_KEYS.OnboardingLink] || '#'} isWidth />
-                <ButtonV2Component title={'Log in'} href={externalLinks?.[EXTERNAL_LINK_KEYS.DashboardLink] || '#'} isWidth variant='secondary' />
+                <ButtonV2Component
+                  title={'Start free trial'}
+                  href={externalLinks?.[EXTERNAL_LINK_KEYS.OnboardingLink] || '#'}
+                  isWidth
+                />
+                <ButtonV2Component
+                  title={'Log in'}
+                  href={externalLinks?.[EXTERNAL_LINK_KEYS.DashboardLink] || '#'}
+                  isWidth
+                  variant='secondary'
+                />
               </BottomButtonSection>
             </OverLayBlock>
             <NavigationMainDiv>{renderNavigation}</NavigationMainDiv>
@@ -316,14 +333,22 @@ export default function NavbarComponent({ isAuthenticated: userAuth, topbarConte
                 <>
                   {userAuth ? (
                     <>
-                      <ButtonV2Component title={'Open Dashboard'} href={externalLinks?.[EXTERNAL_LINK_KEYS.DashboardLink] || '#'} size='small' />
+                      <ButtonV2Component
+                        title={'Open Dashboard'}
+                        href={externalLinks?.[EXTERNAL_LINK_KEYS.DashboardLink] || '#'}
+                        size='small'
+                      />
                     </>
                   ) : (
                     <>
                       <SpanLink className='login-link'>
                         <LinkText href={externalLinks?.[EXTERNAL_LINK_KEYS.DashboardLink] || '#'}>Log in</LinkText>
                       </SpanLink>
-                      <ButtonV2Component title={'Start Trial'} href={externalLinks?.[EXTERNAL_LINK_KEYS.OnboardingLink] || '#'} size='small' />
+                      <ButtonV2Component
+                        title={'Start Trial'}
+                        href={externalLinks?.[EXTERNAL_LINK_KEYS.OnboardingLink] || '#'}
+                        size='small'
+                      />
                     </>
                   )}
                 </>

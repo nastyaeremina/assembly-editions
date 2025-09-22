@@ -1,28 +1,35 @@
 'use client';
 import React from 'react';
-import { Content, ContentDiv, Description, HighlightSectionDiv, Title } from './styles';
+import { Content, ContentDiv, Description, HighlightSectionDiv, Title, VisitSite } from './styles';
 import Image from 'next/image';
 import { isEmpty } from '../../helpers/helpers';
-import LinkComponent from '../linkComponent/linkComponent';
-import { LinkTone } from '../../constants/constant';
+import SVGComponent from '../../../public/images/svg/SVGComponent';
+import Link from 'next/link';
 
 function HighlighSection({ title, description, image, href }) {
   if (image && image.startsWith('//')) {
     image = `https:${image}`;
   }
   return (
-    <HighlightSectionDiv>
-      <ContentDiv>
-        <Content>
-          <Title>{title}</Title>
-          {!isEmpty(description) && <Description>{description}</Description>}
-        </Content>
-        {!isEmpty(image) && (
-          <Image src={image} width={264} height={148} alt='hightLight-image' className='hightLight-image' />
-        )}
-      </ContentDiv>
-      {!isEmpty(href) && <LinkComponent linkHref={href} title='Read' isIcon tone={LinkTone.GRAY} iconSize={14} />}
-    </HighlightSectionDiv>
+    !isEmpty(href) && (
+      <HighlightSectionDiv>
+        <Link href={href}>
+          <ContentDiv>
+            <Content>
+              <Title>{title}</Title>
+              {!isEmpty(description) && <Description>{description}</Description>}
+            </Content>
+            {!isEmpty(image) && (
+              <Image src={image} width={264} height={148} alt='hightLight-image' className='hightLight-image' />
+            )}
+          </ContentDiv>
+          <VisitSite>
+            Read
+            <SVGComponent name='blog-card-hover-arrow-icon' width='14' height='14' viewBox='0 0 16 16' />
+          </VisitSite>
+        </Link>
+      </HighlightSectionDiv>
+    )
   );
 }
 
