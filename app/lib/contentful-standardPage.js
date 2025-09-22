@@ -22,18 +22,6 @@ banner2{
 showSocialProof
 `;
 
-export const POST_GRAPHQL_SIMPLE_COMPONENT_FIELDS = `
-heroTitle
-heroDescription
-primaryButtonText
-primaryButtonLink
-secondaryButtonText
-secondaryButtonLink
-banner1{
-  url
-}
-videoUrl
-`;
 const POST_GRAPHQL_CASESTUDY_COMPONENT_FIELDS = ` 
 slug
 heroSection{
@@ -76,7 +64,7 @@ faQsCollection{
   }
 }`;
 
-export const POST_GRAPHQL_TESTIMONIAL_CARD_FIELDS=`
+export const POST_GRAPHQL_TESTIMONIAL_CARD_FIELDS = `
  name
  role
  image{
@@ -84,7 +72,7 @@ export const POST_GRAPHQL_TESTIMONIAL_CARD_FIELDS=`
  }
  industry
  quoteNew
-`
+`;
 const POST_GRAPHQL_STANDARD_PAGE_LIST_FIELDS = `
 slug
 seoMetadata {
@@ -95,9 +83,6 @@ contentCollection{
         __typename
         ...on ComponentHero{
             ${POST_GRAPHQL_HERO_COMPONENT_FIELDS}
-          }
-          ...on SectionSimple{
-          ${POST_GRAPHQL_SIMPLE_COMPONENT_FIELDS}
           }
           ...on CaseStudies{
           ${POST_GRAPHQL_CASESTUDY_COMPONENT_FIELDS}
@@ -287,8 +272,8 @@ export async function getSectionTabContent(id, preview) {
   return entries?.data?.sectionTab || {};
 }
 
-export async function getStandardPageContent({slug,id, preview}) {
-  const condition =isEmpty(id) ? `where:{slug:"${slug}"}` : `where:{sys:{id:"${id}"}}`;
+export async function getStandardPageContent({ slug, id, preview }) {
+  const condition = isEmpty(id) ? `where:{slug:"${slug}"}` : `where:{sys:{id:"${id}"}}`;
   const entries = await fetchGraphQL(
     `query {
           pageTemplateCollection(${condition},limit:1,preview: ${preview ? 'true' : 'false'}) {

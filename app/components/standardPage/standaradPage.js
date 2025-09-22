@@ -18,13 +18,12 @@ import StandardHero from '../standardHero/standardHero';
 import AutomationCardSection from '../automationcard';
 import RedirectsComponent from '../Redirects/redirectsComponent';
 import CTA from '../cta/newCTA';
-import SimpleSection from '../standardHero/simpleSection/simpleSection';
 import TestimonialTableSection from '../newTestimonial/testimonialTableSection';
 import HighlightSection from '../highlightSection/highlightSection';
 import { draftMode } from 'next/headers';
 
 export default async function StandardPage({ data }) {
-  const { isEnabled } = await draftMode()
+  const { isEnabled } = await draftMode();
 
   const renderComponent = async (componentData) => {
     if (isEmpty(componentData)) return null;
@@ -149,20 +148,6 @@ export default async function StandardPage({ data }) {
           ) : null;
         }
         return null;
-      case 'SectionSimple':
-        return (
-          <SimpleSection
-            title={componentData.heroTitle}
-            description={componentData.heroDescription}
-            primaryButtonText={componentData.primaryButtonText}
-            primaryButtonLink={componentData.primaryButtonLink}
-            secondaryButtonText={componentData.secondaryButtonText}
-            secondaryButtonLink={componentData.secondaryButtonLink}
-            banner={componentData.banner1?.url}
-            isHeading1={true}
-            videoUrl={componentData.videoUrl}
-          />
-        );
       case 'SectionTestimonialGroup':
         if (componentData.sys?.id) {
           const data = (await getSectionTestimonialGroupContent(componentData.sys?.id, isEnabled)) ?? {};
