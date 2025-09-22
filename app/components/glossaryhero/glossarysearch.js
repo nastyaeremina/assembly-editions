@@ -1,25 +1,70 @@
-import React, { useCallback, useMemo, useState } from 'react';
-import Image from 'next/image';
-import Link from 'next/link';
+import React, { useCallback, useEffect, useMemo, useRef, useState, useLayoutEffect } from 'react';
 import { Container } from '../../styles/commonStyles';
 import { isEmpty } from '../../helpers/helpers';
+import useNavbarHeight from '../../hooks/useNavbarHeight';
 import {
-  GlossaryMain,
+  EmptyDescription,
+  EmptyIcon,
+  EmptyState,
   GlossarySearchSection,
   Input,
   InputWrap,
+  ItemWrapper,
   Search,
   SearchDataSection,
+  SearchIcon,
   SearchList,
   SearchListData,
+  SectionWrapper,
   StartAlphabet
 } from './styles';
+import SVGComponent from '../../../public/images/svg/SVGComponent';
+import LinkComponent from '../linkComponent/linkComponent';
+import { LinkSize, LinkTone } from '../../constants/constant';
 
 export default function GlossarySearch({ data: glossaryList }) {
   const [query, setQuery] = useState('');
   const [searchResult, setSearchResult] = useState([]);
   const [isSearch, setIsSearch] = useState(false);
-  let timeout;
+  const [isSearching, setIsSearching] = useState(false);
+  const { totalHeight } = useNavbarHeight();
+  const timeoutRef = useRef(null);
+  const searchBarRef = useRef(null);
+  const itemRefs = useRef({}); // Store refs for each result
+
+  const [isStickyActive, setIsStickyActive] = useState(false);
+
+  const handleSearchFocus = useCallback(() => {
+    setIsStickyActive(true);
+
+    // Smoothly scroll to the search bar
+    searchBarRef.current?.scrollIntoView({
+      behavior: 'smooth'
+    });
+  }, []);
+
+  const handleSearchBlur = useCallback(() => {
+    // Optional: Reset after blur
+    setIsStickyActive(false);
+  }, []);
+
+  const getTotalOffset = () => {
+    const searchBarHeight = searchBarRef.current ? searchBarRef.current.offsetHeight : 0;
+    return totalHeight + searchBarHeight + 21;
+  };
+
+  useLayoutEffect(() => {
+    if (typeof window === 'undefined') return;
+    if (!isSearch || isEmpty(searchResult)) return;
+    const firstKey = searchResult[0]?.key;
+    if (firstKey && itemRefs.current[firstKey]) {
+      const elem = itemRefs.current[firstKey];
+      const totalOffset = getTotalOffset();
+      const elemRect = elem.getBoundingClientRect();
+      const scrollTop = window.pageYOffset + elemRect.top - totalOffset;
+      window.scrollTo({ top: scrollTop });
+    }
+  }, [searchResult, isSearch, totalHeight]);
 
   const renderListview = useMemo(() => {
     let dataList;
@@ -29,18 +74,23 @@ export default function GlossarySearch({ data: glossaryList }) {
       dataList = glossaryList;
     }
     if (isEmpty(dataList)) return null;
-    return dataList?.map((item, index) => {
+    return dataList?.map((item) => {
       return (
-        <>
+        <ItemWrapper key={`_key_${item?.key}`} ref={(el) => (itemRefs.current[item.key] = el)}>
           <StartAlphabet>{item?.key}</StartAlphabet>
           <SearchListData>
             {item?.list?.map((glossary, glossaryIndex) => (
               <SearchList key={`${glossary?.slug}_index_${glossaryIndex}`}>
-                <a href={`/definitions/${glossary?.slug}`}> {glossary?.name}</a>
+                <LinkComponent
+                  linkHref={`/definitions/${glossary?.slug}`}
+                  title={glossary?.name}
+                  tone={LinkTone.BLUE}
+                  size={LinkSize.LARGE}
+                />
               </SearchList>
             ))}
           </SearchListData>
-        </>
+        </ItemWrapper>
       );
     });
   }, [glossaryList, isSearch, searchResult]);
@@ -69,37 +119,97 @@ export default function GlossarySearch({ data: glossaryList }) {
       setQuery(value);
       if (value) {
         if (!isSearch) setIsSearch(true);
-        if (timeout) clearTimeout(timeout);
-        timeout = setTimeout(() => {
-          searchQuery(value);
-        }, 300);
+        // Run search immediately for snappier feedback
+        searchQuery(value);
+        setIsSearching(false);
+        if (timeoutRef.current) clearTimeout(timeoutRef.current);
       } else {
         if (isSearch) setIsSearch(false);
+        setIsSearching(false);
         setSearchResult([]);
+        if (timeoutRef.current) clearTimeout(timeoutRef.current);
       }
     },
-    [query, setSearchResult, searchQuery, setIsSearch, setQuery]
+    [query, setSearchResult, searchQuery, setIsSearch, setQuery, isSearch]
   );
 
   const onSubmitSeachQuery = useCallback((e) => {
     e.preventDefault();
   }, []);
 
+  // search clear function
+  const handleSearchClear = useCallback(() => {
+    setQuery('');
+    setSearchResult([]);
+    setIsSearch(false);
+    if (timeoutRef.current) clearTimeout(timeoutRef.current);
+  }, []);
+
+  // for focus and focus visible
+  useEffect(() => {
+    const onPointerDown = () => {
+      document.body.classList.add('using-mouse');
+      document.body.classList.remove('using-keyboard');
+    };
+    const onKeyDown = (e) => {
+      if (e.key === 'Tab') {
+        document.body.classList.add('using-keyboard');
+        document.body.classList.remove('using-mouse');
+      }
+    };
+
+    window.addEventListener('pointerdown', onPointerDown, true);
+    window.addEventListener('keydown', onKeyDown, true);
+
+    return () => {
+      window.removeEventListener('pointerdown', onPointerDown, true);
+      window.removeEventListener('keydown', onKeyDown, true);
+    };
+  }, []);
+
   return (
-    <>
+    <SectionWrapper>
       <Container>
         <GlossarySearchSection>
-          <Search>
+          <Search topValue={totalHeight} ref={searchBarRef}>
             <>
               <InputWrap onSubmit={onSubmitSeachQuery}>
-                <Image src='/images/searchicon.svg' alt='search-icon' width={20} height={20} />
-                <Input placeholder='Search the definitions...' type='search' value={query} onChange={onSeachQueryChange} />
+                <SearchIcon>
+                  <SVGComponent name='search-icon' width='20' height='20' viewBox='0 0 20 20' className='search-icon' />
+                </SearchIcon>
+                <Input
+                  placeholder='Search'
+                  type='search'
+                  value={query}
+                  onChange={onSeachQueryChange}
+                  onFocus={handleSearchFocus}
+                  onBlur={handleSearchBlur}
+                />
+                {query && (
+                  <div className='close-icon' onClick={handleSearchClear}>
+                    <SVGComponent name='search-close-icon' width='16' height='16' viewBox='0 0 16 16' />
+                  </div>
+                )}
               </InputWrap>
             </>
           </Search>
-          <SearchDataSection>{renderListview}</SearchDataSection>
+          {isSearch && !isSearching && isEmpty(searchResult) ? (
+            <EmptyState>
+              <EmptyIcon>
+                <SVGComponent name='search-icon' width='20' height='20' viewBox='0 0 20 20' className='search-icon' />
+              </EmptyIcon>
+              <EmptyDescription>
+                <h4>No search results </h4>
+                <p>
+                  We could not find any search results for <b>{query}</b>. Give it another go.
+                </p>
+              </EmptyDescription>
+            </EmptyState>
+          ) : (
+            <SearchDataSection>{renderListview}</SearchDataSection>
+          )}
         </GlossarySearchSection>
       </Container>
-    </>
+    </SectionWrapper>
   );
 }

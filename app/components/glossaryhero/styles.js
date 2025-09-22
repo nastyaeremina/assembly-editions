@@ -1,134 +1,156 @@
 import styled from 'styled-components';
-import { Body2, Body5, Heading2, Heading4, MbBody2, MobileH2, MobileH3, Value } from '../../styles/styles';
+import { body_regular, button_regular, h3_regular, h4_semibold } from '../../styles/typography';
 
-const HeroSection = styled.div`
-  padding-top: 180px;
-  padding-bottom: 40px;
-  max-width: 611px;
-  width: 100%;
-  margin: 0 auto;
-  @media (max-width: 449px) {
-    padding-top: 116px;
-  }
-`;
-const HeroTitle = styled.h1`
-  ${Heading2}
-  text-align:center;
-  color: var(--title);
-  margin: 0;
-  @media (max-width: 479px) {
-    ${MobileH2}
-  }
-`;
-const HeroBody = styled.p`
-  ${Body2}
-  text-align:center;
-  color: var(--body);
-  margin: 20px 0 0;
-  @media (max-width: 479px) {
-    ${MbBody2}
-  }
-`;
 const Search = styled.div`
   position: sticky;
-  top: 82px;
-  background: linear-gradient(180deg, var(--main-bg-color) 11.98%, var(--transparent-color) 100%);
-  backdrop-filter: blur(12px);
-  @media (max-width: 449px) {
-    top: 77px;
-  }
-`;
-const InputWrap = styled.form`
-  max-width: 612px;
+  top: ${(props) => props.topValue + 1}px;
+  background-color: var(--off-white-300);
+  z-index: 1;
+  padding: var(--space-24) 0 var(--space-12);
+  max-width: 812px;
   width: 100%;
   margin: 0 auto;
+`;
+const InputWrap = styled.form`
   position: relative;
-  img {
+  .close-icon {
     position: absolute;
-    top: 15px;
-    left: 20px;
+    top: 19px;
+    right: var(--space-20);
+    cursor: pointer;
+    display: flex;
   }
 `;
 
 const Input = styled.input`
-  ${Value};
+  ${button_regular};
   color: var(--title);
-  letter-spacing: 0.01em;
-  padding: 11px 20px 11px 55px;
-  border: 1.5px solid var(--border);
-  border-radius: 48px;
+  padding: var(--space-16) var(--space-12) var(--space-12) var(--space-48);
+  border: 1px solid var(--border-default);
+  background-color: var(--off-white-300);
+  border-radius: var(--radius-30);
   width: 100%;
   outline: 0;
   ::placeholder {
-    color: var(--medium-gray);
+    color: var(--gray-200);
   }
-  :hover {
-    border: 1.5px solid var(--border);
-    box-shadow: 0px 4px 8px var(--black-shadow-7);
+  &:hover {
+    border: 1px solid var(--border-hover);
   }
-  :active {
-    border: 1.5px solid var(--title);
-    box-shadow: 0px 4px 8px var(--black-shadow-7);
+  body.using-mouse &:focus {
+    border-color: var(--title);
+    outline: none;
   }
-  :focus {
-    border: 1.5px solid var(--title);
-    box-shadow: 0px 4px 8px var(--black-shadow-7);
+
+  /* keyboard (Tab) focus */
+  body.using-keyboard &:focus-visible {
+    outline: 2px solid var(--link-default);
+    outline-offset: 1px;
+    border-radius: var(--radius-30);
   }
 `;
 const GlossarySearchSection = styled.div`
-  /* max-width: 612px;
-  width: 100%;
-  margin: 0 auto; */
-  padding-bottom: 100px;
   display: flex;
   flex-direction: column;
-  gap: 32px;
-  @media (max-width: 449px) {
-    gap: 28px;
-  }
+  gap: var(--space-20);
+  position: relative;
 `;
 const SearchDataSection = styled.div`
-  max-width: 612px;
+  max-width: 812px;
   width: 100%;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: var(--space-32);
 `;
-const StartAlphabet = styled.h2`
-  ${Heading4}
+const StartAlphabet = styled.h3`
+  ${h3_regular}
   color: var(--title);
   margin: 0;
   text-transform: capitalize;
-  @media (max-width: 768px) {
-    ${MobileH3}
-  }
 `;
 const SearchList = styled.p`
-  ${Body5}
-  color: var(--primary);
-  padding: 16px 0px;
+  ${body_regular}
+  padding: var(--space-16) 0px;
   margin: 0;
-  border-bottom: 1px solid var(--border);
+  border-bottom: 1px solid var(--border-default);
   cursor: pointer;
-  :first-child {
-    padding: 0 0 16px;
-  }
-  :hover {
-    color: var(--title);
-  }
   a {
-    color: var(--primary);
-    :hover {
-      color: var(--title);
-    }
+    padding-top: var(--space-2);
   }
 `;
 const SearchListData = styled.div``;
+
+const SectionWrapper = styled.div`
+  padding: var(--space-40) 0 var(--space-64);
+  @media only screen and (max-width: 991px) {
+    padding: var(--space-16) 0 var(--space-40);
+  }
+  @media only screen and (max-width: 449px) {
+    padding: var(--space-24) 0 var(--space-48);
+  }
+`;
+
+const SearchIcon = styled.div`
+  position: absolute;
+  top: 17px;
+  left: var(--space-20);
+  display: flex;
+`;
+
+const ItemWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-12);
+`;
+
+const EmptyState = styled.div`
+  padding-top: var(--space-80);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-24);
+  max-width: 376px;
+  width: 100%;
+  margin: 0 auto;
+`;
+
+const EmptyDescription = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-12);
+  h4 {
+    margin: 0;
+    color: var(--title);
+    ${h4_semibold}
+    text-align: center;
+  }
+  p {
+    margin: 0;
+    color: var(--text-secondary);
+    text-align: center;
+    ${body_regular}
+  }
+`;
+
+const EmptyIcon = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  background-color: var(--title);
+  border-radius: var(--radius-8);
+  .search-icon {
+    path {
+      fill: var(--off-white-100);
+    }
+  }
+`;
 export {
-  HeroSection,
-  HeroTitle,
-  HeroBody,
   InputWrap,
   Input,
   GlossarySearchSection,
@@ -136,5 +158,11 @@ export {
   StartAlphabet,
   SearchList,
   SearchListData,
-  Search
+  Search,
+  SectionWrapper,
+  SearchIcon,
+  ItemWrapper,
+  EmptyState,
+  EmptyDescription,
+  EmptyIcon
 };
