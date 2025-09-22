@@ -9,16 +9,15 @@ const MainBlock = styled.div`
       background-color: var(--title);
     `}
   @media only screen and (max-width: 991px) {
-    padding: var(--space-24) 0 var(--space-40);
+    padding: var(--space-32) 0 var(--space-40);
   }
 `;
 
 const BottomSection = styled.div`
   display: grid;
-  gap: var(--space-40);
+  gap: var(--space-24);
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   @media only screen and (max-width: 991px) {
-    gap: var(--space-32);
     grid-template-columns: auto;
   }
 `;
@@ -27,10 +26,13 @@ const LeftImage = styled.div`
   max-width: 100%;
   width: 100%;
   grid-column: span 2;
+  display: flex;
   .image {
     max-width: 100%;
     width: 100%;
-    height: 100%;
+    height: auto;
+    max-height: 560px;
+    object-fit: cover;
     border-radius: var(--radius-16);
     border: 1px solid var(--border-default);
     ${({ tone }) =>
@@ -41,6 +43,9 @@ const LeftImage = styled.div`
   }
   @media only screen and (max-width: 991px) {
     grid-column: auto;
+    .image {
+      max-height: unset;
+    }
   }
   @media only screen and (max-width: 449px) {
     .image {

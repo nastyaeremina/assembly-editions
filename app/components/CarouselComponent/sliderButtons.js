@@ -10,7 +10,6 @@ export default function SliderButtons({ xPos, setXpos, noOfSlide, sliderItemGap 
   // Window width (for responsive behavior)
   const { width } = useWindowDimensions();
 
-  // Button state
   const [isLastSlide, setIsLastSlide] = useState(false);
   const [isFirstSlide, setIsFirstSlide] = useState(true);
 

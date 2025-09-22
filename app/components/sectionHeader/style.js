@@ -5,10 +5,20 @@ import { SectionTone } from '../../constants/constant';
 const HeaderSection = styled.div`
   display: flex;
   flex-direction: column;
-  gap: var(--space-32);
+  gap: var(--space-24);
   max-width: 600px;
   @media only screen and (max-width: 449px) {
     max-width: unset;
+    gap: var(--space-32);
+  }
+`;
+
+const ContentSection = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-12);
+  @media only screen and (max-width: 449px) {
+    gap: var(--space-20);
   }
 `;
 
@@ -40,4 +50,4 @@ const ButtonGroup = styled.div`
   gap: var(--space-8);
 `;
 
-export { HeaderSection, Title, Description, ButtonGroup };
+export { HeaderSection, Title, Description, ButtonGroup, ContentSection };

@@ -9,10 +9,10 @@ import {
   CompanyName,
   Description
 } from './style';
-import LinkComponent from '../linkComponent/linkComponent';
-import { LinkSize, LinkTone, SectionTone } from '../../constants/constant';
+import { SectionTone } from '../../constants/constant';
 import { isEmpty } from '../../helpers/helpers';
 import ReactMarkdown from 'react-markdown';
+import SVGComponent from '../../../public/images/svg/SVGComponent';
 
 /**
  * QuoteSectionComponent for displaying a quote section.
@@ -27,29 +27,27 @@ import ReactMarkdown from 'react-markdown';
 
 const QuoteSectionComponent = ({ tone, imageSrc, name, role, description, link }) => {
   return (
-    <QuoteSection tone={tone}>
+    <QuoteSection tone={tone} href={link}>
       {!isEmpty(imageSrc) && <Image src={imageSrc} width={313} height={479} className='quote-image' />}
       <QuoteContentDiv>
         <TitleContentSection>
           <NameSection>
-            {!isEmpty(name) && <Name tone={tone}>{name}</Name>}
-            {!isEmpty(role) && <CompanyName tone={tone}>{role}</CompanyName>}
+            {!isEmpty(name) && <Name>{name}</Name>}
+            {!isEmpty(role) && <CompanyName>{role}</CompanyName>}
           </NameSection>
           {!isEmpty(description) && (
-            <Description tone={tone}>
+            <Description>
               <ReactMarkdown>{description}</ReactMarkdown>
             </Description>
           )}
         </TitleContentSection>
-        {!isEmpty(link) && (
-          <LinkComponent
-            isIcon
-            title={'Read More'}
-            linkHref={link}
-            tone={tone === SectionTone.LIGHT ? LinkTone.WHITE : LinkTone.BLACK}
-            size={LinkSize.LARGE}
-          />
-        )}
+        <SVGComponent
+          name='blog-card-hover-arrow-icon'
+          width='16'
+          height='16'
+          viewBox='0 0 16 16'
+          className='svg-icon'
+        />
       </QuoteContentDiv>
     </QuoteSection>
   );

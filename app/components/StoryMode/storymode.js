@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useEffect, useMemo, useRef, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import {
   BottomSection,
   LeftImage,
@@ -13,7 +13,6 @@ import {
 import { Container } from '../../styles/commonStyles';
 import Image from 'next/image';
 import { isEmpty } from '../../helpers/helpers';
-import { SectionTone } from '../../constants/constant';
 import useMobileDevice from '../../hooks/useMobileDevice';
 import SectionHeader from '../sectionHeader/sectionHeader';
 import QuoteSectionComponent from '../quoteSection/quoteSection';
@@ -100,17 +99,24 @@ export default function StoryMode({ tabsData, tone }) {
     return () => window.removeEventListener('resize', updateHeight);
   }, []);
 
-  // Scroll to specific section when tab is clicked
-  const scrollToSection = (index) => {
-    if (index >= 0 && index < sectionRefs.current.length && sectionRefs.current[index]) {
-      const elementTop = sectionRefs.current[index].offsetTop;
+  const [isUserSelecting, setIsUserSelecting] = useState(false);
 
-      // Scroll to section with proper offset for sticky navigation and smooth behavior
-      window.scrollTo({
-        top: elementTop - stickyTop - 120
-      });
-    }
-  };
+  const scrollToSection = useCallback(
+    (index) => {
+      setActiveIndex(index); // Immediately show the tab as active
+      setIsUserSelecting(true);
+      if (index >= 0 && index < sectionRefs.current.length && sectionRefs.current[index]) {
+        const elementTop = sectionRefs.current[index].offsetTop;
+        window.scrollTo({
+          top: elementTop - stickyTop - 120,
+          behavior: 'smooth'
+        });
+      }
+      // Clear isUserSelecting after scroll is expected to complete:
+      setTimeout(() => setIsUserSelecting(false), 500); // Adjust duration as needed
+    },
+    [stickyTop]
+  );
 
   // Update active tab based on current scroll position
   useEffect(() => {
@@ -136,6 +142,7 @@ export default function StoryMode({ tabsData, tone }) {
     };
 
     const updateActiveTab = () => {
+      if (isUserSelecting) return;
       // Calculate current scroll position with offset
       const scrollPosition = window.scrollY + stickyTop + 150;
 
@@ -180,10 +187,7 @@ export default function StoryMode({ tabsData, tone }) {
               tabs={tabsData}
               activeIndex={activeIndex}
               tone={tone}
-              setActiveIndex={(index) => {
-                setActiveIndex(index);
-                scrollToSection(index); // Scroll to section when tab clicked
-              }}
+              setActiveIndex={(index) => scrollToSection(index)}
             />
           </NavigationWrapper>
 

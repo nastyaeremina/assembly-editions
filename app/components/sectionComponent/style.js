@@ -38,10 +38,11 @@ const GridSection = styled.div`
   overflow: hidden;
   .image {
     width: 100%;
-    height: auto;
+    height: 100%;
     border-radius: var(--radius-16);
     border: 1px solid var(--border-default);
     grid-column: span 2;
+    object-fit: cover;
     ${({ tone }) =>
       tone === SectionTone.DARK &&
       css`
@@ -59,7 +60,7 @@ const GridSection = styled.div`
 const GridItemSection = styled.div`
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: var(--space-40);
+  gap: var(--space-24);
   position: absolute;
   top: 0;
   left: 0;

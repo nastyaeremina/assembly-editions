@@ -169,24 +169,6 @@ export default function StoryModeNavigation({ tabs, activeIndex, setActiveIndex,
     return ((activeIndex + 1) / tabs.length) * 100;
   }, [activeIndex, tabs.length]);
 
-  const activeTabWidth = useMemo(() => {
-    if (tabRefs.current[activeIndex]) {
-      return tabRefs.current[activeIndex].offsetWidth;
-    }
-    return 0;
-  }, [activeIndex, isMobile, tabs]);
-
-  const cumulativeTabWidth = useMemo(() => {
-    if (!tabsContainerRef.current) return 0;
-    let totalWidth = 0;
-    for (let i = 0; i <= activeIndex; i++) {
-      if (tabRefs.current[i]) {
-        totalWidth += tabRefs.current[i].offsetWidth + 16; // 24px is the gap between tabs
-      }
-    }
-    return totalWidth;
-  }, [activeIndex, tabs, tabRefs.current]);
-
   return (
     <MainBlock>
       {/* Animated icon with gradient fill */}
@@ -198,14 +180,10 @@ export default function StoryModeNavigation({ tabs, activeIndex, setActiveIndex,
       <Tabs
         ref={tabsContainerRef}
         progress={progressBar}
-        activeTabWidth={activeTabWidth}
-        scrollLeft={scrollLeft}
-        scrollWidth={tabsContainerRef.current?.scrollWidth}
-        offsetWidth={tabsContainerRef.current?.offsetWidth}
-        cumulativeTabWidth={cumulativeTabWidth}
         tabsCount={tabs.length}
         activeIndex={activeIndex}
-        tone={tone}>
+        tone={tone}
+        scrollLeft={scrollLeft}>
         {tabsList}
       </Tabs>
     </MainBlock>

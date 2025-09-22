@@ -2,13 +2,6 @@ import styled, { css } from 'styled-components';
 import { body_regular } from '../../../styles/typography';
 import { SectionTone } from '../../../constants/constant';
 
-const defaultTabWidth = 175;
-const lightGreyInitialOffset = 105;
-const darkGreyInitialOffset = 55;
-const lightGreyScaleOffset = 70;
-const darkGreyScaleOffset = 120;
-const responsiveOffset = 100;
-
 const MainBlock = styled.div`
   display: flex;
   align-items: center;
@@ -40,44 +33,12 @@ const Tabs = styled.div`
     bottom: 0;
     left: 0;
     height: 2px;
-    width: ${({ progress }) => `${progress}%`};
-    max-width: 105%;
-    background: linear-gradient(
-      to right,
-      var(--off-white-300) 0%,
-      var(--title)
-        calc(
-          100% -
-            ${({ activeTabWidth }) =>
-              activeTabWidth ? activeTabWidth - lightGreyScaleOffset : lightGreyInitialOffset}px
-        ),
-      var(--border-default)
-        calc(
-          100% -
-            ${({ activeTabWidth }) => (activeTabWidth ? activeTabWidth - darkGreyScaleOffset : darkGreyInitialOffset)}px
-        ),
-      var(--off-white-300) 100%
-    );
+    width: ${({ progress, activeIndex }) => (activeIndex === 0 ? `calc(${progress}% - 17px)` : `${progress}%`)};
+    background: linear-gradient(to right, var(--off-white-300) 0%, var(--title) 100%, var(--off-white-300) 100%);
     ${({ tone }) =>
       tone === SectionTone.DARK &&
       css`
-        background: linear-gradient(
-          to right,
-          var(--title) 0%,
-          var(--border-default)
-            calc(
-              100% -
-                ${({ activeTabWidth }) =>
-                  activeTabWidth ? activeTabWidth - lightGreyScaleOffset : lightGreyInitialOffset}px
-            ),
-          var(--bg-card-dark-hover)
-            calc(
-              100% -
-                ${({ activeTabWidth }) =>
-                  activeTabWidth ? activeTabWidth - darkGreyScaleOffset : darkGreyInitialOffset}px
-            ),
-          var(--title) 100%
-        );
+        background: linear-gradient(to right, var(--title) 0%, var(--border-default) 100%, var(--title) 100%);
       `}
     transition: width 0.6s cubic-bezier(0.4, 0, 0.2, 1);
     z-index: 1;
@@ -89,17 +50,14 @@ const Tabs = styled.div`
     gap: var(--space-16);
     justify-content: flex-start;
     &::after {
-      width: ${({ activeIndex, activeTabWidth, cumulativeTabWidth, offsetWidth, progress, tabsCount }) => {
-        const tabWidthOffset = cumulativeTabWidth > offsetWidth ? responsiveOffset : 0;
-        const currentTabWidth = activeTabWidth ? activeTabWidth : defaultTabWidth;
-
+      width: ${({ activeIndex, progress, tabsCount }) => {
         if (tabsCount <= 3) {
           return `calc(${progress}%)`;
         } else {
           if (activeIndex === 0) {
-            return `calc(${currentTabWidth + tabWidthOffset}px)`;
+            return `calc(${progress}%)`;
           } else {
-            return `calc(${progress - 10}% + ${currentTabWidth + tabWidthOffset}px)`;
+            return `calc(${progress + 3}%)`;
           }
         }
       }};
@@ -111,24 +69,6 @@ const Tabs = styled.div`
     gap: 0;
     &::after {
       width: ${({ progress }) => `${progress}%`};
-      background: linear-gradient(
-        to right,
-        var(--off-white-300) 0%,
-        var(--title) 50%,
-        var(--border-default) 75%,
-        var(--off-white-300) 100%
-      );
-      ${({ tone }) =>
-        tone === SectionTone.DARK &&
-        css`
-          background: linear-gradient(
-            to right,
-            var(--title) 0%,
-            var(--border-default) 50%,
-            var(--bg-card-dark-hover) 75%,
-            var(--title) 100%
-          );
-        `}
     }
   }
 `;
