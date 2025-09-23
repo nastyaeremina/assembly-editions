@@ -97,7 +97,7 @@ function SectionComponent({
                 tabItems={tabItems}
                 activeIndex={activeIndex}
                 tone={tone}
-                link={tabItems[activeIndex]?.link}
+                link={tabItems[activeIndex]?.link || ''}
               />
             </GridSection>
           </TabSection>
