@@ -62,20 +62,20 @@ export default function TagPage({ allPosts, tags, featuredBlog, currentTagSlug }
   // Load more posts function
   const loadMorePosts = useCallback(async () => {
     if (loading || !hasMore) return;
-    
+
     setLoading(true);
     try {
       const nextPage = currentPage + 1;
       const tagParam = currentTagSlug || 'all';
-      
+
       // Add featured blog ID to exclude it from results
       const excludeParam = featuredBlogId ? `&exclude=${featuredBlogId}` : '';
-      
+
       const response = await fetch(`/api/blog/posts?page=${nextPage}&limit=8&tag=${tagParam}${excludeParam}`);
       const data = await response.json();
-      
+
       if (data.posts && data.posts.length > 0) {
-        setPosts(prev => [...prev, ...data.posts]);
+        setPosts((prev) => [...prev, ...data.posts]);
         setCurrentPage(nextPage);
         setHasMore(data.hasMore);
       } else {
@@ -132,9 +132,10 @@ export default function TagPage({ allPosts, tags, featuredBlog, currentTagSlug }
         publishedAt={featuredBlog.published_at}
         author={author}
         tags={finalTagList}
+        heading={selectedTag === 'All' ? 'Blog' : selectedTag}
       />
     );
-  }, [featuredBlog, filterTagList]);
+  }, [featuredBlog, filterTagList, selectedTag]);
 
   // Render blog post cards
   const renderData = useMemo(() => {

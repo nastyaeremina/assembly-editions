@@ -17,7 +17,7 @@ import { useIsMobile } from '../../../hooks/useMobileDevice';
 import FeatureBlogCard from '../../Blogcard/fetaureBlogCard';
 import ButtonV2Component from '../../button/buttonV2/buttonV2';
 
-export default function BlogPage({ allPosts, tags, featuredBlog, socialMediaLinks=[] }) {
+export default function BlogPage({ allPosts, tags, featuredBlog, socialMediaLinks = [] }) {
   const [selectedTag, setSelectedTag] = useState('All');
   const [posts, setPosts] = useState(allPosts || []);
   const [loading, setLoading] = useState(false);
@@ -27,10 +27,6 @@ export default function BlogPage({ allPosts, tags, featuredBlog, socialMediaLink
   const router = useRouter();
   const pathname = usePathname();
   const isMobile = useIsMobile();
-
-
-
-
 
   // Create dropdown items with current tag included
   const dropdownItems = useMemo(() => {
@@ -133,30 +129,28 @@ export default function BlogPage({ allPosts, tags, featuredBlog, socialMediaLink
         publishedAt={featuredBlog.published_at}
         author={author}
         tags={finalTagList}
+        heading={selectedTag === 'All' ? 'Blog' : selectedTag}
       />
     );
-  }, [featuredBlog, filterTagList]);
-
-
+  }, [featuredBlog, filterTagList, selectedTag]);
 
   // Load more posts function
   const loadMorePosts = useCallback(async () => {
     if (loading || !hasMore) return;
-    
+
     setLoading(true);
     try {
       const nextPage = currentPage + 1;
-      const tagParam = selectedTag !== 'All' ? 
-        tags.find(t => t.name === selectedTag)?.slug || 'all' : 'all';
-      
+      const tagParam = selectedTag !== 'All' ? tags.find((t) => t.name === selectedTag)?.slug || 'all' : 'all';
+
       // Add featured blog ID to exclude it from results
       const excludeParam = featuredBlogId ? `&exclude=${featuredBlogId}` : '';
-      
+
       const response = await fetch(`/api/blog/posts?page=${nextPage}&limit=8&tag=${tagParam}${excludeParam}`);
       const data = await response.json();
-      
+
       if (data.posts && data.posts.length > 0) {
-        setPosts(prev => [...prev, ...data.posts]);
+        setPosts((prev) => [...prev, ...data.posts]);
         setCurrentPage(nextPage);
         setHasMore(data.hasMore);
       } else {
@@ -196,8 +190,6 @@ export default function BlogPage({ allPosts, tags, featuredBlog, socialMediaLink
     setHasMore(allPosts?.length >= 8); // Assume more if we got full page
     setFeaturedBlogId(featuredBlog?.id || null); // Track featured blog ID
   }, [allPosts, featuredBlog]);
-
-
 
   // Render blog post cards
   const renderData = useMemo(() => {
