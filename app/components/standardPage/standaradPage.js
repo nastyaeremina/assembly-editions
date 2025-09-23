@@ -15,7 +15,6 @@ import Quote from '../quote/quote';
 import FAQ from '../faq/faq';
 import { getFAQsData } from '../../services/faq';
 import TabsComponent from '../tabsComponent/tabscomponent';
-import CustomerTestimonial from '../customer/testimonials';
 import StandardHero from '../standardHero/standardHero';
 import AutomationCardSection from '../automationcard';
 import RedirectsComponent from '../Redirects/redirectsComponent';
@@ -27,6 +26,7 @@ import FeatureBentoBoxSection from '../featureBentoBoxSection/featureBentoBoxSec
 import { FEATURE_COMPONENT_TYPE } from '../../constants/constant';
 import CarouselSection from '../CarouselSection/carouselSection';
 import StoryMode from '../StoryMode/storymode';
+import TestimonialCard from '../testimonialCard';
 
 export default async function StandardPage({ data }) {
   const { isEnabled } = await draftMode();
@@ -129,8 +129,7 @@ export default async function StandardPage({ data }) {
         return null;
       case 'CaseStudies':
         return (
-          <CustomerTestimonial
-            componentData={componentData}
+          <TestimonialCard
             logo={componentData.customerLogo?.imageAsset?.url}
             banner={componentData.caseStudyImage?.url}
             body={componentData.heroSection?.heroDescription}
