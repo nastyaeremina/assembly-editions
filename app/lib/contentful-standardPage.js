@@ -31,18 +31,6 @@ banner2{
 showSocialProof
 `;
 
-export const POST_GRAPHQL_SIMPLE_COMPONENT_FIELDS = `
-heroTitle
-heroDescription
-primaryButtonText
-primaryButtonLink
-secondaryButtonText
-secondaryButtonLink
-banner1{
-  url
-}
-videoUrl
-`;
 const POST_GRAPHQL_CASESTUDY_COMPONENT_FIELDS = ` 
 slug
 heroSection{
@@ -104,9 +92,6 @@ contentCollection{
         __typename
         ...on ComponentHero{
             ${POST_GRAPHQL_HERO_COMPONENT_FIELDS}
-          }
-          ...on SectionSimple{
-          ${POST_GRAPHQL_SIMPLE_COMPONENT_FIELDS}
           }
           ...on CaseStudies{
           ${POST_GRAPHQL_CASESTUDY_COMPONENT_FIELDS}
