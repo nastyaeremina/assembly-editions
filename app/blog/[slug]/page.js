@@ -3,7 +3,7 @@ import { parse } from 'node-html-parser';
 import Layout from '../../components/layout';
 import { getAllTagWithSlug, getBlogDetail } from '../../lib/blog-content';
 import { customSort, isEmpty, isValidUrl } from '../../helpers/helpers';
-import { extractTopImage, getExternalLinks, isSameDomain } from '../../helpers/serverSideHelpers';
+import { getExternalLinks, isSameDomain } from '../../helpers/serverSideHelpers';
 import BlogdetailPage from '../../components/PageComponent/Blog/blogDetailPage';
 import { BLOG_TAG_SORTED_LIST, CURRENT_SITE_URL, CURRENT_DOMAIN } from '../../constants/constant';
 import { getTopBarContent } from '../../components/navbar/navbar';
@@ -60,10 +60,10 @@ export async function generateMetadata({ params, searchParams }, parent) {
       images: isEmpty(og_image)
         ? []
         : [
-            {
-              url: og_image
-            }
-          ]
+          {
+            url: og_image
+          }
+        ]
     }
   };
 }
@@ -75,7 +75,6 @@ export default async function Blogdetail({ params }) {
   // Get topbar content to determine spacing
   const { topbarContent } = await getTopBarContent();
   const hasTopBar = !isEmpty(topbarContent);
-  let heroImage = null;
 
   // Create a JSON-LD script for structured data related to the blog post
   const jsonLd = {
@@ -121,11 +120,7 @@ export default async function Blogdetail({ params }) {
     ctaDescription = match?.[2]?.trim() ?? '';
 
     // Remove the <cta> tag and its contents from the original HTML string
-    const cleanedHtmlString = blogDetail?.html?.replace(ctaRegex, '') || '';
-
-    // 2) pull top image if it's the first block and strip it from HTML
-  const { image, cleanedHtml } = extractTopImage(cleanedHtmlString);
-  heroImage = image;              // {height,width,alt,url,isWidthWide} or null
+    const cleanedHtml = blogDetail?.html?.replace(ctaRegex, '') || '';
 
     // Use Cheerio to load the blog content's HTML
     const root = parse(cleanedHtml);
@@ -168,7 +163,6 @@ export default async function Blogdetail({ params }) {
           htmlData={modifiedHtmlData}
           ctaTitle={ctaTitle}
           ctaDescription={ctaDescription}
-          heroImage={heroImage}
           hasTopBar={hasTopBar}
           externalLinks={externalLinks}
         />

@@ -1,12 +1,12 @@
-import React, { useMemo, useCallback, useState } from 'react';
+import React, { useMemo } from 'react';
 import moment from 'moment';
 import Link from 'next/link';
 import { isEmpty } from '../../helpers/helpers';
 import Breadcrumbs from '../Breadcrumbs/breadcrumbs';
 import SVGComponent from '../../../public/images/svg/SVGComponent';
-import { BlogImage, BlogTime, DetailHero, Image, Post, HeroWrapper } from './styles';
+import { BlogTime, DetailHero, Post, HeroWrapper } from './styles';
 
-export default function LegacyBlogDetailHero({ blogDetail, onCopyLink, heroImage }) {
+export default function LegacyBlogDetailHero({ blogDetail, onCopyLink }) {
   // Create breadcrumbs with blog tags
   const breadcrumbs = useMemo(() => {
     const baseBreadcrumbs = [{ label: 'Blog home', href: '/blog' }];
@@ -50,15 +50,6 @@ export default function LegacyBlogDetailHero({ blogDetail, onCopyLink, heroImage
           </Post>
         </BlogTime>
       </DetailHero>
-      {(!isEmpty(heroImage) || !isEmpty(blogDetail?.feature_image)) && !isEmpty(heroImage) ? (
-        <BlogImage>
-          <Image src={heroImage.url} alt='blogdetail' className='image' width={1224} height={688} />
-        </BlogImage>
-      ) : (
-        <BlogImage>
-          <Image src={blogDetail?.feature_image} alt='blogdetail' className='image' width={1224} height={688} />
-        </BlogImage>
-      )}
     </HeroWrapper>
   );
 }

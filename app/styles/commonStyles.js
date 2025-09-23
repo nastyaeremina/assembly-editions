@@ -197,9 +197,15 @@ const Content = styled.div`
         .kg-video-container {
           margin: 0 -34%;
         }
+        .kg-width-wide {
+          margin: 0 -34%;
+        }
       }
       @media only screen and (min-width: 1228px) and (max-width: 1269px) {
         .kg-video-container {
+          margin: 0 -34%;
+        }
+        .kg-width-wide {
           margin: 0 -34%;
         }
       }

@@ -31,8 +31,7 @@ export default function BlogdetailPage({
   ctaTitle,
   ctaDescription,
   hasTopBar,
-  externalLinks = {},
-  heroImage
+  externalLinks = {}
 }) {
   const [CopyBlockData, setCopyBlock] = useState([]);
   const [showToast, setShowToast] = useState(false);
@@ -125,7 +124,7 @@ export default function BlogdetailPage({
       <MainContent>
         <Container>
           <Details id='main_content' className={!shouldShowLestSection && 'without-toc'}>
-            <LegacyBlogDetailHero blogDetail={blogDetail} onCopyLink={handleCopyLink} heroImage={heroImage} />
+            <LegacyBlogDetailHero blogDetail={blogDetail} onCopyLink={handleCopyLink} />
 
             <BlogContent className={!shouldShowTOC ? 'without-toc' : ''}>
               {shouldShowLestSection && (
