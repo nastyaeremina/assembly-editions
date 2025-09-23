@@ -60,11 +60,14 @@ async function getContent({ slug, page = 1, limit = 8 }) {
     };
     customSort(finalTagList, BLOG_TAG_SORTED_LIST);
 
+    //current  tag detail
+    const currentTagDetail = tags.find((tag) => tag?.slug === slug);
     return {
       allPosts: filteredPosts,
       tags: finalTagList,
       seoData,
-      featuredBlog
+      featuredBlog,
+      currentTagDetail
     };
   } catch (error) {
     console.error('Error fetching tag content:', error);
@@ -76,7 +79,8 @@ async function getContent({ slug, page = 1, limit = 8 }) {
         description: 'The requested tag could not be found.',
         canonical: `${CURRENT_SITE_URL}/blog`
       },
-      featuredBlog: null
+      featuredBlog: null,
+      currentTagDetail: null
     };
   }
 }
@@ -117,7 +121,7 @@ export async function generateMetadata({ params }) {
 export default async function Tag({ params, searchParams }) {
   try {
     const page = parseInt(searchParams?.page) || 1;
-    const { allPosts, tags, featuredBlog } = await getContent({ slug: params?.slug, page });
+    const { allPosts, tags, featuredBlog, currentTagDetail } = await getContent({ slug: params?.slug, page });
 
     if (isEmpty(allPosts) && page === 1) {
       return notFound();
@@ -126,7 +130,7 @@ export default async function Tag({ params, searchParams }) {
     return (
       <>
         <Layout>
-          <TagPage allPosts={allPosts} tags={tags} featuredBlog={featuredBlog} currentTagSlug={params?.slug} />
+          <TagPage allPosts={allPosts} tags={tags} featuredBlog={featuredBlog} currentTag={currentTagDetail} />
         </Layout>
       </>
     );

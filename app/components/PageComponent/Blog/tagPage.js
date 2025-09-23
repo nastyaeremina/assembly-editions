@@ -16,7 +16,7 @@ import NewCTA from '../../cta/newCTA';
 import { CTAData } from '../../../constants/raw';
 
 // Tag-specific blog page with server-side pagination
-export default function TagPage({ allPosts, tags, featuredBlog, currentTagSlug }) {
+export default function TagPage({ allPosts, tags, featuredBlog, currentTag }) {
   const [selectedTag, setSelectedTag] = useState('All');
   const [posts, setPosts] = useState(allPosts || []);
   const [loading, setLoading] = useState(false);
@@ -34,13 +34,13 @@ export default function TagPage({ allPosts, tags, featuredBlog, currentTagSlug }
 
   // Set selectedTag based on current tag slug
   useEffect(() => {
-    if (currentTagSlug && tags.length > 0) {
-      const currentTag = tags.find((tag) => tag.slug === currentTagSlug);
+    if (currentTag && tags.length > 0) {
+      const currentSelectedTag = tags.find((tag) => tag.slug === currentTag.slug);
       if (currentTag) {
-        setSelectedTag(currentTag.name);
+        setSelectedTag(currentSelectedTag.name);
       }
     }
-  }, [currentTagSlug, tags]);
+  }, [currentTag, tags]);
 
   // Handle pathname changes for direct navigation
   useEffect(() => {
@@ -66,7 +66,7 @@ export default function TagPage({ allPosts, tags, featuredBlog, currentTagSlug }
     setLoading(true);
     try {
       const nextPage = currentPage + 1;
-      const tagParam = currentTagSlug || 'all';
+      const tagParam = currentTag.slug || 'all';
 
       // Add featured blog ID to exclude it from results
       const excludeParam = featuredBlogId ? `&exclude=${featuredBlogId}` : '';
@@ -87,7 +87,7 @@ export default function TagPage({ allPosts, tags, featuredBlog, currentTagSlug }
     } finally {
       setLoading(false);
     }
-  }, [loading, hasMore, currentPage, currentTagSlug, featuredBlogId]);
+  }, [loading, hasMore, currentPage, currentTag.slug, featuredBlogId]);
 
   // Handle dropdown clicks for tag filtering
   const handleDropdownClick = useCallback(
@@ -132,7 +132,7 @@ export default function TagPage({ allPosts, tags, featuredBlog, currentTagSlug }
         publishedAt={featuredBlog.published_at}
         author={author}
         tags={finalTagList}
-        heading={selectedTag === 'All' ? 'Blog' : selectedTag}
+        heading={currentTag.name}
       />
     );
   }, [featuredBlog, filterTagList, selectedTag]);
@@ -178,8 +178,8 @@ export default function TagPage({ allPosts, tags, featuredBlog, currentTagSlug }
     }
 
     // Try to find by currentTagSlug prop
-    if (currentTagSlug) {
-      const foundBySlug = dropdownItems.find((item) => item.slug === currentTagSlug);
+    if (currentTag.slug) {
+      const foundBySlug = dropdownItems.find((item) => item.slug === currentTag.slug);
       if (foundBySlug) {
         return foundBySlug;
       }
@@ -198,7 +198,7 @@ export default function TagPage({ allPosts, tags, featuredBlog, currentTagSlug }
 
     // Fallback to All
     return dropdownItems.find((item) => item.slug === 'all');
-  }, [selectedTag, dropdownItems, pathname, currentTagSlug]);
+  }, [selectedTag, dropdownItems, pathname, currentTag.slug]);
 
   return (
     <>
