@@ -2,6 +2,7 @@ import { CONTENTFUL_API_TAG, FEATURE_COMPONENT_TYPE } from '../constants/constan
 import { isEmpty } from '../helpers/helpers';
 import { fetchGraphQL } from './contentful';
 import { POST_GRAPHQL_SEOMETADATA_FIELDS } from './contentful-seo';
+import {POST_GRAPHQL_VIDEO_CONTENT_FIELDS} from './contentful-constant'
 
 const POST_GRAPHQL_SECTION_COMMON_FIELDS = `
 title
@@ -179,6 +180,9 @@ link
 quoteBlock{
   ${POST_GRAPHQL_TESTIMONIAL_CARD_FIELDS}
 }
+video{
+${POST_GRAPHQL_VIDEO_CONTENT_FIELDS}
+}  
 `;
 
 // Map feature type to GraphQL field string
@@ -353,6 +357,7 @@ export async function getSectionBoxesComponentContent(id, preview) {
   );
   return entries?.data?.sectionBoxes || {};
 }
+
 export async function getSectionTabContent(id, preview) {
   const entries = await fetchGraphQL(
     `query {

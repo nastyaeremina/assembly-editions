@@ -1,14 +1,12 @@
 'use client';
 import React, { useEffect, useRef, useState } from 'react';
-import { GridSection, SectionContentDiv, SectionDiv, TabSection, TabContentGridItem, GridItemSection } from './style';
+import { GridSection, SectionContentDiv, SectionDiv, TabSection } from './style';
 import SectionHeader from '../sectionHeader/sectionHeader';
 import { Container } from '../../styles/commonStyles';
 import { SectionTone } from '../../constants/constant';
 import TabSwitcher from './switcherComponent/tabSwitcher';
 import { isEmpty } from '../../helpers/helpers';
-import Image from 'next/image';
-import QuoteSectionComponent from '../quoteSection/quoteSection';
-
+import GridItemSection from './gridSection/gridItemSection';
 /**
  * Section component for displaying a section with a header and optional buttons.
  * @param {Object} props - Component props.
@@ -95,23 +93,12 @@ function SectionComponent({
               onTabChange={handleTabChange}
             />
             <GridSection ref={containerRef} style={{ height }} tone={tone}>
-              {tabItems.map((tabItem, index) => (
-                <GridItemSection key={index} isActive={index === activeIndex} data-active={index === activeIndex}>
-                  {!isEmpty(tabItem.image) && (
-                    <Image src={tabItem.image.url} width={877} height={827} className='image' alt='Section' />
-                  )}
-                  {!isEmpty(tabItem.quoteBlock) && (
-                    <QuoteSectionComponent
-                      tone={tone}
-                      imageSrc={tabItem.quoteBlock.image?.url}
-                      name={tabItem.quoteBlock.name}
-                      role={tabItem.quoteBlock.role}
-                      description={tabItem.quoteBlock.quoteNew}
-                      link={tabItem.link}
-                    />
-                  )}
-                </GridItemSection>
-              ))}
+              <GridItemSection
+                tabItems={tabItems}
+                activeIndex={activeIndex}
+                tone={tone}
+                link={tabItems[activeIndex]?.link}
+              />
             </GridSection>
           </TabSection>
         </SectionContentDiv>

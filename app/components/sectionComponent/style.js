@@ -57,9 +57,10 @@ const GridSection = styled.div`
   }
 `;
 
-const GridItemSection = styled.div`
+const GridItemSectionWrapper = styled.div`
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  align-items: center;
   gap: var(--space-24);
   position: absolute;
   top: 0;
@@ -68,10 +69,51 @@ const GridItemSection = styled.div`
   opacity: ${({ isActive }) => (isActive ? 1 : 0)};
   transition: opacity 0.5s ease, transform 0.5s ease;
   z-index: ${({ isActive }) => (isActive ? 1 : 0)};
+
+  /* video styling */
+  video {
+    width: 100%;
+    object-fit: cover;
+    grid-column: span 2;
+    height: 100%;
+    border-radius: var(--radius-16);
+    border: 1px solid var(--border-default);
+    ${({ tone }) =>
+      tone === SectionTone.DARK &&
+      css`
+        border: 1px solid var(--bg-card-dark-hover);
+      `}
+    @media only screen and (max-width: 991px) {
+      grid-column: auto;
+      border-radius: var(--radius-12);
+    }
+  }
+  /* Iframe styling for video looping */
+  iframe {
+    max-width: 100%;
+    grid-column: span 2;
+    height: ${({ hasQuoteBlock }) => (hasQuoteBlock ? '100%' : '')};
+    border-radius: var(--radius-16);
+    border: 1px solid var(--border-default);
+    ${({ tone }) =>
+      tone === SectionTone.DARK &&
+      css`
+        border: 1px solid var(--bg-card-dark-hover);
+      `}
+    @media only screen and (max-width: 991px) {
+      grid-column: auto;
+      max-height: 408px;
+      height: 408px;
+    }
+    @media only screen and (max-width: 449px) {
+      border-radius: var(--radius-12);
+      height: 228px;
+    }
+  }
   @media only screen and (max-width: 991px) {
     grid-template-columns: auto;
     gap: var(--space-32);
   }
 `;
 
-export { SectionDiv, SectionContentDiv, TabSection, GridSection, GridItemSection };
+export { SectionDiv, SectionContentDiv, TabSection, GridSection, GridItemSectionWrapper };

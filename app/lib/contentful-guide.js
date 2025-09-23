@@ -4,6 +4,7 @@ import {
   PER_API_LIMIT_FOR_GUIDE_SECTION
 } from '../constants/constant';
 import { fetchGraphQL } from './contentful';
+import { POST_GRAPHQL_VIDEO_CONTENT_FIELDS } from './contentful-constant';
 import { POST_GRAPHQL_SEOMETADATA_FIELDS } from './contentful-seo';
 
 const POST_GRAPHQL_PAGE_GUIDE_DETAILS_FIELDS = `
@@ -66,7 +67,7 @@ childArticlesCollection(limit:50){
   }
 }
 `;
-export const POST_GRAPHQL_VIDEO_CONTENT_FIELDS = `
+export const POST_GRAPHQL_RICHTEXT_ENTRY_WITH_VIDEO_CONTENT_FIELDS = `
 links{
 entries{
   inline{
@@ -74,15 +75,7 @@ entries{
       id
     }
      ...on Video{
-      thumbnailImage{
-        url
-      }
-      video{
-        url
-      }
-      isEmbedWithIframe
-      videoLink
-      name
+     ${POST_GRAPHQL_VIDEO_CONTENT_FIELDS}
     }
   }
 }
@@ -90,7 +83,7 @@ entries{
 export const POST_GRAPHQL_GUIDE_ARTICLE_CONTENT_FIELDS = `
 content{
   json
-  ${POST_GRAPHQL_VIDEO_CONTENT_FIELDS}
+  ${POST_GRAPHQL_RICHTEXT_ENTRY_WITH_VIDEO_CONTENT_FIELDS}
   links{
     assets{
        block{

@@ -13,7 +13,6 @@ import {
 import { Container } from '../../styles/commonStyles';
 import Image from 'next/image';
 import { isEmpty } from '../../helpers/helpers';
-import useMobileDevice from '../../hooks/useMobileDevice';
 import SectionHeader from '../sectionHeader/sectionHeader';
 import QuoteSectionComponent from '../quoteSection/quoteSection';
 import StoryModeNavigation from './StoryModeNavigation/storyModeNavigation';
@@ -31,9 +30,6 @@ export default function StoryMode({ tabsData, tone }) {
 
   // Refs to track each section's position
   const sectionRefs = useRef([]);
-
-  // Check if device is mobile for responsive buttons
-  const isMobile = useMobileDevice();
 
   // Memoized sections to prevent unnecessary re-renders
   const renderedSections = useMemo(
@@ -74,7 +70,7 @@ export default function StoryMode({ tabsData, tone }) {
           </TabSection>
         );
       }),
-    [tabsData, isMobile]
+    [tabsData]
   );
 
   // Calculate navbar height for sticky positioning
