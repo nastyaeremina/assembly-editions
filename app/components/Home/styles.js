@@ -243,7 +243,6 @@ const MainImage = styled.div`
   overflow: hidden;
   margin-top: var(--space-80);
   display: flex;
-  box-shadow: var(--image-box-shadow);
   border-radius: var(--radius-8);
   .heromain-image {
     border-radius: var(--radius-8);
