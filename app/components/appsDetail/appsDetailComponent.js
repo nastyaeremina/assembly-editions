@@ -28,17 +28,12 @@ import ImageSection from './ImageSection';
 import Breadcrumbs from '../Breadcrumbs/breadcrumbs';
 import ButtonV2Component from '../button/buttonV2/buttonV2';
 import RichTextDetail from '../richTextDetail/richText';
+import useNavbarHeight from '../../hooks/useNavbarHeight';
 
-export default function AppsDetailComponent({
-  detail,
-  content,
-  isUserAuthenticated,
-  reviewList,
-  externalLinks = {},
-  hasTopbar
-}) {
+export default function AppsDetailComponent({ detail, content, isUserAuthenticated, reviewList, externalLinks = {} }) {
   const imageList = removeEmptyElement(content?.imageListCollection?.items);
-
+  // for sticky positioning
+  const { totalHeight } = useNavbarHeight();
   const BreadcrumbItem = [{ label: 'All apps', href: '/apps/directory' }];
   return (
     <Container>
@@ -72,7 +67,7 @@ export default function AppsDetailComponent({
         </MainHeroSectionWrapper>
 
         <DetailContent>
-          <RightContent hasTopbar={hasTopbar}>
+          <RightContent stickyTop={totalHeight}>
             <AboutComponent
               isDirectory={true}
               content={content}

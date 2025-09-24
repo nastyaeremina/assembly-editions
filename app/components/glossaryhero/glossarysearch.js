@@ -3,9 +3,6 @@ import { Container } from '../../styles/commonStyles';
 import { isEmpty } from '../../helpers/helpers';
 import useNavbarHeight from '../../hooks/useNavbarHeight';
 import {
-  EmptyDescription,
-  EmptyIcon,
-  EmptyState,
   GlossarySearchSection,
   Input,
   InputWrap,
@@ -21,6 +18,7 @@ import {
 import SVGComponent from '../../../public/images/svg/SVGComponent';
 import LinkComponent from '../linkComponent/linkComponent';
 import { LinkSize, LinkTone } from '../../constants/constant';
+import SearchEmptyState from '../SearchEmptyState/searchEmptyState';
 
 export default function GlossarySearch({ data: glossaryList }) {
   const [query, setQuery] = useState('');
@@ -194,17 +192,11 @@ export default function GlossarySearch({ data: glossaryList }) {
             </>
           </Search>
           {isSearch && !isSearching && isEmpty(searchResult) ? (
-            <EmptyState>
-              <EmptyIcon>
-                <SVGComponent name='search-icon' width='20' height='20' viewBox='0 0 20 20' className='search-icon' />
-              </EmptyIcon>
-              <EmptyDescription>
-                <h4>No search results </h4>
-                <p>
-                  We could not find any search results for <b>{query}</b>. Give it another go.
-                </p>
-              </EmptyDescription>
-            </EmptyState>
+            <SearchEmptyState
+              icon='search-icon'
+              title='No search results'
+              description={`We could not find any search results for <b>${query}</b>. Give it another go.`}
+            />
           ) : (
             <SearchDataSection>{renderListview}</SearchDataSection>
           )}

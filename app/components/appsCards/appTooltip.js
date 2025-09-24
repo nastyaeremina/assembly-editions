@@ -9,7 +9,8 @@ function AppTooltip({
   style,
   mainDivStyle,
   isAutoAdjust = false,
-  isAppDetailtooltip = false
+  isAppDetailtooltip = false,
+  LeftAdjust
 }) {
   const tooltipIconRef = useRef(null);
   const [tooltipPosition, setTooltipPosition] = useState({ left: '-6px' });
@@ -32,13 +33,14 @@ function AppTooltip({
   return (
     <Informative style={mainDivStyle} isAutoAdjust={isAutoAdjust}>
       <Icon ref={tooltipIconRef} iconSize={iconSize}>
-        <SVGComponent name='informative-icon' width={iconSize} height={iconSize} viewBox='0 0 14 14' fill={fill} />
+        <SVGComponent name='informative-icon' width={iconSize} height={iconSize} viewBox='0 0 12 12' fill={fill} />
       </Icon>
       <Tooltip
         className='tooltiptext'
         style={{ ...style, ...tooltipPosition }}
         isAutoAdjust={isAutoAdjust}
-        isAppDetailtooltip={isAppDetailtooltip}>
+        isAppDetailtooltip={isAppDetailtooltip}
+        LeftAdjust={LeftAdjust}>
         <Line isAutoAdjust={isAutoAdjust} style={{ ...tooltipLinePosition }}>
           <div className='line' />
         </Line>

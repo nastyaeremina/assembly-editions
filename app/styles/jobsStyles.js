@@ -142,7 +142,7 @@ const JobDetail = styled.div`
 `;
 const DetailLeft = styled.div`
   position: sticky;
-  top: var(--space-120);
+  top: ${(props) => props.stickyTop + 40}px;
   display: flex;
   flex-direction: column;
   gap: var(--space-32);

@@ -105,7 +105,7 @@ const LinkDiv = styled.div`
 
 const UpdateDate = styled(Link)`
   position: sticky;
-  top: ${(props) => props.stickyTop + 50}px;
+  top: ${(props) => props.stickyTop + 40}px;
   ${h4_semibold}
   height: 100%;
   max-width: 432px;

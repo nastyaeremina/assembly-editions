@@ -6,36 +6,15 @@ import { renderContentWithVideos } from '../../../helpers/clientSideHelpers';
 import Breadcrumbs from '../../Breadcrumbs/breadcrumbs';
 import NewCTA from '../../cta/newCTA';
 import { CTAData } from '../../../constants/raw';
-import { useEffect, useState } from 'react';
+import useNavbarHeight from '../../../hooks/useNavbarHeight';
 
 export default function UpdatedetailPage({ details: updateDetails }) {
   const contentWithVideos = renderContentWithVideos(updateDetails?.html);
 
   const BreadcrumbItem = [{ label: 'All updates', href: '/updates' }];
 
-  const [stickyTop, setStickyTop] = useState(0);
-
-  // Calculate navbar height for sticky positioning
-  useEffect(() => {
-    const updateHeight = () => {
-      // Find navbar and topbar elements
-      const navbar = document.querySelector('[data-navbar="true"]');
-      const topbar = document.querySelector('[data-topbar="true"]');
-
-      // Calculate total height needed for sticky positioning
-      const totalHeight = (navbar?.offsetHeight || 0) + (topbar?.offsetHeight || 0);
-      setStickyTop(totalHeight);
-    };
-
-    // Initial calculation
-    updateHeight();
-
-    // Update on window resize
-    window.addEventListener('resize', updateHeight);
-
-    // Cleanup event listener
-    return () => window.removeEventListener('resize', updateHeight);
-  }, []);
+  // for sticky positioning
+  const { totalHeight } = useNavbarHeight();
 
   return (
     <MainContent>
@@ -48,7 +27,7 @@ export default function UpdatedetailPage({ details: updateDetails }) {
         </LinkDiv>
         <UpdateDes>
           <DetailSlug>
-            <UpdateDate href='#' stickyTop={stickyTop}>
+            <UpdateDate href='#' stickyTop={totalHeight}>
               {moment(new Date(updateDetails?.published_at)).format('MMMM D, YYYY')}
             </UpdateDate>
             <UpdateDetail>

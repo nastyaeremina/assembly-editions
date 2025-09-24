@@ -3,23 +3,9 @@ import { Container } from '../../styles/commonStyles';
 import ReviewModal from '../reviewModal/reviewModal';
 import StartList from './starList';
 import ReviewInfo from './reviewInfo';
-import {
-  Content,
-  EmptyCaption,
-  EmptyContent,
-  EmptyDesign,
-  Emptyheading,
-  Icon,
-  Left,
-  OverAllRating,
-  RatingIcon,
-  RatingNumber,
-  ReviewContent,
-  SectionHeading
-} from './styles';
-import SVGComponent from '../../../public/images/svg/SVGComponent';
+import { Content, Left, OverAllRating, RatingIcon, RatingNumber, ReviewContent, SectionHeading } from './styles';
 import ButtonV2Component from '../button/buttonV2/buttonV2';
-import { ButtonSize } from '../../constants/constant';
+import SearchEmptyState from '../SearchEmptyState/searchEmptyState';
 
 export default function ReviewSection({
   appId,
@@ -71,17 +57,13 @@ export default function ReviewSection({
             {renderReviewList}
           </Content>
         ) : (
-          <EmptyDesign>
-            <Icon>
-              <SVGComponent name='new-star-icon' width='20' height='20' viewBox='0 0 20 21' className='svg-icon' />
-            </Icon>
-            <EmptyContent>
-              <Emptyheading>No reviews yet</Emptyheading>
-              <EmptyCaption>Your feedback helps others decide. Start by reviewing Jotform.</EmptyCaption>
-            </EmptyContent>
-
-            <ButtonV2Component title='Write a review' onClick={onOpenModal} size={ButtonSize.SMALL} />
-          </EmptyDesign>
+          <SearchEmptyState
+            buttonTitle='Write a review'
+            onClick={onOpenModal}
+            icon={'new-star-icon'}
+            title={'No reviews yet'}
+            description={'Your feedback helps others decide. Start by reviewing Jotform.'}
+          />
         )}
         {isModalOpen && (
           <ReviewModal reviewList={reviewList} onClose={closeModal} appId={appId} setReviewList={setReviewList} />

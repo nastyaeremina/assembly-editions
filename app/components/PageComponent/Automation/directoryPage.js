@@ -17,7 +17,8 @@ import {
   ExtensionCard,
   AppHeader3,
   ResponsiveInputWrap,
-  ResponsiveInput
+  ResponsiveInput,
+  SearchIcon
 } from '../../../styles/appsStyles';
 import { Container } from '../../../styles/commonStyles';
 import { isEmpty, stringToSlugyfy } from '../../../helpers/helpers';
@@ -28,6 +29,7 @@ import { SliderIcon, SliderSub } from '../../FeatureSlider/styles';
 import StandardHero from '../../standardHero/standardHero';
 import { HeroTypes } from '../../../constants/constant';
 import useActiveHeading from '../../../hooks/useActiveHeading';
+import SVGComponent from '../../../../public/images/svg/SVGComponent';
 
 export default function AutomationDirectoryPage({ featuredApps, allCategoryWithPost, allPosts, externalLinks = {} }) {
   const [query, setQuery] = useState('');
@@ -202,7 +204,9 @@ export default function AutomationDirectoryPage({ featuredApps, allCategoryWithP
           <FeatureLeft>
             <LeftWrap>
               <InputWrap onSubmit={onSubmitSeachQuery}>
-                <Image src='/images/searchicon.svg' alt='search-icon' width={20} height={20} />
+                <SearchIcon>
+                  <SVGComponent name='search-icon' width='20' height='20' viewBox='0 0 20 20' className='search-icon' />
+                </SearchIcon>
                 <Input placeholder='Find a recipe' value={query} onChange={onSeachQueryChange} type='search' />
               </InputWrap>
               <Catagory>

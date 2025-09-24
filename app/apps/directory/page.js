@@ -3,7 +3,6 @@ import { getSEOData } from '../../helpers/helpers';
 import { APPS_TYPE, APP_SEO_ID, CURRENT_SITE_URL } from '../../constants/constant';
 import AppDirectoryPage from '../../components/PageComponent/Apps/directoryPage';
 import { getAllPartnerApps } from '../../lib/contentful-partnerApps';
-import CTA from '../../components/cta/cta';
 import AggregateRating from '../../components/aggregateRating';
 import { getExternalLinks } from '../../helpers/serverSideHelpers';
 
@@ -31,10 +30,12 @@ export default async function Apps() {
     <>
       <AggregateRating id={APP_SEO_ID} />
       <Layout>
-        <div style={{ backgroundColor: 'var(--main-bg-color)' }}>
-          <AppDirectoryPage clientApps={clientApps} internalApps={internalApps} featuredApps={featuredApps} externalLinks={externalLinks} />
-          <CTA />
-        </div>
+        <AppDirectoryPage
+          clientApps={clientApps}
+          internalApps={internalApps}
+          featuredApps={featuredApps}
+          externalLinks={externalLinks}
+        />
       </Layout>
     </>
   );

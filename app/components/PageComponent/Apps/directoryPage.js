@@ -1,14 +1,17 @@
 'use client';
 
 import { useCallback, useMemo, useState } from 'react';
-import { ExtensionsSection, SearchEmpty } from '../../../styles/appsStyles';
+import { AppCardMainSection, CardWrapper, EmptyStateSection, MainSection } from '../../../styles/appsStyles';
 import { isEmpty } from '../../../helpers/helpers';
-import AppError from '../../../components/apperror/error';
 import AppsCardSection from '../../appsCards/appsCardSection';
 import StandardHero from '../../standardHero/standardHero';
 import { EXTERNAL_LINK_KEYS } from '../../../constants/constant';
 import SearchInput from './searchInput';
 import { HeroTypes } from '../../../constants/constant';
+import NewCTA from '../../cta/newCTA';
+import { CTAData } from '../../../constants/raw';
+import { Container } from '../../../styles/commonStyles';
+import SearchEmptyState from '../../SearchEmptyState/searchEmptyState';
 
 export default function AppDirectoryPage({ clientApps, internalApps, featuredApps, externalLinks = {} }) {
   let allPosts = clientApps.concat(internalApps);
@@ -51,70 +54,83 @@ export default function AppDirectoryPage({ clientApps, internalApps, featuredApp
   const renderResultView = useMemo(() => {
     if (!isEmpty(searchResult)) {
       return (
-        <>
-          <AppsCardSection
-            isBottom
-            heading={`${searchResult?.length} Result for "${query}"`}
-            appList={searchResult}
-            isSearchbar
-            isFeature
-          />
-        </>
+        <AppsCardSection
+          isBottom
+          heading={`${searchResult?.length} Result for "${query}"`}
+          appList={searchResult}
+          hasPadding
+          hideHeadingOnMobile
+        />
       );
     } else
       return (
         <>
-          <SearchEmpty>
-            <AppsCardSection isBottom heading={'No Search Results'} isSearchbar isSearchEmpty></AppsCardSection>
-            <ExtensionsSection key={`searchEmptyview`}>
-              <AppError query={query} />
-            </ExtensionsSection>
-          </SearchEmpty>
+          <AppsCardSection isBottom heading={'No search result'} hasPadding hideHeadingOnMobile></AppsCardSection>
+          <EmptyStateSection>
+            <SearchEmptyState
+              icon='search-icon'
+              title='No search results'
+              description={`We could not find any search results for <b>${query}</b>. Give it another go.`}
+            />
+          </EmptyStateSection>
         </>
       );
   }, [query, searchResult]);
 
   return (
-    <>
-      <div className='standard-page'>
-        <StandardHero
-          data={{
-            heroTitle: 'App Store',
-            primaryButtonText: 'Start trial',
-            primaryButtonLink: externalLinks?.[EXTERNAL_LINK_KEYS.OnboardingLink] || '#',
-            heroDescription:
-              'Copilot covers the foundational features every business needs. For everything else, there’s a variety of apps to choose from.'
-          }}
-          type={HeroTypes.CENTER}
-        />
-      </div>
-      <SearchInput value={query} onChangeValue={onSeachQueryChange} onSubmit={onSubmitSeachQuery} />
-      {isSearch ? (
-        renderResultView
-      ) : (
-        <>
-          <AppsCardSection
-            isBottom
-            heading='Recommended'
-            caption='These are the most popular, mostly highly rated apps. '
-            appList={featuredApps}
-            isSearchbar={true}
-            isFeature
+    <MainSection>
+      <StandardHero
+        data={{
+          heroTitle: 'App Store',
+          primaryButtonText: 'Start Free Trial',
+          primaryButtonLink: externalLinks?.[EXTERNAL_LINK_KEYS.OnboardingLink] || '#',
+          heroDescription:
+            'Assembly covers the foundational features every business needs. For everything else, there’s a variety of apps to choose from.'
+        }}
+        type={HeroTypes.CENTER}
+      />
+
+      <Container>
+        <AppCardMainSection isGap={isSearch}>
+          <SearchInput
+            value={query}
+            onChangeValue={onSeachQueryChange}
+            onSubmit={onSubmitSeachQuery}
+            isTopPosition={true}
           />
-          <AppsCardSection
-            is4Card
-            heading='Client-facing '
-            caption='Client-facing apps are visible to your team and your clients. '
-            appList={clientApps}
-          />
-          <AppsCardSection
-            is4Card
-            heading='Internal'
-            caption='Internal apps are integrations, internal tools, and other apps not visible to clients. '
-            appList={internalApps}
-          />
-        </>
-      )}
-    </>
+          {isSearch ? (
+            renderResultView
+          ) : (
+            <CardWrapper>
+              <AppsCardSection
+                isBottom
+                heading='Recommended'
+                caption='These are the most popular, mostly highly rated apps. '
+                appList={featuredApps}
+                isSearchbar={true}
+              />
+              <AppsCardSection
+                heading='Client-facing '
+                caption='Client-facing apps are visible to your team and your clients. '
+                appList={clientApps}
+              />
+              <AppsCardSection
+                heading='Internal'
+                caption='Internal apps are integrations, internal tools, and other apps not visible to clients. '
+                appList={internalApps}
+              />
+            </CardWrapper>
+          )}
+        </AppCardMainSection>
+      </Container>
+      <NewCTA
+        title={CTAData.title}
+        description={CTAData.description}
+        primaryButtonLink={CTAData.primaryButtonLink}
+        primaryButtonText={CTAData.primaryButtonText}
+        secondaryButtonLink={CTAData.secondaryButtonLink}
+        secondaryButtonText={CTAData.secondaryButtonText}
+      />
+    </MainSection>
   );
 }

@@ -14,6 +14,7 @@ import {
   MobileH2,
   Value
 } from './styles';
+import { body_regular, button_regular, h4_semibold } from './typography';
 
 const HeroSection = styled.div`
   padding-top: 180px;
@@ -73,36 +74,45 @@ const FirstImg = styled.div`
   }
 `;
 const Input = styled.input`
-  ${Value};
+  ${button_regular};
   color: var(--title);
-  letter-spacing: 0.01em;
-  padding: 11px 55px 11px 55px;
-  border: 1.5px solid var(--ghost-gray);
-  border-radius: 48px;
-  width: 306px;
+  padding: var(--space-9) var(--space-12) var(--space-5) var(--space-40);
+  background-color: var(--off-white-300);
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-30);
+  width: 285px;
   outline: 0;
   ::placeholder {
-    color: var(--medium-gray);
+    color: var(--gray-200);
   }
   :hover {
-    border: 1.5px solid var(--border);
-    box-shadow: 0px 4px 8px var(--black-shadow-7);
+    border: 1px solid var(--border-hover);
   }
-  :active {
-    border: 1.5px solid var(--title);
-    box-shadow: 0px 4px 8px var(--black-shadow-7);
+  body.using-mouse &:focus {
+    border-color: var(--title);
+    outline: none;
   }
-  :focus {
-    border: 1.5px solid var(--title);
-    box-shadow: 0px 4px 8px var(--black-shadow-7);
+
+  /* keyboard (Tab) focus */
+  body.using-keyboard &:focus-visible {
+    outline: 2px solid var(--link-default);
+    outline-offset: 1px;
+    border-radius: var(--radius-30);
   }
+
   @media only screen and (max-width: 991px) {
     width: calc(100% - 48px);
     margin: 0 24px;
+    &.app-search-input {
+      width: 100%;
+      margin: 0;
+    }
   }
   @media only screen and (max-width: 449px) {
     padding: 10px 50px 10px 52px;
-    ${MbBody4}
+    &.app-search-input {
+      padding: var(--space-9) var(--space-12) var(--space-5) var(--space-40);
+    }
   }
 `;
 const Catagory = styled.ul`
@@ -292,22 +302,13 @@ const InputWrap = styled.form`
   width: 100%;
   max-width: 1272px;
   margin: 0 auto;
-  div {
-    position: absolute;
-    right: 24px;
-  }
+
   img {
     position: absolute;
     top: 15px;
     left: 20px;
   }
   @media only screen and (max-width: 991px) {
-    div {
-      position: relative;
-      right: 0;
-      margin: 0 auto;
-      margin-bottom: 30px;
-    }
     img {
       left: 45px;
     }
@@ -479,6 +480,81 @@ const SearchEmpty = styled.div`
     padding-bottom: 80px;
   }
 `;
+
+const MainSection = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-80);
+  padding: var(--space-80) 0;
+  @media only screen and (max-width: 991px) {
+    padding: var(--space-64) 0;
+    gap: var(--space-64);
+  }
+  @media only screen and (max-width: 449px) {
+    gap: var(--space-48);
+    padding: var(--space-64) 0 var(--space-48);
+  }
+`;
+
+const AppCardMainSection = styled.div`
+  padding: var(--space-64) 0;
+  position: relative;
+  @media only screen and (max-width: 991px) {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-64);
+    padding: var(--space-40) 0;
+  }
+  @media only screen and (max-width: 449px) {
+    padding: var(--space-48) 0;
+  }
+  ${(props) =>
+    props.isGap &&
+    css`
+      @media only screen and (max-width: 991px) {
+        gap: 0;
+      }
+    `}
+`;
+
+const AppInputWrap = styled.form`
+  position: absolute;
+  top: var(--space-64);
+  right: 0;
+  @media only screen and (max-width: 991px) {
+    position: unset;
+    width: 100%;
+  }
+`;
+const SearchIcon = styled.div`
+  position: absolute;
+  top: var(--space-10);
+  left: var(--space-12);
+  display: flex;
+`;
+
+const InputWrapper = styled.div`
+  position: relative;
+  width: 100%;
+`;
+
+const CardWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-80);
+`;
+
+const CloseIcon = styled.div`
+  position: absolute;
+  top: var(--space-12);
+  right: var(--space-12);
+  display: flex;
+`;
+
+const EmptyStateSection = styled.div`
+  margin-top: var(--space-40);
+`;
+
 export {
   HeroSection,
   FeatureSection,
@@ -504,5 +580,13 @@ export {
   AppSliderSection,
   SearchEmpty,
   ResponsiveInputWrap,
-  ResponsiveInput
+  ResponsiveInput,
+  MainSection,
+  AppCardMainSection,
+  AppInputWrap,
+  SearchIcon,
+  InputWrapper,
+  CardWrapper,
+  CloseIcon,
+  EmptyStateSection
 };

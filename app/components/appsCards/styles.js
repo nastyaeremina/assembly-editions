@@ -1,36 +1,20 @@
 import styled, { css } from 'styled-components';
-import { Body4, Body5, CardTxt, FooterText, Heading3, Value } from '../../styles/styles';
-import { label_regular } from '../../styles/typography';
+import { body_regular, body_semibold, button_regular, h3_semibold, label_regular } from '../../styles/typography';
 
 const CardSub = styled.div`
   display: block;
-  :hover {
-    -webkit-transition: all 0.2s ease-in-out;
-    transition: all 0.2s ease-in-out;
-    box-shadow: 0px 0px 0px 0.1px var(--dark-purple);
-    border-radius: 4px;
-  }
   a {
-    background: var(--white);
-    border: 1px solid var(--dark-purple);
-    border-radius: 4px;
-    -webkit-transition: all 0.2s ease-in-out;
-    transition: all 0.2s ease-in-out;
+    background: var(--off-white-300);
+    border: 1px solid var(--border-default);
+    border-radius: var(--radius-16);
     height: 100%;
     position: relative;
-    :hover {
-      border: 1px solid var(--dark-purple);
-      box-shadow: 0px 4px 16px var(--black-shadow-10);
-      -webkit-transition: all 0.2s ease-in-out;
-      transition: all 0.2s ease-in-out;
-    }
   }
 `;
 
 const CardDescription = styled.div`
-  color: var(--dark-gray);
-  letter-spacing: 0.02em;
-  ${Body5}
+  color: var(--text-secondary);
+  ${button_regular}
   margin: 0;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -41,150 +25,158 @@ const CardDescription = styled.div`
 `;
 const CardInfo = styled.div`
   display: flex;
-  gap: 12px;
+  gap: var(--space-16);
   align-items: center;
-  padding-bottom: 12px;
   img {
     max-width: 100%;
-  }
-  h3 {
-    color: var(--title);
-    ${Body4}
-    letter-spacing: 0.02em;
-    margin: 0;
   }
 `;
 
 const ImgView = styled.div`
-  width: 40px;
-  height: 40px;
+  width: 44px;
+  height: 44px;
   display: flex;
   align-items: center;
   justify-content: center;
+  img {
+    /* border-radius: var(--radius-8); */
+  }
 `;
 
 const DirectoryCardSection = styled.div`
-  padding-bottom: 100px;
   display: flex;
   flex-direction: column;
-  gap: 28px;
-  @media only screen and (max-width: 768px) {
-    padding-bottom: 80px;
-    gap: 24px;
-  }
-  ${(props) =>
-    props.isAppdetail &&
-    css`
-      gap: 40px;
-    `}
-  ${(props) =>
-    props.isSearchEmpty &&
-    css`
-      padding-bottom: 0;
-      @media only screen and (max-width: 768px) {
-        padding-bottom: 0;
-      }
-    `}
+  gap: var(--space-40);
 `;
 
 const CardTitle = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
+  p {
+    ${body_semibold}
+    color: var(--black);
+    margin: 0;
+  }
 `;
 const RatingSection = styled.div`
   display: flex;
+  align-items: flex-start;
+  gap: var(--space-4);
   p {
     text-transform: capitalize;
-    ${FooterText};
-    color: var(--body);
+    ${button_regular};
+    color: var(--text-secondary);
     margin: 0;
+  }
+  .dot-icon {
+    margin: var(--space-4) 0;
   }
 `;
 
 const RatingNumber = styled.div`
   display: flex;
-  gap: 3px;
+  gap: var(--space-4);
+  align-items: center;
+  p {
+    ${button_regular};
+    color: var(--text-secondary);
+    margin: 0;
+  }
 `;
 
 const AppInformativeSection = styled.div`
   display: flex;
-  gap: 4px;
+  gap: var(--space-4);
+  align-items: center;
 `;
 
 const CardTop = styled.div`
-  padding: 16px;
-  ${(props) =>
-    props.isFeature &&
-    css`
-      padding-bottom: 46px;
-    `}
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-16);
+  justify-content: space-between;
+  height: 100%;
+  .svg-icon {
+    width: 20px;
+    height: 20px;
+    transform: translateX(-2px) scale(0.98);
+    transition: transform 0.25s, opacity 0.25s;
+    transition-timing-function: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    opacity: 0;
+  }
+  &:hover {
+    .svg-icon {
+      transform: none;
+      opacity: 1;
+    }
+  }
+`;
+
+const CardTopSectionWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-16);
+  padding: var(--space-20) var(--space-20) 0;
 `;
 const CardEnd = styled.div`
-  display: none;
-  background-color: var(--light-green);
-  padding: 8px 16px;
-  border-top: 1px solid var(--dark-purple);
-  border-radius: 0 0 3px 3px;
-  position: absolute;
-  bottom: 0;
+  background-color: var(--gray-50);
+  padding: var(--space-10) var(--space-20) var(--space-6);
+  border-top: 1px solid var(--border-default);
+  border-radius: 0 0 var(--space-16) var(--space-16);
   width: 100%;
   p {
-    ${CardTxt};
-    color: var(--dark-purple);
+    ${button_regular};
+    color: var(--title);
     margin: 0;
   }
   ${(props) =>
     props.isBottom &&
     css`
       display: flex;
-      gap: 6px;
+      gap: var(--space-8);
       align-items: center;
     `}
 `;
 
 const CardListSection = styled.div`
   display: grid;
-  gap: 28px;
-  grid-template-columns: repeat(auto-fill, minmax(288px, 1fr));
-  ${(props) =>
-    props.is4Card &&
-    css`
-      grid-template-columns: repeat(auto-fill, minmax(228px, 1fr));
-    `}
-  @media only screen and (max-width: 449px) {
-    grid-template-columns: auto;
-    gap: 20px;
+  gap: var(--space-24);
+  grid-template-columns: repeat(auto-fill, minmax(289px, 1fr));
+  @media only screen and (max-width: 1024px) {
+    grid-template-columns: repeat(auto-fill, minmax(310px, 1fr));
   }
 `;
 
-const SectionHeader = styled.div`
-  display: flex;
-  justify-content: space-between;
-  /* align-items: center; */
-  gap: 20px;
-  @media only screen and (max-width: 768px) {
-    flex-direction: column;
-  }
-`;
 const SectionHeading = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: var(--space-12);
   width: 100%;
-  h2 {
-    ${Heading3};
+  max-width: 600px;
+  width: 100%;
+  h3 {
+    ${h3_semibold};
     color: var(--title);
     margin: 0;
   }
   p {
-    ${Body4};
-    color: var(--body);
+    ${body_regular};
+    color: var(--text-secondary);
     margin: 0;
   }
-  @media only screen and (max-width: 449px) {
-    ${Body5}
-    gap:8px;
+  ${(props) =>
+    props.hasPadding &&
+    css`
+      h3 {
+        padding: var(--space-2) 0;
+      }
+    `}
+  @media only screen and (max-width: 991px) {
+    ${(props) =>
+      props.hideOnMobile &&
+      css`
+        h3 {
+          display: none;
+        }
+      `}
   }
 `;
 
@@ -210,6 +202,11 @@ const Tooltip = styled.div`
         top: var(--space-20);
         left: -7px !important;
       }
+    `}
+  ${(props) =>
+    props.LeftAdjust &&
+    css`
+      left: ${props.LeftAdjust}px !important;
     `}
   @media only screen and (max-width: 768px) {
     ${(props) =>
@@ -276,6 +273,34 @@ const Icon = styled.div`
   height: ${({ iconSize }) => `${iconSize}px`};
 `;
 
+const ReviewSection = styled.div`
+  padding: var(--space-20) 0 var(--space-16);
+  margin: 0 var(--space-20);
+  border-top: 1px solid var(--border-default);
+  ${(props) =>
+    props.isBottom &&
+    css`
+      padding: var(--space-20) 0 0;
+    `}
+`;
+
+const CardTopInfo = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  gap: var(--space-20);
+`;
+
+const ArrowIcon = styled.div`
+  display: flex;
+`;
+const BottomSection = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-16);
+`;
+
 export {
   CardSub,
   CardDescription,
@@ -289,11 +314,15 @@ export {
   CardEnd,
   CardTop,
   CardListSection,
-  SectionHeader,
   SectionHeading,
   Tooltip,
   Line,
   Informative,
   Icon,
-  TooltipText
+  TooltipText,
+  ReviewSection,
+  CardTopInfo,
+  ArrowIcon,
+  CardTopSectionWrapper,
+  BottomSection
 };

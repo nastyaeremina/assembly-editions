@@ -33,9 +33,13 @@ import ButtonV2Component from '../../button/buttonV2/buttonV2';
 import HeroSectionImage from '../../../../public/images/job-detail-hero-profile.png';
 import SVGComponent from '../../../../public/images/svg/SVGComponent';
 import { ButtonSize } from '../../../constants/constant';
+import useNavbarHeight from '../../../hooks/useNavbarHeight';
 
 export default function JobsDetailPage({ data: jobDetail }) {
   const BreadcrumbItem = [{ label: 'All jobs', href: '/jobs' }];
+
+  // for sticky positioning
+  const { totalHeight } = useNavbarHeight();
 
   const renderTeamMemberView = () => {
     const teamMemberList = jobDetail?.teamMembersCollection?.items || [];
@@ -96,7 +100,7 @@ export default function JobsDetailPage({ data: jobDetail }) {
             </NewHeroSection>
             <JobDetail>
               <DetailPosition>
-                <DetailLeft>
+                <DetailLeft stickyTop={totalHeight}>
                   {!isEmpty(jobDetail?.department) && (
                     <DetailWrap>
                       <p>Department</p>

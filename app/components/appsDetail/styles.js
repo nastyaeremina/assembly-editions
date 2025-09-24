@@ -36,6 +36,8 @@ const Caption = styled.p`
   ${body_regular};
   color: var(--text-secondary);
   margin: 0;
+  max-width: 720px;
+  width: 100%;
 `;
 const Title = styled.div`
   display: flex;
@@ -79,7 +81,7 @@ const RightContent = styled.div`
   max-width: 432px;
   width: 100%;
   position: sticky;
-  top: ${(props) => (props.hasTopBar ? 'var(--space-160)' : 'var(--space-120)')};
+  top: ${(props) => props.stickyTop + 40}px;
   height: 100%;
   @media only screen and (max-width: 1024px) {
     max-width: 300px;

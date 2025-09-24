@@ -30,7 +30,6 @@ function BlogListSection({ authorName, allPosts }) {
             image={item?.feature_image}
             tags={finalTagList}
             slug={item?.slug}
-            isAuthorPage
           />
           {/* Show divider only after odd indexes */}
           {isMobile

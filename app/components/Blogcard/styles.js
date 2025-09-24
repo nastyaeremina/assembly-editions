@@ -22,30 +22,18 @@ const BlogDetail = styled.div`
   }
 `;
 const Leftside = styled.div`
-  display: inline-flex;
+  display: flex;
   align-items: stretch;
   overflow: hidden;
   width: 100%;
-  max-height: 288px;
   .image {
     object-fit: cover;
-    height: 288px;
-    max-height: 288px;
+    height: auto;
+    aspect-ratio: 720 / 405;
     width: 100%;
     border: 1px solid var(--border-default);
     border-radius: var(--radius-12);
-    @media only screen and (max-width: 991px) {
-      height: 180px;
-    }
   }
-  ${(props) =>
-    props.isAuthorPage &&
-    css`
-      .image {
-        height: 206px;
-        max-height: 206px;
-      }
-    `}
 `;
 const Bottom = styled.div`
   ${button_regular}

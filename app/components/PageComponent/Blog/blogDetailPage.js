@@ -24,6 +24,7 @@ import NewCTA from '../../cta/newCTA';
 import { CTAData } from '../../../constants/raw';
 import ToastMessage from '../../ToastMessage/toastMessage';
 import TableOfContents from './TableOfContents';
+import useNavbarHeight from '../../../hooks/useNavbarHeight';
 
 export default function BlogdetailPage({
   blogDetail,
@@ -39,6 +40,9 @@ export default function BlogdetailPage({
   const shouldShowBlogCTA = !isEmpty(ctaDescription) && !isEmpty(ctaTitle);
   const shouldShowTOC = blogDetail?.custom_template !== 'custom-no-toc';
   const shouldShowLestSection = shouldShowBlogCTA || shouldShowTOC;
+
+  // for sticky positioning
+  const { totalHeight } = useNavbarHeight();
 
   const onChangeCopy = useCallback(
     ({ index, isCopy }) => {
@@ -128,7 +132,7 @@ export default function BlogdetailPage({
 
             <BlogContent className={!shouldShowTOC ? 'without-toc' : ''}>
               {shouldShowLestSection && (
-                <BlogDetailsidebar hasTopBar={hasTopBar}>
+                <BlogDetailsidebar stickyTop={totalHeight}>
                   {/* table of content and cta of bottom  */}
                   {shouldShowTOC && (
                     <TableOfContents

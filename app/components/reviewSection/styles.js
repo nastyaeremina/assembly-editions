@@ -141,55 +141,6 @@ const ReviewDetail = styled.p`
   margin: 0;
 `;
 
-const EmptyDesign = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: var(--space-24);
-  padding-top: var(--space-80);
-  @media only screen and (max-width: 991px) {
-    padding-top: var(--space-64);
-  }
-  @media only screen and (max-width: 449px) {
-    padding-top: var(--space-48);
-  }
-`;
-
-const EmptyContent = styled.div`
-  max-width: 376px;
-  width: 100%;
-`;
-
-const Emptyheading = styled.h4`
-  ${h4_semibold}
-  color:var(--title);
-  margin: 0;
-  text-align: center;
-`;
-
-const EmptyCaption = styled.p`
-  ${body_regular};
-  color: var(--text-secondary);
-  margin: var(--space-12) 0 0;
-  text-align: center;
-`;
-
-const Icon = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 44px;
-  height: 44px;
-  border-radius: var(--radius-8);
-  background-color: var(--title);
-  .svg-icon {
-    path {
-      fill: var(--off-white-300);
-      stroke: var(--off-white-300);
-    }
-  }
-`;
 const DotIcon = styled.div`
   display: none;
   @media only screen and (max-width: 991px) {
@@ -217,10 +168,5 @@ export {
   PersonReview,
   Star,
   ReviewDetail,
-  EmptyDesign,
-  EmptyContent,
-  Emptyheading,
-  EmptyCaption,
-  Icon,
   DotIcon
 };

@@ -5,15 +5,20 @@ import SVGComponent from '../../../public/images/svg/SVGComponent';
 import { isEmpty } from '../../helpers/helpers';
 import {
   AppInformativeSection,
+  ArrowIcon,
+  BottomSection,
   CardDescription,
   CardEnd,
   CardInfo,
   CardSub,
   CardTitle,
   CardTop,
+  CardTopInfo,
+  CardTopSectionWrapper,
   ImgView,
   RatingNumber,
-  RatingSection
+  RatingSection,
+  ReviewSection
 } from './styles';
 import AppTooltip from './appTooltip';
 
@@ -29,8 +34,7 @@ export default function AppsCards({
   title,
   rate,
   description,
-  reviews,
-  isFeature
+  reviews
 }) {
   const shouldShowFirstBullet = !isEmpty(reviews) && reviews !== 0 && !isEmpty(appType);
   const shouldShowSecondBullet = !isEmpty(appType) && !isEmpty(pricingStatus);
@@ -38,45 +42,87 @@ export default function AppsCards({
   return (
     <CardSub>
       <Link href={link}>
-        <CardTop isFeature={isFeature}>
-          <CardInfo>
-            {!isEmpty(icon) && (
-              <ImgView>
-                <Image src={icon} alt='app-icon' width={40} height={40} layout={'fixed'} />
-              </ImgView>
-            )}
-            <CardTitle>
-              {!isEmpty(title) && <h3>{title}</h3>}{' '}
+        <CardTop>
+          <CardTopSectionWrapper>
+            <CardTopInfo>
+              <CardInfo>
+                {!isEmpty(icon) && (
+                  <ImgView>
+                    <Image src={icon} alt='app-icon' width={44} height={44} layout={'fixed'} />
+                  </ImgView>
+                )}
+                <CardTitle>{!isEmpty(title) && <p>{title}</p>} </CardTitle>
+              </CardInfo>
+              <ArrowIcon>
+                <SVGComponent
+                  name='blog-card-hover-arrow-icon'
+                  width='20'
+                  height='20'
+                  viewBox='0 0 16 16'
+                  className='svg-icon'
+                />
+              </ArrowIcon>
+            </CardTopInfo>
+            <CardDescription>{description}</CardDescription>
+          </CardTopSectionWrapper>
+          <BottomSection>
+            <ReviewSection isBottom={isBottom}>
               <RatingSection>
                 {!isEmpty(reviews) && reviews !== 0 && (
                   <RatingNumber>
                     <p>{rate}</p>
-                    <SVGComponent name='green-star-icon' width='14' height='14' viewBox='14' />
                     <p>({reviews})</p>
                   </RatingNumber>
                 )}
-                {shouldShowFirstBullet && <SVGComponent name='bullet-point-icon' width='16' height='16' viewBox='16' />}
+                {shouldShowFirstBullet && (
+                  <SVGComponent
+                    name='bullet-point-icon'
+                    width='16'
+                    height='16'
+                    viewBox='0 0 16 16'
+                    className='dot-icon'
+                  />
+                )}
                 {!isEmpty(appType) && (
                   <>
                     <AppInformativeSection>
                       <p>{appType}</p>
-                      <AppTooltip message={appTypeInfo} iconSize='13' fill='var(--dark-gray)' style={{ top: 24 }} />
+                      <AppTooltip
+                        message={appTypeInfo}
+                        iconSize='12'
+                        fill='var(--text-secondary)'
+                        style={{ top: 22 }}
+                        LeftAdjust={-7}
+                      />
                     </AppInformativeSection>
                   </>
                 )}
                 {shouldShowSecondBullet && (
-                  <SVGComponent name='bullet-point-icon' width='16' height='16' viewBox='16' />
+                  <SVGComponent
+                    name='bullet-point-icon'
+                    width='16'
+                    height='16'
+                    viewBox='0 0 16 16'
+                    className='dot-icon'
+                  />
                 )}
                 {!isEmpty(pricingStatus) && <p>{pricingStatus}</p>}
               </RatingSection>
-            </CardTitle>
-          </CardInfo>
-          <CardDescription isBottom={isBottom}>{description}</CardDescription>
+            </ReviewSection>
+            {isBottom && (
+              <CardEnd isBottom={isBottom}>
+                <p>{appVisibility}</p>
+                <AppTooltip
+                  message={appVisibilityInfo}
+                  iconSize='12'
+                  fill='var(--text-secondary)'
+                  style={{ top: 22 }}
+                  LeftAdjust={-7}
+                />
+              </CardEnd>
+            )}
+          </BottomSection>
         </CardTop>
-        <CardEnd isBottom={isBottom}>
-          <p>{appVisibility}</p>
-          <AppTooltip message={appVisibilityInfo} iconSize='13' fill='var(--dark-gray)' style={{ top: 22 }} />
-        </CardEnd>
       </Link>
     </CardSub>
   );

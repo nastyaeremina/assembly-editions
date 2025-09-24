@@ -19,31 +19,11 @@ import { renderContentWithVideos } from '../../../helpers/clientSideHelpers';
 import ButtonV2Component from '../../button/buttonV2/buttonV2';
 import NewCTA from '../../cta/newCTA';
 import { CTAData } from '../../../constants/raw';
+import useNavbarHeight from '../../../hooks/useNavbarHeight';
 
 export default function UpdatesPage({ allPosts, externalLinks = {} }) {
-  const [stickyTop, setStickyTop] = useState(0);
-
-  // Calculate navbar height for sticky positioning
-  useEffect(() => {
-    const updateHeight = () => {
-      // Find navbar and topbar elements
-      const navbar = document.querySelector('[data-navbar="true"]');
-      const topbar = document.querySelector('[data-topbar="true"]');
-
-      // Calculate total height needed for sticky positioning
-      const totalHeight = (navbar?.offsetHeight || 0) + (topbar?.offsetHeight || 0);
-      setStickyTop(totalHeight);
-    };
-
-    // Initial calculation
-    updateHeight();
-
-    // Update on window resize
-    window.addEventListener('resize', updateHeight);
-
-    // Cleanup event listener
-    return () => window.removeEventListener('resize', updateHeight);
-  }, []);
+  // for sticky positioning
+  const { totalHeight } = useNavbarHeight();
 
   const renderPosts = useMemo(() => {
     if (isEmpty(allPosts)) return null;
@@ -54,7 +34,7 @@ export default function UpdatesPage({ allPosts, externalLinks = {} }) {
       return (
         <UpdateDes key={`updatesitem_index_${index}`}>
           <Detail className={isLast ? 'last-item' : ''}>
-            <UpdateDate href={'/updates/' + item?.slug} stickyTop={stickyTop}>
+            <UpdateDate href={'/updates/' + item?.slug} stickyTop={totalHeight}>
               {moment(new Date(item?.published_at)).format('MMMM D, YYYY')}
             </UpdateDate>
             <UpdateDetail>
@@ -64,7 +44,7 @@ export default function UpdatesPage({ allPosts, externalLinks = {} }) {
         </UpdateDes>
       );
     });
-  }, [allPosts, stickyTop]);
+  }, [allPosts, totalHeight]);
 
   return (
     <>

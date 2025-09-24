@@ -21,21 +21,13 @@ const Top = styled.div`
   border-radius: var(--radius-12);
   border: 1px solid var(--border-default);
   height: 100%;
-  max-height: 405px;
   display: flex;
   .image {
     height: auto;
     object-fit: cover;
-    max-width: 100%;
-    @media only screen and (max-width: 991px) {
-      width: 100%;
-    }
+    width: 100%;
+    aspect-ratio: 720 / 405;
   }
-  ${(props) =>
-    props.maxHeight &&
-    css`
-      max-height: ${props.maxHeight}px;
-    `}
 `;
 const Text = styled.div`
   max-width: 464px;
@@ -214,7 +206,7 @@ const BlogDetailsidebar = styled.div`
   margin-bottom: var(--space-100);
   height: 100%;
   position: sticky;
-  top: ${(props) => (props.hasTopBar ? 'var(--space-160)' : 'var(--space-120)')};
+  top: ${(props) => props.stickyTop + 40}px;
   @media only screen and (max-width: 768px) {
     display: none;
   }

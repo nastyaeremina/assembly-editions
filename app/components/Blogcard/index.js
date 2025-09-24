@@ -23,7 +23,7 @@ export default function Blogcard(props) {
       <BlogDetail>
         <Link href={`/blog/${props.slug}`}>
           {!isEmpty(props.image) && (
-            <Leftside isAuthorPage={props.isAuthorPage}>
+            <Leftside>
               <Image src={props.image} width={266} height={266} className='image' alt='blog' />
             </Leftside>
           )}

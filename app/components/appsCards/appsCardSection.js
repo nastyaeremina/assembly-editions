@@ -1,5 +1,4 @@
 import React from 'react';
-import { Container } from '../../styles/commonStyles';
 import {
   APPS_TYPE,
   AppInfoMessage,
@@ -8,34 +7,32 @@ import {
   InternalAppInfoMessage
 } from '../../constants/constant';
 import { calculateAverageRate, isEmpty, removeEmptyElement } from '../../helpers/helpers';
-import { CardListSection, DirectoryCardSection, SectionHeader, SectionHeading } from './styles';
+import { CardListSection, DirectoryCardSection, SectionHeading } from './styles';
 import AppsCard from './appsCards';
 
 export default function AppsCardSection({
   isBottom,
-  is4Card,
   appList,
   heading,
   caption,
-  isSearchEmpty,
-  isAppdetail,
-  isFeature
+  hasPadding = false,
+  hideHeadingOnMobile = false
 }) {
   const isShowHeader = !isEmpty(heading) || !isEmpty(caption);
   return (
-    <Container>
-      <DirectoryCardSection isSearchEmpty={isSearchEmpty} isAppdetail={isAppdetail}>
-        {isShowHeader && (
-          <SectionHeader>
-            {(!isEmpty(heading) || !isEmpty(caption)) && (
-              <SectionHeading>
-                {!isEmpty(heading) && <h2>{heading}</h2>}
-                {!isEmpty(caption) && <p>{caption}</p>}
-              </SectionHeading>
-            )}
-          </SectionHeader>
-        )}
-        <CardListSection is4Card={is4Card}>
+    <DirectoryCardSection>
+      {isShowHeader && (
+        <>
+          {(!isEmpty(heading) || !isEmpty(caption)) && (
+            <SectionHeading hasPadding={hasPadding} hideOnMobile={hideHeadingOnMobile}>
+              {!isEmpty(heading) && <h3>{heading}</h3>}
+              {!isEmpty(caption) && <p>{caption}</p>}
+            </SectionHeading>
+          )}
+        </>
+      )}
+      {appList?.length > 0 && (
+        <CardListSection>
           {appList?.map((item, index) => {
             const averageRate = calculateAverageRate(removeEmptyElement(item?.reviewsCollection?.items));
             const appsType = item?.appsType;
@@ -54,12 +51,11 @@ export default function AppsCardSection({
                 appTypeInfo={item?.appType === APPS_TYPE.EMBED ? EmbedInfoMessage : AppInfoMessage}
                 appVisibility={appsType === APPS_TYPE.CLIENT ? 'Client-facing' : 'Internal-facing'}
                 appVisibilityInfo={appsType === APPS_TYPE.CLIENT ? ClientAppInfoMessage : InternalAppInfoMessage}
-                isFeature={isFeature}
               />
             );
           })}
         </CardListSection>
-      </DirectoryCardSection>
-    </Container>
+      )}
+    </DirectoryCardSection>
   );
 }

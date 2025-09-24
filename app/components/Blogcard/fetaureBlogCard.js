@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React from 'react';
 import Image from 'next/image';
 import moment from 'moment';
 import Link from 'next/link';
@@ -20,8 +20,6 @@ export default function FeatureBlogCard({
   tags = [],
   heading = 'Blog'
 }) {
-  const [imageHeight, setImageHeight] = useState();
-
   return (
     <FirstBlog>
       <Container>
@@ -29,16 +27,8 @@ export default function FeatureBlogCard({
         <BlogCardDiv>
           <Link href={`/blog/${slug}`}>
             {!isEmpty(featureImage) && (
-              <Top maxHeight={imageHeight}>
-                <Image
-                  src={featureImage}
-                  className='image'
-                  alt='blog'
-                  width={720}
-                  height={354}
-                  priority
-                  onLoad={(e) => setImageHeight(e.target.offsetHeight)}
-                />
+              <Top>
+                <Image src={featureImage} className='image' alt='blog' width={720} height={354} priority />
               </Top>
             )}
             <Text>
