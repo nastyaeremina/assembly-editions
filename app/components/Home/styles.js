@@ -248,6 +248,7 @@ const MainImage = styled.div`
     border-radius: var(--radius-8);
     width: 100%;
     height: auto;
+    border: 1px solid var(--border-default);
   }
   @media only screen and (max-width: 991px) {
     margin-top: var(--space-64);
