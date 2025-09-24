@@ -30,6 +30,67 @@ export default function StoryMode({ tabsData, tone }) {
 
   // Refs to track each section's position
   const sectionRefs = useRef([]);
+  const videoRef = useRef(null);
+
+  useEffect(() => {
+    const videoElement = videoRef.current;
+    if (!videoElement) return;
+
+    // Intersection Observer for automatic play/pause
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            // Video is in viewport - play it
+            videoElement.play().catch((error) => {
+              console.log('Autoplay prevented:', error);
+            });
+          } else {
+            // Video is out of viewport - pause it
+            videoElement.pause();
+          }
+        });
+      },
+      {
+        threshold: 0.2, // Play when 20% of video is visible
+        rootMargin: '0px 0px -10% 0px' // Start playing slightly before fully visible
+      }
+    );
+
+    observer.observe(videoElement);
+
+    return () => {
+      observer.disconnect();
+    };
+  }, [activeIndex]);
+
+  const convertToEmbedUrl = (url) => {
+    if (!url) return '';
+
+    // Converts to embed format with autoplay, loop, and muted parameters for seamless autoplay
+    if (url.includes('youtu.be/')) {
+      const videoId = url.match(/youtu\.be\/([^?&]+)/)?.[1];
+      if (videoId) {
+        const embedUrl = `https://www.youtube.com/embed/${videoId}?autoplay=1&loop=1&mute=1&playlist=${videoId}&controls=0&showinfo=0&rel=0`;
+        return embedUrl;
+      }
+    }
+
+    // Simple replacement to convert to embed format with autoplay parameters
+    if (url.includes('youtube.com/watch?v=')) {
+      const videoId = url.match(/v=([^&]+)/)?.[1];
+      const embedUrl = `https://www.youtube.com/embed/${videoId}?autoplay=1&loop=1&mute=1&playlist=${videoId}&controls=0&showinfo=0&rel=0`;
+      return embedUrl;
+    }
+
+    // Return as-is if already in embed format
+    if (url.includes('youtube.com/embed/')) {
+      return url;
+    }
+
+    // Return original URL if no match found
+    return url;
+  };
 
   // Memoized sections to prevent unnecessary re-renders
   const renderedSections = useMemo(
@@ -52,7 +113,30 @@ export default function StoryMode({ tabsData, tone }) {
             {/* Section Image and Quote */}
             <BottomSection>
               <LeftImage tone={tone}>
-                <Image src={tabData.image.url} alt={'Banner Image'} width={877} height={827} className='image' />
+                {tabData.video?.videoLink ? (
+                  <>
+                    <iframe
+                      width='1224'
+                      height='707'
+                      src={convertToEmbedUrl(tabData.video.videoLink)}
+                      allow='accelerometer; autoplay; loop; clipboard-write; encrypted-media; picture-in-picture; fullscreen'
+                      allowFullScreen
+                      title={tabData.title || 'Video'}
+                      loading='lazy'
+                    />
+                  </>
+                ) : tabData.video?.video?.url ? (
+                  <>
+                    <video ref={videoRef} muted loop playsInline preload='metadata'>
+                      <source src={tabData.video?.video?.url} type='video/mp4' />
+                    </video>
+                  </>
+                ) : (
+                  /* Fallback to image if no video available */
+                  !isEmpty(tabData.image) && (
+                    <Image src={tabData.image.url} width={877} height={827} className='image' alt='Section' />
+                  )
+                )}
               </LeftImage>
 
               {/* Testimonial Quote */}

@@ -41,6 +41,18 @@ const LeftImage = styled.div`
         border: 1px solid var(--bg-card-dark-hover);
       `}
   }
+  video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: var(--radius-16);
+    border: 1px solid var(--border-default);
+    ${({ tone }) =>
+      tone === SectionTone.DARK &&
+      css`
+        border: 1px solid var(--bg-card-dark-hover);
+      `}
+  }
   @media only screen and (max-width: 991px) {
     grid-column: auto;
     .image {
@@ -49,6 +61,9 @@ const LeftImage = styled.div`
   }
   @media only screen and (max-width: 449px) {
     .image {
+      border-radius: var(--radius-12);
+    }
+    video {
       border-radius: var(--radius-12);
     }
   }

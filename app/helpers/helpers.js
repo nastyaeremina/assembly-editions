@@ -874,6 +874,7 @@ export function transformToTabsData(data) {
       secondaryButtonText: item.secondaryButtonText, // Secondary CTA button text (optional)
       secondaryButtonLink: item.secondaryButtonLink, // Secondary CTA button link (optional)
       image: firstTab.image, // Image shown in the left section
+      video:firstTab.video,  // video object shown in the left section
       quoteBlock: firstTab.quoteBlock, // Quote/testimonial block shown alongside image
       link: firstTab.link // Used in QuoteSectionComponent for redirection
     };
