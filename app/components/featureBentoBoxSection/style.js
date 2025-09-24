@@ -5,7 +5,7 @@ const MainSection = styled.div`
   padding: var(--space-64) 0;
   display: flex;
   flex-direction: column;
-  gap: var(--space-80);
+  gap: var(--space-64);
   @media only screen and (max-width: 991px) {
     padding: var(--space-40) 0;
   }
@@ -14,38 +14,16 @@ const MainSection = styled.div`
   }
 `;
 
-const HeaderSection = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-32);
-  max-width: 600px;
-  @media only screen and (max-width: 991px) {
-    max-width: unset;
-  }
-`;
-
-const Title = styled.h2`
-  ${h2_semibold}
-  color: var(--title);
-  margin: 0;
-`;
-
-const Description = styled.p`
-  margin: 0;
-  ${body_regular}
-  color: var(--title);
-`;
-
-const ButtonGroup = styled.div`
-  display: flex;
-  align-items: center;
-  gap: var(--space-8);
-`;
-
 const GridSection = styled.div`
   display: grid;
-  gap: var(--space-12);
+  gap: var(--space-24);
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+`;
+
+const ContentSection = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-8);
 `;
 
 const HoverArrowIcon = styled.div`
@@ -73,7 +51,7 @@ const FeatureBentoBoxContainer = styled.div`
   padding: var(--space-24) var(--space-20);
   border-radius: var(--space-16);
   border: 1px solid var(--border-default);
-  transition: box-shadow 0.3s ease, border 0.3s ease;
+  transition: background-color 0.3s ease, border 0.3s ease;
   @media only screen and (min-width: 999px) {
     ${(props) =>
       props.columnSpan &&
@@ -83,8 +61,7 @@ const FeatureBentoBoxContainer = styled.div`
   }
   @media only screen and (min-width: 991px) {
     &:hover {
-      box-shadow: 0px 10px 10px -4px #00000014;
-      border: 1px solid var(--border-hover);
+      background-color: var(--bg-primary-hover);
       ${HoverArrowIcon} {
         opacity: 1;
       }
@@ -92,8 +69,7 @@ const FeatureBentoBoxContainer = styled.div`
   }
   @media only screen and (max-width: 991px) {
     :active {
-      box-shadow: 0px 10px 10px -4px #00000014;
-      border: 1px solid var(--border-hover);
+      background-color: var(--bg-primary-hover);
     }
   }
 `;
@@ -134,10 +110,6 @@ const ImageWrapper = styled.div`
 
 export {
   MainSection,
-  HeaderSection,
-  Title,
-  Description,
-  ButtonGroup,
   GridSection,
   FeatureBentoBoxContainer,
   CardDescription,
@@ -145,5 +117,6 @@ export {
   ImageWrapper,
   IconWrapper,
   ContentDiv,
-  HoverArrowIcon
+  HoverArrowIcon,
+  ContentSection
 };

@@ -1,11 +1,9 @@
 'use client';
 import React from 'react';
 import { Container } from '../../styles/commonStyles';
-import { ButtonGroup, Description, GridSection, HeaderSection, MainSection, Title } from './style';
-import ButtonV2Component from '../button/buttonV2/buttonV2';
-import { ButtonVariant } from '../../constants/constant';
-import { isEmpty } from '../../helpers/helpers';
+import { GridSection, MainSection } from './style';
 import FeatureBentoBox from './featureBentoBox';
+import SectionHeader from '../sectionHeader/sectionHeader';
 
 /**
  * FeatureBentoBoxSection renders a section with a title, description, two buttons, and a dynamic set of features.
@@ -36,23 +34,14 @@ function FeatureBentoBoxSection({
   return (
     <Container>
       <MainSection>
-        <HeaderSection>
-          <Title>{title}</Title>
-          {!isEmpty(description) && <Description>{description}</Description>}
-          {(!isEmpty(primaryButtonText) || !isEmpty(secondaryButtonText)) && (
-            <ButtonGroup>
-              {!isEmpty(primaryButtonText) && <ButtonV2Component title={primaryButtonText} link={primaryButtonLink} />}
-              {!isEmpty(secondaryButtonText) && (
-                <ButtonV2Component
-                  title={secondaryButtonText}
-                  link={secondaryButtonLink}
-                  variant={ButtonVariant.SECONDARY}
-                  iconName='blog-card-hover-arrow-icon'
-                />
-              )}
-            </ButtonGroup>
-          )}
-        </HeaderSection>
+        <SectionHeader
+          title={title}
+          description={description}
+          primaryButtonLink={primaryButtonLink}
+          primaryButtonText={primaryButtonText}
+          secondaryButtonLink={secondaryButtonLink}
+          secondaryButtonText={secondaryButtonText}
+        />
         <GridSection>
           {features?.map((feature, index) => (
             <FeatureBentoBox

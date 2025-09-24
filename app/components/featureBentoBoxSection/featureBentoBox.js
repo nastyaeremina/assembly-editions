@@ -5,6 +5,7 @@ import {
   CardDescription,
   CardTitle,
   ContentDiv,
+  ContentSection,
   FeatureBentoBoxContainer,
   HoverArrowIcon,
   IconWrapper,
@@ -33,8 +34,10 @@ function FeatureBentoBox({ icon, title, description, image, columnSpan = 1, href
             <Image src={icon} alt={title} width={24} height={24} />
           </IconWrapper>
         )}
-        <CardTitle>{title}</CardTitle>
-        {!isEmpty(description) && <CardDescription>{description}</CardDescription>}
+        <ContentSection>
+          <CardTitle>{title}</CardTitle>
+          {!isEmpty(description) && <CardDescription>{description}</CardDescription>}
+        </ContentSection>
       </ContentDiv>
       {!isEmpty(image) && (
         <ImageWrapper>
