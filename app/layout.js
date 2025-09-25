@@ -46,19 +46,19 @@ export default async function Layout({ children }) {
           <link rel='preload' href='../public/images/greenmblogo.svg' as='image' />
           <Favicon />
           {!isEmpty(newData?.header?.content) &&
-            process.env.NODE_ENV === 'production' &&
+            process.env.VERCEL_ENV === 'production' &&
             parse(newData?.header?.content)}
         </head>
         <body>
           {!isEmpty(newData?.afterBody?.content) &&
-            process.env.NODE_ENV === 'production' &&
+            process.env.VERCEL_ENV === 'production' &&
             parse(newData?.afterBody?.content)}
           <Providers>
             <StyledJsxRegistry>{children}</StyledJsxRegistry>
           </Providers>
 
           {!isEmpty(newData?.beforeBody?.content) &&
-            process.env.NODE_ENV === 'production' &&
+            process.env.VERCEL_ENV === 'production' &&
             parse(newData?.beforeBody?.content)}
         </body>
       </html>
