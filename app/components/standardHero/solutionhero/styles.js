@@ -1,23 +1,33 @@
 import styled, { css } from 'styled-components';
-import { Body3, Body4, Body5, Heading2, Heading5, Heading6, MbBody2, MbBody3, MobileH2 } from '../../../styles/styles';
+import { Body3, Heading2, MbBody2 } from '../../../styles/styles';
+import { body_regular, body_semibold, button_regular, h1_semibold, h4_semibold } from '../../../styles/typography';
 
 const HeroSection = styled.div`
   padding: 180px 0 100px 0;
+  &.details-hero {
+    padding: 0 0 var(--space-24);
+    @media only screen and (max-width: 991px) {
+      padding: 0 0 var(--space-20);
+    }
+    @media only screen and (max-width: 449px) {
+      padding: 0 0 var(--space-24);
+    }
+  }
   ${(props) =>
     props.isStandardPage &&
     css`
-      padding: 0 0 100px;
+      padding: 0 0 var(--space-100);
       @media only screen and (max-width: 768px) {
-        padding: 0 0 80px;
+        padding: 0 0 var(--space-80);
       }
     `}
   @media only screen and (max-width: 749px) {
     padding-top: 116px;
-    padding-bottom: 80px;
+    padding-bottom: var();
     ${(props) =>
       props.isStandardPage &&
       css`
-        padding: 0 0 80px;
+        padding: 0 0 var(--space-24);
       `};
   }
 `;
@@ -26,12 +36,11 @@ const SolutionWrap = styled.div`
   align-items: center;
   gap: 163px;
   &.details-hero {
-    justify-content: space-between;
+    gap: var(--space-64);
     align-items: center;
     width: 100%;
     @media only screen and (max-width: 991px) {
-      justify-content: center;
-      gap: 80px;
+      align-items: flex-start;
     }
   }
   ${(props) =>
@@ -72,68 +81,98 @@ const SolutionWrap = styled.div`
 
 const ImageSection = styled.div`
   position: relative;
+  min-width: 411px;
+
   .graph-img {
-    margin-right: 100px;
-    @media only screen and (max-width: 768px) {
-      margin-right: unset;
+    margin-left: var(--space-13);
+  }
+  @media only screen and (max-width: 991px) {
+    margin: 0 auto;
+    .graph-img {
+      margin-top: 42px;
+    }
+  }
+  @media only screen and (max-width: 449px) {
+    min-width: unset;
+    margin: 0;
+    .graph-img {
+      margin-top: 56px;
+    }
+  }
+  @media only screen and (max-width: 374px) {
+    .graph-img {
+      margin-left: 0;
     }
   }
 `;
 
 const Card = styled.div`
   width: 216px;
-  border: 1px solid var(--mid-dark-green);
-  border-radius: 4px;
+  border: 1px solid var(--border-default);
+  background-color: var(--off-white-100);
+  border-radius: var(--radius-8);
   position: absolute;
   top: -42px;
-  left: 72px;
+  left: 105px;
   overflow: hidden;
-  @media only screen and (max-width: 449px) {
-    left: 101px;
+  box-shadow: 0px 2px 16px 0px #00000014;
+
+  @media only screen and (max-width: 991px) {
+    top: 0;
   }
+  @media only screen and (max-width: 475px) {
+    left: 60px;
+  }
+  @media only screen and (max-width: 374px) {
+    width: 200px;
+  }
+
   &.second-card {
-    left: 168px;
-    top: 123px;
-    @media only screen and (max-width: 449px) {
-      left: 10px;
+    left: 195px;
+    top: 113px;
+    @media only screen and (max-width: 991px) {
+      top: 155px;
+    }
+    @media only screen and (max-width: 475px) {
+      left: 127px;
+      top: 152px;
+    }
+    @media only screen and (max-width: 374px) {
+      left: 116px;
     }
   }
 `;
 
 const TopDiv = styled.div`
-  padding: 8px 12px;
-  border-bottom: 1px solid var(--mid-dark-green);
+  padding: var(--space-12);
   display: flex;
   align-items: center;
-  gap: 12px;
-  background-color: var(--white);
+  gap: var(--space-12);
   img {
     width: 32px;
     height: 32px;
+    border-radius: var(--radius-4);
   }
   h5 {
-    ${Heading6};
+    ${body_semibold};
     color: var(--title);
     margin: 0;
   }
 `;
 
 const BottomDiv = styled.div`
-  padding: 8px 12px;
-  background-color: var(--light-green);
-  &.second-card {
-    background-color: var(--other-bg-color);
-  }
+  padding: var(--space-8) var(--space-12);
+  border-top: 1px solid var(--border-default);
+
   h4 {
-    ${Heading5};
+    ${h4_semibold};
     margin: 0;
-    color: var(--mid-dark-green);
+    color: var(--title);
   }
   p {
     margin: 0;
-    margin-top: 2px;
-    ${Body5};
-    color: var(--dark-gray);
+    ${button_regular};
+    color: var(--text-secondary);
   }
 `;
 
@@ -144,54 +183,9 @@ const LeftWrap = styled.div`
     margin-top: 32px;
   }
   &.details-hero {
-    max-width: 786px;
-    margin: unset;
-    text-align: left;
-    h1 {
-      ${Heading2};
-      color: var(--title);
-      margin: 0;
-      span {
-        color: var(--primary);
-      }
-      @media only screen and (max-width: 768px) {
-        ${MobileH2}
-      }
-    }
-    p {
-      ${Body3};
-      color: var(--body);
-      letter-spacing: 0.02em;
-      margin: 20px 0 0;
-      @media only screen and (max-width: 449px) {
-        ${MbBody2}
-      }
-    }
-    ul {
-      display: flex;
-      flex-direction: column;
-      gap: 16px;
-      margin-top: 20px;
-
-      li {
-        ${Body3};
-        color: var(--body);
-        position: relative;
-        padding-left: 28px;
-
-        ::before {
-          content: '';
-          position: absolute;
-          width: 20px;
-          height: 20px;
-          background-image: url('data:image/svg+xml,%3Csvg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"%3E%3Crect width="20" height="20" rx="10" fill="%2309AA6C"/%3E%3Cg clip-path="url(%23clip0_18360_106181)"%3E%3Cpath d="M5.95312 10.2407L8.18501 12.4726L13.8662 7.19727" stroke="%23E3FFEE" stroke-width="1.33333" stroke-linecap="round" stroke-linejoin="round"/%3E%3C/g%3E%3Cdefs%3E%3CclipPath id="clip0_18360_106181"%3E%3Crect width="9.33333" height="9.33333" fill="white" transform="translate(5.33594 5.33398)"/%3E%3C/clipPath%3E%3C/defs%3E%3C/svg%3E');
-          background-size: contain;
-          background-repeat: no-repeat;
-          left: 0;
-          top: 3px;
-        }
-      }
-    }
+    max-width: 749px;
+    width: 100%;
+    margin: 0;
   }
   .button {
     margin-top: 32px;
@@ -208,30 +202,20 @@ const ButtonGroup = styled.div`
 const PoweredBySection = styled.div`
   display: flex;
   align-items: center;
-  gap: 8px;
-  padding-bottom: 20px;
+  gap: var(--space-8);
+  padding-bottom: var(--space-24);
   flex-wrap: wrap;
   h6 {
     margin: 0;
-    ${Body4};
+    ${body_regular};
     color: var(--title);
+    padding-top: var(--space-2);
   }
   h5 {
     margin: 0 !important;
-    ${Body4};
-    color: var(--medium-gray);
-  }
-  @media only screen and (max-width: 768px) {
-    svg {
-      width: 22px;
-      height: 22px;
-    }
-    h6 {
-      ${MbBody3};
-    }
-    h5 {
-      ${MbBody3};
-    }
+    ${body_regular};
+    color: var(--text-secondary);
+    padding-top: var(--space-2);
   }
 `;
 const RightWrap = styled.div`
@@ -266,12 +250,16 @@ const TextSection = styled.div`
   text-align: center;
   &.details-hero {
     text-align: left;
-    @media only screen and (max-width: 449px) {
-      ul {
-        li {
-          ${MbBody2};
-        }
-      }
+    h1 {
+      ${h1_semibold};
+      color: var(--title);
+      margin: 0;
+      margin-bottom: var(--space-12);
+    }
+    p {
+      ${body_regular}
+      color: var(--title);
+      margin: 0;
     }
   }
   @media only screen and (max-width: 449px) {
@@ -299,28 +287,33 @@ const TextSection = styled.div`
   ul {
     display: flex;
     flex-direction: column;
-    gap: 16px;
-    margin-top: 20px;
+    gap: var(--space-16);
+    margin-top: var(--space-24);
 
     li {
-      ${Body3};
-      color: var(--body);
+      ${body_regular};
+      color: var(--title);
       position: relative;
-      padding-left: 28px;
+      padding-left: var(--space-24);
 
+      @media only screen and (max-width: 449px) {
+        padding-left: var(--space-22);
+      }
       ::before {
         content: '';
         position: absolute;
-        width: 20px;
-        height: 20px;
-        background-image: url('data:image/svg+xml,%3Csvg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"%3E%3Crect width="20" height="20" rx="10" fill="%2309AA6C"/%3E%3Cg clip-path="url(%23clip0_18360_106181)"%3E%3Cpath d="M5.95312 10.2407L8.18501 12.4726L13.8662 7.19727" stroke="%23E3FFEE" stroke-width="1.33333" stroke-linecap="round" stroke-linejoin="round"/%3E%3C/g%3E%3Cdefs%3E%3CclipPath id="clip0_18360_106181"%3E%3Crect width="9.33333" height="9.33333" fill="white" transform="translate(5.33594 5.33398)"/%3E%3C/clipPath%3E%3C/defs%3E%3C/svg%3E');
+        width: 16px;
+        height: 16px;
+        background-image: url('data:image/svg+xml,%3Csvg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"%3E%3Cg clip-path="url(%23clip0_6892_156155)"%3E%3Cpath d="M8 16C10.1217 16 12.1566 15.1571 13.6569 13.6569C15.1571 12.1566 16 10.1217 16 8C16 5.87827 15.1571 3.84344 13.6569 2.34315C12.1566 0.842855 10.1217 0 8 0C5.87827 0 3.84344 0.842855 2.34315 2.34315C0.842855 3.84344 0 5.87827 0 8C0 10.1217 0.842855 12.1566 2.34315 13.6569C3.84344 15.1571 5.87827 16 8 16ZM11.5312 6.53125L7.53125 10.5312C7.2375 10.825 6.7625 10.825 6.47188 10.5312L4.47188 8.53125C4.17813 8.2375 4.17813 7.7625 4.47188 7.47188C4.76562 7.18125 5.24062 7.17813 5.53125 7.47188L7 8.94063L10.4688 5.46875C10.7625 5.175 11.2375 5.175 11.5281 5.46875C11.8187 5.7625 11.8219 6.2375 11.5281 6.52812L11.5312 6.53125Z" fill="%23101010"/%3E%3C/g%3E%3Cdefs%3E%3CclipPath id="clip0_6892_156155"%3E%3Crect width="16" height="16" fill="white"/%3E%3C/clipPath%3E%3C/defs%3E%3C/svg%3E');
         background-size: contain;
         background-repeat: no-repeat;
         left: 0;
-        top: 3px;
-      }
-      @media only screen and (max-width: 449px) {
-        ${MbBody2};
+        top: 5px;
+        @media only screen and (max-width: 449px) {
+          top: 4px;
+          width: 14px;
+          height: 14px;
+        }
       }
     }
   }
@@ -431,6 +424,11 @@ const Mobilenew = styled.div`
   }
 `;
 
+const ButtonGroups = styled.div`
+  display: flex;
+  gap: var(--space-8);
+  margin-top: var(--space-32);
+`;
 export {
   HeroSection,
   SolutionWrap,
@@ -448,5 +446,6 @@ export {
   Card,
   TopDiv,
   BottomDiv,
-  ButtonGroup
+  ButtonGroup,
+  ButtonGroups
 };

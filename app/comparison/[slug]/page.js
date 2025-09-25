@@ -6,7 +6,6 @@ import { getSEOData, isEmpty } from '../../helpers/helpers';
 import ComparisonDetailPage from '../../components/PageComponent/Comparison/coparisonDetailPage';
 import { getFAQsData } from '../../services/faq';
 import AggregateRating from '../../components/aggregateRating';
-import NewCTA from '../../components/cta/newCTA';
 import { CURRENT_SITE_URL } from '../../constants/constant';
 
 async function getContent({ slug }) {
@@ -32,17 +31,6 @@ export default async function Comparison({ params }) {
       <AggregateRating id={details?.seoMetadata?.sys?.id} />
       <Layout>
         <ComparisonDetailPage details={details} faqList={faqData} />
-        {!isEmpty(details.ctaSection) && (
-          <NewCTA
-            title={details.ctaSection.title}
-            description={details.ctaSection.description}
-            primaryButtonText={details.ctaSection.primaryButtonText}
-            primaryButtonLink={details.ctaSection.primaryButtonLink}
-            secondaryButtonText={details.ctaSection.secondaryButtonText}
-            secondaryButtonLink={details.ctaSection.secondaryButtonLink}
-            banner={details.ctaSection.banner?.url}
-          />
-        )}
       </Layout>
     </>
   );

@@ -1,9 +1,6 @@
 'use client';
 
-import { styled } from '@mui/material/styles';
-import { useMemo, useState } from 'react';
-import Link from 'next/link';
-import LinearProgress, { linearProgressClasses } from '@mui/material/LinearProgress';
+import { useMemo } from 'react';
 import ReactMarkdown from 'react-markdown';
 import {
   ComparisonTable,
@@ -12,46 +9,19 @@ import {
   G2progressbar,
   G2section,
   G2text,
-  Groupdetail,
   Processdata,
-  ButtonGroup
+  ProgressBar
 } from '../../../components/comparison/styles';
-import { MainWrap } from '../../../components/solution/clienttab/styles';
 import { Container } from '../../../styles/commonStyles';
 import FAQ from '../../../components/faq/faq';
 import { isEmpty } from '../../../helpers/helpers';
-import Quote from '../../../components/solution/quote/quote';
-import SliderButtonSection from '../../CopilotBlock/SliderButtonSection';
 import ComparisonDetailsHero from '../../comparison/comparisonhero/comparisondetailshero';
-import SVGComponent from '../../../../public/images/svg/SVGComponent';
 import ComparisonTableView from '../../../components/comparison/comparisonTable';
-import { ResponsiveButtonGroup } from '../../../styles/homepageStyles';
-
-const BorderLinearProgress = styled(LinearProgress)(({ theme }) => ({
-  height: 6,
-  borderRadius: 30,
-  [`&.${linearProgressClasses.colorPrimary}`]: {
-    backgroundColor: theme.palette.grey[theme.palette.mode === 'light' ? 200 : 800]
-  },
-  [`& .${linearProgressClasses.bar}`]: {
-    borderRadius: 30,
-    backgroundColor: theme.palette.mode === 'light' ? 'var(--primary)' : 'red'
-  }
-}));
-const BorderProgress = styled(LinearProgress)(({ theme }) => ({
-  height: 6,
-  borderRadius: 30,
-  [`&.${linearProgressClasses.colorPrimary}`]: {
-    backgroundColor: theme.palette.grey[theme.palette.mode === 'light' ? 200 : 800]
-  },
-  [`& .${linearProgressClasses.bar}`]: {
-    borderRadius: 30,
-    backgroundColor: theme.palette.mode === 'light' ? 'var(--border)' : 'red'
-  }
-}));
+import NewCTA from '../../cta/newCTA';
+import { MainSection } from './styles';
+import ButtonV2Component from '../../button/buttonV2/buttonV2';
 
 export default function ComparisonDetailPage({ details, faqList }) {
-  const [xPos, setXpos] = useState(0);
   const g2ComparisonGroupView = useMemo(() => {
     if (isEmpty(details?.g2GroupCollection?.items)) return null;
     return details?.g2GroupCollection?.items?.map((item, index) => {
@@ -60,18 +30,20 @@ export default function ComparisonDetailPage({ details, faqList }) {
           <h3>{item?.name}</h3>
           <G2progressbar>
             <Processdata>
-              <div className='progress-number-div'>
-                <span>{item?.copilotValue.toFixed(1)}</span>
-                <span className='item-title'>Copilot</span>
-              </div>
-              <BorderLinearProgress variant='determinate' value={item?.copilotValue * 10} />
+              <ProgressBar width={item?.copilotValue * 10} color='var(--assembly-blue)'>
+                <div className='progress-number-div'>
+                  <span className='item-title'>Assembly</span>
+                  <span>{item?.copilotValue.toFixed(1)}</span>
+                </div>
+              </ProgressBar>
             </Processdata>
             <Processdata>
-              <div className='progress-number-div'>
-                <span className='seconddata'>{item?.partnerValue.toFixed(1)}</span>
-                <span className='item-title'>{details.compititorName}</span>
-              </div>
-              <BorderProgress variant='determinate' value={item?.partnerValue * 10} />
+              <ProgressBar width={item?.partnerValue * 10} color='var(--gray-50)'>
+                <div className='progress-number-div'>
+                  <span className='item-title'>{details.compititorName}</span>
+                  <span className='seconddata'>{item?.partnerValue.toFixed(1)}</span>
+                </div>
+              </ProgressBar>
             </Processdata>
           </G2progressbar>
         </G2text>
@@ -79,13 +51,9 @@ export default function ComparisonDetailPage({ details, faqList }) {
     });
   }, [details.compititorName, details?.g2GroupCollection?.items]);
 
-  const renderSliderButton = useMemo(() => {
-    return <SliderButtonSection xPos={xPos} setXpos={setXpos} noOfSlide={details?.g2GroupCollection?.items.length} />;
-  }, [details?.g2GroupCollection?.items.length, xPos]);
-
   return (
     <>
-      <MainWrap>
+      <MainSection>
         <ComparisonDetailsHero
           title={details?.name}
           description={details?.description}
@@ -102,39 +70,43 @@ export default function ComparisonDetailPage({ details, faqList }) {
           competitorLogo={details.smallLogo?.url}
         />
         {!isEmpty(details?.g2GroupCollection?.items) && (
-          <div className='main-section'>
+          <Container>
             <G2section>
               {!isEmpty(details.g2SectionTitle) && <h2>{details.g2SectionTitle}</h2>}
               {!isEmpty(details.g2SectionDescription) && <ReactMarkdown>{details.g2SectionDescription}</ReactMarkdown>}
               <G2group>
-                <Groupdetail>
-                  <SVGComponent name='g2-logo-icon' width='24' height='24' viewBox='0 0 24 24' />
-                  <Link className='report' href={details?.g2ComparisonLink} target='_blank'>
-                    <p className='report'>Read full report</p>
-                  </Link>
-                </Groupdetail>
-                <ButtonGroup>{renderSliderButton}</ButtonGroup>
+                <ButtonV2Component
+                  title='Read full report'
+                  href={details?.g2ComparisonLink}
+                  target='_blank'
+                  iconName='blog-card-hover-arrow-icon'
+                  iconSize='16'
+                  className='button'
+                />
               </G2group>
-              <div>
-                <G2criteria style={{ transform: `translateX(${xPos}px)` }} className='slider-main-block'>
-                  {g2ComparisonGroupView}
-                </G2criteria>
-                <ResponsiveButtonGroup>{renderSliderButton}</ResponsiveButtonGroup>
-              </div>
+              <G2criteria>{g2ComparisonGroupView}</G2criteria>
             </G2section>
-          </div>
-        )}
-        <div className='main-section'>
-          <Container>
-            <ComparisonTable>
-              <h2>{details?.section2Header}</h2>
-              <ComparisonTableView details={details.featuresCollection?.items} competitorLogo={details.logo.url} />
-            </ComparisonTable>
           </Container>
-        </div>
-        {!isEmpty(details?.testimonial) && <Quote data={details?.testimonial} isComparison />}
-        <FAQ faqList={faqList} isStandardPage={true} />
-      </MainWrap>
+        )}
+        <Container>
+          <ComparisonTable>
+            {!isEmpty(details?.section2Header) && <h2>{details?.section2Header}</h2>}
+            <ComparisonTableView details={details.featuresCollection?.items} competitorLogo={details.logo.url} />
+          </ComparisonTable>
+        </Container>
+        <FAQ faqList={faqList} />
+        {!isEmpty(details.ctaSection) && (
+          <NewCTA
+            title={details.ctaSection.title}
+            description={details.ctaSection.description}
+            primaryButtonText={details.ctaSection.primaryButtonText}
+            primaryButtonLink={details.ctaSection.primaryButtonLink}
+            secondaryButtonText={details.ctaSection.secondaryButtonText}
+            secondaryButtonLink={details.ctaSection.secondaryButtonLink}
+            banner={details.ctaSection.banner?.url}
+          />
+        )}
+      </MainSection>
     </>
   );
 }

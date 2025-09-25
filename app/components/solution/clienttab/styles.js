@@ -332,7 +332,6 @@ const IconView = styled.div`
   }
 `;
 const MainWrap = styled.div`
-  background-color: var(--main-bg-color);
   .main-section {
     overflow: hidden;
   }

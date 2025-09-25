@@ -1,12 +1,11 @@
-import { useMemo } from 'react';
+'use client';
+import { useMemo, useLayoutEffect } from 'react';
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
 import { BLOCKS } from '@contentful/rich-text-types';
 import { CopilotLogo } from '../navbar/styles';
-import CopilotLogos from '../../../public/images/blacklogo.svg';
 import SVGComponent from '../../../public/images/svg/SVGComponent';
 import { isEmpty } from '../../helpers/helpers';
-import { TableMainDiv, LeftSection, TitleSection, MainTabbleSection, MainTableSection } from './styles';
-import Image from 'next/image';
+import { TableMainDiv, LeftSection, TitleSection, MainTableSection, Tag } from './styles';
 
 export default function ComparisonTableView({ details, competitorLogo }) {
   // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -26,13 +25,19 @@ export default function ComparisonTableView({ details, competitorLogo }) {
             case '[copilotLogo]':
               return (
                 <div className='icon-div'>
-                  <CopilotLogo alt='copilot logo' loading='lazy' width='111' height='24' src={CopilotLogos.src} />
+                  <SVGComponent
+                    name='assembly-big-logo'
+                    width='130'
+                    height='24'
+                    viewBox='0 0 200 38'
+                    className='logo-icon'
+                  />
                 </div>
               );
             case '[compititorLogo]':
               return (
                 <div className='icon-div'>
-                  <CopilotLogo alt='copilot logo' loading='lazy' width='111' height='24' src={competitorLogo} />
+                  <CopilotLogo alt='copilot logo' loading='lazy' width='130' height='28' src={competitorLogo} />
                 </div>
               );
             case 'false':
@@ -58,8 +63,7 @@ export default function ComparisonTableView({ details, competitorLogo }) {
         <>
           <TableMainDiv>
             <LeftSection>
-              {!isEmpty(item.icon?.url) && <Image src={item.icon?.url} alt='image' width={48} height={48} />}
-              {!isEmpty(item.title) && <h4>{item.title}</h4>}
+              {!isEmpty(item.title) && <Tag>{item.title}</Tag>}
               {!isTitleSectionHide && (
                 <TitleSection>
                   {!isEmpty(item.header) && <h3>{item.header}</h3>}
@@ -73,5 +77,34 @@ export default function ComparisonTableView({ details, competitorLogo }) {
       );
     });
   }, [details, options]);
+
+  // for gradient set in table column
+  useLayoutEffect(() => {
+    const applyGradientVars = () => {
+      const tables = document.querySelectorAll('.table table');
+      tables.forEach((table) => {
+        try {
+          const firstRow = table.querySelector('tr');
+          if (!firstRow) return;
+          const targetCell = firstRow.querySelector('th:nth-child(4), td:nth-child(4)');
+          if (!targetCell) return;
+
+          // Use offsetLeft/offsetWidth to be stable across layouts and zoom
+          const leftPx = targetCell.offsetLeft;
+          const widthPx = targetCell.offsetWidth;
+
+          // Nudge by -1px to avoid bleeding over borders
+          const left = `${Math.max(0, leftPx)}px`;
+          const width = `${Math.max(0, widthPx)}px`;
+          table.style.setProperty('--grad-left', left);
+          table.style.setProperty('--grad-width', width);
+        } catch (_) {}
+      });
+    };
+
+    applyGradientVars();
+    window.addEventListener('resize', applyGradientVars);
+    return () => window.removeEventListener('resize', applyGradientVars);
+  }, [details]);
   return <MainTableSection>{renderFeatureView}</MainTableSection>;
 }

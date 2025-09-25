@@ -1,6 +1,5 @@
 import styled, { css } from 'styled-components';
-import { Body1, Body3, Body4, Body5, Heading3, Heading4, Heading6, MbBody3, MobileH4 } from '../../styles/styles';
-import { body_regular, body_semibold, button_regular, h3_semibold } from '../../styles/typography';
+import { body_regular, body_semibold, button_regular, h2_semibold, h3_semibold, tag } from '../../styles/typography';
 
 const QuoteSection = styled.div`
   padding: 100px 0 0px;
@@ -11,122 +10,149 @@ const QuoteSection = styled.div`
 `;
 
 const ComparisonTable = styled.div`
-  padding-bottom: 100px;
-  .mobilesecondtable {
-    margin-top: 30px;
-  }
+  padding: var(--space-64) 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-80);
+
   h2 {
     margin: 0;
-    ${Heading3}
+    ${h2_semibold}
     color: var(--title);
-    padding-bottom: 60px;
-    @media only screen and (max-width: 450px) {
-      padding-bottom: 40px;
-    }
+    max-width: 600px;
+    width: 100%;
   }
-  p {
-    ${Body3}
-    color: var(--body);
-    margin-top: -24px;
-    margin-bottom: 40px;
-    @media only screen and (max-width: 450px) {
-      ${MbBody3}
-    }
+
+  @media only screen and (max-width: 991px) {
+    padding: var(--space-40) 0;
   }
   @media only screen and (max-width: 449px) {
-    padding-bottom: 80px;
+    padding: var(--space-48) 0;
+    gap: var(--space-48);
   }
 `;
 
 const MainTableSection = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 60px;
+  gap: var(--space-80);
   @media only screen and (max-width: 449px) {
-    gap: 40px;
+    gap: var(--space-64);
   }
 `;
 
 const TableMainDiv = styled.div`
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: space-between;
-  gap: 40px;
+  gap: var(--space-64);
   @media only screen and (max-width: 768px) {
     flex-direction: column;
-    align-items: flex-start;
+  }
+  @media only screen and (max-width: 449px) {
+    gap: var(--space-48);
   }
   .table {
-    max-width: 661px;
+    max-width: 720px;
     width: 100%;
-    border: 1px solid var(--dark-green);
-    padding: 20px;
-    border-radius: 4px;
+    border: 1px solid var(--border-default);
+    border-radius: var(--radius-16);
     position: relative;
+    overflow: auto;
+    ::-webkit-scrollbar {
+      display: none;
+    }
     .icon-div {
       display: flex;
       align-items: center;
       justify-content: center;
       img {
         height: auto;
+        @media only screen and (max-width: 991px) {
+          height: 28px;
+          width: 100%;
+          max-width: 130px;
+        }
         @media only screen and (max-width: 449px) {
           height: 24px;
         }
       }
     }
-    ::after {
-      content: '';
-      position: absolute;
-      border-top: 1px solid var(--dark-green);
-      max-width: 100vw;
-      width: 100vw;
-      top: 50%;
-      left: 100%;
-      @media only screen and (max-width: 768px) {
-        display: none;
-      }
-    }
     th {
+      height: 40px;
       @media only screen and (max-width: 449px) {
         display: none;
       }
     }
     p {
       margin: 0;
-      ${Body4}
+      ${body_regular}
       color: var(--title);
     }
     table {
       border-collapse: collapse;
       width: 100%;
+      background-color: var(--off-white-100);
+      border-radius: var(--radius-16);
+      position: relative;
+      z-index: 2;
+
+      &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: var(--grad-left);
+        right: 0;
+        bottom: 0;
+        background: linear-gradient(180deg, #d7f1f9 0%, rgba(188, 231, 244, 0) 100%);
+        pointer-events: none;
+        z-index: -1;
+        width: var(--grad-width);
+      }
+
+      @media only screen and (max-width: 449px) {
+        &::before {
+          display: none;
+        }
+      }
+
       td {
         text-align: center;
-        padding: 16px;
-        ${Body4}
+        padding: var(--space-20) var(--space-20) var(--space-16);
+        ${button_regular}
         color: var(--title);
+        border-right: 1px solid var(--border-default);
+        position: relative;
+        z-index: 2;
+        p {
+          ${button_regular}
+        }
         :nth-child(4) {
-          background-color: var(--light-green);
+          min-width: 160px;
         }
         :first-child {
-          padding-left: unset;
           text-align: start;
+          max-width: 400px;
+          width: 100%;
         }
         :nth-child(2),
         :nth-child(3) {
           display: none;
         }
+        :last-child {
+          border-right: none;
+          min-width: 160px;
+        }
         @media only screen and (max-width: 449px) {
           display: block;
-          padding: 16px;
-
+          padding: var(--space-20) var(--space-20) var(--space-16);
+          border-right: none;
           :nth-child(2) {
             background-color: unset;
           }
           :first-child {
-            background-color: var(--light-green);
-            padding-left: 16px;
-            border-radius: 2px;
-            margin-top: 32px;
+            background-color: var(--gray-50);
+            border-top: 1px solid var(--border-default);
           }
           :nth-child(2),
           :nth-child(3) {
@@ -134,8 +160,8 @@ const TableMainDiv = styled.div`
             display: inline-flex;
             justify-content: center;
             align-items: center;
-            padding: 18px;
-            border-bottom: 1px solid var(--border);
+            padding: var(--space-22) var(--space-20);
+            border-bottom: 1px solid var(--border-default);
           }
           :nth-child(4),
           :nth-child(5) {
@@ -143,53 +169,51 @@ const TableMainDiv = styled.div`
             display: inline-flex;
             justify-content: center;
             align-items: center;
-            padding: 18px;
-            border-bottom: 1px solid var(--border);
+            padding: var(--space-20);
           }
           :nth-child(4) {
             background-color: unset;
           }
         }
       }
-      tbody {
-        tr {
-          :last-child {
-            td {
-              :nth-child(4)  {
-                border-bottom-left-radius: 4px;
-                border-bottom-right-radius: 4px;
-                @media only screen and (max-width: 449px) {
-                  border-radius: unset;
-                }
-              }
-            }
-          }
-          :nth-child(2) {
-            td {
-              :first-child {
-                margin-top: unset;
-              }
-            }
-          }
+
+      @media only screen and (max-width: 449px) {
+        tr:nth-child(2) td:first-child {
+          border-top: none;
         }
       }
+
       th {
-        padding: 15px 20px;
+        height: 80px;
         border-color: black;
         text-align: center;
         width: 100%;
+        padding: 0 var(--space-16);
+        border-right: 1px solid var(--border-default);
+        ${body_semibold}
+        color: var(--title);
+        width: 100%;
+        max-width: 160px;
+        position: relative;
+        z-index: 2;
         :nth-child(2),
         :nth-child(3) {
           display: none;
         }
         :nth-child(4) {
-          background-color: var(--light-green);
-          border-top-right-radius: 4px;
-          border-top-left-radius: 4px;
+        }
+        :first-child {
+          padding: 0 var(--space-20);
+          width: 100%;
+          max-width: 400px;
+          text-align: left;
+        }
+        :last-child {
+          border-right: none;
         }
       }
       tr {
-        border-top: 1px solid var(--border);
+        border-top: 1px solid var(--border-default);
         .leftside {
           text-align: left;
         }
@@ -214,213 +238,121 @@ const TableMainDiv = styled.div`
 const LeftSection = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 20px;
-  max-width: 503px;
-  h4 {
-    ${Body1};
-    color: var(--primary);
-    margin: 0;
-    @media only screen and (max-width: 449px) {
-      ${MobileH4};
-    }
+  align-items: flex-start;
+  gap: var(--space-24);
+  max-width: 440px;
+  width: 100%;
+  @media only screen and (max-width: 991px) {
+    max-width: 100%;
   }
-  @media only screen and (max-width: 768px) {
-    gap: 16px;
-    h4 {
-      margin-top: 4px;
-    }
-  }
+`;
+
+const Tag = styled.div`
+  margin: 0;
+  ${tag}
+  color: var(--title);
+  padding: var(--space-12) var(--space-16);
+  background-color: var(--gray-50);
+  border-radius: var(--radius-30);
+  text-transform: uppercase;
 `;
 
 const TitleSection = styled.div`
   h3 {
-    ${Heading4};
-    color: var(--Title);
+    ${h3_semibold};
+    color: var(--title);
     margin: 0;
   }
   p {
     margin: 0;
-    margin-top: 12px;
-    ${Body4};
-    color: var(--body);
-    @media only screen and (max-width: 768px) {
-      ${Body5};
-      margin-top: 8px;
-    }
+    margin-top: var(--space-24);
+    ${body_regular};
+    color: var(--title);
   }
 `;
 
 const G2section = styled.div`
-  max-width: 1272px;
-  width: 100%;
   margin: 0 auto;
-  overflow: visible;
-  padding: 0 24px 100px;
+  padding: var(--space-64) 0;
   h2 {
     margin: 0;
-    ${Heading3}
+    ${h2_semibold}
     color: var(--title);
+    max-width: 600px;
+    width: 100%;
   }
   p {
-    padding-top: 16px;
+    padding: var(--space-32) 0;
     margin: 0;
-    padding-bottom: 32px;
-    ${Body3};
-    max-width: 780px;
-    color: var(--body);
+    ${body_regular};
+    color: var(--title);
+    max-width: 600px;
+    width: 100%;
   }
   @media only screen and (max-width: 991px) {
-    width: unset;
-    overflow: hidden;
-    padding-bottom: 80px;
-    p {
-      ${MbBody3};
-      padding-bottom: 16px;
-    }
+    padding: var(--space-40) 0;
+  }
+  @media only screen and (max-width: 449px) {
+    padding: var(--space-48) 0;
   }
 `;
 const G2group = styled.div`
   display: flex;
-  justify-content: space-between;
-  align-items: flex-end;
-  gap: 24px;
-  padding-bottom: 40px;
-  @media only screen and (max-width: 426px) {
-    gap: 12px;
-  }
-`;
-const ButtonGroup = styled.div`
-  @media only screen and (max-width: 560px) {
-    display: none;
-  }
-`;
-const Groupdetail = styled.div`
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  @media only screen and (max-width: 426px) {
-    gap: 6px;
+  padding-bottom: var(--space-64);
+  .button {
     svg {
-      width: 18px;
-      height: 18px;
+      path {
+        fill: var(--off-white-100);
+      }
     }
   }
-  p {
-    ${Heading6}
-    margin:0;
-    color: var(--title);
-    padding: 0;
-  }
-  .report {
-    color: var(--hover);
-  }
 `;
+
 const G2criteria = styled.div`
-  display: flex;
-  gap: 28px;
-  width: 1272px;
-  margin: 0 auto;
-  overflow: visible;
-  transition: transform 500ms ease;
-  @media only screen and (max-width: 768px) {
-    width: unset;
-  }
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(294px, 1fr));
+  gap: var(--space-24);
 `;
 const G2text = styled.div`
-  border: 1px solid var(--title);
-  border-radius: 4px;
-  padding: 24px;
+  border: 1px solid var(--border-default);
+  background-color: var(--off-white-300);
+  border-radius: var(--radius-12);
+  padding: var(--space-20);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  min-width: 400px;
+  gap: var(--space-20);
+  width: 100%;
   h3 {
     margin: 0;
-    ${Body1}
+    ${body_semibold}
     color: var(--title);
-  }
-  @media only screen and (max-width: 449px) {
-    min-width: 100%;
-    h3 {
-      ${MobileH4}
-    }
   }
 `;
 const G2progressbar = styled.div`
   display: flex;
-  gap: 20px;
+  gap: var(--space-12);
   flex-direction: column;
-  margin-top: 20px;
 `;
 const Processdata = styled.div`
   .progress-number-div {
     display: flex;
     align-items: center;
     justify-content: space-between;
-  }
-  .seconddata {
-    color: var(--medium-gray);
+    position: absolute;
+    z-index: 1;
+    top: var(--space-14);
+    left: var(--space-12);
+    right: var(--space-12);
   }
   span {
-    ${Body3}
+    ${button_regular}
     display: flex;
-    padding-bottom: 5px;
-    color: var(--black);
-    @media only screen and (max-width: 449px) {
-      ${Body4}
-    }
+    color: var(--title);
   }
   .item-title {
-    ${Body4};
-    color: var(--medium-gray);
-    @media only screen and (max-width: 449px) {
-      ${MbBody3}
-    }
-  }
-`;
-const ComparisonHide = styled.div`
-  border: 1px solid var(--dark-green);
-  border-radius: 4px;
-  background: var(--white);
-`;
-const Headingpart = styled.div`
-  display: flex;
-  justify-content: center;
-  padding: 20px 20px;
-  border-bottom: 1px solid var(--dark-green);
-  position: relative;
-  h2 {
-    font-weight: 400;
-    font-size: 32px;
-    line-height: 34px;
-    text-align: center;
-    padding: 0;
-  }
-`;
-const Details = styled.div`
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  gap: 12px;
-  p {
-    ${Body5}
-    margin:0;
-  }
-  .mobilecheckmark {
-    width: 14px;
-    height: 14px;
-  }
-`;
-const Comparisontabledata = styled.div`
-  padding: 14px 16px;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-`;
-const MobileViewTable = styled.div`
-  display: none;
-  @media only screen and (max-width: 450px) {
-    display: block;
+    ${button_regular};
+    color: var(--title);
   }
 `;
 const Carditem = styled.div`
@@ -481,64 +413,6 @@ const Title = styled.h3`
   color: var(--title);
 `;
 
-const TableDropdown = styled.div`
-  width: 100%;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  border: 1px solid var(--border);
-  border-radius: 4px;
-  cursor: pointer;
-  ${(props) =>
-    props.isFocus &&
-    css`
-      border: 1px solid black;
-    `}
-  p {
-    ${Body4}
-    margin:0;
-    padding: 12px 20px;
-    width: 150px;
-    text-align: left;
-  }
-  .dropdownicon {
-    margin-right: 20px;
-  }
-`;
-const Dropdownbox = styled.div`
-  width: calc(100% - 50px);
-  border: 1px solid var(--dark-green);
-  box-shadow: 0px 8px 24px var(--black-shadow-15);
-  border-radius: 4px;
-  background: var(--white);
-  position: absolute;
-  padding: 8px;
-  z-index: 99;
-  ${Body4}
-  margin-top:10px;
-  @media only screen and (max-width: 1024px) {
-    width: calc(100% - 40px);
-  }
-  @media only screen and (max-width: 450px) {
-    margin-top: 58px;
-  }
-`;
-const Comparisonname = styled.div`
-  width: 100%;
-  padding: 4px 8px;
-  text-align: left;
-  :hover {
-    background-color: var(--light-green);
-    border-radius: 3px;
-  }
-  ${(props) =>
-    props.isActive &&
-    css`
-      color: var(--primary);
-      background-color: var(--white);
-    `}
-`;
-
 const Description = styled.p`
   ${body_regular};
   margin: 0;
@@ -574,31 +448,30 @@ const CompareDescription = styled.p`
   ${button_regular}
   color: var(--text-secondary);
 `;
+
+const ProgressBar = styled.div`
+  width: ${(props) => props.width}%;
+  height: 48px;
+  background-color: ${(props) => props.color};
+  border-radius: var(--radius-8);
+  transition: width 0.3s ease-in-out;
+  position: relative;
+`;
 export {
   QuoteSection,
   ComparisonTable,
   G2section,
   G2group,
-  Groupdetail,
   G2criteria,
   G2text,
   G2progressbar,
   Processdata,
-  ComparisonHide,
-  Headingpart,
-  Details,
-  Comparisontabledata,
-  MobileViewTable,
   Carditem,
   ComparisonLogo,
   Allcard,
-  TableDropdown,
-  Dropdownbox,
-  Comparisonname,
   Title,
   CardMainDiv,
   TableMainDiv,
-  ButtonGroup,
   LeftSection,
   TitleSection,
   MainTableSection,
@@ -608,5 +481,7 @@ export {
   BottomSection,
   Icon,
   CompareTitle,
-  CompareDescription
+  CompareDescription,
+  Tag,
+  ProgressBar
 };

@@ -402,20 +402,15 @@ const getPath = (name, props) => {
     case 'check-mark-icon':
       return (
         <>
-          <rect width={20} height={20} fill='#09AA6C' rx={10} />
-          <g clipPath='url(#a)'>
+          <g clipPath='url(#clip0_5587_72507)'>
             <path
-              stroke='#E3FFEE'
-              strokeLinecap='round'
-              strokeLinejoin='round'
-              strokeWidth={1.333}
-              d='m5.953 10.24 2.232 2.233 5.681-5.276'
+              fill='var(--gray-400)'
+              d='M10 20.001a10 10 0 1 0 0-20 10 10 0 0 0 0 20Zm4.414-11.836-5 5a.934.934 0 0 1-1.324 0l-2.5-2.5a.937.937 0 0 1 1.324-1.324l1.836 1.836 4.336-4.34A.937.937 0 0 1 14.41 8.16l.004.004Z'
             />
           </g>
           <defs>
-            <clipPath id='a'>
-              <path fill='#fff' d='M0 0h60v60H0z' />
-              <path fill='#fff' d='M5.336 5.334h9.333v9.333H5.336z' />
+            <clipPath id='clip0_5587_72507'>
+              <path fill='#fff' d='M0 .001h20v20H0z' />
             </clipPath>
           </defs>
         </>
@@ -459,16 +454,15 @@ const getPath = (name, props) => {
     case 'close-check-icon':
       return (
         <>
-          <rect width={20} height={20} fill='#B8294B' rx={10} />
-          <g clipPath='url(#a)'>
+          <g clipPath='url(#clip0_5587_108538)'>
             <path
-              fill='#fff'
-              d='M13.608 7.532a.566.566 0 0 0-.8-.8l-2.8 2.8-2.8-2.8a.566.566 0 0 0-.8.8l2.8 2.8-2.8 2.8a.566.566 0 0 0 .8.8l2.8-2.8 2.8 2.8a.566.566 0 0 0 .8-.8l-2.8-2.8 2.8-2.8Z'
+              fill='var(--gray-200)'
+              d='M10 20.001c5.523 0 10-4.477 10-10s-4.477-10-10-10-10 4.477-10 10 4.477 10 10 10ZM6.523 6.524a.934.934 0 0 1 1.325 0l2.148 2.149 2.149-2.149a.937.937 0 0 1 1.324 1.324l-2.149 2.15 2.149 2.148a.937.937 0 0 1-1.324 1.324L9.995 11.32 7.848 13.47a.937.937 0 0 1-1.324-1.324l2.148-2.149L6.523 7.85a.934.934 0 0 1 0-1.325Z'
             />
           </g>
           <defs>
-            <clipPath id='a'>
-              <path fill='#fff' d='M5.336 5.334h9.333v9.333H5.336z' />
+            <clipPath id='clip0_5587_108538'>
+              <path fill='#fff' d='M0 .001h20v20H0z' />
             </clipPath>
           </defs>
         </>
