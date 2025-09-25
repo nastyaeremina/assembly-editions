@@ -149,17 +149,48 @@ export default function TableOfContents({
     const handleScroll = () => {
       const scrollBottom = window.innerHeight + window.scrollY;
       const pageHeight = document.documentElement.scrollHeight;
+      const offset = hasTopBar ? 200 : 160;
 
+      // bottom-of-page: force last
       if (scrollBottom >= pageHeight - 5) {
-        // mark last item active
         setActiveIndex(ids.length - 1);
+        return;
+      }
+
+      // general case: pick nearest section to the offset
+      let nearestIdx = 0;
+      let minDist = Infinity;
+      ids.forEach((id, i) => {
+        const el = document.getElementById(id);
+        if (!el) return;
+        const dist = Math.abs(el.getBoundingClientRect().top - offset);
+        if (dist < minDist) {
+          minDist = dist;
+          nearestIdx = i;
+        }
+      });
+      setActiveIndex(nearestIdx);
+    };
+
+    let ticking = false;
+    const onScroll = () => {
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          handleScroll();
+          ticking = false;
+        });
+        ticking = true;
       }
     };
 
-    window.addEventListener('scroll', handleScroll, { passive: true });
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onScroll, { passive: true });
+    // run once to sync on mount
+    handleScroll();
 
     return () => {
-      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('scroll', onScroll);
+      window.removeEventListener('resize', onScroll);
     };
   }, [htmlData, hasTopBar, isFAQs, faqId]);
 
