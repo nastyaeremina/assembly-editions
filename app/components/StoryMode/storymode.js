@@ -1,21 +1,12 @@
 'use client';
 
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import {
-  BottomSection,
-  LeftImage,
-  MainBlock,
-  NavigationWrapper,
-  SectionWrapper,
-  TabSection,
-  ContentWrapper
-} from './styles';
+import { MainBlock, NavigationWrapper, SectionWrapper, TabSection, ContentWrapper } from './styles';
 import { Container } from '../../styles/commonStyles';
-import Image from 'next/image';
 import { isEmpty } from '../../helpers/helpers';
 import SectionHeader from '../sectionHeader/sectionHeader';
-import QuoteSectionComponent from '../quoteSection/quoteSection';
 import StoryModeNavigation from './StoryModeNavigation/storyModeNavigation';
+import GridItemSection from '../sectionComponent/gridSection/gridItemSection';
 
 /**
  * StoryMode Component
@@ -111,46 +102,14 @@ export default function StoryMode({ tabsData, tone }) {
             />
 
             {/* Section Image and Quote */}
-            <BottomSection>
-              <LeftImage tone={tone}>
-                {tabData.video?.videoLink ? (
-                  <>
-                    <iframe
-                      width='1224'
-                      height='707'
-                      src={convertToEmbedUrl(tabData.video.videoLink)}
-                      allow='accelerometer; autoplay; loop; clipboard-write; encrypted-media; picture-in-picture; fullscreen'
-                      allowFullScreen
-                      title={tabData.title || 'Video'}
-                      loading='lazy'
-                    />
-                  </>
-                ) : tabData.video?.video?.url ? (
-                  <>
-                    <video ref={videoRef} muted loop playsInline preload='metadata'>
-                      <source src={tabData.video?.video?.url} type='video/mp4' />
-                    </video>
-                  </>
-                ) : (
-                  /* Fallback to image if no video available */
-                  !isEmpty(tabData.image) && (
-                    <Image src={tabData.image.url} width={877} height={827} className='image' alt='Section' />
-                  )
-                )}
-              </LeftImage>
-
-              {/* Testimonial Quote */}
-              {!isEmpty(tabData.quoteBlock) && (
-                <QuoteSectionComponent
-                  tone={tone}
-                  imageSrc={tabData.quoteBlock.image?.url}
-                  name={tabData.quoteBlock.name}
-                  role={tabData.quoteBlock.role}
-                  description={tabData.quoteBlock.quoteNew}
-                  link={tabData.link}
-                />
-              )}
-            </BottomSection>
+            <GridItemSection
+              quoteBlock={tabData.quoteBlock}
+              imageUrl={tabData.image}
+              videoUrl={tabData.video}
+              title={tabData.title}
+              tone={tone}
+              link={tabData.link}
+            />
           </TabSection>
         );
       }),

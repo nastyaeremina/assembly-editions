@@ -1,130 +1,60 @@
 import React, { useEffect, useRef } from 'react';
-import Image from 'next/image';
 import { isEmpty } from '../../../helpers/helpers';
 import QuoteSectionComponent from '../../quoteSection/quoteSection';
 import { GridItemSectionWrapper, VideoWrapper } from '../style';
+import TabVideoComponent from '../../tabVideoComponent/index';
 
 /**
- * GridItemSection component for displaying tab content with videos, images, and quote blocks
- * @param {Array} tabItems - Array of tab items containing video, image, and quote data
- * @param {number} activeIndex - Index of the currently active tab
- * @param {string} tone - Theme tone (light/dark) for styling
- * @param {string} link - Link URL for quote block
+ * GridItemSection renders individual grid items with content blocks, media, and interactive elements
+ * Supports quote blocks, images, videos, and conditional styling based on active state
+ * @param {Object} quoteBlock - Quote data object with quote text, author, and role information
+ * @param {Object} imageUrl - Image data object with url property for fallback display
+ * @param {Object} videoUrl - Video data object containing either videoLink or video.url
+ * @param {string} title - Title text for the grid item
+ * @param {boolean} isActive - Whether this grid item is currently active/selected
+ * @param {number} activeIndex - Current active index for intersection observer and video control
+ * @param {string} tone - Tone/style variant for conditional styling
+ * @param {Object} link - Link configuration object for navigation
+ * @param {boolean} isSectionComponent - Whether this is used as a section component (affects styling/layout)
  */
-function GridItemSection({ tabItems, activeIndex, tone, link }) {
-  const videoRef = useRef(null);
-
-  useEffect(() => {
-    const videoElement = videoRef.current;
-    if (!videoElement) return;
-
-    // Intersection Observer for automatic play/pause
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            // Video is in viewport - play it
-            videoElement.play().catch((error) => {
-              console.log('Autoplay prevented:', error);
-            });
-          } else {
-            // Video is out of viewport - pause it
-            videoElement.pause();
-          }
-        });
-      },
-      {
-        threshold: 0.2, // Play when 20% of video is visible
-        rootMargin: '0px 0px -10% 0px' // Start playing slightly before fully visible
-      }
-    );
-
-    observer.observe(videoElement);
-
-    return () => {
-      observer.disconnect();
-    };
-  }, [activeIndex]); // Re-run when active tab changes
-
-  const convertToEmbedUrl = (url) => {
-    if (!url) return '';
-
-    // Converts to embed format with autoplay, loop, and muted parameters for seamless autoplay
-    if (url.includes('youtu.be/')) {
-      const videoId = url.match(/youtu\.be\/([^?&]+)/)?.[1];
-      if (videoId) {
-        const embedUrl = `https://www.youtube.com/embed/${videoId}?autoplay=1&loop=1&mute=1&playlist=${videoId}&controls=0&showinfo=0&rel=0`;
-        return embedUrl;
-      }
-    }
-
-    // Simple replacement to convert to embed format with autoplay parameters
-    if (url.includes('youtube.com/watch?v=')) {
-      const videoId = url.match(/v=([^&]+)/)?.[1];
-      const embedUrl = `https://www.youtube.com/embed/${videoId}?autoplay=1&loop=1&mute=1&playlist=${videoId}&controls=0&showinfo=0&rel=0`;
-      return embedUrl;
-    }
-
-    // Return as-is if already in embed format
-    if (url.includes('youtube.com/embed/')) {
-      return url;
-    }
-
-    // Return original URL if no match found
-    return url;
-  };
-
+function GridItemSection({
+  quoteBlock,
+  imageUrl,
+  videoUrl,
+  title,
+  isActive,
+  activeIndex,
+  tone,
+  link,
+  isSectionComponent
+}) {
   return (
     <>
-      {/* Map through all tab items and render them */}
-      {tabItems.map((tabItem, index) => {
-        return (
-          <GridItemSectionWrapper
-            key={index}
-            isActive={index === activeIndex}
-            data-active={index === activeIndex}
-            hasQuoteBlock={!isEmpty(tabItem.quoteBlock)}
-            tone={tone}>
-            {/* Render video content if video URL exists */}
-            {tabItem.video?.videoLink ? (
-              <>
-                <iframe
-                  width='1224'
-                  height='707'
-                  src={convertToEmbedUrl(tabItem.video.videoLink)}
-                  allow='accelerometer; autoplay; loop; clipboard-write; encrypted-media; picture-in-picture; fullscreen'
-                  allowFullScreen
-                  title={tabItem.title || 'Video'}
-                  loading='lazy'
-                />
-              </>
-            ) : tabItem.video?.video?.url ? (
-              <>
-                <video ref={videoRef} muted loop playsInline preload='metadata'>
-                  <source src={tabItem.video?.video?.url} type='video/mp4' />
-                </video>
-              </>
-            ) : (
-              /* Fallback to image if no video available */
-              !isEmpty(tabItem.image) && (
-                <Image src={tabItem.image.url} width={877} height={827} className='image' alt='Section' />
-              )
-            )}
-
-            {/* Render quote block if available */}
-            {!isEmpty(tabItem.quoteBlock) && (
-              <QuoteSectionComponent
-                tone={tone}
-                imageSrc={tabItem.quoteBlock.image?.url}
-                name={tabItem.quoteBlock.name}
-                role={tabItem.quoteBlock.role}
-                description={tabItem.quoteBlock.quoteNew}
-                link={link}
-              />
-            )}
-          </GridItemSectionWrapper>
-        );
-      })}
+      <GridItemSectionWrapper
+        isActive={isActive}
+        data-active={isActive}
+        hasQuoteBlock={!isEmpty(quoteBlock)}
+        tone={tone}
+        isSectionComponent={isSectionComponent}>
+        <TabVideoComponent
+          imageUrl={imageUrl}
+          videoUrl={videoUrl}
+          videoTitle={title}
+          activeIndex={activeIndex}
+          tone={tone}
+        />
+        {/* Render quote block if available */}
+        {!isEmpty(quoteBlock) && (
+          <QuoteSectionComponent
+            tone={tone}
+            imageSrc={quoteBlock.image?.url}
+            name={quoteBlock.name}
+            role={quoteBlock.role}
+            description={quoteBlock.quoteNew}
+            link={link}
+          />
+        )}
+      </GridItemSectionWrapper>
     </>
   );
 }

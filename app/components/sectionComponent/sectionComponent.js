@@ -93,12 +93,22 @@ function SectionComponent({
               onTabChange={handleTabChange}
             />
             <GridSection ref={containerRef} style={{ height }} tone={tone}>
-              <GridItemSection
-                tabItems={tabItems}
-                activeIndex={activeIndex}
-                tone={tone}
-                link={tabItems[activeIndex]?.link || ''}
-              />
+              {tabItems.map((tabItem, index) => {
+                return (
+                  <GridItemSection
+                    key={index}
+                    activeIndex={activeIndex}
+                    isActive={index === activeIndex}
+                    quoteBlock={tabItem.quoteBlock}
+                    imageUrl={tabItem.image}
+                    videoUrl={tabItem.video}
+                    title={tabItem.title}
+                    tone={tone}
+                    link={tabItem.link || ''}
+                    isSectionComponent={true}
+                  />
+                );
+              })}
             </GridSection>
           </TabSection>
         </SectionContentDiv>

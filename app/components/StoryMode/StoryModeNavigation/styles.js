@@ -8,19 +8,6 @@ const MainBlock = styled.div`
   gap: var(--space-40);
 `;
 
-const Icon = styled.div`
-  display: flex;
-  border-radius: var(--radius-4);
-  align-items: center;
-  justify-content: center;
-  @media only screen and (max-width: 449px) {
-    svg {
-      width: 42px;
-      height: 42px;
-    }
-  }
-`;
-
 const Tabs = styled.div`
   display: flex;
   gap: var(--space-24);
@@ -73,13 +60,6 @@ const Tabs = styled.div`
   }
 `;
 
-const Numbers = styled.p`
-  color: var(--text-secondary);
-  ${body_regular};
-  margin: 0;
-  transition: color 600ms cubic-bezier(0.4, 0, 0.2, 1);
-`;
-
 const TabName = styled.p`
   color: ${({ active }) => (active ? 'var(--title)' : 'var(--text-secondary)')};
   ${body_regular};
@@ -108,14 +88,6 @@ const Tab = styled.button`
   }
   @media only screen and (min-width: 992px) {
     :hover {
-      ${Numbers} {
-        color: ${({ active }) => (active ? 'var(--text-secondary)' : 'var(--title)')};
-        ${({ tone }) =>
-          tone === SectionTone.DARK &&
-          css`
-            color: ${({ active }) => (active ? 'var(--text-secondary)' : 'var(--gray-200)')};
-          `}
-      }
       ${TabName} {
         color: var(--title);
         ${({ tone }) =>
@@ -131,4 +103,4 @@ const Tab = styled.button`
   }
 `;
 
-export { MainBlock, Icon, Tabs, Tab, Numbers, TabName };
+export { MainBlock, Tabs, Tab, TabName };

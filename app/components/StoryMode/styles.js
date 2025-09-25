@@ -13,62 +13,6 @@ const MainBlock = styled.div`
   }
 `;
 
-const BottomSection = styled.div`
-  display: grid;
-  gap: var(--space-24);
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  @media only screen and (max-width: 991px) {
-    grid-template-columns: auto;
-  }
-`;
-
-const LeftImage = styled.div`
-  max-width: 100%;
-  width: 100%;
-  grid-column: span 2;
-  display: flex;
-  .image {
-    max-width: 100%;
-    width: 100%;
-    height: auto;
-    max-height: 560px;
-    object-fit: cover;
-    border-radius: var(--radius-16);
-    border: 1px solid var(--border-default);
-    ${({ tone }) =>
-      tone === SectionTone.DARK &&
-      css`
-        border: 1px solid var(--bg-card-dark-hover);
-      `}
-  }
-  video {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    border-radius: var(--radius-16);
-    border: 1px solid var(--border-default);
-    ${({ tone }) =>
-      tone === SectionTone.DARK &&
-      css`
-        border: 1px solid var(--bg-card-dark-hover);
-      `}
-  }
-  @media only screen and (max-width: 991px) {
-    grid-column: auto;
-    .image {
-      max-height: unset;
-    }
-  }
-  @media only screen and (max-width: 449px) {
-    .image {
-      border-radius: var(--radius-12);
-    }
-    video {
-      border-radius: var(--radius-12);
-    }
-  }
-`;
-
 const SectionWrapper = styled.div`
   display: flex;
   flex-direction: column;
@@ -103,4 +47,4 @@ const ContentWrapper = styled.div`
   }
 `;
 
-export { MainBlock, BottomSection, LeftImage, SectionWrapper, NavigationWrapper, TabSection, ContentWrapper };
+export { MainBlock, SectionWrapper, NavigationWrapper, TabSection, ContentWrapper };
