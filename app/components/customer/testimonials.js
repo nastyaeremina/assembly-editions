@@ -1,11 +1,9 @@
 'use client';
-import React, { useMemo, useRef, useState, useEffect } from 'react';
+import React, { useMemo } from 'react';
 import Image from 'next/image';
 import { convertHighlights, isEmpty } from '../../helpers/helpers';
-import { Detail, LastDroplist, LeftCard, Percentage, RightCard, Section, TestimonialCard, Top } from './styles';
+import { Detail, LeftCard, Percentage, RightCard, Section, TestimonialCard, Top } from './styles';
 import ReactMarkdown from 'react-markdown';
-import LinkComponent from '../linkComponent/linkComponent';
-import { LinkSize } from '../../constants/constant';
 import { VisitSite } from '../../styles/customerstyles';
 import SVGComponent from '../../../public/images/svg/SVGComponent';
 

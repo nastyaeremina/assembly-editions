@@ -81,25 +81,6 @@ const Card = styled.div`
   &:focus-visible {
     outline: 2px solid var(--link-default);
     border-radius: var(--radius-8);
-    ${Overlay} {
-      background: #0000004d;
-    }
-  }
-  &.is-partial {
-    pointer-events: none;
-    cursor: default;
-    ${Overlay} {
-      backdrop-filter: blur(4px);
-      -webkit-backdrop-filter: blur(4px);
-      background: rgba(0, 0, 0, 0.2);
-      will-change: backdrop-filter;
-      ${Details} {
-        filter: blur(4px);
-      }
-      ${BackArrow} {
-        filter: blur(4px);
-      }
-    }
   }
 `;
 
@@ -136,10 +117,13 @@ const SliderButton = styled.div`
   top: 50%;
   transform: translateY(-50%);
   &.left-arrow {
-    left: -24px;
+    left: -37px;
+    @media only screen and (max-width: 1400px) {
+      left: -24px;
+    }
   }
   &.right-arrow {
-    right: -80px;
+    right: -92px;
     @media only screen and (max-width: 1400px) {
       right: -24px;
     }
@@ -148,18 +132,15 @@ const SliderButton = styled.div`
     !props.isDisabled &&
     css`
       &:active {
-        box-shadow: 0px 0px 34.2px 0px #bce7f4, 0px 0px 6.84px 0px #7da4ff;
         border: 1px solid var(--border-hover);
       }
       &:hover {
-        box-shadow: 0px 0px 34.2px 0px #bce7f4, 0px 0px 6.84px 0px #7da4ff;
         border: 1px solid var(--border-hover);
       }
     `}
   ${(props) =>
     props.isActive &&
     css`
-      box-shadow: 0px 0px 34.2px 0px #bce7f4, 0px 0px 6.84px 0px #7da4ff;
       border: 1px solid var(--border-hover);
     `}
   ${(props) =>

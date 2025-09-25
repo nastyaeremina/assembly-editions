@@ -11,7 +11,7 @@ function CarouselSection({ title, description, primaryButtonLink, primaryButtonT
   // make sure carouselData data every item have image.url is not null or image is not null
   const filteredCarouselData = carouselData.filter((item) => item?.image?.url || item?.image?.url !== null);
 
-  if(isEmpty(filteredCarouselData)) return null;
+  if (isEmpty(filteredCarouselData)) return null;
   return (
     <MainBlock>
       <Container>

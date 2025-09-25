@@ -1,5 +1,5 @@
 import styled, { css } from 'styled-components';
-import { h2_semibold, body_regular, h1_semibold, body_semibold } from '../../styles/typography';
+import { h2_semibold, body_regular } from '../../styles/typography';
 import { SectionTone } from '../../constants/constant';
 
 const HeaderSection = styled.div`
@@ -13,10 +13,10 @@ const HeaderSection = styled.div`
   }
 `;
 
-const ContentSection = styled.div`
+const TitleSection = styled.div`
   display: flex;
-  flex-direction: column;
   gap: var(--space-12);
+  flex-direction: column;
   @media only screen and (max-width: 449px) {
     gap: var(--space-20);
   }
@@ -48,6 +48,10 @@ const ButtonGroup = styled.div`
   display: flex;
   align-items: center;
   gap: var(--space-8);
+  @media only screen and (max-width: 390px) {
+    flex-direction: column;
+    align-items: flex-start;
+  }
 `;
 
-export { HeaderSection, Title, Description, ButtonGroup, ContentSection };
+export { HeaderSection, Title, Description, ButtonGroup, TitleSection };

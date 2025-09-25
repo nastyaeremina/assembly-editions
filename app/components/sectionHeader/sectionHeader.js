@@ -1,6 +1,6 @@
 'use client';
 import React from 'react';
-import { HeaderSection, Title, Description, ButtonGroup, ContentSection } from './style';
+import { HeaderSection, Title, Description, ButtonGroup, TitleSection } from './style';
 import { isEmpty } from 'lodash';
 import ButtonV2Component from '../button/buttonV2/buttonV2';
 import { ButtonVariant, SectionTone } from '../../constants/constant';
@@ -28,10 +28,10 @@ function SectionHeader({
 }) {
   return (
     <HeaderSection>
-      <ContentSection>
+      <TitleSection>
         <Title dangerouslySetInnerHTML={{ __html: title }} tone={tone} />
         {!isEmpty(description) && <Description tone={tone}>{description}</Description>}
-      </ContentSection>
+      </TitleSection>
       {(!isEmpty(primaryButtonText) || !isEmpty(secondaryButtonText)) && (
         <ButtonGroup>
           {!isEmpty(primaryButtonText) && (

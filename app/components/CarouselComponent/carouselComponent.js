@@ -12,7 +12,7 @@ function CarouselComponent({ carouselData }) {
     return <SliderButtons xPos={xPos} setXpos={setXpos} noOfSlide={carouselData.length} />;
   }, [carouselData.length, xPos]);
 
-  if(isEmpty(carouselData)) return null;
+  if (isEmpty(carouselData)) return null;
   return (
     <SliderMainDiv>
       <CarouselBlock xPos={xPos} carouselData={carouselData} />
