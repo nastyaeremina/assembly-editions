@@ -232,8 +232,10 @@ const BlogContent = styled.div`
 const Rightcontent = styled.div`
   max-width: 728px;
   width: 100%;
+  overflow: hidden;
   @media only screen and (max-width: 991px) {
-    max-width: unset;
+    overflow: unset;
+    max-width: 100%;
   }
 `;
 

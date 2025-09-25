@@ -6,6 +6,7 @@ import { isEmpty } from '../../helpers/helpers.js';
 import { EXTERNAL_LINK_KEYS } from '../../constants/constant';
 import BlogCTAImage from '../../../public/images/blogcta.png';
 import { Caption, Content, G2Section, Image, ImageDiv, ReviewText, SideBarCTA, Title } from './style';
+import ButtonV2Component from '../button/buttonV2/buttonV2';
 
 export default function BlogSidebarCTA({ headerText, bodyText, externalLinks = {} }) {
   return (
@@ -23,14 +24,11 @@ export default function BlogSidebarCTA({ headerText, bodyText, externalLinks = {
           </ReviewText>
         </G2Section>
       </Content>
-      <Button
-        bgColor={'--title'}
-        fontColor={'--off-white-100'}
-        borderColor={'--title'}
-        text={'Try for free'}
+
+      <ButtonV2Component
+        title={'Try for free'}
         href={externalLinks?.[EXTERNAL_LINK_KEYS.OnboardingLink] || '#'}
-        hoverColor={'--secondary-hover-color'}
-        className={'CTA-button'}
+        isWidth
       />
     </SideBarCTA>
   );

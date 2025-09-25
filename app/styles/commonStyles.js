@@ -2,7 +2,15 @@
 
 import styled, { css } from 'styled-components';
 import { ButtonText, HeaderFont, MbButtonText, MbPrimaryBtn } from './styles';
-import { body_regular, body_semibold, h3_semibold, h4_semibold, tag, label_semibold } from './typography';
+import {
+  body_regular,
+  body_semibold,
+  h3_semibold,
+  h4_semibold,
+  tag,
+  label_semibold,
+  button_regular
+} from './typography';
 
 const Container = styled.div`
   width: 100%;
@@ -156,11 +164,13 @@ const Content = styled.div`
     width: max-content;
     border-radius: var(--radius-30);
     height: 40px;
-    padding: 0 var(--space-24);
+    padding: var(--space-2) var(--space-24) 0;
     display: flex;
     align-items: center;
     justify-content: center;
     margin: var(--space-48) 0;
+    transition: all 0.3s ease;
+    cursor: pointer;
     &:hover {
       background-color: var(--bg-card-dark-hover);
       a {
@@ -246,7 +256,7 @@ const Content = styled.div`
     padding-bottom: var(--space-8);
     display: flex;
     flex-direction: column;
-    gap: var(--space-8);
+    gap: var(--space-24);
     img {
       width: 100%;
       border-radius: var(--radius-12);
@@ -259,6 +269,58 @@ const Content = styled.div`
       width: 100%;
       height: auto;
       aspect-ratio: 16/9;
+    }
+
+    figcaption {
+      display: flex;
+      gap: var(--space-8);
+      overflow: auto;
+      padding: var(--space-3) var(--space-3);
+      margin-top: var(--space-40);
+      &::-webkit-scrollbar {
+        display: none;
+      }
+      & {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+      }
+      @media only screen and (max-width: 991px) {
+        margin: 0 -32px;
+        padding: var(--space-3) var(--space-32) var(--space-3);
+      }
+      @media only screen and (max-width: 449px) {
+        margin: 0 -16px;
+        padding: var(--space-3) var(--space-16) var(--space-3);
+        margin-top: var(--space-24);
+      }
+    }
+    // Chip styling for processed figcaption items
+    figcaption .kg-chip {
+      display: inline-flex;
+      align-items: center;
+      padding: var(--space-2) var(--space-16) 0;
+      height: 40px;
+      border-radius: 9999px;
+      background: var(--gray-50);
+      color: var(--title);
+      ${button_regular}
+      cursor: pointer;
+      border: 1px solid transparent;
+      transition: border 0.3s ease;
+      white-space: nowrap;
+      &:hover {
+        border: 1px solid var(--border-hover);
+      }
+      &.active {
+        background: var(--title);
+        color: var(--off-white-100);
+        border: 1px solid var(--title);
+      }
+    }
+    figcaption .kg-chip.active {
+      background: var(--title);
+      color: var(--off-white-100);
+      border: 1px solid var(--title);
     }
   }
 

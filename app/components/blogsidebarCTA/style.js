@@ -1,19 +1,10 @@
 import styled from 'styled-components';
-import { MbPrimaryBtn } from '../../styles/styles';
 import { body_regular, label_regular } from '../../styles/typography';
 
 const SideBarCTA = styled.div`
   padding: var(--space-20) var(--space-20) var(--space-24);
   border: 1px solid var(--border-default);
   border-radius: var(--radius-20);
-  .CTA-button {
-    a {
-      width: 100%;
-      justify-content: center;
-      padding: 7px 32px;
-      ${MbPrimaryBtn}
-    }
-  }
   @media only screen and (max-width: 768px) {
     display: none;
   }

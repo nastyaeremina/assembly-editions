@@ -25,10 +25,11 @@ import { CTAData } from '../../../constants/raw';
 import ToastMessage from '../../ToastMessage/toastMessage';
 import TableOfContents from './TableOfContents';
 import useNavbarHeight from '../../../hooks/useNavbarHeight';
+import GhostGalleryComponent from './ghostGalleryComponent';
 import BlockQuote from '../../blockQuote';
 
 // Regular expression to match blockQuote tags with their attributes and content
-const BLOCKQUOTE_REGEX = /<blockQuote\b([^>]*)>\s*<\/blockQuote>/gi;
+const BLOCKQUOTE_PLACEHOLDER = /<blockQuote\b([^>]*)>\s*<\/blockQuote>/gi;
 
 /**
  * Extracts the value of a specific attribute from an HTML attributes string
@@ -61,6 +62,9 @@ export default function BlogdetailPage({
 }) {
   const [CopyBlockData, setCopyBlock] = useState([]);
   const [showToast, setShowToast] = useState(false);
+  // Track client-side mount to avoid SSR hydration mismatch;
+  // used to defer rendering of interactive galleries until after mount
+  const [isMounted, setIsMounted] = useState(false);
 
   const shouldShowBlogCTA = !isEmpty(ctaDescription) && !isEmpty(ctaTitle);
   const shouldShowTOC = blogDetail?.custom_template !== 'custom-no-toc';
@@ -78,7 +82,8 @@ export default function BlogdetailPage({
       } else {
         const findIndex = newList?.findIndex((item) => item === index);
         if (findIndex !== -1) {
-          newList.slice(findIndex, 1);
+          // FIX: use splice (slice was a no-op)
+          newList.splice(findIndex, 1);
         }
         setCopyBlock(newList);
       }
@@ -97,112 +102,147 @@ export default function BlogdetailPage({
     setShowToast(false);
   }, []);
 
-  function renderNonCode(segment, parentKey) {
-    try {
-      if (segment.indexOf('<blockQuote') === -1) {
-        return <div key={parentKey} dangerouslySetInnerHTML={{ __html: segment }} />;
-      }
+  // Avoid hydration mismatch by rendering interactive galleries only after mount
+  React.useEffect(() => {
+    setIsMounted(true);
+  }, []);
 
-      var parts = [];
-      var lastIndex = 0;
-      var match;
-      BLOCKQUOTE_REGEX.lastIndex = 0;
-
-      var i = 0;
-      while ((match = BLOCKQUOTE_REGEX.exec(segment))) {
-        var full = match[0];
-        var attrs = match[1] || '';
-        var start = match.index;
-        var end = start + full.length;
-
-        var before = segment.slice(lastIndex, start);
-        if (before) {
-          parts.push(<div key={parentKey + '-before-' + i} dangerouslySetInnerHTML={{ __html: before }} />);
-        }
-
-        var quote = getAttr(attrs, 'data-quote');
-        var author = getAttr(attrs, 'data-author') || undefined;
-        var role = getAttr(attrs, 'data-role') || undefined;
-
-        parts.push(<BlockQuote key={parentKey + '-blockQuote-' + i} quote={quote} author={author} role={role} />);
-
-        lastIndex = end;
-        i++;
-      }
-
-      var after = segment.slice(lastIndex);
-      if (after) {
-        parts.push(<div key={parentKey + '-after'} dangerouslySetInnerHTML={{ __html: after }} />);
-      }
-
-      return <>{parts}</>;
-    } catch (err) {
-      console.error('renderNonCode error:', err);
-      return <div key={parentKey} dangerouslySetInnerHTML={{ __html: segment }} />;
+  /**
+   * Replace <blockQuote data-quote="" data-author="" data-role=""></blockQuote>
+   * with <BlockQuote /> component(s).
+   */
+  function renderBlockQuotes(htmlString, keyPrefix = 'bq') {
+    if (!htmlString?.includes('<blockQuote')) {
+      return [<div key={keyPrefix} dangerouslySetInnerHTML={{ __html: htmlString }} />];
     }
+
+    const parts = [];
+    let lastIndex = 0;
+    let match;
+    let i = 0;
+    BLOCKQUOTE_PLACEHOLDER.lastIndex = 0;
+
+    while ((match = BLOCKQUOTE_PLACEHOLDER.exec(htmlString)) !== null) {
+      const full = match[0];
+      const attrs = match[1] || '';
+      const start = match.index;
+      const end = start + full.length;
+
+      const before = htmlString.slice(lastIndex, start);
+      if (before && before.trim()) {
+        parts.push(<div key={`${keyPrefix}-before-${i}`} dangerouslySetInnerHTML={{ __html: before }} />);
+      }
+
+      const quote = getAttr(attrs, 'data-quote');
+      const author = getAttr(attrs, 'data-author') || undefined;
+      const role = getAttr(attrs, 'data-role') || undefined;
+
+      parts.push(<BlockQuote key={`${keyPrefix}-bq-${i}`} quote={quote} author={author} role={role} />);
+
+      lastIndex = end;
+      i++;
+    }
+
+    const after = htmlString.slice(lastIndex);
+    if (after && after.trim()) {
+      parts.push(<div key={`${keyPrefix}-after`} dangerouslySetInnerHTML={{ __html: after }} />);
+    }
+
+    return parts;
   }
-
   const renderHTMLContent = useCallback(() => {
-    try {
-      const segments = renderContentWithVideos(htmlData)?.split(EXTRACT_CODE_TAG_FROM_HTML_REGEX) || [];
-      if (isEmpty(segments)) return null;
-      return (
-        <Content applyMargin={!shouldShowTOC} hasTopBar={hasTopBar}>
-          {segments.map((segment, index) => {
-            try {
-              if (segment?.startsWith('<pre><code')) {
-                const codeContent = segment
-                  ?.replace(/<pre>/g, '')
-                  ?.replace(/<\/pre>/g, '')
-                  ?.replace(/<code[^>]*>/g, '')
-                  ?.replace(/<\/code>/g, '');
-                return (
-                  <div key={index} className='code-block'>
-                    <CopyBlock text={codeContent} codeBlock theme={dracula} showLineNumbers={false} />
-                    <p
-                      className='copy-icon'
-                      onClick={() => {
-                        try {
-                          copy(codeContent?.trim());
-                          onChangeCopy({ index, isCopy: true });
-                          setTimeout(() => {
-                            onChangeCopy({ index, isCopy: false });
-                          }, 3000);
-                        } catch (e) {
-                          console.error('copy handler error:', e);
-                        }
-                      }}>
-                      {CopyBlockData?.indexOf(index) !== -1 ? (
-                        <CopyIcon>
-                          <SVGComponent name='correct-icon' width='20' height='20' viewBox='0 0 16 16' />
-                        </CopyIcon>
-                      ) : (
-                        <CopyIcon>
-                          <SVGComponent name='copy-icon' width='20' height='21' viewBox='0 0 20 21' />
-                        </CopyIcon>
-                      )}
-                    </p>
-                  </div>
-                );
-              } else {
-                return renderNonCode(segment, index);
+    const segments = renderContentWithVideos(htmlData)?.split(EXTRACT_CODE_TAG_FROM_HTML_REGEX) || [];
+    if (isEmpty(segments)) return null;
+
+    return (
+      <Content applyMargin={!shouldShowTOC} hasTopBar={hasTopBar}>
+        {segments.flatMap((segment, index) => {
+          // Transform comma/tab separated text inside <figcaption> <span> into multiple chip spans
+          const processedSegment = segment?.includes('<figcaption')
+            ? segment.replace(
+                /(<figcaption[^>]*>)[\s\S]*?<span[^>]*>([\s\S]*?)<\/span>([\s\S]*?<\/figcaption>)/g,
+                (_match, figStart, inner, figEnd) => {
+                  const items = inner
+                    .replace(/\n/g, ' ')
+                    .split(/[\t,]+/)
+                    .map((s) => s.trim())
+                    .filter(Boolean);
+                  const chips = items.map((txt) => `<button class="kg-chip">${txt}</button>`).join(' ');
+                  return `${figStart}${chips}${figEnd}`;
+                }
+              )
+            : segment;
+
+          if (processedSegment?.startsWith('<pre><code')) {
+            // code block
+            const codeContent = processedSegment
+              ?.replace(/<pre>/g, '')
+              ?.replace(/<\/pre>/g, '')
+              ?.replace(/<code[^>]*>/g, '')
+              ?.replace(/<\/code>/g, '');
+
+            return (
+              <div key={index} className='code-block'>
+                <CopyBlock text={codeContent} codeBlock theme={dracula} showLineNumbers={false} />
+                <p
+                  className='copy-icon'
+                  onClick={() => {
+                    copy((codeContent || '').trim());
+                    onChangeCopy({ index, isCopy: true });
+                    setTimeout(() => {
+                      onChangeCopy({ index, isCopy: false });
+                    }, 3000);
+                  }}>
+                  {CopyBlockData?.indexOf(index) !== -1 ? (
+                    <CopyIcon>
+                      <SVGComponent name='correct-icon' width='20' height='20' viewBox='0 0 16 16' />
+                    </CopyIcon>
+                  ) : (
+                    <CopyIcon>
+                      <SVGComponent name='copy-icon' width='20' height='21' viewBox='0 0 20 21' />
+                    </CopyIcon>
+                  )}
+                </p>
+              </div>
+            );
+          } else {
+            // 1) Intercept Ghost gallery card and render controlled component while preserving surrounding content
+            if (processedSegment?.includes('kg-gallery-card')) {
+              const results = [];
+              const galleryRegex = /<figure[^>]*class=\"[^\"]*kg-gallery-card[^\"]*\"[\s\S]*?<\/figure>/gi;
+              let lastIndex = 0;
+              let match;
+              let part = 0;
+
+              while ((match = galleryRegex.exec(processedSegment)) !== null) {
+                const before = processedSegment.slice(lastIndex, match.index);
+                if (before && before.trim()) {
+                  results.push(renderBlockQuotes(before, index));
+                }
+                const figureHtml = match[0];
+                if (isMounted) {
+                  results.push(<GhostGalleryComponent key={`${index}-gallery-${part}`} htmlString={figureHtml} />);
+                } else {
+                  results.push(
+                    <div key={`${index}-gallery-${part}`} dangerouslySetInnerHTML={{ __html: figureHtml }} />
+                  );
+                }
+                lastIndex = galleryRegex.lastIndex;
+                part += 1;
               }
-            } catch (innerErr) {
-              console.error('render segment error:', innerErr);
-              return <div key={index} dangerouslySetInnerHTML={{ __html: segment }} />;
+              const after = processedSegment.slice(lastIndex);
+              if (after && after.trim()) {
+                results.push(renderBlockQuotes(after, index));
+              }
+              return results;
             }
-          })}
-        </Content>
-      );
-    } catch (err) {
-      console.error('renderHTMLContent error:', err);
-      return (
-        <Content applyMargin={!shouldShowTOC} hasTopBar={hasTopBar}>
-          <div dangerouslySetInnerHTML={{ __html: htmlData }} />
-        </Content>
-      );
-    }
-  }, [CopyBlockData, htmlData, onChangeCopy, shouldShowTOC, hasTopBar]);
+            // 2) Upgrade placeholders → <BlockQuote /> OR dump as raw HTML
+            return renderBlockQuotes(processedSegment, index);
+          }
+        })}
+      </Content>
+    );
+  }, [CopyBlockData, htmlData, onChangeCopy, shouldShowTOC, hasTopBar, isMounted, renderBlockQuotes]);
 
   return (
     <>
