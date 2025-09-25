@@ -269,6 +269,53 @@ export function getBreadcrumbFromReferer(referer, currentDomain) {
 }
 
 /**
+ * Transforms blockquote elements followed by a UL of 1-2 items into a custom
+ * <blockQuote /> tag with author and role metadata.
+ *
+ * Expects HTML structure like:
+ * <blockquote>Quote text</blockquote>
+ * <ul>
+ *   <li>Author Name</li>
+ *   <li>Role (optional)</li>
+ * </ul>
+ *
+ * @param {import('node-html-parser').HTMLElement} root - The parsed HTML root
+ */
+export function transformBlockquotesToQuoteTags(root) {
+  try {
+    if (!root) return root;
+
+    root.querySelectorAll('blockquote').forEach((bq) => {
+      const next = bq?.nextElementSibling;
+
+      if (next && next.tagName === 'UL') {
+        const items = next.querySelectorAll('li') || [];
+        if (items.length >= 1 && items.length <= 2) {
+          const quote = (bq.textContent || '').trim();
+          const author = items[0]?.textContent?.trim() ?? '';
+          const role = items[1]?.textContent?.trim() ?? '';
+
+          const testimonialTag = `<blockQuote data-quote=\"${quote}\" data-author=\"${author}\" data-role=\"${role}\"></blockQuote>`;
+
+          try { next.remove(); } catch (_) {}
+          try { bq.replaceWith(parse(testimonialTag)); } catch (_) {}
+        }
+      } else {
+        // Standalone blockquote without a following UL: still convert to <blockQuote />
+        const quote = (bq.textContent || '').trim();
+        const testimonialTag = `<blockQuote data-quote=\"${quote}\" data-author=\"\" data-role=\"\"></blockQuote>`;
+        try { bq.replaceWith(parse(testimonialTag)); } catch (_) {}
+      }
+    });
+
+    return root;
+  } catch (error) {
+    console.error('transformBlockquotesToQuoteTags error:', error);
+    return root;
+  }
+}
+
+/**
  * extractTopImage
  *
  * Looks at the blog HTML and checks if the very first top-level block

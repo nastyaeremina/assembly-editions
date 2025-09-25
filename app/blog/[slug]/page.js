@@ -3,7 +3,7 @@ import { parse } from 'node-html-parser';
 import Layout from '../../components/layout';
 import { getAllTagWithSlug, getBlogDetail } from '../../lib/blog-content';
 import { customSort, isEmpty, isValidUrl } from '../../helpers/helpers';
-import { getExternalLinks, isSameDomain } from '../../helpers/serverSideHelpers';
+import { getExternalLinks, isSameDomain, transformBlockquotesToQuoteTags } from '../../helpers/serverSideHelpers';
 import BlogdetailPage from '../../components/PageComponent/Blog/blogDetailPage';
 import { BLOG_TAG_SORTED_LIST, CURRENT_SITE_URL, CURRENT_DOMAIN } from '../../constants/constant';
 import { getTopBarContent } from '../../components/navbar/navbar';
@@ -146,6 +146,8 @@ export default async function Blogdetail({ params }) {
         }
       }
     });
+    transformBlockquotesToQuoteTags(root);
+        
     modifiedHtmlData = root.toString();
   } catch (error) {
     console.error('Error processing HTML content:', error);

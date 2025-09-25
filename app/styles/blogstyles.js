@@ -207,7 +207,7 @@ const BlogDetailsidebar = styled.div`
   height: 100%;
   position: sticky;
   top: ${(props) => props.stickyTop + 40}px;
-  @media only screen and (max-width: 768px) {
+  @media only screen and (max-width: 991px) {
     display: none;
   }
 `;
@@ -232,6 +232,9 @@ const BlogContent = styled.div`
 const Rightcontent = styled.div`
   max-width: 728px;
   width: 100%;
+  @media only screen and (max-width: 991px) {
+    max-width: unset;
+  }
 `;
 
 const Post = styled.div`
