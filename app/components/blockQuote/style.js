@@ -4,7 +4,7 @@ import { button_regular, h3_semibold } from '../../styles/typography';
 const MainDiv = styled.div`
   margin-block: var(--space-40) var(--space-8);
   max-width: 728px;
-  padding: var(--space-24);
+  padding: var(--space-24) !important;
   border-radius: var(--radius-12);
   background-color: var(--gray-50);
   display: flex;

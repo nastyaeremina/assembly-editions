@@ -74,6 +74,7 @@ entries{
     sys{
       id
     }
+    __typename
      ...on Video{
      ${POST_GRAPHQL_VIDEO_CONTENT_FIELDS}
     }
@@ -228,6 +229,6 @@ export async function getGuideHomePageContent({ id, preview }) {
     `,
     preview,
     [CONTENTFUL_API_TAG.GUIDE]
-  );  
+  );
   return entries?.data?.pageDocs;
 }

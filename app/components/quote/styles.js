@@ -1,5 +1,6 @@
 import styled, { css } from 'styled-components';
 import { Body3, Body4, ButtonText, Heading3, Heading4, MobileH3, Quote } from '../../styles/styles';
+import { body_regular, button_regular, h2_semibold, h3_semibold } from '../../styles/typography';
 
 const QuoteMain = styled.div`
   ${(props) =>
@@ -31,7 +32,7 @@ const QuoteMain = styled.div`
     ${(props) =>
       props.caseStudies &&
       css`
-        padding: 80px 0;
+        padding: 0;
       `}
       ${(props) =>
       props.isStandardPage &&
@@ -58,6 +59,20 @@ const Mainss = styled.div`
   @media only screen and (max-width: 768px) {
     flex-wrap: wrap;
   }
+  ${(props) =>
+    props.caseStudies &&
+    css`
+      border: none;
+      border-radius: 0;
+      background-color: unset;
+      margin: 0 -24px;
+      @media only screen and (max-width: 991px) {
+        margin: 0 -32px;
+      }
+      @media only screen and (max-width: 449px) {
+        margin: 0 -16px;
+      }
+    `}
 `;
 const QuoteTxt = styled.div`
   display: flex;
@@ -65,7 +80,7 @@ const QuoteTxt = styled.div`
   justify-content: space-between;
   padding: 40px 40px 40px 0;
   p {
-    ${Quote};
+    ${h3_semibold};
     margin: 0px 0 30px 0;
     color: var(--title);
   }
@@ -73,12 +88,12 @@ const QuoteTxt = styled.div`
     font-weight: 500;
   }
   h2 {
-    ${Heading3}
+    ${h2_semibold}
     margin: 0px 0 30px 0;
     color: var(--title);
   }
   h3 {
-    ${Heading4}
+    ${h3_semibold}
     margin: 0px 0 30px 0;
     color: var(--title);
   }
@@ -129,7 +144,7 @@ const QuoteTxt = styled.div`
       color: var(--title);
       padding-left: 30px;
       position: relative;
-      ${Body3}
+      ${h3_semibold}
       p {
         color: var(--title);
         margin: 0;
@@ -156,7 +171,7 @@ const QuoteTxt = styled.div`
     font-style: italic;
     p {
       margin: 0;
-      ${Body3}
+      ${h3_semibold}
     }
     @media only screen and (max-width: 449px) {
       padding-left: 16px;
@@ -164,23 +179,56 @@ const QuoteTxt = styled.div`
   }
   @media only screen and (max-width: 768px) {
     padding: 20px;
+    ${(props) =>
+      props.caseStudies &&
+      css`
+        padding: 0;
+      `}
     p {
-      ${MobileH3};
       padding-bottom: 0px;
     }
   }
+  ${(props) =>
+    props.caseStudies &&
+    css`
+      padding: 0;
+      margin: var(--space-24) 0 0 !important;
+      padding-bottom: var(--space-8) !important;
+
+      p {
+        margin: 0;
+      }
+      h2 {
+        margin: 0;
+      }
+      h3 {
+        margin: 0;
+      }
+      ul {
+        margin: 0;
+      }
+      ol {
+        margin: 0;
+      }
+      blockquote {
+        margin: 0;
+      }
+      @media only screen and (max-width: 449px) {
+        margin: var(--space-20) 0 0 !important;
+      }
+    `}
 `;
 const QuoteSubTxt = styled.div`
   span {
     margin: 0 0 4px 0;
     display: block;
-    ${ButtonText};
+    ${button_regular};
     color: var(--title);
   }
   p {
     margin: 0;
-    ${Body4};
-    color: var(--body);
+    ${body_regular};
+    color: var(--text-secondary);
   }
   @media only screen and (max-width: 768px) {
     span {
@@ -193,6 +241,37 @@ const QuoteSubTxt = styled.div`
       line-height: 21px;
     }
   }
+  ${(props) =>
+    props.caseStudies &&
+    css`
+      margin-top: var(--space-20) !important;
+      display: flex;
+      align-items: center;
+      gap: var(--space-12);
+      .dot {
+        color: var(--text-secondary);
+        margin: 0 !important;
+      }
+      span {
+        margin: 0 !important;
+        display: block;
+        ${button_regular};
+        color: var(--text-secondary);
+      }
+      p {
+        margin: 0;
+        ${button_regular};
+        color: var(--text-secondary);
+      }
+      @media only screen and (max-width: 449px) {
+        margin-top: var(--space-12) !important;
+        gap: var(--space-8);
+        flex-wrap: wrap;
+        .dot {
+          display: none;
+        }
+      }
+    `}
 `;
 const QuoteTop = styled.div`
   position: relative;

@@ -1,48 +1,76 @@
 'use client';
-import Image from 'next/image';
-import Link from 'next/link';
-import React from 'react';
+import React, { useCallback } from 'react';
 import {
-  Bottom,
-  CustomerLogo,
+  CaseStudyPageWrapper,
   CustomerSection,
   Detail,
   DetailSection,
   Head,
   Left,
   LeftSection,
-  RightSection,
+  SectionBlock,
   Top
 } from '../../../styles/casestudiestyles';
-import { Container } from '../../../styles/commonStyles';
+import { Container, Content } from '../../../styles/commonStyles';
 import AppCardSection from '../../casestudies/appcardsection';
-import HighlightSectionComponents from '../../casestudies/highlightSection';
 import { isEmpty } from '../../../helpers/helpers';
-import Quote from '../../quote/quote';
-import { FEATURE_THEME_LIST, HeroTypes } from '../../../constants/constant';
+import { HeroTypes, LinkSize } from '../../../constants/constant';
 import StandardHero from '../../standardHero/standardHero';
 import RichTextDetail from '../../richTextDetail/richText';
+import NewCTA from '../../cta/newCTA';
+import { CTAData } from '../../../constants/raw';
+import LinkComponent from '../../linkComponent/linkComponent';
+import useNavbarHeight from '../../../hooks/useNavbarHeight';
 
 export default function CaseStudiesPage({ details }) {
   if (isEmpty(details)) return;
+  const { totalHeight } = useNavbarHeight();
+
+  const splitByH2 = useCallback((doc) => {
+    if (!doc?.content) return { beforeH2: [], sections: [] };
+
+    const sections = [];
+    let currentSection = null;
+    let beforeH2 = [];
+
+    doc.content.forEach((node) => {
+      if (node.nodeType === 'heading-2') {
+        if (currentSection) sections.push(currentSection);
+
+        currentSection = {
+          title: node.content.map((c) => c.value).join(''),
+          nodes: []
+        };
+      } else {
+        if (!currentSection) {
+          // nodes before first H2
+          beforeH2.push(node);
+        } else {
+          currentSection.nodes.push(node);
+        }
+      }
+    });
+
+    if (currentSection) sections.push(currentSection);
+
+    return { beforeH2, sections };
+  }, []);
+
+  const { beforeH2, sections } = splitByH2(details.body?.json);
 
   return (
-    <>
-      <div className='standard-page'>
-        <StandardHero type={HeroTypes.CENTER} data={details.heroSection} />
-      </div>
-      {!isEmpty(details.highlights) && <HighlightSectionComponents data={details.highlights} />}
+    <CaseStudyPageWrapper>
+      <StandardHero
+        type={details.heroSection.type}
+        data={{ ...details.heroSection, logo: details.customerLogo?.imageAsset?.url }}
+        highlights={details.highlights}
+      />
       <Container>
         <CustomerSection>
           <LeftSection>
-            <Left>
+            <Left totalHeight={totalHeight}>
               <Top>
-                {!isEmpty(details.customerLogo?.imageAsset?.url) && (
-                  <CustomerLogo>
-                    <Image src={details.customerLogo?.imageAsset?.url} alt='company logo' width={218} height={50} />
-                  </CustomerLogo>
-                )}
-                <Head>About</Head>
+                <Head>{`${details.customerLogo.name} at Glance`}</Head>
                 <DetailSection>
                   {!isEmpty(details.customerFounded) && (
                     <Detail>
@@ -52,48 +80,77 @@ export default function CaseStudiesPage({ details }) {
                   )}
                   {!isEmpty(details.customerSince) && (
                     <Detail>
-                      <h3>Running on Copilot since</h3>
+                      <h3>Running on Assembly since</h3>
                       <p>{details.customerSince}</p>
                     </Detail>
                   )}
                   {!isEmpty(details.customerSince) && (
                     <Detail>
                       <h3>Company URL</h3>
-                      <Link
-                        href={
+                      <LinkComponent
+                        title={details.customerCompanyUrl}
+                        linkHref={
                           details.customerCompanyUrl.includes('https://') ||
                           details.customerCompanyUrl.includes('http://')
                             ? details.customerCompanyUrl
                             : `https:\\${details.customerCompanyUrl}`
-                        }>
-                        {details.customerCompanyUrl}
-                      </Link>
+                        }
+                        size={LinkSize.LARGE}
+                      />
                     </Detail>
                   )}
                   {!isEmpty(details.industry) && (
                     <Detail>
                       <h3>Industry</h3>
-                      <Link href={`/${details.industry?.slug}`}>{details.industry?.title} </Link>
+                      <LinkComponent
+                        title={details.industry?.title}
+                        linkHref={`/${details.industry?.slug}`}
+                        size={LinkSize.LARGE}
+                      />
+                    </Detail>
+                  )}
+                  {(!isEmpty(details.appsCollection?.items) || !isEmpty(details.appsCollection?.items)) && (
+                    <Detail>
+                      <h3>Apps in use</h3>
+                      <AppCardSection appsList={details.appsCollection?.items} />
                     </Detail>
                   )}
                 </DetailSection>
               </Top>
-              {(!isEmpty(details.appsCollection?.items) || !isEmpty(details.appsCollection?.items)) && (
-                <Bottom>
-                  <Head>Apps in use</Head>
-                  <AppCardSection appsList={details.appsCollection?.items} />
-                </Bottom>
-              )}
             </Left>
           </LeftSection>
-          <RightSection>
-            <RichTextDetail data={details.body?.json} assets={details.body?.links} shouldHeadingCopy={false} />
-          </RightSection>
+          {beforeH2.length > 0 && (
+            <Content>
+              <RichTextDetail
+                data={{ ...details.body?.json, content: beforeH2 }}
+                assets={details.body?.links}
+                shouldHeadingCopy={false}
+              />
+            </Content>
+          )}
         </CustomerSection>
+
+        {sections.map((sec, i) => (
+          <SectionBlock totalHeight={totalHeight}>
+            <h2>{sec.title}</h2>
+            <Content key={i}>
+              <RichTextDetail
+                data={{ ...details.body?.json, content: sec.nodes }}
+                assets={details.body?.links}
+                shouldHeadingCopy={false}
+              />
+            </Content>
+          </SectionBlock>
+        ))}
       </Container>
-      {!isEmpty(details.testimonial) && (
-        <Quote gradientImage={FEATURE_THEME_LIST.Other.imageList} data={details.testimonial} caseStudies />
-      )}
-    </>
+      <NewCTA
+        title={CTAData.title}
+        description={CTAData.description}
+        primaryButtonLink={CTAData.primaryButtonLink}
+        primaryButtonText={CTAData.primaryButtonText}
+        secondaryButtonLink={CTAData.secondaryButtonLink}
+        secondaryButtonText={CTAData.secondaryButtonText}
+      />
+    </CaseStudyPageWrapper>
   );
 }

@@ -6,11 +6,12 @@ export default function HighLightsCard({
   caption,
   ishighlight1 = false,
   ishighlight2 = false,
-  ishighlight3 = false
+  ishighlight3 = false,
+  variant
 }) {
   return (
-    <Highlight ishighlight1={ishighlight1} ishighlight2={ishighlight2} ishighlight3={ishighlight3}>
-      <h2>{title}</h2>
+    <Highlight ishighlight1={ishighlight1} ishighlight2={ishighlight2} ishighlight3={ishighlight3} variant={variant}>
+      <h3>{title}</h3>
       <p>{caption}</p>
     </Highlight>
   );

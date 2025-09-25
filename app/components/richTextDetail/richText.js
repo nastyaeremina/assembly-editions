@@ -9,6 +9,7 @@ import CopyLink from '../copyLink/copyLink';
 import VideoComponent from '../../components/videoComponent';
 import ZoomImageSlider from '../zoomImage/zoomImageslider';
 import IframeView from './iframeView';
+import BlockQuote from '../blockQuote';
 
 export default function RichTextDetail({ assets = [], data, shouldHeadingCopy = true }) {
   const [isOpen, setIsOpen] = useState(false);
@@ -22,7 +23,7 @@ export default function RichTextDetail({ assets = [], data, shouldHeadingCopy = 
   }, []);
 
   const assetData = assets?.assets?.block || [];
-  const videoEntries = assets?.entries?.inline || [];
+  const inlineEntries = assets?.entries?.inline || [];
   const options = {
     renderMark: {
       [MARKS.CODE]: (text) => (
@@ -89,24 +90,33 @@ export default function RichTextDetail({ assets = [], data, shouldHeadingCopy = 
       },
       [INLINES.EMBEDDED_ENTRY]: (node) => {
         const entryId = node?.data?.target?.sys?.id;
-        const videoData = videoEntries.find((item) => item?.sys?.id === entryId);
-        if (videoData) {
-          const videoUrl = videoData?.video?.url;
-          const thumbnailUrl = videoData?.thumbnailImage?.url;
+        const entryData = inlineEntries.find((item) => item?.sys?.id === entryId);
+        if (!entryData) return null;
 
-          //check if is embedWithiframe is true and videolink available
-          if (videoData?.isEmbedWithIframe === true && !isEmpty(videoData?.videoLink)) {
-            return <IframeView url={videoData.videoLink} title={videoData.name} />;
+        // Render based on the Contentful type
+        switch (entryData.__typename) {
+          case 'Video': {
+            const videoUrl = entryData?.video?.url;
+            const thumbnailUrl = entryData?.thumbnailImage?.url;
+
+            if (entryData?.isEmbedWithIframe === true && !isEmpty(entryData?.videoLink)) {
+              return <IframeView url={entryData.videoLink} title={entryData.name} />;
+            }
+            if (videoUrl) {
+              return <VideoComponent src={videoUrl} poster={thumbnailUrl} />;
+            }
+            return null;
           }
-          if (videoUrl)
-            return (
-              <>
-                <VideoComponent src={videoUrl} poster={thumbnailUrl} />
-              </>
-            );
+          case 'Testimonial': {
+            //remove double quotes from quote
+            if (isEmpty(entryData.quoteNew)) return null;
+            const match = entryData.quoteNew.match(/[“"']([^“"']+)[”"']/);
+            const quote = match ? match[1].trim() : entryData.quoteNew;
+            return <BlockQuote quote={quote} author={entryData.name} role={entryData.role} />;
+          }
+          default:
+            return null;
         }
-
-        return null;
       },
       [BLOCKS.EMBEDDED_ASSET]: (node) => {
         const assetId = node?.data?.target?.sys?.id;

@@ -153,6 +153,7 @@ const TableMainDiv = styled.div`
           :first-child {
             background-color: var(--gray-50);
             border-top: 1px solid var(--border-default);
+            max-width: 100%;
           }
           :nth-child(2),
           :nth-child(3) {

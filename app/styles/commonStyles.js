@@ -225,6 +225,10 @@ const Content = styled.div`
     padding-bottom: var(--space-8);
     color: var(--title);
     ${h3_semibold}
+    p {
+      color: var(--title);
+      ${h3_semibold}
+    }
     a {
       ${h3_semibold}
       color: var(--link-default);
@@ -686,22 +690,13 @@ const Content = styled.div`
     color: var(--title);
     ${body_regular}
   }
-  p {
-    :first-child {
-      padding-top: 0;
-      margin-top: 0;
-    }
+  *:first-child {
+    margin-top: 0;
+    padding-top: 0;
   }
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6 {
-    :first-child {
-      padding-top: 0;
-      margin-top: 0;
-    }
+  *:last-child {
+    margin-bottom: 0;
+    padding-bottom: 0;
   }
 
   p {

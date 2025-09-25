@@ -1,10 +1,10 @@
 import styled, { css } from 'styled-components';
 import { Body2, Heading2, MbBody1, MobileH2 } from '../../styles/styles';
+import { HeroTypes } from '../../constants/constant';
 
 const HeroSection = styled.div`
   width: 100%;
   padding: var(--space-80) 0 0px 0;
-  text-align: center;
   overflow: hidden;
   @media only screen and (max-width: 991px) {
     padding: var(--space-64) 0 var(--space-20) 0;
@@ -31,6 +31,36 @@ const HeroSection = styled.div`
     @media only screen and (max-width: 449px) {
       margin-top: var(--space-28);
     }
+  }
+  .logo-image {
+    width: auto;
+    height: auto;
+    max-height: 48px;
+    margin: 0 0 var(--space-32);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    ${(props) =>
+      props.variant === HeroTypes.CENTER &&
+      css`
+        margin: 0 auto var(--space-32);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      `}
+    @media screen and (max-width: 449px) {
+      align-items: flex-start;
+      margin: 0 0 var(--space-32);
+      justify-content: flex-start;
+    }
+  }
+`;
+
+const BottomSection = styled.div`
+  display: flex;
+  flex-direction: column;
+  @media only screen and (max-width: 991px) {
+    flex-direction: column-reverse;
   }
 `;
 
@@ -264,4 +294,4 @@ const MainImage = styled.div`
   }
 `;
 
-export { HeroSection, HeroHeading, Para, ImageHover, ReviewLogo, RightWrap, HeroBtnBlock, MainImage };
+export { HeroSection, HeroHeading, Para, ImageHover, ReviewLogo, RightWrap, HeroBtnBlock, MainImage, BottomSection };

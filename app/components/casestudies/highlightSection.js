@@ -3,7 +3,7 @@ import { convertHighlights, isEmpty } from '../../helpers/helpers';
 import { HighlightSection } from '../../styles/casestudiestyles';
 import HighLightsCard from './highlights';
 
-export default function HighlightSectionComponents({ data }) {
+export default function HighlightSectionComponents({ data, variant }) {
   const renderHighlightView = useMemo(() => {
     const newList = convertHighlights(data);
 
@@ -17,10 +17,11 @@ export default function HighlightSectionComponents({ data }) {
           ishighlight1={index === 0}
           ishighlight2={index === 1}
           ishighlight3={index === 2}
+          variant={variant}
         />
       );
     });
   }, [data]);
 
-  return <>{!isEmpty(data) && <HighlightSection>{renderHighlightView}</HighlightSection>}</>;
+  return <>{!isEmpty(data) && <HighlightSection variant={variant}>{renderHighlightView}</HighlightSection>}</>;
 }

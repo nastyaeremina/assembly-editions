@@ -1,13 +1,7 @@
-import React, { useCallback, useMemo } from 'react';
-import {
-  FEATURES_BILLING_ID,
-  FEATURES_FILES_ID,
-  FEATURES_FORMS_ID,
-  FEATURES_HELPDESK_ID,
-  FEATURES_MESSAG_ID
-} from '../../constants/constant';
+import React, { useMemo } from 'react';
 import { isEmpty } from '../../helpers/helpers';
 import AppCard from './appcard';
+import { AppsSection } from '../../styles/casestudiestyles';
 
 export default function AppCardSection({ appsList }) {
   const renderAppView = useMemo(() => {
@@ -23,5 +17,5 @@ export default function AppCardSection({ appsList }) {
       );
     });
   }, [appsList]);
-  return <>{renderAppView}</>;
+  return <AppsSection>{renderAppView}</AppsSection>;
 }

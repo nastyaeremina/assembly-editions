@@ -19,17 +19,18 @@ export default function Quote({ gradientImage, data, caseStudies = false, isStan
   return (
     <QuoteMain gradientImage={gradientImage} caseStudies={caseStudies} isStandardPage={isStandardPage}>
       <Container>
-        <Mainss>
+        <Mainss caseStudies={caseStudies}>
           {/* Conditionally render the image if the URL is not empty */}
           {!isEmpty(data?.image?.url) && (
             <QuoteImg>
               <Image src={data?.image?.url} alt='red-icon' width={413} height={405} layout={'fixed'} />
             </QuoteImg>
           )}
-          <QuoteTxt>
+          <QuoteTxt caseStudies={caseStudies}>
             <ReactMarkdown>{data?.quoteNew}</ReactMarkdown>
-            <QuoteSubTxt>
+            <QuoteSubTxt caseStudies={caseStudies}>
               <span>{data?.name}</span>
+              {caseStudies && <span className='dot'> • </span>}
               <p>{data?.role}</p>
             </QuoteSubTxt>
           </QuoteTxt>

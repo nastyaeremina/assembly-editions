@@ -2,7 +2,7 @@
 
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
 import { CardSec, Cards, Featured, SetupAutomation } from '../../../styles/automationStyles';
-import { Container } from '../../../styles/commonStyles';
+import { Container, Content } from '../../../styles/commonStyles';
 import Button from '../../button/button';
 import TabView from '../../tab/tab';
 import { MODULE_COLOR_LIST, EXTERNAL_LINK_KEYS } from '../../../constants/constant';
@@ -12,7 +12,6 @@ import { isEmpty, removeEmptyElement } from '../../../helpers/helpers';
 import ExtentionCard from '../../Extentioncard';
 import CustomerTestimonial from '../../customer/testimonials';
 import { TopView } from '../../solution/clienttab/styles';
-import { RightSection } from '../../../styles/casestudiestyles';
 import FeatureAnimated from '../../FeatureSlider/featureanimated';
 import SectionHeading from '../Apps/sectionHeading';
 import AutomationHeroSection from './automationHeroSection';
@@ -50,7 +49,7 @@ export default function AutomationPage({ details, externalLinks = {} }) {
       />
       <Container>
         <SetupAutomation>
-          <RightSection>{documentToReactComponents(details.sectionHeader4?.json)}</RightSection>
+          <Content>{documentToReactComponents(details.sectionHeader4?.json)}</Content>
         </SetupAutomation>
         <CardSec>
           <ExtentionCard data={details.sectionContent5Collection?.items[0]} />

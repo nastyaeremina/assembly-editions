@@ -5,7 +5,6 @@ import Layout from '../../components/layout';
 import { getCaseStudyDetail } from '../../lib/contentful-casestudies';
 import CaseStudiesPage from '../../components/PageComponent/Customers/customerDetailPage';
 import { getSEOData, isEmpty } from '../../helpers/helpers';
-import CTA from '../../components/cta/cta';
 import AggregateRating from '../../components/aggregateRating';
 import { CURRENT_SITE_URL } from '../../constants/constant';
 
@@ -30,7 +29,6 @@ export default async function CaseStudies({ params }) {
       <AggregateRating id={details?.seoMetadata?.sys?.id} />
       <Layout>
         <CaseStudiesPage details={details} />
-        <CTA />
       </Layout>
     </>
   );

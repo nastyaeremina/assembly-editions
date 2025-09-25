@@ -3,6 +3,30 @@ import { fetchGraphQL } from './contentful';
 import { POST_GRAPHQL_RICHTEXT_ENTRY_WITH_VIDEO_CONTENT_FIELDS } from './contentful-guide';
 import { POST_GRAPHQL_HERO_COMPONENT_FIELDS, POST_GRAPHQL_TESTIMONIAL_CARD_FIELDS } from './contentful-standardPage';
 
+// Testimonial content fields for inline entries
+export const POST_GRAPHQL_TESTIMONIAL_CONTENT_FIELDS = `
+links{
+  entries{
+    inline{
+      sys{
+        id
+      }
+      __typename
+      ...on Testimonial{
+        quoteNew
+        name
+        role
+        industry
+        reviewSource
+        isFeatured
+        logo{
+          url
+        }
+      }
+    }
+  }
+}`;
+
 const POST_GRAPHQL_ASSET_CONTENT_FIELDS = `
 links{
     assets{
@@ -32,6 +56,7 @@ testimonial{
 body{
   json
   ${POST_GRAPHQL_RICHTEXT_ENTRY_WITH_VIDEO_CONTENT_FIELDS}
+  ${POST_GRAPHQL_TESTIMONIAL_CONTENT_FIELDS}
   ${POST_GRAPHQL_ASSET_CONTENT_FIELDS}
 }
 heroSection{
