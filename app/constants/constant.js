@@ -436,6 +436,7 @@ export const TEMPLATE_PAGE_ID = '6JOXBgDQWb5uazPg8n98ea';
 export const CUSTOM_CODE_HEAD_ID = '7v9PqjbDuvaFz4Mm2cxQTX';
 export const CUSTOM_CODE_BEFORE_BODY_TAG_ID = '6CMLDvTPrgvrVzpv5O8XPc';
 export const CUSTOM_CODE_AFTER_BODY_TAG_ID = '2GQxmuzDZhGcXGB5FbgoGa';
+export const CUSTOMER_PAGE_HERO_ID = '4XgYT21MAsbo4UzO2tARvx';
 export const SCREEN_SIZE_THRESHOLD = 768;
 export const NAVBAR_CONTENT_ID = '7nxamR1RaXCKCsoweOBGmm';
 export const EXTERNAL_LINKS_CONTENT_ID = '4kfsvaroAErob4gf6lFsDl';

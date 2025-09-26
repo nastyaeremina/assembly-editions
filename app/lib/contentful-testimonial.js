@@ -11,7 +11,6 @@ imageHeadshot
 }
 `;
 
-
 const POST_GRAPHQL_CASESTUDY_DETAILS_FIELDS = `
   sys{
     id

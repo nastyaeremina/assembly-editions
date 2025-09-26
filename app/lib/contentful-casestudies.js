@@ -149,3 +149,16 @@ export async function getCustomers(preview) {
   );
   return response?.data?.customerCollection?.items || [];
 }
+
+export async function getHeroComponentContent(id, preview) {
+  const entries = await fetchGraphQL(
+    `query {
+        componentHero(id: "${id}", preview: ${preview ? 'true' : 'false'}) {
+          ${POST_GRAPHQL_HERO_COMPONENT_FIELDS}
+        }
+      }`,
+    preview,
+    [CONTENTFUL_API_TAG.STANDARD_PAGE]
+  );
+  return entries?.data?.componentHero || {};
+}

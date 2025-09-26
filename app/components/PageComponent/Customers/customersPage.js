@@ -16,7 +16,8 @@ export default function CustomerPage({
   casestudiesPosts,
   externalLinks = {},
   caseStudiesData = [],
-  designations = []
+  designations = [],
+  heroSection = {}
 }) {
   const casestudiesView = useMemo(() => {
     if (isEmpty(casestudiesPosts)) return null;
@@ -27,7 +28,7 @@ export default function CustomerPage({
           key={`casestudy_index_${index}`}
           logo={item.customerLogo?.imageAsset?.url}
           banner={item.caseStudyImage?.url}
-          body={item.heroSection.heroDescription}
+          body={item.heroSection.heroTitle}
           highlightsData={item.highlights}
           slug={item.slug}
           isFullWidth={item.isFullWidth}
@@ -38,15 +39,15 @@ export default function CustomerPage({
 
   return (
     <CustomerPageWrapper>
-      <CustomerPageHero
-        image={CustomerHeroImage.src}
-        title={'Made for tech-enabled professional service firms '}
-        body={
-          'Trusted by consulting, accounting, real estate, law, marketing, and tech firms with 1M+ clients and counting.'
-        }
-        primaryButtonLink={externalLinks?.[EXTERNAL_LINK_KEYS.OnboardingLink]}
-        primaryButtonText={'Start trial'}
-      />
+      {!isEmpty(heroSection) && (
+        <CustomerPageHero
+          image={CustomerHeroImage.src}
+          title={heroSection?.heroTitle}
+          body={heroSection?.heroDescription}
+          primaryButtonLink={heroSection?.primaryButtonLink}
+          primaryButtonText={heroSection?.primaryButtonText}
+        />
+      )}
       {!isEmpty(casestudiesPosts) && (
         <CaseStudyWrapper>
           <Container>
