@@ -1,8 +1,8 @@
 'use client';
 
 import ReactMarkdown from 'react-markdown';
-import { Container } from '../../../styles/commonStyles';
-import { MainSection, PrivacuHero, PostContent, PrivacyContent } from '../../../styles/resourcesStyles';
+import { Container, Content } from '../../../styles/commonStyles';
+import { MainSection, PostContent, PrivacuHero } from '../../../styles/legalStyles';
 
 export default function PrivacyPolicyPage({ content }) {
   return (
@@ -13,13 +13,13 @@ export default function PrivacyPolicyPage({ content }) {
             <h1>Privacy Policy</h1>
           </Container>
         </PrivacuHero>
-        <PostContent>
-          <Container>
-            <PrivacyContent>
+        <Container>
+          <PostContent>
+            <Content hasWordBreak>
               <ReactMarkdown>{content}</ReactMarkdown>
-            </PrivacyContent>
-          </Container>
-        </PostContent>
+            </Content>
+          </PostContent>
+        </Container>
       </MainSection>
     </>
   );

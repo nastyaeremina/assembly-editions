@@ -133,6 +133,23 @@ const Content = styled.div`
   ${body_regular}
   color: var(--title);
 
+  h5 {
+    ${body_semibold}
+    color: var(--title);
+    margin: var(--space-24) 0;
+    @media only screen and (max-width: 449px) {
+      margin: var(--space-20) 0;
+    }
+  }
+  h6 {
+    ${body_semibold}
+    color: var(--title);
+    margin: var(--space-24) 0;
+    @media only screen and (max-width: 449px) {
+      margin: var(--space-20) 0;
+    }
+  }
+
   ${(props) =>
     props.hasTopBar
       ? css`
@@ -521,6 +538,9 @@ const Content = styled.div`
     align-items: center;
     gap: var(--space-10);
     margin: var(--space-24) 0;
+    @media only screen and (max-width: 449px) {
+      margin: var(--space-20) 0;
+    }
     strong {
       font-weight: 400;
     }
@@ -816,6 +836,16 @@ const Content = styled.div`
       transition: all 0.3s;
     }
   }
+
+  ${(props) =>
+    props.hasWordBreak &&
+    css`
+      p {
+        @media only screen and (max-width: 991px) {
+          word-break: break-word;
+        }
+      }
+    `}
 
   // isThemedContent enables special styling for rich text content like guide pages
   ${(props) =>

@@ -1,101 +1,52 @@
 import styled from 'styled-components';
-import { Body4, Heading2, Heading4, Heading6, LinkTxt, MobileH2 } from './styles';
+import { Heading4, LinkTxt } from './styles';
+import { h1_semibold } from './typography';
 
-const MainSection = styled.div``;
+const MainSection = styled.div`
+  padding: var(--space-80) 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-80);
+  @media only screen and (max-width: 991px) {
+    padding: var(--space-64) 0;
+    gap: var(--space-64);
+  }
+  @media only screen and (max-width: 449px) {
+    padding: var(--space-64) 0 var(--space-48);
+    gap: var(--space-48);
+  }
+`;
 const PrivacuHero = styled.div`
-  background-color: var(--dark-green);
-  padding: 180px 0 100px 0;
   text-align: center;
+  padding-bottom: var(--space-24);
   h1 {
-    ${Heading2};
-    color: var(--light-green);
+    ${h1_semibold};
+    color: var(--title);
     margin: 0;
   }
-  @media only screen and (max-width: 749px) {
-    padding: 148px 0 80px;
-    h1 {
-      ${MobileH2};
-    }
+  @media only screen and (max-width: 991px) {
+    padding-bottom: var(--space-20);
+  }
+  @media only screen and (max-width: 768px) {
+    text-align: left;
+  }
+  @media only screen and (max-width: 449px) {
+    padding-bottom: var(--space-24);
   }
 `;
 const PostContent = styled.div`
-  padding-top: 60px;
-  .mr0 {
-    margin: 0;
+  padding: var(--space-16) 0 var(--space-64);
+  max-width: 728px;
+  width: 100%;
+  margin: 0 auto;
+  @media only screen and (max-width: 991px) {
+    padding: var(--space-16) 0 var(--space-40);
   }
-  .mt12 {
-    margin-top: 12px;
-  }
-  p {
-    margin: 16px 0 0 0;
-    ${Body4};
-    color: var(--body);
-  }
-  span {
-    ${Heading6};
-    color: var(--body);
+  @media only screen and (max-width: 449px) {
+    padding: var(--space-16) 0 var(--space-48);
   }
 `;
-const PrivacyContent = styled.div`
-  margin-bottom: 60px;
-  h4 {
-    ${Heading4};
-    color: var(--title);
-    margin: 60px 0 12px 0;
-  }
-  h5 {
-    ${Heading6};
-    color: var(--title);
-    margin: 0 0 16px 0;
-  }
-  h6 {
-    ${Heading6};
-    color: var(--title);
-    margin: 30px 0 16px 0;
-  }
-  strong {
-    ${Heading6};
-    color: var(--title);
-  }
-  p {
-    ${Body4};
-    color: var(--body);
-    margin: 0 0 16px 0;
-    :last-child {
-      margin-bottom: 0;
-    }
-    strong {
-      color: var(--body);
-      ${Heading6};
-    }
-  }
-  ul {
-    margin-bottom: 10px;
-    li {
-      padding-left: 36px;
-      position: relative;
-      ${Body4};
-      color: var(--body);
-      margin-bottom: 8px;
-      :last-child {
-        margin-bottom: 0;
-      }
-      strong {
-        color: var(--body);
-        ${Heading6};
-      }
-      :before {
-        content: '';
-        position: absolute;
-        top: 7px;
-        left: 0;
-        width: 20px;
-        height: 10px;
-        background-color: var(--mid-light-green);
-      }
-    }
-  }
-`;
+
 const ContentInfo = styled.div`
   padding: 28px 0 100px 0;
   @media only screen and (max-width: 749px) {
@@ -140,9 +91,5 @@ const InfoLink = styled.div`
     grid-row-gap: 26px;
   }
 `;
-const FooterSection = styled.div`
-  margin-top: 60px;
-  background-color: var(--footer);
-`;
 
-export { MainSection, PrivacuHero, PostContent, PrivacyContent, ContentInfo, InfoWrap, InfoLink, FooterSection };
+export { MainSection, PrivacuHero, PostContent, ContentInfo, InfoWrap, InfoLink };

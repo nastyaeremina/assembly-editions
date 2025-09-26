@@ -1,8 +1,8 @@
 'use client';
 
 import ReactMarkdown from 'react-markdown';
-import { Container } from '../../../styles/commonStyles';
-import { PrivacuHero, MainSection, SubData } from '../../../styles/legalStyles';
+import { Container, Content } from '../../../styles/commonStyles';
+import { PrivacuHero, MainSection, PostContent } from '../../../styles/legalStyles';
 
 export default function TermsOfServicePage({ content }) {
   return (
@@ -14,7 +14,11 @@ export default function TermsOfServicePage({ content }) {
           </Container>
         </PrivacuHero>
         <Container>
-          <SubData>{<ReactMarkdown>{content}</ReactMarkdown>}</SubData>
+          <PostContent>
+            <Content hasWordBreak>
+              <ReactMarkdown>{content}</ReactMarkdown>
+            </Content>
+          </PostContent>
         </Container>
       </MainSection>
     </>

@@ -1,69 +1,50 @@
 import styled from 'styled-components';
-import { Body4, Heading2, Heading4, Heading6 } from './styles';
+import { h1_semibold } from './typography';
 
 const MainSection = styled.div`
-  padding-bottom: 60px;
+  padding: var(--space-80) 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-80);
+  @media only screen and (max-width: 991px) {
+    padding: var(--space-64) 0;
+    gap: var(--space-64);
+  }
+  @media only screen and (max-width: 449px) {
+    padding: var(--space-64) 0 var(--space-48);
+    gap: var(--space-48);
+  }
 `;
 const PrivacuHero = styled.div`
-  background-color: var(--dark-green);
-  padding: 180px 0 100px 0;
   text-align: center;
+  padding-bottom: var(--space-24);
   h1 {
-    ${Heading2};
-    color: var(--light-green);
+    ${h1_semibold};
+    color: var(--title);
     margin: 0;
   }
-  @media only screen and (max-width: 749px) {
-    padding-top: 148px;
+  @media only screen and (max-width: 991px) {
+    padding-bottom: var(--space-20);
   }
-`;
-const SubData = styled.div`
-  padding-top: 60px;
-  margin: 0;
-  p {
-    ${Body4};
-    color: var(--body);
-    margin: 0 0 10px 0;
-    :last-child {
-      margin-bottom: 0;
-    }
+  @media only screen and (max-width: 768px) {
+    text-align: left;
   }
-  h4 {
-    ${Heading4};
-    color: var(--title);
-    margin: 60px 0 12px 0;
-    white-space: break-spaces;
-  }
-  h6 {
-    ${Heading6};
-    color: var(--title);
-    white-space: break-spaces;
-    margin: 30px 0 16px 0;
-  }
-  span {
-    ${Heading6};
-    color: var(--title);
-    margin-left: 13px;
-  }
-  .pt30 {
-    padding-top: 30px;
-  }
-  .margin {
-    margin: 0 0 12px 0;
-  }
-  ol {
-    padding-left: 34px;
-    margin: 0;
-    li {
-      ${Body4};
-      margin-bottom: 10px;
-      padding-left: 12px;
-      color: var(--body);
-      :last-child {
-        margin-bottom: 0;
-      }
-    }
+  @media only screen and (max-width: 449px) {
+    padding-bottom: var(--space-24);
   }
 `;
 
-export { PrivacuHero, MainSection, SubData };
+const PostContent = styled.div`
+  padding: 0 0 var(--space-64);
+  max-width: 728px;
+  width: 100%;
+  margin: 0 auto;
+  @media only screen and (max-width: 991px) {
+    padding: 0 0 var(--space-40);
+  }
+  @media only screen and (max-width: 449px) {
+    padding: 0 0 var(--space-48);
+  }
+`;
+
+export { PrivacuHero, MainSection, PostContent };
