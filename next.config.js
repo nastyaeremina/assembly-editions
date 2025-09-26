@@ -1,17 +1,21 @@
 /** @type {import('next').NextConfig} */
 const purgecss = require('@fullhuman/postcss-purgecss');
+const path = require('path');
 
 async function fetchGraphQL({ preview = false, query, type = ['other'] }) {
   try {
-    const response = await fetch(`https://graphql.contentful.com/content/v1/spaces/${process.env.CONTENTFUL_SPACE_ID}`, {
-      method: 'POST',
-      next: { tags: type },
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${process.env.CONTENTFUL_PREVIEW_ACCESS_TOKEN}`
-      },
-      body: JSON.stringify({ query })
-    });
+    const response = await fetch(
+      `https://graphql.contentful.com/content/v1/spaces/${process.env.CONTENTFUL_SPACE_ID}`,
+      {
+        method: 'POST',
+        next: { tags: type },
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${process.env.CONTENTFUL_PREVIEW_ACCESS_TOKEN}`
+        },
+        body: JSON.stringify({ query })
+      }
+    );
     return response.json();
   } catch (error) {
     console.error('Error fetching from Contentful:', error);
@@ -23,6 +27,10 @@ const nextConfig = {
   reactStrictMode: true,
   compiler: {
     styledComponents: true
+  },
+  webpack: (config) => {
+    config.resolve.alias['next/image'] = path.resolve(__dirname, 'app/components/patchedImage/index.js');
+    return config;
   },
   images: {
     domains: ['images.ctfassets.net', 'copilot-blog.ghost.io', 'images.unsplash.com', 'firebasestorage.googleapis.com']
@@ -80,16 +88,18 @@ const nextConfig = {
     }
   },
   async rewrites() {
-    return {beforeFiles:[
-      {
-        source: '/experts/:path*',
-        destination: 'https://copilotplatforms.partnerpage.io/experts/:path*'
-      },
-      {
-        source: '/',
-        destination: '/newhome'
-      }
-    ]};
+    return {
+      beforeFiles: [
+        {
+          source: '/experts/:path*',
+          destination: 'https://copilotplatforms.partnerpage.io/experts/:path*'
+        },
+        {
+          source: '/',
+          destination: '/newhome'
+        }
+      ]
+    };
   }
 };
 
