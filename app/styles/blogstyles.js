@@ -232,7 +232,10 @@ const BlogContent = styled.div`
 const Rightcontent = styled.div`
   max-width: 728px;
   width: 100%;
-  overflow: hidden;
+  /* added for tab */
+  @media only screen and (max-width: 1269px) {
+    overflow: hidden;
+  }
   @media only screen and (max-width: 991px) {
     overflow: unset;
     max-width: 100%;
