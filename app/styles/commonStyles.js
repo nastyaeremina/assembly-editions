@@ -185,7 +185,7 @@ const Content = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
-    margin: var(--space-48) 0;
+    margin: var(--space-48) 0 !important;
     transition: all 0.3s ease;
     cursor: pointer;
     &:hover {
@@ -216,6 +216,12 @@ const Content = styled.div`
   }
   .kg-video-overlay {
     display: none;
+  }
+  .kg-gallery-container {
+    margin-bottom: var(--space-32) !important;
+    @media only screen and (max-width: 449px) {
+      margin-bottom: var(--space-16) !important;
+    }
   }
   ${(props) =>
     props.applyMargin &&
@@ -289,7 +295,7 @@ const Content = styled.div`
       gap: var(--space-8);
       overflow: auto;
       padding: var(--space-3) var(--space-3);
-      margin-top: var(--space-40);
+      margin-top: var(--space-40) !important;
       &::-webkit-scrollbar {
         display: none;
       }

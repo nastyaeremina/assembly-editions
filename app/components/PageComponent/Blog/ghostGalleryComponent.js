@@ -51,7 +51,7 @@ export default function GhostGalleryComponent({ htmlString }) {
   const activePaddingTop = activeWidth && activeHeight ? `${(activeHeight / activeWidth) * 100}%` : '56.25%';
 
   return (
-    <figure className='kg-card kg-gallery-card kg-width-wide kg-card-hascaption'>
+    <figure className='kg-card kg-gallery-card kg-card-hascaption'>
       {chips.length ? (
         <figcaption
           ref={captionRef}
