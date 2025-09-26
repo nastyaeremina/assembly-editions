@@ -31,8 +31,8 @@ export async function generateMetadata({ params }) {
 
   const seoTitle =
     appDetail?.appType === APPS_TYPE.EMBED
-      ? `Embed ${appDetail.name} in your client portal | Copilot` // SEO title for embedded app
-      : `Install ${appName} | Copilot`; // SEO title for Install App
+      ? `Embed ${appDetail.name} in your client portal | Assembly` // SEO title for embedded app
+      : `Install ${appName} | Assembly`; // SEO title for Install App
   const seoData = await getSEOData({
     data: {
       seoTitle,

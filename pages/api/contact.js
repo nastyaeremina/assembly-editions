@@ -4,8 +4,7 @@ export default async function (req, res) {
   const nodemailer = require('nodemailer');
 
   try {
-    const messageBody = (
-      `<div>
+    const messageBody = `<div>
         <p>You have received a new form submission!</p>
         <br/>
         <br/>
@@ -22,8 +21,7 @@ export default async function (req, res) {
         <p><b>How large is your company?:</b> ${req.body?.companySize}</p>
         <p><b>What should we know about your situation or objectives?:</b> ${req.body?.objectives}</p>
         <p>Source: Book a demo</p>
-      </div>`
-    );
+      </div>`;
 
     const transporter = nodemailer.createTransport({
       host: process.env.DEMO_EMAIL_HOST,
@@ -32,31 +30,30 @@ export default async function (req, res) {
         user: process.env.DEMO_EMAIL_SMTP_ID,
         pass: process.env.DEMO_EMAIL_SMTP_PASS
       },
-      secure:true
+      secure: true
     });
 
     const mailData = {
       from: process.env.DEMO_EMAIL_FROM,
       to: process.env.DEMO_EMAIL_TO,
-      replyTo : req.body?.email,
-      subject: 'Following up on your Copilot sales form submission',
+      replyTo: req.body?.email,
+      subject: 'Following up on your Assembly sales form submission',
       text: 'HELLO',
       html: messageBody
     };
 
-  
-await new Promise((resolve, reject) => {
-  // send mail
-  transporter.sendMail(mailData, (err, info) => {
-      if (err) {
+    await new Promise((resolve, reject) => {
+      // send mail
+      transporter.sendMail(mailData, (err, info) => {
+        if (err) {
           console.error(err);
           reject(err);
-      } else {
+        } else {
           console.log(info);
           resolve(info);
-      }
-  });
-});
+        }
+      });
+    });
     console.log('req.body', req.body);
   } catch (e) {
     console.log('Error : ', e);

@@ -5,20 +5,20 @@ import { FooterSocialItem, FooterSocialList } from './styles';
 
 /**
  * SocialMediaListItems Component
- * 
+ *
  * Renders a list of social media links with appropriate icons and accessibility labels.
  * Uses a switch case to map social media platform names to their corresponding icons.
- * 
+ *
  * @param {Object} props - Component props
  * @param {Array} props.socialMediaLinks - Array of social media link objects
  * @param {string} props.socialMediaLinks[].name - Name of the social media platform (e.g., 'Twitter', 'X', 'LinkedIn')
  * @param {string} props.socialMediaLinks[].link - URL of the social media profile
  * @returns {JSX.Element} - Rendered social media links list
- * 
+ *
  * @example
  * const socialMediaLinks = [
- *   { name: 'Twitter', link: 'https://x.com/copilotplatform' },
- *   { name: 'LinkedIn', link: 'https://www.linkedin.com/company/copilotplatforms' }
+ *   { name: 'Twitter', link: 'https://x.com/assemblyplatform' },
+ *   { name: 'LinkedIn', link: 'https://www.linkedin.com/company/assemblyplatforms' }
  * ];
  * <SocialMediaListItems socialMediaLinks={socialMediaLinks} />
  */
@@ -26,12 +26,12 @@ function SocialMediaListItems({ socialMediaLinks = [] }) {
   /**
    * Maps social media platform names to their corresponding icons and accessibility labels.
    * Supports case-insensitive matching and handles variations like "Twitter" and "X".
-   * 
+   *
    * @param {string} name - The name of the social media platform
    * @returns {Object} - Object containing icon name and aria-label
    * @returns {string} returns.icon - The SVG icon name to use
    * @returns {string} returns.ariaLabel - The accessibility label for screen readers
-   * 
+   *
    * @example
    * getSocialMediaIcon('Twitter') // Returns: { icon: 'x-logo-gray', ariaLabel: 'Twitter' }
    * getSocialMediaIcon('X') // Returns: { icon: 'x-logo-gray', ariaLabel: 'X' }
@@ -39,7 +39,7 @@ function SocialMediaListItems({ socialMediaLinks = [] }) {
   const getSocialMediaIcon = (name) => {
     // Normalize the name to lowercase for consistent matching
     const normalizedName = name.toLowerCase();
-    
+
     switch (normalizedName) {
       case 'twitter':
       case 'x':
@@ -82,20 +82,11 @@ function SocialMediaListItems({ socialMediaLinks = [] }) {
       {socialMediaLinks.map((socialMedia, index) => {
         // Get the appropriate icon and aria-label for this social media platform
         const { icon, ariaLabel } = getSocialMediaIcon(socialMedia.name);
-        
+
         return (
-          <Link 
-            key={`${socialMedia.name}-${index}`} 
-            href={socialMedia.link || '#'} 
-            aria-label={ariaLabel}
-          >
+          <Link key={`${socialMedia.name}-${index}`} href={socialMedia.link || '#'} aria-label={ariaLabel}>
             <FooterSocialItem>
-              <SVGComponent 
-                name={icon} 
-                width='24' 
-                height='24' 
-                viewBox='0 0 24 24' 
-              />
+              <SVGComponent name={icon} width='24' height='24' viewBox='0 0 24 24' />
             </FooterSocialItem>
           </Link>
         );

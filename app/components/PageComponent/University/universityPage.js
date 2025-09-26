@@ -138,7 +138,7 @@ export default function UniversityPage({ universityVideosList, allPosts }) {
           <StandardHero
             type={HeroTypes.CENTER}
             data={{
-              heroTitle: 'Copilot University',
+              heroTitle: 'Assembly University',
               heroDescription:
                 'Search from our library of lessons covering everything from initial setup and customization to Partner Apps and automations.'
             }}

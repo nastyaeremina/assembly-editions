@@ -16,8 +16,8 @@ export default async function (req, res) {
       .then(async (response) => {
         const cio_id = response?.results?.[0]?.cio_id;
         if (isEmpty(cio_id)) {
-          //add user with with subscribe two topic Announcements & Copilot Chronicles
-          //and unsubscribe two topics Copilot Onboarding & Marketing Information
+          //add user with with subscribe two topic Announcements & Assembly Chronicles
+          //and unsubscribe two topics Assembly Onboarding & Marketing Information
           await cioTrack
             .identify(email, {
               email,
@@ -38,14 +38,14 @@ export default async function (req, res) {
               return res.status(400).json({ message: error });
             });
         } else {
-          // if user already exist then subscribe two topic Announcements & Copilot Chronicles
+          // if user already exist then subscribe two topic Announcements & Assembly Chronicles
           //get all attributes of customer using cio_id
           await cioAPI
             .getAttributes(cio_id, 'cio_id')
             .then(async (result) => {
               //fetch current topics list
               let topics = JSON.parse(result?.customer?.attributes?.cio_subscription_preferences)?.topics;
-              //subscribe subscribe two topic Announcements & Copilot Chronicles
+              //subscribe subscribe two topic Announcements & Assembly Chronicles
               await cioTrack
                 .identify(email, {
                   email,

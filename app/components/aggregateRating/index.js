@@ -11,7 +11,7 @@ export default async function AggregateRating({ id, data }) {
   const jsonLd = {
     '@context': 'https://schema.org/',
     '@type': 'Organization',
-    name: 'Copilot',
+    name: 'Assembly',
     url: CURRENT_SITE_URL,
     aggregateRating: {
       '@type': 'AggregateRating',

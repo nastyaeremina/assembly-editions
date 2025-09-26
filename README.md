@@ -1,4 +1,4 @@
-This is the Copilot marketing website project that runs [copilot.app](https://copilot.app)
+This is the Assembly marketing website project that runs [assembly.com](https://assembly.com)
 
 ## Getting Started
 

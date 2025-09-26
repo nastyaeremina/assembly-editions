@@ -35,19 +35,22 @@ function markdownToArray(markdown) {
     } else if (token.type === 'paragraph' && tokens[index - 1]?.type === 'heading' && tokens[index - 1]?.depth === 1) {
       // Standalone link under a # Heading
       if (currentSection) {
-        currentSection.link = token.text.trim().replace(/(https?:\/\/)?www\.copilot\.com/, '');
+        currentSection.link = token.text.trim().replace(/(https?:\/\/)?www\.assembly\.com/, '');
       }
     } else if (token.type === 'paragraph' && tokens[index - 1]?.type === 'heading' && tokens[index - 1]?.depth === 2) {
       // Standalone link under a ## Subheading
       const lastSubsection = currentSection?.subsections[currentSection.subsections.length - 1];
       if (lastSubsection) {
-        lastSubsection.link = extractMediaUrl(token.text.trim()).replace(/(https?:\/\/)?www\.copilot\.com/, '');
+        lastSubsection.link = extractMediaUrl(token.text.trim()).replace(/(https?:\/\/)?www\.assembly\.com/, '');
       }
     } else if (token.type === 'table') {
       const tableData = token.rows.map((row) => {
         const item = {};
         row.forEach((cell, i) => {
-          item[token.header[i].text] = extractMediaUrl(cell.text.trim()).replace(/(https?:\/\/)?www\.copilot\.com/, '');
+          item[token.header[i].text] = extractMediaUrl(cell.text.trim()).replace(
+            /(https?:\/\/)?www\.assembly\.com/,
+            ''
+          );
         });
         return item;
       });

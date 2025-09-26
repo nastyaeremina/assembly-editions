@@ -33,7 +33,7 @@ const getPath = (name, props) => {
           />
         </>
       );
-    case 'copilot-guide-icon':
+    case 'assembly-guide-icon':
       return (
         <>
           <path

@@ -16,8 +16,8 @@ export async function generateMetadata({ params }) {
 
   const seoData = await getSEOData({
     data: {
-      seoTitle: `Copilot Jobs • ${jobDetail?.name}`,
-      description: `Join the Copilot team as a ${jobDetail?.name}.`,
+      seoTitle: `Assembly Jobs • ${jobDetail?.name}`,
+      description: `Join the Assembly team as a ${jobDetail?.name}.`,
       canonical: `${CURRENT_SITE_URL}/jobs/${jobDetail?.slug}`
     }
   });

@@ -23,7 +23,7 @@ async function getContent({ slug }) {
 
 export async function generateMetadata({ params }) {
   const { authorDetail } = await getContent({ slug: params?.slug });
-  const title = `${authorDetail?.name} - Copilot Blog`;
+  const title = `${authorDetail?.name} - Assembly Blog`;
   const og_title = authorDetail?.og_title ?? authorDetail?.meta_title ?? title;
   const og_des = authorDetail?.meta_description ?? authorDetail?.description;
   const og_image = authorDetail?.feature_image;

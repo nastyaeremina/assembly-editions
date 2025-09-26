@@ -2,7 +2,7 @@
 import { useMemo, useLayoutEffect } from 'react';
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
 import { BLOCKS } from '@contentful/rich-text-types';
-import { CopilotLogo } from '../navbar/styles';
+import { AssemblyLogo } from '../navbar/styles';
 import SVGComponent from '../../../public/images/svg/SVGComponent';
 import { isEmpty } from '../../helpers/helpers';
 import { TableMainDiv, LeftSection, TitleSection, MainTableSection, Tag } from './styles';
@@ -37,7 +37,7 @@ export default function ComparisonTableView({ details, competitorLogo }) {
             case '[compititorLogo]':
               return (
                 <div className='icon-div'>
-                  <CopilotLogo alt='copilot logo' loading='lazy' width='130' height='28' src={competitorLogo} />
+                  <AssemblyLogo alt='assembly logo' loading='lazy' width='111' height='24' src={competitorLogo} />
                 </div>
               );
             case 'false':

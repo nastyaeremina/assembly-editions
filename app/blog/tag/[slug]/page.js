@@ -13,9 +13,9 @@ export async function generateStaticParams() {
   try {
     const tags = await getAllTagWithSlug();
     const popularTags = tags?.slice(0, 10) || []; // Generate for top 10 tags
-    
+
     return popularTags.map((tag) => ({
-      slug: tag.slug,
+      slug: tag.slug
     }));
   } catch (error) {
     console.error('Error generating static params:', error);
@@ -27,13 +27,13 @@ async function getContent({ slug, page = 1, limit = 8 }) {
   try {
     // For first page, get a few extra posts to extract featured blog
     const postsLimit = page === 1 ? limit + 2 : limit;
-    
+
     // Fetch initial posts with pagination
     const initialPosts = (await getBlogByTag(slug, { page, limit: postsLimit })) ?? [];
-    
+
     let featuredBlog = null;
     let filteredPosts = initialPosts;
-    
+
     // For first page, extract featured blog and filter posts
     if (page === 1) {
       const result = getFeaturedBlogAndFilteredPosts(initialPosts);
@@ -44,7 +44,7 @@ async function getContent({ slug, page = 1, limit = 8 }) {
     const tagDetail = (await getTagDetail(slug)) ?? {};
     const tags = (await getAllTagWithSlug()) ?? [];
     const finalTagList = tags?.filter((tag) => tag?.name?.trim()?.[0] !== '#');
-    const title = tagDetail?.meta_title ?? `${tagDetail?.name} - Copilot Blog`;
+    const title = tagDetail?.meta_title ?? `${tagDetail?.name} - Assembly Blog`;
     const og_title = tagDetail?.og_title ?? tagDetail?.meta_title ?? title;
     const og_des = tagDetail?.meta_description ?? tagDetail?.description;
     const og_image = tagDetail?.feature_image;

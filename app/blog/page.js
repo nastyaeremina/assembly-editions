@@ -11,12 +11,12 @@ export const revalidate = 300; // Revalidate every 5 minutes
 /**
  * Fetches blog content including posts, tags, and social media links concurrently.
  * Uses Promise.all for better performance and includes error handling.
- * 
+ *
  * @returns {Promise<Object>} - Promise that resolves to blog content object
  * @returns {Array} returns.allPosts - Array of blog posts
  * @returns {Array} returns.tags - Array of filtered and sorted tags
  * @returns {Array} returns.socialMediaLinks - Array of social media links
- * 
+ *
  * @example
  * const { allPosts, tags, socialMediaLinks } = await getContent();
  */
@@ -33,7 +33,7 @@ async function getContent(page = 1, limit = 8) {
     ]);
 
     // Filter out tags that start with '#' and sort them
-    const tags = (tagsData)?.filter((tagsData) => tagsData?.name?.trim()?.[0] !== '#');
+    const tags = tagsData?.filter((tagsData) => tagsData?.name?.trim()?.[0] !== '#');
 
     // For first page, extract featured blog and filter posts
     if (page === 1) {

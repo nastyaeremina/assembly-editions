@@ -64,7 +64,7 @@ export default function SubscribeModel({ onRequestClose, onSubscribe }) {
                   </clipPath>
                 </defs>
               </svg>
-              <p>Copilot Blog</p>
+              <p>Assembly Blog</p>
             </Logo>
             <Form>
               <label for='Name'>Name</label>

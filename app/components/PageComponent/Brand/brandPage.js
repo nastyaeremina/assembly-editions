@@ -94,7 +94,7 @@ export default function BrandPage() {
             isDownload={true}
             data={{
               heroTitle: 'Assembly Brand Guidelines',
-              heroDescription: 'Resources for presenting the Copilot brand consistently and professionally.',
+              heroDescription: 'Resources for presenting the Assembly brand consistently and professionally.',
               primaryButtonLink: '/images/Assembly_Brand_Assets.zip',
               primaryButtonText: 'Download brand assets'
             }}
@@ -137,8 +137,8 @@ export default function BrandPage() {
               <BrandName>
                 <h2>Logo</h2>
                 <p>
-                  When referring to Copilot as a company, such as on social media, or where a "chip" design is required,
-                  it is acceptable to use this stylized icon with an appropriate corner radius.
+                  When referring to Assembly as a company, such as on social media, or where a "chip" design is
+                  required, it is acceptable to use this stylized icon with an appropriate corner radius.
                 </p>
                 <LogoSection>
                   <AssetCard
@@ -163,8 +163,8 @@ export default function BrandPage() {
               <BrandName>
                 <h2>Company icon</h2>
                 <p>
-                  When referring to Copilot as a company, such as on social media, or where a "chip" design is required,
-                  it is acceptable to use this stylized icon with an appropriate corner radius.
+                  When referring to Assembly as a company, such as on social media, or where a "chip" design is
+                  required, it is acceptable to use this stylized icon with an appropriate corner radius.
                 </p>
                 <LogoSection>
                   <AssetCard
@@ -189,8 +189,8 @@ export default function BrandPage() {
               <BrandName>
                 <h2>Colors</h2>
                 <p>
-                  When referring to Copilot as a company, such as on social media, or where a "chip" design is required,
-                  it is acceptable to use this stylized icon with an appropriate corner radius.
+                  When referring to Assembly as a company, such as on social media, or where a "chip" design is
+                  required, it is acceptable to use this stylized icon with an appropriate corner radius.
                 </p>
                 <BrandImageSection>
                   {copyBlock1}

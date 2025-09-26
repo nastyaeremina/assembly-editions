@@ -50,7 +50,7 @@ const NavbarInner = styled.div`
   }
 `;
 
-const CopilotLogo = styled(Image)`
+const AssemblyLogo = styled(Image)`
   cursor: pointer;
   @media only screen and (max-width: 1080px) {
     width: 96px;
@@ -764,7 +764,7 @@ export {
   ThirdLine,
   FirstLine,
   OverLayBlock,
-  CopilotLogo,
+  AssemblyLogo,
   InnerList,
   ListLi,
   MenuWrap,

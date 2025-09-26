@@ -12,7 +12,7 @@ import {
 import { Container } from '../../styles/commonStyles';
 import Button from '../button/button';
 import HeadingText from '../header/headingText';
-import CopilotBlock from '../CopilotBlock/copilotblock';
+import AssemblyBlock from '../CopilotBlock/copilotblock';
 import SliderButtonSection from '../CopilotBlock/SliderButtonSection';
 import { isEmpty } from '../../helpers/helpers';
 
@@ -64,7 +64,7 @@ export default function BusinessSectionComponent({
           </Block>
 
           <SliderBlock>
-            <CopilotBlock xPos={xPos} sliderData={sliderData} />
+            <AssemblyBlock xPos={xPos} sliderData={sliderData} />
             <ResponsiveButtonGroup>{renderSliderButton}</ResponsiveButtonGroup>
           </SliderBlock>
         </Container>

@@ -13,9 +13,9 @@ export default function Referral({ hostName }) {
       <Container>
         <HeroWrap>
           <HeroLeft>
-            <h2>{firstName} has invited you to try Copilot</h2>
+            <h2>{firstName} has invited you to try Assembly</h2>
             <p>
-              Copilot is used by 1000s of modern services businesses. Get started below with a 14-day free trial. No
+              Assembly is used by 1000s of modern services businesses. Get started below with a 14-day free trial. No
               credit card required.
             </p>
             <PrimaryButton>

@@ -3,8 +3,8 @@ User-agent: *
 Allow: /
 
 # Host
-Host: https://copilot.app
+Host: https://assembly.com
 
 # Sitemaps
-Sitemap: https://copilot.app/sitemap.xml
-Sitemap: https://copilot.app/server-sitemap.xml
+Sitemap: https://assembly.com/sitemap.xml
+Sitemap: https://assembly.com/server-sitemap.xml

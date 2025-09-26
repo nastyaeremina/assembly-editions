@@ -15,7 +15,7 @@ export default function Quote() {
             </ImageWrap>
             <QuoteTxt>
               <p>
-                “Our entire agency runs on Copilot. Everything from billing, messaging, file-sharing, forms, and more.
+                “Our entire agency runs on Assembly. Everything from billing, messaging, file-sharing, forms, and more.
                 We never thought one tool could do this much.”
               </p>
               <QuoteSubTxt>

@@ -16,7 +16,7 @@ export async function generateMetadata({ params }) {
   const { articleData } = await getContent(params?.slug);
   const seoData = await getSEOData({
     data: {
-      seoTitle: `Copilot Guide | ${articleData?.name}`,
+      seoTitle: `Assembly Guide | ${articleData?.name}`,
       description: articleData?.header,
       canonical: `${CURRENT_SITE_URL}/guide/${articleData?.slug}`
     }

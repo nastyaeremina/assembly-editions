@@ -10,7 +10,7 @@ import NewCTA from './components/cta/newCTA';
 /**
  * Fetches home page content and social media links concurrently.
  * Uses Promise.all for better performance and includes error handling.
- * 
+ *
  * @param {Object} params - Function parameters
  * @param {Object} params.searchParams - URL search parameters
  * @returns {Promise<Object>} - Promise that resolves to home page content object
@@ -18,7 +18,7 @@ import NewCTA from './components/cta/newCTA';
  * @returns {string} returns.abTestContentLabel - AB test content label
  * @returns {string} returns.abTestExperimentName - AB test experiment name
  * @returns {Array} returns.socialMediaLinks - Array of social media links
- * 
+ *
  * @example
  * const { content, abTestContentLabel, abTestExperimentName, socialMediaLinks } = await getContent({ searchParams });
  */
@@ -36,21 +36,21 @@ async function getContent({ searchParams }) {
       getExternalLinks({ asMap: true })
     ]);
 
-    return { 
-      content, 
-      abTestContentLabel, 
-      abTestExperimentName, 
+    return {
+      content,
+      abTestContentLabel,
+      abTestExperimentName,
       socialMediaLinks: socialMediaLinks || [],
       externalLinks: externalLinks || {}
     };
   } catch (error) {
     console.error('Error fetching home page content:', error);
-    
+
     // Return empty data as fallback in case of error
-    return { 
-      content: {}, 
-      abTestContentLabel: '', 
-      abTestExperimentName: '', 
+    return {
+      content: {},
+      abTestContentLabel: '',
+      abTestExperimentName: '',
       socialMediaLinks: [],
       externalLinks: {}
     };
@@ -69,12 +69,14 @@ export async function generateMetadata({ params, searchParams }, parent) {
 }
 
 export default async function Home({ searchParams }) {
-  const { content, abTestContentLabel, abTestExperimentName ,socialMediaLinks, externalLinks} = await getContent({ searchParams });
+  const { content, abTestContentLabel, abTestExperimentName, socialMediaLinks, externalLinks } = await getContent({
+    searchParams
+  });
 
   const jsonLd = {
     '@context': 'https://schema.org',
     '@type': 'Organization',
-    name: 'Copilot',
+    name: 'Assembly',
     url: CURRENT_SITE_URL,
     logo: `${CURRENT_SITE_URL}/_next/static/media/blacklogo.370e156c.svg`,
     sameAs: socialMediaLinks

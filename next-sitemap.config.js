@@ -1,4 +1,4 @@
-const CURRENT_SITE_URL = 'https://copilot.app';
+const CURRENT_SITE_URL = 'https://assembly.com';
 
 module.exports = {
   siteUrl: CURRENT_SITE_URL,

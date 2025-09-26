@@ -11,7 +11,7 @@ export default function AppCardSection({ appsList }) {
         <AppCard
           name={item?.name}
           applogo={item?.icon?.url}
-          key={`copilotapps_index_${index}`}
+          key={`assemblyapps_index_${index}`}
           url={`/apps/directory/${item?.slug}`}
         />
       );

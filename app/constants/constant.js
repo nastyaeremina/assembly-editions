@@ -363,7 +363,7 @@ export const CONTENTFUL_API_TAG = {
 
 export const GUIDE_LINK_INFO = {
   link: '/guide',
-  text: 'Copilot Guide'
+  text: 'Assembly Guide'
 };
 
 export const FIELD_SCORE = {
@@ -487,11 +487,11 @@ export const EXTRACT_CODE_TAG_FROM_HTML_REGEX = /(<pre><code[^>]*>.*?<\/code><\/
 export const EXTRACT_LEADING_DIGIT_REGEX = /^[0-9]./;
 export const EXTRACT_SQUARE_BRACKET_AND_TAG_TEXT_REGEX = /(\[.*?\]|\(Tag\))/g;
 export const STRING_END_OF_APP = /\bapp$/i;
-export const CURRENT_SITE_URL = 'https://www.copilot.app';
-export const CURRENT_DOMAIN = 'copilot.app';
+export const CURRENT_SITE_URL = 'https://www.assembly.com';
+export const CURRENT_DOMAIN = 'assembly.com';
 export const AppInfoMessage =
-  'Apps are tailor-made for Copilot platform and typically come with rich functionality including notifications.';
-export const EmbedInfoMessage = 'Copilot supports embedding any external application that doesn’t block embedding.';
+  'Apps are tailor-made for Assembly platform and typically come with rich functionality including notifications.';
+export const EmbedInfoMessage = 'Assembly supports embedding any external application that doesn’t block embedding.';
 export const InternalAppInfoMessage = 'Internal-facing apps are only visible to your internal team.';
 export const ClientAppInfoMessage = 'Client-facing apps are visible to clients as well as your internal team.';
 export const PlanList = ['Starter', 'Professional', 'Advanced', 'Supersonic'];

@@ -37,7 +37,7 @@ export async function generateMetadata({ params }) {
   const { universityVideoDetail } = await getContent({ slug: params?.slug });
   const seoData = await getSEOData({
     data: {
-      seoTitle: `Copilot Video Tutorial • ${universityVideoDetail?.name}`,
+      seoTitle: `Assembly Video Tutorial • ${universityVideoDetail?.name}`,
       description: universityVideoDetail?.description,
       canonical: `${CURRENT_SITE_URL}/university/${universityVideoDetail?.slug}`
     }

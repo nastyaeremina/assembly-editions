@@ -17,13 +17,6 @@ const Maindiv = styled.div`
   display: flex;
   flex-direction: column;
 `;
-const CopilotGuideLogo = styled.img`
-  cursor: pointer;
-  @media only screen and (max-width: 991px) {
-    width: 96px;
-    height: 22px;
-  }
-`;
 
 const SideNavbarHead = styled.div`
   display: flex;
@@ -692,7 +685,6 @@ const ResponsiveInputWrap = styled.button`
 export {
   SideNavbar,
   Maindiv,
-  CopilotGuideLogo,
   SideNavbarHead,
   NavTitle,
   NavHead,

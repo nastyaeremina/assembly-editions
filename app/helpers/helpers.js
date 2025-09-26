@@ -129,15 +129,15 @@ export const getSEOData = async ({ id, data }) => {
       images: isEmpty(seoData?.openGraphImage)
         ? ['/images/opengraph_Image.jpeg']
         : [
-          {
-            url: seoData?.openGraphImage?.url
-          }
-        ]
+            {
+              url: seoData?.openGraphImage?.url
+            }
+          ]
     },
     robots: {
       index: !seoData?.noIndex,
-      follow: !seoData?.noFollow,
-    },
+      follow: !seoData?.noFollow
+    }
   };
 };
 
@@ -543,14 +543,17 @@ export function transformArray(inputArray) {
 /**
  * Parses markdown lines formatted as (Name)[URL] into an array of objects.
  * Accepts separated entries by "\n".
- * Example line: (Twitter)[https://x.com/copilotplatform]
+ * Example line: (Twitter)[https://x.com/assemblyplatform]
  *
  * @param {string} markdown - The markdown string containing external links.
  * @returns {Array<{name: string, link: string}>}
  */
 export function parseExternalLinks(markdown) {
   if (isEmpty(markdown)) return [];
-  const lines = markdown.split('\n').map((l) => l.trim()).filter((l) => !isEmpty(l));
+  const lines = markdown
+    .split('\n')
+    .map((l) => l.trim())
+    .filter((l) => !isEmpty(l));
   const result = [];
   for (const line of lines) {
     const match = line.match(/^\(([^)]+)\)\[(.+)\]$/);
@@ -630,7 +633,7 @@ export function parseData(data) {
     // Extract name, URL, and icon using a regular expression
     const [_, name, url, icon] = element.match(/\[(.*?)\]\((.*?)\)\(.*?\((.*?)\)\)/) || [];
     if (name && url && icon) {
-      // Check if the URL contains 'www.copilot.app' and format it accordingly
+      // Check if the URL contains 'www.assembly.com' and format it accordingly
       const formattedUrl = url.includes(`www.${CURRENT_DOMAIN}`) ? url.split(`www.${CURRENT_DOMAIN}/`)[1] : url;
       // Ensure the icon URL has a protocol (default to https if it starts with //)
       const iconUrl = icon && icon.startsWith('//') ? 'https:' + icon : icon;
@@ -681,7 +684,7 @@ export function extractTableData(richTextJson) {
   });
 }
 
-/** 
+/**
  * Parses a given markdown string to extract experiment and variant information.
  * The markdown is expected to contain sections with the heading '#ExperimentName (page path)'
  * followed by variant entries in the format [ENTRY_ID]<VARIANT_NAME>(WEIGHT)
@@ -742,7 +745,7 @@ export function parseVariants(markdown) {
  * - "/" -> "COOKIE_NAME-home"
  * - "/pricing" -> "COOKIE_NAME-pricing"
  * - "/abc/test" -> "COOKIE_NAME-abc-test"
- * 
+ *
  * @param {string} pathname - The pathname to convert (e.g., "/", "/pricing", "/abc/test")
  * @returns {string} - The generated cookie name
  */
@@ -769,7 +772,7 @@ export function getPathCookieName(pathname) {
 
 /**
  * Extracts all variant entry IDs from the abTestExperiment array.
- * 
+ *
  * @param {Array} experiments - Array of experiment objects from parseVariants
  * @returns {Array} - Array of unique entry IDs from all experiments and their variants
  */
@@ -778,7 +781,7 @@ export function getAllVariantEntryIds(experiments) {
 
   // Extract all entry IDs from all experiments and their variants
   const entryIds = experiments.reduce((ids, experiment) => {
-    const variantIds = experiment.variants.map(variant => variant.entryId);
+    const variantIds = experiment.variants.map((variant) => variant.entryId);
     return [...ids, ...variantIds];
   }, []);
 
@@ -788,7 +791,7 @@ export function getAllVariantEntryIds(experiments) {
 
 /**
  * Chooses a variant from an array of variants based on their weight.
- * 
+ *
  * @param {Array} variants - Array of variant objects with weight property.
  * @returns {Object} - The chosen variant object.
  */
@@ -803,7 +806,7 @@ export function chooseVariant(variants) {
 
 /**
  * Checks if a given string is a valid URL.
- * 
+ *
  * @param {string} str - The string to check.
  * @returns {boolean} - True if the string is a valid URL, false otherwise.
  */
@@ -820,7 +823,7 @@ export function isValidUrl(href) {
  * Extracts featured blog from allPosts and returns filtered posts without the featured blog.
  * Prioritizes the latest published featured blog, or falls back to latest regular blog.
  * Ensures the selected featured blog doesn't appear in the main blog list.
- * 
+ *
  * @param {Array} allPosts - Array of blog post objects
  * @returns {Object} - Object containing featuredBlog and filteredPosts
  */
@@ -850,8 +853,8 @@ export function getFeaturedBlogAndFilteredPosts(allPosts) {
 
 /**
  * Transforms raw content data into the format expected by the <StoryMode /> component.
- * 
- * Each item in the input array is mapped to a simplified structure, extracting data 
+ *
+ * Each item in the input array is mapped to a simplified structure, extracting data
  * from the first item in the `tabsCollection` for consistency in display.
  *
  * @param {Array} data - An array of content items, each containing metadata and a nested tabsCollection.
@@ -874,7 +877,7 @@ export function transformToTabsData(data) {
       secondaryButtonText: item.secondaryButtonText, // Secondary CTA button text (optional)
       secondaryButtonLink: item.secondaryButtonLink, // Secondary CTA button link (optional)
       image: firstTab.image, // Image shown in the left section
-      video:firstTab.video,  // video object shown in the left section
+      video: firstTab.video, // video object shown in the left section
       quoteBlock: firstTab.quoteBlock, // Quote/testimonial block shown alongside image
       link: firstTab.link // Used in QuoteSectionComponent for redirection
     };

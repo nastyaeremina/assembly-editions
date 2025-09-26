@@ -40,7 +40,7 @@ import { isEmail } from '../helpers/helpers';
 //     const mailData = {
 //       from: 'krupali.nakrani123@gmail.com',
 //       to: 'krupalinakrani99@gmail.com',
-//       subject: 'Following up on your Copilot sales form submission',
+//       subject: 'Following up on your Assembly sales form submission',
 //       text: 'HELLO',
 //       html: messageBody
 //     };

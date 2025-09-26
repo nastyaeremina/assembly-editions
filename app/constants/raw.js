@@ -6,7 +6,7 @@ export function getSupportSectionData(externalLinks = {}) {
     items: [
       {
         title: 'Community',
-        body: 'Meet our team and a community of businesses that run on Copilot.',
+        body: 'Meet our team and a community of businesses that run on Assembly.',
         linkText: 'Join community',
         linkUrl: externalLinks?.[EXTERNAL_LINK_KEYS.CommunityForumLink] || '#'
       },
@@ -24,7 +24,7 @@ export function getSupportSectionData(externalLinks = {}) {
       },
       {
         title: 'Experts',
-        body: 'Work with a certified Copilot Expert to build custom features, set up automations, and more.',
+        body: 'Work with a certified Assembly Expert to build custom features, set up automations, and more.',
         linkText: 'Find an expert',
         linkUrl: '/experts'
       }
@@ -37,7 +37,7 @@ export const CTAData = {
   description: 'Try Assembly free for 14 days, no credit card required.',
   primaryButtonLink: '/',
   primaryButtonText: 'Get Started',
-  secondaryButtonLink: 'https://www.copilot.app/book-demo',
+  secondaryButtonLink: 'https://www.assembly.com/book-demo',
   secondaryButtonText: 'Book Demo'
 };
 

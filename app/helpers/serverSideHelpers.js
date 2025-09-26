@@ -1,14 +1,19 @@
 import { cookies, draftMode, headers } from 'next/headers';
 import { parse } from 'node-html-parser';
-import { CURRENT_DOMAIN, EXTERNAL_LINKS_CONTENT_ID, EXTERNAL_LINK_ALIASES, EXTERNAL_LINK_KEYS } from '../constants/constant';
+import {
+  CURRENT_DOMAIN,
+  EXTERNAL_LINKS_CONTENT_ID,
+  EXTERNAL_LINK_ALIASES,
+  EXTERNAL_LINK_KEYS
+} from '../constants/constant';
 import { COOKIE_NAME } from '../lib/constants';
 import { isEmpty, parseExternalLinks, parseExternalLinksMap } from './helpers';
-import { getCommonContent }  from '../lib/contentful-common';
+import { getCommonContent } from '../lib/contentful-common';
 
 /**
- * Check if a given URL has the same domain as the current domain or matches 'copilot.app' or 'www.copilot.app'.
+ * Check if a given URL has the same domain as the current domain or matches 'assembly.com' or 'www.assembly.com'.
  * @param {string} url - The URL to be checked.
- * @returns {boolean} - Returns true if the URL has the same domain or matches 'copilot.app' or 'www.copilot.app', otherwise returns false.
+ * @returns {boolean} - Returns true if the URL has the same domain or matches 'assembly.com' or 'www.assembly.com', otherwise returns false.
  */
 
 export function isSameDomain(url) {
@@ -25,10 +30,10 @@ export function isSameDomain(url) {
  */
 export function getCookieValue(cookieName) {
   try {
-    if(headers().get(`x-${cookieName}-removed`)) return {};
+    if (headers().get(`x-${cookieName}-removed`)) return {};
 
     const abVariant = cookies().get(cookieName)?.value || headers().get(`x-${cookieName}`);
-    
+
     if (!abVariant) {
       return {};
     }
@@ -47,26 +52,20 @@ export function getCookieValue(cookieName) {
  * @param {string} [options.fallbackContentId] - The fallback content ID to use if the cookie value is empty.
  * @returns {Object} - The AB test information.
  */
-export function getABTestInfoFromCookie({ cookieKey, fallbackContentId = ''}) {
+export function getABTestInfoFromCookie({ cookieKey, fallbackContentId = '' }) {
   const pathCookieName = `${COOKIE_NAME}-${cookieKey}`;
   const cookieValue = getCookieValue(pathCookieName);
 
-  const entryId = !isEmpty(cookieValue?.entryId)
-    ? cookieValue.entryId
-    : fallbackContentId;
+  const entryId = !isEmpty(cookieValue?.entryId) ? cookieValue.entryId : fallbackContentId;
 
-  const abTestContentLabel = !isEmpty(cookieValue?.variantName)
-    ? cookieValue.variantName
-    : '';
+  const abTestContentLabel = !isEmpty(cookieValue?.variantName) ? cookieValue.variantName : '';
 
-  const abTestExperimentName = !isEmpty(cookieValue?.experimentName)
-    ? cookieValue.experimentName
-    : '';
+  const abTestExperimentName = !isEmpty(cookieValue?.experimentName) ? cookieValue.experimentName : '';
 
   return {
     contentId: entryId,
     abTestContentLabel,
-    abTestExperimentName,
+    abTestExperimentName
   };
 }
 
@@ -82,21 +81,21 @@ export function getABTestInfoFromCookie({ cookieKey, fallbackContentId = ''}) {
 export async function getPageContent({ searchParams, cookieKey, fallbackContentId, getContentFn }) {
   // Quick check for draft mode - if disabled, skip all draft-related logic
   const { isEnabled } = await draftMode();
-  
+
   if (!isEnabled) {
     // Production mode - use AB test logic directly
     const abTestInfo = getABTestInfoFromCookie({
       cookieKey,
       fallbackContentId
     });
-    
-    let content = await getContentFn({ 
+
+    let content = await getContentFn({
       id: abTestInfo.contentId
     });
 
     // If content is empty, fetch fallback content
     if (isEmpty(content)) {
-      content = await getContentFn({ 
+      content = await getContentFn({
         id: fallbackContentId
       });
       abTestInfo.abTestContentLabel = '';
@@ -114,7 +113,7 @@ export async function getPageContent({ searchParams, cookieKey, fallbackContentI
   const id = searchParams?.id;
   if (id) {
     // Preview specific content
-    const content = await getContentFn({ 
+    const content = await getContentFn({
       id,
       preview: true
     });
@@ -132,7 +131,7 @@ export async function getPageContent({ searchParams, cookieKey, fallbackContentI
     fallbackContentId
   });
 
-  const content = await getContentFn({ 
+  const content = await getContentFn({
     id: abTestInfo.contentId
   });
 
@@ -162,7 +161,7 @@ export async function getSocialMediaLinks({ linksOnly = false } = {}) {
       EXTERNAL_LINK_KEYS.Facebook,
       EXTERNAL_LINK_KEYS.Linkedin,
       EXTERNAL_LINK_KEYS.Youtube,
-      EXTERNAL_LINK_KEYS.Instagram,
+      EXTERNAL_LINK_KEYS.Instagram
     ]);
 
     // Filter and normalize links
@@ -177,19 +176,16 @@ export async function getSocialMediaLinks({ linksOnly = false } = {}) {
         const canonical = EXTERNAL_LINK_ALIASES[rawKey] || linkObj.name;
         return {
           name: canonical,
-          link: linkObj.link,
+          link: linkObj.link
         };
       });
 
-    return linksOnly
-      ? socialMediaLinks.map((item) => item.link)
-      : socialMediaLinks;
+    return linksOnly ? socialMediaLinks.map((item) => item.link) : socialMediaLinks;
   } catch (error) {
     console.error('Error fetching social media links:', error);
     return [];
   }
 }
-
 
 /**
  * Fetches all external links from Contentful (markdown lines like (Name)[URL]).
@@ -237,8 +233,8 @@ export async function getExternalLink(name, fallback) {
   return key ? map[key] : fallback;
 }
 
- /** Determines breadcrumb text and link based on the referer URL.
- * 
+/** Determines breadcrumb text and link based on the referer URL.
+ *
  * @param {string} referer - The referer URL from headers
  * @param {string} currentDomain - The current domain for fallback logic
  * @returns {Object} - Object containing breadcrumbText and breadcrumbLink
@@ -246,7 +242,7 @@ export async function getExternalLink(name, fallback) {
 export function getBreadcrumbFromReferer(referer, currentDomain) {
   let breadcrumbText = 'Blog Home';
   let breadcrumbLink = '/blog';
-  
+
   if (referer && referer.includes('/blog/')) {
     // Check if it's a blog detail page (has a slug after /blog/)
     const blogPath = referer.split('/blog/')[1];
@@ -264,7 +260,7 @@ export function getBreadcrumbFromReferer(referer, currentDomain) {
     breadcrumbText = 'Blog Home';
     breadcrumbLink = '/blog';
   }
-  
+
   return { breadcrumbText, breadcrumbLink };
 }
 
@@ -344,9 +340,7 @@ export function extractTopImage(html) {
     const root = parse(html, { lowerCaseTagName: true, comment: false });
 
     // find the first element node (skip whitespace/text nodes)
-    const firstEl = root.childNodes.find(
-      (n) => n.nodeType === 1 && n.tagName
-    );
+    const firstEl = root.childNodes.find((n) => n.nodeType === 1 && n.tagName);
     if (!firstEl) return safe;
 
     // helper to safely parse int attributes like width/height
@@ -391,7 +385,7 @@ export function extractTopImage(html) {
     // return image object + cleaned html
     return {
       image: { height, width, alt, url, isWidthWide },
-      cleanedHtml: root.toString(),
+      cleanedHtml: root.toString()
     };
   } catch (err) {
     console.error('extractTopImage error:', err);

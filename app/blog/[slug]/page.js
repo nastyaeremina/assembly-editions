@@ -60,10 +60,10 @@ export async function generateMetadata({ params, searchParams }, parent) {
       images: isEmpty(og_image)
         ? []
         : [
-          {
-            url: og_image
-          }
-        ]
+            {
+              url: og_image
+            }
+          ]
     }
   };
 }
