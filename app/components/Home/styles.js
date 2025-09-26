@@ -1,6 +1,7 @@
 import styled, { css } from 'styled-components';
 import { Body2, Heading2, MbBody1, MobileH2 } from '../../styles/styles';
 import { HeroTypes } from '../../constants/constant';
+import { button_regular, button_semibold } from '../../styles/typography';
 
 const HeroSection = styled.div`
   width: 100%;
@@ -294,4 +295,51 @@ const MainImage = styled.div`
   }
 `;
 
-export { HeroSection, HeroHeading, Para, ImageHover, ReviewLogo, RightWrap, HeroBtnBlock, MainImage, BottomSection };
+const G2Section = styled.div`
+  display: flex;
+  align-items: center;
+  gap: var(--space-8);
+  padding: var(--space-3) var(--space-12);
+  margin: 0 auto;
+  margin-bottom: var(--space-24);
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-8);
+  background-color: var(--off-white-300);
+  width: max-content;
+  @media only screen and (max-width: 449px) {
+    margin: 0;
+    margin-bottom: var(--space-24);
+  }
+  ${(props) =>
+    props.variant === HeroTypes.LEFT &&
+    css`
+      margin: 0;
+      margin-bottom: var(--space-24);
+    `}
+`;
+const Stars = styled.p`
+  ${button_semibold};
+  color: var(--title);
+  margin: 0;
+  padding-top: var(--space-3);
+`;
+const Review = styled.p`
+  ${button_regular};
+  color: var(--text-secondary);
+  margin: 0;
+  padding-top: var(--space-3);
+`;
+export {
+  HeroSection,
+  HeroHeading,
+  Para,
+  ImageHover,
+  ReviewLogo,
+  RightWrap,
+  HeroBtnBlock,
+  MainImage,
+  BottomSection,
+  G2Section,
+  Stars,
+  Review
+};

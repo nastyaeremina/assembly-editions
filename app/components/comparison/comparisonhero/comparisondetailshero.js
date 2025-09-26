@@ -49,7 +49,7 @@ export default function ComparisonDetailsHero({
             <LeftWrap className='details-hero'>
               {!isEmpty(headerTag) && (
                 <PoweredBySection>
-                  <SVGComponent name='g2-icon' width='24' height='24' viewBox='0 0 20 20' />
+                  <SVGComponent name='g2-icon' width='22' height='22' viewBox='0 0 21 21' />
                   <h6>Powered by G2</h6>
                   <h5>({headerTag})</h5>
                 </PoweredBySection>

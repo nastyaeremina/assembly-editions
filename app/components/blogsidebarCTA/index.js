@@ -17,9 +17,9 @@ export default function BlogSidebarCTA({ headerText, bodyText, externalLinks = {
       <Content>
         {!isEmpty(headerText) && <Title>{headerText}</Title>} {!isEmpty(bodyText) && <Caption>{bodyText} </Caption>}
         <G2Section>
-          <SVGComponent name='g2-icon' width='24' height='24' viewBox='0 0 20 20' />
+          <SVGComponent name='g2-icon' width='18' height='18' viewBox='0 0 21 21' />
           <ReviewText>
-            <StartList rate={4.5} />
+            <StartList rate={4.5} iconSize='18' />
             <p>4.9 rating</p>
           </ReviewText>
         </G2Section>

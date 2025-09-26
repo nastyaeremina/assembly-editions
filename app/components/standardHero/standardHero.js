@@ -38,6 +38,7 @@ export default function StandardHero({ type, data, isDownload = false, highlight
             secondaryButtonText={data?.secondaryButtonText}
             secondaryButtonLink={data?.secondaryButtonLink}
             isDownload={isDownload}
+            isShowSocialProof={data.showSocialProof}
             variant={HeroTypes.CENTER}
           />
         );
@@ -82,6 +83,7 @@ export default function StandardHero({ type, data, isDownload = false, highlight
             isDownload={isDownload}
             variant={HeroTypes.LEFT}
             highlights={highlights}
+            isShowSocialProof={data.showSocialProof}
             logo={data?.logo}
           />
         );

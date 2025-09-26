@@ -1,12 +1,12 @@
 import Image from 'next/image';
 import React from 'react';
 import { Container } from '../../styles/commonStyles';
-import { BottomSection, HeroSection, MainImage } from '../Home/styles';
+import { BottomSection, G2Section, HeroSection, MainImage, Review, Stars } from '../Home/styles';
 import { HeroTypes } from '../../constants/constant';
 import Heading from './heading/heading';
 import { isEmpty } from '../../helpers/helpers';
 import HighlightSectionComponents from '../casestudies/highlightSection';
-
+import SVGComponent from '../../../public/images/svg/SVGComponent';
 /**
  * HomeHeroSection Component
  * @param {Object} props - Component props
@@ -15,6 +15,7 @@ import HighlightSectionComponents from '../casestudies/highlightSection';
  * @param {string} props.image - The  image URL
  * @param {string} props.logo - The logo image is a customer logo
  * @param {Array} props.highlights - The highlights props is a state section for customer
+ * @param {boolean} props.isShowSocialProof - The social proof props is a state section
  * @param {boolean} [props.isStandardPage=false] - when use Standard page than apply this flag
  * @param {string} props.primaryButtonText - The text for the primary button
  * @param {string} props.primaryButtonLink - The link for the primary button
@@ -35,11 +36,19 @@ export default function HomeHeroSection({
   secondaryButtonText,
   secondaryButtonLink,
   isDownload = false,
-  variant = HeroTypes.CENTER
+  variant = HeroTypes.CENTER,
+  isShowSocialProof
 }) {
   return (
     <HeroSection isStandardPage={isStandardPage} variant={variant}>
       <Container>
+        {isShowSocialProof && (
+          <G2Section variant={variant}>
+            <SVGComponent name='g2-icon' width='16' height='16' viewBox='0 0 21 21' />
+            <Stars>5 stars </Stars>
+            <Review>250+ reviews</Review>
+          </G2Section>
+        )}
         {!isEmpty(logo) && <Image src={logo} width={127} height={40} alt='Logo Image' className='logo-image' />}
         <Heading
           title={title}

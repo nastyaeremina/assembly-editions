@@ -31,19 +31,19 @@ const Caption = styled.p`
 
 const G2Section = styled.div`
   display: flex;
-  gap: var(--space-12);
-  padding: var(--space-4) 0;
+  gap: var(--space-16);
   margin: var(--space-20) 0 var(--space-24);
+  padding: var(--space-6) 0;
   p {
     ${label_regular};
     color: var(--title);
     margin: 0;
-    padding-top: var(--space-4);
+    padding-top: var(--space-2);
   }
 `;
 const ReviewText = styled.div`
   display: flex;
   align-items: center;
-  gap: var(--space-12);
+  gap: var(--space-16);
 `;
 export { SideBarCTA, Image, ImageDiv, Content, Title, Caption, G2Section, ReviewText };
