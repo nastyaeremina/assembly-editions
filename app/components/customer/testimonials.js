@@ -60,7 +60,7 @@ export default function CustomerTestimonial({
         </VisitSite>
       </LeftCard>
       <RightCard isFullWidth={isFullWidth}>
-        <Image src={banner} alt='customer' className='right' width={405} height={407} />
+        <Image src={banner} alt='customer' className='right' width={1224} height={407} />
       </RightCard>
     </TestimonialCard>
   );
