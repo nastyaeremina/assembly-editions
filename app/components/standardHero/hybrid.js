@@ -46,6 +46,9 @@ export default function HomeHeroSection({
   const [visibleLogos, setVisibleLogos] = useState([]);
 
   useEffect(() => {
+    if (typeof window === 'undefined') return;
+    if (!customerLogoCollection || !customerLogoCollection.items) return;
+
     const container = document.getElementById('logo-section');
     if (!container) return;
 
@@ -77,7 +80,7 @@ export default function HomeHeroSection({
     calculateVisible();
     window.addEventListener('resize', calculateVisible);
     return () => window.removeEventListener('resize', calculateVisible);
-  }, [customerLogoCollection.items]);
+  }, [customerLogoCollection?.items]);
 
   return (
     <HeroSection isStandardPage={isStandardPage} variant={variant}>
