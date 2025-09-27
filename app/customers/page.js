@@ -39,6 +39,12 @@ async function getContent() {
       getHeroComponentContent(CUSTOMER_PAGE_HERO_ID, isEnabled)
     ]);
 
+    casestudiesPosts.sort((a, b) => {
+      if (a.isFullWidth === true && b.isFullWidth !== true) return -1;
+      if (b.isFullWidth === true && a.isFullWidth !== true) return 1;
+      return 0; // keep original order otherwise
+    });
+
     return { testimonialPosts, casestudiesPosts, externalLinks, customers: allCustomers, heroSection };
   } catch (error) {
     console.error('Error fetching content:', error);

@@ -13,6 +13,7 @@ import { SectionTone } from '../../constants/constant';
 import { isEmpty } from '../../helpers/helpers';
 import ReactMarkdown from 'react-markdown';
 import SVGComponent from '../../../public/images/svg/SVGComponent';
+import Link from 'next/link';
 
 /**
  * QuoteSectionComponent for displaying a quote section.
@@ -26,8 +27,10 @@ import SVGComponent from '../../../public/images/svg/SVGComponent';
  */
 
 const QuoteSectionComponent = ({ tone, imageSrc, name, role, description, link }) => {
+  const isLink = Boolean(link);
+
   return (
-    <QuoteSection tone={tone} href={link}>
+    <QuoteSection tone={tone} href={link} as={isLink ? Link : 'div'}>
       {!isEmpty(imageSrc) && <Image src={imageSrc} width={313} height={479} className='quote-image' />}
       <QuoteContentDiv>
         <TitleContentSection>
