@@ -7,7 +7,6 @@ import { isEmpty } from '../../../helpers/helpers';
 import { EXTERNAL_LINK_KEYS } from '../../../constants/constant';
 import NewCTA from '../../cta/newCTA';
 import { CTAData, CustomerTableSectionData } from '../../../constants/raw';
-import CustomerHeroImage from '../../../../public/images/customer-hero-image.png';
 import CustomerPageHero from '../../standardHero/customerPageHero/customerPageHero';
 import SectionHeader from '../../sectionHeader/sectionHeader';
 import CustomerTableSection from './customerTableSection';
@@ -41,7 +40,7 @@ export default function CustomerPage({
     <CustomerPageWrapper>
       {!isEmpty(heroSection) && (
         <CustomerPageHero
-          image={CustomerHeroImage.src}
+          image={heroSection?.banner1?.url}
           title={heroSection?.heroTitle}
           body={heroSection?.heroDescription}
           primaryButtonLink={heroSection?.primaryButtonLink}
