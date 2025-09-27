@@ -3,7 +3,12 @@ import { draftMode } from 'next/headers';
 import CustomerPage from '../components/PageComponent/Customers/customersPage';
 import Layout from '../components/layout';
 import AggregateRating from '../components/aggregateRating';
-import { CURRENT_SITE_URL, CUSTOMER_SEO_ID, CUSTOMER_PAGE_HERO_ID } from './../constants/constant';
+import {
+  CURRENT_SITE_URL,
+  CUSTOMER_SEO_ID,
+  CUSTOMER_PAGE_HERO_ID,
+  PER_API_LIMIT_FOR_CUSTOMERS
+} from './../constants/constant';
 import { getAllFeaturedCaseStudies, getAllFeaturedTestimonial } from './../lib/contentful-testimonial';
 import { getSEOData } from './../helpers/helpers';
 import { getCustomers, getHeroComponentContent } from './../lib/contentful-casestudies';
@@ -13,22 +18,31 @@ async function getContent() {
   try {
     const { isEnabled } = await draftMode();
 
-    // Fetch all data concurrently
-    const [casestudiesPosts = [], externalLinks = {}, customers = [], heroSection = {}] = await Promise.all([
+    // Fetch all customers using pagination (same pattern as automation directory)
+    let allCustomers = [];
+    let data = [];
+    let page = 0;
+    do {
+      const skip = page * PER_API_LIMIT_FOR_CUSTOMERS;
+      data = await getCustomers({ preview: isEnabled, limit: PER_API_LIMIT_FOR_CUSTOMERS, skip });
+      allCustomers = allCustomers.concat(data);
+      if (data?.length !== PER_API_LIMIT_FOR_CUSTOMERS) break;
+      // eslint-disable-next-line no-plusplus
+      page++;
+    } while (data?.length !== 0);
+
+    // Fetch other data concurrently
+    const [testimonialPosts = [], casestudiesPosts = [], externalLinks = {}, heroSection = {}] = await Promise.all([
+      getAllFeaturedTestimonial(isEnabled),
       getAllFeaturedCaseStudies(isEnabled),
       getExternalLinks({ asMap: true }),
-      getCustomers(isEnabled),
       getHeroComponentContent(CUSTOMER_PAGE_HERO_ID, isEnabled)
     ]);
-    casestudiesPosts.sort((a, b) => {
-      if (a.isFullWidth === true && b.isFullWidth !== true) return -1;
-      if (b.isFullWidth === true && a.isFullWidth !== true) return 1;
-      return 0; // keep original order otherwise
-    });
-    return { casestudiesPosts, externalLinks, customers, heroSection };
+
+    return { testimonialPosts, casestudiesPosts, externalLinks, customers: allCustomers, heroSection };
   } catch (error) {
     console.error('Error fetching content:', error);
-    return { casestudiesPosts: [], externalLinks: {}, customers: [], heroSection: {} };
+    return { testimonialPosts: [], casestudiesPosts: [], externalLinks: {}, customers: [], heroSection: {} };
   }
 }
 
@@ -39,7 +53,7 @@ export async function generateMetadata() {
 }
 
 export default async function Customer() {
-  const { casestudiesPosts, externalLinks, customers, heroSection } = await getContent();
+  const { testimonialPosts, casestudiesPosts, externalLinks, customers, heroSection } = await getContent();
 
   // Map customers to caseStudiesData and keep isFullWidth field
   let caseStudiesData =

@@ -317,6 +317,7 @@ export const PER_API_LIMIT_FOR_GUIDE_SECTION = 1;
 export const PER_API_LIMIT_FOR_FAQ_SECTION = 20;
 export const PER_API_LIMIT_FOR_GUIDE_ARTICLE_FAQ = 40;
 export const PER_API_LIMIT_FOR_REVIEWS = 50;
+export const PER_API_LIMIT_FOR_CUSTOMERS = 50;
 
 export const INDUSTRY_ARRAY = [
   'accounting_and_bookkeeping',

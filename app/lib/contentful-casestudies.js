@@ -1,4 +1,4 @@
-import { CONTENTFUL_API_TAG } from '../constants/constant';
+import { CONTENTFUL_API_TAG, PER_API_LIMIT_FOR_CUSTOMERS } from '../constants/constant';
 import { fetchGraphQL } from './contentful';
 import { POST_GRAPHQL_RICHTEXT_ENTRY_WITH_VIDEO_CONTENT_FIELDS } from './contentful-guide';
 import { POST_GRAPHQL_HERO_COMPONENT_FIELDS, POST_GRAPHQL_TESTIMONIAL_CARD_FIELDS } from './contentful-standardPage';
@@ -131,23 +131,30 @@ export async function getCaseStudyWithSlug(preview) {
 
   return extractPostEntries(entries);
 }
-
-export async function getCustomers(preview) {
-  const response = await fetchGraphQL(
-    `query {
-      customerCollection(preview: ${preview ? 'true' : 'false'}) {
-        items {
-          customerName
-          logo { url }
-          industry
-          url
+// Fetch a single page of customers (for pagination)
+export async function getCustomers({ preview, limit = PER_API_LIMIT_FOR_CUSTOMERS, skip = 0 }) {
+  try {
+    const data = await fetchGraphQL(
+      `query {
+        customerCollection(preview: ${preview ? 'true' : 'false'}, limit: ${limit}, skip: ${skip}) {
+          items {
+            customerName
+            logo { url }
+            industry
+            url
+          }
         }
-      }
-    }`,
-    preview,
-    [CONTENTFUL_API_TAG.CUSTOMER]
-  );
-  return response?.data?.customerCollection?.items || [];
+      }`,
+      preview,
+      [CONTENTFUL_API_TAG.CUSTOMER]
+    );
+
+    const items = data?.data?.customerCollection?.items || [];
+    return items;
+  } catch (error) {
+    console.error('Error fetching customers:', error);
+    return [];
+  }
 }
 
 export async function getHeroComponentContent(id, preview) {
