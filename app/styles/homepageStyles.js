@@ -20,12 +20,6 @@ import {
 } from './styles';
 import { AutomationCardVariant } from '../constants/constant';
 
-const HomeMain = styled.div`
-  padding-bottom: 50px;
-  @media only screen and (max-width: 749px) {
-    padding-bottom: 0;
-  }
-`;
 
 const HeroSection = styled.div`
   width: 100%;
@@ -1177,7 +1171,6 @@ const BusinessSectionText = styled.div`
   }
 `;
 export {
-  HomeMain,
   HeroSection,
   HeroHeading,
   Para,

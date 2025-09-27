@@ -1,108 +1,57 @@
+import { draftMode } from 'next/headers';
+import { notFound } from 'next/navigation';
 import Layout from './components/layout';
-import { CURRENT_SITE_URL, HOME_CLIENT_DARK_ID } from './constants/constant';
-import { getHomeContent } from './lib/contentful-home';
+import { getStandardPageContent } from './lib/contentful-standardPage';
+import { getSEOData, isEmpty } from './helpers/helpers';
 import AggregateRating from './components/aggregateRating';
-import { getPageContent, getSocialMediaLinks, getExternalLinks } from './helpers/serverSideHelpers';
-import HomePage from './components/Home/homepage/homepage';
-import { createArrayWithFixedLength, getSEOData, isEmpty, removeEmptyElement } from './helpers/helpers';
-import NewCTA from './components/cta/newCTA';
+import StandardPage from './components/standardPage/standaradPage';
+import { getABTestInfoFromCookie } from './helpers/serverSideHelpers';
 
-/**
- * Fetches home page content and social media links concurrently.
- * Uses Promise.all for better performance and includes error handling.
- *
- * @param {Object} params - Function parameters
- * @param {Object} params.searchParams - URL search parameters
- * @returns {Promise<Object>} - Promise that resolves to home page content object
- * @returns {Object} returns.content - The home page content
- * @returns {string} returns.abTestContentLabel - AB test content label
- * @returns {string} returns.abTestExperimentName - AB test experiment name
- * @returns {Array} returns.socialMediaLinks - Array of social media links
- *
- * @example
- * const { content, abTestContentLabel, abTestExperimentName, socialMediaLinks } = await getContent({ searchParams });
- */
-async function getContent({ searchParams }) {
+export async function generateMetadata() {
   try {
-    // Fetch home page content and social media links concurrently
-    const [{ content, abTestContentLabel, abTestExperimentName }, socialMediaLinks, externalLinks] = await Promise.all([
-      getPageContent({
-        searchParams,
-        cookieKey: 'home',
-        fallbackContentId: HOME_CLIENT_DARK_ID,
-        getContentFn: getHomeContent
-      }),
-      getSocialMediaLinks({ linksOnly: true }),
-      getExternalLinks({ asMap: true })
-    ]);
+    const { isEnabled } = await draftMode();
+    const { contentId } = getABTestInfoFromCookie({ cookieKey: 'home' });
 
-    return {
-      content,
-      abTestContentLabel,
-      abTestExperimentName,
-      socialMediaLinks: socialMediaLinks || [],
-      externalLinks: externalLinks || {}
-    };
+    const data =
+      isEmpty(contentId) || isEnabled
+        ? await getStandardPageContent({ slug: '/', preview: isEnabled })
+        : (await getStandardPageContent({ id: contentId, slug: '/', preview: isEnabled })) ?? {};
+
+    if (!data?.seoMetadata) return;
+
+    const seoData = await getSEOData({ data: data?.seoMetadata });
+    return seoData;
   } catch (error) {
-    console.error('Error fetching home page content:', error);
-
-    // Return empty data as fallback in case of error
+    console.error('Error generating metadata for home page:', error);
     return {
-      content: {},
-      abTestContentLabel: '',
-      abTestExperimentName: '',
-      socialMediaLinks: [],
-      externalLinks: {}
+      title: 'Home',
+      description: 'Welcome to our website'
     };
   }
 }
 
-export async function generateMetadata({ params, searchParams }, parent) {
-  const { content: data } = await getContent({ searchParams });
-  if (isEmpty(data.seoMetadata)) {
-    return;
+export default async function HomePage() {
+  try {
+    const { isEnabled } = await draftMode();
+    const { contentId, abTestContentLabel, abTestExperimentName } = getABTestInfoFromCookie({ cookieKey: 'home' });
+
+    const data =
+      isEmpty(contentId) || isEnabled
+        ? await getStandardPageContent({ slug: '/', preview: isEnabled })
+        : (await getStandardPageContent({ id: contentId, slug: '/', preview: isEnabled })) ?? {};
+
+    if (!data) return notFound();
+
+    return (
+      <>
+        <AggregateRating data={data.seoMetadata} />
+        <Layout abTestContentLabel={abTestContentLabel} abTestExperimentName={abTestExperimentName}>
+          <StandardPage data={data?.contentCollection?.items} />
+        </Layout>
+      </>
+    );
+  } catch (error) {
+    console.error('Error rendering home page:', error);
+    return notFound();
   }
-  const seoData = await getSEOData({ id: data.seoMetadata.sys.id, data: data.seoMetadata });
-  seoData.alternates = { canonical: CURRENT_SITE_URL };
-
-  return seoData;
-}
-
-export default async function Home({ searchParams }) {
-  const { content, abTestContentLabel, abTestExperimentName, socialMediaLinks, externalLinks } = await getContent({
-    searchParams
-  });
-
-  const jsonLd = {
-    '@context': 'https://schema.org',
-    '@type': 'Organization',
-    name: 'Assembly',
-    url: CURRENT_SITE_URL,
-    logo: `${CURRENT_SITE_URL}/_next/static/media/blacklogo.370e156c.svg`,
-    sameAs: socialMediaLinks
-  };
-  const testimonialTableData = createArrayWithFixedLength(
-    removeEmptyElement(content?.section7DataCollection?.items),
-    18
-  );
-  return (
-    <>
-      {!isEmpty(content?.seoMetadata) && <AggregateRating id={content?.seoMetadata.sys.id} />}
-      <script type='application/ld+json' dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
-      <Layout abTestContentLabel={abTestContentLabel} abTestExperimentName={abTestExperimentName}>
-        <HomePage content={content} testimonialTableData={testimonialTableData} externalLinks={externalLinks} />
-        {!isEmpty(content?.ctaSection) && (
-          <NewCTA
-            title={content.ctaSection.title}
-            description={content.ctaSection.description}
-            primaryButtonText={content.ctaSection.primaryButtonText}
-            primaryButtonLink={content.ctaSection.primaryButtonLink}
-            secondaryButtonText={content.ctaSection.secondaryButtonText}
-            secondaryButtonLink={content.ctaSection.secondaryButtonLink}
-            banner={content.ctaSection.banner?.url}
-          />
-        )}
-      </Layout>
-    </>
-  );
 }

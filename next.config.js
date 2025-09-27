@@ -93,10 +93,6 @@ const nextConfig = {
         {
           source: '/experts/:path*',
           destination: 'https://copilotplatforms.partnerpage.io/experts/:path*'
-        },
-        {
-          source: '/',
-          destination: '/newhome'
         }
       ]
     };

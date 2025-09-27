@@ -361,11 +361,6 @@ export const CONTENTFUL_API_TAG = {
   CUSTOMER: 'customer'
 };
 
-export const GUIDE_LINK_INFO = {
-  link: '/guide',
-  text: 'Assembly Guide'
-};
-
 export const FIELD_SCORE = {
   'heading-1': 1000,
   'page-description': 100,
@@ -381,12 +376,6 @@ export const SOLUTION_TYPE = {
   USE_CASE: 'Use case'
 };
 export const HOME_VARIANT_CONTENT_ID = '2zuSDy7dfLvetT9Ka7YNrC';
-export const HOME_CONTENT_ID = '1cPG7VsMO1XCahxAnz3rne';
-export const HOME_HYBIRD_CONTENT_ID = '1w6IZ3ILFiLQAbCmjHQX6Q';
-export const HOME_INTERNAL_CONTENT_ID = '2XZ0KqhzxydyrIOQtIi2rv';
-export const HOME_CLIENT_CONTENT_ID = '58ZcfzgUaFZoKtfHcplGZE';
-export const HOME_CLIENT_DARK_ID = '4v9rcyZvdqtmPqcGSZcpAW';
-export const HOME_CLIENT_LIGHT_ID = '5Cx8ph9a63VN0oti4GzZFi';
 export const FOOTER_CONTENT_ID = '4B1mLHzG4mJqIyUUAW645w';
 
 export const FEATURES_MESSAG_ID = '3j6okJbvtbNtRAXhtQC869';
