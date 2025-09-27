@@ -7,5 +7,5 @@ import Image from 'next/image';
  */
 export default function PatchedImage(props) {
   const { quality, ...rest } = props;
-  return <Image quality={quality ?? 100} {...rest} />;
+  return <Image quality={100} {...rest} />;
 }

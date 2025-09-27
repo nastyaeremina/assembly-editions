@@ -1,6 +1,6 @@
 import { CONTENTFUL_API_TAG } from '../constants/constant';
 import { fetchGraphQL } from './contentful';
-import { POST_GRAPHQL_VIDEO_CONTENT_FIELDS } from './contentful-guide';
+import { POST_GRAPHQL_RICHTEXT_ENTRY_WITH_VIDEO_CONTENT_FIELDS } from './contentful-guide';
 import { POST_GRAPHQL_SEOMETADATA_FIELDS } from './contentful-seo';
 import { POST_GRAPHQL_HERO_COMPONENT_FIELDS } from './contentful-standardPage';
 
@@ -22,7 +22,7 @@ image {
 slug
 body{
   json
-    ${POST_GRAPHQL_VIDEO_CONTENT_FIELDS}
+    ${POST_GRAPHQL_RICHTEXT_ENTRY_WITH_VIDEO_CONTENT_FIELDS}
 }
 metaDescription
 metaTitle

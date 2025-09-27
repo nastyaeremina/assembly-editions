@@ -429,6 +429,27 @@ const ButtonGroups = styled.div`
   gap: var(--space-8);
   margin-top: var(--space-32);
 `;
+
+const LogoSection = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-24);
+  margin-top: var(--space-40);
+  overflow: hidden;
+  .customer-image-logo {
+    width: auto;
+  }
+  @media only screen and (max-width: 600px) {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  @media only screen and (max-width: 449px) {
+    margin-top: var(--space-24);
+    gap: var(--space-12);
+  }
+`;
+
 export {
   HeroSection,
   SolutionWrap,
@@ -447,5 +468,6 @@ export {
   TopDiv,
   BottomDiv,
   ButtonGroup,
-  ButtonGroups
+  ButtonGroups,
+  LogoSection
 };

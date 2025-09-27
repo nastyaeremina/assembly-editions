@@ -40,6 +40,7 @@ export default function StandardHero({ type, data, isDownload = false, highlight
             isDownload={isDownload}
             isShowSocialProof={data.showSocialProof}
             variant={HeroTypes.CENTER}
+            customerLogoCollection={data?.customerLogoCollection}
           />
         );
       case HeroTypes.SIMPLE:
@@ -85,6 +86,7 @@ export default function StandardHero({ type, data, isDownload = false, highlight
             highlights={highlights}
             isShowSocialProof={data.showSocialProof}
             logo={data?.logo}
+            customerLogoCollection={data?.customerLogoCollection}
           />
         );
       default: // or some default component or message

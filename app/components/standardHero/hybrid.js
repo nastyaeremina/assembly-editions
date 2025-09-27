@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Container } from '../../styles/commonStyles';
 import { BottomSection, G2Section, HeroSection, MainImage, Review, Stars } from '../Home/styles';
 import { HeroTypes } from '../../constants/constant';
@@ -7,6 +7,8 @@ import Heading from './heading/heading';
 import { isEmpty } from '../../helpers/helpers';
 import HighlightSectionComponents from '../casestudies/highlightSection';
 import SVGComponent from '../../../public/images/svg/SVGComponent';
+import { LogoSection } from './solutionhero/styles';
+
 /**
  * HomeHeroSection Component
  * @param {Object} props - Component props
@@ -22,6 +24,7 @@ import SVGComponent from '../../../public/images/svg/SVGComponent';
  * @param {string} props.secondaryButtonText - The text for the secondary button
  * @param {string} props.secondaryButtonLink - The link for the secondary button
  * @param {boolean} isDownload - Indicates whether the secondary button should link to a download.
+ * @param {Array} props.customerLogoCollection - The customer logo collection
  */
 
 export default function HomeHeroSection({
@@ -37,8 +40,45 @@ export default function HomeHeroSection({
   secondaryButtonLink,
   isDownload = false,
   variant = HeroTypes.CENTER,
-  isShowSocialProof
+  isShowSocialProof,
+  customerLogoCollection
 }) {
+  const [visibleLogos, setVisibleLogos] = useState([]);
+
+  useEffect(() => {
+    const container = document.getElementById('logo-section');
+    if (!container) return;
+
+    const calculateVisible = () => {
+      const isMobile = window.innerWidth <= 767;
+
+      if (isMobile) {
+        // Always show exactly 5 logos on mobile
+        setVisibleLogos(customerLogoCollection.items.slice(0, 5));
+      } else {
+        // Desktop logic → hide cutoff
+        const containerWidth = container.offsetWidth;
+        let totalWidth = 0;
+        const visible = [];
+        const GAP = 24;
+
+        customerLogoCollection.items.forEach((logo) => {
+          const logoWidth = 100; // or measure real one
+          if (totalWidth + logoWidth + GAP <= containerWidth) {
+            visible.push(logo);
+            totalWidth += logoWidth + GAP;
+          }
+        });
+
+        setVisibleLogos(visible);
+      }
+    };
+
+    calculateVisible();
+    window.addEventListener('resize', calculateVisible);
+    return () => window.removeEventListener('resize', calculateVisible);
+  }, [customerLogoCollection.items]);
+
   return (
     <HeroSection isStandardPage={isStandardPage} variant={variant}>
       <Container>
@@ -68,6 +108,20 @@ export default function HomeHeroSection({
             </MainImage>
           )}
         </BottomSection>
+        {!isEmpty(customerLogoCollection) && (
+          <LogoSection id='logo-section'>
+            {visibleLogos.map((logo) => (
+              <Image
+                key={logo.imageAsset.title}
+                src={logo.imageAsset.url}
+                width={100}
+                height={24}
+                alt='customer-logo'
+                className='customer-image-logo'
+              />
+            ))}
+          </LogoSection>
+        )}
       </Container>
     </HeroSection>
   );

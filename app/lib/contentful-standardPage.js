@@ -2,7 +2,7 @@ import { CONTENTFUL_API_TAG, FEATURE_COMPONENT_TYPE } from '../constants/constan
 import { isEmpty } from '../helpers/helpers';
 import { fetchGraphQL } from './contentful';
 import { POST_GRAPHQL_SEOMETADATA_FIELDS } from './contentful-seo';
-import {POST_GRAPHQL_VIDEO_CONTENT_FIELDS} from './contentful-constant'
+import { POST_GRAPHQL_VIDEO_CONTENT_FIELDS } from './contentful-constant';
 
 const POST_GRAPHQL_SECTION_COMMON_FIELDS = `
 title
@@ -30,6 +30,14 @@ banner2{
   url
 }
 showSocialProof
+customerLogoCollection (limit:20){
+  items {
+    imageAsset {
+      url
+      title
+    }
+  }
+}
 `;
 
 const POST_GRAPHQL_CASESTUDY_COMPONENT_FIELDS = ` 
@@ -154,7 +162,7 @@ contentCollection{
 
 `;
 
- const POST_GRAPHQL_CAROUSEL_BOX_FIELDS = `
+const POST_GRAPHQL_CAROUSEL_BOX_FIELDS = `
 title
 description
 url
@@ -187,9 +195,9 @@ ${POST_GRAPHQL_VIDEO_CONTENT_FIELDS}
 
 // Map feature type to GraphQL field string
 function getFeatureComponentFields(type) {
-  let itemFields= `sys{ id }`
- if(type=== FEATURE_COMPONENT_TYPE.BOX_GROUP_COMPONENT) itemFields=POST_GRAPHQL_BOX_GROUP_BOX_FIELDS
- else if(type=== FEATURE_COMPONENT_TYPE.CAROUSEL_COMPONENT) itemFields=POST_GRAPHQL_CAROUSEL_BOX_FIELDS
+  let itemFields = `sys{ id }`;
+  if (type === FEATURE_COMPONENT_TYPE.BOX_GROUP_COMPONENT) itemFields = POST_GRAPHQL_BOX_GROUP_BOX_FIELDS;
+  else if (type === FEATURE_COMPONENT_TYPE.CAROUSEL_COMPONENT) itemFields = POST_GRAPHQL_CAROUSEL_BOX_FIELDS;
   return `
   ${POST_GRAPHQL_SECTION_COMMON_FIELDS}
   type
@@ -197,9 +205,8 @@ function getFeatureComponentFields(type) {
     items{
       ${itemFields}
     }
-  }`
+  }`;
 }
-
 
 const POST_GRAPHQL_SECTION_TAB_FIELDS = `
   title
@@ -329,7 +336,7 @@ contentCollection{
  * @returns {Promise<Object|null>} The fetched feature component data, or null if not found.
  */
 
-export async function getFeatureComponentContent(id, preview,type) {
+export async function getFeatureComponentContent(id, preview, type) {
   const POST_GRAPHQL_FEATURE_COMPONENT_LIST_FIELDS = getFeatureComponentFields(type);
 
   const entries = await fetchGraphQL(
