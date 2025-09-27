@@ -92,7 +92,7 @@ function SectionComponent({
               isButton={!isEmpty(primaryButtonText) || !isEmpty(secondaryButtonText)}
               onTabChange={handleTabChange}
             />
-            <GridSection ref={containerRef} style={{ height }} tone={tone}>
+            <GridSection ref={containerRef} style={{ height: height }} tone={tone}>
               {tabItems.map((tabItem, index) => {
                 return (
                   <GridItemSection

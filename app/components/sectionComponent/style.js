@@ -120,7 +120,6 @@ const GridItemSectionWrapper = styled.div`
     width: 100%;
     height: 100%;
     grid-column: span 2;
-    max-height: 560px;
     object-fit: cover;
     border-radius: var(--radius-16);
     border: 1px solid var(--border-default);
@@ -131,7 +130,6 @@ const GridItemSectionWrapper = styled.div`
       `}
     @media only screen and (max-width: 991px) {
       grid-column: auto;
-      max-height: 408px;
     }
   }
 
