@@ -1,5 +1,14 @@
-import styled from 'styled-components';
-import { body_regular, body_semibold, button_semibold, h1_semibold, h2_semibold, h4_regular } from './typography';
+import styled, { css } from 'styled-components';
+import {
+  body_regular,
+  body_semibold,
+  button_regular,
+  button_semibold,
+  h1_semibold,
+  h2_semibold,
+  h4_regular,
+  tag
+} from './typography';
 
 const MainWrap = styled.div`
   background: var(--off-white-300);
@@ -72,21 +81,36 @@ const RoleList = styled.div`
   margin: var(--space-8) 0px 0px;
   display: flex;
   flex-direction: column;
+  a {
+    margin: 0 -20px;
+    padding: 0 var(--space-20);
+    @media only screen and (max-width: 449px) {
+      margin: 0 -12px;
+      padding: 0 var(--space-12);
+    }
+  }
 `;
 const RoleRow = styled.div`
-  margin: var(--space-20) 0px;
+  padding: var(--space-20);
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: var(--space-40);
-
-  :hover {
+  border-radius: var(--radius-12);
+  transition: background-color 0.3s ease;
+  margin: 0 -20px;
+  &:hover {
+    background-color: var(--bg-primary-hover);
     p {
       color: var(--black);
     }
     .bgdot {
       background-color: var(--black);
     }
+  }
+  @media only screen and (max-width: 449px) {
+    padding: var(--space-20) var(--space-12);
+    margin: 0 -12px;
   }
 `;
 const LeftRow = styled.div`
@@ -114,7 +138,9 @@ const RightRow = styled.div`
 `;
 
 const ImgWrap = styled.div`
-  margin-top: 40px;
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--radius-8);
 `;
 
 const JObMain = styled.div`
@@ -416,6 +442,295 @@ const AvtarWrapper = styled.div`
     }
   }
 `;
+const ImgBorder = styled.div`
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-8);
+  overflow: hidden;
+  background-color: var(--off-white-300);
+  display: flex;
+  img {
+    height: auto;
+    width: 100%;
+    max-width: 1224px;
+  }
+`;
+const TabList = styled.div`
+  display: flex;
+  gap: var(--space-8);
+  padding: var(--space-3) 0;
+  @media only screen and (max-width: 991px) {
+    display: none;
+  }
+`;
+
+const TabView = styled.div`
+  position: relative;
+  cursor: pointer;
+  span {
+    color: var(--border);
+  }
+  border: 1px solid var(--border);
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+const ActiveTab = styled.div`
+  position: absolute;
+  bottom: 101%;
+  background: var(--black);
+  width: 1px;
+  height: 21px;
+`;
+const RegionView = styled.div`
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  padding: var(--space-24);
+  p {
+    text-align: left;
+    margin: 0;
+    color: var(--off-white-100);
+    ${body_regular};
+    z-index: 1;
+    position: relative;
+  }
+  .bottom-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #10101080;
+    filter: blur(22px);
+  }
+  @media only screen and (max-width: 991px) {
+    padding: var(--space-16) var(--space-24) var(--space-12);
+  }
+  @media only screen and (max-width: 449px) {
+    padding: var(--space-8) var(--space-16);
+  }
+`;
+const TeamBlock = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-64);
+  padding: var(--space-64) 0;
+  @media only screen and (max-width: 991px) {
+    padding: var(--space-40) 0;
+  }
+  @media only screen and (max-width: 749px) {
+    padding: var(--space-48) 0;
+    gap: var(--space-32);
+  }
+`;
+const Dot = styled.div`
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background-color: var(--text-secondary);
+  margin: 0 var(--space-10);
+`;
+const TeamView = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-32);
+  align-items: flex-start;
+  max-width: 600px;
+  width: 100%;
+  h2 {
+    ${h2_semibold};
+    color: var(--title);
+    margin: 0;
+  }
+  p {
+    ${body_regular};
+    color: var(--title);
+    margin: 0;
+  }
+  @media only screen and (max-width: 449px) {
+    gap: var(--space-20);
+  }
+`;
+const TeamDetail = styled.div`
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(289px, 1fr));
+  gap: var(--space-24);
+  @media only screen and (max-width: 1060px) {
+    grid-template-columns: repeat(auto-fill, minmax(330px, 1fr));
+  }
+  @media only screen and (max-width: 768px) {
+    grid-template-columns: auto;
+  }
+`;
+const TitleWrap = styled.div`
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-12);
+  padding: var(--space-20) var(--space-20) var(--space-16);
+  background-color: var(--off-white-300);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-24);
+  height: 100%;
+  justify-content: space-between;
+  transition: background-color 0.3s ease;
+  &:hover {
+    background-color: var(--bg-primary-hover);
+    .read-more {
+      color: var(--text-secondary);
+    }
+    .arrow-icon {
+      path {
+        fill: var(--text-secondary);
+      }
+    }
+  }
+`;
+const TeamLine = styled.div`
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+
+  p {
+    color: var(--text-secondary);
+    ${tag}
+    margin: 0;
+    text-transform: uppercase;
+  }
+`;
+const NameView = styled.div`
+  margin: 0;
+  color: var(--title);
+  ${body_regular};
+  margin-bottom: var(--space-4);
+  @media only screen and (max-width: 768px) {
+    margin-bottom: 0;
+  }
+`;
+
+const Authorname = styled.div`
+  display: flex;
+  align-items: center;
+`;
+
+const TopSection = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-12);
+`;
+
+const ReadMore = styled.div`
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  padding-top: var(--space-3);
+  .arrow-icon {
+    transition: fill 0.3s ease;
+  }
+`;
+const Text = styled.p`
+  ${button_regular};
+  color: var(--title);
+  margin: 0;
+  transition: color 0.3s ease;
+`;
+
+const ImageSliderSection = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-40);
+  overflow: hidden;
+  @media only screen and (max-width: 991px) {
+    gap: var(--space-24);
+  }
+`;
+const SmallImage = styled.button`
+  display: flex;
+  cursor: pointer;
+  border: 1px solid var(--border-default);
+  border-radius: var(--space-8);
+  overflow: hidden;
+  user-select: none;
+  position: relative;
+  .image {
+    width: 128px;
+    height: 72px;
+    object-fit: cover;
+  }
+  :focus-visible {
+    border-radius: var(--radius-8);
+    .overlay {
+      opacity: 1;
+      background-color: transparent;
+    }
+  }
+`;
+
+const ImageOverlayDiv = styled.div`
+  background-color: var(--off-white-400);
+  opacity: 75%;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  inset: 0;
+  transition: opacity 0.3s ease, background-color 0.3s ease;
+  &:hover {
+    opacity: 1;
+    background-color: transparent;
+  }
+  ${(props) =>
+    props.isActive &&
+    css`
+      opacity: 1;
+      background-color: transparent;
+    `}
+`;
+
+const ResponsiveSection = styled.div`
+  display: none;
+  @media only screen and (max-width: 991px) {
+    display: flex;
+    .roundbutton-section {
+      display: flex;
+      gap: var(--space-4);
+      width: 100%;
+    }
+    .round {
+      width: 10px;
+      height: 10px;
+      border-radius: var(--radius-30);
+      background-color: var(--border-default);
+      cursor: pointer;
+    }
+    .active-round {
+      width: 10px;
+      height: 10px;
+      border-radius: var(--radius-30);
+      background-color: var(--title);
+      cursor: pointer;
+    }
+  }
+`;
+
+const LearnMore = styled.div`
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  white-space: nowrap;
+  p {
+    ${body_regular};
+    color: var(--title);
+    margin: 0;
+  }
+  @media only screen and (max-width: 991px) {
+    p {
+      display: none;
+    }
+  }
+`;
 
 export {
   CareerSection,
@@ -453,5 +768,26 @@ export {
   Role,
   JobDetailSectionWrapper,
   OverlayDiv,
-  AvtarWrapper
+  AvtarWrapper,
+  ImgBorder,
+  TabList,
+  TabView,
+  ActiveTab,
+  RegionView,
+  TeamBlock,
+  Dot,
+  TeamView,
+  TeamDetail,
+  TitleWrap,
+  TeamLine,
+  NameView,
+  Authorname,
+  TopSection,
+  ReadMore,
+  Text,
+  ImageSliderSection,
+  SmallImage,
+  ImageOverlayDiv,
+  ResponsiveSection,
+  LearnMore
 };

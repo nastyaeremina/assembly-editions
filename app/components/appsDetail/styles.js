@@ -21,7 +21,6 @@ const DetailTitleSection = styled.div`
 const AppLogo = styled.div`
   display: flex;
   img {
-    border: 1px solid var(--border-default);
     border-radius: var(--radius-8);
   }
   @media only screen and (max-width: 449px) {
@@ -610,11 +609,6 @@ const SmallImage = styled.button`
       background-color: transparent;
     }
   }
-  ${(props) =>
-    props.isActive &&
-    css`
-      border: 1px solid var(--border-hover);
-    `}
 `;
 
 const Overlay = styled.div`

@@ -68,10 +68,7 @@ function AppImageSection({ imageList }) {
   const renderImageList = useMemo(() => {
     if (!Array.isArray(imageList)) return null;
     return imageList.map((image, index) => (
-      <SmallImage
-        key={`app-image-${index}`}
-        onClick={() => setCurrentImageIndex(index)}
-        isActive={currentImageIndex === index}>
+      <SmallImage key={`app-image-${index}`} onClick={() => setCurrentImageIndex(index)}>
         <Image src={image?.url} alt='image' width={128} height={72} className='image' />
         <Overlay isActive={currentImageIndex === index} className='overlay' />
       </SmallImage>
