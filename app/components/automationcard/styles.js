@@ -1,7 +1,5 @@
 import styled, { css } from 'styled-components';
-import { Body3, Heading3, MbBody3, MbBody4 } from '../../styles/styles';
-import { Heading4 } from '../../styles/styles';
-import { Heading6 } from '../../styles/styles';
+import { body_regular, h2_semibold, h3_regular } from '../../styles/typography';
 
 const CardSection = styled.div`
   padding-top: 50px;
@@ -14,17 +12,22 @@ const CardSection = styled.div`
   ${(props) =>
     props.isStandardPage &&
     css`
-      padding: 0 0 100px;
+      padding-block: var(--space-64);
     `}
-    @media only screen and (max-width: 768px) {
+    @media only screen and (max-width: 991px) {
     ${(props) =>
       props.isStandardPage &&
       css`
-        padding: 0 0 80px !important;
+        padding-block: var(--space-40);
       `}
   }
-  @media only screen and (max-width: 426px) {
+  @media only screen and (max-width: 449px) {
     padding-bottom: 30px;
+    ${(props) =>
+      props.isStandardPage &&
+      css`
+        padding-block: var(--space-48);
+      `}
     ${(props) =>
       props.isAppExplore &&
       css`
@@ -33,21 +36,18 @@ const CardSection = styled.div`
   }
 `;
 const CardSectionHead = styled.div`
-  ${Heading3}
+  ${h2_semibold}
   color: var(--title);
-  span {
-    color: var(--primary);
-  }
 `;
 const Card = styled.div`
-  border: 1px solid var(--dark-green);
-  border-radius: 4px;
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-16);
   .card-img {
     display: flex;
     max-width: 1222px;
     width: 100%;
-    border-top: 1px solid var(--dark-green);
-    border-radius: 0 0 3px 3px;
+    border-top: 1px solid var(--border-default);
+    border-radius: 0 0 var(--radius-16) var(--radius-16);
     height: auto;
   }
   ${(props) =>
@@ -57,25 +57,24 @@ const Card = styled.div`
       flex-direction: column;
       display: flex;
       justify-content: space-between;
-      @media only screen and (max-width: 449px) {
+      @media only screen and (max-width: 768px) {
         width: 100%;
       }
     `}
 `;
 const CardTop = styled.div`
-  padding: 40px;
-
+  padding: var(--space-24);
   @media only screen and (max-width: 449px) {
-    padding: 28px;
+    padding: var(--space-28);
     ${(props) =>
       props.isStandardPage &&
       css`
-        padding: 20px;
+        padding: var(--space-12);
       `}
   }
 `;
 const Head = styled.h3`
-  ${Heading4}
+  ${h3_regular}
   color: var(--title);
   max-width: 780px;
   width: 100%;
@@ -83,19 +82,19 @@ const Head = styled.h3`
 `;
 const Description = styled.p`
   font-weight: 400 !important;
-  ${Heading6}
+  ${body_regular}
   color: var(--body);
   max-width: 780px;
   width: 100%;
-  margin: 12px 0 0;
+  margin-block: var(--space-12) 0;
   @media only screen and (max-width: 449px) {
-    ${MbBody4}
+    margin-block: var(--space-12) 0;
   }
 `;
 const Cards = styled.div`
   display: flex;
-  gap: 40px;
-  @media only screen and (max-width: 449px) {
+  gap: var(--space-40);
+  @media only screen and (max-width: 768px) {
     flex-direction: column;
     /* flex-wrap: wrap; */
     width: 100%;
@@ -104,22 +103,22 @@ const Cards = styled.div`
 
 const Body = styled.div`
   p {
-    ${Body3};
+    ${body_regular};
     color: var(--body);
-    margin: 16px 0 0;
+    margin-block: var(--space-16) 0;
   }
   @media only screen and (max-width: 449px) {
     p {
-      ${MbBody3}
+      margin-block: var(--space-32) 0;
     }
   }
 `;
 const HeaderSection = styled.div`
-  margin-bottom: 40px;
-  max-width: 811px;
+  margin-bottom: var(--space-64);
+  max-width: 600px;
   width: 100%;
   .button-group {
-    margin-top: 28px;
+    margin-top: var(--space-28);
   }
 `;
 export { CardSection, CardSectionHead, Card, CardTop, Head, Description, Cards, Body, HeaderSection };

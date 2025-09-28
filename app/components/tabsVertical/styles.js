@@ -1,20 +1,25 @@
 import styled, { css } from 'styled-components';
-import { Body4, Heading5, MbBody4, MobileH4 } from '../../styles/styles';
+import { body_regular, h4_regular } from '../../styles/typography';
 
 const TabsVerticalSection = styled.div`
   display: flex;
-  gap: 40px;
-  padding-bottom: 100px;
+  gap: var(--space-40);
+  padding-block: var(--space-64);
+  @media only screen and (max-width: 991px) {
+    padding-block: var(--space-40);
+  }
   @media only screen and (max-width: 768px) {
-    padding-bottom: 80px;
     flex-direction: column;
+  }
+  @media only screen and (max-width: 449px) {
+    padding-block: var(--space-48);
   }
 `;
 const TabsVerticalLeft = styled.div`
   width: 100%;
   display: flex;
   flex-direction: column;
-  gap: 40px;
+  gap: var(--space-40);
   justify-content: space-between;
 `;
 const TabsVerticalRight = styled.div`
@@ -29,7 +34,7 @@ const MainSection = styled.div`
   height: 100%;
   overflow: hidden;
   border: 1px solid var(--title);
-  border-radius: 4px;
+  border-radius: var(--radius-16);
   position: relative;
   @media only screen and (max-width: 768px) {
     margin-top: 0;
@@ -55,12 +60,12 @@ const ShowImage = styled.div`
   scale: 0.97;
   visibility: hidden;
   transition: opacity 0.4s ease 0s, scale 0.3s ease-in-out 0s, visibility 1ms ease 0.3s;
-  padding: 40px;
+  padding: var(--space-40);
   display: flex;
   justify-content: center;
   img {
     height: 100%;
-    border-radius: 4px;
+    border-radius: var(--radius-8);
     border: 1px solid var(--title);
     object-fit: cover;
     object-position: left;
@@ -82,7 +87,7 @@ const ShowImage = styled.div`
     }
   }
   @media only screen and (max-width: 768px) {
-    padding: 14px;
+    padding: var(--space-14);
     img {
       width: 100%;
     }
@@ -131,25 +136,25 @@ const BgImage = styled.div`
 `;
 
 const ToolsTab = styled.div`
-  padding: 20px 0;
-  border-bottom: 1px solid var(--border);
+  padding-block: var(--space-20);
+  border-bottom: 1px solid var(--border-default);
   display: flex;
   flex-direction: column;
   cursor: pointer;
   ${(props) =>
     props.selectedTab &&
     css`
-      border-bottom: 1px solid var(--black);
+      border-bottom: 1px solid var(--title);
     `}
   @media only screen and (max-width: 768px) {
-    border-top: 1px solid var(--border);
+    border-top: 1px solid var(--border-default);
     border-bottom: none;
-    padding: 16px 0 0 0;
-    gap: 6px;
+    padding-block: var(--space-16) 0;
+    gap: var(--space-6);
     ${(props) =>
       props.selectedTab &&
       css`
-        border-top: 1px solid var(--black);
+        border-top: 1px solid var(--title);
       `}
   }
 `;
@@ -166,7 +171,7 @@ const ResponsiveCaption = styled.div`
   }
 `;
 const Title = styled.h3`
-  ${Heading5};
+  ${h4_regular};
   font-weight: 400;
   color: var(--dark-gray);
   margin: 0;
@@ -174,22 +179,16 @@ const Title = styled.h3`
     props.selectedTab &&
     css`
       color: var(--title);
-      margin: 0 0 8px;
+      margin-block: 0 var(--space-8);
     `}
   ${ToolsTab}:hover & {
     color: var(--title);
   }
-  @media only screen and (max-width: 449px) {
-    ${MobileH4}
-  }
 `;
 const Caption = styled.p`
-  ${Body4};
+  ${body_regular};
   color: var(--body);
   margin: 0;
-  @media only screen and (max-width: 449px) {
-    ${MbBody4}
-  }
 `;
 
 const TabsSection = styled.div`
@@ -214,10 +213,9 @@ const ResponsiveImageSection = styled.div`
     }
     &.responsive-image {
       transition: all 0.6s;
-      margin-bottom: 16px;
+      margin-bottom: var(--space-16);
       :last-child {
-        margin-top: 16px;
-        margin-bottom: 0px;
+        margin-block: var(--space-16) 0;
       }
     }
   }

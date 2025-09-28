@@ -82,7 +82,7 @@ const SubHeroCaption = styled.div`
     margin: 0 0 20px 0;
   }
   p {
-    ${Body3};
+    ${body_regular};
     color: var(--body);
     margin: 0;
   }
@@ -103,9 +103,6 @@ const SubHeroCaption = styled.div`
       line-height:30.8px;
       letter-spacing: 0em;
       text-align: left;
-    }
-    p {
-      ${MbBody3}
     }
   }
 `;
