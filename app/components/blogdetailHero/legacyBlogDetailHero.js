@@ -18,9 +18,6 @@ export default function LegacyBlogDetailHero({ blogDetail, onCopyLink }) {
       if (firstTag) {
         baseBreadcrumbs.push({ label: name, href: `/blog/tag/${slug}` });
       }
-    } else {
-      // Fallback if no tags
-      baseBreadcrumbs.push({ label: 'Blog Post' });
     }
 
     return baseBreadcrumbs;
