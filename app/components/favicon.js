@@ -3,13 +3,19 @@ import Head from 'next/head';
 export default function Favicon() {
   return (
     <>
-      <link rel='apple-touch-icon' sizes='180x180' href='/favicons/apple-touch-icon.png' />
-      <link rel='icon' type='image/png' sizes='32x32' href='/favicons/favicon-32x32.png' />
-      <link rel='icon' type='image/png' sizes='16x16' href='/favicons/favicon-16x16.png' />
-      <link rel='icon' type='image/png' sizes='48x48' href='/favicons/favicon-48X48.png' />
-      <link rel='icon' type='image/png' sizes='64x64' href='/favicons/favicon-64X64.png' />
-      <link rel='icon' type='image/png' sizes='128x128' href='/favicons/favicon-128X128.png' />
-      <link rel='mask-icon' href='/favicons/safari-pinned-tab.svg' color='#000000' />
+      <link rel="icon" href="/favicons/assembly-favicon-light.svg" media="(prefers-color-scheme: light)" type="image/svg+xml" />
+      <link rel="icon" href="/favicons/assembly-favicon-dark.svg" media="(prefers-color-scheme: dark)" type="image/svg+xml" />
+
+      <link rel="icon" href="/favicons/assembly-favicon-light-16x16.png" media="(prefers-color-scheme: light)" sizes="16x16" type="image/png" />
+      <link rel="icon" href="/favicons/assembly-favicon-dark-16x16.png" media="(prefers-color-scheme: dark)" sizes="16x16" type="image/png" />
+      <link rel="icon" href="/favicons/assembly-favicon-light-32x32.png" media="(prefers-color-scheme: light)" sizes="32x32" type="image/png" />
+      <link rel="icon" href="/favicons/assembly-favicon-dark-32x32.png" media="(prefers-color-scheme: dark)" sizes="32x32" type="image/png" />
+      <link rel="icon" href="/favicons/assembly-favicon-light-192x192.png" media="(prefers-color-scheme: light)" sizes="192x192" type="image/png" />
+      <link rel="icon" href="/favicons/assembly-favicon-dark-192x192.png" media="(prefers-color-scheme: dark)" sizes="192x192" type="image/png" />
+
+      <link rel="apple-touch-icon" href="/favicons/assembly-favicon-light-180x180.png" media="(prefers-color-scheme: light)" sizes="180x180" />
+      <link rel="apple-touch-icon" href="/favicons/assembly-favicon-dark-180x180.png" media="(prefers-color-scheme: dark)" sizes="180x180" />
+
       <link rel='manifest' href='/favicons/site.webmanifest' />
       <link rel='shortcut icon' href='/favicons/favicon.ico' />
       <meta name='theme-color' content='#000' />
