@@ -18,8 +18,7 @@ import SVGComponent from '../../../../public/images/svg/SVGComponent';
 import SmallLogo from '../../../../public/images/assembly-svg.svg';
 import { isEmpty } from '../../../helpers/helpers';
 import ButtonV2Component from '../../button/buttonV2/buttonV2';
-import { ButtonSize, ButtonVariant } from '../../../constants/constant';
-import { useIsMobile } from '../../../hooks/useMobileDevice';
+import { ButtonVariant } from '../../../constants/constant';
 
 export default function ComparisonDetailsHero({
   title,
@@ -35,8 +34,6 @@ export default function ComparisonDetailsHero({
   compititorName,
   competitorLogo
 }) {
-  // mobile state
-  const isMobile = useIsMobile();
   // button empty state
   const showPrimaryButton = !isEmpty(primaryButtonText) && !isEmpty(primaryButtonLink);
   const showSecondaryButton = !isEmpty(secondaryButtonText) && !isEmpty(secondaryButtonLink);
@@ -60,20 +57,13 @@ export default function ComparisonDetailsHero({
               </TextSection>
               {isShowButton && (
                 <ButtonGroups>
-                  {showPrimaryButton && (
-                    <ButtonV2Component
-                      title={primaryButtonText}
-                      href={primaryButtonLink}
-                      size={isMobile ? ButtonSize.SMALL : ButtonSize.MEDIUM}
-                    />
-                  )}
+                  {showPrimaryButton && <ButtonV2Component title={primaryButtonText} href={primaryButtonLink} />}
                   {showSecondaryButton && (
                     <ButtonV2Component
                       title={secondaryButtonText}
                       href={secondaryButtonLink}
                       variant={showPrimaryButton ? ButtonVariant.SECONDARY : ButtonVariant.SECONDARY_WITH_BORDER}
                       iconName='blog-card-hover-arrow-icon'
-                      size={isMobile ? ButtonSize.SMALL : ButtonSize.MEDIUM}
                     />
                   )}
                 </ButtonGroups>

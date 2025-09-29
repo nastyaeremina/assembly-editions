@@ -232,7 +232,9 @@ const Buttons = styled.button`
     border-radius: var(--radius-30);
   }
   @media only screen and (max-width: 449px) {
-    padding: var(--space-2) var(--space-24) 0;
+    height: 40px;
+    padding: var(--space-2) var(--space-16) 0;
+    ${label_semibold}
     ${(props) =>
       props.size === ButtonSize.SMALL &&
       css`

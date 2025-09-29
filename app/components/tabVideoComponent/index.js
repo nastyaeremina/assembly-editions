@@ -12,10 +12,18 @@ import Image from 'next/image';
 function TabVideoComponent({ imageUrl, videoUrl, title, activeIndex }) {
   // ref variables
   const videoRef = useRef(null);
+  const playKickoffTimeoutRef = useRef(null);
 
   useEffect(() => {
     const videoElement = videoRef.current;
     if (!videoElement) return;
+
+    // Ensure iOS autoplay prerequisites are present at runtime
+    videoElement.muted = true;
+    videoElement.setAttribute('muted', '');
+    videoElement.setAttribute('playsinline', '');
+    videoElement.setAttribute('webkit-playsinline', '');
+    videoElement.setAttribute('autoplay', '');
 
     // Intersection Observer for automatic play/pause
     const observer = new IntersectionObserver(
@@ -23,9 +31,26 @@ function TabVideoComponent({ imageUrl, videoUrl, title, activeIndex }) {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
             // Video is in viewport - play it
-            videoElement.play().catch((error) => {
-              console.log('Autoplay prevented:', error);
-            });
+            const tryPlay = () => {
+              videoElement.play().catch(() => {
+                // Some iOS versions need a slight delay before play
+                if (playKickoffTimeoutRef.current) clearTimeout(playKickoffTimeoutRef.current);
+                playKickoffTimeoutRef.current = setTimeout(() => {
+                  videoElement.play().catch(() => {});
+                }, 120);
+              });
+            };
+
+            // If metadata already loaded, try immediately; otherwise wait for canplay
+            if (videoElement.readyState >= 2) {
+              tryPlay();
+            } else {
+              const onCanPlay = () => {
+                tryPlay();
+                videoElement.removeEventListener('canplay', onCanPlay);
+              };
+              videoElement.addEventListener('canplay', onCanPlay, { once: true });
+            }
           } else {
             // Video is out of viewport - pause it
             videoElement.pause();
@@ -40,8 +65,36 @@ function TabVideoComponent({ imageUrl, videoUrl, title, activeIndex }) {
 
     observer.observe(videoElement);
 
+    // If already visible on mount, attempt to kick off playback
+    const rect = videoElement.getBoundingClientRect();
+    const viewportHeight = window.innerHeight || document.documentElement.clientHeight;
+    const visibleHeight = Math.max(0, Math.min(rect.bottom, viewportHeight) - Math.max(rect.top, 0));
+    const visibilityRatio = rect.height > 0 ? visibleHeight / rect.height : 0;
+    if (visibilityRatio >= 0.2) {
+      const tryImmediatePlay = () => videoElement.play().catch(() => {});
+      if (videoElement.readyState >= 2) {
+        tryImmediatePlay();
+      } else {
+        const onCanPlayImmediate = () => {
+          tryImmediatePlay();
+          videoElement.removeEventListener('canplay', onCanPlayImmediate);
+        };
+        videoElement.addEventListener('canplay', onCanPlayImmediate, { once: true });
+      }
+    }
+
+    // User gesture fallback for stubborn iOS autoplay cases
+    const onFirstInteraction = () => {
+      videoElement.play().catch(() => {});
+    };
+    window.addEventListener('touchstart', onFirstInteraction, { once: true, passive: true });
+    window.addEventListener('click', onFirstInteraction, { once: true });
+
     return () => {
       observer.disconnect();
+      if (playKickoffTimeoutRef.current) clearTimeout(playKickoffTimeoutRef.current);
+      window.removeEventListener('touchstart', onFirstInteraction);
+      window.removeEventListener('click', onFirstInteraction);
     };
   }, [activeIndex]);
 
@@ -66,7 +119,10 @@ function TabVideoComponent({ imageUrl, videoUrl, title, activeIndex }) {
 
     // Return as-is if already in embed format
     if (url.includes('youtube.com/embed/')) {
-      return url;
+      // ensure autoplay/mute parameters for faster start
+      const hasQuery = url.includes('?');
+      const autoplayParams = 'autoplay=1&loop=1&mute=1&controls=0&rel=0';
+      return hasQuery ? `${url}&${autoplayParams}` : `${url}?${autoplayParams}`;
     }
 
     // Return original URL if no match found
@@ -83,9 +139,10 @@ function TabVideoComponent({ imageUrl, videoUrl, title, activeIndex }) {
           allowFullScreen
           title={title || 'Video'}
           loading='lazy'
+          fetchPriority='low'
         />
       ) : videoUrl?.video?.url ? (
-        <video ref={videoRef} muted loop playsInline preload='metadata'>
+        <video ref={videoRef} muted loop playsInline preload='metadata' autoPlay>
           <source src={videoUrl?.video?.url} type='video/mp4' />
         </video>
       ) : (

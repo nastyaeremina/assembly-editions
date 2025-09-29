@@ -1,10 +1,9 @@
 'use client';
 import React from 'react';
 import { isEmpty } from '../../../helpers/helpers';
-import { ButtonSize, ButtonVariant, HeroTypes } from '../../../constants/constant';
+import { ButtonVariant, HeroTypes } from '../../../constants/constant';
 import { ButtonGroups, HeroHeading, LeftHeroSectionMainDiv, Para } from './style';
 import ButtonV2Component from '../../button/buttonV2/buttonV2';
-import { useIsMobile } from '../../../hooks/useMobileDevice';
 
 /**
  * Heading Component
@@ -39,9 +38,6 @@ function Heading({
   const showSecondaryButton = !isEmpty(secondaryButtonText) && !isEmpty(secondaryButtonLink);
   const isShowButton = showPrimaryButton || showSecondaryButton;
 
-  // mobile state
-  const isMobile = useIsMobile();
-
   return (
     <LeftHeroSectionMainDiv variant={variant}>
       {!isEmpty(title) && (
@@ -56,12 +52,7 @@ function Heading({
       {isShowButton && (
         <ButtonGroups>
           {showPrimaryButton && (
-            <ButtonV2Component
-              title={primaryButtonText}
-              href={primaryButtonLink}
-              download={isDownload}
-              size={isMobile ? ButtonSize.SMALL : ButtonSize.MEDIUM}
-            />
+            <ButtonV2Component title={primaryButtonText} href={primaryButtonLink} download={isDownload} />
           )}
           {showSecondaryButton && (
             <ButtonV2Component
@@ -70,7 +61,6 @@ function Heading({
               variant={showPrimaryButton ? ButtonVariant.SECONDARY : ButtonVariant.SECONDARY_WITH_BORDER}
               iconName='blog-card-hover-arrow-icon'
               download={isDownload}
-              size={isMobile ? ButtonSize.SMALL : ButtonSize.MEDIUM}
             />
           )}
         </ButtonGroups>

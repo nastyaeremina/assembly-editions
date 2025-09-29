@@ -5,7 +5,7 @@ import Script from 'next/script';
 import { useDispatch, useSelector } from 'react-redux';
 import { checkValidation } from '../../services/bookDemoService';
 import { setformValidationError, updateBookDemoItem } from '../../actions/bookDemoActions';
-import { BOOK_DEMO_CONTENT_TYPE, ButtonSize, ButtonTone } from '../../constants/constant';
+import { BOOK_DEMO_CONTENT_TYPE, ButtonTone } from '../../constants/constant';
 import Validation from '../Validation/validation';
 import { isEmpty } from '../../helpers/helpers';
 import { EXTERNAL_LINK_KEYS } from '../../constants/constant';
@@ -31,14 +31,11 @@ import {
   Textarea
 } from './styles';
 import ButtonV2Component from '../button/buttonV2/buttonV2';
-import { useIsMobile } from '../../hooks/useMobileDevice';
 
 export default function BookDemoForm({ data, thankYouMessage, externalLinks = {} }) {
   const bookDemoSelector = useSelector((state) => state.bookDemo);
   const { validationError, bookDemoData } = bookDemoSelector;
   const [isSubmit, setIsSubmit] = useState(false);
-
-  const isMobile = useIsMobile();
 
   const dispatch = useDispatch();
 
@@ -177,15 +174,8 @@ export default function BookDemoForm({ data, thankYouMessage, externalLinks = {}
                             title={'Start trial'}
                             href={externalLinks?.[EXTERNAL_LINK_KEYS.OnboardingLink] || '#'}
                             isWidth
-                            size={isMobile ? ButtonSize.SMALL : ButtonSize.MEDIUM}
                           />
-                          <ButtonV2Component
-                            title={'Watch demo'}
-                            href={'/'}
-                            isWidth
-                            tone={ButtonTone.DARK}
-                            size={isMobile ? ButtonSize.SMALL : ButtonSize.MEDIUM}
-                          />
+                          <ButtonV2Component title={'Watch demo'} href={'/'} isWidth tone={ButtonTone.DARK} />
                         </div>
                       </>
                     )}
