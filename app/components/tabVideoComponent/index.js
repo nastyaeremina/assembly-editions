@@ -90,7 +90,7 @@ function TabVideoComponent({ imageUrl, videoUrl, title, activeIndex }) {
         </video>
       ) : (
         /* Fallback to image if no video available */
-        !isEmpty(imageUrl) && <Image src={imageUrl.url} width={877} height={827} className='image' alt='Section' />
+        !isEmpty(imageUrl) && <Image src={imageUrl.url} width={1224} height={827} className='image' alt='Section' />
       )}
     </>
   );
