@@ -6,6 +6,7 @@ import { getSEOData, isEmpty } from './helpers/helpers';
 import AggregateRating from './components/aggregateRating';
 import StandardPage from './components/standardPage/standaradPage';
 import { getABTestInfoFromCookie } from './helpers/serverSideHelpers';
+import { CURRENT_SITE_URL } from './constants/constant';
 
 export async function generateMetadata() {
   try {
@@ -20,6 +21,8 @@ export async function generateMetadata() {
     if (!data?.seoMetadata) return;
 
     const seoData = await getSEOData({ data: data?.seoMetadata });
+    seoData.alternates = { canonical: `${CURRENT_SITE_URL}/` };
+
     return seoData;
   } catch (error) {
     console.error('Error generating metadata for home page:', error);
