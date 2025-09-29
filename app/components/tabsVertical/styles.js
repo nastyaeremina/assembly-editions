@@ -33,7 +33,7 @@ const MainSection = styled.div`
   width: 100%;
   height: 100%;
   overflow: hidden;
-  border: 1px solid var(--title);
+  border: 1px solid var(--border-default);
   border-radius: var(--radius-16);
   position: relative;
   @media only screen and (max-width: 768px) {
@@ -66,7 +66,6 @@ const ShowImage = styled.div`
   img {
     height: 100%;
     border-radius: var(--radius-8);
-    border: 1px solid var(--title);
     object-fit: cover;
     object-position: left;
   }
@@ -123,7 +122,6 @@ const BgImage = styled.div`
   .active-img {
     object-position: center center;
     object-fit: cover;
-    /* position: absolute; */
     top: 0px;
     left: 0px;
     height: 100%;

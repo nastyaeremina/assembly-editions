@@ -79,7 +79,7 @@ export default function TabsVertical({ heroSectionData, featuresList }) {
               key={index}
               src={item?.backgroundImage?.url}
               alt=''
-              width={612}
+              width={1224}
               height={648}
               style={{ width: '100%', height: '100%' }}
               className={index === selectedTab ? 'active-img' : 'img'}
@@ -95,10 +95,11 @@ export default function TabsVertical({ heroSectionData, featuresList }) {
                   <Image
                     src={item?.image?.url}
                     alt='msg-screen'
-                    width={532}
+                    width={1224}
                     height={568}
                     loading='eager'
                     priority={true}
+                    style={{ width: '100%', height: '100%' }}
                   />
                 </ShowImage>
               );

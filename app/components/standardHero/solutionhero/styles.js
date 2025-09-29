@@ -3,7 +3,6 @@ import { Body3, Heading2, MbBody2 } from '../../../styles/styles';
 import { body_regular, body_semibold, button_regular, h1_semibold, h4_semibold } from '../../../styles/typography';
 
 const HeroSection = styled.div`
-  padding: 180px 0 100px 0;
   &.details-hero {
     padding: 0 0 var(--space-24);
     @media only screen and (max-width: 991px) {
@@ -16,14 +15,12 @@ const HeroSection = styled.div`
   ${(props) =>
     props.isStandardPage &&
     css`
-      padding: 0 0 var(--space-100);
-      @media only screen and (max-width: 768px) {
-        padding: 0 0 var(--space-80);
+      padding: 0 0 var(--space-24);
+      @media only screen and (max-width: 991px) {
+        padding: 0 0 var(--space-20);
       }
     `}
-  @media only screen and (max-width: 749px) {
-    padding-top: 116px;
-    padding-bottom: var();
+  @media only screen and (max-width: 449px) {
     ${(props) =>
       props.isStandardPage &&
       css`

@@ -41,7 +41,7 @@ function FeatureBentoBox({ icon, title, description, image, columnSpan = 1, href
       </ContentDiv>
       {!isEmpty(image) && (
         <ImageWrapper>
-          <Image src={image} alt={title} className='image' width={378} height={204} />
+          <Image src={image} alt={title} className='image' width={1224} height={204} />
         </ImageWrapper>
       )}
       <HoverArrowIcon>

@@ -1,10 +1,9 @@
 import styled, { css } from 'styled-components';
 import { SectionTone } from '../../constants/constant';
-import { body_regular, h2_regular, h3_regular, h4_regular } from '../../styles/typography';
+import { body_regular, h2_regular, h3_regular } from '../../styles/typography';
 import Link from 'next/link';
 
 const QuoteSection = styled(Link)`
-  grid-column: span 1;
   padding: var(--space-20);
   background-color: var(--title);
   border-radius: var(--radius-16);
@@ -21,7 +20,7 @@ const QuoteSection = styled(Link)`
   .quote-image {
     width: 100%;
     height: auto;
-    aspect-ratio: 392 / 216;
+    aspect-ratio: 321 / 216;
     border-radius: var(--radius-8);
     object-fit: cover;
     border: 1px solid var(--bg-card-dark-hover);
@@ -33,7 +32,6 @@ const QuoteSection = styled(Link)`
     }
   }
   @media only screen and (max-width: 991px) {
-    grid-column: auto;
     flex-direction: row-reverse;
     justify-content: space-between;
     gap: var(--space-24);
@@ -99,7 +97,7 @@ const CompanyName = styled.p`
 
 const Description = styled.div`
   display: -webkit-box;
-  -webkit-line-clamp: 4;
+  -webkit-line-clamp: 5;
   -webkit-box-orient: vertical;
   overflow: hidden;
   text-overflow: ellipsis;

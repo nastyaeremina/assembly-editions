@@ -46,9 +46,9 @@ const Card = styled.div`
     display: flex;
     max-width: 1222px;
     width: 100%;
+    height: 100%;
     border-top: 1px solid var(--border-default);
     border-radius: 0 0 var(--radius-16) var(--radius-16);
-    height: auto;
   }
   ${(props) =>
     props.isTwoCard &&

@@ -31,7 +31,7 @@ const Tabs = styled.div`
     z-index: 1;
   }
 
-  @media only screen and (max-width: 991px) and (min-width: 636px) {
+  @media only screen and (max-width: 991px) and (min-width: 450px) {
     overflow-x: auto;
     scrollbar-width: none;
     gap: var(--space-16);
@@ -51,7 +51,7 @@ const Tabs = styled.div`
       ${({ tabsCount }) => (tabsCount > 3 ? 'max-width: unset;' : '')}
     }
   }
-  @media only screen and (max-width: 635px) {
+  @media only screen and (max-width: 449px) {
     justify-content: center;
     gap: 0;
     &::after {

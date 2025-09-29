@@ -36,30 +36,11 @@ const GridSection = styled.div`
   width: 100%;
   transition: height 0.5s ease;
   overflow: hidden;
-  .image {
-    width: 100%;
-    height: 100%;
-    border-radius: var(--radius-16);
-    border: 1px solid var(--border-default);
-    grid-column: span 2;
-    object-fit: cover;
-    ${({ tone }) =>
-      tone === SectionTone.DARK &&
-      css`
-        border: 1px solid var(--bg-card-dark-hover);
-      `}
-    @media only screen and (max-width: 991px) {
-      grid-column: auto;
-    }
-    @media only screen and (max-width: 449px) {
-      border-radius: var(--radius-12);
-    }
-  }
 `;
 
 const GridItemSectionWrapper = styled.div`
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  grid-template-columns: 1fr;
   align-items: center;
   gap: var(--space-24);
   width: 100%;
@@ -74,12 +55,16 @@ const GridItemSectionWrapper = styled.div`
       transition: opacity 0.5s ease, transform 0.5s ease;
       z-index: ${({ isActive }) => (isActive ? 1 : 0)};
     `}
+  ${({ hasQuoteBlock }) =>
+    hasQuoteBlock &&
+    css`
+      grid-template-columns: 1fr 321px;
+    `}
 
   /* video styling */
   video {
     width: 100%;
     object-fit: cover;
-    grid-column: span 2;
     height: 100%;
     border-radius: var(--radius-16);
     border: 1px solid var(--border-default);
@@ -89,14 +74,12 @@ const GridItemSectionWrapper = styled.div`
         border: 1px solid var(--bg-card-dark-hover);
       `}
     @media only screen and (max-width: 991px) {
-      grid-column: auto;
       border-radius: var(--radius-12);
     }
   }
   /* Iframe styling for video looping */
   iframe {
     max-width: 100%;
-    grid-column: span 2;
     height: ${({ hasQuoteBlock }) => (hasQuoteBlock ? '100%' : '')};
     border-radius: var(--radius-16);
     border: 1px solid var(--border-default);
@@ -106,7 +89,6 @@ const GridItemSectionWrapper = styled.div`
         border: 1px solid var(--bg-card-dark-hover);
       `}
     @media only screen and (max-width: 991px) {
-      grid-column: auto;
       max-height: 408px;
       height: 408px;
     }
@@ -120,7 +102,6 @@ const GridItemSectionWrapper = styled.div`
     max-width: 100%;
     width: 100%;
     height: 100%;
-    grid-column: span 2;
     object-fit: cover;
     border-radius: var(--radius-16);
     border: 1px solid var(--border-default);
@@ -129,13 +110,10 @@ const GridItemSectionWrapper = styled.div`
       css`
         border: 1px solid var(--bg-card-dark-hover);
       `}
-    @media only screen and (max-width: 991px) {
-      grid-column: auto;
-    }
   }
 
   @media only screen and (max-width: 991px) {
-    grid-template-columns: auto;
+    grid-template-columns: 1fr;
     gap: var(--space-32);
   }
 `;
