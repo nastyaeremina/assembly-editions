@@ -72,6 +72,7 @@ const GridItemSectionWrapper = styled.div`
       left: 0;
       opacity: ${({ isActive }) => (isActive ? 1 : 0)};
       transition: opacity 0.5s ease, transform 0.5s ease;
+      z-index: ${({ isActive }) => (isActive ? 1 : 0)};
     `}
 
   /* video styling */

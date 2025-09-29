@@ -12,6 +12,7 @@ const QuoteSection = styled(Link)`
   flex-direction: column;
   gap: var(--space-32);
   max-height: 560px;
+  height: 100%;
   ${({ tone }) =>
     tone === SectionTone.DARK &&
     css`

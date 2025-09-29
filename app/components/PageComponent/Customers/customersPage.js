@@ -58,14 +58,14 @@ export default function CustomerPage({
           </Container>
         </CaseStudyWrapper>
       )}
-      <CustomerTableSection
+      {/* <CustomerTableSection
         designations={designations}
         caseStudies={caseStudiesData}
         title={CustomerTableSectionData.title}
         description={CustomerTableSectionData.description}
         primaryButtonLink={CustomerTableSectionData.primaryButtonLink}
         primaryButtonText={CustomerTableSectionData.primaryButtonText}
-      />
+      /> */}
       <NewCTA
         title={CTAData.title}
         description={CTAData.description}
