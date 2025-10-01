@@ -581,13 +581,17 @@ const TopBar = styled.div`
 `;
 
 const AnnounceBar = styled.div`
-  padding: var(--space-12) 0;
+  padding: var(--space-11) 0;
   a {
-    ${label_semibold};
     margin: 0;
-    color: var(--title);
     cursor: pointer;
     transition: none;
+    p {
+      margin: 0;
+      ${label_semibold};
+      color: var(--title);
+      margin-top: var(--space-2);
+    }
   }
 `;
 

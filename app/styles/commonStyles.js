@@ -9,7 +9,8 @@ import {
   h4_semibold,
   tag,
   label_semibold,
-  button_regular
+  button_regular,
+  h2_semibold
 } from './typography';
 
 const Container = styled.div`
@@ -433,6 +434,18 @@ const Content = styled.div`
       margin-top: var(--space-20);
     }
   }
+  h1 {
+    ${h2_semibold}
+    margin-top: var(--space-64);
+    margin-bottom: var(--space-8);
+    color: var(--title);
+    strong {
+      font-weight: 400;
+    }
+    @media only screen and (max-width: 449px) {
+      margin-top: var(--space-48);
+    }
+  }
   h2 {
     ${h3_semibold}
     margin-top: var(--space-64);
@@ -690,12 +703,6 @@ const Content = styled.div`
     border: 1px solid var(--border-default);
     margin: var(--space-16) 0 !important;
   }
-
-  * {
-    :last-child {
-      margin-bottom: 0;
-    }
-  }
   code {
     color: var(--text-secondary);
     font-family: 'Azeret Mono', monospace !important;
@@ -708,23 +715,29 @@ const Content = styled.div`
     color: var(--title);
     ${body_regular}
   }
-  *:first-child {
-    margin-top: 0;
-    padding-top: 0;
-  }
-  *:last-child {
-    margin-bottom: 0;
-    padding-bottom: 0;
-  }
-
-  p {
-    :last-child {
-      margin-bottom: 0;
-      padding-bottom: 0;
+  p,
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    :first-child {
+      padding-top: 0;
+      margin-top: 0;
     }
   }
-  *:last-child {
-    margin-bottom: 0;
+  p,
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    :last-child {
+      padding-bottom: 0;
+      margin-bottom: 0;
+    }
   }
 
   table {

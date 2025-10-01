@@ -46,7 +46,7 @@ const TableMainDiv = styled.div`
   align-items: flex-start;
   justify-content: space-between;
   gap: var(--space-64);
-  @media only screen and (max-width: 768px) {
+  @media only screen and (max-width: 991px) {
     flex-direction: column;
   }
   @media only screen and (max-width: 449px) {
@@ -226,7 +226,7 @@ const TableMainDiv = styled.div`
         }
       }
     }
-    @media only screen and (max-width: 768px) {
+    @media only screen and (max-width: 991px) {
       max-width: unset;
       img {
         height: 24px;

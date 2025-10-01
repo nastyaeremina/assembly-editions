@@ -7,7 +7,7 @@ import { Container } from '../../styles/commonStyles';
 import useMobileDevice from '../../hooks/useMobileDevice';
 import { isEmpty } from '../../helpers/helpers';
 import { EXTERNAL_LINK_KEYS } from '../../constants/constant';
-import { useRouter, usePathname } from 'next/navigation';
+import { usePathname } from 'next/navigation';
 import {
   NavbarWrapper,
   NavbarInner,
@@ -61,7 +61,6 @@ export default function NavbarComponent({ isAuthenticated: userAuth, topbarConte
     document.documentElement.style.setProperty('--navbar-height', `${navbarHeight}px`);
   }, [topbarHeight, navbarHeight]);
 
-  const router = useRouter();
   const pathname = usePathname();
 
   useEffect(() => {
@@ -274,7 +273,7 @@ export default function NavbarComponent({ isAuthenticated: userAuth, topbarConte
               <AnnounceBar>
                 <HelpLink className='icon-link'>
                   <Link href={topbarContent?.url} className='learn-link mb0' target={'_blank'}>
-                    {topbarContent?.title}
+                    <p>{topbarContent?.title}</p>
                     <Icon>
                       <SVGComponent name='blog-card-hover-arrow-icon' width='12' height='12' viewBox='0 0 16 16' />
                     </Icon>

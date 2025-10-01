@@ -440,10 +440,11 @@ const LogoSection = styled.div`
   @media only screen and (max-width: 600px) {
     flex-wrap: wrap;
     justify-content: center;
+    column-gap: var(--space-24);
+    row-gap: var(--space-12);
   }
   @media only screen and (max-width: 449px) {
     margin-top: var(--space-24);
-    gap: var(--space-12);
   }
 `;
 
