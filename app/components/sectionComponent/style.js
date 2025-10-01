@@ -34,8 +34,6 @@ const TabSection = styled.div`
 const GridSection = styled.div`
   position: relative;
   width: 100%;
-  transition: height 0.5s ease;
-  overflow: hidden;
 `;
 
 const GridItemSectionWrapper = styled.div`
@@ -48,12 +46,7 @@ const GridItemSectionWrapper = styled.div`
   ${({ isSectionComponent }) =>
     isSectionComponent &&
     css`
-      position: absolute;
-      top: 0;
-      left: 0;
-      opacity: ${({ isActive }) => (isActive ? 1 : 0)};
-      transition: opacity 0.5s ease, transform 0.5s ease;
-      z-index: ${({ isActive }) => (isActive ? 1 : 0)};
+      display: ${({ isActive }) => (isActive ? 'grid' : 'none')};
     `}
   ${({ hasQuoteBlock }) =>
     hasQuoteBlock &&

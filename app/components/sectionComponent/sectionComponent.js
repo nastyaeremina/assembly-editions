@@ -1,5 +1,5 @@
 'use client';
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useState } from 'react';
 import { GridSection, SectionContentDiv, SectionDiv, TabSection } from './style';
 import SectionHeader from '../sectionHeader/sectionHeader';
 import { Container } from '../../styles/commonStyles';
@@ -31,46 +31,11 @@ function SectionComponent({
   tabItems
 }) {
   const [activeIndex, setActiveIndex] = useState(0);
-  const containerRef = useRef(null);
-  const [height, setHeight] = useState(0);
 
   const handleTabChange = (tabItem) => {
     const newIndex = tabItems.findIndex((item) => item.title === tabItem.title);
     setActiveIndex(newIndex);
   };
-
-  useEffect(() => {
-    const updateHeight = () => {
-      if (containerRef.current) {
-        const activeEl = containerRef.current.querySelector("[data-active='true']");
-        if (activeEl) {
-          setHeight(activeEl.offsetHeight);
-        }
-      }
-    };
-
-    // Initial call
-    updateHeight();
-
-    // Observe changes in active element size
-    let observer;
-    if (containerRef.current) {
-      const activeEl = containerRef.current.querySelector("[data-active='true']");
-      if (activeEl) {
-        observer = new ResizeObserver(() => {
-          updateHeight();
-        });
-        observer.observe(activeEl);
-      }
-    }
-
-    window.addEventListener('resize', updateHeight);
-
-    return () => {
-      if (observer) observer.disconnect();
-      window.removeEventListener('resize', updateHeight);
-    };
-  }, [activeIndex]);
 
   return (
     <SectionDiv tone={tone}>
@@ -92,7 +57,7 @@ function SectionComponent({
               isButton={!isEmpty(primaryButtonText) || !isEmpty(secondaryButtonText)}
               onTabChange={handleTabChange}
             />
-            <GridSection ref={containerRef} style={{ height: height }} tone={tone}>
+            <GridSection tone={tone}>
               {tabItems.map((tabItem, index) => {
                 return (
                   <GridItemSection
