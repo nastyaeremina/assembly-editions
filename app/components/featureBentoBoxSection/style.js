@@ -1,5 +1,5 @@
 import styled, { css } from 'styled-components';
-import { body_regular, h2_semibold, h4_regular } from '../../styles/typography';
+import { body_regular, h4_regular } from '../../styles/typography';
 
 const MainSection = styled.div`
   padding: var(--space-64) 0;
@@ -52,6 +52,12 @@ const FeatureBentoBoxContainer = styled.div`
   border-radius: var(--space-16);
   border: 1px solid var(--border-default);
   transition: background-color 0.3s ease, border 0.3s ease;
+  .image-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: var(--space-16);
+  }
   @media only screen and (min-width: 999px) {
     ${(props) =>
       props.columnSpan &&
@@ -101,10 +107,16 @@ const ImageWrapper = styled.div`
   position: relative;
   border-radius: var(--space-8);
   overflow: hidden;
+  width: 100%;
   .image {
     width: 100%;
     object-fit: cover;
     object-position: left;
+  }
+  @media only screen and (max-width: 650px) {
+    .image {
+      height: auto;
+    }
   }
 `;
 

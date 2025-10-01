@@ -132,6 +132,7 @@ const ButtonGroup = styled.div`
   align-items: center;
   gap: var(--space-16);
   justify-content: center;
+  flex-wrap: wrap;
   @media only screen and (max-width: 768px) {
     padding-top: var(--space-4);
     gap: var(--space-12);
@@ -139,9 +140,6 @@ const ButtonGroup = styled.div`
   @media only screen and (max-width: 449px) {
     padding-top: 0;
     gap: var(--space-4);
-  }
-  @media only screen and (max-width: 395px) {
-    flex-wrap: wrap;
   }
 `;
 

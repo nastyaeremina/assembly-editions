@@ -39,20 +39,22 @@ function FeatureBentoBox({ icon, title, description, image, columnSpan = 1, href
           {!isEmpty(description) && <CardDescription>{description}</CardDescription>}
         </ContentSection>
       </ContentDiv>
-      {!isEmpty(image) && (
-        <ImageWrapper>
-          <Image src={image} alt={title} className='image' width={1224} height={204} />
-        </ImageWrapper>
-      )}
-      <HoverArrowIcon>
-        <SVGComponent
-          name='blog-card-hover-arrow-icon'
-          width='16'
-          height='16'
-          viewBox='0 0 16 16'
-          className='svg-icon'
-        />
-      </HoverArrowIcon>
+      <div className='image-wrapper'>
+        {!isEmpty(image) && (
+          <ImageWrapper>
+            <Image src={image} alt={title} className='image' width={1224} height={204} />
+          </ImageWrapper>
+        )}
+        <HoverArrowIcon>
+          <SVGComponent
+            name='blog-card-hover-arrow-icon'
+            width='16'
+            height='16'
+            viewBox='0 0 16 16'
+            className='svg-icon'
+          />
+        </HoverArrowIcon>
+      </div>
     </FeatureBentoBoxContainer>
   );
 }

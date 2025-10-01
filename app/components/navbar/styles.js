@@ -507,7 +507,7 @@ const SignInMobile = styled.ul`
       padding: 0;
     }
   }
-  @media only screen and (max-width: 449px) {
+  @media only screen and (max-width: 550px) {
     .login-link {
       display: none;
     }

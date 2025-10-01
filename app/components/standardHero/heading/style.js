@@ -72,6 +72,7 @@ const ButtonGroups = styled.div`
   display: flex;
   gap: var(--space-8);
   margin-top: var(--space-24);
+  flex-wrap: wrap;
   @media only screen and (max-width: 449px) {
     margin-top: var(--space-32);
   }
