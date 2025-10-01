@@ -163,11 +163,8 @@ export default function BookDemoForm({ data, thankYouMessage, externalLinks = {}
                           <SuccessIcon>
                             <SVGComponent name='new-success-icon' width='60' height='60' viewBox='0 0 60 60' />
                           </SuccessIcon>
-                          <h4>Booking confirmed</h4>
-                          <p>
-                            We look forward to meet you. In the meantime, get started with the demo or try our product
-                            for free.
-                          </p>
+                          <h4>Demo request received</h4>
+                          <p>We will be in touch to schedule a demo.</p>
                         </TextWrap>
                         <div className='button-group'>
                           <ButtonV2Component
@@ -175,7 +172,6 @@ export default function BookDemoForm({ data, thankYouMessage, externalLinks = {}
                             href={externalLinks?.[EXTERNAL_LINK_KEYS.OnboardingLink] || '#'}
                             isWidth
                           />
-                          <ButtonV2Component title={'Watch demo'} href={'/'} isWidth tone={ButtonTone.DARK} />
                         </div>
                       </>
                     )}
