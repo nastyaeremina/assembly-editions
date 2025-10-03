@@ -111,7 +111,7 @@ export default function HomeHeroSection({
             </MainImage>
           )}
         </BottomSection>
-        {!isEmpty(visibleLogos) && (
+        {!isEmpty(customerLogoCollection?.items) && (
           <LogoSection id='logo-section'>
             {visibleLogos.map((logo) => (
               <Image
