@@ -12,6 +12,7 @@ const QuoteSection = styled(Link)`
   gap: var(--space-32);
   max-height: 560px;
   height: 100%;
+  transition: background-color 0.3s ease;
   ${({ tone }) =>
     tone === SectionTone.DARK &&
     css`
@@ -26,6 +27,12 @@ const QuoteSection = styled(Link)`
     border: 1px solid var(--bg-card-dark-hover);
   }
   :hover {
+    background-color: var(--bg-card-dark-hover);
+    ${({ tone }) =>
+      tone === SectionTone.DARK &&
+      css`
+        background-color: var(--gray-350);
+      `};
     .svg-icon {
       transform: none;
       opacity: 1;
@@ -36,6 +43,9 @@ const QuoteSection = styled(Link)`
     justify-content: space-between;
     gap: var(--space-24);
     max-height: unset;
+    .quote-image {
+      width: 50%;
+    }
   }
   @media only screen and (max-width: 650px) {
     border-radius: var(--radius-12);
