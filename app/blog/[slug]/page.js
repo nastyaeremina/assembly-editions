@@ -5,29 +5,35 @@ import { getAllTagWithSlug, getBlogDetail } from '../../lib/blog-content';
 import { customSort, isEmpty, isValidUrl } from '../../helpers/helpers';
 import { getExternalLinks, isSameDomain, transformBlockquotesToQuoteTags } from '../../helpers/serverSideHelpers';
 import BlogdetailPage from '../../components/PageComponent/Blog/blogDetailPage';
-import { BLOG_TAG_SORTED_LIST, CURRENT_SITE_URL, CURRENT_DOMAIN } from '../../constants/constant';
+import { BLOG_CTA_ID, BLOG_TAG_SORTED_LIST, CURRENT_SITE_URL, CURRENT_DOMAIN } from '../../constants/constant';
+import { getSectionCTAContent } from '../../lib/contentful-standardPage';
 import { getTopBarContent } from '../../components/navbar/navbar';
 
 async function getContent({ slug }) {
   try {
-    const blogDetail = (await getBlogDetail(slug)) ?? [];
-    const tags = (await getAllTagWithSlug()) ?? [];
-    const externalLinks = await getExternalLinks({ asMap: true });
+    const [blogDetail, tags, externalLinks, blogCTA] = await Promise.all([
+      getBlogDetail(slug),
+      getAllTagWithSlug(),
+      getExternalLinks({ asMap: true }),
+      getSectionCTAContent(BLOG_CTA_ID, false)
+    ]);
 
     const finalTagList = tags?.filter((tag) => tag?.name?.trim()?.[0] !== '#');
     customSort(finalTagList, BLOG_TAG_SORTED_LIST);
 
     return {
-      blogDetail,
+      blogDetail: blogDetail ?? [],
       tags: finalTagList,
-      externalLinks
+      externalLinks,
+      blogCTA
     };
   } catch (error) {
     console.error('Error fetching content:', error);
     return {
       blogDetail: null,
       tags: [],
-      externalLinks: {}
+      externalLinks: {},
+      blogCTA: null
     };
   }
 }
@@ -68,7 +74,7 @@ export async function generateMetadata({ params, searchParams }, parent) {
   };
 }
 export default async function Blogdetail({ params }) {
-  const { blogDetail, externalLinks } = await getContent({ slug: params?.slug });
+  const { blogDetail, externalLinks, blogCTA } = await getContent({ slug: params?.slug });
   // Check if the fetched blog content is empty; if so, return a 404 response
   if (isEmpty(blogDetail)) return notFound();
 
@@ -147,7 +153,7 @@ export default async function Blogdetail({ params }) {
       }
     });
     transformBlockquotesToQuoteTags(root);
-        
+
     modifiedHtmlData = root.toString();
   } catch (error) {
     console.error('Error processing HTML content:', error);
@@ -167,6 +173,7 @@ export default async function Blogdetail({ params }) {
           ctaDescription={ctaDescription}
           hasTopBar={hasTopBar}
           externalLinks={externalLinks}
+          blogCTA={blogCTA}
         />
       </Layout>
     </>

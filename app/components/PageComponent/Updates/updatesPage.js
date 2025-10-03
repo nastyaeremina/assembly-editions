@@ -18,10 +18,9 @@ import {
 import { renderContentWithVideos } from '../../../helpers/clientSideHelpers';
 import ButtonV2Component from '../../button/buttonV2/buttonV2';
 import NewCTA from '../../cta/newCTA';
-import { CTAData } from '../../../constants/raw';
 import useNavbarHeight from '../../../hooks/useNavbarHeight';
 
-export default function UpdatesPage({ allPosts, externalLinks = {} }) {
+export default function UpdatesPage({ allPosts, externalLinks = {}, updatesCTA = null }) {
   // for sticky positioning
   const { totalHeight } = useNavbarHeight();
 
@@ -74,14 +73,17 @@ export default function UpdatesPage({ allPosts, externalLinks = {} }) {
             </Pagination>
           </PostContent>
         </Container>
-        <NewCTA
-          title={CTAData.title}
-          description={CTAData.description}
-          primaryButtonLink={CTAData.primaryButtonLink}
-          primaryButtonText={CTAData.primaryButtonText}
-          secondaryButtonLink={CTAData.secondaryButtonLink}
-          secondaryButtonText={CTAData.secondaryButtonText}
-        />
+        {!isEmpty(updatesCTA) && (
+          <NewCTA
+            title={updatesCTA.title}
+            description={updatesCTA.description}
+            primaryButtonLink={updatesCTA.primaryButtonLink}
+            primaryButtonText={updatesCTA.primaryButtonText}
+            secondaryButtonLink={updatesCTA.secondaryButtonLink}
+            secondaryButtonText={updatesCTA.secondaryButtonText}
+            banner={updatesCTA.banner?.url}
+          />
+        )}
       </UpadtePage>
     </>
   );

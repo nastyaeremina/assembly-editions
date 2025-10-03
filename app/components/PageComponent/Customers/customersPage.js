@@ -4,9 +4,7 @@ import CustomerTestimonial from '../../customer/testimonials';
 import { Container } from '../../../styles/commonStyles';
 import { LastSection, CustomerPageWrapper, CaseStudyWrapper } from '../../../styles/customerstyles';
 import { isEmpty } from '../../../helpers/helpers';
-import { EXTERNAL_LINK_KEYS } from '../../../constants/constant';
 import NewCTA from '../../cta/newCTA';
-import { CTAData, CustomerTableSectionData } from '../../../constants/raw';
 import CustomerPageHero from '../../standardHero/customerPageHero/customerPageHero';
 import SectionHeader from '../../sectionHeader/sectionHeader';
 import CustomerTableSection from './customerTableSection';
@@ -16,7 +14,8 @@ export default function CustomerPage({
   externalLinks = {},
   caseStudiesData = [],
   designations = [],
-  heroSection = {}
+  heroSection = {},
+  customerCTA = {}
 }) {
   const casestudiesView = useMemo(() => {
     if (isEmpty(casestudiesPosts)) return null;
@@ -66,14 +65,16 @@ export default function CustomerPage({
         primaryButtonLink={CustomerTableSectionData.primaryButtonLink}
         primaryButtonText={CustomerTableSectionData.primaryButtonText}
       /> */}
-      <NewCTA
-        title={CTAData.title}
-        description={CTAData.description}
-        primaryButtonLink={CTAData.primaryButtonLink}
-        primaryButtonText={CTAData.primaryButtonText}
-        secondaryButtonLink={CTAData.secondaryButtonLink}
-        secondaryButtonText={CTAData.secondaryButtonText}
-      />
+      {!isEmpty(customerCTA) && (
+        <NewCTA
+          title={customerCTA.title}
+          description={customerCTA.description}
+          primaryButtonLink={customerCTA.primaryButtonLink}
+          primaryButtonText={customerCTA.primaryButtonText}
+          secondaryButtonLink={customerCTA.secondaryButtonLink}
+          secondaryButtonText={customerCTA.secondaryButtonText}
+        />
+      )}
     </CustomerPageWrapper>
   );
 }

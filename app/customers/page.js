@@ -7,12 +7,14 @@ import {
   CURRENT_SITE_URL,
   CUSTOMER_SEO_ID,
   CUSTOMER_PAGE_HERO_ID,
+  CUSTOMER_CTA_ID,
   PER_API_LIMIT_FOR_CUSTOMERS
 } from './../constants/constant';
 import { getAllFeaturedCaseStudies, getAllFeaturedTestimonial } from './../lib/contentful-testimonial';
 import { getSEOData } from './../helpers/helpers';
 import { getCustomers, getHeroComponentContent } from './../lib/contentful-casestudies';
 import { getExternalLinks } from '../helpers/serverSideHelpers';
+import { getSectionCTAContent } from '../lib/contentful-standardPage';
 
 async function getContent() {
   try {
@@ -32,12 +34,14 @@ async function getContent() {
     } while (data?.length !== 0);
 
     // Fetch other data concurrently
-    const [testimonialPosts = [], casestudiesPosts = [], externalLinks = {}, heroSection = {}] = await Promise.all([
-      getAllFeaturedTestimonial(isEnabled),
-      getAllFeaturedCaseStudies(isEnabled),
-      getExternalLinks({ asMap: true }),
-      getHeroComponentContent(CUSTOMER_PAGE_HERO_ID, isEnabled)
-    ]);
+    const [testimonialPosts = [], casestudiesPosts = [], externalLinks = {}, heroSection = {}, customerCTA = {}] =
+      await Promise.all([
+        getAllFeaturedTestimonial(isEnabled),
+        getAllFeaturedCaseStudies(isEnabled),
+        getExternalLinks({ asMap: true }),
+        getHeroComponentContent(CUSTOMER_PAGE_HERO_ID, isEnabled),
+        getSectionCTAContent(CUSTOMER_CTA_ID, isEnabled)
+      ]);
 
     casestudiesPosts.sort((a, b) => {
       if (a.isFullWidth === true && b.isFullWidth !== true) return -1;
@@ -45,10 +49,17 @@ async function getContent() {
       return 0; // keep original order otherwise
     });
 
-    return { testimonialPosts, casestudiesPosts, externalLinks, customers: allCustomers, heroSection };
+    return { testimonialPosts, casestudiesPosts, externalLinks, customers: allCustomers, heroSection, customerCTA };
   } catch (error) {
     console.error('Error fetching content:', error);
-    return { testimonialPosts: [], casestudiesPosts: [], externalLinks: {}, customers: [], heroSection: {} };
+    return {
+      testimonialPosts: [],
+      casestudiesPosts: [],
+      externalLinks: {},
+      customers: [],
+      heroSection: {},
+      customerCTA: {}
+    };
   }
 }
 
@@ -59,7 +70,7 @@ export async function generateMetadata() {
 }
 
 export default async function Customer() {
-  const { testimonialPosts, casestudiesPosts, externalLinks, customers, heroSection } = await getContent();
+  const { testimonialPosts, casestudiesPosts, externalLinks, customers, heroSection, customerCTA } = await getContent();
 
   // Map customers to caseStudiesData and keep isFullWidth field
   let caseStudiesData =
@@ -85,6 +96,7 @@ export default async function Customer() {
           caseStudiesData={caseStudiesData}
           designations={designations}
           heroSection={heroSection}
+          customerCTA={customerCTA}
         />
       </Layout>
     </>

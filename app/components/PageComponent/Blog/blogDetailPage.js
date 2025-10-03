@@ -21,7 +21,7 @@ import { EXTRACT_CODE_TAG_FROM_HTML_REGEX } from '../../../constants/constant';
 import LegacyBlogDetailHero from '../../blogdetailHero/legacyBlogDetailHero';
 import SVGComponent from '../../../../public/images/svg/SVGComponent';
 import NewCTA from '../../cta/newCTA';
-import { CTAData } from '../../../constants/raw';
+
 import ToastMessage from '../../ToastMessage/toastMessage';
 import TableOfContents from './TableOfContents';
 import useNavbarHeight from '../../../hooks/useNavbarHeight';
@@ -58,7 +58,8 @@ export default function BlogdetailPage({
   ctaTitle,
   ctaDescription,
   hasTopBar,
-  externalLinks = {}
+  externalLinks = {},
+  blogCTA = null
 }) {
   const [CopyBlockData, setCopyBlock] = useState([]);
   const [showToast, setShowToast] = useState(false);
@@ -291,14 +292,17 @@ export default function BlogdetailPage({
             </BlogContent>
           </Details>
         </Container>
-        <NewCTA
-          title={CTAData.title}
-          description={CTAData.description}
-          primaryButtonLink={CTAData.primaryButtonLink}
-          primaryButtonText={CTAData.primaryButtonText}
-          secondaryButtonLink={CTAData.secondaryButtonLink}
-          secondaryButtonText={CTAData.secondaryButtonText}
-        />
+        {!isEmpty(blogCTA) && (
+          <NewCTA
+            title={blogCTA.title}
+            description={blogCTA.description}
+            primaryButtonLink={blogCTA.primaryButtonLink}
+            primaryButtonText={blogCTA.primaryButtonText}
+            secondaryButtonLink={blogCTA.secondaryButtonLink}
+            secondaryButtonText={blogCTA.secondaryButtonText}
+            banner={blogCTA.banner?.url}
+          />
+        )}
       </MainContent>
       {showToast && <ToastMessage message='Link copied to your clipboard.' onClose={handleToastClose} />}
     </>

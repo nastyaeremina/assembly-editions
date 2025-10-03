@@ -3,7 +3,8 @@ import Layout from '../../../components/layout';
 import { getAllTagWithSlug, getBlogByTag, getTagDetail } from '../../../lib/blog-content';
 import { customSort, getFeaturedBlogAndFilteredPosts, isEmpty } from '../../../helpers/helpers';
 import TagPage from '../../../components/PageComponent/Blog/tagPage';
-import { BLOG_TAG_SORTED_LIST, CURRENT_SITE_URL, CURRENT_DOMAIN } from '../../../constants/constant';
+import { BLOG_TAG_SORTED_LIST, CURRENT_SITE_URL, CURRENT_DOMAIN, BLOG_CTA_ID } from '../../../constants/constant';
+import { getSectionCTAContent } from '../../../lib/contentful-standardPage';
 
 // Enable static generation with revalidation
 export const revalidate = 300; // Revalidate every 5 minutes
@@ -43,6 +44,7 @@ async function getContent({ slug, page = 1, limit = 8 }) {
 
     const tagDetail = (await getTagDetail(slug)) ?? {};
     const tags = (await getAllTagWithSlug()) ?? [];
+    const tagCTA = await getSectionCTAContent(BLOG_CTA_ID, false);
     const finalTagList = tags?.filter((tag) => tag?.name?.trim()?.[0] !== '#');
     const title = tagDetail?.meta_title ?? `${tagDetail?.name} - Assembly Blog`;
     const og_title = tagDetail?.og_title ?? tagDetail?.meta_title ?? title;
@@ -67,7 +69,8 @@ async function getContent({ slug, page = 1, limit = 8 }) {
       tags: finalTagList,
       seoData,
       featuredBlog,
-      currentTagDetail
+      currentTagDetail,
+      tagCTA
     };
   } catch (error) {
     console.error('Error fetching tag content:', error);
@@ -80,7 +83,8 @@ async function getContent({ slug, page = 1, limit = 8 }) {
         canonical: `${CURRENT_SITE_URL}/blog`
       },
       featuredBlog: null,
-      currentTagDetail: null
+      currentTagDetail: null,
+      tagCTA: null
     };
   }
 }
@@ -121,7 +125,7 @@ export async function generateMetadata({ params }) {
 export default async function Tag({ params, searchParams }) {
   try {
     const page = parseInt(searchParams?.page) || 1;
-    const { allPosts, tags, featuredBlog, currentTagDetail } = await getContent({ slug: params?.slug, page });
+    const { allPosts, tags, featuredBlog, currentTagDetail, tagCTA } = await getContent({ slug: params?.slug, page });
 
     if (isEmpty(allPosts) && page === 1) {
       return notFound();
@@ -130,7 +134,13 @@ export default async function Tag({ params, searchParams }) {
     return (
       <>
         <Layout>
-          <TagPage allPosts={allPosts} tags={tags} featuredBlog={featuredBlog} currentTag={currentTagDetail} />
+          <TagPage
+            allPosts={allPosts}
+            tags={tags}
+            featuredBlog={featuredBlog}
+            currentTag={currentTagDetail}
+            tagCTA={tagCTA}
+          />
         </Layout>
       </>
     );

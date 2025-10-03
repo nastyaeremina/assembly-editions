@@ -5,10 +5,9 @@ import { DetailSlug, LinkDiv, MainContent, UpdateDate, UpdateDes, UpdateDetail }
 import { renderContentWithVideos } from '../../../helpers/clientSideHelpers';
 import Breadcrumbs from '../../Breadcrumbs/breadcrumbs';
 import NewCTA from '../../cta/newCTA';
-import { CTAData } from '../../../constants/raw';
 import useNavbarHeight from '../../../hooks/useNavbarHeight';
 
-export default function UpdatedetailPage({ details: updateDetails }) {
+export default function UpdatedetailPage({ details: updateDetails, updatesCTA = null }) {
   const contentWithVideos = renderContentWithVideos(updateDetails?.html);
 
   const BreadcrumbItem = [{ label: 'All updates', href: '/updates' }];
@@ -36,14 +35,17 @@ export default function UpdatedetailPage({ details: updateDetails }) {
           </DetailSlug>
         </UpdateDes>
       </Container>
-      <NewCTA
-        title={CTAData.title}
-        description={CTAData.description}
-        primaryButtonLink={CTAData.primaryButtonLink}
-        primaryButtonText={CTAData.primaryButtonText}
-        secondaryButtonLink={CTAData.secondaryButtonLink}
-        secondaryButtonText={CTAData.secondaryButtonText}
-      />
+      {!isEmpty(updatesCTA) && (
+        <NewCTA
+          title={updatesCTA.title}
+          description={updatesCTA.description}
+          primaryButtonLink={updatesCTA.primaryButtonLink}
+          primaryButtonText={updatesCTA.primaryButtonText}
+          secondaryButtonLink={updatesCTA.secondaryButtonLink}
+          secondaryButtonText={updatesCTA.secondaryButtonText}
+          banner={updatesCTA.banner?.url}
+        />
+      )}
     </MainContent>
   );
 }

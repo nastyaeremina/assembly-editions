@@ -1,8 +1,9 @@
 import Layout from '../../components/layout';
 import { getSEOData } from '../../helpers/helpers';
-import { APPS_TYPE, APP_SEO_ID, CURRENT_SITE_URL } from '../../constants/constant';
+import { APPS_TYPE, APP_SEO_ID, CURRENT_SITE_URL, APPS_DIRECTORY_CTA_ID } from '../../constants/constant';
 import AppDirectoryPage from '../../components/PageComponent/Apps/directoryPage';
 import { getAllPartnerApps } from '../../lib/contentful-partnerApps';
+import { getSectionCTAContent } from '../../lib/contentful-standardPage';
 import AggregateRating from '../../components/aggregateRating';
 import { getExternalLinks } from '../../helpers/serverSideHelpers';
 
@@ -21,9 +22,10 @@ export async function generateMetadata() {
 }
 
 export default async function Apps() {
-  const [{ clientApps, internalApps, featuredApps }, externalLinks] = await Promise.all([
+  const [{ clientApps, internalApps, featuredApps }, externalLinks, directoryCTA] = await Promise.all([
     getAppDirectoryContent(),
-    getExternalLinks({ asMap: true })
+    getExternalLinks({ asMap: true }),
+    getSectionCTAContent(APPS_DIRECTORY_CTA_ID, false)
   ]);
 
   return (
@@ -35,6 +37,7 @@ export default async function Apps() {
           internalApps={internalApps}
           featuredApps={featuredApps}
           externalLinks={externalLinks}
+          directoryCTA={directoryCTA}
         />
       </Layout>
     </>

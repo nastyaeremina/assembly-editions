@@ -6,9 +6,8 @@ import { calculateAverageRate, isEmpty, removeEmptyElement } from '../../../help
 import AppsDetailComponent from '../../appsDetail/appsDetailComponent';
 import ReviewSection from '../../reviewSection/reviewSection';
 import NewCTA from '../../cta/newCTA';
-import { CTAData } from '../../../constants/raw';
 
-export default function AppsDetailPage({ appDetail, isUserAuthenticated, externalLinks = {} }) {
+export default function AppsDetailPage({ appDetail, isUserAuthenticated, externalLinks = {}, appCTA = null }) {
   const [reviewList, setReviewList] = useState(appDetail?.reviewsCollection?.items || []);
 
   //calculate average rate
@@ -40,14 +39,16 @@ export default function AppsDetailPage({ appDetail, isUserAuthenticated, externa
               setReviewList={setReviewList}
             />
           )}
-          <NewCTA
-            title={CTAData.title}
-            description={CTAData.description}
-            primaryButtonText={CTAData.primaryButtonText}
-            primaryButtonLink={CTAData.primaryButtonLink}
-            secondaryButtonText={CTAData.secondaryButtonText}
-            secondaryButtonLink={CTAData.secondaryButtonLink}
-          />
+          {!isEmpty(appCTA) && (
+            <NewCTA
+              title={appCTA.title}
+              description={appCTA.description}
+              primaryButtonText={appCTA.primaryButtonText}
+              primaryButtonLink={appCTA.primaryButtonLink}
+              secondaryButtonText={appCTA.secondaryButtonText}
+              secondaryButtonLink={appCTA.secondaryButtonLink}
+            />
+          )}
         </>
       </AppsDetailMain>
     </>

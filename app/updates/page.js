@@ -1,4 +1,5 @@
-import { CURRENT_SITE_URL, UPDATES_SEO_ID } from '../constants/constant';
+import { CURRENT_SITE_URL, UPDATES_CTA_ID, UPDATES_SEO_ID } from '../constants/constant';
+import { getSectionCTAContent } from '../lib/contentful-standardPage';
 import { getUpdatesPosts } from '../lib/updates-content';
 import { getSEOData } from '../helpers/helpers';
 import UpdatesPage from '../components/PageComponent/Updates/updatesPage';
@@ -21,12 +22,16 @@ export async function generateMetadata() {
 }
 
 export default async function Updates() {
-  const [allPosts, externalLinks] = await Promise.all([getContent(), getExternalLinks({ asMap: true })]);
+  const [allPosts, externalLinks, updatesCTA] = await Promise.all([
+    getContent(),
+    getExternalLinks({ asMap: true }),
+    getSectionCTAContent(UPDATES_CTA_ID, false)
+  ]);
   return (
     <>
       <AggregateRating id={UPDATES_SEO_ID} />
       <Layout>
-        <UpdatesPage allPosts={allPosts} externalLinks={externalLinks} />
+        <UpdatesPage allPosts={allPosts} externalLinks={externalLinks} updatesCTA={updatesCTA} />
       </Layout>
     </>
   );

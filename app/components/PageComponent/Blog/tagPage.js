@@ -13,10 +13,9 @@ import { useIsMobile } from '../../../hooks/useMobileDevice';
 import ButtonV2Component from '../../button/buttonV2/buttonV2';
 import { ButtonVariant } from '../../../constants/constant';
 import NewCTA from '../../cta/newCTA';
-import { CTAData } from '../../../constants/raw';
 
 // Tag-specific blog page with server-side pagination
-export default function TagPage({ allPosts, tags, featuredBlog, currentTag }) {
+export default function TagPage({ allPosts, tags, featuredBlog, currentTag, tagCTA = null }) {
   const [selectedTag, setSelectedTag] = useState('All');
   const [posts, setPosts] = useState(allPosts || []);
   const [loading, setLoading] = useState(false);
@@ -231,14 +230,17 @@ export default function TagPage({ allPosts, tags, featuredBlog, currentTag }) {
             )}
           </BlogListDiv>
         </Container>
-        <NewCTA
-          title={CTAData.title}
-          description={CTAData.description}
-          primaryButtonLink={CTAData.primaryButtonLink}
-          primaryButtonText={CTAData.primaryButtonText}
-          secondaryButtonLink={CTAData.secondaryButtonLink}
-          secondaryButtonText={CTAData.secondaryButtonText}
-        />
+        {!isEmpty(tagCTA) && (
+          <NewCTA
+            title={tagCTA.title}
+            description={tagCTA.description}
+            primaryButtonLink={tagCTA.primaryButtonLink}
+            primaryButtonText={tagCTA.primaryButtonText}
+            secondaryButtonLink={tagCTA.secondaryButtonLink}
+            secondaryButtonText={tagCTA.secondaryButtonText}
+            banner={tagCTA.banner?.url}
+          />
+        )}
       </MainContent>
     </>
   );

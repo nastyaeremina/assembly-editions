@@ -18,11 +18,10 @@ import { HeroTypes, LinkSize } from '../../../constants/constant';
 import StandardHero from '../../standardHero/standardHero';
 import RichTextDetail from '../../richTextDetail/richText';
 import NewCTA from '../../cta/newCTA';
-import { CTAData } from '../../../constants/raw';
 import LinkComponent from '../../linkComponent/linkComponent';
 import useNavbarHeight from '../../../hooks/useNavbarHeight';
 
-export default function CaseStudiesPage({ details }) {
+export default function CaseStudiesPage({ details, customerCTA = {} }) {
   if (isEmpty(details)) return;
   const { totalHeight } = useNavbarHeight();
 
@@ -143,14 +142,16 @@ export default function CaseStudiesPage({ details }) {
           </SectionBlock>
         ))}
       </Container>
-      <NewCTA
-        title={CTAData.title}
-        description={CTAData.description}
-        primaryButtonLink={CTAData.primaryButtonLink}
-        primaryButtonText={CTAData.primaryButtonText}
-        secondaryButtonLink={CTAData.secondaryButtonLink}
-        secondaryButtonText={CTAData.secondaryButtonText}
-      />
+      {!isEmpty(customerCTA) && (
+        <NewCTA
+          title={customerCTA.title}
+          description={customerCTA.description}
+          primaryButtonLink={customerCTA.primaryButtonLink}
+          primaryButtonText={customerCTA.primaryButtonText}
+          secondaryButtonLink={customerCTA.secondaryButtonLink}
+          secondaryButtonText={customerCTA.secondaryButtonText}
+        />
+      )}
     </CaseStudyPageWrapper>
   );
 }

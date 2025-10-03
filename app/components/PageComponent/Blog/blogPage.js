@@ -11,13 +11,12 @@ import { isEmpty } from '../../../helpers/helpers';
 import { ButtonVariant, CURRENT_SITE_URL } from '../../../constants/constant';
 import NewCTA from '../../cta/newCTA';
 import TabComponent from '../../tabComponent';
-import { CTAData } from '../../../constants/raw';
 import DropDown from '../../dropdownComponent/index';
 import { useIsMobile } from '../../../hooks/useMobileDevice';
 import FeatureBlogCard from '../../Blogcard/fetaureBlogCard';
 import ButtonV2Component from '../../button/buttonV2/buttonV2';
 
-export default function BlogPage({ allPosts, tags, featuredBlog, socialMediaLinks = [] }) {
+export default function BlogPage({ allPosts, tags, featuredBlog, socialMediaLinks = [], blogCTA = null }) {
   const [selectedTag, setSelectedTag] = useState('All');
   const [posts, setPosts] = useState(allPosts || []);
   const [loading, setLoading] = useState(false);
@@ -257,14 +256,17 @@ export default function BlogPage({ allPosts, tags, featuredBlog, socialMediaLink
             )}
           </BlogListDiv>
         </Container>
-        <NewCTA
-          title={CTAData.title}
-          description={CTAData.description}
-          primaryButtonLink={CTAData.primaryButtonLink}
-          primaryButtonText={CTAData.primaryButtonText}
-          secondaryButtonLink={CTAData.secondaryButtonLink}
-          secondaryButtonText={CTAData.secondaryButtonText}
-        />
+        {!isEmpty(blogCTA) && (
+          <NewCTA
+            title={blogCTA.title}
+            description={blogCTA.description}
+            primaryButtonLink={blogCTA.primaryButtonLink}
+            primaryButtonText={blogCTA.primaryButtonText}
+            secondaryButtonLink={blogCTA.secondaryButtonLink}
+            secondaryButtonText={blogCTA.secondaryButtonText}
+            banner={blogCTA.banner?.url}
+          />
+        )}
       </MainContent>
     </>
   );

@@ -9,11 +9,17 @@ import { EXTERNAL_LINK_KEYS } from '../../../constants/constant';
 import SearchInput from './searchInput';
 import { HeroTypes } from '../../../constants/constant';
 import NewCTA from '../../cta/newCTA';
-import { CTAData } from '../../../constants/raw';
+
 import { Container } from '../../../styles/commonStyles';
 import SearchEmptyState from '../../SearchEmptyState/searchEmptyState';
 
-export default function AppDirectoryPage({ clientApps, internalApps, featuredApps, externalLinks = {} }) {
+export default function AppDirectoryPage({
+  clientApps,
+  internalApps,
+  featuredApps,
+  externalLinks = {},
+  directoryCTA = null
+}) {
   let allPosts = clientApps.concat(internalApps);
   const [query, setQuery] = useState(null);
   const [searchResult, setSearchResult] = useState([]);
@@ -123,14 +129,16 @@ export default function AppDirectoryPage({ clientApps, internalApps, featuredApp
           )}
         </AppCardMainSection>
       </Container>
-      <NewCTA
-        title={CTAData.title}
-        description={CTAData.description}
-        primaryButtonLink={CTAData.primaryButtonLink}
-        primaryButtonText={CTAData.primaryButtonText}
-        secondaryButtonLink={CTAData.secondaryButtonLink}
-        secondaryButtonText={CTAData.secondaryButtonText}
-      />
+      {!isEmpty(directoryCTA) && (
+        <NewCTA
+          title={directoryCTA.title}
+          description={directoryCTA.description}
+          primaryButtonLink={directoryCTA.primaryButtonLink}
+          primaryButtonText={directoryCTA.primaryButtonText}
+          secondaryButtonLink={directoryCTA.secondaryButtonLink}
+          secondaryButtonText={directoryCTA.secondaryButtonText}
+        />
+      )}
     </MainSection>
   );
 }
