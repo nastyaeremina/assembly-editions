@@ -11,10 +11,10 @@ const DropdownButton = styled.button`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: var(--space-3) var(--space-16) 0;
+  padding: var(--space-2) var(--space-16) 0;
   height: 40px;
   border-radius: var(--radius-30);
-  border: 1px solid var(--border-default);
+  background-color: var(--off-white-600);
   ${button_regular}
   color: var(--title);
   gap: var(--space-8);
@@ -36,7 +36,7 @@ const DropdownButton = styled.button`
   ${({ tone }) =>
     tone === SectionTone.DARK &&
     css`
-      border: 1px solid var(--off-white-100);
+      background-color: var(--gray-400);
       color: var(--off-white-100);
       .rotate-icon {
         path {
@@ -62,7 +62,7 @@ const DropdownList = styled.div`
   border: 1px solid var(--border-default);
   border-radius: var(--radius-16);
   z-index: 10;
-  min-width: 216px;
+  width: 216px;
   display: flex;
   flex-direction: column;
   gap: var(--space-4);
@@ -80,6 +80,9 @@ const DropdownItem = styled.button`
   color: var(--title);
   cursor: pointer;
   text-align: left;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
   ${({ selected }) =>
     selected &&
     css`
@@ -92,14 +95,14 @@ const DropdownItem = styled.button`
       background-color: var(--border-default);
     `}
     :focus-visible {
-    border-radius: var(--radius-12);
+    border-radius: var(--radius-8);
   }
 `;
 
 const TabSectionMainDiv = styled.div`
-  padding: var(--space-4);
-  background-color: var(--gray-50);
-  border-radius: var(--radius-30);
+  padding: var(--space-8);
+  background-color: var(--off-white-600);
+  border-radius: var(--radius-16);
   display: flex;
   align-items: center;
   gap: var(--space-20);
@@ -117,17 +120,17 @@ const TabSectionMainDiv = styled.div`
   ${({ tone }) =>
     tone === SectionTone.DARK &&
     css`
-      background-color: var(--gray-400);
+      background-color: var(--gray-450);
     `}
 `;
 
 const TabHighlighter = styled.div`
   position: absolute;
   height: 40px;
-  top: var(--space-4);
+  top: var(--space-8);
   left: 0;
-  background-color: var(--off-white-100);
-  border-radius: var(--radius-30);
+  background-color: var(--off-white-300);
+  border-radius: var(--radius-12);
   transition: transform 0.3s ease, width 0.3s ease;
   z-index: 0;
   width: ${({ highlighterWidth }) => `${highlighterWidth}px`};
@@ -135,7 +138,7 @@ const TabHighlighter = styled.div`
   ${({ tone }) =>
     tone === SectionTone.DARK &&
     css`
-      background-color: var(--text-secondary);
+      background-color: var(--gray-400);
     `}
 `;
 
@@ -161,7 +164,7 @@ const TabItems = styled.button`
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: var(--radius-30);
+  border-radius: var(--radius-12);
   ${button_regular}
   color: var(--title);
   position: relative;
@@ -173,13 +176,16 @@ const TabItems = styled.button`
     css`
       color: var(--off-white-100);
     `}
+  :focus-visible {
+    border-radius: var(--radius-12);
+  }
   @media only screen and (min-width: 991px) {
     :hover {
       color: ${({ selected }) => (selected ? 'var(--title)' : 'var(--text-secondary)')};
       ${({ tone }) =>
         tone === SectionTone.DARK &&
         css`
-          color: ${({ selected }) => (selected ? 'var(--off-white-100)' : 'var(--text-secondary)')};
+          color: ${({ selected }) => (selected ? 'var(--off-white-100)' : 'var(--border-default)')};
         `}
     }
   }
