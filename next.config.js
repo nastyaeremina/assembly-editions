@@ -2,25 +2,105 @@
 const purgecss = require('@fullhuman/postcss-purgecss');
 const path = require('path');
 
-async function fetchGraphQL({ preview = false, query, type = ['other'] }) {
+async function fetchGraphQL({ query, variables = {} }) {
+  const endpoint = `https://graphql.contentful.com/content/v1/spaces/${process.env.CONTENTFUL_SPACE_ID}`;
+  const token = `Bearer ${process.env.CONTENTFUL_PREVIEW_ACCESS_TOKEN}`;
+
   try {
-    const response = await fetch(
-      `https://graphql.contentful.com/content/v1/spaces/${process.env.CONTENTFUL_SPACE_ID}`,
-      {
-        method: 'POST',
-        next: { tags: type },
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: `Bearer ${process.env.CONTENTFUL_PREVIEW_ACCESS_TOKEN}`
-        },
-        body: JSON.stringify({ query })
-      }
-    );
-    return response.json();
-  } catch (error) {
-    console.error('Error fetching from Contentful:', error);
-    return { data: { redirectCollection: { items: [] } } };
+    const res = await fetch(endpoint, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: token
+      },
+      body: JSON.stringify({ query, variables })
+    });
+
+    let json;
+    try {
+      json = await res.json();
+    } catch (parseErr) {
+      console.error('Failed to parse Contentful response JSON:', parseErr);
+      return null;
+    }
+
+    if (!res.ok || json.errors) {
+      console.error('Contentful GraphQL error:', JSON.stringify(json.errors || {}, null, 2));
+      return null;
+    }
+    return json.data;
+  } catch (err) {
+    console.error('Network/unknown error calling Contentful:', err);
+    return null;
   }
+}
+
+async function fetchAllRedirects() {
+  const PAGE_SIZE = 100;
+
+  let skip = 0;
+  let total = 0;
+  const allItems = [];
+
+  try {
+    do {
+      const data = await fetchGraphQL({
+        query: ` query  {
+      redirectCollection(limit: 100, skip: ${skip}) {
+        total
+        items {
+          name
+          oldPath
+          redirectToPath
+          permanent
+        }
+      }
+    }`,
+        variables: { limit: PAGE_SIZE, skip }
+      });
+
+      if (!data || !data.redirectCollection) {
+        console.warn(`No redirectCollection returned for skip=${skip}`);
+        break;
+      }
+
+      const { items = [], total: t = 0 } = data.redirectCollection;
+      total = t || total; // keep last known total
+      allItems.push(...items);
+      skip += PAGE_SIZE;
+    } while (skip < total);
+  } catch (err) {
+    console.error('Error during redirect fetch loop:', err);
+  }
+
+  const bySource = new Map();
+  for (const item of allItems) {
+    try {
+      const oldPath = (item?.oldPath || '').trim();
+      const dest = (item?.redirectToPath || '').trim();
+      if (!oldPath || !dest) continue;
+      if (!oldPath.startsWith('/')) continue;
+
+      bySource.set(oldPath, {
+        source: oldPath,
+        destination: dest,
+        permanent: typeof item?.permanent === 'boolean' ? item.permanent : true,
+        ...(dest.startsWith('http://') || dest.startsWith('https://') ? { basePath: false } : {})
+      });
+    } catch (rowErr) {
+      console.error('Error processing redirect row:', rowErr, item);
+    }
+  }
+
+  const redirects = Array.from(bySource.values());
+
+  redirects.push({
+    source: '/features/:path',
+    destination: '/apps/directory/:path',
+    permanent: true
+  });
+
+  return redirects;
 }
 
 const nextConfig = {
@@ -37,53 +117,11 @@ const nextConfig = {
   },
   async redirects() {
     try {
-      const query = `query {
-      redirectCollection {
-      items {
-        name
-        oldPath
-        redirectToPath
-        permanent
-      }
-    }
-  }`;
+      const redirects = await fetchAllRedirects();
 
-      const postData = (await fetchGraphQL({ preview: false, query })) ?? [];
-
-      if (postData.length === 0) {
-        return [];
-      }
-
-      const allPost = postData?.data?.redirectCollection?.items;
-      const redirectData =
-        allPost?.map((item, index) => {
-          const oldPath = item?.oldPath?.trim();
-          const redirectPath = item?.redirectToPath?.trim();
-          if (redirectPath?.includes('https://') || redirectPath?.includes('http://')) {
-            return {
-              source: oldPath,
-              destination: redirectPath,
-              permanent: item?.permanent,
-              basePath: false
-            };
-          } else {
-            return {
-              source: oldPath,
-              destination: redirectPath,
-              permanent: item?.permanent
-            };
-          }
-        }) ?? [];
-
-      //set redirects for all the /features pages
-      redirectData?.push({
-        source: '/features/:path',
-        destination: `/apps/directory/:path`,
-        permanent: true
-      });
-      return redirectData;
-    } catch (error) {
-      console.log('error', error);
+      return Array.isArray(redirects) ? redirects : [];
+    } catch (e) {
+      console.error('redirects() failed:', e);
       return [];
     }
   },

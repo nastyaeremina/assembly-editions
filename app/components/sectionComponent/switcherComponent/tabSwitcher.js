@@ -20,14 +20,36 @@ function TabSwitcher({ tabItems, tone, isButton, onTabChange }) {
   const [selectedTab, setSelectedTab] = useState(tabItems[0]?.title);
   const [highlighterStyles, setHighlighterStyles] = useState({ width: 0, left: 0 });
   const tabRefs = useRef({});
+  const tabContainerRef = useRef(null);
   const isMobile = useIsMobile();
+
+  const scrollToTab = useCallback((tabElement) => {
+    if (!tabElement || !tabContainerRef.current) return;
+
+    const container = tabContainerRef.current;
+    const containerRect = container.getBoundingClientRect();
+    const tabRect = tabElement.getBoundingClientRect();
+
+    // Calculate the scroll position to center the tab
+    const scrollLeft = tabElement.offsetLeft - containerRect.width / 2 + tabRect.width / 2;
+
+    container.scrollTo({
+      left: Math.max(0, scrollLeft),
+      behavior: 'smooth'
+    });
+  }, []);
 
   const handleTabClick = useCallback(
     (item) => {
       setSelectedTab(item.title);
       onTabChange(item); // pass full tab item
+
+      // Scroll to the clicked tab on tablet/small desktop screens
+      if (!isMobile && tabRefs.current[item.title]) {
+        scrollToTab(tabRefs.current[item.title]);
+      }
     },
-    [onTabChange]
+    [onTabChange, isMobile, scrollToTab]
   );
 
   useEffect(() => {
@@ -58,7 +80,7 @@ function TabSwitcher({ tabItems, tone, isButton, onTabChange }) {
       {isMobile ? (
         <DropdownSwitcher tabItems={tabItems} tone={tone} onTabChange={onTabChange} />
       ) : (
-        <TabSectionMainDiv tone={tone}>
+        <TabSectionMainDiv ref={tabContainerRef} tone={tone}>
           <TabHighlighter
             tone={tone}
             highlighterWidth={highlighterStyles.width}

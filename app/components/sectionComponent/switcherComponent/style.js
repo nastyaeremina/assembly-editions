@@ -105,7 +105,15 @@ const TabSectionMainDiv = styled.div`
   gap: var(--space-20);
   width: fit-content;
   position: relative;
-  overflow: hidden;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  scroll-behavior: smooth;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
   ${({ tone }) =>
     tone === SectionTone.DARK &&
     css`
@@ -159,6 +167,7 @@ const TabItems = styled.button`
   position: relative;
   z-index: 1;
   transition: color 0.3s ease;
+  white-space: nowrap;
   ${({ tone }) =>
     tone === SectionTone.DARK &&
     css`
