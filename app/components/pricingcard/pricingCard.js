@@ -2,14 +2,14 @@ import React, { useCallback } from 'react';
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
 import { BLOCKS } from '@contentful/rich-text-types';
 import { joinArrayToString } from '../../helpers/helpers';
-import AppTooltip from '../appsCards/appTooltip';
+import Tooltip from '../appsCards/tooltip';
 import { PlanSection, PriceTag } from './styles';
 import { EXTRACT_SQUARE_BRACKET_AND_TAG_TEXT_REGEX } from '../../constants/constant';
 
 export default function PricingCard({ data, isYearly, planIndex }) {
   /**
    * Converts content with markers into specific components.
-   * - Renders `AppTooltip` for text inside square brackets [ ... ].
+   * - Renders `Tooltip` for text inside square brackets [ ... ].
    * - Renders `PriceTag` when `(Tag)` is present.
    * - Leaves plain text untouched.
    *
@@ -24,13 +24,12 @@ export default function PricingCard({ data, isYearly, planIndex }) {
         const tagMatch = part === '(Tag)'; // Match exact string "(Tag)"
 
         if (squareBracketMatch) {
-          // Render AppTooltip for content inside square brackets
+          // Render Tooltip for content inside square brackets
           return (
-            <AppTooltip
+            <Tooltip
               message={squareBracketMatch[1]} // Content inside brackets
               iconSize='14'
               fill='var(--text-secondary)'
-              style={{ top: 23 }}
               key={`tooltip_${data?.name}_${index}`}
               mainDivStyle={{ top: 2, marginLeft: 3 }}
               isAutoAdjust

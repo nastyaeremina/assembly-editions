@@ -5,7 +5,7 @@ import { CardEnd, CardText, FeatureImg } from '../../styles/appsStyles';
 import Slider from '../../components/feedback/slider';
 import { APPS_TYPE, ClientAppInfoMessage, InternalAppInfoMessage, SliderHeight } from '../../constants/constant';
 import { Animated, SliderInner, SliderLine } from './styles';
-import AppTooltip from '../appsCards/appTooltip';
+import Tooltip from '../appsCards/tooltip';
 
 const AppsSlider = ({ data, isDetailSlider }) => {
   const featurecontentView = useMemo(() => {
@@ -34,7 +34,7 @@ const AppsSlider = ({ data, isDetailSlider }) => {
               </CardText>
               <CardEnd>
                 <p>{appVisibility}</p>
-                <AppTooltip message={appVisibilityInfo} iconSize='13' fill='var(--dark-gray)' style={{ top: 22 }} />
+                <Tooltip message={appVisibilityInfo} iconSize='13' fill='var(--dark-gray)' />
               </CardEnd>
             </div>
           </SliderInner>

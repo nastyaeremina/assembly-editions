@@ -20,7 +20,7 @@ import {
   RatingSection,
   ReviewSection
 } from './styles';
-import AppTooltip from './appTooltip';
+import Tooltip from './tooltip';
 
 export default function AppsCards({
   appVisibility,
@@ -87,12 +87,11 @@ export default function AppsCards({
                   <>
                     <AppInformativeSection>
                       <p>{appType}</p>
-                      <AppTooltip
+                      <Tooltip
                         message={appTypeInfo}
                         iconSize='12'
                         fill='var(--text-secondary)'
-                        style={{ top: 22 }}
-                        LeftAdjust={-7}
+                        style={{ top: -8, marginLeft: 13 }}
                       />
                     </AppInformativeSection>
                   </>
@@ -112,12 +111,11 @@ export default function AppsCards({
             {isBottom && (
               <CardEnd isBottom={isBottom}>
                 <p>{appVisibility}</p>
-                <AppTooltip
+                <Tooltip
                   message={appVisibilityInfo}
                   iconSize='12'
                   fill='var(--text-secondary)'
-                  style={{ top: 22 }}
-                  LeftAdjust={-7}
+                  style={{ top: -8, marginLeft: 13 }}
                 />
               </CardEnd>
             )}

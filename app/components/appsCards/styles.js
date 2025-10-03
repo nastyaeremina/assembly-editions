@@ -180,7 +180,7 @@ const SectionHeading = styled.div`
   }
 `;
 
-const Tooltip = styled.div`
+const TooltipSection = styled.div`
   position: absolute;
   width: 220px;
   top: var(--space-22);
@@ -190,30 +190,47 @@ const Tooltip = styled.div`
   box-shadow: 0px 4px 16px 0px var(--tooltip-box-shadow);
   border-radius: var(--radius-12);
   opacity: 0;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+  z-index: 9999; /* Ensure tooltip appears above other elements */
   span {
     ${label_regular}
   }
-  ${(props) =>
-    props.isAppDetailtooltip &&
-    css`
-      top: var(--space-24);
-      left: -5px !important; // icon is 16px size that is why we are using -5px
-      @media only screen and (max-width: 449px) {
-        top: var(--space-20);
-        left: -7px !important;
-      }
-    `}
-  ${(props) =>
-    props.LeftAdjust &&
-    css`
-      left: ${props.LeftAdjust}px !important;
-    `}
   @media only screen and (max-width: 768px) {
     ${(props) =>
       props.isAutoAdjust &&
       css`
-        left: -32px !important;
-        width: calc(100% + 32px);
+        /* Use dynamic width based on viewport */
+        width: calc(100vw - 32px);
+        max-width: 220px;
+        min-width: 180px;
+        /* Ensure tooltip stays within viewport bounds */
+        left: max(-200px, min(0px, var(--tooltip-left, -6px))) !important;
+        /* Prevent horizontal overflow */
+        word-wrap: break-word;
+        overflow-wrap: break-word;
+      `}
+  }
+  @media only screen and (max-width: 480px) {
+    ${(props) =>
+      props.isAutoAdjust &&
+      css`
+        width: calc(100vw - 24px);
+        max-width: 200px;
+        min-width: 160px;
+        padding: var(--space-8) var(--space-10) var(--space-6);
+        /* More aggressive positioning for very small screens */
+        left: max(-180px, min(0px, var(--tooltip-left, -6px))) !important;
+      `}
+  }
+  @media only screen and (max-width: 320px) {
+    ${(props) =>
+      props.isAutoAdjust &&
+      css`
+        width: calc(100vw - 16px);
+        max-width: 180px;
+        min-width: 140px;
+        padding: var(--space-6) var(--space-8) var(--space-4);
+        font-size: 12px;
       `}
   }
 `;
@@ -225,20 +242,11 @@ const TooltipText = styled.div`
 `;
 
 const Line = styled.div`
+  display: flex;
   position: absolute;
-  top: -10px;
-  .line {
-    background-color: var(--title);
-    width: 2px;
-    height: 16px;
-  }
-  @media only screen and (max-width: 768px) {
-    ${(props) =>
-      props.isAutoAdjust &&
-      css`
-        display: none;
-      `}
-  }
+  top: -7px;
+  transform-origin: bottom center;
+  margin-left: var(--space-18);
 `;
 
 const Informative = styled.div`
@@ -248,11 +256,11 @@ const Informative = styled.div`
   :hover .tooltiptext {
     visibility: visible;
     opacity: 1;
-    transition: all 0.55s;
+    transition: all 0.3s ease;
   }
   .tooltiptext {
     visibility: hidden;
-    z-index: 99;
+    z-index: 9999;
   }
   .tooltip-icon {
     width: 13px;
@@ -262,7 +270,20 @@ const Informative = styled.div`
     ${(props) =>
       props.isAutoAdjust &&
       css`
-        position: unset;
+        /* Keep relative positioning for mobile auto-adjustment */
+        position: relative;
+        /* Ensure tooltip container doesn't interfere with layout */
+        overflow: visible;
+      `}
+  }
+  @media only screen and (max-width: 480px) {
+    ${(props) =>
+      props.isAutoAdjust &&
+      css`
+        /* Ensure tooltip is positioned relative to viewport on very small screens */
+        position: relative;
+        /* Allow tooltip to extend beyond container bounds */
+        overflow: visible;
       `}
   }
 `;
@@ -315,7 +336,7 @@ export {
   CardTop,
   CardListSection,
   SectionHeading,
-  Tooltip,
+  TooltipSection,
   Line,
   Informative,
   Icon,

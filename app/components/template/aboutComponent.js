@@ -3,8 +3,7 @@ import React from 'react';
 import Link from 'next/link';
 import { isEmpty } from '../../helpers/helpers';
 import { AboutSection, Info, InfoDescription, InfoDiv, InfoTitle, Title } from './templateBodyStyle';
-import Button from '../button/button';
-import AppTooltip from '../appsCards/appTooltip';
+import Tooltip from '../appsCards/tooltip';
 import ButtonV2Component from '../button/buttonV2/buttonV2';
 import { ButtonVariant } from '../../constants/constant';
 import { useIsMobile } from '../../hooks/useMobileDevice';
@@ -13,7 +12,7 @@ export default function AboutComponent({ data, buttonText, buttonLink, isDirecto
   const shouldButtonShow = !isEmpty(buttonText) && !isEmpty(buttonLink);
   const renderAboutItems = () => {
     const isMobile = useIsMobile();
-    return data.map((item, index) => {
+    return data.map((item) => {
       if (isEmpty(item.value)) return null;
       return (
         <>
@@ -21,12 +20,12 @@ export default function AboutComponent({ data, buttonText, buttonLink, isDirecto
             <InfoTitle>
               <p>{item.label}</p>
               {!isEmpty(item.labelInfo) && (
-                <AppTooltip
+                <Tooltip
                   message={item.labelInfo}
-                  iconSize={isMobile ? '12' : '16'}
+                  iconSize={isMobile ? '12' : '14'}
                   fill='var(--title)'
-                  mainDivStyle={{ marginTop: 'var(--space-5)' }}
-                  isAppDetailtooltip
+                  mainDivStyle={{ marginTop: 'var(--space-7)' }}
+                  style={{ marginLeft: 14 }}
                 />
               )}
             </InfoTitle>
@@ -35,12 +34,12 @@ export default function AboutComponent({ data, buttonText, buttonLink, isDirecto
                 <>
                   {item.value}
                   {!isEmpty(item.valueInfo) && (
-                    <AppTooltip
+                    <Tooltip
                       message={item.valueInfo}
-                      iconSize={isMobile ? '12' : '16'}
+                      iconSize={isMobile ? '12' : '14'}
                       fill='var(--title)'
-                      mainDivStyle={{ marginTop: 'var(--space-5)' }}
-                      isAppDetailtooltip
+                      mainDivStyle={{ marginTop: 'var(--space-7)' }}
+                      style={{ marginLeft: 14 }}
                     />
                   )}
                 </>

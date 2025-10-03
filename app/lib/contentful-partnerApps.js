@@ -311,7 +311,6 @@ export async function getPartnerAppDetail(slug, preview) {
     [CONTENTFUL_API_TAG.APP, CONTENTFUL_API_TAG.GUIDE]
   );
   const appDetail = extractPostEntry(entries);
-  console.log("appDetail",appDetail.isReviewVisible);
   
   // Only fetch review data if isReviewVisible is true
   if (appDetail && appDetail.isReviewVisible) {

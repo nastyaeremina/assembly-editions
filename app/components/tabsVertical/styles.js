@@ -4,15 +4,15 @@ import { body_regular, h4_regular } from '../../styles/typography';
 const TabsVerticalSection = styled.div`
   display: flex;
   gap: var(--space-40);
-  padding-block: var(--space-64);
+  padding: var(--space-64) 0;
   @media only screen and (max-width: 991px) {
-    padding-block: var(--space-40);
+    padding: var(--space-40) 0;
   }
   @media only screen and (max-width: 768px) {
     flex-direction: column;
   }
   @media only screen and (max-width: 449px) {
-    padding-block: var(--space-48);
+    padding: var(--space-48) 0;
   }
 `;
 const TabsVerticalLeft = styled.div`
@@ -134,7 +134,7 @@ const BgImage = styled.div`
 `;
 
 const ToolsTab = styled.div`
-  padding-block: var(--space-20);
+  padding: var(--space-20) 0;
   border-bottom: 1px solid var(--border-default);
   display: flex;
   flex-direction: column;
@@ -147,7 +147,7 @@ const ToolsTab = styled.div`
   @media only screen and (max-width: 768px) {
     border-top: 1px solid var(--border-default);
     border-bottom: none;
-    padding-block: var(--space-16) 0;
+    padding: var(--space-16) 0 0;
     gap: var(--space-6);
     ${(props) =>
       props.selectedTab &&
@@ -177,7 +177,7 @@ const Title = styled.h3`
     props.selectedTab &&
     css`
       color: var(--title);
-      margin-block: 0 var(--space-8);
+      margin: 0 0 var(--space-8);
     `}
   ${ToolsTab}:hover & {
     color: var(--title);
@@ -213,7 +213,7 @@ const ResponsiveImageSection = styled.div`
       transition: all 0.6s;
       margin-bottom: var(--space-16);
       :last-child {
-        margin-block: var(--space-16) 0;
+        margin: var(--space-16) 0 0;
       }
     }
   }

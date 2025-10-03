@@ -42,7 +42,7 @@ const PlanSection = styled.div`
   @media only screen and (max-width: 768px) {
     .list-item {
       display: flex;
-      align-items: center;
+      align-items: baseline;
       gap: var(--space-3);
     }
   }

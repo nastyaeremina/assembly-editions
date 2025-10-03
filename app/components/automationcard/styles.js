@@ -12,13 +12,13 @@ const CardSection = styled.div`
   ${(props) =>
     props.isStandardPage &&
     css`
-      padding-block: var(--space-64);
+      padding: var(--space-64) 0;
     `}
     @media only screen and (max-width: 991px) {
     ${(props) =>
       props.isStandardPage &&
       css`
-        padding-block: var(--space-40);
+        padding: var(--space-40) 0;
       `}
   }
   @media only screen and (max-width: 449px) {
@@ -26,7 +26,7 @@ const CardSection = styled.div`
     ${(props) =>
       props.isStandardPage &&
       css`
-        padding-block: var(--space-48);
+        padding: var(--space-48) 0;
       `}
     ${(props) =>
       props.isAppExplore &&
@@ -86,9 +86,9 @@ const Description = styled.p`
   color: var(--body);
   max-width: 780px;
   width: 100%;
-  margin-block: var(--space-12) 0;
+  margin: var(--space-12) 0 0;
   @media only screen and (max-width: 449px) {
-    margin-block: var(--space-12) 0;
+    margin: var(--space-12) 0 0;
   }
 `;
 const Cards = styled.div`
@@ -105,11 +105,11 @@ const Body = styled.div`
   p {
     ${body_regular};
     color: var(--body);
-    margin-block: var(--space-16) 0;
+    margin: var(--space-16) 0 0;
   }
   @media only screen and (max-width: 449px) {
     p {
-      margin-block: var(--space-32) 0;
+      margin: var(--space-32) 0 0;
     }
   }
 `;

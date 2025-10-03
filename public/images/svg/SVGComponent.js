@@ -1049,6 +1049,12 @@ const getPath = (name, props) => {
           />
         </>
       );
+    case 'tooltip-arrow-icon':
+      return (
+        <>
+          <path fill='var(--title)' d='M6.247.86a1 1 0 0 1 1.506 0L14 8H0L6.247.86Z' />
+        </>
+      );
     default:
       return <path />;
   }

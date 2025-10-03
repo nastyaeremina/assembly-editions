@@ -17,7 +17,7 @@ import {
 import PricingCardSection from '../../pricingcard/pricingCardSection';
 import { isEmpty } from '../../../helpers/helpers';
 import SVGComponent from '../../../../public/images/svg/SVGComponent';
-import AppTooltip from '../../appsCards/appTooltip';
+import Tooltip from '../../appsCards/tooltip';
 import { ButtonVariant, PlanList } from '../../../constants/constant';
 import YearlyToggleComponent from './yearlyToggleComponent';
 import ButtonV2Component from '../../button/buttonV2/buttonV2';
@@ -113,11 +113,10 @@ export default function PricingPage({ details, faqData }) {
                     <div className='title'>
                       <h4>{featuresItem?.name}</h4>
                       {!isEmpty(featuresItem?.description?.json) && (
-                        <AppTooltip
+                        <Tooltip
                           message={documentToReactComponents(featuresItem?.description?.json)}
                           iconSize='16'
                           fill='var(--text-secondary)'
-                          style={{ top: 24 }}
                         />
                       )}
                     </div>

@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { button_regular, h3_semibold } from '../../styles/typography';
 
 const MainDiv = styled.div`
-  margin-block: var(--space-40) var(--space-8);
+  margin: var(--space-40) 0;
   max-width: 728px;
   padding: var(--space-24) !important;
   border-radius: var(--radius-12);
