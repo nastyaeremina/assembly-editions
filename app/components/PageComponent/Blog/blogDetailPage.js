@@ -1,5 +1,5 @@
 'use client';
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
 import moment from 'moment';
 import { CopyBlock, dracula } from 'react-code-blocks';
@@ -66,6 +66,12 @@ export default function BlogdetailPage({
   // Track client-side mount to avoid SSR hydration mismatch;
   // used to defer rendering of interactive galleries until after mount
   const [isMounted, setIsMounted] = useState(false);
+  // for sticky positioning left side section
+  const [stickyClass, setStickyClass] = useState('');
+  const [maxHeight, setMaxHeight] = useState('none');
+
+  // for sticky positioning left side section
+  const sidebarRef = useRef(null);
 
   const shouldShowBlogCTA = !isEmpty(ctaDescription) && !isEmpty(ctaTitle);
   const shouldShowTOC = blogDetail?.custom_template !== 'custom-no-toc';
@@ -73,6 +79,36 @@ export default function BlogdetailPage({
 
   // for sticky positioning
   const { totalHeight } = useNavbarHeight();
+
+  // scroll event when left side section sticky position
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (!sidebarRef.current) return;
+
+      const rect = sidebarRef.current.getBoundingClientRect();
+      const parentRect = sidebarRef.current.parentElement.getBoundingClientRect();
+
+      // Sticky at top
+      if (rect.top <= totalHeight && parentRect.bottom > window.innerHeight) {
+        setStickyClass('sticky-active');
+        setMaxHeight(`${window.innerHeight - totalHeight}px`);
+      }
+      // Bottom reached → unlock scroll
+      else if (parentRect.bottom <= window.innerHeight) {
+        setStickyClass('sticky-end');
+        setMaxHeight(`${sidebarRef.current.scrollHeight}px`);
+      }
+      // Default / normal
+      else {
+        setStickyClass('');
+        setMaxHeight('none');
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [totalHeight]);
 
   const onChangeCopy = useCallback(
     ({ index, isCopy }) => {
@@ -254,7 +290,11 @@ export default function BlogdetailPage({
 
             <BlogContent className={!shouldShowTOC ? 'without-toc' : ''}>
               {shouldShowLestSection && (
-                <BlogDetailsidebar stickyTop={totalHeight}>
+                <BlogDetailsidebar
+                  stickyTop={totalHeight}
+                  ref={sidebarRef}
+                  className={stickyClass}
+                  maxHeight={maxHeight}>
                   {/* table of content and cta of bottom  */}
                   {shouldShowTOC && (
                     <TableOfContents

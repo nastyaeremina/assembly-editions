@@ -5,6 +5,8 @@ const SideBarCTA = styled.div`
   padding: var(--space-20) var(--space-20) var(--space-24);
   border: 1px solid var(--border-default);
   border-radius: var(--radius-20);
+  max-width: 374px;
+  width: 100%;
   @media only screen and (max-width: 768px) {
     display: none;
   }
@@ -13,7 +15,12 @@ const Image = styled.img`
   box-shadow: 0px 0px 0px 1px #0000000f;
   border-radius: var(--radius-8);
 `;
-const ImageDiv = styled.div``;
+const ImageDiv = styled.div`
+  .image {
+    width: 100%;
+    object-fit: cover;
+  }
+`;
 const Content = styled.div`
   display: flex;
   flex-direction: column;

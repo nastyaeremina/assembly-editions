@@ -203,10 +203,31 @@ const BlogDetailsidebar = styled.div`
   gap: var(--space-24);
   max-width: 376px;
   width: 100%;
-  margin-bottom: var(--space-100);
-  height: 100%;
+  height: fit-content;
   position: sticky;
-  top: ${(props) => props.stickyTop + 40}px;
+  top: ${(props) => props.stickyTop}px;
+  overflow-y: visible;
+  overflow-x: hidden;
+  overscroll-behavior: contain;
+  align-self: flex-start;
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none;
+  height: fit-content;
+  transition: max-height 0.6s ease;
+  padding-top: var(--space-40);
+  margin-top: -40px;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+  &.sticky-active {
+    overflow-y: auto;
+    ${(props) => `max-height: calc(100dvh - ${props.stickyTop}px);`}
+    padding-bottom: var(--space-24);
+  }
+  &.sticky-end {
+    overflow-y: visible;
+    max-height: ${(props) => props.maxHeight};
+  }
   @media only screen and (max-width: 991px) {
     display: none;
   }
@@ -214,12 +235,17 @@ const BlogDetailsidebar = styled.div`
 const BlogContent = styled.div`
   display: flex;
   justify-content: space-between;
+  align-items: flex-start;
   gap: var(--space-120);
   width: 100%;
   margin: 0 auto;
+  margin-bottom: var(--space-120);
   &.without-toc {
     max-width: 728px;
     gap: var(--space-38);
+  }
+  @media only screen and (max-width: 991px) {
+    margin-bottom: var(--space-64);
   }
   @media only screen and (max-width: 768px) {
     flex-direction: column;
@@ -280,7 +306,6 @@ const BlogTime = styled.div`
   padding-top: var(--space-24);
   border-top: 1px solid var(--border-default);
   margin-top: var(--space-64);
-  margin-bottom: var(--space-120);
   span {
     ${button_regular};
     color: var(--text-secondary);

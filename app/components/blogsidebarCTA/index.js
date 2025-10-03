@@ -12,7 +12,7 @@ export default function BlogSidebarCTA({ headerText, bodyText, externalLinks = {
   return (
     <SideBarCTA>
       <ImageDiv>
-        <Image src={BlogCTAImage.src} alt='' width={336} height={209} />
+        <Image src={BlogCTAImage.src} alt='' width={336} height={209} className='image' />
       </ImageDiv>
       <Content>
         {!isEmpty(headerText) && <Title>{headerText}</Title>} {!isEmpty(bodyText) && <Caption>{bodyText} </Caption>}

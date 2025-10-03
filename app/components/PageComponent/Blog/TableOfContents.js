@@ -37,6 +37,7 @@ export default function TableOfContents({
 }) {
   const [activeIndex, setActiveIndex] = useState(0);
   const itemBorderRefs = useRef([]);
+  const listRef = useRef(null); // <ol> reference to enable scrollIntoView on the correct container
   const observerRef = useRef(null);
 
   // Extract headings function (returns sorted array)
@@ -142,6 +143,7 @@ export default function TableOfContents({
   }, [htmlData, hasTopBar, isFAQs, faqId, isShowH2, isShowH3, isShowH4]);
 
   useEffect(() => {
+    if (typeof window === 'undefined') return;
     const headings = extractAllHeadings(htmlData);
     const ids = headings.map((h) => h.id);
     if (isFAQs) ids.push(faqId);
@@ -199,13 +201,22 @@ export default function TableOfContents({
     const el = itemBorderRefs.current[activeIndex];
     const activeBorder = document.getElementById('active-border');
     if (el && activeBorder) {
+      // Position relative to the same scrolling container (<ol>)
       activeBorder.style.top = `${el.offsetTop}px`;
       activeBorder.style.height = `${el.offsetHeight}px`;
+
+      // Ensure the active item is visible within the nearest scrollable ancestor
+      try {
+        el.scrollIntoView({ block: 'nearest', inline: 'nearest' });
+      } catch (error) {
+        console.error(error);
+      }
     }
   }, [activeIndex]);
 
   // Click handler for anchors (prevents default jump, does smooth scroll & sets active)
   const handleClick = (e, id, index) => {
+    if (typeof window === 'undefined') return;
     e.preventDefault();
     const el = document.getElementById(id);
     const offset = hasTopBar ? 200 : 160;
@@ -277,7 +288,7 @@ export default function TableOfContents({
         {!isEmpty(htmlData) && (
           <TableContentWrapper>
             <TOCDivider />
-            <ol>
+            <ol ref={listRef}>
               <ActiveBorder id='active-border' />
               {renderTableData()}
             </ol>
