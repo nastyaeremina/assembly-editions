@@ -54,9 +54,9 @@ export default function CustomerTestimonial({
           </Detail>
           {!isEmpty(highlightsData) && renderHighlightView}
         </Top>
-        <VisitSite>
+        <VisitSite className='link-hover'>
           Read client story
-          <SVGComponent name='blog-card-hover-arrow-icon' width='16' height='16' viewBox='0 0 16 16' />
+          <SVGComponent name='hover-arrow-icon' width='18' height='16' viewBox='0 0 16 16' />
         </VisitSite>
       </LeftCard>
       <RightCard isFullWidth={isFullWidth}>

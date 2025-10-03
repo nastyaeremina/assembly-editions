@@ -276,12 +276,26 @@ const VisitSite = styled.div`
       fill: var(--title);
     }
   }
-  :hover {
-    color: var(--text-secondary);
-    svg {
+  .hover-line-path {
+    opacity: 0;
+    transition: opacity 0.4s ease, transform 0.4s ease;
+  }
+
+  .hover-tip-path {
+    transition: opacity 0.4s ease, transform 0.4s ease;
+  }
+  &:hover {
+    .hover-arrow-icon {
       path {
         fill: var(--text-secondary);
       }
+    }
+    .hover-line-path {
+      opacity: 1;
+      transform: translateX(2px);
+    }
+    .hover-tip-path {
+      transform: translateX(2px);
     }
   }
 `;

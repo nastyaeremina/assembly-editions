@@ -361,6 +361,7 @@ const Carditem = styled.div`
   flex-direction: column;
   border: 1px solid var(--border-default);
   border-radius: var(--radius-12);
+  height: 100%;
   .svg-icon {
     opacity: 0;
     transform: translateX(-2px) scale(0.98);

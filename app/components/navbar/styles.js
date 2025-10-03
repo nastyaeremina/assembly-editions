@@ -604,11 +604,33 @@ const HelpLink = styled.div`
     @media only screen and (max-width: 449px) {
       justify-content: space-between;
     }
+    .hover-line-path {
+      opacity: 0;
+      transition: opacity 0.4s ease, transform 0.4s ease;
+    }
+
+    .hover-tip-path {
+      transition: opacity 0.4s ease, transform 0.4s ease;
+    }
+    &:hover {
+      .hover-line-path {
+        opacity: 1;
+        transform: translateX(2px);
+      }
+      .hover-tip-path {
+        transform: translateX(2px);
+      }
+    }
   }
 `;
 
 const Icon = styled.div`
   display: flex;
+  svg {
+    path {
+      fill: var(--title);
+    }
+  }
 `;
 
 const Drop = styled.div`
@@ -668,6 +690,14 @@ const VisitSite = styled.div`
       fill: var(--text-secondary);
     }
   }
+  .hover-line-path {
+    opacity: 0;
+    transition: opacity 0.4s ease, transform 0.4s ease;
+  }
+
+  .hover-tip-path {
+    transition: opacity 0.4s ease, transform 0.4s ease;
+  }
   :hover {
     color: var(--title);
     svg {
@@ -700,6 +730,13 @@ const HighlightSectionDiv = styled.div`
           fill: var(--title);
         }
       }
+    }
+    .hover-line-path {
+      opacity: 1;
+      transform: translateX(2px);
+    }
+    .hover-tip-path {
+      transform: translateX(2px);
     }
   }
 `;

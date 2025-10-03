@@ -26,6 +26,21 @@ const TestimonialCard = styled(Link)`
     `}
     :hover {
     background-color: var(--bg-primary-hover);
+    .link-hover {
+      color: var(--text-secondary);
+      svg {
+        path {
+          fill: var(--text-secondary);
+        }
+      }
+      .hover-line-path {
+        opacity: 1;
+        transform: translateX(2px);
+      }
+      .hover-tip-path {
+        transform: translateX(2px);
+      }
+    }
   }
   @media only screen and (max-width: 991px) {
     grid-template-columns: 1fr;

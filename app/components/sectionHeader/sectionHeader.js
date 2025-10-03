@@ -42,7 +42,7 @@ function SectionHeader({
               title={secondaryButtonText}
               href={secondaryButtonLink}
               variant={ButtonVariant.SECONDARY}
-              iconName='blog-card-hover-arrow-icon'
+              postIcon
               tone={tone}
             />
           )}

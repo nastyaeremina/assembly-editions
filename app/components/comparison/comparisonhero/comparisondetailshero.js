@@ -63,7 +63,7 @@ export default function ComparisonDetailsHero({
                       title={secondaryButtonText}
                       href={secondaryButtonLink}
                       variant={showPrimaryButton ? ButtonVariant.SECONDARY : ButtonVariant.SECONDARY_WITH_BORDER}
-                      iconName='blog-card-hover-arrow-icon'
+                      postIcon
                     />
                   )}
                 </ButtonGroups>

@@ -102,10 +102,17 @@ const Buttons = styled.button`
   height: 48px;
   display: flex;
   align-items: center;
-  gap: var(--space-8);
+  gap: var(--space-6);
   padding: var(--space-2) var(--space-32) 0;
   border-radius: var(--radius-30);
   transition: background-color 0.3s ease;
+  .hover-line-path {
+    opacity: 0;
+    transition: opacity 0.4s ease, transform 0.4s ease;
+  }
+  .hover-tip-path {
+    transition: opacity 0.4s ease, transform 0.4s ease;
+  }
 
   ${(props) =>
     props.isWidth &&
@@ -114,6 +121,12 @@ const Buttons = styled.button`
       text-align: center;
       width: 100%;
     `}
+
+  svg {
+    path {
+      fill: var(--off-white-100);
+    }
+  }
 
   // size of button
   ${(props) =>
@@ -130,11 +143,6 @@ const Buttons = styled.button`
     css`
       background-color: var(--gray-400);
       color: var(--off-white-100);
-      svg {
-        path {
-          fill: var(--off-white-100);
-        }
-      }
     `}
 
   //Secondary button
@@ -143,6 +151,11 @@ const Buttons = styled.button`
     css`
       background-color: transparent;
       color: var(--title);
+      svg {
+        path {
+          fill: var(--title);
+        }
+      }
     `}
     ${(props) =>
     props.variant === ButtonVariant.SECONDARY &&
@@ -164,6 +177,11 @@ const Buttons = styled.button`
       background-color: transparent;
       border: 1px solid var(--border-default);
       color: var(--title);
+      svg {
+        path {
+          fill: var(--title);
+        }
+      }
     `}
     ${(props) =>
     props.variant === ButtonVariant.SECONDARY_WITH_BORDER &&
@@ -174,58 +192,56 @@ const Buttons = styled.button`
       color: var(--off-white-100);
       svg {
         path {
-          fill: var(--white);
+          fill: var(--off-white-100);
         }
       }
     `}
+
   :hover {
     background-color: var(--bg-card-dark-hover);
+    .hover-line-path {
+      opacity: 1;
+      transform: translateX(2px);
+    }
+    .hover-tip-path {
+      transform: translateX(2px);
+    }
+
     ${(props) =>
       props.tone === ButtonTone.DARK &&
       css`
         background-color: var(--gray-350);
         color: var(--off-white-100);
-        svg {
-          path {
-            fill: var(--off-white-100);
-          }
-        }
       `}
+
     ${(props) =>
       props.variant === ButtonVariant.SECONDARY &&
       css`
         background-color: var(--bg-primary-hover);
         color: var(--title);
       `}
+
       ${(props) =>
       props.variant === ButtonVariant.SECONDARY &&
       props.tone === ButtonTone.DARK &&
       css`
         background-color: var(--gray-350);
         color: var(--off-white-100);
-        svg {
-          path {
-            fill: var(--off-white-100);
-          }
-        }
       `}
+
       ${(props) =>
       props.variant === ButtonVariant.SECONDARY_WITH_BORDER &&
       css`
         background-color: var(--bg-primary-hover);
         color: var(--title);
       `}
+
       ${(props) =>
       props.variant === ButtonVariant.SECONDARY_WITH_BORDER &&
       props.tone === ButtonTone.DARK &&
       css`
         background-color: var(--gray-350);
         color: var(--off-white-100);
-        svg {
-          path {
-            fill: var(--off-white-100);
-          }
-        }
       `}
   }
   :focus-visible {
@@ -243,4 +259,17 @@ const Buttons = styled.button`
   }
 `;
 
-export { ButtonWrap, Buttons };
+const Icon = styled.div`
+  display: flex;
+
+  ${(props) =>
+    props.size === ButtonSize.SMALL &&
+    css`
+      svg {
+        width: 14px;
+        height: 12px;
+      }
+    `}
+`;
+
+export { ButtonWrap, Buttons, Icon };

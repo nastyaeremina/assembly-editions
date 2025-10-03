@@ -5,7 +5,7 @@ import { isEmpty } from '../../helpers/helpers';
 import { ButtonGroup, CtaAnimation, CtaWrap, Description, TextSection, Title } from './newCTAStyles';
 import { Container } from '../../styles/commonStyles';
 import ButtonV2Component from '../button/buttonV2/buttonV2';
-import { ButtonTone, ButtonVariant } from '../../constants/constant';
+import { ButtonSize, ButtonTone, ButtonVariant } from '../../constants/constant';
 
 export default function NewCTA({
   title,
@@ -41,9 +41,8 @@ export default function NewCTA({
                     title={secondaryButtonText}
                     variant={ButtonVariant.SECONDARY}
                     tone={ButtonTone.DARK}
-                    iconName={'cta-button-arrow'}
                     href={secondaryButtonLink}
-                    iconSize='16'
+                    postIcon
                   />
                 )}
               </ButtonGroup>

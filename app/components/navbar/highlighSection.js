@@ -25,7 +25,13 @@ function HighlighSection({ title, description, image, href }) {
           </ContentDiv>
           <VisitSite>
             Read
-            <SVGComponent name='blog-card-hover-arrow-icon' width='14' height='14' viewBox='0 0 16 16' />
+            <SVGComponent
+              name='hover-arrow-icon'
+              width='16'
+              height='14'
+              viewBox='0 0 16 16'
+              className='hover-arrow-icon'
+            />
           </VisitSite>
         </Link>
       </HighlightSectionDiv>

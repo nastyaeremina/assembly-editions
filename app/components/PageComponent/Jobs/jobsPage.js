@@ -36,16 +36,15 @@ import {
   SmallImage,
   ImageOverlayDiv,
   ResponsiveSection,
-  LearnMore
+  LearnMore,
+  MobileIcon
 } from '../../../styles/jobsStyles';
 import StandardHero from '../../standardHero/standardHero';
-import { HeroTypes, LinkSize, THRESHOLD } from '../../../constants/constant';
+import { HeroTypes, THRESHOLD } from '../../../constants/constant';
 import FAQ from '../../faq/faq';
 import ModernV2 from '../../solution/modernV2/modernV2';
-import LinkComponent from '../../linkComponent/linkComponent';
 import Link from 'next/link';
 import SVGComponent from '../../../../public/images/svg/SVGComponent';
-import { useIsMobile } from '../../../hooks/useMobileDevice';
 import Image from 'next/image';
 import SliderButton from '../../businessSlider/SliderButton';
 import useMobileDevice from '../../../hooks/useMobileDevice';
@@ -54,7 +53,6 @@ export default function JobsPage({ details, jobList, faqData, jobBlogPostList, j
   const [selectedImageIndex, setSelectedImageIndex] = useState(0);
   const [touchStart, setTouchStart] = useState(null);
   const [touchEnd, setTouchEnd] = useState(null);
-  const isMobile = useIsMobile();
   const isMobileDevice = useMobileDevice();
 
   // Swipe functionality for mobile devices
@@ -102,11 +100,14 @@ export default function JobsPage({ details, jobList, faqData, jobBlogPostList, j
                 <p>{item?.location}</p>
               </RightRow>
             )}
-            <LearnMore>
+            <LearnMore className='link-hover'>
               <p>Learn More</p>
               <Icon>
-                <SVGComponent name='slider-right-arrow-icon' width='16' height='16' viewBox='0 0 16 16' />
+                <SVGComponent name='hover-arrow-icon' width='18' height='16' viewBox='0 0 16 16' />
               </Icon>
+              <MobileIcon>
+                <SVGComponent name='slider-right-arrow-icon' width='16' height='16' viewBox='0 0 16 16' />
+              </MobileIcon>
             </LearnMore>
           </RoleRow>
         </Link>
@@ -203,13 +204,7 @@ export default function JobsPage({ details, jobList, faqData, jobBlogPostList, j
             </TopSection>
             <ReadMore>
               <Text className='read-more'>Read More</Text>
-              <SVGComponent
-                name='blog-card-hover-arrow-icon'
-                width='14'
-                height='14'
-                viewBox='0 0 16 16'
-                className='arrow-icon'
-              />
+              <SVGComponent name='hover-arrow-icon' width='16' height='14' viewBox='0 0 16 16' className='arrow-icon' />
             </ReadMore>
           </TitleWrap>
         </Link>

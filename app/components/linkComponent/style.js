@@ -11,12 +11,23 @@ const LinkSection = styled(Link)`
   color: var(--off-white-100);
   transition: color 0.3s ease;
   white-space: nowrap;
+
+  .hover-line-path {
+    opacity: 0;
+    transition: opacity 0.4s ease, transform 0.4s ease;
+  }
+
+  .hover-tip-path {
+    transition: opacity 0.4s ease, transform 0.4s ease;
+  }
+
   svg {
     path {
       transition: fill 0.3s ease;
-      fill: var(--white);
+      fill: var(--off-white-100);
     }
   }
+
   :hover {
     color: var(--text-secondary);
     svg {
@@ -24,7 +35,15 @@ const LinkSection = styled(Link)`
         fill: var(--text-secondary);
       }
     }
+    .hover-line-path {
+      opacity: 1;
+      transform: translateX(2px);
+    }
+    .hover-tip-path {
+      transform: translateX(2px);
+    }
   }
+
   ${({ tone }) =>
     tone === LinkTone.BLACK &&
     css`
@@ -100,4 +119,26 @@ const LinkSection = styled(Link)`
   }
 `;
 
-export { LinkSection };
+const Icon = styled.div`
+  display: flex;
+
+  ${(props) =>
+    props.size === LinkSize.MEDIUM &&
+    css`
+      svg {
+        width: 16px;
+        height: 14px;
+      }
+    `}
+
+  ${(props) =>
+    props.size === LinkSize.SMALL &&
+    css`
+      svg {
+        width: 14px;
+        height: 12px;
+      }
+    `}
+`;
+
+export { LinkSection, Icon };

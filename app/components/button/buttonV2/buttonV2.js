@@ -1,7 +1,7 @@
 'use client';
 import React from 'react';
 import SVGComponent from '../../../../public/images/svg/SVGComponent';
-import { Buttons, ButtonWrap } from './style';
+import { Buttons, ButtonWrap, Icon } from './style';
 import { ButtonSize, ButtonTone, ButtonVariant } from '../../../constants/constant';
 
 /**
@@ -32,7 +32,8 @@ function ButtonV2Component({
   className,
   download = false,
   target,
-  isLoading = false
+  isLoading = false,
+  postIcon = false
 }) {
   return (
     <ButtonWrap isWidth={isWidth} isLoading={isLoading}>
@@ -49,9 +50,13 @@ function ButtonV2Component({
         target={target}
         {...(href && download && { download })}>
         <span>{title}</span>
-        {iconName && (
+        {iconName ? (
           <SVGComponent name={iconName} width={iconSize} height={iconSize} viewBox={`0 0 ${iconSize} ${iconSize}`} />
-        )}
+        ) : postIcon ? (
+          <Icon size={size} tone={tone}>
+            <SVGComponent name='hover-arrow-icon' width='18' height='16' viewBox='0 0 16 16' />
+          </Icon>
+        ) : null}
       </Buttons>
     </ButtonWrap>
   );

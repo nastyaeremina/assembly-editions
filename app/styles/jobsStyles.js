@@ -101,11 +101,25 @@ const RoleRow = styled.div`
   margin: 0 -20px;
   &:hover {
     background-color: var(--bg-primary-hover);
-    p {
-      color: var(--black);
-    }
     .bgdot {
       background-color: var(--black);
+    }
+    .link-hover {
+      p {
+        color: var(--text-secondary);
+      }
+      svg {
+        path {
+          fill: var(--text-secondary);
+        }
+      }
+      .hover-line-path {
+        opacity: 1;
+        transform: translateX(2px);
+      }
+      .hover-tip-path {
+        transform: translateX(2px);
+      }
     }
   }
   @media only screen and (max-width: 449px) {
@@ -256,6 +270,18 @@ const JobTitle = styled.p`
 const Icon = styled.div`
   width: 16px;
   height: 16px;
+  @media only screen and (max-width: 991px) {
+    display: none;
+  }
+`;
+
+const MobileIcon = styled.div`
+  display: none;
+  @media only screen and (max-width: 991px) {
+    display: flex;
+    width: 16px;
+    height: 16px;
+  }
 `;
 
 const NewHeroSection = styled.div`
@@ -587,6 +613,14 @@ const TitleWrap = styled.div`
         fill: var(--text-secondary);
       }
     }
+
+    .hover-line-path {
+      opacity: 1;
+      transform: translateX(2px);
+    }
+    .hover-tip-path {
+      transform: translateX(2px);
+    }
   }
 `;
 const TeamLine = styled.div`
@@ -626,9 +660,18 @@ const ReadMore = styled.div`
   display: flex;
   align-items: center;
   gap: var(--space-4);
-  padding-top: var(--space-3);
+  svg {
+    margin-top: var(--space-2);
+  }
   .arrow-icon {
     transition: fill 0.3s ease;
+  }
+  .hover-line-path {
+    opacity: 0;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+  }
+  .hover-tip-path {
+    transition: opacity 0.3s ease, transform 0.3s ease;
   }
 `;
 const Text = styled.p`
@@ -636,6 +679,7 @@ const Text = styled.p`
   color: var(--title);
   margin: 0;
   transition: color 0.3s ease;
+  padding-top: var(--space-3);
 `;
 
 const ImageSliderSection = styled.div`
@@ -724,7 +768,22 @@ const LearnMore = styled.div`
     ${body_regular};
     color: var(--title);
     margin: 0;
+    transition: color 0.3s ease;
   }
+  svg {
+    path {
+      transition: fill 0.3s ease;
+    }
+  }
+  .hover-line-path {
+    opacity: 0;
+    transition: opacity 0.4s ease, transform 0.4s ease;
+  }
+
+  .hover-tip-path {
+    transition: opacity 0.4s ease, transform 0.4s ease;
+  }
+
   @media only screen and (max-width: 991px) {
     p {
       display: none;
@@ -789,5 +848,6 @@ export {
   SmallImage,
   ImageOverlayDiv,
   ResponsiveSection,
-  LearnMore
+  LearnMore,
+  MobileIcon
 };

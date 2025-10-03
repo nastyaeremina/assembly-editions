@@ -1,6 +1,6 @@
 'use client';
 import React from 'react';
-import { LinkSection } from './style';
+import { Icon, LinkSection } from './style';
 import SVGComponent from '../../../public/images/svg/SVGComponent';
 import { isEmpty } from '../../helpers/helpers';
 import { LinkSize, LinkTone } from '../../constants/constant';
@@ -16,18 +16,15 @@ import { LinkSize, LinkTone } from '../../constants/constant';
  * @param {boolean} [props.isIcon=false] - Whether to display the arrow icon next to the link text.
  */
 
-function LinkComponent({ title, linkHref, tone = LinkTone.BLACK, size = LinkSize.MEDIUM, isIcon, iconSize = 16 }) {
+function LinkComponent({ title, linkHref, tone = LinkTone.BLACK, size = LinkSize.MEDIUM, isIcon }) {
   return (
     (!isEmpty(linkHref) || !isEmpty(title)) && (
       <LinkSection href={linkHref} tone={tone} size={size}>
         {title}
         {isIcon && (
-          <SVGComponent
-            name='blog-card-hover-arrow-icon'
-            width={`${iconSize}`}
-            height={`${iconSize}`}
-            viewBox='0 0 16 16'
-          />
+          <Icon size={size}>
+            <SVGComponent name='hover-arrow-icon' width='18' height='16' viewBox='0 0 16 16' />
+          </Icon>
         )}
       </LinkSection>
     )
