@@ -56,7 +56,7 @@ export default function BookDemoPage({ data, thankYouMessage, externalLinks = {}
                   </PropertyDiv>
                   <DemoContain>
                     <p>
-                      “Assembly eliminates all the clutter.It keeps everything streamlined, centralized, and easy to
+                      “Assembly eliminates all the clutter. It keeps everything streamlined, centralized, and easy to
                       manage. Clients also love it at first glance because of its convenience.”
                     </p>
                     <BottomName>

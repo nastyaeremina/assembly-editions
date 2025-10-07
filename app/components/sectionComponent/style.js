@@ -39,6 +39,7 @@ const GridSection = styled.div`
 const GridItemSectionWrapper = styled.div`
   display: grid;
   grid-template-columns: 1fr;
+  grid-template-rows: min-content;
   align-items: center;
   gap: var(--space-24);
   width: 100%;
@@ -107,6 +108,7 @@ const GridItemSectionWrapper = styled.div`
 
   @media only screen and (max-width: 991px) {
     grid-template-columns: 1fr;
+    grid-template-rows: minmax(0, 1fr);
     gap: var(--space-32);
   }
 `;
