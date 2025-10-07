@@ -571,8 +571,7 @@ export const BRAND_PAGE_ASSET_TYPE = {
 
 export const BRAND_PAGE_ASSET_TONE = {
   DARK: 'dark',
-  BLUE: 'blue',
-  LIGHT: 'light'
+  BLUE: 'blue'
 };
 
 export const THRESHOLD = 50;

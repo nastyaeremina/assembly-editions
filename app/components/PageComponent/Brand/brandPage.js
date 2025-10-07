@@ -21,7 +21,6 @@ import ToastMessage from '../../ToastMessage/toastMessage';
 export default function BrandPage() {
   const [copy1, setCopy1] = useState('Copy');
   const [copy2, setCopy2] = useState('Copy');
-  const [copy3, setCopy3] = useState('Copy');
   const [showToast, setShowToast] = useState(false);
 
   const handleCopy = (colorCode, setCopyState) => {
@@ -67,23 +66,6 @@ export default function BrandPage() {
       </Block1>
     );
   }, [copy2]);
-
-  const copyBlock3 = useMemo(() => {
-    return (
-      <Block1 tone={BRAND_PAGE_ASSET_TONE.LIGHT} onClick={() => handleCopy('#FBFBF5', setCopy3, 'Off-white')}>
-        <Detail>
-          <ColorCode tone={BRAND_PAGE_ASSET_TONE.LIGHT}>
-            <p className='color-name'>Off-white</p>
-            <p>RGB 251, 251, 245</p>
-            <p>#FBFBF5</p>
-          </ColorCode>
-          <DownloadButton className='download-button' tone={BRAND_PAGE_ASSET_TONE.LIGHT}>
-            {copy3}
-          </DownloadButton>
-        </Detail>
-      </Block1>
-    );
-  }, [copy3]);
 
   return (
     <>
@@ -131,7 +113,6 @@ export default function BrandPage() {
                 <BrandImageSection>
                   <AssetCard href='/images/assembly-logo-dark.png' download />
                   <AssetCard tone={BRAND_PAGE_ASSET_TONE.BLUE} href='/images/assembly-logo-light.png' download />
-                  <AssetCard tone={BRAND_PAGE_ASSET_TONE.LIGHT} href='/images/assembly-logo-light.png' download />
                 </BrandImageSection>
               </BrandName>
               <BrandName>
@@ -148,12 +129,6 @@ export default function BrandPage() {
                   />
                   <AssetCard
                     tone={BRAND_PAGE_ASSET_TONE.BLUE}
-                    href='/images/assembly-logo-small-light.png'
-                    download
-                    variant={BRAND_PAGE_ASSET_TYPE.LOGO}
-                  />
-                  <AssetCard
-                    tone={BRAND_PAGE_ASSET_TONE.LIGHT}
                     href='/images/assembly-logo-small-light.png'
                     download
                     variant={BRAND_PAGE_ASSET_TYPE.LOGO}
@@ -178,12 +153,6 @@ export default function BrandPage() {
                     download
                     variant='company_icon'
                   />
-                  <AssetCard
-                    tone={BRAND_PAGE_ASSET_TONE.LIGHT}
-                    href='/images/assembly-logo-circle-light.png'
-                    download
-                    variant='company_icon'
-                  />
                 </LogoSection>
               </BrandName>
               <BrandName>
@@ -195,7 +164,6 @@ export default function BrandPage() {
                 <BrandImageSection>
                   {copyBlock1}
                   {copyBlock2}
-                  {copyBlock3}
                 </BrandImageSection>
               </BrandName>
             </SectionWrapper>

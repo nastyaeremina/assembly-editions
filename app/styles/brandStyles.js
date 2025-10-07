@@ -49,7 +49,6 @@ const Block1 = styled.button`
   padding: var(--space-80) var(--space-24) var(--space-24);
   background-color: var(--title);
   border-radius: var(--radius-12);
-  border: 1px solid var(--border-default);
   display: flex;
   flex-direction: column;
   .download-button {
@@ -69,11 +68,6 @@ const Block1 = styled.button`
     props.tone === BRAND_PAGE_ASSET_TONE.DARK &&
     css`
       background-color: var(--title);
-    `}
-  ${(props) =>
-    props.tone === BRAND_PAGE_ASSET_TONE.LIGHT &&
-    css`
-      background-color: var(--off-white-500);
     `}
   ${(props) =>
     props.tone === BRAND_PAGE_ASSET_TONE.BLUE &&
@@ -108,12 +102,10 @@ const BrandImageSection = styled.div`
 const Card = styled.a`
   background-color: var(--title);
   border-radius: var(--radius-12);
-  border: 1px solid var(--border-default);
   padding: var(--space-96) var(--space-24) var(--space-24);
   width: 100%;
   height: 256px;
   &:focus-visible {
-    outline: 2px solid var(--link-default);
     border-radius: var(--radius-12);
   }
   &:hover {
@@ -139,11 +131,6 @@ const Card = styled.a`
           fill: var(--off-white-500);
         }
       }
-    `}
-  ${(props) =>
-    props.tone === BRAND_PAGE_ASSET_TONE.LIGHT &&
-    css`
-      background-color: var(--off-white-500);
     `}
   ${(props) =>
     props.tone === BRAND_PAGE_ASSET_TONE.BLUE &&
@@ -193,15 +180,6 @@ const DownloadButton = styled.div`
       }
     `}
   ${(props) =>
-    props.tone === BRAND_PAGE_ASSET_TONE.LIGHT &&
-    css`
-      color: var(--off-white-100);
-      background-color: var(--title);
-      &:hover {
-        background-color: var(--bg-card-dark-hover);
-      }
-    `}
-  ${(props) =>
     props.tone === BRAND_PAGE_ASSET_TONE.BLUE &&
     css`
       color: var(--off-white-100);
@@ -219,10 +197,7 @@ const LogoSection = styled.div`
   display: grid;
   gap: var(--space-24);
   margin-top: var(--space-24);
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-  @media only screen and (max-width: 749px) {
-    grid-template-columns: repeat(1, 1fr);
-  }
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
 `;
 
 const Logo = styled.div`
@@ -258,13 +233,6 @@ const ColorCode = styled.div`
       }
     `}
   ${(props) =>
-    props.tone === BRAND_PAGE_ASSET_TONE.LIGHT &&
-    css`
-      p {
-        color: var(--title);
-      }
-    `}
-    ${(props) =>
     props.tone === BRAND_PAGE_ASSET_TONE.BLUE &&
     css`
       p {
