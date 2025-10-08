@@ -119,13 +119,13 @@ const SliderButton = styled.div`
   &.left-arrow {
     left: -37px;
     @media only screen and (max-width: 1400px) {
-      left: -24px;
+      left: 0;
     }
   }
   &.right-arrow {
     right: -92px;
     @media only screen and (max-width: 1400px) {
-      right: -24px;
+      right: 0;
     }
   }
   ${(props) =>
@@ -160,9 +160,12 @@ const SliderButton = styled.div`
       &.left-arrow {
         display: none;
       }
-    `}
-    @media only screen and (max-width: 991px) {
-    display: none;
+    `} 
+
+  @media only screen and (max-width: 991px) {
+    &.left-arrow {
+      display: none;
+    }
   }
 `;
 
