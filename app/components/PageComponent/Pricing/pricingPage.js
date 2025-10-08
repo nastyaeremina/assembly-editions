@@ -226,14 +226,16 @@ export default function PricingPage({ details, faqData }) {
         </PricingSection>
       </div>
       <FAQ faqList={faqData} />
-      <NewCTA
-        title={details.ctaSection?.title}
-        description={details.ctaSection?.description}
-        primaryButtonLink={details.ctaSection?.primaryButtonLink}
-        primaryButtonText={details.ctaSection?.primaryButtonText}
-        secondaryButtonLink={details.ctaSection?.secondaryButtonLink}
-        secondaryButtonText={details.ctaSection?.secondaryButtonText}
-      />
+      {!isEmpty(details.ctaSection) && (
+        <NewCTA
+          title={details.ctaSection?.title}
+          description={details.ctaSection?.description}
+          primaryButtonLink={details.ctaSection?.primaryButtonLink}
+          primaryButtonText={details.ctaSection?.primaryButtonText}
+          secondaryButtonLink={details.ctaSection?.secondaryButtonLink}
+          secondaryButtonText={details.ctaSection?.secondaryButtonText}
+        />
+      )}
     </PricingPageWrapper>
   );
 }

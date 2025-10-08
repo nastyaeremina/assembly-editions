@@ -6,6 +6,7 @@ import { renderContentWithVideos } from '../../../helpers/clientSideHelpers';
 import Breadcrumbs from '../../Breadcrumbs/breadcrumbs';
 import NewCTA from '../../cta/newCTA';
 import useNavbarHeight from '../../../hooks/useNavbarHeight';
+import { isEmpty } from '../../../helpers/helpers';
 
 export default function UpdatedetailPage({ details: updateDetails, updatesCTA = null }) {
   const contentWithVideos = renderContentWithVideos(updateDetails?.html);

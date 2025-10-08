@@ -93,6 +93,35 @@ export default function GuideNavbar({ sectionData, articleData }) {
     [guideSectionData, isClick, section]
   );
 
+  // Check if a section has any active item within it
+  const isSectionActive = useCallback(
+    (sectionId) => {
+      // Only return true if there's a valid selectedArticleId from the current URL
+      if (!sectionId || !selectedArticleId || !slug) return false;
+
+      // Find the section data
+      const sectionItem = sectionData?.find((item) => item?.sys?.id === sectionId);
+      if (!sectionItem) return false;
+
+      // Check if any article in this section is currently selected
+      const hasActiveArticle = sectionItem?.articlesCollection?.items?.some((article) => {
+        // Check if the current article matches
+        if (article?.slug === selectedArticleId) return true;
+
+        // Check if any sub-article matches
+        if (article?.childArticlesCollection?.items?.some((subArticle) => subArticle?.slug === selectedArticleId)) {
+          return true;
+        }
+
+        return false;
+      });
+
+      // This ensures only one section can be active at a time
+      return hasActiveArticle;
+    },
+    [sectionData, selectedArticleId, slug]
+  );
+
   // Function to toggle the section's open/close state
   const onOpenSection = useCallback(
     (id) => {
@@ -330,7 +359,11 @@ export default function GuideNavbar({ sectionData, articleData }) {
               <NavItem
                 isSubItem={isSub}
                 onClick={() => {
-                  onOpenSection(childItem?.sys?.id);
+                  // If this is a sub-article, open its parent article
+                  if (childItem?.childArticlesCollection?.items?.length > 0) {
+                    onOpenSection(childItem?.sys?.id);
+                  }
+
                   setIsOpenMobileMenu(false);
                   setIsActive(false);
                 }}>
@@ -386,7 +419,7 @@ export default function GuideNavbar({ sectionData, articleData }) {
       return (
         <GuideSectionItem data-section-id={item?.sys?.id} totalHeight={measuredSectionHeight} key={`section_${index}`}>
           <NavHead onClick={() => onOpenSection(item?.sys?.id)} className='nav-button' tabIndex={0}>
-            <OptionName isSelected={isOpen} className='head'>
+            <OptionName isSelected={isSectionActive(item?.sys?.id)} className='head'>
               {item?.name}
             </OptionName>
             <OptionIcon className={isOpen && 'close'}>
@@ -409,7 +442,15 @@ export default function GuideNavbar({ sectionData, articleData }) {
         </GuideSectionItem>
       );
     });
-  }, [sectionData, isSectionOpen, onOpenSection, renderArticleItemView, measuredHeights, calculateSectionHeight]);
+  }, [
+    sectionData,
+    isSectionOpen,
+    onOpenSection,
+    renderArticleItemView,
+    measuredHeights,
+    calculateSectionHeight,
+    isSectionActive
+  ]);
 
   // Effect to determine the hotkey combination based on the user agent (OS)
   useEffect(() => {
