@@ -189,7 +189,8 @@ body {
   --text-secondary: #707070;
   --off-white-100: #fefefd;
   --off-white-200: #fefefc;
-  --off-white-300: #fdfdf9;
+  --off-white-300: #fefefc;
+  --off-white-300-old: #fdfdf9;
   --off-white-400: #fbfbf6;
   --off-white-500: #fbfbf5;
   --off-white-600: #f2f2e8;
