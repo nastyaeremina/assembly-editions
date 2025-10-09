@@ -68,20 +68,26 @@ const ToggleContainer = styled.div`
   display: flex;
   align-items: center;
   cursor: pointer;
-  padding: var(--space-4);
-  background-color: var(--gray-50);
+  gap: var(--space-20);
+  padding: var(--space-8);
+  background-color: var(--off-white-600);
   border-radius: var(--radius-16);
+  position: relative;
 `;
 
 const ToggleOption = styled.span`
   ${button_regular};
-  color: ${({ active }) => (active ? 'var(--title)' : 'var(--text-secondary)')};
-  padding: var(--space-10) var(--space-16) var(--space-7);
-  background-color: ${({ active }) => (active ? 'var(--white)' : 'transparent')};
+  color: var(--title);
+  padding: var(--space-2) var(--space-16) 0;
   border-radius: var(--radius-12);
   transition: all 0.3s ease;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1;
   :hover {
-    color: var(--title);
+    color: ${({ active }) => (active ? 'var(--title)' : 'var(--text-secondary)')};
   }
 `;
 
