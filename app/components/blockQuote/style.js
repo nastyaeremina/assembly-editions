@@ -6,7 +6,7 @@ const MainDiv = styled.div`
   max-width: 728px;
   padding: var(--space-24) !important;
   border-radius: var(--radius-12);
-  background-color: var(--gray-50);
+  background-color: var(--off-white-550);
   display: flex;
   flex-direction: column;
   gap: var(--space-12);
@@ -62,6 +62,7 @@ const LeftSection = styled.div`
   display: flex;
   align-items: center;
   gap: var(--space-11);
+  flex-wrap: wrap;
   @media only screen and (max-width: 1060px) {
     flex-direction: column;
     align-items: flex-start;

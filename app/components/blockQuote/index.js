@@ -17,27 +17,25 @@ import { isEmpty } from '../../helpers/helpers';
 export default function BlockQuote({ quote, author, role }) {
   const showDot = !isEmpty(author) && !isEmpty(role);
   return (
-    <>
-      <MainDiv>
-        <Icon>
-          <SVGComponent name='block-quote-icon-up' width='42' height='42' viewBox='0 0 42 42' />
-        </Icon>
-        <BlockQuoteSection>
-          <Quote>{quote}</Quote>
-          <ProfileSection>
-            {(!isEmpty(author) || !isEmpty(role)) && (
-              <LeftSection>
-                {!isEmpty(author) && <AuthorName>{author}</AuthorName>}
-                {showDot && <Dot />}
-                {!isEmpty(role) && <Role>{role}</Role>}
-              </LeftSection>
-            )}
-            <Icon>
-              <SVGComponent name='block-quote-icon-down' width='42' height='42' viewBox='0 0 42 42' />
-            </Icon>
-          </ProfileSection>
-        </BlockQuoteSection>
-      </MainDiv>
-    </>
+    <MainDiv>
+      <Icon>
+        <SVGComponent name='block-quote-icon-up' width='24' height='24' viewBox='0 0 24 24' />
+      </Icon>
+      <BlockQuoteSection>
+        <Quote>{quote}</Quote>
+        <ProfileSection>
+          {(!isEmpty(author) || !isEmpty(role)) && (
+            <LeftSection>
+              {!isEmpty(author) && <AuthorName>{author}</AuthorName>}
+              {showDot && <Dot />}
+              {!isEmpty(role) && <Role>{role}</Role>}
+            </LeftSection>
+          )}
+          <Icon>
+            <SVGComponent name='block-quote-icon-down' width='24' height='24' viewBox='0 0 24 24' />
+          </Icon>
+        </ProfileSection>
+      </BlockQuoteSection>
+    </MainDiv>
   );
 }
