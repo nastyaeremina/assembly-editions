@@ -531,7 +531,7 @@ const CopyIcon = styled.span`
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: var(--off-white-200);
+  background-color: var(--off-white-550);
   border-radius: var(--radius-8);
   cursor: pointer;
 `;

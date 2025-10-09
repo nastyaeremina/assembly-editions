@@ -236,7 +236,7 @@ export default function BlogdetailPage({
                     </CopyIcon>
                   ) : (
                     <CopyIcon>
-                      <SVGComponent name='copy-icon' width='20' height='21' viewBox='0 0 20 21' />
+                      <SVGComponent name='copy-icon' width='20' height='20' viewBox='0 0 20 21' />
                     </CopyIcon>
                   )}
                 </p>
