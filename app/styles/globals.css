@@ -183,6 +183,9 @@ body {
   background-color: var(--off-white-300);
   -webkit-tap-highlight-color: var(--tap-highlight-color);
 }
+.page-wrapper {
+  position: relative;
+}
 
 :root {
   --title: #101010;
