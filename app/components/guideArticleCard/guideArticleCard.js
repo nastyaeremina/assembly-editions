@@ -56,6 +56,13 @@ export default function GuideArticleCard({ isLargeCard = false, iconCode, title,
         ) : (
           <>
             <CardSection>
+              <SVGComponent
+                name='blog-card-hover-arrow-icon'
+                width='16'
+                height='16'
+                viewBox='0 0 16 16'
+                className='app-card-icon'
+              />
               <ArticaleIcon>{renderImage}</ArticaleIcon>
               {renderCardBody}
             </CardSection>

@@ -14,10 +14,14 @@ const PopularCard = styled(Link)`
           opacity: 1;
         }
       `}
+    .app-card-icon {
+      transform: none;
+      opacity: 1;
+    }
   }
-  @media only screen and (max-width: 449px) {
-    border: 1px solid var(--border-default);
+  @media only screen and (max-width: 587px) {
     border-radius: var(--radius-12);
+    position: relative;
   }
 `;
 
@@ -29,11 +33,10 @@ const TitleSection = styled.div`
 
 const PopularImageDiv = styled.div`
   padding: var(--space-20);
-  background-color: var(--gray-50);
   height: 152px;
   border-radius: var(--radius-12);
-  @media only screen and (max-width: 449px) {
-    border-bottom: 1px solid var(--border-default);
+  background-color: var(--off-white-550);
+  @media only screen and (max-width: 587px) {
     border-radius: 0;
     height: unset;
   }
@@ -52,12 +55,20 @@ const PopularDetail = styled.div`
         transition-timing-function: cubic-bezier(0.25, 0.46, 0.45, 0.94);
         opacity: 0;
       }
-      @media only screen and (max-width: 449px) {
+      @media only screen and (max-width: 587px) {
         padding: var(--space-20);
       }
     `}
   .svg-icon {
     opacity: 0;
+  }
+  @media only screen and (max-width: 587px) {
+    background-color: var(--off-white-550);
+    .svg-icon {
+      position: absolute;
+      right: var(--space-20);
+      top: var(--space-20);
+    }
   }
 `;
 const PopularTitle = styled.p`
@@ -126,12 +137,19 @@ const CardSection = styled.div`
   display: flex;
   flex-direction: column;
   gap: var(--space-20);
-  border: 1px solid var(--border-default);
+  background-color: var(--off-white-550);
   border-radius: var(--radius-12);
   height: 100%;
-  transition: background 0.3s ease;
-  :hover {
-    background-color: var(--bg-primary-hover);
+  position: relative;
+
+  .app-card-icon {
+    transform: translateX(-2px) scale(0.98);
+    transition: transform 0.25s, opacity 0.25s;
+    transition-timing-function: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    opacity: 0;
+    position: absolute;
+    right: var(--space-20);
+    top: var(--space-20);
   }
   @media only screen and (max-width: 449px) {
     border: unset;
