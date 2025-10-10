@@ -88,6 +88,7 @@ export default function TableOfContents({
     if (isFAQs) ids.push(faqId);
 
     const offset = hasTopBar ? 200 : 160;
+    let isInitialized = false;
 
     const observeSections = () => {
       const sections = ids.map((id) => document.getElementById(id)).filter(Boolean);
@@ -98,6 +99,12 @@ export default function TableOfContents({
 
       const observer = new IntersectionObserver(
         (entries) => {
+          // Skip the first observation to allow initial state to be set
+          if (!isInitialized) {
+            isInitialized = true;
+            return;
+          }
+
           // filter visible entries
           const visible = entries.filter((e) => e.isIntersecting);
 
@@ -148,6 +155,9 @@ export default function TableOfContents({
     const ids = headings.map((h) => h.id);
     if (isFAQs) ids.push(faqId);
 
+    // Initialize with first item active on page load
+    setActiveIndex(0);
+
     const handleScroll = () => {
       const scrollBottom = window.innerHeight + window.scrollY;
       const pageHeight = document.documentElement.scrollHeight;
@@ -187,12 +197,17 @@ export default function TableOfContents({
 
     window.addEventListener('scroll', onScroll, { passive: true });
     window.addEventListener('resize', onScroll, { passive: true });
-    // run once to sync on mount
-    handleScroll();
+
+    // Add a small delay before running handleScroll to ensure DOM is ready
+    // and give time for the initial active state to be set
+    const timeoutId = setTimeout(() => {
+      handleScroll();
+    }, 100);
 
     return () => {
       window.removeEventListener('scroll', onScroll);
       window.removeEventListener('resize', onScroll);
+      clearTimeout(timeoutId);
     };
   }, [htmlData, hasTopBar, isFAQs, faqId]);
 

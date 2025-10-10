@@ -1,5 +1,5 @@
 import styled, { css } from 'styled-components';
-import { body_regular, h2_semibold, h3_semibold, h4_regular } from '../../styles/typography';
+import { body_regular, button_regular, h2_semibold, h3_semibold, h4_regular } from '../../styles/typography';
 
 const FaqSection = styled.div`
   padding: var(--space-64) 0;
@@ -166,6 +166,9 @@ const DivFAQ = styled.div`
     ${(props) =>
       props.isGuideFAQ &&
       css`
+        p {
+          ${body_regular}
+        }
         .copy-icon {
           display: inline-flex;
           margin-left: var(--space-10);
@@ -212,7 +215,7 @@ const FAQAnswer = styled.div`
     ${(props) =>
       props.isGuideFAQ &&
       css`
-        ${body_regular};
+        ${button_regular};
         padding: var(--space-8) var(--space-38) 0 0;
         p {
           margin-top: 0;
@@ -227,7 +230,7 @@ const FAQAnswer = styled.div`
           }
         }
         em {
-          ${body_regular};
+          ${button_regular};
           color: var(--text-secondary);
         }
       `}

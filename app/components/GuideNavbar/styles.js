@@ -223,6 +223,9 @@ const GuideSectionItem = styled.div`
           fill: var(--title);
         }
       }
+      p {
+        color: var(--title);
+      }
     }
   }
   ul {

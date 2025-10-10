@@ -16,10 +16,14 @@ const SectionWrapper = styled.div`
 const TableOfContentSection = styled.div`
   max-width: 284px;
   width: 100%;
-  margin-bottom: var(--space-100);
   height: 100%;
   position: sticky;
   top: var(--space-80);
+  max-height: calc(100dvh - 160px);
+  overflow: auto;
+  &::-webkit-scrollbar {
+    display: none;
+  }
   @media only screen and (max-width: 991px) {
     display: none;
   }
