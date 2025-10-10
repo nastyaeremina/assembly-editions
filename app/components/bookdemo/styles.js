@@ -35,6 +35,8 @@ const FormTxt = styled.div`
 `;
 const FormDetail = styled.div`
   position: relative;
+  display: flex;
+  flex-direction: column;
   ${(props) =>
     props.isWeeklyform &&
     css`
@@ -243,9 +245,6 @@ const NameBlock = styled.div`
 `;
 const NameInfo = styled.div``;
 
-const ImgWrap = styled.div`
-  display: inline-flex;
-`;
 const HelpLink = styled.div`
   display: flex;
   align-items: center;
@@ -357,7 +356,6 @@ export {
   ValidationForm,
   NameBlock,
   NameInfo,
-  ImgWrap,
   ThanksWrap,
   HelpLink,
   SubmitSection,

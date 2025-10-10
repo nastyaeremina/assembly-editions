@@ -4,6 +4,7 @@ import BookDemoPage from '../components/PageComponent/Book-demo/bookDemoPage';
 import { getSitemap } from '../lib/contentful-sitemap';
 import AggregateRating from '../components/aggregateRating';
 import { getExternalLinks } from '../helpers/serverSideHelpers';
+import Layout from '../components/layout';
 
 export async function generateMetadata({ params, searchParams }, parent) {
   const seoData = await getSEOData({ id: BOOK_DEMO_SEO_ID });
@@ -46,7 +47,9 @@ export default async function BookDemo() {
   return (
     <>
       <AggregateRating id={BOOK_DEMO_SEO_ID} />
-      <BookDemoPage data={dataList} thankYouMessage={thankYouMessage} externalLinks={externalLinks} />
+      <Layout>
+        <BookDemoPage data={dataList} thankYouMessage={thankYouMessage} externalLinks={externalLinks} />
+      </Layout>
     </>
   );
 }

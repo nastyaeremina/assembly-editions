@@ -14,7 +14,8 @@ import {
   LeftSection,
   DotIconLarge,
   LogoSection,
-  LogoDiv
+  LogoDiv,
+  MainBlockWrapper
 } from '../../../styles/bookdemoStyles';
 import BookDemoForm from '../../bookdemo/bookDemo';
 import BookDemoImage from '../../../../public/images/new-bookdemo.png';
@@ -25,7 +26,7 @@ import ProductHuntLogo from '../../../../public/images/round-product-hunt-logo.p
 
 export default function BookDemoPage({ data, thankYouMessage, externalLinks = {} }) {
   return (
-    <>
+    <MainBlockWrapper>
       <BookSection>
         <Container>
           <SectionWrapper>
@@ -33,7 +34,7 @@ export default function BookDemoPage({ data, thankYouMessage, externalLinks = {}
             <ImageSectionWrapper>
               <ImageSection>
                 <ImageDiv>
-                  <Image src={BookDemoImage} width={648} height={1010} alt='' className='img' />
+                  <Image src={BookDemoImage} width={648} height={930} alt='' className='img' />
                 </ImageDiv>
                 <TextBox>
                   <PropertyDiv>
@@ -71,6 +72,6 @@ export default function BookDemoPage({ data, thankYouMessage, externalLinks = {}
           </SectionWrapper>
         </Container>
       </BookSection>
-    </>
+    </MainBlockWrapper>
   );
 }

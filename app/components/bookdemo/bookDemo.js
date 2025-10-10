@@ -1,5 +1,4 @@
 'use client';
-import Link from 'next/link';
 import { useCallback, useEffect, useState } from 'react';
 import Script from 'next/script';
 import { useDispatch, useSelector } from 'react-redux';
@@ -19,13 +18,11 @@ import {
   Input,
   NameBlock,
   NameInfo,
-  ImgWrap,
   SubmitSection,
   CardView,
   CardList,
   TextWrap,
   ThanksWrap,
-  ItemDiv,
   Details,
   SuccessIcon,
   Textarea
@@ -138,17 +135,6 @@ export default function BookDemoForm({ data, thankYouMessage, externalLinks = {}
       <MainSection>
         {isSubmit ? (
           <SubmitSection>
-            <Link href='/'>
-              <ImgWrap>
-                <SVGComponent
-                  name='assembly-big-logo'
-                  width='174'
-                  height='32'
-                  viewBox='0 0 200 38'
-                  className='logo-icon'
-                />
-              </ImgWrap>
-            </Link>
             <Details>
               <FormTxt>
                 <h3>Book a demo</h3>
@@ -182,17 +168,6 @@ export default function BookDemoForm({ data, thankYouMessage, externalLinks = {}
           </SubmitSection>
         ) : (
           <FormSection onSubmit={onSubmit}>
-            <Link href='/'>
-              <ImgWrap>
-                <SVGComponent
-                  name='assembly-big-logo'
-                  width='174'
-                  height='32'
-                  viewBox='0 0 200 38'
-                  className='logo-icon'
-                />
-              </ImgWrap>
-            </Link>
             <Details>
               <FormTxt>
                 <h3>Book a demo</h3>

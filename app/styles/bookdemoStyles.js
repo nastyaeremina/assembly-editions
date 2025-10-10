@@ -4,13 +4,13 @@ import { body_regular, button_regular, h4_regular } from './typography';
 const BookSection = styled.div`
   display: flex;
   width: 100%;
-  padding: var(--space-64) 0;
+  padding: 0 0 var(--space-64);
   @media only screen and (max-width: 991px) {
-    padding: var(--space-40) 0;
+    padding: 0 0 var(--space-40);
     flex-direction: column;
   }
   @media only screen and (max-width: 449px) {
-    padding: var(--space-48) 0;
+    padding: 0 0 var(--space-48);
   }
 `;
 const ImageSection = styled.div`
@@ -27,6 +27,7 @@ const ImageDiv = styled.div`
     height: 100%;
     border-radius: var(--space-16);
     object-fit: cover;
+    max-height: 930px;
   }
 `;
 const DemoContain = styled.div`
@@ -116,6 +117,16 @@ const LogoDiv = styled.div`
   display: flex;
   margin-left: -6px;
 `;
+
+const MainBlockWrapper = styled.div`
+  padding: var(--space-80) 0;
+  @media only screen and (max-width: 991px) {
+    padding: var(--space-64) 0;
+  }
+  @media only screen and (max-width: 449px) {
+    padding: var(--space-64) 0 var(--space-48);
+  }
+`;
 export {
   BookSection,
   ImageSection,
@@ -130,5 +141,6 @@ export {
   DotIconLarge,
   LeftSection,
   LogoSection,
-  LogoDiv
+  LogoDiv,
+  MainBlockWrapper
 };
