@@ -28,6 +28,7 @@ export default function PricingDetailsHead({ data, isYearly, descriptionMaxHeigh
             )}
             {!isEmpty(data?.secondaryCtaText) && (
               <div className='terriarybtn-div'>
+                or
                 <Link href={data?.secondaryCtaLink}>{data?.secondaryCtaText}</Link>
               </div>
             )}

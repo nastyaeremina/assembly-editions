@@ -9,13 +9,13 @@ const PriceMenu = styled.div`
   border-bottom: none;
   position: relative;
   overflow: hidden;
-  background-color: var(--off-white-100);
+  background-color: var(--off-white-200);
   ${(props) => {
     return props.index && css``;
   }}
 `;
 const PlanSection = styled.div`
-  background-color: var(--off-white-100);
+  background-color: var(--off-white-200);
   .list-item {
     ${button_semibold}
     color: var(--title);
@@ -65,7 +65,7 @@ const PriceSection = styled.div`
   ${(props) =>
     props.isSupersonic &&
     css`
-      background: linear-gradient(180deg, var(--neutral) 0%, var(--white) 50%);
+      background: linear-gradient(180deg, var(--off-white-600) 0%, var(--off-white-200) 50%);
     `}
 `;
 
@@ -89,9 +89,9 @@ const Caption = styled.h5`
 `;
 
 const PriceTag = styled.span`
-  background-color: var(--gray-50);
+  background-color: var(--off-white-600);
   width: max-content;
-  padding: 0 var(--space-6);
+  padding: var(--space-3) var(--space-6) 0;
   border-radius: var(--radius-4);
   text-decoration: none;
   ${label_regular};
@@ -236,13 +236,19 @@ const CardBtn = styled.div`
   gap: var(--space-12);
   margin-top: var(--space-16);
   .terriarybtn-div {
-    height: var(--space-19);
+    height: 16px;
+    color: var(--text-secondary);
+    display: flex;
+    gap: var(--space-4);
+    align-items: center;
+    justify-content: center;
+    ${label_regular}
     a {
-      ${button_regular}
-      color: var(--text-secondary);
+      ${label_regular}
+      color: var(--title);
       transition: color 0.3s ease;
       :hover {
-        color: var(--title);
+        color: var(--text-secondary);
       }
     }
     @media only screen and (max-width: 449px) {

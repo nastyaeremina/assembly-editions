@@ -56,7 +56,7 @@ const PopularDetail = styled.div`
         opacity: 0;
       }
       @media only screen and (max-width: 587px) {
-        padding: var(--space-20);
+        padding: 0 var(--space-20) var(--space-20) var(--space-20);
       }
     `}
   .svg-icon {

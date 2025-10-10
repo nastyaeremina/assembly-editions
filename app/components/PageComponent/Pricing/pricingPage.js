@@ -23,8 +23,10 @@ import YearlyToggleComponent from './yearlyToggleComponent';
 import ButtonV2Component from '../../button/buttonV2/buttonV2';
 import FAQ from '../../faq/faq';
 import NewCTA from '../../cta/newCTA';
+import useNavbarHeight from '../../../hooks/useNavbarHeight';
 
 export default function PricingPage({ details, faqData }) {
+  const { totalHeight } = useNavbarHeight();
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const planFeatures = [];
   details?.planFeaturesCollection?.items?.forEach((element) => {
@@ -169,7 +171,7 @@ export default function PricingPage({ details, faqData }) {
 
   const renderTableHeader = useMemo(() => {
     return (
-      <table className={`${isTopbarPresent ? 'topbarContent' : ''}${isSticky ? 'sticky' : ''}`} id='table-header'>
+      <table className={`${isTopbarPresent ? 'topbarContent' : ''}${isSticky ? ' sticky' : ''}`} id='table-header'>
         <thead>
           <tr className='bordercolor'>
             <th colSpan={3}>Compare all features</th>
@@ -217,7 +219,7 @@ export default function PricingPage({ details, faqData }) {
               </PlanButton>
             </PriceMenu>
             {!isShowFeature && !isEmpty(planFeatures) && (
-              <PriceTable is4Card={details?.plansCollection?.total === 4}>
+              <PriceTable is4Card={details?.plansCollection?.total === 4} stickyHeight={totalHeight}>
                 {renderTableHeader}
                 {renderPlanFeaturesView}
               </PriceTable>

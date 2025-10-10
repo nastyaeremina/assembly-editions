@@ -137,11 +137,11 @@ const PriceTable = styled.div`
     }
     :first-child {
       position: sticky;
-      top: 80px;
+      top: ${(props) => props.stickyHeight - 1}px;
       z-index: 9;
       background-color: var(--off-white-100);
       &.topbarContent {
-        top: 120px;
+        top: ${(props) => props.stickyHeight - 1}px;
       }
       &.sticky {
         border-radius: 0;
@@ -195,7 +195,7 @@ const PriceTable = styled.div`
           border-right: none;
         }
         &.isactive {
-          background: linear-gradient(180deg, var(--neutral) 0%, var(--white) 100%);
+          background: linear-gradient(180deg, var(--off-white-600) 0%, var(--off-white-200) 100%);
         }
         :first-child {
           text-align: left;
