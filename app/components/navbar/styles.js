@@ -89,7 +89,7 @@ const NavMenu = styled.div`
   }
 `;
 
-const MobileSectionTitle = styled.h3`
+const MobileSectionTitle = styled.div`
   ${label_semibold}
   color: var(--text-secondary);
   margin-bottom: var(--space-12);
@@ -479,12 +479,12 @@ const RightText = styled.div`
     css`
       padding-left: 12px;
     `}
-  h5 {
+  .title {
     margin: 0;
     ${button_regular};
     color: var(--title);
   }
-  h6 {
+  .title {
     ${button_regular};
     margin: 0;
     color: var(--title);

@@ -44,7 +44,7 @@ export default function FeatureSubMenu({ data }) {
                           </LeftImg>
                         )}
                         <RightText>
-                          <h5>{item?.Title}</h5>
+                          <span className='title'>{item?.Title}</span>
                           {!isEmpty(item?.Description) && <span>{item?.Description}</span>}
                         </RightText>
                       </MenuWrap>
