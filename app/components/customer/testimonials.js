@@ -4,7 +4,6 @@ import Image from 'next/image';
 import { convertHighlights, isEmpty } from '../../helpers/helpers';
 import { Detail, LeftCard, Percentage, RightCard, Section, TestimonialCard, Top } from './styles';
 import ReactMarkdown from 'react-markdown';
-import { VisitSite } from '../../styles/customerstyles';
 import SVGComponent from '../../../public/images/svg/SVGComponent';
 
 /**
@@ -53,11 +52,25 @@ export default function CustomerTestimonial({
             <ReactMarkdown>{body}</ReactMarkdown>
           </Detail>
           {!isEmpty(highlightsData) && renderHighlightView}
+          {isFullWidth && (
+            <SVGComponent
+              name='blog-card-hover-arrow-icon'
+              width='20'
+              height='20'
+              viewBox='0 0 16 16'
+              className='full-width-card-svg-icon'
+            />
+          )}
         </Top>
-        <VisitSite className='link-hover'>
-          Read client story
-          <SVGComponent name='hover-arrow-icon' width='18' height='16' viewBox='0 0 16 16' />
-        </VisitSite>
+        {!isFullWidth && (
+          <SVGComponent
+            name='blog-card-hover-arrow-icon'
+            width='20'
+            height='20'
+            viewBox='0 0 16 16'
+            className='svg-icon'
+          />
+        )}
       </LeftCard>
       <RightCard isFullWidth={isFullWidth}>
         <Image src={banner} alt='customer' className='right' width={1224} height={407} />

@@ -3,13 +3,12 @@ import { body_semibold, button_regular, h2_semibold, h3_semibold, h4_semibold } 
 import Link from 'next/link';
 
 const TestimonialCard = styled(Link)`
-  border: 1px solid var(--border-default);
   border-radius: var(--radius-16);
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: var(--space-64);
   padding: var(--space-32);
-  transition: background-color 0.3s ease-in-out, border 0.3s ease-in-out;
+  background-color: var(--off-white-550);
   ${(props) =>
     props.isFullWidth &&
     css`
@@ -25,35 +24,28 @@ const TestimonialCard = styled(Link)`
       }
     `}
     :hover {
-    background-color: var(--bg-primary-hover);
-    .link-hover {
-      color: var(--text-secondary);
-      svg {
-        path {
-          fill: var(--text-secondary);
-        }
-      }
-      .hover-line-path {
-        opacity: 1;
-        transform: translateX(2px);
-      }
-      .hover-tip-path {
-        transform: translateX(2px);
-      }
+    .svg-icon {
+      transform: none;
+      opacity: 1;
+    }
+    .full-width-card-svg-icon {
+      transform: none;
+      opacity: 1;
     }
   }
   @media only screen and (max-width: 991px) {
     grid-template-columns: 1fr;
+    gap: var(--space-32);
     ${(props) =>
       props.isFullWidth &&
       css`
         grid-template-columns: 1fr;
-        gap: var(--space-64);
+        gap: var(--space-32);
       `}
   }
   @media only screen and (max-width: 449px) {
     padding: var(--space-16);
-    gap: var(--space-16);
+    gap: var(--space-20);
   }
 `;
 const LeftCard = styled.div`
@@ -61,6 +53,13 @@ const LeftCard = styled.div`
   flex-direction: column;
   justify-content: space-between;
   gap: var(--space-64);
+  position: relative;
+  .svg-icon {
+    transform: translateX(-2px) scale(0.98);
+    transition: transform 0.25s, opacity 0.25s;
+    transition-timing-function: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    opacity: 0;
+  }
   ${(props) =>
     props.isFullWidth &&
     css`
@@ -70,6 +69,11 @@ const LeftCard = styled.div`
   @media only screen and (max-width: 991px) {
     order: 2;
     gap: var(--space-64);
+    .svg-icon {
+      position: absolute;
+      top: 0;
+      right: 0;
+    }
     ${(props) =>
       props.isFullWidth &&
       css`
@@ -103,19 +107,17 @@ const RightCard = styled.div`
     height: auto;
     border-radius: var(--radius-8);
     object-fit: cover;
-    border: 1px solid var(--border-default);
   }
 `;
 const Detail = styled.div`
   p {
-    ${body_semibold}
+    ${h4_semibold}
     margin: var(--space-24) 0 0;
     color: var(--title);
     ${(props) =>
       props.isFullWidth &&
       css`
         max-width: 538px;
-        ${h4_semibold}
       `}
     @media only screen and (max-width: 449px) {
       margin: var(--space-20) 0 0;
@@ -145,14 +147,13 @@ const Detail = styled.div`
 const Percentage = styled.div`
   display: flex;
   gap: var(--space-48);
-  border-bottom: 1px solid var(--border-default);
-  padding: var(--space-20) 0;
+  padding-top: var(--space-32);
   flex-wrap: wrap;
-  margin-top: var(--space-24);
   @media only screen and (max-width: 449px) {
     margin-top: 0;
-    padding: var(--space-24) 0 var(--space-20);
+    padding-top: var(--space-24);
     gap: var(--space-32);
+    row-gap: var(--space-24);
   }
 `;
 const Section = styled.div`
@@ -168,15 +169,34 @@ const Section = styled.div`
     margin:0;
     color: var(--text-secondary);
   }
+  @media only screen and (max-width: 449px) {
+    gap: var(--space-8);
+  }
 `;
 const LastDroplist = styled.div``;
 
 const Top = styled.div`
+  position: relative;
   .top-logo {
     max-width: 218px;
     width: auto;
     max-height: 48px;
     height: 100%;
   }
+  .full-width-card-svg-icon {
+    transform: translateX(-2px) scale(0.98);
+    transition: transform 0.25s, opacity 0.25s;
+    transition-timing-function: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    right: 0;
+  }
+  @media only screen and (max-width: 991px) {
+    .top-logo {
+      max-height: 36px;
+    }
+  }
 `;
+
 export { TestimonialCard, LeftCard, RightCard, Detail, Percentage, Section, LastDroplist, Top };
