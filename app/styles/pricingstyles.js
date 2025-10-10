@@ -70,7 +70,7 @@ const ToggleContainer = styled.div`
   cursor: pointer;
   gap: var(--space-20);
   padding: var(--space-8);
-  background-color: var(--off-white-600);
+  background-color: var(--off-white-550);
   border-radius: var(--radius-16);
   position: relative;
 `;

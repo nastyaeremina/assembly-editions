@@ -14,7 +14,7 @@ const DropdownButton = styled.button`
   padding: var(--space-2) var(--space-16) 0;
   height: 40px;
   border-radius: var(--radius-30);
-  background-color: var(--off-white-600);
+  background-color: var(--off-white-550);
   ${button_regular}
   color: var(--title);
   gap: var(--space-8);
@@ -101,7 +101,7 @@ const DropdownItem = styled.button`
 
 const TabSectionMainDiv = styled.div`
   padding: var(--space-8);
-  background-color: var(--off-white-600);
+  background-color: var(--off-white-550);
   border-radius: var(--radius-16);
   display: flex;
   align-items: center;
