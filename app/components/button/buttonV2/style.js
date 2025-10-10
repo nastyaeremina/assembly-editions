@@ -1,14 +1,12 @@
 import styled, { css, keyframes } from 'styled-components';
 import { button_semibold, label_semibold } from '../../../styles/typography';
 import { ButtonSize, ButtonTone, ButtonVariant } from '../../../constants/constant';
-const ball = keyframes`
-  from {
-    -webkit-transform: translateY(0) scaleY(0.8);
-    transform: translateY(0) scaleY(0.8);
+const spin = keyframes`
+  0% {
+    transform: rotate(0deg);
   }
-  to {
-    -webkit-transform: translateY(-10px);
-    transform: translateY(-10px);
+  100% {
+    transform: rotate(360deg);
   }
 `;
 const ButtonWrap = styled.div`
@@ -27,69 +25,42 @@ const ButtonWrap = styled.div`
   ${(props) =>
     props.isLoading &&
     css`
-      &::before {
-        position: absolute;
-        top: 50%;
-        left: calc(50% - 2px);
-        -webkit-transform: translate(-50%, -50%);
-        transform: translate(-50%, -50%);
-        content: '';
-        display: block;
-        width: 6px;
-        height: 6px;
-        border-radius: 50%;
-        background-color: var(--off-white-300);
-        z-index: 2;
-        margin-top: 4px;
-        -webkit-animation: 0.45s cubic-bezier(0, 0, 0.15, 1) infinite alternate ${ball};
-        animation: 0.45s cubic-bezier(0, 0, 0.15, 1) infinite alternate ${ball};
-        -webkit-animation-delay: 0.15s;
-        animation-delay: 0.15s;
-      }
       ${Buttons} {
-        cursor: wait;
         color: transparent;
-        &:hover {
-          cursor: wait;
-        }
         &::before {
           position: absolute;
-          top: 50%;
-          left: calc(50% - 2px);
-          -webkit-transform: translate(-50%, -50%);
           transform: translate(-50%, -50%);
           content: '';
-          display: block;
-          width: 6px;
-          height: 6px;
+          width: 28px;
+          height: 28px;
+          border: 2px solid var(--off-white-100);
+          border-top: 2px solid transparent;
           border-radius: 50%;
-          background-color: var(--off-white-300);
-          z-index: 2;
-          margin-top: 4px;
-          -webkit-animation: 0.45s cubic-bezier(0, 0, 0.15, 1) infinite alternate ${ball};
-          animation: 0.45s cubic-bezier(0, 0, 0.15, 1) infinite alternate ${ball};
-          margin-left: -15px;
-          filter: unset;
-        }
-        &::after {
-          position: absolute;
-          top: 50%;
-          left: calc(50% - 2px);
-          -webkit-transform: translate(-50%, -50%);
-          transform: translate(-50%, -50%);
-          content: '';
-          display: block;
-          width: 6px;
-          height: 6px;
-          border-radius: 50%;
-          background-color: var(--off-white-300);
-          z-index: 2;
-          margin-top: 4px;
-          -webkit-animation: 0.45s cubic-bezier(0, 0, 0.15, 1) infinite alternate ${ball};
-          animation: 0.45s cubic-bezier(0, 0, 0.15, 1) infinite alternate ${ball};
-          margin-left: 15px;
-          -webkit-animation-delay: 0.3s;
-          animation-delay: 0.3s;
+          animation: ${spin} 1s linear infinite;
+          z-index: 1;
+          margin-bottom: var(--space-2);
+          ${(props) =>
+            props.size === ButtonSize.SMALL &&
+            css`
+              width: 24px;
+              height: 24px;
+            `}
+          ${(props) =>
+            (props.variant === ButtonVariant.SECONDARY || props.variant === ButtonVariant.SECONDARY_WITH_BORDER) &&
+            css`
+              border: 2px solid var(--text-secondary);
+              border-top: 2px solid transparent;
+            `}
+          ${(props) =>
+            props.tone === ButtonTone.DARK &&
+            css`
+              border: 2px solid var(--off-white-100);
+              border-top: 2px solid transparent;
+            `}
+          @media only screen and (max-width: 449px) {
+            width: 24px;
+            height: 24px;
+          }
         }
       }
     `}
@@ -102,6 +73,7 @@ const Buttons = styled.button`
   height: 48px;
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: var(--space-6);
   padding: var(--space-2) var(--space-32) 0;
   border-radius: var(--radius-30);
@@ -211,14 +183,12 @@ const Buttons = styled.button`
       props.tone === ButtonTone.DARK &&
       css`
         background-color: var(--gray-350);
-        color: var(--off-white-100);
       `}
 
     ${(props) =>
       props.variant === ButtonVariant.SECONDARY &&
       css`
         background-color: var(--bg-primary-hover);
-        color: var(--title);
       `}
 
       ${(props) =>
@@ -226,14 +196,12 @@ const Buttons = styled.button`
       props.tone === ButtonTone.DARK &&
       css`
         background-color: var(--gray-350);
-        color: var(--off-white-100);
       `}
 
       ${(props) =>
       props.variant === ButtonVariant.SECONDARY_WITH_BORDER &&
       css`
         background-color: var(--bg-primary-hover);
-        color: var(--title);
       `}
 
       ${(props) =>
@@ -241,7 +209,6 @@ const Buttons = styled.button`
       props.tone === ButtonTone.DARK &&
       css`
         background-color: var(--gray-350);
-        color: var(--off-white-100);
       `}
   }
   :focus-visible {
@@ -261,6 +228,8 @@ const Buttons = styled.button`
 
 const Icon = styled.div`
   display: flex;
+  opacity: ${(props) => (props.isLoading ? 0 : 1)};
+  transition: opacity 0.3s ease;
 
   ${(props) =>
     props.size === ButtonSize.SMALL &&
@@ -272,4 +241,10 @@ const Icon = styled.div`
     `}
 `;
 
-export { ButtonWrap, Buttons, Icon };
+const IconWrapper = styled.div`
+  display: flex;
+  opacity: ${(props) => (props.isLoading ? 0 : 1)};
+  transition: opacity 0.3s ease;
+`;
+
+export { ButtonWrap, Buttons, Icon, IconWrapper };

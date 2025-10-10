@@ -1,5 +1,5 @@
 'use client';
-import React, { useMemo, useState } from 'react';
+import React, { useMemo, useState, useCallback } from 'react';
 import { Container } from '../../../styles/commonStyles';
 import { AuthorTitle, BlogCardsDiv, Divider, ListDiv, LoadMoreButton } from '../../../styles/blogstyles';
 import { isEmpty } from '../../../helpers/helpers';
@@ -11,7 +11,16 @@ import moment from 'moment';
 
 function BlogListSection({ authorName, allPosts }) {
   const [visibleCount, setVisibleCount] = useState(6);
+  const [isLoading, setIsLoading] = useState(false);
   const isMobile = useMobileDevice();
+
+  const handleLoadMore = useCallback(async () => {
+    setIsLoading(true);
+    // Simulate loading delay for better UX
+    await new Promise((resolve) => setTimeout(resolve, 500));
+    setVisibleCount((prev) => prev + 6);
+    setIsLoading(false);
+  }, []);
 
   const renderData = useMemo(() => {
     if (isEmpty(allPosts)) return notFound();
@@ -51,7 +60,9 @@ function BlogListSection({ authorName, allPosts }) {
             <ButtonV2Component
               title={'Load more'}
               variant={ButtonVariant.SECONDARY_WITH_BORDER}
-              onClick={() => setVisibleCount((prev) => prev + 6)}
+              onClick={handleLoadMore}
+              isLoading={isLoading}
+              disabled={isLoading}
             />
           </LoadMoreButton>
         )}

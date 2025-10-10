@@ -247,10 +247,11 @@ export default function BlogPage({ allPosts, tags, featuredBlog, socialMediaLink
             {hasMore && (
               <LoadMoreButton>
                 <ButtonV2Component
-                  title={loading ? 'Loading...' : 'Load more'}
+                  title={'Load more'}
                   variant={ButtonVariant.SECONDARY_WITH_BORDER}
                   onClick={loadMorePosts}
                   disabled={loading}
+                  isLoading={loading}
                 />
               </LoadMoreButton>
             )}

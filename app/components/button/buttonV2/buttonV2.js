@@ -1,7 +1,7 @@
 'use client';
 import React from 'react';
 import SVGComponent from '../../../../public/images/svg/SVGComponent';
-import { Buttons, ButtonWrap, Icon } from './style';
+import { Buttons, ButtonWrap, Icon, IconWrapper } from './style';
 import { ButtonSize, ButtonTone, ButtonVariant } from '../../../constants/constant';
 
 /**
@@ -17,6 +17,8 @@ import { ButtonSize, ButtonTone, ButtonVariant } from '../../../constants/consta
  * @param {'regular' | 'dark'} tone - Sets the tone of the button.
  * @param {string} className - Additional class names for styling.
  * @param {boolean} download - Download attribute for anchor tags (filename or true for default).
+ * @param {boolean} isLoading - Determines if the button should show a loading state.
+ * @param {boolean} postIcon - Determines if the button should show a post icon.
  */
 
 function ButtonV2Component({
@@ -36,7 +38,7 @@ function ButtonV2Component({
   postIcon = false
 }) {
   return (
-    <ButtonWrap isWidth={isWidth} isLoading={isLoading}>
+    <ButtonWrap isWidth={isWidth} isLoading={isLoading} size={size} variant={variant} tone={tone}>
       <Buttons
         onClick={onClick}
         size={size}
@@ -51,9 +53,11 @@ function ButtonV2Component({
         {...(href && download && { download })}>
         <span>{title}</span>
         {iconName ? (
-          <SVGComponent name={iconName} width={iconSize} height={iconSize} viewBox={`0 0 ${iconSize} ${iconSize}`} />
+          <IconWrapper isLoading={isLoading}>
+            <SVGComponent name={iconName} width={iconSize} height={iconSize} viewBox={`0 0 ${iconSize} ${iconSize}`} />
+          </IconWrapper>
         ) : postIcon ? (
-          <Icon size={size} tone={tone}>
+          <Icon size={size} tone={tone} isLoading={isLoading}>
             <SVGComponent name='hover-arrow-icon' width='18' height='16' viewBox='0 0 16 16' />
           </Icon>
         ) : null}
