@@ -5,18 +5,17 @@ import Link from 'next/link';
 
 const QuoteSection = styled(Link)`
   padding: var(--space-20);
-  background-color: var(--title);
+  background-color: var(--off-white-550);
   border-radius: var(--radius-16);
   display: flex;
   flex-direction: column;
   gap: var(--space-32);
   max-height: 560px;
   height: 100%;
-  transition: background-color 0.3s ease;
   ${({ tone }) =>
     tone === SectionTone.DARK &&
     css`
-      background-color: var(--gray-400);
+      background-color: var(--gray-450);
     `}
   .quote-image {
     width: 100%;
@@ -24,15 +23,8 @@ const QuoteSection = styled(Link)`
     aspect-ratio: 321 / 216;
     border-radius: var(--radius-8);
     object-fit: cover;
-    border: 1px solid var(--bg-card-dark-hover);
   }
   :hover {
-    background-color: var(--bg-card-dark-hover);
-    ${({ tone }) =>
-      tone === SectionTone.DARK &&
-      css`
-        background-color: var(--gray-350);
-      `};
     .svg-icon {
       transform: none;
       opacity: 1;
@@ -61,23 +53,34 @@ const QuoteContentDiv = styled.div`
   gap: var(--space-24);
   width: 100%;
   height: 100%;
-  align-items: flex-start;
+  align-items: flex-end;
   justify-content: space-between;
+  position: relative;
   .svg-icon {
     transform: translateX(-2px) scale(0.98);
     transition: transform 0.25s, opacity 0.25s;
     transition-timing-function: cubic-bezier(0.25, 0.46, 0.45, 0.94);
     opacity: 0;
     path {
-      fill: var(--border-default);
+      fill: var(--title);
     }
-    @media only screen and (max-width: 991px) {
-      opacity: 1;
-      transform: none;
+    ${({ tone }) =>
+      tone === SectionTone.DARK &&
+      css`
+        path {
+          fill: var(--border-default);
+        }
+      `}
+    @media only screen and (max-width: 449px) {
+      position: absolute;
     }
   }
   @media only screen and (max-width: 991px) {
     height: unset;
+    align-items: flex-start;
+  }
+  @media only screen and (max-width: 650px) {
+    align-items: flex-end;
   }
 `;
 
@@ -96,13 +99,23 @@ const NameSection = styled.div`
 const Name = styled.h4`
   margin: 0;
   ${body_regular}
-  color: var(--off-white-100);
+  color: var(--title);
+  ${({ tone }) =>
+    tone === SectionTone.DARK &&
+    css`
+      color: var(--off-white-100);
+    `}
 `;
 
 const CompanyName = styled.p`
   margin: 0;
   ${body_regular}
-  color: var(--gray-200);
+  color: var(--text-secondary);
+  ${({ tone }) =>
+    tone === SectionTone.DARK &&
+    css`
+      color: var(--gray-200);
+    `}
 `;
 
 const Description = styled.div`
@@ -114,17 +127,32 @@ const Description = styled.div`
   p {
     margin: 0;
     ${body_regular}
-    color: var(--off-white-100);
+    color: var(--title);
+    ${({ tone }) =>
+      tone === SectionTone.DARK &&
+      css`
+        color: var(--off-white-100);
+      `}
   }
   h2 {
     ${h2_regular}
-    color: var(--off-white-100);
+    color: var(--title);
     margin: 0;
+    ${({ tone }) =>
+      tone === SectionTone.DARK &&
+      css`
+        color: var(--off-white-100);
+      `}
   }
   h3 {
     ${h3_regular}
-    color: var(--off-white-100);
+    color: var(--title);
     margin: 0;
+    ${({ tone }) =>
+      tone === SectionTone.DARK &&
+      css`
+        color: var(--off-white-100);
+      `}
   }
   @media only screen and (max-width: 991px) {
     -webkit-line-clamp: unset;
