@@ -3,7 +3,7 @@ import { body_regular, label_regular } from '../../styles/typography';
 
 const SideBarCTA = styled.div`
   padding: var(--space-20) var(--space-20) var(--space-24);
-  border: 1px solid var(--border-default);
+  background-color: var(--off-white-550);
   border-radius: var(--radius-20);
   max-width: 374px;
   width: 100%;
