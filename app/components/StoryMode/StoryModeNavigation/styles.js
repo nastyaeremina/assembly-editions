@@ -52,8 +52,8 @@ const Tabs = styled.div`
     }
   }
   @media only screen and (max-width: 449px) {
-    justify-content: center;
     gap: 0;
+    width: 100%;
     &::after {
       width: ${({ progress }) => `${progress}%`};
     }
