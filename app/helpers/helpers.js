@@ -187,20 +187,6 @@ export const customSort = (array, order, field = 'slug') => {
 };
 
 /**
- * Extract the tag ID from nested React elements and convert it to a slug.
- * @param {React.ReactNode} children - The React elements containing the text.
- * @returns {string} - The extracted and slugified tag ID.
- */
-export function extractTagId(children) {
-  let newNode = children;
-  while (newNode?.props?.children) {
-    newNode = newNode.props.children;
-  }
-  const tagId = `${stringToSlugyfy(newNode)}`;
-  return tagId;
-}
-
-/**
  * Check if the given input string can be converted to a number.
  * @param {string} inputString - The input string to be checked.
  * @returns {boolean} - True if the input can be converted to a number, false otherwise.
@@ -223,8 +209,11 @@ export function stringToSlugyfy(value) {
   // Check if the value is empty
   if (isEmpty(value)) return '';
 
+  // Remove apostrophes before slugifying to avoid "don-t" → should be "dont"
+  const cleanedValue = value.replace(/'/g, '');
+
   // Convert the value to a slug with lowercase letters
-  return slugify(value, { lower: true });
+  return slugify(cleanedValue, { lower: true });
 }
 
 /**
@@ -880,6 +869,81 @@ export function transformToTabsData(data) {
       video: firstTab.video, // video object shown in the left section
       quoteBlock: firstTab.quoteBlock, // Quote/testimonial block shown alongside image
       link: firstTab.link // Used in QuoteSectionComponent for redirection
+    };
+  });
+}
+
+/**
+ * Extracts all headings from Contentful rich text content.
+ *
+ * @param {Array} content - Contentful rich text content array
+ * @returns {Array} - Array of heading objects with { title, type, index }
+ */
+export function extractHeadingsFromContent(content) {
+  const headings = [];
+  let headingIndex = 0;
+
+  content?.forEach((item) => {
+    if (item?.nodeType?.startsWith('heading-') && item?.content?.[0]?.value) {
+      const title = item?.content?.[0]?.value;
+      const type = item?.nodeType?.replace('heading-', 'h');
+      headings.push({
+        title,
+        type,
+        index: headingIndex++
+      });
+    }
+  });
+
+  return headings;
+}
+
+/**
+ * Generates unique heading IDs by tracking parent headings at all levels (h1-h6).
+ * This ensures nested headings have unique IDs by combining parent context.
+ *
+ * @param {Array} headings - Array of heading objects with { title, type } where type is 'h1' to 'h6'
+ * @returns {Array} - Array of heading objects with added uniqueId field
+ */
+export function generateUniqueHeadingIds(headings) {
+  // Track the last title at each heading level (h1 through h6)
+  const lastTitleByLevel = {
+    h1: '',
+    h2: '',
+    h3: '',
+    h4: '',
+    h5: '',
+    h6: ''
+  };
+
+  return headings.map((heading) => {
+    const { title, type } = heading;
+    const currentLevel = parseInt(type.replace('h', ''));
+
+    // Update the current level with this title
+    lastTitleByLevel[type] = title;
+
+    // Clear all deeper levels when we encounter a higher-level heading
+    for (let level = currentLevel + 1; level <= 6; level++) {
+      lastTitleByLevel[`h${level}`] = '';
+    }
+
+    // Find the immediate parent heading (the closest higher-level heading)
+    let parentTitle = '';
+    for (let level = currentLevel - 1; level >= 1; level--) {
+      if (lastTitleByLevel[`h${level}`]) {
+        parentTitle = lastTitleByLevel[`h${level}`];
+        break;
+      }
+    }
+
+    // Generate unique ID: combine parent context with current title
+    const baseId = stringToSlugyfy(title);
+    const uniqueId = parentTitle ? `${stringToSlugyfy(parentTitle)}-${baseId}` : baseId;
+
+    return {
+      ...heading,
+      uniqueId
     };
   });
 }

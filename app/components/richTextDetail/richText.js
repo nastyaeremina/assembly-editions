@@ -6,7 +6,7 @@ import Image from 'next/image';
 import 'react-medium-image-zoom/dist/styles.css';
 import { CopyBlock, dracula } from 'react-code-blocks';
 import copy from 'copy-to-clipboard';
-import { extractTagId, isEmpty } from '../../helpers/helpers';
+import { isEmpty, extractHeadingsFromContent, generateUniqueHeadingIds } from '../../helpers/helpers';
 import CopyLink from '../copyLink/copyLink';
 import VideoComponent from '../../components/videoComponent';
 import ZoomImageSlider from '../zoomImage/zoomImageslider';
@@ -48,8 +48,26 @@ export default function RichTextDetail({ assets = [], data, shouldHeadingCopy = 
   const assetData = assets?.assets?.block || [];
   const inlineEntries = assets?.entries?.inline || [];
 
+  // Extract all headings from data and use the helper function to generate unique IDs
+  const headingIdMap = useMemo(() => {
+    // Use the common helper to extract headings from content
+    const headings = extractHeadingsFromContent(data?.content);
+
+    // Use the helper function from helpers.js - single source of truth!
+    const headingsWithIds = generateUniqueHeadingIds(headings);
+
+    // Create a map: index -> uniqueId for quick lookup during rendering
+    const idMap = new Map();
+    headingsWithIds.forEach((heading) => {
+      idMap.set(heading.index, heading.uniqueId);
+    });
+
+    return { idMap, currentIndex: { value: 0 } };
+  }, [data]);
+
   const options = useMemo(() => {
     codeBlockCounter.current = 0; // Reset counter at the start of each render
+    headingIdMap.currentIndex.value = 0; // Reset heading index counter
 
     return {
       renderMark: {
@@ -85,7 +103,8 @@ export default function RichTextDetail({ assets = [], data, shouldHeadingCopy = 
       },
       renderNode: {
         [BLOCKS.HEADING_1]: (node, children) => {
-          const tagId = extractTagId(children[0]);
+          // Get the unique ID from the map using the helper function
+          const tagId = headingIdMap.idMap.get(headingIdMap.currentIndex.value++);
           return (
             <h1 id={tagId}>
               {children}
@@ -93,9 +112,9 @@ export default function RichTextDetail({ assets = [], data, shouldHeadingCopy = 
             </h1>
           );
         },
-
         [BLOCKS.HEADING_2]: (node, children) => {
-          const tagId = extractTagId(children[0]);
+          // Get the unique ID from the map using the helper function
+          const tagId = headingIdMap.idMap.get(headingIdMap.currentIndex.value++);
           return (
             <h2 id={tagId}>
               {children}
@@ -103,9 +122,9 @@ export default function RichTextDetail({ assets = [], data, shouldHeadingCopy = 
             </h2>
           );
         },
-
         [BLOCKS.HEADING_3]: (node, children) => {
-          const tagId = extractTagId(children[0]);
+          // Get the unique ID from the map using the helper function
+          const tagId = headingIdMap.idMap.get(headingIdMap.currentIndex.value++);
           return (
             <h3 id={tagId}>
               {children} {shouldHeadingCopy && <CopyLink tagId={tagId} />}
@@ -113,7 +132,8 @@ export default function RichTextDetail({ assets = [], data, shouldHeadingCopy = 
           );
         },
         [BLOCKS.HEADING_4]: (node, children) => {
-          const tagId = extractTagId(children[0]);
+          // Get the unique ID from the map using the helper function
+          const tagId = headingIdMap.idMap.get(headingIdMap.currentIndex.value++);
           return (
             <h4 id={tagId}>
               {children}
@@ -122,7 +142,8 @@ export default function RichTextDetail({ assets = [], data, shouldHeadingCopy = 
           );
         },
         [BLOCKS.HEADING_5]: (node, children) => {
-          const tagId = extractTagId(children[0]);
+          // Get the unique ID from the map using the helper function
+          const tagId = headingIdMap.idMap.get(headingIdMap.currentIndex.value++);
           return (
             <h5 id={tagId}>
               {children}
@@ -131,7 +152,8 @@ export default function RichTextDetail({ assets = [], data, shouldHeadingCopy = 
           );
         },
         [BLOCKS.HEADING_6]: (node, children) => {
-          const tagId = extractTagId(children[0]);
+          // Get the unique ID from the map using the helper function
+          const tagId = headingIdMap.idMap.get(headingIdMap.currentIndex.value++);
           return (
             <h6 id={tagId}>
               {children}
@@ -201,7 +223,17 @@ export default function RichTextDetail({ assets = [], data, shouldHeadingCopy = 
         }
       }
     };
-  }, [CopyBlockData, onChangeCopy, assetData, inlineEntries, isOpen, onOpenModal, onCloseModal, shouldHeadingCopy]);
+  }, [
+    CopyBlockData,
+    onChangeCopy,
+    assetData,
+    inlineEntries,
+    isOpen,
+    onOpenModal,
+    onCloseModal,
+    shouldHeadingCopy,
+    headingIdMap
+  ]);
 
   return <>{documentToReactComponents(data, options)}</>;
 }
