@@ -19,7 +19,7 @@ const Top = styled.div`
   object-fit: cover;
   overflow: hidden;
   border-radius: var(--radius-12);
-  border: 1px solid var(--border-default);
+  border: 1px solid var(--border-secondary);
   height: 100%;
   display: flex;
   .image {
@@ -404,7 +404,7 @@ const InnerHeroSection = styled.div`
   padding-top: var(--space-24);
   .author-image {
     border-radius: var(--radius-12);
-    border: 1px solid var(--border-default);
+    border: 1px solid var(--border-secondary);
     @media only screen and (max-width: 449px) {
       width: 95px;
       height: 95px;

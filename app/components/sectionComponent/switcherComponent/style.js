@@ -59,13 +59,14 @@ const DropdownList = styled.div`
   margin-top: var(--space-20);
   padding: var(--space-8);
   background-color: var(--off-white-300);
-  border: 1px solid var(--border-default);
+  border: 1px solid var(--border-secondary);
   border-radius: var(--radius-16);
   z-index: 10;
   width: 216px;
   display: flex;
   flex-direction: column;
   gap: var(--space-4);
+  box-shadow: 0px 10px 10px -4px #00000014;
   ${({ tone }) =>
     tone === SectionTone.DARK &&
     css`

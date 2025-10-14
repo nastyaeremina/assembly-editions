@@ -61,7 +61,7 @@ const GridItemSectionWrapper = styled.div`
     object-fit: cover;
     height: 100%;
     border-radius: var(--radius-16);
-    border: 1px solid var(--border-default);
+    border: 1px solid var(--border-secondary);
     ${({ tone }) =>
       tone === SectionTone.DARK &&
       css`
@@ -76,7 +76,7 @@ const GridItemSectionWrapper = styled.div`
     max-width: 100%;
     height: ${({ hasQuoteBlock }) => (hasQuoteBlock ? '100%' : '')};
     border-radius: var(--radius-16);
-    border: 1px solid var(--border-default);
+    border: 1px solid var(--border-secondary);
     ${({ tone }) =>
       tone === SectionTone.DARK &&
       css`
@@ -98,7 +98,7 @@ const GridItemSectionWrapper = styled.div`
     height: 100%;
     object-fit: cover;
     border-radius: var(--radius-16);
-    border: 1px solid var(--border-default);
+    border: 1px solid var(--border-secondary);
     ${({ tone }) =>
       tone === SectionTone.DARK &&
       css`

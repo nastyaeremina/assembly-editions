@@ -235,7 +235,7 @@ export default function BookDemoForm({ data, thankYouMessage, externalLinks = {}
                   id='company_size'
                   name='How-large-is-your-company'
                   dataName='How large is your company?'
-                  applyDropdownCss={true}
+                  applyDropdownCss
                   items={
                     data?.[BOOK_DEMO_CONTENT_TYPE.COMPANY_SIZE]?.map((item, index) => ({
                       id: `company_size_${index}`,
@@ -263,7 +263,7 @@ export default function BookDemoForm({ data, thankYouMessage, externalLinks = {}
                   id='industry'
                   name='What-industry-are-you-in'
                   dataName='What industry are you in?'
-                  applyDropdownCss={true}
+                  applyDropdownCss
                   items={[
                     ...(data?.[BOOK_DEMO_CONTENT_TYPE.INDUSTRY]?.map((item, index) => ({
                       id: `industry_${index}`,
@@ -299,7 +299,7 @@ export default function BookDemoForm({ data, thankYouMessage, externalLinks = {}
                   id='source'
                   name='How-did-you-find-us'
                   data-name='How did you find us?'
-                  applyDropdownCss={true}
+                  applyDropdownCss
                   items={[
                     ...(data?.[BOOK_DEMO_CONTENT_TYPE.FIND_US]?.map((item, index) => ({
                       id: `find_us_${index}`,

@@ -267,7 +267,7 @@ const Content = styled.div`
     width: 100%;
     height: 100%;
     border-radius: var(--radius-12);
-    border: 1px solid var(--border-default);
+    border: 1px solid var(--border-secondary);
   }
   strong {
     font-weight: 600;
@@ -281,12 +281,12 @@ const Content = styled.div`
     img {
       width: 100%;
       border-radius: var(--radius-12);
-      border: 1px solid var(--border-default);
+      border: 1px solid var(--border-secondary);
       height: auto;
     }
     iframe {
       border-radius: var(--radius-12);
-      border: 1px solid var(--border-default);
+      border: 1px solid var(--border-secondary);
       width: 100%;
       height: auto;
       aspect-ratio: 16/9;
@@ -348,7 +348,7 @@ const Content = styled.div`
   img {
     width: 100%;
     border-radius: var(--radius-12);
-    border: 1px solid var(--border-default);
+    border: 1px solid var(--border-secondary);
     height: auto;
   }
 

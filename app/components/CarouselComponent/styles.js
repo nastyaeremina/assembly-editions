@@ -68,7 +68,7 @@ const Card = styled.div`
   min-width: 237px;
   height: 100%;
   border-radius: var(--radius-8);
-  border: 1px solid var(--border-default);
+  border: 1px solid var(--border-secondary);
   display: flex;
   position: relative;
   overflow: hidden;

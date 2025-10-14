@@ -55,11 +55,11 @@ const DropDownHeader = styled.div`
 const DropDownListContainer = styled.div`
   padding: var(--space-8);
   position: absolute;
-  top: 110%;
+  top: 100%;
   left: 0;
   width: 100%;
   background: var(--off-white-300);
-  border: 1px solid var(--border-default);
+  border: 1px solid var(--border-secondary);
   border-radius: var(--radius-12);
   box-shadow: 0px 10px 10px -4px #00000014;
   z-index: 100;
@@ -67,7 +67,7 @@ const DropDownListContainer = styled.div`
   ${(props) =>
     props.applyDropdownCss &&
     css`
-      top: 101%;
+      top: 70%;
       border-radius: var(--radius-16);
     `}
 `;

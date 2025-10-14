@@ -747,7 +747,7 @@ const ContentDiv = styled.div`
   gap: var(--space-12);
   width: 100%;
   .hightLight-image {
-    border: 1px solid var(--border-default);
+    border: 1px solid var(--border-secondary);
     border-radius: var(--radius-8);
     width: 100%;
     height: auto;

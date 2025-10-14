@@ -108,7 +108,7 @@ const ImageSection = styled.div`
     object-fit: cover;
     width: 100%;
     border-radius: var(--radius-8);
-    border: 1px solid var(--border-default);
+    border: 1px solid var(--border-secondary);
     object-fit: cover;
     cursor: zoom-in;
     user-select: none;

@@ -31,7 +31,7 @@ const Leftside = styled.div`
     height: auto;
     aspect-ratio: 720 / 405;
     width: 100%;
-    border: 1px solid var(--border-default);
+    border: 1px solid var(--border-secondary);
     border-radius: var(--radius-12);
   }
 `;
