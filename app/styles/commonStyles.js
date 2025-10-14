@@ -270,7 +270,7 @@ const Content = styled.div`
     border: 1px solid var(--border-default);
   }
   strong {
-    font-weight: 500;
+    font-weight: 600;
   }
   figure {
     margin: 0px;
@@ -389,10 +389,6 @@ const Content = styled.div`
     li {
       margin-top: var(--space-12);
       padding-left: var(--space-3);
-      strong {
-        font-weight: 500;
-        color: var(--title);
-      }
       a {
         display: inline;
         ${body_regular}
@@ -441,9 +437,6 @@ const Content = styled.div`
     margin-top: var(--space-64);
     margin-bottom: var(--space-8);
     color: var(--title);
-    strong {
-      font-weight: 400;
-    }
     @media only screen and (max-width: 449px) {
       margin-top: var(--space-48);
     }
@@ -471,9 +464,6 @@ const Content = styled.div`
         opacity: 1;
         transition: all 0.3s;
       }
-    }
-    strong {
-      font-weight: 400;
     }
     @media only screen and (max-width: 449px) {
       margin-top: var(--space-48);
@@ -512,9 +502,6 @@ const Content = styled.div`
           transition: all 0.3s;
         }
       }
-    }
-    strong {
-      font-weight: 400;
     }
     .copy-icon {
       position: unset;
@@ -573,9 +560,6 @@ const Content = styled.div`
     @media only screen and (max-width: 449px) {
       margin: var(--space-20) 0 var(--space-8);
     }
-    strong {
-      font-weight: 400;
-    }
     .copy-icon {
       position: unset;
     }
@@ -619,10 +603,6 @@ const Content = styled.div`
     margin-bottom: var(--space-24);
     margin-top: var(--space-24);
     ${body_regular}
-    strong {
-      font-weight: 500;
-      color: var(--title);
-    }
     @media only screen and (max-width: 449px) {
       margin-top: var(--space-20);
       margin-bottom: var(--space-20);
@@ -648,10 +628,6 @@ const Content = styled.div`
     margin-top: var(--space-24);
     li {
       margin-top: var(--space-12);
-      strong {
-        font-weight: 500;
-        color: var(--title);
-      }
       a {
         display: inline;
         ${body_regular}

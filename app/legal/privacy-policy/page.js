@@ -1,9 +1,9 @@
 import { PRIVACY_POLICY_SEO_ID, PRIVCY_POLICY_ID } from '../../constants/constant';
 import { getSitemap } from '../../lib/contentful-sitemap';
 import { getSEOData } from '../../helpers/helpers';
-import PrivacyPolicyPage from '../../components/PageComponent/Legal/privacyPolicyPage';
 import AggregateRating from '../../components/aggregateRating';
 import Layout from '../../components/layout';
+import LegalContent from '../../components/PageComponent/Legal/legalContent';
 
 async function getContent() {
   const data = await getSitemap(PRIVCY_POLICY_ID);
@@ -21,7 +21,7 @@ export default async function PrivacyPolicy() {
     <>
       <AggregateRating id={PRIVACY_POLICY_SEO_ID} />
       <Layout>
-        <PrivacyPolicyPage content={content} />
+        <LegalContent content={content} title='Privacy Policy' />
       </Layout>
     </>
   );

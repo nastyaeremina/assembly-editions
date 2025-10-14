@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { h1_semibold } from './typography';
+import { body_semibold, h1_semibold } from './typography';
 
 const MainSection = styled.div`
   padding: var(--space-80) 0;
@@ -17,6 +17,11 @@ const MainSection = styled.div`
 `;
 const PrivacuHero = styled.div`
   text-align: center;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-24);
   padding-bottom: var(--space-24);
   h1 {
     ${h1_semibold};
@@ -25,6 +30,10 @@ const PrivacuHero = styled.div`
   }
   @media only screen and (max-width: 991px) {
     padding-bottom: var(--space-20);
+    align-items: flex-start;
+    p {
+      text-align: left;
+    }
   }
   @media only screen and (max-width: 768px) {
     text-align: left;
@@ -41,6 +50,7 @@ const PostContent = styled.div`
   margin: 0 auto;
   @media only screen and (max-width: 991px) {
     padding: 0 0 var(--space-40);
+    max-width: 100%;
   }
   @media only screen and (max-width: 449px) {
     padding: 0 0 var(--space-48);
