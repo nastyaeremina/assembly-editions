@@ -15,7 +15,15 @@ import Breadcrumbs from '../Breadcrumbs/breadcrumbs';
 import SVGComponent from '../../../public/images/svg/SVGComponent';
 import { isEmpty } from '../../helpers/helpers';
 
-function AuthorHeroSection({ authorImage, authorName, designation, breadcrumbText, breadcrumbLink, twitter, linkedin }) {
+function AuthorHeroSection({
+  authorImage,
+  authorName,
+  designation,
+  breadcrumbText,
+  breadcrumbLink,
+  twitter,
+  linkedin
+}) {
   const BreadcrumbItem = [{ label: breadcrumbText, href: breadcrumbLink }];
   return (
     <AuthorMainHeroSection>
@@ -24,8 +32,8 @@ function AuthorHeroSection({ authorImage, authorName, designation, breadcrumbTex
         <InnerHeroSection>
           <Image src={authorImage} width={200} height={200} className='author-image' alt='author-image' />
           <DetailsSection>
-            <Title>{authorName}</Title>
-            <Designation>{designation}</Designation>
+            {!isEmpty(authorName) && <Title>{authorName}</Title>}
+            {!isEmpty(designation) && <Designation>{designation}</Designation>}
             {(!isEmpty(twitter) || !isEmpty(linkedin)) && (
               <SocialMediaDiv>
                 {!isEmpty(twitter) && (
