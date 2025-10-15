@@ -49,6 +49,10 @@ const ButtonGroup = styled.div`
   align-items: center;
   gap: var(--space-8);
   flex-wrap: wrap;
+  @media only screen and (max-width: 449px) {
+    width: 100%;
+    gap: var(--space-12);
+  }
 `;
 
 export { HeaderSection, Title, Description, ButtonGroup, TitleSection };

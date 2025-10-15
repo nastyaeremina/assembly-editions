@@ -212,7 +212,7 @@ export default function PricingPage({ details, faqData }) {
                 <ButtonV2Component
                   title={isShowFeature ? 'Show plan details' : 'Hide plan details'}
                   onClick={toggleShowFeature}
-                  variant={ButtonVariant.SECONDARY_WITH_BORDER}
+                  variant={ButtonVariant.SECONDARY}
                   iconName={!isShowFeature && !isEmpty(planFeatures) ? 'down-arrow-icon' : 'up-arrow-icon'}
                   className='button'
                 />

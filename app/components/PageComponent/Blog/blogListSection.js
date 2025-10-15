@@ -59,7 +59,7 @@ function BlogListSection({ authorName, allPosts }) {
           <LoadMoreButton>
             <ButtonV2Component
               title={'Load more'}
-              variant={ButtonVariant.SECONDARY_WITH_BORDER}
+              variant={ButtonVariant.SECONDARY}
               onClick={handleLoadMore}
               isLoading={isLoading}
               disabled={isLoading}

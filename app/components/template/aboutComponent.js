@@ -4,12 +4,9 @@ import Link from 'next/link';
 import { isEmpty } from '../../helpers/helpers';
 import { AboutSection, Info, InfoDescription, InfoDiv, InfoTitle, Title } from './templateBodyStyle';
 import Tooltip from '../appsCards/tooltip';
-import ButtonV2Component from '../button/buttonV2/buttonV2';
-import { ButtonVariant } from '../../constants/constant';
 import { useIsMobile } from '../../hooks/useMobileDevice';
 
 export default function AboutComponent({ data, buttonText, buttonLink, isDirectory, showTitle = true }) {
-  const shouldButtonShow = !isEmpty(buttonText) && !isEmpty(buttonLink);
   const renderAboutItems = () => {
     const isMobile = useIsMobile();
     return data.map((item) => {
@@ -57,17 +54,7 @@ export default function AboutComponent({ data, buttonText, buttonLink, isDirecto
   return (
     <AboutSection isDirectory={isDirectory}>
       {showTitle && <Title>About</Title>}
-      <Info hasSpacing={isDirectory}>
-        {renderAboutItems()}
-        {shouldButtonShow && (
-          <ButtonV2Component
-            title={buttonText}
-            href={buttonLink}
-            variant={ButtonVariant.SECONDARY_WITH_BORDER}
-            target={'_blank'}
-          />
-        )}
-      </Info>
+      <Info hasSpacing={isDirectory}>{renderAboutItems()}</Info>
     </AboutSection>
   );
 }

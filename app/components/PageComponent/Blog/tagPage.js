@@ -222,7 +222,7 @@ export default function TagPage({ allPosts, tags, featuredBlog, currentTag, tagC
               <LoadMoreButton>
                 <ButtonV2Component
                   title={'Load more'}
-                  variant={ButtonVariant.SECONDARY_WITH_BORDER}
+                  variant={ButtonVariant.SECONDARY}
                   onClick={loadMorePosts}
                   disabled={loading}
                   isLoading={loading}

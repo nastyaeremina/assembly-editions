@@ -63,14 +63,14 @@ export default function UpdatesPaginationPage({ allPosts, pagination, externalLi
               {!isEmpty(pagination?.prev) && (
                 <ButtonV2Component
                   title={'Previous page'}
-                  variant={ButtonVariant.SECONDARY_WITH_BORDER}
+                  variant={ButtonVariant.SECONDARY}
                   href={pagination?.page === 2 ? `/updates/` : `/updates/page/${pagination?.page - 1}`}
                 />
               )}
               {!isEmpty(pagination?.next) && (
                 <ButtonV2Component
                   title={'Next page'}
-                  variant={ButtonVariant.SECONDARY_WITH_BORDER}
+                  variant={ButtonVariant.SECONDARY}
                   href={`/updates/page/${pagination?.page + 1}`}
                 />
               )}

@@ -139,7 +139,7 @@ const ButtonGroup = styled.div`
   }
   @media only screen and (max-width: 449px) {
     padding-top: 0;
-    gap: var(--space-4);
+    width: 100%;
   }
 `;
 

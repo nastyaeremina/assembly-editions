@@ -58,8 +58,7 @@ function Heading({
             <ButtonV2Component
               title={secondaryButtonText}
               href={secondaryButtonLink}
-              variant={showPrimaryButton ? ButtonVariant.SECONDARY : ButtonVariant.SECONDARY_WITH_BORDER}
-              postIcon
+              variant={ButtonVariant.SECONDARY}
               download={isDownload}
             />
           )}

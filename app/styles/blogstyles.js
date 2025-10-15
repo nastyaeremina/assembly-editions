@@ -386,6 +386,7 @@ const LoadMoreButton = styled.div`
   margin: var(--space-80) auto 0;
   @media only screen and (max-width: 650px) {
     margin: var(--space-40) auto 0;
+    width: 100%;
   }
 `;
 

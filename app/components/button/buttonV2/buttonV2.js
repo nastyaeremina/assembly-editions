@@ -34,8 +34,7 @@ function ButtonV2Component({
   className,
   download = false,
   target,
-  isLoading = false,
-  postIcon = false
+  isLoading = false
 }) {
   return (
     <ButtonWrap isWidth={isWidth} isLoading={isLoading} size={size} variant={variant} tone={tone}>
@@ -52,15 +51,11 @@ function ButtonV2Component({
         target={target}
         {...(href && download && { download })}>
         <span>{title}</span>
-        {iconName ? (
+        {iconName && (
           <IconWrapper isLoading={isLoading}>
             <SVGComponent name={iconName} width={iconSize} height={iconSize} viewBox={`0 0 ${iconSize} ${iconSize}`} />
           </IconWrapper>
-        ) : postIcon ? (
-          <Icon size={size} tone={tone} isLoading={isLoading}>
-            <SVGComponent name='hover-arrow-icon' width='18' height='16' viewBox='0 0 16 16' />
-          </Icon>
-        ) : null}
+        )}
       </Buttons>
     </ButtonWrap>
   );

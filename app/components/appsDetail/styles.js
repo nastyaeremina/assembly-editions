@@ -543,7 +543,7 @@ const Section = styled.div`
   justify-content: space-between;
   align-items: center;
   gap: var(--space-16);
-
+  width: 100%;
   @media only screen and (max-width: 991px) {
     flex-direction: column;
     align-items: flex-start;

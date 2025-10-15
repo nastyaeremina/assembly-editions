@@ -65,11 +65,7 @@ export default function UpdatesPage({ allPosts, externalLinks = {}, updatesCTA =
           <PostContent>
             {renderPosts}
             <Pagination>
-              <ButtonV2Component
-                title={'Next page'}
-                variant={ButtonVariant.SECONDARY_WITH_BORDER}
-                href={`/updates/page/2`}
-              />
+              <ButtonV2Component title={'Next page'} variant={ButtonVariant.SECONDARY} href={`/updates/page/2`} />
             </Pagination>
           </PostContent>
         </Container>

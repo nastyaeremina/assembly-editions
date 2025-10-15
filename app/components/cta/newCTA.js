@@ -42,7 +42,6 @@ export default function NewCTA({
                     variant={ButtonVariant.SECONDARY}
                     tone={ButtonTone.DARK}
                     href={secondaryButtonLink}
-                    postIcon
                   />
                 )}
               </ButtonGroup>

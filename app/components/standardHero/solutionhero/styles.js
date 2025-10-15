@@ -425,6 +425,11 @@ const ButtonGroups = styled.div`
   display: flex;
   gap: var(--space-8);
   margin-top: var(--space-32);
+  @media only screen and (max-width: 449px) {
+    width: 100%;
+    flex-wrap: wrap;
+    gap: var(--space-12);
+  }
 `;
 
 const LogoSection = styled.div`

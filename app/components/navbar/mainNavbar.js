@@ -6,7 +6,7 @@ import Image from 'next/image';
 import { Container } from '../../styles/commonStyles';
 import useMobileDevice from '../../hooks/useMobileDevice';
 import { isEmpty } from '../../helpers/helpers';
-import { EXTERNAL_LINK_KEYS } from '../../constants/constant';
+import { ButtonSize, ButtonVariant, EXTERNAL_LINK_KEYS } from '../../constants/constant';
 import { usePathname } from 'next/navigation';
 import {
   NavbarWrapper,
@@ -330,7 +330,7 @@ export default function NavbarComponent({ isAuthenticated: userAuth, topbarConte
                   title={'Log in'}
                   href={externalLinks?.[EXTERNAL_LINK_KEYS.DashboardLink] || '#'}
                   isWidth
-                  variant='secondary'
+                  variant={ButtonVariant.SECONDARY}
                 />
               </BottomButtonSection>
             </OverLayBlock>
@@ -344,7 +344,7 @@ export default function NavbarComponent({ isAuthenticated: userAuth, topbarConte
                       <ButtonV2Component
                         title={'Open Dashboard'}
                         href={externalLinks?.[EXTERNAL_LINK_KEYS.DashboardLink] || '#'}
-                        size='small'
+                        size={ButtonSize.SMALL}
                       />
                     </>
                   ) : (
@@ -355,7 +355,7 @@ export default function NavbarComponent({ isAuthenticated: userAuth, topbarConte
                       <ButtonV2Component
                         title={'Start Trial'}
                         href={externalLinks?.[EXTERNAL_LINK_KEYS.OnboardingLink] || '#'}
-                        size='small'
+                        size={ButtonSize.SMALL}
                       />
                     </>
                   )}

@@ -517,7 +517,7 @@ export const AutomationCardVariant = {
 export const ButtonVariant = {
   PRIMARY: 'primary',
   SECONDARY: 'secondary',
-  SECONDARY_WITH_BORDER: 'secondary-with-border'
+  TERTIARY: 'tertiary'
 };
 
 export const ButtonTone = {

@@ -27,6 +27,17 @@ const ButtonWrap = styled.div`
     css`
       ${Buttons} {
         color: transparent;
+        ${(props) =>
+          props.variant === ButtonVariant.TERTIARY &&
+          css`
+            background-color: var(--off-white-550);
+          `}
+        ${(props) =>
+          props.variant === ButtonVariant.TERTIARY &&
+          props.tone === ButtonTone.DARK &&
+          css`
+            background-color: var(--gray-450);
+          `}
         &::before {
           position: absolute;
           transform: translate(-50%, -50%);
@@ -46,7 +57,7 @@ const ButtonWrap = styled.div`
               height: 24px;
             `}
           ${(props) =>
-            (props.variant === ButtonVariant.SECONDARY || props.variant === ButtonVariant.SECONDARY_WITH_BORDER) &&
+            (props.variant === ButtonVariant.SECONDARY || props.variant === ButtonVariant.TERTIARY) &&
             css`
               border: 2px solid var(--text-secondary);
               border-top: 2px solid transparent;
@@ -57,6 +68,13 @@ const ButtonWrap = styled.div`
               border: 2px solid var(--off-white-100);
               border-top: 2px solid transparent;
             `}
+          ${(props) =>
+            props.variant === ButtonVariant.PRIMARY &&
+            props.tone === ButtonTone.DARK &&
+            css`
+              border: 2px solid var(--title);
+              border-top: 2px solid transparent;
+            `}
           @media only screen and (max-width: 449px) {
             width: 24px;
             height: 24px;
@@ -64,6 +82,9 @@ const ButtonWrap = styled.div`
         }
       }
     `}
+  @media only screen and (max-width: 449px) {
+    width: 100%;
+  }
 `;
 
 const Buttons = styled.button`
@@ -74,17 +95,10 @@ const Buttons = styled.button`
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: var(--space-6);
+  gap: var(--space-8);
   padding: var(--space-2) var(--space-32) 0;
   border-radius: var(--radius-30);
   transition: background-color 0.3s ease;
-  .hover-line-path {
-    opacity: 0;
-    transition: opacity 0.4s ease, transform 0.4s ease;
-  }
-  .hover-tip-path {
-    transition: opacity 0.4s ease, transform 0.4s ease;
-  }
 
   ${(props) =>
     props.isWidth &&
@@ -113,15 +127,15 @@ const Buttons = styled.button`
   ${(props) =>
     props.tone === ButtonTone.DARK &&
     css`
-      background-color: var(--gray-400);
-      color: var(--off-white-100);
+      background-color: var(--off-white-550);
+      color: var(--title);
     `}
 
   //Secondary button
   ${(props) =>
     props.variant === ButtonVariant.SECONDARY &&
     css`
-      background-color: transparent;
+      background-color: var(--off-white-550);
       color: var(--title);
       svg {
         path {
@@ -133,7 +147,7 @@ const Buttons = styled.button`
     props.variant === ButtonVariant.SECONDARY &&
     props.tone === ButtonTone.DARK &&
     css`
-      background-color: transparent;
+      background-color: var(--gray-450);
       color: var(--off-white-100);
       svg {
         path {
@@ -144,10 +158,9 @@ const Buttons = styled.button`
 
     //Secondary button with border
     ${(props) =>
-    props.variant === ButtonVariant.SECONDARY_WITH_BORDER &&
+    props.variant === ButtonVariant.TERTIARY &&
     css`
       background-color: transparent;
-      border: 1px solid var(--border-default);
       color: var(--title);
       svg {
         path {
@@ -156,10 +169,9 @@ const Buttons = styled.button`
       }
     `}
     ${(props) =>
-    props.variant === ButtonVariant.SECONDARY_WITH_BORDER &&
+    props.variant === ButtonVariant.TERTIARY &&
     props.tone === ButtonTone.DARK &&
     css`
-      border: 1px solid var(--gray-400);
       background-color: transparent;
       color: var(--off-white-100);
       svg {
@@ -170,45 +182,38 @@ const Buttons = styled.button`
     `}
 
   :hover {
-    background-color: var(--bg-card-dark-hover);
-    .hover-line-path {
-      opacity: 1;
-      transform: translateX(2px);
-    }
-    .hover-tip-path {
-      transform: translateX(2px);
-    }
+    background-color: var(--gray-450);
 
     ${(props) =>
       props.tone === ButtonTone.DARK &&
       css`
-        background-color: var(--gray-350);
+        background-color: var(--off-white-600);
       `}
 
     ${(props) =>
       props.variant === ButtonVariant.SECONDARY &&
       css`
-        background-color: var(--bg-primary-hover);
+        background-color: var(--off-white-600);
       `}
 
       ${(props) =>
       props.variant === ButtonVariant.SECONDARY &&
       props.tone === ButtonTone.DARK &&
       css`
-        background-color: var(--gray-350);
+        background-color: var(--gray-400);
       `}
 
       ${(props) =>
-      props.variant === ButtonVariant.SECONDARY_WITH_BORDER &&
+      props.variant === ButtonVariant.TERTIARY &&
       css`
-        background-color: var(--bg-primary-hover);
+        background-color: var(--off-white-600);
       `}
 
       ${(props) =>
-      props.variant === ButtonVariant.SECONDARY_WITH_BORDER &&
+      props.variant === ButtonVariant.TERTIARY &&
       props.tone === ButtonTone.DARK &&
       css`
-        background-color: var(--gray-350);
+        background-color: var(--gray-400);
       `}
   }
   :focus-visible {
@@ -218,6 +223,7 @@ const Buttons = styled.button`
     height: 40px;
     padding: var(--space-2) var(--space-16) 0;
     ${label_semibold}
+    width: 100%;
     ${(props) =>
       props.size === ButtonSize.SMALL &&
       css`
@@ -231,11 +237,18 @@ const Icon = styled.div`
   opacity: ${(props) => (props.isLoading ? 0 : 1)};
   transition: opacity 0.3s ease;
 
+  @media only screen and (max-width: 449px) {
+    svg {
+      width: 12px;
+      height: 12px;
+    }
+  }
+
   ${(props) =>
     props.size === ButtonSize.SMALL &&
     css`
       svg {
-        width: 14px;
+        width: 12px;
         height: 12px;
       }
     `}

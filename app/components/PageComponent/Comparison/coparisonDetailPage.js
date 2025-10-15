@@ -79,7 +79,6 @@ export default function ComparisonDetailPage({ details, faqList }) {
                   title='Read full report'
                   href={details?.g2ComparisonLink}
                   target='_blank'
-                  postIcon
                   className='button'
                 />
               </G2group>

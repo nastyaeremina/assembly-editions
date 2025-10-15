@@ -42,7 +42,6 @@ function SectionHeader({
               title={secondaryButtonText}
               href={secondaryButtonLink}
               variant={ButtonVariant.SECONDARY}
-              postIcon
               tone={tone}
             />
           )}

@@ -153,6 +153,7 @@ const LinkText = styled(Link)`
   cursor: pointer;
   padding: var(--space-13) var(--space-16) var(--space-11);
   border-radius: var(--radius-30);
+  transition: background-color 0.3s ease;
   :hover {
     background-color: var(--off-white-600);
     color: var(--title);

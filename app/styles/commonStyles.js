@@ -191,7 +191,7 @@ const Content = styled.div`
     transition: all 0.3s ease;
     cursor: pointer;
     &:hover {
-      background-color: var(--bg-card-dark-hover);
+      background-color: var(--gray-450);
       a {
         color: var(--off-white-100);
       }
