@@ -13,7 +13,6 @@ import {
 import { Main, OverLayDiv, PopUp } from './styles';
 import GuideSearchList from './guideSeachItem';
 import SVGComponent from '../../../public/images/svg/SVGComponent';
-import { SearchInputWrapper, SearchListWrapper } from './styles';
 
 export default function GuideSearch({ articleData, onCloseSearch }) {
   const ref = React.useRef(null);

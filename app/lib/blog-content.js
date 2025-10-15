@@ -159,3 +159,31 @@ export async function getAuthorDetail(slug) {
     return null;
   }
 }
+
+export const getAllPublicTitlesAndSlugsRaw = unstable_cache(
+  async (tag) => {
+    try {
+      const option = {
+        limit: 'all',
+        fields: ['title', 'slug'],
+        filter: 'visibility:public',
+        order: 'published_at desc'
+      };
+
+      if (tag) {
+        option.filter += `+tags:[${tag}]`;
+      }
+
+      return await api.posts.browse(option);
+    } catch (err) {
+      console.error('Error fetching public titles & slugs (cached):==', err);
+      return [];
+    }
+  },
+  // cache key (include tag so each tag gets its own cached version)
+  ['blog-public-titles-slugs'],
+  {
+    revalidate: 1800, // 30 minutes
+    tags: ['blog', 'posts', 'tags']
+  }
+);

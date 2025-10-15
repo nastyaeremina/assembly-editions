@@ -1,6 +1,11 @@
 import { notFound } from 'next/navigation';
 import Layout from '../../../components/layout';
-import { getAllTagWithSlug, getBlogByTag, getTagDetail } from '../../../lib/blog-content';
+import {
+  getAllPublicTitlesAndSlugsRaw,
+  getAllTagWithSlug,
+  getBlogByTag,
+  getTagDetail
+} from '../../../lib/blog-content';
 import { customSort, getFeaturedBlogAndFilteredPosts, isEmpty } from '../../../helpers/helpers';
 import TagPage from '../../../components/PageComponent/Blog/tagPage';
 import { BLOG_TAG_SORTED_LIST, CURRENT_SITE_URL, CURRENT_DOMAIN, BLOG_CTA_ID } from '../../../constants/constant';
@@ -18,6 +23,7 @@ export async function generateStaticParams() {
     return popularTags.map((tag) => ({
       slug: tag.slug
     }));
+    return { popularTagsSlug, allBlogPost };
   } catch (error) {
     console.error('Error generating static params:', error);
     return [];
@@ -30,8 +36,14 @@ async function getContent({ slug, page = 1, limit = 8 }) {
     const postsLimit = page === 1 ? limit + 2 : limit;
 
     // Fetch initial posts with pagination
-    const initialPosts = (await getBlogByTag(slug, { page, limit: postsLimit })) ?? [];
+    const [initialPosts, allBlogPost, tagDetail, tags, tagCTA] = await Promise.all([
+      getBlogByTag(slug, { page, limit: postsLimit }),
 
+      getAllPublicTitlesAndSlugsRaw(slug),
+      getTagDetail(slug),
+      getAllTagWithSlug(),
+      getSectionCTAContent(BLOG_CTA_ID, false)
+    ]);
     let featuredBlog = null;
     let filteredPosts = initialPosts;
 
@@ -42,9 +54,6 @@ async function getContent({ slug, page = 1, limit = 8 }) {
       filteredPosts = result.filteredPosts?.slice(0, limit) || [];
     }
 
-    const tagDetail = (await getTagDetail(slug)) ?? {};
-    const tags = (await getAllTagWithSlug()) ?? [];
-    const tagCTA = await getSectionCTAContent(BLOG_CTA_ID, false);
     const finalTagList = tags?.filter((tag) => tag?.name?.trim()?.[0] !== '#');
     const title = tagDetail?.meta_title ?? `${tagDetail?.name} - Assembly Blog`;
     const og_title = tagDetail?.og_title ?? tagDetail?.meta_title ?? title;
@@ -70,7 +79,8 @@ async function getContent({ slug, page = 1, limit = 8 }) {
       seoData,
       featuredBlog,
       currentTagDetail,
-      tagCTA
+      tagCTA,
+      allBlogPost
     };
   } catch (error) {
     console.error('Error fetching tag content:', error);
@@ -125,7 +135,10 @@ export async function generateMetadata({ params }) {
 export default async function Tag({ params, searchParams }) {
   try {
     const page = parseInt(searchParams?.page) || 1;
-    const { allPosts, tags, featuredBlog, currentTagDetail, tagCTA } = await getContent({ slug: params?.slug, page });
+    const { allPosts, tags, featuredBlog, currentTagDetail, tagCTA, allBlogPost } = await getContent({
+      slug: params?.slug,
+      page
+    });
 
     if (isEmpty(allPosts) && page === 1) {
       return notFound();
@@ -136,6 +149,7 @@ export default async function Tag({ params, searchParams }) {
         <Layout>
           <TagPage
             allPosts={allPosts}
+            allBlogPost={allBlogPost}
             tags={tags}
             featuredBlog={featuredBlog}
             currentTag={currentTagDetail}

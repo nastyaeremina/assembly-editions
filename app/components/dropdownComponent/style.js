@@ -9,11 +9,15 @@ const DropDownWrapper = styled.div`
 const DropDownHeader = styled.div`
   cursor: pointer;
   display: flex;
-  gap: var(--space-4);
+  gap: var(--space-8);
   align-items: center;
   width: fit-content;
   ${body_regular}
   color: ${(props) => (props.isPlaceholderColor ? 'var(--gray-200)' : 'var(--title)')};
+  background-color: var(--off-white-600);
+  height: 40px;
+  border-radius: var(--radius-30);
+  padding: var(--space-2) var(--space-16) 0;
   outline: 0;
   svg {
     transition: transform 0.3s ease;
@@ -36,6 +40,7 @@ const DropDownHeader = styled.div`
       background-color: var(--off-white-300);
       ${button_regular}
       width: 100%;
+      height: unset;
       justify-content: space-between;
 
       svg {

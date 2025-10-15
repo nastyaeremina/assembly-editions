@@ -36,9 +36,7 @@ export default function Blogcard(props) {
                     <SVGComponent name='dot-icon' width='6' height='6' viewBox='0 0 6 6' />
                   </IconDiv>
                 )}
-                {!isEmpty(props.authorName) && (
-                  <AuthorLink href={`/blog/author/${props.authorSlug}`}>{`${props.authorName}`}</AuthorLink>
-                )}
+                {!isEmpty(props.authorName) && <AuthorLink>{`${props.authorName}`}</AuthorLink>}
               </DetailLeftDiv>
               <SVGComponent
                 name='blog-card-hover-arrow-icon'

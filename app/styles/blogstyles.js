@@ -2,7 +2,6 @@ import styled, { css } from 'styled-components';
 import { button_regular, h1_regular, h3_semibold, tag, label_regular, h2_semibold } from './typography';
 
 const FirstBlog = styled.div`
-  background-color: var(--gray-50);
   width: 100%;
   padding: var(--space-80) 0;
   h1 {
@@ -537,6 +536,64 @@ const CopyIcon = styled.span`
   cursor: pointer;
 `;
 
+const InputWrap = styled.button`
+  max-width: 285px;
+  width: 100%;
+  position: relative;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  padding: 0 var(--space-12);
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-30);
+  height: 40px;
+  :hover {
+    border: 1px solid var(--border-hover);
+  }
+  .desktop-search-icon {
+    display: flex;
+  }
+  @media only screen and (max-width: 449px) {
+    max-width: unset;
+  }
+`;
+
+const InputText = styled.div`
+  ${button_regular};
+  color: var(--gray-200);
+  letter-spacing: 0.01em;
+  width: 100%;
+  outline: 0;
+  padding-left: var(--space-8);
+  padding-top: var(--space-2);
+  text-align: left;
+`;
+
+const SearchWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  gap: var(--space-16);
+  flex-wrap: wrap;
+  justify-content: space-between;
+  @media only screen and (max-width: 449px) {
+    flex-direction: column-reverse;
+    align-items: flex-start;
+    gap: var(--space-24);
+  }
+`;
+
+const ArticleText = styled.div`
+  ${tag}
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  padding: var(--space-16) var(--space-12) var(--space-4);
+  margin-bottom: var(--space-4);
+  position: sticky;
+  top: 0;
+  background-color: var(--off-white-200);
+  z-index: 1;
+`;
+
 export {
   FirstBlog,
   Top,
@@ -573,5 +630,9 @@ export {
   AuthorTitle,
   Textarea,
   Backlink,
-  CopyIcon
+  CopyIcon,
+  InputWrap,
+  InputText,
+  SearchWrapper,
+  ArticleText
 };

@@ -407,16 +407,32 @@ const PopUp = styled.div`
 
   .close-icon {
     position: absolute;
-    top: var(--space-12);
-    right: var(--space-12);
+    top: var(--space-4);
+    right: var(--space-4);
     cursor: pointer;
     display: flex;
+    padding: var(--space-8);
+    border-radius: var(--radius-30);
+    transition: background-color 0.3s ease;
+    svg {
+      path {
+        transition: fill 0.3s ease;
+      }
+    }
+    &:hover {
+      background-color: var(--off-white-600);
+      svg {
+        path {
+          fill: var(--title);
+        }
+      }
+    }
   }
 
   .vercel [cmdk-root] {
     width: 500px;
     height: 100%;
-    @media only screen and (max-width: 449px) {
+    @media only screen and (max-width: 550px) {
       width: unset;
     }
   }
@@ -444,10 +460,10 @@ const PopUp = styled.div`
   .vercel [cmdk-item] {
     content-visibility: auto;
     cursor: pointer;
-    border-radius: 8px;
+    border-radius: var(--space-8);
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: var(--space-8);
     user-select: none;
     will-change: background, color;
     transition: all 150ms ease;
@@ -488,16 +504,21 @@ const PopUp = styled.div`
     margin-top: var(--space-8);
     border: 1px solid var(--border-default);
     background-color: var(--off-white-300);
-    border-radius: var(--radius-12);
+    border-radius: var(--radius-16);
     box-shadow: 0px 10px 10px -4px #00000014;
     ::-webkit-scrollbar {
       display: none;
     }
+    ${(props) =>
+      props.isBlogSearch &&
+      css`
+        padding: 0 var(--space-8) var(--space-8);
+      `}
   }
   .vercel [cmdk-vercel-shortcuts] {
     display: flex;
     margin-left: auto;
-    gap: 8px;
+    gap: var(--space-8);
   }
 
   .vercel [cmdk-vercel-shortcuts] kbd {
@@ -513,20 +534,20 @@ const PopUp = styled.div`
   .vercel [cmdk-separator] {
     height: 1px;
     width: 100%;
-    margin: 4px 0;
+    margin: var(--space-4) 0;
   }
 
   .vercel *:not([hidden]) + [cmdk-group] {
-    margin-top: 8px;
+    margin-top: var(--space-8);
   }
 
   .vercel [cmdk-group-heading] {
     user-select: none;
     ${button_semibold}
-    padding: 0 8px;
+    padding: 0 var(--space-8);
     display: flex;
     align-items: center;
-    margin-bottom: 8px;
+    margin-bottom: var(--space-8);
   }
 
   .vercel [cmdk-empty] {
@@ -554,13 +575,17 @@ const PopUp = styled.div`
     font-weight: 600;
     color: var(--title);
   }
+  .blog-highlight {
+    font-weight: 400;
+    color: var(--title);
+  }
   .search-icon {
     position: absolute;
     z-index: 1;
     top: var(--space-10);
     left: var(--space-12);
   }
-  @media only screen and (max-width: 449px) {
+  @media only screen and (max-width: 550px) {
     width: calc(100% - 32px);
   }
 `;
@@ -584,10 +609,13 @@ const SearchListText = styled.div`
   display: flex;
   flex-direction: column;
   color: var(--text-secondary);
-  font-style: 400;
   h4 {
     margin: 0;
     ${button_semibold}
+  }
+  .blog-h4 {
+    ${button_regular}
+    margin: 0;
   }
   .text {
     display: -webkit-box;

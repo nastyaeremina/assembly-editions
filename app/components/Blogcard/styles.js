@@ -50,18 +50,11 @@ const DetailLeftDiv = styled.div`
   gap: var(--space-4);
 `;
 
-const AuthorLink = styled(Link)`
+const AuthorLink = styled.div`
   ${tag}
   color: var(--text-secondary);
   transition: color 0.3s ease;
   cursor: pointer;
-  &:hover {
-    color: var(--title);
-  }
-  &:focus-visible {
-    outline: 1px solid var(--link-default);
-    border-radius: var(--radius-4);
-  }
 `;
 
 export { BlogDetail, Leftside, Bottom, DetailLeftDiv, AuthorLink };

@@ -2,9 +2,19 @@
 import { useCallback, useMemo, useState, useEffect } from 'react';
 import { useRouter, usePathname } from 'next/navigation';
 import moment from 'moment';
+import { useHotkeys } from 'react-hotkeys-hook';
 import { Container } from '../../../styles/commonStyles';
 import Blogcard from '../../../components/Blogcard';
-import { BlogCardsDiv, BlogListDiv, Divider, LoadMoreButton, MainContent } from '../../../styles/blogstyles';
+import {
+  BlogCardsDiv,
+  BlogListDiv,
+  Divider,
+  InputText,
+  InputWrap,
+  LoadMoreButton,
+  MainContent,
+  SearchWrapper
+} from '../../../styles/blogstyles';
 import FeatureBlogCard from '../../Blogcard/fetaureBlogCard';
 import { isEmpty } from '../../../helpers/helpers';
 import DropDown from '../../dropdownComponent';
@@ -13,18 +23,40 @@ import { useIsMobile } from '../../../hooks/useMobileDevice';
 import ButtonV2Component from '../../button/buttonV2/buttonV2';
 import { ButtonVariant } from '../../../constants/constant';
 import NewCTA from '../../cta/newCTA';
+import SVGComponent from '../../../../public/images/svg/SVGComponent';
+import BlogSearch from './blogSearch';
 
 // Tag-specific blog page with server-side pagination
-export default function TagPage({ allPosts, tags, featuredBlog, currentTag, tagCTA = null }) {
+export default function TagPage({ allPosts, tags, featuredBlog, currentTag, tagCTA = null, allBlogPost }) {
   const [selectedTag, setSelectedTag] = useState('All');
   const [posts, setPosts] = useState(allPosts || []);
   const [loading, setLoading] = useState(false);
   const [hasMore, setHasMore] = useState(true);
   const [currentPage, setCurrentPage] = useState(1);
   const [featuredBlogId, setFeaturedBlogId] = useState(featuredBlog?.id || null);
+  const [isSearchModalOpen, setIsSearchModalOpen] = useState(false);
+  // State to store the hotkey combination based on the operating system
+  const [hotkeyCombination, setHotkeyCombination] = useState('ctrl+k');
   const router = useRouter();
   const pathname = usePathname();
   const isMobile = useIsMobile();
+
+  useEffect(() => {
+    const isMacOS = navigator.userAgent.includes('Mac');
+    const hotkey = isMacOS ? 'meta+k' : 'ctrl+k';
+
+    setHotkeyCombination(hotkey);
+  }, []);
+
+  useHotkeys([hotkeyCombination], (event) => {
+    event.preventDefault();
+    setIsSearchModalOpen(true);
+  });
+
+  useHotkeys('esc', (event) => {
+    event.preventDefault();
+    setIsSearchModalOpen(false);
+  });
 
   // Create dropdown items with All option and tags
   const dropdownItems = useMemo(() => {
@@ -199,23 +231,39 @@ export default function TagPage({ allPosts, tags, featuredBlog, currentTag, tagC
     return dropdownItems.find((item) => item.slug === 'all');
   }, [selectedTag, dropdownItems, pathname, currentTag.slug]);
 
+  const onCloseSearch = useCallback(() => {
+    setIsSearchModalOpen(false);
+  }, []);
+
   return (
     <>
+      {isSearchModalOpen && (
+        <div>
+          <BlogSearch articleData={allBlogPost} onCloseSearch={onCloseSearch} />
+        </div>
+      )}
       <MainContent>
         {renderFeaturedBlog}
         <Container>
           <BlogListDiv>
-            {/* Render dropdown on mobile, tabs on desktop */}
-            {isMobile ? (
-              <DropDown
-                items={dropdownItems}
-                placeholder='Select Option'
-                onSelect={handleDropdownClick}
-                defaultValue={getCurrentTagForDropdown}
-              />
-            ) : (
-              <TabComponent items={dropdownItems} selectedTag={selectedTag} />
-            )}
+            <SearchWrapper>
+              {isMobile ? (
+                <DropDown
+                  items={dropdownItems}
+                  placeholder='Select Option'
+                  onSelect={handleDropdownClick}
+                  defaultValue={getCurrentTagForDropdown}
+                />
+              ) : (
+                <TabComponent items={dropdownItems} selectedTag={selectedTag} />
+              )}
+              <InputWrap onClick={() => setIsSearchModalOpen(true)}>
+                <div className='desktop-search-icon'>
+                  <SVGComponent name='search-icon' width='20' height='20' viewBox='0 0 20 20' className='search-icon' />
+                </div>
+                <InputText>Search</InputText>
+              </InputWrap>
+            </SearchWrapper>
             <BlogCardsDiv>{renderData}</BlogCardsDiv>
             {/* Show load more button if there are more posts */}
             {hasMore && (

@@ -1,7 +1,7 @@
 import BlogPage from '../components/PageComponent/Blog/blogPage';
 import Layout from '../components/layout';
 import AggregateRating from '../components/aggregateRating';
-import { getAllTagWithSlug, getBlogPosts } from './../lib/blog-content';
+import { getAllPublicTitlesAndSlugsRaw, getAllTagWithSlug, getBlogPosts } from './../lib/blog-content';
 import { customSort, getFeaturedBlogAndFilteredPosts, getSEOData } from './../helpers/helpers';
 import { BLOG_CTA_ID, BLOG_SEO_ID, BLOG_TAG_SORTED_LIST, CURRENT_SITE_URL } from './../constants/constant';
 import { getSectionCTAContent } from '../lib/contentful-standardPage';
@@ -27,12 +27,13 @@ async function getContent(page = 1, limit = 8) {
     // For first page, get a few extra posts to extract featured blog
     const postsLimit = page === 1 ? limit + 2 : limit;
 
-    const [allPosts, tagsData, socialMediaLinks, blogCTA] = await Promise.all([
+    const [allPosts, tagsData, socialMediaLinks, blogCTA, allBlogPost] = await Promise.all([
       getBlogPosts({ page, limit: postsLimit }), // Now using optimized paginated function
       getAllTagWithSlug(),
       getSocialMediaLinks({ linksOnly: true }),
       // Fetch CTA Section by id from Contentful
-      getSectionCTAContent(BLOG_CTA_ID, false)
+      getSectionCTAContent(BLOG_CTA_ID, false),
+      getAllPublicTitlesAndSlugsRaw()
     ]);
 
     // Filter out tags that start with '#' and sort them
@@ -48,7 +49,8 @@ async function getContent(page = 1, limit = 8) {
         tags,
         socialMediaLinks: socialMediaLinks || [],
         featuredBlog,
-        blogCTA
+        blogCTA,
+        allBlogPost
       };
     }
 
@@ -60,7 +62,8 @@ async function getContent(page = 1, limit = 8) {
       tags,
       socialMediaLinks: socialMediaLinks || [],
       featuredBlog: null,
-      blogCTA
+      blogCTA,
+      allBlogPost: []
     };
   } catch (error) {
     console.error('Error fetching blog content:', error);
@@ -71,7 +74,8 @@ async function getContent(page = 1, limit = 8) {
       tags: [],
       socialMediaLinks: [],
       featuredBlog: null,
-      blogCTA: null
+      blogCTA: null,
+      allBlogPost: []
     };
   }
 }
@@ -84,7 +88,7 @@ export async function generateMetadata({ params, searchParams }, parent) {
 
 export default async function Blog({ searchParams }) {
   const page = parseInt(searchParams?.page) || 1;
-  const { allPosts, tags, socialMediaLinks, featuredBlog, blogCTA } = await getContent(page);
+  const { allPosts, tags, socialMediaLinks, featuredBlog, blogCTA, allBlogPost } = await getContent(page);
 
   const jsonLd = {
     '@context': 'https://schema.org',
@@ -101,6 +105,7 @@ export default async function Blog({ searchParams }) {
       <Layout>
         <BlogPage
           allPosts={allPosts}
+          allBlogPost={allBlogPost}
           tags={tags}
           socialMediaLinks={socialMediaLinks}
           featuredBlog={featuredBlog}
