@@ -7,9 +7,11 @@ const HeaderSection = styled.div`
   flex-direction: column;
   gap: var(--space-24);
   max-width: 600px;
+  @media only screen and (max-width: 991px) {
+    gap: var(--space-20);
+  }
   @media only screen and (max-width: 449px) {
     max-width: unset;
-    gap: var(--space-32);
   }
 `;
 
@@ -18,7 +20,7 @@ const TitleSection = styled.div`
   gap: var(--space-12);
   flex-direction: column;
   @media only screen and (max-width: 449px) {
-    gap: var(--space-20);
+    gap: var(--space-16);
   }
 `;
 
