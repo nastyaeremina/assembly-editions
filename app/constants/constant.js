@@ -249,6 +249,7 @@ export const ClientAppInfoMessage = 'Client-facing apps are visible to clients a
 export const PlanList = ['Starter', 'Professional', 'Advanced', 'Supersonic'];
 
 export const WEBSITE_CONTAINER_WIDTH = 1272;
+export const DESKTOP_BREAKPOINT = 991;
 
 export const HeroTypes = {
   LEFT: 'Hero - Left',

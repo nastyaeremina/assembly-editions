@@ -1,5 +1,5 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react';
-import SubHeroComponent from '../Hero/subHero';
+import SectionHeader from '../sectionHeader/sectionHeader';
 import { Container } from '../../styles/commonStyles';
 import {
   BgImage,
@@ -16,7 +16,15 @@ import {
   ToolsTab
 } from './styles';
 
-export default function TabsHorizontal({ heroSectionData, featuresList }) {
+export default function TabsHorizontal({
+  title,
+  description,
+  primaryButtonText,
+  secondaryButtonText,
+  primaryButtonLink,
+  secondaryButtonLink,
+  featuresList
+}) {
   const [selectedTab, setSelectedTab] = useState(0);
   const [currentHeight, setCurrentHeight] = useState();
   const mainSectionRef = useRef(null);
@@ -73,7 +81,14 @@ export default function TabsHorizontal({ heroSectionData, featuresList }) {
   return (
     <Container>
       <TabsHorizontalSection>
-        <SubHeroComponent data={heroSectionData} hasFullWidth />
+        <SectionHeader
+          title={title}
+          description={description}
+          primaryButtonLink={primaryButtonLink}
+          primaryButtonText={primaryButtonText}
+          secondaryButtonLink={secondaryButtonLink}
+          secondaryButtonText={secondaryButtonText}
+        />
         <DesktopImageSection>{renderMainSection}</DesktopImageSection>
         <TabsSection>
           {featuresList.map((item, index) => (

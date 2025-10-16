@@ -28,14 +28,12 @@ export default function TabsComponent({ type, content }) {
         return (
           <FeatureSection
             featuresList={content?.tabsCollection?.items}
-            heroSectionData={{
-              heroTitle: content?.title,
-              heroDescription: content?.description,
-              primaryButtonText: content?.primaryButtonText,
-              secondaryButtonText: content?.secondaryButtonText,
-              primaryButtonLink: content?.primaryButtonLink,
-              secondaryButtonLink: content?.secondaryButtonLink
-            }}
+            title={content?.title}
+            description={content?.description}
+            primaryButtonText={content?.primaryButtonText}
+            secondaryButtonText={content?.secondaryButtonText}
+            primaryButtonLink={content?.primaryButtonLink}
+            secondaryButtonLink={content?.secondaryButtonLink}
             isStandardPage={true}
           />
         );
@@ -58,14 +56,12 @@ export default function TabsComponent({ type, content }) {
         return (
           <TabsHorizontal
             featuresList={content?.tabsCollection?.items}
-            heroSectionData={{
-              heroTitle: content?.title,
-              heroDescription: content?.description,
-              primaryButtonText: content?.primaryButtonText,
-              secondaryButtonText: content?.secondaryButtonText,
-              primaryButtonLink: content?.primaryButtonLink,
-              secondaryButtonLink: content?.secondaryButtonLink
-            }}
+            title={content?.title}
+            description={content?.description}
+            primaryButtonText={content?.primaryButtonText}
+            secondaryButtonText={content?.secondaryButtonText}
+            primaryButtonLink={content?.primaryButtonLink}
+            secondaryButtonLink={content?.secondaryButtonLink}
           />
         );
 
@@ -73,14 +69,12 @@ export default function TabsComponent({ type, content }) {
         return (
           <TabsVertical
             featuresList={content?.tabsCollection?.items}
-            heroSectionData={{
-              heroTitle: content?.title,
-              heroDescription: content?.description,
-              primaryButtonText: content?.primaryButtonText,
-              secondaryButtonText: content?.secondaryButtonText,
-              primaryButtonLink: content?.primaryButtonLink,
-              secondaryButtonLink: content?.secondaryButtonLink
-            }}
+            title={content?.title}
+            description={content?.description}
+            primaryButtonText={content?.primaryButtonText}
+            secondaryButtonText={content?.secondaryButtonText}
+            primaryButtonLink={content?.primaryButtonLink}
+            secondaryButtonLink={content?.secondaryButtonLink}
           />
         );
       case TAB_SECTION_TYPE.NEW:
