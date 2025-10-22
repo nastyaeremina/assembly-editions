@@ -191,6 +191,22 @@ export default function RichTextDetail({ assets = [], data, shouldHeadingCopy = 
               return null;
           }
         },
+        [BLOCKS.TABLE]: (node, children) => {
+          return (
+            <div className='table-wrapper'>
+              <table>{children}</table>
+            </div>
+          );
+        },
+        [BLOCKS.TABLE_HEADER_CELL]: (node, children) => {
+          return <th>{children}</th>;
+        },
+        [BLOCKS.TABLE_CELL]: (node, children) => {
+          return <td>{children}</td>;
+        },
+        [BLOCKS.TABLE_ROW]: (node, children) => {
+          return <tr>{children}</tr>;
+        },
         [BLOCKS.EMBEDDED_ASSET]: (node) => {
           const assetId = node?.data?.target?.sys?.id;
           const asset = assetData.find((item) => item?.sys?.id === assetId);
