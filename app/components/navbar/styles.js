@@ -64,11 +64,10 @@ const NavMenu = styled.div`
   justify-content: space-between;
   width: 100%;
   @media only screen and (max-width: 1080px) {
-    padding: var(--space-16) 0;
+    padding: var(--space-16) 0 0;
     flex-direction: column;
     background: var(--bg-pages);
     animation: 0.2s ease-out 0s 1 slideInFromTop;
-    overflow-y: auto;
   }
   @keyframes slideInFromTop {
     0% {
@@ -113,6 +112,13 @@ const NavigationBlock = styled.ul`
     width: 100%;
     align-items: flex-start;
     margin: 0;
+    height: calc(100dvh - 273px);
+    overflow-y: auto;
+    padding-bottom: var(--space-16);
+  }
+
+  @media only screen and (max-width: 449px) {
+    height: calc(100dvh - 257px);
   }
 
   .SpanLink:hover,
@@ -417,12 +423,11 @@ const OverLayBlock = styled.div`
     flex-direction: column;
     justify-content: space-between;
     background-color: var(--off-white-300);
-    opacity: 0;
+    transition: height 0.3s ease-in-out;
     ${(props) =>
       props.isOpenModal &&
       css`
         height: calc(100dvh - ${(props) => props.top}px);
-        opacity: 1;
       `}
   }
 `;

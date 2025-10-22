@@ -44,7 +44,6 @@ import ResponsiveNavbar from './responsiveNavbar';
 import SVGComponent from '../../../public/images/svg/SVGComponent';
 import ButtonV2Component from '../button/buttonV2/buttonV2';
 import HighlightSection from './highlighSection';
-import { BottomButtonSection } from './styles';
 
 export default function NavbarComponent({ isAuthenticated: userAuth, topbarContent, navbarData, externalLinks = {} }) {
   const mobile = useMobileDevice();
@@ -320,19 +319,6 @@ export default function NavbarComponent({ isAuthenticated: userAuth, topbarConte
 
             <OverLayBlock top={topbarHeight + navbarHeight} isOpenModal={isOpenMobileMenu}>
               {renderMobileNavigation}
-              <BottomButtonSection isOpenModal={isOpenMobileMenu}>
-                <ButtonV2Component
-                  title={'Start free trial'}
-                  href={externalLinks?.[EXTERNAL_LINK_KEYS.OnboardingLink] || '#'}
-                  isWidth
-                />
-                <ButtonV2Component
-                  title={'Log in'}
-                  href={externalLinks?.[EXTERNAL_LINK_KEYS.DashboardLink] || '#'}
-                  isWidth
-                  variant={ButtonVariant.SECONDARY}
-                />
-              </BottomButtonSection>
             </OverLayBlock>
             <NavigationMainDiv>{renderNavigation}</NavigationMainDiv>
 

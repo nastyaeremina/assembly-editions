@@ -10,13 +10,16 @@ import {
   SpanMobileLink,
   ResponsiveSpanLink,
   Dropdown,
-  DropdownContainer
+  DropdownContainer,
+  BottomButtonSection
 } from './styles';
 import ResponsiveSubsection from './responsiveSubsection';
 import { Container } from '../../styles/commonStyles';
 import SVGComponent from '../../../public/images/svg/SVGComponent';
+import ButtonV2Component from '../button/buttonV2/buttonV2';
+import { EXTERNAL_LINK_KEYS } from '../../constants/constant';
 
-function ResponsiveNavbar({ mobile, navbarData, setOpenDropdownIndex, openDropdownIndex }) {
+function ResponsiveNavbar({ mobile, navbarData, setOpenDropdownIndex, openDropdownIndex, externalLinks = {} }) {
   const router = useRouter();
 
   const calculateDropdownHeight = useCallback((subsections) => {
@@ -91,6 +94,19 @@ function ResponsiveNavbar({ mobile, navbarData, setOpenDropdownIndex, openDropdo
             </SpanMobileLink>
           </NavigationBlock>
         </Container>
+        <BottomButtonSection>
+          <ButtonV2Component
+            title={'Start free trial'}
+            href={externalLinks?.[EXTERNAL_LINK_KEYS.OnboardingLink] || '#'}
+            isWidth
+          />
+          <ButtonV2Component
+            title={'Log in'}
+            href={externalLinks?.[EXTERNAL_LINK_KEYS.DashboardLink] || '#'}
+            isWidth
+            variant='secondary'
+          />
+        </BottomButtonSection>
       </NavMenu>
     </>
   );
