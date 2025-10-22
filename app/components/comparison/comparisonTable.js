@@ -60,20 +60,18 @@ export default function ComparisonTableView({ details, competitorLogo }) {
       const isTitleSectionHide = isEmpty(item.header) && isEmpty(item.description);
 
       return (
-        <>
-          <TableMainDiv>
-            <LeftSection>
-              {!isEmpty(item.title) && <Tag>{item.title}</Tag>}
-              {!isTitleSectionHide && (
-                <TitleSection>
-                  {!isEmpty(item.header) && <h3>{item.header}</h3>}
-                  {!isEmpty(item.description) && <p>{item.description}</p>}
-                </TitleSection>
-              )}
-            </LeftSection>
-            <div className='table'>{documentToReactComponents(item.featureDetail?.json, options)}</div>
-          </TableMainDiv>
-        </>
+        <TableMainDiv>
+          <LeftSection>
+            {!isEmpty(item.title) && <Tag>{item.title}</Tag>}
+            {!isTitleSectionHide && (
+              <TitleSection>
+                {!isEmpty(item.header) && <h3>{item.header}</h3>}
+                {!isEmpty(item.description) && <p>{item.description}</p>}
+              </TitleSection>
+            )}
+          </LeftSection>
+          <div className='table'>{documentToReactComponents(item.featureDetail?.json, options)}</div>
+        </TableMainDiv>
       );
     });
   }, [details, options]);

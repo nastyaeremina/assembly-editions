@@ -5,15 +5,13 @@ import { Caption, HeroSection, PageTitle } from './style';
 
 export default function GuideHeroComponent({ title, description }) {
   return (
-    <>
-      <HeroSection>
-        {!isEmpty(title) && <PageTitle>{title}</PageTitle>}
-        {!isEmpty(description) && (
-          <Caption>
-            <ReactMarkdown>{description}</ReactMarkdown>
-          </Caption>
-        )}
-      </HeroSection>
-    </>
+    <HeroSection>
+      {!isEmpty(title) && <PageTitle>{title}</PageTitle>}
+      {!isEmpty(description) && (
+        <Caption>
+          <ReactMarkdown>{description}</ReactMarkdown>
+        </Caption>
+      )}
+    </HeroSection>
   );
 }

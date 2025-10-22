@@ -5,10 +5,10 @@ const FooterSection = styled.div`
   background-color: var(--off-white-300);
   padding: var(--space-64) 0;
   @media only screen and (max-width: 991px) {
-    padding: var(--space-40) 0;
+    padding: var(--space-48) 0;
   }
   @media only screen and (max-width: 749px) {
-    padding: var(--space-48) 0;
+    padding: var(--space-40) 0;
   }
 `;
 

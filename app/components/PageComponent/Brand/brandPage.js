@@ -70,7 +70,7 @@ export default function BrandPage() {
   return (
     <>
       <BrandMain>
-        <div className='standard-page'>
+        <div className='component-wrapper'>
           <StandardHero
             type={HeroTypes.CENTER}
             isDownload={true}

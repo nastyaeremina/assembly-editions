@@ -4,16 +4,11 @@ import { body_regular, button_regular, h2_semibold, h3_semibold, h4_regular } fr
 const FaqSection = styled.div`
   padding: var(--space-64) 0;
   @media only screen and (max-width: 991px) {
-    padding: var(--space-40) 0;
-  }
-  @media only screen and (max-width: 749px) {
     padding: var(--space-48) 0;
   }
-  ${(props) =>
-    props.isStandardPage &&
-    css`
-      padding: 0px 0 var(--space-64);
-    `}
+  @media only screen and (max-width: 749px) {
+    padding: var(--space-40) 0;
+  }
   li {
     padding-bottom: 0;
     :last-child {
@@ -28,20 +23,6 @@ const FaqSection = styled.div`
         padding: var(--space-48) 0;
       }
     `}
-  @media only screen and (max-width: 991px) {
-    ${(props) =>
-      props.isStandardPage &&
-      css`
-        padding: 0px 0 var(--space-40);
-      `}
-  }
-  @media only screen and (max-width: 449px) {
-    ${(props) =>
-      props.isStandardPage &&
-      css`
-        padding: 0px 0 var(--space-48);
-      `}
-  }
 `;
 const FaqTitle = styled.div`
   margin-bottom: var(--space-48);
@@ -93,7 +74,7 @@ const FaqTitle = styled.div`
     `}
 
   @media only screen and (max-width: 449px) {
-    margin-bottom: var(--space-24);
+    margin-bottom: var(--space-12);
   }
 `;
 

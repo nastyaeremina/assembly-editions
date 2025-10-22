@@ -3,15 +3,17 @@ import { button_regular, h1_regular, h3_semibold, tag, label_regular, h2_semibol
 
 const FirstBlog = styled.div`
   width: 100%;
-  padding: var(--space-80) 0;
+  padding: var(--space-64) 0;
   h1 {
     ${h1_regular}
     color: var(--title);
     margin: 0;
   }
+  @media only screen and (max-width: 991px) {
+    padding: var(--space-48) 0;
+  }
   @media only screen and (max-width: 650px) {
-    padding-top: var(--space-60);
-    padding-bottom: var(--space-32);
+    padding: var(--space-48) 0 var(--space-40);
   }
 `;
 const Top = styled.div`
@@ -45,7 +47,7 @@ const Text = styled.div`
 `;
 
 const BlogCardDiv = styled.div`
-  padding-top: var(--space-40);
+  padding-top: var(--space-48);
   position: relative;
   a {
     display: flex;
@@ -53,13 +55,14 @@ const BlogCardDiv = styled.div`
     gap: var(--space-40);
   }
   @media only screen and (max-width: 991px) {
+    padding-top: var(--space-40);
     a {
       flex-direction: column;
       align-items: flex-start;
     }
   }
   @media only screen and (max-width: 449px) {
-    padding-top: var(--space-24);
+    padding-top: var(--space-32);
     a {
       gap: var(--space-24);
     }
@@ -109,9 +112,12 @@ const Last = styled.div`
 `;
 
 const BlogListDiv = styled.div`
-  padding: var(--space-80) 0 var(--space-120);
+  padding: var(--space-80) 0 var(--space-128);
+  @media only screen and (max-width: 991px) {
+    padding: var(--space-48) 0 var(--space-96);
+  }
   @media only screen and (max-width: 650px) {
-    padding-top: var(--space-60);
+    padding: var(--space-32) 0 var(--space-72);
   }
 `;
 
@@ -176,9 +182,9 @@ const TableHeading = styled.div`
 const Details = styled.div`
   margin: auto;
   width: 100%;
-  padding-top: var(--space-80);
-  @media only screen and (max-width: 449px) {
-    padding-top: var(--space-24);
+  padding-top: var(--space-64);
+  @media only screen and (max-width: 991px) {
+    padding-top: var(--space-48);
   }
 `;
 
@@ -192,6 +198,13 @@ const OverLayDiv = styled.div`
 `;
 
 const MainContent = styled.div`
+  margin-bottom: var(--space-64);
+  @media only screen and (max-width: 991px) {
+    margin-bottom: var(--space-48);
+  }
+  @media only screen and (max-width: 650px) {
+    margin-bottom: var(--space-32);
+  }
   .without-toc {
     max-width: 1224px;
   }
@@ -238,19 +251,18 @@ const BlogContent = styled.div`
   gap: var(--space-120);
   width: 100%;
   margin: 0 auto;
-  margin-bottom: var(--space-120);
+  margin-bottom: var(--space-128);
   &.without-toc {
     max-width: 728px;
     gap: var(--space-38);
   }
   @media only screen and (max-width: 991px) {
-    margin-bottom: var(--space-64);
-  }
-  @media only screen and (max-width: 768px) {
+    margin-bottom: var(--space-96);
     flex-direction: column;
   }
   @media only screen and (max-width: 449px) {
-    gap: 28px;
+    gap: var(--space-24);
+    margin-bottom: var(--space-72);
   }
 `;
 
@@ -382,7 +394,10 @@ const LoadMoreButton = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  margin: var(--space-80) auto 0;
+  margin: var(--space-64) auto 0;
+  @media only screen and (max-width: 991px) {
+    margin: var(--space-48) auto 0;
+  }
   @media only screen and (max-width: 650px) {
     margin: var(--space-40) auto 0;
     width: 100%;
@@ -390,10 +405,12 @@ const LoadMoreButton = styled.div`
 `;
 
 const AuthorMainHeroSection = styled.div`
-  padding-top: var(--space-80);
-  padding-bottom: var(--space-120);
+  padding: var(--space-64) 0;
+  @media only screen and (max-width: 991px) {
+    padding: var(--space-48) 0;
+  }
   @media only screen and (max-width: 449px) {
-    padding-top: var(--space-40);
+    padding: var(--space-48) 0 var(--space-40);
   }
 `;
 
@@ -461,7 +478,13 @@ const SocialMediaDiv = styled.div`
 `;
 
 const ListDiv = styled.div`
-  padding-bottom: var(--space-120);
+  padding: var(--space-128) 0;
+  @media only screen and (max-width: 991px) {
+    padding: var(--space-96) 0;
+  }
+  @media only screen and (max-width: 650px) {
+    padding: var(--space-72) 0;
+  }
 `;
 
 const Divider = styled.div`

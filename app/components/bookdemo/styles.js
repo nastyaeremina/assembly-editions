@@ -1,5 +1,5 @@
 import styled, { css } from 'styled-components';
-import { body_regular, button_regular, h3_regular, h4_semibold, label_regular } from '../../styles/typography';
+import { body_regular, button_regular, h3_semibold, h4_semibold, label_regular } from '../../styles/typography';
 
 const MainSection = styled.div`
   max-width: 480px;
@@ -18,11 +18,15 @@ const FormSection = styled.form`
   gap: var(--space-48);
   @media only screen and (max-width: 991px) {
     max-width: 100%;
+    gap: var(--space-40);
+  }
+  @media only screen and (max-width: 449px) {
+    gap: var(--space-32);
   }
 `;
 const FormTxt = styled.div`
   h3 {
-    ${h3_regular};
+    ${h3_semibold};
     color: var(--title);
     margin: 0;
   }
@@ -30,7 +34,7 @@ const FormTxt = styled.div`
     ${body_regular};
     color: var(--title);
     margin: 0;
-    padding-top: var(--space-16);
+    padding-top: var(--space-12);
   }
 `;
 const FormDetail = styled.div`
@@ -337,9 +341,15 @@ const ItemDiv = styled.div`
 const Details = styled.div`
   display: flex;
   flex-direction: column;
-  gap: var(--space-40);
+  gap: var(--space-48);
   height: 100%;
   width: 100%;
+  @media only screen and (max-width: 991px) {
+    gap: var(--space-40);
+  }
+  @media only screen and (max-width: 449px) {
+    gap: var(--space-32);
+  }
 `;
 
 const SuccessIcon = styled.div`

@@ -1,22 +1,19 @@
 'use client';
 import { useMemo } from 'react';
-import ReactMarkdown from 'react-markdown';
 import { isEmpty } from '../../../helpers/helpers';
 import { Container } from '../../../styles/commonStyles';
-import ButtonGroup from '../../ButtonGroup/buttonGroup';
 import {
   ModernSection,
   ModernWrap,
-  HeadView,
   BoxWrap,
   BoxView,
   DetailView,
-  Body,
   Title,
   Description,
   TitleWrapper,
   Number
 } from './styles';
+import SectionHeader from '../../sectionHeader/sectionHeader';
 
 /**
  * Modern Component
@@ -34,7 +31,6 @@ import {
 export default function ModernV2({
   data,
   title,
-  isStandardPage,
   description,
   primaryButtonText,
   primaryButtonLink,
@@ -71,27 +67,17 @@ export default function ModernV2({
 
   return (
     <>
-      <ModernSection isStandardPage={isStandardPage}>
+      <ModernSection>
         <Container>
           <ModernWrap>
-            <HeadView>
-              <h2>
-                {/* Render the title with special characters handled */}
-                <div dangerouslySetInnerHTML={{ __html: finalTitle }} />
-              </h2>
-              {!isEmpty(description) && (
-                <Body>
-                  <ReactMarkdown>{description}</ReactMarkdown>
-                </Body>
-              )}
-              <ButtonGroup
-                primaryButtonLink={primaryButtonLink}
-                primaryButtonText={primaryButtonText}
-                secondaryButtonLink={secondaryButtonLink}
-                secondaryButtonText={secondaryButtonText}
-                className='button-group'
-              />
-            </HeadView>
+            <SectionHeader
+              title={finalTitle}
+              description={description}
+              primaryButtonText={primaryButtonText}
+              primaryButtonLink={primaryButtonLink}
+              secondaryButtonText={secondaryButtonText}
+              secondaryButtonLink={secondaryButtonLink}
+            />
             <BoxWrap>{BoxListView}</BoxWrap>
           </ModernWrap>
         </Container>

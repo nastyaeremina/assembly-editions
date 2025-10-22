@@ -89,7 +89,13 @@ const PopularCaption = styled.p`
 const ArticleCardSection = styled.div`
   display: flex;
   flex-direction: column;
-  gap: var(--space-40);
+  gap: var(--space-48);
+  @media only screen and (max-width: 991px) {
+    gap: var(--space-40);
+  }
+  @media only screen and (max-width: 449px) {
+    gap: var(--space-32);
+  }
 `;
 
 const CenterImage = styled.div`

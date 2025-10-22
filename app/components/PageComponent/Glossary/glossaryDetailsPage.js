@@ -6,7 +6,6 @@ import { Container, Content } from '../../../styles/commonStyles';
 import {
   BottomSection,
   DetailHeroSection,
-  GlossaryContainer,
   GlossaryDetailTitle,
   ImageSection,
   PageBack
@@ -21,7 +20,7 @@ export default function GlossaryDetailsPage({ detail, externalLinks = {} }) {
 
   return (
     <Container>
-      <GlossaryContainer>
+      <div className='component-wrapper'>
         <DetailHeroSection>
           <PageBack>
             <Breadcrumbs breadcrumbs={BreadcrumbItem} currentLabel={detail?.name} />
@@ -47,7 +46,7 @@ export default function GlossaryDetailsPage({ detail, externalLinks = {} }) {
             </p>
           </Content>
         </BottomSection>
-      </GlossaryContainer>
+      </div>
     </Container>
   );
 }

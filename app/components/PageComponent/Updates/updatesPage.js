@@ -46,41 +46,39 @@ export default function UpdatesPage({ allPosts, externalLinks = {}, updatesCTA =
   }, [allPosts, totalHeight]);
 
   return (
-    <>
-      <UpadtePage>
-        <Container>
-          <UpdateSubscribe>
-            <h1>Updates</h1>
-            <p>
-              Trusted by consulting, accounting, real estate, law, marketing, and tech firms with 1M+ clients and
-              counting.
-            </p>
-            <ButtonV2Component
-              title={'Subscribe to updates'}
-              href={externalLinks?.[EXTERNAL_LINK_KEYS.SubscribeLink] || '#'}
-            />
-          </UpdateSubscribe>
-        </Container>
-        <Container>
-          <PostContent>
-            {renderPosts}
-            <Pagination>
-              <ButtonV2Component title={'Next page'} variant={ButtonVariant.SECONDARY} href={`/updates/page/2`} />
-            </Pagination>
-          </PostContent>
-        </Container>
-        {!isEmpty(updatesCTA) && (
-          <NewCTA
-            title={updatesCTA.title}
-            description={updatesCTA.description}
-            primaryButtonLink={updatesCTA.primaryButtonLink}
-            primaryButtonText={updatesCTA.primaryButtonText}
-            secondaryButtonLink={updatesCTA.secondaryButtonLink}
-            secondaryButtonText={updatesCTA.secondaryButtonText}
-            banner={updatesCTA.banner?.url}
+    <div className='component-wrapper'>
+      <Container>
+        <UpdateSubscribe>
+          <h1>Updates</h1>
+          <p>
+            Trusted by consulting, accounting, real estate, law, marketing, and tech firms with 1M+ clients and
+            counting.
+          </p>
+          <ButtonV2Component
+            title={'Subscribe to updates'}
+            href={externalLinks?.[EXTERNAL_LINK_KEYS.SubscribeLink] || '#'}
           />
-        )}
-      </UpadtePage>
-    </>
+        </UpdateSubscribe>
+      </Container>
+      <Container>
+        <PostContent>
+          {renderPosts}
+          <Pagination>
+            <ButtonV2Component title={'Next page'} variant={ButtonVariant.SECONDARY} href={`/updates/page/2`} />
+          </Pagination>
+        </PostContent>
+      </Container>
+      {!isEmpty(updatesCTA) && (
+        <NewCTA
+          title={updatesCTA.title}
+          description={updatesCTA.description}
+          primaryButtonLink={updatesCTA.primaryButtonLink}
+          primaryButtonText={updatesCTA.primaryButtonText}
+          secondaryButtonLink={updatesCTA.secondaryButtonLink}
+          secondaryButtonText={updatesCTA.secondaryButtonText}
+          banner={updatesCTA.banner?.url}
+        />
+      )}
+    </div>
   );
 }

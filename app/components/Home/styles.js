@@ -5,25 +5,14 @@ import { button_regular, button_semibold } from '../../styles/typography';
 
 const HeroSection = styled.div`
   width: 100%;
-  padding: var(--space-80) 0 0px 0;
+  padding: 0 0 var(--space-64);
   overflow: hidden;
   @media only screen and (max-width: 991px) {
-    padding: var(--space-64) 0 var(--space-20) 0;
+    padding: 0 0 var(--space-48);
   }
   @media only screen and (max-width: 449px) {
-    padding: var(--space-64) 0 var(--space-24) 0;
+    padding: 0 0 var(--space-40);
   }
-  ${(props) =>
-    props.isStandardPage &&
-    css`
-      padding: 0 0 var(--space-24);
-      @media only screen and (max-width: 991px) {
-        padding: 0 0 var(--space-20);
-      }
-      @media only screen and (max-width: 449px) {
-        padding: 0 0 var(--space-24);
-      }
-    `}
 
   .button-group {
     align-items: center;
@@ -37,22 +26,25 @@ const HeroSection = styled.div`
     width: auto;
     height: auto;
     max-height: 48px;
-    margin: 0 0 var(--space-32);
+    margin: 0 0 var(--space-24);
     display: flex;
     justify-content: center;
     align-items: center;
     ${(props) =>
       props.variant === HeroTypes.CENTER &&
       css`
-        margin: 0 auto var(--space-32);
+        margin: 0 auto var(--space-24);
         display: flex;
         justify-content: center;
         align-items: center;
       `}
+    @media only screen and (max-width: 991px) {
+      margin: 0 auto var(--space-20);
+    }
     @media screen and (max-width: 449px) {
       align-items: flex-start;
-      margin: 0 0 var(--space-32);
       justify-content: flex-start;
+      margin: 0 0 var(--space-20);
     }
   }
 `;
@@ -272,25 +264,26 @@ const HeroBtnBlock = styled.div`
 const MainImage = styled.div`
   width: 100%;
   overflow: hidden;
-  margin-top: var(--space-80);
+  margin-top: var(--space-48);
   display: flex;
-  border-radius: var(--radius-8);
+  border-radius: var(--radius-16);
   .heromain-image {
-    border-radius: var(--radius-8);
+    border-radius: var(--radius-16);
     width: 100%;
     height: auto;
     border: 1px solid var(--border-secondary);
   }
   @media only screen and (max-width: 991px) {
-    margin-top: var(--space-64);
+    margin-top: var(--space-40);
     .heromain-image {
       margin-bottom: 0;
     }
   }
   @media only screen and (max-width: 449px) {
-    border-radius: var(--radius-4);
+    border-radius: var(--radius-12);
+    margin-top: var(--space-32);
     .heromain-image {
-      border-radius: var(--radius-4);
+      border-radius: var(--radius-12);
     }
   }
 `;
@@ -306,9 +299,12 @@ const G2Section = styled.div`
   border-radius: var(--radius-8);
   background-color: var(--off-white-300);
   width: max-content;
+  @media only screen and (max-width: 991px) {
+    margin-bottom: var(--space-20);
+  }
   @media only screen and (max-width: 449px) {
     margin: 0;
-    margin-bottom: var(--space-24);
+    margin-bottom: var(--space-20);
   }
   ${(props) =>
     props.variant === HeroTypes.LEFT &&

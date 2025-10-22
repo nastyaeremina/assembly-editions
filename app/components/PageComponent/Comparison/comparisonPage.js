@@ -6,7 +6,7 @@ import { isEmpty } from '../../../helpers/helpers';
 import Cardsection from '../../comparison/cardsection/cardsection';
 import StandardHero from '../../standardHero/standardHero';
 import { HeroTypes } from '../../../constants/constant';
-import { DetailSection, MainWrap } from './styles';
+import { DetailSection } from './styles';
 import NewCTA from '../../cta/newCTA';
 
 export default function ComparisonPage({ featuredCompetitorList, details }) {
@@ -27,7 +27,7 @@ export default function ComparisonPage({ featuredCompetitorList, details }) {
 
   return (
     <>
-      <MainWrap>
+      <div className='component-wrapper'>
         <StandardHero
           type={HeroTypes.CENTER}
           data={{
@@ -49,7 +49,7 @@ export default function ComparisonPage({ featuredCompetitorList, details }) {
             banner={details.ctaSection.banner?.url}
           />
         )}
-      </MainWrap>
+      </div>
     </>
   );
 }

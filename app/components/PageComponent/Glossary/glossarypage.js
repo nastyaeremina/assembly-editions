@@ -8,13 +8,11 @@ import { isEmpty } from '../../../helpers/helpers';
 
 export default function GlossaryPage({ data, heroSectionDetail }) {
   return (
-    <>
-      <div className='standard-page'>
-        {!isEmpty(heroSectionDetail) && (
-          <StandardHero type={heroSectionDetail.type ?? HeroTypes.CENTER} data={heroSectionDetail} />
-        )}
-        <GlossarySearch data={data} />
-      </div>
-    </>
+    <div className='component-wrapper'>
+      {!isEmpty(heroSectionDetail) && (
+        <StandardHero type={heroSectionDetail.type ?? HeroTypes.CENTER} data={heroSectionDetail} />
+      )}
+      <GlossarySearch data={data} />
+    </div>
   );
 }

@@ -18,7 +18,7 @@ const TableOfContentSection = styled.div`
   width: 100%;
   height: 100%;
   position: sticky;
-  top: var(--space-80);
+  top: var(--space-64);
   max-height: calc(100dvh - 160px);
   overflow: auto;
   &::-webkit-scrollbar {

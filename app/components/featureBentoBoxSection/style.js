@@ -5,12 +5,14 @@ const MainSection = styled.div`
   padding: var(--space-64) 0;
   display: flex;
   flex-direction: column;
-  gap: var(--space-64);
+  gap: var(--space-48);
   @media only screen and (max-width: 991px) {
-    padding: var(--space-40) 0;
+    padding: var(--space-48) 0;
+    gap: var(--space-40);
   }
   @media only screen and (max-width: 449px) {
-    padding: var(--space-48) 0;
+    padding: var(--space-40) 0;
+    gap: var(--space-32);
   }
 `;
 

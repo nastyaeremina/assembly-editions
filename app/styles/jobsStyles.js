@@ -10,29 +10,13 @@ import {
   tag
 } from './typography';
 
-const MainWrap = styled.div`
-  background: var(--off-white-300);
-  padding: var(--space-80) 0;
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-80);
-  @media only screen and (max-width: 991px) {
-    padding: var(--space-64) 0;
-    gap: var(--space-64);
-  }
-  @media only screen and (max-width: 449px) {
-    padding: var(--space-64) 0 var(--space-48);
-    gap: var(--space-48);
-  }
-`;
-
 const CareerSection = styled.div`
   padding: var(--space-64) 0;
   @media only screen and (max-width: 991px) {
-    padding: var(--space-40) 0;
+    padding: var(--space-48) 0;
   }
   @media only screen and (max-width: 749px) {
-    padding: var(--space-48) 0;
+    padding: var(--space-40) 0;
   }
 `;
 const CareerBlock = styled.div``;
@@ -40,9 +24,12 @@ const RoleBlock = styled.div`
   width: 100%;
   display: flex;
   flex-direction: column;
-  gap: var(--space-64);
+  gap: var(--space-48);
   align-items: flex-start;
-  @media only screen and (max-width: 749px) {
+  @media only screen and (max-width: 991px) {
+    gap: var(--space-40);
+  }
+  @media only screen and (max-width: 449px) {
     gap: var(--space-32);
   }
 `;
@@ -52,7 +39,7 @@ const RoleWrap = styled.div`
   width: 100%;
   display: flex;
   flex-direction: column;
-  gap: var(--space-32);
+  gap: var(--space-12);
   align-items: flex-start;
   h2 {
     ${h2_semibold};
@@ -63,6 +50,9 @@ const RoleWrap = styled.div`
     ${body_regular};
     color: var(--title);
     margin: 0;
+  }
+  @media only screen and (max-width: 449px) {
+    gap: var(--space-16);
   }
 `;
 const JobDetailWrap = styled.div`
@@ -157,27 +147,17 @@ const ImgWrap = styled.div`
   border-radius: var(--radius-8);
 `;
 
-const JObMain = styled.div`
-  padding: var(--space-80) 0;
-  @media only screen and (max-width: 991px) {
-    padding: var(--space-64) 0;
-  }
-  @media only screen and (max-width: 449px) {
-    padding: var(--space-48) 0;
-  }
-`;
-
 const JobDetail = styled.div`
   display: flex;
   gap: var(--space-96);
   padding: var(--space-64) 0;
   @media only screen and (max-width: 991px) {
-    padding: var(--space-40) 0;
+    padding: var(--space-48) 0;
     gap: var(--space-48);
     flex-direction: column;
   }
   @media only screen and (max-width: 767px) {
-    padding: var(--space-48) 0;
+    padding: var(--space-40) 0;
   }
 `;
 const DetailLeft = styled.div`
@@ -288,14 +268,15 @@ const NewHeroSection = styled.div`
   display: flex;
   align-items: flex-start;
   flex-direction: column;
-  gap: var(--space-64);
-  padding-bottom: var(--space-24);
+  gap: var(--space-48);
+  padding-bottom: var(--space-64);
   @media only screen and (max-width: 991px) and (min-width: 768px) {
-    padding-bottom: var(--space-20);
+    padding-bottom: var(--space-48);
+    gap: var(--space-40);
   }
   @media only screen and (max-width: 449px) {
-    gap: var(--space-48);
-    padding-top: var(--space-16);
+    gap: var(--space-32);
+    padding-bottom: var(--space-40);
   }
 `;
 
@@ -311,7 +292,10 @@ const HeaderSeciton = styled.div`
   display: flex;
   align-items: flex-start;
   flex-direction: column;
-  gap: var(--space-32);
+  gap: var(--space-24);
+  @media only screen and (max-width: 991px) {
+    gap: var(--space-20);
+  }
 `;
 
 const ImageDiv = styled.div`
@@ -483,7 +467,7 @@ const ImgBorder = styled.div`
 const TabList = styled.div`
   display: flex;
   gap: var(--space-8);
-  padding: var(--space-3) 0;
+  padding: var(--space-3);
   @media only screen and (max-width: 991px) {
     display: none;
   }
@@ -542,13 +526,14 @@ const RegionView = styled.div`
 const TeamBlock = styled.div`
   display: flex;
   flex-direction: column;
-  gap: var(--space-64);
+  gap: var(--space-48);
   padding: var(--space-64) 0;
   @media only screen and (max-width: 991px) {
-    padding: var(--space-40) 0;
+    padding: var(--space-48) 0;
+    gap: var(--space-40);
   }
   @media only screen and (max-width: 749px) {
-    padding: var(--space-48) 0;
+    padding: var(--space-40) 0;
     gap: var(--space-32);
   }
 `;
@@ -685,11 +670,8 @@ const Text = styled.p`
 const ImageSliderSection = styled.div`
   display: flex;
   flex-direction: column;
-  gap: var(--space-40);
+  gap: var(--space-24);
   overflow: hidden;
-  @media only screen and (max-width: 991px) {
-    gap: var(--space-24);
-  }
 `;
 const SmallImage = styled.button`
   display: flex;
@@ -803,8 +785,6 @@ export {
   LeftRow,
   RightRow,
   ImgWrap,
-  MainWrap,
-  JObMain,
   JobDetail,
   DetailLeft,
   DetailWrap,

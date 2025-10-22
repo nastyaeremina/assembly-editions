@@ -5,18 +5,21 @@ import { body_regular, h2_semibold } from '../../styles/typography';
 const AppDetail = styled.div`
   display: flex;
   flex-direction: column;
-  gap: var(--space-80);
+  gap: var(--space-64);
   @media only screen and (max-width: 991px) {
-    gap: var(--space-64);
+    gap: var(--space-48);
   }
   @media only screen and (max-width: 449px) {
-    gap: var(--space-48);
+    gap: var(--space-32);
   }
 `;
 const DetailTitleSection = styled.div`
   display: flex;
   flex-direction: column;
-  gap: var(--space-16);
+  gap: var(--space-20);
+  @media only screen and (max-width: 449px) {
+    gap: var(--space-16);
+  }
 `;
 const AppLogo = styled.div`
   display: flex;
@@ -33,7 +36,7 @@ const AppLogo = styled.div`
 `;
 const Caption = styled.p`
   ${body_regular};
-  color: var(--text-secondary);
+  color: var(--title);
   margin: 0;
   max-width: 720px;
   width: 100%;
@@ -59,10 +62,10 @@ const DetailContent = styled.div`
   position: relative;
   @media only screen and (max-width: 991px) {
     flex-direction: column;
-    padding: var(--space-40) 0;
+    padding: var(--space-48) 0;
   }
   @media only screen and (max-width: 449px) {
-    padding: var(--space-48) 0;
+    padding: var(--space-40) 0;
   }
 `;
 
@@ -94,7 +97,7 @@ const ImageSection = styled.div`
   position: relative;
   display: flex;
   flex-direction: column;
-  gap: var(--space-40);
+  gap: var(--space-24);
   .left-arrow {
     display: none;
   }
@@ -556,22 +559,23 @@ const HeroSectionWrapper = styled.div`
   flex-direction: column;
   gap: var(--space-24);
   align-items: flex-start;
+  @media only screen and (max-width: 991px) {
+    gap: var(--space-20);
+  }
 `;
 const MainHeroSectionWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  gap: var(--space-80);
+  gap: var(--space-48);
   align-items: flex-start;
-  padding-bottom: var(--space-24);
+  padding-bottom: var(--space-64);
   @media only screen and (max-width: 991px) {
-    gap: var(--space-64);
-    padding-bottom: var(--space-20);
+    gap: var(--space-40);
+    padding-bottom: var(--space-48);
   }
-
   @media only screen and (max-width: 449px) {
-    padding-top: var(--space-16);
-    padding-bottom: var(--space-24);
-    gap: var(--space-48);
+    padding-bottom: var(--space-40);
+    gap: var(--space-32);
   }
 `;
 

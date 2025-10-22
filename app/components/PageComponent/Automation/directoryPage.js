@@ -186,7 +186,7 @@ export default function AutomationDirectoryPage({ featuredApps, allCategoryWithP
 
   return (
     <>
-      <div className='standard-page'>
+      <div className='component-wrapper'>
         <StandardHero
           type={HeroTypes.CENTER}
           data={{

@@ -11,13 +11,15 @@ import {
 const ReviewContent = styled.div`
   display: flex;
   flex-direction: column;
-  gap: var(--space-40);
+  gap: var(--space-48);
   padding: var(--space-64) 0;
   @media only screen and (max-width: 991px) {
-    padding: var(--space-40) 0;
+    padding: var(--space-48) 0;
+    gap: var(--space-40);
   }
   @media only screen and (max-width: 449px) {
-    padding: var(--space-48) 0;
+    padding: var(--space-40) 0;
+    gap: var(--space-32);
   }
 `;
 const SectionHeading = styled.div`
@@ -42,12 +44,13 @@ const OverAllRating = styled.div`
   align-items: center;
   gap: var(--space-12);
   width: 100%;
-  padding-bottom: var(--space-48);
+  padding-bottom: var(--space-16);
 
   @media only screen and (max-width: 449px) {
     flex-direction: column;
     align-items: flex-start;
     gap: var(--space-40);
+    padding-bottom: var(--space-8);
   }
 `;
 const Left = styled.div`

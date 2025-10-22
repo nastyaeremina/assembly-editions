@@ -7,27 +7,44 @@ const SectionDiv = styled.div`
     tone === SectionTone.DARK &&
     css`
       background-color: var(--title);
+      margin: var(--space-64) 0;
     `}
   @media only screen and (max-width: 991px) {
-    padding: var(--space-40) 0;
+    padding: var(--space-48) 0;
+    ${({ tone }) =>
+      tone === SectionTone.DARK &&
+      css`
+        margin: var(--space-48) 0;
+      `}
   }
   @media only screen and (max-width: 449px) {
-    padding: var(--space-48) 0;
+    padding: var(--space-40) 0;
+    ${({ tone }) =>
+      tone === SectionTone.DARK &&
+      css`
+        margin: var(--space-40) 0;
+      `}
   }
 `;
 
 const SectionContentDiv = styled.div`
   display: flex;
   flex-direction: column;
-  gap: var(--space-64);
+  gap: var(--space-48);
+  @media only screen and (max-width: 991px) {
+    gap: var(--space-40);
+  }
+  @media only screen and (max-width: 449px) {
+    gap: var(--space-32);
+  }
 `;
 
 const TabSection = styled.div`
   display: flex;
   flex-direction: column;
-  gap: var(--space-32);
+  gap: var(--space-24);
   @media only screen and (max-width: 449px) {
-    gap: var(--space-20);
+    gap: var(--space-12);
   }
 `;
 
@@ -109,7 +126,6 @@ const GridItemSectionWrapper = styled.div`
   @media only screen and (max-width: 991px) {
     grid-template-columns: 1fr;
     grid-template-rows: minmax(0, 1fr);
-    gap: var(--space-32);
   }
 `;
 

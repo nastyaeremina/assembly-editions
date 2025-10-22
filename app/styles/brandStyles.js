@@ -85,10 +85,10 @@ const SectionWrapper = styled.div`
   margin: 0 auto;
   padding: var(--space-64) 0;
   @media only screen and (max-width: 991px) {
-    padding: var(--space-40) 0;
+    padding: var(--space-48) 0;
   }
   @media only screen and (max-width: 449px) {
-    padding: var(--space-48) 0;
+    padding: var(--space-40) 0;
   }
 `;
 

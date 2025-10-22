@@ -82,7 +82,7 @@ export default async function StandardPage({ data }) {
       case 'ComponentFaq':
         if (!isEmpty(componentData.faQsCollection?.items)) {
           const faqList = await getFAQsData({ data: componentData.faQsCollection?.items });
-          return <FAQ faqList={faqList} title={componentData.title} isStandardPage={true} />;
+          return <FAQ faqList={faqList} title={componentData.title} />;
         }
         return null;
       case 'SectionTab':
@@ -231,7 +231,7 @@ export default async function StandardPage({ data }) {
   // Await all async component renderings
   const renderedComponents = await Promise.all(data.map((componentData) => renderComponent(componentData)));
   return (
-    <div className='standard-page'>
+    <div className='component-wrapper'>
       {renderedComponents.map((Component, index) => (
         <>{Component}</>
       ))}

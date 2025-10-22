@@ -43,7 +43,7 @@ export default async function Page({ searchParams }) {
     <>
       <AggregateRating data={templateData.seoMetadata} />
       <Layout abTestContentLabel={abTestContentLabel} abTestExperimentName={abTestExperimentName}>
-        <div className='standard-page'>
+        <div className='component-wrapper'>
           <StandardHero data={templateData.templateHeroSection} type={templateData.templateHeroSection?.type} />
         </div>
         {!isEmpty(section1TemplateList) && (

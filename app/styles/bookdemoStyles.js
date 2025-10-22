@@ -6,11 +6,11 @@ const BookSection = styled.div`
   width: 100%;
   padding: 0 0 var(--space-64);
   @media only screen and (max-width: 991px) {
-    padding: 0 0 var(--space-40);
+    padding: 0 0 var(--space-48);
     flex-direction: column;
   }
   @media only screen and (max-width: 449px) {
-    padding: 0 0 var(--space-48);
+    padding: 0 0 var(--space-40);
   }
 `;
 const ImageSection = styled.div`
@@ -119,12 +119,12 @@ const LogoDiv = styled.div`
 `;
 
 const MainBlockWrapper = styled.div`
-  padding: var(--space-80) 0;
+  padding: var(--space-64) 0;
   @media only screen and (max-width: 991px) {
-    padding: var(--space-64) 0;
+    padding: var(--space-48) 0;
   }
   @media only screen and (max-width: 449px) {
-    padding: var(--space-64) 0 var(--space-48);
+    padding: var(--space-48) 0 var(--space-32);
   }
 `;
 export {

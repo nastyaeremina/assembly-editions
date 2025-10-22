@@ -365,10 +365,12 @@ body {
   --space-62: 62px;
   --space-64: 64px;
   --space-68: 68px;
+  --space-72: 72px;
   --space-80: 80px;
   --space-96: 96px;
   --space-100: 100px;
   --space-120: 120px;
+  --space-128: 128px;
   --space-152: 152px;
   --space-160: 160px;
 
@@ -776,21 +778,21 @@ th {
   cursor: zoom-out;
 }
 
-.standard-page {
-  padding: var(--space-80) 0;
+.component-wrapper {
+  padding: var(--space-64) 0;
   display: flex;
   flex-direction: column;
-  gap: var(--space-80);
+  gap: var(--space-64);
 }
 @media only screen and (max-width: 991px) {
-  .standard-page {
-    padding: var(--space-64) 0;
-    gap: var(--space-64);
+  .component-wrapper {
+    padding: var(--space-48) 0;
+    gap: var(--space-48);
   }
 }
 @media only screen and (max-width: 449px) {
-  .standard-page {
-    padding: var(--space-64) 0 var(--space-48);
-    gap: var(--space-48);
+  .component-wrapper {
+    padding: var(--space-48) 0 var(--space-32);
+    gap: var(--space-32);
   }
 }

@@ -17,7 +17,7 @@ export default function UpdatedetailPage({ details: updateDetails, updatesCTA = 
   const { totalHeight } = useNavbarHeight();
 
   return (
-    <MainContent>
+    <div className='component-wrapper'>
       <Container>
         <LinkDiv>
           <Breadcrumbs
@@ -47,6 +47,6 @@ export default function UpdatedetailPage({ details: updateDetails, updatesCTA = 
           banner={updatesCTA.banner?.url}
         />
       )}
-    </MainContent>
+    </div>
   );
 }

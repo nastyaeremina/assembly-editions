@@ -46,7 +46,13 @@ const ImgView = styled.div`
 const DirectoryCardSection = styled.div`
   display: flex;
   flex-direction: column;
-  gap: var(--space-40);
+  gap: var(--space-48);
+  @media only screen and (max-width: 991px) {
+    gap: var(--space-40);
+  }
+  @media only screen and (max-width: 449px) {
+    gap: var(--space-32);
+  }
 `;
 
 const CardTitle = styled.div`
@@ -177,6 +183,9 @@ const SectionHeading = styled.div`
           display: none;
         }
       `}
+  }
+  @media only screen and (max-width: 449px) {
+    gap: var(--space-16);
   }
 `;
 

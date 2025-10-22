@@ -16,41 +16,39 @@ export default function AppsDetailPage({ appDetail, isUserAuthenticated, externa
   }, [reviewList]);
 
   return (
-    <>
-      <AppsDetailMain>
-        <>
-          <AppsDetailComponent
-            detail={appDetail?.guideArticle}
-            reviewList={reviewList}
-            content={{ ...appDetail, averageRate }}
-            isUserAuthenticated={isUserAuthenticated}
-            externalLinks={externalLinks}
-          />
-          {/* show review section only if user is authenticated (case of no review exist user can add first one)
+    <div className='component-wrapper'>
+      <>
+        <AppsDetailComponent
+          detail={appDetail?.guideArticle}
+          reviewList={reviewList}
+          content={{ ...appDetail, averageRate }}
+          isUserAuthenticated={isUserAuthenticated}
+          externalLinks={externalLinks}
+        />
+        {/* show review section only if user is authenticated (case of no review exist user can add first one)
           show review section if review list is not exist */}
-          {(isUserAuthenticated || !isEmpty(removeEmptyElement(reviewList))) && (
-            <ReviewSection
-              totalReview={appDetail?.reviewsCollection?.total}
-              reviewList={reviewList}
-              averageRate={averageRate}
-              isAuthenticated={isUserAuthenticated}
-              appId={appDetail?.sys.id}
-              isReviewVisible={appDetail.isReviewVisible}
-              setReviewList={setReviewList}
-            />
-          )}
-          {!isEmpty(appCTA) && (
-            <NewCTA
-              title={appCTA.title}
-              description={appCTA.description}
-              primaryButtonText={appCTA.primaryButtonText}
-              primaryButtonLink={appCTA.primaryButtonLink}
-              secondaryButtonText={appCTA.secondaryButtonText}
-              secondaryButtonLink={appCTA.secondaryButtonLink}
-            />
-          )}
-        </>
-      </AppsDetailMain>
-    </>
+        {(isUserAuthenticated || !isEmpty(removeEmptyElement(reviewList))) && (
+          <ReviewSection
+            totalReview={appDetail?.reviewsCollection?.total}
+            reviewList={reviewList}
+            averageRate={averageRate}
+            isAuthenticated={isUserAuthenticated}
+            appId={appDetail?.sys.id}
+            isReviewVisible={appDetail.isReviewVisible}
+            setReviewList={setReviewList}
+          />
+        )}
+        {!isEmpty(appCTA) && (
+          <NewCTA
+            title={appCTA.title}
+            description={appCTA.description}
+            primaryButtonText={appCTA.primaryButtonText}
+            primaryButtonLink={appCTA.primaryButtonLink}
+            secondaryButtonText={appCTA.secondaryButtonText}
+            secondaryButtonLink={appCTA.secondaryButtonLink}
+          />
+        )}
+      </>
+    </div>
   );
 }

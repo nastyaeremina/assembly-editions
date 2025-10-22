@@ -30,29 +30,27 @@ export default function GuideHome({ detail }) {
     }
   }, [scrollToSection]);
   return (
-    <>
-      <MainContent>
-        <GuideCenter>
-          <HeroSection>
-            <PageTitle id={'overview'}>{detail?.name}</PageTitle>
-            {!isEmpty(detail?.header) && <Caption>{detail?.header}</Caption>}
-          </HeroSection>
-          {!isEmpty(detail?.content?.json) && (
-            <Content isThemedContent>
-              <RichTextDetail data={detail?.content?.json} assets={detail?.content?.links} shouldHeadingCopy />
-            </Content>
-          )}
-        </GuideCenter>
-        {!isEmpty(detail?.faQsCollection?.items) && (
-          <FAQSection id='faqs'>
-            <FAQ
-              faqList={detail?.faQsCollection?.items}
-              isGuideFAQ={true}
-              currentpath={`${currentDomain}${currentPath}`}
-            />
-          </FAQSection>
+    <MainContent>
+      <GuideCenter>
+        <HeroSection>
+          <PageTitle id={'overview'}>{detail?.name}</PageTitle>
+          {!isEmpty(detail?.header) && <Caption>{detail?.header}</Caption>}
+        </HeroSection>
+        {!isEmpty(detail?.content?.json) && (
+          <Content isThemedContent>
+            <RichTextDetail data={detail?.content?.json} assets={detail?.content?.links} shouldHeadingCopy />
+          </Content>
         )}
-      </MainContent>
-    </>
+      </GuideCenter>
+      {!isEmpty(detail?.faQsCollection?.items) && (
+        <FAQSection id='faqs'>
+          <FAQ
+            faqList={detail?.faQsCollection?.items}
+            isGuideFAQ={true}
+            currentpath={`${currentDomain}${currentPath}`}
+          />
+        </FAQSection>
+      )}
+    </MainContent>
   );
 }

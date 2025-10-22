@@ -18,7 +18,7 @@ const CardSection = styled.div`
     ${(props) =>
       props.isStandardPage &&
       css`
-        padding: var(--space-40) 0;
+        padding: var(--space-48) 0;
       `}
   }
   @media only screen and (max-width: 449px) {
@@ -26,7 +26,7 @@ const CardSection = styled.div`
     ${(props) =>
       props.isStandardPage &&
       css`
-        padding: var(--space-48) 0;
+        padding: var(--space-40) 0;
       `}
     ${(props) =>
       props.isAppExplore &&

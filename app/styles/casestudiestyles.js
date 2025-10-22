@@ -2,23 +2,8 @@ import styled, { css } from 'styled-components';
 import { body_regular, button_semibold, h3_semibold, tag } from './typography';
 import { HeroTypes } from '../constants/constant';
 
-const CaseStudyPageWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-80);
-  padding: var(--space-80) 0;
-  @media only screen and (max-width: 991px) {
-    padding: var(--space-64) 0;
-    gap: var(--space-64);
-  }
-  @media only screen and (max-width: 449px) {
-    padding: var(--space-64) 0 var(--space-48);
-    gap: var(--space-48);
-  }
-`;
-
 const HighlightSection = styled.div`
-  margin: var(--space-80) 0 0;
+  margin: var(--space-48) 0 0;
   display: flex;
   gap: var(--space-120);
   ${(props) =>
@@ -26,7 +11,7 @@ const HighlightSection = styled.div`
     css`
       align-items: center;
       justify-content: space-between;
-      margin: var(--space-80) auto 0;
+      margin: var(--space-48) auto 0;
       width: 100%;
       gap: var(--space-64);
     `}
@@ -37,11 +22,12 @@ const HighlightSection = styled.div`
     border: 1px solid var(--border-default);
     border-radius: var(--radius-12);
     padding: var(--space-20);
-    margin: var(--space-64) 0 0;
+    margin: var(--space-40) 0 0;
   }
   @media only screen and (max-width: 449px) {
     grid-template-columns: 1fr;
     gap: var(--space-24);
+    margin: var(--space-32) 0 0;
   }
 `;
 
@@ -78,10 +64,10 @@ const CustomerSection = styled.div`
     flex-direction: column;
     gap: var(--space-40);
     border-top: unset;
-    padding-top: unset;
+    padding: var(--space-48) 0;
   }
   @media only screen and (max-width: 449px) {
-    padding: 0 0 var(--space-48);
+    padding: var(--space-40) 0;
     gap: var(--space-48);
   }
 `;
@@ -123,9 +109,10 @@ const SectionBlock = styled.div`
   @media only screen and (max-width: 991px) {
     flex-direction: column;
     gap: var(--space-32);
+    padding: var(--space-48) 0;
   }
   @media only screen and (max-width: 449px) {
-    padding: var(--space-48) 0;
+    padding: var(--space-40) 0;
   }
 `;
 
@@ -205,7 +192,6 @@ const AppsSection = styled.div`
 `;
 
 export {
-  CaseStudyPageWrapper,
   HighlightSection,
   Highlight,
   CustomerSection,

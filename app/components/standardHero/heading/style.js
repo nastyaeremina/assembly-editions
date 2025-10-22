@@ -41,7 +41,7 @@ const HeroHeading = styled.h1`
   @media only screen and (max-width: 449px) {
     text-align: left;
     letter-spacing: -0.8px;
-    margin: 0 0 var(--space-20);
+    margin: 0 0 var(--space-16);
   }
 `;
 
@@ -73,8 +73,10 @@ const ButtonGroups = styled.div`
   gap: var(--space-8);
   margin-top: var(--space-24);
   flex-wrap: wrap;
+  @media only screen and (max-width: 991px) {
+    margin-top: var(--space-20);
+  }
   @media only screen and (max-width: 449px) {
-    margin-top: var(--space-32);
     gap: var(--space-12);
     width: 100%;
   }

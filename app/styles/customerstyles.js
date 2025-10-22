@@ -20,39 +20,41 @@ const CustomerPageWrapper = styled.div`
 const CaseStudyWrapper = styled.div`
   padding: var(--space-64) 0;
   @media only screen and (max-width: 991px) {
-    padding: var(--space-40) 0;
+    padding: var(--space-48) 0;
   }
   @media only screen and (max-width: 449px) {
-    padding: var(--space-48) 0;
+    padding: var(--space-40) 0;
   }
 `;
 
 const HeroSection = styled.div`
-  padding: var(--space-80) 0 var(--space-24) 0;
+  padding-bottom: var(--space-64);
   overflow: hidden;
   display: flex;
   flex-direction: column;
-  gap: var(--space-32);
   align-items: center;
-  @media only screen and (max-width: 768px) {
-    padding: var(--space-64) 0 var(--space-24) 0;
+  @media only screen and (max-width: 991px) {
+    padding-bottom: var(--space-48);
   }
   .hero-image {
     height: auto;
     width: 100%;
-    margin-top: -158px;
+    margin-top: -127px;
+    @media only screen and (max-width: 1100px) {
+      margin-top: -85px;
+    }
     @media only screen and (max-width: 991px) {
-      margin-top: -80px;
+      margin-top: -47px;
     }
     @media only screen and (max-width: 449px) {
-      margin-top: var(--space-16);
+      margin-top: var(--space-40);
       padding-bottom: var(--space-30);
       transform: scale(1.4);
     }
   }
   @media only screen and (max-width: 449px) {
-    gap: var(--space-24);
     align-items: flex-start;
+    padding-bottom: var(--space-40);
   }
 `;
 
@@ -62,8 +64,10 @@ const HeroHeading = styled.h1`
   margin: 0 auto;
   max-width: 900px;
   text-align: center;
+  margin-bottom: var(--space-12);
   @media only screen and (max-width: 449px) {
     text-align: left;
+    margin-bottom: var(--space-16);
   }
 `;
 
@@ -73,6 +77,10 @@ const Para = styled.p`
   color: var(--title);
   max-width: 720px;
   text-align: center;
+  margin-bottom: var(--space-24);
+  @media only screen and (max-width: 991px) {
+    margin-bottom: var(--space-20);
+  }
   @media only screen and (max-width: 449px) {
     text-align: left;
   }
@@ -81,8 +89,16 @@ const Para = styled.p`
 const LastSection = styled.div`
   display: flex;
   flex-direction: column;
-  gap: var(--space-32);
+  gap: var(--space-48);
   padding-top: var(--space-48);
+  @media only screen and (max-width: 991px) {
+    padding-top: var(--space-40);
+    gap: var(--space-40);
+  }
+  @media only screen and (max-width: 449px) {
+    padding-top: var(--space-32);
+    gap: var(--space-32);
+  }
 `;
 
 const TableSection = styled.div`

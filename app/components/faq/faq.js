@@ -10,7 +10,7 @@ import CopyIcon from '../../../public/images/copy-icon.svg';
 import CopyLink from '../copyLink/copyLink';
 import { FaqSection, FaqTitle, DivFAQ, FAQAnswer } from './styles';
 
-export default function FAQ({ isGuideFAQ, currentpath, faqList: allPosts, title, isStandardPage }) {
+export default function FAQ({ isGuideFAQ, currentpath, faqList: allPosts, title }) {
   //activeAccrodion use for open specific FAQ. In this we store FAQ element Id
   const [activeAccordion, setActiveAccordion] = useState(null);
   const [heights, setHeights] = useState([]);
@@ -107,7 +107,7 @@ export default function FAQ({ isGuideFAQ, currentpath, faqList: allPosts, title,
   return (
     <>
       {!isEmpty(allPosts) && (
-        <FaqSection isGuideFAQ={isGuideFAQ} isStandardPage={isStandardPage}>
+        <FaqSection isGuideFAQ={isGuideFAQ}>
           {isGuideFAQ ? (
             <>
               <FaqTitle isGuideFAQ={isGuideFAQ} id='faq'>

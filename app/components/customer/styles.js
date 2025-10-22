@@ -18,9 +18,12 @@ const TestimonialCard = styled(Link)`
   ${(props) =>
     props.isStandardPage &&
     css`
-      margin-bottom: var(--space-100);
+      margin: var(--space-64) 0;
       @media only screen and (max-width: 768px) {
-        margin-bottom: var(--space-80);
+        margin: var(--space-48) 0;
+      }
+      @media only screen and (max-width: 449px) {
+        margin: var(--space-40) 0;
       }
     `}
     :hover {

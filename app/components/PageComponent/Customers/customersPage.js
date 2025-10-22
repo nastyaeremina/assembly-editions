@@ -36,7 +36,7 @@ export default function CustomerPage({
   }, [casestudiesPosts]);
 
   return (
-    <CustomerPageWrapper>
+    <div className='component-wrapper'>
       {!isEmpty(heroSection) && (
         <CustomerPageHero
           image={heroSection?.banner1?.url}
@@ -75,6 +75,6 @@ export default function CustomerPage({
           secondaryButtonText={customerCTA.secondaryButtonText}
         />
       )}
-    </CustomerPageWrapper>
+    </div>
   );
 }

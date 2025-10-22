@@ -1,7 +1,6 @@
 'use client';
 import React, { useCallback } from 'react';
 import {
-  CaseStudyPageWrapper,
   CustomerSection,
   Detail,
   DetailSection,
@@ -14,7 +13,7 @@ import {
 import { Container, Content } from '../../../styles/commonStyles';
 import AppCardSection from '../../casestudies/appcardsection';
 import { isEmpty } from '../../../helpers/helpers';
-import { HeroTypes, LinkSize } from '../../../constants/constant';
+import { LinkSize } from '../../../constants/constant';
 import StandardHero from '../../standardHero/standardHero';
 import RichTextDetail from '../../richTextDetail/richText';
 import NewCTA from '../../cta/newCTA';
@@ -58,7 +57,7 @@ export default function CaseStudiesPage({ details, customerCTA = {} }) {
   const { beforeH2, sections } = splitByH2(details.body?.json);
 
   return (
-    <CaseStudyPageWrapper>
+    <div className='component-wrapper'>
       <StandardHero
         type={details.heroSection.type}
         data={{ ...details.heroSection, logo: details.customerLogo?.imageAsset?.url }}
@@ -152,6 +151,6 @@ export default function CaseStudiesPage({ details, customerCTA = {} }) {
           secondaryButtonText={customerCTA.secondaryButtonText}
         />
       )}
-    </CaseStudyPageWrapper>
+    </div>
   );
 }

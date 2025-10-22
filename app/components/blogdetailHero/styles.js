@@ -9,7 +9,7 @@ const DetailHero = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: var(--space-24);
+  gap: var(--space-20);
   margin: 0px auto;
   h1 {
     ${h2_semibold};
@@ -112,9 +112,13 @@ const HeroWrapper = styled.div`
   align-items: center;
   justify-content: center;
   gap: var(--space-64);
-  padding-bottom: var(--space-120);
+  padding-bottom: var(--space-80);
+  @media only screen and (max-width: 991px) {
+    padding-bottom: var(--space-48);
+  }
   @media only screen and (max-width: 449px) {
     gap: var(--space-24);
+    padding-bottom: var(--space-32);
   }
 `;
 

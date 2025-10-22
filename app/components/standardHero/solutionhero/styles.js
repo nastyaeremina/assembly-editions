@@ -4,27 +4,27 @@ import { body_regular, body_semibold, button_regular, h1_semibold, h4_semibold }
 
 const HeroSection = styled.div`
   &.details-hero {
-    padding: 0 0 var(--space-24);
+    padding: 0 0 var(--space-64);
     @media only screen and (max-width: 991px) {
-      padding: 0 0 var(--space-20);
+      padding: 0 0 var(--space-48);
     }
     @media only screen and (max-width: 449px) {
-      padding: 0 0 var(--space-24);
+      padding: 0 0 var(--space-40);
     }
   }
   ${(props) =>
     props.isStandardPage &&
     css`
-      padding: 0 0 var(--space-24);
+      padding: 0 0 var(--space-64);
       @media only screen and (max-width: 991px) {
-        padding: 0 0 var(--space-20);
+        padding: 0 0 var(--space-48);
       }
     `}
   @media only screen and (max-width: 449px) {
     ${(props) =>
       props.isStandardPage &&
       css`
-        padding: 0 0 var(--space-24);
+        padding: 0 0 var(--space-40);
       `};
   }
 `;
@@ -38,21 +38,25 @@ const SolutionWrap = styled.div`
     width: 100%;
     @media only screen and (max-width: 991px) {
       align-items: flex-start;
+      gap: var(--space-40);
+    }
+    @media only screen and (max-width: 449px) {
+      gap: var(--space-32);
     }
   }
   ${(props) =>
     props.isWeeklycontainer &&
     css`
-      gap: 60px;
+      gap: var(--space-48);
       padding-bottom: 100px;
     `}
   @media only screen and (max-width: 991px) {
     flex-wrap: wrap;
-    gap: 60px;
+    gap: var(--space-48);
     width: 100%;
   }
   @media only screen and (max-width: 768px) {
-    gap: 40px;
+    gap: var(--space-32);
     ${(props) =>
       props.isWeeklycontainer &&
       css`
@@ -214,6 +218,9 @@ const PoweredBySection = styled.div`
     color: var(--text-secondary);
     padding-top: var(--space-2);
   }
+  @media only screen and (max-width: 991px) {
+    padding-bottom: var(--space-20);
+  }
 `;
 const RightWrap = styled.div`
   .comparison-img {
@@ -252,6 +259,9 @@ const TextSection = styled.div`
       color: var(--title);
       margin: 0;
       margin-bottom: var(--space-12);
+      @media only screen and (max-width: 449px) {
+        margin-bottom: var(--space-16);
+      }
     }
     p {
       ${body_regular}
@@ -286,6 +296,9 @@ const TextSection = styled.div`
     flex-direction: column;
     gap: var(--space-16);
     margin-top: var(--space-24);
+    @media only screen and (max-width: 991px) {
+      margin-top: var(--space-20);
+    }
 
     li {
       ${body_regular};
@@ -339,7 +352,10 @@ const ImageView = styled.div`
   display: flex;
   img {
     object-fit: cover;
-    border-radius: 30px;
+    border-radius: var(--radius-16);
+    @media only screen and (max-width: 449px) {
+      border-radius: var(--radius-12);
+    }
   }
   ${(props) =>
     props.emptyMobileImage &&
@@ -368,7 +384,7 @@ const MobileImg = styled.div`
   background: transparent;
   img {
     box-shadow: 0px 2px 8px 0px var(--black-shadow-8);
-    border-radius: 12px;
+    border-radius: var(--radius-12);
     height: auto;
     max-height: 583px;
     max-width: 220px;
@@ -387,7 +403,7 @@ const MobileView = styled.div`
     margin-left: 70px;
     img {
       object-fit: cover;
-      border-radius: 16px;
+      border-radius: var(--radius-12);
     }
     ${(props) =>
       props.emptyMobileImage &&
@@ -409,7 +425,7 @@ const Mobilenew = styled.div`
     background: transparent;
     img {
       box-shadow: 0px 2px 8px 0px var(--black-shadow-8);
-      border-radius: 12px;
+      border-radius: var(--radius-12);
       height: auto;
       max-height: 304px;
       max-width: 190px;
@@ -424,7 +440,10 @@ const Mobilenew = styled.div`
 const ButtonGroups = styled.div`
   display: flex;
   gap: var(--space-8);
-  margin-top: var(--space-32);
+  margin-top: var(--space-24);
+  @media only screen and (max-width: 991px) {
+    margin-top: var(--space-20);
+  }
   @media only screen and (max-width: 449px) {
     width: 100%;
     flex-wrap: wrap;
@@ -437,10 +456,13 @@ const LogoSection = styled.div`
   align-items: center;
   justify-content: space-between;
   gap: var(--space-24);
-  margin-top: var(--space-40);
+  margin-top: var(--space-48);
   overflow: hidden;
   .customer-image-logo {
     width: auto;
+  }
+  @media only screen and (max-width: 991px) {
+    margin-top: var(--space-40);
   }
   @media only screen and (max-width: 600px) {
     flex-wrap: wrap;
@@ -449,7 +471,7 @@ const LogoSection = styled.div`
     row-gap: var(--space-12);
   }
   @media only screen and (max-width: 449px) {
-    margin-top: var(--space-24);
+    margin-top: var(--space-32);
   }
 `;
 

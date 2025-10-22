@@ -1,65 +1,25 @@
 import styled, { css } from 'styled-components';
-import { body_regular, body_semibold, button_regular, h1_semibold, label_regular } from './typography';
-
-const PricingPageWrapper = styled.div`
-  padding-bottom: var(--space-80);
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-80);
-  @media only screen and (max-width: 991px) {
-    padding-bottom: var(--space-64);
-    gap: var(--space-64);
-  }
-  @media only screen and (max-width: 449px) {
-    padding-bottom: var(--space-48);
-    gap: var(--space-48);
-  }
-`;
-
-const HeroSection = styled.div`
-  padding: var(--space-80) 0 0 0;
-  text-align: center;
-  margin: 0 auto;
-  h1 {
-    ${h1_semibold};
-    color: var(--title);
-    margin: 0 0 var(--space-40) 0;
-    max-width: 900px;
-    width: 100%;
-    margin: 0 auto;
-  }
-  p {
-    ${body_regular};
-    color: var(--text-secondary);
-    margin: var(--space-24) auto var(--space-64) auto;
-    max-width: 720px;
-    text-align: center;
-  }
-  @media only screen and (max-width: 449px) {
-    text-align: left;
-    padding: var(--space-64) 0 0 0;
-    p {
-      margin: var(--space-24) 0;
-      text-align: left;
-    }
-  }
-`;
+import { body_regular, body_semibold, button_regular, label_regular } from './typography';
 
 const PricingSection = styled.div`
   padding-bottom: var(--space-64);
   @media only screen and (max-width: 991px) {
-    padding-bottom: var(--space-40);
+    padding-bottom: var(--space-48);
   }
   @media only screen and (max-width: 449px) {
-    padding-bottom: var(--space-48);
+    padding-bottom: var(--space-40);
   }
 `;
 const PriceMenu = styled.div``;
 const PriceButton = styled.div`
   display: flex;
   justify-content: center;
-  padding-bottom: var(--space-40);
+  padding: var(--space-48) 0;
+  @media only screen and (max-width: 991px) {
+    padding: var(--space-40) 0;
+  }
   @media only screen and (max-width: 449px) {
+    padding: var(--space-32) 0;
     justify-content: flex-start;
   }
 `;
@@ -103,7 +63,7 @@ const PlanButton = styled.div`
   margin: 0 auto;
   display: flex;
   justify-content: center;
-  padding-top: var(--space-64);
+  padding-top: var(--space-48);
   position: relative;
   .button {
     width: 223px;
@@ -121,7 +81,7 @@ const TableTitle = styled.p`
 `;
 
 const PriceTable = styled.div`
-  padding: var(--space-40) 0 0;
+  padding: var(--space-48) 0 0;
   display: block;
   table {
     display: block;
@@ -269,7 +229,7 @@ const PriceTable = styled.div`
     display: block;
   }
   @media only screen and (max-width: 991px) {
-    padding: 50px 0;
+    padding: var(--space-40) 0 0;
   }
   @media only screen and (max-width: 768px) {
     display: none;
@@ -277,8 +237,6 @@ const PriceTable = styled.div`
 `;
 
 export {
-  PricingPageWrapper,
-  HeroSection,
   PricingSection,
   PriceMenu,
   PriceButton,

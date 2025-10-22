@@ -287,7 +287,6 @@ export default function BlogdetailPage({
         <Container>
           <Details id='main_content' className={!shouldShowLestSection && 'without-toc'}>
             <LegacyBlogDetailHero blogDetail={blogDetail} onCopyLink={handleCopyLink} />
-
             <BlogContent className={!shouldShowTOC ? 'without-toc' : ''}>
               {shouldShowLestSection && (
                 <BlogDetailsidebar

@@ -134,7 +134,7 @@ export default function UniversityPage({ universityVideosList, allPosts }) {
   return (
     <>
       <UniversitySection>
-        <div className='standard-page'>
+        <div className='component-wrapper'>
           <StandardHero
             type={HeroTypes.CENTER}
             data={{

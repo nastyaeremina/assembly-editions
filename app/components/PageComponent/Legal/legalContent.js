@@ -2,7 +2,7 @@
 
 import ReactMarkdown from 'react-markdown';
 import { Container, Content } from '../../../styles/commonStyles';
-import { MainSection, PostContent, PrivacuHero } from '../../../styles/legalStyles';
+import { PostContent, PrivacuHero } from '../../../styles/legalStyles';
 import { isEmpty } from '../../../helpers/helpers';
 
 export default function LegalContent({ content, title }) {
@@ -36,24 +36,22 @@ export default function LegalContent({ content, title }) {
   const contentWithoutEffectiveDate = removeEffectiveDateFromContent(content);
 
   return (
-    <>
-      <Container>
-        <MainSection>
-          <PrivacuHero>
-            {!isEmpty(effectiveDateLine) && (
-              <Content>
-                <ReactMarkdown>{effectiveDateLine}</ReactMarkdown>
-              </Content>
-            )}
-            <h1>{title}</h1>
-          </PrivacuHero>
-          <PostContent>
-            <Content hasWordBreak>
-              <ReactMarkdown>{contentWithoutEffectiveDate}</ReactMarkdown>
+    <Container>
+      <div className='component-wrapper'>
+        <PrivacuHero>
+          {!isEmpty(effectiveDateLine) && (
+            <Content>
+              <ReactMarkdown>{effectiveDateLine}</ReactMarkdown>
             </Content>
-          </PostContent>
-        </MainSection>
-      </Container>
-    </>
+          )}
+          <h1>{title}</h1>
+        </PrivacuHero>
+        <PostContent>
+          <Content hasWordBreak>
+            <ReactMarkdown>{contentWithoutEffectiveDate}</ReactMarkdown>
+          </Content>
+        </PostContent>
+      </div>
+    </Container>
   );
 }

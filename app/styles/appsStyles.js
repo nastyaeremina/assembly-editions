@@ -68,11 +68,6 @@ const FeatureWrap = styled.div`
       padding-bottom: 100px;
     `}
 `;
-const FirstImg = styled.div`
-  img {
-    max-width: 100%;
-  }
-`;
 const Input = styled.input`
   ${button_regular};
   color: var(--title);
@@ -481,21 +476,6 @@ const SearchEmpty = styled.div`
   }
 `;
 
-const MainSection = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-80);
-  padding: var(--space-80) 0;
-  @media only screen and (max-width: 991px) {
-    padding: var(--space-64) 0;
-    gap: var(--space-64);
-  }
-  @media only screen and (max-width: 449px) {
-    gap: var(--space-48);
-    padding: var(--space-64) 0 var(--space-48);
-  }
-`;
-
 const AppCardMainSection = styled.div`
   padding: var(--space-64) 0;
   position: relative;
@@ -503,10 +483,11 @@ const AppCardMainSection = styled.div`
     display: flex;
     flex-direction: column;
     gap: var(--space-64);
-    padding: var(--space-40) 0;
+    padding: var(--space-48) 0;
   }
   @media only screen and (max-width: 449px) {
-    padding: var(--space-48) 0;
+    padding: var(--space-40) 0;
+    gap: var(--space-40);
   }
   ${(props) =>
     props.isGap &&
@@ -542,6 +523,9 @@ const CardWrapper = styled.div`
   display: flex;
   flex-direction: column;
   gap: var(--space-80);
+  @media only screen and (max-width: 991px) {
+    gap: var(--space-64);
+  }
 `;
 
 const CloseIcon = styled.div`
@@ -581,7 +565,6 @@ export {
   SearchEmpty,
   ResponsiveInputWrap,
   ResponsiveInput,
-  MainSection,
   AppCardMainSection,
   AppInputWrap,
   SearchIcon,

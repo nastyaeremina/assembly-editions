@@ -5,10 +5,10 @@ const ModernSection = styled.div`
   padding: var(--space-64) 0;
   overflow: hidden;
   @media only screen and (max-width: 991px) {
-    padding: var(--space-40) 0;
+    padding: var(--space-48) 0;
   }
   @media only screen and (max-width: 749px) {
-    padding: var(--space-48) 0;
+    padding: var(--space-40) 0;
   }
 `;
 const HeadView = styled.div`
@@ -16,7 +16,6 @@ const HeadView = styled.div`
   width: 100%;
   display: flex;
   flex-direction: column;
-  gap: var(--space-32);
   align-items: flex-start;
   h2 {
     ${h2_semibold};
@@ -30,8 +29,11 @@ const HeadView = styled.div`
 const ModernWrap = styled.div`
   display: flex;
   flex-direction: column;
-  gap: var(--space-64);
+  gap: var(--space-48);
   align-items: flex-start;
+  @media only screen and (max-width: 991px) {
+    gap: var(--space-40);
+  }
   @media only screen and (max-width: 449px) {
     gap: var(--space-32);
   }
@@ -50,13 +52,6 @@ const DetailView = styled.div`
   @media only screen and (max-width: 749px) {
     flex-direction: column;
     gap: var(--space-12);
-  }
-`;
-const Body = styled.div`
-  p {
-    ${body_regular};
-    color: var(--title);
-    margin: 0;
   }
 `;
 const Title = styled.p`
@@ -102,16 +97,4 @@ const Number = styled.p`
   align-items: center;
   justify-content: center;
 `;
-export {
-  ModernSection,
-  ModernWrap,
-  HeadView,
-  BoxWrap,
-  BoxView,
-  DetailView,
-  Body,
-  Title,
-  Description,
-  TitleWrapper,
-  Number
-};
+export { ModernSection, ModernWrap, HeadView, BoxWrap, BoxView, DetailView, Title, Description, TitleWrapper, Number };

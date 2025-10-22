@@ -4,12 +4,12 @@ import { body_regular, h3_semibold } from '../../styles/typography';
 const GuideCenter = styled.div`
   max-width: 728px;
   width: 100%;
-  padding-top: var(--space-80);
+  padding-top: var(--space-64);
   display: flex;
   flex-direction: column;
   gap: var(--space-64);
   @media only screen and (max-width: 991px) {
-    padding-top: var(--space-64);
+    padding-top: var(--space-48);
   }
   @media only screen and (max-width: 449px) {
     gap: var(--space-48);
@@ -20,13 +20,15 @@ const MainContent = styled.div`
   max-width: 728px;
   display: flex;
   flex-direction: column;
-  gap: var(--space-80);
-  padding-bottom: var(--space-60);
+  gap: var(--space-64);
+  padding-bottom: var(--space-64);
   @media only screen and (max-width: 991px) {
-    gap: var(--space-40);
+    gap: var(--space-48);
+    padding-bottom: var(--space-48);
   }
   @media only screen and (max-width: 449px) {
-    gap: var(--space-48);
+    gap: var(--space-40);
+    padding-bottom: var(--space-40);
   }
 `;
 const FAQSection = styled.div`

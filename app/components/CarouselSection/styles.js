@@ -5,10 +5,10 @@ const MainBlock = styled.div`
   background-color: var(--off-white-300);
   overflow: hidden;
   @media only screen and (max-width: 991px) {
-    padding: var(--space-40) 0;
+    padding: var(--space-48) 0;
   }
   @media only screen and (max-width: 449px) {
-    padding: var(--space-48) 0;
+    padding: var(--space-40) 0;
   }
 `;
 
@@ -16,10 +16,13 @@ const SectionWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: var(--space-80);
+  gap: var(--space-48);
   position: relative;
+  @media only screen and (max-width: 991px) {
+    gap: var(--space-40);
+  }
   @media only screen and (max-width: 767px) {
-    gap: var(--space-64);
+    gap: var(--space-32);
   }
 `;
 

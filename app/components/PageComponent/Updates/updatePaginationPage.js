@@ -41,54 +41,52 @@ export default function UpdatesPaginationPage({ allPosts, pagination, externalLi
   }, [allPosts, totalHeight]);
 
   return (
-    <>
-      <UpadtePage>
-        <Container>
-          <UpdateSubscribe>
-            <h1>Updates</h1>
-            <p>
-              Trusted by consulting, accounting, real estate, law, marketing, and tech firms with 1M+ clients and
-              counting.
-            </p>
-            <ButtonV2Component
-              title={'Subscribe to updates'}
-              href={externalLinks?.[EXTERNAL_LINK_KEYS.SubscribeLink] || '#'}
-            />
-          </UpdateSubscribe>
-        </Container>
-        <Container>
-          <PostContent>
-            {renderPosts}
-            <Pagination>
-              {!isEmpty(pagination?.prev) && (
-                <ButtonV2Component
-                  title={'Previous page'}
-                  variant={ButtonVariant.SECONDARY}
-                  href={pagination?.page === 2 ? `/updates/` : `/updates/page/${pagination?.page - 1}`}
-                />
-              )}
-              {!isEmpty(pagination?.next) && (
-                <ButtonV2Component
-                  title={'Next page'}
-                  variant={ButtonVariant.SECONDARY}
-                  href={`/updates/page/${pagination?.page + 1}`}
-                />
-              )}
-            </Pagination>
-          </PostContent>
-        </Container>
-        {!isEmpty(updatesCTA) && (
-          <NewCTA
-            title={updatesCTA.title}
-            description={updatesCTA.description}
-            primaryButtonLink={updatesCTA.primaryButtonLink}
-            primaryButtonText={updatesCTA.primaryButtonText}
-            secondaryButtonLink={updatesCTA.secondaryButtonLink}
-            secondaryButtonText={updatesCTA.secondaryButtonText}
-            banner={updatesCTA.banner?.url}
+    <div className='component-wrapper'>
+      <Container>
+        <UpdateSubscribe>
+          <h1>Updates</h1>
+          <p>
+            Trusted by consulting, accounting, real estate, law, marketing, and tech firms with 1M+ clients and
+            counting.
+          </p>
+          <ButtonV2Component
+            title={'Subscribe to updates'}
+            href={externalLinks?.[EXTERNAL_LINK_KEYS.SubscribeLink] || '#'}
           />
-        )}
-      </UpadtePage>
-    </>
+        </UpdateSubscribe>
+      </Container>
+      <Container>
+        <PostContent>
+          {renderPosts}
+          <Pagination>
+            {!isEmpty(pagination?.prev) && (
+              <ButtonV2Component
+                title={'Previous page'}
+                variant={ButtonVariant.SECONDARY}
+                href={pagination?.page === 2 ? `/updates/` : `/updates/page/${pagination?.page - 1}`}
+              />
+            )}
+            {!isEmpty(pagination?.next) && (
+              <ButtonV2Component
+                title={'Next page'}
+                variant={ButtonVariant.SECONDARY}
+                href={`/updates/page/${pagination?.page + 1}`}
+              />
+            )}
+          </Pagination>
+        </PostContent>
+      </Container>
+      {!isEmpty(updatesCTA) && (
+        <NewCTA
+          title={updatesCTA.title}
+          description={updatesCTA.description}
+          primaryButtonLink={updatesCTA.primaryButtonLink}
+          primaryButtonText={updatesCTA.primaryButtonText}
+          secondaryButtonLink={updatesCTA.secondaryButtonLink}
+          secondaryButtonText={updatesCTA.secondaryButtonText}
+          banner={updatesCTA.banner?.url}
+        />
+      )}
+    </div>
   );
 }

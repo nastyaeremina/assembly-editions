@@ -31,20 +31,18 @@ export default function GuideCardSection({ title, description, articleData, isLa
     });
   }, [articleData, isLargeCard]);
   return (
-    <>
-      <ArticleCardSection>
-        {(shouldShowTitle || shouldShowHeroSection) && (
-          <SectionHead>
-            {shouldShowTitle && <PopularHeading>{title}</PopularHeading>}
-            {shouldShowHeroSection && (
-              <PopularBody>
-                <ReactMarkdown>{description}</ReactMarkdown>
-              </PopularBody>
-            )}
-          </SectionHead>
-        )}
-        <GuideCard>{renderArticleData}</GuideCard>
-      </ArticleCardSection>
-    </>
+    <ArticleCardSection>
+      {(shouldShowTitle || shouldShowHeroSection) && (
+        <SectionHead>
+          {shouldShowTitle && <PopularHeading>{title}</PopularHeading>}
+          {shouldShowHeroSection && (
+            <PopularBody>
+              <ReactMarkdown>{description}</ReactMarkdown>
+            </PopularBody>
+          )}
+        </SectionHead>
+      )}
+      <GuideCard>{renderArticleData}</GuideCard>
+    </ArticleCardSection>
   );
 }

@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { body_regular, h4_semibold } from '../../styles/typography';
 const EmptyState = styled.div`
-  padding-top: var(--space-80);
+  padding-top: var(--space-64);
   display: flex;
   flex-direction: column;
   align-items: center;

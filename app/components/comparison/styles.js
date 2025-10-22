@@ -13,7 +13,7 @@ const ComparisonTable = styled.div`
   padding: var(--space-64) 0;
   display: flex;
   flex-direction: column;
-  gap: var(--space-80);
+  gap: var(--space-48);
 
   h2 {
     margin: 0;
@@ -24,11 +24,12 @@ const ComparisonTable = styled.div`
   }
 
   @media only screen and (max-width: 991px) {
-    padding: var(--space-40) 0;
+    padding: var(--space-48) 0;
+    gap: var(--space-40);
   }
   @media only screen and (max-width: 449px) {
-    padding: var(--space-48) 0;
-    gap: var(--space-48);
+    padding: var(--space-40) 0;
+    gap: var(--space-32);
   }
 `;
 
@@ -36,7 +37,7 @@ const MainTableSection = styled.div`
   display: flex;
   flex-direction: column;
   gap: var(--space-80);
-  @media only screen and (max-width: 449px) {
+  @media only screen and (max-width: 991px) {
     gap: var(--space-64);
   }
 `;
@@ -48,9 +49,10 @@ const TableMainDiv = styled.div`
   gap: var(--space-64);
   @media only screen and (max-width: 991px) {
     flex-direction: column;
+    gap: var(--space-40);
   }
   @media only screen and (max-width: 449px) {
-    gap: var(--space-48);
+    gap: var(--space-32);
   }
   .table {
     max-width: 720px;
@@ -245,6 +247,7 @@ const LeftSection = styled.div`
   width: 100%;
   @media only screen and (max-width: 991px) {
     max-width: 100%;
+    gap: var(--space-20);
   }
 `;
 
@@ -266,9 +269,12 @@ const TitleSection = styled.div`
   }
   p {
     margin: 0;
-    margin-top: var(--space-24);
+    margin-top: var(--space-12);
     ${body_regular};
     color: var(--title);
+    @media only screen and (max-width: 449px) {
+      margin-top: var(--space-16);
+    }
   }
 `;
 
@@ -291,10 +297,10 @@ const G2section = styled.div`
     width: 100%;
   }
   @media only screen and (max-width: 991px) {
-    padding: var(--space-40) 0;
+    padding: var(--space-48) 0;
   }
   @media only screen and (max-width: 449px) {
-    padding: var(--space-48) 0;
+    padding: var(--space-40) 0;
   }
 `;
 const G2group = styled.div`
@@ -359,7 +365,7 @@ const Processdata = styled.div`
 const Carditem = styled.div`
   display: flex;
   flex-direction: column;
-  border: 1px solid var(--border-default);
+  background-color: var(--off-white-550);
   border-radius: var(--radius-12);
   height: 100%;
   .svg-icon {
@@ -386,15 +392,24 @@ const ComparisonLogo = styled.div`
 const CardMainDiv = styled.div`
   display: flex;
   flex-direction: column;
-  gap: var(--space-40);
+  gap: var(--space-48);
+  @media only screen and (max-width: 991px) {
+    gap: var(--space-40);
+  }
+  @media only screen and (max-width: 449px) {
+    gap: var(--space-32);
+  }
 `;
 
 const TitleWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  gap: var(--space-24);
+  gap: var(--space-12);
   max-width: 600px;
   width: 100%;
+  @media only screen and (max-width: 449px) {
+    gap: var(--space-16);
+  }
 `;
 
 const Allcard = styled.div`

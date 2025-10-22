@@ -1,7 +1,7 @@
 'use client';
 
 import { useCallback, useMemo, useState } from 'react';
-import { AppCardMainSection, CardWrapper, EmptyStateSection, MainSection } from '../../../styles/appsStyles';
+import { AppCardMainSection, CardWrapper, EmptyStateSection } from '../../../styles/appsStyles';
 import { isEmpty } from '../../../helpers/helpers';
 import AppsCardSection from '../../appsCards/appsCardSection';
 import StandardHero from '../../standardHero/standardHero';
@@ -84,7 +84,7 @@ export default function AppDirectoryPage({
   }, [query, searchResult]);
 
   return (
-    <MainSection>
+    <div className='component-wrapper'>
       <StandardHero
         data={{
           heroTitle: 'App Store',
@@ -139,6 +139,6 @@ export default function AppDirectoryPage({
           secondaryButtonText={directoryCTA.secondaryButtonText}
         />
       )}
-    </MainSection>
+    </div>
   );
 }

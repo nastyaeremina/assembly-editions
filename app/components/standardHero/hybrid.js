@@ -18,7 +18,6 @@ import { LogoSection } from './solutionhero/styles';
  * @param {string} props.logo - The logo image is a customer logo
  * @param {Array} props.highlights - The highlights props is a state section for customer
  * @param {boolean} props.isShowSocialProof - The social proof props is a state section
- * @param {boolean} [props.isStandardPage=false] - when use Standard page than apply this flag
  * @param {string} props.primaryButtonText - The text for the primary button
  * @param {string} props.primaryButtonLink - The link for the primary button
  * @param {string} props.secondaryButtonText - The text for the secondary button
@@ -33,7 +32,6 @@ export default function HomeHeroSection({
   highlights,
   body,
   image,
-  isStandardPage = false,
   primaryButtonText,
   primaryButtonLink,
   secondaryButtonText,
@@ -83,7 +81,7 @@ export default function HomeHeroSection({
   }, [customerLogoCollection?.items]);
 
   return (
-    <HeroSection isStandardPage={isStandardPage} variant={variant}>
+    <HeroSection variant={variant}>
       <Container>
         {isShowSocialProof && (
           <G2Section variant={variant}>

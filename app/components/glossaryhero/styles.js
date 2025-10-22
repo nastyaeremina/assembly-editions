@@ -84,10 +84,10 @@ const SearchListData = styled.div``;
 const SectionWrapper = styled.div`
   padding: var(--space-40) 0 var(--space-64);
   @media only screen and (max-width: 991px) {
-    padding: var(--space-16) 0 var(--space-40);
+    padding: var(--space-24) 0 var(--space-48);
   }
   @media only screen and (max-width: 449px) {
-    padding: var(--space-24) 0 var(--space-48);
+    padding: var(--space-16) 0 var(--space-40);
   }
 `;
 

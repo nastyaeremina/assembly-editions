@@ -4,26 +4,25 @@ import React, { useState, useCallback, useMemo, useEffect } from 'react';
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
 import { Container } from '../../../styles/commonStyles';
 import {
-  HeroSection,
   PricingSection,
   PriceMenu,
   PriceButton,
   WrapSlide,
   PriceTable,
   PlanButton,
-  TableTitle,
-  PricingPageWrapper
+  TableTitle
 } from '../../../styles/pricingstyles';
 import PricingCardSection from '../../pricingcard/pricingCardSection';
 import { isEmpty } from '../../../helpers/helpers';
 import SVGComponent from '../../../../public/images/svg/SVGComponent';
 import Tooltip from '../../appsCards/tooltip';
-import { ButtonVariant, PlanList } from '../../../constants/constant';
+import { ButtonVariant, HeroTypes, PlanList } from '../../../constants/constant';
 import YearlyToggleComponent from './yearlyToggleComponent';
 import ButtonV2Component from '../../button/buttonV2/buttonV2';
 import FAQ from '../../faq/faq';
 import NewCTA from '../../cta/newCTA';
 import useNavbarHeight from '../../../hooks/useNavbarHeight';
+import Heading from '../../standardHero/heading/heading';
 
 export default function PricingPage({ details, faqData }) {
   const { totalHeight } = useNavbarHeight();
@@ -183,14 +182,11 @@ export default function PricingPage({ details, faqData }) {
   }, [isTopbarPresent, renderTablePlanNameView, isSticky]);
 
   return (
-    <PricingPageWrapper>
+    <div className='component-wrapper'>
       <div>
-        <HeroSection>
-          <Container>
-            {!isEmpty(details?.header) && <h1>{details.header}</h1>}
-            {!isEmpty(details?.body) && <p>{details.body}</p>}
-          </Container>
-        </HeroSection>
+        <Container>
+          <Heading title={details?.header} description={details?.body} variant={HeroTypes.CENTER} />
+        </Container>
         <PricingSection>
           <Container>
             <PriceMenu>
@@ -238,6 +234,6 @@ export default function PricingPage({ details, faqData }) {
           secondaryButtonText={details.ctaSection?.secondaryButtonText}
         />
       )}
-    </PricingPageWrapper>
+    </div>
   );
 }

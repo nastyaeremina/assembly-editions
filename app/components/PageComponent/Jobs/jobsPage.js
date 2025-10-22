@@ -14,7 +14,6 @@ import {
   RoleRow,
   LeftRow,
   RightRow,
-  MainWrap,
   JobTitle,
   Icon,
   TeamBlock,
@@ -213,68 +212,66 @@ export default function JobsPage({ details, jobList, faqData, jobBlogPostList, j
   }, [jobBlogPostList, renderAuthorListView]);
 
   return (
-    <>
-      <MainWrap>
-        <StandardHero
-          type={HeroTypes.NEW_LEFT_HERO}
-          data={{
-            heroTitle: details?.title,
-            heroDescription: details?.description,
-            banner1: details?.banner,
-            primaryButtonText: details?.primaryButtonText,
-            primaryButtonLink: details?.primaryButtonLink,
-            secondaryButtonText: details?.secondaryButtonText,
-            secondaryButtonLink: details?.secondaryButtonLink
-          }}
-        />
-        {!isEmpty(details?.internalFeaturesCollection?.items) && (
-          <ModernV2 data={details?.internalFeaturesCollection?.items} title={details?.sectionTitle3} />
-        )}
-        <CareerSection>
-          <Container>
-            <CareerBlock>
-              <RoleBlock>
-                <RoleWrap>
-                  {!isEmpty(details?.sectionTitle1) && <h2>{details?.sectionTitle1}</h2>}
-                  {!isEmpty(details?.sectionDescription1) && (
-                    <ReactMarkdown>{details?.sectionDescription1}</ReactMarkdown>
-                  )}
-                </RoleWrap>
-                {!isEmpty(jobList) && <JobDetailWrap>{renderJobsRolesListView}</JobDetailWrap>}
-              </RoleBlock>
-            </CareerBlock>
-          </Container>
-        </CareerSection>
-
+    <div className='component-wrapper'>
+      <StandardHero
+        type={HeroTypes.NEW_LEFT_HERO}
+        data={{
+          heroTitle: details?.title,
+          heroDescription: details?.description,
+          banner1: details?.banner,
+          primaryButtonText: details?.primaryButtonText,
+          primaryButtonLink: details?.primaryButtonLink,
+          secondaryButtonText: details?.secondaryButtonText,
+          secondaryButtonLink: details?.secondaryButtonLink
+        }}
+      />
+      {!isEmpty(details?.internalFeaturesCollection?.items) && (
+        <ModernV2 data={details?.internalFeaturesCollection?.items} title={details?.sectionTitle3} />
+      )}
+      <CareerSection>
         <Container>
-          <TeamBlock>
-            <TeamView>{!isEmpty(details?.sectionTitle2) && <h2>{details?.sectionTitle2}</h2>}</TeamView>
-            {!isEmpty(jobImagesList) && (
-              <ImageSliderSection>
-                <ImgWrap
-                  onTouchStart={isMobileDevice ? handleTouchStart : undefined}
-                  onTouchMove={isMobileDevice ? handleTouchMove : undefined}
-                  onTouchEnd={isMobileDevice ? handleTouchEnd : undefined}>
-                  {renderJobImageView}
-                  {renderJobImageNameView}
-                </ImgWrap>
-                <TabList>{renderJobImageTabView}</TabList>
-                {jobImagesList?.length > 1 && (
-                  <ResponsiveSection>
-                    <SliderButton
-                      count={jobImagesList?.length}
-                      currentIndex={selectedImageIndex}
-                      setCurrentIndex={(index) => setSelectedImageIndex(index)}
-                    />
-                  </ResponsiveSection>
+          <CareerBlock>
+            <RoleBlock>
+              <RoleWrap>
+                {!isEmpty(details?.sectionTitle1) && <h2>{details?.sectionTitle1}</h2>}
+                {!isEmpty(details?.sectionDescription1) && (
+                  <ReactMarkdown>{details?.sectionDescription1}</ReactMarkdown>
                 )}
-              </ImageSliderSection>
-            )}
-            {!isEmpty(jobBlogPostList) && <TeamDetail>{renderJobBlogPostView}</TeamDetail>}
-          </TeamBlock>
+              </RoleWrap>
+              {!isEmpty(jobList) && <JobDetailWrap>{renderJobsRolesListView}</JobDetailWrap>}
+            </RoleBlock>
+          </CareerBlock>
         </Container>
-        <FAQ faqList={faqData} />
-      </MainWrap>
-    </>
+      </CareerSection>
+
+      <Container>
+        <TeamBlock>
+          <TeamView>{!isEmpty(details?.sectionTitle2) && <h2>{details?.sectionTitle2}</h2>}</TeamView>
+          {!isEmpty(jobImagesList) && (
+            <ImageSliderSection>
+              <ImgWrap
+                onTouchStart={isMobileDevice ? handleTouchStart : undefined}
+                onTouchMove={isMobileDevice ? handleTouchMove : undefined}
+                onTouchEnd={isMobileDevice ? handleTouchEnd : undefined}>
+                {renderJobImageView}
+                {renderJobImageNameView}
+              </ImgWrap>
+              <TabList>{renderJobImageTabView}</TabList>
+              {jobImagesList?.length > 1 && (
+                <ResponsiveSection>
+                  <SliderButton
+                    count={jobImagesList?.length}
+                    currentIndex={selectedImageIndex}
+                    setCurrentIndex={(index) => setSelectedImageIndex(index)}
+                  />
+                </ResponsiveSection>
+              )}
+            </ImageSliderSection>
+          )}
+          {!isEmpty(jobBlogPostList) && <TeamDetail>{renderJobBlogPostView}</TeamDetail>}
+        </TeamBlock>
+      </Container>
+      <FAQ faqList={faqData} />
+    </div>
   );
 }
