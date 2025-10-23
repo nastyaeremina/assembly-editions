@@ -9,7 +9,14 @@ import useNavbarHeight from '../../../hooks/useNavbarHeight';
 import { isEmpty } from '../../../helpers/helpers';
 
 export default function UpdatedetailPage({ details: updateDetails, updatesCTA = null }) {
-  const contentWithVideos = renderContentWithVideos(updateDetails?.html);
+  let contentWithVideos = renderContentWithVideos(updateDetails?.html);
+
+  // Wrap tables to mirror RichText table styling
+  if (contentWithVideos && contentWithVideos.includes('<table')) {
+    contentWithVideos = contentWithVideos
+      .replace(/<table\b/gi, '<div class="table-wrapper"><table')
+      .replace(/<\/table>/gi, '</table></div>');
+  }
 
   const BreadcrumbItem = [{ label: 'All updates', href: '/updates' }];
 

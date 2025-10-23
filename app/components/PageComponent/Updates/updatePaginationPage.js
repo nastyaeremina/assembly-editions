@@ -1,14 +1,14 @@
 'use client';
 import moment from 'moment';
-import { useEffect, useMemo, useState } from 'react';
+import { useMemo } from 'react';
 import { isEmpty } from '../../../helpers/helpers';
+import { renderContentWithVideos } from '../../../helpers/clientSideHelpers';
 import { ButtonVariant, EXTERNAL_LINK_KEYS } from '../../../constants/constant';
 import { Container, Content } from '../../../styles/commonStyles';
 import {
   Detail,
   Pagination,
   PostContent,
-  UpadtePage,
   UpdateDate,
   UpdateDes,
   UpdateDetail,
@@ -25,6 +25,15 @@ export default function UpdatesPaginationPage({ allPosts, pagination, externalLi
   const renderPosts = useMemo(() => {
     if (isEmpty(allPosts)) return null;
     return allPosts?.map((item, index) => {
+      let contentWithVideos = renderContentWithVideos(item?.html);
+
+      // Wrap tables to mirror RichText table styling
+      if (contentWithVideos && contentWithVideos.includes('<table')) {
+        contentWithVideos = contentWithVideos
+          .replace(/<table\b/gi, '<div class="table-wrapper"><table')
+          .replace(/<\/table>/gi, '</table></div>');
+      }
+
       return (
         <UpdateDes key={`updatesitem_index_${index}`}>
           <Detail>
@@ -32,7 +41,7 @@ export default function UpdatesPaginationPage({ allPosts, pagination, externalLi
               {moment(new Date(item?.published_at)).format('MMMM D, YYYY')}
             </UpdateDate>
             <UpdateDetail>
-              <Content dangerouslySetInnerHTML={{ __html: item?.html }}></Content>
+              <Content dangerouslySetInnerHTML={{ __html: contentWithVideos }}></Content>
             </UpdateDetail>
           </Detail>
         </UpdateDes>

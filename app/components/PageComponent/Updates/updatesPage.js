@@ -28,7 +28,14 @@ export default function UpdatesPage({ allPosts, externalLinks = {}, updatesCTA =
     if (isEmpty(allPosts)) return null;
     return allPosts?.map((item, index) => {
       const isLast = index === allPosts.length - 1;
-      const contentWithVideos = renderContentWithVideos(item?.html);
+      let contentWithVideos = renderContentWithVideos(item?.html);
+
+      // Wrap tables to mirror RichText table styling
+      if (contentWithVideos && contentWithVideos.includes('<table')) {
+        contentWithVideos = contentWithVideos
+          .replace(/<table\b/gi, '<div class="table-wrapper"><table')
+          .replace(/<\/table>/gi, '</table></div>');
+      }
 
       return (
         <UpdateDes key={`updatesitem_index_${index}`}>

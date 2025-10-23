@@ -785,6 +785,9 @@ const Content = styled.div`
     @media only screen and (max-width: 449px) {
       margin-bottom: 0px;
     }
+    thead {
+      border-bottom: 1px solid var(--border-default);
+    }
     tr {
       border-bottom: 1px solid var(--border-default);
       :last-child {
@@ -802,7 +805,7 @@ const Content = styled.div`
       }
     }
     th {
-      background-color: var(--gray-50);
+      background-color: var(--off-white-550);
       padding: var(--space-12) var(--space-20);
       text-align: left;
       ${body_semibold};
@@ -837,6 +840,10 @@ const Content = styled.div`
         i {
           font-style: italic !important;
         }
+      }
+      li {
+        margin-left: var(--space-18);
+        margin-top: var(--space-8);
       }
       a {
         ${body_regular};

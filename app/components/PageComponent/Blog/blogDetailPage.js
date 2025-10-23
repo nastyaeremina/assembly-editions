@@ -195,7 +195,7 @@ export default function BlogdetailPage({
       <Content applyMargin={!shouldShowTOC} hasTopBar={hasTopBar}>
         {segments.flatMap((segment, index) => {
           // Transform comma/tab separated text inside <figcaption> <span> into multiple chip spans
-          const processedSegment = segment?.includes('<figcaption')
+          let processedSegment = segment?.includes('<figcaption')
             ? segment.replace(
                 /(<figcaption[^>]*>)[\s\S]*?<span[^>]*>([\s\S]*?)<\/span>([\s\S]*?<\/figcaption>)/g,
                 (_match, figStart, inner, figEnd) => {
@@ -209,6 +209,13 @@ export default function BlogdetailPage({
                 }
               )
             : segment;
+
+          // Wrap tables to mirror RichText table styling
+          if (processedSegment && processedSegment.includes('<table')) {
+            processedSegment = processedSegment
+              .replace(/<table\b/gi, '<div class="table-wrapper"><table')
+              .replace(/<\/table>/gi, '</table></div>');
+          }
 
           if (processedSegment?.startsWith('<pre><code')) {
             // code block
