@@ -165,7 +165,7 @@ const LinkText = styled(Link)`
     color: var(--title);
   }
   :focus-visible {
-    outline: 2px solid var(--link-default);
+    outline: 0px solid var(--link-default);
     border-radius: var(--radius-30);
   }
   @media only screen and (max-width: 1080px) {
@@ -193,6 +193,23 @@ const SpanLink = styled.li`
       display: none;
     }
   }
+  &:focus-within {
+    background-color: var(--off-white-600);
+    border-radius: var(--radius-30);
+  }
+  &:focus-within .innerlist,
+  &:focus-within .innerlist li {
+    display: block;
+    @media only screen and (max-width: 991px) {
+      display: none;
+    }
+  }
+  &:focus-within .dropdownlist {
+    display: flex;
+    min-width: 400px;
+    width: 100%;
+  }
+  @media only screen and (max-width: 991px) {
   @media only screen and (max-width: 1080px) {
     width: 100%;
     padding: var(--space-6) 0;
@@ -207,26 +224,13 @@ const DropdownContainer = styled.div`
 const ResponsiveSpanLink = styled.button`
   position: relative;
   transition: color 300ms;
+  width: 100%;
+  padding: var(--space-6) var(--space-12) var(--space-6) 0;
   ${(props) =>
     props.isOpenMenu &&
     css`
       display: none;
     `}
-  &:hover .innerlist,
-  li {
-    display: block;
-    @media only screen and (max-width: 1080px) {
-      display: none;
-    }
-  }
-  :hover .img-line {
-    opacity: 1;
-    visibility: visible;
-    display: block;
-    @media only screen and (max-width: 1080px) {
-      display: none;
-    }
-  }
   @media only screen and (max-width: 1080px) {
     width: 100%;
     padding: var(--space-6) var(--space-12) var(--space-6) 0;

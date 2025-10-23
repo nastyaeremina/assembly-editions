@@ -13,7 +13,7 @@ function HighlighSection({ title, description, image, href }) {
   return (
     !isEmpty(href) && (
       <HighlightSectionDiv>
-        <Link href={href}>
+        <Link href={href} tabIndex={-1}>
           <ContentDiv>
             <Content>
               <Title>{title}</Title>
