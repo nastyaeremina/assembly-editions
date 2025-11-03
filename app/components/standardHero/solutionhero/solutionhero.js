@@ -3,7 +3,7 @@ import Image from 'next/image';
 import { Container } from '../../../styles/commonStyles';
 import { isEmpty, separateSpecialChar } from '../../../helpers/helpers';
 import Heading from '../heading/heading';
-import { HeroSection, SolutionWrap, RightWrap, ImageView, MobileImg, MobileView, Mobilenew } from './styles';
+import { HeroSection, SolutionWrap, RightWrap, ImageView, MobileImg, MobileView, Mobilenew, HeroLeft } from './styles';
 
 /**
  * SolutionHero Component
@@ -38,19 +38,21 @@ export default function SolutionHero({
       <HeroSection isStandardPage={isStandardPage}>
         <Container>
           <SolutionWrap>
-            <Heading
-              title={finalTitle}
-              description={description}
-              primaryButtonLink={primaryButtonLink}
-              primaryButtonText={primaryButtonText}
-              secondaryButtonLink={secondaryButtonLink}
-              secondaryButtonText={secondaryButtonText}
-              isShowSocialProof={isShowSocialProof}
-            />
+            <HeroLeft>
+              <Heading
+                title={finalTitle}
+                description={description}
+                primaryButtonLink={primaryButtonLink}
+                primaryButtonText={primaryButtonText}
+                secondaryButtonLink={secondaryButtonLink}
+                secondaryButtonText={secondaryButtonText}
+                isShowSocialProof={isShowSocialProof}
+              />
+            </HeroLeft>
             {!isEmpty(webImage) && (
               <RightWrap emptyMobileImage={isEmpty(mobileImage)}>
                 <ImageView emptyMobileImage={isEmpty(mobileImage)}>
-                  <Image src={webImage} alt='main-logo' width={479} height={633} />
+                  <Image src={webImage} alt='main-logo' width={560} height={600} />
                   {mobileImage && (
                     <MobileImg>
                       <Image src={mobileImage} alt='main-logo' width={310} height={655} />

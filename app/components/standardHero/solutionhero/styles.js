@@ -31,7 +31,7 @@ const HeroSection = styled.div`
 const SolutionWrap = styled.div`
   display: flex;
   align-items: center;
-  gap: 163px;
+  gap: var(--space-64);
   &.details-hero {
     gap: var(--space-64);
     align-items: center;
@@ -52,16 +52,18 @@ const SolutionWrap = styled.div`
     `}
   @media only screen and (max-width: 991px) {
     flex-wrap: wrap;
-    gap: var(--space-48);
+    gap: var(--space-40);
     width: 100%;
   }
   @media only screen and (max-width: 768px) {
-    gap: var(--space-32);
     ${(props) =>
       props.isWeeklycontainer &&
       css`
         padding-bottom: 80px;
       `}
+  }
+  @media only screen and (max-width: 449px) {
+    gap: var(--space-32);
   }
   .weeklydemo-form {
     position: relative;
@@ -353,6 +355,9 @@ const ImageView = styled.div`
   img {
     object-fit: cover;
     border-radius: var(--radius-16);
+    max-width: 560px;
+    width: 100%;
+    height: auto;
     @media only screen and (max-width: 449px) {
       border-radius: var(--radius-12);
     }
@@ -365,6 +370,9 @@ const ImageView = styled.div`
     `}
   @media only screen and (max-width: 991px) {
     margin-left: 100px;
+    img {
+      max-width: 100%;
+    }
     ${(props) =>
       props.emptyMobileImage &&
       css`
@@ -475,6 +483,11 @@ const LogoSection = styled.div`
   }
 `;
 
+const HeroLeft = styled.div`
+  max-width: 620px;
+  width: 100%;
+`;
+
 export {
   HeroSection,
   SolutionWrap,
@@ -494,5 +507,6 @@ export {
   BottomDiv,
   ButtonGroup,
   ButtonGroups,
-  LogoSection
+  LogoSection,
+  HeroLeft
 };
