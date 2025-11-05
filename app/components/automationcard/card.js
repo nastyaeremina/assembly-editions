@@ -10,7 +10,7 @@ export default function AutomationCard({ title, body, imageurl, isTwoCard, isSta
         <Head>{title}</Head>
         {!isEmpty(body) && <Description>{body}</Description>}
       </CardTop>
-      <Image src={imageurl} alt='automationcard' width={1222} height={502} className='card-img' />
+      <Image src={imageurl} alt='automationcard' width={462} height={380} className='card-img' />
     </Card>
   );
 }
