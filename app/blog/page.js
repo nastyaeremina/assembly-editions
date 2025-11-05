@@ -24,11 +24,11 @@ export const revalidate = 300; // Revalidate every 5 minutes
 
 async function getContent(page = 1, limit = 8) {
   try {
-    // For first page, get a few extra posts to extract featured blog
-    const postsLimit = page === 1 ? limit + 2 : limit;
+    // For first page, fetch one extra post to allow de-dup with featured
+    const postsLimit = page === 1 ? limit + 1 : limit;
 
     const [allPosts, tagsData, socialMediaLinks, blogCTA, allBlogPost] = await Promise.all([
-      getBlogPosts({ page, limit: postsLimit }), // Now using optimized paginated function
+      getBlogPosts({ page, limit: postsLimit }),
       getAllTagWithSlug(),
       getSocialMediaLinks({ linksOnly: true }),
       // Fetch CTA Section by id from Contentful
@@ -39,13 +39,33 @@ async function getContent(page = 1, limit = 8) {
     // Filter out tags that start with '#' and sort them
     const tags = tagsData?.filter((tagsData) => tagsData?.name?.trim()?.[0] !== '#');
 
-    // For first page, extract featured blog and filter posts
+    // For first page, fetch latest featured and de-duplicate from list
     if (page === 1) {
-      const { featuredBlog, filteredPosts } = getFeaturedBlogAndFilteredPosts(allPosts);
+      // Prefer the latest featured post globally
+      const latestFeaturedList = await getBlogPosts({ page: 1, limit: 1, filter: 'visibility:public+featured:true' });
+      let featuredBlog = latestFeaturedList?.[0] || null;
+
+      let filteredPosts = allPosts;
+
+      if (featuredBlog) {
+        const isFeaturedInList = filteredPosts?.some((p) => p?.id === featuredBlog?.id);
+        if (isFeaturedInList) {
+          filteredPosts = filteredPosts.filter((p) => p?.id !== featuredBlog?.id).slice(0, limit);
+        } else {
+          // Not present; keep only first `limit` posts (we fetched limit+1 to compensate)
+          filteredPosts = filteredPosts.slice(0, limit);
+        }
+      } else {
+        // Fallback to previous behavior if no featured exists
+        const result = getFeaturedBlogAndFilteredPosts(allPosts);
+        featuredBlog = result?.featuredBlog || null;
+        filteredPosts = result?.filteredPosts?.slice(0, limit) || [];
+      }
+
       customSort(tags, BLOG_TAG_SORTED_LIST);
 
       return {
-        allPosts: filteredPosts?.slice(0, limit) || [],
+        allPosts: filteredPosts || [],
         tags,
         socialMediaLinks: socialMediaLinks || [],
         featuredBlog,

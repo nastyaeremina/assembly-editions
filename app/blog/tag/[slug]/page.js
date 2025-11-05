@@ -4,7 +4,8 @@ import {
   getAllPublicTitlesAndSlugsRaw,
   getAllTagWithSlug,
   getBlogByTag,
-  getTagDetail
+  getTagDetail,
+  getBlogPosts
 } from '../../../lib/blog-content';
 import { customSort, getFeaturedBlogAndFilteredPosts, isEmpty } from '../../../helpers/helpers';
 import TagPage from '../../../components/PageComponent/Blog/tagPage';
@@ -32,8 +33,8 @@ export async function generateStaticParams() {
 
 async function getContent({ slug, page = 1, limit = 8 }) {
   try {
-    // For first page, get a few extra posts to extract featured blog
-    const postsLimit = page === 1 ? limit + 2 : limit;
+    // For first page, fetch one extra post to allow de-dup with featured
+    const postsLimit = page === 1 ? limit + 1 : limit;
 
     // Fetch initial posts with pagination
     const [initialPosts, allBlogPost, tagDetail, tags, tagCTA] = await Promise.all([
@@ -47,11 +48,29 @@ async function getContent({ slug, page = 1, limit = 8 }) {
     let featuredBlog = null;
     let filteredPosts = initialPosts;
 
-    // For first page, extract featured blog and filter posts
+    // For first page, fetch latest featured within the tag and de-duplicate
     if (page === 1) {
-      const result = getFeaturedBlogAndFilteredPosts(initialPosts);
-      featuredBlog = result.featuredBlog;
-      filteredPosts = result.filteredPosts?.slice(0, limit) || [];
+      const latestFeaturedInTag = await getBlogPosts({
+        page: 1,
+        limit: 1,
+        filter: `visibility:public+featured:true+tags:[${slug}]`
+      });
+
+      featuredBlog = latestFeaturedInTag?.[0] || null;
+
+      if (featuredBlog) {
+        const isFeaturedInList = filteredPosts?.some((p) => p?.id === featuredBlog?.id);
+        if (isFeaturedInList) {
+          filteredPosts = filteredPosts.filter((p) => p?.id !== featuredBlog?.id).slice(0, limit);
+        } else {
+          filteredPosts = filteredPosts.slice(0, limit);
+        }
+      } else {
+        // Fallback to previous behavior if no featured exists in this tag
+        const result = getFeaturedBlogAndFilteredPosts(initialPosts);
+        featuredBlog = result?.featuredBlog || null;
+        filteredPosts = result?.filteredPosts?.slice(0, limit) || [];
+      }
     }
 
     const finalTagList = tags?.filter((tag) => tag?.name?.trim()?.[0] !== '#');
@@ -140,7 +159,7 @@ export default async function Tag({ params, searchParams }) {
       page
     });
 
-    if (isEmpty(allPosts) && page === 1) {
+    if (isEmpty(allPosts) && isEmpty(featuredBlog) && page === 1) {
       return notFound();
     }
 
