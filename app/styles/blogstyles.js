@@ -317,6 +317,7 @@ const BlogTime = styled.div`
   padding-top: var(--space-24);
   border-top: 1px solid var(--border-default);
   margin-top: var(--space-64);
+  flex-wrap: wrap;
   span {
     ${button_regular};
     color: var(--text-secondary);

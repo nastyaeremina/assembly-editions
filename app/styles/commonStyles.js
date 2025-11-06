@@ -1,7 +1,6 @@
 'use client';
 
 import styled, { css } from 'styled-components';
-import { ButtonText, HeaderFont, MbButtonText, MbPrimaryBtn } from './styles';
 import {
   body_regular,
   body_semibold,
@@ -24,108 +23,6 @@ const Container = styled.div`
   }
   @media only screen and (max-width: 449px) {
     padding: 0 var(--space-16);
-  }
-`;
-
-const PrimaryButton = styled.div`
-  a {
-    ${ButtonText}
-    display: inline-block;
-    letter-spacing: 0.02em;
-    padding: 11px 32px;
-    border-radius: 26px;
-    background-color: var(--primary);
-    color: var(--white);
-    border: 1px solid var(--primary);
-    :hover {
-      background-color: var(--primary);
-    }
-    ${(props) =>
-      props.textColor &&
-      css`
-        color: var(${props.textColor});
-      `}
-    ${(props) =>
-      props.backgroundColor &&
-      css`
-        background-color: var(${props.backgroundColor});
-        border: 1px solid var(${props.backgroundColor});
-        :hover {
-          background-color: var(${props.backgroundColor});
-        }
-      `}
-    text-decoration: none;
-    transition: all 300ms;
-  }
-  @media only screen and (max-width: 991px) {
-    a {
-      padding: 11px 32px;
-    }
-  }
-  @media only screen and (max-width: 749px) {
-    a {
-      ${MbPrimaryBtn};
-      padding: 7px 32px;
-    }
-  }
-`;
-
-const SecondryButton = styled.div`
-  a {
-    ${ButtonText}
-    display: inline-block;
-    padding: 11px 32px;
-    border: 1px solid var(--black);
-    border-radius: 48px;
-    background-color: transparent;
-    color: var(--black);
-    letter-spacing: 0.02em;
-    text-decoration: none;
-    transition: all 300ms;
-    :hover {
-      background-color: var(--hover-color);
-    }
-  }
-  @media only screen and (max-width: 749px) {
-    a {
-      ${MbPrimaryBtn};
-      padding: 7px 32px;
-    }
-  }
-`;
-
-const BlackButton = styled.div`
-  a {
-    margin-left: 14px;
-    ${HeaderFont}
-    display: inline-block;
-    padding: 8px 32px;
-    border-radius: 48px;
-    ${(props) =>
-      props.textColor &&
-      css`
-        color: var(${props.textColor});
-      `}
-    ${(props) =>
-      props.backgroundColor &&
-      css`
-        background-color: var(${props.backgroundColor});
-      `}
-    text-decoration: none;
-    transition: all 300ms;
-  }
-  @media only screen and (max-width: 749px) {
-    a {
-      ${MbButtonText};
-      padding: 10px 16px;
-      margin-left: 2px;
-    }
-  }
-  @media only screen and (max-width: 434px) {
-    a {
-      ${MbButtonText};
-      text-align: center;
-    }
   }
 `;
 
@@ -295,19 +192,18 @@ const Content = styled.div`
     figcaption {
       display: flex;
       gap: var(--space-8);
-      overflow: auto;
       padding: var(--space-3) var(--space-3);
       margin-top: var(--space-40) !important;
-      &::-webkit-scrollbar {
-        display: none;
-      }
-      & {
-        -ms-overflow-style: none;
-        scrollbar-width: none;
-      }
+      position: relative;
       @media only screen and (max-width: 991px) {
         margin: 0 -32px;
         padding: var(--space-3) var(--space-32) var(--space-3);
+        overflow-x: auto;
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+        &::-webkit-scrollbar {
+          display: none;
+        }
       }
       @media only screen and (max-width: 449px) {
         margin: 0 -16px;
@@ -322,26 +218,61 @@ const Content = styled.div`
       padding: var(--space-2) var(--space-16) 0;
       height: 40px;
       border-radius: 9999px;
-      background: var(--gray-50);
+      background: var(--off-white-550);
       color: var(--title);
       ${button_regular}
       cursor: pointer;
-      border: 1px solid transparent;
-      transition: border 0.3s ease;
+      transition: background 0.3s ease, color 0.3s ease;
       white-space: nowrap;
-      &:hover {
-        border: 1px solid var(--border-hover);
+      :hover {
+        background: var(--off-white-600);
       }
       &.active {
         background: var(--title);
         color: var(--off-white-100);
-        border: 1px solid var(--title);
       }
     }
     figcaption .kg-chip.active {
       background: var(--title);
       color: var(--off-white-100);
-      border: 1px solid var(--title);
+    }
+  }
+
+  .kg-chip-dropdown {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    margin-top: var(--space-8);
+    padding: var(--space-8);
+    background-color: var(--off-white-300);
+    border: 1px solid var(--border-secondary);
+    border-radius: var(--radius-16);
+    z-index: 10;
+    width: 216px;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+    box-shadow: 0px 10px 10px -4px #00000014;
+  }
+  .kg-chip-dropdown .kg-chip {
+    display: block;
+    margin: 0;
+    padding: var(--space-8) var(--space-12);
+    border-radius: var(--radius-8);
+    ${button_regular}
+    color: var(--title);
+    cursor: pointer;
+    text-align: left;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    background-color: transparent;
+    :hover {
+      background-color: var(--off-white-600);
+    }
+    :focus-visible {
+      outline: 2px solid var(--link-default);
+      border-radius: var(--radius-8);
     }
   }
 
@@ -1009,4 +940,4 @@ const Content = styled.div`
     `}
 `;
 
-export { PrimaryButton, BlackButton, Container, SecondryButton, Content };
+export { Container, Content };

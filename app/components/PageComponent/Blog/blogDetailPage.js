@@ -21,7 +21,6 @@ import { EXTRACT_CODE_TAG_FROM_HTML_REGEX } from '../../../constants/constant';
 import LegacyBlogDetailHero from '../../blogdetailHero/legacyBlogDetailHero';
 import SVGComponent from '../../../../public/images/svg/SVGComponent';
 import NewCTA from '../../cta/newCTA';
-
 import ToastMessage from '../../ToastMessage/toastMessage';
 import TableOfContents from './TableOfContents';
 import useNavbarHeight from '../../../hooks/useNavbarHeight';

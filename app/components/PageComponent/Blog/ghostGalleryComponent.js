@@ -1,5 +1,6 @@
 'use client';
 import { useEffect, useMemo, useRef, useState } from 'react';
+import useMobileDevice from '../../../hooks/useMobileDevice';
 
 export default function GhostGalleryComponent({ htmlString }) {
   const { images, chips } = useMemo(() => {
@@ -27,6 +28,96 @@ export default function GhostGalleryComponent({ htmlString }) {
   const chipRefs = useRef([]);
   const captionRef = useRef(null);
   const [loadedSet, setLoadedSet] = useState(new Set());
+  const [visibleChipCount, setVisibleChipCount] = useState(null);
+  const [showMoreDropdown, setShowMoreDropdown] = useState(false);
+  const isMobile = useMobileDevice();
+  const dropdownRef = useRef(null);
+
+  // Calculate how many chips fit within the caption and show a trailing
+  // "+N more" chip when they overflow. Recomputes on initial paint and on
+  // container resize to keep the count accurate.
+  useEffect(() => {
+    // On tablet/mobile we do not truncate – show all chips
+    if (isMobile) {
+      setVisibleChipCount(chips?.length || 0);
+      setShowMoreDropdown(false);
+      return;
+    }
+    if (!chips?.length) {
+      setVisibleChipCount(0);
+      return;
+    }
+
+    const GAP_PX = 8; // keep in sync with inline style gap
+
+    const measureMoreWidth = (n) => {
+      const container = captionRef.current;
+      if (!container) return 60;
+      const el = document.createElement('button');
+      el.className = 'kg-chip';
+      el.textContent = `+${n} more`;
+      container.appendChild(el);
+      const w = el.offsetWidth || 60;
+      container.removeChild(el);
+      return w;
+    };
+
+    const compute = () => {
+      const container = captionRef.current;
+      if (!container) return;
+      const containerWidth = container.clientWidth;
+      const widths = chipRefs.current.map((el) => (el ? el.offsetWidth : 0));
+      let used = 0;
+      let visible = 0;
+      for (let i = 0; i < widths.length; i++) {
+        const chipWidth = widths[i];
+        const gap = visible > 0 ? GAP_PX : 0;
+        const remainingAfter = chips.length - (i + 1);
+        const moreWidth = remainingAfter > 0 ? measureMoreWidth(remainingAfter) : 0;
+        const moreGap = remainingAfter > 0 ? GAP_PX : 0;
+        if (used + gap + chipWidth + moreGap + moreWidth <= containerWidth) {
+          used += gap + chipWidth;
+          visible += 1;
+        } else {
+          break;
+        }
+      }
+      setVisibleChipCount(visible);
+    };
+
+    const id = requestAnimationFrame(compute);
+    const ro = new ResizeObserver(() => compute());
+    if (captionRef.current) ro.observe(captionRef.current);
+    window.addEventListener('resize', compute);
+
+    return () => {
+      cancelAnimationFrame(id);
+      try {
+        if (captionRef.current) ro.unobserve(captionRef.current);
+        ro.disconnect();
+      } catch (_e) {}
+      window.removeEventListener('resize', compute);
+    };
+  }, [chips, isMobile]);
+
+  // Close dropdown on outside click or ESC
+  useEffect(() => {
+    if (!showMoreDropdown) return;
+    const handleClick = (e) => {
+      const withinCaption = captionRef.current && captionRef.current.contains(e.target);
+      const withinDropdown = dropdownRef.current && dropdownRef.current.contains(e.target);
+      if (!withinCaption && !withinDropdown) setShowMoreDropdown(false);
+    };
+    const handleKey = (e) => {
+      if (e.key === 'Escape') setShowMoreDropdown(false);
+    };
+    document.addEventListener('mousedown', handleClick);
+    document.addEventListener('keydown', handleKey);
+    return () => {
+      document.removeEventListener('mousedown', handleClick);
+      document.removeEventListener('keydown', handleKey);
+    };
+  }, [showMoreDropdown]);
 
   useEffect(() => {
     const el = chipRefs.current?.[activeIndex];
@@ -53,23 +144,74 @@ export default function GhostGalleryComponent({ htmlString }) {
   return (
     <figure className='kg-card kg-gallery-card kg-card-hascaption'>
       {chips.length ? (
-        <figcaption
-          ref={captionRef}
-          style={{ display: 'flex', gap: '12px', overflowX: 'auto', WebkitOverflowScrolling: 'touch' }}>
-          {chips.map((label, idx) => (
-            <button
-              key={`${label}-${idx}`}
-              className={`kg-chip${idx === safeIndex ? ' active' : ''}`}
-              ref={(el) => {
-                chipRefs.current[idx] = el;
-              }}
-              onClick={(e) => {
-                e.preventDefault();
-                setActiveIndex(idx);
-              }}>
-              {label}
-            </button>
-          ))}
+        <figcaption ref={captionRef}>
+          {isMobile || (visibleChipCount ?? chips.length) >= chips.length ? (
+            chips.map((label, idx) => (
+              <button
+                key={`${label}-${idx}`}
+                className={`kg-chip${idx === safeIndex ? ' active' : ''}`}
+                ref={(el) => {
+                  chipRefs.current[idx] = el;
+                }}
+                onClick={(e) => {
+                  e.preventDefault();
+                  setActiveIndex(idx);
+                }}>
+                {label}
+              </button>
+            ))
+          ) : (
+            <>
+              {chips.slice(0, visibleChipCount || 0).map((label, idx) => (
+                <button
+                  key={`${label}-${idx}`}
+                  className={`kg-chip${idx === safeIndex ? ' active' : ''}`}
+                  ref={(el) => {
+                    chipRefs.current[idx] = el;
+                  }}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    setActiveIndex(idx);
+                  }}>
+                  {label}
+                </button>
+              ))}
+              {!isMobile && (
+                <div style={{ position: 'relative', display: 'inline-flex' }}>
+                  <button
+                    className='kg-chip'
+                    aria-haspopup='listbox'
+                    aria-expanded={showMoreDropdown ? 'true' : 'false'}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      setShowMoreDropdown((s) => !s);
+                    }}>
+                    {`+${Math.max(0, chips.length - (visibleChipCount || 0))} more`}
+                  </button>
+                  {showMoreDropdown ? (
+                    <div ref={dropdownRef} role='listbox' className='kg-chip-dropdown'>
+                      {chips.slice(visibleChipCount || 0).map((label, idx) => {
+                        const absoluteIndex = (visibleChipCount || 0) + idx;
+                        return (
+                          <button
+                            key={`${label}-more-${idx}`}
+                            role='option'
+                            className='kg-chip'
+                            onClick={(e) => {
+                              e.preventDefault();
+                              setActiveIndex(absoluteIndex);
+                              setShowMoreDropdown(false);
+                            }}>
+                            {label}
+                          </button>
+                        );
+                      })}
+                    </div>
+                  ) : null}
+                </div>
+              )}
+            </>
+          )}
           <p />
         </figcaption>
       ) : null}
