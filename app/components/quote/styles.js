@@ -1,5 +1,4 @@
 import styled, { css } from 'styled-components';
-import { Body3, Body4, ButtonText, Heading3, Heading4, MobileH3, Quote } from '../../styles/styles';
 import { body_regular, button_regular, h2_semibold, h3_semibold } from '../../styles/typography';
 
 const QuoteMain = styled.div`
@@ -108,7 +107,7 @@ const QuoteTxt = styled.div`
       color: var(--title);
       padding-left: 30px;
       position: relative;
-      ${Body3}
+      ${body_regular}
       p {
         color: var(--title);
         margin: 0;

@@ -1,5 +1,4 @@
 import styled, { css } from 'styled-components';
-import { MbBody5 } from '../../styles/styles';
 import { button_regular, button_semibold, label_regular } from '../../styles/typography';
 
 const SideNavbar = styled.div`
@@ -287,7 +286,7 @@ const ItemList = styled.div`
 const ItemName = styled.p`
   padding: 6px 0px 6px 8px;
   margin: 0;
-  ${MbBody5};
+  ${label_regular};
   cursor: pointer;
   :first-child {
     padding-top: 0;

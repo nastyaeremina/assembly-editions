@@ -1,12 +1,12 @@
 import styled, { css, keyframes } from 'styled-components';
-import { ButtonText, MbBody4, MbPrimaryBtn } from '../../styles/styles';
+import { button_regular } from '../../styles/typography';
 
 const ButtonContainer = styled.div`
   position: relative;
   a {
     position: relative !important;
     overflow: hidden;
-    ${ButtonText}
+    ${button_regular}
     display: inline-flex;
     letter-spacing: 0.02em;
     padding: 11px 32px;
@@ -130,19 +130,11 @@ const ButtonContainer = styled.div`
     a {
       padding: 11px 32px;
     }
-    /* button {
-      padding: 11px 32px;
-    } */
   }
   @media only screen and (max-width: 749px) {
     a {
-      ${MbPrimaryBtn};
       padding: 7px 32px;
     }
-    /* button {
-      ${MbPrimaryBtn};
-      padding: 7px 32px;
-    } */
   }
   .icon {
     margin-right: 12px;
@@ -163,7 +155,7 @@ const ball = keyframes`
 const Buttons = styled.button`
   position: relative !important;
   overflow: hidden;
-  ${ButtonText}
+  ${button_regular}
   letter-spacing: 0.02em;
   padding: 11px 32px;
   margin: auto;
@@ -222,7 +214,7 @@ const LinkButton = styled.div`
     padding: unset;
     background-color: unset;
     border: none;
-    ${MbBody4};
+    ${button_regular};
     border-radius: 0;
     color: var(--dark-gray);
     text-decoration: underline;

@@ -1,11 +1,11 @@
 import styled from 'styled-components';
-import { Heading2 } from '../../styles/styles';
+import { h2_semibold } from '../../styles/typography';
 
 const CtaInner = styled.div`
   text-align: center;
   h2 {
     color: var(--white);
-    ${Heading2};
+    ${h2_semibold};
     padding-bottom: 50px;
     margin: 0 auto;
     max-width: 708px;

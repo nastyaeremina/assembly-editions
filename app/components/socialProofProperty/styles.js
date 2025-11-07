@@ -1,5 +1,5 @@
 import styled, { css } from 'styled-components';
-import { Body4, Body5 } from '../../styles/styles';
+import { button_regular } from '../../styles/typography';
 
 const PropertyMainDiv = styled.div`
   display: flex;
@@ -8,13 +8,10 @@ const PropertyMainDiv = styled.div`
   margin-top: 32px;
   flex-wrap: wrap;
   h6 {
-    ${Body4};
+    ${button_regular};
     color: var(--title);
     margin: 0;
     margin-top: 2px;
-    @media only screen and (max-width: 449px) {
-      ${Body5};
-    }
   }
   ${(props) =>
     props.isBookDemo &&

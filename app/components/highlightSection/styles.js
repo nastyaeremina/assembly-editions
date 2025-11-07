@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { Body4, Body5, Heading4 } from '../../styles/styles';
+import { body_regular, h4_semibold } from '../../styles/typography';
 
 const SectionDiv = styled.div`
   padding-bottom: 100px;
@@ -27,18 +27,15 @@ const SectionDiv = styled.div`
     border-bottom: 1px solid var(--dark-green);
     p {
       :first-child {
-        ${Heading4};
+        ${h4_semibold};
         color: var(--title);
         margin: 0;
       }
       :nth-child(2) {
-        ${Body4};
+        ${body_regular};
         color: var(--body);
         margin: 0;
         margin-top: 12px;
-        @media only screen and (max-width: 449px) {
-          ${Body5}
-        }
       }
     }
     :first-child {

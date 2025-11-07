@@ -1,7 +1,6 @@
 import styled, { css } from 'styled-components';
-import { Body2, Heading2, MbBody1, MobileH2 } from '../../styles/styles';
 import { HeroTypes } from '../../constants/constant';
-import { button_regular, button_semibold } from '../../styles/typography';
+import { body_regular, button_regular, button_semibold, h2_semibold } from '../../styles/typography';
 
 const HeroSection = styled.div`
   width: 100%;
@@ -58,7 +57,7 @@ const BottomSection = styled.div`
 `;
 
 const HeroHeading = styled.h1`
-  ${Heading2};
+  ${h2_semibold};
   color: var(--light-green);
   margin: 0 auto 20px;
   max-width: 1000px;
@@ -72,18 +71,16 @@ const HeroHeading = styled.h1`
   }
   @media only screen and (max-width: 991px) {
     text-align: center;
-    ${Heading2}
   }
   @media only screen and (max-width: 749px) {
     margin-bottom: 20px;
-    ${MobileH2}
   }
 `;
 
 const Para = styled.p`
   max-width: 880px;
   width: 100%;
-  ${Body2}
+  ${body_regular}
   letter-spacing: 0.02em;
   margin: 0 auto;
   color: var(--white);
@@ -94,10 +91,6 @@ const Para = styled.p`
     `}
   @media only screen and (max-width: 991px) {
     text-align: center;
-    ${Body2}
-  }
-  @media only screen and (max-width: 749px) {
-    ${MbBody1};
   }
 `;
 const ImageHover = styled.a`

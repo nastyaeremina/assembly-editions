@@ -1,5 +1,5 @@
 import styled, { css } from 'styled-components';
-import { HeaderFont, LinkTxt } from '../../styles/styles';
+import { body_regular } from '../../styles/typography';
 
 const DetailLink = styled.div`
   a {
@@ -10,12 +10,9 @@ const DetailLink = styled.div`
   padding-bottom: var(--space-30);
   padding-top: var(--space-80);
   p {
-    ${LinkTxt};
+    ${body_regular};
     margin: 0;
     color: var(--medium-gray);
-    @media only screen and (max-width: 749px) {
-      ${HeaderFont};
-    }
   }
   a {
     :hover {

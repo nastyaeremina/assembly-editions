@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { Body3, Heading3, Heading4, MbBody5, MbPrimaryBtn } from '../../styles/styles';
+import { body_regular, h3_semibold, h4_semibold, tag } from '../../styles/typography';
 
 const Feedbackcard = styled.div`
   width: 345px;
@@ -30,22 +30,19 @@ const CardRight = styled.div`
 `;
 const PersonDetail = styled.div``;
 const PersonName = styled.h2`
-  ${MbPrimaryBtn}
-  letter-spacing: 0.02em;
+  ${tag}
   margin: 0;
   color: var(--title);
 `;
 const Caption = styled.p`
-  ${MbBody5}
-  letter-spacing: 0.02em;
+  ${tag}
   margin: 0;
-  color: var(--body);
+  color: var(--text-secondary);
 `;
 const CardDetail = styled.div`
   margin: 0;
   span {
-    ${MbPrimaryBtn}
-    letter-spacing: 0.02em;
+    ${tag}
     margin: 0;
     color: var(--title);
   }
@@ -53,18 +50,17 @@ const CardDetail = styled.div`
     font-weight: 500;
   }
   p {
-    ${MbBody5}
-    letter-spacing: 0.02em;
+    ${tag}
     margin: 4px 0 0;
     color: var(--title);
   }
   h2 {
-    ${Heading3}
+    ${h3_semibold}
     margin: 0px 0 30px 0;
     color: var(--title);
   }
   h3 {
-    ${Heading4}
+    ${h4_semibold}
     margin: 0px 0 30px 0;
     color: var(--title);
   }
@@ -79,7 +75,7 @@ const CardDetail = styled.div`
       color: var(--title);
       padding-left: 30px;
       position: relative;
-      ${Body3}
+      ${body_regular}
       p {
         color: var(--title);
         margin: 0;
@@ -115,7 +111,7 @@ const CardDetail = styled.div`
       color: var(--title);
       padding-left: 30px;
       position: relative;
-      ${Body3}
+      ${body_regular}
       p {
         color: var(--title);
         margin: 0;
@@ -142,7 +138,7 @@ const CardDetail = styled.div`
     font-style: italic;
     p {
       margin: 0;
-      ${Body3}
+      ${body_regular}
     }
     @media only screen and (max-width: 449px) {
       padding-left: 16px;

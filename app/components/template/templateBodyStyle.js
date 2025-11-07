@@ -1,17 +1,12 @@
 import styled, { css } from 'styled-components';
 import {
-  Body3,
-  Body4,
-  Body5,
-  HeaderFont,
-  Heading4,
-  Heading5,
-  Heading6,
-  MbBody3,
-  MbBody4,
-  MbBody5
-} from '../../styles/styles';
-import { body_regular, button_regular, button_semibold } from '../../styles/typography';
+  body_regular,
+  body_semibold,
+  button_regular,
+  button_semibold,
+  h4_semibold,
+  label_regular
+} from '../../styles/typography';
 
 const TemplateBody = styled.div`
   display: flex;
@@ -56,7 +51,7 @@ const AboutSection = styled.div`
 const Title = styled.div`
   padding: 0 var(--space-12) var(--space-16);
   border-bottom: 1px solid var(--title);
-  ${Heading6};
+  ${body_regular};
   color: var(--title);
   @media only screen and (max-width: 449px) {
     padding: 0 0 var(--space-16);
@@ -178,14 +173,14 @@ const ListName = styled.div`
 const ListIcon = styled.div``;
 
 const LableName = styled.div`
-  ${MbBody5}
+  ${label_regular}
   color: var(--title);
 `;
 
 const TemplateContent = styled.div`
   width: 100%;
   h3 {
-    ${Heading4};
+    ${h4_semibold};
     color: var(--title);
     margin: 30px 0 0;
     :first-child {
@@ -197,7 +192,7 @@ const TemplateContent = styled.div`
   }
   h4 > b,
   h4 {
-    ${Heading5};
+    ${body_semibold};
     font-weight: 400;
     color: var(--title);
     margin: 20px 0 0;
@@ -243,11 +238,11 @@ const TemplateContent = styled.div`
       background-color: var(--table-color);
       padding: 12px 20px;
       text-align: left;
-      ${HeaderFont};
+      ${button_semibold};
       color: var(--title);
       p > b,
       p {
-        ${HeaderFont};
+        ${button_semibold};
         color: var(--title);
       }
       :first-child {
@@ -259,11 +254,11 @@ const TemplateContent = styled.div`
     }
     td {
       padding: 12px 20px;
-      ${Body5};
+      ${label_regular};
       color: var(--title);
       vertical-align: top;
       p {
-        ${Body5};
+        ${label_regular};
         color: var(--title);
         padding-top: 20px;
         :first-child {
@@ -276,7 +271,7 @@ const TemplateContent = styled.div`
     }
   }
   p {
-    ${Body4};
+    ${button_regular};
     color: var(--body);
     margin: 16px 0 0;
   }
@@ -325,13 +320,10 @@ const TemplateContent = styled.div`
       }
       a {
         display: inline-block;
-        ${Body3}
-        color: var(--primary);
-        @media only screen and (max-width: 450px) {
-          ${MbBody3}
-        }
+        ${body_regular}
+        color: var(--title);
         :hover {
-          color: var(--title);
+          color: var(--text-secondary);
         }
       }
     }
@@ -344,9 +336,6 @@ const TemplateContent = styled.div`
     }
   }
   @media only screen and (max-width: 449px) {
-    p {
-      ${MbBody4}
-    }
     h3 {
       margin: 24px 0 0;
     }

@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { Body1, Body4 } from '../../styles/styles';
+import { body_regular } from '../../styles/typography';
 
 const AppMain = styled.div`
   text-align: center;
@@ -9,14 +9,14 @@ const AppMain = styled.div`
     width: calc(100% - 48px);
   }
   h4 {
-    ${Body1};
+    ${body_regular};
     color: var(--dark-green);
     margin: 40px 0 0 0;
   }
   p {
     margin: 20px 0 0 0;
     color: var(--medium-gray);
-    ${Body4}
+    ${body_regular}
   }
   span {
     font-weight: 500;

@@ -1,5 +1,5 @@
 import styled, { css } from 'styled-components';
-import { Body2, Body3, Heading2, Heading3, Heading4, Heading5, MbBody3, MobileH2, MobileH4 } from './styles';
+import { body_regular, body_semibold, h2_semibold, h3_semibold, h4_semibold } from './typography';
 
 const MainHero = styled.div`
   padding: 80px 0 50px 0;
@@ -21,7 +21,7 @@ const HeroSection = styled.div`
   padding-bottom: 50px;
   text-align: center;
   h1 {
-    ${Heading2};
+    ${h2_semibold};
     color: var(--title);
     margin: 0;
   }
@@ -34,9 +34,6 @@ const HeroSection = styled.div`
   }
   @media only screen and (max-width: 769px) {
     padding: 0;
-    h1 {
-      ${MobileH2}
-    }
   }
   ${(props) =>
     props.isStandardPage &&
@@ -53,38 +50,29 @@ const HeroCaption = styled.div`
   width: 100%;
   margin: 0 auto;
   h1 {
-    ${Heading2};
+    ${h2_semibold};
     color: var(--title);
     margin: 0 0 20px 0;
   }
   h2 {
-    ${Heading3};
+    ${h3_semibold};
     color: var(--title);
     margin: 0 0 20px 0;
   }
   h3 {
-    ${Heading4};
+    ${h4_semibold};
     color: var(--title);
     margin: 0 0 20px 0;
   }
   h4 {
-    ${Heading5};
+    ${body_semibold};
     color: var(--title);
     margin: 0 0 20px 0;
   }
   p {
-    ${Body2};
-    color: var(--body);
+    ${body_regular};
+    color: var(--text-secondary);
     margin: 20px 0 0px 0;
-  }
-  @media only screen and (max-width: 749px) {
-    h2 {
-      ${MobileH4}
-    }
-    p {
-      ${MbBody3}
-      font-size:17px;
-    }
   }
 `;
 

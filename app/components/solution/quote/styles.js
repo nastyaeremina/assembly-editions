@@ -1,16 +1,6 @@
 import styled from 'styled-components';
 import css from 'styled-jsx/css';
-import {
-  Body3,
-  Body4,
-  ButtonText,
-  HeaderFont,
-  Heading3,
-  Heading4,
-  MbBody3,
-  MobileH3,
-  Quote
-} from '../../../styles/styles';
+import { body_regular, button_regular, h2_regular, h3_semibold, h4_semibold } from '../../../styles/typography';
 
 const QuoteSection = styled.div`
   padding: 50px 0 100px;
@@ -58,7 +48,7 @@ const QuoteTxt = styled.div`
   padding: 40px;
   gap: 30px;
   p {
-    ${Quote};
+    ${h2_regular};
     margin: 0px 0 30px 0;
     color: var(--title);
   }
@@ -66,12 +56,12 @@ const QuoteTxt = styled.div`
     font-weight: 500;
   }
   h2 {
-    ${Heading3}
+    ${h3_semibold}
     margin: 0px 0 30px 0;
     color: var(--title);
   }
   h3 {
-    ${Heading4}
+    ${h4_semibold}
     margin: 0px 0 30px 0;
     color: var(--title);
   }
@@ -86,7 +76,7 @@ const QuoteTxt = styled.div`
       color: var(--title);
       padding-left: 30px;
       position: relative;
-      ${Body3}
+      ${body_regular}
       p {
         color: var(--title);
         margin: 0;
@@ -122,7 +112,7 @@ const QuoteTxt = styled.div`
       color: var(--title);
       padding-left: 30px;
       position: relative;
-      ${Body3}
+      ${body_regular}
       p {
         color: var(--title);
         margin: 0;
@@ -149,7 +139,7 @@ const QuoteTxt = styled.div`
     font-style: italic;
     p {
       margin: 0;
-      ${Body3}
+      ${body_regular}
     }
     @media only screen and (max-width: 449px) {
       padding-left: 16px;
@@ -158,7 +148,6 @@ const QuoteTxt = styled.div`
   @media only screen and (max-width: 749px) {
     padding: 30px;
     p {
-      ${MobileH3};
       padding-bottom: 0px;
     }
   }
@@ -167,24 +156,17 @@ const QuoteSubTxt = styled.div`
   span {
     display: block;
     margin: 0 0 4px 0;
-    ${ButtonText};
+    ${button_regular};
     color: var(--title);
   }
   p {
     margin: 0;
-    ${Body4};
-    color: var(--body);
+    ${button_regular};
+    color: var(--text-secondary);
   }
   @media only screen and (max-width: 749px) {
     span {
       margin: 0 0 0 0;
-      ${HeaderFont};
-      color: var(--title);
-    }
-    p {
-      margin: 0;
-      ${MbBody3};
-      color: var(--body);
     }
   }
 `;

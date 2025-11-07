@@ -1,7 +1,7 @@
 'use client';
 
 import styled, { css } from 'styled-components';
-import { Label } from '../../styles/styles';
+import { label_regular } from '../../styles/typography';
 const Tabbutton = styled.div`
   .Tabs {
     width: 80%;
@@ -16,7 +16,7 @@ const Tabbutton = styled.div`
     }
   }
   ul.nav {
-    ${Label}
+    ${label_regular}
     color: var(--medium-gray);
     padding-left: 0px;
     display: flex;

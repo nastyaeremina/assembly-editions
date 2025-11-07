@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { Body3, Body4, HeaderFont, Heading5 } from '../styles/styles';
+import { body_regular, body_semibold, button_semibold } from '../styles/typography';
 
 export const MainDiv = styled.div`
   display: flex;
@@ -28,31 +28,26 @@ export const LocationIcon = styled.div`
 `;
 
 export const Title = styled.h1`
-  ${Heading5}
+  ${body_semibold}
   color: var(--title);
   margin: 0;
   @media screen and (max-width: 449px) {
-    font-size: 24px;
-    line-height: 31px;
     max-width: 327px;
   }
 `;
 
 export const Description = styled.p`
-  ${Body3}
+  ${body_regular}
   color: var(--dark-gray);
   margin: 0;
   max-width: 600px;
   span {
     font-weight: 700;
   }
-  @media screen and (max-width: 449px) {
-    ${Body4}
-  }
 `;
 
 export const LearnMore = styled.a`
-  ${HeaderFont}
+  ${button_semibold}
   color: var(--medium-gray);
   &:hover {
     text-decoration: underline;

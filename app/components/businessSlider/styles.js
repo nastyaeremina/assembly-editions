@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { Body3, Body5, MbBody3, MbBody5 } from '../../styles/styles';
+import { body_regular, label_regular } from '../../styles/typography';
 
 const SliderWrap = styled.div`
   .roundbutton-section {
@@ -113,25 +113,23 @@ const WrapImage = styled.div`
   h4 {
     text-align: center;
     padding-top: 43px;
-    ${Body3};
+    ${body_regular};
     margin: 0;
     color: var(--title);
     @media only screen and (max-width: 911px) {
       padding-top: 20px;
-      ${MbBody3};
     }
   }
   p {
     width: 400px;
-    ${Body5};
+    ${label_regular};
     padding-top: 8px;
     text-align: center;
     margin: 0;
-    color: var(--body);
+    color: var(--text-secondary);
     letter-spacing: 0.02em;
     @media only screen and (max-width: 911px) {
       padding-top: 8px;
-      ${MbBody5};
       max-width: 327px;
       width: 100%;
     }

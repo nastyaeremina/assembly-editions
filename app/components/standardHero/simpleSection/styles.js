@@ -1,5 +1,5 @@
 import styled, { css } from 'styled-components';
-import { Body3, Heading2, Heading3, MbBody3, MobileH2, MobileH3 } from '../../../styles/styles';
+import { body_regular, h2_semibold, h3_semibold } from '../../../styles/typography';
 
 const SimpleMainSection = styled.div`
   overflow: hidden;
@@ -20,11 +20,11 @@ const BlockLeft = styled.div`
   h2 {
     margin: 0px;
     color: var(--title);
-    ${Heading3}
+    ${h3_semibold}
     ${(props) =>
       props.isHeading1 &&
       css`
-        ${Heading2}
+        ${h2_semibold}
       `}
   }
   @media only screen and (max-width: 768px) {
@@ -35,20 +35,12 @@ const BlockLeft = styled.div`
     .button-group {
       margin-top: 24px;
     }
-    h2 {
-      ${MobileH3}
-      ${(props) =>
-        props.isHeading1 &&
-        css`
-          ${MobileH2}
-        `}
-    }
   }
 `;
 const BlockRight = styled.div``;
 const HeroBody = styled.div`
-  color: var(--body);
-  ${Body3}
+  color: var(--text-secondary);
+  ${body_regular}
   margin: 0;
   margin-top: 20px;
   ${(props) =>
@@ -56,9 +48,6 @@ const HeroBody = styled.div`
     css`
       margin-top: 20px;
     `}
-  @media only screen and (max-width: 749px) {
-    ${MbBody3}
-  }
 `;
 const BlockImg = styled.div`
   position: relative;

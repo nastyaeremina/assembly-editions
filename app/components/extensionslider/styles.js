@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import styled from 'styled-components';
-import { Body4 } from '../../styles/styles';
+import { button_regular } from '../../styles/typography';
 
 const SliderWrap = styled.div`
   overflow: hidden;
@@ -22,7 +22,7 @@ const SliderSub = styled.div`
   gap: 12px;
   align-items: center;
   p {
-    ${Body4};
+    ${button_regular};
     margin: 0;
     color: var(--title);
   }

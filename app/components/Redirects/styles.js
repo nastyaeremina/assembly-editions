@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { Body1, Body3, Body4, Body5, Heading3, MbBody3, MobileH4 } from '../../styles/styles';
+import { body_regular, button_regular, h3_semibold } from '../../styles/typography';
 
 const Redirects = styled.div`
   padding-bottom: 100px;
@@ -24,7 +24,7 @@ const RedirectsHeading = styled.div`
   }
 `;
 const Title = styled.h2`
-  ${Heading3};
+  ${h3_semibold};
   color: var(--title);
   margin: 0;
   text-align: center;
@@ -33,12 +33,11 @@ const Title = styled.h2`
   }
 `;
 const Description = styled.p`
-  ${Body3};
-  color: var(--body);
+  ${body_regular};
+  color: var(--text-secondary);
   margin: 0;
   text-align: center;
   @media only screen and (max-width: 449px) {
-    ${MbBody3};
     text-align: start;
   }
 `;
@@ -89,20 +88,16 @@ const Card = styled.a`
   }
 `;
 const Heading = styled.h3`
-  ${Body1};
+  ${body_regular};
   color: var(--title);
   margin: 0;
-  @media only screen and (max-width: 479px) {
-    ${MobileH4}
-  }
 `;
 const Caption = styled.p`
-  ${Body4};
+  ${button_regular};
   color: var(--body);
   margin: 8px 0 0;
   @media only screen and (max-width: 449px) {
     margin: 6px 0 0;
-    ${Body5};
   }
 `;
 const Icon = styled.div`

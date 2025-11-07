@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import Image from 'next/image';
-import { Body2, Body6, Heading2, MbBody2, MobileH2, MobileH3 } from '../../styles/styles';
+import { h2_semibold, h4_regular, label_regular } from '../../styles/typography';
 
 const TemplateHeroSection = styled.div`
   overflow: hidden;
@@ -24,26 +24,10 @@ const BlockLeft = styled.div`
   h1 {
     margin: 0px 0 16px 0;
     color: var(--title);
-    ${Heading2}
+    ${h2_semibold}
   }
   @media only screen and (max-width: 1024px) {
     max-width: 980px;
-  }
-  @media only screen and (max-width: 749px) {
-    h1 {
-      ${MobileH2}
-    }
-    p {
-      ${MbBody2}
-    }
-  }
-  @media only screen and (max-width: 749px) {
-    h1 {
-      ${MobileH3}
-    }
-    p {
-      ${MbBody2}
-    }
   }
 `;
 const BlockRight = styled.div`
@@ -70,7 +54,7 @@ const TabView = styled.div`
   margin-top: 20px;
   cursor: pointer;
   span {
-    ${Body6};
+    ${label_regular};
     color: var(--border);
   }
 `;
@@ -134,12 +118,11 @@ const TabSection = styled.div`
 const HeroBody = styled.div`
   p {
     color: var(--body);
-    ${Body2}
+    ${h4_regular}
     margin: 0 0 32px 0;
   }
   @media only screen and (max-width: 749px) {
     p {
-      ${MbBody2}
       margin: 0 0 28px 0;
     }
   }

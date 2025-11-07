@@ -1,6 +1,6 @@
 import styled, { css } from 'styled-components';
 import Link from 'next/link';
-import { Body4, Body5, Heading4, Heading5, MbBody4, MbBody5 } from '../../styles/styles';
+import { body_regular, h4_semibold } from '../../styles/typography';
 
 const PopularCard = styled(Link)`
   display: flex;
@@ -42,32 +42,25 @@ const CardText = styled.div`
   }
 `;
 const Title = styled.h4`
-  ${Body4};
+  ${body_regular};
   color: var(--title);
   margin: 0;
   ${(props) =>
     props.isBigCard &&
     css`
-      ${Heading5};
-      font-weight: 400;
+      ${body_regular};
     `}
-  @media only screen and (max-width: 449px) {
-    ${MbBody4};
-  }
 `;
 const Description = styled.p`
-  ${Body5};
-  color: var(--body);
+  ${body_regular};
+  color: var(--text-secondary);
   margin: 0;
   ${(props) =>
     props.isBigCard &&
     css`
-      ${Body4};
+      ${body_regular};
       font-weight: 400;
     `}
-  @media only screen and (max-width: 449px) {
-    ${MbBody5}
-  }
 `;
 
 const TemplateItemList = styled.div`
@@ -103,7 +96,7 @@ const TemplateItemList = styled.div`
 `;
 
 const SectionHeading = styled.h3`
-  ${Heading4};
+  ${h4_semibold};
   color: var(--title);
   margin: 0 0 30px;
   @media only screen and (max-width: 449px) {

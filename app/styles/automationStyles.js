@@ -1,5 +1,5 @@
 import styled, { css } from 'styled-components';
-import { Body2, Body3, CardTxt, Heading2, Heading3, MbBody2, MbBody3, TableText } from './styles';
+import { body_regular, h2_semibold, h3_semibold, tag } from './typography';
 
 const AutomationHero = styled.div`
   width: 100%;
@@ -43,31 +43,25 @@ const AutomationHero = styled.div`
 `;
 
 const Title = styled.div`
-  ${Heading2}
+  ${h2_semibold}
   text-align: center;
   color: var(--light-green);
-  @media only screen and (max-width: 449px) {
-    ${TableText}
-  }
 `;
 const Caption = styled.div`
   margin: 20px auto 0;
   max-width: 880px;
   width: 100%;
-  ${Body2}
+  ${body_regular}
   text-align: center;
   letter-spacing: 0.02em;
   color: var(--light-green);
-  @media only screen and (max-width: 426px) {
-    ${MbBody2}
-  }
 `;
 const SetupAutomation = styled.div`
   padding-top: 50px;
   padding-bottom: 40px;
   max-width: 780px;
   width: 100%;
-  ${Heading3}
+  ${h3_semibold}
   color: var(--title);
   span {
     color: var(--primary);
@@ -121,7 +115,7 @@ const Cardbottom = styled.div`
   border-top: 1px solid var(--black);
   border-radius: 0px 0px 4px 4px;
   color: var(--dark-purple);
-  ${CardTxt}
+  ${tag}
 `;
 const LogoSection = styled.div`
   display: flex;
@@ -143,17 +137,14 @@ const LogoSection = styled.div`
   }
 `;
 const DetailTitle = styled.h1`
-  ${Heading3}
+  ${h3_semibold}
   color: var(--title);
   margin: 0;
 `;
 const DetailCaption = styled.p`
   margin: 16px 0 28px;
-  ${Body3}
-  color: var(--body);
-  @media only screen and (max-width: 426px) {
-    ${MbBody3}
-  }
+  ${body_regular}
+  color: var(--text-secondary);
 `;
 const DetailButtonSection = styled.div`
   display: flex;

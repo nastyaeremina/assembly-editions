@@ -1,5 +1,5 @@
 import styled, { css } from 'styled-components';
-import { Body3, Body4, Body5, MbBody3, MbBody4, MbBody5 } from '../../styles/styles';
+import { body_regular, button_regular, label_regular } from '../../styles/typography';
 
 const TestimonialMainBox = styled.div`
   display: grid;
@@ -84,7 +84,7 @@ const TestimonialCenter = styled.div`
 const Caption = styled.div`
   text-align: center;
   p {
-    ${Body3}
+    ${body_regular}
     margin: 0;
     color: var(--title);
   }
@@ -120,11 +120,6 @@ const Caption = styled.div`
       transform: scaleX(1);
     }
   }
-  @media only screen and (max-width: 449px) {
-    p {
-      ${MbBody3}
-    }
-  }
 `;
 
 const FounderSection = styled.div`
@@ -148,18 +143,12 @@ const Founder = styled.div`
   gap: 2px;
 `;
 const Name = styled.div`
-  ${Body4};
+  ${button_regular};
   color: var(--title);
-  @media only screen and (max-width: 449px) {
-    ${MbBody4}
-  }
 `;
 const FounderPosition = styled.div`
-  ${Body5};
-  color: var(--body);
-  @media only screen and (max-width: 449px) {
-    ${MbBody5}
-  }
+  ${label_regular};
+  color: var(--text-secondary);
 `;
 
 const TestimonialSection = styled.div`

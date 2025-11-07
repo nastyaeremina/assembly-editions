@@ -1,20 +1,5 @@
 import styled, { css } from 'styled-components';
-import {
-  Body2,
-  Body4,
-  Body5,
-  CardTxt,
-  HeaderFont,
-  Heading2,
-  Heading4,
-  Heading5,
-  LinkTxt,
-  MbBody2,
-  MbBody4,
-  MobileH2,
-  Value
-} from './styles';
-import { body_regular, button_regular, h4_semibold } from './typography';
+import { body_regular, button_regular, h2_semibold, h4_semibold, label_regular } from './typography';
 
 const HeroSection = styled.div`
   padding-top: 180px;
@@ -32,25 +17,17 @@ const AppsHeroWrap = styled.div`
     justify-content: center;
   }
   h1 {
-    ${Heading2};
+    ${h2_semibold};
     color: var(--title);
     margin: 0 auto;
     margin-bottom: 20px;
   }
   p {
-    ${Body2};
+    ${body_regular};
     margin: 0 auto;
     margin-bottom: 32px;
     color: var(--body);
     letter-spacing: 0.02em;
-  }
-  @media only screen and (max-width: 749px) {
-    h1 {
-      ${MobileH2};
-    }
-    p {
-      ${MbBody2};
-    }
   }
 `;
 const FeatureSection = styled.div`
@@ -116,7 +93,7 @@ const Catagory = styled.ul`
   h4 {
     padding-bottom: 20px;
     margin: 0;
-    ${Heading5};
+    ${h4_semibold};
     color: var(--title);
     border-bottom: 1px solid var(--black);
     letter-spacing: 0.02em;
@@ -127,7 +104,7 @@ const Catagory = styled.ul`
 const Catagoryitem = styled.li`
   padding: 16px 0;
   border-bottom: 1px solid var(--black);
-  ${LinkTxt};
+  ${body_regular};
   letter-spacing: 0.02em;
   color: var(--primary);
   margin: 0;
@@ -170,7 +147,7 @@ const FeatureRight = styled.div`
       justify-content: center;
     `}
   h2 {
-    ${Heading4};
+    ${h4_semibold};
     color: var(--title);
     margin: 0 0 28px 0;
   }
@@ -201,14 +178,14 @@ const CardText = styled.div`
   padding: 20px 16px 46px 16px;
   border-top: 1px solid black;
   h3 {
-    ${Body4};
+    ${button_regular};
     color: var(--title);
     letter-spacing: 0.02em;
     margin: 0 0 8px 0;
   }
   p {
     color: var(--dark-gray);
-    ${Body5};
+    ${label_regular};
     letter-spacing: 0.02em;
     margin: 0;
     text-overflow: ellipsis;
@@ -233,7 +210,7 @@ const CardEnd = styled.div`
   align-items: center;
   gap: 6px;
   p {
-    ${CardTxt};
+    ${label_regular};
     color: var(--dark-purple);
     margin: 0;
   }
@@ -267,12 +244,9 @@ const ExtensionsSection = styled.div`
   display: flex;
   flex-direction: column;
   p {
-    ${Body5};
+    ${label_regular};
     color: var(--title);
     letter-spacing: 0.02em;
-  }
-  @media only screen and (max-width: 749px) {
-    /* display: none; */
   }
 `;
 const ExtensionCard = styled.div`
@@ -349,7 +323,7 @@ const ResponsiveInputWrap = styled.div`
 `;
 
 const ResponsiveInput = styled.input`
-  ${Value};
+  ${button_regular};
   color: var(--title);
   letter-spacing: 0.01em;
   padding: 11px 55px 11px 55px;
@@ -374,7 +348,6 @@ const ResponsiveInput = styled.input`
   }
   @media only screen and (max-width: 449px) {
     padding: 10px 50px 10px 52px;
-    ${MbBody4}
   }
 `;
 
@@ -388,12 +361,9 @@ const DetailLink = styled.div`
   align-items: center;
   padding-bottom: 28px;
   p {
-    ${LinkTxt};
+    ${body_regular};
     margin: 0;
     color: var(--medium-gray);
-    @media only screen and (max-width: 749px) {
-      ${HeaderFont};
-    }
   }
   :hover {
     p {
@@ -419,7 +389,7 @@ const AppsDetailMain = styled.div`
   }
 `;
 const AppHeader3 = styled.h2`
-  ${Heading4}
+  ${h4_semibold}
   margin-top: 0;
   scroll-margin-top: 70px;
   &.first-h2 {

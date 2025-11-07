@@ -1,5 +1,5 @@
 import styled, { css } from 'styled-components';
-import { Body4, Heading5, MbBody4, MobileH4 } from '../../styles/styles';
+import { body_regular } from '../../styles/typography';
 
 const TabsHorizontalSection = styled.div`
   padding-bottom: 100px;
@@ -46,8 +46,7 @@ const ToolsTab = styled.div`
   }
 `;
 const Title = styled.h3`
-  ${Heading5};
-  font-weight: 400;
+  ${body_regular};
   color: var(--dark-gray);
   margin: 0;
   ${(props) =>
@@ -58,17 +57,11 @@ const Title = styled.h3`
   ${ToolsTab}:hover & {
     color: var(--title);
   }
-  @media only screen and (max-width: 449px) {
-    ${MobileH4}
-  }
 `;
 const Caption = styled.p`
-  ${Body4};
+  ${body_regular};
   color: var(--body);
   margin: 0;
-  @media only screen and (max-width: 449px) {
-    ${MbBody4}
-  }
 `;
 
 const Image = styled.img``;

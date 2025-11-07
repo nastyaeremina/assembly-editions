@@ -1,6 +1,12 @@
 import styled, { css } from 'styled-components';
-import { Body3, Heading2, MbBody2 } from '../../../styles/styles';
-import { body_regular, body_semibold, button_regular, h1_semibold, h4_semibold } from '../../../styles/typography';
+import {
+  body_regular,
+  body_semibold,
+  button_regular,
+  h1_semibold,
+  h2_semibold,
+  h4_semibold
+} from '../../../styles/typography';
 
 const HeroSection = styled.div`
   &.details-hero {
@@ -277,7 +283,7 @@ const TextSection = styled.div`
     }
   }
   h1 {
-    ${Heading2};
+    ${h2_semibold};
     color: var(--title);
     margin: 0;
     span {
@@ -285,13 +291,9 @@ const TextSection = styled.div`
     }
   }
   p {
-    ${Body3};
-    color: var(--body);
-    letter-spacing: 0.02em;
+    ${body_regular};
+    color: var(--text-secondary);
     margin: 20px 0 0;
-    @media only screen and (max-width: 449px) {
-      ${MbBody2}
-    }
   }
   ul {
     display: flex;
@@ -342,8 +344,8 @@ const ListItem = styled.div`
   align-items: center;
   p {
     margin: 0;
-    ${Body3};
-    color: var(--body);
+    ${body_regular};
+    color: var(--text-secondary);
   }
 `;
 

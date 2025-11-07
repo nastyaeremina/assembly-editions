@@ -1,17 +1,13 @@
 import styled, { css } from 'styled-components';
 import {
-  Body2,
-  Body5,
-  HeaderFont,
-  Heading2,
-  Heading3,
-  Heading4,
-  Heading5,
-  LinkTxt,
-  MbBody2,
-  MobileH2,
-  Value
-} from './styles';
+  body_regular,
+  button_regular,
+  h2_semibold,
+  h3_semibold,
+  h4_regular,
+  h4_semibold,
+  label_regular
+} from './typography';
 
 const UniversitySection = styled.div`
   padding-bottom: 100px;
@@ -25,25 +21,18 @@ const UniversityHero = styled.div`
   max-width: 780px;
   margin: 0 auto;
   h1 {
-    ${Heading2};
+    ${h2_semibold};
     color: var(--title);
     margin: 0 0 20px 0;
   }
   p {
-    color: var(--body);
+    color: var(--text-secondary);
     margin: 0;
-    ${Body2};
+    ${body_regular};
   }
   @media only screen and (max-width: 749px) {
     h1 {
-      ${MobileH2};
-      color: var(--title);
       margin: 0 0 20px 0;
-    }
-    p {
-      color: var(--body);
-      margin: 0;
-      ${MbBody2};
     }
   }
 `;
@@ -85,7 +74,7 @@ const ResponsiveInputWrap = styled.div`
   }
 `;
 const Input = styled.input`
-  ${Value};
+  ${button_regular};
   color: var(--title);
   letter-spacing: 0.01em;
   font-weight: 400;
@@ -114,7 +103,7 @@ const Input = styled.input`
   }
 `;
 const ResponsiveInput = styled.input`
-  ${Value};
+  ${button_regular};
   color: var(--title);
   letter-spacing: 0.01em;
   font-weight: 400;
@@ -150,7 +139,7 @@ const Catagory = styled.ul`
   h4 {
     padding-bottom: 20px;
     margin: 0;
-    ${Heading5};
+    ${h4_semibold};
     color: var(--title);
     border-bottom: 1px solid var(--black);
     letter-spacing: 0.02em;
@@ -161,7 +150,7 @@ const Catagory = styled.ul`
 const Catagoryitem = styled.li`
   padding: 16px 0;
   border-bottom: 1px solid var(--black);
-  ${LinkTxt};
+  ${body_regular};
   letter-spacing: 0.02em;
   color: var(--primary);
   margin: 0;
@@ -194,7 +183,7 @@ const FeatureRight = styled.div`
   margin-top: -40px;
   position: relative;
   h2 {
-    ${Heading4};
+    ${h4_semibold};
     color: var(--title);
     margin: 0 0 28px 0;
   }
@@ -275,7 +264,7 @@ const DetailVideoMain = styled.div`
 const DetailVideoHero = styled.div`
   padding: 0 0 40px;
   h1 {
-    ${Heading3};
+    ${h3_semibold};
     color: var(--title);
     margin: 0;
   }
@@ -297,14 +286,9 @@ const Backlink = styled.div`
     }
   }
   p {
-    ${LinkTxt};
+    ${body_regular};
     margin-top: 20px;
     color: var(--medium-gray);
-  }
-  @media only screen and (max-width: 769px) {
-    p {
-      ${HeaderFont}
-    }
   }
 `;
 
@@ -323,7 +307,7 @@ const VideoSection = styled.div`
     }
   }
   p {
-    ${Body2};
+    ${h4_regular};
     color: var(--body);
     margin: 40px 0 0 0;
   }
@@ -331,7 +315,6 @@ const VideoSection = styled.div`
     padding-bottom: 80px;
     p {
       margin-top: 28px;
-      ${MbBody2}
     }
   }
   .yt-lite {
@@ -401,7 +384,7 @@ const VideoSection = styled.div`
 const VIdeoWrap = styled.div`
   padding-bottom: 100px;
   h2 {
-    ${Heading3};
+    ${h3_semibold};
     color: var(--title);
     margin: 0;
   }
@@ -479,12 +462,9 @@ const EmptySection = styled.div`
   display: flex;
   flex-direction: column;
   p {
-    ${Body5};
+    ${label_regular};
     color: var(--title);
     letter-spacing: 0.02em;
-  }
-  @media only screen and (max-width: 749px) {
-    /* display: none; */
   }
 `;
 export {

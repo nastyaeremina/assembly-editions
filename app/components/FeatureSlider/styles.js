@@ -1,6 +1,6 @@
 import styled, { css } from 'styled-components';
 import Link from 'next/link';
-import { Body2, Body4, Body5, MbBody2 } from '../../styles/styles';
+import { button_regular, h4_regular } from '../../styles/typography';
 
 const SliderInner = styled(Link)`
   width: 423px;
@@ -37,7 +37,7 @@ const SliderSub = styled.div`
   border-bottom: 1px solid var(--dark-green);
   gap: 4px;
   h4 {
-    ${Body2}
+    ${h4_regular}
     color: var(--title);
     margin: 0;
     display: -webkit-box;
@@ -46,7 +46,6 @@ const SliderSub = styled.div`
     overflow: hidden;
     white-space: inherit;
     @media only screen and (max-width: 449px) {
-      ${MbBody2}
       display: -webkit-box;
       -webkit-box-orient: vertical;
       -webkit-line-clamp: 1;
@@ -55,7 +54,7 @@ const SliderSub = styled.div`
     }
   }
   p {
-    ${Body4}
+    ${button_regular}
     color: var(--body);
     margin: 0;
     display: -webkit-box;
@@ -64,9 +63,6 @@ const SliderSub = styled.div`
     overflow: hidden;
     white-space: inherit;
     white-space: wrap;
-    @media only screen and (max-width: 449px) {
-      ${Body5}
-    }
   }
 `;
 const SliderLine = styled.div`

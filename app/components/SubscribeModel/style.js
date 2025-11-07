@@ -1,6 +1,5 @@
 import styled from 'styled-components';
-import css from 'styled-jsx/css';
-import { ButtonText, Heading4, MbBody5, MbButtonText, MbPrimaryBtn } from '../../styles/styles';
+import { button_regular, h4_semibold, label_regular } from '../../styles/typography';
 
 const Model = styled.div`
   background: var(--light-modal-bg-color);
@@ -33,8 +32,8 @@ const Premium = styled.div`
     width: 100%;
     margin: auto;
     text-align: center;
-    ${MbBody5}
-    color: var(--body);
+    ${label_regular}
+    color: var(--text-secondary);
     padding-bottom: 50px;
     @media only screen and (max-width: 426px) {
       padding: 0px 28px 32px;
@@ -54,7 +53,7 @@ const Logo = styled.div`
   /* margin:auto; */
   align-items: center;
   p {
-    ${Heading4}
+    ${h4_semibold}
     color: var(--title);
     margin-top: 13px;
     margin-bottom: 30px;
@@ -74,7 +73,7 @@ const Form = styled.div`
   }
   label {
     margin-bottom: 15px;
-    ${MbButtonText}
+    ${label_regular}
     color: var(--sub-title);
   }
 `;
@@ -108,7 +107,7 @@ const Button = styled.div`
     margin: auto;
     width: 100%;
     text-align: center;
-    ${ButtonText}
+    ${button_regular}
     display: inline-block;
     letter-spacing: 0.02em;
     padding: 11px 32px;

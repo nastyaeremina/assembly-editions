@@ -1,6 +1,5 @@
 import styled from 'styled-components';
-import { Heading4, LinkTxt } from './styles';
-import { h1_semibold } from './typography';
+import { body_regular, h1_semibold, h4_semibold } from './typography';
 
 const MainSection = styled.div`
   padding: var(--space-80) 0;
@@ -58,15 +57,9 @@ const InfoWrap = styled.div`
   border-bottom: 1px solid var(--black);
 
   h2 {
-    ${Heading4};
+    ${h4_semibold};
     margin: 0;
     color: var(--title);
-  }
-  @media only screen and (max-width: 749px) {
-    h2 {
-      font-size: 32px;
-      line-height: 34px;
-    }
   }
 `;
 const InfoLink = styled.div`
@@ -75,12 +68,12 @@ const InfoLink = styled.div`
   padding-top: 30px;
   row-gap: 16px;
   a {
-    ${LinkTxt};
-    color: var(--primary);
+    ${body_regular};
+    color: var(--title);
     display: block;
     transition: all 300ms;
     :hover {
-      color: var(--black);
+      color: var(--text-secondary);
     }
   }
   @media only screen and (max-width: 991px) {

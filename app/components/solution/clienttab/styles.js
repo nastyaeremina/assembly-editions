@@ -1,5 +1,5 @@
 import styled, { css } from 'styled-components';
-import { Body3, Body4, Body5, Heading3, Heading4, MbBody3, MbBody4, SliderTxt } from '../../../styles/styles';
+import { body_regular, button_regular, h3_semibold, h4_semibold } from '../../../styles/typography';
 
 const ExploreSection = styled.div`
   padding: 50px 0;
@@ -25,7 +25,7 @@ const TopView = styled.div`
   width: 100%;
   max-width: 811px;
   h2 {
-    ${Heading3};
+    ${h3_semibold};
     color: var(--title);
     margin: 0;
     span {
@@ -33,18 +33,13 @@ const TopView = styled.div`
     }
   }
   p {
-    ${Body3};
+    ${body_regular};
     letter-spacing: 0.02em;
     color: var(--body);
     margin: 16px 0 28px;
   }
   .button-group {
     margin-bottom: 28px;
-  }
-  @media only screen and (max-width: 749px) {
-    p {
-      ${MbBody3};
-    }
   }
 `;
 const BottomSection = styled.div``;
@@ -64,13 +59,13 @@ const LeftWrap = styled.div`
   max-width: 612px;
   width: 100%;
   h3 {
-    ${Heading4};
+    ${h4_semibold};
     margin: 0 0 12px;
     color: var(--title);
   }
   p {
-    ${Body4};
-    color: var(--body);
+    ${body_regular};
+    color: var(--text-secondary);
     margin: 0;
   }
   @media only screen and (max-width: 991px) {
@@ -81,14 +76,7 @@ const LeftWrap = styled.div`
     max-width: 100%;
     margin-bottom: 40px;
     h3 {
-      ${Heading4};
       margin: 0 0 12px;
-      color: var(--title);
-    }
-    p {
-      ${Body5};
-      color: var(--body);
-      margin: 0;
     }
   }
   @media only screen and (max-width: 749px) {
@@ -110,11 +98,8 @@ const TabWrap = styled.div`
   .activetab {
     position: relative;
     span {
-      ${SliderTxt};
-      color: var(--body);
-      @media only screen and (max-width: 991px) {
-        ${MbBody4}
-      }
+      ${button_regular};
+      color: var(--text-secondary);
     }
     border: 1.08px solid var(--body);
     width: 100%;
@@ -160,11 +145,8 @@ const TabView = styled.div`
   position: relative;
   cursor: pointer;
   span {
-    ${SliderTxt};
+    ${button_regular};
     color: var(--border);
-    @media only screen and (max-width: 991px) {
-      ${MbBody4}
-    }
   }
   border: 1.08px solid var(--border);
   width: 100%;
@@ -298,7 +280,7 @@ const BtnWrap = styled.div`
     width: 834px;
     border-radius: 6px;
     padding: 24px 32px;
-    ${Body4};
+    ${button_regular};
     background-color: var(--dark-green);
     color: var(--light-green);
     /* Position the tooltip */

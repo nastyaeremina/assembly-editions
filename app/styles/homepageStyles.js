@@ -1,168 +1,7 @@
 import styled, { css } from 'styled-components';
 import Iconview from '../components/iconview/iconview';
-
-import {
-  Body1,
-  Body3,
-  Body4,
-  Body5,
-  Heading1,
-  Heading3,
-  Heading4,
-  LinkTxt,
-  MbBody1,
-  MobileH3,
-  MbBody3,
-  MbBody4,
-  HeaderFont,
-  MobileH4,
-  MobileH2
-} from './styles';
 import { AutomationCardVariant } from '../constants/constant';
-
-
-const HeroSection = styled.div`
-  width: 100%;
-  padding: 180px 0 50px 0;
-  text-align: center;
-  overflow: hidden;
-  @media only screen and (max-width: 749px) {
-    padding: 148px 0 40px 0;
-  }
-`;
-
-const HeroHeading = styled.h1`
-  ${Heading1};
-  color: var(--title);
-  margin: 0 0 40px 0;
-  span {
-    color: var(--primary);
-  }
-  @media only screen and (max-width: 991px) {
-    text-align: center;
-    font-size: 110px;
-    line-height: 100px;
-  }
-  @media only screen and (max-width: 749px) {
-    margin-bottom: 20px;
-    font-size: 60px;
-    line-height: 54px;
-    color: var(--dark-green);
-  }
-`;
-
-const Para = styled.p`
-  ${Body1}
-  letter-spacing: 0.02em;
-  margin: 0;
-  color: var(--body);
-  @media only screen and (max-width: 991px) {
-    text-align: center;
-    ${Body1}
-  }
-  @media only screen and (max-width: 749px) {
-    ${MbBody1};
-  }
-`;
-
-const HeroBtnBlock = styled.div`
-  margin: 40px 0;
-  display: flex;
-  justify-content: center;
-  gap: 20px;
-  @media only screen and (max-width: 991px) {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  @media only screen and (max-width: 749px) {
-    gap: 16px;
-  }
-`;
-
-const ReviewLogo = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-  display: inline-block;
-  max-height: 43px;
-`;
-const BusinessSection = styled.div`
-  position: relative;
-  z-index: 1;
-  padding: 100px 0 100px;
-  overflow: hidden;
-  @media only screen and (max-width: 768px) {
-    padding: 80px 0 80px;
-  }
-  @media only screen and (max-width: 449px) {
-    padding: 80px 0 40px;
-  }
-`;
-const BusinessText = styled.div`
-  display: flex;
-  flex-direction: row;
-  width: 100%;
-  padding-bottom: 40px;
-  gap: 120px;
-  h2 {
-    ${Heading3};
-    margin: 0;
-    color: var(--title);
-    padding-bottom: 16px;
-    span {
-      color: var(--primary);
-    }
-  }
-  p {
-    max-width: 1164px;
-    width: 100%;
-    ${Body3};
-    margin: 0;
-    color: var(--body);
-    letter-spacing: 0.02em;
-    width: 100%;
-  }
-
-  @media only screen and (max-width: 768px) {
-    flex-direction: column;
-    padding-bottom: 32px;
-    gap: 20px;
-    h2 {
-      padding-bottom: 0;
-      ${MobileH2};
-      line-height: 50px;
-      color: var(--dark-green);
-    }
-    p {
-      ${Body3};
-    }
-  }
-  @media only screen and (max-width: 449px) {
-    flex-direction: column;
-    padding-bottom: 32px;
-    gap: 16px;
-    h2 {
-      padding-bottom: 0;
-      ${MobileH3};
-      color: var(--dark-green);
-    }
-    p {
-      ${MbBody3};
-    }
-  }
-`;
-
-export const RightContent = styled.div`
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  max-width: 810px;
-  @media only screen and (max-width: 768px) {
-    flex-direction: column;
-  }
-`;
+import { body_regular, h4_semibold, tag } from './typography';
 
 const Functionality = styled.div`
   padding: 0px 0 50px;
@@ -254,13 +93,13 @@ const LeftDetail = styled.div`
   margin-right: 28px;
   h3 {
     margin: 0 0 12px 0;
-    ${Heading4};
+    ${h4_semibold};
     color: var(--title);
   }
   p {
-    ${Body4};
+    ${body_regular};
     letter-spacing: 0.02em;
-    color: var(--body);
+    color: var(--text-secondary);
     margin: 0 0 24px 0;
   }
   @media only screen and (max-width: 991px) {
@@ -275,13 +114,8 @@ const LeftDetail = styled.div`
     margin-right: 0;
     h3 {
       margin: 0 0 8px 0;
-      ${Heading4};
-      color: var(--title);
     }
     p {
-      ${MbBody4};
-      letter-spacing: 0.02em;
-      color: var(--body);
       margin: 0 0 24px 0;
     }
     .btnmobi {
@@ -289,6 +123,7 @@ const LeftDetail = styled.div`
     }
   }
 `;
+
 const RightDetail = styled.div`
   border: 1px solid var(--black);
   border-radius: 5px;
@@ -325,81 +160,6 @@ const RightDetail = styled.div`
       }
     `}
 `;
-const Extension = styled.div`
-  padding: 50px 0 100px;
-  @media only screen and (max-width: 749px) {
-    padding: 40px 0 80px;
-  }
-`;
-const AutomateSection = styled.div`
-  padding: 50px 0;
-  @media only screen and (max-width: 749px) {
-    padding: 40px 0;
-  }
-`;
-const AutomateText = styled.div`
-  max-width: 975px;
-  width: 100%;
-  margin-bottom: 40px;
-  .button-group {
-    margin-top: 28px;
-  }
-  .automation-button {
-    margin-top: 28px;
-    a {
-      color: var(--white);
-      :hover {
-        color: var(--white);
-      }
-    }
-  }
-  .active:hover {
-    color: var(--title);
-  }
-  h2 {
-    ${Heading3};
-    margin: 0;
-    color: var(--title);
-    padding-bottom: 16px;
-  }
-
-  @media only screen and (max-width: 768px) {
-    max-width: 100%;
-    margin-bottom: 0;
-    p {
-      ${Body3};
-      letter-spacing: 0.02em;
-      color: var(--body);
-      margin: 0;
-    }
-  }
-  @media only screen and (max-width: 449px) {
-    p {
-      ${MbBody3};
-    }
-  }
-`;
-
-const AutomationMarkdownContent = styled.div`
-  a {
-    color: var(--primary);
-    display: inline-block;
-    :hover {
-      color: var(--dark-green);
-    }
-  }
-  p {
-    ${Body3};
-    margin: 0;
-    color: var(--body);
-    letter-spacing: 0.02em;
-    max-width: 933px;
-    width: 100%;
-  }
-  span {
-    color: var(--primary);
-  }
-`;
 
 const BottomList = styled.div`
   width: 100%;
@@ -420,6 +180,7 @@ const BottomList = styled.div`
     display: none;
   }
 `;
+
 const CardWrapper = styled.div`
   max-width: 366px;
   width: 100%;
@@ -431,6 +192,7 @@ const CardWrapper = styled.div`
     padding-left: 0;
   }
 `;
+
 const CardItem = styled.div`
   background: var(--white);
   border: 1px solid var(--card-border-color);
@@ -455,13 +217,13 @@ const CardItem = styled.div`
     right: -68px;
   }
 `;
+
 const CardTextView = styled.div`
   margin-left: 15px;
   p {
     margin: 0 0 4px 0;
-    ${Body4};
+    ${body_regular};
     color: var(--title);
-    letter-spacing: 0.02em;
     ${(props) =>
       props.variant === AutomationCardVariant.GREEN &&
       css`
@@ -470,9 +232,8 @@ const CardTextView = styled.div`
   }
   span {
     display: block;
-    ${Body5};
-    color: var(--body);
-    letter-spacing: 0.02em;
+    ${body_regular};
+    color: var(--text-secondary);
     ${(props) =>
       props.variant === AutomationCardVariant.GREEN &&
       css`
@@ -480,53 +241,7 @@ const CardTextView = styled.div`
       `}
   }
 `;
-const HelpContainerSection = styled.div`
-  padding: 50px 0;
-  @media only screen and (max-width: 749px) {
-    padding: 40px 0 80px;
-  }
-`;
-const HelpMain = styled.div`
-  display: flex;
-  align-items: stretch;
-  border: 1px solid var(--black);
-  border-radius: 4px;
-  background-color: var(--white);
-  image {
-    border-radius: 0px 4px 4px 0px;
-    max-width: 100%;
-  }
-  @media only screen and (max-width: 991px) {
-    flex-wrap: wrap;
-  }
-`;
-const HelpLeft = styled.div`
-  padding: 60px;
-  h2 {
-    ${Heading3}
-    color: var(--title);
-    margin: 0 0 40px 0;
-    span {
-      color: var(--primary);
-    }
-  }
-  @media only screen and (max-width: 991px) {
-    padding: 30px;
-  }
-  @media only screen and (max-width: 749px) {
-    padding: 20px;
-    max-width: 100%;
-    h2 {
-      max-width: 100%;
-      margin-bottom: 28px;
-    }
-    display: block;
-  }
 
-  span {
-    color: var(--primary);
-  }
-`;
 const HelpLeftSub = styled.div`
   max-width: 315px;
   width: 100%;
@@ -535,9 +250,9 @@ const HelpLeftSub = styled.div`
     transition: all 300ms ease;
   }
   a {
-    ${LinkTxt};
+    ${body_regular};
     margin: 0;
-    color: var(--primary);
+    color: var(--title);
     cursor: pointer;
     transition: none;
     :hover .HoverArrow__linePath {
@@ -559,7 +274,7 @@ const HelpLeftSub = styled.div`
   .learn-link:hover {
     color: black;
     @media only screen and (max-width: 749px) {
-      color: var(--primary);
+      color: var(--text-secondary);
     }
   }
   .learn-link svg path {
@@ -597,150 +312,39 @@ const HelpLeftSub = styled.div`
     }
   }
   h3 {
-    ${Heading4};
+    ${h4_semibold};
     color: var(--title);
     margin: 0 0 12px 0;
   }
   p {
-    ${Body4};
+    ${body_regular};
     margin: 0 0 20px 0;
-    color: var(--body);
+    color: var(--text-secondary);
   }
   @media only screen and (max-width: 749px) {
     h3 {
-      ${MobileH4};
-      color: var(--title);
       margin: 0 0 12px 0;
     }
     p {
-      ${MbBody4};
-      margin: 0 0 12px 0;
       color: var(--body);
     }
     a {
-      ${HeaderFont};
       display: flex;
       align-items: center;
       gap: 4px;
     }
   }
 `;
-const HelpImg = styled.div`
-  margin-top: -1px;
-  img {
-    display: block;
-    height: 100%;
-  }
-  @media only screen and (max-width: 991px) {
-    display: none;
-    width: 100%;
-    img {
-      width: 100%;
-    }
-  }
-`;
+
 const HelpLink = styled.div`
   display: flex;
 `;
-const HelpWrap = styled.div`
-  display: flex;
-  gap: 28px;
-  @media only screen and (max-width: 749px) {
-    flex-wrap: wrap;
-  }
-`;
-const HelpMargin = styled.div`
-  margin-top: 40px;
-  @media only screen and (max-width: 749px) {
-    margin-top: 28px;
-  }
-`;
-const BtnView = styled.div`
-  margin-top: 28px;
-  .app-store-button {
-    a {
-      text-transform: capitalize;
-    }
-  }
-`;
-const ImageHover = styled.a`
-  transition: 300ms all ease-in-out;
-  animation: fadeIn ease 0.3s;
-  -webkit-animation: fadeIn ease 0.3s;
-  -moz-animation: fadeIn ease 0.3s;
-  -o-animation: fadeIn ease 0.3s;
-  -ms-animation: fadeIn ease 0.3s;
-  display: inline-block;
-  cursor: pointer;
-  position: relative;
-  display: flex;
-  gap: 10px;
-  svg {
-    path {
-      transition: 0.3s;
-    }
-  }
-  :hover {
-    svg {
-      path {
-        fill: var(--hover);
-      }
-    }
-  }
-  @media only screen and (max-width: 991px) {
-    :hover {
-      svg {
-        path {
-          fill: var(--dark-green);
-        }
-      }
-    }
-  }
-  .show {
-    display: block;
-    opacity: 1;
-    transition: 300ms all ease-in;
-    animation: fadeIn ease 0.3s;
-    -webkit-animation: fadeIn ease 0.3s;
-    -moz-animation: fadeIn ease 0.3s;
-    -o-animation: fadeIn ease 0.3s;
-    -ms-animation: fadeIn ease 3s;
-  }
-  :hover .show {
-    opacity: 0;
-  }
-  :hover .hide {
-    opacity: 1;
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    visibility: visible;
-  }
-  .hide {
-    opacity: 0;
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    transition: 300ms all ease-out;
-    animation: fadeIn ease 0.3s;
-    -webkit-animation: fadeIn ease 0.3s;
-    -moz-animation: fadeIn ease 0.3s;
-    -o-animation: fadeIn ease 0.3s;
-    -ms-animation: fadeIn ease 3s;
-  }
-`;
-const LeftSvg = styled.div``;
+
 const RightWrap = styled.div`
   display: flex;
   flex-direction: column;
   p {
-    font-style: normal;
-    font-weight: 400;
-    font-size: 12px;
-    line-height: 23px;
-    letter-spacing: 0.02em;
+    ${body_regular}
     color: var(--extra-text-color);
     margin: 0 0 0 0px;
     padding-left: 3px;
@@ -880,6 +484,7 @@ const AnimatedIcon = styled(Iconview)`
     }
   }
 `;
+
 const AnimatedLine = styled.div`
   position: absolute;
   width: 100%;
@@ -935,6 +540,7 @@ const AnimatedLine = styled.div`
     }
   }
 `;
+
 const StaticLine = styled.div`
   position: absolute;
   width: 100%;
@@ -993,6 +599,7 @@ const StaticLine = styled.div`
     }
   }
 `;
+
 const Line = styled.div`
   width: 65px;
   height: 120px;
@@ -1002,6 +609,7 @@ const Line = styled.div`
   right: -65px;
   top: 40px;
 `;
+
 const ZoomImage = styled.div`
   background: var(--modal-bg-color);
   width: 100%;
@@ -1011,21 +619,16 @@ const ZoomImage = styled.div`
   top: 0;
   left: 0;
   p {
-    font-weight: 500;
-    font-size: 13px;
-    line-height: 24px;
-    letter-spacing: 0.02;
+    ${tag}
     color: var(--white);
     margin: 0;
     position: absolute;
     top: 5%;
     right: 5%;
     z-index: 1;
-    @media only screen and (min-width: 2160px) {
-      font-size: 1vw;
-    }
   }
 `;
+
 const ImageDiv = styled.div`
   .onzoom {
     position: absolute;
@@ -1061,147 +664,25 @@ const Responsive = styled.div`
     display: flex;
   }
 `;
+
 const Desktop = styled.div`
   display: none;
   margin-bottom: 50px;
 `;
 
-const Block = styled.div`
-  display: flex;
-  align-items: end;
-  gap: 32px;
-  padding-bottom: 40px;
-  @media only screen and (max-width: 560px) {
-    padding-bottom: 32px;
-  }
-`;
-
-const SliderButton = styled.div`
-  display: flex;
-  gap: 10px;
-  @media only screen and (max-width: 560px) {
-    justify-content: center;
-    padding-top: 32px;
-  }
-`;
-
-const Arrow = styled.div`
-  width: 38px;
-  height: 38px;
-  border-radius: 50%;
-  border: 1px solid var(--border);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: all 0.3s;
-  cursor: pointer;
-  :hover {
-    border: 1px solid var(--title);
-    transition: all 0.3s;
-    svg {
-      path {
-        stroke: var(--title);
-      }
-    }
-  }
-  ${(props) =>
-    props.isDisabled &&
-    css`
-      cursor: no-drop;
-      pointer-event: none;
-      :hover {
-        border: 1px solid var(--border);
-        svg {
-          path {
-            stroke: var(--border);
-          }
-        }
-      }
-    `}
-`;
-
-const SliderBlock = styled.div``;
-
-const ButtonGroup = styled.div`
-  @media only screen and (max-width: 560px) {
-    display: none;
-  }
-`;
-const ResponsiveButtonGroup = styled.div`
-  display: none;
-  @media only screen and (max-width: 560px) {
-    display: block;
-  }
-`;
-const BusinessSectionText = styled.div`
-  width: 100%;
-  h2 {
-    ${Heading3};
-    margin: 0;
-    color: var(--title);
-    padding-bottom: 16px;
-    span {
-      color: var(--primary);
-    }
-  }
-  p {
-    max-width: 1164px;
-    width: 100%;
-    ${Body3};
-    margin: 0;
-    color: var(--body);
-    letter-spacing: 0.02em;
-    width: 100%;
-  }
-  .app-dec {
-    width: 100%;
-    max-width: 810px;
-  }
-  .block-button {
-    margin-top: 28px;
-  }
-  @media only screen and (max-width: 749px) {
-    h2 {
-      ${MobileH3};
-      color: var(--dark-green);
-    }
-    p {
-      ${MbBody3};
-    }
-  }
-`;
 export {
-  HeroSection,
-  HeroHeading,
-  Para,
-  HeroBtnBlock,
-  ReviewLogo,
-  BusinessSection,
-  BusinessText,
   Functionality,
   ContainWrap,
   LeftDetail,
   RightDetail,
-  Extension,
-  AutomateSection,
-  AutomateText,
   BottomList,
   CardWrapper,
   CardItem,
   CardTextView,
-  HelpContainerSection,
-  HelpMain,
-  HelpLeft,
   HelpLeftSub,
   HelpLink,
-  HelpWrap,
-  HelpMargin,
   IconSvg,
-  BtnView,
-  ImageHover,
-  HelpImg,
   IconWrap,
-  LeftSvg,
   RightWrap,
   AnimatedIcon,
   AnimatedLine,
@@ -1210,13 +691,5 @@ export {
   ZoomImage,
   ImageDiv,
   Responsive,
-  Desktop,
-  Block,
-  SliderButton,
-  Arrow,
-  SliderBlock,
-  ButtonGroup,
-  ResponsiveButtonGroup,
-  BusinessSectionText,
-  AutomationMarkdownContent
+  Desktop
 };

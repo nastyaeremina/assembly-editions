@@ -1,6 +1,13 @@
 import styled, { css } from 'styled-components';
-import { Body4, Body5, HeaderFont, Heading4, Heading5, MbBody4 } from '../../styles/styles';
-import { body_regular, h2_semibold } from '../../styles/typography';
+import {
+  body_regular,
+  body_semibold,
+  button_regular,
+  button_semibold,
+  h2_semibold,
+  h4_semibold,
+  label_regular
+} from '../../styles/typography';
 
 const AppDetail = styled.div`
   display: flex;
@@ -270,7 +277,7 @@ const ArrowIcon = styled.button`
 const AppDetailContent = styled.div`
   h3 > b,
   h3 {
-    ${Heading4};
+    ${h4_semibold};
     font-weight: 400;
     color: var(--title);
     margin: 28px 0 0;
@@ -290,7 +297,7 @@ const AppDetailContent = styled.div`
   }
   h4 > b,
   h4 {
-    ${Heading5};
+    ${body_semibold};
     font-weight: 400;
     color: var(--title);
     margin: 20px 0 0;
@@ -321,7 +328,7 @@ const AppDetailContent = styled.div`
     }
   }
   p {
-    ${Body4};
+    ${button_regular};
     color: var(--body);
     margin: 12px 0 0;
     a {
@@ -379,14 +386,14 @@ const AppDetailContent = styled.div`
     padding-left: 20px;
     margin: 12px 0 0px;
     li {
-      ${Body5};
-      color: var(--body);
+      ${label_regular};
+      color: var(--text-secondary);
       p {
         margin: 8px 0 0;
       }
       ::marker {
         font-size: 18px;
-        color: var(--body);
+        color: var(--text-secondary);
       }
     }
   }
@@ -425,11 +432,11 @@ const AppDetailContent = styled.div`
       background-color: var(--table-color);
       padding: 12px 20px;
       text-align: left;
-      ${HeaderFont};
+      ${button_semibold};
       color: var(--title);
       p > b,
       p {
-        ${HeaderFont};
+        ${button_semibold};
         color: var(--title);
       }
       :first-child {
@@ -441,11 +448,11 @@ const AppDetailContent = styled.div`
     }
     td {
       padding: 12px 20px;
-      ${Body4};
+      ${button_regular};
       color: var(--title);
       vertical-align: top;
       p {
-        ${Body4};
+        ${button_regular};
         color: var(--title);
         padding-top: 20px;
         :first-child {
@@ -514,7 +521,6 @@ const AppDetailContent = styled.div`
       margin: 8px 0 0;
     }
     p {
-      ${MbBody4}
       margin: 12px 0 0;
     }
     ol {

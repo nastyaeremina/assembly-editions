@@ -1,7 +1,7 @@
 'use client';
 
 import styled, { css } from 'styled-components';
-import { Body3, Label, MbBody3, MbPrimaryBtn } from '../../styles/styles';
+import { body_regular, label_regular } from '../../styles/typography';
 
 const Tabbutton = styled.div`
   margin: 0 auto;
@@ -117,7 +117,7 @@ const Nav = styled.div`
     padding: 10px 20px;
     z-index: 1;
     color: var(--black);
-    ${Label};
+    ${label_regular};
     transition: all 0.3s ease-in-out 0s;
   }
   .activetab {
@@ -136,7 +136,6 @@ const Nav = styled.div`
     display: block;
     .tab {
       padding: 5px 20px;
-      ${MbPrimaryBtn};
     }
   }
   @media only screen and (max-width: 449px) {
@@ -184,13 +183,12 @@ const Nav = styled.div`
     }
   }
   ul.nav {
-    ${Label}
+    ${label_regular}
     letter-spacing: 0.01em;
     color: var(--black);
     padding-left: 0px;
     display: flex;
     @media only screen and (max-width: 449px) {
-      ${MbPrimaryBtn}
       overflow: auto;
       display: flex;
     }
@@ -232,7 +230,7 @@ const TabbuttonTop = styled.div`
 const LeftContent = styled.p`
   font-family: 'Bagoss';
   margin: 0;
-  ${Body3}
+  ${body_regular}
   color: var(--white);
   opacity: 0;
   display: none;
@@ -261,9 +259,6 @@ const LeftContent = styled.p`
   }
   @media only screen and (max-width: 768px) {
     max-width: 100%;
-  }
-  @media only screen and (max-width: 449px) {
-    ${MbBody3}
   }
 `;
 
@@ -299,7 +294,7 @@ const RightContent = styled.div`
     background: var(--secondary-hover-color);
     border: 1px solid var(--dark-green);
     border-radius: 41px;
-    ${Label}
+    ${label_regular}
     color: var(--black);
     padding-left: 0px;
     display: flex;
@@ -331,7 +326,7 @@ const RightContent = styled.div`
     padding: 10px 20px;
     z-index: 1;
     color: var(--black);
-    ${Label};
+    ${label_regular};
     transition: all 0.3s ease-in-out 0s;
   }
   .activetab {

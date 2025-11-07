@@ -1,5 +1,5 @@
 import styled, { css } from 'styled-components';
-import { Body1, Body4, HeaderFont, LinkTxt, MbPrimaryBtn } from '../../styles/styles';
+import { body_regular } from '../../styles/typography';
 
 const Extention = styled.a`
   display: flex;
@@ -12,11 +12,6 @@ const Extention = styled.a`
   .logo {
     width: 140px;
     height: auto;
-    /* height: 140px; */
-    @media only screen and (max-width: 449px) {
-      /* height: 110px; */
-      /* width: 240px; */
-    }
   }
   ${(props) =>
     props.isCard &&
@@ -32,14 +27,11 @@ const Extention = styled.a`
     transition: all 300ms ease;
   }
   a {
-    ${LinkTxt};
+    ${body_regular};
     margin: 0;
     color: var(--title);
     cursor: pointer;
     transition: none;
-    @media only screen and (max-width: 449px) {
-      ${HeaderFont}
-    }
   }
   :hover .HoverArrow__linePath {
     opacity: 1;
@@ -99,16 +91,13 @@ const RightDesc = styled.div`
   }
 `;
 const Par = styled.div`
-  ${Body1}
+  ${body_regular}
   color: var(--dark-green);
   display: -webkit-box;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 3;
   overflow: hidden;
   white-space: inherit;
-  @media only screen and (max-width: 449px) {
-    ${Body4}
-  }
 `;
 const Cardlink = styled.div`
   display: flex;
