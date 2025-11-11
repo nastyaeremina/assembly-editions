@@ -399,7 +399,12 @@ export async function getStandardPageContent({ slug, id, preview }) {
 export async function getAllStandardPageWithSlug() {
   const entries = await fetchGraphQL(
     `query {
-      pageTemplateCollection(preview: false) {
+      pageTemplateCollection(preview: false, limit:1000, where: {
+      OR: [
+        { seoMetadata: { noIndex_exists: false } }
+        { seoMetadata: { noIndex: false } }
+       ]
+     }) {
         items {
          slug
          sys{

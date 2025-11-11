@@ -97,7 +97,12 @@ function extractPostEntries(fetchResponse) {
 export async function getAllComparisonWithSlug(preview) {
   const entries = await fetchGraphQL(
     `query {
-        pageComparisionCollection(preview: ${preview ? 'true' : 'false'}) {
+        pageComparisionCollection(preview: ${preview ? 'true' : 'false'},limit:1000, where: {
+      OR: [
+        { seoMetadata: { noIndex_exists: false } }
+        { seoMetadata: { noIndex: false } }
+       ]
+     }) {
         items {
         slug
         }

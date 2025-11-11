@@ -133,7 +133,14 @@ export async function getTemplateDetailContent({ slug, preview }) {
 export async function getAllTemplatesWithSlug() {
   const entries = await fetchGraphQL(
     `query {
-      templateCollection(preview: false) {
+      templateCollection(preview: false,
+    where: {
+      OR: [
+        { seoMetadata: { noIndex_exists: false } }
+        { seoMetadata: { noIndex: false } }
+      ]
+    }
+  ) {
         items {
          slug
         }

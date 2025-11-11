@@ -184,7 +184,7 @@ export async function getArticleData(slug, preview) {
 export async function getAllGuideArticleSlug(preview) {
   const entries = await fetchGraphQL(
     `query {
-      guideArticleCollection(where:{sys:{id_exists:true}},preview: ${preview ? 'true' : 'false'}) {
+      guideArticleCollection(where:{sys:{id_exists:true}},preview: ${preview ? 'true' : 'false'},limit:1000) {
              items{
                        slug
              }
