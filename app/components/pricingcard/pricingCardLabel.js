@@ -1,5 +1,4 @@
 import React from 'react';
-import { isNumber } from '../../helpers/helpers';
 import { Pricenumber } from './styles';
 
 /**
@@ -17,14 +16,10 @@ import { Pricenumber } from './styles';
     <>
       <Pricenumber isSupersonic={isSupersonic}>
         {/* Check if the price is a number. */}
-        {isNumber(price) ? (
-          <>
-            ${price}
-            <span>/month</span>
-          </>
-        ) : (
-          price // If not a number, display the price as is could be a string(e.g. 'Custom').
-        )}
+        <>
+          ${price}
+          <span>/month</span>
+        </>
       </Pricenumber>
     </>
   );
