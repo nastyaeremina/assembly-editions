@@ -20,8 +20,10 @@ export async function generateMetadata() {
 
     if (!data?.seoMetadata) return;
 
-    const seoData = await getSEOData({ data: data?.seoMetadata });
-    seoData.alternates = { canonical: `${CURRENT_SITE_URL}/` };
+    const seoData = await getSEOData({ 
+      data: data?.seoMetadata,
+      canonical: `${CURRENT_SITE_URL}/`
+    });
 
     return seoData;
   } catch (error) {

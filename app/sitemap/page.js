@@ -56,8 +56,10 @@ async function getSitemapContent() {
 }
 
 export async function generateMetadata() {
-  const seoData = await getSEOData({ id: SITEMAP_SEO_ID });
-  seoData.alternates = { canonical: `${CURRENT_SITE_URL}/sitemap` };
+  const seoData = await getSEOData({ 
+    id: SITEMAP_SEO_ID,
+    canonical: `${CURRENT_SITE_URL}/sitemap`
+  });
   return seoData;
 }
 

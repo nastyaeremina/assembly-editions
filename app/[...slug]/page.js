@@ -66,8 +66,10 @@ export async function generateMetadata({ params }) {
   const { data } = await getContent({ slug: params.slug });
   const combinedSlug = params.slug.join('/');
 
-  const seoData = await getSEOData({ data: data?.seoMetadata });
-  seoData.alternates = { canonical: `${CURRENT_SITE_URL}/${combinedSlug}` };
+  const seoData = await getSEOData({ 
+    data: data?.seoMetadata,
+    canonical: `${CURRENT_SITE_URL}/${combinedSlug}`
+  });
 
   return seoData;
 }

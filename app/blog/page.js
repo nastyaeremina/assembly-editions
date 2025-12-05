@@ -101,8 +101,10 @@ async function getContent(page = 1, limit = 8) {
 }
 
 export async function generateMetadata({ params, searchParams }, parent) {
-  const seoData = await getSEOData({ id: BLOG_SEO_ID });
-  seoData.alternates = { canonical: `${CURRENT_SITE_URL}/blog` };
+  const seoData = await getSEOData({ 
+    id: BLOG_SEO_ID,
+    canonical: `${CURRENT_SITE_URL}/blog`
+  });
   return seoData;
 }
 

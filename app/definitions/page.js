@@ -50,8 +50,10 @@ async function getContent({ searchParams }) {
 
 export async function generateMetadata({ searchParams }) {
   const { seoMetadata } = await getContent({ searchParams });
-  const seoData = await getSEOData({ data: seoMetadata });
-  seoData.alternates = { canonical: `${CURRENT_SITE_URL}/definitions` };
+  const seoData = await getSEOData({ 
+    data: seoMetadata,
+    canonical: `${CURRENT_SITE_URL}/definitions`
+  });
 
   return seoData;
 }

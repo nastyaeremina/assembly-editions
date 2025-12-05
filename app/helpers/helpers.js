@@ -114,13 +114,13 @@ export const isUserAtuthenticated = () => (dispatch) => {
   }
 };
 
-export const getSEOData = async ({ id, data }) => {
+export const getSEOData = async ({ id, data, canonical= '' }) => {
   let seoData;
   if (!isEmpty(id)) seoData = (await getSEOdata(id)) ?? [];
   else seoData = data;
   return {
     title: seoData?.seoTitle,
-    alternates: { canonical: seoData?.canonical },
+    alternates: { canonical: seoData?.canonical || canonical },
     description: seoData?.description,
     openGraph: {
       type: 'website',

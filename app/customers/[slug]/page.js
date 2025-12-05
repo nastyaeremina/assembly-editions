@@ -20,8 +20,10 @@ async function getContent({ slug }) {
 
 export async function generateMetadata({ params }) {
   const { details } = await getContent({ slug: params?.slug });
-  const seoData = await getSEOData({ id: details?.seoMetadata?.sys?.id });
-  seoData.alternates = { canonical: `${CURRENT_SITE_URL}/customers/${params?.slug}` };
+  const seoData = await getSEOData({ 
+    id: details?.seoMetadata?.sys?.id,
+    canonical: `${CURRENT_SITE_URL}/customers/${params?.slug}`
+  });
   return seoData;
 }
 

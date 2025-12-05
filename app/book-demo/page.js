@@ -7,9 +7,10 @@ import { getExternalLinks } from '../helpers/serverSideHelpers';
 import Layout from '../components/layout';
 
 export async function generateMetadata({ params, searchParams }, parent) {
-  const seoData = await getSEOData({ id: BOOK_DEMO_SEO_ID });
-
-  seoData.alternates = { canonical: `${CURRENT_SITE_URL}/book-demo` };
+  const seoData = await getSEOData({ 
+    id: BOOK_DEMO_SEO_ID,
+    canonical: `${CURRENT_SITE_URL}/book-demo`
+  });
   return seoData;
 }
 

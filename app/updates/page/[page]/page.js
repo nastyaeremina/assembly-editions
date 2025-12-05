@@ -19,9 +19,9 @@ async function getContent({ page }) {
 }
 export async function generateMetadata({ params }) {
   const seoData = await getSEOData({
-    id: UPDATES_SEO_ID
+    id: UPDATES_SEO_ID,
+    canonical: `${CURRENT_SITE_URL}/updates`
   });
-  seoData.alternates = { canonical: `${CURRENT_SITE_URL}/updates` };
 
   return seoData;
 }

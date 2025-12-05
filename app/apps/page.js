@@ -29,8 +29,10 @@ async function getContent({ searchParams }) {
 
 export async function generateMetadata({ searchParams }) {
   const { details } = await getContent({ searchParams });
-  const seoData = await getSEOData({ data: details.seoMetadata });
-  seoData.alternates = { canonical: `${CURRENT_SITE_URL}/apps` };
+  const seoData = await getSEOData({ 
+    data: details.seoMetadata,
+    canonical: `${CURRENT_SITE_URL}/apps`
+  });
 
   return seoData;
 }

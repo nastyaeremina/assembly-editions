@@ -17,8 +17,10 @@ async function getTemplateDetail({ slug }) {
 
 export async function generateMetadata({ params }) {
   const data = await getTemplateDetail({ slug: params?.slug });
-  const seoData = await getSEOData({ data: data?.seoMetadata });
-  seoData.alternates = { canonical: `${CURRENT_SITE_URL}/templates/${params?.slug}` };
+  const seoData = await getSEOData({ 
+    data: data?.seoMetadata,
+    canonical: `${CURRENT_SITE_URL}/templates/${params?.slug}`
+  });
 
   return seoData;
 }

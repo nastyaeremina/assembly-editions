@@ -4,7 +4,7 @@ import { draftMode } from 'next/headers';
 import Layout from '../../components/layout';
 import GlossaryDetailsPage from '../../components/PageComponent/Glossary/glossaryDetailsPage';
 import { getGlossaryDetails } from '../../lib/contentful-glossary';
-import { isEmpty } from '../../helpers/helpers';
+import { getSEOData, isEmpty } from '../../helpers/helpers';
 import { CURRENT_SITE_URL } from '../../constants/constant';
 import { getExternalLinks } from '../../helpers/serverSideHelpers';
 
@@ -33,11 +33,15 @@ async function getContent({ slug }) {
 export async function generateMetadata({ params }) {
   const { detail: data } = await getContent({ slug: params?.slug });
 
-  return {
-    title: data?.metaTitle ? data?.metaTitle : `${data?.name} | Definition and examples`,
-    description: data?.metaDescription,
-    alternates: { canonical: `${CURRENT_SITE_URL}/definitions/${params?.slug}` }
-  };
+  const seoData = await getSEOData({
+    data: {
+      seoTitle: data?.metaTitle ? data?.metaTitle : `${data?.name} | Definition and examples`,
+      description: data?.metaDescription
+    },
+    canonical: `${CURRENT_SITE_URL}/definitions/${params?.slug}`
+  });
+
+  return seoData;
 }
 export default async function GlossaryDetails({ params }) {
   const { detail, externalLinks } = await getContent({ slug: params?.slug });

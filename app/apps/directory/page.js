@@ -16,8 +16,10 @@ async function getAppDirectoryContent() {
 }
 
 export async function generateMetadata() {
-  const seoData = await getSEOData({ id: APP_SEO_ID });
-  seoData.alternates = { canonical: `${CURRENT_SITE_URL}/apps/directory` };
+  const seoData = await getSEOData({ 
+    id: APP_SEO_ID,
+    canonical: `${CURRENT_SITE_URL}/apps/directory`
+  });
   return seoData;
 }
 

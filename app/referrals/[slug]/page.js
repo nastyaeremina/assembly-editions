@@ -6,8 +6,10 @@ import { getSEOData } from '../../helpers/helpers';
 import AggregateRating from '../../components/aggregateRating';
 
 export async function generateMetadata() {
-  const seoData = await getSEOData({ id: REFERRAL_SEO_ID });
-  seoData.alternates = { canonical: `${CURRENT_SITE_URL}/referrals` };
+  const seoData = await getSEOData({ 
+    id: REFERRAL_SEO_ID,
+    canonical: `${CURRENT_SITE_URL}/referrals`
+  });
 
   return seoData;
 }

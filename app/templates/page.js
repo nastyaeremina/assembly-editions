@@ -20,8 +20,10 @@ async function getTemplateContent({ searchParams }) {
 
 export async function generateMetadata({ searchParams }) {
   const { content: data } = await getTemplateContent({ searchParams });
-  const seoData = await getSEOData({ data: data?.seoMetadata });
-  seoData.alternates = { canonical: `${CURRENT_SITE_URL}/templates` };
+  const seoData = await getSEOData({ 
+    data: data?.seoMetadata,
+    canonical: `${CURRENT_SITE_URL}/templates`
+  });
   return seoData;
 }
 

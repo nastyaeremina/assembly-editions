@@ -10,7 +10,8 @@ openGraphImage
 {
   url
 }
-isEnableReviewSnippet`;
+isEnableReviewSnippet
+canonical`;
 
 function extractData(fetchResponse) {
   return fetchResponse?.data?.seoMetadata;

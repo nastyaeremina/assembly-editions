@@ -45,8 +45,10 @@ async function getContent() {
 }
 
 export async function generateMetadata({ params, searchParams }, parent) {
-  const seoData = await getSEOData({ id: UNIVERSITY_SEO_ID });
-  seoData.alternates = { canonical: `${CURRENT_SITE_URL}/university` };
+  const seoData = await getSEOData({ 
+    id: UNIVERSITY_SEO_ID,
+    canonical: `${CURRENT_SITE_URL}/university`
+  });
   return seoData;
 }
 
