@@ -68,6 +68,7 @@ const NavMenu = styled.div`
     flex-direction: column;
     background: var(--bg-pages);
     animation: 0.2s ease-out 0s 1 slideInFromTop;
+    height: 100%;
   }
   @keyframes slideInFromTop {
     0% {
@@ -119,12 +120,6 @@ const NavigationBlock = styled.ul`
 
   @media only screen and (max-width: 449px) {
     height: calc(100dvh - 257px);
-  }
-
-  .SpanLink:hover,
-  .SpanLink:has(.innerlist:hover) {
-    background-color: var(--off-white-600);
-    border-radius: var(--radius-30);
   }
 `;
 
@@ -186,8 +181,19 @@ const SpanLink = styled.li`
     min-width: 400px;
     width: 100%;
   }
-  :hover .innerlist,
-  li {
+  .link-text:hover + .innerlist,
+  .link-text:focus-visible + .innerlist,
+  .innerlist:hover,
+  .innerlist:focus-within {
+    display: block;
+    @media only screen and (max-width: 1080px) {
+      display: none;
+    }
+  }
+  .link-text:hover + .innerlist li,
+  .link-text:focus-visible + .innerlist li,
+  .innerlist:hover li,
+  .innerlist:focus-within li {
     display: block;
     @media only screen and (max-width: 1080px) {
       display: none;

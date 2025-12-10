@@ -389,6 +389,15 @@ export default function NavbarComponent({ isAuthenticated: userAuth, topbarConte
   );
 
   /**
+   * Keep dropdown open while moving between trigger and panel
+   */
+  const handleDropdownAreaEnter = useCallback(() => {
+    if (hoverTimeoutRef.current) {
+      clearTimeout(hoverTimeoutRef.current);
+    }
+  }, []);
+
+  /**
    * Handle mouse leave from dropdown area
    */
   const handleMouseLeave = useCallback(() => {
@@ -518,15 +527,14 @@ export default function NavbarComponent({ isAuthenticated: userAuth, topbarConte
             // Dropdown menu item
             if (!isEmpty(item.subsections)) {
               return (
-                <SpanLink
-                  key={`navbar_${item.title}`}
-                  className='SpanLink'
-                  onMouseEnter={() => handleMouseEnter(index)}
-                  onMouseLeave={handleMouseLeave}>
+                <SpanLink key={`navbar_${item.title}`} className='SpanLink'>
                   <LinkText
                     href='#'
                     ref={(el) => (dropdownRefs.current[index] = el)}
                     tabIndex={0}
+                    className='link-text'
+                    onMouseEnter={() => handleMouseEnter(index)}
+                    onMouseLeave={handleMouseLeave}
                     onFocus={() => {
                       if (mobile) return;
                       setShouldAutoFocus(true);
@@ -540,7 +548,12 @@ export default function NavbarComponent({ isAuthenticated: userAuth, topbarConte
                     }}>
                     {item.title}
                   </LinkText>
-                  <InnerList solution className='innerlist' $isOpen={openDropdownIndex === index}>
+                  <InnerList
+                    solution
+                    className='innerlist'
+                    $isOpen={openDropdownIndex === index}
+                    onMouseEnter={handleDropdownAreaEnter}
+                    onMouseLeave={handleMouseLeave}>
                     {renderNavbarSubItems(item.subsections, index, item.title)}
                   </InnerList>
                   <LineMenuImg></LineMenuImg>
