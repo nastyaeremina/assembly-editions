@@ -105,6 +105,7 @@ export default function StoryMode({ tabsData, tone }) {
             <GridItemSection
               quoteBlock={tabData.quoteBlock}
               imageUrl={tabData.image}
+              mobileImageUrl={tabData.mobileImage}
               videoUrl={tabData.video}
               title={tabData.title}
               tone={tone}

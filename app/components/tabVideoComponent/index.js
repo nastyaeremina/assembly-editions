@@ -5,11 +5,12 @@ import Image from 'next/image';
 /**
  * TabVideoComponent renders video content with automatic play/pause functionality
  * @param {Object} imageUrl - Fallback image data with url property
+ * @param {Object} mobileImageUrl - Mobile fallback image data with url property
  * @param {Object} videoUrl - Video data object containing either videoLink or video.url
  * @param {string} title - Title for the video element (accessibility)
  * @param {number} activeIndex - Current active tab index for intersection observer
  */
-function TabVideoComponent({ imageUrl, videoUrl, title, activeIndex }) {
+function TabVideoComponent({ imageUrl, videoUrl, title, activeIndex, mobileImageUrl }) {
   // ref variables
   const videoRef = useRef(null);
   const playKickoffTimeoutRef = useRef(null);
@@ -146,10 +147,28 @@ function TabVideoComponent({ imageUrl, videoUrl, title, activeIndex }) {
           <source src={videoUrl?.video?.url} type='video/mp4' />
         </video>
       ) : (
-        /* Fallback to image if no video available */
-        !isEmpty(imageUrl) && (
-          <Image src={imageUrl.url} width={1224} height={827} className='image' alt='Section' priority={true} />
-        )
+        <>
+          {/* Mobile Image (render only if exists) */}
+          {!isEmpty(mobileImageUrl) && (
+            <div className='mobile-image-container'>
+              <Image
+                src={mobileImageUrl.url}
+                width={600}
+                height={600}
+                className='mobile-image'
+                alt='Section'
+                priority
+              />
+            </div>
+          )}
+
+          {/* Desktop Image (always render) */}
+          {!isEmpty(imageUrl) && (
+            <div className='desktop-image-container'>
+              <Image src={imageUrl.url} width={1224} height={827} className='image' alt='Section' priority />
+            </div>
+          )}
+        </>
       )}
     </>
   );

@@ -19,7 +19,14 @@ import SVGComponent from '../../../public/images/svg/SVGComponent';
 import ButtonV2Component from '../button/buttonV2/buttonV2';
 import { EXTERNAL_LINK_KEYS } from '../../constants/constant';
 
-function ResponsiveNavbar({ mobile, navbarData, setOpenDropdownIndex, openDropdownIndex, externalLinks = {} }) {
+function ResponsiveNavbar({
+  mobile,
+  navbarData,
+  setOpenDropdownIndex,
+  openDropdownIndex,
+  externalLinks = {},
+  topbarContent
+}) {
   const router = useRouter();
 
   const calculateDropdownHeight = useCallback((subsections) => {
@@ -53,7 +60,7 @@ function ResponsiveNavbar({ mobile, navbarData, setOpenDropdownIndex, openDropdo
     <>
       <NavMenu mobile={mobile}>
         <Container>
-          <NavigationBlock>
+          <NavigationBlock className={isEmpty(topbarContent) ? 'topbar-content' : ''}>
             {navbarData.map((item, index) => {
               const isDropdownOpen = openDropdownIndex === index;
 

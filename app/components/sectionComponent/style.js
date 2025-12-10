@@ -1,5 +1,6 @@
 import styled, { css } from 'styled-components';
 import { SectionTone } from '../../constants/constant';
+import { isEmpty } from '../../helpers/helpers';
 
 const SectionDiv = styled.div`
   padding: var(--space-64) 0;
@@ -109,8 +110,44 @@ const GridItemSectionWrapper = styled.div`
     }
   }
   /* Image styling */
+  /* Default desktop mode */
+  .desktop-image-container {
+    display: flex;
+  }
+
+  .mobile-image-container {
+    display: none;
+  }
+
+  /* MOBILE MODE (<449px) */
+  @media only screen and (max-width: 449px) {
+    /* IF mobile image exists → show it */
+    .mobile-image-container {
+      display: flex;
+    }
+
+    /* IF mobile image exists → hide desktop */
+    .mobile-image-container + .desktop-image-container {
+      display: none;
+    }
+  }
+
   .image {
     max-width: 100%;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: var(--radius-16);
+    border: 1px solid var(--border-secondary);
+    ${({ tone }) =>
+      tone === SectionTone.DARK &&
+      css`
+        border: 1px solid var(--bg-card-dark-hover);
+      `}
+  }
+
+  .mobile-image {
+    display: flex;
     width: 100%;
     height: 100%;
     object-fit: cover;

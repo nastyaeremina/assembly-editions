@@ -66,6 +66,7 @@ function SectionComponent({
                     isActive={index === activeIndex}
                     quoteBlock={tabItem.quoteBlock}
                     imageUrl={tabItem.image}
+                    mobileImageUrl={tabItem.mobileImage}
                     videoUrl={tabItem.video}
                     title={tabItem.title}
                     tone={tone}

@@ -226,6 +226,9 @@ const POST_GRAPHQL_SECTION_TAB_FIELDS = `
         image{
           url
         }
+        mobileImage{
+          url
+        }
         backgroundImage{
           url
         }

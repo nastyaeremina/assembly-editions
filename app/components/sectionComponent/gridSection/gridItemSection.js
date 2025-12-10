@@ -20,6 +20,7 @@ import TabVideoComponent from '../../tabVideoComponent/index';
 function GridItemSection({
   quoteBlock,
   imageUrl,
+  mobileImageUrl,
   videoUrl,
   title,
   isActive,
@@ -38,6 +39,7 @@ function GridItemSection({
         isSectionComponent={isSectionComponent}>
         <TabVideoComponent
           imageUrl={imageUrl}
+          mobileImageUrl={mobileImageUrl}
           videoUrl={videoUrl}
           videoTitle={title}
           activeIndex={activeIndex}

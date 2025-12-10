@@ -653,6 +653,7 @@ export default function NavbarComponent({ isAuthenticated: userAuth, topbarConte
         navbarData={navbarData}
         openDropdownIndex={openDropdownIndex}
         setOpenDropdownIndex={setOpenDropdownIndex}
+        topbarContent={topbarContent}
       />
     );
   }, [mobile, navbarData, openDropdownIndex]);

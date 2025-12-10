@@ -116,10 +116,16 @@ const NavigationBlock = styled.ul`
     height: calc(100dvh - 273px);
     overflow-y: auto;
     padding-bottom: var(--space-16);
+    &.topbar-content {
+      height: calc(100dvh - 233px);
+    }
   }
 
   @media only screen and (max-width: 449px) {
     height: calc(100dvh - 257px);
+    &.topbar-content {
+      height: calc(100dvh - 217px);
+    }
   }
 `;
 
