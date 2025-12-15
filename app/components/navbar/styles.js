@@ -214,6 +214,10 @@ const SpanLink = styled.li`
   @media only screen and (max-width: 1080px) {
     width: 100%;
     padding: var(--space-6) 0;
+    &:focus-within {
+      background-color: transparent;
+      border-radius: var(--radius-30);
+    }
   }
 `;
 

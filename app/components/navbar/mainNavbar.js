@@ -53,13 +53,13 @@ import HighlightSection from './highlighSection';
  * - Accessible dropdown menus with proper focus management
  * - Top bar announcement support
  * - Authentication state handling
- *
  * @param {Object} props - Component props
  * @param {boolean} props.isAuthenticated - User authentication status
  * @param {Object} props.topbarContent - Top bar announcement content
  * @param {Array} props.navbarData - Navigation menu data structure
  * @param {Object} props.externalLinks - External application links
  */
+
 export default function NavbarComponent({ isAuthenticated: userAuth, topbarContent, navbarData, externalLinks = {} }) {
   // ===== STATE MANAGEMENT =====
   const mobile = useMobileDevice();
