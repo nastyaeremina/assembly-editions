@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useCallback, useEffect, useRef } from 'react';
 import { isEmpty } from '../../helpers/helpers';
 import Image from 'next/image';
 
@@ -99,14 +99,14 @@ function TabVideoComponent({ imageUrl, videoUrl, title, activeIndex, mobileImage
     };
   }, [activeIndex]);
 
-  const convertToEmbedUrl = (url) => {
+  const convertToEmbedUrl = useCallback((url) => {
     if (!url) return '';
 
     // Converts to embed format with autoplay, loop, and muted parameters for seamless autoplay
     if (url.includes('youtu.be/')) {
       const videoId = url.match(/youtu\.be\/([^?&]+)/)?.[1];
       if (videoId) {
-        const embedUrl = `https://www.youtube.com/embed/${videoId}?autoplay=1&loop=1&mute=1&playlist=${videoId}&controls=0&showinfo=0&rel=0`;
+        const embedUrl = `https://www.youtube.com/embed/${videoId}?autoplay=0&loop=1&mute=1&playlist=${videoId}&controls=0&showinfo=0&rel=0`;
         return embedUrl;
       }
     }
@@ -114,7 +114,7 @@ function TabVideoComponent({ imageUrl, videoUrl, title, activeIndex, mobileImage
     // Simple replacement to convert to embed format with autoplay parameters
     if (url.includes('youtube.com/watch?v=')) {
       const videoId = url.match(/v=([^&]+)/)?.[1];
-      const embedUrl = `https://www.youtube.com/embed/${videoId}?autoplay=1&loop=1&mute=1&playlist=${videoId}&controls=0&showinfo=0&rel=0`;
+      const embedUrl = `https://www.youtube.com/embed/${videoId}?autoplay=0&loop=1&mute=1&playlist=${videoId}&controls=0&showinfo=0&rel=0`;
       return embedUrl;
     }
 
@@ -122,13 +122,14 @@ function TabVideoComponent({ imageUrl, videoUrl, title, activeIndex, mobileImage
     if (url.includes('youtube.com/embed/')) {
       // ensure autoplay/mute parameters for faster start
       const hasQuery = url.includes('?');
-      const autoplayParams = 'autoplay=1&loop=1&mute=1&controls=0&rel=0';
+      const autoplayParams = 'autoplay=0&loop=1&mute=1&controls=0&rel=0';
       return hasQuery ? `${url}&${autoplayParams}` : `${url}?${autoplayParams}`;
     }
 
     // Return original URL if no match found
     return url;
-  };
+  }, []);
+
   return (
     <>
       {videoUrl?.videoLink ? (
@@ -136,7 +137,7 @@ function TabVideoComponent({ imageUrl, videoUrl, title, activeIndex, mobileImage
           width='1224'
           height='707'
           src={convertToEmbedUrl(videoUrl.videoLink)}
-          allow='accelerometer; autoplay; loop; clipboard-write; encrypted-media; picture-in-picture; fullscreen'
+          allow='accelerometer; loop; clipboard-write; encrypted-media; picture-in-picture; fullscreen'
           allowFullScreen
           title={title || 'Video'}
           loading='lazy'
