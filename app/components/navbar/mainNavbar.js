@@ -24,7 +24,6 @@ import {
   LeftImg,
   MenuWrap,
   RightText,
-  LineMenuImg,
   SignInMobile,
   MobileRight,
   TopBar,
@@ -532,7 +531,7 @@ export default function NavbarComponent({ isAuthenticated: userAuth, topbarConte
                     href='#'
                     ref={(el) => (dropdownRefs.current[index] = el)}
                     tabIndex={0}
-                    className='link-text'
+                    className={`link-text ${openDropdownIndex === index ? 'active' : ''}`}
                     onMouseEnter={() => handleMouseEnter(index)}
                     onMouseLeave={handleMouseLeave}
                     onFocus={() => {
@@ -556,7 +555,6 @@ export default function NavbarComponent({ isAuthenticated: userAuth, topbarConte
                     onMouseLeave={handleMouseLeave}>
                     {renderNavbarSubItems(item.subsections, index, item.title)}
                   </InnerList>
-                  <LineMenuImg></LineMenuImg>
                 </SpanLink>
               );
             }

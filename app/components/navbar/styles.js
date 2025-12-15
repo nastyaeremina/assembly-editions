@@ -141,27 +141,17 @@ const Dropdown = styled.div`
   }
 `;
 
-const LineMenuImg = styled.div`
-  position: absolute;
-  visibility: 0;
-  opacity: 0;
-  left: -13px;
-  bottom: -30px;
-  width: calc(100% + 4px);
-  height: 30px;
-  @media only screen and (max-width: 1080px) {
-    display: none;
-  }
-`;
-
 const LinkText = styled(Link)`
   ${label_semibold}
   color: var(--title);
   cursor: pointer;
   padding: var(--space-13) var(--space-16) var(--space-11);
   border-radius: var(--radius-30);
-  transition: background-color 0.3s ease;
   :hover {
+    background-color: var(--off-white-600);
+    color: var(--title);
+  }
+  &.active {
     background-color: var(--off-white-600);
     color: var(--title);
   }
@@ -221,7 +211,6 @@ const SpanLink = styled.li`
     min-width: 400px;
     width: 100%;
   }
-  @media only screen and (max-width: 991px) {
   @media only screen and (max-width: 1080px) {
     width: 100%;
     padding: var(--space-6) 0;
@@ -297,7 +286,6 @@ const SpanMobileLink = styled.li`
 
 const InnerList = styled.ul`
   position: absolute;
-  top: 47px;
   left: -22px;
   z-index: 90;
   display: none;
@@ -662,6 +650,7 @@ const Drop = styled.div`
   overflow: hidden;
   padding: var(--space-12);
   backdrop-filter: blur(4px);
+  margin-top: var(--space-8);
 `;
 
 const DropDownHeading = styled.div`
@@ -833,7 +822,6 @@ export {
   MenuWrap,
   LeftImg,
   RightText,
-  LineMenuImg,
   SignInMobile,
   MobileRight,
   MobileListLi,
