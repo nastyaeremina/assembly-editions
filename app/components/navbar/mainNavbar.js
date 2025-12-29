@@ -6,7 +6,7 @@ import Image from 'next/image';
 import { Container } from '../../styles/commonStyles';
 import useMobileDevice from '../../hooks/useMobileDevice';
 import { isEmpty } from '../../helpers/helpers';
-import { ButtonSize, ButtonVariant, EXTERNAL_LINK_KEYS } from '../../constants/constant';
+import { ButtonSize, EXTERNAL_LINK_KEYS } from '../../constants/constant';
 import { usePathname } from 'next/navigation';
 import {
   NavbarWrapper,
@@ -651,10 +651,10 @@ export default function NavbarComponent({ isAuthenticated: userAuth, topbarConte
         navbarData={navbarData}
         openDropdownIndex={openDropdownIndex}
         setOpenDropdownIndex={setOpenDropdownIndex}
-        topbarContent={topbarContent}
+        externalLinks={externalLinks}
       />
     );
-  }, [mobile, navbarData, openDropdownIndex]);
+  }, [mobile, navbarData, openDropdownIndex, externalLinks]);
 
   // ===== MAIN RENDER =====
 

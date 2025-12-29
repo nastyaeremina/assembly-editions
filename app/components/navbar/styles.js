@@ -113,19 +113,13 @@ const NavigationBlock = styled.ul`
     width: 100%;
     align-items: flex-start;
     margin: 0;
-    height: calc(100dvh - 273px);
     overflow-y: auto;
     padding-bottom: var(--space-16);
-    &.topbar-content {
-      height: calc(100dvh - 233px);
-    }
+    height: calc(100dvh - ${(props) => props.toolbarHeight || 0}px - 153px);
   }
 
   @media only screen and (max-width: 449px) {
-    height: calc(100dvh - 257px);
-    &.topbar-content {
-      height: calc(100dvh - 217px);
-    }
+    height: calc(100dvh - ${(props) => props.toolbarHeight || 0}px - 137px);
   }
 `;
 

@@ -18,16 +18,11 @@ import { Container } from '../../styles/commonStyles';
 import SVGComponent from '../../../public/images/svg/SVGComponent';
 import ButtonV2Component from '../button/buttonV2/buttonV2';
 import { EXTERNAL_LINK_KEYS } from '../../constants/constant';
+import useNavbarHeight from '../../hooks/useNavbarHeight';
 
-function ResponsiveNavbar({
-  mobile,
-  navbarData,
-  setOpenDropdownIndex,
-  openDropdownIndex,
-  externalLinks = {},
-  topbarContent
-}) {
+function ResponsiveNavbar({ mobile, navbarData, setOpenDropdownIndex, openDropdownIndex, externalLinks = {} }) {
   const router = useRouter();
+  const { totalHeight } = useNavbarHeight();
 
   const calculateDropdownHeight = useCallback((subsections) => {
     let height = 0;
@@ -60,7 +55,7 @@ function ResponsiveNavbar({
     <>
       <NavMenu mobile={mobile}>
         <Container>
-          <NavigationBlock className={isEmpty(topbarContent) ? 'topbar-content' : ''}>
+          <NavigationBlock toolbarHeight={totalHeight}>
             {navbarData.map((item, index) => {
               const isDropdownOpen = openDropdownIndex === index;
 
