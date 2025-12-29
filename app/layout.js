@@ -35,7 +35,7 @@ export default async function Layout({ children }) {
 
   return (
     <>
-      <html>
+      <html lang='en'>
         <head>
           <Favicon />
           {!isEmpty(newData?.header?.content) &&
