@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { isEmpty } from '../../../helpers/helpers';
 import { Table, TableHeading, TableContentWrapper, TOCDivider, ActiveBorder } from '../../../styles/blogstyles';
 import BlogSidebarCTA from '../../../components/blogsidebarCTA/index';
+import useNavbarHeight from '../../../hooks/useNavbarHeight';
 
 /**
  *
@@ -36,9 +37,12 @@ export default function TableOfContents({
   externalLinks = {}
 }) {
   const [activeIndex, setActiveIndex] = useState(0);
+  const [maxHeight, setMaxHeight] = useState('0px');
   const itemBorderRefs = useRef([]);
   const listRef = useRef(null); // <ol> reference to enable scrollIntoView on the correct container
+  const containerRef = useRef(null);
   const observerRef = useRef(null);
+  const { totalHeight } = useNavbarHeight();
 
   // Extract headings function (returns sorted array)
   const extractAllHeadings = (html) => {
@@ -247,7 +251,30 @@ export default function TableOfContents({
     setActiveIndex(index);
   };
 
-  // Render TOC items
+  // Calculate and set max height based on viewport, navbar height, and CTA section
+  useEffect(() => {
+    if (typeof window === 'undefined' || !containerRef.current) return;
+
+    const calculateMaxHeight = () => {
+      // Get CTA section height if visible
+      const ctaSection = document.querySelector('.blog-cta-section');
+      const ctaHeight = ctaSection && shouldShowBlogCTA ? ctaSection.offsetHeight : 0;
+
+      // Calculate available height with dynamic gap based on CTA visibility
+      const gap = shouldShowBlogCTA ? '56px' : '36px';
+      const calculatedHeight = `calc(100dvh - ${totalHeight}px - ${ctaHeight}px - ${gap} - 40px)`;
+
+      setMaxHeight(calculatedHeight);
+    };
+
+    // Initial calculation
+    calculateMaxHeight();
+
+    // Recalculate on window resize
+    window.addEventListener('resize', calculateMaxHeight);
+    return () => window.removeEventListener('resize', calculateMaxHeight);
+  }, [totalHeight, shouldShowBlogCTA]);
+
   const renderTableData = () => {
     const headings = extractAllHeadings(htmlData);
     if (isEmpty(headings) && !isFAQs) return null;
@@ -298,10 +325,13 @@ export default function TableOfContents({
 
   return (
     <>
-      <Table>
+      {shouldShowBlogCTA && (
+        <BlogSidebarCTA headerText={ctaTitle} bodyText={ctaDescription} externalLinks={externalLinks} />
+      )}
+      <Table ref={containerRef}>
         {!isEmpty(sectionTitle) && <TableHeading>{sectionTitle}</TableHeading>}
         {!isEmpty(htmlData) && (
-          <TableContentWrapper>
+          <TableContentWrapper style={{ maxHeight: maxHeight }}>
             <TOCDivider />
             <ol ref={listRef}>
               <ActiveBorder id='active-border' />
@@ -310,9 +340,6 @@ export default function TableOfContents({
           </TableContentWrapper>
         )}
       </Table>
-      {shouldShowBlogCTA && (
-        <BlogSidebarCTA headerText={ctaTitle} bodyText={ctaDescription} externalLinks={externalLinks} />
-      )}
     </>
   );
 }

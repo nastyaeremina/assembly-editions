@@ -5,6 +5,7 @@ import { isEmpty } from '../../helpers/helpers';
 import Breadcrumbs from '../Breadcrumbs/breadcrumbs';
 import SVGComponent from '../../../public/images/svg/SVGComponent';
 import { BlogTime, DetailHero, Post, HeroWrapper } from './styles';
+import Image from 'next/image';
 
 export default function LegacyBlogDetailHero({ blogDetail, onCopyLink }) {
   // Create breadcrumbs with blog tags
@@ -32,7 +33,12 @@ export default function LegacyBlogDetailHero({ blogDetail, onCopyLink }) {
         <BlogTime>
           <Post>
             {!isEmpty(blogDetail?.authors?.[0]?.name) && (
-              <Link href={`/blog/author/${blogDetail?.authors?.[0]?.slug}`}>{blogDetail?.authors?.[0]?.name}</Link>
+              <Link href={`/blog/author/${blogDetail?.authors?.[0]?.slug}`}>
+                {!isEmpty(blogDetail?.authors?.[0]?.profile_image) && (
+                  <Image src={blogDetail?.authors?.[0]?.profile_image} width={22} height={22} />
+                )}
+                {blogDetail?.authors?.[0]?.name}
+              </Link>
             )}
             {!isEmpty(blogDetail?.published_at) && !isEmpty(blogDetail?.reading_time) && (
               <SVGComponent name='small-dot-icon' width='4' height='4' viewBox='0 0 4 4' />

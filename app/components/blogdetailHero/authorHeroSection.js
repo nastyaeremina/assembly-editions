@@ -30,7 +30,9 @@ function AuthorHeroSection({
       <Container>
         <Breadcrumbs breadcrumbs={BreadcrumbItem} currentLabel='Author' />
         <InnerHeroSection>
-          <Image src={authorImage} width={200} height={200} className='author-image' alt='author-image' />
+          {!isEmpty(authorImage) && (
+            <Image src={authorImage} width={200} height={200} className='author-image' alt='author-image' />
+          )}
           <DetailsSection>
             {!isEmpty(authorName) && <Title>{authorName}</Title>}
             {!isEmpty(designation) && <Designation>{designation}</Designation>}

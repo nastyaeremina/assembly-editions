@@ -11,16 +11,6 @@ const SideBarCTA = styled.div`
     display: none;
   }
 `;
-const Image = styled.img`
-  box-shadow: 0px 0px 0px 1px #0000000f;
-  border-radius: var(--radius-8);
-`;
-const ImageDiv = styled.div`
-  .image {
-    width: 100%;
-    object-fit: cover;
-  }
-`;
 const Content = styled.div`
   display: flex;
   flex-direction: column;
@@ -28,7 +18,7 @@ const Content = styled.div`
 const Title = styled.h4`
   ${body_regular};
   color: var(--title);
-  margin: var(--space-24) 0 0;
+  margin: 0;
 `;
 const Caption = styled.p`
   ${label_regular};
@@ -53,4 +43,4 @@ const ReviewText = styled.div`
   align-items: center;
   gap: var(--space-16);
 `;
-export { SideBarCTA, Image, ImageDiv, Content, Title, Caption, G2Section, ReviewText };
+export { SideBarCTA, Content, Title, Caption, G2Section, ReviewText };

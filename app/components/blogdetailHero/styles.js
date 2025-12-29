@@ -70,7 +70,9 @@ const Post = styled.div`
     }
   }
   a {
-    display: inline;
+    display: flex;
+    align-items: center;
+    gap: var(--space-4);
     ${button_regular};
     color: var(--text-secondary);
     transition: color 0.3s ease;
@@ -81,6 +83,14 @@ const Post = styled.div`
     :focus-visible {
       outline: 1px solid var(--link-default);
       border-radius: var(--radius-8);
+    }
+    img {
+      border-radius: var(--radius-30);
+      border: 1px solid var(--border-secondary);
+      margin-top: -2px;
+      @media only screen and (max-width: 449px) {
+        display: none;
+      }
     }
   }
   li {

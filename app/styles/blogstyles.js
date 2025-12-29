@@ -133,7 +133,6 @@ const Table = styled.div`
   display: flex;
   flex-direction: column;
   gap: var(--space-20);
-  margin-bottom: var(--space-16);
 
   .active {
     color: var(--title);
@@ -218,28 +217,12 @@ const BlogDetailsidebar = styled.div`
   height: fit-content;
   position: sticky;
   top: ${(props) => props.stickyTop}px;
-  overflow-y: visible;
-  overflow-x: hidden;
-  overscroll-behavior: contain;
-  align-self: flex-start;
-  scrollbar-width: none; /* Firefox */
-  -ms-overflow-style: none;
-  height: fit-content;
-  transition: max-height 0.6s ease;
   padding-top: var(--space-40);
   margin-top: -40px;
   &::-webkit-scrollbar {
     display: none;
   }
-  &.sticky-active {
-    overflow-y: auto;
-    ${(props) => `max-height: calc(100dvh - ${props.stickyTop}px);`}
-    padding-bottom: var(--space-24);
-  }
-  &.sticky-end {
-    overflow-y: visible;
-    max-height: ${(props) => props.maxHeight};
-  }
+
   @media only screen and (max-width: 991px) {
     display: none;
   }
@@ -365,7 +348,14 @@ const TOCDivider = styled.div`
   border-radius: var(--radius-12);
 `;
 const TableContentWrapper = styled.div`
-  display: flex;
+  display: grid;
+  grid-template-columns: 2px 1fr;
+  overflow-y: auto;
+  scrollbar-width: none;
+  padding-bottom: var(--space-20);
+  ::-webkit-scrollbar {
+    display: none;
+  }
 `;
 const BlogCardsDiv = styled.div`
   display: grid;
