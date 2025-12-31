@@ -103,7 +103,7 @@ export default function Footer({ footerData: footerDataList, description, social
         <Container>
           <FooterInnerBlock>
             <FooterFirst>
-              <Link href='/'>
+              <Link href='/' aria-label='Assembly Home'>
                 <SVGComponent name='assembly-big-logo' width='200' height='38' viewBox='0 0 200 38' />
               </Link>
               {!isEmpty(description) && <p>{description}</p>}
