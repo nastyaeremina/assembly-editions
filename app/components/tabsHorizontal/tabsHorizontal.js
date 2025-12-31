@@ -44,7 +44,7 @@ export default function TabsHorizontal({
                 <Image
                   key={index}
                   src={item?.backgroundImage?.url}
-                  alt=''
+                  alt='Feature Image'
                   width={1224}
                   height={684}
                   style={{ width: '100%', height: '100%' }}

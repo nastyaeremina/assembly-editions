@@ -69,10 +69,10 @@ export default function ComparisonDetailsHero({
               )}
             </LeftWrap>
             <ImageSection>
-              <Image src={GraphImage} alt='' width={274} height={369} className='graph-img' />
+              <Image src={GraphImage} alt='Graph Image' width={274} height={369} className='graph-img' />
               <Card>
                 <TopDiv>
-                  <Image src={SmallLogo} width={32} height={32} alt='' />
+                  <Image src={SmallLogo} width={32} height={32} alt='Assembly logo' />
                   <h5>Assembly</h5>
                 </TopDiv>
                 <BottomDiv>
@@ -82,7 +82,7 @@ export default function ComparisonDetailsHero({
               </Card>
               <Card className='second-card'>
                 <TopDiv>
-                  <Image src={competitorLogo} width={32} height={32} alt='' />
+                  <Image src={competitorLogo} width={32} height={32} alt={`${compititorName} logo`} />
                   <h5>{compititorName}</h5>
                 </TopDiv>
                 <BottomDiv className='second-card'>

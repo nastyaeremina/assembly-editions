@@ -35,7 +35,12 @@ export default function LegacyBlogDetailHero({ blogDetail, onCopyLink }) {
             {!isEmpty(blogDetail?.authors?.[0]?.name) && (
               <Link href={`/blog/author/${blogDetail?.authors?.[0]?.slug}`}>
                 {!isEmpty(blogDetail?.authors?.[0]?.profile_image) && (
-                  <Image src={blogDetail?.authors?.[0]?.profile_image} width={22} height={22} />
+                  <Image
+                    src={blogDetail?.authors?.[0]?.profile_image}
+                    width={22}
+                    height={22}
+                    alt={blogDetail?.authors?.[0]?.name}
+                  />
                 )}
                 {blogDetail?.authors?.[0]?.name}
               </Link>

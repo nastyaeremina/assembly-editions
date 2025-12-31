@@ -34,7 +34,7 @@ export default function BookDemoPage({ data, thankYouMessage, externalLinks = {}
             <ImageSectionWrapper>
               <ImageSection>
                 <ImageDiv>
-                  <Image src={BookDemoImage} width={648} height={930} alt='' className='img' />
+                  <Image src={BookDemoImage} width={648} height={930} alt='Book Demo' className='img' />
                 </ImageDiv>
                 <TextBox>
                   <PropertyDiv>

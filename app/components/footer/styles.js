@@ -70,12 +70,6 @@ const FooterSocialItem = styled.li`
   a {
     display: inline-block;
     overflow: hidden;
-    border-radius: 50%;
-    transform: translateY(0);
-    transition: color 0.3s ease;
-    :hover {
-      transform: translateY(-6px);
-    }
   }
   img {
     display: block;

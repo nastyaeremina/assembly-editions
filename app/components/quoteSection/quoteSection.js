@@ -31,7 +31,7 @@ const QuoteSectionComponent = ({ tone, imageSrc, name, role, description, link }
 
   return (
     <QuoteSection tone={tone} href={link} as={isLink ? Link : 'div'}>
-      {!isEmpty(imageSrc) && <Image src={imageSrc} width={421} height={216} className='quote-image' />}
+      {!isEmpty(imageSrc) && <Image src={imageSrc} width={421} height={216} className='quote-image' alt={name} />}
       <QuoteContentDiv tone={tone}>
         <TitleContentSection>
           <NameSection>

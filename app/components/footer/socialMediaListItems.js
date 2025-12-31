@@ -84,11 +84,11 @@ function SocialMediaListItems({ socialMediaLinks = [] }) {
         const { icon, ariaLabel } = getSocialMediaIcon(socialMedia.name);
 
         return (
-          <Link key={`${socialMedia.name}-${index}`} href={socialMedia.link || '#'} aria-label={ariaLabel}>
-            <FooterSocialItem>
+          <FooterSocialItem key={`${socialMedia.name}-${index}`}>
+            <Link href={socialMedia.link || '#'} aria-label={ariaLabel}>
               <SVGComponent name={icon} width='24' height='24' viewBox='0 0 24 24' />
-            </FooterSocialItem>
-          </Link>
+            </Link>
+          </FooterSocialItem>
         );
       })}
     </FooterSocialList>

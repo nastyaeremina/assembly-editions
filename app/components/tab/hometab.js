@@ -150,7 +150,7 @@ export default function HomeTabView({ tabData: allPosts, isAutomation }) {
               <>
                 <Image
                   src={item?.backgroundImage?.url}
-                  alt=''
+                  alt='Post'
                   width={1000}
                   height={500}
                   style={{ width: '100%', height: '100%' }}
