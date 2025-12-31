@@ -96,7 +96,7 @@ const NameSection = styled.div`
   flex-direction: column;
 `;
 
-const Name = styled.h4`
+const Name = styled.h3`
   margin: 0;
   ${body_regular}
   color: var(--title);

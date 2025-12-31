@@ -92,7 +92,7 @@ const IconWrapper = styled.div`
   display: flex;
 `;
 
-const CardTitle = styled.h4`
+const CardTitle = styled.h3`
   ${h4_regular}
   color: var(--title);
   margin: 0;
