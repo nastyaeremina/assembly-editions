@@ -28,7 +28,9 @@ export default function Footer({ footerData: footerDataList, description, social
               <FooterMenu
                 key={`footer_${category?.title}_${categoryIndex}`}
                 className={categoryIndex !== 0 && 'padding'}>
-                <p>{category?.title}</p>
+                <li>
+                  <p>{category?.title}</p>
+                </li>
                 <FooterMenuList>
                   {category?.list?.map((subCategory, subCategoryIndex) => {
                     return (
@@ -61,7 +63,9 @@ export default function Footer({ footerData: footerDataList, description, social
           {list1?.map((item, index) => {
             return (
               <FooterMenu key={`footer_${item?.title}_${index}`} className={index !== 0 && 'padding'}>
-                <p>{item?.title}</p>
+                <li>
+                  <p>{item?.title}</p>
+                </li>
                 <FooterMenuList>
                   {item?.list?.map((subCategory, subCategoryIndex) => {
                     return (
@@ -79,7 +83,9 @@ export default function Footer({ footerData: footerDataList, description, social
           {list2?.map((item, index) => {
             return (
               <FooterMenu key={`footer_${item?.title}_${index}`} className={index !== 0 && 'padding'}>
-                <p>{item?.title}</p>
+                <li>
+                  <p>{item?.title}</p>
+                </li>
                 <FooterMenuList>
                   {item?.list?.map((subCategory, subCategoryIndex) => {
                     return (

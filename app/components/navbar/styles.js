@@ -58,7 +58,7 @@ const AssemblyLogo = styled(Image)`
   }
 `;
 
-const NavMenu = styled.div`
+const NavMenu = styled.ul`
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -87,6 +87,11 @@ const NavMenu = styled.div`
         display: flex;
       `}
   }
+`;
+
+const NavMenuSubSection = styled.li`
+  list-style: none;
+  width: 100%;
 `;
 
 const MobileSectionTitle = styled.div`
@@ -123,12 +128,15 @@ const NavigationBlock = styled.ul`
   }
 `;
 
-const Dropdown = styled.div`
+const Dropdown = styled.ul`
   max-height: 0;
   opacity: 0;
   overflow: hidden;
   transition: max-height 0.3s ease-in-out, opacity 0.3s ease-in-out;
   width: 100%;
+  list-style: none;
+  padding: 0;
+  margin: 0;
   &.open {
     max-height: ${(props) => props.calculatedHeight}px; /* Dynamic height based on content */
     opacity: 1;
@@ -215,7 +223,7 @@ const SpanLink = styled.li`
   }
 `;
 
-const DropdownContainer = styled.div`
+const DropdownContainer = styled.li`
   position: relative;
   width: 100%;
 `;
@@ -282,7 +290,7 @@ const SpanMobileLink = styled.li`
   }
 `;
 
-const InnerList = styled.ul`
+const InnerList = styled.div`
   position: absolute;
   left: -22px;
   z-index: 90;
@@ -331,7 +339,7 @@ const Listright = styled.ul`
     `}
 `;
 
-const HeaderBtnGroup = styled.div`
+const HeaderBtnGroup = styled.li`
   @media only screen and (max-width: 1080px) {
     width: 100%;
   }
@@ -717,7 +725,7 @@ const VisitSite = styled.div`
   }
 `;
 
-const HighlightSectionDiv = styled.div`
+const HighlightSectionDiv = styled.li`
   padding: var(--space-20);
   transition: background-color 0.3s ease-in-out;
   margin: -12px;
@@ -781,7 +789,7 @@ const Description = styled.p`
   color: var(--text-secondary);
 `;
 
-const Section = styled.div`
+const Section = styled.li`
   border: 1px solid var(--border-default);
   border-radius: var(--radius-16);
   padding: var(--space-12);
@@ -789,7 +797,7 @@ const Section = styled.div`
   overflow: hidden;
 `;
 
-const BottomButtonSection = styled.div`
+const BottomButtonSection = styled.li`
   border-top: 1px solid var(--border-default);
   width: 100%;
   display: flex;
@@ -851,5 +859,6 @@ export {
   DropdownContainer,
   Section,
   BottomButtonSection,
-  VisitSite
+  VisitSite,
+  NavMenuSubSection
 };

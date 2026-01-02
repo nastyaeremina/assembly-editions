@@ -512,54 +512,56 @@ export default function NavbarComponent({ isAuthenticated: userAuth, topbarConte
 
     return (
       <NavMenu mobile={mobile}>
-        <NavigationBlock>
-          {navbarData.map((item, index) => {
-            // Simple link without dropdown
-            if (isEmpty(item.subsections) && item.link) {
-              return (
-                <SpanLink key={`navbar_${item.title}`}>
-                  <LinkText href={item.link}>{item.title}</LinkText>
-                </SpanLink>
-              );
-            }
+        <li>
+          <NavigationBlock>
+            {navbarData.map((item, index) => {
+              // Simple link without dropdown
+              if (isEmpty(item.subsections) && item.link) {
+                return (
+                  <SpanLink key={`navbar_${item.title}`}>
+                    <LinkText href={item.link}>{item.title}</LinkText>
+                  </SpanLink>
+                );
+              }
 
-            // Dropdown menu item
-            if (!isEmpty(item.subsections)) {
-              return (
-                <SpanLink key={`navbar_${item.title}`} className='SpanLink'>
-                  <LinkText
-                    href='#'
-                    ref={(el) => (dropdownRefs.current[index] = el)}
-                    tabIndex={0}
-                    className={`link-text ${openDropdownIndex === index ? 'active' : ''}`}
-                    onMouseEnter={() => handleMouseEnter(index)}
-                    onMouseLeave={handleMouseLeave}
-                    onFocus={() => {
-                      if (mobile) return;
-                      setShouldAutoFocus(true);
-                      setOpenDropdownIndex(index);
-                    }}
-                    onKeyDown={(e) => handleDropdownTriggerKeyDown(e, index)}
-                    onClick={(e) => {
-                      e.preventDefault();
-                      setShouldAutoFocus(false);
-                      setOpenDropdownIndex(openDropdownIndex === index ? null : index);
-                    }}>
-                    {item.title}
-                  </LinkText>
-                  <InnerList
-                    solution
-                    className='innerlist'
-                    $isOpen={openDropdownIndex === index}
-                    onMouseEnter={handleDropdownAreaEnter}
-                    onMouseLeave={handleMouseLeave}>
-                    {renderNavbarSubItems(item.subsections, index, item.title)}
-                  </InnerList>
-                </SpanLink>
-              );
-            }
-          })}
-        </NavigationBlock>
+              // Dropdown menu item
+              if (!isEmpty(item.subsections)) {
+                return (
+                  <SpanLink key={`navbar_${item.title}`} className='SpanLink'>
+                    <LinkText
+                      href='#'
+                      ref={(el) => (dropdownRefs.current[index] = el)}
+                      tabIndex={0}
+                      className={`link-text ${openDropdownIndex === index ? 'active' : ''}`}
+                      onMouseEnter={() => handleMouseEnter(index)}
+                      onMouseLeave={handleMouseLeave}
+                      onFocus={() => {
+                        if (mobile) return;
+                        setShouldAutoFocus(true);
+                        setOpenDropdownIndex(index);
+                      }}
+                      onKeyDown={(e) => handleDropdownTriggerKeyDown(e, index)}
+                      onClick={(e) => {
+                        e.preventDefault();
+                        setShouldAutoFocus(false);
+                        setOpenDropdownIndex(openDropdownIndex === index ? null : index);
+                      }}>
+                      {item.title}
+                    </LinkText>
+                    <InnerList
+                      solution
+                      className='innerlist'
+                      $isOpen={openDropdownIndex === index}
+                      onMouseEnter={handleDropdownAreaEnter}
+                      onMouseLeave={handleMouseLeave}>
+                      {renderNavbarSubItems(item.subsections, index, item.title)}
+                    </InnerList>
+                  </SpanLink>
+                );
+              }
+            })}
+          </NavigationBlock>
+        </li>
 
         {/* Authentication-based action buttons */}
         <HeaderBtnGroup>
@@ -569,11 +571,13 @@ export default function NavbarComponent({ isAuthenticated: userAuth, topbarConte
                 <SpanLink>
                   <LinkText href={'/book-demo'}>Book demo</LinkText>
                 </SpanLink>
-                <ButtonV2Component
-                  title={'Open Dashboard'}
-                  href={externalLinks?.[EXTERNAL_LINK_KEYS.DashboardLink] || '#'}
-                  size='small'
-                />
+                <SpanLink>
+                  <ButtonV2Component
+                    title={'Open Dashboard'}
+                    href={externalLinks?.[EXTERNAL_LINK_KEYS.DashboardLink] || '#'}
+                    size='small'
+                  />
+                </SpanLink>
               </>
             ) : (
               <>
@@ -583,11 +587,13 @@ export default function NavbarComponent({ isAuthenticated: userAuth, topbarConte
                 <SpanLink>
                   <LinkText href={externalLinks?.[EXTERNAL_LINK_KEYS.DashboardLink] || '#'}>Log in</LinkText>
                 </SpanLink>
-                <ButtonV2Component
-                  title={'Start Trial'}
-                  href={externalLinks?.[EXTERNAL_LINK_KEYS.OnboardingLink] || '#'}
-                  size='small'
-                />
+                <SpanLink>
+                  <ButtonV2Component
+                    title={'Start Trial'}
+                    href={externalLinks?.[EXTERNAL_LINK_KEYS.OnboardingLink] || '#'}
+                    size='small'
+                  />
+                </SpanLink>
               </>
             )}
           </SignInSignUpBtn>
@@ -713,21 +719,25 @@ export default function NavbarComponent({ isAuthenticated: userAuth, topbarConte
             <MobileRight>
               <SignInMobile>
                 {userAuth ? (
-                  <ButtonV2Component
-                    title='Open Dashboard'
-                    href={externalLinks?.[EXTERNAL_LINK_KEYS.DashboardLink] || '#'}
-                    size={ButtonSize.SMALL}
-                  />
+                  <SpanLink>
+                    <ButtonV2Component
+                      title='Open Dashboard'
+                      href={externalLinks?.[EXTERNAL_LINK_KEYS.DashboardLink] || '#'}
+                      size={ButtonSize.SMALL}
+                    />
+                  </SpanLink>
                 ) : (
                   <>
                     <SpanLink className='login-link'>
                       <LinkText href={externalLinks?.[EXTERNAL_LINK_KEYS.DashboardLink] || '#'}>Log in</LinkText>
                     </SpanLink>
-                    <ButtonV2Component
-                      title='Start Trial'
-                      href={externalLinks?.[EXTERNAL_LINK_KEYS.OnboardingLink] || '#'}
-                      size={ButtonSize.SMALL}
-                    />
+                    <SpanLink>
+                      <ButtonV2Component
+                        title='Start Trial'
+                        href={externalLinks?.[EXTERNAL_LINK_KEYS.OnboardingLink] || '#'}
+                        size={ButtonSize.SMALL}
+                      />
+                    </SpanLink>
                   </>
                 )}
               </SignInMobile>

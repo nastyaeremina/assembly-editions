@@ -11,7 +11,8 @@ import {
   ResponsiveSpanLink,
   Dropdown,
   DropdownContainer,
-  BottomButtonSection
+  BottomButtonSection,
+  NavMenuSubSection
 } from './styles';
 import ResponsiveSubsection from './responsiveSubsection';
 import { Container } from '../../styles/commonStyles';
@@ -54,48 +55,50 @@ function ResponsiveNavbar({ mobile, navbarData, setOpenDropdownIndex, openDropdo
   return (
     <>
       <NavMenu mobile={mobile}>
-        <Container>
-          <NavigationBlock toolbarHeight={totalHeight}>
-            {navbarData.map((item, index) => {
-              const isDropdownOpen = openDropdownIndex === index;
+        <NavMenuSubSection>
+          <Container>
+            <NavigationBlock toolbarHeight={totalHeight}>
+              {navbarData.map((item, index) => {
+                const isDropdownOpen = openDropdownIndex === index;
 
-              if (!isEmpty(item.subsections)) {
-                return (
-                  <DropdownContainer key={`navbar_${item.title}`}>
-                    <ResponsiveSpanLink onClick={() => toggleDropdown(index)}>
-                      <MobileText>
-                        {item.title}
-                        <SVGComponent
-                          name='angle-right-arrow-icon'
-                          width='16'
-                          height='16'
-                          viewBox='0 0 16 16'
-                          className={isDropdownOpen ? 'rotate-icon' : ''}
-                        />
-                      </MobileText>
-                    </ResponsiveSpanLink>
-                    <Dropdown
-                      className={isDropdownOpen ? 'open' : ''}
-                      calculatedHeight={calculateDropdownHeight(item.subsections)}>
-                      <ResponsiveSubsection subsectionData={item.subsections} />
-                    </Dropdown>
-                  </DropdownContainer>
-                );
-              }
-              if (item.link) {
-                return (
-                  <SpanLink key={`navbar_${item.title}`}>
-                    <MobileTextLink href={item.link}>{item.title}</MobileTextLink>
-                  </SpanLink>
-                );
-              }
-              return null;
-            })}
-            <SpanMobileLink className={router.pathname === '/book-demo' ? 'active' : ''}>
-              <MobileTextLink href='/book-demo'>Book Demo</MobileTextLink>
-            </SpanMobileLink>
-          </NavigationBlock>
-        </Container>
+                if (!isEmpty(item.subsections)) {
+                  return (
+                    <DropdownContainer key={`navbar_${item.title}`}>
+                      <ResponsiveSpanLink onClick={() => toggleDropdown(index)}>
+                        <MobileText>
+                          {item.title}
+                          <SVGComponent
+                            name='angle-right-arrow-icon'
+                            width='16'
+                            height='16'
+                            viewBox='0 0 16 16'
+                            className={isDropdownOpen ? 'rotate-icon' : ''}
+                          />
+                        </MobileText>
+                      </ResponsiveSpanLink>
+                      <Dropdown
+                        className={isDropdownOpen ? 'open' : ''}
+                        calculatedHeight={calculateDropdownHeight(item.subsections)}>
+                        <ResponsiveSubsection subsectionData={item.subsections} />
+                      </Dropdown>
+                    </DropdownContainer>
+                  );
+                }
+                if (item.link) {
+                  return (
+                    <SpanLink key={`navbar_${item.title}`}>
+                      <MobileTextLink href={item.link}>{item.title}</MobileTextLink>
+                    </SpanLink>
+                  );
+                }
+                return null;
+              })}
+              <SpanMobileLink className={router.pathname === '/book-demo' ? 'active' : ''}>
+                <MobileTextLink href='/book-demo'>Book Demo</MobileTextLink>
+              </SpanMobileLink>
+            </NavigationBlock>
+          </Container>
+        </NavMenuSubSection>
         <BottomButtonSection>
           <ButtonV2Component
             title={'Start free trial'}
