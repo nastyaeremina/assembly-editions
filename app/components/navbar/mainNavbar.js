@@ -731,13 +731,13 @@ export default function NavbarComponent({ isAuthenticated: userAuth, topbarConte
                     <SpanLink className='login-link'>
                       <LinkText href={externalLinks?.[EXTERNAL_LINK_KEYS.DashboardLink] || '#'}>Log in</LinkText>
                     </SpanLink>
-                    <SpanLink>
+                    <li>
                       <ButtonV2Component
                         title='Start Trial'
                         href={externalLinks?.[EXTERNAL_LINK_KEYS.OnboardingLink] || '#'}
                         size={ButtonSize.SMALL}
                       />
-                    </SpanLink>
+                    </li>
                   </>
                 )}
               </SignInMobile>

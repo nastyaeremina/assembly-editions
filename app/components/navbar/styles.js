@@ -519,7 +519,7 @@ const SignInMobile = styled.ul`
     align-items: center;
     gap: var(--space-12);
     .login-link {
-      width: unset;
+      width: auto;
       padding: 0;
     }
   }

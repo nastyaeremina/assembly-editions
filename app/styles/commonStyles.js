@@ -739,12 +739,12 @@ const Content = styled.div`
       background-color: var(--off-white-550);
       padding: var(--space-12) var(--space-20);
       text-align: left;
-      ${body_semibold};
+      ${button_semibold};
       color: var(--title);
       min-width: 115px;
       p > b,
       p {
-        ${body_semibold};
+        ${button_semibold};
         color: var(--title);
         word-break: normal;
       }
@@ -757,11 +757,11 @@ const Content = styled.div`
     }
     td {
       padding: var(--space-16) var(--space-20);
-      ${body_regular};
+      ${button_regular};
       color: var(--title);
       vertical-align: top;
       p {
-        ${body_regular};
+        ${button_regular};
         color: var(--title);
         padding-top: var(--space-20);
         word-break: normal;
@@ -777,7 +777,7 @@ const Content = styled.div`
         margin-top: var(--space-8);
       }
       a {
-        ${body_regular};
+        ${button_regular};
         color: var(--link-default);
         transition: color 0.3s ease;
 
@@ -914,28 +914,6 @@ const Content = styled.div`
       }
       .table-wrapper {
         margin-top: var(--space-16);
-      }
-      table {
-        p {
-          margin: 0;
-          ${button_regular}
-        }
-        th {
-          ${button_semibold};
-          p > b,
-          p {
-            ${button_semibold};
-          }
-        }
-        td {
-          ${button_regular};
-          p {
-            ${button_regular};
-          }
-          a {
-            ${button_regular};
-          }
-        }
       }
     `}
 `;

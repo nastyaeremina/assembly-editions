@@ -18,6 +18,7 @@ export default function StoryMode({ tabsData, tone }) {
   // State for active tab and sticky positioning
   const [activeIndex, setActiveIndex] = useState(0);
   const [stickyTop, setStickyTop] = useState(0);
+  const [isUserSelecting, setIsUserSelecting] = useState(false);
 
   // Refs to track each section's position
   const sectionRefs = useRef([]);
@@ -139,7 +140,19 @@ export default function StoryMode({ tabsData, tone }) {
     return () => window.removeEventListener('resize', updateHeight);
   }, []);
 
-  const [isUserSelecting, setIsUserSelecting] = useState(false);
+  const getScrollOffset = () => {
+    if (typeof window === 'undefined') return 88;
+    // Mobile
+    if (window.matchMedia('(max-width: 449px)').matches) {
+      return 88;
+    }
+    // Tablet
+    if (window.matchMedia('(max-width: 991px)').matches) {
+      return 108;
+    }
+    // Desktop
+    return 116;
+  };
 
   const scrollToSection = useCallback(
     (index) => {
@@ -147,8 +160,10 @@ export default function StoryMode({ tabsData, tone }) {
       setIsUserSelecting(true);
       if (index >= 0 && index < sectionRefs.current.length && sectionRefs.current[index]) {
         const elementTop = sectionRefs.current[index].offsetTop;
+        const responsiveOffset = getScrollOffset();
+
         window.scrollTo({
-          top: elementTop - stickyTop - 120,
+          top: elementTop - stickyTop - responsiveOffset,
           behavior: 'smooth'
         });
       }
