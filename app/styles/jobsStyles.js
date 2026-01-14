@@ -94,23 +94,6 @@ const RoleRow = styled.div`
     .bgdot {
       background-color: var(--black);
     }
-    .link-hover {
-      p {
-        color: var(--text-secondary);
-      }
-      svg {
-        path {
-          fill: var(--text-secondary);
-        }
-      }
-      .hover-line-path {
-        opacity: 1;
-        transform: translateX(2px);
-      }
-      .hover-tip-path {
-        transform: translateX(2px);
-      }
-    }
   }
   @media only screen and (max-width: 449px) {
     padding: var(--space-20) var(--space-12);
@@ -250,18 +233,6 @@ const JobTitle = styled.p`
 const Icon = styled.div`
   width: 16px;
   height: 16px;
-  @media only screen and (max-width: 991px) {
-    display: none;
-  }
-`;
-
-const MobileIcon = styled.div`
-  display: none;
-  @media only screen and (max-width: 991px) {
-    display: flex;
-    width: 16px;
-    height: 16px;
-  }
 `;
 
 const NewHeroSection = styled.div`
@@ -577,10 +548,9 @@ const TeamDetail = styled.div`
   }
 `;
 const TitleWrap = styled.div`
-  border: 1px solid var(--border-default);
   border-radius: var(--radius-12);
   padding: var(--space-20) var(--space-20) var(--space-16);
-  background-color: var(--off-white-300);
+  background-color: var(--off-white-550);
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -588,23 +558,12 @@ const TitleWrap = styled.div`
   height: 100%;
   justify-content: space-between;
   transition: background-color 0.3s ease;
-  &:hover {
-    background-color: var(--bg-primary-hover);
-    .read-more {
-      color: var(--text-secondary);
-    }
-    .arrow-icon {
-      path {
-        fill: var(--text-secondary);
+  @media only screen and (min-width: 449px) {
+    :hover {
+      .arrow-icon {
+        transform: none;
+        opacity: 1;
       }
-    }
-
-    .hover-line-path {
-      opacity: 1;
-      transform: translateX(2px);
-    }
-    .hover-tip-path {
-      transform: translateX(2px);
     }
   }
 `;
@@ -645,18 +604,13 @@ const ReadMore = styled.div`
   display: flex;
   align-items: center;
   gap: var(--space-4);
-  svg {
-    margin-top: var(--space-2);
-  }
+  justify-content: space-between;
+  width: 100%;
   .arrow-icon {
-    transition: fill 0.3s ease;
-  }
-  .hover-line-path {
+    transform: translateX(-2px) scale(0.98);
+    transition: transform 0.25s, opacity 0.25s;
+    transition-timing-function: cubic-bezier(0.25, 0.46, 0.45, 0.94);
     opacity: 0;
-    transition: opacity 0.3s ease, transform 0.3s ease;
-  }
-  .hover-tip-path {
-    transition: opacity 0.3s ease, transform 0.3s ease;
   }
 `;
 const Text = styled.p`
@@ -828,6 +782,5 @@ export {
   SmallImage,
   ImageOverlayDiv,
   ResponsiveSection,
-  LearnMore,
-  MobileIcon
+  LearnMore
 };

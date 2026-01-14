@@ -35,13 +35,11 @@ import {
   SmallImage,
   ImageOverlayDiv,
   ResponsiveSection,
-  LearnMore,
-  MobileIcon
+  LearnMore
 } from '../../../styles/jobsStyles';
 import StandardHero from '../../standardHero/standardHero';
-import { HeroTypes, THRESHOLD } from '../../../constants/constant';
+import { THRESHOLD } from '../../../constants/constant';
 import FAQ from '../../faq/faq';
-import ModernV2 from '../../solution/modernV2/modernV2';
 import Link from 'next/link';
 import SVGComponent from '../../../../public/images/svg/SVGComponent';
 import Image from 'next/image';
@@ -102,11 +100,8 @@ export default function JobsPage({ details, jobList, faqData, jobBlogPostList, j
             <LearnMore className='link-hover'>
               <p>Learn More</p>
               <Icon>
-                <SVGComponent name='hover-arrow-icon' width='18' height='16' viewBox='0 0 16 16' />
-              </Icon>
-              <MobileIcon>
                 <SVGComponent name='slider-right-arrow-icon' width='16' height='16' viewBox='0 0 16 16' />
-              </MobileIcon>
+              </Icon>
             </LearnMore>
           </RoleRow>
         </Link>
@@ -203,7 +198,13 @@ export default function JobsPage({ details, jobList, faqData, jobBlogPostList, j
             </TopSection>
             <ReadMore>
               <Text className='read-more'>Read More</Text>
-              <SVGComponent name='hover-arrow-icon' width='16' height='14' viewBox='0 0 16 16' className='arrow-icon' />
+              <SVGComponent
+                name='blog-card-hover-arrow-icon'
+                width='16'
+                height='16'
+                viewBox='0 0 16 16'
+                className='arrow-icon'
+              />
             </ReadMore>
           </TitleWrap>
         </Link>
@@ -214,7 +215,7 @@ export default function JobsPage({ details, jobList, faqData, jobBlogPostList, j
   return (
     <div className='component-wrapper'>
       <StandardHero
-        type={HeroTypes.NEW_LEFT_HERO}
+        type={details?.heroSectionType}
         data={{
           heroTitle: details?.title,
           heroDescription: details?.description,
@@ -225,9 +226,6 @@ export default function JobsPage({ details, jobList, faqData, jobBlogPostList, j
           secondaryButtonLink: details?.secondaryButtonLink
         }}
       />
-      {!isEmpty(details?.internalFeaturesCollection?.items) && (
-        <ModernV2 data={details?.internalFeaturesCollection?.items} title={details?.sectionTitle3} />
-      )}
       <CareerSection>
         <Container>
           <CareerBlock>

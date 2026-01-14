@@ -24,6 +24,7 @@ const POST_GRAPHQL_JOB_DETAILS_FIELDS = `
     banner{
       url
     }
+    heroSectionType
     sectionTitle1
     sectionDescription1
     sectionTitle2
