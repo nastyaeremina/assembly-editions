@@ -94,10 +94,34 @@ export default function BookDemoForm({ data, thankYouMessage, externalLinks = {}
       if (!checkInput) {
         return;
       } else {
-        // sendEmail(bookDemoData);
+        // Fetch personal email domains from URL
+        let isWorkEmail = false;
+        const emailDomain = bookDemoData?.email?.toLowerCase().split('@')[1];
+
+        try {
+          const response = await fetch(
+            'https://gist.githubusercontent.com/ammarshah/f5c2624d767f91a7cbdc4e54db8dd0bf/raw/660fd949eba09c0b86574d9d3aa0f2137161fc7c/all_email_provider_domains.txt'
+          );
+          const text = await response.text();
+          const personalDomains = text
+            .split('\n')
+            .map((domain) => domain.trim().toLowerCase())
+            .filter((domain) => domain.length > 0);
+
+          // Check if email domain is not in personal domains list
+          isWorkEmail = !personalDomains.includes(emailDomain);
+        } catch (error) {
+          console.error('Failed to fetch email domains:', error);
+          // Fallback: if email not fetch, use Contentful criteria
+          isWorkEmail = data?.[BOOK_DEMO_CONTENT_TYPE.EMAIL_CRITERIA]?.some((allowedDomain) =>
+            emailDomain?.includes(allowedDomain.toLowerCase())
+          );
+        }
+
         if (
           data?.[BOOK_DEMO_CONTENT_TYPE.COMPANY_SIZE_CRITERIA]?.includes(bookDemoData?.companySize) &&
           data?.[BOOK_DEMO_CONTENT_TYPE.INDUSTRY_CRITERIA]?.includes(bookDemoData?.industry) &&
+          isWorkEmail &&
           data?.[BOOK_DEMO_CONTENT_TYPE.REASON_FOR_DEMO_CRITERIA]?.includes(bookDemoData?.reason_for_demo)
         ) {
           showHideChiliPiper();

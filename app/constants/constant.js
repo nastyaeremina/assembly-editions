@@ -95,6 +95,7 @@ export const BOOK_DEMO_CONTENT_TYPE = {
   INDUSTRY_CRITERIA: 'IndustryCriteria',
   INDUSTRY: 'Industry',
   FIND_US: 'FindUs',
+  EMAIL_CRITERIA: 'EmailCriteria',
   REASON_FOR_DEMO_CRITERIA: 'ReasonForDemoCriteria',
   REASON_FOR_DEMO: 'ReasonForDemo'
 };
