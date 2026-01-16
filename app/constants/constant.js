@@ -94,7 +94,9 @@ export const BOOK_DEMO_CONTENT_TYPE = {
   COMPANY_SIZE: 'CompanySize',
   INDUSTRY_CRITERIA: 'IndustryCriteria',
   INDUSTRY: 'Industry',
-  FIND_US: 'FindUs'
+  FIND_US: 'FindUs',
+  REASON_FOR_DEMO_CRITERIA: 'ReasonForDemoCriteria',
+  REASON_FOR_DEMO: 'ReasonForDemo'
 };
 
 export const CONTENTFUL_API_TAG = {

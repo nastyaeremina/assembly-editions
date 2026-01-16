@@ -27,7 +27,6 @@ const ImageDiv = styled.div`
     height: 100%;
     border-radius: var(--space-16);
     object-fit: cover;
-    max-height: 930px;
   }
 `;
 const DemoContain = styled.div`

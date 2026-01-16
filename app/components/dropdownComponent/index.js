@@ -86,7 +86,7 @@ function DropDown({
         />
       </DropDownHeader>
       {isOpen && (
-        <DropDownListContainer>
+        <DropDownListContainer applyDropdownCss={applyDropdownCss}>
           <DropDownList applyDropdownCss={applyDropdownCss}>
             {items.map((item, index) => (
               <ListItem

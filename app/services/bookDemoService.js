@@ -78,14 +78,17 @@ export const checkValidation = (payload) => (dispatch) => {
   } else if (!payload?.companyName || payload?.companyName?.trim() === '') {
     dispatch(setformValidationError({ name: 'companyName', message: 'Company name is required' }));
     valid = false;
-  } else if (!payload?.howDidYouFindUs || payload?.howDidYouFindUs?.trim() === '') {
-    dispatch(setformValidationError({ name: 'howDidYouFindUs', message: 'Please select how to find us' }));
+  } else if (!payload?.companySize || payload?.companySize?.trim() === '') {
+    dispatch(setformValidationError({ name: 'companySize', message: 'Please select Company size' }));
     valid = false;
   } else if (!payload?.industry || payload?.industry?.trim() === '') {
     dispatch(setformValidationError({ name: 'industry', message: 'Please select industry' }));
     valid = false;
   } else if (payload?.industry === 'other' && (!payload?.industry_other || payload?.industry_other?.trim() === '')) {
     dispatch(setformValidationError({ name: 'industry_other', message: 'Industry Name is required' }));
+    valid = false;
+  } else if (!payload?.howDidYouFindUs || payload?.howDidYouFindUs?.trim() === '') {
+    dispatch(setformValidationError({ name: 'howDidYouFindUs', message: 'Please select how to find us' }));
     valid = false;
   }
   // else if (
@@ -95,8 +98,8 @@ export const checkValidation = (payload) => (dispatch) => {
   //   dispatch(setformValidationError({name:'youInerestedBusiness',message:'Please select your interested business'}));
   //   valid = false;
   // }
-  else if (!payload?.companySize || payload?.companySize?.trim() === '') {
-    dispatch(setformValidationError({ name: 'companySize', message: 'Please select Company size' }));
+  else if (!payload?.reason_for_demo || payload?.reason_for_demo?.trim() === '') {
+    dispatch(setformValidationError({ name: 'reason_for_demo', message: 'Reason for demo is required' }));
     valid = false;
   } else if (!payload?.objectives || payload?.objectives?.trim() === '') {
     dispatch(setformValidationError({ name: 'objectives', message: 'objectives is required' }));

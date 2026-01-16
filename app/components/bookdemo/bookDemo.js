@@ -4,7 +4,7 @@ import Script from 'next/script';
 import { useDispatch, useSelector } from 'react-redux';
 import { checkValidation } from '../../services/bookDemoService';
 import { setformValidationError, updateBookDemoItem } from '../../actions/bookDemoActions';
-import { BOOK_DEMO_CONTENT_TYPE, ButtonTone } from '../../constants/constant';
+import { BOOK_DEMO_CONTENT_TYPE } from '../../constants/constant';
 import Validation from '../Validation/validation';
 import { isEmpty } from '../../helpers/helpers';
 import { EXTERNAL_LINK_KEYS } from '../../constants/constant';
@@ -97,7 +97,8 @@ export default function BookDemoForm({ data, thankYouMessage, externalLinks = {}
         // sendEmail(bookDemoData);
         if (
           data?.[BOOK_DEMO_CONTENT_TYPE.COMPANY_SIZE_CRITERIA]?.includes(bookDemoData?.companySize) &&
-          data?.[BOOK_DEMO_CONTENT_TYPE.INDUSTRY_CRITERIA]?.includes(bookDemoData?.industry)
+          data?.[BOOK_DEMO_CONTENT_TYPE.INDUSTRY_CRITERIA]?.includes(bookDemoData?.industry) &&
+          data?.[BOOK_DEMO_CONTENT_TYPE.REASON_FOR_DEMO_CRITERIA]?.includes(bookDemoData?.reason_for_demo)
         ) {
           showHideChiliPiper();
         } else {
@@ -340,6 +341,40 @@ export default function BookDemoForm({ data, thankYouMessage, externalLinks = {}
                     {validationError?.name === 'industry_other' && <Validation error={validationError?.message} />}
                   </>
                 )}
+                <label for='reason_for_demo'>Reason for demo</label>
+                <DropDown
+                  id='reason_for_demo'
+                  name='Reason for demo'
+                  dataName='Reason for demo'
+                  applyDropdownCss
+                  items={[
+                    ...(data?.[BOOK_DEMO_CONTENT_TYPE.REASON_FOR_DEMO]?.map((item, index) => ({
+                      id: `reason_for_demo_${index}`,
+                      name: item,
+                      value: item
+                    })) || []),
+                    {
+                      id: 'reason_for_demo_other',
+                      name: 'Other',
+                      value: 'other'
+                    }
+                  ]}
+                  placeholder='Select...'
+                  onSelect={(item) => {
+                    onChangeInfo('reason_for_demo', item.value);
+                  }}
+                  defaultValue={
+                    bookDemoData?.reason_for_demo
+                      ? {
+                          id: 'selected_reason_for_demo',
+                          name: bookDemoData.reason_for_demo,
+                          value: bookDemoData.reason_for_demo
+                        }
+                      : null
+                  }
+                  isError={validationError?.name === 'reason_for_demo'}
+                />
+                {validationError?.name === 'reason_for_demo' && <Validation error={validationError?.message} />}
 
                 <label for='Last-Name-'>Your situation or goals</label>
                 <Textarea
