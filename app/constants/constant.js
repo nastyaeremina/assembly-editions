@@ -90,7 +90,7 @@ export const INDUSTRY_ARRAY = [
 ];
 
 export const BOOK_DEMO_CONTENT_TYPE = {
-  COMPANY_SIZE_CRITERIA: 'companySizeCriteria',
+  COMPANY_SIZE_CRITERIA: 'CompanySizeCriteria',
   COMPANY_SIZE: 'CompanySize',
   INDUSTRY_CRITERIA: 'IndustryCriteria',
   INDUSTRY: 'Industry',

@@ -121,8 +121,8 @@ export default function BookDemoForm({ data, thankYouMessage, externalLinks = {}
         if (
           data?.[BOOK_DEMO_CONTENT_TYPE.COMPANY_SIZE_CRITERIA]?.includes(bookDemoData?.companySize) &&
           data?.[BOOK_DEMO_CONTENT_TYPE.INDUSTRY_CRITERIA]?.includes(bookDemoData?.industry) &&
-          isWorkEmail &&
-          data?.[BOOK_DEMO_CONTENT_TYPE.REASON_FOR_DEMO_CRITERIA]?.includes(bookDemoData?.reason_for_demo)
+          data?.[BOOK_DEMO_CONTENT_TYPE.REASON_FOR_DEMO_CRITERIA]?.includes(bookDemoData?.reason_for_demo) &&
+          isWorkEmail
         ) {
           showHideChiliPiper();
         } else {

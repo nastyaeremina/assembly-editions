@@ -106,7 +106,7 @@ function TabVideoComponent({ imageUrl, videoUrl, title, activeIndex, mobileImage
     if (url.includes('youtu.be/')) {
       const videoId = url.match(/youtu\.be\/([^?&]+)/)?.[1];
       if (videoId) {
-        const embedUrl = `https://www.youtube.com/embed/${videoId}?autoplay=0&loop=1&mute=1&playlist=${videoId}&controls=0&showinfo=0&rel=0`;
+        const embedUrl = `https://www.youtube.com/embed/${videoId}?autoplay=0&loop=1&mute=1&playlist=${videoId}&showinfo=0&rel=0`;
         return embedUrl;
       }
     }
@@ -114,7 +114,7 @@ function TabVideoComponent({ imageUrl, videoUrl, title, activeIndex, mobileImage
     // Simple replacement to convert to embed format with autoplay parameters
     if (url.includes('youtube.com/watch?v=')) {
       const videoId = url.match(/v=([^&]+)/)?.[1];
-      const embedUrl = `https://www.youtube.com/embed/${videoId}?autoplay=0&loop=1&mute=1&playlist=${videoId}&controls=0&showinfo=0&rel=0`;
+      const embedUrl = `https://www.youtube.com/embed/${videoId}?autoplay=0&loop=1&mute=1&playlist=${videoId}&showinfo=0&rel=0`;
       return embedUrl;
     }
 
@@ -122,7 +122,7 @@ function TabVideoComponent({ imageUrl, videoUrl, title, activeIndex, mobileImage
     if (url.includes('youtube.com/embed/')) {
       // ensure autoplay/mute parameters for faster start
       const hasQuery = url.includes('?');
-      const autoplayParams = 'autoplay=0&loop=1&mute=1&controls=0&rel=0';
+      const autoplayParams = 'autoplay=0&loop=1&mute=1&rel=0';
       return hasQuery ? `${url}&${autoplayParams}` : `${url}?${autoplayParams}`;
     }
 
