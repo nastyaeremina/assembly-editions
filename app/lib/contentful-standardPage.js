@@ -223,6 +223,7 @@ const POST_GRAPHQL_SECTION_TAB_FIELDS = `
         title
         subTitle
         description
+        tabIcon
         image{
           url
         }

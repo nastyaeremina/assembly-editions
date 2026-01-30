@@ -3,7 +3,7 @@ import { body_regular, h4_regular } from '../../styles/typography';
 
 const TabsVerticalSection = styled.div`
   display: flex;
-  gap: var(--space-48);
+  gap: var(--space-64);
   padding: var(--space-64) 0;
   @media only screen and (max-width: 991px) {
     padding: var(--space-48) 0;
@@ -19,10 +19,12 @@ const TabsVerticalLeft = styled.div`
   width: 100%;
   display: flex;
   flex-direction: column;
-  gap: var(--space-48);
+  gap: var(--space-64);
   justify-content: space-between;
+  max-width: 564px;
   @media only screen and (max-width: 991px) {
     gap: var(--space-40);
+    max-width: 100%;
   }
   @media only screen and (max-width: 449px) {
     gap: var(--space-32);
@@ -55,8 +57,6 @@ const ShowImage = styled.div`
   position: absolute;
   bottom: 0;
   left: 0px;
-  height: 100%;
-  width: 100%;
   opacity: 0;
   visibility: hidden;
   transition: opacity 0.4s ease 0s, visibility 1ms ease 0.3s;
@@ -67,14 +67,12 @@ const ShowImage = styled.div`
     height: auto;
     width: 100%;
     border-radius: var(--radius-16);
-    object-fit: cover;
+    border: 1px solid var(--off-white-550);
   }
   ${(props) =>
     props.isSelectedTab &&
     css`
       position: relative;
-      height: 100%;
-      width: 100%;
       opacity: 1;
       visibility: visible;
       transition: opacity 0.3s ease 0s;
@@ -94,34 +92,82 @@ const ShowImage = styled.div`
 
 const Image = styled.img``;
 
+const Title = styled.h4`
+  ${body_regular};
+  font-weight: 400;
+  color: var(--title);
+  margin: 0;
+  transition: color 0.3s ease;
+  ${(props) =>
+    props.selectedTab &&
+    css`
+      color: var(--title);
+      margin: 0 0 var(--space-8);
+    `}
+  @media only screen and (max-width: 991px) {
+    ${(props) =>
+      props.selectedTab &&
+      css`
+        margin: 0;
+      `}
+  }
+`;
+
+const TabIcon = styled.div`
+  display: flex;
+  padding-top: var(--space-4);
+  svg {
+    path {
+      fill: var(--gray-400);
+      transition: 0.3s all ease-in-out;
+    }
+  }
+  @media (max-width: 449px) {
+    padding-top: var(--space-2);
+  }
+`;
+
 const ToolsTab = styled.button`
   padding: var(--space-20) var(--space-20) var(--space-16);
   border-bottom: 1px solid var(--border-default);
   display: flex;
-  flex-direction: column;
   align-items: flex-start;
+  text-align: left;
   cursor: pointer;
-  transition: border-bottom 0.3s ease;
-  :focus-visible {
-    border-radius: var(--radius-12);
+  background-color: var(--off-white-300);
+  transition: border-bottom 0.3s ease background-color 0.3s ease-in-out;
+  gap: var(--space-12);
+  :hover {
+    svg {
+      path {
+        fill: var(--text-secondary);
+      }
+    }
+    ${Title} {
+      color: var(--text-secondary);
+    }
   }
   ${(props) =>
     props.selectedTab &&
     css`
-      border-bottom: 1px solid transparent;
       background-color: var(--off-white-550);
-      border-radius: var(--radius-12);
+      :hover {
+        svg {
+          path {
+            fill: var(--gray-400);
+          }
+        }
+        ${Title} {
+          color: var(--title);
+        }
+      }
     `}
-  ${(props) =>
-    props.isAboveSelected &&
-    css`
-      border-bottom: 1px solid transparent;
-    `}
+
   @media only screen and (max-width: 991px) {
     border-top: 1px solid var(--border-default);
     border-bottom: none;
     padding: var(--space-20) 0 0;
-    gap: var(--space-4);
+    gap: var(--space-12);
     ${(props) =>
       props.selectedTab &&
       css`
@@ -142,29 +188,7 @@ const ResponsiveCaption = styled.div`
     display: block;
   }
 `;
-const Title = styled.h4`
-  ${h4_regular};
-  font-weight: 400;
-  color: var(--text-secondary);
-  margin: 0;
-  transition: color 0.3s ease;
-  ${(props) =>
-    props.selectedTab &&
-    css`
-      color: var(--title);
-      margin: 0 0 var(--space-4);
-    `}
-  ${ToolsTab}:hover & {
-    color: var(--title);
-  }
-  @media only screen and (max-width: 991px) {
-    ${(props) =>
-      props.selectedTab &&
-      css`
-        margin: 0;
-      `}
-  }
-`;
+
 const Caption = styled.p`
   ${body_regular};
   text-align: left;
@@ -175,11 +199,6 @@ const Caption = styled.p`
 const TabsSection = styled.div`
   display: flex;
   flex-direction: column;
-  overflow: auto;
-  padding: var(--space-4);
-  ::-webkit-scrollbar {
-    display: none;
-  }
 `;
 
 const ResponsiveImageSection = styled.div`
@@ -195,13 +214,26 @@ const ResponsiveImageSection = styled.div`
     }
     &.responsive-image {
       transition: all 0.6s;
-      margin-bottom: var(--space-16);
+      margin-bottom: var(--space-20);
       :last-child {
         margin: var(--space-16) 0 0;
       }
     }
   }
 `;
+
+const TitleWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  @media (max-width: 991px) {
+    gap: var(--space-4);
+  }
+`;
+
+const Icon = styled.div`
+  display: flex;
+`;
+
 export {
   TabsVerticalSection,
   TabsVerticalLeft,
@@ -216,5 +248,8 @@ export {
   TabsSection,
   ResponsiveImageSection,
   DesktopCaption,
-  ResponsiveCaption
+  ResponsiveCaption,
+  TabIcon,
+  TitleWrapper,
+  Icon
 };

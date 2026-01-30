@@ -5,19 +5,23 @@ import { Container } from '../../styles/commonStyles';
 import {
   Caption,
   DesktopCaption,
+  Icon,
   Image,
   MainSection,
   ResponsiveCaption,
   ResponsiveImageSection,
   ShowImage,
   Tabbutton,
+  TabIcon,
   TabsSection,
   TabsVerticalLeft,
   TabsVerticalRight,
   TabsVerticalSection,
   Title,
+  TitleWrapper,
   ToolsTab
 } from './styles';
+import { isEmpty } from '../../helpers/helpers';
 
 export default function TabsVertical({
   featuresList,
@@ -33,7 +37,6 @@ export default function TabsVertical({
   const [isMobile, setIsMobile] = useState(false);
   const [currentHeight, setCurrentHeight] = useState(0);
   const [currentCaptionHeight, setCurrentCaptionHeight] = useState();
-  const [maxHeight, setMaxHeight] = useState(0);
   const mainSectionRef = useRef(null);
   const responsiveMainSectionRef = useRef(null);
   const captionRef = useRef(null);
@@ -55,16 +58,6 @@ export default function TabsVertical({
       const handleResize = () => {
         const isDesktop = window.innerWidth > DESKTOP_BREAKPOINT;
         setIsMobile(!isDesktop);
-
-        if (featuresList.length > 0 && isDesktop) {
-          const totalHeight = featuresList.slice(0, 3).reduce((acc, item, index) => {
-            const element = document.getElementById(`item-${index}`);
-            return acc + (element ? element.offsetHeight + 15 : 0);
-          }, 0);
-          setMaxHeight(totalHeight);
-        } else {
-          setMaxHeight(''); // Reset maxHeight for non-desktop screens
-        }
       };
 
       // Initial calculation
@@ -128,7 +121,6 @@ export default function TabsVertical({
                     height={568}
                     loading='eager'
                     priority={true}
-                    style={{ width: '100%', height: '100%' }}
                   />
                 </ShowImage>
               );
@@ -152,27 +144,30 @@ export default function TabsVertical({
             secondaryButtonLink={secondaryButtonLink}
             secondaryButtonText={secondaryButtonText}
           />
-          <TabsSection style={{ maxHeight: maxHeight }}>
+          <TabsSection>
             {featuresList.map((item, index) => {
               const isSelected = isTabSelected(index);
               return (
                 <React.Fragment key={index}>
-                  <ToolsTab
-                    id={`item-${index}`}
-                    onClick={() => handleTabClick(index)}
-                    selectedTab={isSelected}
-                    isAboveSelected={index === selectedTab - 1}>
-                    <Title selectedTab={isSelected}>{item.subTitle}</Title>
-                    <DesktopCaption style={{ height: isSelected ? currentCaptionHeight : 0 }}>
-                      {isSelected && (
-                        <Caption ref={captionRef} selectedTab={isSelected}>
-                          {item.description}
-                        </Caption>
-                      )}
-                    </DesktopCaption>
-                    <ResponsiveCaption>
-                      <Caption selectedTab={isSelected}>{item.description}</Caption>
-                    </ResponsiveCaption>
+                  <ToolsTab id={`item-${index}`} onClick={() => handleTabClick(index)} selectedTab={isSelected}>
+                    {!isEmpty(item?.tabIcon) && (
+                      <TabIcon>
+                        <Icon dangerouslySetInnerHTML={{ __html: item?.tabIcon }} />
+                      </TabIcon>
+                    )}
+                    <TitleWrapper>
+                      <Title selectedTab={isSelected}>{item.subTitle}</Title>
+                      <DesktopCaption style={{ height: isSelected ? currentCaptionHeight : 0 }}>
+                        {isSelected && (
+                          <Caption ref={captionRef} selectedTab={isSelected}>
+                            {item.description}
+                          </Caption>
+                        )}
+                      </DesktopCaption>
+                      <ResponsiveCaption>
+                        <Caption selectedTab={isSelected}>{item.description}</Caption>
+                      </ResponsiveCaption>
+                    </TitleWrapper>
                   </ToolsTab>
                   <ResponsiveImageSection
                     className={isSelected && 'responsive-image'}
