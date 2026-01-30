@@ -1,26 +1,92 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Assembly Brand Colors */
+  --color-assembly-black: #101010;
+  --color-assembly-blue: #BCE7F4;
+  --color-assembly-blue-dark: #8CD3E8;
+  --color-assembly-blue-light: #D5F0F8;
+
+  /* Neutrals */
+  --color-zinc-950: #09090b;
+  --color-zinc-900: #18181b;
+  --color-zinc-800: #27272a;
+  --color-zinc-700: #3f3f46;
+  --color-zinc-600: #52525b;
+  --color-zinc-500: #71717a;
+  --color-zinc-400: #a1a1aa;
+  --color-zinc-300: #d4d4d8;
+  --color-zinc-200: #e4e4e7;
+  --color-zinc-100: #f4f4f5;
+
+  /* Layout */
+  --max-content-width: 1280px;
+  --section-padding-y: 6rem;
+  --section-padding-x: 1.5rem;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
+  --color-background: var(--color-assembly-black);
+  --color-foreground: var(--color-zinc-100);
+  --color-accent: var(--color-assembly-blue);
+  --color-accent-dark: var(--color-assembly-blue-dark);
+  --color-muted: var(--color-zinc-400);
+  --color-border: var(--color-zinc-700);
+  --color-card: var(--color-zinc-900);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--color-assembly-black);
+  color: var(--color-zinc-100);
+  font-family: var(--font-geist-sans), system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Selection styling */
+::selection {
+  background: var(--color-assembly-blue);
+  color: var(--color-assembly-black);
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-zinc-900);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-zinc-700);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-zinc-600);
+}
+
+/* Utility classes for brand colors */
+.text-assembly-blue {
+  color: var(--color-assembly-blue);
+}
+
+.bg-assembly-blue {
+  background-color: var(--color-assembly-blue);
+}
+
+.bg-assembly-black {
+  background-color: var(--color-assembly-black);
+}
+
+.border-assembly-blue {
+  border-color: var(--color-assembly-blue);
 }
