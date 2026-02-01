@@ -73,11 +73,11 @@ export function HorizontalFeatureCard({
         </div>
 
         {/* Content - takes up about 45% on desktop */}
-        <div className="flex flex-col justify-center p-6 lg:w-[45%] lg:py-8 lg:px-8">
-          <h3 className="text-xl lg:text-2xl font-semibold text-zinc-100 pr-10 lg:pr-0">
+        <div className="flex flex-col justify-center p-4 pt-0 sm:p-6 lg:w-[45%] lg:py-8 lg:px-8">
+          <h3 className="text-lg sm:text-xl lg:text-2xl font-semibold text-zinc-100 pr-10 lg:pr-0">
             {title}
           </h3>
-          <p className="mt-3 text-sm lg:text-base text-zinc-400 leading-relaxed">
+          <p className="mt-2 sm:mt-3 text-sm lg:text-base text-zinc-400 leading-relaxed">
             {description}
           </p>
         </div>

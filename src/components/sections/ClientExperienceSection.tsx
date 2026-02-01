@@ -7,8 +7,8 @@ import { FolderOpen, EyeOff, GripVertical, Layers, Tags, Zap } from "lucide-reac
 
 export function ClientExperienceSection() {
   return (
-    <section id="client-experience" className="py-24">
-      <div className="mx-auto max-w-7xl px-6">
+    <section id="client-experience" className="py-16 sm:py-24">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -56,9 +56,9 @@ export function ClientExperienceSection() {
                   </div>
 
                   {/* Feature cards grid */}
-                  <div className="grid gap-4 sm:grid-cols-3">
+                  <div className="grid gap-3 sm:gap-4 sm:grid-cols-3">
                     {/* Drag & Drop */}
-                    <div className="rounded-xl border border-zinc-800 bg-zinc-900/50 p-5">
+                    <div className="rounded-xl border border-zinc-800 bg-zinc-900/50 p-4 sm:p-5">
                       <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-[#BCE7F4]/10 text-[#BCE7F4] mb-4">
                         <GripVertical className="h-5 w-5" />
                       </div>
@@ -69,7 +69,7 @@ export function ClientExperienceSection() {
                     </div>
 
                     {/* Custom Folders */}
-                    <div className="rounded-xl border border-zinc-800 bg-zinc-900/50 p-5">
+                    <div className="rounded-xl border border-zinc-800 bg-zinc-900/50 p-4 sm:p-5">
                       <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-[#BCE7F4]/10 text-[#BCE7F4] mb-4">
                         <FolderOpen className="h-5 w-5" />
                       </div>
@@ -80,7 +80,7 @@ export function ClientExperienceSection() {
                     </div>
 
                     {/* Hidden Apps */}
-                    <div className="rounded-xl border border-zinc-800 bg-zinc-900/50 p-5">
+                    <div className="rounded-xl border border-zinc-800 bg-zinc-900/50 p-4 sm:p-5">
                       <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-[#BCE7F4]/10 text-[#BCE7F4] mb-4">
                         <EyeOff className="h-5 w-5" />
                       </div>
@@ -92,7 +92,7 @@ export function ClientExperienceSection() {
                   </div>
 
                   {/* App Pinning detail section */}
-                  <div className="rounded-xl border border-zinc-800 bg-zinc-900/30 p-6">
+                  <div className="rounded-xl border border-zinc-800 bg-zinc-900/30 p-4 sm:p-6">
                     <div className="grid gap-6 lg:grid-cols-5 items-center">
                       <div className="lg:col-span-2">
                         <div className="relative">
@@ -154,9 +154,9 @@ export function ClientExperienceSection() {
                   </div>
 
                   {/* Feature cards grid */}
-                  <div className="grid gap-4 sm:grid-cols-3">
+                  <div className="grid gap-3 sm:gap-4 sm:grid-cols-3">
                     {/* Multiple Variants */}
-                    <div className="rounded-xl border border-zinc-800 bg-zinc-900/50 p-5">
+                    <div className="rounded-xl border border-zinc-800 bg-zinc-900/50 p-4 sm:p-5">
                       <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-[#BCE7F4]/10 text-[#BCE7F4] mb-4">
                         <Layers className="h-5 w-5" />
                       </div>
@@ -167,7 +167,7 @@ export function ClientExperienceSection() {
                     </div>
 
                     {/* Tag-Based Routing */}
-                    <div className="rounded-xl border border-zinc-800 bg-zinc-900/50 p-5">
+                    <div className="rounded-xl border border-zinc-800 bg-zinc-900/50 p-4 sm:p-5">
                       <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-[#BCE7F4]/10 text-[#BCE7F4] mb-4">
                         <Tags className="h-5 w-5" />
                       </div>
@@ -178,7 +178,7 @@ export function ClientExperienceSection() {
                     </div>
 
                     {/* Automatic Switching */}
-                    <div className="rounded-xl border border-zinc-800 bg-zinc-900/50 p-5">
+                    <div className="rounded-xl border border-zinc-800 bg-zinc-900/50 p-4 sm:p-5">
                       <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-[#BCE7F4]/10 text-[#BCE7F4] mb-4">
                         <Zap className="h-5 w-5" />
                       </div>
@@ -190,7 +190,7 @@ export function ClientExperienceSection() {
                   </div>
 
                   {/* Configuration detail section */}
-                  <div className="rounded-xl border border-zinc-800 bg-zinc-900/30 p-6">
+                  <div className="rounded-xl border border-zinc-800 bg-zinc-900/30 p-4 sm:p-6">
                     <div className="grid gap-6 lg:grid-cols-5 items-center">
                       <div className="lg:col-span-2">
                         <div className="relative">

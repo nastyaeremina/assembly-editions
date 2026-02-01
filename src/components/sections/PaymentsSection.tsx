@@ -11,8 +11,8 @@ export function PaymentsSection() {
   const [isHovered, setIsHovered] = useState(false);
 
   return (
-    <section id="payments" className="py-24 bg-zinc-900/30">
-      <div className="mx-auto max-w-7xl px-6">
+    <section id="payments" className="py-16 sm:py-24 bg-zinc-900/30">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -33,9 +33,9 @@ export function PaymentsSection() {
           transition={{ duration: 0.5, delay: 0.1 }}
           className="mb-8"
         >
-          <div className="rounded-2xl border border-zinc-800 bg-zinc-900/50 p-6 md:p-8">
-            <div className="mb-6">
-              <h3 className="text-2xl font-semibold text-zinc-100">
+          <div className="rounded-2xl border border-zinc-800 bg-zinc-900/50 p-4 sm:p-6 md:p-8">
+            <div className="mb-4 sm:mb-6">
+              <h3 className="text-xl sm:text-2xl font-semibold text-zinc-100">
                 One Payments Home
               </h3>
               <p className="mt-3 max-w-2xl text-zinc-400">
@@ -60,7 +60,7 @@ export function PaymentsSection() {
             onClick={() => setIsModalOpen(true)}
             onHoverStart={() => setIsHovered(true)}
             onHoverEnd={() => setIsHovered(false)}
-            className="group relative rounded-2xl border border-zinc-800 bg-zinc-900/50 p-6 md:p-8 cursor-pointer transition-[border-color,background-color,box-shadow] duration-150 ease-out hover:border-zinc-700 hover:bg-zinc-800/50 hover:shadow-xl hover:shadow-black/20"
+            className="group relative rounded-2xl border border-zinc-800 bg-zinc-900/50 p-4 sm:p-6 md:p-8 cursor-pointer transition-[border-color,background-color,box-shadow] duration-150 ease-out hover:border-zinc-700 hover:bg-zinc-800/50 hover:shadow-xl hover:shadow-black/20"
             whileHover={{ y: -4 }}
             transition={{ type: "tween", duration: 0.15, ease: "easeOut" }}
           >
@@ -78,10 +78,10 @@ export function PaymentsSection() {
               <Plus className="h-4 w-4" />
             </motion.button>
 
-            <div className="grid gap-8 md:grid-cols-2 md:items-center">
+            <div className="grid gap-6 sm:gap-8 md:grid-cols-2 md:items-center">
               {/* Content */}
               <div className="flex flex-col justify-center">
-                <h3 className="text-xl font-semibold text-zinc-100 pr-10">
+                <h3 className="text-lg sm:text-xl font-semibold text-zinc-100 pr-10">
                   QuickBooks and Xero Integrations
                 </h3>
                 <p className="mt-3 text-zinc-400 leading-relaxed">

@@ -30,12 +30,12 @@ export function Header({ className, editionBadge = "2.0" }: HeaderProps) {
         </div>
 
         {/* CTA */}
-        <div className="flex items-center gap-4">
+        <div className="flex items-center gap-2 sm:gap-4">
           <a
             href="https://assembly.com"
             target="_blank"
             rel="noopener"
-            className="inline-flex h-8 items-center justify-center rounded-lg px-3 text-sm font-medium text-zinc-400 transition-colors hover:bg-zinc-800/50 hover:text-zinc-100"
+            className="hidden sm:inline-flex h-8 items-center justify-center rounded-lg px-3 text-sm font-medium text-zinc-400 transition-colors hover:bg-zinc-800/50 hover:text-zinc-100"
           >
             Visit Assembly
           </a>
@@ -45,7 +45,8 @@ export function Header({ className, editionBadge = "2.0" }: HeaderProps) {
             rel="noopener"
             className="inline-flex h-8 items-center justify-center rounded-lg bg-[#BCE7F4] px-3 text-sm font-medium text-zinc-900 transition-colors hover:bg-[#8AD4E9]"
           >
-            Start Free Trial
+            <span className="hidden sm:inline">Start Free Trial</span>
+            <span className="sm:hidden">Try Free</span>
           </a>
         </div>
       </div>

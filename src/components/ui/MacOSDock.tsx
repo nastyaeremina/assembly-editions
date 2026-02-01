@@ -86,11 +86,13 @@ export function MacOSDock({ className }: MacOSDockProps) {
 
   return (
     <div className={cn("flex items-center justify-center w-full", className)}>
-      <motion.div
-        onMouseMove={(e) => mouseX.set(e.pageX)}
-        onMouseLeave={() => mouseX.set(Infinity)}
-        className="flex items-end gap-3 rounded-2xl bg-zinc-800/90 backdrop-blur-xl px-4 py-3 border border-zinc-700/50 shadow-2xl"
-      >
+      {/* Fixed height container to prevent parent expansion on hover */}
+      <div className="h-[120px] flex items-end pb-2">
+        <motion.div
+          onMouseMove={(e) => mouseX.set(e.pageX)}
+          onMouseLeave={() => mouseX.set(Infinity)}
+          className="flex items-end gap-3 rounded-2xl bg-zinc-800/90 backdrop-blur-xl px-4 py-3 border border-zinc-700/50 shadow-2xl"
+        >
         {icons.map((icon) => (
           <DockIcon
             key={icon.label}
@@ -108,7 +110,8 @@ export function MacOSDock({ className }: MacOSDockProps) {
             />
           </DockIcon>
         ))}
-      </motion.div>
+        </motion.div>
+      </div>
     </div>
   );
 }

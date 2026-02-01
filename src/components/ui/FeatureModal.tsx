@@ -65,20 +65,20 @@ export function FeatureModal({
               mass: 1,
             }}
             className={cn(
-              "fixed left-1/2 top-1/2 z-[101] w-full max-w-5xl -translate-x-1/2 -translate-y-1/2 px-4",
+              "fixed inset-x-0 bottom-0 z-[101] sm:inset-auto sm:left-1/2 sm:top-1/2 sm:w-full sm:max-w-5xl sm:-translate-x-1/2 sm:-translate-y-1/2 sm:px-4",
               className
             )}
           >
             <motion.div
-              className="relative rounded-2xl border border-zinc-800 bg-zinc-900 shadow-2xl shadow-black/50"
+              className="relative rounded-t-2xl sm:rounded-2xl border border-zinc-800 bg-zinc-900 shadow-2xl shadow-black/50 max-h-[90vh] sm:max-h-none flex flex-col"
               layoutId="modal-content"
             >
               {/* Header */}
-              <div className="flex items-center justify-between border-b border-zinc-800 px-6 py-4">
-                <h2 className="text-xl font-semibold text-zinc-100">{title}</h2>
+              <div className="flex items-center justify-between border-b border-zinc-800 px-4 sm:px-6 py-4 shrink-0">
+                <h2 className="text-lg sm:text-xl font-semibold text-zinc-100 pr-4">{title}</h2>
                 <motion.button
                   onClick={onClose}
-                  className="rounded-lg p-2 text-zinc-400 transition-colors hover:bg-zinc-800 hover:text-zinc-200"
+                  className="rounded-lg p-2 text-zinc-400 transition-colors hover:bg-zinc-800 hover:text-zinc-200 shrink-0"
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                 >
@@ -87,7 +87,7 @@ export function FeatureModal({
               </div>
 
               {/* Content */}
-              <div className="max-h-[80vh] overflow-y-auto px-6 py-6">
+              <div className="max-h-[calc(90vh-60px)] sm:max-h-[80vh] overflow-y-auto px-4 sm:px-6 py-4 sm:py-6">
                 {children}
               </div>
             </motion.div>

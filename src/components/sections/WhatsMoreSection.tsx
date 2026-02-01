@@ -26,8 +26,8 @@ function SmallFeature({ icon, title, description }: SmallFeatureProps) {
 
 export function WhatsMoreSection() {
   return (
-    <section id="whats-more" className="py-24 bg-zinc-900/30">
-      <div className="mx-auto max-w-7xl px-6">
+    <section id="whats-more" className="py-16 sm:py-24 bg-zinc-900/30">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -40,7 +40,7 @@ export function WhatsMoreSection() {
           />
         </motion.div>
 
-        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="grid gap-3 sm:gap-4 sm:grid-cols-2 lg:grid-cols-3">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}

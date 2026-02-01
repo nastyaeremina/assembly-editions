@@ -670,26 +670,18 @@ function CountdownModal({ onClose }: { onClose: () => void }) {
             </ul>
           </div>
 
-          {/* CTAs */}
-          <div className="mt-6 flex flex-col items-center gap-3 sm:flex-row sm:justify-center">
-            <button
-              onClick={onClose}
-              className="rounded-full bg-white px-6 py-3 text-sm font-semibold text-purple-600 transition-all hover:bg-white/90 hover:scale-105"
-            >
-              Can&apos;t wait!
-            </button>
-            <a
-              href="https://x.com/assemblycom"
-              target="_blank"
-              rel="noopener"
-              className="inline-flex items-center gap-2 rounded-full bg-black/20 px-6 py-3 text-sm font-semibold text-white transition-all hover:bg-black/30 hover:scale-105"
-            >
-              <svg className="h-4 w-4" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
-              </svg>
-              Follow for updates
-            </a>
-          </div>
+          {/* CTA */}
+          <a
+            href="https://x.com/assemblyhq"
+            target="_blank"
+            rel="noopener"
+            className="mt-6 inline-flex items-center gap-2 rounded-full bg-white px-6 py-3 text-sm font-semibold text-purple-600 transition-all hover:bg-white/90 hover:scale-105"
+          >
+            <svg className="h-4 w-4" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+            </svg>
+            Stay updated
+          </a>
         </div>
       </div>
     </div>
@@ -806,7 +798,7 @@ function CookingModal({ onClose }: { onClose: () => void }) {
 
           {/* CTA */}
           <a
-            href="https://x.com/assemblycom"
+            href="https://x.com/assemblyhq"
             target="_blank"
             rel="noopener"
             className="mt-6 inline-flex items-center gap-2 rounded-full bg-white px-6 py-3 text-sm font-semibold text-amber-600 transition-all hover:bg-white/90 hover:scale-105"

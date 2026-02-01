@@ -20,7 +20,7 @@ function DevFeature({ icon, title, description, onClick }: DevFeatureProps) {
       onClick={onClick}
       onHoverStart={() => setIsHovered(true)}
       onHoverEnd={() => setIsHovered(false)}
-      className="group relative rounded-2xl border border-zinc-800 bg-zinc-900/50 p-6 cursor-pointer transition-all duration-300 hover:border-zinc-700 hover:bg-zinc-800/50 hover:shadow-lg hover:shadow-black/20 h-full flex flex-col"
+      className="group relative rounded-2xl border border-zinc-800 bg-zinc-900/50 p-4 sm:p-6 cursor-pointer transition-all duration-300 hover:border-zinc-700 hover:bg-zinc-800/50 hover:shadow-lg hover:shadow-black/20 h-full flex flex-col"
       whileHover={{ y: -2 }}
       transition={{ duration: 0.2 }}
     >
@@ -52,8 +52,8 @@ export function DevelopersSection() {
   const [isCustomAppHovered, setIsCustomAppHovered] = useState(false);
 
   return (
-    <section id="developers" className="py-24">
-      <div className="mx-auto max-w-7xl px-6">
+    <section id="developers" className="py-16 sm:py-24">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -78,7 +78,7 @@ export function DevelopersSection() {
             onClick={() => setActiveModal("custom-app")}
             onHoverStart={() => setIsCustomAppHovered(true)}
             onHoverEnd={() => setIsCustomAppHovered(false)}
-            className="group relative rounded-2xl border border-zinc-800 bg-zinc-900/50 p-6 md:p-8 cursor-pointer transition-all duration-300 hover:border-zinc-700 hover:bg-zinc-800/50 hover:shadow-lg hover:shadow-black/20"
+            className="group relative rounded-2xl border border-zinc-800 bg-zinc-900/50 p-4 sm:p-6 md:p-8 cursor-pointer transition-all duration-300 hover:border-zinc-700 hover:bg-zinc-800/50 hover:shadow-lg hover:shadow-black/20"
             whileHover={{ y: -2 }}
             transition={{ duration: 0.2 }}
           >
@@ -95,9 +95,9 @@ export function DevelopersSection() {
               <Plus className="h-4 w-4" />
             </motion.button>
 
-            <div className="grid gap-8 lg:grid-cols-2 lg:items-center">
+            <div className="grid gap-6 sm:gap-8 lg:grid-cols-2 lg:items-center">
               <div>
-                <h3 className="text-2xl font-semibold text-zinc-100 pr-10">
+                <h3 className="text-xl sm:text-2xl font-semibold text-zinc-100 pr-10">
                   New Custom App Base
                 </h3>
                 <p className="mt-4 text-zinc-400 leading-relaxed">

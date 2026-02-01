@@ -22,12 +22,12 @@ function RoadmapCard({
   badgeVariant = "coming-soon",
 }: RoadmapCardProps) {
   return (
-    <div className="rounded-2xl border border-zinc-800 bg-zinc-900/50 p-6">
-      <div className="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-zinc-800 to-zinc-700 text-[#BCE7F4]">
+    <div className="rounded-2xl border border-zinc-800 bg-zinc-900/50 p-4 sm:p-6">
+      <div className="mb-3 sm:mb-4 inline-flex h-10 w-10 sm:h-12 sm:w-12 items-center justify-center rounded-xl bg-gradient-to-br from-zinc-800 to-zinc-700 text-[#BCE7F4]">
         {icon}
       </div>
-      <div className="flex items-center gap-3">
-        <h3 className="text-xl font-semibold text-zinc-100">{title}</h3>
+      <div className="flex items-center gap-2 sm:gap-3 flex-wrap">
+        <h3 className="text-lg sm:text-xl font-semibold text-zinc-100">{title}</h3>
         {badge && <Badge variant={badgeVariant}>{badge}</Badge>}
       </div>
       <p className="mt-1 text-sm text-zinc-500">{timing}</p>
@@ -45,8 +45,8 @@ function RoadmapCard({
 
 export function WhatsNextSection() {
   return (
-    <section id="whats-next" className="py-24">
-      <div className="mx-auto max-w-7xl px-6">
+    <section id="whats-next" className="py-16 sm:py-24">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -106,11 +106,11 @@ export function WhatsNextSection() {
           transition={{ duration: 0.5, delay: 0.3 }}
           className="mt-16"
         >
-          <div className="rounded-2xl border border-zinc-800 bg-gradient-to-br from-zinc-900 to-zinc-800/50 p-8 text-center md:p-12">
-            <h3 className="text-2xl font-bold text-zinc-100">
+          <div className="rounded-2xl border border-zinc-800 bg-gradient-to-br from-zinc-900 to-zinc-800/50 p-6 sm:p-8 text-center md:p-12">
+            <h3 className="text-xl sm:text-2xl font-bold text-zinc-100">
               Try Assembly 2.0 Today
             </h3>
-            <p className="mx-auto mt-4 max-w-xl text-zinc-400">
+            <p className="mx-auto mt-3 sm:mt-4 max-w-xl text-sm sm:text-base text-zinc-400">
               Start your free trial to experience the full platform, or explore our AI-generated client portal preview to see how Assembly can transform your client experience.
             </p>
             <div className="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row">

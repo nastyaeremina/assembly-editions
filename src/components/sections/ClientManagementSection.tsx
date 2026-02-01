@@ -10,8 +10,8 @@ export function ClientManagementSection() {
   const [isContextBarHovered, setIsContextBarHovered] = useState(false);
 
   return (
-    <section id="client-management" className="py-24">
-      <div className="mx-auto max-w-7xl px-6">
+    <section id="client-management" className="py-16 sm:py-24">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -32,10 +32,10 @@ export function ClientManagementSection() {
           transition={{ duration: 0.5, delay: 0.1 }}
           className="mb-12"
         >
-          <div className="rounded-2xl border border-zinc-800 bg-zinc-900/50 p-6 md:p-8">
-            <div className="grid gap-8 lg:grid-cols-2 lg:items-center">
+          <div className="rounded-2xl border border-zinc-800 bg-zinc-900/50 p-4 sm:p-6 md:p-8">
+            <div className="grid gap-6 sm:gap-8 lg:grid-cols-2 lg:items-center">
               <div>
-                <h3 className="text-2xl font-semibold text-zinc-100">
+                <h3 className="text-xl sm:text-2xl font-semibold text-zinc-100">
                   Native Desktop App
                 </h3>
                 <p className="mt-4 text-zinc-400 leading-relaxed">
@@ -48,7 +48,7 @@ export function ClientManagementSection() {
                   </Button>
                 </div>
               </div>
-              <div className="flex items-center justify-center rounded-2xl bg-gradient-to-b from-zinc-800 to-zinc-900 py-12 min-h-[200px]">
+              <div className="flex items-center justify-center rounded-2xl bg-gradient-to-b from-zinc-800 to-zinc-900 min-h-[180px] overflow-visible">
                 <MacOSDock />
               </div>
             </div>
@@ -66,7 +66,7 @@ export function ClientManagementSection() {
             onClick={() => setIsContextBarModalOpen(true)}
             onHoverStart={() => setIsContextBarHovered(true)}
             onHoverEnd={() => setIsContextBarHovered(false)}
-            className="group relative rounded-2xl border border-zinc-800 bg-zinc-900/50 p-6 md:p-8 cursor-pointer transition-all duration-300 hover:border-zinc-700 hover:bg-zinc-800/50 hover:shadow-lg hover:shadow-black/20"
+            className="group relative rounded-2xl border border-zinc-800 bg-zinc-900/50 p-4 sm:p-6 md:p-8 cursor-pointer transition-all duration-300 hover:border-zinc-700 hover:bg-zinc-800/50 hover:shadow-lg hover:shadow-black/20"
             whileHover={{ y: -2 }}
             transition={{ duration: 0.2 }}
           >
@@ -84,14 +84,14 @@ export function ClientManagementSection() {
               <Plus className="h-4 w-4" />
             </motion.button>
 
-            <div className="grid gap-8 lg:grid-cols-2 lg:items-center">
+            <div className="grid gap-6 sm:gap-8 lg:grid-cols-2 lg:items-center">
               <MediaPlaceholder
                 label="Screenshot: Context Bar"
                 aspectRatio="16:9"
                 className="order-last lg:order-first"
               />
               <div>
-                <h3 className="text-2xl font-semibold text-zinc-100 pr-10">
+                <h3 className="text-xl sm:text-2xl font-semibold text-zinc-100 pr-10">
                   Context Bar
                 </h3>
                 <p className="mt-4 text-zinc-400 leading-relaxed">

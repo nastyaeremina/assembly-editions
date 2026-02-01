@@ -16,7 +16,7 @@ export function HeroSection() {
   };
 
   return (
-    <section className="relative flex min-h-screen flex-col items-center justify-center px-6 pt-16">
+    <section className="relative flex min-h-screen flex-col items-center justify-center px-4 sm:px-6 pt-16">
       {/* Background gradient */}
       <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-zinc-900/50 via-transparent to-[#101010]" />
 
@@ -47,7 +47,7 @@ export function HeroSection() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.2 }}
-          className="mx-auto mt-6 max-w-2xl text-xl text-zinc-400 2xl:text-2xl 2xl:max-w-3xl"
+          className="mx-auto mt-4 sm:mt-6 max-w-2xl text-lg sm:text-xl text-zinc-400 2xl:text-2xl 2xl:max-w-3xl"
         >
           {BRAND.tagline}
         </motion.p>
@@ -57,7 +57,7 @@ export function HeroSection() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.3 }}
-          className="mx-auto mt-4 max-w-3xl text-base text-zinc-500 2xl:text-lg 2xl:max-w-4xl"
+          className="mx-auto mt-3 sm:mt-4 max-w-3xl text-sm sm:text-base text-zinc-500 2xl:text-lg 2xl:max-w-4xl"
         >
           {BRAND.description}
         </motion.p>

@@ -34,7 +34,7 @@ export function ExpandableFeatureCard({
         onHoverStart={() => setIsHovered(true)}
         onHoverEnd={() => setIsHovered(false)}
         className={cn(
-          "group relative flex flex-col rounded-2xl border border-zinc-800 bg-zinc-900/50 p-6 cursor-pointer",
+          "group relative flex flex-col rounded-2xl border border-zinc-800 bg-zinc-900/50 p-4 sm:p-6 cursor-pointer",
           "transition-[border-color,background-color,box-shadow] duration-150 ease-out",
           "hover:border-zinc-700 hover:bg-zinc-900/80 hover:shadow-xl hover:shadow-black/20",
           className
@@ -58,17 +58,17 @@ export function ExpandableFeatureCard({
 
         {/* Media */}
         {mediaElement ? (
-          <div className="mb-5">{mediaElement}</div>
+          <div className="mb-4 sm:mb-5">{mediaElement}</div>
         ) : mediaLabel ? (
           <MediaPlaceholder
             label={mediaLabel}
             aspectRatio="16:9"
-            className="mb-5"
+            className="mb-4 sm:mb-5"
           />
         ) : null}
 
         {/* Content */}
-        <h3 className="text-lg font-semibold text-zinc-100 pr-10">{title}</h3>
+        <h3 className="text-base sm:text-lg font-semibold text-zinc-100 pr-10">{title}</h3>
         <p className="mt-2 text-sm text-zinc-400 leading-relaxed line-clamp-3">
           {description}
         </p>

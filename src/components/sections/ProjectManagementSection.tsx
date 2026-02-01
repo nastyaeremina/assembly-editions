@@ -407,8 +407,8 @@ function TaskAssignmentDiagram() {
 
 export function ProjectManagementSection() {
   return (
-    <section id="project-management" className="py-24 bg-zinc-900/30">
-      <div className="mx-auto max-w-7xl px-6">
+    <section id="project-management" className="py-16 sm:py-24 bg-zinc-900/30">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -455,8 +455,8 @@ export function ProjectManagementSection() {
                   <TaskAssignmentDiagram />
 
                   {/* Why this matters section */}
-                  <div className="rounded-xl border border-zinc-800 bg-zinc-900/30 p-6">
-                    <h4 className="text-lg font-medium text-zinc-100 mb-3">Why this matters</h4>
+                  <div className="rounded-xl border border-zinc-800 bg-zinc-900/30 p-4 sm:p-6">
+                    <h4 className="text-base sm:text-lg font-medium text-zinc-100 mb-2 sm:mb-3">Why this matters</h4>
                     <p className="text-zinc-400 leading-relaxed">
                       Internal-first project management that adapts to when and how you want to loop clients in. Keep tasks organized by client without exposing them, and toggle visibility when you&apos;re ready to share. Great for managing deliverables, tracking client requests internally, or collaborating on tasks before sharing progress.
                     </p>
@@ -496,8 +496,8 @@ export function ProjectManagementSection() {
                   </p>
 
                   {/* Use cases as feature cards */}
-                  <div className="grid gap-4 sm:grid-cols-2">
-                    <div className="rounded-xl border border-zinc-800 bg-zinc-900/50 p-5">
+                  <div className="grid gap-3 sm:gap-4 sm:grid-cols-2">
+                    <div className="rounded-xl border border-zinc-800 bg-zinc-900/50 p-4 sm:p-5">
                       <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-[#BCE7F4]/10 text-[#BCE7F4] mb-4">
                         <FileText className="h-5 w-5" />
                       </div>
@@ -507,7 +507,7 @@ export function ProjectManagementSection() {
                       </p>
                     </div>
 
-                    <div className="rounded-xl border border-zinc-800 bg-zinc-900/50 p-5">
+                    <div className="rounded-xl border border-zinc-800 bg-zinc-900/50 p-4 sm:p-5">
                       <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-[#BCE7F4]/10 text-[#BCE7F4] mb-4">
                         <ClipboardCheck className="h-5 w-5" />
                       </div>
@@ -517,7 +517,7 @@ export function ProjectManagementSection() {
                       </p>
                     </div>
 
-                    <div className="rounded-xl border border-zinc-800 bg-zinc-900/50 p-5">
+                    <div className="rounded-xl border border-zinc-800 bg-zinc-900/50 p-4 sm:p-5">
                       <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-[#BCE7F4]/10 text-[#BCE7F4] mb-4">
                         <Calendar className="h-5 w-5" />
                       </div>
@@ -527,7 +527,7 @@ export function ProjectManagementSection() {
                       </p>
                     </div>
 
-                    <div className="rounded-xl border border-zinc-800 bg-zinc-900/50 p-5">
+                    <div className="rounded-xl border border-zinc-800 bg-zinc-900/50 p-4 sm:p-5">
                       <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-[#BCE7F4]/10 text-[#BCE7F4] mb-4">
                         <MessageSquare className="h-5 w-5" />
                       </div>
