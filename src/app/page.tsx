@@ -107,19 +107,19 @@ export default function EditionsPage() {
       />
       {/* Header */}
       <header className="fixed top-0 left-0 right-0 z-50 border-b border-zinc-800 bg-[#101010]/80 backdrop-blur-md">
-        <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-6">
+        <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6">
           <Link href="/" className="flex items-center gap-2">
             <span className="text-xl font-semibold text-zinc-100">Assembly</span>
             <span className="rounded bg-zinc-800 px-1.5 py-0.5 text-xs font-medium text-zinc-400">
               Editions
             </span>
           </Link>
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-2 sm:gap-4">
             <a
               href="https://assembly.com"
               target="_blank"
               rel="noopener"
-              className="inline-flex h-8 items-center justify-center rounded-lg px-3 text-sm font-medium text-zinc-400 transition-colors hover:bg-zinc-800/50 hover:text-zinc-100"
+              className="hidden sm:inline-flex h-8 items-center justify-center rounded-lg px-3 text-sm font-medium text-zinc-400 transition-colors hover:bg-zinc-800/50 hover:text-zinc-100"
             >
               Visit Assembly
             </a>
@@ -129,32 +129,33 @@ export default function EditionsPage() {
               rel="noopener"
               className="inline-flex h-8 items-center justify-center rounded-lg bg-[#BCE7F4] px-3 text-sm font-medium text-zinc-900 transition-colors hover:bg-[#8AD4E9]"
             >
-              Start Free Trial
+              <span className="hidden sm:inline">Start Free Trial</span>
+              <span className="sm:hidden">Try Free</span>
             </a>
           </div>
         </div>
       </header>
 
       {/* Main Content */}
-      <main className="flex flex-1 flex-col items-center justify-center px-6 pt-24 pb-12">
+      <main className="flex flex-1 flex-col items-center justify-center px-4 sm:px-6 pt-24 pb-12">
         {/* Headline */}
-        <div className="mb-16 text-center">
-          <p className="mb-4 text-sm font-medium uppercase tracking-widest text-zinc-500">
+        <div className="mb-10 sm:mb-16 text-center">
+          <p className="mb-3 sm:mb-4 text-xs sm:text-sm font-medium uppercase tracking-widest text-zinc-500">
             Assembly Editions
           </p>
-          <h1 className="text-4xl font-semibold text-white md:text-5xl">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl font-semibold text-white">
             <span className="inline-block animate-shimmer bg-gradient-to-r from-white via-[#BCE7F4] to-white bg-[length:200%_100%] bg-clip-text text-transparent">
               Everything new
             </span>{" "}
             across Assembly.
           </h1>
-          <h2 className="mt-2 text-4xl font-semibold text-zinc-500 md:text-5xl">
+          <h2 className="mt-2 text-3xl sm:text-4xl md:text-5xl font-semibold text-zinc-500">
             Every three months.
           </h2>
         </div>
 
         {/* Edition Cards */}
-        <div className="grid w-full max-w-5xl gap-6 md:grid-cols-3">
+        <div className="grid w-full max-w-5xl gap-4 sm:gap-6 md:grid-cols-3">
           {editions.map((edition) => (
             <EditionCard
               key={edition.id}
@@ -168,7 +169,7 @@ export default function EditionsPage() {
         </div>
 
         {/* Changelog Link */}
-        <div className="mt-16 text-center">
+        <div className="mt-10 sm:mt-16 text-center">
           <a
             href="https://assembly.com/updates"
             target="_blank"
@@ -203,8 +204,8 @@ export default function EditionsPage() {
       </main>
 
       {/* Footer */}
-      <footer className="border-t border-zinc-800/50 py-8">
-        <div className="mx-auto max-w-7xl px-6">
+      <footer className="border-t border-zinc-800/50 py-6 sm:py-8">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6">
           <div className="flex flex-col items-center justify-between gap-4 sm:flex-row">
             <span className="text-sm text-zinc-500">
               © {new Date().getFullYear()} Assembly. All rights reserved.
@@ -613,11 +614,11 @@ function CountdownModal({ onClose }: { onClose: () => void }) {
 
   return (
     <div
-      className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm"
+      className="fixed inset-0 z-50 flex items-end sm:items-center justify-center bg-black/80 backdrop-blur-sm"
       onClick={onClose}
     >
       <div
-        className="relative mx-4 w-full max-w-lg overflow-hidden rounded-3xl bg-gradient-to-br from-[#a855f7] to-[#7c3aed] p-8 shadow-2xl"
+        className="relative w-full sm:mx-4 sm:max-w-lg overflow-hidden rounded-t-3xl sm:rounded-3xl bg-gradient-to-br from-[#a855f7] to-[#7c3aed] p-6 sm:p-8 shadow-2xl max-h-[90vh] overflow-y-auto"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Close button */}
@@ -632,23 +633,23 @@ function CountdownModal({ onClose }: { onClose: () => void }) {
 
         {/* Content */}
         <div className="text-center">
-          <div className="mb-2 text-sm font-medium uppercase tracking-widest text-white/60">
+          <div className="mb-2 text-xs sm:text-sm font-medium uppercase tracking-widest text-white/60">
             AI Edition drops in
           </div>
 
           {/* Countdown */}
-          <div className="my-8 flex justify-center gap-4">
+          <div className="my-6 sm:my-8 flex justify-center gap-2 sm:gap-4">
             <TimeUnit value={timeLeft.days} label="days" />
-            <div className="flex items-center text-3xl font-bold text-white/30">:</div>
+            <div className="flex items-center text-xl sm:text-3xl font-bold text-white/30">:</div>
             <TimeUnit value={timeLeft.hours} label="hours" />
-            <div className="flex items-center text-3xl font-bold text-white/30">:</div>
+            <div className="flex items-center text-xl sm:text-3xl font-bold text-white/30">:</div>
             <TimeUnit value={timeLeft.minutes} label="min" />
-            <div className="flex items-center text-3xl font-bold text-white/30">:</div>
+            <div className="flex items-center text-xl sm:text-3xl font-bold text-white/30">:</div>
             <TimeUnit value={timeLeft.seconds} label="sec" />
           </div>
 
           {/* Date */}
-          <div className="mb-6 text-lg font-medium text-white">
+          <div className="mb-4 sm:mb-6 text-base sm:text-lg font-medium text-white">
             April 15, 2026
           </div>
 
@@ -691,10 +692,10 @@ function CountdownModal({ onClose }: { onClose: () => void }) {
 function TimeUnit({ value, label }: { value: number; label: string }) {
   return (
     <div className="flex flex-col items-center">
-      <div className="flex h-16 w-16 items-center justify-center rounded-xl bg-black/20 text-3xl font-bold text-white tabular-nums">
+      <div className="flex h-12 w-12 sm:h-16 sm:w-16 items-center justify-center rounded-lg sm:rounded-xl bg-black/20 text-xl sm:text-3xl font-bold text-white tabular-nums">
         {value.toString().padStart(2, "0")}
       </div>
-      <div className="mt-1 text-xs text-white/50">{label}</div>
+      <div className="mt-1 text-[10px] sm:text-xs text-white/50">{label}</div>
     </div>
   );
 }
@@ -727,11 +728,11 @@ function CookingModal({ onClose }: { onClose: () => void }) {
 
   return (
     <div
-      className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm"
+      className="fixed inset-0 z-50 flex items-end sm:items-center justify-center bg-black/80 backdrop-blur-sm"
       onClick={onClose}
     >
       <div
-        className="relative mx-4 w-full max-w-lg overflow-hidden rounded-3xl bg-gradient-to-br from-[#f59e0b] to-[#d97706] p-8 shadow-2xl"
+        className="relative w-full sm:mx-4 sm:max-w-lg overflow-hidden rounded-t-3xl sm:rounded-3xl bg-gradient-to-br from-[#f59e0b] to-[#d97706] p-6 sm:p-8 shadow-2xl max-h-[90vh] overflow-y-auto"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Close button */}
@@ -747,7 +748,7 @@ function CookingModal({ onClose }: { onClose: () => void }) {
         {/* Content */}
         <div className="text-center">
           {/* Cooking animation */}
-          <div className="relative mx-auto mb-6 flex h-32 w-32 items-center justify-center">
+          <div className="relative mx-auto mb-4 sm:mb-6 flex h-28 sm:h-32 w-28 sm:w-32 items-center justify-center">
             {/* Pot */}
             <div className="absolute bottom-0 h-20 w-24 rounded-b-3xl bg-zinc-800"></div>
             <div className="absolute bottom-16 h-4 w-28 rounded-full bg-zinc-700"></div>
@@ -771,10 +772,10 @@ function CookingModal({ onClose }: { onClose: () => void }) {
             <div className="absolute -top-4 right-0 text-xl animate-pulse delay-300">⭐</div>
           </div>
 
-          <h3 className="mb-2 text-2xl font-bold text-white">
+          <h3 className="mb-2 text-xl sm:text-2xl font-bold text-white">
             Still cooking...
           </h3>
-          <p className="mb-6 text-white/70">
+          <p className="mb-4 sm:mb-6 text-sm sm:text-base text-white/70">
             We&apos;re brewing something special. No date yet, but it&apos;ll be worth the wait.
           </p>
 
