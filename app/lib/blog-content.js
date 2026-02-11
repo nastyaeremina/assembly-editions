@@ -74,6 +74,17 @@ export async function getAllAuthorWithSlug() {
   }
 }
 
+export async function getPageDetailBySlug(slug) {
+  try {
+    return await api.pages.read({
+      slug: slug
+    });
+  } catch (err) {
+    console.error('Error fetching page detail:', err);
+    return null;
+  }
+}
+
 export const getBlogByAuthor = unstable_cache(
   async (authorSlug, { page = 1, limit = 8 } = {}) => {
     try {

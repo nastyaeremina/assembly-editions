@@ -16,14 +16,14 @@ import {
   InputText,
   SearchWrapper
 } from '../../../styles/blogstyles';
-import Blogcard from '../../Blogcard';
+import BlogCard from '../../blogCard';
 import { isEmpty } from '../../../helpers/helpers';
 import { ButtonVariant, CURRENT_SITE_URL } from '../../../constants/constant';
 import NewCTA from '../../cta/newCTA';
 import TabComponent from '../../tabComponent';
 import DropDown from '../../dropdownComponent/index';
 import { useIsMobile } from '../../../hooks/useMobileDevice';
-import FeatureBlogCard from '../../Blogcard/fetaureBlogCard';
+import FeatureBlogCard from '../../blogCard/fetaureBlogCard';
 import ButtonV2Component from '../../button/buttonV2/buttonV2';
 import SVGComponent from '../../../../public/images/svg/SVGComponent';
 import BlogSearch from './blogSearch';
@@ -234,7 +234,7 @@ export default function BlogPage({
 
       return (
         <>
-          <Blogcard
+          <BlogCard
             key={`blog_list_${item.slug}_${index}`}
             name={item?.title}
             date={moment(new Date(item?.published_at)).format('MMM DD, YYYY')}

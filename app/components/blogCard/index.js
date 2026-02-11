@@ -8,7 +8,7 @@ import { isEmpty } from '../../helpers/helpers';
 import SVGComponent from '../../../public/images/svg/SVGComponent';
 import { BlogDetail, Bottom, DetailLeftDiv, Leftside, AuthorLink } from './styles';
 
-export default function Blogcard(props) {
+export default function BlogCard(props) {
   const tagListReder = useMemo(() => {
     if (isEmpty(props.tags)) return null;
     return props.tags?.map((item, index) => {
@@ -18,10 +18,17 @@ export default function Blogcard(props) {
 
   if (isEmpty(props)) return null;
 
+  const isExternal = !isEmpty(props.url);
+
+  const href = isExternal ? props.url : `/blog/${props.slug}`;
+
   return (
     <>
       <BlogDetail>
-        <Link href={`/blog/${props.slug}`}>
+        <Link
+          href={href}
+          target={isExternal ? '_blank' : undefined}
+          rel={isExternal ? 'noopener noreferrer' : undefined}>
           {!isEmpty(props.image) && (
             <Leftside>
               <Image src={props.image} width={266} height={266} className='image' alt='blog' />

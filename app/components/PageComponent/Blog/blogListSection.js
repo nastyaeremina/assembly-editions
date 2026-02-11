@@ -1,35 +1,68 @@
 'use client';
-import React, { useMemo, useState, useCallback } from 'react';
+import React, { useMemo, useState, useCallback, useEffect } from 'react';
 import { Container } from '../../../styles/commonStyles';
 import { AuthorTitle, BlogCardsDiv, Divider, ListDiv, LoadMoreButton } from '../../../styles/blogstyles';
 import { isEmpty } from '../../../helpers/helpers';
 import useMobileDevice from '../../../hooks/useMobileDevice';
 import ButtonV2Component from '../../button/buttonV2/buttonV2';
 import { ButtonVariant } from '../../../constants/constant';
-import Blogcard from '../../Blogcard';
+import BlogCard from '../../blogCard';
 import moment from 'moment';
 
-function BlogListSection({ authorName, allPosts }) {
-  const [visibleCount, setVisibleCount] = useState(6);
+function BlogListSection({ authorName, allPosts, authorSlug }) {
   const [isLoading, setIsLoading] = useState(false);
+  const [posts, setPosts] = useState(allPosts || []);
+  const [hasMore, setHasMore] = useState(true);
+  const [currentPage, setCurrentPage] = useState(1);
+  // Load more posts function
+  const loadMorePosts = useCallback(async () => {
+    if (isLoading || !hasMore) return;
+
+    setIsLoading(true);
+    try {
+      const nextPage = currentPage + 1;
+      const authorParam = authorSlug || '';
+
+      const response = await fetch(`/api/blog/posts?page=${nextPage}&limit=6&author=${authorParam}`);
+      const data = await response.json();
+
+      if (data.posts && data.posts.length > 0) {
+        setPosts((prev) => [...prev, ...data.posts]);
+        setCurrentPage(nextPage);
+        setHasMore(data.hasMore);
+      } else {
+        setHasMore(false);
+      }
+    } catch (error) {
+      console.error('Error loading more posts:', error);
+      setHasMore(false);
+    } finally {
+      setIsLoading(false);
+    }
+  }, [isLoading, hasMore, currentPage, authorSlug]);
+
+  // Update posts when allPosts changes (for initial load and navigation)
+  useEffect(() => {
+    // Only take the first 6 posts initially
+    const initialPosts = allPosts?.slice(0, 6) || [];
+    setPosts(initialPosts);
+    setCurrentPage(1);
+    // Set hasMore based on whether there are more posts than the initial limit
+    setHasMore((allPosts?.length || 0) > 6);
+  }, [allPosts]);
+
   const isMobile = useMobileDevice();
 
-  const handleLoadMore = useCallback(async () => {
-    setIsLoading(true);
-    // Simulate loading delay for better UX
-    await new Promise((resolve) => setTimeout(resolve, 500));
-    setVisibleCount((prev) => prev + 6);
-    setIsLoading(false);
-  }, []);
-
   const renderData = useMemo(() => {
-    if (isEmpty(allPosts)) return notFound();
-    return allPosts?.slice(0, visibleCount).map((item, index) => {
+    if (posts.length === 0) {
+      return <div>No posts found for this Author.</div>;
+    }
+    return posts?.map((item, index) => {
       const finalTagList = item?.tags?.filter((tag) => tag?.name?.trim()?.[0] !== '#');
       const authorName = item?.authors?.[0]?.name || '';
       return (
         <>
-          <Blogcard
+          <BlogCard
             key={`blog_list_index_${index}`}
             name={item?.title}
             date={moment(new Date(item?.published_at)).format('MMM DD, YYYY')}
@@ -47,7 +80,7 @@ function BlogListSection({ authorName, allPosts }) {
         </>
       );
     });
-  }, [allPosts, visibleCount, isMobile]);
+  }, [posts, isMobile]);
 
   return (
     <Container>
@@ -55,12 +88,12 @@ function BlogListSection({ authorName, allPosts }) {
         {!isEmpty(authorName) && <AuthorTitle>{`Blogs from ${authorName}`}</AuthorTitle>}
         <BlogCardsDiv className='author-page'>{renderData}</BlogCardsDiv>
         {/* Show button only if there are more posts left */}
-        {allPosts.length > visibleCount && (
+        {hasMore && (
           <LoadMoreButton>
             <ButtonV2Component
               title={'Load more'}
               variant={ButtonVariant.SECONDARY}
-              onClick={handleLoadMore}
+              onClick={loadMorePosts}
               isLoading={isLoading}
               disabled={isLoading}
             />

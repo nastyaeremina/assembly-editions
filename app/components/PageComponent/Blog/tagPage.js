@@ -4,7 +4,7 @@ import { useRouter, usePathname } from 'next/navigation';
 import moment from 'moment';
 import { useHotkeys } from 'react-hotkeys-hook';
 import { Container } from '../../../styles/commonStyles';
-import Blogcard from '../../../components/Blogcard';
+import BlogCard from '../../../components/blogCard';
 import {
   BlogCardsDiv,
   BlogListDiv,
@@ -15,7 +15,7 @@ import {
   MainContent,
   SearchWrapper
 } from '../../../styles/blogstyles';
-import FeatureBlogCard from '../../Blogcard/fetaureBlogCard';
+import FeatureBlogCard from '../../blogCard/fetaureBlogCard';
 import { isEmpty } from '../../../helpers/helpers';
 import DropDown from '../../dropdownComponent';
 import TabComponent from '../../tabComponent';
@@ -179,7 +179,7 @@ export default function TagPage({ allPosts, tags, featuredBlog, currentTag, tagC
       const authorName = item?.authors?.[0]?.name || '';
       return (
         <>
-          <Blogcard
+          <BlogCard
             key={`blog_list_${item.slug}_${index}`}
             name={item?.title}
             date={moment(new Date(item?.published_at)).format('MMM DD, YYYY')}

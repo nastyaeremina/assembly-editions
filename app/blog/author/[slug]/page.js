@@ -1,6 +1,6 @@
 import Layout from '../../../components/layout';
-import { getAllTagWithSlug, getAuthorDetail, getBlogByAuthor } from '../../../lib/blog-content';
-import { customSort, isEmpty } from '../../../helpers/helpers';
+import { getAllTagWithSlug, getAuthorDetail, getBlogByAuthor, getPageDetailBySlug } from '../../../lib/blog-content';
+import { customSort, isEmpty, parseAuthorBioContent } from '../../../helpers/helpers';
 import { getBreadcrumbFromReferer } from '../../../helpers/serverSideHelpers';
 import AuthorPage from '../../../components/PageComponent/Blog/authorPage';
 import { BLOG_TAG_SORTED_LIST, CURRENT_SITE_URL, CURRENT_DOMAIN, BLOG_CTA_ID } from '../../../constants/constant';
@@ -8,11 +8,12 @@ import { headers } from 'next/headers';
 import { getSectionCTAContent } from '../../../lib/contentful-standardPage';
 
 async function getContent({ slug }) {
-  const [allPosts, authorDetail, tags, blogCTA] = await Promise.all([
+  const [allPosts, authorDetail, tags, blogCTA, aboutPage] = await Promise.all([
     getBlogByAuthor(slug),
     getAuthorDetail(slug),
     getAllTagWithSlug(),
-    getSectionCTAContent(BLOG_CTA_ID, false)
+    getSectionCTAContent(BLOG_CTA_ID, false),
+    getPageDetailBySlug(slug)
   ]);
 
   const finalTagList = tags?.filter((tag) => tag?.name?.trim()?.[0] !== '#');
@@ -22,7 +23,8 @@ async function getContent({ slug }) {
     allPosts: allPosts ?? [],
     tags: finalTagList,
     authorDetail: authorDetail ?? {},
-    blogCTA
+    blogCTA,
+    aboutPage
   };
 }
 
@@ -55,7 +57,9 @@ export async function generateMetadata({ params }) {
 }
 
 export default async function Author({ params }) {
-  const { allPosts, tags, blogCTA } = await getContent({ slug: params?.slug });
+  const { allPosts, tags, blogCTA, aboutPage } = await getContent({ slug: params?.slug });
+
+  const { description, featuredLinks } = parseAuthorBioContent(aboutPage?.html);
 
   // Get the referer to determine where user came from
   const headersList = headers();
@@ -67,7 +71,7 @@ export default async function Author({ params }) {
   return (
     <>
       <Layout>
-        <AuthorPage allPosts={allPosts} authorCTA={blogCTA} />
+        <AuthorPage allPosts={allPosts} authorCTA={blogCTA} description={description} featuredLinks={featuredLinks} />
       </Layout>
     </>
   );

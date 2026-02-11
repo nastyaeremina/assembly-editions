@@ -364,12 +364,15 @@ const BlogCardsDiv = styled.div`
   padding-top: var(--space-40);
   &.author-page {
     grid-template-columns: 1fr 64px 1fr 64px 1fr;
+    padding-top: var(--space-48);
     @media only screen and (max-width: 991px) {
       grid-template-columns: 1fr 64px 1fr;
+      padding-top: var(--space-40);
     }
     @media only screen and (max-width: 650px) {
       grid-template-columns: repeat(1, 1fr);
       row-gap: var(--space-40);
+      padding-top: var(--space-32);
     }
   }
   @media only screen and (max-width: 991px) {
@@ -395,15 +398,7 @@ const LoadMoreButton = styled.div`
   }
 `;
 
-const AuthorMainHeroSection = styled.div`
-  padding: var(--space-64) 0;
-  @media only screen and (max-width: 991px) {
-    padding: var(--space-48) 0;
-  }
-  @media only screen and (max-width: 449px) {
-    padding: var(--space-48) 0 var(--space-40);
-  }
-`;
+const AuthorMainHeroSection = styled.div``;
 
 const InnerHeroSection = styled.div`
   display: flex;
@@ -419,6 +414,7 @@ const InnerHeroSection = styled.div`
     }
   }
   @media only screen and (max-width: 449px) {
+    align-items: flex-start;
     gap: var(--space-16);
   }
 `;
@@ -427,6 +423,7 @@ const DetailsSection = styled.div`
   display: flex;
   flex-direction: column;
   gap: var(--space-12);
+  align-self: center;
   @media only screen and (max-width: 449px) {
     gap: var(--space-8);
   }
@@ -448,7 +445,6 @@ const SocialMediaDiv = styled.div`
   display: flex;
   align-items: center;
   gap: var(--space-24);
-  margin-top: var(--space-8);
   a {
     :focus-visible {
       outline: 2px solid var(--link-default);
@@ -469,12 +465,12 @@ const SocialMediaDiv = styled.div`
 `;
 
 const ListDiv = styled.div`
-  padding: var(--space-128) 0;
+  padding: var(--space-64) 0;
   @media only screen and (max-width: 991px) {
-    padding: var(--space-96) 0;
+    padding: var(--space-48) 0;
   }
   @media only screen and (max-width: 650px) {
-    padding: var(--space-72) 0;
+    padding: var(--space-40) 0;
   }
 `;
 
@@ -608,6 +604,16 @@ const ArticleText = styled.div`
   z-index: 1;
 `;
 
+const FeaturesLinkSectionWrapper = styled.div`
+  padding: var(--space-64) 0;
+  @media screen and (max-width: 991px) {
+    padding: var(--space-48) 0;
+  }
+  @media screen and (max-width: 650px) {
+    padding: var(--space-40) 0;
+  }
+`;
+
 export {
   FirstBlog,
   Top,
@@ -648,5 +654,6 @@ export {
   InputWrap,
   InputText,
   SearchWrapper,
-  ArticleText
+  ArticleText,
+  FeaturesLinkSectionWrapper
 };

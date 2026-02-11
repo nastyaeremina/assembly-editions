@@ -114,7 +114,7 @@ export const isUserAtuthenticated = () => (dispatch) => {
   }
 };
 
-export const getSEOData = async ({ id, data, canonical= '' }) => {
+export const getSEOData = async ({ id, data, canonical = '' }) => {
   let seoData;
   if (!isEmpty(id)) seoData = (await getSEOdata(id)) ?? [];
   else seoData = data;
@@ -946,4 +946,91 @@ export function generateUniqueHeadingIds(headings) {
       uniqueId
     };
   });
+}
+
+/**
+ * Decode common HTML entities into readable characters.
+ *
+ * This is used when extracting raw text from Ghost HTML
+ * (e.g. "&amp;" → "&") because regex parsing does not
+ * automatically decode entities like the browser does.
+ *
+ * @param {string} str - Raw string containing HTML entities
+ * @returns {string} - Decoded, human-readable string
+ */
+export function decodeHtmlEntities(str = '') {
+  return str
+    .replace(/&amp;/g, '&')
+    .replace(/&lt;/g, '<')
+    .replace(/&gt;/g, '>')
+    .replace(/&quot;/g, '"')
+    .replace(/&#39;/g, "'");
+}
+
+/**
+ * Parse Ghost Author Bio page HTML and extract structured content.
+ *
+ * This function separates:
+ * 1. About description text (first paragraph only)
+ * 2. Featured Links (Ghost bookmark cards)
+ *
+ * Featured links are normalized into plain objects so the UI
+ * can render fully custom-designed cards instead of Ghost markup.
+ *
+ * @param {string} html - Raw HTML string from Ghost Page (`page.html`)
+ * @returns {{
+ *   description: string,
+ *   featuredLinks: Array<{
+ *     title: string,
+ *     description: string,
+ *     author: string,
+ *     url: string,
+ *     slug: string
+ *   }>
+ * }}
+ */
+export function parseAuthorBioContent(html) {
+  if (!html) {
+    return {
+      description: '',
+      featuredLinks: []
+    };
+  }
+
+  const featuredLinks = [];
+
+  const cardMatches = html.match(/<figure class="kg-card kg-bookmark-card">[\s\S]*?<\/figure>/g) || [];
+
+  cardMatches.forEach((cardHtml) => {
+    const titleMatch = cardHtml.match(/<div class="kg-bookmark-title">(.*?)<\/div>/s);
+
+    const descriptionMatch = cardHtml.match(/<div class="kg-bookmark-description">(.*?)<\/div>/s);
+
+    const authorMatch = cardHtml.match(/<span class="kg-bookmark-publisher">(.*?)<\/span>/s);
+
+    const urlMatch = cardHtml.match(/<a[^>]*href="(.*?)"/s);
+
+    const url = urlMatch?.[1] || '';
+    const slug = url ? new URL(url).pathname.replace(/^\/|\/$/g, '') : '';
+
+    featuredLinks.push({
+      title: decodeHtmlEntities(titleMatch?.[1] || ''),
+      description: decodeHtmlEntities(descriptionMatch?.[1] || ''),
+      author: decodeHtmlEntities(authorMatch?.[1] || ''),
+      url,
+      slug
+    });
+  });
+
+  /* ABOUT DESCRIPTION */
+  let description = '';
+  const pMatch = html.match(/<p[^>]*>(.*?)<\/p>/s);
+  if (pMatch) {
+    description = `<p>${decodeHtmlEntities(pMatch[1])}</p>`;
+  }
+
+  return {
+    description,
+    featuredLinks
+  };
 }

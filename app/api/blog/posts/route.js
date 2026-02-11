@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import { getBlogPosts, getBlogByTag } from '../../../lib/blog-content';
+import { getBlogPosts, getBlogByTag, getBlogByAuthor } from '../../../lib/blog-content';
 
 export async function GET(request) {
   try {
@@ -7,11 +7,16 @@ export async function GET(request) {
     const page = parseInt(searchParams.get('page')) || 1;
     const limit = parseInt(searchParams.get('limit')) || 8;
     const tag = searchParams.get('tag');
+    const author = searchParams.get('author');
     const excludeId = searchParams.get('exclude'); // ID of blog to exclude (featured blog)
     
     let posts;
     
-    if (tag && tag !== 'all') {
+    // Priority: author > tag > all posts
+    if (author) {
+      // Fetch posts by author with pagination
+      posts = await getBlogByAuthor(author, { page, limit });
+    } else if (tag && tag !== 'all') {
       // Fetch posts by tag with pagination
       posts = await getBlogByTag(tag, { page, limit });
     } else {
@@ -25,9 +30,15 @@ export async function GET(request) {
       
       // If we filtered out a post, we might need one more to maintain the limit
       if (posts.length < limit) {
-        const additionalPosts = tag && tag !== 'all' 
-          ? await getBlogByTag(tag, { page: page + 1, limit: 1 })
-          : await getBlogPosts({ page: page + 1, limit: 1 });
+        let additionalPosts;
+        
+        if (author) {
+          additionalPosts = await getBlogByAuthor(author, { page: page + 1, limit: 1 });
+        } else if (tag && tag !== 'all') {
+          additionalPosts = await getBlogByTag(tag, { page: page + 1, limit: 1 });
+        } else {
+          additionalPosts = await getBlogPosts({ page: page + 1, limit: 1 });
+        }
         
         if (additionalPosts && additionalPosts.length > 0) {
           // Make sure the additional post is not the excluded one

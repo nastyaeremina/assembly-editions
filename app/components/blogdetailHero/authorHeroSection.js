@@ -22,7 +22,11 @@ function AuthorHeroSection({
   breadcrumbText,
   breadcrumbLink,
   twitter,
-  linkedin
+  linkedin,
+  instagram,
+  facebook,
+  youtube,
+  description
 }) {
   const BreadcrumbItem = [{ label: breadcrumbText, href: breadcrumbLink }];
   return (
@@ -46,6 +50,21 @@ function AuthorHeroSection({
                 {!isEmpty(linkedin) && (
                   <Link href={linkedin} aria-label={'Linkedin'}>
                     <SVGComponent name='linkedin-logo-gray' width='24' height='24' viewBox='0 0 24 24' />
+                  </Link>
+                )}
+                {!isEmpty(facebook) && (
+                  <Link href={facebook} aria-label={'Facebook'}>
+                    <SVGComponent name='facebook-logo-gray' width='24' height='24' viewBox='0 0 24 24' />
+                  </Link>
+                )}
+                {!isEmpty(instagram) && (
+                  <Link href={instagram} aria-label={'Instagram'}>
+                    <SVGComponent name='instagram-logo-gray' width='24' height='24' viewBox='0 0 24 24' />
+                  </Link>
+                )}
+                {!isEmpty(youtube) && (
+                  <Link href={youtube} aria-label={'Youtube'}>
+                    <SVGComponent name='you-tube-logo-gray' width='24' height='24' viewBox='0 0 24 24' />
                   </Link>
                 )}
               </SocialMediaDiv>

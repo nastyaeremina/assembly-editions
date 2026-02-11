@@ -1,6 +1,5 @@
-import styled, { css } from 'styled-components';
-import { h2_semibold, button_regular } from '../../styles/typography';
-import Link from 'next/link';
+import styled from 'styled-components';
+import { h2_semibold, button_regular, body_regular } from '../../styles/typography';
 
 const DetailHero = styled.div`
   max-width: 804px;
@@ -132,4 +131,39 @@ const HeroWrapper = styled.div`
   }
 `;
 
-export { DetailHero, BlogImage, BlogTime, Post, Image, HeroWrapper };
+const AboutSectionWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-48);
+  padding: var(--space-64) 0;
+  @media only screen and (max-width: 991px) {
+    padding: var(--space-48) 0;
+    gap: var(--space-40);
+  }
+  @media only screen and (max-width: 650px) {
+    gap: var(--space-32);
+    padding: var(--space-40) 0;
+  }
+`;
+
+const AboutTitle = styled.h2`
+  ${h2_semibold}
+  color: var(--title);
+  margin: 0;
+`;
+
+const AboutDescription = styled.div`
+  ${body_regular}
+  color: var(--title);
+  margin: 0;
+  p {
+    ${body_regular}
+    color: var(--title);
+    margin: 0;
+  }
+  p + p {
+    margin-top: var(--space-16);
+  }
+`;
+
+export { DetailHero, BlogImage, BlogTime, Post, Image, HeroWrapper, AboutSectionWrapper, AboutTitle, AboutDescription };
