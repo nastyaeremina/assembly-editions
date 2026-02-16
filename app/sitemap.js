@@ -9,6 +9,7 @@ import { getAllAutomationsWithSlug } from './lib/contentful-automation';
 import { getAllGlossaryContent } from './lib/contentful-glossary';
 import { getAllGuideArticleSlug } from './lib/contentful-guide';
 import { getAllStandardPageWithSlug } from './lib/contentful-standardPage';
+import { getAllAppEmbeds } from './lib/contentful-rewrite';
 
 export default async function sitemap() {
   const appsPost = (await getAllPartnerAppsWithSlug()) ?? []; // appa
@@ -23,10 +24,11 @@ export default async function sitemap() {
   const automationsPost = (await getAllAutomationsWithSlug()) ?? []; // automationsPost
   const glossarysPost = (await getAllGlossaryContent()) ?? []; // glossary
   const guidesPost = (await getAllGuideArticleSlug()) ?? []; // guide
+  const appEmbeds = (await getAllAppEmbeds()) ?? []; //app embeds
 
   const appsPostsPathList = appsPost?.map((item) => `apps/directory/${item?.slug}`);
   const jobsPostsPathList = jobPosts?.map((item) => `jobs/${item?.slug}`);
-  const standardPagesPathList = standardPagesPost?.map((item) =>  `${item?.slug}`).filter((slug) => slug !== 'newhome'); //remove newhome page from sitemap
+  const standardPagesPathList = standardPagesPost?.map((item) => `${item?.slug}`).filter((slug) => slug !== 'newhome'); //remove newhome page from sitemap
   const universityPostsPathList = universityPosts?.map((item) => `university/${item?.slug}`);
   const blogPostsPathList = blogPost?.map((item) => `blog/${item?.slug}`);
   const updatesPostsPathList = updatesPost?.map((item) => `updates/${item?.slug}`);
@@ -68,21 +70,27 @@ export default async function sitemap() {
   for (let page = 2; page <= totalPageCount; page++) {
     allUpdateWithPagination.push(`updates/page/${page}`);
   }
-  const finalList = appsPostsPathList?.concat(
-    staticPages,
-    jobsPostsPathList,
-    standardPagesPathList,
-    universityPostsPathList,
-    blogPostsPathList,
-    updatesPostsPathList,
-    authorPostsPathList,
-    tagPostsPathList,
-    comparisonPostsPathList,
-    allUpdateWithPagination,
-    automationsPostsPathList,
-    glossaryPostsPathList,
-    guidePostsPathList
-  );
+  const appEmbedPaths = appEmbeds.filter((item) => item.path).map((item) => item.path.replace(/^\/|\/$/g, ''));
+
+  const finalList = appsPostsPathList
+    ?.concat(
+      staticPages,
+      jobsPostsPathList,
+      standardPagesPathList,
+      universityPostsPathList,
+      blogPostsPathList,
+      updatesPostsPathList,
+      authorPostsPathList,
+      tagPostsPathList,
+      comparisonPostsPathList,
+      allUpdateWithPagination,
+      automationsPostsPathList,
+      glossaryPostsPathList,
+      guidePostsPathList,
+      appEmbedPaths
+    )
+    .filter(Boolean);
+
   return finalList?.map((item) => {
     return {
       url: `${CURRENT_SITE_URL}/${item}`,

@@ -103,6 +103,50 @@ async function fetchAllRedirects() {
   return redirects;
 }
 
+async function fetchAllRewrites() {
+  const PAGE_SIZE = 100;
+  let skip = 0;
+  let total = 0;
+  const allItems = [];
+
+  do {
+    const data = await fetchGraphQL({
+      query: `
+        query {
+          appEmbedCollection(limit: 100, skip: ${skip}) {
+            total
+            items {
+              name
+              embedUrl
+              path
+            }
+          }
+        }
+      `,
+      variables: { limit: PAGE_SIZE, skip }
+    });
+
+    if (!data?.appEmbedCollection) break;
+
+    const { items, total: t } = data.appEmbedCollection;
+    total = t;
+    allItems.push(...items);
+    skip += PAGE_SIZE;
+  } while (skip < total);
+
+  return allItems
+    .filter((i) => i.path && i.embedUrl)
+    .map((i) => {
+      const source = i.path.replace(/\/$/, '');
+      const dest = i.embedUrl.replace(/\/$/, '');
+
+      return {
+        source: `${source}/:path*`,
+        destination: `${dest}/:path*`
+      };
+    });
+}
+
 const nextConfig = {
   reactStrictMode: true,
   compiler: {
@@ -126,14 +170,22 @@ const nextConfig = {
     }
   },
   async rewrites() {
-    return {
-      beforeFiles: [
-        {
-          source: '/experts/:path*',
-          destination: 'https://copilotplatforms.partnerpage.io/experts/:path*'
-        }
-      ]
-    };
+    try {
+      const cmsRewrites = await fetchAllRewrites();
+
+      return {
+        beforeFiles: cmsRewrites,
+        afterFiles: [],
+        fallback: []
+      };
+    } catch (e) {
+      console.error('rewrites() failed:', e);
+      return {
+        beforeFiles: [],
+        afterFiles: [],
+        fallback: []
+      };
+    }
   },
   async headers() {
     return [
