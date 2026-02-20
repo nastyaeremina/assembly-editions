@@ -205,6 +205,7 @@ const FAQAnswer = styled.div`
           }
         }
         a {
+          ${button_regular};
           color: var(--link-default);
           :hover {
             color: var(--link-hover);
@@ -244,6 +245,7 @@ const FAQAnswer = styled.div`
   }
 
   a {
+    ${body_regular}
     color: var(--link-default);
     display: initial;
     cursor: pointer;
