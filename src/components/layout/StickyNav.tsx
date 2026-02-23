@@ -24,7 +24,7 @@ export function StickyNav({ className }: StickyNavProps) {
   return (
     <nav
       className={cn(
-        "sticky top-16 z-40 border-b border-zinc-800 bg-[#101010]/90 backdrop-blur-md",
+        "sticky top-10 z-40 border-b border-border bg-overlay/90 backdrop-blur-md",
         className
       )}
     >
@@ -37,8 +37,8 @@ export function StickyNav({ className }: StickyNavProps) {
               className={cn(
                 "whitespace-nowrap rounded-lg px-4 py-2 text-sm font-medium transition-colors",
                 activeSection === section.id
-                  ? "bg-zinc-800 text-[#BCE7F4]"
-                  : "text-zinc-400 hover:bg-zinc-800/50 hover:text-zinc-200"
+                  ? "bg-nav-active text-nav-active-text"
+                  : "text-nav-text hover:bg-ghost-hover/50 hover:text-nav-hover-text"
               )}
             >
               {section.label}

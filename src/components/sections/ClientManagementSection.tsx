@@ -1,167 +1,129 @@
 "use client";
 
-import { useState } from "react";
-import { motion } from "framer-motion";
-import { SectionHeading, MediaPlaceholder, Button, MacOSDock, FeatureModal } from "@/components/ui";
-import { Download, Plus } from "lucide-react";
+import { MediaPlaceholder, SectionReveal } from "@/components/ui";
 
-export function ClientManagementSection() {
-  const [isContextBarModalOpen, setIsContextBarModalOpen] = useState(false);
-  const [isContextBarHovered, setIsContextBarHovered] = useState(false);
+interface ClientManagementSectionProps {
+  inSplit?: boolean;
+}
 
+export function ClientManagementSection({ inSplit = false }: ClientManagementSectionProps) {
   return (
-    <section id="client-management" className="py-16 sm:py-24">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-        >
-          <SectionHeading
-            title="For client management"
-            subtitle="Stay connected with clients through a native desktop experience and contextual information at your fingertips."
-          />
-        </motion.div>
+    <section
+      id="client-management"
+      className={`relative ${inSplit ? "py-20 sm:py-32" : "py-20 sm:py-32"}`}
+      style={{ borderTop: "1px solid rgba(255, 255, 255, 0.06)" }}
+    >
+      {/* Ambient gradient — bottom right */}
+      <div
+        aria-hidden="true"
+        style={{
+          position: "absolute",
+          bottom: 0,
+          right: 0,
+          width: "60%",
+          height: "60%",
+          background: "radial-gradient(ellipse at bottom right, rgba(255, 255, 255, 0.025), transparent 70%)",
+          pointerEvents: "none",
+        }}
+      />
 
-        {/* Desktop App Feature */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5, delay: 0.1 }}
-          className="mb-12"
-        >
-          <div className="rounded-2xl border border-zinc-800 bg-zinc-900/50 p-4 sm:p-6 md:p-8">
-            <div className="grid gap-6 sm:gap-8 lg:grid-cols-2 lg:items-center">
-              <div>
-                <h3 className="text-xl sm:text-2xl font-semibold text-zinc-100">
+      <div className={`relative ${inSplit ? "px-6 sm:px-8 lg:px-10" : "mx-auto max-w-7xl px-6"}`}>
+        {/* Header group */}
+        <SectionReveal>
+          {/* Section number + extending rule */}
+          <div
+            className="flex items-center"
+            style={{ marginBottom: "1.5rem" }}
+          >
+            <span
+              style={{
+                fontFamily: "var(--font-mono, monospace)",
+                fontSize: "0.875rem",
+                letterSpacing: "-0.04em",
+                color: "rgba(255, 255, 255, 0.4)",
+                whiteSpace: "nowrap",
+                paddingRight: "1.5rem",
+              }}
+            >
+              03
+            </span>
+            <div
+              style={{
+                flex: 1,
+                height: "1px",
+                backgroundColor: "rgba(255, 255, 255, 0.08)",
+              }}
+            />
+          </div>
+
+          <h2
+            style={{
+              fontFamily: "'PP Mori', var(--font-sans)",
+              fontWeight: 600,
+              fontSize: "clamp(1.75rem, 3vw, 2.4rem)",
+              lineHeight: 1.15,
+              letterSpacing: "-0.025em",
+              color: "var(--swatch-1)",
+              margin: "0 0 1.25rem 0",
+            }}
+          >
+            Client management
+          </h2>
+
+          <p
+            style={{
+              fontFamily: "'PP Mori', var(--font-sans)",
+              fontWeight: 400,
+              fontSize: "1.15rem",
+              lineHeight: 1.45,
+              color: "var(--swatch-3)",
+              maxWidth: "36rem",
+              margin: "0 0 3.5rem 0",
+            }}
+          >
+            Stay connected with clients through a native desktop experience and contextual information at your fingertips.
+          </p>
+        </SectionReveal>
+
+        {/* Desktop App */}
+        <SectionReveal delay={0.1}>
+          <div style={{ marginBottom: "3.5rem" }}>
+            <MediaPlaceholder label="Desktop App" aspectRatio="16:9" />
+            <div className="grid gap-6 lg:grid-cols-12" style={{ marginTop: "2rem" }}>
+              <div className="lg:col-span-4">
+                <h3 style={{ fontFamily: "'PP Mori', var(--font-sans)", fontWeight: 600, fontSize: "1.05rem", lineHeight: 1.3, letterSpacing: "-0.015em", color: "var(--swatch-1)", margin: 0 }}>
                   Native Desktop App
                 </h3>
-                <p className="mt-4 text-zinc-400 leading-relaxed">
-                  Assembly now has a desktop app for Mac and Windows with real desktop notifications. No more browser tab hunting or missing client messages because Chrome was buried.
-                </p>
-                <div className="mt-6">
-                  <Button size="lg">
-                    <Download className="mr-2 h-4 w-4" />
-                    Download Today
-                  </Button>
-                </div>
               </div>
-              <div className="flex items-center justify-center rounded-2xl bg-gradient-to-b from-zinc-800 to-zinc-900 min-h-[180px] overflow-visible">
-                <MacOSDock />
+              <div className="lg:col-span-8">
+                <p style={{ fontFamily: "'PP Mori', var(--font-sans)", fontWeight: 400, fontSize: "0.975rem", lineHeight: 1.55, color: "var(--swatch-3)", margin: 0 }}>
+                  Assembly now has a desktop app for Mac and Windows with real desktop notifications. No more browser tab hunting or missing client messages.
+                </p>
               </div>
             </div>
           </div>
-        </motion.div>
+        </SectionReveal>
 
-        {/* Context Bar Feature */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5, delay: 0.2 }}
-        >
-          <motion.div
-            onClick={() => setIsContextBarModalOpen(true)}
-            onHoverStart={() => setIsContextBarHovered(true)}
-            onHoverEnd={() => setIsContextBarHovered(false)}
-            className="group relative rounded-2xl border border-zinc-800 bg-zinc-900/50 p-4 sm:p-6 md:p-8 cursor-pointer transition-all duration-300 hover:border-zinc-700 hover:bg-zinc-800/50 hover:shadow-lg hover:shadow-black/20"
-            whileHover={{ y: -2 }}
-            transition={{ duration: 0.2 }}
-          >
-            {/* Expand button */}
-            <motion.button
-              onClick={(e) => {
-                e.stopPropagation();
-                setIsContextBarModalOpen(true);
-              }}
-              className="absolute right-4 top-4 z-10 flex h-8 w-8 cursor-pointer items-center justify-center rounded-full bg-zinc-800 text-zinc-400 transition-colors hover:bg-zinc-700 hover:text-zinc-200"
-              aria-label="Expand Context Bar"
-              animate={{ rotate: isContextBarHovered ? 90 : 0 }}
-              transition={{ duration: 0.2, ease: "easeOut" }}
-            >
-              <Plus className="h-4 w-4" />
-            </motion.button>
 
-            <div className="grid gap-6 sm:gap-8 lg:grid-cols-2 lg:items-center">
-              <MediaPlaceholder
-                label="Screenshot: Context Bar"
-                aspectRatio="16:9"
-                className="order-last lg:order-first"
-              />
-              <div>
-                <h3 className="text-xl sm:text-2xl font-semibold text-zinc-100 pr-10">
+        {/* Context Bar */}
+        <SectionReveal delay={0.1}>
+          <div>
+            <MediaPlaceholder label="Context Bar" aspectRatio="16:9" />
+            <div className="grid gap-6 lg:grid-cols-12" style={{ marginTop: "2rem" }}>
+              <div className="lg:col-span-4">
+                <h3 style={{ fontFamily: "'PP Mori', var(--font-sans)", fontWeight: 600, fontSize: "1.05rem", lineHeight: 1.3, letterSpacing: "-0.015em", color: "var(--swatch-1)", margin: 0 }}>
                   Context Bar
                 </h3>
-                <p className="mt-4 text-zinc-400 leading-relaxed">
-                  We&apos;ve renamed and redesigned the right sidebar on CRM pages—and brought it to more surfaces. Now when you&apos;re in Messages, Files, Notifications, or other apps, you can pull up the Context Bar to see client details without navigating away.
+              </div>
+              <div className="lg:col-span-8">
+                <p style={{ fontFamily: "'PP Mori', var(--font-sans)", fontWeight: 400, fontSize: "0.975rem", lineHeight: 1.55, color: "var(--swatch-3)", margin: 0 }}>
+                  The redesigned right sidebar now appears on more surfaces — Messages, Files, Notifications, and more. Pull up client details, edit custom fields, add notes, or chat with your team without navigating away.
                 </p>
               </div>
             </div>
-          </motion.div>
-        </motion.div>
-      </div>
-
-      {/* Context Bar Modal */}
-      <FeatureModal
-        isOpen={isContextBarModalOpen}
-        onClose={() => setIsContextBarModalOpen(false)}
-        title="Context Bar"
-      >
-        <div className="space-y-6">
-          <MediaPlaceholder
-            label="Screenshot: Context Bar in action"
-            aspectRatio="16:9"
-          />
-          <div className="space-y-4">
-            <p className="text-zinc-400 leading-relaxed">
-              We&apos;ve renamed and redesigned the right sidebar on CRM pages—and brought it to more surfaces. Now when you&apos;re in Messages, Files, Notifications, or other apps looking at client-specific content, you can pull up the Context Bar to see client details, edit custom fields, add internal notes, or chat with your team—without navigating away.
-            </p>
-            <p className="text-zinc-400 leading-relaxed">
-              The goal: show you the right context at the moment you need it, so you&apos;re not constantly clicking back to the CRM.
-            </p>
-            <h4 className="text-lg font-medium text-zinc-100 pt-2">What you can do</h4>
-            <ul className="space-y-2 text-zinc-400">
-              <li className="flex items-start gap-2">
-                <span className="text-[#BCE7F4] mt-1">•</span>
-                View client details and contact information
-              </li>
-              <li className="flex items-start gap-2">
-                <span className="text-[#BCE7F4] mt-1">•</span>
-                Edit custom fields on the fly
-              </li>
-              <li className="flex items-start gap-2">
-                <span className="text-[#BCE7F4] mt-1">•</span>
-                Add internal notes and comments
-              </li>
-              <li className="flex items-start gap-2">
-                <span className="text-[#BCE7F4] mt-1">•</span>
-                Chat with your team about the client
-              </li>
-            </ul>
-            <h4 className="text-lg font-medium text-zinc-100 pt-2">Available in</h4>
-            <ul className="space-y-2 text-zinc-400">
-              <li className="flex items-start gap-2">
-                <span className="text-[#BCE7F4] mt-1">•</span>
-                Messages
-              </li>
-              <li className="flex items-start gap-2">
-                <span className="text-[#BCE7F4] mt-1">•</span>
-                Files
-              </li>
-              <li className="flex items-start gap-2">
-                <span className="text-[#BCE7F4] mt-1">•</span>
-                Notifications
-              </li>
-              <li className="flex items-start gap-2">
-                <span className="text-[#BCE7F4] mt-1">•</span>
-                And more apps with client-specific content
-              </li>
-            </ul>
           </div>
-        </div>
-      </FeatureModal>
+        </SectionReveal>
+      </div>
     </section>
   );
 }

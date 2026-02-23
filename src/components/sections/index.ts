@@ -1,4 +1,7 @@
+export { BrandStatement } from "./BrandStatement";
 export { HeroSection } from "./HeroSection";
+export { CollageHero } from "./CollageHero";
+export { EditionIntro, EditionIntroMobile } from "./EditionIntro";
 export { ClientExperienceSection } from "./ClientExperienceSection";
 export { ProjectManagementSection } from "./ProjectManagementSection";
 export { ClientManagementSection } from "./ClientManagementSection";

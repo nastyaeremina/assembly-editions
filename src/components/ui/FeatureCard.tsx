@@ -27,16 +27,16 @@ export function FeatureCard({
     return (
       <div
         className={cn(
-          "group grid gap-6 rounded-2xl border border-zinc-800 bg-zinc-900/50 p-6 transition-colors hover:border-zinc-700 md:grid-cols-2 md:gap-8",
+          "group grid gap-6 rounded-2xl border border-border bg-card/50 p-6 transition-colors hover:border-border-hover md:grid-cols-2 md:gap-8",
           className
         )}
       >
         <div className="flex flex-col justify-center">
           <div className="flex items-center gap-3">
-            <h3 className="text-xl font-semibold text-zinc-100">{title}</h3>
+            <h3 className="text-xl font-semibold text-heading">{title}</h3>
             {badge && <Badge variant={badgeVariant}>{badge}</Badge>}
           </div>
-          <p className="mt-3 text-zinc-400 leading-relaxed">{description}</p>
+          <p className="mt-3 text-muted leading-relaxed">{description}</p>
         </div>
         {mediaLabel && (
           <MediaPlaceholder
@@ -52,7 +52,7 @@ export function FeatureCard({
   return (
     <div
       className={cn(
-        "group flex flex-col rounded-2xl border border-zinc-800 bg-zinc-900/50 p-6 transition-colors hover:border-zinc-700",
+        "group flex flex-col rounded-2xl border border-border bg-card/50 p-6 transition-colors hover:border-border-hover",
         className
       )}
     >
@@ -64,10 +64,10 @@ export function FeatureCard({
         />
       )}
       <div className="flex items-center gap-3">
-        <h3 className="text-lg font-semibold text-zinc-100">{title}</h3>
+        <h3 className="text-lg font-semibold text-heading">{title}</h3>
         {badge && <Badge variant={badgeVariant}>{badge}</Badge>}
       </div>
-      <p className="mt-2 text-sm text-zinc-400 leading-relaxed">{description}</p>
+      <p className="mt-2 text-sm text-muted leading-relaxed">{description}</p>
     </div>
   );
 }

@@ -2,51 +2,79 @@
 
 import Link from "next/link";
 import { cn } from "@/lib/utils";
+import { useSplitActive } from "@/hooks/useSplitActive";
+
+/* Assembly icon mark only (no wordmark) — the stacked chevron/triangle */
+export function AssemblyMark({ className }: { className?: string }) {
+  return (
+    <svg
+      viewBox="0 0 36 35"
+      fill="currentColor"
+      className={className}
+      aria-hidden="true"
+    >
+      <path d="M35.327 25.05v5.867c0 2.075-1.711 3.758-3.822 3.758H1.1c-.936 0-1.405-1.113-.743-1.764l7.127-7.003a3.008 3.008 0 0 1 2.107-.857H35.33h-.002ZM35.33 11.802v5.865c0 2.075-1.712 3.757-3.824 3.757H12.051l8.92-8.765a3.005 3.005 0 0 1 2.107-.857H35.33h-.001ZM35.33 1.043v3.373c0 2.075-1.712 3.758-3.824 3.758h-5.97L33.534.312c.662-.65 1.794-.19 1.794.73Z" />
+    </svg>
+  );
+}
+
+/* ────────────────────────────────────────────────────────────
+   NAV LINK STYLE
+   ──────────────────────────────────────────────────────────── */
+const navLinkStyle: React.CSSProperties = {
+  fontFamily: "'PP Mori', var(--font-sans)",
+  fontWeight: 400,
+  fontSize: "1.1rem",
+  lineHeight: 1.2,
+  color: "var(--swatch-2)",
+  textDecoration: "none",
+};
 
 interface HeaderProps {
   className?: string;
-  editionBadge?: string;
 }
 
-export function Header({ className, editionBadge = "2.0" }: HeaderProps) {
+export function Header({ className }: HeaderProps) {
+  const hidden = useSplitActive();
+
   return (
     <header
-      className={cn(
-        "fixed top-0 left-0 right-0 z-50 border-b border-zinc-800 bg-[#101010]/80 backdrop-blur-md",
-        className
-      )}
+      className={cn("fixed top-0 left-0 right-0 z-50", className)}
+      style={{
+        backgroundColor: "#101010",
+        paddingTop: "0.8rem",
+        paddingBottom: "0.5rem",
+        paddingLeft: "0.9rem",
+        paddingRight: "0.9rem",
+        transform: hidden ? "translateY(-100%)" : "translateY(0)",
+        transition: "transform 0.8s cubic-bezier(0.25, 0.1, 0.25, 1)",
+      }}
     >
-      <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-6">
-        {/* Logo */}
-        <div className="flex items-center gap-4">
-          <Link href="/" className="flex items-center gap-2">
-            <span className="text-xl font-semibold text-zinc-100">Assembly</span>
-            {editionBadge && (
-              <span className="rounded bg-[#BCE7F4] px-1.5 py-0.5 text-xs font-bold text-zinc-900">
-                {editionBadge}
-              </span>
-            )}
-          </Link>
-        </div>
+      <div className="flex items-center justify-between">
+        {/* Left — Assembly */}
+        <Link href="/" style={navLinkStyle} className="transition-opacity hover:opacity-70">
+          Assembly
+        </Link>
 
-        {/* CTA */}
-        <div className="flex items-center gap-2 sm:gap-4">
+        {/* Right — Log in + Start free trial */}
+        <div className="flex items-center" style={{ gap: "1.5rem" }}>
           <a
             href="https://assembly.com"
             target="_blank"
             rel="noopener"
-            className="hidden sm:inline-flex h-8 items-center justify-center rounded-lg px-3 text-sm font-medium text-zinc-400 transition-colors hover:bg-zinc-800/50 hover:text-zinc-100"
+            style={navLinkStyle}
+            className="transition-opacity hover:opacity-70"
           >
-            Visit Assembly
+            Log in
           </a>
           <a
             href="https://assembly.com/signup?utm_source=edition&utm_medium=web&utm_campaign=assembly2-launch"
             target="_blank"
             rel="noopener"
-            className="inline-flex h-8 items-center justify-center rounded-lg bg-[#BCE7F4] px-3 text-sm font-medium text-zinc-900 transition-colors hover:bg-[#8AD4E9]"
+            style={navLinkStyle}
+            className="transition-opacity hover:opacity-70"
           >
-            <span className="hidden sm:inline">Start Free Trial</span>
-            <span className="sm:hidden">Try Free</span>
+            Start free trial
           </a>
         </div>
       </div>

@@ -68,8 +68,16 @@ export function ExpandableFeatureCard({
         ) : null}
 
         {/* Content */}
-        <h3 className="text-base sm:text-lg font-semibold text-zinc-100 pr-10">{title}</h3>
-        <p className="mt-2 text-sm text-zinc-400 leading-relaxed line-clamp-3">
+        <h3
+          className="text-base sm:text-lg pr-10"
+          style={{ fontWeight: 600, lineHeight: 1.15, letterSpacing: "-0.03em", color: "var(--swatch-1)" }}
+        >
+          {title}
+        </h3>
+        <p
+          className="mt-2 text-sm leading-relaxed line-clamp-3"
+          style={{ fontWeight: 600, lineHeight: 1.2, color: "var(--swatch-2)" }}
+        >
           {description}
         </p>
       </motion.div>

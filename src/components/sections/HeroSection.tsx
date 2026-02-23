@@ -1,93 +1,89 @@
 "use client";
 
-import { motion } from "framer-motion";
-import { ChevronDown } from "lucide-react";
-import { VideoPlaceholder } from "@/components/ui";
-import { BRAND } from "@/lib/constants";
-
 export function HeroSection() {
-  const scrollToContent = () => {
-    const firstSection = document.getElementById("client-experience");
-    if (firstSection) {
+  const scrollToSection = (id: string) => {
+    const element = document.getElementById(id);
+    if (element) {
       const offset = 120;
-      const y = firstSection.getBoundingClientRect().top + window.scrollY - offset;
+      const y = element.getBoundingClientRect().top + window.scrollY - offset;
       window.scrollTo({ top: y, behavior: "smooth" });
     }
   };
 
   return (
-    <section className="relative flex min-h-screen flex-col items-center justify-center px-4 sm:px-6 pt-16">
-      {/* Background gradient */}
-      <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-zinc-900/50 via-transparent to-[#101010]" />
-
-      <div className="relative z-10 mx-auto max-w-5xl text-center 2xl:max-w-6xl">
-        {/* Version badge */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-        >
-          <span className="inline-flex items-center rounded-full border border-zinc-700 bg-zinc-800/50 px-4 py-1.5 text-sm text-zinc-300">
-            Introducing Assembly 2.0
-          </span>
-        </motion.div>
-
-        {/* Main headline */}
-        <motion.h1
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.1 }}
-          className="mt-8 text-5xl font-bold tracking-tight text-zinc-100 sm:text-6xl lg:text-7xl 2xl:text-8xl"
-        >
-          <span className="text-[#BCE7F4]">{BRAND.name}</span> {BRAND.version}
-        </motion.h1>
-
-        {/* Tagline */}
-        <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.2 }}
-          className="mx-auto mt-4 sm:mt-6 max-w-2xl text-lg sm:text-xl text-zinc-400 2xl:text-2xl 2xl:max-w-3xl"
-        >
-          {BRAND.tagline}
-        </motion.p>
-
-        {/* Description */}
-        <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.3 }}
-          className="mx-auto mt-3 sm:mt-4 max-w-3xl text-sm sm:text-base text-zinc-500 2xl:text-lg 2xl:max-w-4xl"
-        >
-          {BRAND.description}
-        </motion.p>
-
-        {/* Video placeholder */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.4 }}
-          className="mt-12 2xl:mt-16"
-        >
-          <VideoPlaceholder label="Product Demo Video" className="2xl:max-w-5xl 2xl:mx-auto" />
-        </motion.div>
+    <section className="relative min-h-screen pt-24 sm:pt-32 overflow-hidden">
+      {/* ── Atmospheric background layer ── */}
+      <div className="absolute inset-0 z-0 overflow-hidden" aria-hidden="true">
+        <div className="hero-orb absolute -top-1/4 -left-1/4 h-[60vh] w-[60vh] rounded-full bg-white/[0.015] blur-[100px] animate-float-slow" />
+        <div className="hero-orb absolute -bottom-1/4 -right-1/4 h-[50vh] w-[50vh] rounded-full bg-white/[0.02] blur-[120px] animate-float-medium" />
+        <div
+          className="hero-orb absolute top-1/2 left-1/2 h-[40vh] w-[40vh] -translate-x-1/2 -translate-y-1/2 rounded-full bg-white/[0.01] blur-[80px] animate-float-slow"
+          style={{ animationDelay: "-7s" }}
+        />
       </div>
 
-      {/* Scroll indicator */}
-      <motion.button
-        onClick={scrollToContent}
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.5, delay: 0.8 }}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 text-zinc-500 transition-colors hover:text-zinc-300"
-      >
-        <motion.div
-          animate={{ y: [0, 8, 0] }}
-          transition={{ duration: 1.5, repeat: Infinity }}
+      {/* ── Hero content ── */}
+      <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6">
+        {/* Top bar */}
+        <div
+          className="hero-fade-up flex items-center justify-between mb-16 sm:mb-24"
+          style={{ animationDelay: "0.1s" }}
         >
-          <ChevronDown className="h-8 w-8" />
-        </motion.div>
-      </motion.button>
+          <span className="font-mono text-xs uppercase tracking-wider text-muted">
+            Assembly Editions
+          </span>
+          <div className="hidden sm:flex items-center gap-6">
+            <button
+              onClick={() => scrollToSection("client-experience")}
+              className="text-sm text-muted hover:text-foreground transition-colors"
+            >
+              Clients
+            </button>
+            <button
+              onClick={() => scrollToSection("payments")}
+              className="text-sm text-muted hover:text-foreground transition-colors"
+            >
+              Payments
+            </button>
+            <button
+              onClick={() => scrollToSection("developers")}
+              className="text-sm text-muted hover:text-foreground transition-colors"
+            >
+              Developers
+            </button>
+          </div>
+        </div>
+
+        {/* Editorial content — left-aligned */}
+        <div className="max-w-4xl pb-24 sm:pb-32">
+          <h1
+            className="hero-fade-up text-5xl font-semibold tracking-tighter leading-[0.95] text-heading sm:text-6xl lg:text-7xl 2xl:text-8xl"
+            style={{ animationDelay: "0.25s" }}
+          >
+            Assembly 2.0
+            <br />
+            is here
+          </h1>
+
+          <p
+            className="hero-fade-up mt-6 text-xl italic text-muted sm:mt-8 sm:text-2xl"
+            style={{ animationDelay: "0.4s" }}
+          >
+            A major upgrade across client experience, tasks, payments, and the
+            developer platform.
+          </p>
+
+          <p
+            className="hero-fade-up mt-6 max-w-2xl text-base text-muted-foreground leading-relaxed"
+            style={{ animationDelay: "0.55s" }}
+          >
+            Today we&apos;re launching Assembly 2.0 — a release that improves
+            nearly every part of the platform. New client portals, better task
+            management, consolidated payments, and a rebuilt developer
+            foundation.
+          </p>
+        </div>
+      </div>
     </section>
   );
 }

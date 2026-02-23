@@ -7,9 +7,8 @@ export function useScrollSpy(sectionIds: string[], offset: number = 100) {
 
   useEffect(() => {
     const handleScroll = () => {
-      // Tab should activate when the section heading is at/near the top of the viewport
-      // Use a small offset just below the sticky nav (~130px for header + nav)
-      const triggerPoint = 140;
+      // Use the caller-provided offset (defaults to 100)
+      const triggerPoint = offset;
 
       for (let i = sectionIds.length - 1; i >= 0; i--) {
         const element = document.getElementById(sectionIds[i]);

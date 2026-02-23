@@ -1,133 +1,220 @@
 "use client";
 
-import { motion } from "framer-motion";
-import { SectionHeading, Badge, Button, MediaPlaceholder } from "@/components/ui";
-import { Bot, Shield, ArrowRight, ExternalLink } from "lucide-react";
+import { useRef } from "react";
+import { motion, useScroll, useTransform } from "framer-motion";
 
-interface RoadmapCardProps {
-  icon: React.ReactNode;
-  title: string;
-  timing: string;
-  features: string[];
-  badge?: string;
-  badgeVariant?: "new" | "coming-soon";
-}
+/* ────────────────────────────────────────────────────────────
+   WHAT'S NEXT — Roadmap + CTA closing section.
 
-function RoadmapCard({
-  icon,
-  title,
-  timing,
-  features,
-  badge,
-  badgeVariant = "coming-soon",
-}: RoadmapCardProps) {
-  return (
-    <div className="rounded-2xl border border-zinc-800 bg-zinc-900/50 p-4 sm:p-6">
-      <div className="mb-3 sm:mb-4 inline-flex h-10 w-10 sm:h-12 sm:w-12 items-center justify-center rounded-xl bg-gradient-to-br from-zinc-800 to-zinc-700 text-[#BCE7F4]">
-        {icon}
-      </div>
-      <div className="flex items-center gap-2 sm:gap-3 flex-wrap">
-        <h3 className="text-lg sm:text-xl font-semibold text-zinc-100">{title}</h3>
-        {badge && <Badge variant={badgeVariant}>{badge}</Badge>}
-      </div>
-      <p className="mt-1 text-sm text-zinc-500">{timing}</p>
-      <ul className="mt-4 space-y-2">
-        {features.map((feature, index) => (
-          <li key={index} className="flex items-start gap-2 text-sm text-zinc-400">
-            <ArrowRight className="mt-0.5 h-4 w-4 shrink-0 text-[#BCE7F4]" />
-            {feature}
-          </li>
-        ))}
-      </ul>
-    </div>
-  );
-}
+   Zone A: Upcoming releases in subtle bordered cards.
+   Zone B: Centered conversion CTA with pill button.
+   ──────────────────────────────────────────────────────────── */
+
+const ROADMAP = [
+  {
+    title: "AI Edition",
+    description:
+      "ChatGPT App to ask questions about your clients from anywhere. MCP server for AI-native workflows. Deeper Ask Assembly experience inside the platform.",
+  },
+  {
+    title: "Scale Ready Edition",
+    description:
+      "Audit logs for compliance and security. SSO for enterprise authentication. Performance improvements for large teams.",
+  },
+];
 
 export function WhatsNextSection() {
+  const sectionRef = useRef<HTMLElement>(null);
+
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ["start end", "end end"],
+  });
+
+  // CTA zone entrance animation
+  const ctaOpacity = useTransform(scrollYProgress, [0.6, 0.85], [0, 1]);
+  const ctaY = useTransform(scrollYProgress, [0.6, 0.85], [20, 0]);
+
   return (
-    <section id="whats-next" className="py-16 sm:py-24">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-        >
-          <SectionHeading
-            title="What's next"
-            subtitle="Assembly 2.0 is live — but we're just getting started. Two more major releases are shipping in the next eight weeks."
+    <section
+      ref={sectionRef}
+      id="whats-next"
+      className="relative z-50"
+      style={{
+        backgroundColor: "#101010",
+        paddingTop: "clamp(4rem, 8vw, 6rem)",
+        paddingBottom: "clamp(4rem, 8vw, 6rem)",
+      }}
+    >
+      <div className="mx-auto max-w-7xl px-6 sm:px-8 lg:px-10">
+        {/* ══════════════════════════════════════════════════
+            ZONE A — Roadmap
+           ══════════════════════════════════════════════════ */}
+
+        {/* Mono label + extending rule */}
+        <div className="flex items-center">
+          <span
+            style={{
+              fontFamily: "var(--font-mono, monospace)",
+              fontWeight: 400,
+              fontSize: "0.8rem",
+              letterSpacing: "0.06em",
+              textTransform: "uppercase" as const,
+              color: "var(--swatch-5)",
+              whiteSpace: "nowrap" as const,
+              paddingRight: "1.5rem",
+            }}
+          >
+            What&apos;s next
+          </span>
+          <div
+            style={{
+              flex: 1,
+              height: "1px",
+              backgroundColor: "rgba(255, 255, 255, 0.08)",
+            }}
           />
-        </motion.div>
-
-        {/* Roadmap Cards */}
-        <div className="grid gap-6 md:grid-cols-2">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.1 }}
-          >
-            <RoadmapCard
-              icon={<Bot className="h-6 w-6" />}
-              title="AI Edition"
-              timing="Coming first"
-              features={[
-                "ChatGPT App to ask questions about your clients from anywhere",
-                "MCP server for AI-native workflows",
-                "Deeper Ask Assembly experience inside the platform",
-              ]}
-            />
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-          >
-            <RoadmapCard
-              icon={<Shield className="h-6 w-6" />}
-              title="Scale Ready Edition"
-              timing="Coming after AI Edition"
-              features={[
-                "Audit logs for compliance and security",
-                "SSO for enterprise authentication",
-                "Performance improvements for large teams",
-              ]}
-            />
-          </motion.div>
         </div>
 
-        {/* CTA Section */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5, delay: 0.3 }}
-          className="mt-16"
+        {/* Intro text */}
+        <p
+          style={{
+            fontFamily: "'PP Mori', var(--font-sans)",
+            fontWeight: 400,
+            fontSize: "clamp(1.05rem, 1.6vw, 1.25rem)",
+            lineHeight: 1.5,
+            color: "var(--swatch-3)",
+            maxWidth: "36rem",
+            margin: 0,
+            marginTop: "clamp(2rem, 4vw, 2.5rem)",
+          }}
         >
-          <div className="rounded-2xl border border-zinc-800 bg-gradient-to-br from-zinc-900 to-zinc-800/50 p-6 sm:p-8 text-center md:p-12">
-            <h3 className="text-xl sm:text-2xl font-bold text-zinc-100">
-              Try Assembly 2.0 Today
-            </h3>
-            <p className="mx-auto mt-3 sm:mt-4 max-w-xl text-sm sm:text-base text-zinc-400">
-              Start your free trial to experience the full platform, or explore our AI-generated client portal preview to see how Assembly can transform your client experience.
-            </p>
-            <div className="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row">
-              <a
-                href="https://assembly.com/signup?utm_source=edition&utm_medium=web&utm_campaign=assembly2-launch"
-                target="_blank"
-                rel="noopener"
+          Assembly 2.0 is live — but we&apos;re just getting started. Two more
+          major releases are shipping in the next eight weeks.
+        </p>
+
+        {/* Roadmap cards */}
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column" as const,
+            gap: "1rem",
+            marginTop: "clamp(2rem, 4vw, 3rem)",
+          }}
+        >
+          {ROADMAP.map((item) => (
+            <div
+              key={item.title}
+              style={{
+                border: "1px solid rgba(255, 255, 255, 0.08)",
+                borderRadius: "12px",
+                padding: "1.5rem 2rem",
+              }}
+            >
+              <h3
+                style={{
+                  fontFamily: "'PP Mori', var(--font-sans)",
+                  fontWeight: 600,
+                  fontSize: "1.1rem",
+                  lineHeight: 1.3,
+                  color: "var(--swatch-1)",
+                  margin: 0,
+                }}
               >
-                <Button size="lg">
-                  Start Free Trial
-                </Button>
-              </a>
-              <Button variant="secondary" size="lg">
-                Preview Your Portal
-                <ExternalLink className="ml-2 h-4 w-4" />
-              </Button>
+                {item.title}
+              </h3>
+              <p
+                style={{
+                  fontFamily: "'PP Mori', var(--font-sans)",
+                  fontWeight: 400,
+                  fontSize: "1rem",
+                  lineHeight: 1.5,
+                  color: "var(--swatch-3)",
+                  margin: 0,
+                  marginTop: "0.75rem",
+                }}
+              >
+                {item.description}
+              </p>
             </div>
+          ))}
+        </div>
+
+        {/* ══════════════════════════════════════════════════
+            ZONE B — Centered CTA
+           ══════════════════════════════════════════════════ */}
+        <motion.div
+          style={{
+            opacity: ctaOpacity,
+            y: ctaY,
+            textAlign: "center" as const,
+            paddingTop: "clamp(4rem, 8vw, 6rem)",
+            paddingBottom: "clamp(2rem, 4vw, 3rem)",
+          }}
+        >
+          <h2
+            style={{
+              fontFamily: "'PP Mori', var(--font-sans)",
+              fontWeight: 600,
+              fontSize: "clamp(1.6rem, 3vw, 2.4rem)",
+              lineHeight: 1.15,
+              letterSpacing: "-0.02em",
+              color: "var(--swatch-1)",
+              margin: 0,
+            }}
+          >
+            Try Assembly 2.0
+          </h2>
+
+          <p
+            style={{
+              fontFamily: "'PP Mori', var(--font-sans)",
+              fontWeight: 400,
+              fontSize: "1.1rem",
+              lineHeight: 1.4,
+              color: "var(--swatch-3)",
+              maxWidth: "28rem",
+              margin: "1rem auto 0",
+            }}
+          >
+            Start your free trial to experience the full platform.
+          </p>
+
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              gap: "1.5rem",
+              marginTop: "2rem",
+            }}
+          >
+            <a
+              href="https://assembly.com/signup?utm_source=edition&utm_medium=web&utm_campaign=assembly2-launch"
+              target="_blank"
+              rel="noopener"
+              style={{
+                fontFamily: "'PP Mori', var(--font-sans)",
+                fontWeight: 600,
+                fontSize: "0.95rem",
+                color: "#101010",
+                backgroundColor: "rgba(255, 255, 255, 0.9)",
+                padding: "0.75rem 2rem",
+                borderRadius: "9999px",
+                border: "none",
+                textDecoration: "none",
+                transition: "background-color 0.15s ease",
+              }}
+              onMouseEnter={(e) =>
+                (e.currentTarget.style.backgroundColor = "#ffffff")
+              }
+              onMouseLeave={(e) =>
+                (e.currentTarget.style.backgroundColor =
+                  "rgba(255, 255, 255, 0.9)")
+              }
+            >
+              Start free trial
+            </a>
           </div>
         </motion.div>
       </div>

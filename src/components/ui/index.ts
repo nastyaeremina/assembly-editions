@@ -1,5 +1,7 @@
 export { Badge } from "./Badge";
 export { Button } from "./Button";
+export { LoadingScreen } from "./LoadingScreen";
+export { LogoParticles } from "./LogoParticles";
 export { ExpandableFeatureCard } from "./ExpandableFeatureCard";
 export { FeatureCard } from "./FeatureCard";
 export { HorizontalFeatureCard } from "./HorizontalFeatureCard";
@@ -8,4 +10,7 @@ export { MacOSDock } from "./MacOSDock";
 export { MediaPlaceholder } from "./MediaPlaceholder";
 export { ScreenshotDisplay } from "./ScreenshotDisplay";
 export { SectionHeading } from "./SectionHeading";
+export { SectionReveal } from "./SectionReveal";
+export { SplitScreenWrapper } from "./SplitScreenWrapper";
 export { VideoPlaceholder } from "./VideoPlaceholder";
+export { CustomerStoryCard } from "./CustomerStoryCard";

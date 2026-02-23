@@ -9,8 +9,8 @@ interface BadgeProps {
 }
 
 const variantClasses = {
-  default: "bg-zinc-800 text-zinc-300",
-  new: "bg-[#BCE7F4] text-zinc-900",
+  default: "bg-badge-default text-badge-default-text",
+  new: "bg-badge-new text-badge-new-text",
   beta: "bg-amber-500/20 text-amber-400 border border-amber-500/30",
   "coming-soon": "bg-purple-500/20 text-purple-400 border border-purple-500/30",
 };
