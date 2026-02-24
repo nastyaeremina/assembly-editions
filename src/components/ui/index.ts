@@ -14,3 +14,4 @@ export { SectionReveal } from "./SectionReveal";
 export { SplitScreenWrapper } from "./SplitScreenWrapper";
 export { VideoPlaceholder } from "./VideoPlaceholder";
 export { CustomerStoryCard } from "./CustomerStoryCard";
+export { InteractiveAppLibrary } from "./InteractiveAppLibrary";

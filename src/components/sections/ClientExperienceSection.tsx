@@ -1,6 +1,6 @@
 "use client";
 
-import { ScreenshotDisplay, SectionReveal } from "@/components/ui";
+import { ScreenshotDisplay, SectionReveal, InteractiveAppLibrary } from "@/components/ui";
 
 interface ClientExperienceSectionProps {
   inSplit?: boolean;
@@ -72,10 +72,10 @@ export function ClientExperienceSection({ inSplit = false }: ClientExperienceSec
           </p>
         </SectionReveal>
 
-        {/* App Folders */}
+        {/* App Folders — Interactive Demo */}
         <SectionReveal delay={0.1}>
           <div style={{ marginBottom: "3.5rem" }}>
-            <ScreenshotDisplay src="/screenshots/app_folders.jpg" alt="App Folders" />
+            <InteractiveAppLibrary inSplit={inSplit} />
             <div className="grid gap-6 lg:grid-cols-12" style={{ marginTop: "2rem" }}>
               <div className="lg:col-span-4">
                 <h3 style={{ fontFamily: "'PP Mori', var(--font-sans)", fontWeight: 600, fontSize: "1.05rem", lineHeight: 1.3, letterSpacing: "-0.015em", color: "var(--swatch-1)", margin: 0 }}>

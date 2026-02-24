@@ -117,8 +117,7 @@ export function LoadingScreen() {
 
   return (
     <AnimatePresence>
-      {phase !== "done" && (
-        <motion.div
+      <motion.div
           key="loading-screen"
           onMouseMove={handleMouseMove}
           onTouchMove={handleTouchMove}
@@ -190,7 +189,6 @@ export function LoadingScreen() {
             }}
           />
         </motion.div>
-      )}
     </AnimatePresence>
   );
 }
