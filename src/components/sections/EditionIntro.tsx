@@ -75,13 +75,13 @@ function SubsectionList({
       style={{ overflow: "hidden" }}
     >
       <div ref={contentRef} style={{ position: "relative", paddingBottom: "0.5rem" }}>
-        {/* Vertical connector line */}
+        {/* Vertical connector line — stops where the last item's curve begins */}
         <div
           style={{
             position: "absolute",
             left: "0.7rem",
             top: "0.2rem",
-            bottom: "calc(0.5rem + 0.65rem)",
+            bottom: "calc(0.5rem + 0.65rem + 0.6rem)",
             width: "1px",
             backgroundColor: "rgba(255, 255, 255, 0.12)",
           }}
@@ -89,6 +89,9 @@ function SubsectionList({
         {subsections.map((sub, idx) => {
           const isActive = activeSubsection === sub.id;
           const isLast = idx === subsections.length - 1;
+          const lineColor = isActive
+            ? "rgba(255, 255, 255, 0.3)"
+            : "rgba(255, 255, 255, 0.12)";
           return (
             <button
               key={sub.id}
@@ -108,20 +111,35 @@ function SubsectionList({
                 transition: "color 0.2s ease",
               }}
             >
-              {/* Horizontal tick from vertical line */}
-              <div
-                style={{
-                  position: "absolute",
-                  left: "0.7rem",
-                  top: "50%",
-                  width: "0.5rem",
-                  height: "1px",
-                  backgroundColor: isActive
-                    ? "rgba(255, 255, 255, 0.3)"
-                    : "rgba(255, 255, 255, 0.12)",
-                  transition: "background-color 0.2s ease",
-                }}
-              />
+              {isLast ? (
+                /* Curved corner for last item — └ shape */
+                <div
+                  style={{
+                    position: "absolute",
+                    left: "0.7rem",
+                    bottom: "50%",
+                    width: "0.5rem",
+                    height: "0.6rem",
+                    borderLeft: `1px solid ${lineColor}`,
+                    borderBottom: `1px solid ${lineColor}`,
+                    borderBottomLeftRadius: "4px",
+                    transition: "border-color 0.2s ease",
+                  }}
+                />
+              ) : (
+                /* Straight horizontal tick ├ shape */
+                <div
+                  style={{
+                    position: "absolute",
+                    left: "0.7rem",
+                    top: "50%",
+                    width: "0.5rem",
+                    height: "1px",
+                    backgroundColor: lineColor,
+                    transition: "background-color 0.2s ease",
+                  }}
+                />
+              )}
               <span
                 style={{
                   fontFamily: "'PP Mori', var(--font-sans)",
