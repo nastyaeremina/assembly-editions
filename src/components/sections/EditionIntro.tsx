@@ -83,7 +83,7 @@ function SubsectionList({
             top: "0.2rem",
             bottom: "calc(0.5rem + 0.65rem + 0.6rem)",
             width: "1px",
-            backgroundColor: "rgba(255, 255, 255, 0.12)",
+            backgroundColor: "rgba(255, 255, 255, 0.15)",
           }}
         />
         {subsections.map((sub, idx) => {
