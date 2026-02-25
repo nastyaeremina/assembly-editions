@@ -1,6 +1,6 @@
 "use client";
 
-import { ScreenshotDisplay, SectionReveal, InteractiveAppLibrary } from "@/components/ui";
+import { SectionReveal, InteractiveAppLibrary, ThemedClientHome } from "@/components/ui";
 
 interface ClientExperienceSectionProps {
   inSplit?: boolean;
@@ -74,7 +74,7 @@ export function ClientExperienceSection({ inSplit = false }: ClientExperienceSec
 
         {/* App Folders — Interactive Demo */}
         <SectionReveal delay={0.1}>
-          <div style={{ marginBottom: "3.5rem" }}>
+          <div id="app-folders" style={{ marginBottom: "3.5rem" }}>
             <InteractiveAppLibrary inSplit={inSplit} />
             <div className="grid gap-6 lg:grid-cols-12" style={{ marginTop: "2rem" }}>
               <div className="lg:col-span-4">
@@ -91,19 +91,19 @@ export function ClientExperienceSection({ inSplit = false }: ClientExperienceSec
           </div>
         </SectionReveal>
 
-        {/* Homepage Variants */}
+        {/* Homepage Variants — Interactive Themed Preview */}
         <SectionReveal delay={0.1}>
-          <div>
-            <ScreenshotDisplay src="/screenshots/home.jpg" alt="Homepage Variants" />
+          <div id="client-segments">
+            <ThemedClientHome inSplit={inSplit} />
             <div className="grid gap-6 lg:grid-cols-12" style={{ marginTop: "2rem" }}>
               <div className="lg:col-span-4">
                 <h3 style={{ fontFamily: "'PP Mori', var(--font-sans)", fontWeight: 600, fontSize: "1.05rem", lineHeight: 1.3, letterSpacing: "-0.015em", color: "var(--swatch-1)", margin: 0 }}>
-                  Homepage Variants
+                  Client Segments
                 </h3>
               </div>
               <div className="lg:col-span-8">
                 <p style={{ fontFamily: "'PP Mori', var(--font-sans)", fontWeight: 400, fontSize: "0.975rem", lineHeight: 1.55, color: "var(--swatch-3)", margin: 0 }}>
-                  Create up to five homepage variants and automatically show the right one to each client based on custom field tags. Running a tiered service model? Premium clients see dedicated resources while basic clients see standard onboarding. The Home App itself has been refreshed with updated banners, improved responsive loading, and a cleaner layout.
+                  Create up to five homepage variants and route clients to the right one automatically, based on segment tags. Premium clients see dedicated resources while new clients see onboarding steps. The Home App itself has been refreshed with updated banners, improved responsive loading, and a cleaner layout.
                 </p>
               </div>
             </div>

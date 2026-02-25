@@ -1,104 +1,158 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useRef } from "react";
+import { motion, useInView } from "framer-motion";
+import { Play } from "lucide-react";
 
 /* ────────────────────────────────────────────────────────────
    HERO SECTION
-   Dark background with stacked horizontal marquee rows.
-   Each row scrolls large h1-style text at varying speeds,
-   inspired by the Cargo reference design.
+   Centered title + subtitle + demo video placeholder.
+   Clean, editorial approach with staggered entrance.
    ──────────────────────────────────────────────────────────── */
 
-const MARQUEE_ROWS = [
-  { text: "Assembly 2.0 — The biggest update in Assembly history", speed: 40, bg: "#5BE4C2" },
-  { text: "Client Portals, Reimagined — Organization + Personalized Homepages", speed: 30, bg: "#FF9092" },
-  { text: "Project Management That Actually Fits How You Work", speed: 50, bg: "#C5B3FF" },
-  { text: "Payments, Consolidated — Invoicing + Billing in One Place", speed: 35, bg: "#D6F990" },
-  { text: "For Developers — APIs, Custom Apps + Integrations", speed: 45, bg: "#7DA4FF" },
-];
-
-function MarqueeRow({ text, speed, bg }: { text: string; speed: number; bg: string }) {
-  const innerRef = useRef<HTMLDivElement>(null);
-  const offsetRef = useRef(0);
-  const rafRef = useRef<number>(0);
-
-  useEffect(() => {
-    const el = innerRef.current;
-    if (!el) return;
-
-    let lastTime = 0;
-
-    function animate(time: number) {
-      if (lastTime) {
-        const delta = (time - lastTime) / 1000;
-        offsetRef.current -= speed * delta;
-
-        // Reset when first copy has scrolled fully out
-        const singleWidth = el!.scrollWidth / 2;
-        if (Math.abs(offsetRef.current) >= singleWidth) {
-          offsetRef.current += singleWidth;
-        }
-
-        el!.style.transform = `translate3d(${offsetRef.current}px, 0, 0)`;
-      }
-      lastTime = time;
-      rafRef.current = requestAnimationFrame(animate);
-    }
-
-    rafRef.current = requestAnimationFrame(animate);
-    return () => cancelAnimationFrame(rafRef.current);
-  }, [speed]);
-
-  return (
-    <div
-      className="overflow-hidden"
-      style={{
-        backgroundColor: bg,
-        paddingTop: "1.2rem",
-        paddingBottom: "0.8rem",
-        borderRadius: "0.5rem",
-      }}
-    >
-      <div
-        ref={innerRef}
-        className="flex whitespace-nowrap will-change-transform"
-        style={{ gap: "0.5em" }}
-      >
-        {/* Duplicate the content for seamless loop */}
-        {[0, 1].map((i) => (
-          <span
-            key={i}
-            style={{
-              fontWeight: 600,
-              fontSize: "clamp(2.5rem, 8vw, 9.2rem)",
-              lineHeight: 1.15,
-              letterSpacing: "-0.03em",
-              color: "#101010",
-              paddingRight: "0.5em",
-            }}
-          >
-            {text}
-          </span>
-        ))}
-      </div>
-    </div>
-  );
-}
-
 export function CollageHero() {
+  const ref = useRef<HTMLElement>(null);
+  const isInView = useInView(ref, { once: true, margin: "-40px" });
+
   return (
     <section
+      ref={ref}
       className="relative w-full overflow-hidden"
       style={{ backgroundColor: "#101010" }}
       aria-label="Assembly 2.0 hero"
     >
       <div
-        className="flex flex-col"
-        style={{ gap: "0.5rem", paddingTop: "4.5rem", paddingBottom: "0.5rem", paddingLeft: "0.5rem", paddingRight: "0.5rem" }}
+        style={{
+          maxWidth: "1100px",
+          margin: "0 auto",
+          paddingTop: "clamp(8rem, 16vw, 14rem)",
+          paddingBottom: "clamp(4rem, 8vw, 6rem)",
+          paddingLeft: "1.5rem",
+          paddingRight: "1.5rem",
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+        }}
       >
-        {MARQUEE_ROWS.map((row, i) => (
-          <MarqueeRow key={i} text={row.text} speed={row.speed} bg={row.bg} />
-        ))}
+        {/* ── Version badge ── */}
+        <motion.div
+          initial={{ opacity: 0, y: 12 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.6, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
+          style={{
+            fontFamily: "var(--font-mono, monospace)",
+            fontWeight: 400,
+            fontSize: "0.75rem",
+            letterSpacing: "0.08em",
+            textTransform: "uppercase",
+            color: "rgba(255, 255, 255, 0.45)",
+            marginBottom: "1.5rem",
+          }}
+        >
+          Assembly 2.0
+        </motion.div>
+
+        {/* ── Title ── */}
+        <motion.h1
+          initial={{ opacity: 0, y: 20 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.7, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
+          style={{
+            fontFamily: "'PP Mori', var(--font-sans)",
+            fontWeight: 600,
+            fontSize: "clamp(2.4rem, 5.5vw, 4.2rem)",
+            lineHeight: 1.08,
+            letterSpacing: "-0.035em",
+            color: "var(--swatch-2, #f5f5f5)",
+            margin: 0,
+            textAlign: "center",
+            maxWidth: "800px",
+          }}
+        >
+          The biggest update in Assembly&nbsp;history.
+        </motion.h1>
+
+        {/* ── Subtitle ── */}
+        <motion.p
+          initial={{ opacity: 0, y: 16 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.7, delay: 0.35, ease: [0.22, 1, 0.36, 1] }}
+          style={{
+            fontFamily: "'PP Mori', var(--font-sans)",
+            fontWeight: 400,
+            fontSize: "clamp(1rem, 1.6vw, 1.2rem)",
+            lineHeight: 1.5,
+            letterSpacing: "-0.01em",
+            color: "var(--swatch-3, #999)",
+            margin: 0,
+            marginTop: "1.5rem",
+            textAlign: "center",
+            maxWidth: "580px",
+          }}
+        >
+          This release touches nearly every part of the platform — how clients
+          experience your portal, how you manage tasks and billing, and how
+          developers build on&nbsp;Assembly.
+        </motion.p>
+
+        {/* ── Video placeholder ── */}
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.8, delay: 0.5, ease: [0.22, 1, 0.36, 1] }}
+          style={{
+            width: "100%",
+            maxWidth: "960px",
+            marginTop: "clamp(3rem, 5vw, 4.5rem)",
+            aspectRatio: "16 / 9",
+            borderRadius: "16px",
+            overflow: "hidden",
+            border: "1px solid rgba(255, 255, 255, 0.08)",
+            backgroundColor: "rgba(255, 255, 255, 0.03)",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            cursor: "pointer",
+            position: "relative",
+          }}
+        >
+          {/* Subtle gradient overlay */}
+          <div
+            style={{
+              position: "absolute",
+              inset: 0,
+              background:
+                "radial-gradient(ellipse at center, rgba(255,255,255,0.02) 0%, transparent 70%)",
+              pointerEvents: "none",
+            }}
+          />
+
+          {/* Play button */}
+          <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              width: "72px",
+              height: "72px",
+              borderRadius: "50%",
+              backgroundColor: "rgba(255, 255, 255, 0.08)",
+              border: "1px solid rgba(255, 255, 255, 0.1)",
+              position: "relative",
+              transition: "background-color 0.3s ease",
+            }}
+          >
+            <Play
+              size={28}
+              style={{
+                color: "rgba(255, 255, 255, 0.6)",
+                marginLeft: "3px",
+              }}
+              strokeWidth={1.5}
+              fill="rgba(255, 255, 255, 0.6)"
+            />
+          </div>
+        </motion.div>
       </div>
     </section>
   );

@@ -33,6 +33,15 @@
   font-display: swap;
 }
 
+/* Inter - Used inside portal preview mockups */
+@font-face {
+  font-family: "Inter";
+  src: url("/fonts/Inter-VariableFont_opsz,wght copy.ttf") format("truetype");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
 /* ABC Diatype Mono - Monospace font */
 @font-face {
   font-family: "ABC Diatype Mono";

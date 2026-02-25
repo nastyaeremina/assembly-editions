@@ -1,7 +1,6 @@
 "use client";
 
 import { useRef } from "react";
-import Image from "next/image";
 import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
 import { cn } from "@/lib/utils";
 
@@ -24,7 +23,7 @@ function DockIcon({ children, mouseX, label, hasIndicator }: DockIconProps) {
     return val - bounds.x - bounds.width / 2;
   });
 
-  const widthSync = useTransform(distance, [-200, 0, 200], [72, 100, 72]);
+  const widthSync = useTransform(distance, [-200, 0, 200], [96, 124, 96]);
   const width = useSpring(widthSync, { mass: 0.1, stiffness: 150, damping: 12 });
 
   const ySync = useTransform(distance, [-200, 0, 200], [0, -16, 0]);
@@ -58,40 +57,50 @@ export function MacOSDock({ className }: MacOSDockProps) {
 
   const icons = [
     {
-      label: "Finder",
+      label: "Mail",
       hasIndicator: true,
-      src: "/logos/finder.webp",
+      src: "/Icons/_System App Icon.svg",
     },
     {
-      label: "Messages",
+      label: "Safari",
       hasIndicator: true,
-      src: "/logos/messages.svg",
+      src: "/Icons/_System App Icon-1.svg",
+    },
+    {
+      label: "Folder",
+      hasIndicator: true,
+      src: "/Icons/_System App Icon copy.svg",
     },
     {
       label: "Assembly",
       hasIndicator: true,
-      src: "/logos/assembly-square.png",
-    },
-    {
-      label: "Claude",
-      hasIndicator: false,
-      src: "/logos/claude.webp",
+      src: "/Icons/_System App Icon-2.svg",
     },
     {
       label: "Notes",
       hasIndicator: false,
-      src: "/logos/notes.jpg",
+      src: "/Icons/_System App Icon-1 copy.svg",
+    },
+    {
+      label: "Music",
+      hasIndicator: false,
+      src: "/Icons/Bitmap.svg",
+    },
+    {
+      label: "FaceTime",
+      hasIndicator: false,
+      src: "/Icons/Bitmap copy.svg",
     },
   ];
 
   return (
-    <div className={cn("flex items-center justify-center w-full", className)}>
+    <div className={cn("w-full", className)}>
       {/* Fixed height container to prevent parent expansion on hover */}
-      <div className="h-[120px] flex items-end pb-2">
+      <div className="h-[140px] flex items-end pb-2 w-full">
         <motion.div
           onMouseMove={(e) => mouseX.set(e.pageX)}
           onMouseLeave={() => mouseX.set(Infinity)}
-          className="flex items-end gap-3 rounded-2xl bg-zinc-800/90 backdrop-blur-xl px-4 py-3 border border-zinc-700/50 shadow-2xl"
+          className="flex items-end gap-3 rounded-2xl bg-zinc-800/90 backdrop-blur-xl px-4 py-3 border border-zinc-700/50 shadow-2xl w-full justify-between"
         >
         {icons.map((icon) => (
           <DockIcon
@@ -100,11 +109,10 @@ export function MacOSDock({ className }: MacOSDockProps) {
             label={icon.label}
             hasIndicator={icon.hasIndicator}
           >
-            <Image
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
               src={icon.src}
               alt={icon.label}
-              width={100}
-              height={100}
               className="h-full w-full rounded-[14px] object-cover"
               draggable={false}
             />

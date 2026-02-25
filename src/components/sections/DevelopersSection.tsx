@@ -1,6 +1,6 @@
 "use client";
 
-import { MediaPlaceholder, SectionReveal } from "@/components/ui";
+import { AppBridgeCodeDemo, SectionReveal } from "@/components/ui";
 
 interface DevelopersSectionProps {
   inSplit?: boolean;
@@ -26,22 +26,6 @@ const body: React.CSSProperties = {
   margin: 0,
 };
 
-const subHeading: React.CSSProperties = {
-  fontFamily: "'PP Mori', var(--font-sans)",
-  fontWeight: 600,
-  fontSize: "1rem",
-  color: "var(--swatch-2)",
-  margin: "0 0 0.4rem 0",
-};
-
-const subBody: React.CSSProperties = {
-  fontFamily: "'PP Mori', var(--font-sans)",
-  fontWeight: 400,
-  fontSize: "1rem",
-  lineHeight: 1.5,
-  color: "var(--swatch-4)",
-  margin: 0,
-};
 
 export function DevelopersSection({ inSplit = false }: DevelopersSectionProps) {
   return (
@@ -111,8 +95,8 @@ export function DevelopersSection({ inSplit = false }: DevelopersSectionProps) {
 
         {/* ── New Custom App Base ── */}
         <SectionReveal delay={0.1}>
-          <div style={{ marginBottom: "3.5rem" }}>
-            <MediaPlaceholder label="Custom App Base" aspectRatio="16:9" />
+          <div id="custom-app-base" style={{ marginBottom: "3.5rem" }}>
+            <AppBridgeCodeDemo inSplit={inSplit} />
             <div className="grid gap-6 lg:grid-cols-12" style={{ marginTop: "2rem" }}>
               <div className="lg:col-span-4">
                 <h3 style={heading}>New custom app base</h3>
@@ -129,7 +113,7 @@ export function DevelopersSection({ inSplit = false }: DevelopersSectionProps) {
 
         {/* ── Secure App Sessions ── */}
         <SectionReveal delay={0.1}>
-          <div style={{ marginBottom: "3.5rem" }}>
+          <div id="secure-app-sessions" style={{ marginBottom: "3.5rem" }}>
             <div className="grid gap-6 lg:grid-cols-12">
               <div className="lg:col-span-4">
                 <h3 style={heading}>Secure app sessions</h3>
@@ -146,7 +130,7 @@ export function DevelopersSection({ inSplit = false }: DevelopersSectionProps) {
 
         {/* ── Tasks API ── */}
         <SectionReveal delay={0.1}>
-          <div style={{ marginBottom: "3.5rem" }}>
+          <div id="tasks-api" style={{ marginBottom: "3.5rem" }}>
             <div className="grid gap-6 lg:grid-cols-12">
               <div className="lg:col-span-4">
                 <h3 style={heading}>Tasks API: comments &amp; attachments</h3>

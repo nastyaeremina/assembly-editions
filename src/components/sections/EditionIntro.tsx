@@ -1,17 +1,23 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import { BRAND, SPLIT_SECTIONS } from "@/lib/constants";
+import { useEffect, useState, useRef } from "react";
+import { SPLIT_SECTIONS } from "@/lib/constants";
 import { useScrollSpy } from "@/hooks/useScrollSpy";
 import { useSplitActive } from "@/hooks/useSplitActive";
+import { motion, AnimatePresence } from "framer-motion";
 
 /* ────────────────────────────────────────────────────────────
    EDITION INTRO — Fixed right sidebar (desktop)
    Only visible while the split-content area is in viewport.
+   Now with expandable subsections that track scroll position.
    ──────────────────────────────────────────────────────────── */
 
 const sectionIds = SPLIT_SECTIONS.map((s) => s.id);
-const NUMBERS = SPLIT_SECTIONS.map((s) => s.number);
+
+/* Collect ALL subsection IDs for the secondary scroll spy */
+const allSubsectionIds = SPLIT_SECTIONS.flatMap((s) =>
+  s.subsections.map((sub) => sub.id)
+);
 
 function scrollToSection(id: string) {
   const el = document.getElementById(id);
@@ -40,9 +46,74 @@ function LiveClock() {
   return <span>{time}</span>;
 }
 
+/* ── Subsection list with height animation ── */
+function SubsectionList({
+  subsections,
+  activeSubsection,
+}: {
+  subsections: { id: string; label: string }[];
+  activeSubsection: string;
+}) {
+  const contentRef = useRef<HTMLDivElement>(null);
+  const [height, setHeight] = useState(0);
+
+  useEffect(() => {
+    if (contentRef.current) {
+      setHeight(contentRef.current.scrollHeight);
+    }
+  }, [subsections]);
+
+  return (
+    <motion.div
+      initial={{ height: 0, opacity: 0 }}
+      animate={{ height, opacity: 1 }}
+      exit={{ height: 0, opacity: 0 }}
+      transition={{
+        height: { duration: 0.3, ease: [0.25, 0.1, 0.25, 1] },
+        opacity: { duration: 0.2, ease: "easeOut" },
+      }}
+      style={{ overflow: "hidden" }}
+    >
+      <div ref={contentRef}>
+        {subsections.map((sub) => {
+          const isActive = activeSubsection === sub.id;
+          return (
+            <button
+              key={sub.id}
+              onClick={() => scrollToSection(sub.id)}
+              style={{
+                display: "block",
+                width: "100%",
+                background: "none",
+                border: "none",
+                cursor: "pointer",
+                textAlign: "left",
+                fontFamily: "'PP Mori', var(--font-sans)",
+                fontSize: "0.85rem",
+                letterSpacing: "-0.01em",
+                fontWeight: 400,
+                color: isActive
+                  ? "rgba(255, 255, 255, 0.7)"
+                  : "rgba(255, 255, 255, 0.35)",
+                paddingLeft: "2.25rem",
+                paddingTop: "0.4rem",
+                paddingBottom: "0.4rem",
+                transition: "color 0.2s ease",
+              }}
+            >
+              {sub.label}
+            </button>
+          );
+        })}
+      </div>
+    </motion.div>
+  );
+}
+
 /* ── Desktop: Fixed right sidebar ── */
 export function EditionIntro() {
   const activeSection = useScrollSpy(sectionIds, 140);
+  const activeSubsection = useScrollSpy(allSubsectionIds, 200);
   const visible = useSplitActive();
 
   return (
@@ -60,43 +131,14 @@ export function EditionIntro() {
       }}
       aria-label="Assembly Editions overview"
     >
-      {/* ── Top: Title + Description ── */}
+      {/* ── Section nav ── */}
       <div>
-        <h2
-          style={{
-            fontFamily: "'PP Mori', var(--font-sans)",
-            fontWeight: 600,
-            fontSize: "1.3rem",
-            lineHeight: 1.2,
-            letterSpacing: "-0.02em",
-            color: "var(--swatch-1)",
-            margin: "0 0 1.2rem 0",
-          }}
-        >
-          {BRAND.name} {BRAND.version}
-        </h2>
-
-        <p
-          style={{
-            fontFamily: "'PP Mori', var(--font-sans)",
-            fontWeight: 400,
-            fontSize: "1rem",
-            lineHeight: 1.5,
-            color: "var(--swatch-4)",
-            margin: "0 0 2rem 0",
-          }}
-        >
-          Today we&apos;re launching {BRAND.name} {BRAND.version}. {BRAND.description} Here&apos;s what&apos;s new.
-        </p>
-
-        {/* ── Section nav ── */}
         <nav aria-label="Section navigation">
           <ul
             style={{
               listStyle: "none",
               margin: 0,
               padding: 0,
-              borderTop: "1px solid rgba(255, 255, 255, 0.12)",
             }}
           >
             {SPLIT_SECTIONS.map((section, i) => {
@@ -129,16 +171,29 @@ export function EditionIntro() {
                         : "rgba(255, 255, 255, 0.3)",
                     }}
                   >
-                    <span style={{ minWidth: "1.5rem" }}>{NUMBERS[i]}</span>
+                    <span style={{ minWidth: "1.5rem" }}>
+                      {section.number}
+                    </span>
                     <span
                       style={{
                         fontFamily: "'PP Mori', var(--font-sans)",
+                        fontWeight: isActive ? 500 : 400,
                         letterSpacing: "-0.01em",
                       }}
                     >
                       {section.label}
                     </span>
                   </button>
+
+                  {/* Expandable subsections */}
+                  <AnimatePresence>
+                    {isActive && section.subsections.length > 0 && (
+                      <SubsectionList
+                        subsections={section.subsections}
+                        activeSubsection={activeSubsection}
+                      />
+                    )}
+                  </AnimatePresence>
                 </li>
               );
             })}
@@ -167,40 +222,6 @@ export function EditionIntroMobile() {
 
   return (
     <div className="lg:hidden">
-      {/* Intro block */}
-      <div
-        style={{
-          backgroundColor: "#101010",
-          padding: "2.5rem 1.2rem 1.5rem",
-        }}
-      >
-        <h2
-          style={{
-            fontFamily: "'PP Mori', var(--font-sans)",
-            fontWeight: 600,
-            fontSize: "1.3rem",
-            lineHeight: 1.2,
-            letterSpacing: "-0.02em",
-            color: "var(--swatch-1)",
-            margin: "0 0 0.8rem 0",
-          }}
-        >
-          {BRAND.name} {BRAND.version}
-        </h2>
-        <p
-          style={{
-            fontFamily: "'PP Mori', var(--font-sans)",
-            fontWeight: 400,
-            fontSize: "0.95rem",
-            lineHeight: 1.4,
-            color: "var(--swatch-4)",
-            margin: 0,
-          }}
-        >
-          Today we&apos;re launching {BRAND.name} {BRAND.version}. {BRAND.description}
-        </p>
-      </div>
-
       {/* Sticky horizontal nav */}
       <nav
         className="sticky top-10 z-40"
@@ -236,7 +257,7 @@ export function EditionIntroMobile() {
                   transition: "all 0.2s",
                 }}
               >
-                {NUMBERS[i]} {section.shortLabel}
+                {section.number} {section.shortLabel}
               </button>
             );
           })}

@@ -89,7 +89,7 @@ const MessagesIcon = () => (
   <svg width="16" height="16" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M7.95703 18.7852L6.48047 19.8281C6.19531 20.0312 5.82031 20.0547 5.50781 19.8945C5.19531 19.7344 5 19.4141 5 19.0625V16.25H3.75C1.67969 16.25 0 14.5703 0 12.5V3.75C0 1.67969 1.67969 0 3.75 0H16.25C18.3203 0 20 1.67969 20 3.75V12.5C20 14.5703 18.3203 16.25 16.25 16.25H11.5469L7.95703 18.7852ZM10.4688 14.7187C10.7852 14.4961 11.1641 14.375 11.5508 14.375H16.25C17.2852 14.375 18.125 13.5352 18.125 12.5V3.75C18.125 2.71484 17.2852 1.875 16.25 1.875H3.75C2.71484 1.875 1.875 2.71484 1.875 3.75V12.5C1.875 13.5352 2.71484 14.375 3.75 14.375H5.9375C6.34375 14.375 6.69141 14.6328 6.82031 14.9961C6.85547 15.0937 6.875 15.1992 6.875 15.3125V17.2539C8.15234 16.3516 9.34766 15.5078 10.4648 14.7187H10.4688Z" fill="currentColor"/></svg>
 );
 const BillingIcon = () => (
-  <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><rect x="2" y="3" width="12" height="10" rx="1" /><path d="M2 6h12" /><path d="M5 9h3" /></svg>
+  <svg width="16" height="16" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M10.6667 2.33325C10.85 2.33325 11 2.48325 11 2.66659V3.33325H1V2.66659C1 2.48325 1.15 2.33325 1.33333 2.33325H10.6667ZM11 4.49995V9.33325C11 9.51659 10.85 9.66659 10.6667 9.66659H1.33333C1.15 9.66659 1 9.51659 1 9.33325V4.49995L6 4.49995L11 4.49995ZM1.33333 1.33325C0.597917 1.33325 0 1.93117 0 2.66659V9.33325C0 10.0687 0.597917 10.6666 1.33333 10.6666H10.6667C11.4021 10.6666 12 10.0687 12 9.33325V2.66659C12 1.93117 11.4021 1.33325 10.6667 1.33325H1.33333ZM2.5 7.66659C2.22292 7.66659 2 7.8895 2 8.16659C2 8.44367 2.22292 8.66659 2.5 8.66659H3.5C3.77708 8.66659 4 8.44367 4 8.16659C4 7.8895 3.77708 7.66659 3.5 7.66659H2.5Z" fill="currentColor"/></svg>
 );
 const FilesIcon = () => (
   <svg width="16" height="16" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M9.875 1.875H5.5C5.15625 1.875 4.875 2.15625 4.875 2.5V17.5C4.875 17.8438 5.15625 18.125 5.5 18.125H15.5C15.8438 18.125 16.125 17.8438 16.125 17.5V8.125H12.6875C11.1328 8.125 9.875 6.86719 9.875 5.3125V1.875ZM15.3477 6.25L11.75 2.65234V5.3125C11.75 5.83203 12.168 6.25 12.6875 6.25H15.3477ZM3 2.5C3 1.12109 4.12109 0 5.5 0H10.7148C11.3789 0 12.0156 0.261719 12.4844 0.730469L17.2695 5.51953C17.7383 5.98828 18 6.625 18 7.28906V17.5C18 18.8789 16.8789 20 15.5 20H5.5C4.12109 20 3 18.8789 3 17.5V2.5Z" fill="currentColor"/></svg>
@@ -98,7 +98,7 @@ const TasksIcon = () => (
   <svg width="16" height="16" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6.00977 2.81626C6.35742 2.42954 6.32617 1.83969 5.93945 1.49204C5.55273 1.14438 4.96289 1.17563 4.61523 1.56235L2.4668 3.94907L1.60352 3.08579C1.23633 2.72251 0.642578 2.72251 0.275391 3.08579C-0.0917969 3.44907 -0.0917969 4.04673 0.275391 4.41001L1.83789 5.97251C2.02148 6.1561 2.26758 6.25376 2.52539 6.24594C2.7832 6.23813 3.02539 6.12876 3.19727 5.93735L6.00977 2.81235V2.81626ZM6.00977 9.06626C6.35742 8.67954 6.32617 8.08969 5.93945 7.74204C5.55273 7.39438 4.96289 7.42563 4.61523 7.81235L2.4668 10.1991L1.60352 9.33579C1.23633 8.9686 0.642578 8.9686 0.279297 9.33579C-0.0839844 9.70298 -0.0878906 10.2967 0.279297 10.66L1.8418 12.2225C2.02539 12.4061 2.27148 12.5038 2.5293 12.4959C2.78711 12.4881 3.0293 12.3788 3.20117 12.1874L6.01367 9.06235L6.00977 9.06626ZM8.43945 4.68735H19.0645C19.584 4.68735 20.002 4.26938 20.002 3.74985C20.002 3.23032 19.584 2.81235 19.0645 2.81235H8.43945C7.91992 2.81235 7.50195 3.23032 7.50195 3.74985C7.50195 4.26938 7.91992 4.68735 8.43945 4.68735ZM7.50195 9.99985C7.50195 10.5194 7.91992 10.9374 8.43945 10.9374H19.0645C19.584 10.9374 20.002 10.5194 20.002 9.99985C20.002 9.48032 19.584 9.06235 19.0645 9.06235H8.43945C7.91992 9.06235 7.50195 9.48032 7.50195 9.99985ZM6.25195 16.2499C6.25195 16.7694 6.66992 17.1874 7.18945 17.1874H19.0645C19.584 17.1874 20.002 16.7694 20.002 16.2499C20.002 15.7303 19.584 15.3124 19.0645 15.3124H7.18945C6.66992 15.3124 6.25195 15.7303 6.25195 16.2499ZM3.75195 16.2499C3.75195 15.9183 3.62026 15.6004 3.38584 15.366C3.15142 15.1315 2.83347 14.9999 2.50195 14.9999C2.17043 14.9999 1.85249 15.1315 1.61807 15.366C1.38365 15.6004 1.25195 15.9183 1.25195 16.2499C1.25195 16.5814 1.38365 16.8993 1.61807 17.1337C1.85249 17.3682 2.17043 17.4999 2.50195 17.4999C2.83347 17.4999 3.15142 17.3682 3.38584 17.1337C3.62026 16.8993 3.75195 16.5814 3.75195 16.2499Z" fill="currentColor"/></svg>
 );
 const ReportIcon = () => (
-  <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M9 2H4a1 1 0 00-1 1v10a1 1 0 001 1h8a1 1 0 001-1V6L9 2z" /><path d="M9 2v4h4" /><path d="M5 9h6" /><path d="M5 11.5h4" /></svg>
+  <svg width="16" height="16" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M9.875 1.875H5.5C5.15625 1.875 4.875 2.15625 4.875 2.5V17.5C4.875 17.8438 5.15625 18.125 5.5 18.125H15.5C15.8438 18.125 16.125 17.8438 16.125 17.5V8.125H12.6875C11.1328 8.125 9.875 6.86719 9.875 5.3125V1.875ZM15.3477 6.25L11.75 2.65234V5.3125C11.75 5.83203 12.168 6.25 12.6875 6.25H15.3477ZM3 2.5C3 1.12109 4.12109 0 5.5 0H10.7148C11.3789 0 12.0156 0.261719 12.4844 0.730469L17.2695 5.51953C17.7383 5.98828 18 6.625 18 7.28906V17.5C18 18.8789 16.8789 20 15.5 20H5.5C4.12109 20 3 18.8789 3 17.5V2.5Z" fill="currentColor"/></svg>
 );
 const FormsIcon = () => (
   <svg width="16" height="16" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M11.5625 3.75H8.4375C7.91797 3.75 7.5 3.33203 7.5 2.8125C7.5 2.29297 7.91797 1.875 8.4375 1.875H11.5625C12.082 1.875 12.5 2.29297 12.5 2.8125C12.5 3.33203 12.082 3.75 11.5625 3.75ZM11.5625 5.625C13.0117 5.625 14.2031 4.53125 14.3594 3.125H15C15.3438 3.125 15.625 3.40625 15.625 3.75V17.5C15.625 17.8438 15.3438 18.125 15 18.125H5C4.65625 18.125 4.375 17.8438 4.375 17.5V3.75C4.375 3.40625 4.65625 3.125 5 3.125H5.64063C5.79688 4.53125 6.98828 5.625 8.4375 5.625H11.5625ZM13.9023 1.25C13.3984 0.496094 12.5391 0 11.5625 0H8.4375C7.46094 0 6.60156 0.496094 6.09766 1.25H5C3.62109 1.25 2.5 2.37109 2.5 3.75V17.5C2.5 18.8789 3.62109 20 5 20H15C16.3789 20 17.5 18.8789 17.5 17.5V3.75C17.5 2.37109 16.3789 1.25 15 1.25H13.9023Z" fill="currentColor"/></svg>
@@ -138,9 +138,6 @@ const CustomizeIcon = () => (
 );
 const AppLibraryIcon = () => (
   <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><rect x="2" y="2" width="4" height="4" rx="0.5" /><rect x="10" y="2" width="4" height="4" rx="0.5" /><rect x="2" y="10" width="4" height="4" rx="0.5" /><rect x="10" y="10" width="4" height="4" rx="0.5" /></svg>
-);
-const GripIcon = () => (
-  <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4.125 3.375C4.42337 3.375 4.70952 3.25647 4.9205 3.0455C5.13147 2.83452 5.25 2.54837 5.25 2.25C5.25 1.95163 5.13147 1.66548 4.9205 1.4545C4.70952 1.24353 4.42337 1.125 4.125 1.125C3.82663 1.125 3.54048 1.24353 3.3295 1.4545C3.11853 1.66548 3 1.95163 3 2.25C3 2.54837 3.11853 2.83452 3.3295 3.0455C3.54048 3.25647 3.82663 3.375 4.125 3.375ZM4.125 7.125C4.42337 7.125 4.70952 7.00647 4.9205 6.7955C5.13147 6.58452 5.25 6.29837 5.25 6C5.25 5.70163 5.13147 5.41548 4.9205 5.2045C4.70952 4.99353 4.42337 4.875 4.125 4.875C3.82663 4.875 3.54048 4.99353 3.3295 5.2045C3.11853 5.41548 3 5.70163 3 6C3 6.29837 3.11853 6.58452 3.3295 6.7955C3.54048 7.00647 3.82663 7.125 4.125 7.125ZM5.25 9.75C5.25 9.45163 5.13147 9.16548 4.9205 8.9545C4.70952 8.74353 4.42337 8.625 4.125 8.625C3.82663 8.625 3.54048 8.74353 3.3295 8.9545C3.11853 9.16548 3 9.45163 3 9.75C3 10.0484 3.11853 10.3345 3.3295 10.5455C3.54048 10.7565 3.82663 10.875 4.125 10.875C4.42337 10.875 4.70952 10.7565 4.9205 10.5455C5.13147 10.3345 5.25 10.0484 5.25 9.75ZM7.875 3.375C8.17337 3.375 8.45952 3.25647 8.6705 3.0455C8.88147 2.83452 9 2.54837 9 2.25C9 1.95163 8.88147 1.66548 8.6705 1.4545C8.45952 1.24353 8.17337 1.125 7.875 1.125C7.57663 1.125 7.29048 1.24353 7.0795 1.4545C6.86853 1.66548 6.75 1.95163 6.75 2.25C6.75 2.54837 6.86853 2.83452 7.0795 3.0455C7.29048 3.25647 7.57663 3.375 7.875 3.375ZM9 6C9 5.70163 8.88147 5.41548 8.6705 5.2045C8.45952 4.99353 8.17337 4.875 7.875 4.875C7.57663 4.875 7.29048 4.99353 7.0795 5.2045C6.86853 5.41548 6.75 5.70163 6.75 6C6.75 6.29837 6.86853 6.58452 7.0795 6.7955C7.29048 7.00647 7.57663 7.125 7.875 7.125C8.17337 7.125 8.45952 7.00647 8.6705 6.7955C8.88147 6.58452 9 6.29837 9 6ZM7.875 10.875C8.17337 10.875 8.45952 10.7565 8.6705 10.5455C8.88147 10.3345 9 10.0484 9 9.75C9 9.45163 8.88147 9.16548 8.6705 8.9545C8.45952 8.74353 8.17337 8.625 7.875 8.625C7.57663 8.625 7.29048 8.74353 7.0795 8.9545C6.86853 9.16548 6.75 9.45163 6.75 9.75C6.75 10.0484 6.86853 10.3345 7.0795 10.5455C7.29048 10.7565 7.57663 10.875 7.875 10.875Z" fill="#6B6F76"/></svg>
 );
 const DotsIcon = () => (
   <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><circle cx="4" cy="8" r="1.2" /><circle cx="8" cy="8" r="1.2" /><circle cx="12" cy="8" r="1.2" /></svg>
@@ -520,15 +517,15 @@ function SortableItem({ settings, showIndicator, indicatorPos, indicatorIndented
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
-      {/* Folder child connector lines */}
+      {/* Folder child connector lines — positioned to not overlap icon boxes */}
       {isChild && (
         <div style={{
-          position: "absolute", top: 0, left: "28px", width: "24px",
+          position: "absolute", top: 0, left: "28px", width: "10px",
           borderLeft: `1px solid ${C.border}`,
           borderBottom: isLastChild ? `1px solid ${C.border}` : "none",
-          borderBottomLeftRadius: isLastChild ? "8px" : 0,
+          borderBottomLeftRadius: isLastChild ? "6px" : 0,
           zIndex: 2,
-          ...(isLastChild ? { height: "24px" } : { bottom: 0 }),
+          ...(isLastChild ? { height: "28px" } : { bottom: 0 }),
         }} />
       )}
 
@@ -537,37 +534,27 @@ function SortableItem({ settings, showIndicator, indicatorPos, indicatorIndented
 
       {/* Row content area */}
       <div style={{ position: "relative" }}>
-        {/* Row background & content — grip is a flex child (guaranteed visible) */}
         <div
           style={{
-            display: "flex", alignItems: "center", height: "48px",
-            padding: isChild ? `0 16px 0 ${FOLDER_CONTENT_INDENTATION - 12}px` : "0 16px 0 8px",
-            gap: "8px",
+            display: "flex", alignItems: "center", height: "56px",
+            padding: isChild ? `0 16px 0 ${FOLDER_CONTENT_INDENTATION - 12}px` : "0 16px 0 12px",
+            gap: "10px",
             backgroundColor: isHovered && !isDragging ? C.hover : "#fff",
             border: "1px solid transparent", boxSizing: "border-box",
-            borderRadius: "6px",
+            borderRadius: 0,
             transition: "background-color 100ms ease",
+            position: "relative",
           }}
         >
-          {/* ★ Grip handle — inside flex flow, always renders ★ */}
-          <span
-            style={{
-              display: "flex", alignItems: "center", justifyContent: "center",
-              width: "16px", height: "16px", flexShrink: 0,
-              opacity: isHovered && !isDragging ? 1 : 0,
-              transition: "opacity 150ms ease",
-              color: "#6B6F76",
-            }}
-          >
-            <GripIcon />
+          {/* Icon slot: bordered box for all items */}
+          <span style={{
+            display: "flex", alignItems: "center", justifyContent: "center",
+            width: isChild ? "32px" : "40px", height: isChild ? "32px" : "40px", borderRadius: isChild ? "8px" : "10px",
+            border: `1px solid ${C.border}`, backgroundColor: "#fff",
+            color: ext ? C.textDisabled : C.textSec, flexShrink: 0,
+          }}>
+            <AppIconEl name={settings.icon} />
           </span>
-
-          {/* Icon slot: show icon for top-level items only */}
-          {!isChild && (
-            <span style={{ display: "flex", alignItems: "center", justifyContent: "center", width: "20px", height: "20px", color: ext ? C.textDisabled : C.textSec, flexShrink: 0 }}>
-              <AppIconEl name={settings.icon} />
-            </span>
-          )}
 
           {/* Label or rename input */}
           {isEditing ? (
@@ -585,16 +572,11 @@ function SortableItem({ settings, showIndicator, indicatorPos, indicatorIndented
             </div>
           )}
 
-          {/* Visibility text */}
-          {!isF && !isEditing && (
-            <span style={{ fontSize: "12px", color: ext ? C.textDisabled : C.textMuted, fontFamily: "var(--font-sans)", whiteSpace: "nowrap", flexShrink: 0 }}>
-              Visible to all clients
-            </span>
-          )}
-
-          {/* Overflow menu */}
+          {/* Dots icon (visual only) */}
           {!isEditing && (
-            <OverflowMenu isFolder={isF} iuHidden={settings.iuSidebarHidden} onRename={isF ? onStartEdit : undefined} onDelete={isF ? onDeleteFolder : undefined} onToggle={onToggle} />
+            <span style={{ display: "flex", alignItems: "center", justifyContent: "center", width: "24px", height: "24px", color: C.textMuted, flexShrink: 0 }}>
+              <DotsIcon />
+            </span>
           )}
         </div>
 
@@ -637,29 +619,41 @@ function ClientPreview({ items, inSplit = false }: { items: ModuleSettingsItem[]
         childrenByFolder.get(s.path)!.push({ id: s.id, name: s.label, icon: s.icon });
       } else { topLevel.push({ id: s.id, name: s.label, icon: s.icon }); }
     }
-    const flat: { id: string; name: string; icon: string; isFolder?: boolean; isChild?: boolean }[] = [];
+    const flat: { id: string; name: string; icon: string; isFolder?: boolean; isChild?: boolean; isLastChild?: boolean }[] = [];
     for (const t of topLevel) {
       flat.push(t);
-      if (t.isFolder) for (const c of childrenByFolder.get(t.id) ?? []) flat.push({ ...c, isChild: true });
+      if (t.isFolder) {
+        const children = childrenByFolder.get(t.id) ?? [];
+        children.forEach((c, ci) => flat.push({ ...c, isChild: true, isLastChild: ci === children.length - 1 }));
+      }
     }
     return flat;
   }, [items]);
 
   return (
-    <div style={{ display: "flex", height: "100%", borderRadius: "8px", overflow: "hidden", border: `1px solid ${C.border}` }}>
+    <div style={{ display: "flex", height: "100%", borderRadius: "8px", overflow: "hidden", border: "none" }}>
       {/* Dark sidebar */}
       <div style={{ width: inSplit ? "100%" : "180px", flexShrink: 0, backgroundColor: C.darkBg, padding: "14px 0", display: "flex", flexDirection: "column" }}>
-        <div style={{ display: "flex", alignItems: "center", gap: "8px", padding: "0 12px 12px", borderBottom: `1px solid ${C.darkBorder}`, marginBottom: "6px" }}>
-          <div style={{ width: "24px", height: "24px", borderRadius: "5px", backgroundColor: "rgba(255,255,255,0.1)", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "10px", fontWeight: 600, color: C.darkText, fontFamily: "var(--font-sans)" }}>B</div>
-          <span style={{ fontSize: "12px", fontWeight: 600, color: C.darkText, fontFamily: "var(--font-sans)" }}>BrandMages</span>
+        <div style={{ display: "flex", alignItems: "center", gap: "7px", padding: "0 11px 11px", marginBottom: "5px" }}>
+          <div style={{ width: "22px", height: "22px", borderRadius: "5px", backgroundColor: "rgba(255,255,255,0.1)", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "9.5px", lineHeight: 1, fontWeight: 400, color: C.darkText, fontFamily: "var(--font-sans)" }}>B</div>
+          <span style={{ fontSize: "11.5px", fontWeight: 400, color: C.darkText, fontFamily: "var(--font-sans)" }}>BrandMages</span>
         </div>
         <div style={{ flex: 1, padding: "2px 6px" }}>
           <AnimatePresence mode="popLayout">
             {preview.map((it) => (
               <motion.div key={it.id} layout layoutId={`pv-${it.id}`} initial={{ opacity: 0, x: -6 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: 6 }} transition={{ duration: 0.2 }}
-                style={{ display: "flex", alignItems: "center", gap: "8px", padding: it.isChild ? "5px 8px 5px 28px" : "5px 8px", borderRadius: "5px", marginBottom: "1px", cursor: "default" }}>
-                {!it.isChild && <span style={{ color: C.darkTextMuted, display: "flex", alignItems: "center" }}><AppIconEl name={it.icon} /></span>}
-                <span style={{ fontSize: "12px", fontWeight: it.isFolder ? 500 : 400, color: C.darkText, fontFamily: "var(--font-sans)" }}>{it.name}</span>
+                style={{ position: "relative", display: "flex", alignItems: "center", gap: "7px", padding: it.isChild ? "4.5px 8px 4.5px 26px" : "4.5px 8px", borderRadius: it.isChild ? 0 : "5px", marginBottom: it.isChild ? 0 : "1px", cursor: "default", overflow: "visible" }}>
+                {it.isChild && (
+                  <div style={{
+                    position: "absolute", top: 0, left: "16px", width: "6px",
+                    borderLeft: "1px solid rgba(255,255,255,0.18)",
+                    borderBottom: it.isLastChild ? "1px solid rgba(255,255,255,0.18)" : "none",
+                    borderBottomLeftRadius: it.isLastChild ? "4px" : 0,
+                    ...(it.isLastChild ? { height: "50%" } : { bottom: 0 }),
+                  }} />
+                )}
+                {!it.isChild && <span style={{ color: C.darkTextMuted, display: "flex", alignItems: "center", transform: "scale(0.85)", transformOrigin: "center" }}><AppIconEl name={it.icon} /></span>}
+                <span style={{ fontSize: "11.5px", fontWeight: it.isFolder ? 500 : 400, color: C.darkText, fontFamily: "var(--font-sans)" }}>{it.name}</span>
               </motion.div>
             ))}
           </AnimatePresence>
@@ -742,7 +736,7 @@ export function InteractiveAppLibrary({ inSplit = false }: { inSplit?: boolean }
       whileInView={{ opacity: 1, scale: 1 }}
       viewport={{ once: true, margin: "-40px" }}
       transition={{ duration: 0.6, ease: [0.25, 0.1, 0.25, 1] }}
-      style={{ borderRadius: "12px", border: "1px solid rgba(255,255,255,0.1)", overflow: "hidden", backgroundColor: C.bg }}
+      style={{ borderRadius: "12px", overflow: "hidden", backgroundColor: "#141414", border: "1px solid rgba(255, 255, 255, 0.06)" }}
     >
       {/* ─ CSS for hover effects ─ */}
       <style>{`
@@ -751,19 +745,19 @@ export function InteractiveAppLibrary({ inSplit = false }: { inSplit?: boolean }
       `}</style>
 
       {/* Browser chrome */}
-      <div style={{ display: "flex", alignItems: "center", gap: "8px", borderBottom: "1px solid #3f3f46", backgroundColor: "#27272a", padding: "10px 16px" }}>
-        <div style={{ display: "flex", gap: "6px" }}>
-          {[0, 1, 2].map((i) => <div key={i} style={{ width: "12px", height: "12px", borderRadius: "50%", backgroundColor: "#3f3f46" }} />)}
+      <div style={{ position: "relative", display: "flex", alignItems: "center", backgroundColor: "#141414", padding: "12px 16px", borderBottom: "1px solid rgba(255, 255, 255, 0.06)" }}>
+        <div style={{ display: "flex", gap: "7px", position: "relative", zIndex: 1 }}>
+          {["#ff5f57", "#febc2e", "#28c840"].map((color) => (
+            <div key={color} style={{ width: "10px", height: "10px", borderRadius: "50%", backgroundColor: color, opacity: 0.8 }} />
+          ))}
         </div>
-        <div style={{ marginLeft: "16px", flex: 1 }}>
-          <div style={{ maxWidth: "280px", margin: "0 auto", borderRadius: "6px", backgroundColor: "#18181b", padding: "4px 12px", fontSize: "11px", color: "#71717a", border: "1px solid #3f3f46", fontFamily: "var(--font-mono, monospace)" }}>
-            dashboard.assembly.com
-          </div>
+        <div style={{ position: "absolute", left: 0, right: 0, textAlign: "center", fontFamily: "'SF Mono', 'Fira Code', Menlo, monospace", fontSize: "11px", color: "rgba(255, 255, 255, 0.35)", letterSpacing: "0.01em", pointerEvents: "none" }}>
+          dashboard.assembly.com
         </div>
       </div>
 
       {/* Main layout: left nav + content area */}
-      <div style={{ display: "flex", minHeight: inSplit ? "360px" : "460px" }}>
+      <div style={{ display: "flex", minHeight: inSplit ? "360px" : "460px", backgroundColor: C.bg }}>
 
         {/* ─── LEFT NAV ─── */}
         {!inSplit && (
@@ -807,81 +801,77 @@ export function InteractiveAppLibrary({ inSplit = false }: { inSplit?: boolean }
         <div style={{ flex: 1, display: "flex", flexDirection: "column", minWidth: 0 }}>
 
           {/* Toolbar (spans full width of center + right) */}
-          <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", padding: inSplit ? "12px 16px" : "16px 24px", borderBottom: `1px solid ${C.border}` }}>
+          <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", padding: inSplit ? "12px 12px" : "16px 20px", borderBottom: `1px solid ${C.border}` }}>
             <h4 style={{ margin: 0, fontSize: inSplit ? "13px" : "15px", fontWeight: 600, color: C.text, fontFamily: "var(--font-sans)" }}>App Library</h4>
             <div style={{ display: "flex", gap: "8px" }}>
-              <button onClick={addFolder} style={{ display: "flex", alignItems: "center", gap: "5px", padding: "6px 14px", borderRadius: "6px", border: `1px solid ${C.border}`, backgroundColor: C.bg, color: C.text, fontSize: "12px", fontWeight: 500, cursor: "pointer", fontFamily: "var(--font-sans)" }}>
-                <PlusIcon /> Add folder
+              <button style={{ display: "flex", alignItems: "center", gap: "5px", padding: "5px 12px", borderRadius: "5px", border: `1px solid #d1d5db`, backgroundColor: "#ffffff", color: C.text, fontSize: "11px", fontWeight: 500, cursor: "default", fontFamily: "var(--font-sans)", pointerEvents: "none" }}>
+                Add folder
               </button>
-              <button onClick={addApp} style={{ display: "flex", alignItems: "center", gap: "5px", padding: "6px 14px", borderRadius: "6px", border: "1px solid transparent", backgroundColor: C.accent, color: "#fff", fontSize: "12px", fontWeight: 500, cursor: "pointer", fontFamily: "var(--font-sans)" }}>
-                <PlusIcon /> Add app
+              <button style={{ display: "flex", alignItems: "center", gap: "5px", padding: "5px 12px", borderRadius: "5px", border: `1px solid #d1d5db`, backgroundColor: "#ffffff", color: C.text, fontSize: "11px", fontWeight: 500, cursor: "default", fontFamily: "var(--font-sans)", pointerEvents: "none" }}>
+                Add app
               </button>
             </div>
           </div>
 
-          {/* Content area: center (apps) + right (preview) side by side */}
+          {/* Content area: two columns side by side */}
           <div style={{ display: "flex", flex: 1, minHeight: 0 }}>
 
-            {/* ─── CENTER: APP LIST ─── */}
-            <div style={{ flex: 1, backgroundColor: C.bg, display: "flex", flexDirection: "column", minWidth: 0 }}>
-              {/* "Apps" heading */}
-              <div style={{ padding: inSplit ? "14px 16px 8px" : "20px 48px 10px 48px" }}>
+            {/* ─── LEFT: APP LIST ─── */}
+            <div style={{ flex: 1, display: "flex", flexDirection: "column", minWidth: 0, padding: inSplit ? "0 12px 12px 12px" : "0 20px 20px 20px" }}>
+              <div style={{ padding: inSplit ? "14px 0 8px" : "20px 0 10px 0" }}>
                 <h5 style={{ margin: 0, fontSize: "18px", fontWeight: 600, color: C.text, fontFamily: "var(--font-sans)" }}>Apps</h5>
               </div>
-
-              {/* ★ THE APP LIST — balanced 48px padding on both sides ★ */}
-              <div style={{ padding: inSplit ? "0 8px 24px" : "0 48px 24px 48px", flex: 1 }}>
-                <DndContext sensors={sensors} collisionDetection={closestCenter}
-                  onDragStart={handleDragStart} onDragOver={handleDragOver} onDragMove={handleDragMove} onDragEnd={handleDragEnd}>
-                  <SortableContext items={moduleSettings.map(({ id }) => id)} strategy={verticalListSortingStrategy}>
-                    {/* overflow: visible so absolute-positioned grip handles extend outside */}
-                    <div ref={containerRef} style={{ border: `1px solid ${C.border}`, borderRadius: "8px", padding: "8px 0", overflow: "visible" }}>
-                      {moduleSettings.map((s, idx) => {
-                        if (s.disabled) return null;
-                        const showInd = overItem?.item.id === s.id && !isDraggingFolderIntoFolder && !isDraggingFolderIntoSelf;
-                        return (
-                          <motion.div key={s.id} layout="position" style={{ overflow: "visible" }} transition={{ type: "tween", duration: 0.25, ease: "easeOut" }}>
-                            <SortableItem
-                              settings={s}
-                              showIndicator={showInd}
+              <DndContext sensors={sensors} collisionDetection={closestCenter}
+                onDragStart={handleDragStart} onDragOver={handleDragOver} onDragMove={handleDragMove} onDragEnd={handleDragEnd}>
+                <SortableContext items={moduleSettings.map(({ id }) => id)} strategy={verticalListSortingStrategy}>
+                  <div ref={containerRef} style={{ border: `1px solid ${C.border}`, borderRadius: "8px", padding: "8px 0", overflow: "hidden" }}>
+                    {moduleSettings.map((s, idx) => {
+                      if (s.disabled) return null;
+                      const showInd = overItem?.item.id === s.id && !isDraggingFolderIntoFolder && !isDraggingFolderIntoSelf;
+                      return (
+                        <motion.div key={s.id} layout="position" transition={{ type: "tween", duration: 0.25, ease: "easeOut" }}>
+                          <SortableItem
+                            settings={s}
+                            showIndicator={showInd}
+                            indicatorPos={dragDirection === "up" ? "top" : "bottom"}
+                            indicatorIndented={isDraggingIntoFolder}
+                            isLastChild={lastChildIds.has(s.id)}
+                            isEditing={editingId === s.id}
+                            onStartEdit={() => setEditingId(s.id)}
+                            onRename={(n) => setModuleSettings((p) => p.map((x) => x.id === s.id ? { ...x, label: n } : x))}
+                            onEditDone={() => {
+                              setEditingId(null);
+                              if (newFolderId === s.id) {
+                                setNewFolderId(null);
+                                setModuleSettings((p) => p.map((x) => x.id === s.id && !x.label.trim() ? { ...x, label: "Folder" } : x));
+                              }
+                            }}
+                            onDeleteFolder={() => setModuleSettings((p) => deleteFolderUtil(p, idx))}
+                            onToggle={() => setModuleSettings((p) => p.map((x) => x.id === s.id ? { ...x, iuSidebarHidden: !x.iuSidebarHidden } : x))}
+                            disabled={Boolean(activeItem?.item.type === "folder" && getFolderId(s))}
+                          />
+                          {isEmptyFolder(moduleSettings, idx) && (
+                            <EmptyFolderDropZoneEl folderId={s.id}
+                              showIndicator={overTarget?.type === "emptyFolder" && activeItem?.item.type !== "folder" && overTarget.folderId === s.id && !isDraggingFolderIntoFolder}
                               indicatorPos={dragDirection === "up" ? "top" : "bottom"}
-                              indicatorIndented={isDraggingIntoFolder}
-                              isLastChild={lastChildIds.has(s.id)}
-                              isEditing={editingId === s.id}
-                              onStartEdit={() => setEditingId(s.id)}
-                              onRename={(n) => setModuleSettings((p) => p.map((x) => x.id === s.id ? { ...x, label: n } : x))}
-                              onEditDone={() => {
-                                setEditingId(null);
-                                if (newFolderId === s.id) {
-                                  setNewFolderId(null);
-                                  setModuleSettings((p) => p.map((x) => x.id === s.id && !x.label.trim() ? { ...x, label: "Folder" } : x));
-                                }
-                              }}
-                              onDeleteFolder={() => setModuleSettings((p) => deleteFolderUtil(p, idx))}
-                              onToggle={() => setModuleSettings((p) => p.map((x) => x.id === s.id ? { ...x, iuSidebarHidden: !x.iuSidebarHidden } : x))}
-                              disabled={Boolean(activeItem?.item.type === "folder" && getFolderId(s))}
-                            />
-                            {isEmptyFolder(moduleSettings, idx) && (
-                              <EmptyFolderDropZoneEl folderId={s.id}
-                                showIndicator={overTarget?.type === "emptyFolder" && activeItem?.item.type !== "folder" && overTarget.folderId === s.id && !isDraggingFolderIntoFolder}
-                                indicatorPos={dragDirection === "up" ? "top" : "bottom"}
-                                indicatorIndented={isDraggingIntoFolder} />
-                            )}
-                          </motion.div>
-                        );
-                      })}
-                    </div>
-                  </SortableContext>
-                  <DragOverlay modifiers={[snapCenterLeftToCursor]} dropAnimation={dropAnimation}>
-                    {activeItem && <DragOverlayItem item={activeItem.item} helperText={helperText} />}
-                  </DragOverlay>
-                </DndContext>
-              </div>
+                              indicatorIndented={isDraggingIntoFolder} />
+                          )}
+                        </motion.div>
+                      );
+                    })}
+                  </div>
+                </SortableContext>
+                <DragOverlay modifiers={[snapCenterLeftToCursor]} dropAnimation={dropAnimation}>
+                  {activeItem && <DragOverlayItem item={activeItem.item} helperText={helperText} />}
+                </DragOverlay>
+              </DndContext>
             </div>
 
             {/* ─── RIGHT: CLIENT PREVIEW ─── */}
-            <div style={{ width: inSplit ? "260px" : "380px", flexShrink: 0, backgroundColor: C.bgAlt, borderLeft: `1px solid ${C.border}`, padding: inSplit ? "12px" : "20px 24px", display: "flex", flexDirection: "column" }}>
-              <h4 style={{ margin: "0 0 12px", fontSize: "18px", fontWeight: 600, color: C.text, fontFamily: "var(--font-sans)" }}>Client Preview</h4>
+            <div style={{ width: inSplit ? "240px" : "320px", flexShrink: 0, backgroundColor: C.bgAlt, borderLeft: `1px solid ${C.border}`, padding: inSplit ? "0 12px 12px 12px" : "0 20px 20px 20px", display: "flex", flexDirection: "column", borderRadius: "0 0 12px 0" }}>
+              <div style={{ padding: inSplit ? "14px 0 8px" : "20px 0 10px 0" }}>
+                <h4 style={{ margin: 0, fontSize: "18px", fontWeight: 600, color: C.text, fontFamily: "var(--font-sans)" }}>Client Preview</h4>
+              </div>
               <div style={{ flex: 1 }}><ClientPreview items={moduleSettings} inSplit={inSplit} /></div>
             </div>
 

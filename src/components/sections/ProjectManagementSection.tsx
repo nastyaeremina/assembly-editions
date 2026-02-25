@@ -1,6 +1,6 @@
 "use client";
 
-import { ScreenshotDisplay, SectionReveal } from "@/components/ui";
+import { ScreenshotDisplay, SectionReveal, CreateTaskDemo, TimeBasedAutomationsDemo } from "@/components/ui";
 
 interface ProjectManagementSectionProps {
   inSplit?: boolean;
@@ -87,8 +87,8 @@ export function ProjectManagementSection({ inSplit = false }: ProjectManagementS
 
         {/* Tasks with Client Association */}
         <SectionReveal delay={0.1}>
-          <div style={{ marginBottom: "3.5rem" }}>
-            <ScreenshotDisplay src="/screenshots/task_creation.jpg" alt="Task creation with client association" />
+          <div id="tasks-client-association" style={{ marginBottom: "3.5rem" }}>
+            <CreateTaskDemo inSplit={inSplit} />
             <div className="grid gap-6 lg:grid-cols-12" style={{ marginTop: "2rem" }}>
               <div className="lg:col-span-4">
                 <h3 style={{ fontFamily: "'PP Mori', var(--font-sans)", fontWeight: 600, fontSize: "1.05rem", lineHeight: 1.3, letterSpacing: "-0.015em", color: "var(--swatch-1)", margin: 0 }}>
@@ -107,8 +107,8 @@ export function ProjectManagementSection({ inSplit = false }: ProjectManagementS
 
         {/* Time-Based Automations */}
         <SectionReveal delay={0.1}>
-          <div>
-            <ScreenshotDisplay src="/screenshots/automations_scheduled_trigger.jpg" alt="Time-Based Automations" />
+          <div id="time-based-automations">
+            <TimeBasedAutomationsDemo inSplit={inSplit} />
             <div className="grid gap-6 lg:grid-cols-12" style={{ marginTop: "2rem" }}>
               <div className="lg:col-span-4">
                 <h3 style={{ fontFamily: "'PP Mori', var(--font-sans)", fontWeight: 600, fontSize: "1.05rem", lineHeight: 1.3, letterSpacing: "-0.015em", color: "var(--swatch-1)", margin: 0 }}>

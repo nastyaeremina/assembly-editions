@@ -1,7 +1,6 @@
 import { Header, SplitScreenLayout, Footer } from "@/components/layout";
 import { LoadingScreen } from "@/components/ui";
 import {
-  BrandStatement,
   CollageHero,
   EditionIntro,
   EditionIntroMobile,
@@ -23,11 +22,8 @@ export default function Home() {
       <Header />
 
       <main>
-        {/* Marquee hero */}
+        {/* Hero — centered title + subtitle + video placeholder */}
         <CollageHero />
-
-        {/* Brand intro — white section */}
-        <BrandStatement />
 
         {/* Fixed right sidebar — desktop only */}
         <EditionIntro />
