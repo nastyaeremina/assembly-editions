@@ -243,7 +243,7 @@ function CodeLine({ tokens, lineNum, delay, isInView, hasCursor }: {
           transition={{
             duration: 1.0,
             repeat: Infinity,
-            ease: "steps(1)",
+            ease: "linear",
             times: [0, 0.5, 0.5, 1],
           }}
           style={{
