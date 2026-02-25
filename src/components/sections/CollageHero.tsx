@@ -119,6 +119,7 @@ export function CollageHero() {
             justifyContent: "center",
             cursor: "pointer",
             position: "relative",
+            zIndex: 1,
           }}
         >
           {/* Subtle gradient overlay */}
