@@ -89,9 +89,7 @@ function SubsectionList({
         {subsections.map((sub, idx) => {
           const isActive = activeSubsection === sub.id;
           const isLast = idx === subsections.length - 1;
-          const lineColor = isActive
-            ? "rgba(255, 255, 255, 0.3)"
-            : "rgba(255, 255, 255, 0.12)";
+          const lineColor = "rgba(255, 255, 255, 0.15)";
           return (
             <button
               key={sub.id}
@@ -123,7 +121,6 @@ function SubsectionList({
                     borderLeft: `1px solid ${lineColor}`,
                     borderBottom: `1px solid ${lineColor}`,
                     borderBottomLeftRadius: "4px",
-                    transition: "border-color 0.2s ease",
                   }}
                 />
               ) : (
@@ -136,7 +133,6 @@ function SubsectionList({
                     width: "0.5rem",
                     height: "1px",
                     backgroundColor: lineColor,
-                    transition: "background-color 0.2s ease",
                   }}
                 />
               )}
