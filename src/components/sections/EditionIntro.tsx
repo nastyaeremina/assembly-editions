@@ -193,11 +193,14 @@ export function EditionIntro() {
           >
             {SPLIT_SECTIONS.map((section, i) => {
               const isActive = activeSection === section.id;
+              const isLastSection = i === SPLIT_SECTIONS.length - 1;
               return (
                 <li
                   key={section.id}
                   style={{
-                    borderBottom: "1px solid rgba(255, 255, 255, 0.12)",
+                    borderBottom: isLastSection
+                      ? "none"
+                      : "1px solid rgba(255, 255, 255, 0.12)",
                   }}
                 >
                   <button
