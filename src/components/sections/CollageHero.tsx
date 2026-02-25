@@ -3,6 +3,7 @@
 import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
 import { Play } from "lucide-react";
+import { DotGrid } from "@/components/ui";
 
 /* ────────────────────────────────────────────────────────────
    HERO SECTION
@@ -21,9 +22,13 @@ export function CollageHero() {
       style={{ backgroundColor: "#101010" }}
       aria-label="Assembly 2.0 hero"
     >
+      {/* Interactive dot grid background */}
+      <DotGrid />
+
       <div
         style={{
           maxWidth: "1100px",
+          position: "relative",
           margin: "0 auto",
           paddingTop: "clamp(8rem, 16vw, 14rem)",
           paddingBottom: "clamp(4rem, 8vw, 6rem)",

@@ -22,3 +22,4 @@ export { ContextBarDemo } from "./ContextBarDemo";
 export { OnePaymentsDemo } from "./OnePaymentsDemo";
 export { QuickBooksSyncDemo } from "./QuickBooksSyncDemo";
 export { AppBridgeCodeDemo } from "./AppBridgeCodeDemo";
+export { DotGrid } from "./DotGrid";
