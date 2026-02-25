@@ -23,3 +23,4 @@ export { OnePaymentsDemo } from "./OnePaymentsDemo";
 export { QuickBooksSyncDemo } from "./QuickBooksSyncDemo";
 export { AppBridgeCodeDemo } from "./AppBridgeCodeDemo";
 export { DotGrid } from "./DotGrid";
+export { LightBeam } from "./LightBeam";

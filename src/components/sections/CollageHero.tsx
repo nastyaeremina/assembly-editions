@@ -3,7 +3,7 @@
 import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
 import { Play } from "lucide-react";
-import { DotGrid } from "@/components/ui";
+import { LightBeam } from "@/components/ui";
 
 /* ────────────────────────────────────────────────────────────
    HERO SECTION
@@ -22,8 +22,8 @@ export function CollageHero() {
       style={{ backgroundColor: "#101010" }}
       aria-label="Assembly 2.0 hero"
     >
-      {/* Interactive dot grid background */}
-      <DotGrid />
+      {/* Vertical light beam background */}
+      <LightBeam />
 
       <div
         style={{
