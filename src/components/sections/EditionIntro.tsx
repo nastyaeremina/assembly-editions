@@ -46,7 +46,7 @@ function LiveClock() {
   return <span>{time}</span>;
 }
 
-/* ── Subsection list with height animation ── */
+/* ── Subsection list with vertical bracket connector ── */
 function SubsectionList({
   subsections,
   activeSubsection,
@@ -74,34 +74,68 @@ function SubsectionList({
       }}
       style={{ overflow: "hidden" }}
     >
-      <div ref={contentRef}>
-        {subsections.map((sub) => {
+      <div ref={contentRef} style={{ position: "relative", paddingBottom: "0.5rem" }}>
+        {/* Vertical connector line */}
+        <div
+          style={{
+            position: "absolute",
+            left: "0.7rem",
+            top: "0.2rem",
+            bottom: "calc(0.5rem + 0.65rem)",
+            width: "1px",
+            backgroundColor: "rgba(255, 255, 255, 0.12)",
+          }}
+        />
+        {subsections.map((sub, idx) => {
           const isActive = activeSubsection === sub.id;
+          const isLast = idx === subsections.length - 1;
           return (
             <button
               key={sub.id}
               onClick={() => scrollToSection(sub.id)}
               style={{
-                display: "block",
+                display: "flex",
+                alignItems: "center",
                 width: "100%",
                 background: "none",
                 border: "none",
                 cursor: "pointer",
                 textAlign: "left",
-                fontFamily: "'PP Mori', var(--font-sans)",
-                fontSize: "0.85rem",
-                letterSpacing: "-0.01em",
-                fontWeight: 400,
-                color: isActive
-                  ? "rgba(255, 255, 255, 0.7)"
-                  : "rgba(255, 255, 255, 0.35)",
-                paddingLeft: "2.25rem",
-                paddingTop: "0.4rem",
-                paddingBottom: "0.4rem",
+                position: "relative",
+                paddingLeft: "1.65rem",
+                paddingTop: "0.35rem",
+                paddingBottom: "0.35rem",
                 transition: "color 0.2s ease",
               }}
             >
-              {sub.label}
+              {/* Horizontal tick from vertical line */}
+              <div
+                style={{
+                  position: "absolute",
+                  left: "0.7rem",
+                  top: "50%",
+                  width: "0.5rem",
+                  height: "1px",
+                  backgroundColor: isActive
+                    ? "rgba(255, 255, 255, 0.3)"
+                    : "rgba(255, 255, 255, 0.12)",
+                  transition: "background-color 0.2s ease",
+                }}
+              />
+              <span
+                style={{
+                  fontFamily: "'PP Mori', var(--font-sans)",
+                  fontSize: "0.85rem",
+                  letterSpacing: "-0.01em",
+                  fontWeight: 400,
+                  color: isActive
+                    ? "rgba(255, 255, 255, 0.7)"
+                    : "rgba(255, 255, 255, 0.35)",
+                  transition: "color 0.2s ease",
+                }}
+              >
+                {sub.label}
+              </span>
             </button>
           );
         })}
