@@ -19,18 +19,6 @@ const keyframes = `
   }
 }
 
-@keyframes beam-drift {
-  0%, 100% {
-    transform: translateX(0);
-  }
-  33% {
-    transform: translateX(7px);
-  }
-  66% {
-    transform: translateX(-5px);
-  }
-}
-
 @keyframes core-pulse {
   0%, 100% {
     opacity: 0.7;
@@ -41,7 +29,6 @@ const keyframes = `
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .beam-group,
   .beam-outer,
   .beam-inner,
   .beam-core {
@@ -64,14 +51,11 @@ export function LightBeam() {
       {/* Inject keyframes */}
       <style dangerouslySetInnerHTML={{ __html: keyframes }} />
 
-      {/* Beam group — applies the horizontal drift */}
+      {/* Beam group */}
       <div
-        className="beam-group"
         style={{
           position: "absolute",
           inset: 0,
-          animation: "beam-drift 20s ease-in-out infinite",
-          willChange: "transform",
         }}
       >
         {/* Layer 1 — Wide outer ambient glow */}
