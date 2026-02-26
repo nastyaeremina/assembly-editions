@@ -17,19 +17,20 @@ export function ClientManagementSection() {
       title={TITLE}
       description={DESC}
       sectionNumber={SECTION_NUM}
-      heroImage="/screenshots/iStock-2205732826 (2) 1.png"
+      heroImage={<MacOSDock />}
       steps={[
         {
           id: "native-desktop-app",
           suffix: "A",
           title: "Native desktop app",
           description: "A real desktop app for Mac and Windows — not just a browser tab. Get native notifications, a dock icon, and instant access without opening Chrome.",
-          content: <MacOSDock />,
+          content: null,
+          sameAsHero: true,
         },
         {
           id: "context-bar",
           suffix: "B",
-          title: "Redesigned context bar",
+          title: "Redesigned\ncontext bar",
           description: "The context bar now surfaces client details, recent activity, and quick actions on more surfaces than ever — invoices, tasks, messages, and contracts.",
           content: <ContextBarDemo />,
         },

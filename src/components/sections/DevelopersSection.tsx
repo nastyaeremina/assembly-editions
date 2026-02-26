@@ -49,54 +49,31 @@ export function DevelopersSection() {
       title={TITLE}
       description={DESC}
       sectionNumber={SECTION_NUM}
-      heroImage="/screenshots/iStock-2205732826 (2) 1.png"
+      heroImage={<AppBridgeCodeDemo inSplit={false} />}
       steps={[
         {
           id: "custom-app-base",
           suffix: "A",
           title: "New custom app base",
           description: "A completely rebuilt foundation for custom apps — faster rendering, better TypeScript support, and a modern app-bridge that handles authentication automatically.",
-          content: <AppBridgeCodeDemo inSplit={false} />,
+          content: null,
+          sameAsHero: true,
         },
         {
           id: "secure-app-sessions",
           suffix: "B",
           title: "Secure app sessions",
           description: "Session tokens now expire after 5 minutes. The new @assembly-js/app-bridge handles refresh automatically — shared URLs no longer grant permanent access.",
-          content: (
-            <TextContent
-              heading="Secure app sessions"
-              body={
-                <>
-                  Session tokens now expire after 5 minutes. A new{" "}
-                  <span style={{ fontFamily: "var(--font-mono, monospace)", fontSize: "0.9em" }}>
-                    @assembly-js/app-bridge
-                  </span>{" "}
-                  package handles refresh automatically — shared URLs no longer grant permanent access.
-                </>
-              }
-            />
-          ),
+          content: null,
+          sameAsHero: true,
         },
         {
           id: "tasks-api",
           suffix: "C",
           title: "Tasks API: comments & attachments",
           description: "Fetch comments, threaded replies, and attachment metadata including secure download URLs. A new comment.created webhook triggers workflows when clients respond.",
-          content: (
-            <TextContent
-              heading="Tasks API: comments & attachments"
-              body={
-                <>
-                  Fetch comments, threaded replies, and attachment metadata including secure download URLs. A new{" "}
-                  <span style={{ fontFamily: "var(--font-mono, monospace)", fontSize: "0.9em" }}>
-                    comment.created
-                  </span>{" "}
-                  webhook triggers workflows when clients respond.
-                </>
-              }
-            />
-          ),
+          content: null,
+          sameAsHero: true,
         },
       ]}
     />

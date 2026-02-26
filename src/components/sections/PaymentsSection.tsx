@@ -16,7 +16,8 @@ export function PaymentsSection() {
       title={TITLE}
       description={DESC}
       sectionNumber={SECTION_NUM}
-      heroImage="/screenshots/iStock-2205732826 (2) 1.png"
+      heroImage="/screenshots/JPEG image2.jpeg"
+      heroGradient={false}
       steps={[
         {
           id: "one-payments-home",

@@ -18,6 +18,7 @@ export interface ScrollytellingStep {
   title?: string; // Override rail title for this step
   description?: string; // Override rail description for this step
   content: React.ReactNode;
+  sameAsHero?: boolean; // When true, hero stays visible — no reload/fade
 }
 
 interface ScrollytellingSectionProps {
@@ -25,7 +26,7 @@ interface ScrollytellingSectionProps {
   title: string;
   description: string;
   sectionNumber: string;
-  heroImage: string;
+  heroImage: string | React.ReactNode;
   steps: ScrollytellingStep[];
   heroGradient?: boolean;
 }
@@ -64,42 +65,50 @@ export function ScrollytellingSection({
 
         {/* Right stage — crossfade between steps */}
         <div style={{ position: "relative", backgroundColor: "#101010", overflow: "hidden" }}>
-          {/* Step 0: Hero image */}
+          {/* Step 0: Hero image (stays visible for sameAsHero steps) */}
           <div
             style={{
               position: "absolute",
               inset: 0,
-              opacity: activeStep === 0 ? 1 : 0,
+              opacity: activeStep === 0 || (activeStep > 0 && steps[activeStep - 1]?.sameAsHero) ? 1 : 0,
               transition: "opacity 0.5s ease",
-              pointerEvents: activeStep === 0 ? "auto" : "none",
+              pointerEvents: activeStep === 0 || (activeStep > 0 && steps[activeStep - 1]?.sameAsHero) ? "auto" : "none",
             }}
           >
-            <img
-              src={heroImage}
-              alt=""
-              aria-hidden="true"
-              style={{
-                width: "100%",
-                height: "100%",
-                objectFit: "cover",
-                objectPosition: "center 30%",
-                display: "block",
-              }}
-            />
-            {/* Soft gradient fade at top edge for smoother transition */}
-            {heroGradient && (
-              <div
-                aria-hidden="true"
-                style={{
-                  position: "absolute",
-                  top: 0,
-                  left: 0,
-                  right: 0,
-                  height: "15%",
-                  background: "linear-gradient(to bottom, #101010 0%, transparent 100%)",
-                  pointerEvents: "none",
-                }}
-              />
+            {typeof heroImage === "string" ? (
+              <>
+                <img
+                  src={heroImage}
+                  alt=""
+                  aria-hidden="true"
+                  style={{
+                    width: "100%",
+                    height: "100%",
+                    objectFit: "cover",
+                    objectPosition: "center 30%",
+                    display: "block",
+                  }}
+                />
+                {/* Soft gradient fade at top edge for smoother transition */}
+                {heroGradient && (
+                  <div
+                    aria-hidden="true"
+                    style={{
+                      position: "absolute",
+                      top: 0,
+                      left: 0,
+                      right: 0,
+                      height: "15%",
+                      background: "linear-gradient(to bottom, #101010 0%, transparent 100%)",
+                      pointerEvents: "none",
+                    }}
+                  />
+                )}
+              </>
+            ) : (
+              <div style={{ display: "flex", flexDirection: "column", justifyContent: "center", padding: "3rem 2rem", height: "100%" }}>
+                {heroImage}
+              </div>
             )}
           </div>
 

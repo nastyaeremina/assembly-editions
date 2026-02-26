@@ -105,6 +105,7 @@ export function EditorialRail({
             color: "#fff",
             margin: "0 0 1.25rem 0",
             transition: "opacity 0.4s ease",
+            whiteSpace: "pre-line",
           }}
         >
           {title}
