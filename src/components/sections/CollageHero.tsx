@@ -1,8 +1,8 @@
 "use client";
 
-import { useRef } from "react";
-import { motion, useInView } from "framer-motion";
-import { Play } from "lucide-react";
+import { useRef, useState } from "react";
+import { motion, useInView, AnimatePresence } from "framer-motion";
+import { Play, Pause } from "lucide-react";
 import { LightBeam } from "@/components/ui";
 
 /* ────────────────────────────────────────────────────────────
@@ -13,7 +13,21 @@ import { LightBeam } from "@/components/ui";
 
 export function CollageHero() {
   const ref = useRef<HTMLElement>(null);
+  const videoRef = useRef<HTMLVideoElement>(null);
   const isInView = useInView(ref, { once: true, margin: "-40px" });
+  const [isPlaying, setIsPlaying] = useState(false);
+
+  const togglePlay = () => {
+    const video = videoRef.current;
+    if (!video) return;
+    if (video.paused) {
+      video.play();
+      setIsPlaying(true);
+    } else {
+      video.pause();
+      setIsPlaying(false);
+    }
+  };
 
   return (
     <section
@@ -22,8 +36,15 @@ export function CollageHero() {
       style={{ backgroundColor: "#101010" }}
       aria-label="Assembly 2.0 hero"
     >
-      {/* Vertical light beam background */}
-      <LightBeam />
+      {/* Vertical light beam background — fades in with content */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={isInView ? { opacity: 1 } : {}}
+        transition={{ duration: 1.2, delay: 0.1, ease: "easeOut" }}
+        style={{ position: "absolute", inset: 0 }}
+      >
+        <LightBeam />
+      </motion.div>
 
       <div
         style={{
@@ -39,24 +60,6 @@ export function CollageHero() {
           alignItems: "center",
         }}
       >
-        {/* ── Version badge ── */}
-        <motion.div
-          initial={{ opacity: 0, y: 12 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
-          style={{
-            fontFamily: "var(--font-mono, monospace)",
-            fontWeight: 400,
-            fontSize: "0.75rem",
-            letterSpacing: "0.08em",
-            textTransform: "uppercase",
-            color: "rgba(255, 255, 255, 0.45)",
-            marginBottom: "1.5rem",
-          }}
-        >
-          Assembly 2.0
-        </motion.div>
-
         {/* ── Title ── */}
         <motion.h1
           initial={{ opacity: 0, y: 20 }}
@@ -100,7 +103,7 @@ export function CollageHero() {
           developers build on&nbsp;Assembly.
         </motion.p>
 
-        {/* ── Video placeholder ── */}
+        {/* ── Video placeholder with subtle glow ── */}
         <motion.div
           initial={{ opacity: 0, y: 24 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
@@ -109,57 +112,117 @@ export function CollageHero() {
             width: "100%",
             maxWidth: "960px",
             marginTop: "clamp(3rem, 5vw, 4.5rem)",
-            aspectRatio: "16 / 9",
-            borderRadius: "16px",
-            overflow: "hidden",
-            border: "1px solid rgba(255, 255, 255, 0.08)",
-            backgroundColor: "rgba(255, 255, 255, 0.03)",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            cursor: "pointer",
             position: "relative",
             zIndex: 1,
           }}
         >
-          {/* Subtle gradient overlay */}
-          <div
+          {/* Glow behind video — fades in with the video */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={isInView ? { opacity: 1 } : {}}
+            transition={{ duration: 1, delay: 0.6 }}
             style={{
               position: "absolute",
-              inset: 0,
+              inset: "-15%",
               background:
-                "radial-gradient(ellipse at center, rgba(255,255,255,0.02) 0%, transparent 70%)",
+                "radial-gradient(ellipse 70% 60% at 50% 50%, rgba(80, 60, 180, 0.15) 0%, transparent 70%)",
+              filter: "blur(30px)",
               pointerEvents: "none",
             }}
           />
 
-          {/* Play button */}
           <div
+            onClick={togglePlay}
             style={{
+              width: "100%",
+              aspectRatio: "16 / 9",
+              borderRadius: "16px",
+              overflow: "hidden",
+              border: "1px solid rgba(255, 255, 255, 0.08)",
+              backgroundColor: "#1a1a1a",
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
-              width: "72px",
-              height: "72px",
-              borderRadius: "50%",
-              backgroundColor: "rgba(255, 255, 255, 0.08)",
-              border: "1px solid rgba(255, 255, 255, 0.1)",
+              cursor: "pointer",
               position: "relative",
-              transition: "background-color 0.3s ease",
             }}
           >
-            <Play
-              size={28}
+            {/* Video element — hidden until a src is added */}
+            <video
+              ref={videoRef}
+              playsInline
+              onEnded={() => setIsPlaying(false)}
               style={{
-                color: "rgba(255, 255, 255, 0.6)",
-                marginLeft: "3px",
+                position: "absolute",
+                inset: 0,
+                width: "100%",
+                height: "100%",
+                objectFit: "cover",
+                opacity: isPlaying ? 1 : 0,
+                transition: "opacity 0.3s ease",
               }}
-              strokeWidth={1.5}
-              fill="rgba(255, 255, 255, 0.6)"
             />
+
+            {/* Play / Pause icon overlay */}
+            <AnimatePresence mode="wait">
+              {!isPlaying ? (
+                <motion.div
+                  key="play"
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: 0.8 }}
+                  transition={{ duration: 0.2 }}
+                  style={{ position: "relative", zIndex: 1 }}
+                >
+                  <Play
+                    size={32}
+                    style={{
+                      color: "rgba(255, 255, 255, 0.2)",
+                      marginLeft: "3px",
+                    }}
+                    strokeWidth={0}
+                    fill="rgba(255, 255, 255, 0.2)"
+                  />
+                </motion.div>
+              ) : (
+                <motion.div
+                  key="pause"
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  animate={{ opacity: 0, scale: 1 }}
+                  whileHover={{ opacity: 1 }}
+                  exit={{ opacity: 0, scale: 0.8 }}
+                  transition={{ duration: 0.2 }}
+                  style={{ position: "relative", zIndex: 1 }}
+                >
+                  <Pause
+                    size={32}
+                    style={{
+                      color: "rgba(255, 255, 255, 0.3)",
+                    }}
+                    strokeWidth={0}
+                    fill="rgba(255, 255, 255, 0.3)"
+                  />
+                </motion.div>
+              )}
+            </AnimatePresence>
           </div>
         </motion.div>
       </div>
+
+      {/* Bottom fade — dissolves glow before section edge */}
+      <div
+        style={{
+          position: "absolute",
+          bottom: 0,
+          left: 0,
+          right: 0,
+          height: "40%",
+          background:
+            "linear-gradient(to bottom, transparent 0%, #101010 70%, #101010 100%)",
+          pointerEvents: "none",
+          zIndex: 2,
+        }}
+      />
     </section>
   );
 }

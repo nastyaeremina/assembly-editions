@@ -648,6 +648,352 @@ function Divider() {
 }
 
 /* ═══════════════════════════════════════════════════════════════
+   INTERACTIVE APP LIST — drag items onto each other to create folders
+   ═══════════════════════════════════════════════════════════════ */
+
+interface AppEntry {
+  id: string;
+  name: string;
+  icon: React.ReactNode;
+}
+
+interface FolderEntry {
+  id: string;
+  name: string;
+  children: AppEntry[];
+}
+
+type ListEntry = (AppEntry & { type: "app" }) | (FolderEntry & { type: "folder" });
+
+const FileIcon = () => (
+  <svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round">
+    <path d="M10 2.5H5a1.5 1.5 0 00-1.5 1.5v10A1.5 1.5 0 005 15.5h8a1.5 1.5 0 001.5-1.5V7L10 2.5z" />
+    <path d="M10 2.5V7h4.5" />
+  </svg>
+);
+const HomeIco = () => (
+  <svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round">
+    <path d="M3 7.5L9 3l6 4.5V14.5a1 1 0 01-1 1H4a1 1 0 01-1-1V7.5z" />
+    <path d="M7 15.5V10h4v5.5" />
+  </svg>
+);
+const ContractIco = () => (
+  <svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round">
+    <rect x="3.5" y="2.5" width="11" height="13" rx="1.5" />
+    <circle cx="9" cy="7" r="2" />
+    <path d="M6 13c0-1.7 1.3-3 3-3s3 1.3 3 3" />
+  </svg>
+);
+const MsgIco = () => (
+  <svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round">
+    <path d="M3 3.5h12v9H5l-2 2V3.5z" />
+  </svg>
+);
+const FolderIco = () => (
+  <svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round">
+    <path d="M2.5 5V14a1 1 0 001 1h11a1 1 0 001-1V7.5a1 1 0 00-1-1H9l-1.5-1.5H3.5a1 1 0 00-1 1z" />
+  </svg>
+);
+const GripDots = () => (
+  <svg width="8" height="14" viewBox="0 0 8 14" fill="currentColor" opacity="0.2">
+    <circle cx="2" cy="3" r="1" /><circle cx="6" cy="3" r="1" />
+    <circle cx="2" cy="7" r="1" /><circle cx="6" cy="7" r="1" />
+    <circle cx="2" cy="11" r="1" /><circle cx="6" cy="11" r="1" />
+  </svg>
+);
+const ChevronDown = ({ open }: { open: boolean }) => (
+  <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"
+    style={{ transition: "transform 200ms", transform: open ? "rotate(90deg)" : "rotate(0deg)" }}>
+    <path d="M4 3l3 3-3 3" />
+  </svg>
+);
+const ThreeDots = () => (
+  <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" opacity="0.3">
+    <circle cx="4" cy="8" r="1.2" /><circle cx="8" cy="8" r="1.2" /><circle cx="12" cy="8" r="1.2" />
+  </svg>
+);
+
+const INITIAL_APPS: AppEntry[] = [
+  { id: "files", name: "Files", icon: <FileIcon /> },
+  { id: "home", name: "Home", icon: <HomeIco /> },
+  { id: "contracts", name: "Contracts", icon: <ContractIco /> },
+  { id: "messages", name: "Messages", icon: <MsgIco /> },
+];
+
+function InteractiveAppFolders() {
+  const [entries, setEntries] = useState<ListEntry[]>(
+    INITIAL_APPS.map((a) => ({ ...a, type: "app" as const }))
+  );
+  const [draggingId, setDraggingId] = useState<string | null>(null);
+  const [dropTargetId, setDropTargetId] = useState<string | null>(null);
+  const [openFolders, setOpenFolders] = useState<Set<string>>(new Set());
+  const [hint, setHint] = useState(true);
+
+  // Find entry (top-level or inside folder)
+  const findAndRemove = (list: ListEntry[], id: string): { item: AppEntry | null; newList: ListEntry[] } => {
+    const newList = [...list];
+    for (let i = 0; i < newList.length; i++) {
+      if (newList[i].id === id && newList[i].type === "app") {
+        const [removed] = newList.splice(i, 1);
+        return { item: removed as AppEntry, newList };
+      }
+      if (newList[i].type === "folder") {
+        const folder = { ...(newList[i] as FolderEntry & { type: "folder" }) };
+        const ci = folder.children.findIndex((c) => c.id === id);
+        if (ci >= 0) {
+          const child = folder.children[ci];
+          folder.children = [...folder.children];
+          folder.children.splice(ci, 1);
+          // If folder becomes empty, remove it
+          if (folder.children.length === 0) {
+            newList.splice(i, 1);
+          } else {
+            newList[i] = folder;
+          }
+          return { item: child, newList };
+        }
+      }
+    }
+    return { item: null, newList };
+  };
+
+  const handleDrop = useCallback((targetId: string, sourceId: string) => {
+    if (sourceId === targetId) return;
+    setHint(false);
+
+    setEntries((prev) => {
+      // Remove source
+      const { item: srcItem, newList } = findAndRemove(prev, sourceId);
+      if (!srcItem) return prev;
+
+      const targetIdx = newList.findIndex((e) => e.id === targetId);
+
+      // Dropping on a folder → add to folder
+      if (targetIdx >= 0 && newList[targetIdx].type === "folder") {
+        const folder = { ...(newList[targetIdx] as FolderEntry & { type: "folder" }) };
+        folder.children = [...folder.children, srcItem];
+        newList[targetIdx] = folder;
+        setOpenFolders((s) => new Set(s).add(folder.id));
+        return newList;
+      }
+
+      // Dropping app on app → create a new folder
+      if (targetIdx >= 0 && newList[targetIdx].type === "app") {
+        const targetApp = newList[targetIdx] as AppEntry & { type: "app" };
+        const folderId = `folder-${Date.now()}`;
+        const newFolder: FolderEntry & { type: "folder" } = {
+          id: folderId,
+          type: "folder",
+          name: "New folder",
+          children: [
+            { id: targetApp.id, name: targetApp.name, icon: targetApp.icon },
+            srcItem,
+          ],
+        };
+        newList[targetIdx] = newFolder;
+        setOpenFolders((s) => new Set(s).add(folderId));
+        return newList;
+      }
+
+      // Dropping onto a child inside folder → add to same folder
+      for (let i = 0; i < newList.length; i++) {
+        if (newList[i].type === "folder") {
+          const folder = newList[i] as FolderEntry & { type: "folder" };
+          if (folder.children.some((c) => c.id === targetId)) {
+            const updated = { ...folder, children: [...folder.children, srcItem] };
+            newList[i] = updated;
+            return newList;
+          }
+        }
+      }
+
+      return prev;
+    });
+
+    setDraggingId(null);
+    setDropTargetId(null);
+  }, []);
+
+  const toggleFolder = (id: string) => {
+    setOpenFolders((s) => {
+      const n = new Set(s);
+      if (n.has(id)) n.delete(id); else n.add(id);
+      return n;
+    });
+  };
+
+  // Reset
+  const handleReset = () => {
+    setEntries(INITIAL_APPS.map((a) => ({ ...a, type: "app" as const })));
+    setOpenFolders(new Set());
+    setHint(true);
+  };
+
+  const hasFolders = entries.some((e) => e.type === "folder");
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-60px" }}
+      transition={{ duration: 0.6, ease: [0.25, 0.1, 0.25, 1] }}
+      className="group relative rounded-xl border border-white/[0.06] bg-white/[0.02] overflow-hidden transition-colors hover:border-white/[0.12]"
+    >
+      {/* Top label bar */}
+      <div className="flex items-center justify-between px-5 py-3 border-b border-white/[0.06]">
+        <span style={{ fontFamily: "var(--font-mono)", fontSize: "0.7rem", letterSpacing: "0.05em", textTransform: "uppercase", color: "var(--swatch-4)" }}>
+          App Library
+        </span>
+        {hasFolders && (
+          <button
+            onClick={handleReset}
+            className="text-xs transition-colors hover:text-white/60"
+            style={{ fontFamily: "var(--font-mono)", fontSize: "0.65rem", letterSpacing: "0.04em", color: "var(--swatch-5)", background: "none", border: "none", cursor: "pointer", textTransform: "uppercase" }}
+          >
+            Reset
+          </button>
+        )}
+      </div>
+
+      {/* App list */}
+      <div className="px-2 py-2" style={{ minHeight: "220px" }}>
+        <AnimatePresence mode="popLayout">
+          {entries.map((entry) => {
+            if (entry.type === "folder") {
+              const isOpen = openFolders.has(entry.id);
+              const isTarget = dropTargetId === entry.id;
+              return (
+                <motion.div
+                  key={entry.id}
+                  layout
+                  layoutId={entry.id}
+                  initial={{ opacity: 0, scale: 0.95 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: 0.95 }}
+                  transition={{ duration: 0.25 }}
+                >
+                  {/* Folder header row */}
+                  <div
+                    onDragOver={(e) => { e.preventDefault(); setDropTargetId(entry.id); }}
+                    onDragLeave={() => setDropTargetId(null)}
+                    onDrop={(e) => { e.preventDefault(); const src = e.dataTransfer.getData("text/plain"); if (src) handleDrop(entry.id, src); }}
+                    onClick={() => toggleFolder(entry.id)}
+                    className="flex items-center gap-3 rounded-lg px-3 py-2.5 cursor-pointer transition-colors"
+                    style={{
+                      backgroundColor: isTarget ? "rgba(214,249,144,0.06)" : "transparent",
+                      border: isTarget ? "1px dashed rgba(214,249,144,0.3)" : "1px solid transparent",
+                    }}
+                  >
+                    <span style={{ color: "var(--swatch-5)", display: "flex" }}><GripDots /></span>
+                    <span style={{ color: "var(--swatch-4)", display: "flex" }}><ChevronDown open={isOpen} /></span>
+                    <span style={{ color: "var(--swatch-3)", display: "flex" }}><FolderIco /></span>
+                    <span style={{ flex: 1, fontFamily: "'PP Mori', var(--font-sans)", fontSize: "0.9rem", fontWeight: 500, color: "var(--swatch-2)" }}>
+                      {entry.name}
+                    </span>
+                    <span style={{ fontFamily: "'PP Mori', var(--font-sans)", fontSize: "0.75rem", color: "var(--swatch-5)" }}>
+                      Visible to all clients
+                    </span>
+                    <span style={{ color: "var(--swatch-5)", display: "flex" }}><ThreeDots /></span>
+                  </div>
+
+                  {/* Folder children */}
+                  <AnimatePresence>
+                    {isOpen && entry.children.map((child) => (
+                      <motion.div
+                        key={child.id}
+                        layout
+                        layoutId={child.id}
+                        draggable
+                        onDragStart={(e) => { (e as unknown as React.DragEvent).dataTransfer?.setData("text/plain", child.id); setDraggingId(child.id); setHint(false); }}
+                        onDragEnd={() => { setDraggingId(null); setDropTargetId(null); }}
+                        onDragOver={(ev) => { (ev as unknown as React.DragEvent).preventDefault?.(); setDropTargetId(child.id); }}
+                        onDragLeave={() => setDropTargetId(null)}
+                        onDrop={(ev) => { (ev as unknown as React.DragEvent).preventDefault?.(); const src = (ev as unknown as React.DragEvent).dataTransfer?.getData("text/plain"); if (src) handleDrop(child.id, src); }}
+                        initial={{ opacity: 0, height: 0 }}
+                        animate={{ opacity: 1, height: "auto" }}
+                        exit={{ opacity: 0, height: 0 }}
+                        transition={{ duration: 0.2 }}
+                        className="flex items-center gap-3 rounded-lg px-3 py-2.5 ml-8 cursor-grab transition-colors hover:bg-white/[0.03]"
+                        style={{
+                          opacity: draggingId === child.id ? 0.4 : 1,
+                          backgroundColor: dropTargetId === child.id ? "rgba(214,249,144,0.06)" : undefined,
+                        }}
+                      >
+                        <span style={{ color: "var(--swatch-5)", display: "flex" }}><GripDots /></span>
+                        <span style={{ color: "var(--swatch-3)", display: "flex" }}>{child.icon}</span>
+                        <span style={{ flex: 1, fontFamily: "'PP Mori', var(--font-sans)", fontSize: "0.9rem", fontWeight: 400, color: "var(--swatch-2)" }}>
+                          {child.name}
+                        </span>
+                        <span style={{ fontFamily: "'PP Mori', var(--font-sans)", fontSize: "0.75rem", color: "var(--swatch-5)" }}>
+                          Visible to all clients
+                        </span>
+                        <span style={{ color: "var(--swatch-5)", display: "flex" }}><ThreeDots /></span>
+                      </motion.div>
+                    ))}
+                  </AnimatePresence>
+                </motion.div>
+              );
+            }
+
+            // Regular app row
+            const isTarget = dropTargetId === entry.id;
+            return (
+              <motion.div
+                key={entry.id}
+                layout
+                layoutId={entry.id}
+                draggable
+                onDragStart={(e) => { (e as unknown as React.DragEvent).dataTransfer?.setData("text/plain", entry.id); setDraggingId(entry.id); setHint(false); }}
+                onDragEnd={() => { setDraggingId(null); setDropTargetId(null); }}
+                onDragOver={(ev) => { (ev as unknown as React.DragEvent).preventDefault?.(); setDropTargetId(entry.id); }}
+                onDragLeave={() => setDropTargetId(null)}
+                onDrop={(ev) => { (ev as unknown as React.DragEvent).preventDefault?.(); const src = (ev as unknown as React.DragEvent).dataTransfer?.getData("text/plain"); if (src) handleDrop(entry.id, src); }}
+                initial={{ opacity: 0, y: -4 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, scale: 0.95 }}
+                transition={{ duration: 0.2 }}
+                className="flex items-center gap-3 rounded-lg px-3 py-2.5 cursor-grab transition-colors hover:bg-white/[0.03]"
+                style={{
+                  opacity: draggingId === entry.id ? 0.4 : 1,
+                  backgroundColor: isTarget ? "rgba(214,249,144,0.06)" : undefined,
+                  border: isTarget ? "1px dashed rgba(214,249,144,0.3)" : "1px solid transparent",
+                }}
+              >
+                <span style={{ color: "var(--swatch-5)", display: "flex" }}><GripDots /></span>
+                <span style={{ color: "var(--swatch-3)", display: "flex" }}>{entry.icon}</span>
+                <span style={{ flex: 1, fontFamily: "'PP Mori', var(--font-sans)", fontSize: "0.9rem", fontWeight: 500, color: "var(--swatch-2)" }}>
+                  {entry.name}
+                </span>
+                <span style={{ fontFamily: "'PP Mori', var(--font-sans)", fontSize: "0.75rem", color: "var(--swatch-5)" }}>
+                  Visible to all clients
+                </span>
+                <span style={{ color: "var(--swatch-5)", display: "flex" }}><ThreeDots /></span>
+              </motion.div>
+            );
+          })}
+        </AnimatePresence>
+      </div>
+
+      {/* Hint */}
+      <AnimatePresence>
+        {hint && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="px-5 pb-3 pt-1"
+          >
+            <p style={{ fontFamily: "var(--font-mono)", fontSize: "0.65rem", letterSpacing: "0.04em", color: "var(--swatch-5)", textAlign: "center", textTransform: "uppercase" }}>
+              Drag one app onto another to create a folder
+            </p>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </motion.div>
+  );
+}
+
+/* ═══════════════════════════════════════════════════════════════
    SECTION: CLIENT EXPERIENCE
    ═══════════════════════════════════════════════════════════════ */
 
@@ -662,12 +1008,38 @@ function ClientExperienceSection() {
         />
 
         <div className="mt-12 sm:mt-16 grid gap-6 lg:grid-cols-2">
-          <FeatureBlock
-            title="App Folders"
-            description="Drag and drop apps and embeds into folders. Group reports into an &quot;Analytics&quot; folder, or create a &quot;Helpful links&quot; folder for clients with all external resources. Unpin apps from your internal dashboard without affecting the client view — your workspace stays focused on what you actually use day-to-day."
-            screenshotSrc="/screenshots/app_folders.jpg"
-            screenshotAlt="App Folders"
-          />
+          {/* Interactive App Folders demo */}
+          <div className="flex flex-col gap-6">
+            <InteractiveAppFolders />
+            <div className="px-1">
+              <h3
+                style={{
+                  fontFamily: "'PP Mori', var(--font-sans)",
+                  fontWeight: 600,
+                  fontSize: "1.15rem",
+                  lineHeight: 1.3,
+                  letterSpacing: "-0.015em",
+                  color: "var(--swatch-1)",
+                  margin: 0,
+                }}
+              >
+                App Folders
+              </h3>
+              <p
+                style={{
+                  fontFamily: "'PP Mori', var(--font-sans)",
+                  fontWeight: 400,
+                  fontSize: "0.95rem",
+                  lineHeight: 1.6,
+                  color: "var(--swatch-3)",
+                  marginTop: "0.75rem",
+                }}
+              >
+                Drag and drop apps and embeds into folders. Group reports into an &ldquo;Analytics&rdquo; folder, or create a &ldquo;Helpful links&rdquo; folder for clients. Unpin apps from your internal dashboard without affecting the client view.
+              </p>
+            </div>
+          </div>
+
           <FeatureBlock
             title="Your client homepage, reimagined"
             description="Create up to five different homepage variants and automatically show the right one to each client based on custom field tags. Running a tiered service model? Show premium clients dedicated resources while basic clients see standard onboarding. The Home App itself has been completely refreshed with updated banners, a curated image gallery, improved responsive loading, and a cleaner layout."

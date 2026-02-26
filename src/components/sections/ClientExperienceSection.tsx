@@ -10,7 +10,7 @@ export function ClientExperienceSection({ inSplit = false }: ClientExperienceSec
   return (
     <section
       id="client-experience"
-      className={`relative ${inSplit ? "py-20 sm:py-32" : "py-20 sm:py-32"}`}
+      className={`relative ${inSplit ? "py-24 sm:py-40" : "py-24 sm:py-40"}`}
     >
 
       <div className={`relative ${inSplit ? "px-6 sm:px-8 lg:px-10" : "mx-auto max-w-7xl px-6"}`}>
@@ -61,32 +61,28 @@ export function ClientExperienceSection({ inSplit = false }: ClientExperienceSec
             style={{
               fontFamily: "'PP Mori', var(--font-sans)",
               fontWeight: 400,
-              fontSize: "1.15rem",
-              lineHeight: 1.45,
+              fontSize: "1.05rem",
+              lineHeight: 1.5,
               color: "var(--swatch-3)",
-              maxWidth: "36rem",
-              margin: "0 0 3.5rem 0",
+              maxWidth: "32rem",
+              margin: "0 0 4rem 0",
             }}
           >
-            A reimagined client portal with better organization, drag-and-drop folders, and personalized homepages that adapt to each client automatically.
+            A reimagined client portal with better organization, drag-and-drop folders, and personalized homepages.
           </p>
         </SectionReveal>
 
         {/* App Folders — Interactive Demo */}
         <SectionReveal delay={0.1}>
-          <div id="app-folders" style={{ marginBottom: "3.5rem" }}>
+          <div id="app-folders" style={{ marginBottom: "6rem" }}>
             <InteractiveAppLibrary inSplit={inSplit} />
-            <div className="grid gap-6 lg:grid-cols-12" style={{ marginTop: "2rem" }}>
-              <div className="lg:col-span-4">
-                <h3 style={{ fontFamily: "'PP Mori', var(--font-sans)", fontWeight: 600, fontSize: "1.05rem", lineHeight: 1.3, letterSpacing: "-0.015em", color: "var(--swatch-1)", margin: 0 }}>
-                  App Folders
-                </h3>
-              </div>
-              <div className="lg:col-span-8">
-                <p style={{ fontFamily: "'PP Mori', var(--font-sans)", fontWeight: 400, fontSize: "0.975rem", lineHeight: 1.55, color: "var(--swatch-3)", margin: 0 }}>
-                  Drag and drop apps and embeds into folders. Group reports into an &quot;Analytics&quot; folder, or create a &quot;Helpful links&quot; folder with external resources for clients. Unpin apps from your internal dashboard without affecting the client view &mdash; your workspace stays focused on what you actually use.
-                </p>
-              </div>
+            <div style={{ marginTop: "2.5rem" }}>
+              <h3 style={{ fontFamily: "'PP Mori', var(--font-sans)", fontWeight: 600, fontSize: "1.05rem", lineHeight: 1.3, letterSpacing: "-0.015em", color: "var(--swatch-1)", margin: "0 0 0.75rem 0" }}>
+                App Folders
+              </h3>
+              <p style={{ fontFamily: "'PP Mori', var(--font-sans)", fontWeight: 400, fontSize: "0.975rem", lineHeight: 1.6, color: "var(--swatch-3)", margin: 0, maxWidth: "34rem" }}>
+                Drag and drop apps and embeds into folders. Unpin apps from your internal dashboard without affecting the client view.
+              </p>
             </div>
           </div>
         </SectionReveal>
@@ -95,17 +91,13 @@ export function ClientExperienceSection({ inSplit = false }: ClientExperienceSec
         <SectionReveal delay={0.1}>
           <div id="client-segments">
             <ThemedClientHome inSplit={inSplit} />
-            <div className="grid gap-6 lg:grid-cols-12" style={{ marginTop: "2rem" }}>
-              <div className="lg:col-span-4">
-                <h3 style={{ fontFamily: "'PP Mori', var(--font-sans)", fontWeight: 600, fontSize: "1.05rem", lineHeight: 1.3, letterSpacing: "-0.015em", color: "var(--swatch-1)", margin: 0 }}>
-                  Client Segments
-                </h3>
-              </div>
-              <div className="lg:col-span-8">
-                <p style={{ fontFamily: "'PP Mori', var(--font-sans)", fontWeight: 400, fontSize: "0.975rem", lineHeight: 1.55, color: "var(--swatch-3)", margin: 0 }}>
-                  Create up to five homepage variants and route clients to the right one automatically, based on segment tags. Premium clients see dedicated resources while new clients see onboarding steps. The Home App itself has been refreshed with updated banners, improved responsive loading, and a cleaner layout.
-                </p>
-              </div>
+            <div style={{ marginTop: "2.5rem" }}>
+              <h3 style={{ fontFamily: "'PP Mori', var(--font-sans)", fontWeight: 600, fontSize: "1.05rem", lineHeight: 1.3, letterSpacing: "-0.015em", color: "var(--swatch-1)", margin: "0 0 0.75rem 0" }}>
+                Client Segments
+              </h3>
+              <p style={{ fontFamily: "'PP Mori', var(--font-sans)", fontWeight: 400, fontSize: "0.975rem", lineHeight: 1.6, color: "var(--swatch-3)", margin: 0, maxWidth: "34rem" }}>
+                Create homepage variants and route clients automatically based on segment tags. Premium clients see dedicated resources, new clients see onboarding.
+              </p>
             </div>
           </div>
         </SectionReveal>

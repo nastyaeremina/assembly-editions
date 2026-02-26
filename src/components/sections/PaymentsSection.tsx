@@ -10,7 +10,7 @@ export function PaymentsSection({ inSplit = false }: PaymentsSectionProps) {
   return (
     <section
       id="payments"
-      className={`relative ${inSplit ? "py-20 sm:py-32" : "py-20 sm:py-32"}`}
+      className={`relative ${inSplit ? "py-24 sm:py-40" : "py-24 sm:py-40"}`}
       style={{ borderTop: "1px solid rgba(255, 255, 255, 0.06)" }}
     >
       {/* Ambient gradient — top left */}
@@ -74,52 +74,43 @@ export function PaymentsSection({ inSplit = false }: PaymentsSectionProps) {
             style={{
               fontFamily: "'PP Mori', var(--font-sans)",
               fontWeight: 400,
-              fontSize: "1.15rem",
-              lineHeight: 1.45,
+              fontSize: "1.05rem",
+              lineHeight: 1.5,
               color: "var(--swatch-3)",
-              maxWidth: "36rem",
-              margin: "0 0 3.5rem 0",
+              maxWidth: "32rem",
+              margin: "0 0 4rem 0",
             }}
           >
-            Invoices, subscriptions, payment links, and storefronts — all brought together in one place.
+            Invoices, subscriptions, payment links, and storefronts — all in one place.
           </p>
         </SectionReveal>
 
         {/* Payments Home */}
         <SectionReveal delay={0.1}>
-          <div id="one-payments-home" style={{ marginBottom: "3.5rem" }}>
+          <div id="one-payments-home" style={{ marginBottom: "6rem" }}>
             <OnePaymentsDemo inSplit={inSplit} />
-            <div className="grid gap-6 lg:grid-cols-12" style={{ marginTop: "2rem" }}>
-              <div className="lg:col-span-4">
-                <h3 style={{ fontFamily: "'PP Mori', var(--font-sans)", fontWeight: 600, fontSize: "1.05rem", lineHeight: 1.3, letterSpacing: "-0.015em", color: "var(--swatch-1)", margin: 0 }}>
-                  One Payments Home
-                </h3>
-              </div>
-              <div className="lg:col-span-8">
-                <p style={{ fontFamily: "'PP Mori', var(--font-sans)", fontWeight: 400, fontSize: "0.975rem", lineHeight: 1.55, color: "var(--swatch-3)", margin: 0 }}>
-                  All billing surfaces consolidated into a single page with tabs — Overview, Invoices, Subscriptions, Payment Links, Stores, and Services. See your balance, upcoming payouts, and payment activity at a glance.
-                </p>
-              </div>
+            <div style={{ marginTop: "2.5rem" }}>
+              <h3 style={{ fontFamily: "'PP Mori', var(--font-sans)", fontWeight: 600, fontSize: "1.05rem", lineHeight: 1.3, letterSpacing: "-0.015em", color: "var(--swatch-1)", margin: "0 0 0.75rem 0" }}>
+                One Payments Home
+              </h3>
+              <p style={{ fontFamily: "'PP Mori', var(--font-sans)", fontWeight: 400, fontSize: "0.975rem", lineHeight: 1.6, color: "var(--swatch-3)", margin: 0, maxWidth: "34rem" }}>
+                All billing surfaces consolidated into a single page. See your balance, upcoming payouts, and payment activity at a glance.
+              </p>
             </div>
           </div>
         </SectionReveal>
-
 
         {/* Accounting Integrations */}
         <SectionReveal delay={0.1}>
           <div id="quickbooks-xero">
             <QuickBooksSyncDemo inSplit={inSplit} />
-            <div className="grid gap-6 lg:grid-cols-12" style={{ marginTop: "2rem" }}>
-              <div className="lg:col-span-4">
-                <h3 style={{ fontFamily: "'PP Mori', var(--font-sans)", fontWeight: 600, fontSize: "1.05rem", lineHeight: 1.3, letterSpacing: "-0.015em", color: "var(--swatch-1)", margin: 0 }}>
-                  QuickBooks &amp; Xero
-                </h3>
-              </div>
-              <div className="lg:col-span-8">
-                <p style={{ fontFamily: "'PP Mori', var(--font-sans)", fontWeight: 400, fontSize: "0.975rem", lineHeight: 1.55, color: "var(--swatch-3)", margin: 0 }}>
-                  Accounting integrations are fully out of beta. Map Assembly products to your existing items, sync invoice statuses, invoice numbers, and tax information. One-way sync — your books stay clean.
-                </p>
-              </div>
+            <div style={{ marginTop: "2.5rem" }}>
+              <h3 style={{ fontFamily: "'PP Mori', var(--font-sans)", fontWeight: 600, fontSize: "1.05rem", lineHeight: 1.3, letterSpacing: "-0.015em", color: "var(--swatch-1)", margin: "0 0 0.75rem 0" }}>
+                QuickBooks &amp; Xero
+              </h3>
+              <p style={{ fontFamily: "'PP Mori', var(--font-sans)", fontWeight: 400, fontSize: "0.975rem", lineHeight: 1.6, color: "var(--swatch-3)", margin: 0, maxWidth: "34rem" }}>
+                Accounting integrations are fully out of beta. Sync invoice statuses, numbers, and tax information. One-way sync — your books stay clean.
+              </p>
             </div>
           </div>
         </SectionReveal>

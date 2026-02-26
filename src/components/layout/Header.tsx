@@ -5,12 +5,13 @@ import { cn } from "@/lib/utils";
 import { useSplitActive } from "@/hooks/useSplitActive";
 
 /* Assembly icon mark only (no wordmark) — the stacked chevron/triangle */
-export function AssemblyMark({ className }: { className?: string }) {
+export function AssemblyMark({ className, style }: { className?: string; style?: React.CSSProperties }) {
   return (
     <svg
       viewBox="0 0 36 35"
       fill="currentColor"
       className={className}
+      style={style}
       aria-hidden="true"
     >
       <path d="M35.327 25.05v5.867c0 2.075-1.711 3.758-3.822 3.758H1.1c-.936 0-1.405-1.113-.743-1.764l7.127-7.003a3.008 3.008 0 0 1 2.107-.857H35.33h-.002ZM35.33 11.802v5.865c0 2.075-1.712 3.757-3.824 3.757H12.051l8.92-8.765a3.005 3.005 0 0 1 2.107-.857H35.33h-.001ZM35.33 1.043v3.373c0 2.075-1.712 3.758-3.824 3.758h-5.97L33.534.312c.662-.65 1.794-.19 1.794.73Z" />
@@ -44,16 +45,20 @@ export function Header({ className }: HeaderProps) {
         backgroundColor: "#101010",
         paddingTop: "0.8rem",
         paddingBottom: "0.5rem",
-        paddingLeft: "0.9rem",
-        paddingRight: "0.9rem",
+        paddingLeft: "1.5rem",
+        paddingRight: "1.5rem",
         transform: hidden ? "translateY(-100%)" : "translateY(0)",
         transition: "transform 0.8s cubic-bezier(0.25, 0.1, 0.25, 1)",
       }}
     >
       <div className="flex items-center justify-between">
-        {/* Left — Assembly */}
-        <Link href="/" style={navLinkStyle} className="transition-opacity hover:opacity-70">
-          Assembly
+        {/* Left — Full Assembly logo (mark + wordmark) */}
+        <Link href="/" className="transition-opacity hover:opacity-70" style={{ display: "flex", alignItems: "center" }}>
+          <img
+            src="/logos/watermark.svg"
+            alt="Assembly"
+            style={{ height: "22px", width: "auto", filter: "invert(1)" }}
+          />
         </Link>
 
         {/* Right — Log in + Start free trial */}
