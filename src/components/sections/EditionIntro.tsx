@@ -245,53 +245,79 @@ export function EditionIntro() {
   );
 }
 
-/* ── Mobile: Collapsible intro + horizontal nav ── */
+/* ── Mobile: Fixed bottom nav bar — visible while in scrollytelling sections ── */
 export function EditionIntroMobile() {
   const activeSection = useScrollSpy(sectionIds, 140);
+  const visible = useSplitActive();
+  const scrollRef = useRef<HTMLDivElement>(null);
+  const buttonRefs = useRef<Map<string, HTMLButtonElement>>(new Map());
+
+  /* Auto-scroll the active pill into view */
+  useEffect(() => {
+    if (!activeSection || !scrollRef.current) return;
+    const btn = buttonRefs.current.get(activeSection);
+    if (btn) {
+      btn.scrollIntoView({ behavior: "smooth", inline: "center", block: "nearest" });
+    }
+  }, [activeSection]);
 
   return (
-    <div className="lg:hidden">
-      {/* Sticky horizontal nav */}
-      <nav
-        className="sticky top-10 z-40"
+    <nav
+      className="lg:hidden"
+      style={{
+        position: "fixed",
+        bottom: 0,
+        left: 0,
+        right: 0,
+        zIndex: 50,
+        backgroundColor: "rgba(16, 16, 16, 0.92)",
+        backdropFilter: "blur(12px)",
+        WebkitBackdropFilter: "blur(12px)",
+        borderTop: "1px solid rgba(255, 255, 255, 0.1)",
+        transform: visible ? "translateY(0)" : "translateY(100%)",
+        opacity: visible ? 1 : 0,
+        transition: "transform 0.5s cubic-bezier(0.25, 0.1, 0.25, 1), opacity 0.3s ease",
+        pointerEvents: visible ? "auto" : "none",
+      }}
+      aria-label="Section navigation"
+    >
+      <div
+        ref={scrollRef}
+        className="flex items-center gap-1 overflow-x-auto scrollbar-hide"
         style={{
-          backgroundColor: "rgba(16, 16, 16, 0.92)",
-          backdropFilter: "blur(12px)",
-          borderBottom: "1px solid rgba(255, 255, 255, 0.1)",
+          padding: "0.6rem 1rem",
+          paddingBottom: "calc(0.6rem + env(safe-area-inset-bottom, 0px))",
         }}
-        aria-label="Section navigation"
       >
-        <div
-          className="flex items-center gap-1 overflow-x-auto py-3 px-4 scrollbar-hide"
-        >
-          {SPLIT_SECTIONS.map((section, i) => {
-            const isActive = activeSection === section.id;
-            return (
-              <button
-                key={section.id}
-                onClick={() => scrollToSection(section.id)}
-                style={{
-                  whiteSpace: "nowrap",
-                  padding: "0.4rem 0.8rem",
-                  borderRadius: "0.5rem",
-                  background: isActive ? "rgba(255,255,255,0.1)" : "transparent",
-                  border: "none",
-                  cursor: "pointer",
-                  fontFamily: "var(--font-mono, monospace)",
-                  fontSize: "0.85rem",
-                  letterSpacing: "-0.03em",
-                  color: isActive
-                    ? "rgba(255, 255, 255, 0.85)"
-                    : "rgba(255, 255, 255, 0.4)",
-                  transition: "all 0.2s",
-                }}
-              >
-                {section.number} {section.shortLabel}
-              </button>
-            );
-          })}
-        </div>
-      </nav>
-    </div>
+        {SPLIT_SECTIONS.map((section) => {
+          const isActive = activeSection === section.id;
+          return (
+            <button
+              key={section.id}
+              ref={(el) => { if (el) buttonRefs.current.set(section.id, el); }}
+              onClick={() => scrollToSection(section.id)}
+              style={{
+                whiteSpace: "nowrap",
+                padding: "0.5rem 0.9rem",
+                borderRadius: "0.5rem",
+                background: isActive ? "rgba(255,255,255,0.12)" : "transparent",
+                border: "none",
+                cursor: "pointer",
+                fontFamily: "var(--font-mono, monospace)",
+                fontSize: "0.8rem",
+                letterSpacing: "-0.03em",
+                color: isActive
+                  ? "rgba(255, 255, 255, 0.9)"
+                  : "rgba(255, 255, 255, 0.35)",
+                transition: "all 0.2s",
+                flexShrink: 0,
+              }}
+            >
+              {section.number} {section.shortLabel}
+            </button>
+          );
+        })}
+      </div>
+    </nav>
   );
 }
