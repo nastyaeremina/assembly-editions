@@ -117,9 +117,9 @@ function LinkColumn({
               target="_blank"
               rel="noopener"
               className="text-sm transition-colors"
-              style={{ color: "#101010" }}
+              style={{ color: "rgba(255,255,255,0.85)" }}
               onMouseEnter={(e) => (e.currentTarget.style.color = "#6F6F6F")}
-              onMouseLeave={(e) => (e.currentTarget.style.color = "#101010")}
+              onMouseLeave={(e) => (e.currentTarget.style.color = "rgba(255,255,255,0.85)")}
             >
               {link.label}
             </a>
@@ -138,9 +138,9 @@ function LinkColumn({
                   target="_blank"
                   rel="noopener"
                   className="text-sm transition-colors"
-                  style={{ color: "#101010" }}
+                  style={{ color: "rgba(255,255,255,0.85)" }}
                   onMouseEnter={(e) => (e.currentTarget.style.color = "#6F6F6F")}
-                  onMouseLeave={(e) => (e.currentTarget.style.color = "#101010")}
+                  onMouseLeave={(e) => (e.currentTarget.style.color = "rgba(255,255,255,0.85)")}
                 >
                   {link.label}
                 </a>
@@ -157,7 +157,7 @@ function FooterLogo() {
   return (
     <div
       style={{
-        background: "#D6F990",
+        background: "#101010",
         display: "flex",
         alignItems: "flex-end",
         justifyContent: "center",
@@ -167,7 +167,7 @@ function FooterLogo() {
     >
       <svg
         viewBox="0 0 823 153"
-        fill="#101010"
+        fill="rgba(255,255,255,0.85)"
         aria-hidden="true"
         style={{ width: "min(92vw, 1400px)", height: "auto" }}
       >
@@ -184,7 +184,7 @@ export function Footer({ className }: FooterProps) {
   return (
     <footer
       className={cn("relative z-50 pt-16", className)}
-      style={{ backgroundColor: "#D6F990" }}
+      style={{ backgroundColor: "#101010" }}
     >
       <div className="mx-auto max-w-7xl px-6 sm:px-8">
         {/* Row 1 — 4 columns */}
