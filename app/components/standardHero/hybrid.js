@@ -8,6 +8,7 @@ import { isEmpty } from '../../helpers/helpers';
 import HighlightSectionComponents from '../casestudies/highlightSection';
 import SVGComponent from '../../../public/images/svg/SVGComponent';
 import { LogoSection } from './solutionhero/styles';
+import TabVideoComponent from '../tabVideoComponent';
 
 /**
  * HomeHeroSection Component
@@ -39,7 +40,8 @@ export default function HomeHeroSection({
   isDownload = false,
   variant = HeroTypes.CENTER,
   isShowSocialProof,
-  customerLogoCollection
+  customerLogoCollection,
+  videoUrl
 }) {
   const [visibleLogos, setVisibleLogos] = useState([]);
 
@@ -80,6 +82,9 @@ export default function HomeHeroSection({
     return () => window.removeEventListener('resize', calculateVisible);
   }, [customerLogoCollection?.items]);
 
+  const hasValidVideo = !isEmpty(videoUrl?.videoLink) || !isEmpty(videoUrl?.video?.url);
+  const showMainImage = !isEmpty(image) || hasValidVideo;
+
   return (
     <HeroSection variant={variant}>
       <Container>
@@ -101,11 +106,12 @@ export default function HomeHeroSection({
           isDownload={isDownload}
           variant={variant}
         />
+
         <BottomSection>
           {!isEmpty(highlights) && <HighlightSectionComponents data={highlights} variant={variant} />}
-          {!isEmpty(image) && (
+          {showMainImage && (
             <MainImage>
-              <Image src={image} alt='internal' className='heromain-image' width={1224} height={415} />
+              <TabVideoComponent imageUrl={image} videoUrl={videoUrl} videoTitle={title} controls autoPlay={false} />
             </MainImage>
           )}
         </BottomSection>

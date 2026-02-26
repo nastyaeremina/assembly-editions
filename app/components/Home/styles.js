@@ -262,21 +262,52 @@ const MainImage = styled.div`
   border-radius: var(--radius-16);
   .heromain-image {
     border-radius: var(--radius-16);
+    display: flex;
     width: 100%;
     height: auto;
     border: 1px solid var(--border-secondary);
   }
+  img {
+    border-radius: var(--radius-16);
+    display: flex;
+    width: 100%;
+    height: auto;
+    border: 1px solid var(--border-secondary);
+  }
+  video {
+    width: 100%;
+  }
+  iframe {
+    max-width: 100%;
+    border-radius: var(--radius-16);
+    border: 1px solid var(--border-secondary);
+  }
   @media only screen and (max-width: 991px) {
     margin-top: var(--space-40);
+    img {
+      margin-bottom: 0;
+    }
     .heromain-image {
       margin-bottom: 0;
+    }
+
+    iframe {
+      max-height: 408px;
+      height: 408px;
     }
   }
   @media only screen and (max-width: 449px) {
     border-radius: var(--radius-12);
     margin-top: var(--space-32);
+    img {
+      border-radius: var(--radius-12);
+    }
     .heromain-image {
       border-radius: var(--radius-12);
+    }
+    iframe {
+      border-radius: var(--radius-12);
+      height: 228px;
     }
   }
 `;

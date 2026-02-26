@@ -29,7 +29,7 @@ export default function StandardHero({ type, data, isDownload = false, highlight
           <HomeHeroSection
             title={data?.heroTitle}
             body={data?.heroDescription}
-            image={data?.banner1?.url}
+            image={data?.banner1}
             logo={data?.logo}
             highlights={highlights}
             primaryButtonText={data?.primaryButtonText}
@@ -40,6 +40,7 @@ export default function StandardHero({ type, data, isDownload = false, highlight
             isShowSocialProof={data.showSocialProof}
             variant={HeroTypes.CENTER}
             customerLogoCollection={data?.customerLogoCollection}
+            videoUrl={data?.video}
           />
         );
       case HeroTypes.SIMPLE:

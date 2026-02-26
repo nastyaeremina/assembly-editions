@@ -22,7 +22,9 @@ primaryButtonText
 primaryButtonLink
 secondaryButtonText
 secondaryButtonLink
-videoUrl
+video{
+${POST_GRAPHQL_VIDEO_CONTENT_FIELDS}
+} 
 banner1{
   url
 }

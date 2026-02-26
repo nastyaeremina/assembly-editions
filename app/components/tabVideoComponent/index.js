@@ -10,12 +10,21 @@ import Image from 'next/image';
  * @param {string} title - Title for the video element (accessibility)
  * @param {number} activeIndex - Current active tab index for intersection observer
  */
-function TabVideoComponent({ imageUrl, videoUrl, title, activeIndex, mobileImageUrl }) {
+function TabVideoComponent({
+  imageUrl,
+  videoUrl,
+  title,
+  activeIndex,
+  mobileImageUrl,
+  controls = false,
+  autoPlay = true
+}) {
   // ref variables
   const videoRef = useRef(null);
   const playKickoffTimeoutRef = useRef(null);
 
   useEffect(() => {
+    if (!autoPlay) return;
     const videoElement = videoRef.current;
     if (!videoElement) return;
 
@@ -144,7 +153,15 @@ function TabVideoComponent({ imageUrl, videoUrl, title, activeIndex, mobileImage
           fetchPriority='low'
         />
       ) : videoUrl?.video?.url ? (
-        <video ref={videoRef} muted loop playsInline preload='metadata' autoPlay>
+        <video
+          ref={videoRef}
+          muted
+          loop
+          playsInline
+          preload='metadata'
+          poster={videoUrl?.thumbnailImage?.url}
+          autoplay={autoPlay}
+          controls={controls}>
           <source src={videoUrl?.video?.url} type='video/mp4' />
         </video>
       ) : (
