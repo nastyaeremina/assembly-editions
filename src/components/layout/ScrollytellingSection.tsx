@@ -2,6 +2,7 @@
 
 import { useRef } from "react";
 import { useScrollytelling } from "@/hooks/useScrollytelling";
+import { useMediaQuery } from "@/hooks/useMediaQuery";
 import { EditorialRail } from "./EditorialSplit";
 
 /* ────────────────────────────────────────────────────────────
@@ -10,6 +11,9 @@ import { EditorialRail } from "./EditorialSplit";
    – The editorial grid pins to the viewport
    – Invisible scroll height drives step progression
    – Right stage crossfades between hero → A → B → …
+
+   On mobile (<1024px), falls back to stacked cards —
+   no sticky, no crossfade, just a linear flow.
    ──────────────────────────────────────────────────────────── */
 
 export interface ScrollytellingStep {
@@ -31,6 +35,103 @@ interface ScrollytellingSectionProps {
   heroGradient?: boolean;
 }
 
+/* ── Mobile card — one per step in linear flow ── */
+function MobileCard({
+  id,
+  sectionNumber,
+  suffix,
+  title,
+  description,
+  children,
+}: {
+  id?: string;
+  sectionNumber: string;
+  suffix?: string;
+  title: string;
+  description: string;
+  children?: React.ReactNode;
+}) {
+  return (
+    <div
+      id={id}
+      style={{
+        backgroundColor: "#000",
+        padding: "2rem 1.25rem",
+        borderBottom: "1px solid rgba(255, 255, 255, 0.06)",
+      }}
+    >
+      {/* Section label */}
+      <p
+        style={{
+          fontFamily: "var(--font-mono, monospace)",
+          fontSize: "0.65rem",
+          letterSpacing: "0.08em",
+          textTransform: "uppercase",
+          color: "rgba(255, 255, 255, 0.4)",
+          margin: "0 0 1rem 0",
+        }}
+      >
+        SECTION {sectionNumber}
+        {suffix ? `-${suffix}` : ""}
+      </p>
+
+      {/* Title */}
+      <h2
+        style={{
+          fontFamily: "'PP Mori', var(--font-sans)",
+          fontWeight: 600,
+          fontSize: "1.5rem",
+          lineHeight: 1.2,
+          letterSpacing: "-0.02em",
+          color: "#fff",
+          margin: "0 0 0.75rem 0",
+          whiteSpace: "pre-line",
+        }}
+      >
+        {title}
+      </h2>
+
+      {/* Description */}
+      <p
+        style={{
+          fontFamily: "'PP Mori', var(--font-sans)",
+          fontWeight: 400,
+          fontSize: "0.85rem",
+          lineHeight: 1.65,
+          color: "rgba(255, 255, 255, 0.45)",
+          margin: "0 0 1.5rem 0",
+        }}
+      >
+        {description}
+      </p>
+
+      {/* Visual content */}
+      {children}
+    </div>
+  );
+}
+
+/* ── Mobile hero image renderer ── */
+function MobileHeroImage({ heroImage }: { heroImage: string | React.ReactNode }) {
+  if (typeof heroImage === "string") {
+    return (
+      <img
+        src={heroImage}
+        alt=""
+        style={{
+          width: "100%",
+          aspectRatio: "16 / 10",
+          objectFit: "cover",
+          objectPosition: "center 30%",
+          display: "block",
+          borderRadius: "0.5rem",
+        }}
+      />
+    );
+  }
+  return <div style={{ padding: "1rem 0" }}>{heroImage}</div>;
+}
+
 export function ScrollytellingSection({
   sectionId,
   title,
@@ -43,7 +144,42 @@ export function ScrollytellingSection({
   const sectionRef = useRef<HTMLElement>(null);
   const totalSteps = steps.length + 1; // +1 for hero
   const { activeStep } = useScrollytelling(sectionRef, totalSteps);
+  const isDesktop = useMediaQuery("(min-width: 1024px)", true);
 
+  /* ── Mobile: stacked cards ── */
+  if (!isDesktop) {
+    return (
+      <section ref={sectionRef} id={sectionId} className="relative">
+        {/* Hero card */}
+        <MobileCard
+          sectionNumber={sectionNumber}
+          title={title}
+          description={description}
+        >
+          <MobileHeroImage heroImage={heroImage} />
+        </MobileCard>
+
+        {/* Step cards */}
+        {steps.map((step) => (
+          <MobileCard
+            key={step.id}
+            id={step.id}
+            sectionNumber={sectionNumber}
+            suffix={step.suffix}
+            title={step.title || title}
+            description={step.description || description}
+          >
+            {/* sameAsHero steps: text-only on mobile (hero visual already shown above) */}
+            {!step.sameAsHero && step.content ? (
+              <div style={{ padding: "1rem 0" }}>{step.content}</div>
+            ) : null}
+          </MobileCard>
+        ))}
+      </section>
+    );
+  }
+
+  /* ── Desktop: scrollytelling (unchanged) ── */
   return (
     <section
       ref={sectionRef}
