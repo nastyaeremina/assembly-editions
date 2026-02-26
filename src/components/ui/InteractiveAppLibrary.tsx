@@ -594,91 +594,133 @@ function SortableItem({ settings, showIndicator, indicatorPos, indicatorIndented
   );
 }
 
-/* ── Mobile Sortable Item ── */
-function MobileSortableItem({ settings, showIndicator, indicatorPos, indicatorIndented, isLastChild, disabled: ext }: {
+/* ── Mobile Static Row (no drag, just visual) ── */
+function MobileRow({ settings, isLifted }: {
   settings: ModuleSettingsItem;
-  showIndicator: boolean;
-  indicatorPos: "top" | "bottom";
-  indicatorIndented: boolean;
-  isLastChild: boolean;
-  disabled: boolean;
+  isLifted: boolean;
 }) {
-  const { attributes, listeners, setNodeRef, transform, transition, isDragging, isSorting } = useSortable({ id: settings.id });
   const isChild = Boolean(settings.path);
   const isF = settings.type === "folder";
 
-  const style: React.CSSProperties = {
-    transform: isSorting ? undefined : CSS.Transform.toString(transform),
-    transition: [transition, "opacity 200ms ease"].filter(Boolean).join(", "),
-    opacity: isDragging ? 0.4 : 1,
-    position: "relative",
-  };
+  return (
+    <motion.div
+      layout
+      layoutId={`mobile-${settings.id}`}
+      transition={{ type: "spring", stiffness: 500, damping: 35 }}
+      style={{
+        display: "flex",
+        alignItems: "center",
+        minHeight: "72px",
+        padding: isChild ? "0 16px 0 48px" : "0 16px",
+        gap: "14px",
+        backgroundColor: isLifted ? "#f0f5ff" : "#fff",
+        borderBottom: `1px solid ${C.border}`,
+        boxShadow: isLifted ? "0 4px 16px rgba(0,0,0,0.10)" : "none",
+        zIndex: isLifted ? 10 : 1,
+        position: "relative",
+        borderRadius: isLifted ? "8px" : 0,
+        transition: "background-color 0.3s ease, box-shadow 0.3s ease",
+      }}
+    >
+      {/* Icon */}
+      <span style={{
+        display: "flex", alignItems: "center", justifyContent: "center",
+        width: "44px", height: "44px", borderRadius: "12px",
+        border: `1px solid ${C.border}`, backgroundColor: "#fff",
+        color: C.textSec, flexShrink: 0,
+      }}>
+        <AppIconEl name={settings.icon} />
+      </span>
+
+      {/* Label */}
+      <span style={{
+        flex: 1, fontSize: "15px", fontWeight: 500,
+        color: C.text,
+        fontFamily: "var(--font-sans)",
+        overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap",
+      }}>
+        {settings.label}
+      </span>
+
+      {/* Visibility label (apps only) */}
+      {!isF && (
+        <span style={{
+          fontSize: "13px", color: C.textMuted,
+          fontFamily: "var(--font-sans)",
+          whiteSpace: "nowrap", flexShrink: 0,
+        }}>
+          Visible to all clients
+        </span>
+      )}
+
+      {/* Dots */}
+      <span style={{
+        display: "flex", alignItems: "center", justifyContent: "center",
+        width: "24px", height: "24px", color: C.textMuted, flexShrink: 0,
+      }}>
+        <DotsIcon />
+      </span>
+    </motion.div>
+  );
+}
+
+/* ── Mobile Animated Demo — loops a reorder animation ── */
+function MobileAnimatedDemo() {
+  /* Animation keyframes: each step is [items order, liftedId, duration ms] */
+  const INITIAL: ModuleSettingsItem[] = [
+    { id: "home", label: "Home", icon: "home", type: "app", disabled: false },
+    { id: "messages", label: "Messages", icon: "messages", type: "app", disabled: false },
+    { id: "reports-folder", label: "Reports", icon: "folder", type: "folder", disabled: false },
+    { id: "q4-revenue", label: "Q4 Revenue Summary", icon: "report", type: "app", disabled: false, path: "reports-folder" },
+  ];
+
+  const REORDERED: ModuleSettingsItem[] = [
+    { id: "home", label: "Home", icon: "home", type: "app", disabled: false },
+    { id: "reports-folder", label: "Reports", icon: "folder", type: "folder", disabled: false },
+    { id: "q4-revenue", label: "Q4 Revenue Summary", icon: "report", type: "app", disabled: false, path: "reports-folder" },
+    { id: "messages", label: "Messages", icon: "messages", type: "app", disabled: false },
+  ];
+
+  // Animation states: rest → lift → move → settle → rest (reversed) → ...
+  const [items, setItems] = useState(INITIAL);
+  const [liftedId, setLiftedId] = useState<string | null>(null);
+  const [stepIndex, setStepIndex] = useState(0);
+
+  useEffect(() => {
+    const steps = [
+      // Forward: move Messages below Reports folder
+      { delay: 2500, action: () => { setLiftedId("messages"); } },                    // lift
+      { delay: 600,  action: () => { setItems(REORDERED); } },                        // reorder
+      { delay: 400,  action: () => { setLiftedId(null); } },                          // drop
+      // Pause then reverse
+      { delay: 2500, action: () => { setLiftedId("messages"); } },                    // lift
+      { delay: 600,  action: () => { setItems(INITIAL); } },                          // reorder back
+      { delay: 400,  action: () => { setLiftedId(null); } },                          // drop
+    ];
+
+    const step = steps[stepIndex % steps.length];
+    const timer = setTimeout(() => {
+      step.action();
+      setStepIndex((i) => i + 1);
+    }, step.delay);
+
+    return () => clearTimeout(timer);
+  }, [stepIndex]);
 
   return (
-    <div ref={setNodeRef} style={style}>
-      {showIndicator && <DropIndicator position={indicatorPos} indented={indicatorIndented} />}
-      <div style={{ position: "relative" }}>
-        <div
-          style={{
-            display: "flex",
-            alignItems: "center",
-            minHeight: "72px",
-            padding: isChild ? "0 16px 0 48px" : "0 16px",
-            gap: "14px",
-            backgroundColor: "#fff",
-            borderBottom: `1px solid ${C.border}`,
-          }}
-        >
-          {/* Icon */}
-          <span style={{
-            display: "flex", alignItems: "center", justifyContent: "center",
-            width: "44px", height: "44px", borderRadius: "12px",
-            border: `1px solid ${C.border}`, backgroundColor: "#fff",
-            color: ext ? C.textDisabled : C.textSec, flexShrink: 0,
-          }}>
-            <AppIconEl name={settings.icon} />
-          </span>
-
-          {/* Label */}
-          <span style={{
-            flex: 1, fontSize: "15px", fontWeight: 500,
-            color: ext ? C.textDisabled : C.text,
-            fontFamily: "var(--font-sans)",
-            overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap",
-          }}>
-            {settings.label}
-          </span>
-
-          {/* Visibility label (apps only) */}
-          {!isF && (
-            <span style={{
-              fontSize: "13px", color: C.textMuted,
-              fontFamily: "var(--font-sans)",
-              whiteSpace: "nowrap", flexShrink: 0,
-            }}>
-              Visible to all clients
-            </span>
-          )}
-
-          {/* Dots */}
-          <span style={{
-            display: "flex", alignItems: "center", justifyContent: "center",
-            width: "24px", height: "24px", color: C.textMuted, flexShrink: 0,
-          }}>
-            <DotsIcon />
-          </span>
-        </div>
-
-        {/* Invisible overlay for drag */}
-        <button
-          type="button"
-          style={{ position: "absolute", inset: 0, appearance: "none", border: "none", backgroundColor: "transparent", cursor: "pointer", zIndex: 10, padding: 0, margin: 0, display: "block", width: "100%" }}
-          {...attributes}
-          {...listeners}
-          disabled={ext}
-        />
-      </div>
-    </div>
+    <motion.div
+      initial={{ opacity: 0, scale: 0.97 }}
+      whileInView={{ opacity: 1, scale: 1 }}
+      viewport={{ once: true, margin: "-40px" }}
+      transition={{ duration: 0.6, ease: [0.25, 0.1, 0.25, 1] }}
+      style={{ borderRadius: "12px", overflow: "hidden", backgroundColor: C.bg, border: `1px solid ${C.border}` }}
+    >
+      <AnimatePresence>
+        {items.map((s) => (
+          <MobileRow key={s.id} settings={s} isLifted={liftedId === s.id} />
+        ))}
+      </AnimatePresence>
+    </motion.div>
   );
 }
 
@@ -821,50 +863,9 @@ export function InteractiveAppLibrary({ inSplit = false }: { inSplit?: boolean }
 
   const isDesktop = useMediaQuery("(min-width: 1024px)", true);
 
-  /* ── Mobile: focused app list ── */
+  /* ── Mobile: animated demo (no interaction, loops reorder animation) ── */
   if (!isDesktop) {
-    return (
-      <motion.div
-        initial={{ opacity: 0, scale: 0.97 }}
-        whileInView={{ opacity: 1, scale: 1 }}
-        viewport={{ once: true, margin: "-40px" }}
-        transition={{ duration: 0.6, ease: [0.25, 0.1, 0.25, 1] }}
-        style={{ borderRadius: "12px", overflow: "hidden", backgroundColor: C.bg, border: `1px solid ${C.border}` }}
-      >
-        <DndContext sensors={sensors} collisionDetection={closestCenter}
-          onDragStart={handleDragStart} onDragOver={handleDragOver} onDragMove={handleDragMove} onDragEnd={handleDragEnd}>
-          <SortableContext items={moduleSettings.map(({ id }) => id)} strategy={verticalListSortingStrategy}>
-            <div ref={containerRef}>
-              {moduleSettings.map((s, idx) => {
-                if (s.disabled) return null;
-                const showInd = overItem?.item.id === s.id && !isDraggingFolderIntoFolder && !isDraggingFolderIntoSelf;
-                return (
-                  <motion.div key={s.id} layout="position" transition={{ type: "tween", duration: 0.25, ease: "easeOut" }}>
-                    <MobileSortableItem
-                      settings={s}
-                      showIndicator={showInd}
-                      indicatorPos={dragDirection === "up" ? "top" : "bottom"}
-                      indicatorIndented={isDraggingIntoFolder}
-                      isLastChild={lastChildIds.has(s.id)}
-                      disabled={Boolean(activeItem?.item.type === "folder" && getFolderId(s))}
-                    />
-                    {isEmptyFolder(moduleSettings, idx) && (
-                      <EmptyFolderDropZoneEl folderId={s.id}
-                        showIndicator={overTarget?.type === "emptyFolder" && activeItem?.item.type !== "folder" && overTarget.folderId === s.id && !isDraggingFolderIntoFolder}
-                        indicatorPos={dragDirection === "up" ? "top" : "bottom"}
-                        indicatorIndented={isDraggingIntoFolder} />
-                    )}
-                  </motion.div>
-                );
-              })}
-            </div>
-          </SortableContext>
-          <DragOverlay modifiers={[snapCenterLeftToCursor]} dropAnimation={dropAnimation}>
-            {activeItem && <DragOverlayItem item={activeItem.item} helperText={helperText} />}
-          </DragOverlay>
-        </DndContext>
-      </motion.div>
-    );
+    return <MobileAnimatedDemo />;
   }
 
   /* ── Desktop: full layout (unchanged) ── */
