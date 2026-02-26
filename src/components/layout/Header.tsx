@@ -77,7 +77,7 @@ export function Header({ className }: HeaderProps) {
             target="_blank"
             rel="noopener"
             style={navLinkStyle}
-            className="transition-opacity hover:opacity-70"
+            className="hidden lg:inline transition-opacity hover:opacity-70"
           >
             Start free trial
           </a>
