@@ -1,8 +1,7 @@
-import { Header, SplitScreenLayout, Footer } from "@/components/layout";
+import { Header, ChapterBar, SplitScreenLayout, Footer } from "@/components/layout";
 import { LoadingScreen } from "@/components/ui";
 import {
   CollageHero,
-  EditionIntro,
   EditionIntroMobile,
   ClientExperienceSection,
   ProjectManagementSection,
@@ -18,26 +17,24 @@ export default function Home() {
       {/* Loading intro — mouse-interactive "2.0" */}
       <LoadingScreen />
 
-      {/* Top nav */}
+      {/* Top nav — Header for hero, ChapterBar for sections */}
       <Header />
+      <ChapterBar />
 
       <main>
         {/* Hero — centered title + subtitle + video placeholder */}
         <CollageHero />
 
-        {/* Fixed right sidebar — desktop only */}
-        <EditionIntro />
-
         {/* Mobile intro + sticky nav */}
         <EditionIntroMobile />
 
-        {/* Scrollable content sections — 75% left on desktop */}
+        {/* Scrollable content sections — editorial split layout */}
         <SplitScreenLayout>
-          <ClientExperienceSection inSplit />
-          <ProjectManagementSection inSplit />
-          <ClientManagementSection inSplit />
-          <PaymentsSection inSplit />
-          <DevelopersSection inSplit />
+          <ClientExperienceSection />
+          <ProjectManagementSection />
+          <ClientManagementSection />
+          <PaymentsSection />
+          <DevelopersSection />
         </SplitScreenLayout>
 
         <WhatsNextSection />

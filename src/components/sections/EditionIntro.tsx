@@ -27,25 +27,6 @@ function scrollToSection(id: string) {
   }
 }
 
-function LiveClock() {
-  const [time, setTime] = useState("");
-
-  useEffect(() => {
-    function update() {
-      const now = new Date();
-      const h = String(now.getHours()).padStart(2, "0");
-      const m = String(now.getMinutes()).padStart(2, "0");
-      const s = String(now.getSeconds()).padStart(2, "0");
-      setTime(`${h}:${m}:${s}`);
-    }
-    update();
-    const id = setInterval(update, 1000);
-    return () => clearInterval(id);
-  }, []);
-
-  return <span>{time}</span>;
-}
-
 /* ── Subsection list with vertical bracket connector ── */
 function SubsectionList({
   subsections,
@@ -160,7 +141,7 @@ function SubsectionList({
   );
 }
 
-/* ── Desktop: Fixed right sidebar ── */
+/* ── Desktop: Floating overlay nav (right edge) ── */
 export function EditionIntro() {
   const activeSection = useScrollSpy(sectionIds, 140);
   const activeSubsection = useScrollSpy(allSubsectionIds, 200);
@@ -169,102 +150,97 @@ export function EditionIntro() {
   return (
     <aside
       id="edition-sidebar"
-      className="hidden lg:flex fixed top-0 right-0 bottom-0 z-40 flex-col justify-between"
+      className="hidden lg:block fixed z-40"
       style={{
-        width: "25%",
-        maxWidth: "400px",
-        padding: "5rem 1.5rem 1.5rem 1.5rem",
-        backgroundColor: "#101010",
-        transform: visible ? "translateX(0)" : "translateX(100%)",
+        top: "50%",
+        right: "2rem",
+        transform: visible
+          ? "translateY(-50%) translateX(0)"
+          : "translateY(-50%) translateX(calc(100% + 2rem))",
         pointerEvents: visible ? "auto" : "none",
-        transition: "transform 0.8s cubic-bezier(0.25, 0.1, 0.25, 1)",
+        opacity: visible ? 1 : 0,
+        transition:
+          "transform 0.6s cubic-bezier(0.25, 0.1, 0.25, 1), opacity 0.4s ease",
+        width: "220px",
+        background: "rgba(16, 16, 16, 0.75)",
+        backdropFilter: "blur(16px)",
+        WebkitBackdropFilter: "blur(16px)",
+        border: "1px solid rgba(255, 255, 255, 0.08)",
+        borderRadius: "12px",
+        padding: "1rem 1.25rem",
       }}
       aria-label="Assembly Editions overview"
     >
-      {/* ── Section nav ── */}
-      <div>
-        <nav aria-label="Section navigation">
-          <ul
-            style={{
-              listStyle: "none",
-              margin: 0,
-              padding: 0,
-            }}
-          >
-            {SPLIT_SECTIONS.map((section, i) => {
-              const isActive = activeSection === section.id;
-              const isLastSection = i === SPLIT_SECTIONS.length - 1;
-              return (
-                <li
-                  key={section.id}
+      <nav aria-label="Section navigation">
+        <ul
+          style={{
+            listStyle: "none",
+            margin: 0,
+            padding: 0,
+          }}
+        >
+          {SPLIT_SECTIONS.map((section, i) => {
+            const isActive = activeSection === section.id;
+            const isLastSection = i === SPLIT_SECTIONS.length - 1;
+            return (
+              <li
+                key={section.id}
+                style={{
+                  borderBottom: isLastSection
+                    ? "none"
+                    : "1px solid rgba(255, 255, 255, 0.06)",
+                }}
+              >
+                <button
+                  onClick={() => scrollToSection(section.id)}
                   style={{
-                    borderBottom: isLastSection
-                      ? "none"
-                      : "1px solid rgba(255, 255, 255, 0.12)",
+                    display: "flex",
+                    alignItems: "baseline",
+                    gap: "0.5rem",
+                    width: "100%",
+                    padding: "0.6rem 0",
+                    background: "none",
+                    border: "none",
+                    cursor: "pointer",
+                    textAlign: "left",
+                    transition: "color 0.2s",
+                    fontFamily: "var(--font-mono, monospace)",
+                    fontSize: "0.8rem",
+                    letterSpacing: "-0.04em",
+                    color: isActive
+                      ? "rgba(255, 255, 255, 0.85)"
+                      : "rgba(255, 255, 255, 0.3)",
                   }}
                 >
-                  <button
-                    onClick={() => scrollToSection(section.id)}
+                  <span style={{ minWidth: "1.25rem" }}>
+                    {section.number}
+                  </span>
+                  <span
                     style={{
-                      display: "flex",
-                      alignItems: "baseline",
-                      gap: "0.75rem",
-                      width: "100%",
-                      padding: "0.85rem 0",
-                      background: "none",
-                      border: "none",
-                      cursor: "pointer",
-                      textAlign: "left",
-                      transition: "color 0.2s",
-                      fontFamily: "var(--font-mono, monospace)",
-                      fontSize: "0.925rem",
-                      letterSpacing: "-0.04em",
-                      color: isActive
-                        ? "rgba(255, 255, 255, 0.85)"
-                        : "rgba(255, 255, 255, 0.3)",
+                      fontFamily: "'PP Mori', var(--font-sans)",
+                      fontWeight: isActive ? 500 : 400,
+                      fontSize: "0.8rem",
+                      letterSpacing: "-0.01em",
                     }}
                   >
-                    <span style={{ minWidth: "1.5rem" }}>
-                      {section.number}
-                    </span>
-                    <span
-                      style={{
-                        fontFamily: "'PP Mori', var(--font-sans)",
-                        fontWeight: isActive ? 500 : 400,
-                        letterSpacing: "-0.01em",
-                      }}
-                    >
-                      {section.label}
-                    </span>
-                  </button>
+                    {section.label}
+                  </span>
+                </button>
 
-                  {/* Expandable subsections */}
-                  <AnimatePresence>
-                    {isActive && section.subsections.length > 0 && (
-                      <SubsectionList
-                        subsections={section.subsections}
-                        activeSubsection={activeSubsection}
-                      />
-                    )}
-                  </AnimatePresence>
-                </li>
-              );
-            })}
-          </ul>
-        </nav>
-      </div>
-
-      {/* ── Bottom: Live clock ── */}
-      <div
-        style={{
-          fontFamily: "var(--font-mono, monospace)",
-          fontSize: "0.9rem",
-          letterSpacing: "-0.05em",
-          color: "rgba(255, 255, 255, 0.3)",
-        }}
-      >
-        <LiveClock />
-      </div>
+                {/* Expandable subsections */}
+                <AnimatePresence>
+                  {isActive && section.subsections.length > 0 && (
+                    <SubsectionList
+                      subsections={section.subsections}
+                      activeSubsection={activeSubsection}
+                    />
+                  )}
+                </AnimatePresence>
+              </li>
+            );
+          })}
+        </ul>
+      </nav>
     </aside>
   );
 }

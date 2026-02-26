@@ -24,3 +24,4 @@ export { QuickBooksSyncDemo } from "./QuickBooksSyncDemo";
 export { AppBridgeCodeDemo } from "./AppBridgeCodeDemo";
 export { DotGrid } from "./DotGrid";
 export { LightBeam } from "./LightBeam";
+export { TypewriterText } from "./TypewriterText";

@@ -136,8 +136,9 @@
 /* Smooth scrolling */
 html {
   scroll-behavior: smooth;
-  overflow-x: hidden;
-  overflow-y: overlay;
+  overflow-x: clip;
+  overflow-y: auto;
+  scrollbar-gutter: auto;
 }
 
 body {
@@ -146,7 +147,7 @@ body {
   font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  overflow-x: hidden;
+  overflow-x: clip;
 }
 
 /* Selection styling */
@@ -155,22 +156,29 @@ body {
   color: var(--color-accent-foreground);
 }
 
-/* Custom scrollbar */
+/* Custom scrollbar — thin overlay style, no layout shift */
 ::-webkit-scrollbar {
-  width: 8px;
+  width: 6px;
+  background: transparent;
 }
 
 ::-webkit-scrollbar-track {
-  background: var(--color-card);
+  background: transparent;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: var(--color-surface-hover);
-  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.12);
+  border-radius: 3px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--color-muted-foreground);
+  background: rgba(255, 255, 255, 0.25);
+}
+
+/* Firefox scrollbar */
+html {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, 0.12) transparent;
 }
 
 /* Utility classes for brand colors */
