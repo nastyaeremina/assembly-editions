@@ -1511,8 +1511,8 @@ export function OnePaymentsDemo({ inSplit = false }: OnePaymentsDemoProps) {
         <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, height: "1px", backgroundColor: C.border }} />
       </div>
 
-      {/* Page content */}
-      <div style={{ padding: "16px 24px 20px", overflow: "hidden" }}>
+      {/* Page content — fixed height to match Overview across all tabs */}
+      <div style={{ padding: "16px 24px 20px", overflow: "hidden", minHeight: "340px" }}>
         <AnimatePresence mode="wait">
           {activeTab === "overview" && (
             <motion.div
