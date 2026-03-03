@@ -5,50 +5,60 @@ import { motion, AnimatePresence, useInView } from "framer-motion";
 import { useMediaQuery } from "@/hooks/useMediaQuery";
 
 /* ──────────────────────────────────────────────────────────
-   QUICKBOOKS & XERO SYNC DEMO
-   Node-editor workflow canvas with 3 integration cards.
-   Assembly→QB always connected. Click Xero card to connect.
+   QUICKBOOKS & XERO SYNC DEMO  —  v3 redesign
+   Structured grid layout · premium connectors · depth layers
+   Assembly is the hub on the left, QB + Xero stack on the right.
    ────────────────────────────────────────────────────────── */
 
+/* ── Design tokens ── */
 const C = {
-  canvasBg: "#fafafa",
+  canvasBg: "rgba(250,250,248,0.6)",
+  canvasBorder: "rgba(0,0,0,0.06)",
   cardBg: "#ffffff",
+  cardBgInactive: "#fafafa",
   border: "#e5e7eb",
   borderLight: "#f0f0f0",
   text: "#18181b",
   textSec: "#6b7280",
   textMuted: "#9ca3af",
   green: "#16a34a",
-  line: "#94a3b8",
-  lineActive: "#64748b",
-  lineDashed: "#cbd5e1",
+  greenGlow: "rgba(22,163,74,0.12)",
+  line: "#c4c9d2",
+  lineActive: "#94a3b8",
+  lineDashed: "#d4d8e0",
   port: "#94a3b8",
-  portFill: "#f1f5f9",
+  portFill: "#f8fafc",
   portActive: "#64748b",
+  dot: "#64748b",
 } as const;
 
-/* ── Bezier path helpers (generous control points for smooth curves) ── */
-function bezierPathH(fx: number, fy: number, tx: number, ty: number): string {
-  const dx = Math.abs(tx - fx);
-  const cp = Math.max(60, dx * 0.5);
-  return `M ${fx} ${fy} C ${fx + cp} ${fy}, ${tx - cp} ${ty}, ${tx} ${ty}`;
-}
-function bezierPathV(fx: number, fy: number, tx: number, ty: number): string {
-  const dy = Math.abs(ty - fy);
-  const cp = Math.max(30, dy * 0.5);
-  return `M ${fx} ${fy} C ${fx} ${fy + cp}, ${tx} ${ty - cp}, ${tx} ${ty}`;
+/* ── Layout constants ── */
+const CANVAS_W = 600; // max-width of the canvas container
+const CANVAS_H = 340;
+const CARD_W = 210;
+const GAP = 120; // horizontal gap between hub and targets
+
+/* ── Smooth bezier helper ── */
+function bezierH(fx: number, fy: number, tx: number, ty: number): string {
+  const cp = Math.abs(tx - fx) * 0.45;
+  return `M${fx},${fy} C${fx + cp},${fy} ${tx - cp},${ty} ${tx},${ty}`;
 }
 
-/* ── Node card data ── */
+/* ── Node data ── */
+interface NodeRow {
+  label: string;
+  value: string;
+  valueConnected?: string;
+}
 interface NodeDef {
   id: string;
   icon: string;
   title: string;
-  rows: { label: string; value: string; valueConnected?: string }[];
+  rows: NodeRow[];
   status?: { connected: string; disconnected: string };
 }
 
-const ASSEMBLY_NODE: NodeDef = {
+const ASSEMBLY: NodeDef = {
   id: "assembly",
   icon: "/Icons/AvatarBlack.svg",
   title: "Assembly",
@@ -58,8 +68,7 @@ const ASSEMBLY_NODE: NodeDef = {
     { label: "Payments", value: "89" },
   ],
 };
-
-const QB_NODE: NodeDef = {
+const QB: NodeDef = {
   id: "qb",
   icon: "/Icons/QB.svg",
   title: "QuickBooks",
@@ -69,8 +78,7 @@ const QB_NODE: NodeDef = {
   ],
   status: { connected: "Connected", disconnected: "Connected" },
 };
-
-const XERO_NODE: NodeDef = {
+const XERO: NodeDef = {
   id: "xero",
   icon: "/Icons/Xerosq.svg",
   title: "Xero",
@@ -82,61 +90,65 @@ const XERO_NODE: NodeDef = {
 };
 
 /* ══════════════════════════════════════════
-   NODE CARD COMPONENT
+   CARD
    ══════════════════════════════════════════ */
-function NodeCard({
+function Card({
   node,
-  isConnected,
-  style,
+  connected,
+  primary,
   nodeRef,
-  animate: shouldAnimate,
+  anim,
   delay = 0,
-  isInView,
+  inView,
   onClick,
   clickable,
   justConnected,
 }: {
   node: NodeDef;
-  isConnected: boolean;
-  style: React.CSSProperties;
+  connected: boolean;
+  primary?: boolean;
   nodeRef?: React.Ref<HTMLDivElement>;
-  animate?: boolean;
+  anim?: boolean;
   delay?: number;
-  isInView: boolean;
+  inView: boolean;
   onClick?: () => void;
   clickable?: boolean;
   justConnected?: boolean;
 }) {
   const statusText = node.status
-    ? isConnected
+    ? connected
       ? node.status.connected
       : node.status.disconnected
     : null;
-  const statusColor = isConnected ? C.green : C.textMuted;
+  const statusColor = connected ? C.green : C.textMuted;
 
   return (
     <motion.div
       ref={nodeRef}
-      initial={shouldAnimate ? { opacity: 0, y: 14 } : undefined}
-      animate={shouldAnimate && isInView ? { opacity: 1, y: 0 } : undefined}
-      transition={shouldAnimate ? { duration: 0.5, delay, ease: [0.22, 1, 0.36, 1] } : undefined}
+      initial={anim ? { opacity: 0, y: 12 } : undefined}
+      animate={anim && inView ? { opacity: 1, y: 0 } : undefined}
+      transition={anim ? { duration: 0.5, delay, ease: [0.22, 1, 0.36, 1] } : undefined}
       onClick={onClick}
-      whileHover={clickable ? { scale: 1.02, boxShadow: "0 4px 12px rgba(0,0,0,0.08)" } : undefined}
-      whileTap={clickable ? { scale: 0.98 } : undefined}
+      whileHover={
+        clickable
+          ? { scale: 1.015, boxShadow: "0 6px 20px rgba(0,0,0,0.08)" }
+          : undefined
+      }
+      whileTap={clickable ? { scale: 0.985 } : undefined}
       style={{
-        position: "absolute",
-        zIndex: 2,
-        width: 220,
-        border: `1.5px solid ${clickable ? C.lineDashed : C.border}`,
-        borderRadius: "10px",
-        backgroundColor: C.cardBg,
-        boxShadow: clickable
-          ? "0 1px 4px rgba(0,0,0,0.06), 0 0 0 1px rgba(0,0,0,0.02)"
-          : "0 1px 4px rgba(0,0,0,0.06)",
+        width: CARD_W,
+        flexShrink: 0,
+        border: `1px solid ${connected || primary ? C.border : C.lineDashed}`,
+        borderRadius: 10,
+        backgroundColor: connected || primary ? C.cardBg : C.cardBgInactive,
+        boxShadow: primary
+          ? "0 2px 8px rgba(0,0,0,0.06), 0 0 0 1px rgba(0,0,0,0.03)"
+          : connected
+            ? "0 1px 4px rgba(0,0,0,0.04)"
+            : "0 1px 2px rgba(0,0,0,0.03)",
         overflow: "hidden",
         cursor: clickable ? "pointer" : "default",
-        transition: "border-color 0.3s ease, box-shadow 0.3s ease",
-        ...style,
+        transition: "border-color 0.3s, box-shadow 0.3s, background-color 0.3s",
       }}
     >
       {/* Header */}
@@ -144,7 +156,7 @@ function NodeCard({
         style={{
           display: "flex",
           alignItems: "center",
-          gap: "8px",
+          gap: 8,
           padding: "10px 14px",
           borderBottom: `1px solid ${C.borderLight}`,
         }}
@@ -152,15 +164,15 @@ function NodeCard({
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src={node.icon}
-          alt={node.title}
+          alt=""
           width={22}
           height={22}
           draggable={false}
-          style={{ borderRadius: "5px", flexShrink: 0 }}
+          style={{ borderRadius: 5, flexShrink: 0 }}
         />
         <span
           style={{
-            fontSize: "12px",
+            fontSize: 12,
             fontWeight: 600,
             color: C.text,
             flex: 1,
@@ -171,26 +183,18 @@ function NodeCard({
         >
           {node.title}
         </span>
-        <span
-          style={{
-            fontSize: "14px",
-            color: C.textMuted,
-            lineHeight: 1,
-            letterSpacing: "1px",
-            cursor: "default",
-          }}
-        >
+        <span style={{ fontSize: 14, color: C.textMuted, lineHeight: 1, letterSpacing: 1 }}>
           ···
         </span>
       </div>
 
-      {/* Body rows */}
-      <div style={{ padding: "6px 14px 8px" }}>
-        {node.rows.map((row, i) => {
-          const val = isConnected && row.valueConnected ? row.valueConnected : row.value;
+      {/* Body */}
+      <div style={{ padding: "6px 14px 10px" }}>
+        {node.rows.map((r, i) => {
+          const val = connected && r.valueConnected ? r.valueConnected : r.value;
           return (
             <div
-              key={row.label}
+              key={r.label}
               style={{
                 display: "flex",
                 justifyContent: "space-between",
@@ -198,7 +202,7 @@ function NodeCard({
                 padding: "4px 0",
               }}
             >
-              <span style={{ fontSize: "11px", color: C.textSec }}>{row.label}</span>
+              <span style={{ fontSize: 11, color: C.textSec }}>{r.label}</span>
               <AnimatePresence mode="wait">
                 <motion.span
                   key={val}
@@ -206,12 +210,12 @@ function NodeCard({
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -4 }}
                   transition={{
-                    duration: 0.35,
-                    delay: justConnected ? i * 0.15 : 0,
+                    duration: 0.3,
+                    delay: justConnected ? i * 0.12 : 0,
                     ease: [0.22, 1, 0.36, 1],
                   }}
                   style={{
-                    fontSize: "11px",
+                    fontSize: 11,
                     fontWeight: 500,
                     color: val === "—" ? C.textMuted : C.text,
                     fontVariantNumeric: "tabular-nums",
@@ -224,28 +228,28 @@ function NodeCard({
           );
         })}
 
-        {/* Status row */}
+        {/* Status */}
         {statusText && (
           <div
             style={{
               display: "flex",
               alignItems: "center",
-              gap: "5px",
-              paddingTop: "6px",
-              marginTop: "4px",
+              gap: 5,
+              paddingTop: 6,
+              marginTop: 4,
               borderTop: `1px solid ${C.borderLight}`,
             }}
           >
             <motion.div
               animate={
                 justConnected
-                  ? { scale: [1, 1.6, 1], opacity: [0, 1, 1] }
-                  : { scale: 1, opacity: isConnected ? 1 : 0.5 }
+                  ? { scale: [1, 1.5, 1], opacity: [0, 1, 1] }
+                  : { scale: 1, opacity: connected ? 1 : 0.5 }
               }
-              transition={justConnected ? { duration: 0.5, delay: 0.3 } : { duration: 0.2 }}
+              transition={justConnected ? { duration: 0.5, delay: 0.25 } : { duration: 0.2 }}
               style={{
-                width: "6px",
-                height: "6px",
+                width: 6,
+                height: 6,
                 borderRadius: "50%",
                 backgroundColor: statusColor,
               }}
@@ -257,15 +261,11 @@ function NodeCard({
                 animate={{ opacity: 1, x: 0 }}
                 exit={{ opacity: 0, x: 4 }}
                 transition={{
-                  duration: 0.35,
-                  delay: justConnected ? 0.4 : 0,
+                  duration: 0.3,
+                  delay: justConnected ? 0.35 : 0,
                   ease: [0.22, 1, 0.36, 1],
                 }}
-                style={{
-                  fontSize: "10px",
-                  fontWeight: 500,
-                  color: statusColor,
-                }}
+                style={{ fontSize: 10, fontWeight: 500, color: statusColor }}
               >
                 {statusText}
               </motion.span>
@@ -273,8 +273,8 @@ function NodeCard({
           </div>
         )}
 
-        {/* Click hint for unconnected clickable cards */}
-        {clickable && !isConnected && (
+        {/* Click hint */}
+        {clickable && !connected && (
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -283,13 +283,12 @@ function NodeCard({
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
-              gap: "4px",
-              paddingTop: "8px",
-              marginTop: "4px",
+              paddingTop: 8,
+              marginTop: 4,
               borderTop: `1px solid ${C.borderLight}`,
             }}
           >
-            <span style={{ fontSize: "10px", color: C.textMuted, fontWeight: 500 }}>
+            <span style={{ fontSize: 10, color: C.textMuted, fontWeight: 500 }}>
               Click to connect
             </span>
           </motion.div>
@@ -300,7 +299,24 @@ function NodeCard({
 }
 
 /* ══════════════════════════════════════════
-   MOBILE STATIC VIEW
+   SYNC PULSE – animated dot that travels along a path
+   ══════════════════════════════════════════ */
+function SyncPulse({ path, dur = "3s", delay = "0s", color = C.dot }: {
+  path: string;
+  dur?: string;
+  delay?: string;
+  color?: string;
+}) {
+  return (
+    <circle r={3} fill={color} opacity={0.7}>
+      <animateMotion dur={dur} repeatCount="indefinite" begin={delay} path={path} />
+      <animate attributeName="opacity" values="0;0.7;0.7;0" dur={dur} repeatCount="indefinite" begin={delay} />
+    </circle>
+  );
+}
+
+/* ══════════════════════════════════════════
+   MOBILE STATIC
    ══════════════════════════════════════════ */
 function MobileStaticView() {
   const items = [
@@ -317,16 +333,16 @@ function MobileStaticView() {
       transition={{ duration: 0.6, ease: [0.25, 0.1, 0.25, 1] }}
       style={{
         width: "100%",
-        borderRadius: "12px",
+        borderRadius: 12,
         border: `1px solid ${C.border}`,
         backgroundColor: C.cardBg,
         boxShadow: "0 1px 3px rgba(0,0,0,0.04)",
         fontFamily: "'Inter', system-ui, sans-serif",
         overflow: "hidden",
-        padding: "16px",
+        padding: 16,
         display: "flex",
         flexDirection: "column",
-        gap: "8px",
+        gap: 8,
       }}
     >
       {items.map((item) => (
@@ -335,22 +351,35 @@ function MobileStaticView() {
           style={{
             display: "flex",
             alignItems: "center",
-            gap: "10px",
+            gap: 10,
             padding: "12px 14px",
             border: `1px solid ${C.border}`,
-            borderRadius: "8px",
+            borderRadius: 8,
           }}
         >
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src={item.icon} alt={item.label} width={28} height={28} draggable={false}
-            style={{ borderRadius: "7px", flexShrink: 0 }} />
+          <img
+            src={item.icon}
+            alt=""
+            width={28}
+            height={28}
+            draggable={false}
+            style={{ borderRadius: 7, flexShrink: 0 }}
+          />
           <div style={{ flex: 1, minWidth: 0 }}>
-            <div style={{ fontSize: "12px", fontWeight: 500, color: C.text }}>{item.label}</div>
-            <div style={{ fontSize: "10px", color: C.textSec, marginTop: "2px" }}>{item.sub}</div>
+            <div style={{ fontSize: 12, fontWeight: 500, color: C.text }}>{item.label}</div>
+            <div style={{ fontSize: 10, color: C.textSec, marginTop: 2 }}>{item.sub}</div>
           </div>
-          <div style={{ display: "flex", alignItems: "center", gap: "5px", flexShrink: 0 }}>
-            <div style={{ width: "6px", height: "6px", borderRadius: "50%", backgroundColor: C.green }} />
-            <span style={{ fontSize: "10px", color: C.green, fontWeight: 500 }}>Connected</span>
+          <div style={{ display: "flex", alignItems: "center", gap: 5, flexShrink: 0 }}>
+            <div
+              style={{
+                width: 6,
+                height: 6,
+                borderRadius: "50%",
+                backgroundColor: C.green,
+              }}
+            />
+            <span style={{ fontSize: 10, color: C.green, fontWeight: 500 }}>Connected</span>
           </div>
         </div>
       ))}
@@ -370,36 +399,41 @@ export function QuickBooksSyncDemo({ inSplit = false }: { inSplit?: boolean }) {
   const [xeroConnected, setXeroConnected] = useState(false);
   const [justConnected, setJustConnected] = useState(false);
 
-  /* Node refs for line measurement */
   const assemblyRef = useRef<HTMLDivElement>(null);
   const qbRef = useRef<HTMLDivElement>(null);
   const xeroRef = useRef<HTMLDivElement>(null);
 
-  interface LinePositions {
-    aRightX: number; aRightY: number;
-    qbLeftX: number; qbLeftY: number;
-    qbBottomX: number; qbBottomY: number;
-    xTopX: number; xTopY: number;
+  /* ── Line endpoints ── */
+  interface LP {
+    aR_x: number; aR_y: number;
+    qbL_x: number; qbL_y: number;
+    aR2_x: number; aR2_y: number;
+    xL_x: number; xL_y: number;
   }
-  const [lines, setLines] = useState<LinePositions | null>(null);
+  const [lp, setLp] = useState<LP | null>(null);
 
-  /* ── Measure line endpoints (midpoints of card edges, no port circles) ── */
   const measure = useCallback(() => {
-    if (!canvasRef.current || !assemblyRef.current || !qbRef.current || !xeroRef.current) return;
-    const cr = canvasRef.current.getBoundingClientRect();
-    const ar = assemblyRef.current.getBoundingClientRect();
-    const qr = qbRef.current.getBoundingClientRect();
-    const xr = xeroRef.current.getBoundingClientRect();
+    const cv = canvasRef.current;
+    const a = assemblyRef.current;
+    const q = qbRef.current;
+    const x = xeroRef.current;
+    if (!cv || !a || !q || !x) return;
+    const cr = cv.getBoundingClientRect();
+    const ar = a.getBoundingClientRect();
+    const qr = q.getBoundingClientRect();
+    const xr = x.getBoundingClientRect();
 
-    setLines({
-      aRightX: ar.right - cr.left,
-      aRightY: ar.top - cr.top + ar.height * 0.45,
-      qbLeftX: qr.left - cr.left,
-      qbLeftY: qr.top - cr.top + qr.height * 0.45,
-      qbBottomX: qr.left - cr.left + qr.width * 0.5,
-      qbBottomY: qr.bottom - cr.top,
-      xTopX: xr.left - cr.left + xr.width * 0.5,
-      xTopY: xr.top - cr.top,
+    setLp({
+      // Assembly right edge → QB left edge
+      aR_x: ar.right - cr.left,
+      aR_y: ar.top - cr.top + ar.height * 0.45,
+      qbL_x: qr.left - cr.left,
+      qbL_y: qr.top - cr.top + qr.height * 0.45,
+      // Assembly right edge → Xero left edge
+      aR2_x: ar.right - cr.left,
+      aR2_y: ar.top - cr.top + ar.height * 0.7,
+      xL_x: xr.left - cr.left,
+      xL_y: xr.top - cr.top + xr.height * 0.45,
     });
   }, []);
 
@@ -410,76 +444,53 @@ export function QuickBooksSyncDemo({ inSplit = false }: { inSplit?: boolean }) {
     return () => ro.disconnect();
   }, [measure]);
 
-  /* ── Connect handler ── */
   const handleConnect = useCallback(() => {
     if (xeroConnected) return;
     setXeroConnected(true);
     setJustConnected(true);
-    // Clear justConnected after animations complete
     setTimeout(() => setJustConnected(false), 1200);
   }, [xeroConnected]);
 
-  /* ── Mobile ── */
   if (!isDesktop) return <MobileStaticView />;
-
   void inSplit;
-  const lp = lines;
-  const CANVAS_H = 420;
+
+  /* ── Paths for SVG ── */
+  const pathAQ = lp ? bezierH(lp.aR_x, lp.aR_y, lp.qbL_x, lp.qbL_y) : "";
+  const pathAX = lp ? bezierH(lp.aR2_x, lp.aR2_y, lp.xL_x, lp.xL_y) : "";
 
   return (
     <motion.div
       ref={containerRef}
-      initial={{ opacity: 0, scale: 0.97 }}
-      whileInView={{ opacity: 1, scale: 1 }}
+      initial={{ opacity: 0, y: 16 }}
+      whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-40px" }}
       transition={{ duration: 0.6, ease: [0.25, 0.1, 0.25, 1] }}
-      style={{ width: "100%" }}
+      style={{ width: "100%", display: "flex", justifyContent: "center" }}
     >
+      {/* Canvas wrapper — centered, constrained width */}
       <div
         ref={canvasRef}
         style={{
           position: "relative",
           width: "100%",
+          maxWidth: CANVAS_W,
           height: CANVAS_H,
-          borderRadius: "12px",
-          backgroundColor: "transparent",
+          borderRadius: 16,
+          background: `
+            radial-gradient(ellipse 80% 60% at 20% 40%, rgba(22,163,74,0.03) 0%, transparent 70%),
+            radial-gradient(ellipse 60% 50% at 80% 50%, rgba(100,116,139,0.04) 0%, transparent 70%),
+            ${C.canvasBg}
+          `,
+          border: `1px solid ${C.canvasBorder}`,
+          boxShadow: "0 1px 3px rgba(0,0,0,0.03), inset 0 1px 0 rgba(255,255,255,0.6)",
           fontFamily: "'Inter', system-ui, sans-serif",
-          overflow: "hidden",
+          overflow: "visible",
+          /* fine dot grid */
+          backgroundImage: `radial-gradient(circle, rgba(0,0,0,0.04) 1px, transparent 1px)`,
+          backgroundSize: "20px 20px",
         }}
       >
-        {/* ── Node cards ── */}
-        <NodeCard
-          node={ASSEMBLY_NODE}
-          isConnected={true}
-          nodeRef={assemblyRef}
-          animate
-          delay={0.15}
-          isInView={isInView}
-          style={{ left: 0, top: 24 }}
-        />
-        <NodeCard
-          node={QB_NODE}
-          isConnected={true}
-          nodeRef={qbRef}
-          animate
-          delay={0.3}
-          isInView={isInView}
-          style={{ right: 0, top: 24 }}
-        />
-        <NodeCard
-          node={XERO_NODE}
-          isConnected={xeroConnected}
-          nodeRef={xeroRef}
-          animate
-          delay={0.42}
-          isInView={isInView}
-          onClick={handleConnect}
-          clickable={!xeroConnected}
-          justConnected={justConnected}
-          style={{ right: "20%", bottom: 24 }}
-        />
-
-        {/* ─── SVG overlay: connection lines with port dots ─── */}
+        {/* ─── SVG connectors layer ─── */}
         {lp && (
           <svg
             style={{
@@ -489,74 +500,171 @@ export function QuickBooksSyncDemo({ inSplit = false }: { inSplit?: boolean }) {
               height: "100%",
               pointerEvents: "none",
               zIndex: 1,
+              overflow: "visible",
             }}
           >
-            {/* Assembly → QB: always connected line */}
+            <defs>
+              {/* Gradient for active line (Assembly → QB) */}
+              <linearGradient id="grad-aq" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" stopColor="#94a3b8" />
+                <stop offset="100%" stopColor="#64748b" />
+              </linearGradient>
+              {/* Glow filter for active connection */}
+              <filter id="glow-line" x="-20%" y="-50%" width="140%" height="200%">
+                <feGaussianBlur stdDeviation="3" result="blur" />
+                <feMerge>
+                  <feMergeNode in="blur" />
+                  <feMergeNode in="SourceGraphic" />
+                </feMerge>
+              </filter>
+            </defs>
+
+            {/* ── Assembly → QB (always active) ── */}
+            {/* Glow shadow */}
             <path
-              d={bezierPathH(lp.aRightX, lp.aRightY, lp.qbLeftX, lp.qbLeftY)}
-              stroke={C.line}
-              strokeWidth={2.5}
+              d={pathAQ}
+              stroke="rgba(100,116,139,0.12)"
+              strokeWidth={6}
+              fill="none"
+              strokeLinecap="round"
+              filter="url(#glow-line)"
+            />
+            {/* Main line */}
+            <path
+              d={pathAQ}
+              stroke="url(#grad-aq)"
+              strokeWidth={2}
               fill="none"
               strokeLinecap="round"
             />
+            {/* Port dots */}
+            <circle cx={lp.aR_x} cy={lp.aR_y} r={4.5}
+              fill={C.portFill} stroke={C.portActive} strokeWidth={1.5} />
+            <circle cx={lp.qbL_x} cy={lp.qbL_y} r={4.5}
+              fill={C.portFill} stroke={C.portActive} strokeWidth={1.5} />
+            {/* Sync pulses — two-way */}
+            <SyncPulse path={pathAQ} dur="2.8s" delay="0s" />
+            <SyncPulse path={pathAQ} dur="2.8s" delay="1.4s" />
 
-            {/* Port: Assembly right — filled dot sitting on card edge */}
-            <circle cx={lp.aRightX} cy={lp.aRightY} r={5.5}
-              fill={C.portFill} stroke={C.portActive} strokeWidth={2} />
-            {/* Port: QB left */}
-            <circle cx={lp.qbLeftX} cy={lp.qbLeftY} r={5.5}
-              fill={C.portFill} stroke={C.portActive} strokeWidth={2} />
-
-            {/* QB → Xero connection */}
+            {/* ── Assembly → Xero ── */}
             {xeroConnected ? (
               <>
+                {/* Glow */}
                 <motion.path
-                  d={bezierPathV(lp.qbBottomX, lp.qbBottomY, lp.xTopX, lp.xTopY)}
-                  stroke={C.line}
-                  strokeWidth={2.5}
+                  d={pathAX}
+                  stroke="rgba(100,116,139,0.10)"
+                  strokeWidth={6}
                   fill="none"
                   strokeLinecap="round"
                   initial={{ pathLength: 0, opacity: 0 }}
                   animate={{ pathLength: 1, opacity: 1 }}
-                  transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+                  transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
                 />
-                {/* Port: QB bottom */}
+                {/* Main line */}
+                <motion.path
+                  d={pathAX}
+                  stroke="url(#grad-aq)"
+                  strokeWidth={2}
+                  fill="none"
+                  strokeLinecap="round"
+                  initial={{ pathLength: 0, opacity: 0 }}
+                  animate={{ pathLength: 1, opacity: 1 }}
+                  transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+                />
+                {/* Ports */}
                 <motion.circle
-                  cx={lp.qbBottomX} cy={lp.qbBottomY} r={5.5}
-                  fill={C.portFill} stroke={C.portActive} strokeWidth={2}
-                  initial={{ scale: 0, opacity: 0 }} animate={{ scale: 1, opacity: 1 }}
-                  transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+                  cx={lp.aR2_x} cy={lp.aR2_y} r={4.5}
+                  fill={C.portFill} stroke={C.portActive} strokeWidth={1.5}
+                  initial={{ scale: 0 }} animate={{ scale: 1 }}
+                  transition={{ duration: 0.25 }}
                 />
-                {/* Port: Xero top */}
                 <motion.circle
-                  cx={lp.xTopX} cy={lp.xTopY} r={5.5}
-                  fill={C.portFill} stroke={C.portActive} strokeWidth={2}
-                  initial={{ scale: 0, opacity: 0 }} animate={{ scale: 1, opacity: 1 }}
-                  transition={{ duration: 0.3, delay: 0.45, ease: [0.22, 1, 0.36, 1] }}
+                  cx={lp.xL_x} cy={lp.xL_y} r={4.5}
+                  fill={C.portFill} stroke={C.portActive} strokeWidth={1.5}
+                  initial={{ scale: 0 }} animate={{ scale: 1 }}
+                  transition={{ duration: 0.25, delay: 0.5 }}
                 />
+                {/* Sync pulses */}
+                <SyncPulse path={pathAX} dur="3s" delay="0.3s" />
+                <SyncPulse path={pathAX} dur="3s" delay="1.8s" />
               </>
             ) : (
               <>
                 {/* Dashed preview line */}
                 <path
-                  d={bezierPathV(lp.qbBottomX, lp.qbBottomY, lp.xTopX, lp.xTopY)}
+                  d={pathAX}
                   stroke={C.lineDashed}
-                  strokeWidth={2}
+                  strokeWidth={1.5}
                   fill="none"
                   strokeLinecap="round"
-                  strokeDasharray="8 6"
+                  strokeDasharray="6 6"
+                  opacity={0.6}
                 />
-                {/* Port: QB bottom (muted) */}
-                <circle cx={lp.qbBottomX} cy={lp.qbBottomY} r={5}
+                {/* Muted ports */}
+                <circle cx={lp.aR2_x} cy={lp.aR2_y} r={4}
                   fill="#fff" stroke={C.lineDashed} strokeWidth={1.5} />
-                {/* Port: Xero top (muted, hollow) */}
-                <circle cx={lp.xTopX} cy={lp.xTopY} r={5}
+                <circle cx={lp.xL_x} cy={lp.xL_y} r={4}
                   fill="#fff" stroke={C.lineDashed} strokeWidth={1.5}
                   strokeDasharray="3 3" />
               </>
             )}
           </svg>
         )}
+
+        {/* ─── Card layout: flex row with Assembly left, QB+Xero stacked right ─── */}
+        <div
+          style={{
+            position: "relative",
+            zIndex: 2,
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "space-between",
+            height: "100%",
+            padding: "28px 28px",
+            gap: GAP,
+          }}
+        >
+          {/* Hub: Assembly */}
+          <Card
+            node={ASSEMBLY}
+            connected={true}
+            primary
+            nodeRef={assemblyRef}
+            anim
+            delay={0.1}
+            inView={isInView}
+          />
+
+          {/* Targets: QB + Xero stacked */}
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              gap: 16,
+              flexShrink: 0,
+            }}
+          >
+            <Card
+              node={QB}
+              connected={true}
+              nodeRef={qbRef}
+              anim
+              delay={0.25}
+              inView={isInView}
+            />
+            <Card
+              node={XERO}
+              connected={xeroConnected}
+              nodeRef={xeroRef}
+              anim
+              delay={0.38}
+              inView={isInView}
+              onClick={handleConnect}
+              clickable={!xeroConnected}
+              justConnected={justConnected}
+            />
+          </div>
+        </div>
       </div>
     </motion.div>
   );
