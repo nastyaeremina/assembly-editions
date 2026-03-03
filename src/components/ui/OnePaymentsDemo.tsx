@@ -39,10 +39,26 @@ const AUTO_CYCLE_MS = 4000;
    DATA
    ═══════════════════════════════════════════ */
 
+/* ── Avatar palette (light bg + muted text) ── */
+const AVATAR_PALETTES = [
+  { bg: "#e8f0e4", color: "#6b8f71" },   // sage green (MS)
+  { bg: "#e8e4f0", color: "#7b6f99" },   // lavender (WW)
+  { bg: "#f5e4e4", color: "#c47a6c" },   // light pink / coral (TL)
+  { bg: "#f0e4ed", color: "#99566e" },   // mauve / rose (JK)
+  { bg: "#f0ece2", color: "#8a7d54" },   // cream / olive (KT)
+  { bg: "#eaebec", color: "#5c5f63" },   // light gray (AA)
+  { bg: "#e0f0e8", color: "#3d7a56" },   // mint / dark green (LB)
+  { bg: "#dff0ef", color: "#2a7a75" },   // teal (EO)
+  { bg: "#f2e4ec", color: "#9e6a8a" },   // soft pink / rose (BS)
+] as const;
+
+function getAvatarPalette(index: number) {
+  return AVATAR_PALETTES[index % AVATAR_PALETTES.length];
+}
+
 interface InvoiceRow {
   name: string;
   initials: string;
-  avatarBg: string;
   price: number;
   recurring?: boolean;
   status: "paid" | "open" | "void" | "overdue";
@@ -53,30 +69,29 @@ interface InvoiceRow {
 }
 
 const INVOICES_DATA: InvoiceRow[] = [
-  { name: "Courtney Dinkins", initials: "CG", avatarBg: "#94a3b8", price: 6400, recurring: true, status: "paid", invoiceNum: "F7F23EF1-0016", created: "May 20, 2026", due: "Apr 30, 2026", payment: "" },
-  { name: "Service Symphony", initials: "SS", avatarBg: "#8b5cf6", price: 9400, recurring: false, status: "paid", invoiceNum: "SUB-83F7CAE1-0008", created: "Oct 15, 2026", due: "Nov 15, 2026", payment: "Nov 10, 2026" },
-  { name: "Sara Bergson", initials: "SB", avatarBg: "#f59e0b", price: 6553, recurring: false, status: "void", invoiceNum: "SUB-83F7CAE1-0009", created: "May 10, 2026", due: "", payment: "" },
-  { name: "Godo", initials: "G", avatarBg: "#6366f1", price: 900, recurring: true, status: "open", invoiceNum: "SUB-D8EF5DE9-0001", created: "Nov 5, 2026", due: "Dec 30, 2026", payment: "" },
-  { name: "Jordyn Donin", initials: "JD", avatarBg: "#ec4899", price: 8400, recurring: false, status: "open", invoiceNum: "F7F23EF1-0016", created: "Jun 18, 2026", due: "Jul 30, 2026", payment: "" },
-  { name: "Zaire Dokidis", initials: "ZD", avatarBg: "#14b8a6", price: 10400, recurring: false, status: "paid", invoiceNum: "SUB-83F7CAE1-0010", created: "Jan 20, 2026", due: "Feb 20, 2026", payment: "Jan 25, 2026" },
-  { name: "Tiana Botosh", initials: "TB", avatarBg: "#a855f7", price: 8400, recurring: false, status: "paid", invoiceNum: "SUB-8182B7A3-0002", created: "Feb 14, 2026", due: "Mar 30, 2026", payment: "Apr 3, 2026" },
-  { name: "Wave marketing", initials: "WM", avatarBg: "#22c55e", price: 1400, recurring: true, status: "open", invoiceNum: "D8EF5DE9-0001", created: "Dec 1, 2026", due: "Dec 30, 2026", payment: "" },
-  { name: "Jame Dilhome", initials: "JD", avatarBg: "#64748b", price: 12400, recurring: false, status: "open", invoiceNum: "SUB-44D2833F-0008", created: "Mar 30, 2026", due: "Apr 30, 2026", payment: "" },
-  { name: "Patrick Ekstrom Bothman", initials: "PE", avatarBg: "#e879f9", price: 8734, recurring: false, status: "paid", invoiceNum: "SUB-83F7CAE1-0009", created: "Jul 4, 2026", due: "Aug 30, 2026", payment: "Aug 30, 2026" },
-  { name: "Josh Dart", initials: "JD", avatarBg: "#64748b", price: 3454, recurring: false, status: "open", invoiceNum: "SUB-44D2833F-0006", created: "Aug 22, 2026", due: "Oct 30, 2026", payment: "" },
-  { name: "Franklin Thomas", initials: "FT", avatarBg: "#ef4444", price: 9200, recurring: false, status: "paid", invoiceNum: "F7F23EF1-0015", created: "Sep 8, 2026", due: "Oct 31, 2026", payment: "Oct 31, 2026" },
-  { name: "The Walsh Group", initials: "TW", avatarBg: "#94a3b8", price: 9353, recurring: true, status: "open", invoiceNum: "SUB-83F7CAE1-0008", created: "Apr 25, 2026", due: "Apr 30, 2026", payment: "" },
-  { name: "Phyllis Maverick", initials: "PM", avatarBg: "#f59e0b", price: 6400, recurring: false, status: "open", invoiceNum: "F7F23EF1-0014", created: "Oct 30, 2026", due: "Dec 30, 2026", payment: "" },
-  { name: "Erin Vetrovs", initials: "EV", avatarBg: "#ef4444", price: 23400, recurring: false, status: "open", invoiceNum: "792F7F23EF1-00121", created: "Nov 15, 2026", due: "Dec 30, 2026", payment: "" },
-  { name: "Haylie Curtis", initials: "HC", avatarBg: "#f59e0b", price: 8232, recurring: true, status: "paid", invoiceNum: "F7F23EF1-0011", created: "Dec 25, 2025", due: "Dec 31, 2025", payment: "Dec 28, 2026" },
-  { name: "Brandon Curtis", initials: "BC", avatarBg: "#22c55e", price: 8230, recurring: true, status: "paid", invoiceNum: "F7F23EF1-0010", created: "Jan 1, 2026", due: "Mar 31, 2026", payment: "Mar 1, 2026" },
-  { name: "Michael Robert", initials: "MR", avatarBg: "#3b82f6", price: 3454, recurring: false, status: "overdue", invoiceNum: "SUB-44D2833F-0006", created: "Feb 28, 2026", due: "Mar 31, 2026", payment: "" },
+  { name: "Courtney Dinkins", initials: "CD", price: 6400, recurring: true, status: "paid", invoiceNum: "F7F23EF1-0016", created: "May 20, 2026", due: "Apr 30, 2026", payment: "" },
+  { name: "Service Symphony", initials: "SS", price: 9400, recurring: false, status: "paid", invoiceNum: "SUB-83F7CAE1-0008", created: "Oct 15, 2026", due: "Nov 15, 2026", payment: "Nov 10, 2026" },
+  { name: "Sara Bergson", initials: "SB", price: 6553, recurring: false, status: "void", invoiceNum: "SUB-83F7CAE1-0009", created: "May 10, 2026", due: "", payment: "" },
+  { name: "Godo", initials: "G", price: 900, recurring: true, status: "open", invoiceNum: "SUB-D8EF5DE9-0001", created: "Nov 5, 2026", due: "Dec 30, 2026", payment: "" },
+  { name: "Jordyn Donin", initials: "JD", price: 8400, recurring: false, status: "open", invoiceNum: "F7F23EF1-0016", created: "Jun 18, 2026", due: "Jul 30, 2026", payment: "" },
+  { name: "Zaire Dokidis", initials: "ZD", price: 10400, recurring: false, status: "paid", invoiceNum: "SUB-83F7CAE1-0010", created: "Jan 20, 2026", due: "Feb 20, 2026", payment: "Jan 25, 2026" },
+  { name: "Tiana Botosh", initials: "TB", price: 8400, recurring: false, status: "paid", invoiceNum: "SUB-8182B7A3-0002", created: "Feb 14, 2026", due: "Mar 30, 2026", payment: "Apr 3, 2026" },
+  { name: "Wave marketing", initials: "WM", price: 1400, recurring: true, status: "open", invoiceNum: "D8EF5DE9-0001", created: "Dec 1, 2026", due: "Dec 30, 2026", payment: "" },
+  { name: "Jame Dilhome", initials: "JD", price: 12400, recurring: false, status: "open", invoiceNum: "SUB-44D2833F-0008", created: "Mar 30, 2026", due: "Apr 30, 2026", payment: "" },
+  { name: "Patrick Ekstrom Bothman", initials: "PE", price: 8734, recurring: false, status: "paid", invoiceNum: "SUB-83F7CAE1-0009", created: "Jul 4, 2026", due: "Aug 30, 2026", payment: "Aug 30, 2026" },
+  { name: "Josh Dart", initials: "JD", price: 3454, recurring: false, status: "open", invoiceNum: "SUB-44D2833F-0006", created: "Aug 22, 2026", due: "Oct 30, 2026", payment: "" },
+  { name: "Franklin Thomas", initials: "FT", price: 9200, recurring: false, status: "paid", invoiceNum: "F7F23EF1-0015", created: "Sep 8, 2026", due: "Oct 31, 2026", payment: "Oct 31, 2026" },
+  { name: "The Walsh Group", initials: "TW", price: 9353, recurring: true, status: "open", invoiceNum: "SUB-83F7CAE1-0008", created: "Apr 25, 2026", due: "Apr 30, 2026", payment: "" },
+  { name: "Phyllis Maverick", initials: "PM", price: 6400, recurring: false, status: "open", invoiceNum: "F7F23EF1-0014", created: "Oct 30, 2026", due: "Dec 30, 2026", payment: "" },
+  { name: "Erin Vetrovs", initials: "EV", price: 23400, recurring: false, status: "open", invoiceNum: "792F7F23EF1-00121", created: "Nov 15, 2026", due: "Dec 30, 2026", payment: "" },
+  { name: "Haylie Curtis", initials: "HC", price: 8232, recurring: true, status: "paid", invoiceNum: "F7F23EF1-0011", created: "Dec 25, 2025", due: "Dec 31, 2025", payment: "Dec 28, 2026" },
+  { name: "Brandon Curtis", initials: "BC", price: 8230, recurring: true, status: "paid", invoiceNum: "F7F23EF1-0010", created: "Jan 1, 2026", due: "Mar 31, 2026", payment: "Mar 1, 2026" },
+  { name: "Michael Robert", initials: "MR", price: 3454, recurring: false, status: "overdue", invoiceNum: "SUB-44D2833F-0006", created: "Feb 28, 2026", due: "Mar 31, 2026", payment: "" },
 ];
 
 interface SubscriptionRow {
   name: string;
   initials: string;
-  avatarBg: string;
   price: number;
   period: "Monthly" | "Yearly";
   status: "active" | "cancelled";
@@ -85,24 +100,24 @@ interface SubscriptionRow {
 }
 
 const SUBSCRIPTIONS_DATA: SubscriptionRow[] = [
-  { name: "Courtney Dinkins", initials: "CG", avatarBg: "#94a3b8", price: 8400, period: "Monthly", status: "active", created: "May 20, 2026", nextPayment: "Apr 20, 2026" },
-  { name: "Service Symphony", initials: "SS", avatarBg: "#8b5cf6", price: 12500, period: "Yearly", status: "active", created: "Oct 15, 2026", nextPayment: "Oct 15, 2027" },
-  { name: "Sara Bergson", initials: "SB", avatarBg: "#f59e0b", price: 12500, period: "Yearly", status: "active", created: "Oct 15, 2026", nextPayment: "Oct 15, 2027" },
-  { name: "Godo", initials: "G", avatarBg: "#6366f1", price: 15000, period: "Yearly", status: "active", created: "May 10, 2026", nextPayment: "May 10, 2027" },
-  { name: "Jordyn Donin", initials: "JD", avatarBg: "#ec4899", price: 10200, period: "Yearly", status: "active", created: "Nov 5, 2026", nextPayment: "Nov 5, 2027" },
-  { name: "Zaire Dokidis", initials: "ZD", avatarBg: "#14b8a6", price: 14500, period: "Yearly", status: "cancelled", created: "Jun 18, 2026", nextPayment: "" },
-  { name: "Tiana Botosh", initials: "TB", avatarBg: "#a855f7", price: 20000, period: "Yearly", status: "active", created: "Jan 20, 2026", nextPayment: "Jan 20, 2027" },
-  { name: "Wave Marketing", initials: "WM", avatarBg: "#22c55e", price: 7800, period: "Monthly", status: "active", created: "Feb 14, 2026", nextPayment: "Mar 14, 2026" },
-  { name: "James Dilhome", initials: "JD", avatarBg: "#64748b", price: 6500, period: "Monthly", status: "active", created: "Dec 1, 2026", nextPayment: "Jan 1, 2027" },
-  { name: "Patrick Ekstrom Bothman", initials: "PE", avatarBg: "#e879f9", price: 11000, period: "Monthly", status: "active", created: "Mar 30, 2026", nextPayment: "Apr 30, 2026" },
-  { name: "Josh Dart", initials: "JD", avatarBg: "#64748b", price: 9500, period: "Yearly", status: "active", created: "Jul 4, 2026", nextPayment: "Jul 4, 2027" },
-  { name: "Franklin Thomas", initials: "FT", avatarBg: "#ef4444", price: 18000, period: "Monthly", status: "active", created: "Aug 22, 2026", nextPayment: "Sep 22, 2026" },
-  { name: "The Walsh Group", initials: "TW", avatarBg: "#94a3b8", price: 10100, period: "Monthly", status: "active", created: "Sep 8, 2026", nextPayment: "Oct 8, 2026" },
-  { name: "Phyllis Maverick", initials: "PM", avatarBg: "#f59e0b", price: 22000, period: "Monthly", status: "active", created: "Apr 25, 2026", nextPayment: "May 25, 2026" },
-  { name: "Erin Vetrovs", initials: "EV", avatarBg: "#ef4444", price: 5000, period: "Monthly", status: "cancelled", created: "Oct 30, 2026", nextPayment: "" },
-  { name: "Haylie Curtis", initials: "HC", avatarBg: "#f59e0b", price: 3600, period: "Monthly", status: "active", created: "Nov 15, 2026", nextPayment: "Dec 15, 2026" },
-  { name: "Brandon Curtis", initials: "BC", avatarBg: "#22c55e", price: 4800, period: "Monthly", status: "active", created: "Dec 25, 2026", nextPayment: "Jan 25, 2027" },
-  { name: "Michael Robert", initials: "MR", avatarBg: "#3b82f6", price: 6200, period: "Yearly", status: "active", created: "Jan 1, 2026", nextPayment: "Feb 1, 2026" },
+  { name: "Courtney Dinkins", initials: "CD", price: 8400, period: "Monthly", status: "active", created: "May 20, 2026", nextPayment: "Apr 20, 2026" },
+  { name: "Service Symphony", initials: "SS", price: 12500, period: "Yearly", status: "active", created: "Oct 15, 2026", nextPayment: "Oct 15, 2027" },
+  { name: "Sara Bergson", initials: "SB", price: 12500, period: "Yearly", status: "active", created: "Oct 15, 2026", nextPayment: "Oct 15, 2027" },
+  { name: "Godo", initials: "G", price: 15000, period: "Yearly", status: "active", created: "May 10, 2026", nextPayment: "May 10, 2027" },
+  { name: "Jordyn Donin", initials: "JD", price: 10200, period: "Yearly", status: "active", created: "Nov 5, 2026", nextPayment: "Nov 5, 2027" },
+  { name: "Zaire Dokidis", initials: "ZD", price: 14500, period: "Yearly", status: "cancelled", created: "Jun 18, 2026", nextPayment: "" },
+  { name: "Tiana Botosh", initials: "TB", price: 20000, period: "Yearly", status: "active", created: "Jan 20, 2026", nextPayment: "Jan 20, 2027" },
+  { name: "Wave Marketing", initials: "WM", price: 7800, period: "Monthly", status: "active", created: "Feb 14, 2026", nextPayment: "Mar 14, 2026" },
+  { name: "James Dilhome", initials: "JD", price: 6500, period: "Monthly", status: "active", created: "Dec 1, 2026", nextPayment: "Jan 1, 2027" },
+  { name: "Patrick Ekstrom Bothman", initials: "PE", price: 11000, period: "Monthly", status: "active", created: "Mar 30, 2026", nextPayment: "Apr 30, 2026" },
+  { name: "Josh Dart", initials: "JD", price: 9500, period: "Yearly", status: "active", created: "Jul 4, 2026", nextPayment: "Jul 4, 2027" },
+  { name: "Franklin Thomas", initials: "FT", price: 18000, period: "Monthly", status: "active", created: "Aug 22, 2026", nextPayment: "Sep 22, 2026" },
+  { name: "The Walsh Group", initials: "TW", price: 10100, period: "Monthly", status: "active", created: "Sep 8, 2026", nextPayment: "Oct 8, 2026" },
+  { name: "Phyllis Maverick", initials: "PM", price: 22000, period: "Monthly", status: "active", created: "Apr 25, 2026", nextPayment: "May 25, 2026" },
+  { name: "Erin Vetrovs", initials: "EV", price: 5000, period: "Monthly", status: "cancelled", created: "Oct 30, 2026", nextPayment: "" },
+  { name: "Haylie Curtis", initials: "HC", price: 3600, period: "Monthly", status: "active", created: "Nov 15, 2026", nextPayment: "Dec 15, 2026" },
+  { name: "Brandon Curtis", initials: "BC", price: 4800, period: "Monthly", status: "active", created: "Dec 25, 2026", nextPayment: "Jan 25, 2027" },
+  { name: "Michael Robert", initials: "MR", price: 6200, period: "Yearly", status: "active", created: "Jan 1, 2026", nextPayment: "Feb 1, 2026" },
 ];
 
 /* ── Payment Links data ── */
@@ -163,22 +178,24 @@ const SERVICES_DATA: ServiceRow[] = [
    SUB-COMPONENTS
    ═══════════════════════════════════════════ */
 
-function Avatar({ initials, bg }: { initials: string; bg: string }) {
+function Avatar({ initials, index }: { initials: string; index: number }) {
+  const palette = getAvatarPalette(index);
   return (
     <div
       style={{
         width: 28,
         height: 28,
         borderRadius: "50%",
-        backgroundColor: bg,
+        backgroundColor: palette.bg,
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
         fontSize: "9px",
         fontWeight: 600,
-        color: "#fff",
+        color: palette.color,
         flexShrink: 0,
         letterSpacing: "0.02em",
+        border: `1px solid ${palette.color}18`,
       }}
     >
       {initials}
@@ -350,7 +367,7 @@ function InvoicesTable() {
         >
           {/* Recipient */}
           <div style={{ display: "flex", alignItems: "center", gap: "8px", minWidth: 0 }}>
-            <Avatar initials={row.initials} bg={row.avatarBg} />
+            <Avatar initials={row.initials} index={i} />
             <span style={{ overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>
               {row.name}
             </span>
@@ -423,7 +440,7 @@ function SubscriptionsTable() {
         >
           {/* Recipient */}
           <div style={{ display: "flex", alignItems: "center", gap: "8px", minWidth: 0 }}>
-            <Avatar initials={row.initials} bg={row.avatarBg} />
+            <Avatar initials={row.initials} index={i} />
             <span style={{ overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>
               {row.name}
             </span>
@@ -677,7 +694,7 @@ function MobileInvoicesTable() {
           }}
         >
           <div style={{ display: "flex", alignItems: "center", gap: "6px", minWidth: 0 }}>
-            <Avatar initials={row.initials} bg={row.avatarBg} />
+            <Avatar initials={row.initials} index={i} />
             <span style={{ overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap", fontSize: "11px" }}>
               {row.name}
             </span>
@@ -725,7 +742,7 @@ function MobileSubscriptionsTable() {
           }}
         >
           <div style={{ display: "flex", alignItems: "center", gap: "6px", minWidth: 0 }}>
-            <Avatar initials={row.initials} bg={row.avatarBg} />
+            <Avatar initials={row.initials} index={i} />
             <span style={{ overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap", fontSize: "11px" }}>
               {row.name}
             </span>
@@ -1440,7 +1457,6 @@ export function OnePaymentsDemo({ inSplit = false }: OnePaymentsDemoProps) {
                 }}
               >
                 {ctaText}
-                <span style={{ fontSize: "10px", marginLeft: "2px" }}>&#x25BE;</span>
               </motion.span>
             )}
           </AnimatePresence>
