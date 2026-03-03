@@ -77,15 +77,6 @@ const INVOICES_DATA: InvoiceRow[] = [
   { name: "Zaire Dokidis", initials: "ZD", price: 10400, recurring: false, status: "paid", invoiceNum: "SUB-83F7CAE1-0010", created: "Jan 20, 2026", due: "Feb 20, 2026", payment: "Jan 25, 2026" },
   { name: "Tiana Botosh", initials: "TB", price: 8400, recurring: false, status: "paid", invoiceNum: "SUB-8182B7A3-0002", created: "Feb 14, 2026", due: "Mar 30, 2026", payment: "Apr 3, 2026" },
   { name: "Wave marketing", initials: "WM", price: 1400, recurring: true, status: "open", invoiceNum: "D8EF5DE9-0001", created: "Dec 1, 2026", due: "Dec 30, 2026", payment: "" },
-  { name: "Jame Dilhome", initials: "JD", price: 12400, recurring: false, status: "open", invoiceNum: "SUB-44D2833F-0008", created: "Mar 30, 2026", due: "Apr 30, 2026", payment: "" },
-  { name: "Patrick Ekstrom Bothman", initials: "PE", price: 8734, recurring: false, status: "paid", invoiceNum: "SUB-83F7CAE1-0009", created: "Jul 4, 2026", due: "Aug 30, 2026", payment: "Aug 30, 2026" },
-  { name: "Josh Dart", initials: "JD", price: 3454, recurring: false, status: "open", invoiceNum: "SUB-44D2833F-0006", created: "Aug 22, 2026", due: "Oct 30, 2026", payment: "" },
-  { name: "Franklin Thomas", initials: "FT", price: 9200, recurring: false, status: "paid", invoiceNum: "F7F23EF1-0015", created: "Sep 8, 2026", due: "Oct 31, 2026", payment: "Oct 31, 2026" },
-  { name: "The Walsh Group", initials: "TW", price: 9353, recurring: true, status: "open", invoiceNum: "SUB-83F7CAE1-0008", created: "Apr 25, 2026", due: "Apr 30, 2026", payment: "" },
-  { name: "Phyllis Maverick", initials: "PM", price: 6400, recurring: false, status: "open", invoiceNum: "F7F23EF1-0014", created: "Oct 30, 2026", due: "Dec 30, 2026", payment: "" },
-  { name: "Erin Vetrovs", initials: "EV", price: 23400, recurring: false, status: "open", invoiceNum: "792F7F23EF1-00121", created: "Nov 15, 2026", due: "Dec 30, 2026", payment: "" },
-  { name: "Haylie Curtis", initials: "HC", price: 8232, recurring: true, status: "paid", invoiceNum: "F7F23EF1-0011", created: "Dec 25, 2025", due: "Dec 31, 2025", payment: "Dec 28, 2026" },
-  { name: "Brandon Curtis", initials: "BC", price: 8230, recurring: true, status: "paid", invoiceNum: "F7F23EF1-0010", created: "Jan 1, 2026", due: "Mar 31, 2026", payment: "Mar 1, 2026" },
   { name: "Michael Robert", initials: "MR", price: 3454, recurring: false, status: "overdue", invoiceNum: "SUB-44D2833F-0006", created: "Feb 28, 2026", due: "Mar 31, 2026", payment: "" },
 ];
 
@@ -109,15 +100,6 @@ const SUBSCRIPTIONS_DATA: SubscriptionRow[] = [
   { name: "Tiana Botosh", initials: "TB", price: 20000, period: "Yearly", status: "active", created: "Jan 20, 2026", nextPayment: "Jan 20, 2027" },
   { name: "Wave Marketing", initials: "WM", price: 7800, period: "Monthly", status: "active", created: "Feb 14, 2026", nextPayment: "Mar 14, 2026" },
   { name: "James Dilhome", initials: "JD", price: 6500, period: "Monthly", status: "active", created: "Dec 1, 2026", nextPayment: "Jan 1, 2027" },
-  { name: "Patrick Ekstrom Bothman", initials: "PE", price: 11000, period: "Monthly", status: "active", created: "Mar 30, 2026", nextPayment: "Apr 30, 2026" },
-  { name: "Josh Dart", initials: "JD", price: 9500, period: "Yearly", status: "active", created: "Jul 4, 2026", nextPayment: "Jul 4, 2027" },
-  { name: "Franklin Thomas", initials: "FT", price: 18000, period: "Monthly", status: "active", created: "Aug 22, 2026", nextPayment: "Sep 22, 2026" },
-  { name: "The Walsh Group", initials: "TW", price: 10100, period: "Monthly", status: "active", created: "Sep 8, 2026", nextPayment: "Oct 8, 2026" },
-  { name: "Phyllis Maverick", initials: "PM", price: 22000, period: "Monthly", status: "active", created: "Apr 25, 2026", nextPayment: "May 25, 2026" },
-  { name: "Erin Vetrovs", initials: "EV", price: 5000, period: "Monthly", status: "cancelled", created: "Oct 30, 2026", nextPayment: "" },
-  { name: "Haylie Curtis", initials: "HC", price: 3600, period: "Monthly", status: "active", created: "Nov 15, 2026", nextPayment: "Dec 15, 2026" },
-  { name: "Brandon Curtis", initials: "BC", price: 4800, period: "Monthly", status: "active", created: "Dec 25, 2026", nextPayment: "Jan 25, 2027" },
-  { name: "Michael Robert", initials: "MR", price: 6200, period: "Yearly", status: "active", created: "Jan 1, 2026", nextPayment: "Feb 1, 2026" },
 ];
 
 /* ── Payment Links data ── */
