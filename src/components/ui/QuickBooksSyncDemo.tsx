@@ -298,32 +298,6 @@ function Card({
 }
 
 /* ══════════════════════════════════════════
-   SYNC PULSE – glowing dot with soft trail
-   Uses a group: trailing gradient ellipse + bright core dot
-   ══════════════════════════════════════════ */
-function SyncPulse({ id, path, dur = "3s", delay = "0s" }: {
-  id: string;
-  path: string;
-  dur?: string;
-  delay?: string;
-}) {
-  return (
-    <g>
-      {/* Soft glow halo */}
-      <circle r={8} fill={`url(#${id}-glow)`} opacity={0}>
-        <animateMotion dur={dur} repeatCount="indefinite" begin={delay} path={path} rotate="auto" />
-        <animate attributeName="opacity" values="0;0.5;0.5;0" keyTimes="0;0.1;0.85;1" dur={dur} repeatCount="indefinite" begin={delay} />
-      </circle>
-      {/* Core dot */}
-      <circle r={2.5} fill="#64748b" opacity={0}>
-        <animateMotion dur={dur} repeatCount="indefinite" begin={delay} path={path} rotate="auto" />
-        <animate attributeName="opacity" values="0;0.9;0.9;0" keyTimes="0;0.08;0.88;1" dur={dur} repeatCount="indefinite" begin={delay} />
-      </circle>
-    </g>
-  );
-}
-
-/* ══════════════════════════════════════════
    MOBILE STATIC
    ══════════════════════════════════════════ */
 function MobileStaticView() {
@@ -500,56 +474,75 @@ export function QuickBooksSyncDemo({ inSplit = false }: { inSplit?: boolean }) {
             }}
           >
             <defs>
-              {/* Gradient for active line */}
-              <linearGradient id="grad-aq" x1="0%" y1="0%" x2="100%" y2="0%">
-                <stop offset="0%" stopColor="#94a3b8" />
-                <stop offset="100%" stopColor="#64748b" />
+              {/* Static gradient for base line */}
+              <linearGradient id="grad-line" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" stopColor="#b0b8c4" />
+                <stop offset="100%" stopColor="#8b95a5" />
               </linearGradient>
-              {/* Glow filter for active connection line */}
+              {/* Animated flow gradient — a bright band that sweeps across */}
+              <linearGradient id="flow-aq" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" stopColor="#94a3b8" stopOpacity="0">
+                  <animate attributeName="offset" values="-0.3;1" dur="3s" repeatCount="indefinite" />
+                </stop>
+                <stop offset="15%" stopColor="#475569" stopOpacity="0.8">
+                  <animate attributeName="offset" values="-0.15;1.15" dur="3s" repeatCount="indefinite" />
+                </stop>
+                <stop offset="30%" stopColor="#94a3b8" stopOpacity="0">
+                  <animate attributeName="offset" values="0;1.3" dur="3s" repeatCount="indefinite" />
+                </stop>
+              </linearGradient>
+              <linearGradient id="flow-ax" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" stopColor="#94a3b8" stopOpacity="0">
+                  <animate attributeName="offset" values="-0.3;1" dur="3.5s" repeatCount="indefinite" />
+                </stop>
+                <stop offset="15%" stopColor="#475569" stopOpacity="0.7">
+                  <animate attributeName="offset" values="-0.15;1.15" dur="3.5s" repeatCount="indefinite" />
+                </stop>
+                <stop offset="30%" stopColor="#94a3b8" stopOpacity="0">
+                  <animate attributeName="offset" values="0;1.3" dur="3.5s" repeatCount="indefinite" />
+                </stop>
+              </linearGradient>
+              {/* Soft glow filter */}
               <filter id="glow-line" x="-20%" y="-50%" width="140%" height="200%">
-                <feGaussianBlur stdDeviation="3" result="blur" />
+                <feGaussianBlur stdDeviation="2.5" result="blur" />
                 <feMerge>
                   <feMergeNode in="blur" />
                   <feMergeNode in="SourceGraphic" />
                 </feMerge>
               </filter>
-              {/* Radial glow for sync pulse dots */}
-              <radialGradient id="pulse-aq-glow">
-                <stop offset="0%" stopColor="#64748b" stopOpacity="0.4" />
-                <stop offset="100%" stopColor="#64748b" stopOpacity="0" />
-              </radialGradient>
-              <radialGradient id="pulse-ax-glow">
-                <stop offset="0%" stopColor="#64748b" stopOpacity="0.35" />
-                <stop offset="100%" stopColor="#64748b" stopOpacity="0" />
-              </radialGradient>
             </defs>
 
             {/* ── Assembly → QB (always active) ── */}
-            {/* Glow shadow */}
+            {/* Glow under-layer */}
             <path
               d={pathAQ}
-              stroke="rgba(100,116,139,0.12)"
+              stroke="rgba(100,116,139,0.08)"
               strokeWidth={6}
               fill="none"
               strokeLinecap="round"
               filter="url(#glow-line)"
             />
-            {/* Main line */}
+            {/* Base line */}
             <path
               d={pathAQ}
-              stroke="url(#grad-aq)"
+              stroke="url(#grad-line)"
+              strokeWidth={1.5}
+              fill="none"
+              strokeLinecap="round"
+            />
+            {/* Animated flow shimmer */}
+            <path
+              d={pathAQ}
+              stroke="url(#flow-aq)"
               strokeWidth={2}
               fill="none"
               strokeLinecap="round"
             />
             {/* Port dots */}
-            <circle cx={lp.aR_x} cy={lp.aR_y} r={4.5}
+            <circle cx={lp.aR_x} cy={lp.aR_y} r={4}
               fill={C.portFill} stroke={C.portActive} strokeWidth={1.5} />
-            <circle cx={lp.qbL_x} cy={lp.qbL_y} r={4.5}
+            <circle cx={lp.qbL_x} cy={lp.qbL_y} r={4}
               fill={C.portFill} stroke={C.portActive} strokeWidth={1.5} />
-            {/* Sync pulses — two staggered for continuous flow */}
-            <SyncPulse id="pulse-aq" path={pathAQ} dur="3.5s" delay="0s" />
-            <SyncPulse id="pulse-aq" path={pathAQ} dur="3.5s" delay="1.75s" />
 
             {/* ── Assembly → Xero ── */}
             {xeroConnected ? (
@@ -557,45 +550,54 @@ export function QuickBooksSyncDemo({ inSplit = false }: { inSplit?: boolean }) {
                 {/* Glow */}
                 <motion.path
                   d={pathAX}
-                  stroke="rgba(100,116,139,0.10)"
+                  stroke="rgba(100,116,139,0.07)"
                   strokeWidth={6}
                   fill="none"
                   strokeLinecap="round"
+                  filter="url(#glow-line)"
                   initial={{ pathLength: 0, opacity: 0 }}
                   animate={{ pathLength: 1, opacity: 1 }}
                   transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
                 />
-                {/* Main line */}
+                {/* Base line */}
                 <motion.path
                   d={pathAX}
-                  stroke="url(#grad-aq)"
-                  strokeWidth={2}
+                  stroke="url(#grad-line)"
+                  strokeWidth={1.5}
                   fill="none"
                   strokeLinecap="round"
                   initial={{ pathLength: 0, opacity: 0 }}
                   animate={{ pathLength: 1, opacity: 1 }}
                   transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
                 />
+                {/* Animated flow shimmer */}
+                <motion.path
+                  d={pathAX}
+                  stroke="url(#flow-ax)"
+                  strokeWidth={2}
+                  fill="none"
+                  strokeLinecap="round"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ duration: 0.4, delay: 0.6 }}
+                />
                 {/* Ports */}
                 <motion.circle
-                  cx={lp.aR2_x} cy={lp.aR2_y} r={4.5}
+                  cx={lp.aR2_x} cy={lp.aR2_y} r={4}
                   fill={C.portFill} stroke={C.portActive} strokeWidth={1.5}
                   initial={{ scale: 0 }} animate={{ scale: 1 }}
                   transition={{ duration: 0.25 }}
                 />
                 <motion.circle
-                  cx={lp.xL_x} cy={lp.xL_y} r={4.5}
+                  cx={lp.xL_x} cy={lp.xL_y} r={4}
                   fill={C.portFill} stroke={C.portActive} strokeWidth={1.5}
                   initial={{ scale: 0 }} animate={{ scale: 1 }}
                   transition={{ duration: 0.25, delay: 0.5 }}
                 />
-                {/* Sync pulses */}
-                <SyncPulse id="pulse-ax" path={pathAX} dur="3.8s" delay="0.5s" />
-                <SyncPulse id="pulse-ax" path={pathAX} dur="3.8s" delay="2.4s" />
               </>
             ) : (
               <>
-                {/* Dashed preview line */}
+                {/* Dashed preview */}
                 <path
                   d={pathAX}
                   stroke={C.lineDashed}
@@ -603,12 +605,12 @@ export function QuickBooksSyncDemo({ inSplit = false }: { inSplit?: boolean }) {
                   fill="none"
                   strokeLinecap="round"
                   strokeDasharray="6 6"
-                  opacity={0.6}
+                  opacity={0.5}
                 />
                 {/* Muted ports */}
-                <circle cx={lp.aR2_x} cy={lp.aR2_y} r={4}
+                <circle cx={lp.aR2_x} cy={lp.aR2_y} r={3.5}
                   fill="#fff" stroke={C.lineDashed} strokeWidth={1.5} />
-                <circle cx={lp.xL_x} cy={lp.xL_y} r={4}
+                <circle cx={lp.xL_x} cy={lp.xL_y} r={3.5}
                   fill="#fff" stroke={C.lineDashed} strokeWidth={1.5}
                   strokeDasharray="3 3" />
               </>
