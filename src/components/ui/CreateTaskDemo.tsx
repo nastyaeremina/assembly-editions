@@ -1,15 +1,15 @@
 "use client";
 
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useIdleHint } from "@/hooks/useIdleHint";
+import { useMediaQuery } from "@/hooks/useMediaQuery";
 
 /* ──────────────────────────────────────────────────────────
    CREATE TASK DEMO — Interactive modal prototype
-   Matches the "Create task" modal reference design.
-   Primary interaction: clicking "Related to" pill opens a
-   client/company picker dropdown. Association only shows
-   when assignee is not a client/company.
+   Desktop: clicking "Related to" pill opens a client picker.
+   Mobile: auto-plays animation loop (select client →
+   show toggle → switch on → hold → reset → repeat).
    ────────────────────────────────────────────────────────── */
 
 /* ── Colors ── */
@@ -49,12 +49,49 @@ export function CreateTaskDemo({ inSplit = false }: CreateTaskDemoProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const [showRelatedTooltip, setShowRelatedTooltip] = useState(false);
 
-  /* Idle hint — subtle glow pulse on "Related to" pill */
+  const isMobile = useMediaQuery("(max-width: 1023px)", false);
+
+  /* Idle hint — subtle glow pulse on "Related to" pill (desktop only) */
   const { containerRef: idleRef, isIdle: pillIdleActive, dismiss: dismissIdle } = useIdleHint({ delay: 2500 });
 
-  // Close picker on outside click
+  /* ── Mobile auto-play loop ──
+     Sequence: wait → select client → show toggle → switch on → hold → reset → repeat */
   useEffect(() => {
-    if (!showPicker) return;
+    if (!isMobile) return;
+    let cancelled = false;
+    const wait = (ms: number) => new Promise<void>((r) => { const t = setTimeout(r, ms); if (cancelled) clearTimeout(t); });
+
+    async function loop() {
+      while (!cancelled) {
+        // Reset
+        setRelatedClient(null);
+        setShareWithClient(false);
+        setShowPicker(false);
+        await wait(2000);
+        if (cancelled) break;
+
+        // Step 1: auto-select client (Mary Sung)
+        setRelatedClient("ms");
+        await wait(1800);
+        if (cancelled) break;
+
+        // Step 2: toggle "Share with client" ON
+        setShareWithClient(true);
+        await wait(3000);
+        if (cancelled) break;
+
+        // Step 3: hold before reset
+        await wait(1500);
+      }
+    }
+
+    loop();
+    return () => { cancelled = true; };
+  }, [isMobile]);
+
+  // Close picker on outside click (desktop only)
+  useEffect(() => {
+    if (!showPicker || isMobile) return;
     const handler = (e: MouseEvent) => {
       if (pickerRef.current && !pickerRef.current.contains(e.target as Node)) {
         setShowPicker(false);
@@ -62,7 +99,7 @@ export function CreateTaskDemo({ inSplit = false }: CreateTaskDemoProps) {
     };
     document.addEventListener("mousedown", handler);
     return () => document.removeEventListener("mousedown", handler);
-  }, [showPicker]);
+  }, [showPicker, isMobile]);
 
   const selectClient = (clientId: string) => {
     setRelatedClient(clientId);
@@ -178,18 +215,18 @@ export function CreateTaskDemo({ inSplit = false }: CreateTaskDemoProps) {
           <div style={{ position: "relative", display: "inline-block" }}>
             <motion.button
               type="button"
-              onClick={() => { setShowPicker(!showPicker); setShowRelatedTooltip(false); dismissIdle(); }}
-              onMouseEnter={() => { if (!showPicker) setShowRelatedTooltip(true); }}
+              onClick={() => { if (!isMobile) { setShowPicker(!showPicker); setShowRelatedTooltip(false); dismissIdle(); } }}
+              onMouseEnter={() => { if (!showPicker && !isMobile) setShowRelatedTooltip(true); }}
               onMouseLeave={() => setShowRelatedTooltip(false)}
-              whileHover={{ backgroundColor: "#f9fafb" }}
-              animate={pillIdleActive && !relatedClient ? {
+              whileHover={isMobile ? undefined : { backgroundColor: "#f9fafb" }}
+              animate={pillIdleActive && !relatedClient && !isMobile ? {
                 boxShadow: [
                   "0 0 0 0px rgba(0,0,0,0)",
                   "0 0 0 3px rgba(0,0,0,0.05)",
                   "0 0 0 0px rgba(0,0,0,0)",
                 ],
               } : { boxShadow: "0 0 0 0px rgba(0,0,0,0)" }}
-              transition={pillIdleActive && !relatedClient ? {
+              transition={pillIdleActive && !relatedClient && !isMobile ? {
                 duration: 3,
                 repeat: Infinity,
                 ease: "easeInOut",
@@ -208,7 +245,7 @@ export function CreateTaskDemo({ inSplit = false }: CreateTaskDemoProps) {
                 cursor: "pointer",
                 backgroundColor: "transparent",
                 fontFamily: "'Inter', system-ui, sans-serif",
-                transition: "border-color 150ms ease",
+                transition: "border-color 400ms ease, padding 400ms ease, color 400ms ease",
               }}
             >
               {relatedClient && selectedClient ? (
@@ -240,9 +277,9 @@ export function CreateTaskDemo({ inSplit = false }: CreateTaskDemoProps) {
                 </>
               )}
             </motion.button>
-            {/* ── Tooltip ── */}
+            {/* ── Tooltip (desktop only) ── */}
             <AnimatePresence>
-              {showRelatedTooltip && !showPicker && (
+              {showRelatedTooltip && !showPicker && !isMobile && (
                 <motion.div
                   initial={{ opacity: 0, y: 4 }}
                   animate={{ opacity: 1, y: 0 }}
@@ -296,9 +333,9 @@ export function CreateTaskDemo({ inSplit = false }: CreateTaskDemoProps) {
             </AnimatePresence>
           </div>
 
-          {/* ── Client picker dropdown ── */}
+          {/* ── Client picker dropdown (desktop only) ── */}
           <AnimatePresence>
-            {showPicker && (
+            {showPicker && !isMobile && (
               <motion.div
                 initial={{ opacity: 0, y: -4, scale: 0.97 }}
                 animate={{ opacity: 1, y: 0, scale: 1 }}
@@ -409,65 +446,108 @@ export function CreateTaskDemo({ inSplit = false }: CreateTaskDemoProps) {
         </div>
       </div>
 
-      {/* ── Share with client toggle — only visible after association ── */}
-      <AnimatePresence>
-        {relatedClient && (
-          <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: "auto" }}
-            exit={{ opacity: 0, height: 0 }}
-            transition={{ duration: 0.25, ease: [0.25, 0.1, 0.25, 1] }}
-            style={{ overflow: "hidden" }}
-          >
-            <div style={{ padding: "4px 20px 12px" }}>
+      {/* ── Share with client toggle ── */}
+      {isMobile ? (
+        /* Mobile: always rendered (no height shift), opacity animates */
+        <div style={{
+          opacity: relatedClient ? 1 : 0.3,
+          transition: "opacity 0.5s ease",
+        }}>
+          <div style={{ padding: "4px 20px 12px" }}>
+            <div
+              style={{
+                display: "flex",
+                alignItems: "center",
+                gap: "10px",
+                cursor: "default",
+              }}
+            >
               <div
-                onClick={() => setShareWithClient(!shareWithClient)}
                 style={{
-                  display: "flex",
-                  alignItems: "center",
-                  gap: "10px",
-                  cursor: "pointer",
+                  width: "34px",
+                  height: "18px",
+                  borderRadius: "9px",
+                  backgroundColor: shareWithClient ? C.toggleOn : C.toggleOff,
+                  position: "relative",
+                  transition: "background-color 300ms ease",
+                  flexShrink: 0,
                 }}
               >
                 <div
                   style={{
-                    width: "34px",
-                    height: "18px",
-                    borderRadius: "9px",
-                    backgroundColor: shareWithClient ? C.toggleOn : C.toggleOff,
-                    position: "relative",
-                    transition: "background-color 200ms ease",
-                    flexShrink: 0,
+                    width: "14px",
+                    height: "14px",
+                    borderRadius: "50%",
+                    backgroundColor: "#ffffff",
+                    position: "absolute",
+                    top: "2px",
+                    left: shareWithClient ? "18px" : "2px",
+                    transition: "left 300ms cubic-bezier(0.34, 1.56, 0.64, 1)",
+                    boxShadow: "0 1px 3px rgba(0,0,0,0.15)",
+                  }}
+                />
+              </div>
+              <span style={{ fontSize: "12px", fontWeight: 400, color: C.text }}>
+                Share with client
+              </span>
+            </div>
+          </div>
+        </div>
+      ) : (
+        /* Desktop: expand/collapse with AnimatePresence */
+        <AnimatePresence>
+          {relatedClient && (
+            <motion.div
+              initial={{ opacity: 0, height: 0 }}
+              animate={{ opacity: 1, height: "auto" }}
+              exit={{ opacity: 0, height: 0 }}
+              transition={{ duration: 0.4, ease: [0.25, 0.1, 0.25, 1] }}
+              style={{ overflow: "hidden" }}
+            >
+              <div style={{ padding: "4px 20px 12px" }}>
+                <div
+                  onClick={() => setShareWithClient(!shareWithClient)}
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    gap: "10px",
+                    cursor: "pointer",
                   }}
                 >
                   <div
                     style={{
-                      width: "14px",
-                      height: "14px",
-                      borderRadius: "50%",
-                      backgroundColor: "#ffffff",
-                      position: "absolute",
-                      top: "2px",
-                      left: shareWithClient ? "18px" : "2px",
-                      transition: "left 200ms ease",
-                      boxShadow: "0 1px 3px rgba(0,0,0,0.15)",
+                      width: "34px",
+                      height: "18px",
+                      borderRadius: "9px",
+                      backgroundColor: shareWithClient ? C.toggleOn : C.toggleOff,
+                      position: "relative",
+                      transition: "background-color 300ms ease",
+                      flexShrink: 0,
                     }}
-                  />
+                  >
+                    <div
+                      style={{
+                        width: "14px",
+                        height: "14px",
+                        borderRadius: "50%",
+                        backgroundColor: "#ffffff",
+                        position: "absolute",
+                        top: "2px",
+                        left: shareWithClient ? "18px" : "2px",
+                        transition: "left 300ms cubic-bezier(0.34, 1.56, 0.64, 1)",
+                        boxShadow: "0 1px 3px rgba(0,0,0,0.15)",
+                      }}
+                    />
+                  </div>
+                  <span style={{ fontSize: "12px", fontWeight: 400, color: C.text }}>
+                    Share with client
+                  </span>
                 </div>
-                <span
-                  style={{
-                    fontSize: "12px",
-                    fontWeight: 400,
-                    color: C.text,
-                  }}
-                >
-                  Share with client
-                </span>
               </div>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+            </motion.div>
+          )}
+        </AnimatePresence>
+      )}
 
       {/* ── Divider ── */}
       <div style={{ height: "1px", backgroundColor: C.borderLight }} />

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useMediaQuery } from "@/hooks/useMediaQuery";
 
@@ -50,7 +50,63 @@ export function TimeBasedAutomationsDemo({ inSplit = false }: TimeBasedAutomatio
   const [showTooltip, setShowTooltip] = useState(false);
   const tooltipDismissed = useRef(false);
 
-  /* ── Mobile: just the config panel ── */
+  /* ── Mobile auto-play state ── */
+  const [mDate, setMDate] = useState("Mon, Jan 12, 2026");
+  const [mTime, setMTime] = useState("8:00 AM");
+  const [mRepeatOn, setMRepeatOn] = useState(false);
+  const [mRepeatNum, setMRepeatNum] = useState(1);
+
+  /* ── Mobile auto-play loop ──
+     Everything stays visible — date & time values change smoothly,
+     then repeat toggles on, number goes 1 → 2, hold, loop. */
+  useEffect(() => {
+    if (isDesktop) return;
+    let cancelled = false;
+    const wait = (ms: number) => new Promise<void>((r) => {
+      const t = setTimeout(r, ms);
+      if (cancelled) clearTimeout(t);
+    });
+
+    async function loop() {
+      while (!cancelled) {
+        // Reset to initial values
+        setMDate("Mon, Jan 12, 2026");
+        setMTime("8:00 AM");
+        setMRepeatOn(false);
+        setMRepeatNum(1);
+        await wait(1500);
+        if (cancelled) break;
+
+        // Step 1: date picks Mon, Jan 31
+        setMDate("Mon, Jan 31, 2026");
+        await wait(800);
+        if (cancelled) break;
+
+        // Step 2: time picks 9:00 AM
+        setMTime("9:00 AM");
+        await wait(800);
+        if (cancelled) break;
+
+        // Step 3: repeat toggle ON
+        setMRepeatOn(true);
+        await wait(1000);
+        if (cancelled) break;
+
+        // Step 4: number goes from 1 → 2
+        setMRepeatNum(2);
+        await wait(2500);
+        if (cancelled) break;
+
+        // Hold then reset
+        await wait(1200);
+      }
+    }
+
+    loop();
+    return () => { cancelled = true; };
+  }, [isDesktop]);
+
+  /* ── Mobile: just the config panel with auto-play ── */
   if (!isDesktop) {
     return (
       <motion.div
@@ -73,7 +129,7 @@ export function TimeBasedAutomationsDemo({ inSplit = false }: TimeBasedAutomatio
           marginBottom: "22px", letterSpacing: "-0.01em",
         }}>Scheduled time</div>
 
-        {/* Start date + Start time side by side */}
+        {/* Start date + Start time side by side — always visible, values animate */}
         <div style={{ display: "flex", gap: "10px", marginBottom: "14px" }}>
           <div style={{ flex: 1 }}>
             <div style={{ fontSize: "12px", fontWeight: 500, color: C.text, marginBottom: "6px" }}>Start date</div>
@@ -83,7 +139,7 @@ export function TimeBasedAutomationsDemo({ inSplit = false }: TimeBasedAutomatio
               border: `1px solid ${C.border}`,
               fontSize: "12px", color: C.text,
             }}>
-              <span>Mon, Jan 12, 2026</span>
+              <span style={{ transition: "opacity 0.3s ease" }} key={mDate}>{mDate}</span>
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img src={ICO.calendar} alt="" width={13} height={14} style={{ display: "block", opacity: 0.45 }} />
             </div>
@@ -95,7 +151,9 @@ export function TimeBasedAutomationsDemo({ inSplit = false }: TimeBasedAutomatio
               padding: "10px 12px", borderRadius: "6px",
               border: `1px solid ${C.border}`,
               fontSize: "12px", color: C.text,
-            }}>8:00 AM</div>
+            }}>
+              <span style={{ transition: "opacity 0.3s ease" }} key={mTime}>{mTime}</span>
+            </div>
           </div>
         </div>
 
@@ -113,18 +171,17 @@ export function TimeBasedAutomationsDemo({ inSplit = false }: TimeBasedAutomatio
           <span>Time zone: Eastern time (GMT-05:00)</span>
         </div>
 
-        {/* Repeat toggle */}
+        {/* Repeat toggle — always visible, state animates */}
         <div style={{
           display: "flex", alignItems: "center", gap: "10px",
           marginBottom: "10px",
         }}>
           <div
-            onClick={() => setRepeatOn(!repeatOn)}
             style={{
               width: "36px", height: "20px", borderRadius: "10px",
-              backgroundColor: repeatOn ? C.text : "#d1d5db",
-              cursor: "pointer", position: "relative",
-              transition: "background-color 200ms ease",
+              backgroundColor: mRepeatOn ? C.text : "#d1d5db",
+              position: "relative",
+              transition: "background-color 0.4s ease",
               flexShrink: 0,
             }}
           >
@@ -132,65 +189,60 @@ export function TimeBasedAutomationsDemo({ inSplit = false }: TimeBasedAutomatio
               width: "16px", height: "16px", borderRadius: "50%",
               backgroundColor: "#ffffff",
               position: "absolute", top: "2px",
-              left: repeatOn ? "18px" : "2px",
-              transition: "left 200ms ease",
+              left: mRepeatOn ? "18px" : "2px",
+              transition: "left 300ms cubic-bezier(0.34, 1.56, 0.64, 1)",
               boxShadow: "0 1px 2px rgba(0,0,0,0.15)",
             }} />
           </div>
           <span style={{ fontSize: "12px", fontWeight: 500, color: C.text }}>Repeat</span>
         </div>
 
-        {/* Repeat details */}
-        <AnimatePresence>
-          {repeatOn && (
-            <motion.div
-              initial={{ opacity: 0, height: 0 }}
-              animate={{ opacity: 1, height: "auto" }}
-              exit={{ opacity: 0, height: 0 }}
-              transition={{ duration: 0.2, ease: "easeInOut" }}
-              style={{ overflow: "hidden" }}
-            >
-              <div style={{
-                fontSize: "11px", color: C.textSec, marginBottom: "16px",
-                lineHeight: 1.4,
-              }}>
-                The trigger always uses the start time.
-              </div>
+        {/* Repeat details — always rendered, opacity animates (no height shift) */}
+        <div style={{
+          opacity: mRepeatOn ? 1 : 0.35,
+          transition: "opacity 0.4s ease",
+        }}>
+          <div style={{
+            fontSize: "11px", color: C.textSec, marginBottom: "16px",
+            lineHeight: 1.4,
+          }}>
+            The trigger always uses the start time.
+          </div>
 
-              <div style={{ fontSize: "12px", fontWeight: 500, color: C.text, marginBottom: "8px" }}>
-                Repeat every
-              </div>
+          <div style={{ fontSize: "12px", fontWeight: 500, color: C.text, marginBottom: "8px" }}>
+            Repeat every
+          </div>
 
-              <div style={{ display: "flex", gap: "10px" }}>
-                <div style={{
-                  display: "flex", alignItems: "center", justifyContent: "space-between",
-                  padding: "10px 12px", borderRadius: "6px",
-                  border: `1px solid ${C.border}`,
-                  fontSize: "12px", color: C.text,
-                  width: "70px",
-                }}>
-                  <span>1</span>
-                  <svg width="10" height="14" viewBox="0 0 10 14" fill="none" style={{ display: "block", opacity: 0.4 }}>
-                    <path d="M4.55 0.85C4.74 0.66 5.06 0.66 5.25 0.85L7.95 3.55C8.14 3.74 8.14 4.06 7.95 4.25C7.76 4.44 7.44 4.44 7.25 4.25L4.9 1.9L2.55 4.25C2.36 4.44 2.04 4.44 1.85 4.25C1.66 4.06 1.66 3.74 1.85 3.55L4.55 0.85Z" fill="#212B36"/>
-                    <path d="M5.25 13.15C5.06 13.34 4.74 13.34 4.55 13.15L1.85 10.45C1.66 10.26 1.66 9.94 1.85 9.75C2.04 9.56 2.36 9.56 2.55 9.75L4.9 12.1L7.25 9.75C7.44 9.56 7.76 9.56 7.95 9.75C8.14 9.94 8.14 10.26 7.95 10.45L5.25 13.15Z" fill="#212B36"/>
-                  </svg>
-                </div>
+          <div style={{ display: "flex", gap: "10px" }}>
+            <div style={{
+              display: "flex", alignItems: "center", justifyContent: "space-between",
+              padding: "10px 12px", borderRadius: "6px",
+              border: `1px solid ${C.border}`,
+              fontSize: "12px", color: C.text,
+              width: "70px",
+            }}>
+              <span key={mRepeatNum} style={{ transition: "opacity 0.3s ease" }}>
+                {mRepeatNum}
+              </span>
+              <svg width="10" height="14" viewBox="0 0 10 14" fill="none" style={{ display: "block", opacity: 0.4 }}>
+                <path d="M4.55 0.85C4.74 0.66 5.06 0.66 5.25 0.85L7.95 3.55C8.14 3.74 8.14 4.06 7.95 4.25C7.76 4.44 7.44 4.44 7.25 4.25L4.9 1.9L2.55 4.25C2.36 4.44 2.04 4.44 1.85 4.25C1.66 4.06 1.66 3.74 1.85 3.55L4.55 0.85Z" fill="#212B36"/>
+                <path d="M5.25 13.15C5.06 13.34 4.74 13.34 4.55 13.15L1.85 10.45C1.66 10.26 1.66 9.94 1.85 9.75C2.04 9.56 2.36 9.56 2.55 9.75L4.9 12.1L7.25 9.75C7.44 9.56 7.76 9.56 7.95 9.75C8.14 9.94 8.14 10.26 7.95 10.45L5.25 13.15Z" fill="#212B36"/>
+              </svg>
+            </div>
 
-                <div style={{
-                  flex: 1,
-                  display: "flex", alignItems: "center", justifyContent: "space-between",
-                  padding: "10px 12px", borderRadius: "6px",
-                  border: `1px solid ${C.border}`,
-                  fontSize: "12px", color: C.text,
-                }}>
-                  <span>month</span>
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img src={ICO.chevronDown} alt="" width={10} height={7} style={{ display: "block", opacity: 0.4 }} />
-                </div>
-              </div>
-            </motion.div>
-          )}
-        </AnimatePresence>
+            <div style={{
+              flex: 1,
+              display: "flex", alignItems: "center", justifyContent: "space-between",
+              padding: "10px 12px", borderRadius: "6px",
+              border: `1px solid ${C.border}`,
+              fontSize: "12px", color: C.text,
+            }}>
+              <span>month</span>
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src={ICO.chevronDown} alt="" width={10} height={7} style={{ display: "block", opacity: 0.4 }} />
+            </div>
+          </div>
+        </div>
       </motion.div>
     );
   }

@@ -74,7 +74,7 @@ function EditorialText({
   const isLight = theme === "light";
   const titleColor = isLight ? "#18181b" : "#fff";
   const bodyColor = isLight ? "#52525b" : "rgba(255, 255, 255, 0.82)";
-  const linkColor = isLight ? "rgba(0, 0, 0, 0.55)" : "rgba(255, 255, 255, 0.55)";
+  const linkColor = isLight ? "rgba(0, 0, 0, 0.5)" : "rgba(255, 255, 255, 0.5)";
   const linkHoverColor = isLight ? "rgba(0, 0, 0, 0.85)" : "rgba(255, 255, 255, 0.85)";
 
   return (
@@ -117,26 +117,28 @@ function EditorialText({
           target="_blank"
           rel="noopener"
           style={{
-            display: "inline-block",
-            marginTop: "1rem",
-            fontFamily: "'PP Mori', var(--font-sans)",
-            fontWeight: 500,
-            fontSize: "0.9rem",
+            display: "inline-flex",
+            alignItems: "center",
+            gap: "0.35rem",
+            marginTop: "1.25rem",
+            fontFamily: "var(--font-mono, monospace)",
+            fontWeight: 400,
+            fontSize: "0.75rem",
+            letterSpacing: "0.04em",
+            textTransform: "uppercase" as const,
             color: linkColor,
             textDecoration: "none",
-            textUnderlineOffset: "3px",
-            transition: "color 0.2s ease, text-decoration-color 0.2s ease",
+            transition: "color 0.2s ease",
           }}
           onMouseEnter={(e) => {
             e.currentTarget.style.color = linkHoverColor;
-            e.currentTarget.style.textDecoration = "underline";
           }}
           onMouseLeave={(e) => {
             e.currentTarget.style.color = linkColor;
-            e.currentTarget.style.textDecoration = "none";
           }}
         >
-          Learn more →
+          Learn more
+          <span style={{ fontSize: "0.85rem", transition: "transform 0.2s ease", display: "inline-block" }}>→</span>
         </a>
       )}
       {ctaContent && <div style={{ marginTop: "1.5rem" }}>{ctaContent}</div>}
@@ -282,7 +284,7 @@ function MobileCard({
   const bgColor = isLight ? "#FBFBF5" : "#101010";
   const titleColor = isLight ? "#18181b" : "#fff";
   const bodyColor = isLight ? "#52525b" : "rgba(255, 255, 255, 0.82)";
-  const linkColor = isLight ? "rgba(0, 0, 0, 0.55)" : "rgba(255, 255, 255, 0.55)";
+  const linkColor = isLight ? "rgba(0, 0, 0, 0.5)" : "rgba(255, 255, 255, 0.5)";
 
   return (
     <div
@@ -324,16 +326,21 @@ function MobileCard({
           target="_blank"
           rel="noopener"
           style={{
-            display: "inline-block",
+            display: "inline-flex",
+            alignItems: "center",
+            gap: "0.35rem",
             marginBottom: "1rem",
-            fontFamily: "'PP Mori', var(--font-sans)",
-            fontWeight: 500,
-            fontSize: "0.9rem",
+            fontFamily: "var(--font-mono, monospace)",
+            fontWeight: 400,
+            fontSize: "0.75rem",
+            letterSpacing: "0.04em",
+            textTransform: "uppercase" as const,
             color: linkColor,
             textDecoration: "none",
           }}
         >
-          Learn more →
+          Learn more
+          <span style={{ fontSize: "0.85rem", display: "inline-block" }}>→</span>
         </a>
       )}
       {children}
