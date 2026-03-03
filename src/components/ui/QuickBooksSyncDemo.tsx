@@ -33,8 +33,7 @@ const C = {
 } as const;
 
 /* ── Layout constants ── */
-const CANVAS_W = 600; // max-width of the canvas container
-const CANVAS_H = 340;
+const CANVAS_H = 360;
 const CARD_W = 210;
 const GAP = 120; // horizontal gap between hub and targets
 
@@ -467,27 +466,15 @@ export function QuickBooksSyncDemo({ inSplit = false }: { inSplit?: boolean }) {
       transition={{ duration: 0.6, ease: [0.25, 0.1, 0.25, 1] }}
       style={{ width: "100%", display: "flex", justifyContent: "center" }}
     >
-      {/* Canvas wrapper — centered, constrained width */}
+      {/* Canvas wrapper — full width, no background */}
       <div
         ref={canvasRef}
         style={{
           position: "relative",
           width: "100%",
-          maxWidth: CANVAS_W,
           height: CANVAS_H,
-          borderRadius: 16,
-          background: `
-            radial-gradient(ellipse 80% 60% at 20% 40%, rgba(22,163,74,0.03) 0%, transparent 70%),
-            radial-gradient(ellipse 60% 50% at 80% 50%, rgba(100,116,139,0.04) 0%, transparent 70%),
-            ${C.canvasBg}
-          `,
-          border: `1px solid ${C.canvasBorder}`,
-          boxShadow: "0 1px 3px rgba(0,0,0,0.03), inset 0 1px 0 rgba(255,255,255,0.6)",
           fontFamily: "'Inter', system-ui, sans-serif",
           overflow: "visible",
-          /* fine dot grid */
-          backgroundImage: `radial-gradient(circle, rgba(0,0,0,0.04) 1px, transparent 1px)`,
-          backgroundSize: "20px 20px",
         }}
       >
         {/* ─── SVG connectors layer ─── */}
