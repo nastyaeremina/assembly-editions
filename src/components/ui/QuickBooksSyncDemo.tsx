@@ -298,19 +298,28 @@ function Card({
 }
 
 /* ══════════════════════════════════════════
-   SYNC PULSE – animated dot that travels along a path
+   SYNC PULSE – glowing dot with soft trail
+   Uses a group: trailing gradient ellipse + bright core dot
    ══════════════════════════════════════════ */
-function SyncPulse({ path, dur = "3s", delay = "0s", color = C.dot }: {
+function SyncPulse({ id, path, dur = "3s", delay = "0s" }: {
+  id: string;
   path: string;
   dur?: string;
   delay?: string;
-  color?: string;
 }) {
   return (
-    <circle r={3} fill={color} opacity={0.7}>
-      <animateMotion dur={dur} repeatCount="indefinite" begin={delay} path={path} />
-      <animate attributeName="opacity" values="0;0.7;0.7;0" dur={dur} repeatCount="indefinite" begin={delay} />
-    </circle>
+    <g>
+      {/* Soft glow halo */}
+      <circle r={8} fill={`url(#${id}-glow)`} opacity={0}>
+        <animateMotion dur={dur} repeatCount="indefinite" begin={delay} path={path} rotate="auto" />
+        <animate attributeName="opacity" values="0;0.5;0.5;0" keyTimes="0;0.1;0.85;1" dur={dur} repeatCount="indefinite" begin={delay} />
+      </circle>
+      {/* Core dot */}
+      <circle r={2.5} fill="#64748b" opacity={0}>
+        <animateMotion dur={dur} repeatCount="indefinite" begin={delay} path={path} rotate="auto" />
+        <animate attributeName="opacity" values="0;0.9;0.9;0" keyTimes="0;0.08;0.88;1" dur={dur} repeatCount="indefinite" begin={delay} />
+      </circle>
+    </g>
   );
 }
 
@@ -491,12 +500,12 @@ export function QuickBooksSyncDemo({ inSplit = false }: { inSplit?: boolean }) {
             }}
           >
             <defs>
-              {/* Gradient for active line (Assembly → QB) */}
+              {/* Gradient for active line */}
               <linearGradient id="grad-aq" x1="0%" y1="0%" x2="100%" y2="0%">
                 <stop offset="0%" stopColor="#94a3b8" />
                 <stop offset="100%" stopColor="#64748b" />
               </linearGradient>
-              {/* Glow filter for active connection */}
+              {/* Glow filter for active connection line */}
               <filter id="glow-line" x="-20%" y="-50%" width="140%" height="200%">
                 <feGaussianBlur stdDeviation="3" result="blur" />
                 <feMerge>
@@ -504,6 +513,15 @@ export function QuickBooksSyncDemo({ inSplit = false }: { inSplit?: boolean }) {
                   <feMergeNode in="SourceGraphic" />
                 </feMerge>
               </filter>
+              {/* Radial glow for sync pulse dots */}
+              <radialGradient id="pulse-aq-glow">
+                <stop offset="0%" stopColor="#64748b" stopOpacity="0.4" />
+                <stop offset="100%" stopColor="#64748b" stopOpacity="0" />
+              </radialGradient>
+              <radialGradient id="pulse-ax-glow">
+                <stop offset="0%" stopColor="#64748b" stopOpacity="0.35" />
+                <stop offset="100%" stopColor="#64748b" stopOpacity="0" />
+              </radialGradient>
             </defs>
 
             {/* ── Assembly → QB (always active) ── */}
@@ -529,9 +547,9 @@ export function QuickBooksSyncDemo({ inSplit = false }: { inSplit?: boolean }) {
               fill={C.portFill} stroke={C.portActive} strokeWidth={1.5} />
             <circle cx={lp.qbL_x} cy={lp.qbL_y} r={4.5}
               fill={C.portFill} stroke={C.portActive} strokeWidth={1.5} />
-            {/* Sync pulses — two-way */}
-            <SyncPulse path={pathAQ} dur="2.8s" delay="0s" />
-            <SyncPulse path={pathAQ} dur="2.8s" delay="1.4s" />
+            {/* Sync pulses — two staggered for continuous flow */}
+            <SyncPulse id="pulse-aq" path={pathAQ} dur="3.5s" delay="0s" />
+            <SyncPulse id="pulse-aq" path={pathAQ} dur="3.5s" delay="1.75s" />
 
             {/* ── Assembly → Xero ── */}
             {xeroConnected ? (
@@ -572,8 +590,8 @@ export function QuickBooksSyncDemo({ inSplit = false }: { inSplit?: boolean }) {
                   transition={{ duration: 0.25, delay: 0.5 }}
                 />
                 {/* Sync pulses */}
-                <SyncPulse path={pathAX} dur="3s" delay="0.3s" />
-                <SyncPulse path={pathAX} dur="3s" delay="1.8s" />
+                <SyncPulse id="pulse-ax" path={pathAX} dur="3.8s" delay="0.5s" />
+                <SyncPulse id="pulse-ax" path={pathAX} dur="3.8s" delay="2.4s" />
               </>
             ) : (
               <>
