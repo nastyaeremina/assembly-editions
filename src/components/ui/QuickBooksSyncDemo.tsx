@@ -70,7 +70,7 @@ const ASSEMBLY_NODE: NodeDef = {
 const QB_NODE: NodeDef = {
   id: "qb",
   icon: "/Icons/QB.svg",
-  title: "QuickBooks Online",
+  title: "QuickBooks",
   rows: [
     { label: "Invoices synced", value: "156" },
     { label: "Payments synced", value: "89" },
@@ -264,7 +264,7 @@ function NodeCard({
 function MobileStaticView() {
   const items = [
     { icon: "/Icons/AvatarBlack.svg", label: "Assembly", sub: "847 clients, 156 invoices" },
-    { icon: "/Icons/QB.svg", label: "QuickBooks Online", sub: "156 invoices, 89 payments synced" },
+    { icon: "/Icons/QB.svg", label: "QuickBooks", sub: "156 invoices, 89 payments synced" },
     { icon: "/Icons/Xerosq.svg", label: "Xero", sub: "89 contacts, 67 records synced" },
   ];
 
@@ -432,7 +432,7 @@ export function QuickBooksSyncDemo({ inSplit = false }: { inSplit?: boolean }) {
 
   void inSplit;
   const pp = ports;
-  const CANVAS_H = 320;
+  const CANVAS_H = 400;
 
   /* ── Port circle SVG helper ── */
   const portCircle = (cx: number, cy: number, key: string) => (
@@ -494,7 +494,7 @@ export function QuickBooksSyncDemo({ inSplit = false }: { inSplit?: boolean }) {
           animate
           delay={0.3}
           isInView={isInView}
-          style={{ right: 36, top: 24 }}
+          style={{ right: 36, top: 20 }}
         />
         {/* Xero: bottom-right */}
         <NodeCard
@@ -504,7 +504,7 @@ export function QuickBooksSyncDemo({ inSplit = false }: { inSplit?: boolean }) {
           animate
           delay={0.42}
           isInView={isInView}
-          style={{ right: 36, bottom: 24 }}
+          style={{ right: 36, bottom: 20 }}
         />
 
           {/* ─── SVG overlay: connection lines + ports ─── */}
