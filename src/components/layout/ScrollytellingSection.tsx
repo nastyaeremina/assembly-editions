@@ -397,6 +397,7 @@ export function ScrollytellingSection({
         style={isLightTheme ? {
           backgroundColor: bgColor,
           borderRadius: "1.5rem",
+          margin: "2rem 0",
         } : undefined}
       >
         {heroImage && (
