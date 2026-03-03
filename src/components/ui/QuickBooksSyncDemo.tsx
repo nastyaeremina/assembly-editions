@@ -3,13 +3,11 @@
 import { useRef, useState, useCallback, useEffect } from "react";
 import { motion, AnimatePresence, useInView } from "framer-motion";
 import { useMediaQuery } from "@/hooks/useMediaQuery";
-import { useIdleHint } from "@/hooks/useIdleHint";
 
 /* ──────────────────────────────────────────────────────────
    QUICKBOOKS & XERO SYNC DEMO
-   Node-editor workflow canvas with 3 integration cards
-   connected by bezier curves. Drag from QB output port
-   to Xero input port to connect.
+   Node-editor workflow canvas with 3 integration cards.
+   Assembly→QB always connected. Click Xero card to connect.
    ────────────────────────────────────────────────────────── */
 
 const C = {
@@ -23,17 +21,7 @@ const C = {
   green: "#16a34a",
   line: "#d4d4d8",
   lineDashed: "#e5e7eb",
-  portStroke: "#d4d4d8",
-  portFill: "#ffffff",
 } as const;
-
-/* ── Drag state ── */
-interface DragState {
-  fromX: number;
-  fromY: number;
-  mouseX: number;
-  mouseY: number;
-}
 
 /* ── Bezier path helpers ── */
 function bezierPathH(fx: number, fy: number, tx: number, ty: number): string {
@@ -97,9 +85,12 @@ function NodeCard({
   isConnected,
   style,
   nodeRef,
-  animate,
+  animate: shouldAnimate,
   delay = 0,
   isInView,
+  onClick,
+  clickable,
+  justConnected,
 }: {
   node: NodeDef;
   isConnected: boolean;
@@ -108,6 +99,9 @@ function NodeCard({
   animate?: boolean;
   delay?: number;
   isInView: boolean;
+  onClick?: () => void;
+  clickable?: boolean;
+  justConnected?: boolean;
 }) {
   const statusText = node.status
     ? isConnected
@@ -119,17 +113,22 @@ function NodeCard({
   return (
     <motion.div
       ref={nodeRef}
-      initial={animate ? { opacity: 0, y: 14 } : undefined}
-      animate={animate && isInView ? { opacity: 1, y: 0 } : undefined}
-      transition={animate ? { duration: 0.5, delay, ease: [0.22, 1, 0.36, 1] } : undefined}
+      initial={shouldAnimate ? { opacity: 0, y: 14 } : undefined}
+      animate={shouldAnimate && isInView ? { opacity: 1, y: 0 } : undefined}
+      transition={shouldAnimate ? { duration: 0.5, delay, ease: [0.22, 1, 0.36, 1] } : undefined}
+      onClick={onClick}
+      whileHover={clickable ? { scale: 1.02, boxShadow: "0 4px 12px rgba(0,0,0,0.08)" } : undefined}
+      whileTap={clickable ? { scale: 0.98 } : undefined}
       style={{
         position: "absolute",
         width: 220,
-        border: `1.5px solid ${C.border}`,
+        border: `1.5px solid ${clickable ? C.lineDashed : C.border}`,
         borderRadius: "8px",
         backgroundColor: C.cardBg,
         boxShadow: "0 1px 3px rgba(0,0,0,0.04)",
         overflow: "hidden",
+        cursor: clickable ? "pointer" : "default",
+        transition: "border-color 0.3s ease",
         ...style,
       }}
     >
@@ -180,7 +179,7 @@ function NodeCard({
 
       {/* Body rows */}
       <div style={{ padding: "6px 14px 8px" }}>
-        {node.rows.map((row) => {
+        {node.rows.map((row, i) => {
           const val = isConnected && row.valueConnected ? row.valueConnected : row.value;
           return (
             <div
@@ -196,10 +195,14 @@ function NodeCard({
               <AnimatePresence mode="wait">
                 <motion.span
                   key={val}
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  exit={{ opacity: 0 }}
-                  transition={{ duration: 0.2 }}
+                  initial={{ opacity: 0, y: 4 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -4 }}
+                  transition={{
+                    duration: 0.35,
+                    delay: justConnected ? i * 0.15 : 0,
+                    ease: [0.22, 1, 0.36, 1],
+                  }}
                   style={{
                     fontSize: "11px",
                     fontWeight: 500,
@@ -226,22 +229,31 @@ function NodeCard({
               borderTop: `1px solid ${C.borderLight}`,
             }}
           >
-            <div
+            <motion.div
+              animate={
+                justConnected
+                  ? { scale: [1, 1.6, 1], opacity: [0, 1, 1] }
+                  : { scale: 1, opacity: isConnected ? 1 : 0.5 }
+              }
+              transition={justConnected ? { duration: 0.5, delay: 0.3 } : { duration: 0.2 }}
               style={{
                 width: "6px",
                 height: "6px",
                 borderRadius: "50%",
                 backgroundColor: statusColor,
-                opacity: isConnected ? 1 : 0.5,
               }}
             />
             <AnimatePresence mode="wait">
               <motion.span
                 key={statusText}
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-                transition={{ duration: 0.2 }}
+                initial={{ opacity: 0, x: -4 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: 4 }}
+                transition={{
+                  duration: 0.35,
+                  delay: justConnected ? 0.4 : 0,
+                  ease: [0.22, 1, 0.36, 1],
+                }}
                 style={{
                   fontSize: "10px",
                   fontWeight: 500,
@@ -252,6 +264,28 @@ function NodeCard({
               </motion.span>
             </AnimatePresence>
           </div>
+        )}
+
+        {/* Click hint for unconnected clickable cards */}
+        {clickable && !isConnected && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 1.5, duration: 0.4 }}
+            style={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              gap: "4px",
+              paddingTop: "8px",
+              marginTop: "4px",
+              borderTop: `1px solid ${C.borderLight}`,
+            }}
+          >
+            <span style={{ fontSize: "10px", color: C.textMuted, fontWeight: 500 }}>
+              Click to connect
+            </span>
+          </motion.div>
         )}
       </div>
     </motion.div>
@@ -327,34 +361,22 @@ export function QuickBooksSyncDemo({ inSplit = false }: { inSplit?: boolean }) {
   const isDesktop = useMediaQuery("(min-width: 1024px)", true);
 
   const [xeroConnected, setXeroConnected] = useState(false);
-  const [drag, setDrag] = useState<DragState | null>(null);
-  const tooltipDone = useRef(false);
-  const [showTooltip, setShowTooltip] = useState(false);
+  const [justConnected, setJustConnected] = useState(false);
 
-  /* Node refs for port measurement */
+  /* Node refs for line measurement */
   const assemblyRef = useRef<HTMLDivElement>(null);
   const qbRef = useRef<HTMLDivElement>(null);
   const xeroRef = useRef<HTMLDivElement>(null);
 
-  interface PortPositions {
-    aOutX: number; aOutY: number;       // Assembly right port → QB
-    qbInX: number; qbInY: number;       // QB left port
-    qbOutX: number; qbOutY: number;     // QB bottom port → Xero
-    xInX: number; xInY: number;         // Xero top port
+  interface LinePositions {
+    aRightX: number; aRightY: number;
+    qbLeftX: number; qbLeftY: number;
+    qbBottomX: number; qbBottomY: number;
+    xTopX: number; xTopY: number;
   }
-  const [ports, setPorts] = useState<PortPositions | null>(null);
+  const [lines, setLines] = useState<LinePositions | null>(null);
 
-  /* Idle pulse */
-  const { containerRef: idleRef, isIdle: portIdleActive, dismiss: dismissIdle } = useIdleHint({ delay: 3000 });
-
-  /* Show tooltip after idle kicks in */
-  useEffect(() => {
-    if (portIdleActive && !xeroConnected && !tooltipDone.current) {
-      setShowTooltip(true);
-    }
-  }, [portIdleActive, xeroConnected]);
-
-  /* ── Measure port positions ── */
+  /* ── Measure line endpoints (midpoints of card edges, no port circles) ── */
   const measure = useCallback(() => {
     if (!canvasRef.current || !assemblyRef.current || !qbRef.current || !xeroRef.current) return;
     const cr = canvasRef.current.getBoundingClientRect();
@@ -362,15 +384,15 @@ export function QuickBooksSyncDemo({ inSplit = false }: { inSplit?: boolean }) {
     const qr = qbRef.current.getBoundingClientRect();
     const xr = xeroRef.current.getBoundingClientRect();
 
-    setPorts({
-      aOutX: ar.right - cr.left,
-      aOutY: ar.top - cr.top + ar.height * 0.45,
-      qbInX: qr.left - cr.left,
-      qbInY: qr.top - cr.top + qr.height * 0.45,
-      qbOutX: qr.left - cr.left + qr.width * 0.5,    // center-bottom of QB
-      qbOutY: qr.bottom - cr.top,                      // bottom edge
-      xInX: xr.left - cr.left + xr.width * 0.5,       // center-top of Xero
-      xInY: xr.top - cr.top,                            // top edge
+    setLines({
+      aRightX: ar.right - cr.left,
+      aRightY: ar.top - cr.top + ar.height * 0.45,
+      qbLeftX: qr.left - cr.left,
+      qbLeftY: qr.top - cr.top + qr.height * 0.45,
+      qbBottomX: qr.left - cr.left + qr.width * 0.5,
+      qbBottomY: qr.bottom - cr.top,
+      xTopX: xr.left - cr.left + xr.width * 0.5,
+      xTopY: xr.top - cr.top,
     });
   }, []);
 
@@ -381,86 +403,33 @@ export function QuickBooksSyncDemo({ inSplit = false }: { inSplit?: boolean }) {
     return () => ro.disconnect();
   }, [measure]);
 
-  /* ── Drag handlers ── */
-  const handleDragStart = useCallback(
-    (pos: { x: number; y: number }) => {
-      if (xeroConnected) return;
-      setDrag({ fromX: pos.x, fromY: pos.y, mouseX: pos.x, mouseY: pos.y });
-    },
-    [xeroConnected]
-  );
-
-  const handleMouseMove = useCallback(
-    (e: React.MouseEvent) => {
-      if (!drag || !canvasRef.current) return;
-      const rect = canvasRef.current.getBoundingClientRect();
-      setDrag((prev) =>
-        prev ? { ...prev, mouseX: e.clientX - rect.left, mouseY: e.clientY - rect.top } : null
-      );
-    },
-    [drag]
-  );
-
-  const handleMouseUp = useCallback(() => setDrag(null), []);
-
-  const handleXeroDrop = useCallback(() => {
-    if (!drag) return;
+  /* ── Connect handler ── */
+  const handleConnect = useCallback(() => {
+    if (xeroConnected) return;
     setXeroConnected(true);
-    setDrag(null);
-  }, [drag]);
-
-  useEffect(() => {
-    if (drag) {
-      setShowTooltip(false);
-      tooltipDone.current = true;
-      dismissIdle();
-    }
-  }, [drag, dismissIdle]);
-
-  useEffect(() => {
-    if (!drag) return;
-    const handler = () => setDrag(null);
-    window.addEventListener("mouseup", handler);
-    return () => window.removeEventListener("mouseup", handler);
-  }, [drag]);
+    setJustConnected(true);
+    // Clear justConnected after animations complete
+    setTimeout(() => setJustConnected(false), 1200);
+  }, [xeroConnected]);
 
   /* ── Mobile ── */
   if (!isDesktop) return <MobileStaticView />;
 
   void inSplit;
-  const pp = ports;
+  const lp = lines;
   const CANVAS_H = 420;
-
-  /* ── Port circle SVG helper ── */
-  const portCircle = (cx: number, cy: number, key: string) => (
-    <circle
-      key={key}
-      cx={cx}
-      cy={cy}
-      r={5}
-      fill={C.portFill}
-      stroke={C.portStroke}
-      strokeWidth={1.5}
-    />
-  );
 
   return (
     <motion.div
-      ref={(el) => {
-        (idleRef as React.MutableRefObject<HTMLDivElement | null>).current = el;
-        (containerRef as React.MutableRefObject<HTMLDivElement | null>).current = el;
-      }}
+      ref={containerRef}
       initial={{ opacity: 0, scale: 0.97 }}
       whileInView={{ opacity: 1, scale: 1 }}
       viewport={{ once: true, margin: "-40px" }}
       transition={{ duration: 0.6, ease: [0.25, 0.1, 0.25, 1] }}
       style={{ width: "100%" }}
     >
-      {/* ─── Canvas (no browser chrome) ─── */}
       <div
         ref={canvasRef}
-        onMouseMove={handleMouseMove}
-        onMouseUp={handleMouseUp}
         style={{
           position: "relative",
           width: "100%",
@@ -468,12 +437,10 @@ export function QuickBooksSyncDemo({ inSplit = false }: { inSplit?: boolean }) {
           borderRadius: "12px",
           backgroundColor: "transparent",
           fontFamily: "'Inter', system-ui, sans-serif",
-          cursor: drag ? "grabbing" : "default",
           overflow: "hidden",
         }}
       >
         {/* ── Node cards ── */}
-        {/* Assembly: left, upper area */}
         <NodeCard
           node={ASSEMBLY_NODE}
           isConnected={true}
@@ -483,7 +450,6 @@ export function QuickBooksSyncDemo({ inSplit = false }: { inSplit?: boolean }) {
           isInView={isInView}
           style={{ left: 0, top: 24 }}
         />
-        {/* QuickBooks: right, upper area — same row as Assembly */}
         <NodeCard
           node={QB_NODE}
           isConnected={true}
@@ -493,7 +459,6 @@ export function QuickBooksSyncDemo({ inSplit = false }: { inSplit?: boolean }) {
           isInView={isInView}
           style={{ right: 0, top: 24 }}
         />
-        {/* Xero: center-right, bottom area */}
         <NodeCard
           node={XERO_NODE}
           isConnected={xeroConnected}
@@ -501,191 +466,59 @@ export function QuickBooksSyncDemo({ inSplit = false }: { inSplit?: boolean }) {
           animate
           delay={0.42}
           isInView={isInView}
+          onClick={handleConnect}
+          clickable={!xeroConnected}
+          justConnected={justConnected}
           style={{ right: "20%", bottom: 24 }}
         />
 
-          {/* ─── SVG overlay: connection lines + ports ─── */}
-          {pp && (
-            <svg
-              style={{
-                position: "absolute",
-                inset: 0,
-                width: "100%",
-                height: "100%",
-                pointerEvents: "none",
-                zIndex: 5,
-              }}
-            >
-              {/* Assembly → QB: always connected (horizontal) */}
-              <path
-                d={bezierPathH(pp.aOutX, pp.aOutY, pp.qbInX, pp.qbInY)}
+        {/* ─── SVG overlay: connection lines (no port circles) ─── */}
+        {lp && (
+          <svg
+            style={{
+              position: "absolute",
+              inset: 0,
+              width: "100%",
+              height: "100%",
+              pointerEvents: "none",
+              zIndex: 5,
+            }}
+          >
+            {/* Assembly → QB: always connected */}
+            <path
+              d={bezierPathH(lp.aRightX, lp.aRightY, lp.qbLeftX, lp.qbLeftY)}
+              stroke={C.line}
+              strokeWidth={1.5}
+              fill="none"
+              strokeLinecap="round"
+            />
+
+            {/* QB → Xero: animated on connect */}
+            {xeroConnected ? (
+              <motion.path
+                d={bezierPathV(lp.qbBottomX, lp.qbBottomY, lp.xTopX, lp.xTopY)}
                 stroke={C.line}
                 strokeWidth={1.5}
                 fill="none"
                 strokeLinecap="round"
+                initial={{ pathLength: 0, opacity: 0 }}
+                animate={{ pathLength: 1, opacity: 1 }}
+                transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
               />
-              {portCircle(pp.aOutX, pp.aOutY, "a-out")}
-              {portCircle(pp.qbInX, pp.qbInY, "qb-in")}
-
-              {/* QB → Xero: interactive (vertical) */}
-              {xeroConnected ? (
-                <motion.path
-                  d={bezierPathV(pp.qbOutX, pp.qbOutY, pp.xInX, pp.xInY)}
-                  stroke={C.line}
-                  strokeWidth={1.5}
-                  fill="none"
-                  strokeLinecap="round"
-                  initial={{ pathLength: 0, opacity: 0 }}
-                  animate={{ pathLength: 1, opacity: 1 }}
-                  transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-                />
-              ) : (
-                <path
-                  d={bezierPathV(pp.qbOutX, pp.qbOutY, pp.xInX, pp.xInY)}
-                  stroke={C.lineDashed}
-                  strokeWidth={1.5}
-                  fill="none"
-                  strokeLinecap="round"
-                  strokeDasharray="6 4"
-                />
-              )}
-              {portCircle(pp.qbOutX, pp.qbOutY, "qb-out")}
-              {portCircle(pp.xInX, pp.xInY, "x-in")}
-
-              {/* Drag line */}
-              {drag && (
-                <path
-                  d={bezierPathV(drag.fromX, drag.fromY, drag.mouseX, drag.mouseY)}
-                  stroke={C.line}
-                  strokeWidth={1.5}
-                  fill="none"
-                  strokeDasharray="6 4"
-                  strokeLinecap="round"
-                  opacity={0.4}
-                />
-              )}
-            </svg>
-          )}
-
-          {/* ─── Interactive QB→Xero output port (draggable) ─── */}
-          {pp && !xeroConnected && (
-            <motion.div
-              onMouseDown={(e) => {
-                e.preventDefault();
-                e.stopPropagation();
-                handleDragStart({ x: pp.qbOutX, y: pp.qbOutY });
-              }}
-              animate={{ scale: drag ? 1.3 : 1 }}
-              transition={{ duration: 0.15 }}
-              style={{
-                position: "absolute",
-                left: pp.qbOutX - 7,
-                top: pp.qbOutY - 7,
-                width: 14,
-                height: 14,
-                borderRadius: "50%",
-                backgroundColor: "transparent",
-                cursor: drag ? "grabbing" : "grab",
-                zIndex: 10,
-              }}
-            />
-          )}
-
-          {/* ─── Interactive Xero input port (drop target) ─── */}
-          {pp && !xeroConnected && (
-            <motion.div
-              onMouseUp={() => handleXeroDrop()}
-              animate={{
-                scale: drag ? 1.6 : 1,
-              }}
-              transition={{ duration: 0.15 }}
-              style={{
-                position: "absolute",
-                left: pp.xInX - 7,
-                top: pp.xInY - 7,
-                width: 14,
-                height: 14,
-                borderRadius: "50%",
-                backgroundColor: "transparent",
-                cursor: drag ? "pointer" : "default",
-                zIndex: 10,
-              }}
-            />
-          )}
-
-          {/* ─── Idle pulse on QB output port ─── */}
-          {pp && portIdleActive && !xeroConnected && (
-            <motion.div
-              animate={{ scale: [1, 2.4, 1], opacity: [0.35, 0, 0.35] }}
-              transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut" }}
-              style={{
-                position: "absolute",
-                left: pp.qbOutX - 12,
-                top: pp.qbOutY - 12,
-                width: 24,
-                height: 24,
-                borderRadius: "50%",
-                border: `1.5px solid ${C.line}`,
-                opacity: 0.2,
-                pointerEvents: "none",
-                zIndex: 9,
-              }}
-            />
-          )}
-
-          {/* ─── Tooltip ─── */}
-          <AnimatePresence>
-            {showTooltip && pp && !xeroConnected && (
-              <motion.div
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-                transition={{ duration: 0.15 }}
-                style={{
-                  position: "absolute",
-                  left: pp.qbOutX + 14,
-                  top: pp.qbOutY - 12,
-                  pointerEvents: "none",
-                  zIndex: 100,
-                }}
-              >
-                <div
-                  style={{
-                    position: "relative",
-                    display: "inline-flex",
-                    alignItems: "center",
-                    padding: "4px 8px",
-                    borderRadius: "6px",
-                    backgroundColor: "rgba(24, 24, 27, 0.9)",
-                    backdropFilter: "blur(8px)",
-                    WebkitBackdropFilter: "blur(8px)",
-                    border: "1px solid rgba(63, 63, 70, 0.5)",
-                    boxShadow: "0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -2px rgba(0,0,0,0.1)",
-                    whiteSpace: "nowrap",
-                  }}
-                >
-                  <span style={{ fontSize: "10px", fontWeight: 400, color: "#ffffff" }}>
-                    Drag to connect
-                  </span>
-                  <div
-                    style={{
-                      position: "absolute",
-                      left: "-4px",
-                      top: "50%",
-                      marginTop: "-4px",
-                      width: "8px",
-                      height: "8px",
-                      backgroundColor: "rgba(24, 24, 27, 0.9)",
-                      transform: "rotate(45deg)",
-                      borderLeft: "1px solid rgba(63, 63, 70, 0.5)",
-                      borderBottom: "1px solid rgba(63, 63, 70, 0.5)",
-                    }}
-                  />
-                </div>
-              </motion.div>
+            ) : (
+              <path
+                d={bezierPathV(lp.qbBottomX, lp.qbBottomY, lp.xTopX, lp.xTopY)}
+                stroke={C.lineDashed}
+                strokeWidth={1}
+                fill="none"
+                strokeLinecap="round"
+                strokeDasharray="4 6"
+                opacity={0.5}
+              />
             )}
-          </AnimatePresence>
-        </div>
+          </svg>
+        )}
+      </div>
     </motion.div>
   );
 }
