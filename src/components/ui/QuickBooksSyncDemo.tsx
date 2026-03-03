@@ -58,7 +58,7 @@ interface NodeDef {
 
 const ASSEMBLY_NODE: NodeDef = {
   id: "assembly",
-  icon: "/Icons/_System App Icon-2.svg",
+  icon: "/Icons/AvatarBlack.svg",
   title: "Assembly",
   rows: [
     { label: "Clients", value: "847" },
@@ -263,7 +263,7 @@ function NodeCard({
    ══════════════════════════════════════════ */
 function MobileStaticView() {
   const items = [
-    { icon: "/Icons/_System App Icon-2.svg", label: "Assembly", sub: "847 clients, 156 invoices" },
+    { icon: "/Icons/AvatarBlack.svg", label: "Assembly", sub: "847 clients, 156 invoices" },
     { icon: "/Icons/QB.svg", label: "QuickBooks Online", sub: "156 invoices, 89 payments synced" },
     { icon: "/Icons/Xerosq.svg", label: "Xero", sub: "89 contacts, 67 records synced" },
   ];
@@ -337,10 +337,10 @@ export function QuickBooksSyncDemo({ inSplit = false }: { inSplit?: boolean }) {
   const xeroRef = useRef<HTMLDivElement>(null);
 
   interface PortPositions {
-    aOutX: number; aOutY: number;   // Assembly right port
-    qbInX: number; qbInY: number;   // QB left port
-    qbOutX: number; qbOutY: number; // QB right port
-    xInX: number; xInY: number;     // Xero left port
+    aOutQBX: number; aOutQBY: number;   // Assembly right port → QB
+    aOutXeroX: number; aOutXeroY: number; // Assembly right port → Xero
+    qbInX: number; qbInY: number;       // QB left port
+    xInX: number; xInY: number;         // Xero left port
   }
   const [ports, setPorts] = useState<PortPositions | null>(null);
 
@@ -362,15 +362,18 @@ export function QuickBooksSyncDemo({ inSplit = false }: { inSplit?: boolean }) {
     const qr = qbRef.current.getBoundingClientRect();
     const xr = xeroRef.current.getBoundingClientRect();
 
+    const qbInY = qr.top - cr.top + qr.height * 0.45;
+    const xInY = xr.top - cr.top + xr.height * 0.45;
+
     setPorts({
-      aOutX: ar.right - cr.left,
-      aOutY: ar.top - cr.top + ar.height * 0.45,
+      aOutQBX: ar.right - cr.left,
+      aOutQBY: ar.top - cr.top + ar.height * 0.35,   // upper portion of Assembly card
+      aOutXeroX: ar.right - cr.left,
+      aOutXeroY: ar.top - cr.top + ar.height * 0.65,  // lower portion of Assembly card
       qbInX: qr.left - cr.left,
-      qbInY: qr.top - cr.top + qr.height * 0.45,
-      qbOutX: qr.left - cr.left + qr.width * 0.35,  // bottom edge, offset right
-      qbOutY: qr.bottom - cr.top,                    // bottom of QB card
-      xInX: xr.left - cr.left + xr.width * 0.35,    // top edge, offset right
-      xInY: xr.top - cr.top,                         // top of Xero card
+      qbInY,
+      xInX: xr.left - cr.left,
+      xInY,
     });
   }, []);
 
@@ -429,7 +432,7 @@ export function QuickBooksSyncDemo({ inSplit = false }: { inSplit?: boolean }) {
 
   void inSplit;
   const pp = ports;
-  const CANVAS_H = 340;
+  const CANVAS_H = 320;
 
   /* ── Port circle SVG helper ── */
   const portCircle = (cx: number, cy: number, key: string) => (
@@ -456,93 +459,58 @@ export function QuickBooksSyncDemo({ inSplit = false }: { inSplit?: boolean }) {
       transition={{ duration: 0.6, ease: [0.25, 0.1, 0.25, 1] }}
       style={{ width: "100%" }}
     >
+      {/* ─── Canvas (no browser chrome) ─── */}
       <div
+        ref={canvasRef}
+        onMouseMove={handleMouseMove}
+        onMouseUp={handleMouseUp}
         style={{
+          position: "relative",
           width: "100%",
-          borderRadius: "10px",
+          height: CANVAS_H,
+          borderRadius: "12px",
+          backgroundColor: C.canvasBg,
           border: `1px solid ${C.border}`,
-          boxShadow: "0 8px 30px rgba(0,0,0,0.08), 0 1px 3px rgba(0,0,0,0.06)",
+          backgroundImage: "url(/Icons/Dot Grid.svg)",
+          backgroundRepeat: "repeat",
+          backgroundSize: "310px 210px",
+          boxShadow: "0 1px 3px rgba(0,0,0,0.04)",
           fontFamily: "'Inter', system-ui, sans-serif",
+          cursor: drag ? "grabbing" : "default",
           overflow: "hidden",
         }}
       >
-        {/* ─── Browser chrome ─── */}
-        <div
-          style={{
-            position: "relative",
-            display: "flex",
-            alignItems: "center",
-            backgroundColor: "#141414",
-            padding: "12px 16px",
-            borderBottom: "1px solid rgba(255, 255, 255, 0.06)",
-          }}
-        >
-          <div style={{ display: "flex", gap: "7px", position: "relative", zIndex: 1 }}>
-            {["#ff5f57", "#febc2e", "#28c840"].map((color) => (
-              <div key={color} style={{ width: "10px", height: "10px", borderRadius: "50%", backgroundColor: color, opacity: 0.8 }} />
-            ))}
-          </div>
-          <div
-            style={{
-              position: "absolute",
-              left: 0,
-              right: 0,
-              textAlign: "center",
-              fontFamily: "'SF Mono', 'Fira Code', Menlo, monospace",
-              fontSize: "11px",
-              color: "rgba(255, 255, 255, 0.35)",
-              letterSpacing: "0.01em",
-              pointerEvents: "none",
-            }}
-          >
-            dashboard.assembly.com
-          </div>
-        </div>
-
-        {/* ─── Canvas ─── */}
-        <div
-          ref={canvasRef}
-          onMouseMove={handleMouseMove}
-          onMouseUp={handleMouseUp}
-          style={{
-            position: "relative",
-            height: CANVAS_H,
-            backgroundColor: C.canvasBg,
-            backgroundImage: "url(/Icons/Dot Grid.svg)",
-            backgroundRepeat: "repeat",
-            backgroundSize: "310px 210px",
-            cursor: drag ? "grabbing" : "default",
-            overflow: "hidden",
-          }}
-        >
-          {/* ── Node cards ── */}
-          <NodeCard
-            node={ASSEMBLY_NODE}
-            isConnected={true}
-            nodeRef={assemblyRef}
-            animate
-            delay={0.15}
-            isInView={isInView}
-            style={{ left: 28, top: 60 }}
-          />
-          <NodeCard
-            node={QB_NODE}
-            isConnected={true}
-            nodeRef={qbRef}
-            animate
-            delay={0.3}
-            isInView={isInView}
-            style={{ right: 56, top: 24 }}
-          />
-          <NodeCard
-            node={XERO_NODE}
-            isConnected={xeroConnected}
-            nodeRef={xeroRef}
-            animate
-            delay={0.42}
-            isInView={isInView}
-            style={{ right: 56, bottom: 24 }}
-          />
+        {/* ── Node cards: triangle layout ── */}
+        {/* Assembly: left, vertically centered */}
+        <NodeCard
+          node={ASSEMBLY_NODE}
+          isConnected={true}
+          nodeRef={assemblyRef}
+          animate
+          delay={0.15}
+          isInView={isInView}
+          style={{ left: 32, top: "50%", transform: "translateY(-50%)" }}
+        />
+        {/* QuickBooks: top-right */}
+        <NodeCard
+          node={QB_NODE}
+          isConnected={true}
+          nodeRef={qbRef}
+          animate
+          delay={0.3}
+          isInView={isInView}
+          style={{ right: 36, top: 24 }}
+        />
+        {/* Xero: bottom-right */}
+        <NodeCard
+          node={XERO_NODE}
+          isConnected={xeroConnected}
+          nodeRef={xeroRef}
+          animate
+          delay={0.42}
+          isInView={isInView}
+          style={{ right: 36, bottom: 24 }}
+        />
 
           {/* ─── SVG overlay: connection lines + ports ─── */}
           {pp && (
@@ -558,19 +526,19 @@ export function QuickBooksSyncDemo({ inSplit = false }: { inSplit?: boolean }) {
             >
               {/* Assembly → QB: always connected (horizontal) */}
               <path
-                d={bezierPathH(pp.aOutX, pp.aOutY, pp.qbInX, pp.qbInY)}
+                d={bezierPathH(pp.aOutQBX, pp.aOutQBY, pp.qbInX, pp.qbInY)}
                 stroke={C.line}
                 strokeWidth={2}
                 fill="none"
                 strokeLinecap="round"
               />
-              {portCircle(pp.aOutX, pp.aOutY, "a-out")}
+              {portCircle(pp.aOutQBX, pp.aOutQBY, "a-out-qb")}
               {portCircle(pp.qbInX, pp.qbInY, "qb-in")}
 
-              {/* QB → Xero: interactive (vertical) */}
+              {/* Assembly → Xero: interactive (horizontal) */}
               {xeroConnected ? (
                 <motion.path
-                  d={bezierPathV(pp.qbOutX, pp.qbOutY, pp.xInX, pp.xInY)}
+                  d={bezierPathH(pp.aOutXeroX, pp.aOutXeroY, pp.xInX, pp.xInY)}
                   stroke={C.line}
                   strokeWidth={2}
                   fill="none"
@@ -581,7 +549,7 @@ export function QuickBooksSyncDemo({ inSplit = false }: { inSplit?: boolean }) {
                 />
               ) : (
                 <path
-                  d={bezierPathV(pp.qbOutX, pp.qbOutY, pp.xInX, pp.xInY)}
+                  d={bezierPathH(pp.aOutXeroX, pp.aOutXeroY, pp.xInX, pp.xInY)}
                   stroke={C.lineDashed}
                   strokeWidth={1.5}
                   fill="none"
@@ -589,13 +557,13 @@ export function QuickBooksSyncDemo({ inSplit = false }: { inSplit?: boolean }) {
                   strokeDasharray="6 4"
                 />
               )}
-              {portCircle(pp.qbOutX, pp.qbOutY, "qb-out")}
+              {portCircle(pp.aOutXeroX, pp.aOutXeroY, "a-out-xero")}
               {portCircle(pp.xInX, pp.xInY, "x-in")}
 
               {/* Drag line */}
               {drag && (
                 <path
-                  d={bezierPathV(drag.fromX, drag.fromY, drag.mouseX, drag.mouseY)}
+                  d={bezierPathH(drag.fromX, drag.fromY, drag.mouseX, drag.mouseY)}
                   stroke={C.line}
                   strokeWidth={2}
                   fill="none"
@@ -607,20 +575,20 @@ export function QuickBooksSyncDemo({ inSplit = false }: { inSplit?: boolean }) {
             </svg>
           )}
 
-          {/* ─── Interactive QB output port (draggable) ─── */}
+          {/* ─── Interactive Assembly→Xero output port (draggable) ─── */}
           {pp && !xeroConnected && (
             <motion.div
               onMouseDown={(e) => {
                 e.preventDefault();
                 e.stopPropagation();
-                handleDragStart({ x: pp.qbOutX, y: pp.qbOutY });
+                handleDragStart({ x: pp.aOutXeroX, y: pp.aOutXeroY });
               }}
               animate={{ scale: drag ? 1.3 : 1 }}
               transition={{ duration: 0.15 }}
               style={{
                 position: "absolute",
-                left: pp.qbOutX - 7,
-                top: pp.qbOutY - 7,
+                left: pp.aOutXeroX - 7,
+                top: pp.aOutXeroY - 7,
                 width: 14,
                 height: 14,
                 borderRadius: "50%",
@@ -653,15 +621,15 @@ export function QuickBooksSyncDemo({ inSplit = false }: { inSplit?: boolean }) {
             />
           )}
 
-          {/* ─── Idle pulse on QB output port ─── */}
+          {/* ─── Idle pulse on Assembly→Xero output port ─── */}
           {pp && portIdleActive && !xeroConnected && (
             <motion.div
               animate={{ scale: [1, 2.4, 1], opacity: [0.35, 0, 0.35] }}
               transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut" }}
               style={{
                 position: "absolute",
-                left: pp.qbOutX - 12,
-                top: pp.qbOutY - 12,
+                left: pp.aOutXeroX - 12,
+                top: pp.aOutXeroY - 12,
                 width: 24,
                 height: 24,
                 borderRadius: "50%",
@@ -683,8 +651,8 @@ export function QuickBooksSyncDemo({ inSplit = false }: { inSplit?: boolean }) {
                 transition={{ duration: 0.15 }}
                 style={{
                   position: "absolute",
-                  left: pp.qbOutX + 14,
-                  top: pp.qbOutY - 12,
+                  left: pp.aOutXeroX + 14,
+                  top: pp.aOutXeroY - 12,
                   pointerEvents: "none",
                   zIndex: 100,
                 }}
@@ -726,7 +694,6 @@ export function QuickBooksSyncDemo({ inSplit = false }: { inSplit?: boolean }) {
             )}
           </AnimatePresence>
         </div>
-      </div>
     </motion.div>
   );
 }
