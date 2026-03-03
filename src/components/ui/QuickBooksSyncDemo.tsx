@@ -21,9 +21,9 @@ const C = {
   textSec: "#6b7280",
   textMuted: "#9ca3af",
   green: "#16a34a",
-  line: "#18181b",
-  lineDashed: "#d4d4d8",
-  portStroke: "#18181b",
+  line: "#d4d4d8",
+  lineDashed: "#e5e7eb",
+  portStroke: "#d4d4d8",
   portFill: "#ffffff",
 } as const;
 
@@ -628,7 +628,7 @@ export function QuickBooksSyncDemo({ inSplit = false }: { inSplit?: boolean }) {
                 width: 24,
                 height: 24,
                 borderRadius: "50%",
-                border: `2px solid ${C.line}`,
+                border: `1.5px solid ${C.line}`,
                 opacity: 0.2,
                 pointerEvents: "none",
                 zIndex: 9,
