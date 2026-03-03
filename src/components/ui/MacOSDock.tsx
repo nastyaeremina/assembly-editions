@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef } from "react";
+import { useRef, useEffect } from "react";
 import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
 import { cn } from "@/lib/utils";
 import { useMediaQuery } from "@/hooks/useMediaQuery";
@@ -53,26 +53,37 @@ function DockIcon({ children, mouseX, label, hasIndicator, showTooltip = true }:
   );
 }
 
-/* ── Mobile dock icon — static, no animation ── */
-function MobileStaticIcon({
+/* ── Mobile dock icon — auto-animated via virtual cursor ── */
+function MobileAutoIcon({
   children,
   hasIndicator,
+  virtualCursorX,
+  index,
+  iconSize,
 }: {
   children: React.ReactNode;
   hasIndicator?: boolean;
+  virtualCursorX: ReturnType<typeof useMotionValue<number>>;
+  index: number;
+  iconSize: number;
 }) {
+  /* Centre of this icon in the dock's local coordinate space */
+  const iconCentre = index * (iconSize + 2) + iconSize / 2 + 12; // 12 = dock padding-left
+
+  const distance = useTransform(virtualCursorX, (val) => val - iconCentre);
+  const ySync = useTransform(distance, [-140, 0, 140], [0, -10, 0]);
+  const y = useSpring(ySync, { mass: 0.1, stiffness: 150, damping: 12 });
+
   return (
-    <div
-      className="relative flex-shrink-0"
-      style={{ width: 90 }}
+    <motion.div
+      style={{ width: iconSize, y, flexShrink: 0 }}
+      className="relative aspect-square"
     >
-      <div className="relative aspect-square w-full">
-        {children}
-        {hasIndicator && (
-          <div className="absolute -bottom-1.5 left-1/2 -translate-x-1/2 h-[3px] w-[3px] rounded-full bg-white/60" />
-        )}
-      </div>
-    </div>
+      {children}
+      {hasIndicator && (
+        <div className="absolute -bottom-1.5 left-1/2 -translate-x-1/2 h-[3px] w-[3px] rounded-full bg-white/60" />
+      )}
+    </motion.div>
   );
 }
 
@@ -145,13 +156,15 @@ const DOCK_ICONS = [
 
 const DIVIDER_AFTER = 13;
 
-/* Mobile: 5 hero icons */
+/* Mobile: 7 hero icons for a fuller dock feel */
 const MOBILE_ICONS = [
   DOCK_ICONS[0],  // Assembly
-  DOCK_ICONS[1],  // Music
-  DOCK_ICONS[2],  // Podcasts
-  DOCK_ICONS[3],  // Apple TV
-  DOCK_ICONS[4],  // Launchpad
+  DOCK_ICONS[5],  // Safari
+  DOCK_ICONS[6],  // Messages
+  DOCK_ICONS[7],  // Mail
+  DOCK_ICONS[8],  // Calendar
+  DOCK_ICONS[9],  // Contacts
+  DOCK_ICONS[10], // Reminders
 ];
 
 /**
@@ -163,6 +176,63 @@ export function MacOSDock({ className }: MacOSDockProps) {
   const mouseX = useMotionValue(Infinity);
   const dockRef = useRef<HTMLDivElement>(null);
   const isDesktop = useMediaQuery("(min-width: 1024px)", true);
+
+  /* ── Mobile auto-animation hooks (must be before any conditional return) ── */
+  const MOBILE_ICON_SIZE = 56;
+  const virtualCursorX = useMotionValue(-200);
+  const dockTotalWidth = DOCK_ICONS.length * (MOBILE_ICON_SIZE + 2) + 24; // 24 = padding
+
+  useEffect(() => {
+    if (isDesktop) return;
+    let cancelled = false;
+    let raf: number;
+
+    const wait = (ms: number) =>
+      new Promise<void>((resolve) => {
+        const t = setTimeout(resolve, ms);
+        if (cancelled) clearTimeout(t);
+      });
+
+    async function loop() {
+      while (!cancelled) {
+        /* Sweep right */
+        const sweepDuration = 3000;
+        const start = -100;
+        const end = dockTotalWidth + 100;
+        const t0 = performance.now();
+
+        await new Promise<void>((resolve) => {
+          function tick() {
+            if (cancelled) { resolve(); return; }
+            const elapsed = performance.now() - t0;
+            const progress = Math.min(elapsed / sweepDuration, 1);
+            /* ease-in-out */
+            const ease = progress < 0.5
+              ? 2 * progress * progress
+              : 1 - Math.pow(-2 * progress + 2, 2) / 2;
+            virtualCursorX.set(start + (end - start) * ease);
+            if (progress < 1) {
+              raf = requestAnimationFrame(tick);
+            } else {
+              resolve();
+            }
+          }
+          raf = requestAnimationFrame(tick);
+        });
+
+        /* Park cursor off-screen and pause */
+        virtualCursorX.set(-200);
+        await wait(1500);
+        if (cancelled) break;
+      }
+    }
+
+    loop();
+    return () => {
+      cancelled = true;
+      cancelAnimationFrame(raf);
+    };
+  }, [isDesktop, virtualCursorX, dockTotalWidth]);
 
   /* ── Desktop: bold floating dock, overflowing right edge ── */
   if (isDesktop) {
@@ -209,22 +279,70 @@ export function MacOSDock({ className }: MacOSDockProps) {
     );
   }
 
-  /* ── Mobile / Tablet: 5 static icons, left-aligned, larger ── */
+  /* ── Mobile / Tablet: same full dock with auto-wave animation ── */
   return (
     <div
       className={cn(className)}
-      style={{ padding: "1rem 0" }}
+      style={{
+        position: "relative",
+        width: "100%",
+        minHeight: "120px",
+        /* clip left + right overflow but leave 40px room below for shadow */
+        clipPath: "inset(-20px 0px -40px -20px)",
+      }}
     >
+      {/* Right-edge fade gradient */}
       <div
-        className="flex items-end"
-        style={{ gap: "12px", height: "108px" }}
+        style={{
+          position: "absolute",
+          top: 0,
+          right: 0,
+          bottom: 0,
+          width: "120px",
+          background: "linear-gradient(to right, rgba(251,251,245,0) 0%, rgba(251,251,245,0.55) 40%, rgba(251,251,245,1) 100%)",
+          zIndex: 2,
+          pointerEvents: "none",
+        }}
+      />
+      <div
+        style={{
+          position: "relative",
+          paddingTop: "16px",
+          paddingBottom: "12px",
+        }}
       >
-        {MOBILE_ICONS.map((icon) => (
-          <MobileStaticIcon key={icon.label} hasIndicator={icon.hasIndicator}>
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src={icon.src} alt={icon.label} width={90} height={90} className="rounded-[18px] object-contain" style={{ display: "block", width: "100%", height: "100%", padding: icon.padding || 0 }} draggable={false} />
-          </MobileStaticIcon>
-        ))}
+        <div
+          className="flex items-end rounded-2xl bg-zinc-800 backdrop-blur-xl border border-zinc-600/30"
+          style={{
+            padding: "8px 12px",
+            gap: "2px",
+            width: "max-content",
+            boxShadow: "0 8px 32px rgba(0,0,0,0.25), 0 2px 8px rgba(0,0,0,0.15)",
+          }}
+        >
+          {DOCK_ICONS.map((icon, i) => (
+            <div key={icon.label + i} className="flex items-end">
+              <MobileAutoIcon
+                virtualCursorX={virtualCursorX}
+                index={i}
+                iconSize={MOBILE_ICON_SIZE}
+                hasIndicator={icon.hasIndicator}
+              >
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src={icon.src}
+                  alt={icon.label}
+                  className="h-full w-full rounded-[11px] object-contain"
+                  style={icon.padding ? { padding: icon.padding } : undefined}
+                  draggable={false}
+                />
+              </MobileAutoIcon>
+              {i === DIVIDER_AFTER && (
+                <div style={{ width: "1px", height: "46px", backgroundColor: "rgba(255,255,255,0.15)", margin: "0 5px", flexShrink: 0, alignSelf: "center" }} />
+              )}
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   );

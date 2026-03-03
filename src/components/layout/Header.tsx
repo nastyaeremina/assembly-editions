@@ -64,7 +64,7 @@ export function Header({ className }: HeaderProps) {
               textDecoration: "none",
               transition: "color 0.2s ease",
             }}
-            className="transition-colors hover:!text-white"
+            className="hidden lg:inline-flex transition-colors hover:!text-white"
             onMouseEnter={(e) => { e.currentTarget.style.color = "rgba(255, 255, 255, 0.9)"; }}
             onMouseLeave={(e) => { e.currentTarget.style.color = "rgba(255, 255, 255, 0.6)"; }}
           >
@@ -87,7 +87,7 @@ export function Header({ className }: HeaderProps) {
               display: "inline-flex",
               alignItems: "center",
             }}
-            className="hidden lg:inline-flex"
+            className="inline-flex"
             onMouseEnter={(e) => {
               e.currentTarget.style.backgroundColor = "#fff";
               e.currentTarget.style.boxShadow = "0 0 20px rgba(214, 249, 144, 0.12)";

@@ -174,6 +174,7 @@ const CODE_LINES: Token[][] = [
 
 /* ── The line number where the blinking cursor sits (1-indexed) ── */
 const CURSOR_LINE = 13;
+const MOBILE_CURSOR_LINE = 2;
 
 /* ── Single code line ── */
 function CodeLine({ tokens, lineNum, delay, isInView, hasCursor }: {
@@ -351,7 +352,7 @@ export function AppBridgeCodeDemo({ inSplit = false }: AppBridgeCodeDemoProps) {
             lineNum={i + 1}
             delay={0.3 + i * 0.04}
             isInView={isInView}
-            hasCursor={isDesktop && i + 1 === CURSOR_LINE}
+            hasCursor={isDesktop ? i + 1 === CURSOR_LINE : i + 1 === MOBILE_CURSOR_LINE}
           />
         ))}
       </div>
