@@ -19,19 +19,23 @@ const C = {
   textSec: "#6b7280",
   textMuted: "#9ca3af",
   green: "#16a34a",
-  line: "#a1a1aa",
-  lineDashed: "#d4d4d8",
+  line: "#94a3b8",
+  lineActive: "#64748b",
+  lineDashed: "#cbd5e1",
+  port: "#94a3b8",
+  portFill: "#f1f5f9",
+  portActive: "#64748b",
 } as const;
 
-/* ── Bezier path helpers ── */
+/* ── Bezier path helpers (generous control points for smooth curves) ── */
 function bezierPathH(fx: number, fy: number, tx: number, ty: number): string {
   const dx = Math.abs(tx - fx);
-  const cp = Math.max(40, dx * 0.45);
+  const cp = Math.max(60, dx * 0.5);
   return `M ${fx} ${fy} C ${fx + cp} ${fy}, ${tx - cp} ${ty}, ${tx} ${ty}`;
 }
 function bezierPathV(fx: number, fy: number, tx: number, ty: number): string {
   const dy = Math.abs(ty - fy);
-  const cp = Math.max(20, dy * 0.45);
+  const cp = Math.max(30, dy * 0.5);
   return `M ${fx} ${fy} C ${fx} ${fy + cp}, ${tx} ${ty - cp}, ${tx} ${ty}`;
 }
 
@@ -121,14 +125,17 @@ function NodeCard({
       whileTap={clickable ? { scale: 0.98 } : undefined}
       style={{
         position: "absolute",
+        zIndex: 2,
         width: 220,
         border: `1.5px solid ${clickable ? C.lineDashed : C.border}`,
-        borderRadius: "8px",
+        borderRadius: "10px",
         backgroundColor: C.cardBg,
-        boxShadow: "0 1px 3px rgba(0,0,0,0.04)",
+        boxShadow: clickable
+          ? "0 1px 4px rgba(0,0,0,0.06), 0 0 0 1px rgba(0,0,0,0.02)"
+          : "0 1px 4px rgba(0,0,0,0.06)",
         overflow: "hidden",
         cursor: clickable ? "pointer" : "default",
-        transition: "border-color 0.3s ease",
+        transition: "border-color 0.3s ease, box-shadow 0.3s ease",
         ...style,
       }}
     >
@@ -472,7 +479,7 @@ export function QuickBooksSyncDemo({ inSplit = false }: { inSplit?: boolean }) {
           style={{ right: "20%", bottom: 24 }}
         />
 
-        {/* ─── SVG overlay: connection lines with port circles ─── */}
+        {/* ─── SVG overlay: connection lines with port dots ─── */}
         {lp && (
           <svg
             style={{
@@ -488,73 +495,64 @@ export function QuickBooksSyncDemo({ inSplit = false }: { inSplit?: boolean }) {
             <path
               d={bezierPathH(lp.aRightX, lp.aRightY, lp.qbLeftX, lp.qbLeftY)}
               stroke={C.line}
-              strokeWidth={2}
+              strokeWidth={2.5}
               fill="none"
               strokeLinecap="round"
             />
 
-            {/* Port circle: Assembly right edge */}
-            <circle cx={lp.aRightX} cy={lp.aRightY} r={4} fill="#fff" stroke={C.line} strokeWidth={1.5} />
-            {/* Port circle: QB left edge */}
-            <circle cx={lp.qbLeftX} cy={lp.qbLeftY} r={4} fill="#fff" stroke={C.line} strokeWidth={1.5} />
+            {/* Port: Assembly right — filled dot sitting on card edge */}
+            <circle cx={lp.aRightX} cy={lp.aRightY} r={5.5}
+              fill={C.portFill} stroke={C.portActive} strokeWidth={2} />
+            {/* Port: QB left */}
+            <circle cx={lp.qbLeftX} cy={lp.qbLeftY} r={5.5}
+              fill={C.portFill} stroke={C.portActive} strokeWidth={2} />
 
-            {/* QB → Xero: animated on connect */}
+            {/* QB → Xero connection */}
             {xeroConnected ? (
               <>
                 <motion.path
                   d={bezierPathV(lp.qbBottomX, lp.qbBottomY, lp.xTopX, lp.xTopY)}
                   stroke={C.line}
-                  strokeWidth={2}
+                  strokeWidth={2.5}
                   fill="none"
                   strokeLinecap="round"
                   initial={{ pathLength: 0, opacity: 0 }}
                   animate={{ pathLength: 1, opacity: 1 }}
                   transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
                 />
-                {/* Port circle: QB bottom edge */}
+                {/* Port: QB bottom */}
                 <motion.circle
-                  cx={lp.qbBottomX} cy={lp.qbBottomY} r={4}
-                  fill="#fff" stroke={C.line} strokeWidth={1.5}
-                  initial={{ opacity: 0 }} animate={{ opacity: 1 }}
-                  transition={{ duration: 0.3 }}
+                  cx={lp.qbBottomX} cy={lp.qbBottomY} r={5.5}
+                  fill={C.portFill} stroke={C.portActive} strokeWidth={2}
+                  initial={{ scale: 0, opacity: 0 }} animate={{ scale: 1, opacity: 1 }}
+                  transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
                 />
-                {/* Port circle: Xero top edge */}
+                {/* Port: Xero top */}
                 <motion.circle
-                  cx={lp.xTopX} cy={lp.xTopY} r={4}
-                  fill="#fff" stroke={C.line} strokeWidth={1.5}
-                  initial={{ opacity: 0 }} animate={{ opacity: 1 }}
-                  transition={{ duration: 0.3, delay: 0.5 }}
+                  cx={lp.xTopX} cy={lp.xTopY} r={5.5}
+                  fill={C.portFill} stroke={C.portActive} strokeWidth={2}
+                  initial={{ scale: 0, opacity: 0 }} animate={{ scale: 1, opacity: 1 }}
+                  transition={{ duration: 0.3, delay: 0.45, ease: [0.22, 1, 0.36, 1] }}
                 />
-
-                {/* Animated data flow dots along Assembly→QB */}
-                <circle r={2.5} fill={C.line}>
-                  <animateMotion
-                    dur="2.5s" repeatCount="indefinite"
-                    path={bezierPathH(lp.aRightX, lp.aRightY, lp.qbLeftX, lp.qbLeftY)}
-                  />
-                </circle>
-                {/* Animated data flow dots along QB→Xero */}
-                <circle r={2.5} fill={C.line}>
-                  <animateMotion
-                    dur="2.5s" repeatCount="indefinite"
-                    path={bezierPathV(lp.qbBottomX, lp.qbBottomY, lp.xTopX, lp.xTopY)}
-                  />
-                </circle>
               </>
             ) : (
               <>
+                {/* Dashed preview line */}
                 <path
                   d={bezierPathV(lp.qbBottomX, lp.qbBottomY, lp.xTopX, lp.xTopY)}
                   stroke={C.lineDashed}
-                  strokeWidth={1.5}
+                  strokeWidth={2}
                   fill="none"
                   strokeLinecap="round"
-                  strokeDasharray="6 5"
+                  strokeDasharray="8 6"
                 />
-                {/* Port circle: QB bottom (muted when disconnected) */}
-                <circle cx={lp.qbBottomX} cy={lp.qbBottomY} r={4} fill="#fff" stroke={C.lineDashed} strokeWidth={1.5} />
-                {/* Port circle: Xero top (muted when disconnected) */}
-                <circle cx={lp.xTopX} cy={lp.xTopY} r={4} fill="#fff" stroke={C.lineDashed} strokeWidth={1.5} />
+                {/* Port: QB bottom (muted) */}
+                <circle cx={lp.qbBottomX} cy={lp.qbBottomY} r={5}
+                  fill="#fff" stroke={C.lineDashed} strokeWidth={1.5} />
+                {/* Port: Xero top (muted, hollow) */}
+                <circle cx={lp.xTopX} cy={lp.xTopY} r={5}
+                  fill="#fff" stroke={C.lineDashed} strokeWidth={1.5}
+                  strokeDasharray="3 3" />
               </>
             )}
           </svg>
