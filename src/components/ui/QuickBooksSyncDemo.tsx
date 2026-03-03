@@ -337,10 +337,10 @@ export function QuickBooksSyncDemo({ inSplit = false }: { inSplit?: boolean }) {
   const xeroRef = useRef<HTMLDivElement>(null);
 
   interface PortPositions {
-    aOutQBX: number; aOutQBY: number;   // Assembly right port → QB
-    aOutXeroX: number; aOutXeroY: number; // Assembly right port → Xero
+    aOutX: number; aOutY: number;       // Assembly right port → QB
     qbInX: number; qbInY: number;       // QB left port
-    xInX: number; xInY: number;         // Xero left port
+    qbOutX: number; qbOutY: number;     // QB bottom port → Xero
+    xInX: number; xInY: number;         // Xero top port
   }
   const [ports, setPorts] = useState<PortPositions | null>(null);
 
@@ -362,18 +362,15 @@ export function QuickBooksSyncDemo({ inSplit = false }: { inSplit?: boolean }) {
     const qr = qbRef.current.getBoundingClientRect();
     const xr = xeroRef.current.getBoundingClientRect();
 
-    const qbInY = qr.top - cr.top + qr.height * 0.45;
-    const xInY = xr.top - cr.top + xr.height * 0.45;
-
     setPorts({
-      aOutQBX: ar.right - cr.left,
-      aOutQBY: ar.top - cr.top + ar.height * 0.35,   // upper portion of Assembly card
-      aOutXeroX: ar.right - cr.left,
-      aOutXeroY: ar.top - cr.top + ar.height * 0.65,  // lower portion of Assembly card
+      aOutX: ar.right - cr.left,
+      aOutY: ar.top - cr.top + ar.height * 0.45,
       qbInX: qr.left - cr.left,
-      qbInY,
-      xInX: xr.left - cr.left,
-      xInY,
+      qbInY: qr.top - cr.top + qr.height * 0.45,
+      qbOutX: qr.left - cr.left + qr.width * 0.5,    // center-bottom of QB
+      qbOutY: qr.bottom - cr.top,                      // bottom edge
+      xInX: xr.left - cr.left + xr.width * 0.5,       // center-top of Xero
+      xInY: xr.top - cr.top,                            // top edge
     });
   }, []);
 
@@ -432,7 +429,7 @@ export function QuickBooksSyncDemo({ inSplit = false }: { inSplit?: boolean }) {
 
   void inSplit;
   const pp = ports;
-  const CANVAS_H = 400;
+  const CANVAS_H = 420;
 
   /* ── Port circle SVG helper ── */
   const portCircle = (cx: number, cy: number, key: string) => (
@@ -475,8 +472,8 @@ export function QuickBooksSyncDemo({ inSplit = false }: { inSplit?: boolean }) {
           overflow: "hidden",
         }}
       >
-        {/* ── Node cards: triangle layout ── */}
-        {/* Assembly: left, vertically centered */}
+        {/* ── Node cards ── */}
+        {/* Assembly: left, upper area */}
         <NodeCard
           node={ASSEMBLY_NODE}
           isConnected={true}
@@ -484,9 +481,9 @@ export function QuickBooksSyncDemo({ inSplit = false }: { inSplit?: boolean }) {
           animate
           delay={0.15}
           isInView={isInView}
-          style={{ left: 32, top: "50%", transform: "translateY(-50%)" }}
+          style={{ left: 0, top: 24 }}
         />
-        {/* QuickBooks: top-right */}
+        {/* QuickBooks: right, upper area — same row as Assembly */}
         <NodeCard
           node={QB_NODE}
           isConnected={true}
@@ -494,9 +491,9 @@ export function QuickBooksSyncDemo({ inSplit = false }: { inSplit?: boolean }) {
           animate
           delay={0.3}
           isInView={isInView}
-          style={{ right: 36, top: 20 }}
+          style={{ right: 0, top: 24 }}
         />
-        {/* Xero: bottom-right */}
+        {/* Xero: center-right, bottom area */}
         <NodeCard
           node={XERO_NODE}
           isConnected={xeroConnected}
@@ -504,7 +501,7 @@ export function QuickBooksSyncDemo({ inSplit = false }: { inSplit?: boolean }) {
           animate
           delay={0.42}
           isInView={isInView}
-          style={{ right: 36, bottom: 20 }}
+          style={{ right: "20%", bottom: 24 }}
         />
 
           {/* ─── SVG overlay: connection lines + ports ─── */}
@@ -521,21 +518,21 @@ export function QuickBooksSyncDemo({ inSplit = false }: { inSplit?: boolean }) {
             >
               {/* Assembly → QB: always connected (horizontal) */}
               <path
-                d={bezierPathH(pp.aOutQBX, pp.aOutQBY, pp.qbInX, pp.qbInY)}
+                d={bezierPathH(pp.aOutX, pp.aOutY, pp.qbInX, pp.qbInY)}
                 stroke={C.line}
-                strokeWidth={2}
+                strokeWidth={1.5}
                 fill="none"
                 strokeLinecap="round"
               />
-              {portCircle(pp.aOutQBX, pp.aOutQBY, "a-out-qb")}
+              {portCircle(pp.aOutX, pp.aOutY, "a-out")}
               {portCircle(pp.qbInX, pp.qbInY, "qb-in")}
 
-              {/* Assembly → Xero: interactive (horizontal) */}
+              {/* QB → Xero: interactive (vertical) */}
               {xeroConnected ? (
                 <motion.path
-                  d={bezierPathH(pp.aOutXeroX, pp.aOutXeroY, pp.xInX, pp.xInY)}
+                  d={bezierPathV(pp.qbOutX, pp.qbOutY, pp.xInX, pp.xInY)}
                   stroke={C.line}
-                  strokeWidth={2}
+                  strokeWidth={1.5}
                   fill="none"
                   strokeLinecap="round"
                   initial={{ pathLength: 0, opacity: 0 }}
@@ -544,7 +541,7 @@ export function QuickBooksSyncDemo({ inSplit = false }: { inSplit?: boolean }) {
                 />
               ) : (
                 <path
-                  d={bezierPathH(pp.aOutXeroX, pp.aOutXeroY, pp.xInX, pp.xInY)}
+                  d={bezierPathV(pp.qbOutX, pp.qbOutY, pp.xInX, pp.xInY)}
                   stroke={C.lineDashed}
                   strokeWidth={1.5}
                   fill="none"
@@ -552,15 +549,15 @@ export function QuickBooksSyncDemo({ inSplit = false }: { inSplit?: boolean }) {
                   strokeDasharray="6 4"
                 />
               )}
-              {portCircle(pp.aOutXeroX, pp.aOutXeroY, "a-out-xero")}
+              {portCircle(pp.qbOutX, pp.qbOutY, "qb-out")}
               {portCircle(pp.xInX, pp.xInY, "x-in")}
 
               {/* Drag line */}
               {drag && (
                 <path
-                  d={bezierPathH(drag.fromX, drag.fromY, drag.mouseX, drag.mouseY)}
+                  d={bezierPathV(drag.fromX, drag.fromY, drag.mouseX, drag.mouseY)}
                   stroke={C.line}
-                  strokeWidth={2}
+                  strokeWidth={1.5}
                   fill="none"
                   strokeDasharray="6 4"
                   strokeLinecap="round"
@@ -570,20 +567,20 @@ export function QuickBooksSyncDemo({ inSplit = false }: { inSplit?: boolean }) {
             </svg>
           )}
 
-          {/* ─── Interactive Assembly→Xero output port (draggable) ─── */}
+          {/* ─── Interactive QB→Xero output port (draggable) ─── */}
           {pp && !xeroConnected && (
             <motion.div
               onMouseDown={(e) => {
                 e.preventDefault();
                 e.stopPropagation();
-                handleDragStart({ x: pp.aOutXeroX, y: pp.aOutXeroY });
+                handleDragStart({ x: pp.qbOutX, y: pp.qbOutY });
               }}
               animate={{ scale: drag ? 1.3 : 1 }}
               transition={{ duration: 0.15 }}
               style={{
                 position: "absolute",
-                left: pp.aOutXeroX - 7,
-                top: pp.aOutXeroY - 7,
+                left: pp.qbOutX - 7,
+                top: pp.qbOutY - 7,
                 width: 14,
                 height: 14,
                 borderRadius: "50%",
@@ -616,15 +613,15 @@ export function QuickBooksSyncDemo({ inSplit = false }: { inSplit?: boolean }) {
             />
           )}
 
-          {/* ─── Idle pulse on Assembly→Xero output port ─── */}
+          {/* ─── Idle pulse on QB output port ─── */}
           {pp && portIdleActive && !xeroConnected && (
             <motion.div
               animate={{ scale: [1, 2.4, 1], opacity: [0.35, 0, 0.35] }}
               transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut" }}
               style={{
                 position: "absolute",
-                left: pp.aOutXeroX - 12,
-                top: pp.aOutXeroY - 12,
+                left: pp.qbOutX - 12,
+                top: pp.qbOutY - 12,
                 width: 24,
                 height: 24,
                 borderRadius: "50%",
@@ -646,8 +643,8 @@ export function QuickBooksSyncDemo({ inSplit = false }: { inSplit?: boolean }) {
                 transition={{ duration: 0.15 }}
                 style={{
                   position: "absolute",
-                  left: pp.aOutXeroX + 14,
-                  top: pp.aOutXeroY - 12,
+                  left: pp.qbOutX + 14,
+                  top: pp.qbOutY - 12,
                   pointerEvents: "none",
                   zIndex: 100,
                 }}
