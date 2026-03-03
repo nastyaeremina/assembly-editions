@@ -6,7 +6,8 @@ import { useMediaQuery } from "@/hooks/useMediaQuery";
 
 /* ──────────────────────────────────────────────────────────
    ONE PAYMENTS DEMO
-   Payments dashboard with tabbed views: Overview, Invoices, Subscriptions.
+   Payments dashboard with tabbed views: Overview, Invoices,
+   Subscriptions, Payment Links, Stores, Services.
    Auto-cycles between tabs on scroll-in, stops on user interaction.
    ────────────────────────────────────────────────────────── */
 
@@ -30,8 +31,8 @@ const C = {
   grayText: "#6b7280",
 } as const;
 
-type TabId = "overview" | "invoices" | "subscriptions";
-const TAB_ORDER: TabId[] = ["overview", "invoices", "subscriptions"];
+type TabId = "overview" | "invoices" | "subscriptions" | "payment-links" | "stores" | "services";
+const TAB_ORDER: TabId[] = ["overview", "invoices", "subscriptions", "payment-links", "stores", "services"];
 const AUTO_CYCLE_MS = 4000;
 
 /* ═══════════════════════════════════════════
@@ -104,6 +105,60 @@ const SUBSCRIPTIONS_DATA: SubscriptionRow[] = [
   { name: "Michael Robert", initials: "MR", avatarBg: "#3b82f6", price: 6200, period: "Yearly", status: "active", created: "Jan 1, 2026", nextPayment: "Feb 1, 2026" },
 ];
 
+/* ── Payment Links data ── */
+interface PaymentLinkRow {
+  name: string;
+  price: number;
+  recurring?: "month" | "year";
+  checkouts: number;
+  created: string;
+  status: "active" | "inactive";
+}
+
+const PAYMENT_LINKS_DATA: PaymentLinkRow[] = [
+  { name: "Logo design", price: 2000, recurring: "month", checkouts: 0, created: "Feb 9, 2025", status: "active" },
+  { name: "Branding overhaul", price: 1000, checkouts: 3, created: "Nov 27, 2024", status: "active" },
+  { name: "Website overhaul", price: 10000, recurring: "year", checkouts: 7, created: "Jul 31, 2024", status: "active" },
+  { name: "Logo Design 2022", price: 500, checkouts: 3, created: "Jul 7, 2024", status: "inactive" },
+  { name: "Logo Design 2022", price: 1000, checkouts: 3, created: "Jul 2, 2024", status: "inactive" },
+];
+
+/* ── Stores data (same structure as Payment Links) ── */
+interface StoreRow {
+  name: string;
+  price: number;
+  recurring?: "month" | "year";
+  checkouts: number;
+  created: string;
+  status: "active" | "inactive";
+}
+
+const STORES_DATA: StoreRow[] = [
+  { name: "Design Assets Store", price: 5000, recurring: "year", checkouts: 12, created: "Mar 15, 2025", status: "active" },
+  { name: "Brand Templates", price: 1500, recurring: "month", checkouts: 8, created: "Jan 20, 2025", status: "active" },
+  { name: "Illustration Pack", price: 750, checkouts: 5, created: "Dec 5, 2024", status: "active" },
+  { name: "Icon Library 2023", price: 300, checkouts: 14, created: "Sep 12, 2024", status: "inactive" },
+  { name: "UI Kit Bundle", price: 2500, checkouts: 9, created: "Aug 3, 2024", status: "inactive" },
+];
+
+/* ── Services data ── */
+interface ServiceRow {
+  name: string;
+  price: number;
+  status: "active" | "archived";
+  thumbBg: string;
+  thumbIcon: string;
+}
+
+const SERVICES_DATA: ServiceRow[] = [
+  { name: "Logo Design", price: 2500, status: "active", thumbBg: "#f0f9ff", thumbIcon: "✦" },
+  { name: "Brand Identity Package", price: 8000, status: "active", thumbBg: "#fdf4ff", thumbIcon: "◆" },
+  { name: "Social Media Campaign Design", price: 3500, status: "active", thumbBg: "#f0fdf4", thumbIcon: "◎" },
+  { name: "Mobile App UX/UI Design", price: 3500, status: "active", thumbBg: "#fefce8", thumbIcon: "▣" },
+  { name: "Corporate Presentation Template", price: 1500, status: "active", thumbBg: "#fff7ed", thumbIcon: "◈" },
+  { name: "Explainer Video", price: 5000, status: "archived", thumbBg: "#f5f5f5", thumbIcon: "▶" },
+];
+
 /* ═══════════════════════════════════════════
    SUB-COMPONENTS
    ═══════════════════════════════════════════ */
@@ -148,7 +203,7 @@ function StatusBadge({ status }: { status: string }) {
     bg = C.redBg;
     color = C.redText;
   }
-  // void / cancelled → default gray
+  // void / cancelled / inactive / archived → default gray
 
   return (
     <span
@@ -191,7 +246,10 @@ function Card({ children, style }: { children: React.ReactNode; style?: React.CS
 /* ── Recurring icon ── */
 function RecurringIcon() {
   return (
-    <span style={{ fontSize: "11px", marginLeft: "3px", opacity: 0.45 }}>&#x21C4;</span>
+    <span style={{ marginLeft: "3px", display: "inline-flex", alignItems: "center", verticalAlign: "middle" }}>
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img src="/Icons/2.svg" alt="" width={12} height={12} style={{ opacity: 0.5 }} draggable={false} />
+    </span>
   );
 }
 
@@ -200,6 +258,45 @@ function DotMenu() {
   return (
     <span style={{ fontSize: "12px", color: C.textMuted, cursor: "default", letterSpacing: "1px" }}>
       &bull;&bull;&bull;
+    </span>
+  );
+}
+
+/* ── Copy / clipboard icon for payment links ── */
+function CopyIcon() {
+  return (
+    <span style={{ fontSize: "11px", color: C.textMuted, cursor: "default", opacity: 0.55 }}>
+      &#x2398;
+    </span>
+  );
+}
+
+/* ── Service thumbnail ── */
+function ServiceThumb({ bg, icon }: { bg: string; icon: string }) {
+  return (
+    <div
+      style={{
+        width: 28,
+        height: 28,
+        borderRadius: "6px",
+        backgroundColor: bg,
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        fontSize: "12px",
+        flexShrink: 0,
+      }}
+    >
+      {icon}
+    </div>
+  );
+}
+
+/* ── Info tooltip icon ── */
+function InfoIcon() {
+  return (
+    <span style={{ fontSize: "10px", color: C.textMuted, marginLeft: "2px", cursor: "default" }}>
+      &#x24D8;
     </span>
   );
 }
@@ -351,6 +448,198 @@ function SubscriptionsTable() {
   );
 }
 
+/* ── Payment Links table (desktop) ── */
+const PL_COLS = "minmax(140px,2fr) minmax(80px,1fr) minmax(80px,0.8fr) minmax(90px,1fr) minmax(60px,0.7fr) 40px";
+
+function PaymentLinksTable() {
+  return (
+    <div style={{ overflow: "hidden" }}>
+      {/* Header */}
+      <div
+        style={{
+          display: "grid",
+          gridTemplateColumns: PL_COLS,
+          gap: "0",
+          padding: "0 0 8px",
+          fontSize: "11px",
+          color: C.textMuted,
+          fontWeight: 400,
+        }}
+      >
+        <span>Name</span>
+        <span>Price</span>
+        <span style={{ display: "flex", alignItems: "center" }}>Checkouts<InfoIcon /></span>
+        <span>Created</span>
+        <span>Status</span>
+        <span />
+      </div>
+
+      {/* Rows */}
+      {PAYMENT_LINKS_DATA.map((row, i) => (
+        <div
+          key={i}
+          style={{
+            display: "grid",
+            gridTemplateColumns: PL_COLS,
+            gap: "0",
+            alignItems: "center",
+            padding: "8px 0",
+            borderTop: `1px solid ${C.borderLight}`,
+            fontSize: "11px",
+            color: C.text,
+          }}
+        >
+          {/* Name */}
+          <span style={{ overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>
+            {row.name}
+          </span>
+          {/* Price */}
+          <span style={{ fontVariantNumeric: "tabular-nums" }}>
+            ${row.price.toLocaleString()}{row.recurring && <span style={{ color: C.textMuted, fontSize: "10px" }}>/{row.recurring}</span>}
+          </span>
+          {/* Checkouts */}
+          <span style={{ color: C.textSec }}>{row.checkouts}</span>
+          {/* Created */}
+          <span style={{ color: C.textSec }}>{row.created}</span>
+          {/* Status */}
+          <span><StatusBadge status={row.status} /></span>
+          {/* Actions */}
+          <div style={{ display: "flex", alignItems: "center", gap: "6px" }}>
+            {row.status === "active" && <CopyIcon />}
+            <DotMenu />
+          </div>
+        </div>
+      ))}
+    </div>
+  );
+}
+
+/* ── Stores table (desktop) — same layout as Payment Links ── */
+const ST_COLS = "minmax(140px,2fr) minmax(80px,1fr) minmax(80px,0.8fr) minmax(90px,1fr) minmax(60px,0.7fr) 40px";
+
+function StoresTable() {
+  return (
+    <div style={{ overflow: "hidden" }}>
+      {/* Header */}
+      <div
+        style={{
+          display: "grid",
+          gridTemplateColumns: ST_COLS,
+          gap: "0",
+          padding: "0 0 8px",
+          fontSize: "11px",
+          color: C.textMuted,
+          fontWeight: 400,
+        }}
+      >
+        <span>Name</span>
+        <span>Price</span>
+        <span style={{ display: "flex", alignItems: "center" }}>Checkouts<InfoIcon /></span>
+        <span>Created</span>
+        <span>Status</span>
+        <span />
+      </div>
+
+      {/* Rows */}
+      {STORES_DATA.map((row, i) => (
+        <div
+          key={i}
+          style={{
+            display: "grid",
+            gridTemplateColumns: ST_COLS,
+            gap: "0",
+            alignItems: "center",
+            padding: "8px 0",
+            borderTop: `1px solid ${C.borderLight}`,
+            fontSize: "11px",
+            color: C.text,
+          }}
+        >
+          {/* Name */}
+          <span style={{ overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>
+            {row.name}
+          </span>
+          {/* Price */}
+          <span style={{ fontVariantNumeric: "tabular-nums" }}>
+            ${row.price.toLocaleString()}{row.recurring && <span style={{ color: C.textMuted, fontSize: "10px" }}>/{row.recurring}</span>}
+          </span>
+          {/* Checkouts */}
+          <span style={{ color: C.textSec }}>{row.checkouts}</span>
+          {/* Created */}
+          <span style={{ color: C.textSec }}>{row.created}</span>
+          {/* Status */}
+          <span><StatusBadge status={row.status} /></span>
+          {/* Actions */}
+          <div style={{ display: "flex", alignItems: "center", gap: "6px" }}>
+            {row.status === "active" && <CopyIcon />}
+            <DotMenu />
+          </div>
+        </div>
+      ))}
+    </div>
+  );
+}
+
+/* ── Services table (desktop) ── */
+const SVC_COLS = "minmax(180px,2.5fr) minmax(80px,1fr) minmax(60px,0.7fr) 24px";
+
+function ServicesTable() {
+  return (
+    <div style={{ overflow: "hidden" }}>
+      {/* Header */}
+      <div
+        style={{
+          display: "grid",
+          gridTemplateColumns: SVC_COLS,
+          gap: "0",
+          padding: "0 0 8px",
+          fontSize: "11px",
+          color: C.textMuted,
+          fontWeight: 400,
+        }}
+      >
+        <span>Name</span>
+        <span>Price</span>
+        <span>Status</span>
+        <span />
+      </div>
+
+      {/* Rows */}
+      {SERVICES_DATA.map((row, i) => (
+        <div
+          key={i}
+          style={{
+            display: "grid",
+            gridTemplateColumns: SVC_COLS,
+            gap: "0",
+            alignItems: "center",
+            padding: "8px 0",
+            borderTop: `1px solid ${C.borderLight}`,
+            fontSize: "11px",
+            color: C.text,
+          }}
+        >
+          {/* Name */}
+          <div style={{ display: "flex", alignItems: "center", gap: "8px", minWidth: 0 }}>
+            <ServiceThumb bg={row.thumbBg} icon={row.thumbIcon} />
+            <span style={{ overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>
+              {row.name}
+            </span>
+          </div>
+          {/* Price */}
+          <span style={{ fontVariantNumeric: "tabular-nums" }}>
+            ${row.price.toLocaleString()}
+          </span>
+          {/* Status */}
+          <span><StatusBadge status={row.status} /></span>
+          {/* Menu */}
+          <DotMenu />
+        </div>
+      ))}
+    </div>
+  );
+}
+
 /* ═══════════════════════════════════════════
    MOBILE TABLE COMPONENTS
    ═══════════════════════════════════════════ */
@@ -437,6 +726,144 @@ function MobileSubscriptionsTable() {
         >
           <div style={{ display: "flex", alignItems: "center", gap: "6px", minWidth: 0 }}>
             <Avatar initials={row.initials} bg={row.avatarBg} />
+            <span style={{ overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap", fontSize: "11px" }}>
+              {row.name}
+            </span>
+          </div>
+          <span style={{ fontVariantNumeric: "tabular-nums", fontSize: "11px" }}>
+            ${row.price.toLocaleString()}
+          </span>
+          <StatusBadge status={row.status} />
+        </div>
+      ))}
+    </div>
+  );
+}
+
+/* ── Mobile Payment Links ── */
+function MobilePaymentLinksTable() {
+  return (
+    <div>
+      <div
+        style={{
+          display: "grid",
+          gridTemplateColumns: "1fr auto auto",
+          gap: "8px",
+          padding: "0 0 8px",
+          fontSize: "10px",
+          color: C.textMuted,
+        }}
+      >
+        <span>Name</span>
+        <span style={{ textAlign: "right" }}>Price</span>
+        <span style={{ textAlign: "right" }}>Status</span>
+      </div>
+      {PAYMENT_LINKS_DATA.map((row, i) => (
+        <div
+          key={i}
+          style={{
+            display: "grid",
+            gridTemplateColumns: "1fr auto auto",
+            gap: "8px",
+            alignItems: "center",
+            padding: "7px 0",
+            borderTop: `1px solid ${C.borderLight}`,
+            fontSize: "11px",
+            color: C.text,
+          }}
+        >
+          <span style={{ overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap", fontSize: "11px" }}>
+            {row.name}
+          </span>
+          <span style={{ fontVariantNumeric: "tabular-nums", fontSize: "11px" }}>
+            ${row.price.toLocaleString()}
+          </span>
+          <StatusBadge status={row.status} />
+        </div>
+      ))}
+    </div>
+  );
+}
+
+/* ── Mobile Stores ── */
+function MobileStoresTable() {
+  return (
+    <div>
+      <div
+        style={{
+          display: "grid",
+          gridTemplateColumns: "1fr auto auto",
+          gap: "8px",
+          padding: "0 0 8px",
+          fontSize: "10px",
+          color: C.textMuted,
+        }}
+      >
+        <span>Name</span>
+        <span style={{ textAlign: "right" }}>Price</span>
+        <span style={{ textAlign: "right" }}>Status</span>
+      </div>
+      {STORES_DATA.map((row, i) => (
+        <div
+          key={i}
+          style={{
+            display: "grid",
+            gridTemplateColumns: "1fr auto auto",
+            gap: "8px",
+            alignItems: "center",
+            padding: "7px 0",
+            borderTop: `1px solid ${C.borderLight}`,
+            fontSize: "11px",
+            color: C.text,
+          }}
+        >
+          <span style={{ overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap", fontSize: "11px" }}>
+            {row.name}
+          </span>
+          <span style={{ fontVariantNumeric: "tabular-nums", fontSize: "11px" }}>
+            ${row.price.toLocaleString()}
+          </span>
+          <StatusBadge status={row.status} />
+        </div>
+      ))}
+    </div>
+  );
+}
+
+/* ── Mobile Services ── */
+function MobileServicesTable() {
+  return (
+    <div>
+      <div
+        style={{
+          display: "grid",
+          gridTemplateColumns: "1fr auto auto",
+          gap: "8px",
+          padding: "0 0 8px",
+          fontSize: "10px",
+          color: C.textMuted,
+        }}
+      >
+        <span>Name</span>
+        <span style={{ textAlign: "right" }}>Price</span>
+        <span style={{ textAlign: "right" }}>Status</span>
+      </div>
+      {SERVICES_DATA.map((row, i) => (
+        <div
+          key={i}
+          style={{
+            display: "grid",
+            gridTemplateColumns: "1fr auto auto",
+            gap: "8px",
+            alignItems: "center",
+            padding: "7px 0",
+            borderTop: `1px solid ${C.borderLight}`,
+            fontSize: "11px",
+            color: C.text,
+          }}
+        >
+          <div style={{ display: "flex", alignItems: "center", gap: "6px", minWidth: 0 }}>
+            <ServiceThumb bg={row.thumbBg} icon={row.thumbIcon} />
             <span style={{ overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap", fontSize: "11px" }}>
               {row.name}
             </span>
@@ -719,6 +1146,9 @@ const TABS: { id: TabId; label: string }[] = [
   { id: "overview", label: "Overview" },
   { id: "invoices", label: "Invoices" },
   { id: "subscriptions", label: "Subscriptions" },
+  { id: "payment-links", label: "Payment links" },
+  { id: "stores", label: "Stores" },
+  { id: "services", label: "Services" },
 ];
 
 const ALL_TAB_LABELS = ["Overview", "Invoices", "Subscriptions", "Payment links", "Stores", "Services"];
@@ -727,6 +1157,9 @@ const CTA_TEXT: Record<TabId, string> = {
   overview: "",
   invoices: "+ Create invoice",
   subscriptions: "+ Create subscription",
+  "payment-links": "+ Create payment link",
+  stores: "+ Create store",
+  services: "+ Create service",
 };
 
 /* ═══════════════════════════════════════════
@@ -877,6 +1310,42 @@ export function OnePaymentsDemo({ inSplit = false }: OnePaymentsDemoProps) {
                 <MobileSubscriptionsTable />
               </motion.div>
             )}
+            {activeTab === "payment-links" && (
+              <motion.div
+                key="mobile-payment-links"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.25 }}
+                style={{ padding: "12px 16px 16px" }}
+              >
+                <MobilePaymentLinksTable />
+              </motion.div>
+            )}
+            {activeTab === "stores" && (
+              <motion.div
+                key="mobile-stores"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.25 }}
+                style={{ padding: "12px 16px 16px" }}
+              >
+                <MobileStoresTable />
+              </motion.div>
+            )}
+            {activeTab === "services" && (
+              <motion.div
+                key="mobile-services"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.25 }}
+                style={{ padding: "12px 16px 16px" }}
+              >
+                <MobileServicesTable />
+              </motion.div>
+            )}
           </AnimatePresence>
         </div>
       </motion.div>
@@ -922,24 +1391,31 @@ export function OnePaymentsDemo({ inSplit = false }: OnePaymentsDemoProps) {
               color: C.textSec,
             }}
           >
-            <span style={{ fontSize: "11px" }}>&#x1F50D;</span>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src="/Icons/3.svg" alt="" width={12} height={12} style={{ opacity: 0.6 }} draggable={false} />
             Search
           </span>
-          {/* Icon buttons */}
-          <span style={{
-            display: "inline-flex", alignItems: "center", justifyContent: "center",
-            width: "28px", height: "28px", borderRadius: "6px",
-            border: `1px solid ${C.border}`, fontSize: "12px", color: C.textSec, cursor: "default",
-          }}>
-            &#x2630;
-          </span>
-          <span style={{
-            display: "inline-flex", alignItems: "center", justifyContent: "center",
-            width: "28px", height: "28px", borderRadius: "6px",
-            border: `1px solid ${C.border}`, fontSize: "12px", color: C.textSec, cursor: "default",
-          }}>
-            &#x1F4C4;
-          </span>
+          {/* Icon buttons — vary per tab */}
+          {activeTab !== "payment-links" && activeTab !== "stores" && (
+            <span style={{
+              display: "inline-flex", alignItems: "center", justifyContent: "center",
+              width: "28px", height: "28px", borderRadius: "6px",
+              border: `1px solid ${C.border}`, cursor: "default",
+            }}>
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src="/Icons/4.svg" alt="" width={14} height={14} style={{ opacity: 0.7 }} draggable={false} />
+            </span>
+          )}
+          {activeTab !== "payment-links" && activeTab !== "stores" && activeTab !== "services" && (
+            <span style={{
+              display: "inline-flex", alignItems: "center", justifyContent: "center",
+              width: "28px", height: "28px", borderRadius: "6px",
+              border: `1px solid ${C.border}`, cursor: "default",
+            }}>
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src="/Icons/2-1.svg" alt="" width={14} height={14} style={{ opacity: 0.7 }} draggable={false} />
+            </span>
+          )}
           {/* CTA button */}
           <AnimatePresence mode="wait">
             {ctaText && (
@@ -1052,6 +1528,39 @@ export function OnePaymentsDemo({ inSplit = false }: OnePaymentsDemoProps) {
               transition={{ duration: 0.25 }}
             >
               <SubscriptionsTable />
+            </motion.div>
+          )}
+          {activeTab === "payment-links" && (
+            <motion.div
+              key="payment-links"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.25 }}
+            >
+              <PaymentLinksTable />
+            </motion.div>
+          )}
+          {activeTab === "stores" && (
+            <motion.div
+              key="stores"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.25 }}
+            >
+              <StoresTable />
+            </motion.div>
+          )}
+          {activeTab === "services" && (
+            <motion.div
+              key="services"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.25 }}
+            >
+              <ServicesTable />
             </motion.div>
           )}
         </AnimatePresence>
