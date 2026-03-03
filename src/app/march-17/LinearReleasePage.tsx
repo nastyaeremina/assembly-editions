@@ -1519,8 +1519,12 @@ export function LinearReleasePage() {
         <IntroStatement />
         <ClientExperienceSection />
         <ProjectManagementSection />
+        {/* Spacer before consecutive light sections (mobile only) */}
+        <div className="h-8 lg:h-0" />
         <ClientManagementSection />
         <PaymentsSection />
+        {/* Spacer after consecutive light sections (mobile only) */}
+        <div className="h-8 lg:h-0" />
         <DevelopersSection />
         <WhatsMoreSection />
         <WhatsNextSection />
