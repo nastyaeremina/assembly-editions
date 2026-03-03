@@ -241,7 +241,7 @@ export function StorySpineNav() {
                     style={{
                       fontFamily: "var(--font-mono, monospace)",
                       fontSize: "0.7rem",
-                      letterSpacing: "0.02em",
+                      letterSpacing: "0.06em",
                       color: numberColor,
                       transition: "color 0.3s ease",
                     }}

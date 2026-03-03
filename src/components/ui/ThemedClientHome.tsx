@@ -404,14 +404,17 @@ export function ThemedClientHome({ inSplit = false }: { inSplit?: boolean }) {
           </div>
         );
       })()}
-      <span style={{
-        marginLeft: "auto",
-        fontFamily: "var(--font-mono, monospace)",
-        fontSize: "0.65rem",
-        letterSpacing: "0.04em",
-        color: "rgba(255,255,255,0.2)",
-        textTransform: "uppercase" as const,
-      }}>
+      <span
+        className="hidden min-[480px]:inline"
+        style={{
+          marginLeft: "auto",
+          fontFamily: "var(--font-mono, monospace)",
+          fontSize: "0.65rem",
+          letterSpacing: "0.04em",
+          color: "rgba(255,255,255,0.2)",
+          textTransform: "uppercase" as const,
+        }}
+      >
         {TOTAL_CLIENTS} clients
       </span>
       {/* Tooltip — positioned over 2nd segment (Gold) since 1st is already active */}

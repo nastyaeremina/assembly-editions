@@ -70,16 +70,8 @@ export function ChapterBar() {
         pointerEvents: visible ? "auto" : "none",
       }}
     >
-      {SPLIT_SECTIONS.map((section, i) => {
-        const isActive = activeSection === section.id;
-        const isPast = i < activeIdx;
-        const isLast = i === TOTAL - 1;
-
-        const textColor = isActive
-          ? (isLight ? "rgba(0, 0, 0, 0.85)" : "rgba(255, 255, 255, 0.85)")
-          : isPast
-          ? (isLight ? "rgba(0, 0, 0, 0.55)" : "rgba(255, 255, 255, 0.55)")
-          : (isLight ? "rgba(0, 0, 0, 0.3)" : "rgba(255, 255, 255, 0.3)");
+      {SPLIT_SECTIONS.map((section) => {
+        const textColor = isLight ? "rgba(0, 0, 0, 0.5)" : "rgba(255, 255, 255, 0.5)";
 
         return (
           <button
@@ -93,13 +85,8 @@ export function ChapterBar() {
               padding: "0.75rem 0.5rem 0.65rem",
               background: "transparent",
               border: "none",
-              borderRight: isLast
-                ? "none"
-                : isLight
-                ? "1px solid rgba(0, 0, 0, 0.04)"
-                : "1px solid rgba(255, 255, 255, 0.04)",
               cursor: "pointer",
-              transition: "color 0.3s ease, border-color 0.5s ease",
+              transition: "color 0.5s ease",
             }}
           >
             <span
@@ -109,7 +96,7 @@ export function ChapterBar() {
                 letterSpacing: "0.08em",
                 textTransform: "uppercase",
                 color: textColor,
-                transition: "color 0.3s ease",
+                transition: "color 0.5s ease",
                 whiteSpace: "nowrap",
               }}
             >
@@ -127,8 +114,8 @@ export function ChapterBar() {
           bottom: 0,
           left: 0,
           right: 0,
-          height: "2px",
-          backgroundColor: isLight ? "rgba(0, 0, 0, 0.04)" : "rgba(255, 255, 255, 0.04)",
+          height: "1.5px",
+          backgroundColor: isLight ? "rgba(0, 0, 0, 0.06)" : "rgba(255, 255, 255, 0.06)",
           overflow: "hidden",
           gridColumn: `1 / -1`,
         }}
@@ -137,7 +124,7 @@ export function ChapterBar() {
           style={{
             height: "100%",
             width: `${totalFill}%`,
-            backgroundColor: isLight ? "rgba(0, 0, 0, 0.2)" : "rgba(255, 255, 255, 0.2)",
+            backgroundColor: isLight ? "rgba(0, 0, 0, 0.35)" : "rgba(255, 255, 255, 0.4)",
             transition: "width 0.15s linear, background-color 0.5s ease",
           }}
         />

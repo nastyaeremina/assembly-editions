@@ -310,7 +310,7 @@ function MobileCard({
         style={{
           fontFamily: "'PP Mori', var(--font-sans)",
           fontWeight: 400,
-          fontSize: "0.9rem",
+          fontSize: "0.95rem",
           lineHeight: 1.65,
           color: bodyColor,
           margin: "0 0 0.5rem 0",
@@ -328,7 +328,7 @@ function MobileCard({
             marginBottom: "1rem",
             fontFamily: "'PP Mori', var(--font-sans)",
             fontWeight: 500,
-            fontSize: "0.85rem",
+            fontSize: "0.9rem",
             color: linkColor,
             textDecoration: "none",
           }}

@@ -246,29 +246,43 @@ export function EditionIntro() {
   );
 }
 
-/* ── Mobile: Fixed bottom nav bar — visible while in scrollytelling sections ── */
+/* ── Mobile/Tablet: Fixed top nav bar — visible while in scrollytelling sections ── */
 export function EditionIntroMobile() {
   const activeSection = useScrollSpy(sectionIds, 140);
   const visible = useSplitActive();
   const progress = useSectionProgress(sectionIds);
+  const btnRefs = useRef<Record<string, HTMLButtonElement | null>>({});
 
   const activeIdx = sectionIds.indexOf(activeSection);
+  const TOTAL = SPLIT_SECTIONS.length;
+  const STEP = 100 / TOTAL;
+
+  /* Single continuous progress: past sections fully filled + active section partial */
+  const sectionProgress = progress[activeSection] ?? 0;
+  const totalFill = Math.min(100, activeIdx * STEP + sectionProgress * STEP);
+
+  /* Auto-scroll the nav so the active button is visible */
+  useEffect(() => {
+    const btn = btnRefs.current[activeSection];
+    if (btn) {
+      btn.scrollIntoView({ behavior: "smooth", inline: "center", block: "nearest" });
+    }
+  }, [activeSection]);
 
   return (
     <nav
       aria-label="Section navigation"
-      className="grid lg:hidden"
+      className="flex lg:hidden"
       style={{
         position: "fixed",
         top: 0,
         left: 0,
         right: 0,
         zIndex: 50,
-        gridTemplateColumns: `repeat(${SPLIT_SECTIONS.length}, 1fr)`,
+        flexDirection: "column",
         backgroundColor: "rgba(10, 10, 10, 0.85)",
         backdropFilter: "blur(12px)",
         WebkitBackdropFilter: "blur(12px)",
-        borderBottom: "1px solid rgba(255, 255, 255, 0.06)",
         paddingTop: "env(safe-area-inset-top, 0px)",
         transform: visible ? "translateY(0)" : "translateY(-100%)",
         opacity: visible ? 1 : 0,
@@ -276,77 +290,72 @@ export function EditionIntroMobile() {
         pointerEvents: visible ? "auto" : "none",
       }}
     >
-      {SPLIT_SECTIONS.map((section, i) => {
-        const isActive = activeSection === section.id;
-        const isPast = i < activeIdx;
-        const isLast = i === SPLIT_SECTIONS.length - 1;
-        const fillPercent = isPast
-          ? 100
-          : isActive
-          ? Math.round((progress[section.id] ?? 0) * 100)
-          : 0;
-
-        return (
+      {/* Scrollable button row */}
+      <div
+        className="scrollbar-hide"
+        style={{
+          display: "flex",
+          overflowX: "auto",
+          WebkitOverflowScrolling: "touch",
+          padding: "0 0.75rem",
+          gap: "0.25rem",
+        }}
+      >
+        {SPLIT_SECTIONS.map((section) => (
           <button
             key={section.id}
-            onClick={() => scrollToSection(section.id)}
+            ref={(el) => { btnRefs.current[section.id] = el; }}
+            onClick={() => {
+              scrollToSection(section.id);
+              /* Also scroll the nav button into view */
+              const btn = btnRefs.current[section.id];
+              if (btn) btn.scrollIntoView({ behavior: "smooth", inline: "center", block: "nearest" });
+            }}
             style={{
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
-              gap: "0.35rem",
-              padding: "0.6rem 0.25rem",
-              background: isActive
-                ? "rgba(255, 255, 255, 0.04)"
-                : "transparent",
+              padding: "0.6rem 0.75rem",
+              background: "transparent",
               border: "none",
-              borderRight: isLast
-                ? "none"
-                : "1px solid rgba(255, 255, 255, 0.08)",
               cursor: "pointer",
-              transition: "background 0.3s ease, color 0.3s ease",
-              position: "relative",
+              flexShrink: 0,
             }}
           >
             <span
               style={{
                 fontFamily: "var(--font-mono, monospace)",
-                fontSize: "0.55rem",
+                fontSize: "0.6rem",
                 letterSpacing: "0.08em",
                 textTransform: "uppercase",
-                color: isActive
-                  ? "rgba(255, 255, 255, 0.85)"
-                  : isPast
-                  ? "rgba(255, 255, 255, 0.55)"
-                  : "rgba(255, 255, 255, 0.3)",
-                transition: "color 0.3s ease",
+                color: "rgba(255, 255, 255, 0.5)",
                 whiteSpace: "nowrap",
               }}
             >
-              {section.number}<span className="hidden min-[480px]:inline">&nbsp;&nbsp;{section.shortLabel}</span>
+              {section.shortLabel}
             </span>
-
-            {/* Progress fill bar at bottom edge */}
-            <div
-              aria-hidden="true"
-              style={{
-                position: "absolute",
-                bottom: 0,
-                left: 0,
-                height: "2px",
-                width: `${fillPercent}%`,
-                backgroundColor:
-                  isActive
-                    ? "rgba(255, 255, 255, 0.6)"
-                    : isPast
-                    ? "rgba(255, 255, 255, 0.25)"
-                    : "transparent",
-                transition: "width 0.15s linear, background-color 0.3s ease",
-              }}
-            />
           </button>
-        );
-      })}
+        ))}
+      </div>
+
+      {/* Single continuous progress bar */}
+      <div
+        aria-hidden="true"
+        style={{
+          height: "1.5px",
+          backgroundColor: "rgba(255, 255, 255, 0.08)",
+          overflow: "hidden",
+        }}
+      >
+        <div
+          style={{
+            height: "100%",
+            width: `${totalFill}%`,
+            backgroundColor: "rgba(255, 255, 255, 0.3)",
+            transition: "width 0.15s linear",
+          }}
+        />
+      </div>
     </nav>
   );
 }
