@@ -46,6 +46,7 @@ export function CollageHero() {
         <LightBeam />
       </motion.div>
 
+
       <div
         style={{
           maxWidth: "1100px",
@@ -58,6 +59,7 @@ export function CollageHero() {
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
+          zIndex: 2,
         }}
       >
         {/* ── Title ── */}
@@ -71,13 +73,13 @@ export function CollageHero() {
             fontSize: "clamp(2.4rem, 5.5vw, 4.2rem)",
             lineHeight: 1.08,
             letterSpacing: "-0.035em",
-            color: "var(--swatch-2, #f5f5f5)",
+            color: "rgba(255, 255, 255, 0.92)",
             margin: 0,
             textAlign: "center",
             maxWidth: "800px",
           }}
         >
-          The biggest update in Assembly&nbsp;history.
+          The biggest update in Assembly&nbsp;history
         </motion.h1>
 
         {/* ── Subtitle ── */}
@@ -88,10 +90,10 @@ export function CollageHero() {
           style={{
             fontFamily: "'PP Mori', var(--font-sans)",
             fontWeight: 400,
-            fontSize: "clamp(1rem, 1.6vw, 1.2rem)",
-            lineHeight: 1.5,
+            fontSize: "clamp(1.05rem, 1.6vw, 1.25rem)",
+            lineHeight: 1.55,
             letterSpacing: "-0.01em",
-            color: "var(--swatch-3, #999)",
+            color: "rgba(255, 255, 255, 0.72)",
             margin: 0,
             marginTop: "1.5rem",
             textAlign: "center",
@@ -116,21 +118,6 @@ export function CollageHero() {
             zIndex: 1,
           }}
         >
-          {/* Glow behind video — fades in with the video */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={isInView ? { opacity: 1 } : {}}
-            transition={{ duration: 1, delay: 0.6 }}
-            style={{
-              position: "absolute",
-              inset: "-15%",
-              background:
-                "radial-gradient(ellipse 70% 60% at 50% 50%, rgba(80, 60, 180, 0.15) 0%, transparent 70%)",
-              filter: "blur(30px)",
-              pointerEvents: "none",
-            }}
-          />
-
           <div
             onClick={togglePlay}
             style={{
@@ -209,20 +196,6 @@ export function CollageHero() {
         </motion.div>
       </div>
 
-      {/* Bottom fade — dissolves glow before section edge */}
-      <div
-        style={{
-          position: "absolute",
-          bottom: 0,
-          left: 0,
-          right: 0,
-          height: "40%",
-          background:
-            "linear-gradient(to bottom, transparent 0%, #101010 70%, #101010 100%)",
-          pointerEvents: "none",
-          zIndex: 2,
-        }}
-      />
     </section>
   );
 }

@@ -30,6 +30,7 @@ export interface SplitSection {
   number: string;
   title: string;
   subsections: Subsection[];
+  categoryLabel: string;
 }
 
 export const SPLIT_SECTIONS: SplitSection[] = [
@@ -39,6 +40,7 @@ export const SPLIT_SECTIONS: SplitSection[] = [
     shortLabel: "Clients",
     number: "01",
     title: "Create remarkable experiences for clients",
+    categoryLabel: "CLIENT EXPERIENCE",
     subsections: [
       { id: "app-folders", label: "App Folders" },
       { id: "client-segments", label: "Client Segments" },
@@ -50,6 +52,7 @@ export const SPLIT_SECTIONS: SplitSection[] = [
     shortLabel: "Tasks",
     number: "02",
     title: "Project management that actually fits how you work",
+    categoryLabel: "PROJECT MANAGEMENT",
     subsections: [
       { id: "tasks-client-association", label: "Tasks with Client Association" },
       { id: "time-based-automations", label: "Time-Based Automations" },
@@ -61,8 +64,8 @@ export const SPLIT_SECTIONS: SplitSection[] = [
     shortLabel: "Management",
     number: "03",
     title: "For client management",
+    categoryLabel: "DESKTOP APP",
     subsections: [
-      { id: "native-desktop-app", label: "Native Desktop App" },
       { id: "context-bar", label: "Context Bar" },
     ],
   },
@@ -72,6 +75,7 @@ export const SPLIT_SECTIONS: SplitSection[] = [
     shortLabel: "Payments",
     number: "04",
     title: "Payments, consolidated",
+    categoryLabel: "PAYMENTS",
     subsections: [
       { id: "one-payments-home", label: "One Payments Home" },
       { id: "quickbooks-xero", label: "QuickBooks & Xero" },
@@ -83,6 +87,7 @@ export const SPLIT_SECTIONS: SplitSection[] = [
     shortLabel: "Developers",
     number: "05",
     title: "For developers",
+    categoryLabel: "DEVELOPERS",
     subsections: [
       { id: "custom-app-base", label: "New Custom App Base" },
       { id: "secure-app-sessions", label: "Secure App Sessions" },

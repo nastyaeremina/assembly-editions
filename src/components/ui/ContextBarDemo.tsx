@@ -1,7 +1,8 @@
 "use client";
 
-import { useState } from "react";
-import { motion } from "framer-motion";
+import { useState, useRef, useEffect, useCallback } from "react";
+import { motion, AnimatePresence, useInView } from "framer-motion";
+import { useMediaQuery } from "@/hooks/useMediaQuery";
 
 /* ──────────────────────────────────────────────────────────
    CONTEXT BAR DEMO
@@ -132,9 +133,9 @@ function DateSeparator({ label }: { label: string }) {
 }
 
 /* ── Custom field row ── */
-function FieldRow({ label, iconSrc, placeholder }: { label: string; iconSrc?: string; placeholder: string }) {
+function FieldRow({ label, iconSrc, placeholder, fontSize = "11px" }: { label: string; iconSrc?: string; placeholder: string; fontSize?: string }) {
   return (
-    <div style={{ display: "flex", alignItems: "center", padding: "6px 0", fontSize: "11px" }}>
+    <div style={{ display: "flex", alignItems: "center", padding: "6px 0", fontSize }}>
       <span style={{ width: "70px", color: C.textSec, flexShrink: 0 }}>{label}</span>
       <div style={{ display: "flex", alignItems: "center", gap: "6px", color: C.textMuted }}>
         {iconSrc && (
@@ -171,10 +172,226 @@ const NOTES = [
   },
 ];
 
+/* ── Panel label map ── */
+const PANEL_LABELS: Record<"person" | "document" | "chat", string> = {
+  person: "Client Details",
+  document: "Notes",
+  chat: "Internal Chat",
+};
+
+const PANEL_ORDER: ("person" | "document" | "chat")[] = ["person", "document", "chat"];
+const AUTO_CYCLE_DELAY = 1400; // ms before first auto-switch
+const AUTO_CYCLE_INTERVAL = 2800; // ms between switches
+
 export function ContextBarDemo({ inSplit = false }: ContextBarDemoProps) {
   const [activePanel, setActivePanel] = useState<"person" | "document" | "chat">("person");
+  const isDesktop = useMediaQuery("(min-width: 768px)", true);
+  const [showTooltip, setShowTooltip] = useState(false);
+  const tooltipDismissed = useRef(false);
+
+  /* ── Auto-cycle logic ── */
+  const containerRef = useRef<HTMLDivElement>(null);
+  const isInView = useInView(containerRef, { once: true, margin: "-100px" });
+  const [userTookOver, setUserTookOver] = useState(false);
+  const [autoCycleActive, setAutoCycleActive] = useState(false);
+  const cycleTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  const stopAutoCycle = useCallback(() => {
+    setUserTookOver(true);
+    setAutoCycleActive(false);
+    if (cycleTimer.current) {
+      clearTimeout(cycleTimer.current);
+      cycleTimer.current = null;
+    }
+  }, []);
+
+  const handleUserClick = useCallback((panel: "person" | "document" | "chat") => {
+    stopAutoCycle();
+    setActivePanel(panel);
+    setShowTooltip(false);
+    tooltipDismissed.current = true;
+  }, [stopAutoCycle]);
+
+  // Start auto-cycle when component enters viewport
+  useEffect(() => {
+    if (!isInView || userTookOver || !isDesktop) return;
+
+    const startTimer = setTimeout(() => {
+      setAutoCycleActive(true);
+    }, AUTO_CYCLE_DELAY);
+
+    return () => clearTimeout(startTimer);
+  }, [isInView, userTookOver, isDesktop]);
+
+  // Run the cycle
+  useEffect(() => {
+    if (!autoCycleActive || userTookOver) return;
+
+    const advance = () => {
+      setActivePanel((prev) => {
+        const idx = PANEL_ORDER.indexOf(prev);
+        const next = PANEL_ORDER[(idx + 1) % PANEL_ORDER.length];
+        return next;
+      });
+    };
+
+    // Advance immediately on first tick, then keep going
+    advance();
+
+    const interval = setInterval(advance, AUTO_CYCLE_INTERVAL);
+    return () => clearInterval(interval);
+  }, [autoCycleActive, userTookOver]);
+
+  /* ─────────────────────── MOBILE VIEW ─────────────────────── */
+  if (!isDesktop) {
+    return (
+      <motion.div
+        ref={containerRef}
+        initial={{ opacity: 0, scale: 0.97 }}
+        whileInView={{ opacity: 1, scale: 1 }}
+        viewport={{ once: true, margin: "-40px" }}
+        transition={{ duration: 0.6, ease: [0.25, 0.1, 0.25, 1] }}
+        style={{
+          width: "100%",
+          borderRadius: "12px",
+          border: `1px solid ${C.border}`,
+          backgroundColor: C.bg,
+          boxShadow: "0 1px 3px rgba(0,0,0,0.04)",
+          fontFamily: "'Inter', system-ui, sans-serif",
+          overflow: "hidden",
+        }}
+      >
+        {/* ── Compact header ── */}
+        <div
+          style={{
+            display: "flex",
+            alignItems: "center",
+            gap: "10px",
+            padding: "16px 16px 14px",
+            borderBottom: `1px solid ${C.border}`,
+          }}
+        >
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src="/Icons/Avatar.svg" alt="" width={30} height={30} style={{ borderRadius: "6px", border: `1px solid ${C.border}` }} draggable={false} />
+          <div>
+            <div style={{ fontSize: "14px", fontWeight: 500, color: C.text, lineHeight: 1.2 }}>Charles Musial</div>
+            <div style={{ fontSize: "11px", color: C.textSec, marginTop: "2px" }}>Service Symphony</div>
+          </div>
+        </div>
+
+        {/* ── Segmented tab bar ── */}
+        <div
+          style={{
+            display: "flex",
+            margin: "12px 14px 0",
+            border: `1px solid ${C.border}`,
+            borderRadius: "8px",
+            padding: "3px",
+            gap: "2px",
+            backgroundColor: C.bg,
+          }}
+        >
+          {(["person", "document", "chat"] as const).map((key) => {
+            const isActive = activePanel === key;
+            return (
+              <div
+                key={key}
+                onClick={() => handleUserClick(key)}
+                style={{
+                  flex: 1,
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  padding: "6px 6px",
+                  cursor: "pointer",
+                  borderRadius: "6px",
+                  backgroundColor: isActive ? "#f4f5f7" : "transparent",
+                  transition: "background-color 0.15s ease",
+                }}
+              >
+                <span
+                  style={{
+                    fontSize: "12px",
+                    fontWeight: isActive ? 500 : 400,
+                    color: isActive ? C.text : C.textMuted,
+                  }}
+                >
+                  {PANEL_LABELS[key]}
+                </span>
+              </div>
+            );
+          })}
+        </div>
+
+        {/* ── Panel content ── */}
+        <div style={{ padding: "14px 16px 16px" }}>
+          {/* Person / Client Details panel */}
+          {activePanel === "person" && (
+            <div>
+              <div style={{ fontSize: "11px", fontWeight: 500, color: C.textSec, textTransform: "uppercase", letterSpacing: "0.04em", marginBottom: "10px" }}>
+                Custom fields
+              </div>
+              <FieldRow label="Email" iconSrc="/Icons/Icon-container copy 3.svg" placeholder="Add email" fontSize="12px" />
+              <FieldRow label="Team" iconSrc="/Icons/Status Icon.svg" placeholder="Add text" fontSize="12px" />
+              <FieldRow label="ID" iconSrc="/Icons/heshtag.svg" placeholder="Add number" fontSize="12px" />
+              <FieldRow label="Phone" iconSrc="/Icons/Icon-container-2.svg" placeholder="Add phone number" fontSize="12px" />
+              <FieldRow label="Link" iconSrc="/Icons/Status Icon copy.svg" placeholder="Add link" fontSize="12px" />
+            </div>
+          )}
+
+          {/* Notes panel */}
+          {activePanel === "document" && (
+            <div>
+              {NOTES.map((note, i) => (
+                <div
+                  key={i}
+                  style={{
+                    padding: i === 0 ? "0 0 12px" : "12px 0",
+                    borderBottom: i < NOTES.length - 1 ? `1px solid ${C.borderLight}` : "none",
+                  }}
+                >
+                  <div style={{ fontSize: "12px", fontWeight: 500, color: C.text, marginBottom: "4px" }}>{note.title}</div>
+                  <div style={{ fontSize: "12px", lineHeight: 1.5, color: C.textSec }}>{note.body}</div>
+                </div>
+              ))}
+            </div>
+          )}
+
+          {/* Chat panel */}
+          {activePanel === "chat" && (
+            <div>
+              <div style={{ display: "flex", gap: "10px", alignItems: "flex-start", marginBottom: "16px" }}>
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img src="/logos/Assemblychatlogo.svg" alt="Assembly" width={26} height={26} style={{ borderRadius: "50%", flexShrink: 0, marginTop: "2px" }} draggable={false} />
+                <div style={{ flex: 1, minWidth: 0 }}>
+                  <div style={{ fontSize: "12px", fontWeight: 500, color: C.text, marginBottom: "4px" }}>Assembly</div>
+                  <div style={{ fontSize: "12px", lineHeight: 1.55, color: C.textSec }}>
+                    Chat privately with your team about this client, or tag @Assembly for help.
+                  </div>
+                </div>
+              </div>
+              {/* Mini compose bar */}
+              <div style={{ border: `1px solid ${C.border}`, borderRadius: "8px", overflow: "hidden" }}>
+                <div style={{ padding: "10px 12px" }}>
+                  <span style={{ fontSize: "12px", color: "#9ca3af" }}>Chat with teammates or @Assembly</span>
+                </div>
+                <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", padding: "6px 12px 8px" }}>
+                  <span style={{ fontSize: "13px", color: C.textMuted, cursor: "default" }}>@</span>
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img src={ICO.attachBtn} alt="Send" width={24} height={24} draggable={false} />
+                </div>
+              </div>
+            </div>
+          )}
+        </div>
+      </motion.div>
+    );
+  }
+
+  /* ─────────────────────── DESKTOP VIEW ─────────────────────── */
   return (
     <motion.div
+      ref={containerRef}
       initial={{ opacity: 0, scale: 0.97 }}
       whileInView={{ opacity: 1, scale: 1 }}
       viewport={{ once: true, margin: "-40px" }}
@@ -182,7 +399,7 @@ export function ContextBarDemo({ inSplit = false }: ContextBarDemoProps) {
       style={{
         width: "100%",
         borderRadius: "10px",
-        border: "1px solid rgba(255, 255, 255, 0.06)",
+        border: `1px solid ${C.border}`,
         boxShadow: "0 8px 30px rgba(0,0,0,0.08), 0 1px 3px rgba(0,0,0,0.06)",
         fontFamily: "'Inter', system-ui, sans-serif",
         overflow: "hidden",
@@ -230,19 +447,7 @@ export function ContextBarDemo({ inSplit = false }: ContextBarDemoProps) {
               <span style={{ color: C.textMuted }}>›</span>
               <span style={{ fontWeight: 500, color: C.text }}>Charles Musial</span>
             </div>
-            <div
-              style={{
-                width: "22px",
-                height: "22px",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                color: C.textMuted,
-                fontSize: "14px",
-              }}
-            >
-              •••
-            </div>
+            {/* three-dot menu removed */}
           </div>
 
           {/* Tab bar */}
@@ -367,7 +572,7 @@ export function ContextBarDemo({ inSplit = false }: ContextBarDemoProps) {
         {/* ─── RIGHT SIDEBAR ─── */}
         <div
           style={{
-            width: "260px",
+            width: "clamp(240px, 30%, 320px)",
             borderLeft: `1px solid ${C.border}`,
             display: "flex",
             flexDirection: "column",
@@ -378,7 +583,7 @@ export function ContextBarDemo({ inSplit = false }: ContextBarDemoProps) {
           {/* Sidebar header */}
           <div
             style={{
-              padding: "12px 16px",
+              padding: "10px 16px",
               borderBottom: `1px solid ${C.border}`,
               fontSize: "12px",
               fontWeight: 500,
@@ -476,7 +681,7 @@ export function ContextBarDemo({ inSplit = false }: ContextBarDemoProps) {
                   <div style={{ flex: 1, minWidth: 0 }}>
                     <div style={{ fontSize: "11px", fontWeight: 500, color: C.text, marginBottom: "6px" }}>Assembly</div>
                     <div style={{ fontSize: "11px", lineHeight: 1.55, color: C.textSec }}>
-                      Welcome to your Internal Chat. Use this to talk privately with your team regarding this client, or tag @Assembly to help you.
+                      Chat privately with your team about this client, or tag @Assembly for help.
                     </div>
                   </div>
                 </div>
@@ -525,34 +730,111 @@ export function ContextBarDemo({ inSplit = false }: ContextBarDemoProps) {
           }}
         >
           <div style={{ width: 24, height: 24, borderRadius: "50%", backgroundColor: "#dfe8e6", color: "#2a8a7a", fontSize: 9, fontWeight: 400, display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>MA</div>
-          {(["person", "document", "chat"] as const).map((key) => (
-            <div
-              key={key}
-              onClick={() => setActivePanel(key)}
-              style={{
-                backgroundColor: activePanel === key ? "#f0f1f3" : "transparent",
-                borderRadius: "6px",
-                padding: "5px",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                cursor: "pointer",
-              }}
-            >
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src={ICO[key]}
-                alt={key}
-                width={14}
-                height={14}
-                style={{
-                  display: "block",
-                  opacity: activePanel === key ? 1 : 0.55,
-                }}
-                draggable={false}
-              />
-            </div>
-          ))}
+          <div
+            onMouseEnter={() => { if (!tooltipDismissed.current) setShowTooltip(true); }}
+            onMouseLeave={() => setShowTooltip(false)}
+            style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "14px", position: "relative" }}
+          >
+            {(() => {
+              const nextPanel = PANEL_ORDER[(PANEL_ORDER.indexOf(activePanel) + 1) % PANEL_ORDER.length];
+              return (["person", "document", "chat"] as const).map((key) => {
+                const isActive = activePanel === key;
+                const isNext = autoCycleActive && !userTookOver && key === nextPanel;
+                return (
+                  <motion.div
+                    key={key}
+                    onClick={() => handleUserClick(key)}
+                    animate={isNext ? {
+                      backgroundColor: ["rgba(0,0,0,0)", "rgba(0,0,0,0.04)", "rgba(0,0,0,0)"],
+                    } : {}}
+                    transition={isNext ? {
+                      duration: 1.4,
+                      repeat: Infinity,
+                      ease: "easeInOut",
+                    } : { duration: 0.15 }}
+                    style={{
+                      borderRadius: "6px",
+                      padding: "5px",
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      cursor: "pointer",
+                      backgroundColor: isActive ? "#f0f1f3" : "transparent",
+                      transition: isNext ? undefined : "background-color 0.15s ease",
+                    }}
+                  >
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img
+                      src={ICO[key]}
+                      alt={key}
+                      width={14}
+                      height={14}
+                      style={{
+                        display: "block",
+                        opacity: isActive ? 1 : key === "chat" ? 0.75 : 0.55,
+                        transition: "opacity 0.15s ease",
+                      }}
+                      draggable={false}
+                    />
+                  </motion.div>
+                );
+              });
+            })()}
+            {/* Tooltip */}
+            <AnimatePresence>
+              {showTooltip && (
+                <motion.div
+                  initial={{ opacity: 0, x: 4 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  exit={{ opacity: 0, x: 4 }}
+                  transition={{ duration: 0.15 }}
+                  style={{
+                    position: "absolute",
+                    right: "calc(100% + 8px)",
+                    top: "50%",
+                    transform: "translateY(-50%)",
+                    pointerEvents: "none",
+                    zIndex: 100,
+                  }}
+                >
+                  <div style={{
+                    position: "relative",
+                    display: "inline-flex",
+                    alignItems: "center",
+                    padding: "4px 8px",
+                    borderRadius: "6px",
+                    backgroundColor: "rgba(39, 39, 42, 0.95)",
+                    backdropFilter: "blur(8px)",
+                    WebkitBackdropFilter: "blur(8px)",
+                    border: "1px solid rgba(63, 63, 70, 0.5)",
+                    boxShadow: "0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -2px rgba(0,0,0,0.1)",
+                    whiteSpace: "nowrap",
+                  }}>
+                    <span style={{
+                      fontFamily: "'Inter', system-ui, sans-serif",
+                      fontSize: "10px",
+                      fontWeight: 400,
+                      color: "#ffffff",
+                    }}>
+                      Click to switch
+                    </span>
+                    <div style={{
+                      position: "absolute",
+                      right: "-4px",
+                      top: "50%",
+                      marginTop: "-4px",
+                      width: "8px",
+                      height: "8px",
+                      backgroundColor: "rgba(39, 39, 42, 0.95)",
+                      transform: "rotate(45deg)",
+                      borderRight: "1px solid rgba(63, 63, 70, 0.5)",
+                      borderTop: "1px solid rgba(63, 63, 70, 0.5)",
+                    }} />
+                  </div>
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </div>
         </div>
       </div>
     </motion.div>

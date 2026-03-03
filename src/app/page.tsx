@@ -1,4 +1,4 @@
-import { Header, ChapterBar, SplitScreenLayout, Footer } from "@/components/layout";
+import { Header, SplitScreenLayout, Footer } from "@/components/layout";
 import { LoadingScreen } from "@/components/ui";
 import {
   CollageHero,
@@ -17,9 +17,8 @@ export default function Home() {
       {/* Loading intro — mouse-interactive "2.0" */}
       <LoadingScreen />
 
-      {/* Top nav — Header for hero, ChapterBar for sections */}
+      {/* Top nav */}
       <Header />
-      <ChapterBar />
 
       <main>
         {/* Hero — centered title + subtitle + video placeholder */}

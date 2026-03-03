@@ -4,6 +4,7 @@ import { useEffect, useState, useRef } from "react";
 import { SPLIT_SECTIONS } from "@/lib/constants";
 import { useScrollSpy } from "@/hooks/useScrollSpy";
 import { useSplitActive } from "@/hooks/useSplitActive";
+import { useSectionProgress } from "@/hooks/useSectionProgress";
 import { motion, AnimatePresence } from "framer-motion";
 
 /* ────────────────────────────────────────────────────────────
@@ -249,75 +250,103 @@ export function EditionIntro() {
 export function EditionIntroMobile() {
   const activeSection = useScrollSpy(sectionIds, 140);
   const visible = useSplitActive();
-  const scrollRef = useRef<HTMLDivElement>(null);
-  const buttonRefs = useRef<Map<string, HTMLButtonElement>>(new Map());
+  const progress = useSectionProgress(sectionIds);
 
-  /* Auto-scroll the active pill into view */
-  useEffect(() => {
-    if (!activeSection || !scrollRef.current) return;
-    const btn = buttonRefs.current.get(activeSection);
-    if (btn) {
-      btn.scrollIntoView({ behavior: "smooth", inline: "center", block: "nearest" });
-    }
-  }, [activeSection]);
+  const activeIdx = sectionIds.indexOf(activeSection);
 
   return (
     <nav
-      className="lg:hidden"
+      aria-label="Section navigation"
+      className="grid lg:hidden"
       style={{
         position: "fixed",
-        bottom: 0,
+        top: 0,
         left: 0,
         right: 0,
         zIndex: 50,
-        backgroundColor: "rgba(16, 16, 16, 0.92)",
+        gridTemplateColumns: `repeat(${SPLIT_SECTIONS.length}, 1fr)`,
+        backgroundColor: "rgba(10, 10, 10, 0.85)",
         backdropFilter: "blur(12px)",
         WebkitBackdropFilter: "blur(12px)",
-        borderTop: "1px solid rgba(255, 255, 255, 0.1)",
-        transform: visible ? "translateY(0)" : "translateY(100%)",
+        borderBottom: "1px solid rgba(255, 255, 255, 0.06)",
+        paddingTop: "env(safe-area-inset-top, 0px)",
+        transform: visible ? "translateY(0)" : "translateY(-100%)",
         opacity: visible ? 1 : 0,
-        transition: "transform 0.5s cubic-bezier(0.25, 0.1, 0.25, 1), opacity 0.3s ease",
+        transition: "transform 0.6s cubic-bezier(0.25, 0.1, 0.25, 1), opacity 0.4s ease",
         pointerEvents: visible ? "auto" : "none",
       }}
-      aria-label="Section navigation"
     >
-      <div
-        ref={scrollRef}
-        className="flex items-center gap-1 overflow-x-auto scrollbar-hide"
-        style={{
-          padding: "0.6rem 1rem",
-          paddingBottom: "calc(0.6rem + env(safe-area-inset-bottom, 0px))",
-        }}
-      >
-        {SPLIT_SECTIONS.map((section) => {
-          const isActive = activeSection === section.id;
-          return (
-            <button
-              key={section.id}
-              ref={(el) => { if (el) buttonRefs.current.set(section.id, el); }}
-              onClick={() => scrollToSection(section.id)}
+      {SPLIT_SECTIONS.map((section, i) => {
+        const isActive = activeSection === section.id;
+        const isPast = i < activeIdx;
+        const isLast = i === SPLIT_SECTIONS.length - 1;
+        const fillPercent = isPast
+          ? 100
+          : isActive
+          ? Math.round((progress[section.id] ?? 0) * 100)
+          : 0;
+
+        return (
+          <button
+            key={section.id}
+            onClick={() => scrollToSection(section.id)}
+            style={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              gap: "0.35rem",
+              padding: "0.6rem 0.25rem",
+              background: isActive
+                ? "rgba(255, 255, 255, 0.04)"
+                : "transparent",
+              border: "none",
+              borderRight: isLast
+                ? "none"
+                : "1px solid rgba(255, 255, 255, 0.08)",
+              cursor: "pointer",
+              transition: "background 0.3s ease, color 0.3s ease",
+              position: "relative",
+            }}
+          >
+            <span
               style={{
-                whiteSpace: "nowrap",
-                padding: "0.5rem 0.9rem",
-                borderRadius: "0.5rem",
-                background: isActive ? "rgba(255,255,255,0.12)" : "transparent",
-                border: "none",
-                cursor: "pointer",
                 fontFamily: "var(--font-mono, monospace)",
-                fontSize: "0.8rem",
-                letterSpacing: "-0.03em",
+                fontSize: "0.55rem",
+                letterSpacing: "0.08em",
+                textTransform: "uppercase",
                 color: isActive
-                  ? "rgba(255, 255, 255, 0.9)"
-                  : "rgba(255, 255, 255, 0.35)",
-                transition: "all 0.2s",
-                flexShrink: 0,
+                  ? "rgba(255, 255, 255, 0.85)"
+                  : isPast
+                  ? "rgba(255, 255, 255, 0.55)"
+                  : "rgba(255, 255, 255, 0.3)",
+                transition: "color 0.3s ease",
+                whiteSpace: "nowrap",
               }}
             >
-              {section.number} {section.shortLabel}
-            </button>
-          );
-        })}
-      </div>
+              {section.number}<span className="hidden min-[480px]:inline">&nbsp;&nbsp;{section.shortLabel}</span>
+            </span>
+
+            {/* Progress fill bar at bottom edge */}
+            <div
+              aria-hidden="true"
+              style={{
+                position: "absolute",
+                bottom: 0,
+                left: 0,
+                height: "2px",
+                width: `${fillPercent}%`,
+                backgroundColor:
+                  isActive
+                    ? "rgba(255, 255, 255, 0.6)"
+                    : isPast
+                    ? "rgba(255, 255, 255, 0.25)"
+                    : "transparent",
+                transition: "width 0.15s linear, background-color 0.3s ease",
+              }}
+            />
+          </button>
+        );
+      })}
     </nav>
   );
 }

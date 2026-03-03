@@ -23,5 +23,7 @@ export { OnePaymentsDemo } from "./OnePaymentsDemo";
 export { QuickBooksSyncDemo } from "./QuickBooksSyncDemo";
 export { AppBridgeCodeDemo } from "./AppBridgeCodeDemo";
 export { DotGrid } from "./DotGrid";
+export { HeroParticles } from "./HeroParticles";
 export { LightBeam } from "./LightBeam";
 export { TypewriterText } from "./TypewriterText";
+export { FloatingAppCards } from "./FloatingAppCards";

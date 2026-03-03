@@ -3,6 +3,7 @@
 import { useState, useCallback, useRef, useEffect, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useMediaQuery } from "@/hooks/useMediaQuery";
+import { useIdleHint } from "@/hooks/useIdleHint";
 import {
   DndContext,
   DragOverlay,
@@ -11,7 +12,6 @@ import {
   useSensors,
   closestCenter,
   useDroppable,
-  defaultDropAnimationSideEffects,
   type DragStartEvent,
   type DragOverEvent,
   type DragMoveEvent,
@@ -253,6 +253,8 @@ const moveFolderUtil = (arr: ModuleSettingsItem[], fi: number, di: number): Modu
   let last = -1;
   for (let i = arr.length - 1; i >= 0; i--) { if (arr[i].path === f.id) { last = i; break; } }
   if (last === -1) return arrayMove(arr, fi, di);
+  // If destination is within the folder's own children, skip (no-op)
+  if (di > fi && di <= last) return arr;
   const items = arr.slice(fi, last + 1);
   const u = [...arr]; u.splice(fi, last - fi + 1);
   let adj = di;
@@ -394,7 +396,7 @@ function EmptyFolderDropZoneEl({ folderId, showIndicator, indicatorPos, indicato
     <div ref={setNodeRef} style={{ position: "relative" }}>
       {showIndicator && <DropIndicator position={indicatorPos} indented={indicatorIndented} />}
       <div style={{ height: "48px", paddingLeft: "12px", display: "flex", alignItems: "center", marginLeft: `${FOLDER_CONTENT_INDENTATION}px` }}>
-        <span style={{ fontSize: "13px", color: C.textDisabled, fontFamily: "var(--font-sans)" }}>No apps inside</span>
+        <span style={{ fontSize: "13px", color: C.textDisabled, fontFamily: "'Inter', system-ui, sans-serif" }}>No apps inside</span>
       </div>
     </div>
   );
@@ -414,7 +416,7 @@ function OverflowMenu({ isFolder, iuHidden, onRename, onDelete, onToggle }: {
   }, [open]);
 
   const Opt = ({ icon, text, destructive, onClick }: { icon: React.ReactNode; text: string; destructive?: boolean; onClick: () => void }) => (
-    <button type="button" onClick={onClick} className="menu-opt" style={{ display: "flex", alignItems: "center", gap: "8px", width: "100%", padding: "8px 12px", border: "none", backgroundColor: "transparent", cursor: "pointer", fontSize: "13px", fontFamily: "var(--font-sans)", color: destructive ? C.red : C.text, textAlign: "left" }}>
+    <button type="button" onClick={onClick} className="menu-opt" style={{ display: "flex", alignItems: "center", gap: "8px", width: "100%", padding: "8px 12px", border: "none", backgroundColor: "transparent", cursor: "pointer", fontSize: "13px", fontFamily: "'Inter', system-ui, sans-serif", color: destructive ? C.red : C.text, textAlign: "left" }}>
       <span style={{ display: "flex", alignItems: "center", color: destructive ? C.red : C.textMuted }}>{icon}</span>
       <span>{text}</span>
     </button>
@@ -451,7 +453,7 @@ function FolderNameInput({ name, onNameChange, onDone }: { name: string; onNameC
     <input ref={ref} type="text" value={v} onChange={(e) => { setV(e.target.value); onNameChange(e.target.value); }}
       onBlur={commit} onKeyDown={(e) => { if (e.key === "Enter" || e.key === "Escape") commit(); }}
       onClick={(e) => e.stopPropagation()}
-      style={{ flex: 1, padding: "4px 8px", borderRadius: "4px", border: `1px solid ${C.blue}`, fontSize: "14px", fontFamily: "var(--font-sans)", outline: "none", color: C.text, backgroundColor: "#fff", zIndex: 20, minWidth: 0 }} />
+      style={{ flex: 1, padding: "4px 8px", borderRadius: "4px", border: `1px solid ${C.blue}`, fontSize: "14px", fontFamily: "'Inter', system-ui, sans-serif", outline: "none", color: C.text, backgroundColor: "#fff", zIndex: 20, minWidth: 0 }} />
   );
 }
 
@@ -470,9 +472,9 @@ function DragOverlayItem({ item, helperText }: { item: ModuleSettingsItem; helpe
       boxShadow: "0 4px 12px rgba(0,0,0,0.08)",
     }}>
       {helperText ? (
-        <><span style={{ display: "flex", color: C.textMuted }}><CancelIcon /></span><span style={{ fontSize: "14px", color: C.text, fontFamily: "var(--font-sans)" }}>{helperText}</span></>
+        <><span style={{ display: "flex", color: C.textMuted }}><CancelIcon /></span><span style={{ fontSize: "14px", color: C.text, fontFamily: "'Inter', system-ui, sans-serif" }}>{helperText}</span></>
       ) : (
-        <span style={{ fontSize: "14px", color: C.text, fontFamily: "var(--font-sans)" }}>{item.label}</span>
+        <span style={{ fontSize: "14px", color: C.text, fontFamily: "'Inter', system-ui, sans-serif" }}>{item.label}</span>
       )}
     </div>
   );
@@ -502,12 +504,13 @@ function SortableItem({ settings, showIndicator, indicatorPos, indicatorIndented
   const isChild = Boolean(settings.path);
   const isF = settings.type === "folder";
 
-  /* isSorting guard: keeps items STABLE during drag (no live reordering visual).
-     Items only move to new positions on drop via framer-motion layout animation. */
+  /* isSorting guard: keep items STABLE during drag — no live shuffling.
+     The blue drop indicator shows where the item will land.
+     On drop, items re-render in new positions. */
   const style: React.CSSProperties = {
-    transform: isSorting ? undefined : CSS.Transform.toString(transform),
-    transition: [transition, "opacity 200ms ease"].filter(Boolean).join(", "),
-    opacity: isDragging ? 0.4 : 1,
+    transform: isSorting ? undefined : CSS.Transform.toString(transform ? { ...transform, scaleX: 1, scaleY: 1 } : null),
+    transition: isSorting ? undefined : transition ?? undefined,
+    opacity: isDragging ? 0.3 : 1,
     position: "relative",
   };
 
@@ -562,7 +565,7 @@ function SortableItem({ settings, showIndicator, indicatorPos, indicatorIndented
             <FolderNameInput name={settings.label} onNameChange={onRename} onDone={onEditDone} />
           ) : (
             <div style={{ flex: 1, minWidth: 0, display: "flex", alignItems: "center", gap: "8px" }}>
-              <span style={{ fontSize: "14px", color: ext ? C.textDisabled : C.text, fontFamily: "var(--font-sans)", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>
+              <span style={{ fontSize: "14px", color: ext ? C.textDisabled : C.text, fontFamily: "'Inter', system-ui, sans-serif", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>
                 {settings.label}
               </span>
               {settings.iuSidebarHidden && (
@@ -584,7 +587,7 @@ function SortableItem({ settings, showIndicator, indicatorPos, indicatorIndented
         {/* ★ Invisible overlay button — handles all drag events ★ */}
         <button
           type="button"
-          style={{ position: "absolute", inset: 0, appearance: "none", border: "none", backgroundColor: "transparent", cursor: isF ? "default" : "pointer", zIndex: 10, padding: 0, margin: 0, display: "block", width: "100%" }}
+          style={{ position: "absolute", inset: 0, appearance: "none", border: "none", backgroundColor: "transparent", cursor: isF ? "default" : "grab", zIndex: 10, padding: 0, margin: 0, display: "block", width: "100%" }}
           {...attributes}
           {...listeners}
           disabled={ext}
@@ -634,9 +637,9 @@ function MobileRow({ settings, isLifted }: {
 
       {/* Label */}
       <span style={{
-        flex: 1, fontSize: "15px", fontWeight: 500,
+        flex: 1, fontSize: "14px", fontWeight: 500,
         color: C.text,
-        fontFamily: "var(--font-sans)",
+        fontFamily: "'Inter', system-ui, sans-serif",
         overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap",
       }}>
         {settings.label}
@@ -646,7 +649,7 @@ function MobileRow({ settings, isLifted }: {
       {!isF && (
         <span style={{
           fontSize: "13px", color: C.textMuted,
-          fontFamily: "var(--font-sans)",
+          fontFamily: "'Inter', system-ui, sans-serif",
           whiteSpace: "nowrap", flexShrink: 0,
         }}>
           Visible to all clients
@@ -727,7 +730,7 @@ function MobileAnimatedDemo() {
 /* ── Nav sidebar item ── */
 function NavItem({ icon, label, badge, active }: { icon: React.ReactNode; label: string; badge?: number; active?: boolean }) {
   return (
-    <div style={{ display: "flex", alignItems: "center", gap: "8px", padding: "5px 12px", borderRadius: "6px", fontSize: "12.5px", fontWeight: active ? 500 : 400, color: active ? C.text : C.navText, backgroundColor: active ? C.navActive : "transparent", cursor: "default", fontFamily: "var(--font-sans)" }}>
+    <div style={{ display: "flex", alignItems: "center", gap: "8px", padding: "5px 12px", borderRadius: "6px", fontSize: "12.5px", fontWeight: active ? 500 : 400, color: active ? C.text : C.navText, backgroundColor: active ? C.navActive : "transparent", cursor: "default", fontFamily: "'Inter', system-ui, sans-serif" }}>
       <span style={{ display: "flex", alignItems: "center", color: C.navTextMuted, flexShrink: 0 }}>{icon}</span>
       <span style={{ flex: 1 }}>{label}</span>
       {badge !== undefined && (
@@ -764,40 +767,24 @@ function ClientPreview({ items, inSplit = false }: { items: ModuleSettingsItem[]
   return (
     <div style={{ display: "flex", height: "100%", borderRadius: "8px", overflow: "hidden", border: "none" }}>
       {/* Dark sidebar */}
-      <div style={{ width: inSplit ? "100%" : "180px", flexShrink: 0, backgroundColor: C.darkBg, padding: "14px 0", display: "flex", flexDirection: "column" }}>
+      <div style={{ width: "160px", flexShrink: 0, backgroundColor: C.darkBg, borderRadius: "8px", padding: "14px 0", display: "flex", flexDirection: "column" }}>
         <div style={{ display: "flex", alignItems: "center", gap: "7px", padding: "0 11px 11px", marginBottom: "5px" }}>
-          <div style={{ width: "22px", height: "22px", borderRadius: "5px", backgroundColor: "rgba(255,255,255,0.1)", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "9.5px", lineHeight: 1, fontWeight: 400, color: C.darkText, fontFamily: "var(--font-sans)" }}>B</div>
-          <span style={{ fontSize: "11.5px", fontWeight: 400, color: C.darkText, fontFamily: "var(--font-sans)" }}>BrandMages</span>
+          <div style={{ width: "22px", height: "22px", borderRadius: "5px", backgroundColor: "rgba(255,255,255,0.1)", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "9.5px", lineHeight: 1, fontWeight: 400, color: C.darkText, fontFamily: "'Inter', system-ui, sans-serif" }}>B</div>
+          <span style={{ fontSize: "11px", fontWeight: 400, color: C.darkText, fontFamily: "'Inter', system-ui, sans-serif" }}>BrandMages</span>
         </div>
         <div style={{ flex: 1, padding: "2px 6px" }}>
           <AnimatePresence mode="popLayout">
             {preview.map((it) => (
               <motion.div key={it.id} layout layoutId={`pv-${it.id}`} initial={{ opacity: 0, x: -6 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: 6 }} transition={{ duration: 0.2 }}
-                style={{ position: "relative", display: "flex", alignItems: "center", gap: "7px", padding: it.isChild ? "4.5px 8px 4.5px 26px" : "4.5px 8px", borderRadius: it.isChild ? 0 : "5px", marginBottom: it.isChild ? 0 : "1px", cursor: "default", overflow: "visible" }}>
-                {it.isChild && (
-                  <div style={{
-                    position: "absolute", top: 0, left: "16px", width: "6px",
-                    borderLeft: "1px solid rgba(255,255,255,0.18)",
-                    borderBottom: it.isLastChild ? "1px solid rgba(255,255,255,0.18)" : "none",
-                    borderBottomLeftRadius: it.isLastChild ? "4px" : 0,
-                    ...(it.isLastChild ? { height: "50%" } : { bottom: 0 }),
-                  }} />
-                )}
-                {!it.isChild && <span style={{ color: C.darkTextMuted, display: "flex", alignItems: "center", transform: "scale(0.85)", transformOrigin: "center" }}><AppIconEl name={it.icon} /></span>}
-                <span style={{ fontSize: "11.5px", fontWeight: it.isFolder ? 500 : 400, color: C.darkText, fontFamily: "var(--font-sans)" }}>{it.name}</span>
+                style={{ position: "relative", display: "flex", alignItems: "center", gap: "7px", padding: it.isChild ? "4.5px 8px 4.5px 30px" : "4.5px 8px", borderRadius: it.isChild ? 0 : "5px", marginBottom: it.isChild ? 0 : "1px", cursor: "default", overflow: "hidden" }}>
+                {/* tree connector line removed */}
+                {!it.isChild && <span style={{ color: C.darkText, display: "flex", alignItems: "center", transform: "scale(0.85)", transformOrigin: "center" }}><AppIconEl name={it.icon} /></span>}
+                <span style={{ fontSize: "11px", fontWeight: it.isFolder ? 500 : 400, color: C.darkText, fontFamily: "'Inter', system-ui, sans-serif", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap", minWidth: 0 }}>{it.name}</span>
               </motion.div>
             ))}
           </AnimatePresence>
         </div>
       </div>
-      {!inSplit && (
-        <div style={{ flex: 1, backgroundColor: C.bg, padding: "24px 20px" }}>
-          <h5 style={{ margin: "0 0 16px", fontSize: "15px", fontWeight: 600, color: C.text, fontFamily: "var(--font-sans)" }}>Good morning</h5>
-          <div style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
-            {[85, 70, 60, 78, 45].map((w, i) => <div key={i} style={{ height: "8px", width: `${w}%`, borderRadius: "4px", backgroundColor: "#f0f0f0" }} />)}
-          </div>
-        </div>
-      )}
     </div>
   );
 }
@@ -812,8 +799,11 @@ export function InteractiveAppLibrary({ inSplit = false }: { inSplit?: boolean }
   const [addAppIndex, setAddAppIndex] = useState(0);
   const containerRef = useRef<HTMLDivElement>(null);
 
-  const sensors = useSensors(useSensor(PointerSensor, { activationConstraint: { distance: 3 } }));
+  const sensors = useSensors(useSensor(PointerSensor, { activationConstraint: { distance: 5 } }));
   const { activeItem, overTarget, dragDirection, destinationFolderId, handleDragStart, handleDragOver, handleDragMove, handleDragEnd } = useAppListDragState({ moduleSettings, setModuleSettings, containerRef });
+
+  /* Idle hint — subtle sway on select rows to hint at drag */
+  const { containerRef: idleRef, isIdle: rowIdleActive, dismiss: dismissRowIdle } = useIdleHint({ delay: 2000 });
 
   const isDraggingIntoFolder = Boolean(destinationFolderId);
   const isDraggingFolderIntoFolder = isDraggingIntoFolder && activeItem?.item.type === "folder";
@@ -853,30 +843,87 @@ export function InteractiveAppLibrary({ inSplit = false }: { inSplit?: boolean }
 
   const helperText = isDraggingFolderIntoFolder && !isDraggingFolderIntoSelf ? "You cannot put a folder inside a folder." : undefined;
 
-  const dropAnimation = {
-    sideEffects: defaultDropAnimationSideEffects({
-      styles: { active: { opacity: "0" } },
-    }),
-    duration: 220,
-    easing: "ease",
-  };
+  /* No drop animation — overlay vanishes instantly on drop,
+     then framer-motion tween smoothly slides items into place. */
+  const dropAnimation = null;
 
   const isDesktop = useMediaQuery("(min-width: 1024px)", true);
+
+  /* ── Cursor-following tooltip — stays until user drags ── */
+  const tooltipRef = useRef<HTMLDivElement>(null);
+  const rootRef = useRef<HTMLDivElement>(null);
+  const [tooltipVisible, setTooltipVisible] = useState(false);
+  const tooltipDone = useRef(false);
+  const tooltipPos = useRef({ x: 0, y: 0 });
+  const isHovering = useRef(false);
+
+  useEffect(() => {
+    const list = containerRef.current;
+    if (!list) return;
+
+    const getRootPos = (e: MouseEvent) => {
+      const root = rootRef.current;
+      const rect = root ? root.getBoundingClientRect() : list.getBoundingClientRect();
+      return { x: e.clientX - rect.left, y: e.clientY - rect.top };
+    };
+
+    const onMove = (e: MouseEvent) => {
+      tooltipPos.current = getRootPos(e);
+      if (tooltipRef.current) {
+        tooltipRef.current.style.transform = `translate(${tooltipPos.current.x}px, ${tooltipPos.current.y - 40}px)`;
+      }
+    };
+
+    const onEnter = (e: MouseEvent) => {
+      isHovering.current = true;
+      if (tooltipDone.current) return;
+      tooltipPos.current = getRootPos(e);
+      setTooltipVisible(true);
+    };
+
+    const onLeave = () => {
+      isHovering.current = false;
+      setTooltipVisible(false);
+    };
+
+    list.addEventListener("mousemove", onMove);
+    list.addEventListener("mouseenter", onEnter);
+    list.addEventListener("mouseleave", onLeave);
+    return () => {
+      list.removeEventListener("mousemove", onMove);
+      list.removeEventListener("mouseenter", onEnter);
+      list.removeEventListener("mouseleave", onLeave);
+    };
+  }, []);
+
+  // Permanently dismiss tooltip + idle hint once user starts dragging
+  useEffect(() => {
+    if (activeItem) {
+      setTooltipVisible(false);
+      tooltipDone.current = true;
+      dismissRowIdle();
+    }
+  }, [activeItem, dismissRowIdle]);
 
   /* ── Mobile: animated demo (no interaction, loops reorder animation) ── */
   if (!isDesktop) {
     return <MobileAnimatedDemo />;
   }
 
-  /* ── Desktop: full layout (unchanged) ── */
+  /* ── Desktop: full layout ── */
   return (
+    <div ref={(el) => {
+      (rootRef as React.MutableRefObject<HTMLDivElement | null>).current = el;
+      (idleRef as React.MutableRefObject<HTMLDivElement | null>).current = el;
+    }} style={{ position: "relative" }}>
     <motion.div
       initial={{ opacity: 0, scale: 0.97 }}
       whileInView={{ opacity: 1, scale: 1 }}
       viewport={{ once: true, margin: "-40px" }}
       transition={{ duration: 0.6, ease: [0.25, 0.1, 0.25, 1] }}
-      style={{ borderRadius: "12px", overflow: "hidden", backgroundColor: "#141414", border: "1px solid rgba(255, 255, 255, 0.06)" }}
+      style={{ position: "relative", borderRadius: "12px", overflow: "hidden", backgroundColor: "#141414", border: "1px solid rgba(255, 255, 255, 0.06)" }}
     >
+
       {/* ─ CSS for hover effects ─ */}
       <style>{`
         .menu-trigger:hover { background-color: #e5e7eb; }
@@ -898,55 +945,18 @@ export function InteractiveAppLibrary({ inSplit = false }: { inSplit?: boolean }
       {/* Main layout: left nav + content area */}
       <div style={{ display: "flex", minHeight: inSplit ? "360px" : "460px", backgroundColor: C.bg }}>
 
-        {/* ─── LEFT NAV ─── */}
-        {!inSplit && (
-          <div style={{ width: "180px", flexShrink: 0, backgroundColor: C.navBg, borderRight: `1px solid ${C.navBorder}`, padding: "12px 0", display: "flex", flexDirection: "column", fontSize: "12.5px" }}>
-            <div style={{ display: "flex", alignItems: "center", gap: "8px", padding: "0 12px 12px" }}>
-              <div style={{ width: "26px", height: "26px", borderRadius: "6px", backgroundColor: C.accent, display: "flex", alignItems: "center", justifyContent: "center", fontSize: "11px", fontWeight: 700, color: "#fff", fontFamily: "var(--font-sans)" }}>B</div>
-              <span style={{ fontSize: "13px", fontWeight: 600, color: C.text, fontFamily: "var(--font-sans)" }}>BrandMages</span>
-            </div>
-            <div style={{ padding: "0 6px", display: "flex", flexDirection: "column", gap: "1px" }}>
-              <NavItem icon={<DashboardIcon />} label="Dashboard" />
-              <NavItem icon={<CRMIcon />} label="CRM" />
-              <NavItem icon={<BellIcon />} label="Notifications" badge={2} />
-              <NavItem icon={<AutomationsIcon />} label="Automations" />
-            </div>
-            <div style={{ padding: "14px 16px 4px", fontSize: "10px", fontWeight: 600, letterSpacing: "0.05em", textTransform: "uppercase", color: C.navLabel }}>Apps</div>
-            <div style={{ padding: "0 6px", display: "flex", flexDirection: "column", gap: "1px" }}>
-              <NavItem icon={<HomeIcon />} label="Home" />
-              <NavItem icon={<MessagesIcon />} label="Messages" badge={3} />
-              <NavItem icon={<BillingIcon />} label="Billing" />
-              <NavItem icon={<FilesIcon />} label="Files" />
-              <NavItem icon={<TasksIcon />} label="Tasks" />
-            </div>
-            <div style={{ padding: "14px 16px 4px", fontSize: "10px", fontWeight: 600, letterSpacing: "0.05em", textTransform: "uppercase", color: C.navLabel }}>Preferences</div>
-            <div style={{ padding: "0 6px", display: "flex", flexDirection: "column", gap: "1px" }}>
-              <NavItem icon={<AppLibraryIcon />} label="App Library" active />
-              <NavItem icon={<CustomizeIcon />} label="Customization" />
-            </div>
-            <div style={{ flex: 1 }} />
-            <div style={{ padding: "0 6px", display: "flex", flexDirection: "column", gap: "1px", borderTop: `1px solid ${C.navBorder}`, paddingTop: "8px", marginTop: "8px" }}>
-              <NavItem icon={<HelpIcon />} label="Help center" />
-              <NavItem icon={<SettingsIcon />} label="Settings" />
-              <div style={{ display: "flex", alignItems: "center", gap: "8px", padding: "5px 12px", fontSize: "12.5px", color: C.navText, fontFamily: "var(--font-sans)" }}>
-                <span style={{ width: "8px", height: "8px", borderRadius: "50%", backgroundColor: "#22c55e", flexShrink: 0 }} />
-                <span>Portal</span>
-              </div>
-            </div>
-          </div>
-        )}
 
         {/* ─── CENTER + RIGHT: wrapped in flex-col for shared toolbar ─── */}
         <div style={{ flex: 1, display: "flex", flexDirection: "column", minWidth: 0 }}>
 
           {/* Toolbar (spans full width of center + right) */}
           <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", padding: inSplit ? "12px 12px" : "16px 20px", borderBottom: `1px solid ${C.border}` }}>
-            <h4 style={{ margin: 0, fontSize: inSplit ? "13px" : "15px", fontWeight: 600, color: C.text, fontFamily: "var(--font-sans)" }}>App Library</h4>
+            <h4 style={{ margin: 0, fontSize: inSplit ? "13px" : "15px", fontWeight: 500, color: C.text, fontFamily: "'Inter', system-ui, sans-serif" }}>App Library</h4>
             <div style={{ display: "flex", gap: "8px" }}>
-              <button style={{ display: "flex", alignItems: "center", gap: "5px", padding: "5px 12px", borderRadius: "5px", border: `1px solid #d1d5db`, backgroundColor: "#ffffff", color: C.text, fontSize: "11px", fontWeight: 500, cursor: "default", fontFamily: "var(--font-sans)", pointerEvents: "none" }}>
+              <button style={{ display: "flex", alignItems: "center", gap: "5px", padding: "5px 12px", borderRadius: "5px", border: `1px solid #d1d5db`, backgroundColor: "#ffffff", color: C.text, fontSize: "11px", fontWeight: 500, cursor: "default", fontFamily: "'Inter', system-ui, sans-serif", pointerEvents: "none" }}>
                 Add folder
               </button>
-              <button style={{ display: "flex", alignItems: "center", gap: "5px", padding: "5px 12px", borderRadius: "5px", border: `1px solid #d1d5db`, backgroundColor: "#ffffff", color: C.text, fontSize: "11px", fontWeight: 500, cursor: "default", fontFamily: "var(--font-sans)", pointerEvents: "none" }}>
+              <button style={{ display: "flex", alignItems: "center", gap: "5px", padding: "5px 12px", borderRadius: "5px", border: `1px solid #d1d5db`, backgroundColor: "#ffffff", color: C.text, fontSize: "11px", fontWeight: 500, cursor: "default", fontFamily: "'Inter', system-ui, sans-serif", pointerEvents: "none" }}>
                 Add app
               </button>
             </div>
@@ -958,17 +968,23 @@ export function InteractiveAppLibrary({ inSplit = false }: { inSplit?: boolean }
             {/* ─── LEFT: APP LIST ─── */}
             <div style={{ flex: 1, display: "flex", flexDirection: "column", minWidth: 0, padding: inSplit ? "0 12px 12px 12px" : "0 20px 20px 20px" }}>
               <div style={{ padding: inSplit ? "14px 0 8px" : "20px 0 10px 0" }}>
-                <h5 style={{ margin: 0, fontSize: "18px", fontWeight: 600, color: C.text, fontFamily: "var(--font-sans)" }}>Apps</h5>
+                <h5 style={{ margin: 0, fontSize: "18px", fontWeight: 500, color: C.text, fontFamily: "'Inter', system-ui, sans-serif" }}>Apps</h5>
               </div>
               <DndContext sensors={sensors} collisionDetection={closestCenter}
                 onDragStart={handleDragStart} onDragOver={handleDragOver} onDragMove={handleDragMove} onDragEnd={handleDragEnd}>
                 <SortableContext items={moduleSettings.map(({ id }) => id)} strategy={verticalListSortingStrategy}>
-                  <div ref={containerRef} style={{ border: `1px solid ${C.border}`, borderRadius: "8px", padding: "8px 0", overflow: "hidden" }}>
+                  <div ref={containerRef} style={{ position: "relative", border: `1px solid ${C.border}`, borderRadius: "8px", padding: "8px 0", overflow: "hidden" }}>
                     {moduleSettings.map((s, idx) => {
                       if (s.disabled) return null;
                       const showInd = overItem?.item.id === s.id && !isDraggingFolderIntoFolder && !isDraggingFolderIntoSelf;
+                      const idleSway = rowIdleActive && !activeItem && (idx === 2 || idx === 4);
                       return (
-                        <motion.div key={s.id} layout="position" transition={{ type: "tween", duration: 0.25, ease: "easeOut" }}>
+                        <motion.div
+                          key={s.id}
+                          layout={!activeItem ? "position" : false}
+                          animate={idleSway ? { x: [0, 2, 0, -1, 0] } : { x: 0 }}
+                          transition={idleSway ? { duration: 4, repeat: Infinity, ease: "easeInOut" } : { type: "tween", duration: 0.25, ease: [0.25, 0.1, 0.25, 1] }}
+                        >
                           <SortableItem
                             settings={s}
                             showIndicator={showInd}
@@ -1007,9 +1023,9 @@ export function InteractiveAppLibrary({ inSplit = false }: { inSplit?: boolean }
             </div>
 
             {/* ─── RIGHT: CLIENT PREVIEW ─── */}
-            <div style={{ width: inSplit ? "240px" : "320px", flexShrink: 0, backgroundColor: C.bgAlt, borderLeft: `1px solid ${C.border}`, padding: inSplit ? "0 12px 12px 12px" : "0 20px 20px 20px", display: "flex", flexDirection: "column", borderRadius: "0 0 12px 0" }}>
+            <div style={{ width: inSplit ? "180px" : "200px", flexShrink: 0, backgroundColor: C.bgAlt, borderLeft: `1px solid ${C.border}`, padding: inSplit ? "0 12px 12px 12px" : "0 16px 20px 16px", display: "flex", flexDirection: "column", borderRadius: "0 0 12px 0" }}>
               <div style={{ padding: inSplit ? "14px 0 8px" : "20px 0 10px 0" }}>
-                <h4 style={{ margin: 0, fontSize: "18px", fontWeight: 600, color: C.text, fontFamily: "var(--font-sans)" }}>Client Preview</h4>
+                <h4 style={{ margin: 0, fontSize: "18px", fontWeight: 500, color: C.text, fontFamily: "'Inter', system-ui, sans-serif" }}>Client Preview</h4>
               </div>
               <div style={{ flex: 1 }}><ClientPreview items={moduleSettings} inSplit={inSplit} /></div>
             </div>
@@ -1017,6 +1033,68 @@ export function InteractiveAppLibrary({ inSplit = false }: { inSplit?: boolean }
           </div>
         </div>
       </div>
+
     </motion.div>
+
+    {/* Tooltip rendered outside overflow:hidden motion.div */}
+    <AnimatePresence>
+      {tooltipVisible && (
+        <motion.div
+          ref={tooltipRef}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.15 }}
+          style={{
+            position: "absolute",
+            top: 0,
+            left: 0,
+            transform: `translate(${tooltipPos.current.x}px, ${tooltipPos.current.y - 40}px)`,
+            pointerEvents: "none",
+            zIndex: 100,
+          }}
+        >
+          <div
+            style={{
+              position: "relative",
+              display: "inline-flex",
+              alignItems: "center",
+              padding: "4px 8px",
+              borderRadius: "6px",
+              backgroundColor: "rgba(39, 39, 42, 0.95)",
+              backdropFilter: "blur(8px)",
+              WebkitBackdropFilter: "blur(8px)",
+              border: "1px solid rgba(63, 63, 70, 0.5)",
+              boxShadow: "0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -2px rgba(0,0,0,0.1)",
+              whiteSpace: "nowrap",
+            }}
+          >
+            <span
+              style={{
+                fontFamily: "'Inter', system-ui, sans-serif",
+                fontSize: "10px",
+                fontWeight: 400,
+                color: "#ffffff",
+              }}
+            >
+              Drag to reorder
+            </span>
+            <div style={{
+              position: "absolute",
+              bottom: "-4px",
+              left: "50%",
+              marginLeft: "-4px",
+              width: "8px",
+              height: "8px",
+              backgroundColor: "rgba(39, 39, 42, 0.95)",
+              transform: "rotate(45deg)",
+              borderRight: "1px solid rgba(63, 63, 70, 0.5)",
+              borderBottom: "1px solid rgba(63, 63, 70, 0.5)",
+            }} />
+          </div>
+        </motion.div>
+      )}
+    </AnimatePresence>
+    </div>
   );
 }

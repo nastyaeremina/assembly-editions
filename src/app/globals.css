@@ -198,6 +198,12 @@ html {
   border-color: var(--color-accent);
 }
 
+/* Segment auto-cycle progress indicator – uses scaleX for smooth GPU compositing */
+@keyframes segment-progress {
+  from { transform: scaleX(0); }
+  to { transform: scaleX(1); }
+}
+
 /* Floating animations for editions page */
 @keyframes float-slow {
   0%, 100% {
@@ -296,6 +302,18 @@ html {
 }
 .scrollbar-hide::-webkit-scrollbar {
   display: none;
+}
+
+/* Rail text fade-in when step changes */
+@keyframes railFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 /* ── Hero section (no custom CSS needed — uses Tailwind utilities) ── */

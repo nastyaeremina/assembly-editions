@@ -93,9 +93,19 @@ export function EditorialRail({
           }}
         >
           SECTION {sectionNumber}
+          {subsectionSuffix ? (
+            <span
+              style={{
+                transition: "opacity 0.3s ease",
+              }}
+            >
+              -{subsectionSuffix}
+            </span>
+          ) : null}
         </p>
         <h2
           key={title}
+          className="editorial-rail-fade-in"
           style={{
             fontFamily: "'PP Mori', var(--font-sans)",
             fontWeight: 600,
@@ -104,14 +114,15 @@ export function EditorialRail({
             letterSpacing: "-0.025em",
             color: "#fff",
             margin: "0 0 1.25rem 0",
-            transition: "opacity 0.4s ease",
             whiteSpace: "pre-line",
+            animation: "railFadeIn 0.4s ease both",
           }}
         >
           {title}
         </h2>
         <p
           key={description}
+          className="editorial-rail-fade-in"
           style={{
             fontFamily: "'PP Mori', var(--font-sans)",
             fontWeight: 400,
@@ -120,7 +131,7 @@ export function EditorialRail({
             color: "rgba(255, 255, 255, 0.45)",
             margin: 0,
             maxWidth: "22rem",
-            transition: "opacity 0.4s ease",
+            animation: "railFadeIn 0.4s ease 0.05s both",
           }}
         >
           {description}

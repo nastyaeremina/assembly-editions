@@ -2,6 +2,7 @@
 
 import { useState, useCallback, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { useMediaQuery } from "@/hooks/useMediaQuery";
 
 /* ──────────────────────────────────────────────────────────
    SEGMENT-BASED CLIENT HOME PREVIEW
@@ -29,6 +30,7 @@ interface Segment {
   /* Content that differs per segment */
   greeting: string;
   subtitle: string;
+  actions: { invoices: number; contracts: number; tasks: number; forms: number };
 }
 
 /* Fixed content-area colors (never change) */
@@ -49,6 +51,7 @@ const ICO = {
   forms: "/Icons/Icon (approved)-5.svg",
   billing: "/Icons/Icon (approved)-4.svg",
   contracts: "/Icons/Icon (approved)-3.svg",
+  contractsCard: "/Icons/Icon (approved)-3.svg",
   helpdesk: "/Icons/Icon (approved)-2.svg",
   more: "/Icons/Icon (approved)-1.svg",
   arrow: "/Icons/Icon (approved).svg",
@@ -70,8 +73,9 @@ const SEGMENTS: Segment[] = [
     sidebarBadgeBg: "rgba(255,255,255,0.1)",
     sidebarBadgeText: "#e2e8f0",
     bannerGradient: "linear-gradient(135deg, #1e3a5f 0%, #334155 50%, #475569 100%)",
-    greeting: "Good morning Mike",
+    greeting: "Welcome back Mike",
     subtitle: "Here\u2019s what needs your attention today",
+    actions: { invoices: 1, contracts: 1, tasks: 1, forms: 1 },
   },
   {
     id: "gold",
@@ -86,8 +90,9 @@ const SEGMENTS: Segment[] = [
     sidebarBadgeBg: "rgba(251,191,36,0.12)",
     sidebarBadgeText: "#e2e8f0",
     bannerGradient: "linear-gradient(135deg, #78350f 0%, #92400e 50%, #b45309 100%)",
-    greeting: "Good morning Sarah",
+    greeting: "Welcome back Sarah",
     subtitle: "Here\u2019s what needs your attention today",
+    actions: { invoices: 2, contracts: 1, tasks: 1, forms: 1 },
   },
   {
     id: "silver",
@@ -102,8 +107,9 @@ const SEGMENTS: Segment[] = [
     sidebarBadgeBg: "rgba(139,92,246,0.12)",
     sidebarBadgeText: "#e2e8f0",
     bannerGradient: "linear-gradient(135deg, #1e1b2e 0%, #312e47 50%, #44406a 100%)",
-    greeting: "Good morning James",
+    greeting: "Welcome back James",
     subtitle: "Here\u2019s what needs your attention today",
+    actions: { invoices: 2, contracts: 2, tasks: 1, forms: 1 },
   },
   {
     id: "bronze",
@@ -118,8 +124,9 @@ const SEGMENTS: Segment[] = [
     sidebarBadgeBg: "rgba(20,184,166,0.12)",
     sidebarBadgeText: "#e2e8f0",
     bannerGradient: "linear-gradient(135deg, #134e4a 0%, #1a5c56 50%, #237068 100%)",
-    greeting: "Good morning Alex",
+    greeting: "Welcome back Alex",
     subtitle: "Here\u2019s what needs your attention today",
+    actions: { invoices: 1, contracts: 1, tasks: 1, forms: 1 },
   },
 ];
 
@@ -136,7 +143,7 @@ function Ico({ src, size = 14, invert = false }: { src: string; size?: number; i
       height={size}
       style={{
         display: "block",
-        filter: invert ? "invert(1)" : "none",
+        filter: invert ? "brightness(0) invert(1)" : "none",
         opacity: invert ? 0.85 : 0.7,
         transition: "filter 400ms ease",
       }}
@@ -183,11 +190,11 @@ function ActionCard({ iconSrc, label, count, unit }: {
       minWidth: 0,
     }}>
       <div style={{ display: "flex", alignItems: "center", gap: "7px" }}>
-        <span style={{ display: "flex" }}><Ico src={iconSrc} size={12} /></span>
-        <span style={{ fontSize: "12px", fontWeight: 400, color: CONTENT.textPrimary, fontFamily: "'Inter', system-ui, sans-serif" }}>{label}</span>
+        <span style={{ display: "flex", flexShrink: 0 }}><Ico src={iconSrc} size={12} /></span>
+        <span style={{ fontSize: "12px", fontWeight: 500, color: CONTENT.textPrimary, fontFamily: "'Inter', system-ui, sans-serif", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{label}</span>
       </div>
       <span style={{ fontSize: "11px", color: CONTENT.textSecondary, fontFamily: "'Inter', system-ui, sans-serif" }}>
-        {count} {unit}
+        {count} {count === 1 ? unit : `${unit}s`}
       </span>
     </div>
   );
@@ -212,6 +219,8 @@ export function ThemedClientHome({ inSplit = false }: { inSplit?: boolean }) {
   const overrideTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
   const segment = SEGMENTS[activeIndex];
+  const [showTooltip, setShowTooltip] = useState(false);
+  const tooltipDismissed = useRef(false);
 
   /* Auto-cycle segments when component is visible on screen.
      Uses IntersectionObserver to start/stop a 2.5s interval.
@@ -273,6 +282,8 @@ export function ThemedClientHome({ inSplit = false }: { inSplit?: boolean }) {
   const handleSegmentClick = useCallback((i: number) => {
     setActiveIndex(i);
     setManualOverride(true);
+    setShowTooltip(false);
+    tooltipDismissed.current = true;
     if (overrideTimer.current) clearTimeout(overrideTimer.current);
     overrideTimer.current = setTimeout(() => setManualOverride(false), 4000);
   }, []);
@@ -284,92 +295,286 @@ export function ThemedClientHome({ inSplit = false }: { inSplit?: boolean }) {
     };
   }, []);
 
-  return (
-    <div ref={containerRef}>
+  const isMobile = useMediaQuery("(max-width: 1023px)", false);
 
-      {/* ── Segment switcher (above preview) ── */}
-      <div style={{ marginBottom: "16px" }}>
-        {/* Label */}
-        {/* Segment pills */}
-        <div style={{ display: "flex", flexWrap: "wrap" as const, gap: "6px", marginBottom: "12px" }}>
-          {SEGMENTS.map((s, i) => (
-            <button
-              key={s.id}
-              onClick={() => handleSegmentClick(i)}
-              style={{
-                display: "inline-flex",
-                alignItems: "center",
-                gap: "6px",
-                padding: "5px 14px",
-                borderRadius: "20px",
-                border: activeIndex === i
-                  ? "1px solid rgba(255,255,255,0.15)"
-                  : "1px solid transparent",
-                backgroundColor: activeIndex === i
-                  ? "rgba(255,255,255,0.1)"
-                  : "transparent",
-                cursor: "pointer",
-                transition: "background-color 300ms ease, color 300ms ease, border-color 300ms ease",
-                outline: "none",
-              }}
-            >
-              {/* Colored dot */}
-              <span style={{
-                width: "8px", height: "8px", borderRadius: "50%",
-                backgroundColor: s.dotColor, flexShrink: 0,
-              }} />
-              {/* Name */}
-              <span style={{
-                fontFamily: "'PP Mori', var(--font-sans)",
-                fontSize: "12px",
-                fontWeight: 500,
-                color: activeIndex === i ? "rgba(255,255,255,0.85)" : "rgba(255,255,255,0.5)",
-                transition: "color 300ms ease",
-              }}>
-                {s.name}
-              </span>
-              {/* Client count */}
-              <span style={{
-                fontFamily: "var(--font-mono, monospace)",
-                fontSize: "10px",
-                color: activeIndex === i ? "rgba(255,255,255,0.5)" : "rgba(255,255,255,0.3)",
-                transition: "color 300ms ease",
-              }}>
-                {s.clientCount}
-              </span>
-            </button>
-          ))}
-        </div>
-
-        {/* Stacked bar chart */}
-        <div style={{
-          display: "flex", height: "4px", borderRadius: "2px",
-          overflow: "hidden", backgroundColor: "rgba(255,255,255,0.05)",
-        }}>
-          {SEGMENTS.map((s, i) => (
+  /* ── Segment switcher (shared between mobile & desktop) ── */
+  const segmentSwitcher = (
+    <div
+      onMouseEnter={() => { if (!tooltipDismissed.current) setShowTooltip(true); }}
+      onMouseLeave={() => setShowTooltip(false)}
+      style={{
+        display: "flex",
+        alignItems: "center",
+        padding: "8px 14px 8px 4px",
+        borderBottom: "1px solid rgba(255,255,255,0.06)",
+        position: "relative",
+      }}
+    >
+      {SEGMENTS.map((s, i) => {
+        const isActive = activeIndex === i;
+        return (
+          <button
+            key={s.id}
+            onClick={() => handleSegmentClick(i)}
+            style={{
+              display: "inline-flex",
+              alignItems: "center",
+              gap: "5px",
+              padding: "4px 10px",
+              border: "none",
+              borderRadius: "0",
+              backgroundColor: "transparent",
+              cursor: "pointer",
+              outline: "none",
+              transition: "opacity 300ms ease",
+              opacity: isActive ? 1 : 0.4,
+              position: "relative",
+            }}
+          >
+            <span style={{
+              width: "5px", height: "5px", borderRadius: "50%",
+              backgroundColor: s.dotColor, flexShrink: 0,
+            }} />
+            <span style={{
+              fontFamily: "'PP Mori', var(--font-sans)",
+              fontSize: "0.75rem",
+              fontWeight: isActive ? 500 : 400,
+              color: "rgba(255,255,255,0.85)",
+              letterSpacing: "-0.01em",
+            }}>
+              {s.name}
+            </span>
+            <span style={{
+              fontFamily: "var(--font-mono, monospace)",
+              fontSize: "0.65rem",
+              color: "rgba(255,255,255,0.35)",
+            }}>
+              {s.clientCount}
+            </span>
+          </button>
+        );
+      })}
+      {/* Continuous progress line across full tab bar */}
+      {!manualOverride && (() => {
+        const total = SEGMENTS.length;
+        const filledPercent = (activeIndex / total) * 100;
+        const segmentPercent = 100 / total;
+        const dotColor = SEGMENTS[activeIndex]?.dotColor ?? "#fff";
+        return (
+          <div
+            style={{
+              position: "absolute",
+              bottom: 0,
+              left: 0,
+              right: 0,
+              height: "1.5px",
+            }}
+          >
+            {/* Already-filled portion (previous segments) */}
+            {activeIndex > 0 && (
+              <div
+                style={{
+                  position: "absolute",
+                  top: 0,
+                  left: 0,
+                  width: `${filledPercent}%`,
+                  height: "100%",
+                  backgroundColor: dotColor,
+                  opacity: 0.35,
+                  borderRadius: "1px",
+                }}
+              />
+            )}
+            {/* Animating portion (current segment) */}
             <div
-              key={s.id}
+              key={`progress-${activeIndex}`}
               style={{
-                width: `${(s.clientCount / TOTAL_CLIENTS) * 100}%`,
-                backgroundColor: s.dotColor,
-                opacity: activeIndex === i ? 1 : 0.4,
-                transition: "opacity 400ms ease",
+                position: "absolute",
+                top: 0,
+                left: `${filledPercent}%`,
+                width: `${segmentPercent}%`,
+                height: "100%",
+                backgroundColor: dotColor,
+                opacity: 0.35,
+                borderRadius: "1px",
+                transformOrigin: "left",
+                animation: "segment-progress 2.5s linear forwards",
               }}
             />
-          ))}
+          </div>
+        );
+      })()}
+      <span style={{
+        marginLeft: "auto",
+        fontFamily: "var(--font-mono, monospace)",
+        fontSize: "0.65rem",
+        letterSpacing: "0.04em",
+        color: "rgba(255,255,255,0.2)",
+        textTransform: "uppercase" as const,
+      }}>
+        {TOTAL_CLIENTS} clients
+      </span>
+      {/* Tooltip — positioned over 2nd segment (Gold) since 1st is already active */}
+      <AnimatePresence>
+        {showTooltip && (
+          <motion.div
+            initial={{ opacity: 0, y: 4 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: 4 }}
+            transition={{ duration: 0.15 }}
+            style={{
+              position: "absolute",
+              top: "calc(100% + 6px)",
+              left: "80px",
+              pointerEvents: "none",
+              zIndex: 100,
+            }}
+          >
+            <div style={{
+              position: "relative",
+              display: "inline-flex",
+              alignItems: "center",
+              padding: "4px 8px",
+              borderRadius: "6px",
+              backgroundColor: "rgba(39, 39, 42, 0.95)",
+              backdropFilter: "blur(8px)",
+              WebkitBackdropFilter: "blur(8px)",
+              border: "1px solid rgba(63, 63, 70, 0.5)",
+              boxShadow: "0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -2px rgba(0,0,0,0.1)",
+              whiteSpace: "nowrap",
+            }}>
+              <span style={{
+                fontFamily: "'Inter', system-ui, sans-serif",
+                fontSize: "10px",
+                fontWeight: 400,
+                color: "#ffffff",
+              }}>
+                Click to switch
+              </span>
+              <div style={{
+                position: "absolute",
+                top: "-4px",
+                left: "16px",
+                width: "8px",
+                height: "8px",
+                backgroundColor: "rgba(39, 39, 42, 0.95)",
+                transform: "rotate(45deg)",
+                borderLeft: "1px solid rgba(63, 63, 70, 0.5)",
+                borderTop: "1px solid rgba(63, 63, 70, 0.5)",
+              }} />
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </div>
+  );
+
+  /* ── Mobile: no sidebar, mobile top bar ── */
+  if (isMobile) {
+    return (
+      <div ref={containerRef}>
+        <div style={{
+          borderRadius: "12px",
+          border: "1px solid rgba(255,255,255,0.08)",
+          overflow: "hidden",
+          boxShadow: `0 0 80px ${segment.accent}10, 0 4px 30px rgba(0,0,0,0.3)`,
+          transition: "box-shadow 500ms ease",
+          fontFamily: "'Inter', system-ui, sans-serif",
+        }}>
+          {segmentSwitcher}
+          {/* Mobile app top bar */}
+          <div style={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "space-between",
+            backgroundColor: "#ffffff",
+            padding: "12px 16px",
+            borderBottom: "1px solid #e5e7eb",
+          }}>
+            <div style={{ display: "flex", alignItems: "center", gap: "12px" }}>
+              <div style={{ display: "flex", flexDirection: "column", gap: "3.5px", cursor: "default" }}>
+                <div style={{ width: "16px", height: "1.5px", backgroundColor: "#18181b", borderRadius: "1px" }} />
+                <div style={{ width: "16px", height: "1.5px", backgroundColor: "#18181b", borderRadius: "1px" }} />
+                <div style={{ width: "16px", height: "1.5px", backgroundColor: "#18181b", borderRadius: "1px" }} />
+              </div>
+              <span style={{ fontSize: "14px", fontWeight: 500, color: "#18181b" }}>Home</span>
+            </div>
+          </div>
+
+          {/* Content area — no sidebar */}
+          <div style={{ backgroundColor: CONTENT.bg, padding: "20px 16px 24px", overflow: "hidden" }}>
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={segment.id + "-greeting"}
+                variants={fadeVariant}
+                initial="initial"
+                animate="animate"
+                exit="exit"
+                transition={fadeTransition}
+                style={{ marginBottom: "4px", minHeight: "42px" }}
+              >
+                <div style={{
+                  fontSize: "18px", fontWeight: 500,
+                  color: CONTENT.textPrimary, fontFamily: "'Inter', system-ui, sans-serif",
+                }}>{segment.greeting}</div>
+                <div style={{
+                  fontSize: "12px", color: CONTENT.textSecondary,
+                  fontFamily: "'Inter', system-ui, sans-serif", marginTop: "2px",
+                }}>{segment.subtitle}</div>
+              </motion.div>
+            </AnimatePresence>
+
+            {/* Hero banner */}
+            <div style={{
+              marginTop: "12px", borderRadius: "8px", height: "140px",
+              background: segment.bannerGradient, transition: "background 500ms ease",
+              position: "relative", overflow: "hidden",
+            }} />
+
+            {/* Actions card */}
+            <div style={{
+              marginTop: "14px", borderRadius: "8px",
+              border: `1px solid ${CONTENT.cardBorder}`,
+              backgroundColor: CONTENT.cardBg, padding: "16px",
+            }}>
+              <div style={{
+                fontSize: "14px", fontWeight: 500, color: CONTENT.textPrimary,
+                fontFamily: "'Inter', system-ui, sans-serif", marginBottom: "3px",
+              }}>Your actions</div>
+              <div style={{
+                fontSize: "12px", color: CONTENT.textSecondary,
+                fontFamily: "'Inter', system-ui, sans-serif", marginBottom: "10px",
+              }}>You have {segment.actions.invoices + segment.actions.contracts + segment.actions.tasks + segment.actions.forms} pending items</div>
+
+              <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "8px" }}>
+                <ActionCard iconSrc={ICO.billing} label="Invoices" count={segment.actions.invoices} unit="invoice" />
+                <ActionCard iconSrc={ICO.contractsCard} label="Contracts" count={segment.actions.contracts} unit="contract" />
+                <ActionCard iconSrc={ICO.tasks} label="Tasks" count={segment.actions.tasks} unit="task" />
+                <ActionCard iconSrc={ICO.forms} label="Forms" count={segment.actions.forms} unit="form" />
+              </div>
+            </div>
+          </div>
         </div>
       </div>
+    );
+  }
+
+  /* ── Desktop: full layout with sidebar ── */
+  return (
+    <div ref={containerRef}>
 
       {/* ── Portal preview container ── */}
       <motion.div
         style={{
           borderRadius: "12px",
-          border: "1px solid rgba(255,255,255,0.1)",
+          border: "1px solid rgba(255,255,255,0.08)",
           overflow: "hidden",
           boxShadow: `0 0 80px ${segment.accent}10, 0 4px 30px rgba(0,0,0,0.3)`,
           transition: "box-shadow 500ms ease",
         }}
       >
+        {segmentSwitcher}
+
         {/* Browser chrome */}
         <div style={{
           position: "relative", display: "flex", alignItems: "center",
@@ -411,7 +616,7 @@ export function ThemedClientHome({ inSplit = false }: { inSplit?: boolean }) {
                 style={{ borderRadius: "5px", display: "block" }}
               />
               <span style={{
-                fontSize: "11.5px", fontWeight: 600, color: segment.sidebarText,
+                fontSize: "11.5px", fontWeight: 500, color: segment.sidebarText,
                 fontFamily: "'Inter', system-ui, sans-serif", transition: "color 400ms ease",
               }}>BrandMages</span>
             </div>
@@ -419,11 +624,11 @@ export function ThemedClientHome({ inSplit = false }: { inSplit?: boolean }) {
             <div style={{ padding: "0 4px", display: "flex", flexDirection: "column", gap: "1px" }}>
               <NavItem iconSrc={ICO.home} label="Home" active segment={segment} />
               <NavItem iconSrc={ICO.messages} label="Messages" segment={segment} />
-              <NavItem iconSrc={ICO.tasks} label="Tasks" badge={1} segment={segment} />
+              <NavItem iconSrc={ICO.tasks} label="Tasks" badge={segment.actions.tasks} segment={segment} />
               <NavItem iconSrc={ICO.files} label="Files" segment={segment} />
-              <NavItem iconSrc={ICO.forms} label="Forms" badge={1} segment={segment} />
-              <NavItem iconSrc={ICO.billing} label="Billing" badge={1} segment={segment} />
-              <NavItem iconSrc={ICO.contracts} label="Contracts" badge={1} segment={segment} />
+              <NavItem iconSrc={ICO.forms} label="Forms" badge={segment.actions.forms} segment={segment} />
+              <NavItem iconSrc={ICO.billing} label="Billing" badge={segment.actions.invoices} segment={segment} />
+              <NavItem iconSrc={ICO.contracts} label="Contracts" badge={segment.actions.contracts} segment={segment} />
               <NavItem iconSrc={ICO.helpdesk} label="Helpdesk" segment={segment} />
               <NavItem iconSrc={ICO.more} label="More" segment={segment} />
             </div>
@@ -455,7 +660,7 @@ export function ThemedClientHome({ inSplit = false }: { inSplit?: boolean }) {
                   style={{ marginBottom: "4px", minHeight: inSplit ? "42px" : "50px" }}
                 >
                   <div style={{
-                    fontSize: inSplit ? "15px" : "19px", fontWeight: 600,
+                    fontSize: inSplit ? "15px" : "19px", fontWeight: 500,
                     color: CONTENT.textPrimary, fontFamily: "'Inter', system-ui, sans-serif",
                   }}>{segment.greeting}</div>
                   <div style={{
@@ -470,12 +675,7 @@ export function ThemedClientHome({ inSplit = false }: { inSplit?: boolean }) {
                 marginTop: "12px", borderRadius: "8px", height: inSplit ? "140px" : "160px",
                 background: segment.bannerGradient, transition: "background 500ms ease",
                 position: "relative", overflow: "hidden",
-              }}>
-                <div style={{
-                  position: "absolute", inset: 0, opacity: 0.15,
-                  background: "repeating-linear-gradient(135deg, transparent, transparent 8px, rgba(255,255,255,0.1) 8px, rgba(255,255,255,0.1) 16px)",
-                }} />
-              </div>
+              }} />
 
               {/* Actions card — fixed across all segments */}
               <div style={{
@@ -484,25 +684,25 @@ export function ThemedClientHome({ inSplit = false }: { inSplit?: boolean }) {
                 backgroundColor: CONTENT.cardBg, padding: inSplit ? "10px" : "16px",
               }}>
                 <div style={{
-                  fontSize: "14px", fontWeight: 600, color: CONTENT.textPrimary,
+                  fontSize: "14px", fontWeight: 500, color: CONTENT.textPrimary,
                   fontFamily: "'Inter', system-ui, sans-serif", marginBottom: "3px",
                 }}>Your actions</div>
                 <div style={{
                   fontSize: "12px", color: CONTENT.textSecondary,
                   fontFamily: "'Inter', system-ui, sans-serif", marginBottom: "10px",
-                }}>You have 4 pending items</div>
+                }}>You have {segment.actions.invoices + segment.actions.contracts + segment.actions.tasks + segment.actions.forms} pending items</div>
 
                 <div style={{ display: "flex", gap: "8px", flexWrap: "wrap" as const }}>
-                  <ActionCard iconSrc={ICO.billing} label="Invoices" count={1} unit="invoice" />
-                  <ActionCard iconSrc={ICO.contracts} label="Contracts" count={1} unit="contract" />
-                  <ActionCard iconSrc={ICO.tasks} label="Tasks" count={1} unit="task" />
-                  <ActionCard iconSrc={ICO.forms} label="Forms" count={1} unit="form" />
+                  <ActionCard iconSrc={ICO.billing} label="Invoices" count={segment.actions.invoices} unit="invoice" />
+                  <ActionCard iconSrc={ICO.contractsCard} label="Contracts" count={segment.actions.contracts} unit="contract" />
+                  <ActionCard iconSrc={ICO.tasks} label="Tasks" count={segment.actions.tasks} unit="task" />
+                  <ActionCard iconSrc={ICO.forms} label="Forms" count={segment.actions.forms} unit="form" />
                 </div>
               </div>
 
               {/* About us section */}
               <div style={{ marginTop: "14px" }}>
-                <div style={{ fontSize: "12px", fontWeight: 600, color: CONTENT.textPrimary, fontFamily: "'Inter', system-ui, sans-serif", marginBottom: "4px" }}>About us</div>
+                <div style={{ fontSize: "12px", fontWeight: 500, color: CONTENT.textPrimary, fontFamily: "'Inter', system-ui, sans-serif", marginBottom: "4px" }}>About us</div>
                 <div style={{ fontSize: "10px", lineHeight: 1.5, color: CONTENT.textSecondary, fontFamily: "'Inter', system-ui, sans-serif", marginBottom: "10px" }}>
                   BrandMages, a full-service marketing agency that helps businesses increase their brand awareness, attract new customers, and grow their bottom line. We specialize in crafting unique and effective marketing strategies that align with your business goals and help you stand out in a crowded marketplace.
                 </div>

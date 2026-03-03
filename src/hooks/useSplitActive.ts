@@ -39,12 +39,12 @@ export function useSplitActive() {
       let next: boolean;
 
       if (!currentlyActive) {
-        // Enter: scrolled past top, bottom boundary still well in view
-        next = scrollY >= splitTop - 50
+        // Enter: scrolled near top (full viewport before), bottom boundary still in view
+        next = scrollY >= splitTop - vh
             && bottomBoundary - scrollY > vh * 0.3;
       } else {
-        // Exit top: scrolled back above the content
-        const scrolledBackUp = scrollY < splitTop - 120;
+        // Exit top: scrolled back well above the content
+        const scrolledBackUp = scrollY < splitTop - vh;
         // Exit bottom: whats-next entering top half of viewport
         const scrolledPastBottom = bottomBoundary - scrollY < vh * 0.5;
         next = !scrolledBackUp && !scrolledPastBottom;

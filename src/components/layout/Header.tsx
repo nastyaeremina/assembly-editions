@@ -19,17 +19,6 @@ export function AssemblyMark({ className, style }: { className?: string; style?:
   );
 }
 
-/* ────────────────────────────────────────────────────────────
-   NAV LINK STYLE
-   ──────────────────────────────────────────────────────────── */
-const navLinkStyle: React.CSSProperties = {
-  fontFamily: "'PP Mori', var(--font-sans)",
-  fontWeight: 400,
-  fontSize: "1.1rem",
-  lineHeight: 1.2,
-  color: "var(--swatch-2)",
-  textDecoration: "none",
-};
 
 interface HeaderProps {
   className?: string;
@@ -62,13 +51,22 @@ export function Header({ className }: HeaderProps) {
         </Link>
 
         {/* Right — Log in + Start free trial */}
-        <div className="flex items-center" style={{ gap: "1.5rem" }}>
+        <div className="flex items-center" style={{ gap: "1.25rem" }}>
           <a
             href="https://assembly.com"
             target="_blank"
             rel="noopener"
-            style={navLinkStyle}
-            className="transition-opacity hover:opacity-70"
+            style={{
+              fontFamily: "'PP Mori', var(--font-sans)",
+              fontWeight: 400,
+              fontSize: "0.85rem",
+              color: "rgba(255, 255, 255, 0.6)",
+              textDecoration: "none",
+              transition: "color 0.2s ease",
+            }}
+            className="transition-colors hover:!text-white"
+            onMouseEnter={(e) => { e.currentTarget.style.color = "rgba(255, 255, 255, 0.9)"; }}
+            onMouseLeave={(e) => { e.currentTarget.style.color = "rgba(255, 255, 255, 0.6)"; }}
           >
             Log in
           </a>
@@ -76,8 +74,28 @@ export function Header({ className }: HeaderProps) {
             href="https://assembly.com/signup?utm_source=edition&utm_medium=web&utm_campaign=assembly2-launch"
             target="_blank"
             rel="noopener"
-            style={navLinkStyle}
-            className="hidden lg:inline transition-opacity hover:opacity-70"
+            style={{
+              fontFamily: "'PP Mori', var(--font-sans)",
+              fontWeight: 500,
+              fontSize: "0.85rem",
+              color: "#101010",
+              backgroundColor: "rgba(255, 255, 255, 0.9)",
+              padding: "0.45rem 1.25rem",
+              borderRadius: "9999px",
+              textDecoration: "none",
+              transition: "all 0.2s ease",
+              display: "inline-flex",
+              alignItems: "center",
+            }}
+            className="hidden lg:inline-flex"
+            onMouseEnter={(e) => {
+              e.currentTarget.style.backgroundColor = "#fff";
+              e.currentTarget.style.boxShadow = "0 0 20px rgba(214, 249, 144, 0.12)";
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.backgroundColor = "rgba(255, 255, 255, 0.9)";
+              e.currentTarget.style.boxShadow = "none";
+            }}
           >
             Start free trial
           </a>

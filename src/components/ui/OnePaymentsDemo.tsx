@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useRef } from "react";
 import { motion, useInView } from "framer-motion";
+import { useMediaQuery } from "@/hooks/useMediaQuery";
 
 /* ──────────────────────────────────────────────────────────
    ONE PAYMENTS DEMO
@@ -87,6 +88,7 @@ function formatCurrency(n: number): string {
 export function OnePaymentsDemo({ inSplit = false }: OnePaymentsDemoProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const isInView = useInView(containerRef, { once: true, margin: "-80px" });
+  const isDesktop = useMediaQuery("(min-width: 768px)", true);
 
   // Not paid: $7,850 → $5,350  (decrease by $2,500)
   // Paid: $12,460 → $14,960    (increase by $2,500)
@@ -101,6 +103,125 @@ export function OnePaymentsDemo({ inSplit = false }: OnePaymentsDemoProps) {
     return () => clearTimeout(t);
   }, [isInView]);
 
+  /* ─────────────────────── MOBILE VIEW ─────────────────────── */
+  if (!isDesktop) {
+    return (
+      <motion.div
+        ref={containerRef}
+        initial={{ opacity: 0, scale: 0.97 }}
+        whileInView={{ opacity: 1, scale: 1 }}
+        viewport={{ once: true, margin: "-40px" }}
+        transition={{ duration: 0.6, ease: [0.25, 0.1, 0.25, 1] }}
+        style={{
+          width: "100%",
+          borderRadius: "12px",
+          border: `1px solid ${C.border}`,
+          backgroundColor: C.bg,
+          boxShadow: "0 1px 3px rgba(0,0,0,0.04)",
+          fontFamily: "'Inter', system-ui, sans-serif",
+          overflow: "hidden",
+        }}
+      >
+        {/* Header */}
+        <div style={{ padding: "14px 16px 0" }}>
+          <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: "12px" }}>
+            <span style={{ fontSize: "14px", fontWeight: 500, color: C.text }}>Payments</span>
+            <span
+              style={{
+                display: "inline-flex",
+                alignItems: "center",
+                gap: "5px",
+                padding: "4px 10px",
+                borderRadius: "4px",
+                border: `1px solid ${C.border}`,
+                fontSize: "10px",
+                color: C.textSec,
+              }}
+            >
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src="/Icons/calendar.svg" alt="" width={9} height={9} style={{ opacity: 0.45 }} draggable={false} />
+              Last 30 days
+            </span>
+          </div>
+        </div>
+
+        {/* Not paid / Paid cards */}
+        <div style={{ display: "flex", gap: "10px", padding: "0 16px 14px" }}>
+          {/* Not paid */}
+          <div style={{ flex: 1, border: `1px solid ${C.border}`, borderRadius: "8px", padding: "12px 14px" }}>
+            <div style={{ fontSize: "10px", color: C.textSec, marginBottom: "4px" }}>Not paid</div>
+            <div style={{ fontSize: "18px", fontWeight: 500, color: C.text, marginBottom: "8px", fontVariantNumeric: "tabular-nums" }}>
+              {formatCurrency(notPaid)}
+            </div>
+            <span
+              style={{
+                display: "inline-flex",
+                alignItems: "center",
+                gap: "3px",
+                padding: "2px 8px",
+                borderRadius: "4px",
+                backgroundColor: C.yellowBg,
+                fontSize: "9px",
+                color: C.yellowText,
+                whiteSpace: "nowrap",
+              }}
+            >
+              ⚠ {badgeFlipped ? "2 overdue" : "3 overdue"}
+            </span>
+          </div>
+
+          {/* Paid */}
+          <div style={{ flex: 1, border: `1px solid ${C.border}`, borderRadius: "8px", padding: "12px 14px" }}>
+            <div style={{ fontSize: "10px", color: C.textSec, marginBottom: "4px" }}>Paid</div>
+            <div style={{ fontSize: "18px", fontWeight: 500, color: C.text, marginBottom: "8px", fontVariantNumeric: "tabular-nums" }}>
+              {formatCurrency(paid)}
+            </div>
+            <span
+              style={{
+                display: "inline-flex",
+                alignItems: "center",
+                gap: "3px",
+                padding: "2px 8px",
+                borderRadius: "4px",
+                backgroundColor: C.greenBg,
+                fontSize: "9px",
+                color: C.green,
+                whiteSpace: "nowrap",
+              }}
+            >
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src="/Icons/checkgreen.svg" alt="" width={9} height={9} draggable={false} style={{ flexShrink: 0 }} />
+              {badgeFlipped ? "13 paid" : "12 paid"}
+            </span>
+          </div>
+        </div>
+
+        {/* Balance summary — stacked */}
+        <div style={{ borderTop: `1px solid ${C.border}`, padding: "14px 16px 16px" }}>
+          <div style={{ marginBottom: "12px" }}>
+            <div>
+              <div style={{ fontSize: "10px", color: C.textSec, marginBottom: "2px" }}>Total Balance</div>
+              <div style={{ fontSize: "20px", fontWeight: 500, color: C.text }}>$117,252.73</div>
+            </div>
+          </div>
+
+          {/* Payout rows */}
+          <div style={{ fontSize: "12px" }}>
+            <div style={{ display: "flex", justifyContent: "space-between", padding: "6px 0", borderTop: `1px solid ${C.border}` }}>
+              <span style={{ color: C.textSec }}>Upcoming payouts</span>
+              <span style={{ color: C.text, fontWeight: 500 }}>$25,747.36</span>
+            </div>
+            <div style={{ display: "flex", justifyContent: "space-between", padding: "6px 0", borderTop: `1px solid ${C.border}` }}>
+              <span style={{ color: C.textSec }}>Available balance</span>
+              <span style={{ color: C.text }}>$91,505.37</span>
+            </div>
+          </div>
+        </div>
+      </motion.div>
+    );
+  }
+
+  /* ─────────────────────── DESKTOP VIEW ─────────────────────── */
   return (
     <motion.div
       ref={containerRef}
@@ -112,7 +233,7 @@ export function OnePaymentsDemo({ inSplit = false }: OnePaymentsDemoProps) {
         width: "100%",
         backgroundColor: C.bg,
         borderRadius: "10px",
-        border: "1px solid rgba(255, 255, 255, 0.06)",
+        border: `1px solid ${C.border}`,
         boxShadow: "0 8px 30px rgba(0,0,0,0.08), 0 1px 3px rgba(0,0,0,0.06)",
         fontFamily: "'Inter', system-ui, sans-serif",
         overflow: "hidden",

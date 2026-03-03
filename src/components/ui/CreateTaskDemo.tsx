@@ -1,12 +1,15 @@
 "use client";
 
-import { useState } from "react";
-import { motion } from "framer-motion";
+import { useState, useRef, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { useIdleHint } from "@/hooks/useIdleHint";
 
 /* ──────────────────────────────────────────────────────────
    CREATE TASK DEMO — Interactive modal prototype
-   Matches the Figma "Create task" modal design.
-   Only interactive element: "Share with client" toggle.
+   Matches the "Create task" modal reference design.
+   Primary interaction: clicking "Related to" pill opens a
+   client/company picker dropdown. Association only shows
+   when assignee is not a client/company.
    ────────────────────────────────────────────────────────── */
 
 /* ── Colors ── */
@@ -24,6 +27,12 @@ const C = {
   createBorder: "#e5e7eb",
 } as const;
 
+/* ── Client data ── */
+const CLIENTS = [
+  { id: "ms", initials: "MS", name: "Mary Sung", subtitle: "Mary@servicesymphony.c...", color: "#f0e6c8", textColor: "#8a7230" },
+  { id: "cm", initials: "CM", name: "Charles Musial", subtitle: "Charles@servicesymphony.c...", color: "#e8e4f0", textColor: "#6b5b95" },
+];
+
 /* ════════════════════════════════════════════════
    MAIN COMPONENT
    ════════════════════════════════════════════════ */
@@ -33,11 +42,40 @@ interface CreateTaskDemoProps {
 }
 
 export function CreateTaskDemo({ inSplit = false }: CreateTaskDemoProps) {
+  const [relatedClient, setRelatedClient] = useState<string | null>(null);
+  const [showPicker, setShowPicker] = useState(false);
   const [shareWithClient, setShareWithClient] = useState(false);
+  const pickerRef = useRef<HTMLDivElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [showRelatedTooltip, setShowRelatedTooltip] = useState(false);
+
+  /* Idle hint — subtle glow pulse on "Related to" pill */
+  const { containerRef: idleRef, isIdle: pillIdleActive, dismiss: dismissIdle } = useIdleHint({ delay: 2500 });
+
+  // Close picker on outside click
+  useEffect(() => {
+    if (!showPicker) return;
+    const handler = (e: MouseEvent) => {
+      if (pickerRef.current && !pickerRef.current.contains(e.target as Node)) {
+        setShowPicker(false);
+      }
+    };
+    document.addEventListener("mousedown", handler);
+    return () => document.removeEventListener("mousedown", handler);
+  }, [showPicker]);
+
+  const selectClient = (clientId: string) => {
+    setRelatedClient(clientId);
+    setShowPicker(false);
+  };
+
+  const selectedClient = relatedClient ? CLIENTS.find((c) => c.id === relatedClient) : null;
 
   return (
-    <>
-    <style>{`@keyframes cursorBlink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }`}</style>
+    <div ref={(el) => {
+      (containerRef as React.MutableRefObject<HTMLDivElement | null>).current = el;
+      (idleRef as React.MutableRefObject<HTMLDivElement | null>).current = el;
+    }} style={{ width: "100%" }}>
     <motion.div
       initial={{ opacity: 0, scale: 0.97 }}
       whileInView={{ opacity: 1, scale: 1 }}
@@ -50,153 +88,460 @@ export function CreateTaskDemo({ inSplit = false }: CreateTaskDemoProps) {
         border: "1px solid rgba(255, 255, 255, 0.06)",
         boxShadow: "0 8px 30px rgba(0,0,0,0.08), 0 1px 3px rgba(0,0,0,0.06)",
         fontFamily: "'Inter', system-ui, sans-serif",
-        display: "flex", flexDirection: "column",
+        display: "flex",
+        flexDirection: "column",
       }}
     >
-      {/* Modal header */}
-      <div style={{
-        display: "flex", alignItems: "center", justifyContent: "space-between",
-        padding: "16px 20px 12px",
-        borderBottom: `1px solid ${C.borderLight}`,
-      }}>
+      {/* ── Modal header ── */}
+      <div
+        style={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "space-between",
+          padding: "16px 20px 12px",
+          borderBottom: `1px solid ${C.borderLight}`,
+        }}
+      >
         <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
-          <span style={{ fontSize: "15px", fontWeight: 600, color: C.text }}>Create task</span>
+          <span style={{ fontSize: "14px", fontWeight: 500, color: C.text }}>
+            Create task
+          </span>
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src="/Icons/Primary-1.svg" alt="" width={16} height={16} style={{ display: "block", opacity: 0.35 }} />
+          <img
+            src="/Icons/Primary-1.svg"
+            alt=""
+            width={16}
+            height={16}
+            style={{ display: "block", opacity: 0.35 }}
+          />
         </div>
         {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src="/Icons/Icon (approved) copy.svg" alt="" width={12} height={12} style={{ display: "block", opacity: 0.3, cursor: "default" }} />
+        <img
+          src="/Icons/Icon (approved) copy.svg"
+          alt=""
+          width={12}
+          height={12}
+          style={{ display: "block", opacity: 0.3, cursor: "default" }}
+        />
       </div>
 
-      {/* Title + description area */}
-      <div style={{
-        padding: "16px 20px",
-        borderBottom: `1px solid ${C.borderLight}`,
-      }}>
-        <div style={{
-          fontSize: "15px", fontWeight: 500, color: C.text,
-          marginBottom: "6px",
-        }}>
-          Competitor analysis<span style={{ color: C.toggleOn, fontWeight: 400, animation: "cursorBlink 1s step-end infinite" }}>|</span>
+      {/* ── Title + description area ── */}
+      <div
+        style={{
+          padding: "16px 20px",
+          borderBottom: `1px solid ${C.borderLight}`,
+        }}
+      >
+        <div
+          style={{
+            fontSize: "14px",
+            fontWeight: 500,
+            color: C.text,
+            marginBottom: "6px",
+          }}
+        >
+          Competitor analysis
         </div>
-        <div style={{
-          fontSize: "13px", color: C.textTertiary,
-          minHeight: "56px",
-        }}>Add description...</div>
+        <div
+          style={{
+            fontSize: "12px",
+            color: C.textTertiary,
+            minHeight: "36px",
+          }}
+        >
+          Add description...
+        </div>
       </div>
 
-      {/* Toolbar pills */}
-      <div style={{
-        display: "flex", alignItems: "center", gap: "6px",
-        padding: "12px 20px", flexWrap: "wrap",
-      }}>
+      {/* ── Toolbar pills ── */}
+      <div
+        style={{
+          display: "flex",
+          alignItems: "center",
+          gap: "6px",
+          padding: "12px 20px",
+          flexWrap: "wrap",
+        }}
+      >
         {/* Todo pill */}
-        <div style={{
-          display: "flex", alignItems: "center", gap: "5px",
-          padding: "0 12px", height: "32px", borderRadius: "6px",
-          border: `1px solid ${C.border}`, fontSize: "12px", fontWeight: 400,
-          color: C.textSec, cursor: "default",
-        }}>
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src="/Icons/circle.svg" alt="" width={12} height={12} style={{ display: "block", opacity: 0.5 }} />
-          Todo
-        </div>
+        <ToolbarPill icon="/Icons/circle.svg" label="Todo" />
 
         {/* Due date pill */}
-        <div style={{
-          display: "flex", alignItems: "center", gap: "5px",
-          padding: "0 12px", height: "32px", borderRadius: "6px",
-          border: `1px solid ${C.border}`, fontSize: "12px", fontWeight: 400,
-          color: C.textSec, cursor: "default",
-        }}>
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src="/Icons/Primary.svg" alt="" width={12} height={13} style={{ display: "block", opacity: 0.5 }} />
-          Due date
-        </div>
+        <ToolbarPill icon="/Icons/Primary.svg" label="Due date" />
 
         {/* Assignee pill */}
-        <div style={{
-          display: "flex", alignItems: "center", gap: "5px",
-          padding: "0 12px", height: "32px", borderRadius: "6px",
-          border: `1px solid ${C.border}`, fontSize: "12px", fontWeight: 400,
-          color: C.textSec, cursor: "default",
-        }}>
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src="/Icons/user.svg" alt="" width={12} height={13} style={{ display: "block", opacity: 0.5 }} />
-          Assignee
-        </div>
+        <ToolbarPill icon="/Icons/user.svg" label="Assignee" />
 
-        {/* Related to — with avatar */}
-        <div style={{
-          display: "flex", alignItems: "center", gap: "6px",
-          padding: "0 12px", height: "32px", borderRadius: "6px",
-          border: `1px solid ${C.border}`, fontSize: "12px", fontWeight: 500,
-          color: C.text, cursor: "default",
-        }}>
-          <div style={{
-            width: "22px", height: "22px", borderRadius: "50%",
-            backgroundColor: "#f0e4f1", display: "flex", alignItems: "center", justifyContent: "center",
-            flexShrink: 0, fontSize: "9px", fontWeight: 600, color: "#6b2fa0", letterSpacing: "0.5px",
-          }}>SG</div>
-          Samantha Ganter
-        </div>
-      </div>
-
-      {/* Share with client toggle row */}
-      <div style={{
-        padding: "10px 20px",
-      }}>
-        <div style={{
-          display: "flex", alignItems: "center", gap: "12px",
-        }}>
-          {/* Toggle */}
-          <div
-            onClick={() => setShareWithClient(!shareWithClient)}
-            style={{
-              width: "36px", height: "20px", borderRadius: "10px",
-              backgroundColor: shareWithClient ? C.toggleOn : C.toggleOff,
-              cursor: "pointer", position: "relative",
-              transition: "background-color 200ms ease",
-              flexShrink: 0,
-            }}
-          >
-            <div style={{
-              width: "16px", height: "16px", borderRadius: "50%",
-              backgroundColor: "#ffffff",
-              position: "absolute", top: "2px",
-              left: shareWithClient ? "18px" : "2px",
-              transition: "left 200ms ease",
-              boxShadow: "0 1px 3px rgba(0,0,0,0.15)",
-            }} />
+        {/* Related to pill — interactive */}
+        <div ref={pickerRef} style={{ position: "relative" }}>
+          {/* Button + tooltip wrapper — inline-block so it sizes to button */}
+          <div style={{ position: "relative", display: "inline-block" }}>
+            <motion.button
+              type="button"
+              onClick={() => { setShowPicker(!showPicker); setShowRelatedTooltip(false); dismissIdle(); }}
+              onMouseEnter={() => { if (!showPicker) setShowRelatedTooltip(true); }}
+              onMouseLeave={() => setShowRelatedTooltip(false)}
+              whileHover={{ backgroundColor: "#f9fafb" }}
+              animate={pillIdleActive && !relatedClient ? {
+                boxShadow: [
+                  "0 0 0 0px rgba(0,0,0,0)",
+                  "0 0 0 3px rgba(0,0,0,0.05)",
+                  "0 0 0 0px rgba(0,0,0,0)",
+                ],
+              } : { boxShadow: "0 0 0 0px rgba(0,0,0,0)" }}
+              transition={pillIdleActive && !relatedClient ? {
+                duration: 3,
+                repeat: Infinity,
+                ease: "easeInOut",
+              } : { duration: 0.2 }}
+              style={{
+                display: "flex",
+                alignItems: "center",
+                gap: "5px",
+                padding: relatedClient ? "0 12px 0 4px" : "0 12px",
+                height: "32px",
+                borderRadius: "6px",
+                border: `1px solid ${C.border}`,
+                fontSize: "12px",
+                fontWeight: 400,
+                color: relatedClient ? C.text : C.textSec,
+                cursor: "pointer",
+                backgroundColor: "transparent",
+                fontFamily: "'Inter', system-ui, sans-serif",
+                transition: "border-color 150ms ease",
+              }}
+            >
+              {relatedClient && selectedClient ? (
+                <>
+                  <div
+                    style={{
+                      width: "24px",
+                      height: "24px",
+                      borderRadius: "50%",
+                      backgroundColor: selectedClient.color,
+                      flexShrink: 0,
+                      fontSize: "9px",
+                      fontWeight: 400,
+                      fontFamily: "'Inter', system-ui, sans-serif",
+                      color: selectedClient.textColor,
+                      lineHeight: "24px",
+                      textAlign: "center",
+                    }}
+                  >
+                    {selectedClient.initials}
+                  </div>
+                  {selectedClient.name}
+                </>
+              ) : (
+                <>
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img src="/Icons/user.svg" alt="" width={12} height={12} style={{ display: "block", opacity: 0.5 }} />
+                  Related to
+                </>
+              )}
+            </motion.button>
+            {/* ── Tooltip ── */}
+            <AnimatePresence>
+              {showRelatedTooltip && !showPicker && (
+                <motion.div
+                  initial={{ opacity: 0, y: 4 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: 4 }}
+                  transition={{ duration: 0.15, ease: "easeOut" }}
+                  style={{
+                    position: "absolute",
+                    bottom: "calc(100% + 8px)",
+                    left: "50%",
+                    transform: "translateX(-50%)",
+                    zIndex: 50,
+                    pointerEvents: "none",
+                  }}
+                >
+                  <div style={{
+                    position: "relative",
+                    display: "inline-flex",
+                    alignItems: "center",
+                    padding: "4px 8px",
+                    borderRadius: "6px",
+                    backgroundColor: "rgba(39, 39, 42, 0.95)",
+                    backdropFilter: "blur(8px)",
+                    WebkitBackdropFilter: "blur(8px)",
+                    border: "1px solid rgba(63, 63, 70, 0.5)",
+                    boxShadow: "0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -2px rgba(0,0,0,0.1)",
+                    whiteSpace: "nowrap",
+                  }}>
+                    <span style={{
+                      fontFamily: "'Inter', system-ui, sans-serif",
+                      fontSize: "10px",
+                      fontWeight: 400,
+                      color: "#ffffff",
+                    }}>
+                      Click to open
+                    </span>
+                    <div style={{
+                      position: "absolute",
+                      bottom: "-4px",
+                      left: "50%",
+                      marginLeft: "-4px",
+                      width: "8px",
+                      height: "8px",
+                      backgroundColor: "rgba(39, 39, 42, 0.95)",
+                      transform: "rotate(45deg)",
+                      borderRight: "1px solid rgba(63, 63, 70, 0.5)",
+                      borderBottom: "1px solid rgba(63, 63, 70, 0.5)",
+                    }} />
+                  </div>
+                </motion.div>
+              )}
+            </AnimatePresence>
           </div>
-          <span style={{ fontSize: "13px", fontWeight: 500, color: C.text }}>Share with client</span>
+
+          {/* ── Client picker dropdown ── */}
+          <AnimatePresence>
+            {showPicker && (
+              <motion.div
+                initial={{ opacity: 0, y: -4, scale: 0.97 }}
+                animate={{ opacity: 1, y: 0, scale: 1 }}
+                exit={{ opacity: 0, y: -4, scale: 0.97 }}
+                transition={{ duration: 0.15, ease: "easeOut" }}
+                style={{
+                  position: "absolute",
+                  top: "calc(100% + 4px)",
+                  left: 0,
+                  zIndex: 60,
+                  backgroundColor: "#fff",
+                  border: `1px solid ${C.border}`,
+                  borderRadius: "6px",
+                  boxShadow:
+                    "0 4px 16px rgba(0,0,0,0.12), 0 1px 3px rgba(0,0,0,0.06)",
+                  minWidth: "240px",
+                  overflow: "hidden",
+                }}
+              >
+                {/* Search input */}
+                <div
+                  style={{
+                    padding: "10px 12px",
+                    borderBottom: `1px solid ${C.borderLight}`,
+                  }}
+                >
+                  <div
+                    style={{
+                      fontSize: "13px",
+                      color: C.textTertiary,
+                      cursor: "text",
+                    }}
+                  >
+                    Set client or company
+                  </div>
+                </div>
+
+                {/* Clients list */}
+                <div style={{ padding: "6px" }}>
+                  <div
+                    style={{
+                      fontSize: "11px",
+                      fontWeight: 500,
+                      color: C.textTertiary,
+                      padding: "6px 8px 4px",
+                    }}
+                  >
+                    Clients
+                  </div>
+                  {CLIENTS.map((client) => (
+                    <button
+                      key={client.id}
+                      type="button"
+                      onClick={() => selectClient(client.id)}
+                      onMouseEnter={(e) => {
+                        e.currentTarget.style.backgroundColor = "#f5f5f5";
+                      }}
+                      onMouseLeave={(e) => {
+                        e.currentTarget.style.backgroundColor = "transparent";
+                      }}
+                      style={{
+                        display: "flex",
+                        alignItems: "center",
+                        gap: "10px",
+                        width: "100%",
+                        padding: "10px 8px",
+                        border: "none",
+                        backgroundColor: "transparent",
+                        borderRadius: "6px",
+                        cursor: "pointer",
+                        fontSize: "13px",
+                        fontWeight: 400,
+                        color: C.text,
+                        textAlign: "left",
+                        fontFamily: "'Inter', system-ui, sans-serif",
+                        transition: "background-color 100ms ease",
+                      }}
+                    >
+                      <div
+                        style={{
+                          width: "32px",
+                          height: "32px",
+                          borderRadius: "50%",
+                          backgroundColor: client.color,
+                          flexShrink: 0,
+                          fontSize: "13px",
+                          fontWeight: 400,
+                          fontFamily: "'Inter', system-ui, sans-serif",
+                          color: client.textColor,
+                          lineHeight: "32px",
+                          textAlign: "center",
+                        }}
+                      >
+                        {client.initials}
+                      </div>
+                      <div style={{ minWidth: 0 }}>
+                        <div style={{ fontSize: "13px", fontWeight: 500, color: C.text, lineHeight: 1.3 }}>{client.name}</div>
+                        {client.subtitle && (
+                          <div style={{ fontSize: "11px", color: C.textTertiary, lineHeight: 1.3, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{client.subtitle}</div>
+                        )}
+                      </div>
+                    </button>
+                  ))}
+                </div>
+              </motion.div>
+            )}
+          </AnimatePresence>
         </div>
       </div>
 
-      {/* Divider */}
+      {/* ── Share with client toggle — only visible after association ── */}
+      <AnimatePresence>
+        {relatedClient && (
+          <motion.div
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: "auto" }}
+            exit={{ opacity: 0, height: 0 }}
+            transition={{ duration: 0.25, ease: [0.25, 0.1, 0.25, 1] }}
+            style={{ overflow: "hidden" }}
+          >
+            <div style={{ padding: "4px 20px 12px" }}>
+              <div
+                onClick={() => setShareWithClient(!shareWithClient)}
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  gap: "10px",
+                  cursor: "pointer",
+                }}
+              >
+                <div
+                  style={{
+                    width: "34px",
+                    height: "18px",
+                    borderRadius: "9px",
+                    backgroundColor: shareWithClient ? C.toggleOn : C.toggleOff,
+                    position: "relative",
+                    transition: "background-color 200ms ease",
+                    flexShrink: 0,
+                  }}
+                >
+                  <div
+                    style={{
+                      width: "14px",
+                      height: "14px",
+                      borderRadius: "50%",
+                      backgroundColor: "#ffffff",
+                      position: "absolute",
+                      top: "2px",
+                      left: shareWithClient ? "18px" : "2px",
+                      transition: "left 200ms ease",
+                      boxShadow: "0 1px 3px rgba(0,0,0,0.15)",
+                    }}
+                  />
+                </div>
+                <span
+                  style={{
+                    fontSize: "12px",
+                    fontWeight: 400,
+                    color: C.text,
+                  }}
+                >
+                  Share with client
+                </span>
+              </div>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* ── Divider ── */}
       <div style={{ height: "1px", backgroundColor: C.borderLight }} />
 
-      {/* Footer */}
-      <div style={{
-        display: "flex", alignItems: "center", justifyContent: "flex-end",
-        gap: "8px", padding: "14px 20px",
-      }}>
-        <div style={{
-          padding: "6px 16px", borderRadius: "6px",
-          fontSize: "13px", fontWeight: 500, color: C.text,
-          border: `1px solid ${C.border}`,
-          cursor: "default",
-        }}>Discard</div>
-        <div style={{
-          padding: "6px 16px", borderRadius: "6px",
-          fontSize: "13px", fontWeight: 500,
-          color: C.createText,
-          backgroundColor: C.bgAlt,
-          border: `1px solid ${C.createBorder}`,
-          cursor: "default",
-        }}>Create</div>
+      {/* ── Footer ── */}
+      <div
+        style={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "flex-end",
+          gap: "8px",
+          padding: "14px 20px",
+        }}
+      >
+        <div
+          style={{
+            padding: "6px 16px",
+            borderRadius: "6px",
+            fontSize: "12px",
+            fontWeight: 500,
+            color: C.text,
+            border: `1px solid ${C.border}`,
+            cursor: "default",
+          }}
+        >
+          Discard
+        </div>
+        <div
+          style={{
+            padding: "6px 16px",
+            borderRadius: "6px",
+            fontSize: "12px",
+            fontWeight: 500,
+            color: C.createText,
+            backgroundColor: C.bgAlt,
+            border: `1px solid ${C.createBorder}`,
+            cursor: "default",
+          }}
+        >
+          Create
+        </div>
       </div>
     </motion.div>
-    </>
+    </div>
+  );
+}
+
+/* ── Toolbar pill (static) ── */
+function ToolbarPill({ icon, label }: { icon: string; label: string }) {
+  return (
+    <div
+      style={{
+        display: "flex",
+        alignItems: "center",
+        gap: "5px",
+        padding: "0 12px",
+        height: "32px",
+        borderRadius: "6px",
+        border: `1px solid ${C.border}`,
+        fontSize: "12px",
+        fontWeight: 400,
+        color: C.textSec,
+        cursor: "default",
+      }}
+    >
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img
+        src={icon}
+        alt=""
+        width={12}
+        height={12}
+        style={{ display: "block", opacity: 0.5 }}
+      />
+      {label}
+    </div>
   );
 }

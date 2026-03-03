@@ -2,6 +2,7 @@
 
 import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
+import { useMediaQuery } from "@/hooks/useMediaQuery";
 
 /* ──────────────────────────────────────────────────────────
    APPBRIDGE CODE DEMO
@@ -14,20 +15,20 @@ interface AppBridgeCodeDemoProps {
   inSplit?: boolean;
 }
 
-/* ── Syntax colors — muted, dark-editor palette ── */
+/* ── Syntax colors — lifted dark-editor palette ── */
 const S = {
-  bg: "#0d0d0d",
-  bgHeader: "#141414",
-  border: "rgba(255, 255, 255, 0.06)",
-  lineNum: "rgba(255, 255, 255, 0.18)",
-  comment: "rgba(255, 255, 255, 0.28)",
-  keyword: "#c792ea",     // purple — import, from, const, await
-  string: "#c3e88d",      // green — strings
-  func: "#82aaff",        // blue — function names
-  property: "#f78c6c",    // orange — property keys
-  variable: "#eeffff",    // off-white — variable names
-  punctuation: "rgba(255, 255, 255, 0.5)", // dimmed — brackets, colons
-  plain: "rgba(255, 255, 255, 0.75)",      // regular text
+  bg: "#161618",
+  bgHeader: "#1c1c1f",
+  border: "rgba(255, 255, 255, 0.08)",
+  lineNum: "rgba(255, 255, 255, 0.25)",
+  comment: "rgba(255, 255, 255, 0.38)",
+  keyword: "#d4a4f0",     // purple — import, from, const, await
+  string: "#d0eda0",      // green — strings
+  func: "#9bbcff",        // blue — function names
+  property: "#f9a682",    // orange — property keys
+  variable: "#f0f4ff",    // off-white — variable names
+  punctuation: "rgba(255, 255, 255, 0.6)", // dimmed — brackets, colons
+  plain: "rgba(255, 255, 255, 0.85)",      // regular text
 };
 
 /* ── Token types for syntax highlighting ── */
@@ -262,9 +263,18 @@ function CodeLine({ tokens, lineNum, delay, isInView, hasCursor }: {
   );
 }
 
+/* ── Number of lines to show on mobile (just the createApp config) ── */
+const MOBILE_LINE_COUNT = 12;
+
 export function AppBridgeCodeDemo({ inSplit = false }: AppBridgeCodeDemoProps) {
   const ref = useRef<HTMLDivElement>(null);
   const isInView = useInView(ref, { once: true, margin: "-60px" });
+  const isDesktop = useMediaQuery("(min-width: 768px)", true);
+
+  /* Each code line is 22px tall; top padding is 16px.
+     Mobile clips after MOBILE_LINE_COUNT lines (no bottom padding). */
+  const mobileMaxH = MOBILE_LINE_COUNT * 22 + 16;
+  const desktopMaxH = CODE_LINES.length * 22 + 32;
 
   return (
     <motion.div
@@ -316,7 +326,7 @@ export function AppBridgeCodeDemo({ inSplit = false }: AppBridgeCodeDemoProps) {
             textAlign: "center",
             fontFamily: "'SF Mono', 'Fira Code', Menlo, monospace",
             fontSize: "11px",
-            color: "rgba(255, 255, 255, 0.35)",
+            color: "rgba(255, 255, 255, 0.45)",
             letterSpacing: "0.01em",
             pointerEvents: "none",
           }}
@@ -329,7 +339,9 @@ export function AppBridgeCodeDemo({ inSplit = false }: AppBridgeCodeDemoProps) {
       <div
         style={{
           padding: "16px 0 16px 12px",
-          overflowX: "auto",
+          overflow: "hidden",
+          maxHeight: isDesktop ? `${desktopMaxH}px` : `${mobileMaxH}px`,
+          transition: "max-height 0.35s ease",
         }}
       >
         {CODE_LINES.map((tokens, i) => (
@@ -339,7 +351,7 @@ export function AppBridgeCodeDemo({ inSplit = false }: AppBridgeCodeDemoProps) {
             lineNum={i + 1}
             delay={0.3 + i * 0.04}
             isInView={isInView}
-            hasCursor={i + 1 === CURSOR_LINE}
+            hasCursor={isDesktop && i + 1 === CURSOR_LINE}
           />
         ))}
       </div>
