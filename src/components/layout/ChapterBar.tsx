@@ -76,9 +76,9 @@ export function ChapterBar() {
           : (isLight ? "rgba(0, 0, 0, 0.3)" : "rgba(255, 255, 255, 0.3)");
 
         const progressFill = isActive
-          ? (isLight ? "rgba(0, 0, 0, 0.6)" : "rgba(255, 255, 255, 0.6)")
+          ? (isLight ? "rgba(0, 0, 0, 0.35)" : "rgba(255, 255, 255, 0.35)")
           : isPast
-          ? (isLight ? "rgba(0, 0, 0, 0.25)" : "rgba(255, 255, 255, 0.25)")
+          ? (isLight ? "rgba(0, 0, 0, 0.12)" : "rgba(255, 255, 255, 0.12)")
           : "transparent";
 
         return (
@@ -90,18 +90,16 @@ export function ChapterBar() {
               alignItems: "center",
               justifyContent: "center",
               gap: "0.5rem",
-              padding: "0.7rem 0.5rem",
-              background: isActive
-                ? (isLight ? "rgba(0, 0, 0, 0.04)" : "rgba(255, 255, 255, 0.04)")
-                : "transparent",
+              padding: "0.75rem 0.5rem 0.65rem",
+              background: "transparent",
               border: "none",
               borderRight: isLast
                 ? "none"
                 : isLight
-                ? "1px solid rgba(0, 0, 0, 0.08)"
-                : "1px solid rgba(255, 255, 255, 0.08)",
+                ? "1px solid rgba(0, 0, 0, 0.06)"
+                : "1px solid rgba(255, 255, 255, 0.06)",
               cursor: "pointer",
-              transition: "background 0.3s ease, color 0.3s ease, border-color 0.5s ease",
+              transition: "color 0.3s ease, border-color 0.5s ease",
               position: "relative",
             }}
           >
@@ -119,19 +117,28 @@ export function ChapterBar() {
               {section.number}&nbsp;&nbsp;{section.shortLabel}
             </span>
 
-            {/* Progress fill bar at bottom edge */}
+            {/* Thin progress indicator line */}
             <div
               aria-hidden="true"
               style={{
                 position: "absolute",
                 bottom: 0,
                 left: 0,
-                height: "2px",
-                width: `${fillPercent}%`,
-                backgroundColor: progressFill,
-                transition: "width 0.15s linear, background-color 0.3s ease",
+                right: 0,
+                height: "1px",
+                backgroundColor: isLight ? "rgba(0,0,0,0.04)" : "rgba(255,255,255,0.04)",
+                overflow: "hidden",
               }}
-            />
+            >
+              <div
+                style={{
+                  height: "100%",
+                  width: `${fillPercent}%`,
+                  backgroundColor: progressFill,
+                  transition: "width 0.15s linear, background-color 0.3s ease",
+                }}
+              />
+            </div>
           </button>
         );
       })}
