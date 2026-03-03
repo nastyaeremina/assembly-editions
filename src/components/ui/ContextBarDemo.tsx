@@ -354,7 +354,7 @@ export function ContextBarDemo({ inSplit = false }: ContextBarDemoProps) {
         </div>
 
         {/* ── Panel content with cross-fade ── */}
-        <div style={{ padding: "14px 16px 16px", position: "relative", minHeight: "180px" }}>
+        <div style={{ padding: "14px 16px 16px", position: "relative", height: "220px", overflow: "hidden" }}>
           <AnimatePresence mode="wait">
             {/* Person / Client Details panel */}
             {activePanel === "person" && (
