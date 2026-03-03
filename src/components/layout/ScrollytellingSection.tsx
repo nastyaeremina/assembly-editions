@@ -291,7 +291,7 @@ function MobileCard({
       id={id}
       style={{
         backgroundColor: bgColor,
-        padding: "2rem 1.25rem",
+        padding: "2.5rem 1.5rem",
       }}
     >
       <h2
@@ -424,7 +424,7 @@ export function ScrollytellingSection({
             theme={theme}
           >
             {!step.sameAsHero && step.content ? (
-              <div style={{ padding: "1rem 0" }}>{step.content}</div>
+              <div style={{ padding: "1.5rem 0 0.5rem" }}>{step.content}</div>
             ) : null}
           </MobileCard>
         ))}

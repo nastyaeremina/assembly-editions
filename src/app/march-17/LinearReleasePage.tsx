@@ -999,7 +999,7 @@ function InteractiveAppFolders() {
 
 function ClientExperienceSection() {
   return (
-    <section id="client-experience" className="relative py-24 sm:py-32">
+    <section id="client-experience" className="relative py-28 sm:py-32">
       <div className="mx-auto max-w-5xl px-6">
         <SectionHeader
           number="01"
@@ -1061,7 +1061,7 @@ function ProjectManagementSection() {
   return (
     <section
       id="project-management"
-      className="relative py-24 sm:py-32"
+      className="relative py-28 sm:py-32"
       style={{ borderTop: "1px solid rgba(255,255,255,0.04)" }}
     >
       {/* Ambient gradient */}
@@ -1109,7 +1109,7 @@ function ClientManagementSection() {
   return (
     <section
       id="client-management"
-      className="relative py-24 sm:py-32"
+      className="relative py-28 sm:py-32"
       style={{ borderTop: "1px solid rgba(255,255,255,0.04)" }}
     >
       {/* Ambient gradient */}
@@ -1155,7 +1155,7 @@ function PaymentsSection() {
   return (
     <section
       id="payments"
-      className="relative py-24 sm:py-32"
+      className="relative py-28 sm:py-32"
       style={{ borderTop: "1px solid rgba(255,255,255,0.04)" }}
     >
       {/* Ambient gradient */}
@@ -1203,7 +1203,7 @@ function DevelopersSection() {
   return (
     <section
       id="developers"
-      className="relative py-24 sm:py-32"
+      className="relative py-28 sm:py-32"
       style={{ borderTop: "1px solid rgba(255,255,255,0.04)" }}
     >
       {/* Ambient gradient */}
@@ -1258,7 +1258,7 @@ function WhatsMoreSection() {
   return (
     <section
       id="whats-more"
-      className="relative py-24 sm:py-32"
+      className="relative py-28 sm:py-32"
       style={{ borderTop: "1px solid rgba(255,255,255,0.04)" }}
     >
       <div className="mx-auto max-w-5xl px-6">
@@ -1341,7 +1341,7 @@ function WhatsNextSection() {
     <section
       ref={sectionRef}
       id="whats-next"
-      className="relative py-24 sm:py-32"
+      className="relative py-28 sm:py-32"
       style={{ borderTop: "1px solid rgba(255,255,255,0.04)" }}
     >
       <div className="mx-auto max-w-5xl px-6">

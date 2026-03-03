@@ -72,7 +72,13 @@ const SEGMENTS: Segment[] = [
     sidebarActiveBg: "rgba(255,255,255,0.1)",
     sidebarBadgeBg: "rgba(255,255,255,0.1)",
     sidebarBadgeText: "#e2e8f0",
-    bannerGradient: "linear-gradient(135deg, #1e3a5f 0%, #334155 50%, #475569 100%)",
+    bannerGradient: [
+      "radial-gradient(ellipse 75% 85% at 20% 25%, #0f2847 0%, transparent 70%)",
+      "radial-gradient(ellipse 80% 90% at 78% 30%, #4B8EC8 0%, transparent 55%)",
+      "radial-gradient(ellipse 70% 75% at 40% 80%, #1e3a5f 0%, transparent 65%)",
+      "radial-gradient(ellipse 60% 70% at 90% 80%, #7bb5e0 0%, transparent 50%)",
+      "linear-gradient(150deg, #132d4f 0%, #1e3a5f 40%, #2a5a8a 100%)",
+    ].join(", "),
     greeting: "Welcome back Mike",
     subtitle: "Here\u2019s what needs your attention today",
     actions: { invoices: 1, contracts: 1, tasks: 1, forms: 1 },
@@ -89,7 +95,13 @@ const SEGMENTS: Segment[] = [
     sidebarActiveBg: "rgba(251,191,36,0.12)",
     sidebarBadgeBg: "rgba(251,191,36,0.12)",
     sidebarBadgeText: "#e2e8f0",
-    bannerGradient: "linear-gradient(135deg, #78350f 0%, #92400e 50%, #b45309 100%)",
+    bannerGradient: [
+      "radial-gradient(ellipse 70% 80% at 15% 70%, #1a0a00 0%, transparent 70%)",
+      "radial-gradient(ellipse 80% 90% at 80% 40%, #E0BA8D 0%, transparent 65%)",
+      "radial-gradient(ellipse 60% 70% at 40% 20%, #59361E 0%, transparent 60%)",
+      "radial-gradient(ellipse 90% 80% at 70% 90%, #F7F7F7 0%, transparent 55%)",
+      "linear-gradient(160deg, #59361E 0%, #8B6040 40%, #E0BA8D 100%)",
+    ].join(", "),
     greeting: "Welcome back Sarah",
     subtitle: "Here\u2019s what needs your attention today",
     actions: { invoices: 2, contracts: 1, tasks: 1, forms: 1 },
@@ -106,7 +118,13 @@ const SEGMENTS: Segment[] = [
     sidebarActiveBg: "rgba(139,92,246,0.12)",
     sidebarBadgeBg: "rgba(139,92,246,0.12)",
     sidebarBadgeText: "#e2e8f0",
-    bannerGradient: "linear-gradient(135deg, #1e1b2e 0%, #312e47 50%, #44406a 100%)",
+    bannerGradient: [
+      "radial-gradient(ellipse 80% 80% at 25% 25%, #3a302e 0%, transparent 70%)",
+      "radial-gradient(ellipse 70% 90% at 75% 35%, #9AA4BC 0%, transparent 65%)",
+      "radial-gradient(ellipse 90% 70% at 50% 75%, #BCC7BE 0%, transparent 60%)",
+      "radial-gradient(ellipse 60% 60% at 85% 80%, #7a8570 0%, transparent 70%)",
+      "linear-gradient(145deg, #3a352e 0%, #6b7060 40%, #9AA4BC 100%)",
+    ].join(", "),
     greeting: "Welcome back James",
     subtitle: "Here\u2019s what needs your attention today",
     actions: { invoices: 2, contracts: 2, tasks: 1, forms: 1 },
@@ -123,7 +141,13 @@ const SEGMENTS: Segment[] = [
     sidebarActiveBg: "rgba(20,184,166,0.12)",
     sidebarBadgeBg: "rgba(20,184,166,0.12)",
     sidebarBadgeText: "#e2e8f0",
-    bannerGradient: "linear-gradient(135deg, #134e4a 0%, #1a5c56 50%, #237068 100%)",
+    bannerGradient: [
+      "radial-gradient(ellipse 75% 85% at 20% 25%, #0f3d3a 0%, transparent 70%)",
+      "radial-gradient(ellipse 80% 90% at 75% 35%, #2dd4bf 0%, transparent 55%)",
+      "radial-gradient(ellipse 70% 70% at 45% 80%, #134e4a 0%, transparent 65%)",
+      "radial-gradient(ellipse 60% 80% at 90% 75%, #99f6e4 0%, transparent 50%)",
+      "linear-gradient(155deg, #0d3b38 0%, #166b63 45%, #14b8a6 100%)",
+    ].join(", "),
     greeting: "Welcome back Alex",
     subtitle: "Here\u2019s what needs your attention today",
     actions: { invoices: 1, contracts: 1, tasks: 1, forms: 1 },
@@ -505,7 +529,7 @@ export function ThemedClientHome({ inSplit = false }: { inSplit?: boolean }) {
           </div>
 
           {/* Content area — no sidebar */}
-          <div style={{ backgroundColor: CONTENT.bg, padding: "20px 16px 24px", overflow: "hidden" }}>
+          <div style={{ backgroundColor: CONTENT.bg, padding: "20px 18px 28px", overflow: "hidden" }}>
             <AnimatePresence mode="wait">
               <motion.div
                 key={segment.id + "-greeting"}
@@ -527,12 +551,24 @@ export function ThemedClientHome({ inSplit = false }: { inSplit?: boolean }) {
               </motion.div>
             </AnimatePresence>
 
-            {/* Hero banner */}
+            {/* Hero banner — stacked layers for smooth cross-fade */}
             <div style={{
               marginTop: "12px", borderRadius: "8px", height: "140px",
-              background: segment.bannerGradient, transition: "background 500ms ease",
               position: "relative", overflow: "hidden",
-            }} />
+            }}>
+              {SEGMENTS.map((seg) => (
+                <div
+                  key={seg.id + "-mobile-banner"}
+                  style={{
+                    position: "absolute",
+                    inset: 0,
+                    background: seg.bannerGradient,
+                    opacity: seg.id === segment.id ? 1 : 0,
+                    transition: "opacity 600ms ease",
+                  }}
+                />
+              ))}
+            </div>
 
             {/* Actions card */}
             <div style={{
@@ -673,12 +709,24 @@ export function ThemedClientHome({ inSplit = false }: { inSplit?: boolean }) {
                 </motion.div>
               </AnimatePresence>
 
-              {/* Hero banner — gradient changes with segment */}
+              {/* Hero banner — stacked layers for smooth cross-fade */}
               <div style={{
                 marginTop: "12px", borderRadius: "8px", height: inSplit ? "140px" : "160px",
-                background: segment.bannerGradient, transition: "background 500ms ease",
                 position: "relative", overflow: "hidden",
-              }} />
+              }}>
+                {SEGMENTS.map((seg) => (
+                  <div
+                    key={seg.id + "-desktop-banner"}
+                    style={{
+                      position: "absolute",
+                      inset: 0,
+                      background: seg.bannerGradient,
+                      opacity: seg.id === segment.id ? 1 : 0,
+                      transition: "opacity 600ms ease",
+                    }}
+                  />
+                ))}
+              </div>
 
               {/* Actions card — fixed across all segments */}
               <div style={{
