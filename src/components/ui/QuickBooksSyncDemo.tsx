@@ -19,8 +19,8 @@ const C = {
   textSec: "#6b7280",
   textMuted: "#9ca3af",
   green: "#16a34a",
-  line: "#d4d4d8",
-  lineDashed: "#e5e7eb",
+  line: "#a1a1aa",
+  lineDashed: "#d4d4d8",
 } as const;
 
 /* ── Bezier path helpers ── */
@@ -481,14 +481,14 @@ export function QuickBooksSyncDemo({ inSplit = false }: { inSplit?: boolean }) {
               width: "100%",
               height: "100%",
               pointerEvents: "none",
-              zIndex: 5,
+              zIndex: 1,
             }}
           >
             {/* Assembly → QB: always connected */}
             <path
               d={bezierPathH(lp.aRightX, lp.aRightY, lp.qbLeftX, lp.qbLeftY)}
               stroke={C.line}
-              strokeWidth={1.5}
+              strokeWidth={2}
               fill="none"
               strokeLinecap="round"
             />
@@ -498,7 +498,7 @@ export function QuickBooksSyncDemo({ inSplit = false }: { inSplit?: boolean }) {
               <motion.path
                 d={bezierPathV(lp.qbBottomX, lp.qbBottomY, lp.xTopX, lp.xTopY)}
                 stroke={C.line}
-                strokeWidth={1.5}
+                strokeWidth={2}
                 fill="none"
                 strokeLinecap="round"
                 initial={{ pathLength: 0, opacity: 0 }}
@@ -509,11 +509,10 @@ export function QuickBooksSyncDemo({ inSplit = false }: { inSplit?: boolean }) {
               <path
                 d={bezierPathV(lp.qbBottomX, lp.qbBottomY, lp.xTopX, lp.xTopY)}
                 stroke={C.lineDashed}
-                strokeWidth={1}
+                strokeWidth={1.5}
                 fill="none"
                 strokeLinecap="round"
-                strokeDasharray="4 6"
-                opacity={0.5}
+                strokeDasharray="6 5"
               />
             )}
           </svg>
