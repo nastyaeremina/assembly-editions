@@ -75,8 +75,6 @@ const INVOICES_DATA: InvoiceRow[] = [
   { name: "Godo", initials: "G", price: 900, recurring: true, status: "open", invoiceNum: "SUB-D8EF5DE9-0001", created: "Nov 5, 2026", due: "Dec 30, 2026", payment: "" },
   { name: "Jordyn Donin", initials: "JD", price: 8400, recurring: false, status: "open", invoiceNum: "F7F23EF1-0016", created: "Jun 18, 2026", due: "Jul 30, 2026", payment: "" },
   { name: "Zaire Dokidis", initials: "ZD", price: 10400, recurring: false, status: "paid", invoiceNum: "SUB-83F7CAE1-0010", created: "Jan 20, 2026", due: "Feb 20, 2026", payment: "Jan 25, 2026" },
-  { name: "Tiana Botosh", initials: "TB", price: 8400, recurring: false, status: "paid", invoiceNum: "SUB-8182B7A3-0002", created: "Feb 14, 2026", due: "Mar 30, 2026", payment: "Apr 3, 2026" },
-  { name: "Wave marketing", initials: "WM", price: 1400, recurring: true, status: "open", invoiceNum: "D8EF5DE9-0001", created: "Dec 1, 2026", due: "Dec 30, 2026", payment: "" },
   { name: "Michael Robert", initials: "MR", price: 3454, recurring: false, status: "overdue", invoiceNum: "SUB-44D2833F-0006", created: "Feb 28, 2026", due: "Mar 31, 2026", payment: "" },
 ];
 
@@ -98,8 +96,6 @@ const SUBSCRIPTIONS_DATA: SubscriptionRow[] = [
   { name: "Jordyn Donin", initials: "JD", price: 10200, period: "Yearly", status: "active", created: "Nov 5, 2026", nextPayment: "Nov 5, 2027" },
   { name: "Zaire Dokidis", initials: "ZD", price: 14500, period: "Yearly", status: "cancelled", created: "Jun 18, 2026", nextPayment: "" },
   { name: "Tiana Botosh", initials: "TB", price: 20000, period: "Yearly", status: "active", created: "Jan 20, 2026", nextPayment: "Jan 20, 2027" },
-  { name: "Wave Marketing", initials: "WM", price: 7800, period: "Monthly", status: "active", created: "Feb 14, 2026", nextPayment: "Mar 14, 2026" },
-  { name: "James Dilhome", initials: "JD", price: 6500, period: "Monthly", status: "active", created: "Dec 1, 2026", nextPayment: "Jan 1, 2027" },
 ];
 
 /* ── Payment Links data ── */
@@ -1494,7 +1490,7 @@ export function OnePaymentsDemo({ inSplit = false }: OnePaymentsDemoProps) {
       </div>
 
       {/* Page content — fixed height to match Overview across all tabs */}
-      <div style={{ padding: "16px 24px 20px", overflow: "hidden", minHeight: "340px" }}>
+      <div style={{ padding: "16px 24px 20px", overflow: "hidden", height: "340px" }}>
         <AnimatePresence mode="wait">
           {activeTab === "overview" && (
             <motion.div
