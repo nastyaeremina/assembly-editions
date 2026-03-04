@@ -180,6 +180,8 @@ function DesktopStepBlock({
     >
       <div
         style={{
+          maxWidth: "1200px",
+          margin: "0 auto",
           opacity: isInView ? 1 : 0.15,
           transform: isInView ? "translateY(0)" : "translateY(20px)",
           transition: "opacity 0.7s ease, transform 0.7s ease",
@@ -465,7 +467,7 @@ export function ScrollytellingSection({
           {/* Background — fills the entire block */}
           {heroImage}
           {/* Editorial text overlaid on top */}
-          <div style={{ position: "relative", zIndex: 1 }}>
+          <div style={{ position: "relative", zIndex: 1, maxWidth: "1200px", margin: "0 auto" }}>
             <EditorialText
               sectionNumber={sectionNumber}
               title={title || ""}
@@ -483,16 +485,18 @@ export function ScrollytellingSection({
             backgroundColor: bgColor,
           }}
         >
-          <EditorialText
-            sectionNumber={sectionNumber}
-            title={title || ""}
-            description={description || ""}
-            ctaContent={ctaContent}
-            sectionLabel={sectionLabel}
-            theme={theme}
-          />
-          <div style={{ padding: heroFullWidth ? "0 0 3rem 2rem" : "0 2rem 3rem 2rem" }}>
-            <HeroContent heroImage={heroImage} heroGradient={heroGradient} theme={theme} />
+          <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
+            <EditorialText
+              sectionNumber={sectionNumber}
+              title={title || ""}
+              description={description || ""}
+              ctaContent={ctaContent}
+              sectionLabel={sectionLabel}
+              theme={theme}
+            />
+            <div style={{ padding: heroFullWidth ? "0 0 3rem 2rem" : "0 2rem 3rem 2rem" }}>
+              <HeroContent heroImage={heroImage} heroGradient={heroGradient} theme={theme} />
+            </div>
           </div>
         </div>
       ))}
