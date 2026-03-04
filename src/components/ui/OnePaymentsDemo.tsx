@@ -75,7 +75,6 @@ const INVOICES_DATA: InvoiceRow[] = [
   { name: "Godo", initials: "G", price: 900, recurring: true, status: "open", invoiceNum: "SUB-D8EF5DE9-0001", created: "Nov 5, 2026", due: "Dec 30, 2026", payment: "" },
   { name: "Jordyn Donin", initials: "JD", price: 8400, recurring: false, status: "open", invoiceNum: "F7F23EF1-0016", created: "Jun 18, 2026", due: "Jul 30, 2026", payment: "" },
   { name: "Zaire Dokidis", initials: "ZD", price: 10400, recurring: false, status: "paid", invoiceNum: "SUB-83F7CAE1-0010", created: "Jan 20, 2026", due: "Feb 20, 2026", payment: "Jan 25, 2026" },
-  { name: "Michael Robert", initials: "MR", price: 3454, recurring: false, status: "overdue", invoiceNum: "SUB-44D2833F-0006", created: "Feb 28, 2026", due: "Mar 31, 2026", payment: "" },
 ];
 
 interface SubscriptionRow {
@@ -95,7 +94,6 @@ const SUBSCRIPTIONS_DATA: SubscriptionRow[] = [
   { name: "Godo", initials: "G", price: 15000, period: "Yearly", status: "active", created: "May 10, 2026", nextPayment: "May 10, 2027" },
   { name: "Jordyn Donin", initials: "JD", price: 10200, period: "Yearly", status: "active", created: "Nov 5, 2026", nextPayment: "Nov 5, 2027" },
   { name: "Zaire Dokidis", initials: "ZD", price: 14500, period: "Yearly", status: "cancelled", created: "Jun 18, 2026", nextPayment: "" },
-  { name: "Tiana Botosh", initials: "TB", price: 20000, period: "Yearly", status: "active", created: "Jan 20, 2026", nextPayment: "Jan 20, 2027" },
 ];
 
 /* ── Payment Links data ── */
