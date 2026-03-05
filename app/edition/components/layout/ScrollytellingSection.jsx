@@ -82,7 +82,7 @@ function EditorialText({
           }}
         >
           Learn more
-          <span style={{ fontSize: "0.85rem", transition: "transform 0.2s ease", display: "inline-block" }}>→</span>
+          <span style={{ transition: "transform 0.2s ease", display: "inline-block" }}>→</span>
         </a>
       )}
       {ctaContent && <div style={{ marginTop: "1.5rem" }}>{ctaContent}</div>}
@@ -254,7 +254,7 @@ function MobileCard({
           }}
         >
           Learn more
-          <span style={{ fontSize: "0.85rem", display: "inline-block" }}>→</span>
+          <span style={{ display: "inline-block" }}>→</span>
         </a>
       )}
       {children}
