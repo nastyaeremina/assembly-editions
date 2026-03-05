@@ -1,0 +1,48 @@
+"use client";
+
+import "./edition.css";
+import { Header, SplitScreenLayout, Footer } from "./components/layout";
+import { LoadingScreen } from "./components/ui";
+import {
+  CollageHero,
+  EditionIntroMobile,
+  ClientExperienceSection,
+  ProjectManagementSection,
+  ClientManagementSection,
+  PaymentsSection,
+  DevelopersSection,
+  WhatsNextSection,
+} from "./components/sections";
+
+export default function EditionPage() {
+  return (
+    <div className="edition-page min-h-screen bg-background">
+      {/* Loading intro — mouse-interactive "2.0" */}
+      <LoadingScreen />
+
+      {/* Top nav */}
+      <Header />
+
+      <main>
+        {/* Hero — centered title + subtitle + video placeholder */}
+        <CollageHero />
+
+        {/* Mobile intro + sticky nav */}
+        <EditionIntroMobile />
+
+        {/* Scrollable content sections — editorial split layout */}
+        <SplitScreenLayout>
+          <ClientExperienceSection />
+          <ProjectManagementSection />
+          <ClientManagementSection />
+          <PaymentsSection />
+          <DevelopersSection />
+        </SplitScreenLayout>
+
+        <WhatsNextSection />
+      </main>
+
+      <Footer />
+    </div>
+  );
+}
