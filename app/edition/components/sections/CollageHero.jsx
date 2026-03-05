@@ -134,9 +134,9 @@ export function CollageHero() {
               position: "relative",
             }}
           >
-            {/* Video element — hidden until a src is added */}
             <video
               ref={videoRef}
+              src="/videos/assembly-demo.mp4"
               playsInline
               onEnded={() => setIsPlaying(false)}
               style={{

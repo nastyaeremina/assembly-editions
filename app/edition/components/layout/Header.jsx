@@ -72,7 +72,7 @@ export function Header({ className }) {
               fontSize: "0.85rem",
               color: "#101010",
               backgroundColor: "rgba(255, 255, 255, 0.9)",
-              padding: "0.45rem 1.25rem",
+              padding: "0.6rem 1.5rem",
               borderRadius: "9999px",
               textDecoration: "none",
               transition: "all 0.2s ease",

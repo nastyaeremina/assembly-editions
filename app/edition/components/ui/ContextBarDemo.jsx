@@ -176,6 +176,7 @@ const AUTO_CYCLE_INTERVAL = 2800; // ms between switches
 
 export function ContextBarDemo({ inSplit = false }) {
   const [activePanel, setActivePanel] = useState("person");
+  const [sidebarOpen, setSidebarOpen] = useState(true);
   const isDesktop = useMediaQuery("(min-width: 768px)", true);
   const [showTooltip, setShowTooltip] = useState(false);
   const tooltipDismissed = useRef(false);
@@ -198,7 +199,19 @@ export function ContextBarDemo({ inSplit = false }) {
 
   const handleUserClick = useCallback((panel) => {
     stopAutoCycle();
-    setActivePanel(panel);
+    if (sidebarOpen && activePanel === panel) {
+      setSidebarOpen(false);
+    } else {
+      setActivePanel(panel);
+      setSidebarOpen(true);
+    }
+    setShowTooltip(false);
+    tooltipDismissed.current = true;
+  }, [stopAutoCycle, sidebarOpen, activePanel]);
+
+  const handleAvatarClick = useCallback(() => {
+    stopAutoCycle();
+    setSidebarOpen((prev) => !prev);
     setShowTooltip(false);
     tooltipDismissed.current = true;
   }, [stopAutoCycle]);
@@ -208,6 +221,7 @@ export function ContextBarDemo({ inSplit = false }) {
     if (!isInView || userTookOver || !isDesktop) return;
 
     const startTimer = setTimeout(() => {
+      setSidebarOpen(true);
       setAutoCycleActive(true);
     }, AUTO_CYCLE_DELAY);
 
@@ -611,14 +625,16 @@ export function ContextBarDemo({ inSplit = false }) {
         </div>
 
         {/* ─── RIGHT SIDEBAR ─── */}
-        <div
+        <motion.div
+          animate={{ width: sidebarOpen ? 260 : 0 }}
+          transition={{ duration: 0.45, ease: [0.4, 0, 0.2, 1] }}
           style={{
-            width: "clamp(240px, 30%, 320px)",
-            borderLeft: `1px solid ${C.border}`,
+            borderLeft: sidebarOpen ? `1px solid ${C.border}` : "none",
             display: "flex",
             flexDirection: "column",
             backgroundColor: C.bg,
             flexShrink: 0,
+            overflow: "hidden",
           }}
         >
           {/* Sidebar header */}
@@ -754,7 +770,7 @@ export function ContextBarDemo({ inSplit = false }) {
               </div>
             </div>
           )}
-        </div>
+        </motion.div>
 
         {/* ─── ICON BAR (far right) ─── */}
         <div
@@ -770,57 +786,46 @@ export function ContextBarDemo({ inSplit = false }) {
             flexShrink: 0,
           }}
         >
-          <div style={{ width: 24, height: 24, borderRadius: "50%", backgroundColor: "#dfe8e6", color: "#2a8a7a", fontSize: 9, fontWeight: 400, display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>MA</div>
+          <div
+            onClick={handleAvatarClick}
+            style={{ width: 24, height: 24, borderRadius: "50%", backgroundColor: "#dfe8e6", color: "#2a8a7a", fontSize: 9, fontWeight: 400, display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0, cursor: "pointer" }}
+          >MA</div>
           <div
             onMouseEnter={() => { if (!tooltipDismissed.current) setShowTooltip(true); }}
             onMouseLeave={() => setShowTooltip(false)}
             style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "14px", position: "relative" }}
           >
-            {(() => {
-              const nextPanel = PANEL_ORDER[(PANEL_ORDER.indexOf(activePanel) + 1) % PANEL_ORDER.length];
-              return ["person", "document", "chat"].map((key) => {
-                const isActive = activePanel === key;
-                const isNext = autoCycleActive && !userTookOver && key === nextPanel;
-                return (
-                  <motion.div
-                    key={key}
-                    onClick={() => handleUserClick(key)}
-                    animate={isNext ? {
-                      backgroundColor: ["rgba(0,0,0,0)", "rgba(0,0,0,0.04)", "rgba(0,0,0,0)"],
-                    } : {}}
-                    transition={isNext ? {
-                      duration: 1.4,
-                      repeat: Infinity,
-                      ease: "easeInOut",
-                    } : { duration: 0.15 }}
+            {["person", "document", "chat"].map((key) => {
+              const isActive = activePanel === key;
+              return (
+                <div
+                  key={key}
+                  onClick={() => handleUserClick(key)}
+                  style={{
+                    borderRadius: "6px",
+                    padding: "5px",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    cursor: "pointer",
+                    backgroundColor: isActive ? "#f0f1f3" : "transparent",
+                  }}
+                >
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src={ICO[key]}
+                    alt={key}
+                    width={14}
+                    height={14}
                     style={{
-                      borderRadius: "6px",
-                      padding: "5px",
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "center",
-                      cursor: "pointer",
-                      backgroundColor: isActive ? "#f0f1f3" : "transparent",
-                      transition: isNext ? undefined : "background-color 0.15s ease",
+                      display: "block",
+                      opacity: isActive ? 1 : key === "chat" ? 0.75 : 0.55,
                     }}
-                  >
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img
-                      src={ICO[key]}
-                      alt={key}
-                      width={14}
-                      height={14}
-                      style={{
-                        display: "block",
-                        opacity: isActive ? 1 : key === "chat" ? 0.75 : 0.55,
-                        transition: "opacity 0.15s ease",
-                      }}
-                      draggable={false}
-                    />
-                  </motion.div>
-                );
-              });
-            })()}
+                    draggable={false}
+                  />
+                </div>
+              );
+            })}
             {/* Tooltip */}
             <AnimatePresence>
               {showTooltip && (

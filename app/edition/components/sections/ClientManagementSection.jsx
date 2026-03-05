@@ -6,9 +6,9 @@ import { MacOSDock, ContextBarDemo } from "../ui";
 const SECTION_ID = "client-management";
 const SECTION_NUM = "03";
 const TITLE =
-  "Native desktop experience with context at your fingertips";
+  "Desktop app to never miss a notification";
 const DESC =
-  "Assembly now has a desktop app for Mac with real desktop notifications — Windows coming soon. The redesigned context bar appears on more surfaces than ever.";
+  "You and your internal team can now download the Assembly desktop app for Mac (Windows coming out soon). No more hunting through browser tabs.";
 
 export function ClientManagementSection() {
   return (
@@ -56,8 +56,8 @@ export function ClientManagementSection() {
         {
           id: "context-bar",
           suffix: "A",
-          title: "Redesigned context bar",
-          description: "The context bar now surfaces client details, recent activity, and quick actions on more surfaces than ever — invoices, tasks, messages, and contracts.",
+          title: "Context on your clients anywhere you work",
+          description: "Stay in context. You can now reference your clients' details and internal notes beyond the CRM in file channels, on notifications, during messaging and more.",
           learnMoreUrl: "#",
           content: <ContextBarDemo />,
         },

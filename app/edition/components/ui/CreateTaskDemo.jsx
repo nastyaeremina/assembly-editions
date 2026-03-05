@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useRef, useEffect, useCallback } from "react";
+import { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useIdleHint } from "../../hooks/useIdleHint";
 import { useMediaQuery } from "../../hooks/useMediaQuery";
@@ -29,9 +29,20 @@ const C = {
 
 /* ── Client data ── */
 const CLIENTS = [
-  { id: "ms", initials: "MS", name: "Mary Sung", subtitle: "Mary@servicesymphony.c...", color: "#f0e6c8", textColor: "#8a7230" },
-  { id: "cm", initials: "CM", name: "Charles Musial", subtitle: "Charles@servicesymphony.c...", color: "#e8e4f0", textColor: "#6b5b95" },
+  { id: "ms", initials: "MS", name: "Mary Sung", subtitle: "mary@servicesymphony.c...", color: "#f0e6c8", textColor: "#8a7230" },
+  { id: "cm", initials: "CM", name: "Charles Musial", subtitle: "charles@servicesymphony.c...", color: "#e8e4f0", textColor: "#6b5b95" },
 ];
+
+/* ── Todo status states ── */
+const TODO_STATES = [
+  { label: "Todo",        color: C.textSec,  iconOpacity: 0.5 },
+  { label: "In progress", color: "#b45309",  iconOpacity: 0.7 },
+  { label: "Done",        color: "#115B3B",  iconOpacity: 1.0 },
+];
+
+/* ── Assignee display data ── */
+const ASSIGNEE = { initials: "AW", name: "Alex Werner", color: "#d1e7dd", textColor: "#0f5132" };
+const DUE_DATE_LABEL = "Jan 15, 2026";
 
 /* ════════════════════════════════════════════════
    MAIN COMPONENT
@@ -44,6 +55,10 @@ export function CreateTaskDemo({ inSplit = false }) {
   const pickerRef = useRef(null);
   const containerRef = useRef(null);
   const [showRelatedTooltip, setShowRelatedTooltip] = useState(false);
+  const [description, setDescription] = useState("");
+  const [todoStatus, setTodoStatus] = useState(0);
+  const [dueDateSet, setDueDateSet] = useState(false);
+  const [assigneeSet, setAssigneeSet] = useState(false);
 
   const isMobile = useMediaQuery("(max-width: 1023px)", false);
 
@@ -51,7 +66,7 @@ export function CreateTaskDemo({ inSplit = false }) {
   const { containerRef: idleRef, isIdle: pillIdleActive, dismiss: dismissIdle } = useIdleHint({ delay: 2500 });
 
   /* ── Mobile auto-play loop ──
-     Sequence: wait → select client → show toggle → switch on → hold → reset → repeat */
+     Sequence: reset → fill pills → select client → share → complete → repeat */
   useEffect(() => {
     if (!isMobile) return;
     let cancelled = false;
@@ -59,24 +74,48 @@ export function CreateTaskDemo({ inSplit = false }) {
 
     async function loop() {
       while (!cancelled) {
-        // Reset
+        // Reset all states
         setRelatedClient(null);
         setShareWithClient(false);
         setShowPicker(false);
+        setTodoStatus(0);
+        setDueDateSet(false);
+        setAssigneeSet(false);
+        setDescription("");
+        await wait(1500);
+        if (cancelled) break;
+
+        // Step 1: Todo → "In progress"
+        setTodoStatus(1);
+        await wait(1200);
+        if (cancelled) break;
+
+        // Step 2: Set due date
+        setDueDateSet(true);
+        await wait(1200);
+        if (cancelled) break;
+
+        // Step 3: Set assignee
+        setAssigneeSet(true);
+        await wait(1200);
+        if (cancelled) break;
+
+        // Step 4: Select client (Mary Sung)
+        setRelatedClient("ms");
+        await wait(1500);
+        if (cancelled) break;
+
+        // Step 5: Toggle "Share with client" ON
+        setShareWithClient(true);
         await wait(2000);
         if (cancelled) break;
 
-        // Step 1: auto-select client (Mary Sung)
-        setRelatedClient("ms");
-        await wait(1800);
+        // Step 6: Todo → "Done"
+        setTodoStatus(2);
+        await wait(2000);
         if (cancelled) break;
 
-        // Step 2: toggle "Share with client" ON
-        setShareWithClient(true);
-        await wait(3000);
-        if (cancelled) break;
-
-        // Step 3: hold before reset
+        // Hold before reset
         await wait(1500);
       }
     }
@@ -108,7 +147,7 @@ export function CreateTaskDemo({ inSplit = false }) {
     <div ref={(el) => {
       containerRef.current = el;
       idleRef.current = el;
-    }} style={{ width: "100%" }}>
+    }} style={{ width: "100%", maxWidth: "600px" }}>
     <motion.div
       initial={{ opacity: 0, scale: 0.97 }}
       whileInView={{ opacity: 1, scale: 1 }}
@@ -116,15 +155,37 @@ export function CreateTaskDemo({ inSplit = false }) {
       transition={{ duration: 0.6, ease: [0.25, 0.1, 0.25, 1] }}
       style={{
         width: "100%",
-        backgroundColor: C.bg,
         borderRadius: "10px",
         border: "1px solid rgba(255, 255, 255, 0.06)",
         boxShadow: "0 8px 30px rgba(0,0,0,0.08), 0 1px 3px rgba(0,0,0,0.06)",
         fontFamily: "'Inter', system-ui, sans-serif",
-        display: "flex",
-        flexDirection: "column",
       }}
     >
+      {/* ─── Browser chrome ─── */}
+      <div style={{
+        position: "relative", display: "flex", alignItems: "center",
+        backgroundColor: "#141414", padding: "12px 16px",
+        borderBottom: "1px solid rgba(255, 255, 255, 0.06)",
+        borderRadius: "10px 10px 0 0",
+        overflow: "hidden",
+      }}>
+        <div style={{ display: "flex", gap: "7px", position: "relative", zIndex: 1 }}>
+          {["#ff5f57", "#febc2e", "#28c840"].map((color) => (
+            <div key={color} style={{ width: "10px", height: "10px", borderRadius: "50%", backgroundColor: color, opacity: 0.8 }} />
+          ))}
+        </div>
+        <div style={{ position: "absolute", left: 0, right: 0, textAlign: "center", fontFamily: "'SF Mono', 'Fira Code', Menlo, monospace", fontSize: "11px", color: "rgba(255, 255, 255, 0.35)", letterSpacing: "0.01em", pointerEvents: "none" }}>
+          dashboard.assembly.com
+        </div>
+      </div>
+
+      {/* ─── Modal content ─── */}
+      <div style={{
+        backgroundColor: C.bg,
+        display: "flex",
+        flexDirection: "column",
+        borderRadius: "0 0 10px 10px",
+      }}>
       {/* ── Modal header ── */}
       <div
         style={{
@@ -135,19 +196,9 @@ export function CreateTaskDemo({ inSplit = false }) {
           borderBottom: `1px solid ${C.borderLight}`,
         }}
       >
-        <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
-          <span style={{ fontSize: "14px", fontWeight: 500, color: C.text }}>
-            Create task
-          </span>
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            src="/edition/Icons/Primary-1.svg"
-            alt=""
-            width={16}
-            height={16}
-            style={{ display: "block", opacity: 0.35 }}
-          />
-        </div>
+        <span style={{ fontSize: "14px", fontWeight: 500, color: C.text }}>
+          Create task
+        </span>
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src="/edition/Icons/Icon (approved) copy.svg"
@@ -175,15 +226,28 @@ export function CreateTaskDemo({ inSplit = false }) {
         >
           Competitor analysis
         </div>
-        <div
+        <textarea
+          value={description}
+          onChange={(e) => setDescription(e.target.value)}
+          placeholder="Add description..."
+          rows={2}
+          readOnly={isMobile}
           style={{
             fontSize: "12px",
-            color: C.textTertiary,
-            minHeight: "36px",
+            color: C.text,
+            width: "100%",
+            border: "none",
+            outline: "none",
+            resize: "none",
+            padding: 0,
+            margin: 0,
+            backgroundColor: "transparent",
+            fontFamily: "'Inter', system-ui, sans-serif",
+            lineHeight: "18px",
+            maxHeight: "36px",
+            overflow: "hidden",
           }}
-        >
-          Add description...
-        </div>
+        />
       </div>
 
       {/* ── Toolbar pills ── */}
@@ -196,14 +260,126 @@ export function CreateTaskDemo({ inSplit = false }) {
           flexWrap: "wrap",
         }}
       >
-        {/* Todo pill */}
-        <ToolbarPill icon="/edition/Icons/circle.svg" label="Todo" />
+        {/* Todo pill — cycles: Todo → In progress → Done */}
+        {(() => {
+          const state = TODO_STATES[todoStatus];
+          return (
+            <motion.button
+              type="button"
+              onClick={() => { if (!isMobile) setTodoStatus((s) => (s + 1) % 3); }}
+              whileHover={isMobile ? undefined : { backgroundColor: "#f9fafb" }}
+              style={{
+                display: "flex",
+                alignItems: "center",
+                gap: "5px",
+                padding: "0 12px",
+                height: "32px",
+                borderRadius: "6px",
+                border: `1px solid ${C.border}`,
+                fontSize: "12px",
+                fontWeight: 400,
+                color: state.color,
+                cursor: isMobile ? "default" : "pointer",
+                backgroundColor: "transparent",
+                fontFamily: "'Inter', system-ui, sans-serif",
+                transition: "color 300ms ease",
+              }}
+            >
+              {todoStatus === 0 && (
+                /* eslint-disable-next-line @next/next/no-img-element */
+                <img src="/edition/Icons/circle.svg" alt="" width={12} height={12} style={{ display: "block", opacity: 0.5 }} />
+              )}
+              {todoStatus === 1 && (
+                <svg width="12" height="12" viewBox="0 0 20 20" fill="none" style={{ display: "block", flexShrink: 0 }}>
+                  <circle cx="10" cy="10" r="8.5" stroke="#b45309" strokeWidth="1.5" fill="none" />
+                  <path d="M10 1.5 A8.5 8.5 0 0 1 10 18.5" fill="#b45309" />
+                </svg>
+              )}
+              {todoStatus === 2 && (
+                /* eslint-disable-next-line @next/next/no-img-element */
+                <img src="/edition/Icons/checkgreen.svg" alt="" width={12} height={12} style={{ display: "block" }} />
+              )}
+              {state.label}
+            </motion.button>
+          );
+        })()}
 
-        {/* Due date pill */}
-        <ToolbarPill icon="/edition/Icons/Primary.svg" label="Due date" />
+        {/* Due date pill — toggles date value */}
+        <motion.button
+          type="button"
+          onClick={() => { if (!isMobile) setDueDateSet((v) => !v); }}
+          whileHover={isMobile ? undefined : { backgroundColor: "#f9fafb" }}
+          style={{
+            display: "flex",
+            alignItems: "center",
+            gap: "5px",
+            padding: "0 12px",
+            height: "32px",
+            borderRadius: "6px",
+            border: `1px solid ${C.border}`,
+            fontSize: "12px",
+            fontWeight: 400,
+            color: dueDateSet ? C.text : C.textSec,
+            cursor: isMobile ? "default" : "pointer",
+            backgroundColor: "transparent",
+            fontFamily: "'Inter', system-ui, sans-serif",
+            transition: "color 300ms ease",
+          }}
+        >
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src="/edition/Icons/calendar.svg" alt="" width={11} height={12} style={{ display: "block", opacity: dueDateSet ? 0.8 : 0.5 }} />
+          {dueDateSet ? DUE_DATE_LABEL : "Due date"}
+        </motion.button>
 
-        {/* Assignee pill */}
-        <ToolbarPill icon="/edition/Icons/user.svg" label="Assignee" />
+        {/* Assignee pill — toggles assigned person */}
+        <motion.button
+          type="button"
+          onClick={() => { if (!isMobile) setAssigneeSet((v) => !v); }}
+          whileHover={isMobile ? undefined : { backgroundColor: "#f9fafb" }}
+          style={{
+            display: "flex",
+            alignItems: "center",
+            gap: "5px",
+            padding: assigneeSet ? "0 12px 0 4px" : "0 12px",
+            height: "32px",
+            borderRadius: "6px",
+            border: `1px solid ${C.border}`,
+            fontSize: "12px",
+            fontWeight: 400,
+            color: assigneeSet ? C.text : C.textSec,
+            cursor: isMobile ? "default" : "pointer",
+            backgroundColor: "transparent",
+            fontFamily: "'Inter', system-ui, sans-serif",
+            transition: "color 300ms ease, padding 300ms ease",
+          }}
+        >
+          {assigneeSet ? (
+            <>
+              <div style={{
+                width: "24px",
+                height: "24px",
+                borderRadius: "50%",
+                backgroundColor: ASSIGNEE.color,
+                flexShrink: 0,
+                fontSize: "9px",
+                fontWeight: 400,
+                fontFamily: "'Inter', system-ui, sans-serif",
+                color: ASSIGNEE.textColor,
+                lineHeight: "24px",
+                textAlign: "center",
+              }}>
+                {ASSIGNEE.initials}
+              </div>
+              {ASSIGNEE.name}
+            </>
+          ) : (
+            <>
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src="/edition/Icons/user.svg" alt="" width={12} height={12} style={{ display: "block", opacity: 0.5 }} />
+              Assignee
+            </>
+          )}
+        </motion.button>
 
         {/* Related to pill — interactive */}
         <div ref={pickerRef} style={{ position: "relative" }}>
@@ -347,20 +523,20 @@ export function CreateTaskDemo({ inSplit = false }) {
                   borderRadius: "6px",
                   boxShadow:
                     "0 4px 16px rgba(0,0,0,0.12), 0 1px 3px rgba(0,0,0,0.06)",
-                  minWidth: "240px",
+                  minWidth: "210px",
                   overflow: "hidden",
                 }}
               >
                 {/* Search input */}
                 <div
                   style={{
-                    padding: "10px 12px",
+                    padding: "8px 10px",
                     borderBottom: `1px solid ${C.borderLight}`,
                   }}
                 >
                   <div
                     style={{
-                      fontSize: "13px",
+                      fontSize: "12px",
                       color: C.textTertiary,
                       cursor: "text",
                     }}
@@ -370,13 +546,13 @@ export function CreateTaskDemo({ inSplit = false }) {
                 </div>
 
                 {/* Clients list */}
-                <div style={{ padding: "6px" }}>
+                <div style={{ padding: "4px" }}>
                   <div
                     style={{
-                      fontSize: "11px",
+                      fontSize: "10px",
                       fontWeight: 500,
                       color: C.textTertiary,
-                      padding: "6px 8px 4px",
+                      padding: "5px 8px 3px",
                     }}
                   >
                     Clients
@@ -395,14 +571,14 @@ export function CreateTaskDemo({ inSplit = false }) {
                       style={{
                         display: "flex",
                         alignItems: "center",
-                        gap: "10px",
+                        gap: "8px",
                         width: "100%",
-                        padding: "10px 8px",
+                        padding: "7px 8px",
                         border: "none",
                         backgroundColor: "transparent",
                         borderRadius: "6px",
                         cursor: "pointer",
-                        fontSize: "13px",
+                        fontSize: "12px",
                         fontWeight: 400,
                         color: C.text,
                         textAlign: "left",
@@ -412,25 +588,25 @@ export function CreateTaskDemo({ inSplit = false }) {
                     >
                       <div
                         style={{
-                          width: "32px",
-                          height: "32px",
+                          width: "26px",
+                          height: "26px",
                           borderRadius: "50%",
                           backgroundColor: client.color,
                           flexShrink: 0,
-                          fontSize: "13px",
+                          fontSize: "10px",
                           fontWeight: 400,
                           fontFamily: "'Inter', system-ui, sans-serif",
                           color: client.textColor,
-                          lineHeight: "32px",
+                          lineHeight: "26px",
                           textAlign: "center",
                         }}
                       >
                         {client.initials}
                       </div>
                       <div style={{ minWidth: 0 }}>
-                        <div style={{ fontSize: "13px", fontWeight: 500, color: C.text, lineHeight: 1.3 }}>{client.name}</div>
+                        <div style={{ fontSize: "12px", fontWeight: 500, color: C.text, lineHeight: 1.3 }}>{client.name}</div>
                         {client.subtitle && (
-                          <div style={{ fontSize: "11px", color: C.textTertiary, lineHeight: 1.3, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{client.subtitle}</div>
+                          <div style={{ fontSize: "10px", color: C.textTertiary, lineHeight: 1.3, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{client.subtitle}</div>
                         )}
                       </div>
                     </button>
@@ -564,19 +740,6 @@ export function CreateTaskDemo({ inSplit = false }) {
             borderRadius: "6px",
             fontSize: "12px",
             fontWeight: 500,
-            color: C.text,
-            border: `1px solid ${C.border}`,
-            cursor: "default",
-          }}
-        >
-          Discard
-        </div>
-        <div
-          style={{
-            padding: "6px 16px",
-            borderRadius: "6px",
-            fontSize: "12px",
-            fontWeight: 500,
             color: C.createText,
             backgroundColor: C.bgAlt,
             border: `1px solid ${C.createBorder}`,
@@ -586,38 +749,9 @@ export function CreateTaskDemo({ inSplit = false }) {
           Create
         </div>
       </div>
+      </div>{/* close modal content wrapper */}
     </motion.div>
     </div>
   );
 }
 
-/* ── Toolbar pill (static) ── */
-function ToolbarPill({ icon, label }) {
-  return (
-    <div
-      style={{
-        display: "flex",
-        alignItems: "center",
-        gap: "5px",
-        padding: "0 12px",
-        height: "32px",
-        borderRadius: "6px",
-        border: `1px solid ${C.border}`,
-        fontSize: "12px",
-        fontWeight: 400,
-        color: C.textSec,
-        cursor: "default",
-      }}
-    >
-      {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img
-        src={icon}
-        alt=""
-        width={12}
-        height={12}
-        style={{ display: "block", opacity: 0.5 }}
-      />
-      {label}
-    </div>
-  );
-}

@@ -16,7 +16,7 @@ export function ProjectManagementSection() {
           id: "tasks-client-association",
           suffix: "A",
           title: "Tasks now associate with clients",
-          description: "Link tasks to a client without making them visible. Tasks appear on the client profile for your team only, and you can share them anytime by turning on client access.",
+          description: "Link internal team tasks to their relevant client. Selectively share tasks with clients to give them visibility into your progress and process.",
           learnMoreUrl: "#",
           content: <CreateTaskDemo inSplit={false} />,
         },

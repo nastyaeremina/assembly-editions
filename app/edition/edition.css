@@ -128,6 +128,24 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+/* Override global font leaks from the main site (e.g. 'Bagoss' on <a> tags) */
+.edition-page a,
+.edition-page button,
+.edition-page input,
+.edition-page select,
+.edition-page textarea,
+.edition-page p,
+.edition-page span,
+.edition-page li,
+.edition-page h1,
+.edition-page h2,
+.edition-page h3,
+.edition-page h4,
+.edition-page h5,
+.edition-page h6 {
+  font-family: inherit;
+}
+
 /* Selection styling within edition page */
 .edition-page ::selection {
   background: var(--color-accent);

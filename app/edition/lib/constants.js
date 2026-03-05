@@ -47,7 +47,7 @@ export const SPLIT_SECTIONS = [
     shortLabel: "Management",
     number: "03",
     title: "For client management",
-    categoryLabel: "DESKTOP APP",
+    categoryLabel: "CLIENT MANAGEMENT",
     subsections: [
       { id: "context-bar", label: "Context Bar" },
     ],

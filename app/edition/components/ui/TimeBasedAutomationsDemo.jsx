@@ -1,13 +1,14 @@
 "use client";
 
-import { useState, useRef, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { useState, useEffect } from "react";
+import { motion } from "framer-motion";
 import { useMediaQuery } from "../../hooks/useMediaQuery";
 
 /* ──────────────────────────────────────────────────────────
    TIME-BASED AUTOMATIONS DEMO
    Full-screen app view showing the Create Automation flow
    with scheduled time trigger configuration.
+   Static (non-interactive) — just a visual showcase.
    ────────────────────────────────────────────────────────── */
 
 /* ── Colors ── */
@@ -41,10 +42,7 @@ const ICO = {
    ════════════════════════════════════════════════ */
 
 export function TimeBasedAutomationsDemo({ inSplit = false }) {
-  const [repeatOn, setRepeatOn] = useState(true);
   const isDesktop = useMediaQuery("(min-width: 1024px)", true);
-  const [showTooltip, setShowTooltip] = useState(false);
-  const tooltipDismissed = useRef(false);
 
   /* ── Mobile auto-play state ── */
   const [mDate, setMDate] = useState("Mon, Jan 12, 2026");
@@ -52,9 +50,7 @@ export function TimeBasedAutomationsDemo({ inSplit = false }) {
   const [mRepeatOn, setMRepeatOn] = useState(false);
   const [mRepeatNum, setMRepeatNum] = useState(1);
 
-  /* ── Mobile auto-play loop ──
-     Everything stays visible — date & time values change smoothly,
-     then repeat toggles on, number goes 1 → 2, hold, loop. */
+  /* ── Mobile auto-play loop ── */
   useEffect(() => {
     if (isDesktop) return;
     let cancelled = false;
@@ -65,7 +61,6 @@ export function TimeBasedAutomationsDemo({ inSplit = false }) {
 
     async function loop() {
       while (!cancelled) {
-        // Reset to initial values
         setMDate("Mon, Jan 12, 2026");
         setMTime("8:00 AM");
         setMRepeatOn(false);
@@ -73,27 +68,22 @@ export function TimeBasedAutomationsDemo({ inSplit = false }) {
         await wait(1500);
         if (cancelled) break;
 
-        // Step 1: date picks Mon, Jan 31
         setMDate("Mon, Jan 31, 2026");
         await wait(800);
         if (cancelled) break;
 
-        // Step 2: time picks 9:00 AM
         setMTime("9:00 AM");
         await wait(800);
         if (cancelled) break;
 
-        // Step 3: repeat toggle ON
         setMRepeatOn(true);
         await wait(1000);
         if (cancelled) break;
 
-        // Step 4: number goes from 1 → 2
         setMRepeatNum(2);
         await wait(2500);
         if (cancelled) break;
 
-        // Hold then reset
         await wait(1200);
       }
     }
@@ -125,7 +115,7 @@ export function TimeBasedAutomationsDemo({ inSplit = false }) {
           marginBottom: "22px", letterSpacing: "-0.01em",
         }}>Scheduled time</div>
 
-        {/* Start date + Start time side by side — always visible, values animate */}
+        {/* Start date + Start time side by side */}
         <div style={{ display: "flex", gap: "10px", marginBottom: "14px" }}>
           <div style={{ flex: 1 }}>
             <div style={{ fontSize: "12px", fontWeight: 500, color: C.text, marginBottom: "6px" }}>Start date</div>
@@ -167,7 +157,7 @@ export function TimeBasedAutomationsDemo({ inSplit = false }) {
           <span>Time zone: Eastern time (GMT-05:00)</span>
         </div>
 
-        {/* Repeat toggle — always visible, state animates */}
+        {/* Repeat toggle — static display */}
         <div style={{
           display: "flex", alignItems: "center", gap: "10px",
           marginBottom: "10px",
@@ -193,7 +183,7 @@ export function TimeBasedAutomationsDemo({ inSplit = false }) {
           <span style={{ fontSize: "12px", fontWeight: 500, color: C.text }}>Repeat</span>
         </div>
 
-        {/* Repeat details — always rendered, opacity animates (no height shift) */}
+        {/* Repeat details */}
         <div style={{
           opacity: mRepeatOn ? 1 : 0.35,
           transition: "opacity 0.4s ease",
@@ -243,7 +233,7 @@ export function TimeBasedAutomationsDemo({ inSplit = false }) {
     );
   }
 
-  /* ── Desktop: full app view ── */
+  /* ── Desktop: full app view (static, no interactions) ── */
   return (
     <motion.div
       initial={{ opacity: 0, scale: 0.97 }}
@@ -361,7 +351,7 @@ export function TimeBasedAutomationsDemo({ inSplit = false }) {
             </div>
           </div>
 
-          {/* ── Right config panel ── */}
+          {/* ── Right config panel (static) ── */}
           <div style={{
             width: "280px",
             minWidth: "280px",
@@ -430,28 +420,16 @@ export function TimeBasedAutomationsDemo({ inSplit = false }) {
               <span>Time zone: Eastern time (GMT-05:00)</span>
             </div>
 
-            {/* Repeat toggle */}
-            <div
-              onMouseEnter={() => { if (!tooltipDismissed.current) setShowTooltip(true); }}
-              onMouseLeave={() => setShowTooltip(false)}
-              style={{
-                display: "flex", alignItems: "center", gap: "8px",
-                marginBottom: "8px",
-                position: "relative",
-              }}
-            >
-              {/* Toggle */}
+            {/* Repeat toggle — static ON state */}
+            <div style={{
+              display: "flex", alignItems: "center", gap: "8px",
+              marginBottom: "8px",
+            }}>
               <div
-                onClick={() => {
-                  setRepeatOn(!repeatOn);
-                  setShowTooltip(false);
-                  tooltipDismissed.current = true;
-                }}
                 style={{
                   width: "32px", height: "18px", borderRadius: "9px",
-                  backgroundColor: repeatOn ? C.text : "#d1d5db",
-                  cursor: "pointer", position: "relative",
-                  transition: "background-color 200ms ease",
+                  backgroundColor: C.text,
+                  cursor: "default", position: "relative",
                   flexShrink: 0,
                 }}
               >
@@ -459,122 +437,59 @@ export function TimeBasedAutomationsDemo({ inSplit = false }) {
                   width: "14px", height: "14px", borderRadius: "50%",
                   backgroundColor: "#ffffff",
                   position: "absolute", top: "2px",
-                  left: repeatOn ? "16px" : "2px",
-                  transition: "left 200ms ease",
+                  left: "16px",
                   boxShadow: "0 1px 2px rgba(0,0,0,0.15)",
                 }} />
               </div>
               <span style={{ fontSize: "12px", fontWeight: 500, color: C.text }}>Repeat</span>
-              {/* Tooltip */}
-              <AnimatePresence>
-                {showTooltip && (
-                  <motion.div
-                    initial={{ opacity: 0, y: 4 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: 4 }}
-                    transition={{ duration: 0.15 }}
-                    style={{
-                      position: "absolute",
-                      bottom: "calc(100% + 8px)",
-                      left: "0px",
-                      pointerEvents: "none",
-                      zIndex: 100,
-                    }}
-                  >
-                    <div style={{
-                      position: "relative",
-                      display: "inline-flex",
-                      alignItems: "center",
-                      padding: "4px 8px",
-                      borderRadius: "6px",
-                      backgroundColor: "rgba(39, 39, 42, 0.95)",
-                      backdropFilter: "blur(8px)",
-                      WebkitBackdropFilter: "blur(8px)",
-                      border: "1px solid rgba(63, 63, 70, 0.5)",
-                      boxShadow: "0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -2px rgba(0,0,0,0.1)",
-                      whiteSpace: "nowrap",
-                    }}>
-                      <span style={{
-                        fontFamily: "'Inter', system-ui, sans-serif",
-                        fontSize: "10px",
-                        fontWeight: 400,
-                        color: "#ffffff",
-                      }}>
-                        Click to toggle
-                      </span>
-                      <div style={{
-                        position: "absolute",
-                        bottom: "-4px",
-                        left: "16px",
-                        width: "8px",
-                        height: "8px",
-                        backgroundColor: "rgba(39, 39, 42, 0.95)",
-                        transform: "rotate(45deg)",
-                        borderRight: "1px solid rgba(63, 63, 70, 0.5)",
-                        borderBottom: "1px solid rgba(63, 63, 70, 0.5)",
-                      }} />
-                    </div>
-                  </motion.div>
-                )}
-              </AnimatePresence>
             </div>
 
-            {/* Repeat details (shown when toggle is on) */}
-            <AnimatePresence>
-              {repeatOn && (
-                <motion.div
-                  initial={{ opacity: 0, height: 0 }}
-                  animate={{ opacity: 1, height: "auto" }}
-                  exit={{ opacity: 0, height: 0 }}
-                  transition={{ duration: 0.2, ease: "easeInOut" }}
-                  style={{ overflow: "hidden" }}
-                >
-                  {/* Helper text */}
-                  <div style={{
-                    fontSize: "10px", color: C.textSec, marginBottom: "14px",
-                    lineHeight: 1.4,
-                  }}>
-                    The trigger always uses the start time.
-                  </div>
+            {/* Repeat details (always visible) */}
+            <div>
+              {/* Helper text */}
+              <div style={{
+                fontSize: "10px", color: C.textSec, marginBottom: "14px",
+                lineHeight: 1.4,
+              }}>
+                The trigger always uses the start time.
+              </div>
 
-                  {/* Repeat every label */}
-                  <div style={{ fontSize: "10px", fontWeight: 500, color: C.text, marginBottom: "6px" }}>
-                    Repeat every
-                  </div>
+              {/* Repeat every label */}
+              <div style={{ fontSize: "10px", fontWeight: 500, color: C.text, marginBottom: "6px" }}>
+                Repeat every
+              </div>
 
-                  {/* Number + Unit selectors */}
-                  <div style={{ display: "flex", gap: "8px" }}>
-                    {/* Number input */}
-                    <div style={{
-                      display: "flex", alignItems: "center", justifyContent: "space-between",
-                      padding: "7px 10px", borderRadius: "6px",
-                      border: `1px solid ${C.border}`,
-                      fontSize: "11px", color: C.text,
-                      width: "60px",
-                    }}>
-                      <span>1</span>
-                      <svg width="10" height="14" viewBox="0 0 10 14" fill="none" style={{ display: "block", opacity: 0.4 }}>
-                        <path d="M4.55 0.85C4.74 0.66 5.06 0.66 5.25 0.85L7.95 3.55C8.14 3.74 8.14 4.06 7.95 4.25C7.76 4.44 7.44 4.44 7.25 4.25L4.9 1.9L2.55 4.25C2.36 4.44 2.04 4.44 1.85 4.25C1.66 4.06 1.66 3.74 1.85 3.55L4.55 0.85Z" fill="#212B36"/>
-                        <path d="M5.25 13.15C5.06 13.34 4.74 13.34 4.55 13.15L1.85 10.45C1.66 10.26 1.66 9.94 1.85 9.75C2.04 9.56 2.36 9.56 2.55 9.75L4.9 12.1L7.25 9.75C7.44 9.56 7.76 9.56 7.95 9.75C8.14 9.94 8.14 10.26 7.95 10.45L5.25 13.15Z" fill="#212B36"/>
-                      </svg>
-                    </div>
+              {/* Number + Unit selectors */}
+              <div style={{ display: "flex", gap: "8px" }}>
+                {/* Number input */}
+                <div style={{
+                  display: "flex", alignItems: "center", justifyContent: "space-between",
+                  padding: "7px 10px", borderRadius: "6px",
+                  border: `1px solid ${C.border}`,
+                  fontSize: "11px", color: C.text,
+                  width: "60px",
+                }}>
+                  <span>1</span>
+                  <svg width="10" height="14" viewBox="0 0 10 14" fill="none" style={{ display: "block", opacity: 0.4 }}>
+                    <path d="M4.55 0.85C4.74 0.66 5.06 0.66 5.25 0.85L7.95 3.55C8.14 3.74 8.14 4.06 7.95 4.25C7.76 4.44 7.44 4.44 7.25 4.25L4.9 1.9L2.55 4.25C2.36 4.44 2.04 4.44 1.85 4.25C1.66 4.06 1.66 3.74 1.85 3.55L4.55 0.85Z" fill="#212B36"/>
+                    <path d="M5.25 13.15C5.06 13.34 4.74 13.34 4.55 13.15L1.85 10.45C1.66 10.26 1.66 9.94 1.85 9.75C2.04 9.56 2.36 9.56 2.55 9.75L4.9 12.1L7.25 9.75C7.44 9.56 7.76 9.56 7.95 9.75C8.14 9.94 8.14 10.26 7.95 10.45L5.25 13.15Z" fill="#212B36"/>
+                  </svg>
+                </div>
 
-                    {/* Unit dropdown */}
-                    <div style={{
-                      flex: 1,
-                      display: "flex", alignItems: "center", justifyContent: "space-between",
-                      padding: "7px 10px", borderRadius: "6px",
-                      border: `1px solid ${C.border}`,
-                      fontSize: "11px", color: C.text,
-                    }}>
-                      <span>month</span>
-                      {/* eslint-disable-next-line @next/next/no-img-element */}
-                      <img src={ICO.chevronDown} alt="" width={9} height={6} style={{ display: "block", opacity: 0.4 }} />
-                    </div>
-                  </div>
-                </motion.div>
-              )}
-            </AnimatePresence>
+                {/* Unit dropdown */}
+                <div style={{
+                  flex: 1,
+                  display: "flex", alignItems: "center", justifyContent: "space-between",
+                  padding: "7px 10px", borderRadius: "6px",
+                  border: `1px solid ${C.border}`,
+                  fontSize: "11px", color: C.text,
+                }}>
+                  <span>month</span>
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img src={ICO.chevronDown} alt="" width={9} height={6} style={{ display: "block", opacity: 0.4 }} />
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>

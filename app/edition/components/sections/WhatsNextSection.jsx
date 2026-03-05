@@ -1,44 +1,83 @@
 "use client";
 
-import { useRef } from "react";
+import { useRef, useState, useEffect } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 
 /* ────────────────────────────────────────────────────────────
-   WHAT'S NEXT — Roadmap + CTA closing section.
+   WHAT'S NEXT — Stacking cards on scroll.
 
-   Left-aligned editorial layout matching the scrollytelling
-   sections above. Two roadmap cards with color accents, then
-   a centered CTA zone that fades in on scroll.
+   Inspired by opennote.com's sticky-card technique: each card
+   uses `position: sticky` so they naturally pile up as the
+   user scrolls. Pure CSS for the stacking, framer-motion for
+   the heading fade-in and CTA scroll reveal.
    ──────────────────────────────────────────────────────────── */
 
 const ROADMAP = [
   {
+    number: "01",
     label: "Up next",
     title: "AI Edition",
     description:
       "ChatGPT App to ask questions about your clients from anywhere. MCP server for AI-native workflows. Deeper Ask Assembly experience inside the platform.",
-    color: "#D6F990",
+    bg: "#1a1a1a",
+    borderColor: "rgba(255, 255, 255, 0.10)",
+    rotation: -2.5,
+    iconBg: "#2a2a2a",
+    icon: (
+      <img
+        src="/images/openai.svg"
+        alt=""
+        aria-hidden="true"
+        style={{ width: "24px", height: "24px", filter: "invert(1)", opacity: 0.7 }}
+      />
+    ),
   },
   {
+    number: "02",
     label: "Coming soon",
     title: "Scale Ready Edition",
     description:
       "Audit logs for compliance and security. SSO for enterprise authentication. Performance improvements for large teams.",
-    color: "#7DA4FF",
+    bg: "#161616",
+    borderColor: "rgba(255, 255, 255, 0.08)",
+    rotation: 1.8,
+    iconBg: "#252525",
+    icon: (
+      <svg
+        width="24"
+        height="24"
+        viewBox="0 0 24 24"
+        fill="none"
+        aria-hidden="true"
+      >
+        <path
+          d="M12 2L4 5.5V11.5C4 16.45 7.4 21.05 12 22C16.6 21.05 20 16.45 20 11.5V5.5L12 2ZM12 11.99H18C17.47 16.11 15.14 19.78 12 20.93V12H6V6.69L12 4.14V11.99Z"
+          fill="rgba(255, 255, 255, 0.6)"
+        />
+      </svg>
+    ),
   },
 ];
 
 export function WhatsNextSection() {
   const sectionRef = useRef(null);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const mq = window.matchMedia("(max-width: 767px)");
+    setIsMobile(mq.matches);
+    const handler = (e) => setIsMobile(e.matches);
+    mq.addEventListener("change", handler);
+    return () => mq.removeEventListener("change", handler);
+  }, []);
 
   const { scrollYProgress } = useScroll({
     target: sectionRef,
     offset: ["start end", "end end"],
   });
 
-  // CTA zone entrance animation
-  const ctaOpacity = useTransform(scrollYProgress, [0.55, 0.8], [0, 1]);
-  const ctaY = useTransform(scrollYProgress, [0.55, 0.8], [24, 0]);
+  const ctaOpacity = useTransform(scrollYProgress, [0.6, 0.85], [0, 1]);
+  const ctaY = useTransform(scrollYProgress, [0.6, 0.85], [24, 0]);
 
   return (
     <section
@@ -51,253 +90,242 @@ export function WhatsNextSection() {
         paddingBottom: "clamp(4rem, 8vw, 6rem)",
       }}
     >
-      {/* Left-aligned container — matches editorial text padding */}
       <div style={{ padding: "0 2rem" }}>
-        {/* ══════════════════════════════════════════════════
-            ZONE A — Roadmap
-           ══════════════════════════════════════════════════ */}
 
-        {/* Section title */}
-        <h2
-          style={{
-            fontFamily: "'PP Mori', var(--font-sans)",
-            fontWeight: 600,
-            fontSize: "clamp(1.6rem, 2.8vw, 2.2rem)",
-            lineHeight: 1.15,
-            letterSpacing: "-0.025em",
-            color: "#fff",
-            margin: 0,
-          }}
-        >
-          What&apos;s next
-        </h2>
-
-        {/* Intro text */}
-        <p
-          style={{
-            fontFamily: "'PP Mori', var(--font-sans)",
-            fontWeight: 400,
-            fontSize: "0.95rem",
-            lineHeight: 1.65,
-            color: "rgba(255, 255, 255, 0.82)",
-            maxWidth: "32rem",
-            margin: 0,
-            marginTop: "1rem",
-          }}
-        >
-          Assembly 2.0 is live — but we&apos;re just getting started. Two more
-          major releases are shipping in the next eight weeks.
-        </p>
-
-        {/* Roadmap cards */}
-        <div
-          style={{
-            display: "grid",
-            gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
-            gap: "1rem",
-            marginTop: "clamp(2rem, 4vw, 3rem)",
-          }}
-        >
-          {ROADMAP.map((item, i) => (
-            <motion.div
-              key={item.title}
-              initial={{ opacity: 0, y: 16 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-40px" }}
-              transition={{
-                duration: 0.5,
-                delay: i * 0.1,
-                ease: [0.25, 0.1, 0.25, 1],
-              }}
-              style={{
-                position: "relative",
-                border: "1px solid rgba(255, 255, 255, 0.08)",
-                borderRadius: "12px",
-                padding: "1.5rem 1.75rem",
-                overflow: "hidden",
-                transition: "border-color 0.2s ease",
-              }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.borderColor = "rgba(255, 255, 255, 0.15)";
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.borderColor = "rgba(255, 255, 255, 0.08)";
-              }}
-            >
-              {/* Color accent line at top */}
-              <div
-                style={{
-                  position: "absolute",
-                  top: 0,
-                  left: 0,
-                  right: 0,
-                  height: "1px",
-                  background: `linear-gradient(90deg, transparent, ${item.color}50, transparent)`,
-                }}
-              />
-
-              {/* Label badge */}
-              <span
-                style={{
-                  display: "inline-block",
-                  fontFamily: "var(--font-mono, monospace)",
-                  fontSize: "0.65rem",
-                  fontWeight: 500,
-                  letterSpacing: "0.04em",
-                  color: item.color,
-                  border: `1px solid ${item.color}30`,
-                  backgroundColor: `${item.color}08`,
-                  borderRadius: "9999px",
-                  padding: "0.2rem 0.6rem",
-                  marginBottom: "1rem",
-                  textTransform: "uppercase",
-                }}
-              >
-                {item.label}
-              </span>
-
-              <h3
-                style={{
-                  fontFamily: "'PP Mori', var(--font-sans)",
-                  fontWeight: 600,
-                  fontSize: "1.15rem",
-                  lineHeight: 1.3,
-                  color: "#fff",
-                  margin: 0,
-                }}
-              >
-                {item.title}
-              </h3>
-              <p
-                style={{
-                  fontFamily: "'PP Mori', var(--font-sans)",
-                  fontWeight: 400,
-                  fontSize: "0.92rem",
-                  lineHeight: 1.6,
-                  color: "rgba(255, 255, 255, 0.72)",
-                  margin: 0,
-                  marginTop: "0.6rem",
-                }}
-              >
-                {item.description}
-              </p>
-            </motion.div>
-          ))}
-        </div>
-
-        {/* ══════════════════════════════════════════════════
-            ZONE B — Centered CTA
-           ══════════════════════════════════════════════════ */}
+        {/* ── Section heading ── */}
         <motion.div
-          style={{
-            opacity: ctaOpacity,
-            y: ctaY,
-            textAlign: "center",
-            paddingTop: "clamp(5rem, 10vw, 8rem)",
-            paddingBottom: "clamp(2rem, 4vw, 3rem)",
-          }}
+          initial={{ opacity: 0, y: 16 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-40px" }}
+          transition={{ duration: 0.6, ease: [0.25, 0.1, 0.25, 1] }}
         >
           <h2
             style={{
               fontFamily: "'PP Mori', var(--font-sans)",
               fontWeight: 600,
-              fontSize: "clamp(1.6rem, 3vw, 2.4rem)",
+              fontSize: "clamp(1.6rem, 2.8vw, 2.2rem)",
               lineHeight: 1.15,
-              letterSpacing: "-0.02em",
+              letterSpacing: "-0.025em",
               color: "#fff",
               margin: 0,
+              textAlign: "center",
             }}
           >
-            Try Assembly 2.0
+            What&apos;s next
           </h2>
 
           <p
             style={{
               fontFamily: "'PP Mori', var(--font-sans)",
               fontWeight: 400,
-              fontSize: "1rem",
-              lineHeight: 1.5,
-              color: "rgba(255, 255, 255, 0.72)",
-              maxWidth: "28rem",
+              fontSize: "0.95rem",
+              lineHeight: 1.65,
+              color: "rgba(255, 255, 255, 0.55)",
+              maxWidth: "32rem",
               margin: "1rem auto 0",
+              textAlign: "center",
             }}
           >
-            Start your free trial to experience the full platform.
+            Assembly 2.0 is live — but we&apos;re just getting started. Two more
+            editions are shipping in the next eight weeks.
           </p>
+        </motion.div>
 
+        {/* ── Stacking cards container ── */}
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            gap: isMobile ? "24px" : "60px",
+            marginTop: "clamp(3.5rem, 7vw, 5rem)",
+            paddingBottom: isMobile ? "0" : "20vh",
+          }}
+        >
+          {ROADMAP.map((item, i) => (
+            <div
+              key={item.title}
+              style={{
+                position: isMobile ? "relative" : "sticky",
+                top: isMobile ? "auto" : "20vh",
+                zIndex: i + 1,
+                width: isMobile ? "100%" : "min(420px, 90vw)",
+                minHeight: "280px",
+                padding: "2rem 2.25rem",
+                borderRadius: "16px",
+                backgroundColor: item.bg,
+                border: `1px solid ${item.borderColor}`,
+                transform: isMobile ? "none" : `rotate(${item.rotation}deg)`,
+                boxShadow: "0 4px 24px rgba(0, 0, 0, 0.3)",
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "flex-start",
+                backgroundImage:
+                  "linear-gradient(180deg, rgba(255,255,255,0.04) 0%, transparent 40%)",
+              }}
+            >
+              {/* Icon in rounded square */}
+              <div
+                style={{
+                  width: "48px",
+                  height: "48px",
+                  borderRadius: "12px",
+                  backgroundColor: item.iconBg,
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  marginBottom: "1.5rem",
+                  flexShrink: 0,
+                }}
+              >
+                {item.icon}
+              </div>
+
+              {/* Number + label row */}
+              <div
+                style={{
+                  display: "flex",
+                  alignItems: "baseline",
+                  gap: "0.75rem",
+                  marginBottom: "1.25rem",
+                }}
+              >
+                <span
+                  style={{
+                    fontFamily: "'ABC Diatype Mono', var(--font-mono, monospace)",
+                    fontSize: "0.75rem",
+                    letterSpacing: "-0.04em",
+                    color: "rgba(255, 255, 255, 0.3)",
+                  }}
+                >
+                  {item.number}
+                </span>
+                <span
+                  style={{
+                    fontFamily: "'ABC Diatype Mono', var(--font-mono, monospace)",
+                    fontSize: "0.8rem",
+                    fontWeight: 400,
+                    letterSpacing: "-0.01em",
+                    color: "rgba(255, 255, 255, 0.35)",
+                    textTransform: "uppercase",
+                  }}
+                >
+                  {item.label}
+                </span>
+              </div>
+
+              {/* Title */}
+              <h3
+                style={{
+                  fontFamily: "'PP Mori', var(--font-sans)",
+                  fontWeight: 600,
+                  fontSize: "clamp(1.3rem, 2.2vw, 1.65rem)",
+                  lineHeight: 1.2,
+                  letterSpacing: "-0.02em",
+                  color: "rgba(255, 255, 255, 0.9)",
+                  margin: 0,
+                }}
+              >
+                {item.title}
+              </h3>
+
+              {/* Description */}
+              <p
+                style={{
+                  fontFamily: "'PP Mori', var(--font-sans)",
+                  fontWeight: 400,
+                  fontSize: "0.95rem",
+                  lineHeight: 1.6,
+                  color: "rgba(255, 255, 255, 0.45)",
+                  margin: 0,
+                  marginTop: "0.75rem",
+                  maxWidth: "24rem",
+                }}
+              >
+                {item.description}
+              </p>
+            </div>
+          ))}
+        </div>
+
+        {/* ── CTA sign-off ── */}
+        <motion.div
+          style={{
+            opacity: ctaOpacity,
+            y: ctaY,
+          }}
+        >
           <div
             style={{
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-              gap: "1rem",
-              marginTop: "2rem",
-              flexWrap: "wrap",
+              marginTop: "clamp(6rem, 12vw, 10rem)",
+              textAlign: "center",
             }}
           >
-            <a
-              href="https://assembly.com/signup?utm_source=edition&utm_medium=web&utm_campaign=assembly2-launch"
-              target="_blank"
-              rel="noopener"
+            <h2
               style={{
                 fontFamily: "'PP Mori', var(--font-sans)",
                 fontWeight: 600,
-                fontSize: "0.9rem",
-                color: "#101010",
-                backgroundColor: "rgba(255, 255, 255, 0.9)",
-                padding: "0.7rem 2rem",
-                borderRadius: "9999px",
-                border: "none",
-                textDecoration: "none",
-                transition: "all 0.2s ease",
-                display: "inline-flex",
-                alignItems: "center",
-                gap: "0.4rem",
-              }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.backgroundColor = "#fff";
-                e.currentTarget.style.boxShadow = "0 0 30px rgba(214, 249, 144, 0.15)";
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.backgroundColor = "rgba(255, 255, 255, 0.9)";
-                e.currentTarget.style.boxShadow = "none";
+                fontSize: "clamp(1.6rem, 3vw, 2.4rem)",
+                lineHeight: 1.15,
+                letterSpacing: "-0.02em",
+                color: "#fff",
+                margin: 0,
               }}
             >
-              Start free trial
-              <span style={{ fontFamily: "'PP Mori', var(--font-sans)" }}>→</span>
-            </a>
-            <a
-              href="https://assembly.com"
-              target="_blank"
-              rel="noopener"
+              Try Assembly 2.0
+            </h2>
+
+            <p
               style={{
                 fontFamily: "'PP Mori', var(--font-sans)",
-                fontWeight: 500,
-                fontSize: "0.9rem",
-                color: "rgba(255, 255, 255, 0.7)",
-                backgroundColor: "transparent",
-                padding: "0.7rem 1.75rem",
-                borderRadius: "9999px",
-                border: "1px solid rgba(255, 255, 255, 0.15)",
-                textDecoration: "none",
-                transition: "all 0.2s ease",
-              }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.borderColor = "rgba(255, 255, 255, 0.3)";
-                e.currentTarget.style.color = "rgba(255, 255, 255, 0.95)";
-                e.currentTarget.style.backgroundColor = "rgba(255, 255, 255, 0.04)";
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.borderColor = "rgba(255, 255, 255, 0.15)";
-                e.currentTarget.style.color = "rgba(255, 255, 255, 0.7)";
-                e.currentTarget.style.backgroundColor = "transparent";
+                fontWeight: 400,
+                fontSize: "1rem",
+                lineHeight: 1.5,
+                color: "rgba(255, 255, 255, 0.45)",
+                maxWidth: "26rem",
+                margin: "1rem auto 0",
               }}
             >
-              Log in
-            </a>
-          </div>
+              Start your free trial to experience the full platform.
+            </p>
 
+            <div style={{ marginTop: "2rem" }}>
+              <a
+                href="https://assembly.com/signup?utm_source=edition&utm_medium=web&utm_campaign=assembly2-launch"
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{
+                  fontFamily: "'PP Mori', var(--font-sans)",
+                  fontWeight: 600,
+                  fontSize: "0.9rem",
+                  color: "#101010",
+                  backgroundColor: "rgba(255, 255, 255, 0.9)",
+                  padding: "0.7rem 2rem",
+                  borderRadius: "9999px",
+                  border: "none",
+                  textDecoration: "none",
+                  transition: "all 0.2s ease",
+                  display: "inline-flex",
+                  alignItems: "center",
+                  gap: "0.4rem",
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.backgroundColor = "#fff";
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.backgroundColor =
+                    "rgba(255, 255, 255, 0.9)";
+                }}
+              >
+                Start free trial
+                <span style={{ fontFamily: "'PP Mori', var(--font-sans)" }}>
+                  →
+                </span>
+              </a>
+            </div>
+          </div>
         </motion.div>
+
       </div>
     </section>
   );

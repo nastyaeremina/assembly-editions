@@ -16,8 +16,8 @@ export function PaymentsSection() {
         {
           id: "one-payments-home",
           suffix: "A",
-          title: "One Payments home",
-          description: "Invoices, subscriptions, payment links, and storefronts now live under a single unified Payments tab. No more switching between modules.",
+          title: "A unified Payments center",
+          description: "The Billing app has been revamped into a single unified Payments tab. See outstanding payouts and total balances from your invoices, subscriptions, payment links, and store.",
           learnMoreUrl: "#",
           content: <OnePaymentsDemo inSplit={false} />,
         },

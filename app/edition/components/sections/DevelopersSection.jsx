@@ -27,9 +27,9 @@ const DEV_FEATURES = [
   {
     id: "tasks-api",
     number: "03",
-    title: "Tasks API: comments & attachments",
+    title: "In Tasks API: comments, attachments, & client association",
     description:
-      "Fetch comments, threaded replies, and attachment metadata including secure download URLs. A new comment.created webhook triggers workflows when clients respond.",
+      "Fetch comments, threaded replies, and attachment metadata including secure download URLs. The new client association feature is also supported in the API.",
   },
 ];
 
