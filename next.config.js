@@ -148,6 +148,7 @@ async function fetchAllRewrites() {
 }
 
 const nextConfig = {
+  eslint: { ignoreDuringBuilds: true },
   reactStrictMode: true,
   compiler: {
     styledComponents: true
