@@ -10,21 +10,60 @@ import {
 } from "framer-motion";
 import { BRAND } from "../../lib/constants";
 
+/* ── Character setup ── */
 const CHARACTERS = BRAND.version.split("");
+const WORDMARK = BRAND.name; // "Assembly"
 
 const PARALLAX = [
   { x: 20, y: 15 },
   { x: 8, y: 6 },
   { x: 25, y: 18 },
 ];
-
 const STAGGER = [0, 0.08, 0.16];
-
 const SPRING_CFG = { stiffness: 150, damping: 20, mass: 0.5 };
+
+/* ── Animated background lines (converging toward center) ── */
+const LINES = [
+  // Near-vertical lines from top
+  { x: 20, y: -12, angle: 86, delay: 0, dur: 5, h: 100 },
+  { x: 45, y: -10, angle: 89, delay: 0.8, dur: 4.5, h: 90 },
+  { x: 70, y: -14, angle: 92, delay: 0.3, dur: 5.5, h: 95 },
+  // Angled from left
+  { x: -5, y: 25, angle: 30, delay: 1.2, dur: 6, h: 110 },
+  { x: -5, y: 55, angle: 12, delay: 0.5, dur: 5.5, h: 100 },
+  // Angled from right
+  { x: 105, y: 25, angle: 150, delay: 0.7, dur: 6, h: 110 },
+  { x: 105, y: 55, angle: 168, delay: 1.5, dur: 5.5, h: 100 },
+  // Diagonals from corners
+  { x: 8, y: -5, angle: 55, delay: 1.8, dur: 7, h: 120 },
+  { x: 92, y: -5, angle: 125, delay: 0.4, dur: 7, h: 120 },
+];
+
+const LINE_STYLES = LINES.map(
+  (l, i) => `
+@keyframes ls-line-${i} {
+  0%   { transform: rotate(${l.angle}deg) translateY(0); opacity: 0; }
+  8%   { opacity: 0.5; }
+  50%  { opacity: 0.3; }
+  85%  { opacity: 0; }
+  100% { transform: rotate(${l.angle}deg) translateY(calc(100vh + 60px)); opacity: 0; }
+}
+`
+).join("") + `
+@keyframes ls-glow-pulse {
+  0%, 100% { opacity: 0.03; transform: translate(-50%, -50%) scale(1); }
+  50%      { opacity: 0.07; transform: translate(-50%, -50%) scale(1.05); }
+}
+@keyframes ls-bar-glow {
+  0%, 100% { box-shadow: 0 0 8px 2px rgba(255, 255, 255, 0.08); }
+  50%      { box-shadow: 0 0 16px 4px rgba(255, 255, 255, 0.18); }
+}
+`;
 
 export function LoadingScreen() {
   const [phase, setPhase] = useState("entering");
 
+  /* ── Mouse parallax ── */
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
 
@@ -67,6 +106,7 @@ export function LoadingScreen() {
     [mouseX, mouseY],
   );
 
+  /* ── Phase timing ── */
   useEffect(() => {
     const prefersReduced = window.matchMedia(
       "(prefers-reduced-motion: reduce)",
@@ -101,24 +141,104 @@ export function LoadingScreen() {
 
   if (phase === "done") return null;
 
+  const isExiting = phase === "exiting";
+
   return (
     <AnimatePresence>
       <motion.div
-          key="loading-screen"
-          onMouseMove={handleMouseMove}
-          onTouchMove={handleTouchMove}
-          className="fixed inset-0 z-[300] flex flex-col items-center justify-center cursor-default select-none"
-          style={{ backgroundColor: "#101010" }}
-          exit={{
-            y: "-100%",
-            transition: {
-              duration: 0.7,
-              ease: [0.76, 0, 0.24, 1],
-            },
-          }}
-          aria-hidden="true"
-        >
+        key="loading-screen"
+        onMouseMove={handleMouseMove}
+        onTouchMove={handleTouchMove}
+        className="fixed inset-0 z-[300] flex flex-col items-center justify-center cursor-default select-none"
+        style={{ backgroundColor: "#101010" }}
+        exit={{
+          y: "-100%",
+          transition: {
+            duration: 0.7,
+            ease: [0.76, 0, 0.24, 1],
+          },
+        }}
+        aria-hidden="true"
+      >
+        {/* ── Injected keyframes ── */}
+        <style dangerouslySetInnerHTML={{ __html: LINE_STYLES }} />
+
+        {/* ── Animated background lines ── */}
+        {LINES.map((l, i) => (
           <motion.div
+            key={`line-${i}`}
+            animate={isExiting ? {
+              opacity: 0,
+              x: (l.x < 50 ? -1 : 1) * 80,
+              y: (l.y < 0 ? -1 : 1) * 60,
+            } : {}}
+            transition={{ duration: 0.5, ease: "easeIn" }}
+            style={{
+              position: "absolute",
+              left: `${l.x}%`,
+              top: `${l.y}%`,
+              width: "1px",
+              height: `${l.h}px`,
+              background: `linear-gradient(to bottom, transparent 0%, rgba(255, 255, 255, 0.45) 20%, rgba(255, 255, 255, 0.25) 70%, transparent 100%)`,
+              boxShadow: "0 0 6px 1px rgba(255, 255, 255, 0.04)",
+              transformOrigin: "50% 0%",
+              animation: `ls-line-${i} ${l.dur}s ${l.delay}s ease-in-out infinite`,
+              opacity: 0,
+            }}
+          />
+        ))}
+
+        {/* ── Radial glow behind text ── */}
+        <div
+          style={{
+            position: "absolute",
+            left: "50%",
+            top: "50%",
+            width: "min(50vw, 500px)",
+            height: "min(50vw, 500px)",
+            borderRadius: "50%",
+            background: "radial-gradient(circle, rgba(255, 255, 255, 0.06) 0%, rgba(255, 255, 255, 0.02) 40%, transparent 70%)",
+            animation: "ls-glow-pulse 4s ease-in-out infinite",
+            pointerEvents: "none",
+          }}
+        />
+
+        {/* ── Text lockup ── */}
+        <div style={{ display: "flex", flexDirection: "column", alignItems: "center", position: "relative", zIndex: 2 }}>
+          {/* Assembly wordmark */}
+          <motion.div
+            initial={{ opacity: 0, y: 12 }}
+            animate={isExiting
+              ? { opacity: 0, scale: 1.1, y: -10 }
+              : { opacity: 1, y: 0 }
+            }
+            transition={isExiting
+              ? { duration: 0.4, ease: "easeIn" }
+              : { delay: 0.3, duration: 0.7, ease: [0.25, 0.1, 0.25, 1] }
+            }
+            style={{
+              fontFamily: "'PP Mori', var(--font-sans)",
+              fontWeight: 600,
+              fontSize: "clamp(0.75rem, 2vw, 1.1rem)",
+              letterSpacing: "0.25em",
+              textTransform: "uppercase",
+              color: "rgba(255, 255, 255, 0.25)",
+              marginBottom: "0.5rem",
+            }}
+          >
+            {WORDMARK}
+          </motion.div>
+
+          {/* 2.0 with parallax */}
+          <motion.div
+            animate={isExiting
+              ? { scale: 1.08, opacity: 0 }
+              : {}
+            }
+            transition={isExiting
+              ? { duration: 0.5, ease: "easeIn" }
+              : {}
+            }
             style={{
               perspective: 800,
               display: "flex",
@@ -153,7 +273,22 @@ export function LoadingScreen() {
               </motion.span>
             ))}
           </motion.div>
+        </div>
 
+        {/* ── Progress bar with glow ── */}
+        <motion.div
+          style={{
+            position: "absolute",
+            bottom: "2rem",
+            left: "50%",
+            translateX: "-50%",
+            width: 140,
+            height: 2,
+            borderRadius: 1,
+            backgroundColor: "rgba(255, 255, 255, 0.06)",
+            overflow: "hidden",
+          }}
+        >
           <motion.div
             initial={{ scaleX: 0 }}
             animate={{ scaleX: 1 }}
@@ -162,17 +297,34 @@ export function LoadingScreen() {
               ease: [0.25, 0.1, 0.25, 1],
             }}
             style={{
-              position: "absolute",
-              bottom: "2rem",
-              left: "50%",
-              translateX: "-50%",
-              width: 120,
-              height: 1,
-              backgroundColor: "rgba(255, 255, 255, 0.4)",
+              width: "100%",
+              height: "100%",
+              borderRadius: 1,
+              backgroundColor: "rgba(255, 255, 255, 0.45)",
               transformOrigin: "left",
+              animation: "ls-bar-glow 2s ease-in-out infinite",
             }}
           />
         </motion.div>
+
+        {/* ── Film grain ── */}
+        <svg width="0" height="0" style={{ position: "absolute" }}>
+          <filter id="ls-grain">
+            <feTurbulence type="fractalNoise" baseFrequency="0.6" numOctaves="4" stitchTiles="stitch" />
+            <feColorMatrix type="saturate" values="0" />
+          </filter>
+        </svg>
+        <div
+          style={{
+            position: "absolute",
+            inset: 0,
+            filter: "url(#ls-grain)",
+            opacity: 0.035,
+            mixBlendMode: "overlay",
+            pointerEvents: "none",
+          }}
+        />
+      </motion.div>
     </AnimatePresence>
   );
 }

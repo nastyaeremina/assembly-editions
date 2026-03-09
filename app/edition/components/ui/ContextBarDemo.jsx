@@ -33,10 +33,6 @@ const ICO = {
   document: "/edition/Icons/Icon (approved)-3 copy.svg",
   chat: "/edition/Icons/Icon (approved)-8.svg",
   iconContainer: "/edition/Icons/Icon-container-1 copy.svg",
-  unorderedList: "/edition/Icons/UnorderedList.svg",
-  numberedList: "/edition/Icons/NumberedList.svg",
-  underline: "/edition/Icons/Underline.svg",
-  linkIcon: "/edition/Icons/Icon (approved) copy 4.svg",
   attachBtn: "/edition/Icons/Icon button.svg",
   sendBtn: "/edition/Icons/Icon button-1.svg",
 };
@@ -128,20 +124,25 @@ function DateSeparator({ label }) {
 }
 
 /* ── Custom field row ── */
-function FieldRow({ label, iconSrc, placeholder, fontSize = "11px" }) {
+function FieldRow({ label, iconSrc, placeholder, fontSize = "11px", value }) {
   return (
     <div style={{ display: "flex", alignItems: "center", padding: "6px 0", fontSize }}>
       <span style={{ width: "70px", color: C.textSec, flexShrink: 0 }}>{label}</span>
-      <div style={{ display: "flex", alignItems: "center", gap: "6px", color: C.textMuted }}>
-        {iconSrc && (
-          // eslint-disable-next-line @next/next/no-img-element
-          <img src={iconSrc} alt="" width={14} height={14} draggable={false} style={{ opacity: 0.5, flexShrink: 0 }} />
-        )}
-        <span>{placeholder}</span>
-      </div>
+      {value ? (
+        <span style={{ color: C.text }}>{value}</span>
+      ) : (
+        <div style={{ display: "flex", alignItems: "center", gap: "6px", color: C.textMuted }}>
+          {iconSrc && (
+            // eslint-disable-next-line @next/next/no-img-element
+            <img src={iconSrc} alt="" width={14} height={14} draggable={false} style={{ opacity: 0.5, flexShrink: 0 }} />
+          )}
+          <span>{placeholder}</span>
+        </div>
+      )}
     </div>
   );
 }
+
 
 /* ════════════════════════════════════════════════
    MAIN COMPONENT
@@ -174,12 +175,39 @@ const PANEL_ORDER = ["person", "document", "chat"];
 const AUTO_CYCLE_DELAY = 1400; // ms before first auto-switch
 const AUTO_CYCLE_INTERVAL = 2800; // ms between switches
 
+/* ── Content tabs for the main area ── */
+const CONTENT_TABS = ["Messages", "Files", "Contracts", "Forms", "Billing", "Home", "Tasks"];
+
 export function ContextBarDemo({ inSplit = false }) {
   const [activePanel, setActivePanel] = useState("person");
   const [sidebarOpen, setSidebarOpen] = useState(true);
   const isDesktop = useMediaQuery("(min-width: 768px)", true);
   const [showTooltip, setShowTooltip] = useState(false);
   const tooltipDismissed = useRef(false);
+
+  /* ── Interactive message compose state ── */
+  const [activeContentTab, setActiveContentTab] = useState("Messages");
+  const [messageText, setMessageText] = useState("");
+  const [extraMessages, setExtraMessages] = useState([]);
+  const textareaRef = useRef(null);
+
+  /* ── Internal chat compose state ── */
+  const [chatText, setChatText] = useState("");
+  const [chatMessages, setChatMessages] = useState([]);
+  const chatInputRef = useRef(null);
+
+  const handleSendMessage = useCallback(() => {
+    if (!messageText.trim() || extraMessages.length >= 1) return;
+    setExtraMessages((prev) => [...prev, { text: messageText.trim(), time: new Date().toLocaleTimeString([], { hour: "numeric", minute: "2-digit" }) }]);
+    setMessageText("");
+  }, [messageText, extraMessages.length]);
+
+  const handleSendChat = useCallback(() => {
+    if (!chatText.trim() || chatMessages.length >= 1) return;
+    setChatMessages((prev) => [...prev, { text: chatText.trim(), time: new Date().toLocaleTimeString([], { hour: "numeric", minute: "2-digit" }) }]);
+    setChatText("");
+    if (chatInputRef.current) chatInputRef.current.focus();
+  }, [chatText, chatMessages.length]);
 
   /* ── Auto-cycle logic ── */
   const containerRef = useRef(null);
@@ -196,6 +224,11 @@ export function ContextBarDemo({ inSplit = false }) {
       cycleTimer.current = null;
     }
   }, []);
+
+  const handleContentTabClick = useCallback((tab) => {
+    stopAutoCycle();
+    setActiveContentTab(tab);
+  }, [stopAutoCycle]);
 
   const handleUserClick = useCallback((panel) => {
     stopAutoCycle();
@@ -373,10 +406,10 @@ export function ContextBarDemo({ inSplit = false }) {
                 <div style={{ fontSize: "11px", fontWeight: 500, color: C.textSec, textTransform: "uppercase", letterSpacing: "0.04em", marginBottom: "10px" }}>
                   Custom fields
                 </div>
-                <FieldRow label="Email" iconSrc="/edition/Icons/Icon-container copy 3.svg" placeholder="Add email" fontSize="12px" />
+                <FieldRow label="Email" iconSrc="/edition/Icons/Icon-container copy 3.svg" placeholder="Add email" fontSize="12px" value="charles@greenleaf.co" />
                 <FieldRow label="Team" iconSrc="/edition/Icons/Status Icon.svg" placeholder="Add text" fontSize="12px" />
                 <FieldRow label="ID" iconSrc="/edition/Icons/heshtag.svg" placeholder="Add number" fontSize="12px" />
-                <FieldRow label="Phone" iconSrc="/edition/Icons/Icon-container-2.svg" placeholder="Add phone number" fontSize="12px" />
+                <FieldRow label="Phone" iconSrc="/edition/Icons/Icon-container-2.svg" placeholder="Add phone number" fontSize="12px" value="+1 (415) 392-8100" />
                 <FieldRow label="Link" iconSrc="/edition/Icons/Status Icon copy.svg" placeholder="Add link" fontSize="12px" />
               </motion.div>
             )}
@@ -485,7 +518,7 @@ export function ContextBarDemo({ inSplit = false }) {
       <div style={{ display: "flex", height: "640px", backgroundColor: C.bg }}>
 
         {/* ─── MAIN CONTENT ─── */}
-        <div style={{ flex: 1, display: "flex", flexDirection: "column", minWidth: 0 }}>
+        <div style={{ flex: 1, display: "flex", flexDirection: "column", minWidth: 0, minHeight: 0 }}>
 
           {/* Breadcrumb bar */}
           <div
@@ -515,113 +548,149 @@ export function ContextBarDemo({ inSplit = false }) {
               borderBottom: `1px solid ${C.border}`,
             }}
           >
-            {["Messages", "Files", "Contracts", "Forms", "Billing", "Home", "Tasks"].map((tab, i) => (
-              <span
-                key={tab}
-                style={{
-                  fontSize: "11px",
-                  color: i === 0 ? C.tabActive : C.tabInactive,
-                  fontWeight: 400,
-                  padding: "10px 0",
-                  marginBottom: "-1px",
-                  borderBottom: i === 0 ? `1px solid ${C.text}` : "1px solid transparent",
-                  cursor: "default",
-                }}
-              >
-                {tab}
-              </span>
-            ))}
+            {CONTENT_TABS.map((tab) => {
+              const isActive = activeContentTab === tab;
+              return (
+                <span
+                  key={tab}
+                  onClick={() => handleContentTabClick(tab)}
+                  style={{
+                    fontSize: "11px",
+                    color: isActive ? C.tabActive : C.tabInactive,
+                    fontWeight: 400,
+                    padding: "10px 0",
+                    marginBottom: "-1px",
+                    borderBottom: isActive ? `1px solid ${C.text}` : "1px solid transparent",
+                    cursor: "pointer",
+                    transition: "color 0.15s ease",
+                  }}
+                >
+                  {tab}
+                </span>
+              );
+            })}
           </div>
 
-          {/* Contact filter */}
-          <div style={{ padding: "10px 20px" }}>
+          {/* Contact filter — only show on Messages tab */}
+          {activeContentTab === "Messages" && (
+            <div style={{ padding: "10px 20px" }}>
+              <div
+                style={{
+                  display: "inline-flex",
+                  alignItems: "center",
+                  gap: "6px",
+                  padding: "5px 10px",
+                  borderRadius: "4px",
+                  border: `1px solid ${C.border}`,
+                  fontSize: "11px",
+                  color: C.text,
+                }}
+              >
+                Charles Musial
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img src="/edition/Icons/Vector.svg" alt="" width={7} height={4} draggable={false} />
+              </div>
+            </div>
+          )}
+
+          {/* Main content area — conditional on activeContentTab */}
+          {activeContentTab === "Messages" ? (
+            <>
+              {/* Messages area */}
+              <div
+                style={{
+                  flex: 1,
+                  overflow: "auto",
+                  padding: "8px 20px",
+                }}
+              >
+                <DateSeparator label="Wed, Sep 4" />
+
+                <Message name="Charles Musial" time="1:36 PM">
+                  Hi Jennifer, Can you tell me more about SEO?
+                </Message>
+
+                <Message name="Jennifer Beaty" time="1:37 PM">
+                  Absolutely, Charles! SEO, is all about improving your website&apos;s visibility on search engines like Google. For your business, we&apos;d focus on making sure potential customers can find you when they search for services you offer. This includes optimizing your website content, targeting the right keywords, improving your site&apos;s speed and mobile experience, and even building links to boost your credibility.
+                </Message>
+
+                {/* User-added messages */}
+                {extraMessages.map((msg, i) => (
+                  <Message key={`extra-${i}`} name="Jennifer Beaty" time={msg.time}>
+                    {msg.text}
+                  </Message>
+                ))}
+              </div>
+
+              {/* Compose bar */}
+              <div style={{ padding: "0 16px 12px" }}>
+                <div style={{ border: "1px solid #e5e7eb", borderRadius: "8px", overflow: "hidden" }}>
+                  {/* Message input area */}
+                  <div style={{ padding: "4px 12px" }}>
+                    <textarea
+                      ref={textareaRef}
+                      value={messageText}
+                      onChange={(e) => { setMessageText(e.target.value); }}
+                      onFocus={() => stopAutoCycle()}
+                      onKeyDown={(e) => { if (e.key === "Enter") { e.preventDefault(); handleSendMessage(); } }}
+                      placeholder="Message your client"
+                      rows={1}
+                      style={{
+                        width: "100%",
+                        fontSize: "12px",
+                        color: C.text,
+                        backgroundColor: "transparent",
+                        border: "none",
+                        outline: "none",
+                        resize: "none",
+                        padding: "6px 0",
+                        lineHeight: 1.5,
+                        fontFamily: "'Inter', system-ui, sans-serif",
+                      }}
+                    />
+                  </div>
+                  {/* Send row */}
+                  <div
+                    style={{
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "flex-end",
+                      padding: "4px 12px 8px",
+                    }}
+                  >
+                    <div
+                      onClick={handleSendMessage}
+                      style={{
+                        cursor: messageText.trim() ? "pointer" : "default",
+                        opacity: messageText.trim() ? 1 : 0.4,
+                        transition: "opacity 0.15s ease",
+                      }}
+                    >
+                      {/* eslint-disable-next-line @next/next/no-img-element */}
+                      <img src={ICO.attachBtn} alt="Send" width={28} height={28} draggable={false} />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </>
+          ) : (
+            /* Non-Messages tab placeholder */
             <div
               style={{
-                display: "inline-flex",
+                flex: 1,
+                display: "flex",
+                flexDirection: "column",
                 alignItems: "center",
-                gap: "6px",
-                padding: "5px 10px",
-                borderRadius: "4px",
-                border: `1px solid ${C.border}`,
-                fontSize: "11px",
-                color: C.text,
+                justifyContent: "center",
+                minHeight: 0,
+                color: C.textMuted,
               }}
             >
-              Charles Musial
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src="/edition/Icons/Vector.svg" alt="" width={7} height={4} draggable={false} />
-            </div>
-          </div>
-
-          {/* Messages area */}
-          <div
-            style={{
-              flex: 1,
-              overflow: "hidden",
-              padding: "8px 20px",
-            }}
-          >
-            <DateSeparator label="Wed, Sep 4" />
-
-            <Message name="Charles Musial" time="1:36 PM">
-              Hi Jennifer, Can you tell me more about SEO?
-            </Message>
-
-            <Message name="Jennifer Beaty" time="1:37 PM">
-              Absolutely, Charles! SEO, is all about improving your website&apos;s visibility on search engines like Google. For your business, we&apos;d focus on making sure potential customers can find you when they search for services you offer. This includes optimizing your website content, targeting the right keywords, improving your site&apos;s speed and mobile experience, and even building links to boost your credibility.
-            </Message>
-
-          </div>
-
-          {/* Compose bar */}
-          <div style={{ padding: "0 16px 12px" }}>
-            <div style={{ border: "1px solid #e5e7eb", borderRadius: "8px", overflow: "hidden" }}>
-              {/* Formatting toolbar */}
-              <div
-                style={{
-                  display: "flex",
-                  alignItems: "center",
-                  gap: "8px",
-                  backgroundColor: "#f8f9fa",
-                  padding: "8px 12px",
-                  borderBottom: "1px solid #e5e7eb",
-                }}
-              >
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src="/edition/Icons/bold.svg" alt="Bold" width={14} height={14} draggable={false} />
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src="/edition/Icons/italic.svg" alt="Italic" width={14} height={14} draggable={false} />
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src={ICO.underline} alt="Underline" width={14} height={14} draggable={false} />
-                <div style={{ width: "1px", height: "14px", backgroundColor: "#d1d5db", margin: "0 2px" }} />
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src={ICO.unorderedList} alt="Bullet list" width={14} height={14} draggable={false} />
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src={ICO.numberedList} alt="Numbered list" width={14} height={14} draggable={false} />
-                <div style={{ width: "1px", height: "14px", backgroundColor: "#d1d5db", margin: "0 2px" }} />
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src={ICO.linkIcon} alt="Link" width={14} height={14} draggable={false} />
-              </div>
-              {/* Message input area */}
-              <div style={{ padding: "10px 12px" }}>
-                <span style={{ fontSize: "12px", color: "#9ca3af" }}>Message your client</span>
-              </div>
-              {/* Attach + Send row */}
-              <div
-                style={{
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "space-between",
-                  padding: "6px 12px 10px",
-                }}
-              >
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src={ICO.sendBtn} alt="Attach" width={24} height={24} style={{ opacity: 0.5 }} draggable={false} />
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src={ICO.attachBtn} alt="Send" width={28} height={28} draggable={false} />
+              <div style={{ fontSize: "12px", fontWeight: 400, color: C.textMuted, textAlign: "center", lineHeight: 1.5 }}>
+                Nothing here yet
               </div>
             </div>
-          </div>
+          )}
         </div>
 
         {/* ─── RIGHT SIDEBAR ─── */}
@@ -651,10 +720,6 @@ export function ContextBarDemo({ inSplit = false }) {
             }}
           >
             {activePanel === "chat" ? "Internal Chat" : "Client Details"}
-            {activePanel === "document" && (
-              // eslint-disable-next-line @next/next/no-img-element
-              <img src="/edition/Icons/Icon (approved) copy.svg" alt="Add" width={10} height={10} style={{ opacity: 0.4 }} draggable={false} />
-            )}
           </div>
 
           {/* ── Panel: Client Details (person) ── */}
@@ -670,15 +735,11 @@ export function ContextBarDemo({ inSplit = false }) {
                   }}
                 >
                   <span style={{ fontSize: "11px", fontWeight: 500, color: C.text }}>Company</span>
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img src="/edition/Icons/Icon (approved) copy.svg" alt="Add" width={10} height={10} style={{ opacity: 0.4 }} draggable={false} />
                 </div>
                 <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img src="/edition/Icons/Avatar.svg" alt="" width={24} height={24} style={{ borderRadius: "4px", border: `1px solid ${C.border}` }} draggable={false} />
                   <span style={{ fontSize: "11px", color: C.text }}>Service Symphony</span>
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img src="/edition/Icons/Icon (approved)-1.svg" alt="More" width={12} height={12} style={{ marginLeft: "auto", opacity: 0.4 }} draggable={false} />
                 </div>
               </div>
               <div>
@@ -691,13 +752,11 @@ export function ContextBarDemo({ inSplit = false }) {
                   }}
                 >
                   <span style={{ fontSize: "11px", fontWeight: 500, color: C.text }}>Custom fields</span>
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img src="/edition/Icons/Icon (approved) copy.svg" alt="Add" width={10} height={10} style={{ opacity: 0.4 }} draggable={false} />
                 </div>
-                <FieldRow label="Email" iconSrc="/edition/Icons/Icon-container copy 3.svg" placeholder="Add email" />
+                <FieldRow label="Email" iconSrc="/edition/Icons/Icon-container copy 3.svg" placeholder="Add email" value="charles@greenleaf.co" />
                 <FieldRow label="Team" iconSrc="/edition/Icons/Status Icon.svg" placeholder="Add text" />
                 <FieldRow label="ID" iconSrc="/edition/Icons/heshtag.svg" placeholder="Add number" />
-                <FieldRow label="Phone" iconSrc="/edition/Icons/Icon-container-2.svg" placeholder="Add phone number" />
+                <FieldRow label="Phone" iconSrc="/edition/Icons/Icon-container-2.svg" placeholder="Add phone number" value="+1 (415) 392-8100" />
                 <FieldRow label="Link" iconSrc="/edition/Icons/Status Icon copy.svg" placeholder="Add phone number" />
                 <FieldRow label="Address" iconSrc="/edition/Icons/Icon-container-1 copy.svg" placeholder="Add location" />
                 <FieldRow label="Tags" iconSrc="/edition/Icons/Icon-container copy 2.svg" placeholder="Add phone number" />
@@ -731,8 +790,8 @@ export function ContextBarDemo({ inSplit = false }) {
           {activePanel === "chat" && (
             <div style={{ flex: 1, display: "flex", flexDirection: "column", overflow: "hidden" }}>
               {/* Chat message area */}
-              <div style={{ flex: 1, padding: "14px 16px" }}>
-                <div style={{ display: "flex", gap: "10px", alignItems: "flex-start" }}>
+              <div style={{ flex: 1, padding: "14px 16px", overflowY: "auto" }}>
+                <div style={{ display: "flex", gap: "10px", alignItems: "flex-start", marginBottom: chatMessages.length > 0 ? "16px" : 0 }}>
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img src="/edition/logos/Assemblychatlogo.svg" alt="Assembly" width={28} height={28} style={{ borderRadius: "50%", flexShrink: 0, marginTop: "2px" }} draggable={false} />
                   <div style={{ flex: 1, minWidth: 0 }}>
@@ -742,31 +801,73 @@ export function ContextBarDemo({ inSplit = false }) {
                     </div>
                   </div>
                 </div>
+                {/* User-added chat messages */}
+                {chatMessages.map((msg, i) => (
+                  <div key={`chat-${i}`} style={{ display: "flex", gap: "10px", alignItems: "flex-start", marginTop: "12px" }}>
+                    <div style={{ width: 28, height: 28, borderRadius: "50%", backgroundColor: "#e3e8d8", color: "#5f6b56", fontSize: 10, fontWeight: 400, display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>JB</div>
+                    <div style={{ flex: 1, minWidth: 0 }}>
+                      <div style={{ display: "flex", alignItems: "baseline", gap: "6px", marginBottom: "4px" }}>
+                        <span style={{ fontSize: "11px", fontWeight: 500, color: C.text }}>Jennifer Beaty</span>
+                        <span style={{ fontSize: "9px", color: C.textMuted }}>{msg.time}</span>
+                      </div>
+                      <div style={{ fontSize: "11px", lineHeight: 1.55, color: C.text }}>{msg.text}</div>
+                    </div>
+                  </div>
+                ))}
               </div>
 
               {/* Chat compose bar */}
               <div style={{ padding: "0 12px 12px" }}>
                 <div style={{ border: `1px solid ${C.border}`, borderRadius: "8px", overflow: "hidden" }}>
-                  <div style={{ padding: "10px 12px" }}>
-                    <span style={{ fontSize: "11px", color: "#9ca3af" }}>Chat with teammates or @Assembly</span>
+                  <div style={{ padding: "4px 12px" }}>
+                    <textarea
+                      ref={chatInputRef}
+                      value={chatText}
+                      onChange={(e) => setChatText(e.target.value)}
+                      onFocus={() => stopAutoCycle()}
+                      onKeyDown={(e) => { if (e.key === "Enter" && !e.shiftKey) { e.preventDefault(); handleSendChat(); } }}
+                      placeholder="Chat with teammates or @Assembly"
+                      rows={1}
+                      style={{
+                        width: "100%",
+                        fontSize: "11px",
+                        color: C.text,
+                        backgroundColor: "transparent",
+                        border: "none",
+                        outline: "none",
+                        resize: "none",
+                        padding: "6px 0",
+                        lineHeight: 1.5,
+                        fontFamily: "'Inter', system-ui, sans-serif",
+                      }}
+                    />
                   </div>
                   <div
                     style={{
                       display: "flex",
                       alignItems: "center",
-                      justifyContent: "space-between",
-                      padding: "6px 12px 10px",
+                      justifyContent: "flex-end",
+                      padding: "4px 12px 8px",
                     }}
                   >
-                    <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
-                      <span style={{ fontSize: "13px", color: C.textMuted, cursor: "default" }}>@</span>
+                    <div
+                      onClick={handleSendChat}
+                      style={{
+                        cursor: chatText.trim() ? "pointer" : "default",
+                        opacity: chatText.trim() ? 1 : 0.4,
+                        transition: "opacity 0.15s ease",
+                      }}
+                    >
                       {/* eslint-disable-next-line @next/next/no-img-element */}
-                      <img src={ICO.sendBtn} alt="Attach" width={16} height={16} style={{ opacity: 0.5 }} draggable={false} />
+                      <img src={ICO.attachBtn} alt="Send" width={24} height={24} draggable={false} />
                     </div>
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img src={ICO.attachBtn} alt="Send" width={24} height={24} draggable={false} />
                   </div>
                 </div>
+                {chatMessages.length >= 1 && (
+                  <div style={{ fontSize: "9px", color: C.textMuted, textAlign: "center", marginTop: "4px" }}>
+                    Demo limit reached
+                  </div>
+                )}
               </div>
             </div>
           )}

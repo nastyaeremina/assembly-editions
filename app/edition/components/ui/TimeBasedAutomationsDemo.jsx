@@ -1,7 +1,7 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import { motion } from "framer-motion";
+import { useState, useEffect, useRef, useCallback } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import { useMediaQuery } from "../../hooks/useMediaQuery";
 
 /* ──────────────────────────────────────────────────────────
@@ -37,6 +37,73 @@ const ICO = {
   dotGrid: "/edition/Icons/Dot Grid.svg",
 };
 
+/* ── Preset options ── */
+const DATE_OPTIONS = [
+  { label: "Mon, Jan 12, 2026", day: "12th" },
+  { label: "Wed, Jan 14, 2026", day: "14th" },
+  { label: "Fri, Jan 16, 2026", day: "16th" },
+  { label: "Mon, Jan 19, 2026", day: "19th" },
+  { label: "Wed, Jan 21, 2026", day: "21st" },
+];
+const TIME_OPTIONS = ["7:00 AM", "8:00 AM", "9:00 AM", "10:00 AM", "12:00 PM", "2:00 PM"];
+const UNIT_OPTIONS = ["day", "week", "month", "year"];
+
+const INIT = { date: "Mon, Jan 12, 2026", time: "8:00 AM", repeatOn: true, repeatNum: 1, unit: "month" };
+
+/* ── Reusable dropdown ── */
+function MiniDropdown({ options, value, onSelect, onClose, align = "left" }) {
+  const ref = useRef(null);
+  useEffect(() => {
+    const handler = (e) => { if (ref.current && !ref.current.contains(e.target)) onClose(); };
+    document.addEventListener("mousedown", handler);
+    return () => document.removeEventListener("mousedown", handler);
+  }, [onClose]);
+
+  return (
+    <AnimatePresence>
+      <motion.div
+        ref={ref}
+        initial={{ opacity: 0, y: -3, scale: 0.97 }}
+        animate={{ opacity: 1, y: 0, scale: 1 }}
+        exit={{ opacity: 0, y: -3, scale: 0.97 }}
+        transition={{ duration: 0.12, ease: "easeOut" }}
+        style={{
+          position: "absolute", top: "calc(100% + 3px)",
+          ...(align === "left" ? { left: 0 } : { right: 0 }),
+          zIndex: 60, backgroundColor: "#fff",
+          border: `1px solid ${C.border}`, borderRadius: "6px",
+          boxShadow: "0 4px 16px rgba(0,0,0,0.12), 0 1px 3px rgba(0,0,0,0.06)",
+          minWidth: "100%", overflow: "hidden", padding: "3px",
+        }}
+      >
+        {options.map((opt) => {
+          const label = typeof opt === "string" ? opt : opt.label;
+          const isActive = label === value;
+          return (
+            <button
+              key={label} type="button"
+              onClick={() => { onSelect(opt); onClose(); }}
+              onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = "#f5f5f5"; }}
+              onMouseLeave={(e) => { e.currentTarget.style.backgroundColor = isActive ? "#f0f0f0" : "transparent"; }}
+              style={{
+                display: "block", width: "100%", padding: "5px 8px",
+                border: "none", borderRadius: "4px", cursor: "pointer",
+                fontSize: "11px", color: C.text, textAlign: "left",
+                fontFamily: "'Inter', system-ui, sans-serif",
+                backgroundColor: isActive ? "#f0f0f0" : "transparent",
+                fontWeight: isActive ? 500 : 400,
+                whiteSpace: "nowrap",
+              }}
+            >
+              {label}
+            </button>
+          );
+        })}
+      </motion.div>
+    </AnimatePresence>
+  );
+}
+
 /* ════════════════════════════════════════════════
    MAIN COMPONENT
    ════════════════════════════════════════════════ */
@@ -44,11 +111,53 @@ const ICO = {
 export function TimeBasedAutomationsDemo({ inSplit = false }) {
   const isDesktop = useMediaQuery("(min-width: 1024px)", true);
 
+  /* ── Desktop interactive state ── */
+  const [dDate, setDDate] = useState(INIT.date);
+  const [dTime, setDTime] = useState(INIT.time);
+  const [dRepeatOn, setDRepeatOn] = useState(INIT.repeatOn);
+  const [dRepeatNum, setDRepeatNum] = useState(INIT.repeatNum);
+  const [dUnit, setDUnit] = useState(INIT.unit);
+  const [showDatePicker, setShowDatePicker] = useState(false);
+  const [showTimePicker, setShowTimePicker] = useState(false);
+  const [showUnitPicker, setShowUnitPicker] = useState(false);
+  const [activateFlash, setActivateFlash] = useState(false);
+
+  const hasChanged = dDate !== INIT.date || dTime !== INIT.time || dRepeatOn !== INIT.repeatOn || dRepeatNum !== INIT.repeatNum || dUnit !== INIT.unit;
+
+  const resetDesktop = useCallback(() => {
+    setDDate(INIT.date); setDTime(INIT.time); setDRepeatOn(INIT.repeatOn);
+    setDRepeatNum(INIT.repeatNum); setDUnit(INIT.unit);
+    setShowDatePicker(false); setShowTimePicker(false); setShowUnitPicker(false);
+    setActivateFlash(false);
+  }, []);
+
+  const handleActivate = useCallback(() => {
+    if (!hasChanged) return;
+    setActivateFlash(true);
+    setTimeout(() => { setActivateFlash(false); resetDesktop(); }, 500);
+  }, [hasChanged, resetDesktop]);
+
+  /* Derive canvas summary text */
+  const dateObj = DATE_OPTIONS.find((d) => d.label === dDate);
+  const dayLabel = dateObj ? dateObj.day : "12th";
+  const canvasSummary = dRepeatOn
+    ? `Every ${dRepeatNum > 1 ? dRepeatNum + " " : ""}${dUnit}${dRepeatNum > 1 ? "s" : ""} on the ${dayLabel} at ${dTime}`
+    : `On the ${dayLabel} at ${dTime}`;
+
   /* ── Mobile auto-play state ── */
   const [mDate, setMDate] = useState("Mon, Jan 12, 2026");
   const [mTime, setMTime] = useState("8:00 AM");
   const [mRepeatOn, setMRepeatOn] = useState(false);
   const [mRepeatNum, setMRepeatNum] = useState(1);
+  const [mUnit, setMUnit] = useState("month");
+  const mUserTookOver = useRef(false);
+
+  /* ── Mobile dropdown states ── */
+  const [mShowDatePicker, setMShowDatePicker] = useState(false);
+  const [mShowTimePicker, setMShowTimePicker] = useState(false);
+  const [mShowUnitPicker, setMShowUnitPicker] = useState(false);
+
+  const stopMobileAuto = useCallback(() => { mUserTookOver.current = true; }, []);
 
   /* ── Mobile auto-play loop ── */
   useEffect(() => {
@@ -60,29 +169,30 @@ export function TimeBasedAutomationsDemo({ inSplit = false }) {
     });
 
     async function loop() {
-      while (!cancelled) {
+      while (!cancelled && !mUserTookOver.current) {
         setMDate("Mon, Jan 12, 2026");
         setMTime("8:00 AM");
         setMRepeatOn(false);
         setMRepeatNum(1);
+        setMUnit("month");
         await wait(1500);
-        if (cancelled) break;
+        if (cancelled || mUserTookOver.current) break;
 
         setMDate("Mon, Jan 31, 2026");
         await wait(800);
-        if (cancelled) break;
+        if (cancelled || mUserTookOver.current) break;
 
         setMTime("9:00 AM");
         await wait(800);
-        if (cancelled) break;
+        if (cancelled || mUserTookOver.current) break;
 
         setMRepeatOn(true);
         await wait(1000);
-        if (cancelled) break;
+        if (cancelled || mUserTookOver.current) break;
 
         setMRepeatNum(2);
         await wait(2500);
-        if (cancelled) break;
+        if (cancelled || mUserTookOver.current) break;
 
         await wait(1200);
       }
@@ -107,6 +217,7 @@ export function TimeBasedAutomationsDemo({ inSplit = false }) {
           backgroundColor: C.cardBg,
           padding: "20px 18px",
           fontFamily: "'Inter', system-ui, sans-serif",
+          overflow: "hidden",
         }}
       >
         {/* Panel title */}
@@ -117,29 +228,55 @@ export function TimeBasedAutomationsDemo({ inSplit = false }) {
 
         {/* Start date + Start time side by side */}
         <div style={{ display: "flex", gap: "10px", marginBottom: "14px" }}>
-          <div style={{ flex: 1 }}>
+          <div style={{ flex: 1, position: "relative" }}>
             <div style={{ fontSize: "12px", fontWeight: 500, color: C.text, marginBottom: "6px" }}>Start date</div>
-            <div style={{
-              display: "flex", alignItems: "center", justifyContent: "space-between",
-              padding: "10px 12px", borderRadius: "6px",
-              border: `1px solid ${C.border}`,
-              fontSize: "12px", color: C.text,
-            }}>
+            <div
+              onClick={() => { stopMobileAuto(); setMShowDatePicker(!mShowDatePicker); setMShowTimePicker(false); setMShowUnitPicker(false); }}
+              style={{
+                display: "flex", alignItems: "center", justifyContent: "space-between",
+                padding: "10px 12px", borderRadius: "6px",
+                border: `1px solid ${mShowDatePicker ? C.text : C.border}`,
+                fontSize: "12px", color: C.text, cursor: "pointer",
+                transition: "border-color 150ms ease",
+              }}
+            >
               <span style={{ transition: "opacity 0.3s ease" }} key={mDate}>{mDate}</span>
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img src={ICO.calendar} alt="" width={13} height={14} style={{ display: "block", opacity: 0.45 }} />
             </div>
+            {mShowDatePicker && (
+              <MiniDropdown
+                options={DATE_OPTIONS}
+                value={mDate}
+                onSelect={(opt) => setMDate(opt.label)}
+                onClose={() => setMShowDatePicker(false)}
+              />
+            )}
           </div>
 
-          <div style={{ width: "90px", flexShrink: 0 }}>
+          <div style={{ width: "100px", flexShrink: 0, position: "relative" }}>
             <div style={{ fontSize: "12px", fontWeight: 500, color: C.text, marginBottom: "6px" }}>Start time</div>
-            <div style={{
-              padding: "10px 12px", borderRadius: "6px",
-              border: `1px solid ${C.border}`,
-              fontSize: "12px", color: C.text,
-            }}>
+            <div
+              onClick={() => { stopMobileAuto(); setMShowTimePicker(!mShowTimePicker); setMShowDatePicker(false); setMShowUnitPicker(false); }}
+              style={{
+                padding: "10px 12px", borderRadius: "6px",
+                border: `1px solid ${mShowTimePicker ? C.text : C.border}`,
+                fontSize: "12px", color: C.text, cursor: "pointer",
+                whiteSpace: "nowrap",
+                transition: "border-color 150ms ease",
+              }}
+            >
               <span style={{ transition: "opacity 0.3s ease" }} key={mTime}>{mTime}</span>
             </div>
+            {mShowTimePicker && (
+              <MiniDropdown
+                options={TIME_OPTIONS}
+                value={mTime}
+                onSelect={(opt) => setMTime(opt)}
+                onClose={() => setMShowTimePicker(false)}
+                align="right"
+              />
+            )}
           </div>
         </div>
 
@@ -157,18 +294,19 @@ export function TimeBasedAutomationsDemo({ inSplit = false }) {
           <span>Time zone: Eastern time (GMT-05:00)</span>
         </div>
 
-        {/* Repeat toggle — static display */}
+        {/* Repeat toggle — interactive */}
         <div style={{
           display: "flex", alignItems: "center", gap: "10px",
           marginBottom: "10px",
         }}>
           <div
+            onClick={() => { stopMobileAuto(); setMRepeatOn(!mRepeatOn); }}
             style={{
               width: "36px", height: "20px", borderRadius: "10px",
               backgroundColor: mRepeatOn ? C.text : "#d1d5db",
               position: "relative",
               transition: "background-color 0.4s ease",
-              flexShrink: 0,
+              flexShrink: 0, cursor: "pointer",
             }}
           >
             <div style={{
@@ -187,6 +325,7 @@ export function TimeBasedAutomationsDemo({ inSplit = false }) {
         <div style={{
           opacity: mRepeatOn ? 1 : 0.35,
           transition: "opacity 0.4s ease",
+          pointerEvents: mRepeatOn ? "auto" : "none",
         }}>
           <div style={{
             fontSize: "11px", color: C.textSec, marginBottom: "16px",
@@ -210,22 +349,39 @@ export function TimeBasedAutomationsDemo({ inSplit = false }) {
               <span key={mRepeatNum} style={{ transition: "opacity 0.3s ease" }}>
                 {mRepeatNum}
               </span>
-              <svg width="10" height="14" viewBox="0 0 10 14" fill="none" style={{ display: "block", opacity: 0.4 }}>
-                <path d="M4.55 0.85C4.74 0.66 5.06 0.66 5.25 0.85L7.95 3.55C8.14 3.74 8.14 4.06 7.95 4.25C7.76 4.44 7.44 4.44 7.25 4.25L4.9 1.9L2.55 4.25C2.36 4.44 2.04 4.44 1.85 4.25C1.66 4.06 1.66 3.74 1.85 3.55L4.55 0.85Z" fill="#212B36"/>
-                <path d="M5.25 13.15C5.06 13.34 4.74 13.34 4.55 13.15L1.85 10.45C1.66 10.26 1.66 9.94 1.85 9.75C2.04 9.56 2.36 9.56 2.55 9.75L4.9 12.1L7.25 9.75C7.44 9.56 7.76 9.56 7.95 9.75C8.14 9.94 8.14 10.26 7.95 10.45L5.25 13.15Z" fill="#212B36"/>
-              </svg>
+              <div style={{ display: "flex", flexDirection: "column", gap: "0px", cursor: "pointer" }}>
+                <div onClick={() => { stopMobileAuto(); setMRepeatNum((n) => Math.min(n + 1, 12)); }} style={{ padding: "0 2px", lineHeight: 0 }}>
+                  <svg width="10" height="7" viewBox="0 0 8 6" fill="none"><path d="M3.65 0.35C3.85 0.15 4.15 0.15 4.35 0.35L7.05 3.05C7.25 3.25 7.25 3.55 7.05 3.75C6.85 3.95 6.55 3.95 6.35 3.75L4 1.4L1.65 3.75C1.45 3.95 1.15 3.95 0.95 3.75C0.75 3.55 0.75 3.25 0.95 3.05L3.65 0.35Z" fill="#212B36" fillOpacity="0.5" /></svg>
+                </div>
+                <div onClick={() => { stopMobileAuto(); setMRepeatNum((n) => Math.max(n - 1, 1)); }} style={{ padding: "0 2px", lineHeight: 0 }}>
+                  <svg width="10" height="7" viewBox="0 0 8 6" fill="none"><path d="M4.35 5.65C4.15 5.85 3.85 5.85 3.65 5.65L0.95 2.95C0.75 2.75 0.75 2.45 0.95 2.25C1.15 2.05 1.45 2.05 1.65 2.25L4 4.6L6.35 2.25C6.55 2.05 6.85 2.05 7.05 2.25C7.25 2.45 7.25 2.75 7.05 2.95L4.35 5.65Z" fill="#212B36" fillOpacity="0.5" /></svg>
+                </div>
+              </div>
             </div>
 
-            <div style={{
-              flex: 1,
-              display: "flex", alignItems: "center", justifyContent: "space-between",
-              padding: "10px 12px", borderRadius: "6px",
-              border: `1px solid ${C.border}`,
-              fontSize: "12px", color: C.text,
-            }}>
-              <span>month</span>
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src={ICO.chevronDown} alt="" width={10} height={7} style={{ display: "block", opacity: 0.4 }} />
+            <div style={{ flex: 1, position: "relative" }}>
+              <div
+                onClick={() => { stopMobileAuto(); setMShowUnitPicker(!mShowUnitPicker); setMShowDatePicker(false); setMShowTimePicker(false); }}
+                style={{
+                  display: "flex", alignItems: "center", justifyContent: "space-between",
+                  padding: "10px 12px", borderRadius: "6px",
+                  border: `1px solid ${mShowUnitPicker ? C.text : C.border}`,
+                  fontSize: "12px", color: C.text, cursor: "pointer",
+                  transition: "border-color 150ms ease",
+                }}
+              >
+                <span>{mUnit}</span>
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img src={ICO.chevronDown} alt="" width={10} height={7} style={{ display: "block", opacity: 0.4 }} />
+              </div>
+              {mShowUnitPicker && (
+                <MiniDropdown
+                  options={UNIT_OPTIONS}
+                  value={mUnit}
+                  onSelect={(opt) => setMUnit(opt)}
+                  onClose={() => setMShowUnitPicker(false)}
+                />
+              )}
             </div>
           </div>
         </div>
@@ -284,20 +440,23 @@ export function TimeBasedAutomationsDemo({ inSplit = false }) {
           </div>
           {/* Cancel + Activate buttons */}
           <div style={{ display: "flex", alignItems: "center", gap: "6px" }}>
-            <div style={{
+            <button type="button" onClick={resetDesktop} style={{
               padding: "4px 12px", borderRadius: "5px",
               fontSize: "11px", fontWeight: 500, color: C.text,
               border: `1px solid ${C.cancelBorder}`,
-              cursor: "default",
-            }}>Cancel</div>
-            <div style={{
+              cursor: "pointer", backgroundColor: "transparent",
+              fontFamily: "'Inter', system-ui, sans-serif",
+            }}>Cancel</button>
+            <button type="button" onClick={handleActivate} style={{
               padding: "4px 12px", borderRadius: "5px",
               fontSize: "11px", fontWeight: 500,
-              color: C.activateText,
-              backgroundColor: C.activateBg,
-              border: `1px solid ${C.activateBorder}`,
-              cursor: "default",
-            }}>Activate</div>
+              color: activateFlash ? "#fff" : (hasChanged ? "#fff" : C.activateText),
+              backgroundColor: activateFlash ? "#15803d" : (hasChanged ? C.text : C.activateBg),
+              border: `1px solid ${activateFlash ? "#15803d" : (hasChanged ? C.text : C.activateBorder)}`,
+              cursor: hasChanged ? "pointer" : "default",
+              fontFamily: "'Inter', system-ui, sans-serif",
+              transition: "all 200ms ease",
+            }}>{activateFlash ? "\u2713 Activated" : "Activate"}</button>
           </div>
         </div>
 
@@ -330,8 +489,8 @@ export function TimeBasedAutomationsDemo({ inSplit = false }) {
                 </svg>
                 <span style={{ fontSize: "13px", fontWeight: 500, color: C.text }}>Scheduled time</span>
               </div>
-              <div style={{ fontSize: "11px", color: C.textSec, paddingLeft: "21px" }}>
-                Every month on the 12th at 8:00 AM
+              <div style={{ fontSize: "11px", color: C.textSec, paddingLeft: "21px", transition: "opacity 0.2s ease" }}>
+                {canvasSummary}
               </div>
             </div>
 
@@ -379,29 +538,57 @@ export function TimeBasedAutomationsDemo({ inSplit = false }) {
 
             {/* Start date + Start time side by side */}
             <div style={{ display: "flex", gap: "8px", marginBottom: "14px" }}>
-              {/* Start date */}
-              <div style={{ flex: 1 }}>
+              {/* Start date — clickable dropdown */}
+              <div style={{ flex: 1, position: "relative" }}>
                 <div style={{ fontSize: "10px", fontWeight: 500, color: C.text, marginBottom: "5px" }}>Start date</div>
-                <div style={{
-                  display: "flex", alignItems: "center", justifyContent: "space-between",
-                  padding: "7px 10px", borderRadius: "6px",
-                  border: `1px solid ${C.border}`,
-                  fontSize: "11px", color: C.text,
-                }}>
-                  <span>Mon, Jan 12, 2026</span>
+                <div
+                  onClick={() => { setShowDatePicker(!showDatePicker); setShowTimePicker(false); setShowUnitPicker(false); }}
+                  style={{
+                    display: "flex", alignItems: "center", justifyContent: "space-between",
+                    padding: "7px 10px", borderRadius: "6px",
+                    border: `1px solid ${showDatePicker ? C.text : C.border}`,
+                    fontSize: "11px", color: C.text, cursor: "pointer",
+                    transition: "border-color 150ms ease",
+                  }}
+                >
+                  <span>{dDate}</span>
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img src={ICO.calendar} alt="" width={11} height={12} style={{ display: "block", opacity: 0.45 }} />
                 </div>
+                {showDatePicker && (
+                  <MiniDropdown
+                    options={DATE_OPTIONS}
+                    value={dDate}
+                    onSelect={(opt) => setDDate(opt.label)}
+                    onClose={() => setShowDatePicker(false)}
+                  />
+                )}
               </div>
 
-              {/* Start time */}
-              <div style={{ width: "70px", flexShrink: 0 }}>
+              {/* Start time — clickable dropdown */}
+              <div style={{ width: "80px", flexShrink: 0, position: "relative" }}>
                 <div style={{ fontSize: "10px", fontWeight: 500, color: C.text, marginBottom: "5px" }}>Start time</div>
-                <div style={{
-                  padding: "7px 10px", borderRadius: "6px",
-                  border: `1px solid ${C.border}`,
-                  fontSize: "11px", color: C.text,
-                }}>8:00 AM</div>
+                <div
+                  onClick={() => { setShowTimePicker(!showTimePicker); setShowDatePicker(false); setShowUnitPicker(false); }}
+                  style={{
+                    padding: "7px 10px", borderRadius: "6px",
+                    border: `1px solid ${showTimePicker ? C.text : C.border}`,
+                    fontSize: "11px", color: C.text, cursor: "pointer",
+                    whiteSpace: "nowrap",
+                    transition: "border-color 150ms ease",
+                  }}
+                >
+                  {dTime}
+                </div>
+                {showTimePicker && (
+                  <MiniDropdown
+                    options={TIME_OPTIONS}
+                    value={dTime}
+                    onSelect={(opt) => setDTime(opt)}
+                    onClose={() => setShowTimePicker(false)}
+                    align="right"
+                  />
+                )}
               </div>
             </div>
 
@@ -420,32 +607,35 @@ export function TimeBasedAutomationsDemo({ inSplit = false }) {
               <span>Time zone: Eastern time (GMT-05:00)</span>
             </div>
 
-            {/* Repeat toggle — static ON state */}
+            {/* Repeat toggle — interactive */}
             <div style={{
               display: "flex", alignItems: "center", gap: "8px",
               marginBottom: "8px",
             }}>
               <div
+                onClick={() => setDRepeatOn(!dRepeatOn)}
                 style={{
                   width: "32px", height: "18px", borderRadius: "9px",
-                  backgroundColor: C.text,
-                  cursor: "default", position: "relative",
+                  backgroundColor: dRepeatOn ? C.text : "#d1d5db",
+                  cursor: "pointer", position: "relative",
                   flexShrink: 0,
+                  transition: "background-color 300ms ease",
                 }}
               >
                 <div style={{
                   width: "14px", height: "14px", borderRadius: "50%",
                   backgroundColor: "#ffffff",
                   position: "absolute", top: "2px",
-                  left: "16px",
+                  left: dRepeatOn ? "16px" : "2px",
+                  transition: "left 300ms cubic-bezier(0.34, 1.56, 0.64, 1)",
                   boxShadow: "0 1px 2px rgba(0,0,0,0.15)",
                 }} />
               </div>
               <span style={{ fontSize: "12px", fontWeight: 500, color: C.text }}>Repeat</span>
             </div>
 
-            {/* Repeat details (always visible) */}
-            <div>
+            {/* Repeat details */}
+            <div style={{ opacity: dRepeatOn ? 1 : 0.35, transition: "opacity 0.3s ease", pointerEvents: dRepeatOn ? "auto" : "none" }}>
               {/* Helper text */}
               <div style={{
                 fontSize: "10px", color: C.textSec, marginBottom: "14px",
@@ -461,7 +651,7 @@ export function TimeBasedAutomationsDemo({ inSplit = false }) {
 
               {/* Number + Unit selectors */}
               <div style={{ display: "flex", gap: "8px" }}>
-                {/* Number input */}
+                {/* Number input — up/down arrows */}
                 <div style={{
                   display: "flex", alignItems: "center", justifyContent: "space-between",
                   padding: "7px 10px", borderRadius: "6px",
@@ -469,24 +659,41 @@ export function TimeBasedAutomationsDemo({ inSplit = false }) {
                   fontSize: "11px", color: C.text,
                   width: "60px",
                 }}>
-                  <span>1</span>
-                  <svg width="10" height="14" viewBox="0 0 10 14" fill="none" style={{ display: "block", opacity: 0.4 }}>
-                    <path d="M4.55 0.85C4.74 0.66 5.06 0.66 5.25 0.85L7.95 3.55C8.14 3.74 8.14 4.06 7.95 4.25C7.76 4.44 7.44 4.44 7.25 4.25L4.9 1.9L2.55 4.25C2.36 4.44 2.04 4.44 1.85 4.25C1.66 4.06 1.66 3.74 1.85 3.55L4.55 0.85Z" fill="#212B36"/>
-                    <path d="M5.25 13.15C5.06 13.34 4.74 13.34 4.55 13.15L1.85 10.45C1.66 10.26 1.66 9.94 1.85 9.75C2.04 9.56 2.36 9.56 2.55 9.75L4.9 12.1L7.25 9.75C7.44 9.56 7.76 9.56 7.95 9.75C8.14 9.94 8.14 10.26 7.95 10.45L5.25 13.15Z" fill="#212B36"/>
-                  </svg>
+                  <span>{dRepeatNum}</span>
+                  <div style={{ display: "flex", flexDirection: "column", gap: "0px", cursor: "pointer" }}>
+                    <div onClick={() => setDRepeatNum((n) => Math.min(n + 1, 12))} style={{ padding: "0 2px", lineHeight: 0 }}>
+                      <svg width="8" height="6" viewBox="0 0 8 6" fill="none"><path d="M3.65 0.35C3.85 0.15 4.15 0.15 4.35 0.35L7.05 3.05C7.25 3.25 7.25 3.55 7.05 3.75C6.85 3.95 6.55 3.95 6.35 3.75L4 1.4L1.65 3.75C1.45 3.95 1.15 3.95 0.95 3.75C0.75 3.55 0.75 3.25 0.95 3.05L3.65 0.35Z" fill="#212B36" fillOpacity="0.5" /></svg>
+                    </div>
+                    <div onClick={() => setDRepeatNum((n) => Math.max(n - 1, 1))} style={{ padding: "0 2px", lineHeight: 0 }}>
+                      <svg width="8" height="6" viewBox="0 0 8 6" fill="none"><path d="M4.35 5.65C4.15 5.85 3.85 5.85 3.65 5.65L0.95 2.95C0.75 2.75 0.75 2.45 0.95 2.25C1.15 2.05 1.45 2.05 1.65 2.25L4 4.6L6.35 2.25C6.55 2.05 6.85 2.05 7.05 2.25C7.25 2.45 7.25 2.75 7.05 2.95L4.35 5.65Z" fill="#212B36" fillOpacity="0.5" /></svg>
+                    </div>
+                  </div>
                 </div>
 
-                {/* Unit dropdown */}
-                <div style={{
-                  flex: 1,
-                  display: "flex", alignItems: "center", justifyContent: "space-between",
-                  padding: "7px 10px", borderRadius: "6px",
-                  border: `1px solid ${C.border}`,
-                  fontSize: "11px", color: C.text,
-                }}>
-                  <span>month</span>
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img src={ICO.chevronDown} alt="" width={9} height={6} style={{ display: "block", opacity: 0.4 }} />
+                {/* Unit dropdown — clickable */}
+                <div style={{ flex: 1, position: "relative" }}>
+                  <div
+                    onClick={() => { setShowUnitPicker(!showUnitPicker); setShowDatePicker(false); setShowTimePicker(false); }}
+                    style={{
+                      display: "flex", alignItems: "center", justifyContent: "space-between",
+                      padding: "7px 10px", borderRadius: "6px",
+                      border: `1px solid ${showUnitPicker ? C.text : C.border}`,
+                      fontSize: "11px", color: C.text, cursor: "pointer",
+                      transition: "border-color 150ms ease",
+                    }}
+                  >
+                    <span>{dUnit}</span>
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img src={ICO.chevronDown} alt="" width={9} height={6} style={{ display: "block", opacity: 0.4 }} />
+                  </div>
+                  {showUnitPicker && (
+                    <MiniDropdown
+                      options={UNIT_OPTIONS}
+                      value={dUnit}
+                      onSelect={(opt) => setDUnit(opt)}
+                      onClose={() => setShowUnitPicker(false)}
+                    />
+                  )}
                 </div>
               </div>
             </div>

@@ -14,7 +14,6 @@ import { motion, useScroll, useTransform } from "framer-motion";
 
 const ROADMAP = [
   {
-    number: "01",
     label: "Up next",
     title: "AI Edition",
     description:
@@ -33,7 +32,6 @@ const ROADMAP = [
     ),
   },
   {
-    number: "02",
     label: "Coming soon",
     title: "Scale Ready Edition",
     description:
@@ -181,25 +179,12 @@ export function WhatsNextSection() {
                 {item.icon}
               </div>
 
-              {/* Number + label row */}
+              {/* Label row */}
               <div
                 style={{
-                  display: "flex",
-                  alignItems: "baseline",
-                  gap: "0.75rem",
                   marginBottom: "1.25rem",
                 }}
               >
-                <span
-                  style={{
-                    fontFamily: "'ABC Diatype Mono', var(--font-mono, monospace)",
-                    fontSize: "0.75rem",
-                    letterSpacing: "-0.04em",
-                    color: "rgba(255, 255, 255, 0.3)",
-                  }}
-                >
-                  {item.number}
-                </span>
                 <span
                   style={{
                     fontFamily: "'ABC Diatype Mono', var(--font-mono, monospace)",
@@ -258,9 +243,28 @@ export function WhatsNextSection() {
           <div
             style={{
               marginTop: "clamp(6rem, 12vw, 10rem)",
+              margin: "clamp(6rem, 12vw, 10rem) -0.5rem 0",
+              borderRadius: "20px",
+              position: "relative",
+              overflow: "hidden",
+              padding: "clamp(3.5rem, 7vw, 6rem) 2rem clamp(4rem, 8vw, 7rem)",
               textAlign: "center",
             }}
           >
+            {/* Card gradient — dark top, blue glow from bottom */}
+            <div
+              aria-hidden="true"
+              style={{
+                position: "absolute",
+                inset: 0,
+                background: `
+                  linear-gradient(to bottom, #101010 0%, #0a1a1a 40%, #0c2a28 70%, #0e4540 100%),
+                  radial-gradient(ellipse 80% 50% at 50% 100%, rgba(0, 160, 140, 0.4) 0%, rgba(0, 110, 100, 0.15) 40%, transparent 70%)
+                `,
+                backgroundBlendMode: "normal",
+                zIndex: 0,
+              }}
+            />
             <h2
               style={{
                 fontFamily: "'PP Mori', var(--font-sans)",
@@ -270,6 +274,8 @@ export function WhatsNextSection() {
                 letterSpacing: "-0.02em",
                 color: "#fff",
                 margin: 0,
+                position: "relative",
+                zIndex: 2,
               }}
             >
               Try Assembly 2.0
@@ -281,19 +287,22 @@ export function WhatsNextSection() {
                 fontWeight: 400,
                 fontSize: "1rem",
                 lineHeight: 1.5,
-                color: "rgba(255, 255, 255, 0.45)",
+                color: "rgba(255, 255, 255, 0.5)",
                 maxWidth: "26rem",
                 margin: "1rem auto 0",
+                position: "relative",
+                zIndex: 2,
               }}
             >
               Start your free trial to experience the full platform.
             </p>
 
-            <div style={{ marginTop: "2rem" }}>
+            <div style={{ marginTop: "2rem", position: "relative", zIndex: 2 }}>
               <a
                 href="https://assembly.com/signup?utm_source=edition&utm_medium=web&utm_campaign=assembly2-launch"
                 target="_blank"
                 rel="noopener noreferrer"
+                className="edition-cta-arrow"
                 style={{
                   fontFamily: "'PP Mori', var(--font-sans)",
                   fontWeight: 600,
@@ -318,7 +327,14 @@ export function WhatsNextSection() {
                 }}
               >
                 Start free trial
-                <span style={{ fontFamily: "'PP Mori', var(--font-sans)" }}>
+                <span
+                  className="edition-cta-arrow-icon"
+                  style={{
+                    fontFamily: "'PP Mori', var(--font-sans)",
+                    display: "inline-block",
+                    transition: "transform 0.25s cubic-bezier(0.25, 0.1, 0.25, 1)",
+                  }}
+                >
                   →
                 </span>
               </a>

@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef } from "react";
+import { useRef, useState, useCallback } from "react";
 import { motion, useInView } from "framer-motion";
 import { useMediaQuery } from "../../hooks/useMediaQuery";
 
@@ -220,16 +220,9 @@ function CodeLine({ tokens, lineNum, delay, isInView, hasCursor }) {
         </span>
       ))}
 
-      {/* Blinking cursor */}
+      {/* Static cursor */}
       {hasCursor && (
-        <motion.span
-          animate={{ opacity: [1, 1, 0, 0] }}
-          transition={{
-            duration: 1.0,
-            repeat: Infinity,
-            ease: "linear",
-            times: [0, 0.5, 0.5, 1],
-          }}
+        <span
           style={{
             display: "inline-block",
             width: "1.5px",
@@ -246,6 +239,9 @@ function CodeLine({ tokens, lineNum, delay, isInView, hasCursor }) {
   );
 }
 
+/* ── Plain text of the code (for clipboard) ── */
+const CODE_TEXT = CODE_LINES.map((tokens) => tokens.map((t) => t.text).join("")).join("\n");
+
 /* ── Number of lines to show on mobile (just the createApp config) ── */
 const MOBILE_LINE_COUNT = 12;
 
@@ -253,6 +249,15 @@ export function AppBridgeCodeDemo({ inSplit = false }) {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-60px" });
   const isDesktop = useMediaQuery("(min-width: 768px)", true);
+  const [copied, setCopied] = useState(false);
+
+  const handleCopy = useCallback(async () => {
+    try {
+      await navigator.clipboard.writeText(CODE_TEXT);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    } catch { /* clipboard blocked — silently ignore */ }
+  }, []);
 
   /* Each code line is 22px tall; top padding is 16px.
      Mobile clips after MOBILE_LINE_COUNT lines (no bottom padding). */
@@ -316,6 +321,38 @@ export function AppBridgeCodeDemo({ inSplit = false }) {
         >
           app.config.ts
         </div>
+
+        {/* Copy button */}
+        <button
+          type="button"
+          onClick={handleCopy}
+          style={{
+            marginLeft: "auto",
+            position: "relative",
+            zIndex: 1,
+            display: "flex",
+            alignItems: "center",
+            gap: "4px",
+            padding: "3px 8px",
+            borderRadius: "4px",
+            border: "1px solid rgba(255, 255, 255, 0.1)",
+            backgroundColor: copied ? "rgba(34, 197, 94, 0.15)" : "transparent",
+            color: copied ? "#4ade80" : "rgba(255, 255, 255, 0.45)",
+            fontSize: "11px",
+            fontFamily: "'SF Mono', 'Fira Code', Menlo, monospace",
+            cursor: "pointer",
+            transition: "all 200ms ease",
+          }}
+          onMouseEnter={(e) => { if (!copied) { e.currentTarget.style.backgroundColor = "rgba(255, 255, 255, 0.06)"; e.currentTarget.style.color = "rgba(255, 255, 255, 0.7)"; } }}
+          onMouseLeave={(e) => { if (!copied) { e.currentTarget.style.backgroundColor = "transparent"; e.currentTarget.style.color = "rgba(255, 255, 255, 0.45)"; } }}
+        >
+          {copied ? (
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12" /></svg>
+          ) : (
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2" /><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" /></svg>
+          )}
+          {copied ? "Copied" : "Copy"}
+        </button>
       </div>
 
       {/* ── Code content ── */}

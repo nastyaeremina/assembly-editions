@@ -293,6 +293,22 @@
   display: none;
 }
 
+/* Assembly dock icon — tight colored edge glow */
+.hero-edge-glow {
+  box-shadow: 0 0 6px 1px rgba(147, 197, 253, 0.5);
+  animation: hero-glow-pulse 3s ease-in-out infinite;
+}
+
+@keyframes hero-glow-pulse {
+  0%, 100% { box-shadow: 0 0 6px 1px rgba(147, 197, 253, 0.5); }
+  50% { box-shadow: 0 0 8px 2px rgba(147, 197, 253, 0.3); }
+}
+
+/* CTA arrow — subtle nudge on hover */
+.edition-cta-arrow:hover .edition-cta-arrow-icon {
+  transform: translateX(3px);
+}
+
 /* Rail text fade-in when step changes */
 @keyframes railFadeIn {
   from {

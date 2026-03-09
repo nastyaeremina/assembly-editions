@@ -17,6 +17,24 @@ const CONTENT = {
   cardBorder: "#e2e8f0",
   textPrimary: "#1e293b",
   textSecondary: "#64748b",
+  tableBorder: "#e5e7eb",
+  tableRowBorder: "#f0f0f0",
+  tableHeaderBg: "#fafafa",
+};
+
+/* Glass variant — used in hero preview (static mode) for seamless integration */
+const CONTENT_DARK = {
+  bg: "transparent",
+  cardBg: "rgba(255, 255, 255, 0.035)",
+  cardBorder: "rgba(255, 255, 255, 0.06)",
+  textPrimary: "rgba(255, 255, 255, 0.82)",
+  textSecondary: "rgba(255, 255, 255, 0.38)",
+  tableBorder: "rgba(255, 255, 255, 0.05)",
+  tableRowBorder: "rgba(255, 255, 255, 0.03)",
+  tableHeaderBg: "rgba(255, 255, 255, 0.03)",
+  /* Glass overrides for sidebar + banner */
+  sidebarBg: "transparent",
+  bannerBg: "rgba(255, 255, 255, 0.05)",
 };
 
 /* ── Icon paths ── */
@@ -129,24 +147,33 @@ function Ico({ src, size = 14, invert = false }) {
 }
 
 /* ── Nav item ── */
-function NavItem({ iconSrc, label, active, badge, segment }) {
+function NavItem({ iconSrc, label, active, badge, segment, compact = false }) {
   return (
-    <div style={{
-      display: "flex", alignItems: "center", gap: "7px", padding: "4px 10px",
-      borderRadius: "5px", fontSize: "11.5px", fontWeight: active ? 500 : 400,
-      color: active ? segment.sidebarActive : segment.sidebarText,
-      backgroundColor: active ? segment.sidebarActiveBg : "transparent",
-      cursor: "default", fontFamily: "'Inter', system-ui, sans-serif", transition: "all 400ms ease",
-    }}>
+    <div
+      style={{
+        display: "flex", alignItems: "center",
+        gap: compact ? "5px" : "7px",
+        padding: compact ? "2px 6px" : "4px 10px",
+        borderRadius: compact ? "3px" : "5px",
+        fontSize: compact ? "8.5px" : "11.5px",
+        fontWeight: active ? 500 : 400,
+        color: active ? segment.sidebarActive : segment.sidebarText,
+        backgroundColor: active ? segment.sidebarActiveBg : "transparent",
+        cursor: "default", fontFamily: "'Inter', system-ui, sans-serif", transition: "all 400ms ease",
+      }}
+    >
       <span style={{ display: "flex", alignItems: "center", flexShrink: 0 }}>
-        <Ico src={iconSrc} size={12} invert />
+        <Ico src={iconSrc} size={compact ? 9 : 12} invert />
       </span>
       <span style={{ flex: 1 }}>{label}</span>
       {badge !== undefined && badge > 0 && (
         <span style={{
-          fontSize: "10px", fontWeight: 600, minWidth: "16px", textAlign: "center",
+          fontSize: compact ? "7px" : "10px", fontWeight: 600,
+          minWidth: compact ? "12px" : "16px", textAlign: "center",
           backgroundColor: segment.sidebarBadgeBg, color: segment.sidebarBadgeText,
-          borderRadius: "4px", padding: "1px 5px", transition: "all 400ms ease",
+          borderRadius: compact ? "3px" : "4px",
+          padding: compact ? "1px 3px" : "1px 5px",
+          transition: "all 400ms ease",
         }}>{badge}</span>
       )}
     </div>
@@ -154,19 +181,27 @@ function NavItem({ iconSrc, label, active, badge, segment }) {
 }
 
 /* ── Action card ── */
-function ActionCard({ iconSrc, label, count, unit }) {
+function ActionCard({ iconSrc, label, count, unit, compact = false, colors = CONTENT }) {
   return (
-    <div style={{
-      flex: 1, padding: "12px 14px", borderRadius: "8px",
-      backgroundColor: CONTENT.cardBg, border: `1px solid ${CONTENT.cardBorder}`,
-      display: "flex", flexDirection: "column", gap: "6px",
-      minWidth: 0,
-    }}>
-      <div style={{ display: "flex", alignItems: "center", gap: "7px" }}>
-        <span style={{ display: "flex", flexShrink: 0 }}><Ico src={iconSrc} size={12} /></span>
-        <span style={{ fontSize: "12px", fontWeight: 500, color: CONTENT.textPrimary, fontFamily: "'Inter', system-ui, sans-serif", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{label}</span>
+    <div
+      style={{
+        flex: 1,
+        padding: compact ? "6px 8px" : "12px 14px",
+        borderRadius: compact ? "5px" : "8px",
+        backgroundColor: colors.cardBg, border: `1px solid ${colors.cardBorder}`,
+        display: "flex", flexDirection: "column",
+        gap: compact ? "2px" : "6px",
+        minWidth: 0, cursor: "default",
+        transition: "border-color 0.15s ease",
+      }}
+      onMouseEnter={(e) => { e.currentTarget.style.borderColor = colors === CONTENT ? "#c7d2dd" : "rgba(255,255,255,0.15)"; }}
+      onMouseLeave={(e) => { e.currentTarget.style.borderColor = colors.cardBorder; }}
+    >
+      <div style={{ display: "flex", alignItems: "center", gap: compact ? "4px" : "7px" }}>
+        <span style={{ display: "flex", flexShrink: 0 }}><Ico src={iconSrc} size={compact ? 8 : 12} invert={colors !== CONTENT} /></span>
+        <span style={{ fontSize: compact ? "8px" : "12px", fontWeight: 500, color: colors.textPrimary, fontFamily: "'Inter', system-ui, sans-serif", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{label}</span>
       </div>
-      <span style={{ fontSize: "11px", color: CONTENT.textSecondary, fontFamily: "'Inter', system-ui, sans-serif" }}>
+      <span style={{ fontSize: compact ? "7px" : "11px", color: colors.textSecondary, fontFamily: "'Inter', system-ui, sans-serif" }}>
         {count} {count === 1 ? unit : `${unit}s`}
       </span>
     </div>
@@ -185,7 +220,7 @@ const fadeTransition = { duration: 0.3, ease: [0.25, 0.1, 0.25, 1] };
 /* ════════════════════════════════════════════════════════
    MAIN COMPONENT
    ════════════════════════════════════════════════════════ */
-export function ThemedClientHome({ inSplit = false }) {
+export function ThemedClientHome({ inSplit = false, static: isStatic = false }) {
   const containerRef = useRef(null);
   const [activeIndex, setActiveIndex] = useState(0);
   const [manualOverride, setManualOverride] = useState(false);
@@ -195,10 +230,15 @@ export function ThemedClientHome({ inSplit = false }) {
   const [showTooltip, setShowTooltip] = useState(false);
   const tooltipDismissed = useRef(false);
 
+  /* Content-area palette — dark in hero preview, light elsewhere */
+  const C = isStatic ? CONTENT_DARK : CONTENT;
+
   /* Auto-cycle segments when component is visible on screen.
      Uses IntersectionObserver to start/stop a 2.5s interval.
-     Manual clicks pause the auto-cycle for 4s then resume. */
+     Manual clicks pause the auto-cycle for 4s then resume.
+     Skipped entirely when static={true}. */
   useEffect(() => {
+    if (isStatic) return;
     const el = containerRef.current;
     if (!el) return;
 
@@ -227,10 +267,11 @@ export function ThemedClientHome({ inSplit = false }) {
       observer.disconnect();
       if (intervalRef.current) clearInterval(intervalRef.current);
     };
-  }, []);
+  }, [isStatic]);
 
   /* Pause auto-cycle during manual override */
   useEffect(() => {
+    if (isStatic) return;
     if (manualOverride) {
       if (intervalRef.current) {
         clearInterval(intervalRef.current);
@@ -249,17 +290,18 @@ export function ThemedClientHome({ inSplit = false }) {
         }
       }
     }
-  }, [manualOverride]);
+  }, [manualOverride, isStatic]);
 
   /* Manual click: override auto-cycle for 4s */
   const handleSegmentClick = useCallback((i) => {
+    if (isStatic) return;
     setActiveIndex(i);
     setManualOverride(true);
     setShowTooltip(false);
     tooltipDismissed.current = true;
     if (overrideTimer.current) clearTimeout(overrideTimer.current);
     overrideTimer.current = setTimeout(() => setManualOverride(false), 4000);
-  }, []);
+  }, [isStatic]);
 
   /* Cleanup */
   useEffect(() => {
@@ -268,7 +310,10 @@ export function ThemedClientHome({ inSplit = false }) {
     };
   }, []);
 
-  const isMobile = useMediaQuery("(max-width: 1023px)", false);
+  const isMobileViewport = useMediaQuery("(max-width: 1023px)", false);
+  /* In static mode (hero preview), always show the desktop layout with
+     sidebar — it's a product screenshot, not an interactive component. */
+  const isMobile = isStatic ? false : isMobileViewport;
 
   /* ── Segment switcher (shared between mobile & desktop) ── */
   const segmentSwitcher = (
@@ -327,8 +372,8 @@ export function ThemedClientHome({ inSplit = false }) {
           </button>
         );
       })}
-      {/* Continuous progress line across full tab bar */}
-      {!manualOverride && (() => {
+      {/* Continuous progress line across full tab bar (hidden in static mode) */}
+      {!isStatic && !manualOverride && (() => {
         const total = SEGMENTS.length;
         const filledPercent = (activeIndex / total) * 100;
         const segmentPercent = 100 / total;
@@ -392,7 +437,7 @@ export function ThemedClientHome({ inSplit = false }) {
       </span>
       {/* Tooltip — positioned over 2nd segment (Gold) since 1st is already active */}
       <AnimatePresence>
-        {showTooltip && (
+        {!isStatic && showTooltip && (
           <motion.div
             initial={{ opacity: 0, y: 4 }}
             animate={{ opacity: 1, y: 0 }}
@@ -448,37 +493,42 @@ export function ThemedClientHome({ inSplit = false }) {
   /* ── Mobile: no sidebar, mobile top bar ── */
   if (isMobile) {
     return (
-      <div ref={containerRef}>
+      <div ref={containerRef} style={isStatic ? { height: "100%" } : undefined}>
         <div style={{
-          borderRadius: "12px",
-          border: "1px solid rgba(255,255,255,0.08)",
+          borderRadius: isStatic ? 0 : "12px",
+          border: isStatic ? "none" : "1px solid rgba(255,255,255,0.08)",
           overflow: "hidden",
-          boxShadow: `0 0 80px ${segment.accent}10, 0 4px 30px rgba(0,0,0,0.3)`,
+          boxShadow: isStatic ? "none" : `0 0 80px ${segment.accent}10, 0 4px 30px rgba(0,0,0,0.3)`,
           transition: "box-shadow 500ms ease",
           fontFamily: "'Inter', system-ui, sans-serif",
+          height: isStatic ? "100%" : undefined,
+          display: isStatic ? "flex" : undefined,
+          flexDirection: isStatic ? "column" : undefined,
         }}>
-          {segmentSwitcher}
+          {!isStatic && segmentSwitcher}
           {/* Mobile app top bar */}
-          <div style={{
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "space-between",
-            backgroundColor: "#ffffff",
-            padding: "12px 16px",
-            borderBottom: "1px solid #e5e7eb",
-          }}>
-            <div style={{ display: "flex", alignItems: "center", gap: "12px" }}>
-              <div style={{ display: "flex", flexDirection: "column", gap: "3.5px", cursor: "default" }}>
-                <div style={{ width: "16px", height: "1.5px", backgroundColor: "#18181b", borderRadius: "1px" }} />
-                <div style={{ width: "16px", height: "1.5px", backgroundColor: "#18181b", borderRadius: "1px" }} />
-                <div style={{ width: "16px", height: "1.5px", backgroundColor: "#18181b", borderRadius: "1px" }} />
+          {!isStatic && (
+            <div style={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "space-between",
+              backgroundColor: "#ffffff",
+              padding: "12px 16px",
+              borderBottom: "1px solid #e5e7eb",
+            }}>
+              <div style={{ display: "flex", alignItems: "center", gap: "12px" }}>
+                <div style={{ display: "flex", flexDirection: "column", gap: "3.5px", cursor: "default" }}>
+                  <div style={{ width: "16px", height: "1.5px", backgroundColor: "#18181b", borderRadius: "1px" }} />
+                  <div style={{ width: "16px", height: "1.5px", backgroundColor: "#18181b", borderRadius: "1px" }} />
+                  <div style={{ width: "16px", height: "1.5px", backgroundColor: "#18181b", borderRadius: "1px" }} />
+                </div>
+                <span style={{ fontSize: "14px", fontWeight: 500, color: "#18181b" }}>Home</span>
               </div>
-              <span style={{ fontSize: "14px", fontWeight: 500, color: "#18181b" }}>Home</span>
             </div>
-          </div>
+          )}
 
           {/* Content area — no sidebar */}
-          <div style={{ backgroundColor: CONTENT.bg, padding: "20px 18px 28px", overflow: "hidden" }}>
+          <div style={{ backgroundColor: C.bg, padding: "20px 18px 28px", overflow: "hidden", flex: isStatic ? 1 : undefined }}>
             <AnimatePresence mode="wait">
               <motion.div
                 key={segment.id + "-greeting"}
@@ -491,10 +541,10 @@ export function ThemedClientHome({ inSplit = false }) {
               >
                 <div style={{
                   fontSize: "18px", fontWeight: 500,
-                  color: CONTENT.textPrimary, fontFamily: "'Inter', system-ui, sans-serif",
+                  color: C.textPrimary, fontFamily: "'Inter', system-ui, sans-serif",
                 }}>{segment.greeting}</div>
                 <div style={{
-                  fontSize: "12px", color: CONTENT.textSecondary,
+                  fontSize: "12px", color: C.textSecondary,
                   fontFamily: "'Inter', system-ui, sans-serif", marginTop: "2px",
                 }}>{segment.subtitle}</div>
               </motion.div>
@@ -511,7 +561,7 @@ export function ThemedClientHome({ inSplit = false }) {
                   style={{
                     position: "absolute",
                     inset: 0,
-                    background: seg.bannerBg,
+                    background: isStatic ? C.bannerBg : seg.bannerBg,
                     opacity: seg.id === segment.id ? 1 : 0,
                     transition: "opacity 600ms ease",
                   }}
@@ -522,23 +572,23 @@ export function ThemedClientHome({ inSplit = false }) {
             {/* Actions card */}
             <div style={{
               marginTop: "14px", borderRadius: "8px",
-              border: `1px solid ${CONTENT.cardBorder}`,
-              backgroundColor: CONTENT.cardBg, padding: "16px",
+              border: `1px solid ${C.cardBorder}`,
+              backgroundColor: C.cardBg, padding: "16px",
             }}>
               <div style={{
-                fontSize: "14px", fontWeight: 500, color: CONTENT.textPrimary,
+                fontSize: "14px", fontWeight: 500, color: C.textPrimary,
                 fontFamily: "'Inter', system-ui, sans-serif", marginBottom: "3px",
               }}>Your actions</div>
               <div style={{
-                fontSize: "12px", color: CONTENT.textSecondary,
+                fontSize: "12px", color: C.textSecondary,
                 fontFamily: "'Inter', system-ui, sans-serif", marginBottom: "10px",
               }}>You have {segment.actions.invoices + segment.actions.contracts + segment.actions.tasks + segment.actions.forms} pending items</div>
 
               <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "8px" }}>
-                <ActionCard iconSrc={ICO.billing} label="Invoices" count={segment.actions.invoices} unit="invoice" />
-                <ActionCard iconSrc={ICO.contractsCard} label="Contracts" count={segment.actions.contracts} unit="contract" />
-                <ActionCard iconSrc={ICO.tasks} label="Tasks" count={segment.actions.tasks} unit="task" />
-                <ActionCard iconSrc={ICO.forms} label="Forms" count={segment.actions.forms} unit="form" />
+                <ActionCard iconSrc={ICO.billing} label="Invoices" count={segment.actions.invoices} unit="invoice" colors={C} />
+                <ActionCard iconSrc={ICO.contractsCard} label="Contracts" count={segment.actions.contracts} unit="contract" colors={C} />
+                <ActionCard iconSrc={ICO.tasks} label="Tasks" count={segment.actions.tasks} unit="task" colors={C} />
+                <ActionCard iconSrc={ICO.forms} label="Forms" count={segment.actions.forms} unit="form" colors={C} />
               </div>
             </div>
           </div>
@@ -549,43 +599,48 @@ export function ThemedClientHome({ inSplit = false }) {
 
   /* ── Desktop: full layout with sidebar ── */
   return (
-    <div ref={containerRef}>
+    <div ref={containerRef} style={isStatic ? { height: "100%" } : undefined}>
 
       {/* ── Portal preview container ── */}
       <motion.div
         style={{
-          borderRadius: "12px",
-          border: "1px solid rgba(255,255,255,0.08)",
+          borderRadius: isStatic ? 0 : "12px",
+          border: isStatic ? "none" : "1px solid rgba(255,255,255,0.08)",
           overflow: "hidden",
-          boxShadow: `0 0 80px ${segment.accent}10, 0 4px 30px rgba(0,0,0,0.3)`,
+          boxShadow: isStatic ? "none" : `0 0 80px ${segment.accent}10, 0 4px 30px rgba(0,0,0,0.3)`,
           transition: "box-shadow 500ms ease",
+          height: isStatic ? "100%" : undefined,
         }}
       >
-        {segmentSwitcher}
+        {!isStatic && segmentSwitcher}
 
         {/* Browser chrome */}
-        <div style={{
-          position: "relative", display: "flex", alignItems: "center",
-          backgroundColor: "#141414", padding: "12px 16px",
-          borderBottom: "1px solid rgba(255, 255, 255, 0.06)",
-        }}>
-          <div style={{ display: "flex", gap: "7px", position: "relative", zIndex: 1 }}>
-            {["#ff5f57", "#febc2e", "#28c840"].map((color) => (
-              <div key={color} style={{ width: "10px", height: "10px", borderRadius: "50%", backgroundColor: color, opacity: 0.8 }} />
-            ))}
+        {!isStatic && (
+          <div style={{
+            position: "relative", display: "flex", alignItems: "center",
+            backgroundColor: "#141414", padding: "12px 16px",
+            borderBottom: "1px solid rgba(255, 255, 255, 0.06)",
+          }}>
+            <div style={{ display: "flex", gap: "7px", position: "relative", zIndex: 1 }}>
+              {["#ff5f57", "#febc2e", "#28c840"].map((color) => (
+                <div key={color} style={{ width: "10px", height: "10px", borderRadius: "50%", backgroundColor: color, opacity: 0.8 }} />
+              ))}
+            </div>
+            <div style={{ position: "absolute", left: 0, right: 0, textAlign: "center", fontFamily: "'SF Mono', 'Fira Code', Menlo, monospace", fontSize: "11px", color: "rgba(255, 255, 255, 0.35)", letterSpacing: "0.01em", pointerEvents: "none" }}>
+              portal.yourbrand.com
+            </div>
           </div>
-          <div style={{ position: "absolute", left: 0, right: 0, textAlign: "center", fontFamily: "'SF Mono', 'Fira Code', Menlo, monospace", fontSize: "11px", color: "rgba(255, 255, 255, 0.35)", letterSpacing: "0.01em", pointerEvents: "none" }}>
-            portal.yourbrand.com
-          </div>
-        </div>
+        )}
 
         {/* Portal layout: sidebar + content */}
-        <div style={{ display: "flex", height: inSplit ? "640px" : "640px" }}>
+        <div style={{ display: "flex", height: isStatic ? "100%" : (inSplit ? "640px" : "640px") }}>
 
           {/* ── Sidebar ── */}
           <div style={{
             width: inSplit ? "150px" : "175px", flexShrink: 0,
-            backgroundColor: segment.sidebarBg, padding: "10px 0",
+            backgroundColor: isStatic ? C.sidebarBg : segment.sidebarBg,
+            borderRight: isStatic ? "1px solid rgba(255, 255, 255, 0.05)" : "none",
+            padding: "10px 0",
             display: "flex", flexDirection: "column",
             transition: "background-color 400ms ease",
           }}>
@@ -622,110 +677,109 @@ export function ThemedClientHome({ inSplit = false }) {
             </div>
           </div>
 
-          {/* ── Content area (fixed white — does NOT change with segment) ── */}
+          {/* ── Content area ── */}
           <div style={{
-            flex: 1, backgroundColor: CONTENT.bg,
+            flex: 1, backgroundColor: C.bg,
             overflow: "hidden",
             display: "flex", flexDirection: "column",
           }}>
             {/* Top breadcrumb */}
             <div style={{
-              padding: "8px 16px", fontSize: "12px", fontWeight: 500,
-              color: CONTENT.textSecondary, fontFamily: "'Inter', system-ui, sans-serif",
-              borderBottom: `1px solid ${CONTENT.cardBorder}`,
+              padding: inSplit ? "8px 14px" : "8px 18px", fontSize: "12px", fontWeight: 500,
+              color: C.textSecondary, fontFamily: "'Inter', system-ui, sans-serif",
+              borderBottom: `1px solid ${C.cardBorder}`,
             }}>Home</div>
 
-            <div style={{ flex: 1, padding: inSplit ? "14px 14px 24px" : "18px 18px 30px" }}>
-              {/* Greeting — cross-fades per segment */}
-              <AnimatePresence mode="wait">
-                <motion.div
-                  key={segment.id + "-greeting"}
-                  variants={fadeVariant}
-                  initial="initial"
-                  animate="animate"
-                  exit="exit"
-                  transition={fadeTransition}
-                  style={{ marginBottom: "4px", minHeight: inSplit ? "42px" : "50px" }}
-                >
+            <div style={{ flex: 1, padding: inSplit ? "14px 14px 24px" : "18px 18px 30px", overflow: isStatic ? "hidden" : "auto" }}>
+                  {/* Greeting — cross-fades per segment */}
+                  <AnimatePresence mode="wait">
+                    <motion.div
+                      key={segment.id + "-greeting"}
+                      variants={fadeVariant}
+                      initial="initial"
+                      animate="animate"
+                      exit="exit"
+                      transition={fadeTransition}
+                      style={{ marginBottom: "4px", minHeight: inSplit ? "42px" : "50px" }}
+                    >
+                      <div style={{
+                        fontSize: inSplit ? "15px" : "19px", fontWeight: 500,
+                        color: C.textPrimary, fontFamily: "'Inter', system-ui, sans-serif",
+                      }}>{segment.greeting}</div>
+                      <div style={{
+                        fontSize: "12px", color: C.textSecondary,
+                        fontFamily: "'Inter', system-ui, sans-serif", marginTop: "2px",
+                      }}>{segment.subtitle}</div>
+                    </motion.div>
+                  </AnimatePresence>
+
+                  {/* Hero banner — stacked layers for smooth cross-fade */}
                   <div style={{
-                    fontSize: inSplit ? "15px" : "19px", fontWeight: 500,
-                    color: CONTENT.textPrimary, fontFamily: "'Inter', system-ui, sans-serif",
-                  }}>{segment.greeting}</div>
+                    marginTop: "12px", borderRadius: "8px", height: inSplit ? "140px" : "160px",
+                    position: "relative", overflow: "hidden",
+                  }}>
+                    {SEGMENTS.map((seg) => (
+                      <div
+                        key={seg.id + "-desktop-banner"}
+                        style={{
+                          position: "absolute",
+                          inset: 0,
+                          background: isStatic ? C.bannerBg : seg.bannerBg,
+                          opacity: seg.id === segment.id ? 1 : 0,
+                          transition: "opacity 600ms ease",
+                        }}
+                      />
+                    ))}
+                  </div>
+
+                  {/* Actions card — fixed across all segments */}
                   <div style={{
-                    fontSize: "12px", color: CONTENT.textSecondary,
-                    fontFamily: "'Inter', system-ui, sans-serif", marginTop: "2px",
-                  }}>{segment.subtitle}</div>
-                </motion.div>
-              </AnimatePresence>
+                    marginTop: "14px", borderRadius: "8px",
+                    border: `1px solid ${C.cardBorder}`,
+                    backgroundColor: C.cardBg, padding: inSplit ? "10px" : "16px",
+                  }}>
+                    <div style={{
+                      fontSize: "14px", fontWeight: 500, color: C.textPrimary,
+                      fontFamily: "'Inter', system-ui, sans-serif", marginBottom: "3px",
+                    }}>Your actions</div>
+                    <div style={{
+                      fontSize: "12px", color: C.textSecondary,
+                      fontFamily: "'Inter', system-ui, sans-serif", marginBottom: "10px",
+                    }}>You have {segment.actions.invoices + segment.actions.contracts + segment.actions.tasks + segment.actions.forms} pending items</div>
 
-              {/* Hero banner — stacked layers for smooth cross-fade */}
-              <div style={{
-                marginTop: "12px", borderRadius: "8px", height: inSplit ? "140px" : "160px",
-                position: "relative", overflow: "hidden",
-              }}>
-                {SEGMENTS.map((seg) => (
-                  <div
-                    key={seg.id + "-desktop-banner"}
-                    style={{
-                      position: "absolute",
-                      inset: 0,
-                      background: seg.bannerBg,
-                      opacity: seg.id === segment.id ? 1 : 0,
-                      transition: "opacity 600ms ease",
-                    }}
-                  />
-                ))}
-              </div>
+                    <div style={{ display: "flex", gap: "8px", flexWrap: "wrap" }}>
+                      <ActionCard iconSrc={ICO.billing} label="Invoices" count={segment.actions.invoices} unit="invoice" colors={C} />
+                      <ActionCard iconSrc={ICO.contractsCard} label="Contracts" count={segment.actions.contracts} unit="contract" colors={C} />
+                      <ActionCard iconSrc={ICO.tasks} label="Tasks" count={segment.actions.tasks} unit="task" colors={C} />
+                      <ActionCard iconSrc={ICO.forms} label="Forms" count={segment.actions.forms} unit="form" colors={C} />
+                    </div>
+                  </div>
 
-              {/* Actions card — fixed across all segments */}
-              <div style={{
-                marginTop: "14px", borderRadius: "8px",
-                border: `1px solid ${CONTENT.cardBorder}`,
-                backgroundColor: CONTENT.cardBg, padding: inSplit ? "10px" : "16px",
-              }}>
-                <div style={{
-                  fontSize: "14px", fontWeight: 500, color: CONTENT.textPrimary,
-                  fontFamily: "'Inter', system-ui, sans-serif", marginBottom: "3px",
-                }}>Your actions</div>
-                <div style={{
-                  fontSize: "12px", color: CONTENT.textSecondary,
-                  fontFamily: "'Inter', system-ui, sans-serif", marginBottom: "10px",
-                }}>You have {segment.actions.invoices + segment.actions.contracts + segment.actions.tasks + segment.actions.forms} pending items</div>
-
-                <div style={{ display: "flex", gap: "8px", flexWrap: "wrap" }}>
-                  <ActionCard iconSrc={ICO.billing} label="Invoices" count={segment.actions.invoices} unit="invoice" />
-                  <ActionCard iconSrc={ICO.contractsCard} label="Contracts" count={segment.actions.contracts} unit="contract" />
-                  <ActionCard iconSrc={ICO.tasks} label="Tasks" count={segment.actions.tasks} unit="task" />
-                  <ActionCard iconSrc={ICO.forms} label="Forms" count={segment.actions.forms} unit="form" />
+                  {/* About us section */}
+                  <div style={{ marginTop: "14px" }}>
+                    <div style={{ fontSize: "12px", fontWeight: 500, color: C.textPrimary, fontFamily: "'Inter', system-ui, sans-serif", marginBottom: "4px" }}>About us</div>
+                    <div style={{ fontSize: "10px", lineHeight: 1.5, color: C.textSecondary, fontFamily: "'Inter', system-ui, sans-serif", marginBottom: "10px" }}>
+                      BrandMages, a full-service marketing agency that helps businesses increase their brand awareness, attract new customers, and grow their bottom line. We specialize in crafting unique and effective marketing strategies that align with your business goals and help you stand out in a crowded marketplace.
+                    </div>
+                    <div style={{ border: `1px solid ${C.tableBorder}`, borderRadius: "6px", overflow: "hidden" }}>
+                      <table style={{ borderCollapse: "collapse", fontSize: "10px", fontFamily: "'Inter', system-ui, sans-serif", width: "100%" }}>
+                        <thead>
+                          <tr style={{ backgroundColor: C.tableHeaderBg }}>
+                            <td style={{ padding: "6px 10px", color: C.textSecondary, borderBottom: `1px solid ${C.tableBorder}`, fontWeight: 500 }}>Days</td>
+                            <td style={{ padding: "6px 10px", color: C.textSecondary, borderBottom: `1px solid ${C.tableBorder}`, fontWeight: 500 }}>Hours (EST)</td>
+                            <td style={{ padding: "6px 10px", color: C.textSecondary, borderBottom: `1px solid ${C.tableBorder}`, fontWeight: 500 }}>Phone</td>
+                            <td style={{ padding: "6px 10px", color: C.textSecondary, borderBottom: `1px solid ${C.tableBorder}`, fontWeight: 500 }}>Email</td>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr><td style={{ padding: "6px 10px", borderBottom: `1px solid ${C.tableRowBorder}`, color: C.textSecondary }}>M–F</td><td style={{ padding: "6px 10px", borderBottom: `1px solid ${C.tableRowBorder}`, color: C.textSecondary }}>9AM – 6PM</td><td style={{ padding: "6px 10px", borderBottom: `1px solid ${C.tableRowBorder}`, color: C.textSecondary }}>(555) 234-5678</td><td style={{ padding: "6px 10px", borderBottom: `1px solid ${C.tableRowBorder}`, color: C.textSecondary }}>hello@brandmages.com</td></tr>
+                          <tr><td style={{ padding: "6px 10px", borderBottom: `1px solid ${C.tableRowBorder}`, color: C.textSecondary }}>Sat</td><td style={{ padding: "6px 10px", borderBottom: `1px solid ${C.tableRowBorder}`, color: C.textSecondary }}>10AM – 5PM</td><td style={{ padding: "6px 10px", borderBottom: `1px solid ${C.tableRowBorder}`, color: C.textSecondary }}>(555) 234-5678</td><td style={{ padding: "6px 10px", borderBottom: `1px solid ${C.tableRowBorder}`, color: C.textSecondary }}>hello@brandmages.com</td></tr>
+                          <tr><td style={{ padding: "6px 10px", color: C.textSecondary }}>Sun</td><td style={{ padding: "6px 10px", color: C.textSecondary }}>Closed</td><td style={{ padding: "6px 10px", color: C.textSecondary }}>—</td><td style={{ padding: "6px 10px", color: C.textSecondary }}>—</td></tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
                 </div>
-              </div>
-
-              {/* About us section */}
-              <div style={{ marginTop: "14px" }}>
-                <div style={{ fontSize: "12px", fontWeight: 500, color: CONTENT.textPrimary, fontFamily: "'Inter', system-ui, sans-serif", marginBottom: "4px" }}>About us</div>
-                <div style={{ fontSize: "10px", lineHeight: 1.5, color: CONTENT.textSecondary, fontFamily: "'Inter', system-ui, sans-serif", marginBottom: "10px" }}>
-                  BrandMages, a full-service marketing agency that helps businesses increase their brand awareness, attract new customers, and grow their bottom line. We specialize in crafting unique and effective marketing strategies that align with your business goals and help you stand out in a crowded marketplace.
-                </div>
-                <div style={{ border: "1px solid #e5e7eb", borderRadius: "6px", overflow: "hidden" }}>
-                  <table style={{ borderCollapse: "collapse", fontSize: "10px", fontFamily: "'Inter', system-ui, sans-serif", width: "100%" }}>
-                    <thead>
-                      <tr style={{ backgroundColor: "#fafafa" }}>
-                        <td style={{ padding: "6px 10px", color: CONTENT.textSecondary, borderBottom: "1px solid #e5e7eb", fontWeight: 500 }}>Days</td>
-                        <td style={{ padding: "6px 10px", color: CONTENT.textSecondary, borderBottom: "1px solid #e5e7eb", fontWeight: 500 }}>Hours (EST)</td>
-                        <td style={{ padding: "6px 10px", color: CONTENT.textSecondary, borderBottom: "1px solid #e5e7eb", fontWeight: 500 }}>Phone</td>
-                        <td style={{ padding: "6px 10px", color: CONTENT.textSecondary, borderBottom: "1px solid #e5e7eb", fontWeight: 500 }}>Email</td>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr><td style={{ padding: "6px 10px", borderBottom: "1px solid #f0f0f0", color: CONTENT.textSecondary }}>M–F</td><td style={{ padding: "6px 10px", borderBottom: "1px solid #f0f0f0", color: CONTENT.textSecondary }}>9AM – 6PM</td><td style={{ padding: "6px 10px", borderBottom: "1px solid #f0f0f0", color: CONTENT.textSecondary }}>(555) 234-5678</td><td style={{ padding: "6px 10px", borderBottom: "1px solid #f0f0f0", color: CONTENT.textSecondary }}>hello@brandmages.com</td></tr>
-                      <tr><td style={{ padding: "6px 10px", borderBottom: "1px solid #f0f0f0", color: CONTENT.textSecondary }}>Sat</td><td style={{ padding: "6px 10px", borderBottom: "1px solid #f0f0f0", color: CONTENT.textSecondary }}>10AM – 5PM</td><td style={{ padding: "6px 10px", borderBottom: "1px solid #f0f0f0", color: CONTENT.textSecondary }}>(555) 234-5678</td><td style={{ padding: "6px 10px", borderBottom: "1px solid #f0f0f0", color: CONTENT.textSecondary }}>hello@brandmages.com</td></tr>
-                      <tr><td style={{ padding: "6px 10px", color: CONTENT.textSecondary }}>Sun</td><td style={{ padding: "6px 10px", color: CONTENT.textSecondary }}>Closed</td><td style={{ padding: "6px 10px", color: CONTENT.textSecondary }}>—</td><td style={{ padding: "6px 10px", color: CONTENT.textSecondary }}>—</td></tr>
-                    </tbody>
-                  </table>
-                </div>
-              </div>
-
-            </div>
           </div>
         </div>
       </motion.div>

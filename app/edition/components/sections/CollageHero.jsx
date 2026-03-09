@@ -1,201 +1,389 @@
 "use client";
 
-import { useRef, useState } from "react";
-import { motion, useInView, AnimatePresence } from "framer-motion";
-import { Play, Pause } from "lucide-react";
-import { LightBeam } from "../ui";
+import { useRef, useState, useEffect, useLayoutEffect, useCallback } from "react";
+import { motion, useInView } from "framer-motion";
+import { Play, X } from "lucide-react";
+import { LightBeam, ThemedClientHome } from "../ui";
+// import { AsciiHeroBackground } from "../ui/AsciiHeroBackground";
 
 /* ────────────────────────────────────────────────────────────
    HERO SECTION
-   Centered title + subtitle + demo video placeholder.
-   Clean, editorial approach with staggered entrance.
+   Large centered title + subtitle + YouTube demo video.
+   Click play → video plays large in hero.
+   Scroll past hero → video minimizes to a PIP that follows you.
+
+   KEY: A single iframe is rendered once and repositioned via
+   direct DOM style mutations. This prevents the iframe from
+   remounting (which would restart the video and cause audio
+   overlap).
    ──────────────────────────────────────────────────────────── */
 
-export function CollageHero() {
-  const ref = useRef(null);
-  const videoRef = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-40px" });
-  const [isPlaying, setIsPlaying] = useState(false);
+const YOUTUBE_ID = "xT0WF1zWUTs";
 
-  const togglePlay = () => {
-    const video = videoRef.current;
-    if (!video) return;
-    if (video.paused) {
-      video.play();
-      setIsPlaying(true);
-    } else {
-      video.pause();
-      setIsPlaying(false);
+export function CollageHero() {
+  const sectionRef = useRef(null);
+  const videoAreaRef = useRef(null);
+  const iframeWrapperRef = useRef(null);
+  const isInView = useInView(sectionRef, { once: true, margin: "-40px" });
+  const [isPlaying, setIsPlaying] = useState(false);
+  const [isHeroVisible, setIsHeroVisible] = useState(true);
+  const [isHovered, setIsHovered] = useState(false);
+  const [hasHover, setHasHover] = useState(true);
+
+  const isPIP = isPlaying && !isHeroVisible;
+
+  /* Scale the ThemedClientHome preview to fit the video area.
+     Renders at a fixed internal width then scales down. */
+  const PREVIEW_WIDTH = 1100;
+  const PREVIEW_HEIGHT = PREVIEW_WIDTH * 9 / 16; // 618.75
+  const previewContainerRef = useRef(null);
+  const [previewScale, setPreviewScale] = useState(0.87);
+
+  useEffect(() => {
+    const el = previewContainerRef.current;
+    if (!el) return;
+    const observer = new ResizeObserver(([entry]) => {
+      setPreviewScale(entry.contentRect.width / PREVIEW_WIDTH);
+    });
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
+
+  /* Detect touch devices (no hover) — show play button always on mobile */
+  useEffect(() => {
+    const mq = window.matchMedia("(hover: none)");
+    setHasHover(!mq.matches);
+    const handler = (e) => setHasHover(!e.matches);
+    mq.addEventListener("change", handler);
+    return () => mq.removeEventListener("change", handler);
+  }, []);
+
+  /* Track hero visibility for PIP mode */
+  useEffect(() => {
+    const el = sectionRef.current;
+    if (!el) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => setIsHeroVisible(entry.isIntersecting),
+      { threshold: 0.1 }
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
+
+  /* ── Position the single iframe wrapper ──
+     Hero mode: position:fixed overlaying the video placeholder exactly.
+     PIP mode:  position:fixed in the bottom-right corner.
+     Uses useLayoutEffect for the initial position (no flash),
+     then scroll/resize listeners keep it synced in hero mode. */
+  useLayoutEffect(() => {
+    const wrapper = iframeWrapperRef.current;
+    if (!wrapper) return;
+
+    if (isPIP) {
+      Object.assign(wrapper.style, {
+        top: "auto",
+        left: "auto",
+        bottom: "24px",
+        right: "24px",
+        width: "320px",
+        height: "180px",
+        borderRadius: "10px",
+        border: "none",
+        boxShadow:
+          "0 12px 40px rgba(0, 0, 0, 0.55), 0 0 0 0.5px rgba(255, 255, 255, 0.08)",
+        zIndex: "9999",
+      });
+      return;
     }
-  };
+
+    /* Hero mode — overlay the video placeholder */
+    let rafId;
+    const sync = () => {
+      const el = videoAreaRef.current;
+      if (!el || !wrapper) return;
+      const r = el.getBoundingClientRect();
+      Object.assign(wrapper.style, {
+        bottom: "auto",
+        right: "auto",
+        top: `${r.top}px`,
+        left: `${r.left}px`,
+        width: `${r.width}px`,
+        height: `${r.height}px`,
+        borderRadius: "16px",
+        border: "none",
+        boxShadow: "none",
+        zIndex: "50",
+      });
+    };
+
+    sync(); /* position immediately (before paint) */
+
+    const onScroll = () => {
+      cancelAnimationFrame(rafId);
+      rafId = requestAnimationFrame(sync);
+    };
+
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", sync);
+
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", sync);
+      cancelAnimationFrame(rafId);
+    };
+  }, [isPlaying, isPIP]);
 
   return (
-    <section
-      ref={ref}
-      className="relative w-full overflow-hidden"
-      style={{ backgroundColor: "#101010" }}
-      aria-label="Assembly 2.0 hero"
-    >
-      {/* Vertical light beam background — fades in with content */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={isInView ? { opacity: 1 } : {}}
-        transition={{ duration: 1.2, delay: 0.1, ease: "easeOut" }}
-        style={{ position: "absolute", inset: 0 }}
+    <>
+      <section
+        ref={sectionRef}
+        className="relative w-full"
+        style={{ backgroundColor: "#101010", paddingBottom: "clamp(5rem, 6vw, 4.5rem)" }}
+        aria-label="Assembly 2.0 hero"
       >
-        <LightBeam />
-      </motion.div>
+        {/* Gradient card background — clean rounded edges like CTA */}
+        <div style={{
+          position: "absolute",
+          top: 0,
+          left: "0.5rem",
+          right: "0.5rem",
+          bottom: "clamp(5rem, 6vw, 4.5rem)",
+          overflow: "hidden",
+          borderRadius: "20px",
+        }}>
+          <LightBeam />
+        </div>
 
+        {/* ASCII hands background — disabled */}
+        {/* <AsciiHeroBackground /> */}
 
-      <div
-        style={{
-          maxWidth: "1100px",
-          position: "relative",
-          margin: "0 auto",
-          paddingTop: "clamp(8rem, 16vw, 14rem)",
-          paddingBottom: "clamp(4rem, 8vw, 6rem)",
-          paddingLeft: "1.5rem",
-          paddingRight: "1.5rem",
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-          zIndex: 2,
-        }}
-      >
-        {/* ── Title ── */}
-        <motion.h1
-          initial={{ opacity: 0, y: 20 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.7, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
+        <div
           style={{
-            fontFamily: "'PP Mori', var(--font-sans)",
-            fontWeight: 600,
-            fontSize: "clamp(2.4rem, 5.5vw, 4.2rem)",
-            lineHeight: 1.08,
-            letterSpacing: "-0.035em",
-            color: "rgba(255, 255, 255, 0.92)",
-            margin: 0,
-            textAlign: "center",
-            maxWidth: "800px",
-          }}
-        >
-          The biggest update in Assembly&nbsp;history
-        </motion.h1>
-
-        {/* ── Subtitle ── */}
-        <motion.p
-          initial={{ opacity: 0, y: 16 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.7, delay: 0.35, ease: [0.22, 1, 0.36, 1] }}
-          style={{
-            fontFamily: "'PP Mori', var(--font-sans)",
-            fontWeight: 400,
-            fontSize: "clamp(1.05rem, 1.6vw, 1.25rem)",
-            lineHeight: 1.55,
-            letterSpacing: "-0.01em",
-            color: "rgba(255, 255, 255, 0.72)",
-            margin: 0,
-            marginTop: "1.5rem",
-            textAlign: "center",
-            maxWidth: "580px",
-          }}
-        >
-          This release touches nearly every part of the platform — how clients
-          experience your portal, how you manage tasks and billing, and how
-          developers build on&nbsp;Assembly.
-        </motion.p>
-
-        {/* ── Video placeholder with subtle glow ── */}
-        <motion.div
-          initial={{ opacity: 0, y: 24 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8, delay: 0.5, ease: [0.22, 1, 0.36, 1] }}
-          style={{
-            width: "100%",
-            maxWidth: "960px",
-            marginTop: "clamp(3rem, 5vw, 4.5rem)",
+            maxWidth: "1100px",
             position: "relative",
-            zIndex: 1,
+            margin: "0 auto",
+            paddingTop: "clamp(8rem, 16vw, 14rem)",
+            paddingBottom: "clamp(4rem, 8vw, 6rem)",
+            paddingLeft: "1.5rem",
+            paddingRight: "1.5rem",
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            zIndex: 2,
           }}
         >
+          {/* ── Title (blur-dissolve reveal) ── */}
+          <motion.h1
+            initial={{ opacity: 0, y: 20, filter: "blur(6px)" }}
+            animate={isInView ? { opacity: 1, y: 0, filter: "blur(0px)" } : {}}
+            transition={{ duration: 0.8, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
+            style={{
+              fontFamily: "'PP Mori', var(--font-sans)",
+              fontWeight: 600,
+              fontSize: "clamp(2rem, 4.5vw, 3.4rem)",
+              lineHeight: 1.08,
+              letterSpacing: "-0.035em",
+              color: "rgba(255, 255, 255, 0.92)",
+              margin: 0,
+              textAlign: "center",
+              maxWidth: "800px",
+            }}
+          >
+            The biggest update in Assembly&nbsp;history
+          </motion.h1>
+
+          {/* ── Subtitle (blur-dissolve reveal) ── */}
+          <motion.p
+            initial={{ opacity: 0, y: 16, filter: "blur(6px)" }}
+            animate={isInView ? { opacity: 1, y: 0, filter: "blur(0px)" } : {}}
+            transition={{ duration: 0.8, delay: 0.35, ease: [0.22, 1, 0.36, 1] }}
+            style={{
+              fontFamily: "'PP Mori', var(--font-sans)",
+              fontWeight: 400,
+              fontSize: "clamp(0.95rem, 1.4vw, 1.1rem)",
+              lineHeight: 1.55,
+              letterSpacing: "-0.01em",
+              color: "rgba(255, 255, 255, 0.72)",
+              margin: 0,
+              marginTop: "1.5rem",
+              textAlign: "center",
+              maxWidth: "580px",
+            }}
+          >
+            This release touches nearly every part of the platform, including the
+            client portal, tasks, billing, and developer&nbsp;tools.
+          </motion.p>
+
+          {/* ── Video area (placeholder for layout — iframe overlays this) ── */}
           <div
-            onClick={togglePlay}
+            ref={videoAreaRef}
             style={{
               width: "100%",
+              maxWidth: "960px",
+              marginTop: "clamp(3rem, 5vw, 4.5rem)",
               aspectRatio: "16 / 9",
-              borderRadius: "16px",
-              overflow: "hidden",
-              border: "1px solid rgba(255, 255, 255, 0.08)",
-              backgroundColor: "#1a1a1a",
+              position: "relative",
+              opacity: isInView ? 1 : 0,
+              transition: "opacity 0.8s ease-out 0.5s",
+            }}
+          >
+            {/* Soft ambient glow — wide and offset to avoid a central hotspot */}
+            <div
+              style={{
+                position: "absolute",
+                inset: "-60%",
+                background:
+                  "radial-gradient(ellipse 70% 50% at 50% 65%, rgba(0, 160, 140, 0.15) 0%, rgba(0, 120, 110, 0.06) 40%, transparent 70%)",
+                pointerEvents: "none",
+                zIndex: 0,
+              }}
+            />
+
+            {/* Product container — no glass frame, product emerges from background */}
+            <div
+              ref={previewContainerRef}
+              onClick={!isPlaying ? () => setIsPlaying(true) : undefined}
+              style={{
+                position: "absolute",
+                inset: 0,
+                borderRadius: "clamp(6px, 1vw, 10px)",
+                overflow: "hidden",
+                cursor: !isPlaying ? "pointer" : "default",
+                zIndex: 1,
+              }}
+            >
+              {/* Scaled product preview — renders at 1100px then scales to fit */}
+              <div
+                style={{
+                  width: `${PREVIEW_WIDTH}px`,
+                  height: `${PREVIEW_HEIGHT}px`,
+                  transform: `scale(${previewScale})`,
+                  transformOrigin: "top left",
+                  pointerEvents: "none",
+                }}
+              >
+                <ThemedClientHome static />
+              </div>
+
+              {/* Subtle inner border glow — thin highlight at top edge */}
+              <div
+                style={{
+                  position: "absolute",
+                  inset: 0,
+                  borderRadius: "clamp(6px, 1vw, 10px)",
+                  boxShadow: "inset 0 0.5px 0 rgba(255, 255, 255, 0.08), inset 0 0 30px rgba(0, 0, 0, 0.15)",
+                  pointerEvents: "none",
+                  zIndex: 3,
+                }}
+              />
+
+              {/* Play button — fades in on hover, always visible on mobile */}
+              {!isPlaying && (
+                <div
+                  onMouseEnter={() => setIsHovered(true)}
+                  onMouseLeave={() => setIsHovered(false)}
+                  style={{
+                    position: "absolute",
+                    inset: 0,
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    pointerEvents: "auto",
+                    zIndex: 4,
+                    cursor: "pointer",
+                  }}
+                >
+                  <div
+                    style={{
+                      width: "48px",
+                      height: "48px",
+                      borderRadius: "50%",
+                      backgroundColor: "rgba(255, 255, 255, 0.12)",
+                      backdropFilter: "blur(12px)",
+                      WebkitBackdropFilter: "blur(12px)",
+                      border: "1px solid rgba(255, 255, 255, 0.1)",
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      opacity: isHovered || !hasHover ? 1 : 0,
+                      transform: isHovered || !hasHover ? "scale(1)" : "scale(0.9)",
+                      transition: "opacity 0.25s ease, transform 0.25s ease",
+                    }}
+                  >
+                    <Play
+                      size={20}
+                      style={{ color: "#fff", marginLeft: "2px" }}
+                      strokeWidth={0}
+                      fill="#fff"
+                    />
+                  </div>
+                </div>
+              )}
+            </div>
+        </div>
+        </div>
+      </section>
+
+      {/* ── Single iframe — rendered ONCE, repositioned between hero & PIP ── */}
+      {isPlaying && (
+        <div
+          ref={iframeWrapperRef}
+          style={{
+            position: "fixed",
+            overflow: "hidden",
+            backgroundColor: "#000",
+          }}
+        >
+          <iframe
+            src={`https://www.youtube.com/embed/${YOUTUBE_ID}?autoplay=1&controls=1&modestbranding=1&rel=0&showinfo=0&iv_load_policy=3&playsinline=1`}
+            title="Assembly 2.0 Demo"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowFullScreen
+            style={{
+              position: "absolute",
+              inset: 0,
+              width: "100%",
+              height: "100%",
+              border: "none",
+            }}
+          />
+          <button
+            onClick={() => setIsPlaying(false)}
+            style={{
+              position: "absolute",
+              top: isPIP ? "8px" : "12px",
+              right: isPIP ? "8px" : "12px",
+              width: isPIP ? "28px" : "36px",
+              height: isPIP ? "28px" : "36px",
+              borderRadius: "50%",
+              backgroundColor: "rgba(0, 0, 0, 0.6)",
+              backdropFilter: "blur(8px)",
+              WebkitBackdropFilter: "blur(8px)",
+              border: "none",
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
               cursor: "pointer",
-              position: "relative",
+              zIndex: 2,
+              padding: 0,
+              transition: "background-color 0.2s ease",
             }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.backgroundColor = "rgba(0, 0, 0, 0.8)";
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.backgroundColor = "rgba(0, 0, 0, 0.6)";
+            }}
+            aria-label="Close video"
           >
-            <video
-              ref={videoRef}
-              src="/videos/assembly-demo.mp4"
-              playsInline
-              onEnded={() => setIsPlaying(false)}
-              style={{
-                position: "absolute",
-                inset: 0,
-                width: "100%",
-                height: "100%",
-                objectFit: "cover",
-                opacity: isPlaying ? 1 : 0,
-                transition: "opacity 0.3s ease",
-              }}
+            <X
+              size={isPIP ? 14 : 18}
+              style={{ color: "#fff" }}
+              strokeWidth={2}
             />
-
-            {/* Play / Pause icon overlay */}
-            <AnimatePresence mode="wait">
-              {!isPlaying ? (
-                <motion.div
-                  key="play"
-                  initial={{ opacity: 0, scale: 0.8 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  exit={{ opacity: 0, scale: 0.8 }}
-                  transition={{ duration: 0.2 }}
-                  style={{ position: "relative", zIndex: 1 }}
-                >
-                  <Play
-                    size={32}
-                    style={{
-                      color: "rgba(255, 255, 255, 0.2)",
-                      marginLeft: "3px",
-                    }}
-                    strokeWidth={0}
-                    fill="rgba(255, 255, 255, 0.2)"
-                  />
-                </motion.div>
-              ) : (
-                <motion.div
-                  key="pause"
-                  initial={{ opacity: 0, scale: 0.8 }}
-                  animate={{ opacity: 0, scale: 1 }}
-                  whileHover={{ opacity: 1 }}
-                  exit={{ opacity: 0, scale: 0.8 }}
-                  transition={{ duration: 0.2 }}
-                  style={{ position: "relative", zIndex: 1 }}
-                >
-                  <Pause
-                    size={32}
-                    style={{
-                      color: "rgba(255, 255, 255, 0.3)",
-                    }}
-                    strokeWidth={0}
-                    fill="rgba(255, 255, 255, 0.3)"
-                  />
-                </motion.div>
-              )}
-            </AnimatePresence>
-          </div>
-        </motion.div>
-      </div>
-
-    </section>
+          </button>
+        </div>
+      )}
+    </>
   );
 }

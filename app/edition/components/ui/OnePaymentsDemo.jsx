@@ -21,7 +21,7 @@ const C = {
   bg: "#ffffff",
   bgPage: "#f9fafb",
   accent: "#2563eb",
-  green: "#16a34a",
+  green: "#15803d",
   greenBg: "#dcfce7",
   yellowBg: "#fef9c3",
   yellowText: "#a16207",
@@ -60,7 +60,7 @@ const INVOICES_DATA = [
   { name: "Courtney Dinkins", initials: "CD", price: 6400, recurring: true, status: "paid", invoiceNum: "F7F23EF1-0016", created: "May 20, 2026", due: "Apr 30, 2026", payment: "" },
   { name: "Service Symphony", initials: "SS", price: 9400, recurring: false, status: "paid", invoiceNum: "SUB-83F7CAE1-0008", created: "Oct 15, 2026", due: "Nov 15, 2026", payment: "Nov 10, 2026" },
   { name: "Sara Bergson", initials: "SB", price: 6553, recurring: false, status: "void", invoiceNum: "SUB-83F7CAE1-0009", created: "May 10, 2026", due: "", payment: "" },
-  { name: "Godo", initials: "G", price: 900, recurring: true, status: "open", invoiceNum: "SUB-D8EF5DE9-0001", created: "Nov 5, 2026", due: "Dec 30, 2026", payment: "" },
+  { name: "Godo", initials: "GO", price: 900, recurring: true, status: "open", invoiceNum: "SUB-D8EF5DE9-0001", created: "Nov 5, 2026", due: "Dec 30, 2026", payment: "" },
   { name: "Jordyn Donin", initials: "JD", price: 8400, recurring: false, status: "open", invoiceNum: "F7F23EF1-0016", created: "Jun 18, 2026", due: "Jul 30, 2026", payment: "" },
   { name: "Zaire Dokidis", initials: "ZD", price: 10400, recurring: false, status: "paid", invoiceNum: "SUB-83F7CAE1-0010", created: "Jan 20, 2026", due: "Feb 20, 2026", payment: "Jan 25, 2026" },
 ];
@@ -69,7 +69,7 @@ const SUBSCRIPTIONS_DATA = [
   { name: "Courtney Dinkins", initials: "CD", price: 8400, period: "Monthly", status: "active", created: "May 20, 2026", nextPayment: "Apr 20, 2026" },
   { name: "Service Symphony", initials: "SS", price: 12500, period: "Yearly", status: "active", created: "Oct 15, 2026", nextPayment: "Oct 15, 2027" },
   { name: "Sara Bergson", initials: "SB", price: 12500, period: "Yearly", status: "active", created: "Oct 15, 2026", nextPayment: "Oct 15, 2027" },
-  { name: "Godo", initials: "G", price: 15000, period: "Yearly", status: "active", created: "May 10, 2026", nextPayment: "May 10, 2027" },
+  { name: "Godo", initials: "GO", price: 15000, period: "Yearly", status: "active", created: "May 10, 2026", nextPayment: "May 10, 2027" },
   { name: "Jordyn Donin", initials: "JD", price: 10200, period: "Yearly", status: "active", created: "Nov 5, 2026", nextPayment: "Nov 5, 2027" },
   { name: "Zaire Dokidis", initials: "ZD", price: 14500, period: "Yearly", status: "cancelled", created: "Jun 18, 2026", nextPayment: "" },
 ];
@@ -200,10 +200,14 @@ function RecurringIcon() {
   );
 }
 
-/* ── Three-dot menu (ellipsis-regular) ── */
+/* ── Three-dot icon (static, decorative) ── */
 function DotMenu() {
   return (
-    <svg width="14" height="14" viewBox="0 0 448 512" fill={C.textMuted} xmlns="http://www.w3.org/2000/svg" style={{ cursor: "default", flexShrink: 0 }}>
+    <svg
+      width="14" height="14" viewBox="0 0 448 512" fill={C.textMuted}
+      xmlns="http://www.w3.org/2000/svg"
+      style={{ flexShrink: 0 }}
+    >
       <path d="M8 256a56 56 0 1 1 112 0A56 56 0 1 1 8 256zm160 0a56 56 0 1 1 112 0 56 56 0 1 1 -112 0zm216-56a56 56 0 1 1 0 112 56 56 0 1 1 0-112z" />
     </svg>
   );
@@ -279,15 +283,20 @@ function InvoicesTable() {
       {INVOICES_DATA.map((row, i) => (
         <div
           key={i}
+          onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = "#f9fafb"; }}
+          onMouseLeave={(e) => { e.currentTarget.style.backgroundColor = "transparent"; }}
           style={{
             display: "grid",
             gridTemplateColumns: INV_COLS,
             gap: "0",
             alignItems: "center",
-            padding: "8px 0",
+            padding: "8px 4px",
+            margin: "0 -4px",
             borderTop: `1px solid ${C.borderLight}`,
             fontSize: "11px",
             color: C.text,
+            borderRadius: "4px",
+            transition: "background-color 0.1s ease",
           }}
         >
           {/* Recipient */}
@@ -350,15 +359,20 @@ function SubscriptionsTable() {
       {SUBSCRIPTIONS_DATA.map((row, i) => (
         <div
           key={i}
+          onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = "#f9fafb"; }}
+          onMouseLeave={(e) => { e.currentTarget.style.backgroundColor = "transparent"; }}
           style={{
             display: "grid",
             gridTemplateColumns: SUB_COLS,
             gap: "0",
             alignItems: "center",
-            padding: "8px 0",
+            padding: "8px 4px",
+            margin: "0 -4px",
             borderTop: `1px solid ${C.borderLight}`,
             fontSize: "11px",
             color: C.text,
+            borderRadius: "4px",
+            transition: "background-color 0.1s ease",
           }}
         >
           {/* Recipient */}
@@ -418,15 +432,20 @@ function PaymentLinksTable() {
       {PAYMENT_LINKS_DATA.map((row, i) => (
         <div
           key={i}
+          onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = "#f9fafb"; }}
+          onMouseLeave={(e) => { e.currentTarget.style.backgroundColor = "transparent"; }}
           style={{
             display: "grid",
             gridTemplateColumns: PL_COLS,
             gap: "0",
             alignItems: "center",
-            padding: "8px 0",
+            padding: "8px 4px",
+            margin: "0 -4px",
             borderTop: `1px solid ${C.borderLight}`,
             fontSize: "11px",
             color: C.text,
+            borderRadius: "4px",
+            transition: "background-color 0.1s ease",
           }}
         >
           {/* Name */}
@@ -484,15 +503,20 @@ function StoresTable() {
       {STORES_DATA.map((row, i) => (
         <div
           key={i}
+          onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = "#f9fafb"; }}
+          onMouseLeave={(e) => { e.currentTarget.style.backgroundColor = "transparent"; }}
           style={{
             display: "grid",
             gridTemplateColumns: ST_COLS,
             gap: "0",
             alignItems: "center",
-            padding: "8px 0",
+            padding: "8px 4px",
+            margin: "0 -4px",
             borderTop: `1px solid ${C.borderLight}`,
             fontSize: "11px",
             color: C.text,
+            borderRadius: "4px",
+            transition: "background-color 0.1s ease",
           }}
         >
           {/* Name */}
@@ -548,15 +572,20 @@ function ServicesTable() {
       {SERVICES_DATA.map((row, i) => (
         <div
           key={i}
+          onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = "#f9fafb"; }}
+          onMouseLeave={(e) => { e.currentTarget.style.backgroundColor = "transparent"; }}
           style={{
             display: "grid",
             gridTemplateColumns: SVC_COLS,
             gap: "0",
             alignItems: "center",
-            padding: "8px 0",
+            padding: "8px 4px",
+            margin: "0 -4px",
             borderTop: `1px solid ${C.borderLight}`,
             fontSize: "11px",
             color: C.text,
+            borderRadius: "4px",
+            transition: "background-color 0.1s ease",
           }}
         >
           {/* Name */}
@@ -946,7 +975,7 @@ function OverviewContent({ isInView }) {
             $117,252.73
           </div>
           <div style={{ fontSize: "11px", color: C.accent }}>
-            Open Dashboard <span style={{ fontSize: "10px" }}>&#x2197;</span>
+            Open Dashboard <span style={{ fontSize: "12px" }}>&#x2197;</span>
           </div>
         </div>
 
@@ -1093,14 +1122,6 @@ const TABS = [
 
 const ALL_TAB_LABELS = ["Overview", "Invoices", "Subscriptions", "Payment links", "Stores", "Services"];
 
-const CTA_TEXT = {
-  overview: "",
-  invoices: "Create invoice",
-  subscriptions: "Create subscription",
-  "payment-links": "Create payment link",
-  stores: "Create store",
-  services: "Create service",
-};
 
 /* ═══════════════════════════════════════════
    MAIN COMPONENT
@@ -1303,7 +1324,6 @@ export function OnePaymentsDemo({ inSplit = false }) {
   }
 
   /* ─────────────────────── DESKTOP VIEW ─────────────────────── */
-  const ctaText = CTA_TEXT[activeTab];
 
   return (
     <motion.div
@@ -1313,6 +1333,7 @@ export function OnePaymentsDemo({ inSplit = false }) {
       viewport={{ once: true, margin: "-40px" }}
       transition={{ duration: 0.6, ease: [0.25, 0.1, 0.25, 1] }}
       style={{
+        position: "relative",
         width: "100%",
         backgroundColor: C.bg,
         borderRadius: "10px",
@@ -1326,35 +1347,6 @@ export function OnePaymentsDemo({ inSplit = false }) {
       <div style={{ padding: "14px 24px", display: "flex", alignItems: "center", justifyContent: "space-between", minHeight: "53px", boxSizing: "border-box" }}>
         <div style={{ fontSize: "13px", fontWeight: 500, color: C.text }}>
           Payments
-        </div>
-        <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
-          {/* CTA button */}
-          <AnimatePresence mode="wait">
-            {ctaText && (
-              <motion.span
-                key={ctaText}
-                initial={{ opacity: 0, scale: 0.95 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0.95 }}
-                transition={{ duration: 0.2 }}
-                style={{
-                  display: "inline-flex",
-                  alignItems: "center",
-                  gap: "4px",
-                  padding: "6px 14px",
-                  borderRadius: "6px",
-                  backgroundColor: C.text,
-                  color: "#fff",
-                  fontSize: "11px",
-                  fontWeight: 500,
-                  whiteSpace: "nowrap",
-                  cursor: "default",
-                }}
-              >
-                {ctaText}
-              </motion.span>
-            )}
-          </AnimatePresence>
         </div>
       </div>
 

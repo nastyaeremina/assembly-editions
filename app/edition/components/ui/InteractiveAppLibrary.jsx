@@ -3,7 +3,6 @@
 import { useState, useCallback, useRef, useEffect, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useMediaQuery } from "../../hooks/useMediaQuery";
-import { useIdleHint } from "../../hooks/useIdleHint";
 import {
   DndContext,
   DragOverlay,
@@ -264,8 +263,6 @@ const DEFAULT_SETTINGS = [
   { id: "tasks", label: "Tasks", icon: "tasks", type: "app", disabled: false },
   { id: "reports-folder", label: "Reports", icon: "folder", type: "folder", disabled: false },
   { id: "q4-revenue", label: "Q4 Revenue Summary", icon: "report", type: "app", disabled: false, path: "reports-folder" },
-  { id: "portfolio", label: "Client Portfolio Analysis", icon: "report", type: "app", disabled: false, path: "reports-folder" },
-  { id: "cash-flow", label: "Monthly Cash Flow Report", icon: "report", type: "app", disabled: false, path: "reports-folder" },
 ];
 
 /* ── Add App Pool ── */
@@ -759,8 +756,6 @@ export function InteractiveAppLibrary({ inSplit = false }) {
   const sensors = useSensors(useSensor(PointerSensor, { activationConstraint: { distance: 5 } }));
   const { activeItem, overTarget, dragDirection, destinationFolderId, handleDragStart, handleDragOver, handleDragMove, handleDragEnd } = useAppListDragState({ moduleSettings, setModuleSettings, containerRef });
 
-  /* Idle hint — subtle sway on select rows to hint at drag */
-  const { containerRef: idleRef, isIdle: rowIdleActive, dismiss: dismissRowIdle } = useIdleHint({ delay: 2000 });
 
   const isDraggingIntoFolder = Boolean(destinationFolderId);
   const isDraggingFolderIntoFolder = isDraggingIntoFolder && activeItem?.item.type === "folder";
@@ -783,20 +778,26 @@ export function InteractiveAppLibrary({ inSplit = false }) {
     return new Set(m.values());
   }, [moduleSettings]);
 
+  const [folderAdded, setFolderAdded] = useState(false);
+  const [appAdded, setAppAdded] = useState(false);
+
   const addFolder = useCallback(() => {
+    if (folderAdded) return;
     const id = `folder-${Date.now()}`;
     setModuleSettings((p) => [...p, { id, label: "", icon: "folder", type: "folder", disabled: false }]);
     setNewFolderId(id);
     setEditingId(id);
-  }, []);
+    setFolderAdded(true);
+  }, [folderAdded]);
 
   const addApp = useCallback(() => {
-    if (addAppIndex >= 4) return; // Demo: max 4 apps can be added
+    if (appAdded) return;
     const template = ADD_APP_POOL[addAppIndex % ADD_APP_POOL.length];
     const id = `app-${Date.now()}`;
     setModuleSettings((p) => [...p, { id, label: template.label, icon: template.icon, type: "app", disabled: false }]);
     setAddAppIndex((i) => i + 1);
-  }, [addAppIndex]);
+    setAppAdded(true);
+  }, [addAppIndex, appAdded]);
 
   const helperText = isDraggingFolderIntoFolder && !isDraggingFolderIntoSelf ? "You cannot put a folder inside a folder." : undefined;
 
@@ -853,14 +854,13 @@ export function InteractiveAppLibrary({ inSplit = false }) {
     };
   }, []);
 
-  // Permanently dismiss tooltip + idle hint once user starts dragging
+  // Permanently dismiss tooltip once user starts dragging
   useEffect(() => {
     if (activeItem) {
       setTooltipVisible(false);
       tooltipDone.current = true;
-      dismissRowIdle();
     }
-  }, [activeItem, dismissRowIdle]);
+  }, [activeItem]);
 
   /* ── Mobile: animated demo (no interaction, loops reorder animation) ── */
   if (!isDesktop) {
@@ -869,10 +869,7 @@ export function InteractiveAppLibrary({ inSplit = false }) {
 
   /* ── Desktop: full layout ── */
   return (
-    <div ref={(el) => {
-      rootRef.current = el;
-      idleRef.current = el;
-    }} style={{ position: "relative" }}>
+    <div ref={rootRef} style={{ position: "relative" }}>
     <motion.div
       initial={{ opacity: 0, scale: 0.97 }}
       whileInView={{ opacity: 1, scale: 1 }}
@@ -910,10 +907,16 @@ export function InteractiveAppLibrary({ inSplit = false }) {
           <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", padding: inSplit ? "12px 12px" : "16px 20px", borderBottom: `1px solid ${C.border}` }}>
             <h4 style={{ margin: 0, fontSize: inSplit ? "13px" : "15px", fontWeight: 500, color: C.text, fontFamily: "'Inter', system-ui, sans-serif" }}>App Library</h4>
             <div style={{ display: "flex", gap: "8px" }}>
-              <button style={{ display: "flex", alignItems: "center", gap: "5px", padding: "5px 12px", borderRadius: "5px", border: `1px solid #d1d5db`, backgroundColor: "#ffffff", color: C.text, fontSize: "11px", fontWeight: 500, cursor: "default", fontFamily: "'Inter', system-ui, sans-serif", pointerEvents: "none" }}>
+              <button
+                onClick={addFolder}
+                style={{ display: "flex", alignItems: "center", gap: "5px", padding: "5px 12px", borderRadius: "5px", border: `1px solid #d1d5db`, backgroundColor: "#ffffff", color: folderAdded ? C.textMuted : C.text, fontSize: "11px", fontWeight: 500, cursor: folderAdded ? "default" : "pointer", fontFamily: "'Inter', system-ui, sans-serif", opacity: folderAdded ? 0.5 : 1, transition: "opacity 0.2s" }}
+              >
                 Add folder
               </button>
-              <button style={{ display: "flex", alignItems: "center", gap: "5px", padding: "5px 12px", borderRadius: "5px", border: `1px solid #d1d5db`, backgroundColor: "#ffffff", color: C.text, fontSize: "11px", fontWeight: 500, cursor: "default", fontFamily: "'Inter', system-ui, sans-serif", pointerEvents: "none" }}>
+              <button
+                onClick={addApp}
+                style={{ display: "flex", alignItems: "center", gap: "5px", padding: "5px 12px", borderRadius: "5px", border: `1px solid #d1d5db`, backgroundColor: "#ffffff", color: appAdded ? C.textMuted : C.text, fontSize: "11px", fontWeight: 500, cursor: appAdded ? "default" : "pointer", fontFamily: "'Inter', system-ui, sans-serif", opacity: appAdded ? 0.5 : 1, transition: "opacity 0.2s" }}
+              >
                 Add app
               </button>
             </div>
@@ -934,13 +937,11 @@ export function InteractiveAppLibrary({ inSplit = false }) {
                     {moduleSettings.map((s, idx) => {
                       if (s.disabled) return null;
                       const showInd = overItem?.item.id === s.id && !isDraggingFolderIntoFolder && !isDraggingFolderIntoSelf;
-                      const idleSway = rowIdleActive && !activeItem && (idx === 2 || idx === 4);
                       return (
                         <motion.div
                           key={s.id}
                           layout={!activeItem ? "position" : false}
-                          animate={idleSway ? { x: [0, 2, 0, -1, 0] } : { x: 0 }}
-                          transition={idleSway ? { duration: 4, repeat: Infinity, ease: "easeInOut" } : { type: "tween", duration: 0.25, ease: [0.25, 0.1, 0.25, 1] }}
+                          transition={{ type: "tween", duration: 0.25, ease: [0.25, 0.1, 0.25, 1] }}
                         >
                           <SortableItem
                             settings={s}

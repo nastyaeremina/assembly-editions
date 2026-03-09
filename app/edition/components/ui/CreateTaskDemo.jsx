@@ -40,7 +40,7 @@ const TODO_STATES = [
   { label: "Done",        color: "#115B3B",  iconOpacity: 1.0 },
 ];
 
-/* ── Assignee display data ── */
+/* ── Assignee preset ── */
 const ASSIGNEE = { initials: "AW", name: "Alex Werner", color: "#d1e7dd", textColor: "#0f5132" };
 const DUE_DATE_LABEL = "Jan 15, 2026";
 
@@ -59,8 +59,40 @@ export function CreateTaskDemo({ inSplit = false }) {
   const [todoStatus, setTodoStatus] = useState(0);
   const [dueDateSet, setDueDateSet] = useState(false);
   const [assigneeSet, setAssigneeSet] = useState(false);
+  const [titleValue, setTitleValue] = useState("Competitor analysis");
+  const [titleEditing, setTitleEditing] = useState(false);
+  const [createFlash, setCreateFlash] = useState(false);
+  const titleInputRef = useRef(null);
 
   const isMobile = useMediaQuery("(max-width: 1023px)", false);
+
+  /* Reset all state to initial */
+  const resetAll = () => {
+    setRelatedClient(null);
+    setShowPicker(false);
+    setShareWithClient(false);
+    setShowRelatedTooltip(false);
+    setDescription("");
+    setTodoStatus(0);
+    setDueDateSet(false);
+    setAssigneeSet(false);
+    setTitleValue("Competitor analysis");
+    setTitleEditing(false);
+    setCreateFlash(false);
+  };
+
+  /* At least one field pill must be set */
+  const hasFieldSet = todoStatus !== 0 || dueDateSet || assigneeSet || relatedClient !== null;
+
+  /* Handle Create button click */
+  const handleCreate = () => {
+    if (!titleValue.trim() || isMobile || !hasFieldSet) return;
+    setCreateFlash(true);
+    setTimeout(() => {
+      setCreateFlash(false);
+      resetAll();
+    }, 400);
+  };
 
   /* Idle hint — subtle glow pulse on "Related to" pill (desktop only) */
   const { containerRef: idleRef, isIdle: pillIdleActive, dismiss: dismissIdle } = useIdleHint({ delay: 2500 });
@@ -82,6 +114,9 @@ export function CreateTaskDemo({ inSplit = false }) {
         setDueDateSet(false);
         setAssigneeSet(false);
         setDescription("");
+        setTitleValue("Competitor analysis");
+        setTitleEditing(false);
+        setCreateFlash(false);
         await wait(1500);
         if (cancelled) break;
 
@@ -199,14 +234,6 @@ export function CreateTaskDemo({ inSplit = false }) {
         <span style={{ fontSize: "14px", fontWeight: 500, color: C.text }}>
           Create task
         </span>
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
-          src="/edition/Icons/Icon (approved) copy.svg"
-          alt=""
-          width={12}
-          height={12}
-          style={{ display: "block", opacity: 0.3, cursor: "default" }}
-        />
       </div>
 
       {/* ── Title + description area ── */}
@@ -216,16 +243,42 @@ export function CreateTaskDemo({ inSplit = false }) {
           borderBottom: `1px solid ${C.borderLight}`,
         }}
       >
-        <div
-          style={{
-            fontSize: "14px",
-            fontWeight: 500,
-            color: C.text,
-            marginBottom: "6px",
-          }}
-        >
-          Competitor analysis
-        </div>
+        {titleEditing && !isMobile ? (
+          <input
+            ref={titleInputRef}
+            type="text"
+            value={titleValue}
+            onChange={(e) => setTitleValue(e.target.value.slice(0, 60))}
+            onBlur={() => setTitleEditing(false)}
+            onKeyDown={(e) => { if (e.key === "Enter") { e.preventDefault(); setTitleEditing(false); } if (e.key === "Escape") { setTitleEditing(false); } }}
+            maxLength={60}
+            style={{
+              fontSize: "14px",
+              fontWeight: 500,
+              color: C.text,
+              marginBottom: "6px",
+              width: "100%",
+              border: "none",
+              outline: "none",
+              padding: 0,
+              backgroundColor: "transparent",
+              fontFamily: "'Inter', system-ui, sans-serif",
+            }}
+          />
+        ) : (
+          <div
+            onClick={() => { if (!isMobile) { setTitleEditing(true); setTimeout(() => titleInputRef.current?.focus(), 0); } }}
+            style={{
+              fontSize: "14px",
+              fontWeight: 500,
+              color: C.text,
+              marginBottom: "6px",
+              cursor: isMobile ? "default" : "text",
+            }}
+          >
+            {titleValue}
+          </div>
+        )}
         <textarea
           value={description}
           onChange={(e) => setDescription(e.target.value)}
@@ -331,7 +384,7 @@ export function CreateTaskDemo({ inSplit = false }) {
           {dueDateSet ? DUE_DATE_LABEL : "Due date"}
         </motion.button>
 
-        {/* Assignee pill — toggles assigned person */}
+        {/* Assignee pill — simple toggle */}
         <motion.button
           type="button"
           onClick={() => { if (!isMobile) setAssigneeSet((v) => !v); }}
@@ -547,16 +600,6 @@ export function CreateTaskDemo({ inSplit = false }) {
 
                 {/* Clients list */}
                 <div style={{ padding: "4px" }}>
-                  <div
-                    style={{
-                      fontSize: "10px",
-                      fontWeight: 500,
-                      color: C.textTertiary,
-                      padding: "5px 8px 3px",
-                    }}
-                  >
-                    Clients
-                  </div>
                   {CLIENTS.map((client) => (
                     <button
                       key={client.id}
@@ -734,20 +777,25 @@ export function CreateTaskDemo({ inSplit = false }) {
           padding: "14px 20px",
         }}
       >
-        <div
+        <button
+          type="button"
+          onClick={handleCreate}
+          disabled={!titleValue.trim() || isMobile || !hasFieldSet}
           style={{
             padding: "6px 16px",
             borderRadius: "6px",
             fontSize: "12px",
             fontWeight: 500,
-            color: C.createText,
-            backgroundColor: C.bgAlt,
-            border: `1px solid ${C.createBorder}`,
-            cursor: "default",
+            color: createFlash ? "#ffffff" : (titleValue.trim() && hasFieldSet && !isMobile ? "#ffffff" : C.createText),
+            backgroundColor: createFlash ? "#15803d" : (titleValue.trim() && hasFieldSet && !isMobile ? C.text : C.bgAlt),
+            border: `1px solid ${createFlash ? "#15803d" : (titleValue.trim() && hasFieldSet && !isMobile ? C.text : C.createBorder)}`,
+            cursor: titleValue.trim() && hasFieldSet && !isMobile ? "pointer" : "default",
+            fontFamily: "'Inter', system-ui, sans-serif",
+            transition: "background-color 200ms ease, color 200ms ease, border-color 200ms ease",
           }}
         >
-          Create
-        </div>
+          {createFlash ? "✓ Created" : "Create"}
+        </button>
       </div>
       </div>{/* close modal content wrapper */}
     </motion.div>
