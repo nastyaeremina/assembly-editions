@@ -17,10 +17,10 @@ const C = {
   borderLight: "#f3f4f6",
   text: "#18181b",
   textSec: "#6b7280",
-  textMuted: "#9ca3af",
+  textMuted: "#6b7280",
   sidebarBg: "#fafafa",
   tabActive: "#18181b",
-  tabInactive: "#6b7280",
+  tabInactive: "#374151",
   accent: "#3b82f6",
   iconBarBg: "#f9fafb",
   iconBarBorder: "#e5e7eb",
@@ -314,6 +314,7 @@ export function ContextBarDemo({ inSplit = false }) {
     return (
       <motion.div
         ref={containerRef}
+        className="interactive-hint"
         initial={{ opacity: 0, scale: 0.97 }}
         whileInView={{ opacity: 1, scale: 1 }}
         viewport={{ once: true, margin: "-40px" }}
@@ -480,6 +481,7 @@ export function ContextBarDemo({ inSplit = false }) {
   return (
     <motion.div
       ref={containerRef}
+      className="interactive-hint"
       initial={{ opacity: 0, scale: 0.97 }}
       whileInView={{ opacity: 1, scale: 1 }}
       viewport={{ once: true, margin: "-40px" }}
@@ -920,7 +922,7 @@ export function ContextBarDemo({ inSplit = false }) {
                     height={14}
                     style={{
                       display: "block",
-                      opacity: isActive ? 1 : key === "chat" ? 0.75 : 0.55,
+                      opacity: isActive ? 1 : 0.8,
                     }}
                     draggable={false}
                   />

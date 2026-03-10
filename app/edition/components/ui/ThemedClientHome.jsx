@@ -53,11 +53,11 @@ const ICO = {
   logo: "/edition/Icons/Logo.svg",
 };
 
-/* ── 4 Segments ── */
+/* ── 3 Segments — each with different sidebar items & action cards ── */
 const SEGMENTS = [
   {
-    id: "default",
-    name: "Default",
+    id: "premium",
+    name: "Premium",
     dotColor: "#4B8EC8",
     clientCount: 42,
     accent: "#4B8EC8",
@@ -68,13 +68,29 @@ const SEGMENTS = [
     sidebarBadgeBg: "rgba(255,255,255,0.1)",
     sidebarBadgeText: "#e2e8f0",
     bannerBg: "#1e3a5f",
-    greeting: "Welcome back Mike",
+    greeting: "Welcome back Sarah",
     subtitle: "Here\u2019s what needs your attention today",
-    actions: { invoices: 1, contracts: 1, tasks: 1, forms: 1 },
+    navItems: [
+      { icon: "home", label: "Home", active: true },
+      { icon: "messages", label: "Messages" },
+      { icon: "tasks", label: "Tasks", badge: 3 },
+      { icon: "files", label: "Files" },
+      { icon: "forms", label: "Forms", badge: 1 },
+      { icon: "billing", label: "Billing", badge: 2 },
+      { icon: "contracts", label: "Contracts", badge: 2 },
+      { icon: "helpdesk", label: "Helpdesk" },
+      { icon: "more", label: "More" },
+    ],
+    actionCards: [
+      { icon: "billing", label: "Invoices", count: 2, unit: "invoice" },
+      { icon: "contractsCard", label: "Contracts", count: 2, unit: "contract" },
+      { icon: "tasks", label: "Tasks", count: 3, unit: "task" },
+      { icon: "forms", label: "Forms", count: 1, unit: "form" },
+    ],
   },
   {
-    id: "gold",
-    name: "Gold",
+    id: "standard",
+    name: "Standard",
     dotColor: "#f59e0b",
     clientCount: 60,
     accent: "#d97706",
@@ -85,32 +101,26 @@ const SEGMENTS = [
     sidebarBadgeBg: "rgba(251,191,36,0.12)",
     sidebarBadgeText: "#e2e8f0",
     bannerBg: "#4a3524",
-    greeting: "Welcome back Sarah",
+    greeting: "Welcome back Mike",
     subtitle: "Here\u2019s what needs your attention today",
-    actions: { invoices: 2, contracts: 1, tasks: 1, forms: 1 },
+    navItems: [
+      { icon: "home", label: "Home", active: true },
+      { icon: "messages", label: "Messages" },
+      { icon: "tasks", label: "Tasks", badge: 2 },
+      { icon: "files", label: "Files" },
+      { icon: "billing", label: "Billing", badge: 1 },
+      { icon: "helpdesk", label: "Helpdesk" },
+    ],
+    actionCards: [
+      { icon: "billing", label: "Invoices", count: 1, unit: "invoice" },
+      { icon: "tasks", label: "Tasks", count: 2, unit: "task" },
+    ],
   },
   {
-    id: "silver",
-    name: "Silver",
-    dotColor: "#8b5cf6",
-    clientCount: 20,
-    accent: "#7c3aed",
-    sidebarBg: "#1e1b2e",
-    sidebarText: "#e2e8f0",
-    sidebarActive: "#ffffff",
-    sidebarActiveBg: "rgba(139,92,246,0.12)",
-    sidebarBadgeBg: "rgba(139,92,246,0.12)",
-    sidebarBadgeText: "#e2e8f0",
-    bannerBg: "#2a2540",
-    greeting: "Welcome back James",
-    subtitle: "Here\u2019s what needs your attention today",
-    actions: { invoices: 2, contracts: 2, tasks: 1, forms: 1 },
-  },
-  {
-    id: "bronze",
-    name: "Bronze",
+    id: "starter",
+    name: "Starter",
     dotColor: "#14b8a6",
-    clientCount: 10,
+    clientCount: 30,
     accent: "#0d9488",
     sidebarBg: "#134e4a",
     sidebarText: "#e2e8f0",
@@ -121,7 +131,16 @@ const SEGMENTS = [
     bannerBg: "#134e4a",
     greeting: "Welcome back Alex",
     subtitle: "Here\u2019s what needs your attention today",
-    actions: { invoices: 1, contracts: 1, tasks: 1, forms: 1 },
+    navItems: [
+      { icon: "home", label: "Home", active: true },
+      { icon: "messages", label: "Messages" },
+      { icon: "files", label: "Files" },
+      { icon: "billing", label: "Billing", badge: 1 },
+    ],
+    actionCards: [
+      { icon: "billing", label: "Invoices", count: 1, unit: "invoice" },
+      { icon: "tasks", label: "Tasks", count: 1, unit: "task" },
+    ],
   },
 ];
 
@@ -494,7 +513,7 @@ export function ThemedClientHome({ inSplit = false, static: isStatic = false }) 
   if (isMobile) {
     return (
       <div ref={containerRef} style={isStatic ? { height: "100%" } : undefined}>
-        <div style={{
+        <div className={isStatic ? undefined : "interactive-hint"} style={{
           borderRadius: isStatic ? 0 : "12px",
           border: isStatic ? "none" : "1px solid rgba(255,255,255,0.08)",
           overflow: "hidden",
@@ -582,13 +601,12 @@ export function ThemedClientHome({ inSplit = false, static: isStatic = false }) 
               <div style={{
                 fontSize: "12px", color: C.textSecondary,
                 fontFamily: "'Inter', system-ui, sans-serif", marginBottom: "10px",
-              }}>You have {segment.actions.invoices + segment.actions.contracts + segment.actions.tasks + segment.actions.forms} pending items</div>
+              }}>You have {segment.actionCards.reduce((sum, c) => sum + c.count, 0)} pending items</div>
 
               <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "8px" }}>
-                <ActionCard iconSrc={ICO.billing} label="Invoices" count={segment.actions.invoices} unit="invoice" colors={C} />
-                <ActionCard iconSrc={ICO.contractsCard} label="Contracts" count={segment.actions.contracts} unit="contract" colors={C} />
-                <ActionCard iconSrc={ICO.tasks} label="Tasks" count={segment.actions.tasks} unit="task" colors={C} />
-                <ActionCard iconSrc={ICO.forms} label="Forms" count={segment.actions.forms} unit="form" colors={C} />
+                {segment.actionCards.map((card) => (
+                  <ActionCard key={card.label} iconSrc={ICO[card.icon]} label={card.label} count={card.count} unit={card.unit} colors={C} />
+                ))}
               </div>
             </div>
           </div>
@@ -603,6 +621,7 @@ export function ThemedClientHome({ inSplit = false, static: isStatic = false }) 
 
       {/* ── Portal preview container ── */}
       <motion.div
+        className={isStatic ? undefined : "interactive-hint"}
         style={{
           borderRadius: isStatic ? 0 : "12px",
           border: isStatic ? "none" : "1px solid rgba(255,255,255,0.08)",
@@ -665,15 +684,16 @@ export function ThemedClientHome({ inSplit = false, static: isStatic = false }) 
             </div>
 
             <div style={{ padding: "0 4px", display: "flex", flexDirection: "column", gap: "1px" }}>
-              <NavItem iconSrc={ICO.home} label="Home" active segment={segment} />
-              <NavItem iconSrc={ICO.messages} label="Messages" segment={segment} />
-              <NavItem iconSrc={ICO.tasks} label="Tasks" badge={segment.actions.tasks} segment={segment} />
-              <NavItem iconSrc={ICO.files} label="Files" segment={segment} />
-              <NavItem iconSrc={ICO.forms} label="Forms" badge={segment.actions.forms} segment={segment} />
-              <NavItem iconSrc={ICO.billing} label="Billing" badge={segment.actions.invoices} segment={segment} />
-              <NavItem iconSrc={ICO.contracts} label="Contracts" badge={segment.actions.contracts} segment={segment} />
-              <NavItem iconSrc={ICO.helpdesk} label="Helpdesk" segment={segment} />
-              <NavItem iconSrc={ICO.more} label="More" segment={segment} />
+              {segment.navItems.map((item) => (
+                <NavItem
+                  key={item.label}
+                  iconSrc={ICO[item.icon]}
+                  label={item.label}
+                  active={item.active}
+                  badge={item.badge}
+                  segment={segment}
+                />
+              ))}
             </div>
           </div>
 
@@ -745,13 +765,12 @@ export function ThemedClientHome({ inSplit = false, static: isStatic = false }) 
                     <div style={{
                       fontSize: "12px", color: C.textSecondary,
                       fontFamily: "'Inter', system-ui, sans-serif", marginBottom: "10px",
-                    }}>You have {segment.actions.invoices + segment.actions.contracts + segment.actions.tasks + segment.actions.forms} pending items</div>
+                    }}>You have {segment.actionCards.reduce((sum, c) => sum + c.count, 0)} pending items</div>
 
                     <div style={{ display: "flex", gap: "8px", flexWrap: "wrap" }}>
-                      <ActionCard iconSrc={ICO.billing} label="Invoices" count={segment.actions.invoices} unit="invoice" colors={C} />
-                      <ActionCard iconSrc={ICO.contractsCard} label="Contracts" count={segment.actions.contracts} unit="contract" colors={C} />
-                      <ActionCard iconSrc={ICO.tasks} label="Tasks" count={segment.actions.tasks} unit="task" colors={C} />
-                      <ActionCard iconSrc={ICO.forms} label="Forms" count={segment.actions.forms} unit="form" colors={C} />
+                      {segment.actionCards.map((card) => (
+                        <ActionCard key={card.label} iconSrc={ICO[card.icon]} label={card.label} count={card.count} unit={card.unit} colors={C} />
+                      ))}
                     </div>
                   </div>
 

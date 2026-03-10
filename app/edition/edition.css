@@ -293,15 +293,27 @@
   display: none;
 }
 
-/* Assembly dock icon — tight colored edge glow */
+/* Assembly dock icon — subtle warm glow */
 .hero-edge-glow {
-  box-shadow: 0 0 6px 1px rgba(147, 197, 253, 0.5);
+  box-shadow: 0 0 10px 2px rgba(255, 255, 255, 0.15), 0 0 4px 1px rgba(255, 255, 255, 0.08);
   animation: hero-glow-pulse 3s ease-in-out infinite;
 }
 
 @keyframes hero-glow-pulse {
-  0%, 100% { box-shadow: 0 0 6px 1px rgba(147, 197, 253, 0.5); }
-  50% { box-shadow: 0 0 8px 2px rgba(147, 197, 253, 0.3); }
+  0%, 100% { box-shadow: 0 0 10px 2px rgba(255, 255, 255, 0.15), 0 0 4px 1px rgba(255, 255, 255, 0.08); }
+  50% { box-shadow: 0 0 14px 3px rgba(255, 255, 255, 0.22), 0 0 6px 2px rgba(255, 255, 255, 0.12); }
+}
+
+/* Interactive demo hint — subtle pulsing outline glow */
+.interactive-hint {
+  outline: 1.5px solid transparent;
+  outline-offset: 2px;
+  animation: interactive-hint-pulse 3s ease-in-out infinite;
+}
+
+@keyframes interactive-hint-pulse {
+  0%, 100% { outline-color: rgba(99, 102, 241, 0); }
+  50% { outline-color: rgba(99, 102, 241, 0.3); }
 }
 
 /* CTA arrow — subtle nudge on hover */

@@ -260,9 +260,9 @@ const DEFAULT_SETTINGS = [
   { id: "messages", label: "Messages", icon: "messages", type: "app", disabled: false },
   { id: "billing", label: "Billing", icon: "billing", type: "app", disabled: false },
   { id: "files", label: "Files", icon: "files", type: "app", disabled: false },
-  { id: "tasks", label: "Tasks", icon: "tasks", type: "app", disabled: false },
-  { id: "reports-folder", label: "Reports", icon: "folder", type: "folder", disabled: false },
-  { id: "q4-revenue", label: "Q4 Revenue Summary", icon: "report", type: "app", disabled: false, path: "reports-folder" },
+  { id: "analytics-folder", label: "Analytics", icon: "folder", type: "folder", disabled: false },
+  { id: "revenue-reports", label: "Revenue reports", icon: "report", type: "app", disabled: false, path: "analytics-folder" },
+  { id: "marketing-metrics", label: "Marketing metrics", icon: "report", type: "app", disabled: false, path: "analytics-folder" },
 ];
 
 /* ── Add App Pool ── */
@@ -425,24 +425,35 @@ function FolderNameInput({ name, onNameChange, onDone }) {
   );
 }
 
-/* ── Drag Overlay (ghost item — compact, just shows the name) ── */
+/* ── Drag Overlay (ghost item — shows icon + name) ── */
 function DragOverlayItem({ item, helperText }) {
   return (
     <div style={{
       display: "inline-flex",
       alignItems: "center",
       gap: "8px",
-      padding: "8px 16px",
+      padding: "8px 14px",
       backgroundColor: "#fff",
       border: `1px solid ${C.border}`,
-      borderRadius: "6px",
+      borderRadius: "8px",
       whiteSpace: "nowrap",
-      boxShadow: "0 4px 12px rgba(0,0,0,0.08)",
+      boxShadow: "0 8px 24px rgba(0,0,0,0.12), 0 2px 6px rgba(0,0,0,0.06)",
+      transform: "scale(1.02)",
     }}>
       {helperText ? (
         <><span style={{ display: "flex", color: C.textMuted }}><CancelIcon /></span><span style={{ fontSize: "14px", color: C.text, fontFamily: "'Inter', system-ui, sans-serif" }}>{helperText}</span></>
       ) : (
-        <span style={{ fontSize: "14px", color: C.text, fontFamily: "'Inter', system-ui, sans-serif" }}>{item.label}</span>
+        <>
+          <span style={{
+            display: "flex", alignItems: "center", justifyContent: "center",
+            width: "28px", height: "28px", borderRadius: "6px",
+            border: `1px solid ${C.border}`, backgroundColor: "#fff",
+            color: C.textSec, flexShrink: 0,
+          }}>
+            <AppIconEl name={item.icon} />
+          </span>
+          <span style={{ fontSize: "14px", fontWeight: 500, color: C.text, fontFamily: "'Inter', system-ui, sans-serif" }}>{item.label}</span>
+        </>
       )}
     </div>
   );
@@ -459,12 +470,11 @@ function SortableItem({ settings, showIndicator, indicatorPos, indicatorIndented
   const isChild = Boolean(settings.path);
   const isF = settings.type === "folder";
 
-  /* isSorting guard: keep items STABLE during drag — no live shuffling.
-     The blue drop indicator shows where the item will land.
-     On drop, items re-render in new positions. */
+  /* Allow items to smoothly shuffle during drag — transform drives
+     the live displacement, framer-motion handles the rest. */
   const style = {
-    transform: isSorting ? undefined : CSS.Transform.toString(transform ? { ...transform, scaleX: 1, scaleY: 1 } : null),
-    transition: isSorting ? undefined : transition ?? undefined,
+    transform: CSS.Transform.toString(transform ? { ...transform, scaleX: 1, scaleY: 1 } : null),
+    transition: transition ?? "transform 200ms ease",
     opacity: isDragging ? 0.3 : 1,
     position: "relative",
   };
@@ -627,14 +637,16 @@ function MobileAnimatedDemo() {
   const INITIAL = [
     { id: "home", label: "Home", icon: "home", type: "app", disabled: false },
     { id: "messages", label: "Messages", icon: "messages", type: "app", disabled: false },
-    { id: "reports-folder", label: "Reports", icon: "folder", type: "folder", disabled: false },
-    { id: "q4-revenue", label: "Q4 Revenue Summary", icon: "report", type: "app", disabled: false, path: "reports-folder" },
+    { id: "analytics-folder", label: "Analytics", icon: "folder", type: "folder", disabled: false },
+    { id: "revenue-reports", label: "Revenue reports", icon: "report", type: "app", disabled: false, path: "analytics-folder" },
+    { id: "marketing-metrics", label: "Marketing metrics", icon: "report", type: "app", disabled: false, path: "analytics-folder" },
   ];
 
   const REORDERED = [
     { id: "home", label: "Home", icon: "home", type: "app", disabled: false },
-    { id: "reports-folder", label: "Reports", icon: "folder", type: "folder", disabled: false },
-    { id: "q4-revenue", label: "Q4 Revenue Summary", icon: "report", type: "app", disabled: false, path: "reports-folder" },
+    { id: "analytics-folder", label: "Analytics", icon: "folder", type: "folder", disabled: false },
+    { id: "revenue-reports", label: "Revenue reports", icon: "report", type: "app", disabled: false, path: "analytics-folder" },
+    { id: "marketing-metrics", label: "Marketing metrics", icon: "report", type: "app", disabled: false, path: "analytics-folder" },
     { id: "messages", label: "Messages", icon: "messages", type: "app", disabled: false },
   ];
 
@@ -645,7 +657,7 @@ function MobileAnimatedDemo() {
 
   useEffect(() => {
     const steps = [
-      // Forward: move Messages below Reports folder
+      // Forward: move Messages below Analytics folder
       { delay: 2500, action: () => { setLiftedId("messages"); } },                    // lift
       { delay: 600,  action: () => { setItems(REORDERED); } },                        // reorder
       { delay: 400,  action: () => { setLiftedId(null); } },                          // drop
@@ -666,6 +678,7 @@ function MobileAnimatedDemo() {
 
   return (
     <motion.div
+      className="interactive-hint"
       initial={{ opacity: 0, scale: 0.97 }}
       whileInView={{ opacity: 1, scale: 1 }}
       viewport={{ once: true, margin: "-40px" }}
@@ -801,9 +814,11 @@ export function InteractiveAppLibrary({ inSplit = false }) {
 
   const helperText = isDraggingFolderIntoFolder && !isDraggingFolderIntoSelf ? "You cannot put a folder inside a folder." : undefined;
 
-  /* No drop animation — overlay vanishes instantly on drop,
-     then framer-motion tween smoothly slides items into place. */
-  const dropAnimation = null;
+  /* Quick snap-back drop animation for a polished feel */
+  const dropAnimation = {
+    duration: 200,
+    easing: "cubic-bezier(0.25, 0.1, 0.25, 1)",
+  };
 
   const isDesktop = useMediaQuery("(min-width: 1024px)", true);
 
@@ -871,6 +886,7 @@ export function InteractiveAppLibrary({ inSplit = false }) {
   return (
     <div ref={rootRef} style={{ position: "relative" }}>
     <motion.div
+      className="interactive-hint"
       initial={{ opacity: 0, scale: 0.97 }}
       whileInView={{ opacity: 1, scale: 1 }}
       viewport={{ once: true, margin: "-40px" }}
@@ -941,7 +957,7 @@ export function InteractiveAppLibrary({ inSplit = false }) {
                         <motion.div
                           key={s.id}
                           layout={!activeItem ? "position" : false}
-                          transition={{ type: "tween", duration: 0.25, ease: [0.25, 0.1, 0.25, 1] }}
+                          transition={{ type: "tween", duration: 0.2, ease: [0.25, 0.1, 0.25, 1] }}
                         >
                           <SortableItem
                             settings={s}

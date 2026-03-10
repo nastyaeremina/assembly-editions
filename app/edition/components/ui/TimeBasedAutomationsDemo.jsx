@@ -206,6 +206,7 @@ export function TimeBasedAutomationsDemo({ inSplit = false }) {
   if (!isDesktop) {
     return (
       <motion.div
+        className="interactive-hint"
         initial={{ opacity: 0, scale: 0.97 }}
         whileInView={{ opacity: 1, scale: 1 }}
         viewport={{ once: true, margin: "-40px" }}
@@ -392,6 +393,7 @@ export function TimeBasedAutomationsDemo({ inSplit = false }) {
   /* ── Desktop: full app view (static, no interactions) ── */
   return (
     <motion.div
+      className="interactive-hint"
       initial={{ opacity: 0, scale: 0.97 }}
       whileInView={{ opacity: 1, scale: 1 }}
       viewport={{ once: true, margin: "-40px" }}
@@ -491,6 +493,30 @@ export function TimeBasedAutomationsDemo({ inSplit = false }) {
               </div>
               <div style={{ fontSize: "11px", color: C.textSec, paddingLeft: "21px", transition: "opacity 0.2s ease" }}>
                 {canvasSummary}
+              </div>
+            </div>
+
+            {/* Connector line */}
+            <div style={{ width: "1px", height: "14px", backgroundColor: C.border }} />
+
+            {/* Send message action card */}
+            <div style={{
+              width: "100%", maxWidth: "380px",
+              border: `1.5px solid ${C.border}`,
+              borderRadius: "8px",
+              backgroundColor: C.cardBg,
+              padding: "14px 16px",
+              display: "flex", flexDirection: "column", gap: "3px",
+            }}>
+              <div style={{ display: "flex", alignItems: "center", gap: "7px" }}>
+                {/* Message icon */}
+                <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ flexShrink: 0, opacity: 0.5 }}>
+                  <path d="M5.56992 13.1496L4.53633 13.8797C4.33672 14.0219 4.07422 14.0383 3.85547 13.9262C3.63672 13.8141 3.5 13.5898 3.5 13.3437V11.375H2.625C1.17578 11.375 0 10.1992 0 8.75V2.625C0 1.17578 1.17578 0 2.625 0H11.375C12.8242 0 14 1.17578 14 2.625V8.75C14 10.1992 12.8242 11.375 11.375 11.375H8.08281L5.56992 13.1496ZM7.32812 10.3031C7.54961 10.1473 7.81484 10.0625 8.08555 10.0625H11.375C12.0996 10.0625 12.6875 9.47461 12.6875 8.75V2.625C12.6875 1.90039 12.0996 1.3125 11.375 1.3125H2.625C1.90039 1.3125 1.3125 1.90039 1.3125 2.625V8.75C1.3125 9.47461 1.90039 10.0625 2.625 10.0625H4.15625C4.44063 10.0625 4.68398 10.243 4.77422 10.4973C4.79883 10.5656 4.8125 10.6395 4.8125 10.7187V12.0777C5.70664 11.4461 6.54336 10.8555 7.32539 10.3031H7.32812Z" fill="#18181b"/>
+                </svg>
+                <span style={{ fontSize: "13px", fontWeight: 500, color: C.text }}>Send message</span>
+              </div>
+              <div style={{ fontSize: "11px", color: C.textSec, paddingLeft: "21px" }}>
+                Send a reminder to the client
               </div>
             </div>
 
