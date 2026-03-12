@@ -54,10 +54,6 @@ const LINE_STYLES = LINES.map(
   0%, 100% { opacity: 0.03; transform: translate(-50%, -50%) scale(1); }
   50%      { opacity: 0.07; transform: translate(-50%, -50%) scale(1.05); }
 }
-@keyframes ls-bar-glow {
-  0%, 100% { box-shadow: 0 0 8px 2px rgba(255, 255, 255, 0.08); }
-  50%      { box-shadow: 0 0 16px 4px rgba(255, 255, 255, 0.18); }
-}
 `;
 
 export function LoadingScreen() {
@@ -203,33 +199,9 @@ export function LoadingScreen() {
           }}
         />
 
-        {/* ── Text lockup ── */}
+        {/* ── Text lockup with fill-up effect ── */}
         <div style={{ display: "flex", flexDirection: "column", alignItems: "center", position: "relative", zIndex: 2 }}>
-          {/* Assembly wordmark */}
-          <motion.div
-            initial={{ opacity: 0, y: 12 }}
-            animate={isExiting
-              ? { opacity: 0, scale: 1.1, y: -10 }
-              : { opacity: 1, y: 0 }
-            }
-            transition={isExiting
-              ? { duration: 0.4, ease: "easeIn" }
-              : { delay: 0.3, duration: 0.7, ease: [0.25, 0.1, 0.25, 1] }
-            }
-            style={{
-              fontFamily: "'PP Mori', var(--font-sans)",
-              fontWeight: 600,
-              fontSize: "clamp(0.75rem, 2vw, 1.1rem)",
-              letterSpacing: "0.25em",
-              textTransform: "uppercase",
-              color: "rgba(255, 255, 255, 0.25)",
-              marginBottom: "0.5rem",
-            }}
-          >
-            {WORDMARK}
-          </motion.div>
-
-          {/* 2.0 with parallax */}
+          {/* 2.0 with parallax — dim base layer */}
           <motion.div
             animate={isExiting
               ? { scale: 1.08, opacity: 0 }
@@ -245,6 +217,7 @@ export function LoadingScreen() {
               alignItems: "baseline",
               rotateX,
               rotateY,
+              position: "relative",
             }}
           >
             {CHARACTERS.map((char, i) => (
@@ -263,7 +236,7 @@ export function LoadingScreen() {
                   fontSize: "clamp(6rem, 20vw, 14rem)",
                   lineHeight: 1,
                   letterSpacing: "-0.04em",
-                  color: "rgba(255, 255, 255, 0.3)",
+                  color: "rgba(255, 255, 255, 0.12)",
                   willChange: "transform",
                   x: charSprings[i].x,
                   y: charSprings[i].y,
@@ -272,40 +245,74 @@ export function LoadingScreen() {
                 {char}
               </motion.span>
             ))}
+
+            {/* Bright overlay that fills up from bottom */}
+            <motion.div
+              initial={{ clipPath: "inset(100% 0 0 0)" }}
+              animate={{ clipPath: "inset(0% 0 0 0)" }}
+              transition={{
+                duration: 2.2,
+                ease: [0.25, 0.1, 0.25, 1],
+              }}
+              aria-hidden="true"
+              style={{
+                position: "absolute",
+                inset: 0,
+                display: "flex",
+                alignItems: "baseline",
+                pointerEvents: "none",
+              }}
+            >
+              {CHARACTERS.map((char, i) => (
+                <motion.span
+                  key={`bright-${i}`}
+                  style={{
+                    fontFamily: "'PP Mori', var(--font-sans)",
+                    fontWeight: 600,
+                    fontSize: "clamp(6rem, 20vw, 14rem)",
+                    lineHeight: 1,
+                    letterSpacing: "-0.04em",
+                    color: "rgba(255, 255, 255, 0.55)",
+                    x: charSprings[i].x,
+                    y: charSprings[i].y,
+                  }}
+                >
+                  {char}
+                </motion.span>
+              ))}
+            </motion.div>
+          </motion.div>
+
+          {/* ── Progress bar directly under the text ── */}
+          <motion.div
+            animate={isExiting ? { opacity: 0, scaleX: 0.8 } : {}}
+            transition={isExiting ? { duration: 0.3, ease: "easeIn" } : {}}
+            style={{
+              marginTop: "1.5rem",
+              width: 120,
+              height: 2,
+              borderRadius: 1,
+              backgroundColor: "rgba(255, 255, 255, 0.06)",
+              overflow: "hidden",
+            }}
+          >
+            <motion.div
+              initial={{ scaleX: 0 }}
+              animate={{ scaleX: 1 }}
+              transition={{
+                duration: 2.2,
+                ease: [0.25, 0.1, 0.25, 1],
+              }}
+              style={{
+                width: "100%",
+                height: "100%",
+                borderRadius: 1,
+                backgroundColor: "rgba(255, 255, 255, 0.35)",
+                transformOrigin: "left",
+              }}
+            />
           </motion.div>
         </div>
-
-        {/* ── Progress bar with glow ── */}
-        <motion.div
-          style={{
-            position: "absolute",
-            bottom: "2rem",
-            left: "50%",
-            translateX: "-50%",
-            width: 140,
-            height: 2,
-            borderRadius: 1,
-            backgroundColor: "rgba(255, 255, 255, 0.06)",
-            overflow: "hidden",
-          }}
-        >
-          <motion.div
-            initial={{ scaleX: 0 }}
-            animate={{ scaleX: 1 }}
-            transition={{
-              duration: 2.5,
-              ease: [0.25, 0.1, 0.25, 1],
-            }}
-            style={{
-              width: "100%",
-              height: "100%",
-              borderRadius: 1,
-              backgroundColor: "rgba(255, 255, 255, 0.45)",
-              transformOrigin: "left",
-              animation: "ls-bar-glow 2s ease-in-out infinite",
-            }}
-          />
-        </motion.div>
 
         {/* ── Film grain ── */}
         <svg width="0" height="0" style={{ position: "absolute" }}>
