@@ -891,7 +891,7 @@ export function ContextBarDemo({ inSplit = false }) {
         >
           <div
             onClick={handleAvatarClick}
-            style={{ width: 24, height: 24, borderRadius: "50%", backgroundColor: "#dfe8e6", color: "#2a8a7a", fontSize: 9, fontWeight: 400, display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0, cursor: "pointer" }}
+            style={{ width: 24, height: 24, borderRadius: "50%", backgroundColor: "#ede7f6", color: "#6a1b9a", fontSize: 9, fontWeight: 400, display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0, cursor: "pointer" }}
           >CM</div>
           <div
             onMouseEnter={() => { if (!tooltipDismissed.current) setShowTooltip(true); }}
