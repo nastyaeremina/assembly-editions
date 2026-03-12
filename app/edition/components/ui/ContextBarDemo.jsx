@@ -609,11 +609,11 @@ export function ContextBarDemo({ inSplit = false }) {
                 <DateSeparator label="Wed, Sep 4" />
 
                 <Message name="Charles Musial" time="1:36 PM">
-                  Hi Jennifer, Can you tell me more about SEO?
+                  Hi Jennifer, I reviewed the proposal you sent over. Quick question. Do you also offer SEO as part of your services?
                 </Message>
 
                 <Message name="Jennifer Beaty" time="1:37 PM">
-                  Absolutely, Charles! SEO, is all about improving your website&apos;s visibility on search engines like Google. For your business, we&apos;d focus on making sure potential customers can find you when they search for services you offer. This includes optimizing your website content, targeting the right keywords, improving your site&apos;s speed and mobile experience, and even building links to boost your credibility.
+                  Yes, we do. We can include ongoing SEO support alongside the website work. I can also send an updated scope if you would like.
                 </Message>
 
                 {/* User-added messages */}
