@@ -2,108 +2,117 @@
 
 import { cn } from "../../lib/utils";
 
-const FOOTER_SECTIONS = {
-  row1: [
-    {
-      title: "Features",
-      links: [
-        { label: "Messaging", href: "https://assembly.com/features/messaging" },
-        { label: "Billing", href: "https://assembly.com/features/invoicing" },
-        { label: "Files", href: "https://assembly.com/features/files" },
-        { label: "Forms", href: "https://assembly.com/features/forms" },
-        { label: "Helpdesk", href: "https://assembly.com/features/helpdesk" },
-        { label: "Apps", href: "https://assembly.com/features/apps" },
-      ],
-    },
-    {
-      title: "Solutions",
-      links: [
-        { label: "Accounting Firms", href: "https://assembly.com/solutions/accounting" },
-        { label: "Marketing Agencies", href: "https://assembly.com/solutions/marketing-agencies" },
-        { label: "Startups", href: "https://assembly.com/solutions/startups" },
-      ],
-      subsections: [
-        {
-          title: "Company",
-          links: [
-            { label: "Enterprise", href: "https://assembly.com/enterprise" },
-            { label: "Pricing", href: "https://assembly.com/pricing" },
-            { label: "Jobs", href: "https://assembly.com/jobs" },
-            { label: "Brand", href: "https://assembly.com/brand" },
-          ],
-        },
-      ],
-    },
-    {
-      title: "Resources",
-      links: [
-        { label: "Blog", href: "https://assembly.com/blog" },
-        { label: "Security", href: "https://assembly.com/security" },
-        { label: "What's New", href: "https://assembly.com/whats-new" },
-        { label: "Help Center", href: "https://assembly.com/help" },
-        { label: "Video Tutorials", href: "https://assembly.com/tutorials" },
-        { label: "Compare", href: "https://assembly.com/compare" },
-        { label: "API Reference", href: "https://assembly.com/developers/api-reference" },
-        { label: "System Status", href: "https://assembly.com/status" },
-        { label: "Sitemap", href: "https://assembly.com/sitemap" },
-      ],
-    },
-    {
-      title: "Compare Templates",
-      links: [
-        { label: "Marketing Contract", href: "https://assembly.com/templates/marketing-contract" },
-        { label: "Accounting Contract", href: "https://assembly.com/templates/accounting-contract" },
-        { label: "Onboarding Questionnaire", href: "https://assembly.com/templates/onboarding" },
-        { label: "Social Media Contract", href: "https://assembly.com/templates/social-media-contract" },
-      ],
-    },
-  ],
-  row2: [
-    {
-      title: "Platform",
-      links: [
-        { label: "Developer Home", href: "https://assembly.com/developers" },
-        { label: "Custom Apps", href: "https://assembly.com/developers/custom-apps" },
-        { label: "API Reference", href: "https://assembly.com/developers/api-reference" },
-        { label: "Copilot on Zapier", href: "https://assembly.com/integrations/zapier" },
-        { label: "Copilot on Make", href: "https://assembly.com/integrations/make" },
-      ],
-    },
-    {
-      title: "Compare",
-      links: [
-        { label: "Compare All", href: "https://assembly.com/compare" },
-        { label: "Vs Moxo", href: "https://assembly.com/compare/moxo" },
-        { label: "vs Suitedash", href: "https://assembly.com/compare/suitedash" },
-        { label: "vs Honeybook", href: "https://assembly.com/compare/honeybook" },
-        { label: "vs SmartVault", href: "https://assembly.com/compare/smartvault" },
-      ],
-    },
-    {
-      title: "Social Media",
-      links: [
-        { label: "Instagram", href: "https://instagram.com/assemblyapp" },
-        { label: "Facebook", href: "https://facebook.com/assemblyapp" },
-        { label: "Youtube", href: "https://youtube.com/@assemblyapp" },
-        { label: "X", href: "https://x.com/assemblyapp" },
-      ],
-    },
-  ],
-};
+const BASE = "https://assembly.com";
 
-function LinkColumn({ title, links, subsections }) {
+const SOCIAL_LINKS = [
+  { label: "X", href: "https://x.com/assemblycom" },
+  { label: "Facebook", href: "https://www.facebook.com/assemblycom" },
+  { label: "LinkedIn", href: "https://www.linkedin.com/company/assemblycom" },
+  { label: "YouTube", href: "https://www.youtube.com/@assembly" },
+  { label: "Instagram", href: "https://instagram.com/assembly" },
+];
+
+const FOOTER_COLUMNS = [
+  {
+    title: "Features",
+    links: [
+      { label: "Client Portal", href: `${BASE}/client-portal` },
+      { label: "Messages", href: `${BASE}/apps/directory/messaging-app` },
+      { label: "Invoicing", href: `${BASE}/invoicing` },
+      { label: "Contracts", href: `${BASE}/esignature` },
+      { label: "Tasks", href: `${BASE}/apps/directory/tasks` },
+      { label: "Files", href: `${BASE}/apps/directory/files-app` },
+      { label: "Forms", href: `${BASE}/apps/directory/forms-app` },
+      { label: "Stores", href: `${BASE}/store` },
+    ],
+  },
+  {
+    title: "Platform",
+    links: [
+      { label: "Developer Home", href: "https://docs.assembly.com/" },
+      { label: "Custom Apps", href: "https://docs.assembly.com/docs/custom-apps-overview" },
+      { label: "API Reference", href: "https://docs.assembly.com/reference/getting-started-introduction" },
+      { label: "Assembly on Zapier", href: "https://zapier.com/apps/copilot/integrations" },
+      { label: "Assembly on Make", href: "https://www.make.com/en/integrations/copilot" },
+    ],
+  },
+  {
+    title: "Company",
+    links: [
+      { label: "Jobs", href: `${BASE}/jobs` },
+      { label: "Brand", href: `${BASE}/brand` },
+      { label: "Pricing", href: `${BASE}/pricing` },
+      { label: "Terms", href: `${BASE}/legal/terms-of-service` },
+      { label: "Privacy", href: `${BASE}/legal/privacy-policy` },
+    ],
+  },
+  {
+    title: "Solutions",
+    links: [
+      { label: "Accounting & Bookkeeping", href: `${BASE}/solutions/accounting-client-portal` },
+      { label: "Marketing Agencies", href: `${BASE}/solutions/marketing-agency-client-portal` },
+      { label: "Startups", href: `${BASE}/solutions/startups-client-portal` },
+      { label: "Consulting Firms", href: `${BASE}/solutions/consulting-client-portal` },
+      { label: "Real Estate", href: `${BASE}/solutions/real-estate-property-management-rental-management-client-portal` },
+      { label: "Freelancers", href: `${BASE}/solutions/freelancer-client-portal` },
+      { label: "Law Firms", href: `${BASE}/solutions/law-firm-client-portal-practice-management` },
+      { label: "Designers", href: `${BASE}/solutions/designer-client-portal` },
+    ],
+  },
+  {
+    title: "Compare",
+    links: [
+      { label: "Compare All", href: `${BASE}/comparison` },
+      { label: "vs Moxo", href: `${BASE}/comparison/assembly-vs-moxo-alternative` },
+      { label: "vs Suitedash", href: `${BASE}/comparison/assembly-vs-suitedash-alternative` },
+      { label: "vs HoneyBook", href: `${BASE}/comparison/assembly-vs-honeybook-alternative` },
+      { label: "vs SmartVault", href: `${BASE}/comparison/assembly-vs-smartvault-alternative` },
+    ],
+  },
+  {
+    title: "Resources",
+    links: [
+      { label: "Blog", href: `${BASE}/blog` },
+      { label: "Guide", href: `${BASE}/guide` },
+      { label: "What's New", href: `${BASE}/updates` },
+      { label: "Find Expert", href: `${BASE}/experts` },
+      { label: "Security", href: "https://security.assembly.com" },
+      { label: "System Status", href: "https://status.assembly.com" },
+    ],
+  },
+];
+
+function LinkColumn({ title, links }) {
   return (
     <div>
-      <h3 className="text-sm font-medium" style={{ color: "#6F6F6F" }}>{title}</h3>
-      <ul className="mt-3 space-y-2.5">
+      <h3
+        style={{
+          fontSize: "0.8125rem",
+          fontWeight: 500,
+          color: "#6F6F6F",
+          fontFamily: "'PP Mori', var(--font-sans)",
+          letterSpacing: "-0.01em",
+          margin: 0,
+        }}
+      >
+        {title}
+      </h3>
+      <ul style={{ listStyle: "none", margin: "0.75rem 0 0", padding: 0 }}>
         {links.map((link) => (
-          <li key={link.label}>
+          <li key={link.label} style={{ marginTop: "0.6rem" }}>
             <a
               href={link.href}
               target="_blank"
-              rel="noopener"
-              className="text-sm transition-colors"
-              style={{ color: "rgba(255,255,255,0.85)" }}
+              rel="noopener noreferrer"
+              style={{
+                fontSize: "0.8125rem",
+                color: "rgba(255,255,255,0.85)",
+                textDecoration: "none",
+                fontFamily: "'PP Mori', var(--font-sans)",
+                fontWeight: 400,
+                transition: "color 0.15s ease",
+                letterSpacing: "-0.01em",
+              }}
               onMouseEnter={(e) => (e.currentTarget.style.color = "#6F6F6F")}
               onMouseLeave={(e) => (e.currentTarget.style.color = "rgba(255,255,255,0.85)")}
             >
@@ -112,28 +121,40 @@ function LinkColumn({ title, links, subsections }) {
           </li>
         ))}
       </ul>
+    </div>
+  );
+}
 
-      {subsections?.map((sub) => (
-        <div key={sub.title} className="mt-8">
-          <h3 className="text-sm font-medium" style={{ color: "#6F6F6F" }}>{sub.title}</h3>
-          <ul className="mt-3 space-y-2.5">
-            {sub.links.map((link) => (
-              <li key={link.label}>
-                <a
-                  href={link.href}
-                  target="_blank"
-                  rel="noopener"
-                  className="text-sm transition-colors"
-                  style={{ color: "rgba(255,255,255,0.85)" }}
-                  onMouseEnter={(e) => (e.currentTarget.style.color = "#6F6F6F")}
-                  onMouseLeave={(e) => (e.currentTarget.style.color = "rgba(255,255,255,0.85)")}
-                >
-                  {link.label}
-                </a>
-              </li>
-            ))}
-          </ul>
-        </div>
+function SocialLinks() {
+  return (
+    <div
+      style={{
+        display: "flex",
+        gap: "1.25rem",
+        flexWrap: "wrap",
+      }}
+    >
+      {SOCIAL_LINKS.map((link) => (
+        <a
+          key={link.label}
+          href={link.href}
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label={link.label}
+          style={{
+            fontSize: "0.8125rem",
+            color: "rgba(255,255,255,0.5)",
+            textDecoration: "none",
+            fontFamily: "'PP Mori', var(--font-sans)",
+            fontWeight: 400,
+            transition: "color 0.15s ease",
+            letterSpacing: "-0.01em",
+          }}
+          onMouseEnter={(e) => (e.currentTarget.style.color = "rgba(255,255,255,0.85)")}
+          onMouseLeave={(e) => (e.currentTarget.style.color = "rgba(255,255,255,0.5)")}
+        >
+          {link.label}
+        </a>
       ))}
     </div>
   );
@@ -169,34 +190,54 @@ function FooterLogo() {
 export function Footer({ className }) {
   return (
     <footer
-      className={cn("relative z-50 pt-16", className)}
+      className={cn("relative z-50", className)}
       style={{ backgroundColor: "#101010" }}
     >
-      <div className="mx-auto max-w-7xl px-6 sm:px-8">
-        <div className="grid grid-cols-2 gap-x-8 gap-y-10 sm:grid-cols-4">
-          {FOOTER_SECTIONS.row1.map((section) => (
-            <LinkColumn
-              key={section.title}
-              title={section.title}
-              links={section.links}
-              subsections={"subsections" in section ? section.subsections : undefined}
-            />
-          ))}
-        </div>
+      {/* Social links row */}
+      <div style={{ maxWidth: "80rem", margin: "0 auto", padding: "3rem 1.5rem 2rem" }}>
+        <SocialLinks />
+      </div>
 
-        <div className="mt-16 grid grid-cols-2 gap-x-8 gap-y-10 sm:grid-cols-4">
-          {FOOTER_SECTIONS.row2.map((section) => (
-            <LinkColumn
-              key={section.title}
-              title={section.title}
-              links={section.links}
-            />
+      {/* Divider */}
+      <div style={{ maxWidth: "80rem", margin: "0 auto", padding: "0 1.5rem" }}>
+        <div style={{ height: "1px", backgroundColor: "rgba(255,255,255,0.08)" }} />
+      </div>
+
+      {/* Link columns */}
+      <div style={{ maxWidth: "80rem", margin: "0 auto", padding: "2.5rem 1.5rem 0" }}>
+        <div
+          style={{
+            display: "grid",
+            gridTemplateColumns: "repeat(6, 1fr)",
+            gap: "2rem 2rem",
+          }}
+          className="footer-grid"
+        >
+          {FOOTER_COLUMNS.map((col) => (
+            <LinkColumn key={col.title} title={col.title} links={col.links} />
           ))}
-          <div />
         </div>
       </div>
 
+      {/* Large wordmark */}
       <FooterLogo />
+
+      {/* Responsive grid styles */}
+      <style>{`
+        .footer-grid {
+          grid-template-columns: repeat(6, 1fr) !important;
+        }
+        @media (max-width: 1024px) {
+          .footer-grid {
+            grid-template-columns: repeat(3, 1fr) !important;
+          }
+        }
+        @media (max-width: 640px) {
+          .footer-grid {
+            grid-template-columns: repeat(2, 1fr) !important;
+          }
+        }
+      `}</style>
     </footer>
   );
 }
