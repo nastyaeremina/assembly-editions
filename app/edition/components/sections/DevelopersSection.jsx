@@ -171,7 +171,7 @@ export function DevelopersSection() {
           title: "For developers",
           description:
             "Rebuilt custom app base, secure session tokens, and a new Tasks API with comments and attachments.",
-          learnMoreUrl: "#",
+          learnMoreUrl: "https://assembly.com/blog/introducing-assembly-2-0#for-developers",
           content: (
             <div>
               <AppBridgeCodeDemo inSplit={false} />

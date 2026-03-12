@@ -17,7 +17,7 @@ export function ProjectManagementSection() {
           suffix: "A",
           title: "Tasks now associate with clients",
           description: "Link internal team tasks to their relevant client. Selectively share tasks with clients to give them visibility into your progress and process.",
-          learnMoreUrl: "#",
+          learnMoreUrl: "https://assembly.com/blog/introducing-assembly-2-0#project-management-that-actually-fits-how-you-work",
           content: <CreateTaskDemo inSplit={false} />,
         },
         {
@@ -25,7 +25,7 @@ export function ProjectManagementSection() {
           suffix: "B",
           title: "Time-based automations",
           description: "Set automations that trigger on a schedule — send reminders, update statuses, or reassign tasks automatically based on due dates and time elapsed.",
-          learnMoreUrl: "#",
+          learnMoreUrl: "https://assembly.com/blog/introducing-assembly-2-0#time-based-automations",
           content: <TimeBasedAutomationsDemo inSplit={false} />,
         },
       ]}

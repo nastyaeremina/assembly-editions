@@ -23,7 +23,7 @@ export function ClientManagementSection() {
       theme="light"
       ctaContent={
         <a
-          href="#"
+          href="https://assembly.com/download"
           style={{
             display: "inline-flex",
             alignItems: "center",
@@ -58,7 +58,7 @@ export function ClientManagementSection() {
           suffix: "A",
           title: "Context on your clients anywhere you work",
           description: "Stay in context. You can now reference your clients' details and internal notes beyond the CRM in file channels, on notifications, during messaging and more.",
-          learnMoreUrl: "#",
+          learnMoreUrl: "https://assembly.com/blog/introducing-assembly-2-0#context-on-clients-wherever-you-are",
           content: <ContextBarDemo />,
         },
       ]}

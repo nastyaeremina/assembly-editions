@@ -18,7 +18,7 @@ export function PaymentsSection() {
           suffix: "A",
           title: "A unified Payments center",
           description: "The Billing app has been revamped into a single unified Payments tab. See outstanding payouts and total balances from your invoices, subscriptions, payment links, and store.",
-          learnMoreUrl: "#",
+          learnMoreUrl: "https://assembly.com/blog/introducing-assembly-2-0#payments-consolidated",
           content: <OnePaymentsDemo inSplit={false} />,
         },
       ]}
