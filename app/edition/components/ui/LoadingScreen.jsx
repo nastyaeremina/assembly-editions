@@ -54,6 +54,10 @@ const LINE_STYLES = LINES.map(
   0%, 100% { opacity: 0.03; transform: translate(-50%, -50%) scale(1); }
   50%      { opacity: 0.07; transform: translate(-50%, -50%) scale(1.05); }
 }
+@keyframes ls-shimmer {
+  0%   { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
 `;
 
 export function LoadingScreen() {
@@ -199,9 +203,8 @@ export function LoadingScreen() {
           }}
         />
 
-        {/* ── Text lockup with fill-up effect ── */}
+        {/* ── Text lockup with shimmer ── */}
         <div style={{ display: "flex", flexDirection: "column", alignItems: "center", position: "relative", zIndex: 2 }}>
-          {/* 2.0 with parallax — dim base layer */}
           <motion.div
             animate={isExiting
               ? { scale: 1.08, opacity: 0 }
@@ -218,8 +221,10 @@ export function LoadingScreen() {
               rotateX,
               rotateY,
               position: "relative",
+              overflow: "hidden",
             }}
           >
+            {/* Characters: fade in staggered, then smoothly brighten */}
             {CHARACTERS.map((char, i) => (
               <motion.span
                 key={i}
@@ -236,61 +241,57 @@ export function LoadingScreen() {
                   fontSize: "clamp(6rem, 20vw, 14rem)",
                   lineHeight: 1,
                   letterSpacing: "-0.04em",
-                  color: "rgba(255, 255, 255, 0.12)",
                   willChange: "transform",
                   x: charSprings[i].x,
                   y: charSprings[i].y,
                 }}
               >
-                {char}
-              </motion.span>
-            ))}
-
-            {/* Bright overlay that fills up from bottom */}
-            <motion.div
-              initial={{ clipPath: "inset(100% 0 0 0)" }}
-              animate={{ clipPath: "inset(0% 0 0 0)" }}
-              transition={{
-                duration: 2.2,
-                ease: [0.25, 0.1, 0.25, 1],
-              }}
-              aria-hidden="true"
-              style={{
-                position: "absolute",
-                inset: 0,
-                display: "flex",
-                alignItems: "baseline",
-                pointerEvents: "none",
-              }}
-            >
-              {CHARACTERS.map((char, i) => (
+                {/* Dim base → bright transition via inner span */}
                 <motion.span
-                  key={`bright-${i}`}
-                  style={{
-                    fontFamily: "'PP Mori', var(--font-sans)",
-                    fontWeight: 600,
-                    fontSize: "clamp(6rem, 20vw, 14rem)",
-                    lineHeight: 1,
-                    letterSpacing: "-0.04em",
-                    color: "rgba(255, 255, 255, 0.55)",
-                    x: charSprings[i].x,
-                    y: charSprings[i].y,
+                  initial={{ color: "rgba(255, 255, 255, 0.15)" }}
+                  animate={{ color: "rgba(255, 255, 255, 0.45)" }}
+                  transition={{
+                    delay: 0.4 + STAGGER[i],
+                    duration: 1.8,
+                    ease: [0.25, 0.1, 0.25, 1],
                   }}
                 >
                   {char}
                 </motion.span>
-              ))}
-            </motion.div>
+              </motion.span>
+            ))}
+
+            {/* Shimmer sweep — soft light that washes across the text */}
+            <div
+              aria-hidden="true"
+              style={{
+                position: "absolute",
+                inset: 0,
+                overflow: "hidden",
+                pointerEvents: "none",
+                mixBlendMode: "overlay",
+              }}
+            >
+              <div
+                style={{
+                  position: "absolute",
+                  inset: 0,
+                  background: "linear-gradient(105deg, transparent 35%, rgba(255, 255, 255, 0.12) 45%, rgba(255, 255, 255, 0.2) 50%, rgba(255, 255, 255, 0.12) 55%, transparent 65%)",
+                  animation: "ls-shimmer 2s 0.6s ease-in-out forwards",
+                }}
+              />
+            </div>
           </motion.div>
 
-          {/* ── Progress bar directly under the text ── */}
+          {/* ── Subtle progress bar under the text ── */}
           <motion.div
-            animate={isExiting ? { opacity: 0, scaleX: 0.8 } : {}}
-            transition={isExiting ? { duration: 0.3, ease: "easeIn" } : {}}
+            initial={{ opacity: 0 }}
+            animate={isExiting ? { opacity: 0, scaleX: 0.8 } : { opacity: 1 }}
+            transition={isExiting ? { duration: 0.3, ease: "easeIn" } : { delay: 0.3, duration: 0.5 }}
             style={{
               marginTop: "1.5rem",
-              width: 120,
-              height: 2,
+              width: 80,
+              height: 1.5,
               borderRadius: 1,
               backgroundColor: "rgba(255, 255, 255, 0.06)",
               overflow: "hidden",
@@ -307,7 +308,7 @@ export function LoadingScreen() {
                 width: "100%",
                 height: "100%",
                 borderRadius: 1,
-                backgroundColor: "rgba(255, 255, 255, 0.35)",
+                backgroundColor: "rgba(255, 255, 255, 0.25)",
                 transformOrigin: "left",
               }}
             />
