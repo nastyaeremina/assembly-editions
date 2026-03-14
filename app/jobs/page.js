@@ -1,3 +1,5 @@
+export const dynamic = 'force-dynamic';
+
 import { draftMode } from 'next/headers';
 import JobsPage from '../components/PageComponent/Jobs/jobsPage';
 import AggregateRating from '../components/aggregateRating';

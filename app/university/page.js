@@ -1,3 +1,5 @@
+export const dynamic = 'force-dynamic';
+
 import { draftMode } from 'next/headers';
 import Layout from '../components/layout';
 import { CURRENT_SITE_URL, UNIVERSITY_SEO_ID } from '../constants/constant';

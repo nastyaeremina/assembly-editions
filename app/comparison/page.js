@@ -1,3 +1,5 @@
+export const dynamic = 'force-dynamic';
+
 import { draftMode } from 'next/headers';
 import ComparisonPage from '../components/PageComponent/Comparison/comparisonPage';
 import { getSEOData } from '../helpers/helpers';
