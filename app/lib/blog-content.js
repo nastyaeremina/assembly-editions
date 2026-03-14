@@ -1,6 +1,8 @@
 import { api } from './ghostAPI';
 import { unstable_cache } from 'next/cache';
 
+if (!api) console.warn('Ghost API not configured — blog features disabled');
+
 export const getBlogPosts = unstable_cache(
   async ({ page = 1, limit = 8, filter = 'visibility:public' } = {}) => {
     try {

@@ -1,16 +1,17 @@
 import GhostContentAPI from '@tryghost/content-api';
 
-// Create API instance with site credentials
-export const api = new GhostContentAPI({
-  url: process.env.GHOST_API_URL,
-  // url: 'https://copilot-blog.ghost.io',
-  key: process.env.GHOST_CONTENT_API,
-  version: 'v5.0'
-});
+function createGhostClient(url, key) {
+  if (!url || !key) return null;
+  return new GhostContentAPI({ url, key, version: 'v5.0' });
+}
 
-export const ghostUpdatesAPI = new GhostContentAPI({
-  url: process.env.GHOST_UPDATE_API_URL,
-  // url: 'https://copilot-blog.ghost.io',
-  key: process.env.GHOST_UPDATE_CONTENT_API,
-  version: 'v5.0'
-});
+// Create API instance with site credentials
+export const api = createGhostClient(
+  process.env.GHOST_API_URL,
+  process.env.GHOST_CONTENT_API
+);
+
+export const ghostUpdatesAPI = createGhostClient(
+  process.env.GHOST_UPDATE_API_URL,
+  process.env.GHOST_UPDATE_CONTENT_API
+);
