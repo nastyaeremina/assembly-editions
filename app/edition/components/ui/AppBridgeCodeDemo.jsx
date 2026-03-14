@@ -5,20 +5,18 @@ import { motion, useInView } from "framer-motion";
 import { useMediaQuery } from "../../hooks/useMediaQuery";
 
 /* ──────────────────────────────────────────────────────────
-   APPBRIDGE CODE DEMO
-   Static code editor showing a realistic AppBridge setup.
-   Dark syntax-highlighted block — signals "developer section"
-   without being interactive or overwhelming.
+   CODE DEMO — real snippet from custom-app-base repo
+   (assemblycom/custom-app-base  ·  src/utils/session.ts)
    ────────────────────────────────────────────────────────── */
 
-/* ── Syntax colors — lifted dark-editor palette ── */
+/* ── Syntax colors — dark-editor palette ── */
 const S = {
   bg: "#161618",
   bgHeader: "#1c1c1f",
   border: "rgba(255, 255, 255, 0.08)",
   lineNum: "rgba(255, 255, 255, 0.25)",
   comment: "rgba(255, 255, 255, 0.38)",
-  keyword: "#d4a4f0",     // purple — import, from, const, await
+  keyword: "#d4a4f0",     // purple — import, from, const, await, export, async, function, return
   string: "#d0eda0",      // green — strings
   func: "#9bbcff",        // blue — function names
   property: "#f9a682",    // orange — property keys
@@ -38,136 +36,168 @@ const tokenColor = {
   plain: S.plain,
 };
 
-/* ── Code lines — AppBridge config snippet ── */
+/* ── Code lines — real session.ts from custom-app-base ── */
 const CODE_LINES = [
   // Line 1: import
   [
     { text: "import", type: "keyword" },
     { text: " { ", type: "punctuation" },
-    { text: "createApp", type: "func" },
+    { text: "assemblyApi", type: "func" },
     { text: " } ", type: "punctuation" },
     { text: "from", type: "keyword" },
-    { text: " '@assembly/app-bridge'", type: "string" },
+    { text: " '@assembly-js/node-sdk'", type: "string" },
   ],
   // Line 2: empty
   [],
-  // Line 3: const app
+  // Line 3: export async function
   [
+    { text: "export", type: "keyword" },
+    { text: " ", type: "plain" },
+    { text: "async", type: "keyword" },
+    { text: " ", type: "plain" },
+    { text: "function", type: "keyword" },
+    { text: " ", type: "plain" },
+    { text: "getSession", type: "func" },
+    { text: "(", type: "punctuation" },
+    { text: "searchParams", type: "variable" },
+    { text: ": ", type: "punctuation" },
+    { text: "SearchParams", type: "variable" },
+    { text: ") {", type: "punctuation" },
+  ],
+  // Line 4: const assembly
+  [
+    { text: "  ", type: "plain" },
     { text: "const", type: "keyword" },
-    { text: " app ", type: "variable" },
-    { text: "= ", type: "punctuation" },
-    { text: "createApp", type: "func" },
+    { text: " ", type: "plain" },
+    { text: "assembly", type: "variable" },
+    { text: " = ", type: "punctuation" },
+    { text: "assemblyApi", type: "func" },
     { text: "({", type: "punctuation" },
   ],
-  // Line 4: title
+  // Line 5: apiKey
   [
-    { text: "  title", type: "property" },
+    { text: "    ", type: "plain" },
+    { text: "apiKey", type: "property" },
     { text: ": ", type: "punctuation" },
-    { text: "'My Custom App'", type: "string" },
+    { text: "process", type: "variable" },
+    { text: ".", type: "punctuation" },
+    { text: "env", type: "property" },
+    { text: ".", type: "punctuation" },
+    { text: "ASSEMBLY_API_KEY", type: "property" },
     { text: ",", type: "punctuation" },
   ],
-  // Line 5: empty
-  [],
-  // Line 6: comment
+  // Line 6: token
   [
-    { text: "  // Header controls & navigation", type: "comment" },
-  ],
-  // Line 7: breadcrumbs
-  [
-    { text: "  breadcrumbs", type: "property" },
-    { text: ": [", type: "punctuation" },
-    { text: "{ ", type: "punctuation" },
-    { text: "label", type: "property" },
+    { text: "    ", type: "plain" },
+    { text: "token", type: "property" },
     { text: ": ", type: "punctuation" },
-    { text: "'Dashboard'", type: "string" },
-    { text: ", ", type: "punctuation" },
-    { text: "path", type: "property" },
-    { text: ": ", type: "punctuation" },
-    { text: "'/'", type: "string" },
-    { text: " }],", type: "punctuation" },
+    { text: "searchParams", type: "variable" },
+    { text: ".", type: "punctuation" },
+    { text: "token", type: "property" },
+    { text: ",", type: "punctuation" },
   ],
-  // Line 8: actions
+  // Line 7: close assemblyApi
   [
-    { text: "  actions", type: "property" },
-    { text: ": [", type: "punctuation" },
-    { text: "{ ", type: "punctuation" },
-    { text: "label", type: "property" },
-    { text: ": ", type: "punctuation" },
-    { text: "'Settings'", type: "string" },
-    { text: ", ", type: "punctuation" },
-    { text: "icon", type: "property" },
-    { text: ": ", type: "punctuation" },
-    { text: "'gear'", type: "string" },
-    { text: " }],", type: "punctuation" },
-  ],
-  // Line 9: empty
-  [],
-  // Line 10: comment
-  [
-    { text: "  // Session token auto-refreshes every 5 min", type: "comment" },
-  ],
-  // Line 11: auth
-  [
-    { text: "  auth", type: "property" },
-    { text: ": { ", type: "punctuation" },
-    { text: "autoRefresh", type: "property" },
-    { text: ": ", type: "punctuation" },
-    { text: "true", type: "keyword" },
-    { text: " },", type: "punctuation" },
-  ],
-  // Line 12: closing
-  [
+    { text: "  ", type: "plain" },
     { text: "})", type: "punctuation" },
+  ],
+  // Line 8: empty
+  [],
+  // Line 9: const workspace
+  [
+    { text: "  ", type: "plain" },
+    { text: "const", type: "keyword" },
+    { text: " ", type: "plain" },
+    { text: "workspace", type: "variable" },
+    { text: " = ", type: "punctuation" },
+    { text: "await", type: "keyword" },
+    { text: " ", type: "plain" },
+    { text: "assembly", type: "variable" },
+    { text: ".", type: "punctuation" },
+    { text: "retrieveWorkspace", type: "func" },
+    { text: "()", type: "punctuation" },
+  ],
+  // Line 10: const payload
+  [
+    { text: "  ", type: "plain" },
+    { text: "const", type: "keyword" },
+    { text: " ", type: "plain" },
+    { text: "payload", type: "variable" },
+    { text: " = ", type: "punctuation" },
+    { text: "await", type: "keyword" },
+    { text: " ", type: "plain" },
+    { text: "assembly", type: "variable" },
+    { text: ".", type: "punctuation" },
+    { text: "getTokenPayload", type: "func" },
+    { text: "?.()", type: "punctuation" },
+  ],
+  // Line 11: empty
+  [],
+  // Line 12: return
+  [
+    { text: "  ", type: "plain" },
+    { text: "return", type: "keyword" },
+    { text: " {", type: "punctuation" },
   ],
   // Line 13: empty
   [],
-  // Line 14: comment
+  // Line 14: workspace
   [
-    { text: "// Listen for task comments via webhook", type: "comment" },
+    { text: "    ", type: "plain" },
+    { text: "workspace", type: "variable" },
+    { text: ",", type: "punctuation" },
   ],
-  // Line 15: app.on
+  // Line 15: client: payload?.clientId
   [
-    { text: "app", type: "variable" },
-    { text: ".", type: "punctuation" },
-    { text: "on", type: "func" },
-    { text: "(", type: "punctuation" },
-    { text: "'comment.created'", type: "string" },
-    { text: ", ", type: "punctuation" },
-    { text: "(", type: "punctuation" },
-    { text: "event", type: "variable" },
-    { text: ") ", type: "punctuation" },
-    { text: "=>", type: "keyword" },
-    { text: " {", type: "punctuation" },
+    { text: "    ", type: "plain" },
+    { text: "client", type: "property" },
+    { text: ": ", type: "punctuation" },
+    { text: "payload", type: "variable" },
+    { text: "?.", type: "punctuation" },
+    { text: "clientId", type: "property" },
   ],
-  // Line 16: console.log
+  // Line 15: ? await assembly.retrieveClient(...)
   [
-    { text: "  console", type: "variable" },
+    { text: "      ? ", type: "punctuation" },
+    { text: "await", type: "keyword" },
+    { text: " ", type: "plain" },
+    { text: "assembly", type: "variable" },
     { text: ".", type: "punctuation" },
-    { text: "log", type: "func" },
-    { text: "(", type: "punctuation" },
-    { text: "event", type: "variable" },
+    { text: "retrieveClient", type: "func" },
+    { text: "({ ", type: "punctuation" },
+    { text: "id", type: "property" },
+    { text: ": ", type: "punctuation" },
+    { text: "payload", type: "variable" },
     { text: ".", type: "punctuation" },
-    { text: "taskId", type: "property" },
-    { text: ", ", type: "punctuation" },
-    { text: "event", type: "variable" },
-    { text: ".", type: "punctuation" },
-    { text: "parentCommentId", type: "property" },
-    { text: ")", type: "punctuation" },
+    { text: "clientId", type: "property" },
+    { text: " })", type: "punctuation" },
   ],
-  // Line 17: closing
+  // Line 16: : undefined,
   [
-    { text: "})", type: "punctuation" },
+    { text: "      : ", type: "punctuation" },
+    { text: "undefined", type: "keyword" },
+    { text: ",", type: "punctuation" },
+  ],
+  // Line 17: close return
+  [
+    { text: "  ", type: "plain" },
+    { text: "}", type: "punctuation" },
+  ],
+  // Line 18: close function
+  [
+    { text: "}", type: "punctuation" },
   ],
 ];
 
 /* ── The line number where the blinking cursor sits (1-indexed) ── */
-const CURSOR_LINE = 13;
+const CURSOR_LINE = 11;
 const MOBILE_CURSOR_LINE = 2;
 
 /* ── Single code line ── */
-function CodeLine({ tokens, lineNum, delay, isInView, hasCursor }) {
+function CodeLine({ tokens, lineNum, delay, isInView, hasCursor, isCompact }) {
   return (
     <motion.div
+      className="code-line"
       initial={{ opacity: 0 }}
       animate={isInView ? { opacity: 1 } : {}}
       transition={{ duration: 0.3, delay, ease: "easeOut" }}
@@ -180,6 +210,7 @@ function CodeLine({ tokens, lineNum, delay, isInView, hasCursor }) {
         lineHeight: "22px",
         whiteSpace: "pre",
         position: "relative",
+        paddingRight: "16px",
         ...(hasCursor ? { backgroundColor: "rgba(255, 255, 255, 0.03)" } : {}),
       }}
     >
@@ -199,6 +230,7 @@ function CodeLine({ tokens, lineNum, delay, isInView, hasCursor }) {
 
       {/* Line number */}
       <span
+        className="code-line-num"
         style={{
           display: "inline-block",
           width: "32px",
@@ -242,8 +274,109 @@ function CodeLine({ tokens, lineNum, delay, isInView, hasCursor }) {
 /* ── Plain text of the code (for clipboard) ── */
 const CODE_TEXT = CODE_LINES.map((tokens) => tokens.map((t) => t.text).join("")).join("\n");
 
-/* ── Number of lines to show on mobile (just the createApp config) ── */
-const MOBILE_LINE_COUNT = 12;
+/* ── Mobile code lines — shorter to fit small screens ── */
+const MOBILE_CODE_LINES = [
+  // Line 1: import (shortened)
+  [
+    { text: "import", type: "keyword" },
+    { text: " { ", type: "punctuation" },
+    { text: "assemblyApi", type: "func" },
+    { text: " }", type: "punctuation" },
+  ],
+  // Line 2: from
+  [
+    { text: "  ", type: "plain" },
+    { text: "from", type: "keyword" },
+    { text: " '@assembly-js/node-sdk'", type: "string" },
+  ],
+  // Line 3: empty
+  [],
+  // Line 4: export async function
+  [
+    { text: "export", type: "keyword" },
+    { text: " ", type: "plain" },
+    { text: "async", type: "keyword" },
+    { text: " ", type: "plain" },
+    { text: "function", type: "keyword" },
+    { text: " ", type: "plain" },
+    { text: "getSession", type: "func" },
+    { text: "() {", type: "punctuation" },
+  ],
+  // Line 5: const assembly
+  [
+    { text: "  ", type: "plain" },
+    { text: "const", type: "keyword" },
+    { text: " ", type: "plain" },
+    { text: "assembly", type: "variable" },
+    { text: " = ", type: "punctuation" },
+    { text: "assemblyApi", type: "func" },
+    { text: "({", type: "punctuation" },
+  ],
+  // Line 6: apiKey
+  [
+    { text: "    ", type: "plain" },
+    { text: "apiKey", type: "property" },
+    { text: ": ", type: "punctuation" },
+    { text: "process", type: "variable" },
+    { text: ".", type: "punctuation" },
+    { text: "env", type: "property" },
+    { text: ".", type: "punctuation" },
+    { text: "API_KEY", type: "property" },
+    { text: ",", type: "punctuation" },
+  ],
+  // Line 7: token
+  [
+    { text: "    ", type: "plain" },
+    { text: "token", type: "property" },
+    { text: ": ", type: "punctuation" },
+    { text: "params", type: "variable" },
+    { text: ".", type: "punctuation" },
+    { text: "token", type: "property" },
+    { text: ",", type: "punctuation" },
+  ],
+  // Line 8: close assemblyApi
+  [
+    { text: "  ", type: "plain" },
+    { text: "})", type: "punctuation" },
+  ],
+  // Line 9: empty
+  [],
+  // Line 10: const workspace
+  [
+    { text: "  ", type: "plain" },
+    { text: "const", type: "keyword" },
+    { text: " ", type: "plain" },
+    { text: "ws", type: "variable" },
+    { text: " = ", type: "punctuation" },
+    { text: "await", type: "keyword" },
+    { text: " ", type: "plain" },
+    { text: "assembly", type: "variable" },
+  ],
+  // Line 11: .retrieveWorkspace()
+  [
+    { text: "    ", type: "plain" },
+    { text: ".", type: "punctuation" },
+    { text: "retrieveWorkspace", type: "func" },
+    { text: "()", type: "punctuation" },
+  ],
+  // Line 12: empty
+  [],
+  // Line 13: return
+  [
+    { text: "  ", type: "plain" },
+    { text: "return", type: "keyword" },
+    { text: " { ", type: "punctuation" },
+    { text: "ws", type: "variable" },
+    { text: " }", type: "punctuation" },
+  ],
+  // Line 14: close function
+  [
+    { text: "}", type: "punctuation" },
+  ],
+];
+
+/* ── Number of lines to show on mobile ── */
+const MOBILE_LINE_COUNT = MOBILE_CODE_LINES.length;
 
 export function AppBridgeCodeDemo({ inSplit = false }) {
   const ref = useRef(null);
@@ -259,9 +392,8 @@ export function AppBridgeCodeDemo({ inSplit = false }) {
     } catch { /* clipboard blocked — silently ignore */ }
   }, []);
 
-  /* Each code line is 22px tall; top padding is 16px.
-     Mobile clips after MOBILE_LINE_COUNT lines (no bottom padding). */
-  const mobileMaxH = MOBILE_LINE_COUNT * 22 + 16;
+  /* Desktop: 22px per line + 32px padding. Mobile: 18px per line (compact) + 36px padding. */
+  const mobileMaxH = MOBILE_LINE_COUNT * 18 + 36;
   const desktopMaxH = CODE_LINES.length * 22 + 32;
 
   return (
@@ -319,7 +451,7 @@ export function AppBridgeCodeDemo({ inSplit = false }) {
             pointerEvents: "none",
           }}
         >
-          app.config.ts
+          session.ts
         </div>
 
         {/* Copy button */}
@@ -356,11 +488,36 @@ export function AppBridgeCodeDemo({ inSplit = false }) {
       </div>
 
       {/* ── Code content ── */}
+      <style>{`
+        @media (max-width: 767px) {
+          .code-demo-content {
+            padding: 12px 0 16px 4px !important;
+          }
+          .code-demo-content .code-line {
+            font-size: 10px !important;
+            height: 18px !important;
+            line-height: 18px !important;
+          }
+          .code-demo-content .code-line-num {
+            width: 22px !important;
+            padding-right: 8px !important;
+            font-size: 9px !important;
+          }
+          .code-demo-desktop { display: none !important; }
+          .code-demo-mobile-lines { display: block !important; }
+        }
+        @media (min-width: 768px) {
+          .code-demo-mobile-lines { display: none !important; }
+          .code-demo-desktop { display: block !important; }
+        }
+      `}</style>
+      {/* Desktop code lines */}
       <div
+        className="code-demo-content code-demo-desktop"
         style={{
           padding: "16px 0 16px 12px",
           overflow: "hidden",
-          maxHeight: isDesktop ? `${desktopMaxH}px` : `${mobileMaxH}px`,
+          maxHeight: `${desktopMaxH}px`,
           transition: "max-height 0.35s ease",
         }}
       >
@@ -371,7 +528,31 @@ export function AppBridgeCodeDemo({ inSplit = false }) {
             lineNum={i + 1}
             delay={0.3 + i * 0.04}
             isInView={isInView}
-            hasCursor={isDesktop ? i + 1 === CURSOR_LINE : i + 1 === MOBILE_CURSOR_LINE}
+            hasCursor={i + 1 === CURSOR_LINE}
+            isCompact={false}
+          />
+        ))}
+      </div>
+      {/* Mobile code lines — shorter to fit screen */}
+      <div
+        className="code-demo-content code-demo-mobile-lines"
+        style={{
+          padding: "12px 0 16px 4px",
+          overflow: "hidden",
+          maxHeight: `${mobileMaxH}px`,
+          transition: "max-height 0.35s ease",
+          display: "none",
+        }}
+      >
+        {MOBILE_CODE_LINES.map((tokens, i) => (
+          <CodeLine
+            key={i}
+            tokens={tokens}
+            lineNum={i + 1}
+            delay={0.3 + i * 0.04}
+            isInView={isInView}
+            hasCursor={i + 1 === MOBILE_CURSOR_LINE}
+            isCompact={true}
           />
         ))}
       </div>

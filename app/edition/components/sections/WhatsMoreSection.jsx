@@ -48,7 +48,7 @@ export function WhatsMoreSection() {
               style={{
                 fontFamily: "'PP Mori', var(--font-sans)",
                 fontWeight: 600,
-                fontSize: "clamp(1.5rem, 3vw, 2.2rem)",
+                fontSize: "clamp(1.5rem, 2.5vw, 1.9rem)",
                 lineHeight: 1.2,
                 letterSpacing: "-0.02em",
                 color: "var(--swatch-1)",

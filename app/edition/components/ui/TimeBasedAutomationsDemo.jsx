@@ -3,6 +3,7 @@
 import { useState, useEffect, useRef, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useMediaQuery } from "../../hooks/useMediaQuery";
+import { useIdleHint } from "../../hooks/useIdleHint";
 
 /* ──────────────────────────────────────────────────────────
    TIME-BASED AUTOMATIONS DEMO
@@ -121,6 +122,11 @@ export function TimeBasedAutomationsDemo({ inSplit = false }) {
   const [showTimePicker, setShowTimePicker] = useState(false);
   const [showUnitPicker, setShowUnitPicker] = useState(false);
   const [activateFlash, setActivateFlash] = useState(false);
+  const [showDateTooltip, setShowDateTooltip] = useState(false);
+  const [hasInteracted, setHasInteracted] = useState(false);
+  const { containerRef: idleRef, isIdle: dateIdleActive, dismiss: dismissIdle } = useIdleHint({ delay: 2500 });
+
+  const interact = useCallback(() => { setHasInteracted(true); dismissIdle(); }, [dismissIdle]);
 
   const hasChanged = dDate !== INIT.date || dTime !== INIT.time || dRepeatOn !== INIT.repeatOn || dRepeatNum !== INIT.repeatNum || dUnit !== INIT.unit;
 
@@ -205,6 +211,8 @@ export function TimeBasedAutomationsDemo({ inSplit = false }) {
   /* ── Mobile: just the config panel with auto-play ── */
   if (!isDesktop) {
     return (
+      <>
+
       <motion.div
         className="interactive-hint"
         initial={{ opacity: 0, scale: 0.97 }}
@@ -213,6 +221,7 @@ export function TimeBasedAutomationsDemo({ inSplit = false }) {
         transition={{ duration: 0.6, ease: [0.25, 0.1, 0.25, 1] }}
         style={{
           width: "100%",
+          maxWidth: "min(100%, 520px)",
           borderRadius: "10px",
           border: `1px solid ${C.border}`,
           backgroundColor: C.cardBg,
@@ -350,11 +359,11 @@ export function TimeBasedAutomationsDemo({ inSplit = false }) {
               <span key={mRepeatNum} style={{ transition: "opacity 0.3s ease" }}>
                 {mRepeatNum}
               </span>
-              <div style={{ display: "flex", flexDirection: "column", gap: "0px", cursor: "pointer" }}>
-                <div onClick={() => { stopMobileAuto(); setMRepeatNum((n) => Math.min(n + 1, 12)); }} style={{ padding: "0 2px", lineHeight: 0 }}>
+              <div style={{ display: "flex", flexDirection: "column", gap: "0px" }}>
+                <div onClick={() => { stopMobileAuto(); setMRepeatNum((n) => Math.min(n + 1, 12)); }} style={{ padding: "6px 6px 3px", margin: "-6px -4px -3px 0", cursor: "pointer", lineHeight: 0 }}>
                   <svg width="10" height="7" viewBox="0 0 8 6" fill="none"><path d="M3.65 0.35C3.85 0.15 4.15 0.15 4.35 0.35L7.05 3.05C7.25 3.25 7.25 3.55 7.05 3.75C6.85 3.95 6.55 3.95 6.35 3.75L4 1.4L1.65 3.75C1.45 3.95 1.15 3.95 0.95 3.75C0.75 3.55 0.75 3.25 0.95 3.05L3.65 0.35Z" fill="#212B36" fillOpacity="0.5" /></svg>
                 </div>
-                <div onClick={() => { stopMobileAuto(); setMRepeatNum((n) => Math.max(n - 1, 1)); }} style={{ padding: "0 2px", lineHeight: 0 }}>
+                <div onClick={() => { stopMobileAuto(); setMRepeatNum((n) => Math.max(n - 1, 1)); }} style={{ padding: "3px 6px 6px", margin: "-3px -4px -6px 0", cursor: "pointer", lineHeight: 0 }}>
                   <svg width="10" height="7" viewBox="0 0 8 6" fill="none"><path d="M4.35 5.65C4.15 5.85 3.85 5.85 3.65 5.65L0.95 2.95C0.75 2.75 0.75 2.45 0.95 2.25C1.15 2.05 1.45 2.05 1.65 2.25L4 4.6L6.35 2.25C6.55 2.05 6.85 2.05 7.05 2.25C7.25 2.45 7.25 2.75 7.05 2.95L4.35 5.65Z" fill="#212B36" fillOpacity="0.5" /></svg>
                 </div>
               </div>
@@ -387,11 +396,13 @@ export function TimeBasedAutomationsDemo({ inSplit = false }) {
           </div>
         </div>
       </motion.div>
+      </>
     );
   }
 
   /* ── Desktop: full app view (static, no interactions) ── */
   return (
+    <div ref={idleRef}>
     <motion.div
       className="interactive-hint"
       initial={{ opacity: 0, scale: 0.97 }}
@@ -401,7 +412,7 @@ export function TimeBasedAutomationsDemo({ inSplit = false }) {
       style={{
         width: "100%",
         borderRadius: "10px",
-        border: "1px solid rgba(255, 255, 255, 0.06)",
+        border: "1px solid rgba(255, 255, 255, 0.13)",
         boxShadow: "0 8px 30px rgba(0,0,0,0.08), 0 1px 3px rgba(0,0,0,0.06)",
         fontFamily: "'Inter', system-ui, sans-serif",
         overflow: "hidden",
@@ -411,7 +422,7 @@ export function TimeBasedAutomationsDemo({ inSplit = false }) {
       <div style={{
         position: "relative", display: "flex", alignItems: "center",
         backgroundColor: "#141414", padding: "12px 16px",
-        borderBottom: "1px solid rgba(255, 255, 255, 0.06)",
+        borderBottom: "1px solid rgba(255, 255, 255, 0.1)",
       }}>
         <div style={{ display: "flex", gap: "7px", position: "relative", zIndex: 1 }}>
           {["#ff5f57", "#febc2e", "#28c840"].map((color) => (
@@ -475,7 +486,7 @@ export function TimeBasedAutomationsDemo({ inSplit = false }) {
             backgroundRepeat: "repeat",
             backgroundSize: "auto",
           }}>
-            {/* Scheduled time card */}
+            {/* Scheduled time card — selected state */}
             <div style={{
               width: "100%", maxWidth: "380px",
               border: `1.5px solid ${C.border}`,
@@ -483,6 +494,7 @@ export function TimeBasedAutomationsDemo({ inSplit = false }) {
               backgroundColor: C.cardBg,
               padding: "14px 16px",
               display: "flex", flexDirection: "column", gap: "3px",
+              boxShadow: "0 0 0 3px rgba(0, 0, 0, 0.03)",
             }}>
               <div style={{ display: "flex", alignItems: "center", gap: "7px" }}>
                 {/* Clock icon */}
@@ -567,19 +579,89 @@ export function TimeBasedAutomationsDemo({ inSplit = false }) {
               {/* Start date — clickable dropdown */}
               <div style={{ flex: 1, position: "relative" }}>
                 <div style={{ fontSize: "10px", fontWeight: 500, color: C.text, marginBottom: "5px" }}>Start date</div>
-                <div
-                  onClick={() => { setShowDatePicker(!showDatePicker); setShowTimePicker(false); setShowUnitPicker(false); }}
-                  style={{
-                    display: "flex", alignItems: "center", justifyContent: "space-between",
-                    padding: "7px 10px", borderRadius: "6px",
-                    border: `1px solid ${showDatePicker ? C.text : C.border}`,
-                    fontSize: "11px", color: C.text, cursor: "pointer",
-                    transition: "border-color 150ms ease",
-                  }}
-                >
-                  <span>{dDate}</span>
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img src={ICO.calendar} alt="" width={11} height={12} style={{ display: "block", opacity: 0.45 }} />
+                <div style={{ position: "relative", display: "inline-block", width: "100%" }}>
+                  <motion.div
+                    onClick={() => { setShowDatePicker(!showDatePicker); setShowTimePicker(false); setShowUnitPicker(false); setShowDateTooltip(false); interact(); }}
+                    onMouseEnter={() => { if (!showDatePicker) setShowDateTooltip(true); }}
+                    onMouseLeave={() => setShowDateTooltip(false)}
+                    animate={dateIdleActive && !hasInteracted ? {
+                      boxShadow: [
+                        "0 0 0 0px rgba(0,0,0,0)",
+                        "0 0 0 3px rgba(0,0,0,0.05)",
+                        "0 0 0 0px rgba(0,0,0,0)",
+                      ],
+                    } : { boxShadow: "0 0 0 0px rgba(0,0,0,0)" }}
+                    transition={dateIdleActive && !hasInteracted ? {
+                      duration: 3,
+                      repeat: Infinity,
+                      ease: "easeInOut",
+                    } : { duration: 0.2 }}
+                    style={{
+                      display: "flex", alignItems: "center", justifyContent: "space-between",
+                      padding: "7px 10px", borderRadius: "6px",
+                      border: `1px solid ${showDatePicker ? C.text : C.border}`,
+                      fontSize: "11px", color: C.text, cursor: "pointer",
+                      transition: "border-color 150ms ease",
+                    }}
+                  >
+                    <span>{dDate}</span>
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img src={ICO.calendar} alt="" width={11} height={12} style={{ display: "block", opacity: 0.45 }} />
+                  </motion.div>
+                  {/* Tooltip */}
+                  <AnimatePresence>
+                    {showDateTooltip && !showDatePicker && (
+                      <motion.div
+                        initial={{ opacity: 0, y: 4 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: 4 }}
+                        transition={{ duration: 0.15, ease: "easeOut" }}
+                        style={{
+                          position: "absolute",
+                          bottom: "calc(100% + 8px)",
+                          left: "50%",
+                          transform: "translateX(-50%)",
+                          zIndex: 50,
+                          pointerEvents: "none",
+                        }}
+                      >
+                        <div style={{
+                          position: "relative",
+                          display: "inline-flex",
+                          alignItems: "center",
+                          padding: "4px 8px",
+                          borderRadius: "6px",
+                          backgroundColor: "rgba(39, 39, 42, 0.95)",
+                          backdropFilter: "blur(8px)",
+                          WebkitBackdropFilter: "blur(8px)",
+                          border: "1px solid rgba(63, 63, 70, 0.5)",
+                          boxShadow: "0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -2px rgba(0,0,0,0.1)",
+                          whiteSpace: "nowrap",
+                        }}>
+                          <span style={{
+                            fontFamily: "'Inter', system-ui, sans-serif",
+                            fontSize: "10px",
+                            fontWeight: 400,
+                            color: "#ffffff",
+                          }}>
+                            Click to change
+                          </span>
+                          <div style={{
+                            position: "absolute",
+                            bottom: "-4px",
+                            left: "50%",
+                            marginLeft: "-4px",
+                            width: "8px",
+                            height: "8px",
+                            backgroundColor: "rgba(39, 39, 42, 0.95)",
+                            transform: "rotate(45deg)",
+                            borderRight: "1px solid rgba(63, 63, 70, 0.5)",
+                            borderBottom: "1px solid rgba(63, 63, 70, 0.5)",
+                          }} />
+                        </div>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
                 </div>
                 {showDatePicker && (
                   <MiniDropdown
@@ -595,7 +677,7 @@ export function TimeBasedAutomationsDemo({ inSplit = false }) {
               <div style={{ width: "80px", flexShrink: 0, position: "relative" }}>
                 <div style={{ fontSize: "10px", fontWeight: 500, color: C.text, marginBottom: "5px" }}>Start time</div>
                 <div
-                  onClick={() => { setShowTimePicker(!showTimePicker); setShowDatePicker(false); setShowUnitPicker(false); }}
+                  onClick={() => { setShowTimePicker(!showTimePicker); setShowDatePicker(false); setShowUnitPicker(false); interact(); }}
                   style={{
                     padding: "7px 10px", borderRadius: "6px",
                     border: `1px solid ${showTimePicker ? C.text : C.border}`,
@@ -639,7 +721,7 @@ export function TimeBasedAutomationsDemo({ inSplit = false }) {
               marginBottom: "8px",
             }}>
               <div
-                onClick={() => setDRepeatOn(!dRepeatOn)}
+                onClick={() => { setDRepeatOn(!dRepeatOn); interact(); }}
                 style={{
                   width: "32px", height: "18px", borderRadius: "9px",
                   backgroundColor: dRepeatOn ? C.text : "#d1d5db",
@@ -686,11 +768,11 @@ export function TimeBasedAutomationsDemo({ inSplit = false }) {
                   width: "60px",
                 }}>
                   <span>{dRepeatNum}</span>
-                  <div style={{ display: "flex", flexDirection: "column", gap: "0px", cursor: "pointer" }}>
-                    <div onClick={() => setDRepeatNum((n) => Math.min(n + 1, 12))} style={{ padding: "0 2px", lineHeight: 0 }}>
+                  <div style={{ display: "flex", flexDirection: "column", gap: "0px" }}>
+                    <div onClick={() => { setDRepeatNum((n) => Math.min(n + 1, 12)); interact(); }} style={{ padding: "6px 6px 3px", margin: "-6px -4px -3px 0", cursor: "pointer", lineHeight: 0 }}>
                       <svg width="8" height="6" viewBox="0 0 8 6" fill="none"><path d="M3.65 0.35C3.85 0.15 4.15 0.15 4.35 0.35L7.05 3.05C7.25 3.25 7.25 3.55 7.05 3.75C6.85 3.95 6.55 3.95 6.35 3.75L4 1.4L1.65 3.75C1.45 3.95 1.15 3.95 0.95 3.75C0.75 3.55 0.75 3.25 0.95 3.05L3.65 0.35Z" fill="#212B36" fillOpacity="0.5" /></svg>
                     </div>
-                    <div onClick={() => setDRepeatNum((n) => Math.max(n - 1, 1))} style={{ padding: "0 2px", lineHeight: 0 }}>
+                    <div onClick={() => { setDRepeatNum((n) => Math.max(n - 1, 1)); interact(); }} style={{ padding: "3px 6px 6px", margin: "-3px -4px -6px 0", cursor: "pointer", lineHeight: 0 }}>
                       <svg width="8" height="6" viewBox="0 0 8 6" fill="none"><path d="M4.35 5.65C4.15 5.85 3.85 5.85 3.65 5.65L0.95 2.95C0.75 2.75 0.75 2.45 0.95 2.25C1.15 2.05 1.45 2.05 1.65 2.25L4 4.6L6.35 2.25C6.55 2.05 6.85 2.05 7.05 2.25C7.25 2.45 7.25 2.75 7.05 2.95L4.35 5.65Z" fill="#212B36" fillOpacity="0.5" /></svg>
                     </div>
                   </div>
@@ -699,7 +781,7 @@ export function TimeBasedAutomationsDemo({ inSplit = false }) {
                 {/* Unit dropdown — clickable */}
                 <div style={{ flex: 1, position: "relative" }}>
                   <div
-                    onClick={() => { setShowUnitPicker(!showUnitPicker); setShowDatePicker(false); setShowTimePicker(false); }}
+                    onClick={() => { setShowUnitPicker(!showUnitPicker); setShowDatePicker(false); setShowTimePicker(false); interact(); }}
                     style={{
                       display: "flex", alignItems: "center", justifyContent: "space-between",
                       padding: "7px 10px", borderRadius: "6px",
@@ -728,5 +810,6 @@ export function TimeBasedAutomationsDemo({ inSplit = false }) {
       </div>
       </div>{/* close app layout */}
     </motion.div>
+    </div>
   );
 }

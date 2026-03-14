@@ -124,7 +124,7 @@ function DateSeparator({ label }) {
 }
 
 /* ── Custom field row ── */
-function FieldRow({ label, iconSrc, placeholder, fontSize = "11px", value }) {
+function FieldRow({ label, iconSrc, placeholder, fontSize = "11px", value, iconSize = 14 }) {
   return (
     <div style={{ display: "flex", alignItems: "center", padding: "6px 0", fontSize }}>
       <span style={{ width: "70px", color: C.textSec, flexShrink: 0 }}>{label}</span>
@@ -134,7 +134,7 @@ function FieldRow({ label, iconSrc, placeholder, fontSize = "11px", value }) {
         <div style={{ display: "flex", alignItems: "center", gap: "6px", color: C.textMuted }}>
           {iconSrc && (
             // eslint-disable-next-line @next/next/no-img-element
-            <img src={iconSrc} alt="" width={14} height={14} draggable={false} style={{ opacity: 0.5, flexShrink: 0 }} />
+            <img src={iconSrc} alt="" width={iconSize} height={iconSize} draggable={false} style={{ opacity: 0.5, flexShrink: 0 }} />
           )}
           <span>{placeholder}</span>
         </div>
@@ -244,7 +244,7 @@ export function ContextBarDemo({ inSplit = false }) {
 
   const handleAvatarClick = useCallback(() => {
     stopAutoCycle();
-    setSidebarOpen((prev) => !prev);
+    setSidebarOpen(true);
     setShowTooltip(false);
     tooltipDismissed.current = true;
   }, [stopAutoCycle]);
@@ -274,13 +274,13 @@ export function ContextBarDemo({ inSplit = false }) {
     async function loop() {
       while (!cancelled) {
         setActivePanel("person");
-        await wait(2200);
+        await wait(3000);
         if (cancelled) break;
         setActivePanel("document");
-        await wait(2200);
+        await wait(3000);
         if (cancelled) break;
         setActivePanel("chat");
-        await wait(2200);
+        await wait(3000);
         if (cancelled) break;
       }
     }
@@ -312,9 +312,10 @@ export function ContextBarDemo({ inSplit = false }) {
   /* ─────────────────────── MOBILE VIEW ─────────────────────── */
   if (!isDesktop) {
     return (
-      <motion.div
+      <>
+        <motion.div
         ref={containerRef}
-        className="interactive-hint"
+        className="interactive-hint--light"
         initial={{ opacity: 0, scale: 0.97 }}
         whileInView={{ opacity: 1, scale: 1 }}
         viewport={{ once: true, margin: "-40px" }}
@@ -347,7 +348,7 @@ export function ContextBarDemo({ inSplit = false }) {
           </div>
         </div>
 
-        {/* ── Segmented tab bar ── */}
+        {/* ── Segmented tab bar — sliding highlight ── */}
         <div
           style={{
             display: "flex",
@@ -373,16 +374,29 @@ export function ContextBarDemo({ inSplit = false }) {
                   padding: "6px 6px",
                   cursor: "pointer",
                   borderRadius: "6px",
-                  backgroundColor: isActive ? "#f4f5f7" : "transparent",
-                  transition: "background-color 0.25s ease",
+                  position: "relative",
                 }}
               >
+                {isActive && (
+                  <motion.div
+                    layoutId="mobile-tab-highlight"
+                    transition={{ type: "spring", stiffness: 400, damping: 30 }}
+                    style={{
+                      position: "absolute",
+                      inset: 0,
+                      backgroundColor: "#edeef1",
+                      borderRadius: "6px",
+                    }}
+                  />
+                )}
                 <span
                   style={{
                     fontSize: "12px",
-                    fontWeight: isActive ? 500 : 400,
+                    fontWeight: 500,
                     color: isActive ? C.text : C.textMuted,
-                    transition: "color 0.25s ease, font-weight 0.25s ease",
+                    position: "relative",
+                    zIndex: 1,
+                    transition: "color 0.25s ease",
                   }}
                 >
                   {PANEL_LABELS[key]}
@@ -392,96 +406,79 @@ export function ContextBarDemo({ inSplit = false }) {
           })}
         </div>
 
-        {/* ── Panel content with cross-fade ── */}
-        <div style={{ padding: "14px 16px 16px", position: "relative", height: "220px", overflow: "hidden" }}>
-          <AnimatePresence mode="wait">
-            {/* Person / Client Details panel */}
-            {activePanel === "person" && (
-              <motion.div
-                key="person"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-                transition={{ duration: 0.3 }}
+        {/* ── Panel content — fade-in only (no exit anim = no blink) ── */}
+        <div style={{ padding: "14px 16px 16px", minHeight: "220px", overflow: "hidden" }}>
+          {activePanel === "person" && (
+          <motion.div key="mob-person" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.35, ease: "easeOut" }}>
+            <div style={{ fontSize: "11px", fontWeight: 500, color: C.textSec, textTransform: "uppercase", letterSpacing: "0.04em", marginBottom: "10px" }}>
+              Custom fields
+            </div>
+            <FieldRow label="Email" iconSrc="/edition/Icons/Icon-container copy 3.svg" placeholder="Add email" fontSize="12px" value="charles@greenleaf.co" />
+            <FieldRow label="Team" iconSrc="/edition/Icons/Status Icon.svg" placeholder="Add text" fontSize="12px" />
+            <FieldRow label="ID" iconSrc="/edition/Icons/heshtag.svg" placeholder="Add number" fontSize="12px" />
+            <FieldRow label="Phone" iconSrc="/edition/Icons/Icon-container-2.svg" placeholder="Add phone number" fontSize="12px" value="+1 (415) 392-8100" />
+            <FieldRow label="Link" iconSrc="/edition/Icons/Status Icon copy.svg" placeholder="Add link" fontSize="12px" />
+            <FieldRow label="Tags" iconSrc="/edition/Icons/Icon-container copy 2.svg" placeholder="Add tags" fontSize="12px" iconSize={18} />
+          </motion.div>
+          )}
+
+          {/* Notes panel */}
+          {activePanel === "document" && (
+          <motion.div key="mob-document" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.35, ease: "easeOut" }}>
+            {NOTES.map((note, i) => (
+              <div
+                key={i}
+                style={{
+                  padding: i === 0 ? "0 0 12px" : "12px 0",
+                  borderBottom: i < NOTES.length - 1 ? `1px solid ${C.borderLight}` : "none",
+                }}
               >
-                <div style={{ fontSize: "11px", fontWeight: 500, color: C.textSec, textTransform: "uppercase", letterSpacing: "0.04em", marginBottom: "10px" }}>
-                  Custom fields
+                <div style={{ fontSize: "12px", fontWeight: 500, color: C.text, marginBottom: "4px" }}>{note.title}</div>
+                <div style={{ fontSize: "12px", lineHeight: 1.5, color: C.textSec }}>{note.body}</div>
+              </div>
+            ))}
+          </motion.div>
+          )}
+
+          {/* Chat panel */}
+          {activePanel === "chat" && (
+          <motion.div key="mob-chat" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.35, ease: "easeOut" }} style={{ display: "flex", flexDirection: "column", minHeight: "190px" }}>
+            <div style={{ display: "flex", gap: "10px", alignItems: "flex-start" }}>
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src="/edition/logos/Assemblychatlogo.svg" alt="Assembly" width={26} height={26} style={{ borderRadius: "50%", flexShrink: 0, marginTop: "2px" }} draggable={false} />
+              <div style={{ flex: 1, minWidth: 0 }}>
+                <div style={{ fontSize: "12px", fontWeight: 500, color: C.text, marginBottom: "4px" }}>Assembly</div>
+                <div style={{ fontSize: "12px", lineHeight: 1.55, color: C.textSec }}>
+                  Chat privately with your team about this client, or tag @Assembly for help.
                 </div>
-                <FieldRow label="Email" iconSrc="/edition/Icons/Icon-container copy 3.svg" placeholder="Add email" fontSize="12px" value="charles@greenleaf.co" />
-                <FieldRow label="Team" iconSrc="/edition/Icons/Status Icon.svg" placeholder="Add text" fontSize="12px" />
-                <FieldRow label="ID" iconSrc="/edition/Icons/heshtag.svg" placeholder="Add number" fontSize="12px" />
-                <FieldRow label="Phone" iconSrc="/edition/Icons/Icon-container-2.svg" placeholder="Add phone number" fontSize="12px" value="+1 (415) 392-8100" />
-                <FieldRow label="Link" iconSrc="/edition/Icons/Status Icon copy.svg" placeholder="Add link" fontSize="12px" />
-              </motion.div>
-            )}
-
-            {/* Notes panel */}
-            {activePanel === "document" && (
-              <motion.div
-                key="document"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-                transition={{ duration: 0.3 }}
-              >
-                {NOTES.map((note, i) => (
-                  <div
-                    key={i}
-                    style={{
-                      padding: i === 0 ? "0 0 12px" : "12px 0",
-                      borderBottom: i < NOTES.length - 1 ? `1px solid ${C.borderLight}` : "none",
-                    }}
-                  >
-                    <div style={{ fontSize: "12px", fontWeight: 500, color: C.text, marginBottom: "4px" }}>{note.title}</div>
-                    <div style={{ fontSize: "12px", lineHeight: 1.5, color: C.textSec }}>{note.body}</div>
-                  </div>
-                ))}
-              </motion.div>
-            )}
-
-            {/* Chat panel */}
-            {activePanel === "chat" && (
-              <motion.div
-                key="chat"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-                transition={{ duration: 0.3 }}
-              >
-                <div style={{ display: "flex", gap: "10px", alignItems: "flex-start", marginBottom: "16px" }}>
+              </div>
+            </div>
+            {/* Mini compose bar — pushed to bottom */}
+            <div style={{ marginTop: "auto" }}>
+              <div style={{ border: `1px solid ${C.border}`, borderRadius: "8px", overflow: "hidden" }}>
+                <div style={{ padding: "10px 12px" }}>
+                  <span style={{ fontSize: "12px", color: "#9ca3af" }}>Chat with teammates or @Assembly</span>
+                </div>
+                <div style={{ display: "flex", alignItems: "center", justifyContent: "flex-end", padding: "6px 12px 8px" }}>
                   {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img src="/edition/logos/Assemblychatlogo.svg" alt="Assembly" width={26} height={26} style={{ borderRadius: "50%", flexShrink: 0, marginTop: "2px" }} draggable={false} />
-                  <div style={{ flex: 1, minWidth: 0 }}>
-                    <div style={{ fontSize: "12px", fontWeight: 500, color: C.text, marginBottom: "4px" }}>Assembly</div>
-                    <div style={{ fontSize: "12px", lineHeight: 1.55, color: C.textSec }}>
-                      Chat privately with your team about this client, or tag @Assembly for help.
-                    </div>
-                  </div>
+                  <img src={ICO.attachBtn} alt="Send" width={24} height={24} draggable={false} />
                 </div>
-                {/* Mini compose bar */}
-                <div style={{ border: `1px solid ${C.border}`, borderRadius: "8px", overflow: "hidden" }}>
-                  <div style={{ padding: "10px 12px" }}>
-                    <span style={{ fontSize: "12px", color: "#9ca3af" }}>Chat with teammates or @Assembly</span>
-                  </div>
-                  <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", padding: "6px 12px 8px" }}>
-                    <span style={{ fontSize: "13px", color: C.textMuted, cursor: "default" }}>@</span>
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img src={ICO.attachBtn} alt="Send" width={24} height={24} draggable={false} />
-                  </div>
-                </div>
-              </motion.div>
-            )}
-          </AnimatePresence>
+              </div>
+            </div>
+          </motion.div>
+          )}
         </div>
       </motion.div>
+      </>
     );
   }
 
   /* ─────────────────────── DESKTOP VIEW ─────────────────────── */
   return (
+    <>
     <motion.div
       ref={containerRef}
-      className="interactive-hint"
+      className="interactive-hint--light"
       initial={{ opacity: 0, scale: 0.97 }}
       whileInView={{ opacity: 1, scale: 1 }}
       viewport={{ once: true, margin: "-40px" }}
@@ -503,7 +500,7 @@ export function ContextBarDemo({ inSplit = false }) {
           alignItems: "center",
           backgroundColor: "#141414",
           padding: "12px 16px",
-          borderBottom: "1px solid rgba(255, 255, 255, 0.06)",
+          borderBottom: "1px solid rgba(255, 255, 255, 0.1)",
         }}
       >
         <div style={{ display: "flex", gap: "7px", position: "relative", zIndex: 1 }}>
@@ -698,9 +695,9 @@ export function ContextBarDemo({ inSplit = false }) {
         {/* ─── RIGHT SIDEBAR ─── */}
         <motion.div
           animate={{ width: sidebarOpen ? 260 : 0 }}
-          transition={{ duration: 0.45, ease: [0.4, 0, 0.2, 1] }}
+          transition={{ duration: 0.3, ease: [0.4, 0, 0.2, 1], delay: sidebarOpen ? 0.05 : 0 }}
           style={{
-            borderLeft: sidebarOpen ? `1px solid ${C.border}` : "none",
+            borderLeft: `1px solid ${C.border}`,
             display: "flex",
             flexDirection: "column",
             backgroundColor: C.bg,
@@ -708,6 +705,11 @@ export function ContextBarDemo({ inSplit = false }) {
             overflow: "hidden",
           }}
         >
+          <motion.div
+            animate={{ opacity: sidebarOpen ? 1 : 0 }}
+            transition={{ duration: sidebarOpen ? 0.15 : 0.12, ease: "easeOut", delay: sidebarOpen ? 0.15 : 0 }}
+            style={{ display: "flex", flexDirection: "column", flex: 1, minWidth: 260, overflow: "hidden" }}
+          >
           {/* Sidebar header */}
           <div
             style={{
@@ -721,12 +723,13 @@ export function ContextBarDemo({ inSplit = false }) {
               justifyContent: "space-between",
             }}
           >
-            {activePanel === "chat" ? "Internal Chat" : "Client Details"}
+            {activePanel === "chat" ? "Internal Chat" : activePanel === "document" ? "Internal Notes" : "Client Details"}
           </div>
 
           {/* ── Panel: Client Details (person) ── */}
+          <AnimatePresence mode="wait">
           {activePanel === "person" && (
-            <div style={{ flex: 1, overflowY: "auto", padding: "14px 16px" }}>
+            <motion.div key="person" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.25, ease: "easeInOut" }} style={{ flex: 1, overflowY: "auto", padding: "14px 16px" }}>
               <div style={{ marginBottom: "18px" }}>
                 <div
                   style={{
@@ -763,12 +766,12 @@ export function ContextBarDemo({ inSplit = false }) {
                 <FieldRow label="Address" iconSrc="/edition/Icons/Icon-container-1 copy.svg" placeholder="Add location" />
                 <FieldRow label="Tags" iconSrc="/edition/Icons/Icon-container copy 2.svg" placeholder="Add phone number" />
               </div>
-            </div>
+            </motion.div>
           )}
 
           {/* ── Panel: Notes (document) ── */}
           {activePanel === "document" && (
-            <div style={{ flex: 1, overflow: "hidden" }}>
+            <motion.div key="document" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.25, ease: "easeInOut" }} style={{ flex: 1, overflow: "hidden" }}>
               {NOTES.map((note, i) => (
                 <div
                   key={i}
@@ -785,12 +788,12 @@ export function ContextBarDemo({ inSplit = false }) {
                   </div>
                 </div>
               ))}
-            </div>
+            </motion.div>
           )}
 
           {/* ── Panel: Internal Chat (chat) ── */}
           {activePanel === "chat" && (
-            <div style={{ flex: 1, display: "flex", flexDirection: "column", overflow: "hidden" }}>
+            <motion.div key="chat" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.25, ease: "easeInOut" }} style={{ flex: 1, display: "flex", flexDirection: "column", overflow: "hidden" }}>
               {/* Chat message area */}
               <div style={{ flex: 1, padding: "14px 16px", overflowY: "auto" }}>
                 <div style={{ display: "flex", gap: "10px", alignItems: "flex-start", marginBottom: chatMessages.length > 0 ? "16px" : 0 }}>
@@ -871,8 +874,10 @@ export function ContextBarDemo({ inSplit = false }) {
                   </div>
                 )}
               </div>
-            </div>
+            </motion.div>
           )}
+          </AnimatePresence>
+          </motion.div>
         </motion.div>
 
         {/* ─── ICON BAR (far right) ─── */}
@@ -880,6 +885,7 @@ export function ContextBarDemo({ inSplit = false }) {
           style={{
             width: "36px",
             borderLeft: `1px solid ${C.border}`,
+            marginLeft: "-1px",
             backgroundColor: C.iconBarBg,
             display: "flex",
             flexDirection: "column",
@@ -911,7 +917,8 @@ export function ContextBarDemo({ inSplit = false }) {
                     alignItems: "center",
                     justifyContent: "center",
                     cursor: "pointer",
-                    backgroundColor: isActive ? "#f0f1f3" : "transparent",
+                    backgroundColor: isActive ? "#edeef1" : "transparent",
+                    transition: "background-color 0.25s ease",
                   }}
                 >
                   {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -987,5 +994,6 @@ export function ContextBarDemo({ inSplit = false }) {
         </div>
       </div>
     </motion.div>
+    </>
   );
 }

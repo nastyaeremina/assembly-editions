@@ -573,20 +573,29 @@ function MobileRow({ settings, isLifted }) {
     <motion.div
       layout
       layoutId={`mobile-${settings.id}`}
-      transition={{ type: "spring", stiffness: 500, damping: 35 }}
+      animate={{
+        scale: isLifted ? 1.025 : 1,
+        boxShadow: isLifted
+          ? "0 8px 24px rgba(0,0,0,0.12), 0 2px 8px rgba(0,0,0,0.08)"
+          : "0 0px 0px rgba(0,0,0,0)",
+      }}
+      transition={{
+        layout: { type: "spring", stiffness: 180, damping: 24, mass: 0.8 },
+        scale: { type: "spring", stiffness: 200, damping: 22 },
+        boxShadow: { duration: 0.4, ease: "easeOut" },
+      }}
       style={{
         display: "flex",
         alignItems: "center",
         minHeight: "72px",
         padding: isChild ? "0 16px 0 48px" : "0 16px",
         gap: "14px",
-        backgroundColor: isLifted ? "#f0f5ff" : "#fff",
+        backgroundColor: isLifted ? "#f5f5f5" : "#fff",
         borderBottom: `1px solid ${C.border}`,
-        boxShadow: isLifted ? "0 4px 16px rgba(0,0,0,0.10)" : "none",
         zIndex: isLifted ? 10 : 1,
         position: "relative",
-        borderRadius: isLifted ? "8px" : 0,
-        transition: "background-color 0.3s ease, box-shadow 0.3s ease",
+        borderRadius: isLifted ? "10px" : 0,
+        transition: "background-color 0.35s ease, border-radius 0.2s ease",
       }}
     >
       {/* Icon */}
@@ -658,13 +667,13 @@ function MobileAnimatedDemo() {
   useEffect(() => {
     const steps = [
       // Forward: move Messages below Analytics folder
-      { delay: 2500, action: () => { setLiftedId("messages"); } },                    // lift
-      { delay: 600,  action: () => { setItems(REORDERED); } },                        // reorder
-      { delay: 400,  action: () => { setLiftedId(null); } },                          // drop
+      { delay: 3500, action: () => { setLiftedId("messages"); } },                    // rest before lift
+      { delay: 1200, action: () => { setItems(REORDERED); } },                        // hold lifted, then reorder
+      { delay: 900,  action: () => { setLiftedId(null); } },                          // settle into place
       // Pause then reverse
-      { delay: 2500, action: () => { setLiftedId("messages"); } },                    // lift
-      { delay: 600,  action: () => { setItems(INITIAL); } },                          // reorder back
-      { delay: 400,  action: () => { setLiftedId(null); } },                          // drop
+      { delay: 3500, action: () => { setLiftedId("messages"); } },                    // rest before lift
+      { delay: 1200, action: () => { setItems(INITIAL); } },                          // hold lifted, then reorder back
+      { delay: 900,  action: () => { setLiftedId(null); } },                          // settle into place
     ];
 
     const step = steps[stepIndex % steps.length];
@@ -677,20 +686,22 @@ function MobileAnimatedDemo() {
   }, [stepIndex]);
 
   return (
-    <motion.div
-      className="interactive-hint"
-      initial={{ opacity: 0, scale: 0.97 }}
-      whileInView={{ opacity: 1, scale: 1 }}
-      viewport={{ once: true, margin: "-40px" }}
-      transition={{ duration: 0.6, ease: [0.25, 0.1, 0.25, 1] }}
-      style={{ borderRadius: "12px", overflow: "hidden", backgroundColor: C.bg, border: `1px solid ${C.border}` }}
-    >
-      <AnimatePresence>
-        {items.map((s) => (
-          <MobileRow key={s.id} settings={s} isLifted={liftedId === s.id} />
-        ))}
-      </AnimatePresence>
-    </motion.div>
+    <div data-mobile-wrapper style={{ maxWidth: "520px" }}>
+      <motion.div
+        className="interactive-hint"
+        initial={{ opacity: 0, scale: 0.97 }}
+        whileInView={{ opacity: 1, scale: 1 }}
+        viewport={{ once: true, margin: "-40px" }}
+        transition={{ duration: 0.6, ease: [0.25, 0.1, 0.25, 1] }}
+        style={{ borderRadius: "12px", overflow: "hidden", backgroundColor: C.bg, border: `1px solid ${C.border}` }}
+      >
+        <AnimatePresence>
+          {items.map((s) => (
+            <MobileRow key={s.id} settings={s} isLifted={liftedId === s.id} />
+          ))}
+        </AnimatePresence>
+      </motion.div>
+    </div>
   );
 }
 
@@ -734,9 +745,10 @@ function ClientPreview({ items, inSplit = false }) {
   return (
     <div style={{ display: "flex", height: "100%", borderRadius: "8px", overflow: "hidden", border: "none" }}>
       {/* Dark sidebar */}
-      <div style={{ width: "160px", flexShrink: 0, backgroundColor: C.darkBg, borderRadius: "8px", padding: "14px 0", display: "flex", flexDirection: "column" }}>
-        <div style={{ display: "flex", alignItems: "center", gap: "7px", padding: "0 11px 11px", marginBottom: "5px" }}>
-          <div style={{ width: "22px", height: "22px", borderRadius: "5px", backgroundColor: "rgba(255,255,255,0.1)", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "9.5px", lineHeight: 1, fontWeight: 400, color: C.darkText, fontFamily: "'Inter', system-ui, sans-serif" }}>B</div>
+      <div style={{ flex: 1, backgroundColor: C.darkBg, borderRadius: "8px", padding: "14px 0", display: "flex", flexDirection: "column" }}>
+        <div style={{ display: "flex", alignItems: "center", gap: "7px", padding: "0 11px 11px", marginBottom: "5px", pointerEvents: "none", cursor: "default" }}>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src="/edition/Icons/Logo.svg" alt="BrandMages" width={22} height={22} style={{ borderRadius: "5px", display: "block" }} />
           <span style={{ fontSize: "11px", fontWeight: 400, color: C.darkText, fontFamily: "'Inter', system-ui, sans-serif" }}>BrandMages</span>
         </div>
         <div style={{ flex: 1, padding: "2px 6px" }}>
@@ -891,7 +903,7 @@ export function InteractiveAppLibrary({ inSplit = false }) {
       whileInView={{ opacity: 1, scale: 1 }}
       viewport={{ once: true, margin: "-40px" }}
       transition={{ duration: 0.6, ease: [0.25, 0.1, 0.25, 1] }}
-      style={{ position: "relative", borderRadius: "12px", overflow: "hidden", backgroundColor: "#141414", border: "1px solid rgba(255, 255, 255, 0.06)" }}
+      style={{ position: "relative", borderRadius: "12px", overflow: "hidden", backgroundColor: "#141414", border: "1px solid rgba(255, 255, 255, 0.13)", maxWidth: inSplit ? "none" : "960px" }}
     >
 
       {/* ─ CSS for hover effects ─ */}
@@ -901,7 +913,7 @@ export function InteractiveAppLibrary({ inSplit = false }) {
       `}</style>
 
       {/* Browser chrome */}
-      <div style={{ position: "relative", display: "flex", alignItems: "center", backgroundColor: "#141414", padding: "12px 16px", borderBottom: "1px solid rgba(255, 255, 255, 0.06)" }}>
+      <div style={{ position: "relative", display: "flex", alignItems: "center", backgroundColor: "#141414", padding: "12px 16px", borderBottom: "1px solid rgba(255, 255, 255, 0.1)" }}>
         <div style={{ display: "flex", gap: "7px", position: "relative", zIndex: 1 }}>
           {["#ff5f57", "#febc2e", "#28c840"].map((color) => (
             <div key={color} style={{ width: "10px", height: "10px", borderRadius: "50%", backgroundColor: color, opacity: 0.8 }} />
@@ -944,7 +956,7 @@ export function InteractiveAppLibrary({ inSplit = false }) {
             {/* ─── LEFT: APP LIST ─── */}
             <div style={{ flex: 1, display: "flex", flexDirection: "column", minWidth: 0, padding: inSplit ? "0 12px 12px 12px" : "0 20px 20px 20px" }}>
               <div style={{ padding: inSplit ? "14px 0 8px" : "20px 0 10px 0" }}>
-                <h5 style={{ margin: 0, fontSize: "18px", fontWeight: 500, color: C.text, fontFamily: "'Inter', system-ui, sans-serif" }}>Apps</h5>
+                <h5 style={{ margin: 0, fontSize: "14px", fontWeight: 500, color: C.text, fontFamily: "'Inter', system-ui, sans-serif" }}>Apps</h5>
               </div>
               <DndContext sensors={sensors} collisionDetection={closestCenter}
                 onDragStart={handleDragStart} onDragOver={handleDragOver} onDragMove={handleDragMove} onDragEnd={handleDragEnd}>
@@ -997,9 +1009,9 @@ export function InteractiveAppLibrary({ inSplit = false }) {
             </div>
 
             {/* ─── RIGHT: CLIENT PREVIEW ─── */}
-            <div style={{ width: inSplit ? "180px" : "200px", flexShrink: 0, backgroundColor: C.bgAlt, borderLeft: `1px solid ${C.border}`, padding: inSplit ? "0 12px 12px 12px" : "0 16px 20px 16px", display: "flex", flexDirection: "column", borderRadius: "0 0 12px 0" }}>
+            <div style={{ width: inSplit ? "170px" : "185px", flexShrink: 0, backgroundColor: C.bgAlt, borderLeft: `1px solid ${C.border}`, padding: inSplit ? "0 8px 12px 8px" : "0 8px 20px 8px", display: "flex", flexDirection: "column", borderRadius: "0 0 12px 0", pointerEvents: "none", cursor: "default" }}>
               <div style={{ padding: inSplit ? "14px 0 8px" : "20px 0 10px 0" }}>
-                <h4 style={{ margin: 0, fontSize: "18px", fontWeight: 500, color: C.text, fontFamily: "'Inter', system-ui, sans-serif" }}>Client Preview</h4>
+                <h4 style={{ margin: 0, fontSize: "14px", fontWeight: 500, color: C.text, fontFamily: "'Inter', system-ui, sans-serif" }}>Client Preview</h4>
               </div>
               <div style={{ flex: 1 }}><ClientPreview items={moduleSettings} inSplit={inSplit} /></div>
             </div>

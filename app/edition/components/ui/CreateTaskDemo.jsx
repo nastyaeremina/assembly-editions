@@ -63,8 +63,15 @@ export function CreateTaskDemo({ inSplit = false }) {
   const [titleEditing, setTitleEditing] = useState(false);
   const [createFlash, setCreateFlash] = useState(false);
   const titleInputRef = useRef(null);
+  /* Mobile animation: which pill is currently being highlighted */
+  const [activePill, setActivePill] = useState(null); // "todo" | "date" | "assignee" | "related" | "share" | null
+  /* Mobile: fade the whole card for smooth reset */
+  const [mobileCardVisible, setMobileCardVisible] = useState(true);
 
   const isMobile = useMediaQuery("(max-width: 1023px)", false);
+
+  /* Mobile pill truncation style — keeps pills from reflowing */
+  const mobilePillClip = isMobile ? { maxWidth: "155px", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" } : {};
 
   /* Reset all state to initial */
   const resetAll = () => {
@@ -98,7 +105,7 @@ export function CreateTaskDemo({ inSplit = false }) {
   const { containerRef: idleRef, isIdle: pillIdleActive, dismiss: dismissIdle } = useIdleHint({ delay: 2500 });
 
   /* ── Mobile auto-play loop ──
-     Sequence: reset → fill pills → select client → share → complete → repeat */
+     Minimal: pre-fill everything, only animate "Related to" → Share → Create */
   useEffect(() => {
     if (!isMobile) return;
     let cancelled = false;
@@ -106,52 +113,43 @@ export function CreateTaskDemo({ inSplit = false }) {
 
     async function loop() {
       while (!cancelled) {
-        // Reset all states
+        // Pre-fill everything except Related to + Share
         setRelatedClient(null);
         setShareWithClient(false);
         setShowPicker(false);
-        setTodoStatus(0);
-        setDueDateSet(false);
-        setAssigneeSet(false);
+        setTodoStatus(1);          // "In progress" from the start
+        setDueDateSet(true);       // "Jan 15, 2026" from the start
+        setAssigneeSet(true);      // "Alex Werner" from the start
         setDescription("");
         setTitleValue("Competitor analysis");
         setTitleEditing(false);
         setCreateFlash(false);
-        await wait(1500);
+        setActivePill(null);
+        setMobileCardVisible(true);
+        await wait(2000);
         if (cancelled) break;
 
-        // Step 1: Todo → "In progress"
-        setTodoStatus(1);
-        await wait(1200);
+        // Step 1: Press "Related to" pill, then select client
+        setActivePill("related");
+        await wait(350);
         if (cancelled) break;
-
-        // Step 2: Set due date
-        setDueDateSet(true);
-        await wait(1200);
-        if (cancelled) break;
-
-        // Step 3: Set assignee
-        setAssigneeSet(true);
-        await wait(1200);
-        if (cancelled) break;
-
-        // Step 4: Select client (Mary Sung)
+        setActivePill(null);
         setRelatedClient("ms");
-        await wait(1500);
+        await wait(1400);
+        if (cancelled) break;
         if (cancelled) break;
 
-        // Step 5: Toggle "Share with client" ON
+        // Step 2: Toggle share on
         setShareWithClient(true);
-        await wait(2000);
+        await wait(1800);
         if (cancelled) break;
 
-        // Step 6: Todo → "Done"
-        setTodoStatus(2);
-        await wait(2000);
+        // Hold the completed state, then fade out and reset
+        await wait(1800);
         if (cancelled) break;
-
-        // Hold before reset
-        await wait(1500);
+        setMobileCardVisible(false);
+        await wait(600);
+        if (cancelled) break;
       }
     }
 
@@ -187,11 +185,12 @@ export function CreateTaskDemo({ inSplit = false }) {
       initial={{ opacity: 0, scale: 0.97 }}
       whileInView={{ opacity: 1, scale: 1 }}
       viewport={{ once: true, margin: "-40px" }}
-      transition={{ duration: 0.6, ease: [0.25, 0.1, 0.25, 1] }}
+      animate={isMobile ? { opacity: mobileCardVisible ? 1 : 0 } : undefined}
+      transition={isMobile ? { duration: 0.5, ease: "easeInOut" } : { duration: 0.6, ease: [0.25, 0.1, 0.25, 1] }}
       style={{
         width: "100%",
         borderRadius: "10px",
-        border: "1px solid rgba(255, 255, 255, 0.06)",
+        border: "1px solid rgba(255, 255, 255, 0.13)",
         boxShadow: "0 8px 30px rgba(0,0,0,0.08), 0 1px 3px rgba(0,0,0,0.06)",
         fontFamily: "'Inter', system-ui, sans-serif",
       }}
@@ -200,7 +199,7 @@ export function CreateTaskDemo({ inSplit = false }) {
       <div style={{
         position: "relative", display: "flex", alignItems: "center",
         backgroundColor: "#141414", padding: "12px 16px",
-        borderBottom: "1px solid rgba(255, 255, 255, 0.06)",
+        borderBottom: "1px solid rgba(255, 255, 255, 0.1)",
         borderRadius: "10px 10px 0 0",
         overflow: "hidden",
       }}>
@@ -316,11 +315,14 @@ export function CreateTaskDemo({ inSplit = false }) {
         {/* Todo pill — cycles: Todo → In progress → Done */}
         {(() => {
           const state = TODO_STATES[todoStatus];
+          const isActive = isMobile && activePill === "todo";
           return (
             <motion.button
               type="button"
               onClick={() => { if (!isMobile) setTodoStatus((s) => (s + 1) % 3); }}
               whileHover={isMobile ? undefined : { backgroundColor: "#f9fafb" }}
+              animate={isActive ? { scale: 1.05, backgroundColor: "#f5f6f7" } : { scale: 1, backgroundColor: "transparent" }}
+              transition={{ duration: 0.3, ease: "easeOut" }}
               style={{
                 display: "flex",
                 alignItems: "center",
@@ -328,14 +330,14 @@ export function CreateTaskDemo({ inSplit = false }) {
                 padding: "0 12px",
                 height: "32px",
                 borderRadius: "6px",
-                border: `1px solid ${C.border}`,
+                border: `1px solid ${isActive ? "#d1d5db" : C.border}`,
                 fontSize: "12px",
                 fontWeight: 400,
                 color: state.color,
                 cursor: isMobile ? "default" : "pointer",
-                backgroundColor: "transparent",
                 fontFamily: "'Inter', system-ui, sans-serif",
-                transition: "color 300ms ease",
+                transition: "color 300ms ease, border-color 300ms ease",
+                ...mobilePillClip,
               }}
             >
               {todoStatus === 0 && (
@@ -352,16 +354,21 @@ export function CreateTaskDemo({ inSplit = false }) {
                 /* eslint-disable-next-line @next/next/no-img-element */
                 <img src="/edition/Icons/checkgreen.svg" alt="" width={12} height={12} style={{ display: "block" }} />
               )}
-              {state.label}
+              <span style={{ overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{state.label}</span>
             </motion.button>
           );
         })()}
 
         {/* Due date pill — toggles date value */}
+        {(() => {
+          const isActive = isMobile && activePill === "date";
+          return (
         <motion.button
           type="button"
           onClick={() => { if (!isMobile) setDueDateSet((v) => !v); }}
           whileHover={isMobile ? undefined : { backgroundColor: "#f9fafb" }}
+          animate={isActive ? { scale: 1.05, backgroundColor: "#f5f6f7" } : { scale: 1, backgroundColor: "transparent" }}
+          transition={{ duration: 0.3, ease: "easeOut" }}
           style={{
             display: "flex",
             alignItems: "center",
@@ -369,139 +376,105 @@ export function CreateTaskDemo({ inSplit = false }) {
             padding: "0 12px",
             height: "32px",
             borderRadius: "6px",
-            border: `1px solid ${C.border}`,
+            border: `1px solid ${isActive ? "#d1d5db" : C.border}`,
             fontSize: "12px",
             fontWeight: 400,
             color: dueDateSet ? C.text : C.textSec,
             cursor: isMobile ? "default" : "pointer",
-            backgroundColor: "transparent",
             fontFamily: "'Inter', system-ui, sans-serif",
-            transition: "color 300ms ease",
+            transition: "color 300ms ease, border-color 300ms ease",
+            ...mobilePillClip,
           }}
         >
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src="/edition/Icons/calendar.svg" alt="" width={11} height={12} style={{ display: "block", opacity: dueDateSet ? 0.8 : 0.5 }} />
-          {dueDateSet ? DUE_DATE_LABEL : "Due date"}
+          <img src="/edition/Icons/calendar.svg" alt="" width={11} height={12} style={{ display: "block", opacity: dueDateSet ? 0.8 : 0.5, flexShrink: 0 }} />
+          <span style={{ overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{dueDateSet ? DUE_DATE_LABEL : "Due date"}</span>
         </motion.button>
+          );
+        })()}
 
-        {/* Assignee pill — simple toggle */}
+        {/* Assignee pill — toggle like status & due date */}
+        {(() => { const isActive = isMobile && activePill === "assignee"; return (
         <motion.button
           type="button"
           onClick={() => { if (!isMobile) setAssigneeSet((v) => !v); }}
           whileHover={isMobile ? undefined : { backgroundColor: "#f9fafb" }}
+          animate={isActive ? { scale: 1.05, backgroundColor: "#f5f6f7" } : { scale: 1, backgroundColor: "transparent" }}
+          transition={{ duration: 0.3, ease: "easeOut" }}
           style={{
             display: "flex",
             alignItems: "center",
             gap: "5px",
-            padding: assigneeSet ? "0 12px 0 4px" : "0 12px",
+            padding: "0 12px",
             height: "32px",
             borderRadius: "6px",
-            border: `1px solid ${C.border}`,
+            border: `1px solid ${isActive ? "#d1d5db" : C.border}`,
             fontSize: "12px",
             fontWeight: 400,
             color: assigneeSet ? C.text : C.textSec,
             cursor: isMobile ? "default" : "pointer",
-            backgroundColor: "transparent",
             fontFamily: "'Inter', system-ui, sans-serif",
-            transition: "color 300ms ease, padding 300ms ease",
+            transition: "color 300ms ease, border-color 300ms ease",
+            ...mobilePillClip,
           }}
         >
-          {assigneeSet ? (
-            <>
-              <div style={{
-                width: "24px",
-                height: "24px",
-                borderRadius: "50%",
-                backgroundColor: ASSIGNEE.color,
-                flexShrink: 0,
-                fontSize: "9px",
-                fontWeight: 400,
-                fontFamily: "'Inter', system-ui, sans-serif",
-                color: ASSIGNEE.textColor,
-                lineHeight: "24px",
-                textAlign: "center",
-              }}>
-                {ASSIGNEE.initials}
-              </div>
-              {ASSIGNEE.name}
-            </>
-          ) : (
-            <>
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src="/edition/Icons/user.svg" alt="" width={12} height={12} style={{ display: "block", opacity: 0.5 }} />
-              Assignee
-            </>
-          )}
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src="/edition/Icons/user.svg" alt="" width={12} height={12} style={{ display: "block", opacity: assigneeSet ? 0.8 : 0.5, flexShrink: 0 }} />
+          <span style={{ overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{assigneeSet ? ASSIGNEE.name : "Assignee"}</span>
         </motion.button>
+          );
+        })()}
 
         {/* Related to pill — interactive */}
         <div ref={pickerRef} style={{ position: "relative" }}>
           {/* Button + tooltip wrapper — inline-block so it sizes to button */}
           <div style={{ position: "relative", display: "inline-block" }}>
+            {(() => {
+              const isActive = isMobile && activePill === "related";
+              return (
             <motion.button
               type="button"
               onClick={() => { if (!isMobile) { setShowPicker(!showPicker); setShowRelatedTooltip(false); dismissIdle(); } }}
               onMouseEnter={() => { if (!showPicker && !isMobile) setShowRelatedTooltip(true); }}
               onMouseLeave={() => setShowRelatedTooltip(false)}
               whileHover={isMobile ? undefined : { backgroundColor: "#f9fafb" }}
-              animate={pillIdleActive && !relatedClient && !isMobile ? {
-                boxShadow: [
-                  "0 0 0 0px rgba(0,0,0,0)",
-                  "0 0 0 3px rgba(0,0,0,0.05)",
-                  "0 0 0 0px rgba(0,0,0,0)",
-                ],
-              } : { boxShadow: "0 0 0 0px rgba(0,0,0,0)" }}
-              transition={pillIdleActive && !relatedClient && !isMobile ? {
-                duration: 3,
-                repeat: Infinity,
-                ease: "easeInOut",
-              } : { duration: 0.2 }}
+              animate={
+                isActive
+                  ? { scale: 0.96, backgroundColor: "#f0f1f3", boxShadow: "0 0 0 0px rgba(0,0,0,0)" }
+                  : pillIdleActive && !relatedClient && !isMobile
+                    ? { boxShadow: ["0 0 0 0px rgba(0,0,0,0)", "0 0 0 3px rgba(0,0,0,0.05)", "0 0 0 0px rgba(0,0,0,0)"], scale: 1, backgroundColor: "transparent" }
+                    : { boxShadow: "0 0 0 0px rgba(0,0,0,0)", scale: 1, backgroundColor: "transparent" }
+              }
+              transition={
+                isActive
+                  ? { type: "spring", stiffness: 400, damping: 25 }
+                  : pillIdleActive && !relatedClient && !isMobile
+                    ? { duration: 3, repeat: Infinity, ease: "easeInOut" }
+                    : { type: "spring", stiffness: 400, damping: 25 }
+              }
               style={{
                 display: "flex",
                 alignItems: "center",
                 gap: "5px",
-                padding: relatedClient ? "0 12px 0 4px" : "0 12px",
+                padding: "0 12px",
                 height: "32px",
                 borderRadius: "6px",
-                border: `1px solid ${C.border}`,
+                border: `1px solid ${isActive ? "#d1d5db" : C.border}`,
                 fontSize: "12px",
                 fontWeight: 400,
                 color: relatedClient ? C.text : C.textSec,
-                cursor: "pointer",
-                backgroundColor: "transparent",
+                cursor: isMobile ? "default" : "pointer",
                 fontFamily: "'Inter', system-ui, sans-serif",
-                transition: "border-color 400ms ease, padding 400ms ease, color 400ms ease",
+                transition: "color 300ms ease, border-color 300ms ease",
+                ...mobilePillClip,
               }}
             >
-              {relatedClient && selectedClient ? (
-                <>
-                  <div
-                    style={{
-                      width: "24px",
-                      height: "24px",
-                      borderRadius: "50%",
-                      backgroundColor: selectedClient.color,
-                      flexShrink: 0,
-                      fontSize: "9px",
-                      fontWeight: 400,
-                      fontFamily: "'Inter', system-ui, sans-serif",
-                      color: selectedClient.textColor,
-                      lineHeight: "24px",
-                      textAlign: "center",
-                    }}
-                  >
-                    {selectedClient.initials}
-                  </div>
-                  {selectedClient.name}
-                </>
-              ) : (
-                <>
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img src="/edition/Icons/user.svg" alt="" width={12} height={12} style={{ display: "block", opacity: 0.5 }} />
-                  Related to
-                </>
-              )}
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src="/edition/Icons/user.svg" alt="" width={12} height={12} style={{ display: "block", opacity: relatedClient ? 0.8 : 0.5, flexShrink: 0 }} />
+              <span style={{ overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>{relatedClient && selectedClient ? selectedClient.name : "Related to"}</span>
             </motion.button>
+              );
+            })()}
             {/* ── Tooltip (desktop only) ── */}
             <AnimatePresence>
               {showRelatedTooltip && !showPicker && !isMobile && (
@@ -663,11 +636,12 @@ export function CreateTaskDemo({ inSplit = false }) {
 
       {/* ── Share with client toggle ── */}
       {isMobile ? (
-        /* Mobile: always rendered (no height shift), opacity animates */
-        <div style={{
-          opacity: relatedClient ? 1 : 0.3,
-          transition: "opacity 0.5s ease",
-        }}>
+        /* Mobile: always rendered (fixed height), dimmed when no client */
+        <motion.div
+          animate={{ opacity: relatedClient ? 1 : 0.35 }}
+          transition={{ duration: 0.4, ease: "easeOut" }}
+          style={{ pointerEvents: relatedClient ? "auto" : "none" }}
+        >
           <div style={{ padding: "4px 20px 12px" }}>
             <div
               style={{
@@ -707,7 +681,7 @@ export function CreateTaskDemo({ inSplit = false }) {
               </span>
             </div>
           </div>
-        </div>
+        </motion.div>
       ) : (
         /* Desktop: expand/collapse with AnimatePresence */
         <AnimatePresence>
@@ -777,25 +751,40 @@ export function CreateTaskDemo({ inSplit = false }) {
           padding: "14px 20px",
         }}
       >
-        <button
+        {(() => {
+          const mobileReady = isMobile && hasFieldSet && titleValue.trim();
+          const desktopReady = !isMobile && hasFieldSet && titleValue.trim();
+          const isReady = mobileReady || desktopReady;
+          return (
+        <motion.button
           type="button"
           onClick={handleCreate}
-          disabled={!titleValue.trim() || isMobile || !hasFieldSet}
+          disabled={!isReady && !createFlash}
+          animate={
+            createFlash
+              ? { scale: 1, backgroundColor: "#15803d", color: "#ffffff", borderColor: "#15803d" }
+              : (isMobile && activePill === "create")
+                ? { scale: 0.95, backgroundColor: C.text, color: "#ffffff", borderColor: C.text }
+                : isReady
+                  ? { scale: 1, backgroundColor: C.text, color: "#ffffff", borderColor: C.text }
+                  : { scale: 1, backgroundColor: C.bgAlt, color: C.createText, borderColor: C.createBorder }
+          }
+          whileTap={isReady && !isMobile ? { scale: 0.96 } : undefined}
+          transition={{ duration: 0.25, ease: "easeOut" }}
           style={{
             padding: "6px 16px",
             borderRadius: "6px",
             fontSize: "12px",
             fontWeight: 500,
-            color: createFlash ? "#ffffff" : (titleValue.trim() && hasFieldSet && !isMobile ? "#ffffff" : C.createText),
-            backgroundColor: createFlash ? "#15803d" : (titleValue.trim() && hasFieldSet && !isMobile ? C.text : C.bgAlt),
-            border: `1px solid ${createFlash ? "#15803d" : (titleValue.trim() && hasFieldSet && !isMobile ? C.text : C.createBorder)}`,
-            cursor: titleValue.trim() && hasFieldSet && !isMobile ? "pointer" : "default",
+            cursor: isReady && !isMobile ? "pointer" : "default",
             fontFamily: "'Inter', system-ui, sans-serif",
-            transition: "background-color 200ms ease, color 200ms ease, border-color 200ms ease",
+            border: "1px solid",
           }}
         >
           {createFlash ? "✓ Created" : "Create"}
-        </button>
+        </motion.button>
+          );
+        })()}
       </div>
       </div>{/* close modal content wrapper */}
     </motion.div>

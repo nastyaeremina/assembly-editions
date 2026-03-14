@@ -75,6 +75,7 @@
 
 /* Scoped edition variables — prevents --font-sans/--font-mono from leaking globally */
 .edition-page {
+  overflow-x: clip;
   /* Surface tokens */
   --color-background: var(--color-assembly-black);
   --color-foreground: var(--color-zinc-100);
@@ -304,16 +305,20 @@
   50% { box-shadow: 0 0 14px 3px rgba(255, 255, 255, 0.22), 0 0 6px 2px rgba(255, 255, 255, 0.12); }
 }
 
-/* Interactive demo hint — subtle pulsing outline glow */
+/* Interactive demo hint */
 .interactive-hint {
-  outline: 1.5px solid transparent;
-  outline-offset: 2px;
-  animation: interactive-hint-pulse 3s ease-in-out infinite;
+  cursor: pointer;
 }
 
-@keyframes interactive-hint-pulse {
-  0%, 100% { outline-color: rgba(99, 102, 241, 0); }
-  50% { outline-color: rgba(99, 102, 241, 0.3); }
+/* Light-section variant */
+.interactive-hint--light {
+  cursor: pointer;
+}
+
+/* Interactive tooltip dot pulse */
+@keyframes interactive-dot-pulse {
+  0%, 100% { opacity: 0.35; }
+  50% { opacity: 0.8; }
 }
 
 /* CTA arrow — subtle nudge on hover */

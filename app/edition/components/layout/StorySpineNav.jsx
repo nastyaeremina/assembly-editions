@@ -218,7 +218,7 @@ export function StorySpineNav() {
                   <span
                     style={{
                       fontFamily: "var(--font-mono, monospace)",
-                      fontSize: "0.7rem",
+                      fontSize: "0.65rem",
                       letterSpacing: "0.06em",
                       color: numberColor,
                       transition: "color 0.3s ease",
@@ -228,15 +228,15 @@ export function StorySpineNav() {
                   </span>
                   <span
                     style={{
-                      fontFamily: "var(--font-mono, monospace)",
-                      fontSize: "0.65rem",
-                      letterSpacing: "0.08em",
-                      textTransform: "uppercase",
+                      fontFamily: "'PP Mori', var(--font-sans)",
+                      fontSize: "0.7rem",
+                      letterSpacing: "-0.01em",
+                      fontWeight: 400,
                       color: labelColor,
                       transition: "color 0.3s ease",
                     }}
                   >
-                    {section.categoryLabel}
+                    {section.label}
                   </span>
 
                   <div

@@ -4,6 +4,7 @@ import { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ScrollytellingSection } from "../layout";
 import { AppBridgeCodeDemo } from "../ui";
+import { useMediaQuery } from "../../hooks/useMediaQuery";
 
 const SECTION_ID = "developers";
 const SECTION_NUM = "05";
@@ -34,7 +35,7 @@ const DEV_FEATURES = [
 ];
 
 /* ── Single accordion row ── */
-function AccordionItem({ item, isOpen, onToggle, isLast }) {
+function AccordionItem({ item, isOpen, onToggle, isLast, compact }) {
   const contentRef = useRef(null);
   const [height, setHeight] = useState(0);
 
@@ -56,9 +57,9 @@ function AccordionItem({ item, isOpen, onToggle, isLast }) {
         style={{
           width: "100%",
           display: "flex",
-          alignItems: "center",
-          gap: "1.25rem",
-          padding: "1.5rem 0",
+          alignItems: compact ? "flex-start" : "center",
+          gap: compact ? "0.75rem" : "1.25rem",
+          padding: compact ? "0.9rem 0" : "1.5rem 0",
           background: "none",
           border: "none",
           cursor: "pointer",
@@ -70,8 +71,9 @@ function AccordionItem({ item, isOpen, onToggle, isLast }) {
         <span
           style={{
             fontFamily: "'PP Mori', var(--font-sans)",
-            fontSize: "1.1rem",
+            fontSize: compact ? "0.9rem" : "1.1rem",
             fontWeight: 500,
+            lineHeight: 1.4,
             letterSpacing: "-0.01em",
             color: isOpen ? "rgba(255, 255, 255, 0.95)" : "rgba(255, 255, 255, 0.55)",
             transition: "color 0.4s ease",
@@ -89,7 +91,7 @@ function AccordionItem({ item, isOpen, onToggle, isLast }) {
           height="16"
           viewBox="0 0 16 16"
           fill="none"
-          style={{ flexShrink: 0 }}
+          style={{ flexShrink: 0, marginTop: compact ? "2px" : 0 }}
         >
           <path
             d="M4 6L8 10L12 6"
@@ -115,16 +117,16 @@ function AccordionItem({ item, isOpen, onToggle, isLast }) {
         }}
         style={{ overflow: "hidden" }}
       >
-        <div ref={contentRef} style={{ paddingBottom: "1.5rem", paddingLeft: "0" }}>
+        <div ref={contentRef} style={{ paddingBottom: compact ? "1rem" : "1.5rem", paddingLeft: "0" }}>
           <p
             style={{
               fontFamily: "'PP Mori', var(--font-sans)",
               fontWeight: 400,
-              fontSize: "0.9rem",
+              fontSize: compact ? "0.85rem" : "0.9rem",
               lineHeight: 1.7,
               color: "rgba(255, 255, 255, 0.4)",
               margin: 0,
-              maxWidth: "80%",
+              maxWidth: compact ? "100%" : "80%",
             }}
           >
             {item.description}
@@ -138,6 +140,7 @@ function AccordionItem({ item, isOpen, onToggle, isLast }) {
 /* ── Developer features accordion ── */
 function DevFeaturesAccordion() {
   const [openId, setOpenId] = useState(DEV_FEATURES[0].id);
+  const isDesktop = useMediaQuery("(min-width: 1024px)", true);
 
   return (
     <div
@@ -153,6 +156,7 @@ function DevFeaturesAccordion() {
           isOpen={openId === item.id}
           onToggle={() => setOpenId(openId === item.id ? null : item.id)}
           isLast={i === DEV_FEATURES.length - 1}
+          compact={!isDesktop}
         />
       ))}
     </div>
@@ -173,7 +177,7 @@ export function DevelopersSection() {
             "Rebuilt custom app base, secure session tokens, and a new Tasks API with comments and attachments.",
           learnMoreUrl: "https://assembly.com/blog/introducing-assembly-2-0#for-developers",
           content: (
-            <div>
+            <div style={{ maxWidth: "960px" }}>
               <AppBridgeCodeDemo inSplit={false} />
               <div style={{ marginTop: "2.5rem" }}>
                 <DevFeaturesAccordion />

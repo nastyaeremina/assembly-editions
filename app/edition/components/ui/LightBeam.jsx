@@ -60,17 +60,17 @@ export function LightBeam() {
     >
       <style dangerouslySetInnerHTML={{ __html: STYLES }} />
 
-      {/* ── Card gradient — same as CTA: dark top, teal bottom + radial glow ── */}
+      {/* ── Card gradient — off-black base + Assembly Blue glow from bottom ── */}
       <div
         aria-hidden="true"
         style={{
           position: "absolute",
           inset: 0,
           background: `
-            linear-gradient(to bottom, #101010 0%, #0a1a1a 40%, #0c2a28 70%, #0e4540 100%),
-            radial-gradient(ellipse 80% 50% at 50% 100%, rgba(0, 160, 140, 0.4) 0%, rgba(0, 110, 100, 0.15) 40%, transparent 70%)
+            radial-gradient(ellipse 70% 40% at 50% 100%, rgba(188, 231, 244, 0.18) 0%, rgba(125, 164, 255, 0.06) 40%, transparent 65%),
+            linear-gradient(to bottom, #101010 0%, #101010 50%, rgba(125, 164, 255, 0.06) 70%, rgba(188, 231, 244, 0.12) 100%),
+            #101010
           `,
-          backgroundBlendMode: "normal",
         }}
       />
 
@@ -85,7 +85,7 @@ export function LightBeam() {
             width: "1px",
             height: `${l.h}px`,
             background: `linear-gradient(to bottom, transparent 0%, rgba(255, 255, 255, 0.4) 20%, rgba(255, 255, 255, 0.22) 70%, transparent 100%)`,
-            boxShadow: "0 0 8px 2px rgba(0, 200, 170, 0.06)",
+            boxShadow: "0 0 8px 2px rgba(188, 231, 244, 0.06)",
             transformOrigin: "50% 0%",
             animation: `line-${i} ${l.dur}s ${l.delay}s ease-in-out infinite`,
             opacity: 0,

@@ -16,10 +16,10 @@ function EditorialText({
   theme = "dark",
 }) {
   const isLight = theme === "light";
-  const titleColor = isLight ? "#18181b" : "#fff";
-  const bodyColor = isLight ? "#52525b" : "rgba(255, 255, 255, 0.82)";
-  const linkColor = isLight ? "rgba(0, 0, 0, 0.5)" : "rgba(255, 255, 255, 0.5)";
-  const linkHoverColor = isLight ? "rgba(0, 0, 0, 0.85)" : "rgba(255, 255, 255, 0.85)";
+  const titleColor = isLight ? "#101010" : "#fff";
+  const bodyColor = isLight ? "#404040" : "rgba(255, 255, 255, 0.82)";
+  const linkColor = isLight ? "#101010" : "rgba(255, 255, 255, 0.85)";
+  const linkHoverColor = isLight ? "#101010" : "#fff";
 
   return (
     <div
@@ -32,7 +32,7 @@ function EditorialText({
         style={{
           fontFamily: "'PP Mori', var(--font-sans)",
           fontWeight: 600,
-          fontSize: "clamp(1.6rem, 2.8vw, 2.2rem)",
+          fontSize: "clamp(1.5rem, 2.5vw, 1.9rem)",
           lineHeight: 1.15,
           letterSpacing: "-0.025em",
           color: titleColor,
@@ -63,26 +63,42 @@ function EditorialText({
           style={{
             display: "inline-flex",
             alignItems: "center",
-            gap: "0.35rem",
-            marginTop: "1.25rem",
-            fontFamily: "var(--font-mono, monospace)",
-            fontWeight: 400,
-            fontSize: "0.75rem",
-            letterSpacing: "0.04em",
-            textTransform: "uppercase",
+            gap: "0.4rem",
+            marginTop: "0.95rem",
+            paddingBottom: "0.3rem",
+            borderBottom: `2px solid ${linkColor}`,
+            fontFamily: "'PP Mori', var(--font-sans, system-ui, sans-serif)",
+            fontWeight: 600,
+            fontSize: "0.95rem",
+            letterSpacing: "0",
+            textTransform: "none",
             color: linkColor,
             textDecoration: "none",
-            transition: "color 0.2s ease",
+            transition: "color 0.2s ease, border-color 0.2s ease",
           }}
           onMouseEnter={(e) => {
             e.currentTarget.style.color = linkHoverColor;
+            e.currentTarget.style.borderBottomColor = linkHoverColor;
+            const arrow = e.currentTarget.querySelector(".learn-more-arrow");
+            if (arrow) arrow.style.transform = "translateX(3px)";
           }}
           onMouseLeave={(e) => {
             e.currentTarget.style.color = linkColor;
+            e.currentTarget.style.borderBottomColor = linkColor;
+            const arrow = e.currentTarget.querySelector(".learn-more-arrow");
+            if (arrow) arrow.style.transform = "translateX(0)";
           }}
         >
           Learn more
-          <span style={{ transition: "transform 0.2s ease", display: "inline-block" }}>→</span>
+          <span
+            className="learn-more-arrow"
+            style={{
+              display: "inline-block",
+              transition: "transform 0.25s cubic-bezier(0.25, 0.1, 0.25, 1)",
+            }}
+          >
+            →
+          </span>
         </a>
       )}
       {ctaContent && <div style={{ marginTop: "1.5rem" }}>{ctaContent}</div>}
@@ -192,13 +208,14 @@ function MobileCard({
   children,
   sectionLabel,
   learnMoreUrl,
+  learnMoreText,
   theme = "dark",
 }) {
   const isLight = theme === "light";
   const bgColor = isLight ? "#FBFBF5" : "#101010";
-  const titleColor = isLight ? "#18181b" : "#fff";
-  const bodyColor = isLight ? "#52525b" : "rgba(255, 255, 255, 0.82)";
-  const linkColor = isLight ? "rgba(0, 0, 0, 0.5)" : "rgba(255, 255, 255, 0.5)";
+  const titleColor = isLight ? "#101010" : "#fff";
+  const bodyColor = isLight ? "#404040" : "rgba(255, 255, 255, 0.82)";
+  const linkColor = isLight ? "#101010" : "rgba(255, 255, 255, 0.85)";
 
   return (
     <div
@@ -212,11 +229,11 @@ function MobileCard({
         style={{
           fontFamily: "'PP Mori', var(--font-sans)",
           fontWeight: 600,
-          fontSize: "1.5rem",
+          fontSize: "1.425rem",
           lineHeight: 1.2,
           letterSpacing: "-0.02em",
           color: titleColor,
-          margin: "0 0 0.75rem 0",
+          margin: "0 0 0.95rem 0",
           whiteSpace: "pre-line",
         }}
       >
@@ -229,7 +246,7 @@ function MobileCard({
           fontSize: "0.95rem",
           lineHeight: 1.65,
           color: bodyColor,
-          margin: "0 0 0.5rem 0",
+          margin: "0 0 0.95rem 0",
         }}
       >
         {description}
@@ -242,19 +259,43 @@ function MobileCard({
           style={{
             display: "inline-flex",
             alignItems: "center",
-            gap: "0.35rem",
+            gap: "0.4rem",
             marginBottom: "1rem",
-            fontFamily: "var(--font-mono, monospace)",
-            fontWeight: 400,
-            fontSize: "0.75rem",
-            letterSpacing: "0.04em",
-            textTransform: "uppercase",
+            paddingBottom: "0.3rem",
+            borderBottom: `2px solid ${linkColor}`,
+            fontFamily: "'PP Mori', var(--font-sans, system-ui, sans-serif)",
+            fontWeight: 600,
+            fontSize: "0.95rem",
+            letterSpacing: "0",
+            textTransform: "none",
             color: linkColor,
             textDecoration: "none",
+            transition: "color 0.2s ease, border-color 0.2s ease",
+          }}
+          onMouseEnter={(e) => {
+            const hoverColor = isLight ? "#101010" : "#fff";
+            e.currentTarget.style.color = hoverColor;
+            e.currentTarget.style.borderBottomColor = hoverColor;
+            const arrow = e.currentTarget.querySelector(".learn-more-arrow");
+            if (arrow) arrow.style.transform = "translateX(3px)";
+          }}
+          onMouseLeave={(e) => {
+            e.currentTarget.style.color = linkColor;
+            e.currentTarget.style.borderBottomColor = linkColor;
+            const arrow = e.currentTarget.querySelector(".learn-more-arrow");
+            if (arrow) arrow.style.transform = "translateX(0)";
           }}
         >
-          Learn more
-          <span style={{ display: "inline-block" }}>→</span>
+          {learnMoreText || "Learn more"}
+          <span
+            className="learn-more-arrow"
+            style={{
+              display: "inline-block",
+              transition: "transform 0.25s cubic-bezier(0.25, 0.1, 0.25, 1)",
+            }}
+          >
+            →
+          </span>
         </a>
       )}
       {children}
@@ -291,6 +332,8 @@ export function ScrollytellingSection({
   steps,
   heroGradient = true,
   ctaContent,
+  ctaUrl,
+  ctaText,
   heroLayout,
   heroMinHeight,
   heroFullWidth,
@@ -316,6 +359,8 @@ export function ScrollytellingSection({
             sectionNumber={sectionNumber}
             title={title || ""}
             description={description || ""}
+            learnMoreUrl={ctaUrl}
+            learnMoreText={ctaText}
             sectionLabel={sectionLabel}
             theme={theme}
           >

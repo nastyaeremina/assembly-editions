@@ -21,6 +21,8 @@ export function ClientManagementSection() {
       heroLayout="contained"
       heroFullWidth
       theme="light"
+      ctaUrl="https://assembly.com/download"
+      ctaText="Download now"
       ctaContent={
         <a
           href="https://assembly.com/download"
@@ -28,25 +30,21 @@ export function ClientManagementSection() {
             display: "inline-flex",
             alignItems: "center",
             padding: "0.7rem 1.75rem",
-            backgroundColor: "transparent",
-            color: "rgba(0, 0, 0, 0.6)",
-            border: "1px solid rgba(0, 0, 0, 0.15)",
+            backgroundColor: "#CAECF6",
+            color: "#101010",
+            border: "none",
             borderRadius: "9999px",
             fontSize: "0.9rem",
-            fontWeight: 500,
+            fontWeight: 600,
             fontFamily: "'PP Mori', var(--font-sans)",
             textDecoration: "none",
             transition: "all 0.2s ease",
           }}
           onMouseEnter={(e) => {
-            e.currentTarget.style.borderColor = "rgba(0, 0, 0, 0.3)";
-            e.currentTarget.style.color = "rgba(0, 0, 0, 0.85)";
-            e.currentTarget.style.backgroundColor = "rgba(0, 0, 0, 0.03)";
+            e.currentTarget.style.backgroundColor = "#BCE7F4";
           }}
           onMouseLeave={(e) => {
-            e.currentTarget.style.borderColor = "rgba(0, 0, 0, 0.15)";
-            e.currentTarget.style.color = "rgba(0, 0, 0, 0.6)";
-            e.currentTarget.style.backgroundColor = "transparent";
+            e.currentTarget.style.backgroundColor = "#CAECF6";
           }}
         >
           Download now

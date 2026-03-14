@@ -16,7 +16,7 @@ function DockIcon({ children, mouseX, label, hasIndicator, showTooltip = true, o
   const ySync = useTransform(distance, [-180, 0, 180], [0, -14, 0]);
   const y = useSpring(ySync, { mass: 0.1, stiffness: 150, damping: 12 });
 
-  const baseY = isHero ? -4 : 0;
+  const baseY = 0;
 
   return (
     <motion.div
@@ -73,7 +73,7 @@ function MobileAutoIcon({
       style={{ width: iconSize, y, flexShrink: 0 }}
       className="relative aspect-square"
     >
-      <div style={{ position: "relative", height: "100%", transform: isHero ? "translateY(-3px)" : undefined }}>
+      <div style={{ position: "relative", height: "100%" }}>
         {children}
       </div>
       {hasIndicator && (
@@ -89,7 +89,7 @@ const DOCK_ICONS = [
   { label: "Messages", hasIndicator: true, src: "/edition/dock-icons/_System App Icon-9.svg" },
   { label: "Mail", hasIndicator: true, src: "/edition/dock-icons/_System App Icon-8.svg" },
   { label: "Calendar", hasIndicator: false, src: "/edition/dock-icons/_System App Icon-7.svg" },
-  { label: "Assembly", hasIndicator: true, src: "/edition/dock-icons/swap.svg", padding: "7px", isHero: true },
+  { label: "Assembly", hasIndicator: true, src: "/edition/dock-icons/swap.svg", isHero: true, padding: "3px", badge: 3 },
   { label: "Notes", hasIndicator: false, src: "/edition/dock-icons/_System App Icon-4.svg" },
   { label: "Reminders", hasIndicator: true, src: "/edition/dock-icons/_System App Icon-5.svg" },
   { label: "System Settings", hasIndicator: false, src: "/edition/dock-icons/_System App Icon-2.svg" },
@@ -98,16 +98,17 @@ const DOCK_ICONS = [
 
 const DIVIDER_AFTER = 7; // Divider before Trash
 
-/* Mobile: 7 icons, Assembly centered (index 3) */
+/* Mobile: 8 icons + divider + trash, matching desktop layout */
 const MOBILE_ICONS = [
   DOCK_ICONS[0], // Safari
   DOCK_ICONS[1], // Messages
   DOCK_ICONS[2], // Mail
-  DOCK_ICONS[4], // Assembly (center)
+  DOCK_ICONS[4], // Assembly
   DOCK_ICONS[3], // Calendar
   DOCK_ICONS[5], // Notes
   DOCK_ICONS[6], // Reminders
 ];
+const MOBILE_TRASH = DOCK_ICONS[8]; // Trash
 
 /**
  * macOS dock visual — centered, clean, Assembly as hero.
@@ -118,6 +119,7 @@ export function MacOSDock({ className }) {
   const mouseX = useMotionValue(Infinity);
   const dockRef = useRef(null);
   const isDesktop = useMediaQuery("(min-width: 1024px)", true);
+  const isTablet = useMediaQuery("(min-width: 768px)", false);
   const [bouncingIcon, setBouncingIcon] = useState(null);
 
   const handleIconClick = useCallback((label) => {
@@ -127,7 +129,7 @@ export function MacOSDock({ className }) {
   }, [bouncingIcon]);
 
   /* ── Mobile auto-animation hooks (must be before any conditional return) ── */
-  const MOBILE_ICON_SIZE = 48;
+  const MOBILE_ICON_SIZE = isTablet ? 72 : 64;
   const virtualCursorX = useMotionValue(-200);
   const mobileDockWidth = MOBILE_ICONS.length * (MOBILE_ICON_SIZE + 2) + 24;
 
@@ -216,14 +218,25 @@ export function MacOSDock({ className }) {
                   isBouncing={bouncingIcon === icon.label}
                   isHero={icon.isHero}
                 >
-                  {icon.isHero ? (
-                    <div className="h-full w-full" style={{ padding: icon.padding }}>
-                      {/* eslint-disable-next-line @next/next/no-img-element */}
-                      <img src={icon.src} alt={icon.label} className="h-full w-full rounded-[11px] object-contain hero-edge-glow" draggable={false} />
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img src={icon.src} alt={icon.label} className="h-full w-full rounded-[11px] object-contain" style={icon.padding ? { padding: icon.padding } : undefined} draggable={false} />
+                  {icon.badge != null && (
+                    <div style={{
+                      position: "absolute", top: "-5px", right: "-5px",
+                      minWidth: "22px", height: "22px",
+                      borderRadius: "11px",
+                      backgroundColor: "#ff3b30",
+                      color: "#fff",
+                      fontSize: "13px",
+                      fontWeight: 500,
+                      fontFamily: "-apple-system, 'SF Pro Text', system-ui, sans-serif",
+                      display: "flex", alignItems: "center", justifyContent: "center",
+                      padding: "0 5px",
+                      lineHeight: 1,
+                      pointerEvents: "none",
+                    }}>
+                      {icon.badge}
                     </div>
-                  ) : (
-                    /* eslint-disable-next-line @next/next/no-img-element */
-                    <img src={icon.src} alt={icon.label} className="h-full w-full rounded-[11px] object-contain" style={icon.padding ? { padding: icon.padding } : undefined} draggable={false} />
                   )}
                 </DockIcon>
                 {i === DIVIDER_AFTER && (
@@ -244,54 +257,77 @@ export function MacOSDock({ className }) {
       style={{
         position: "relative",
         width: "100%",
-        minHeight: "120px",
+        minHeight: isTablet ? "180px" : "120px",
         display: "flex",
-        justifyContent: "center",
+        justifyContent: "flex-start",
       }}
     >
       <div
         style={{
           position: "relative",
-          paddingTop: "16px",
-          paddingBottom: "12px",
+          paddingTop: isTablet ? "24px" : "16px",
+          paddingBottom: isTablet ? "16px" : "12px",
         }}
       >
         <div
           className="flex items-end rounded-2xl bg-zinc-800 backdrop-blur-xl border border-zinc-600/30"
           style={{
-            padding: "8px 12px",
+            padding: isTablet ? "10px 14px" : "8px 12px",
             gap: "2px",
             width: "max-content",
             boxShadow: "0 8px 32px rgba(0,0,0,0.25), 0 2px 8px rgba(0,0,0,0.15)",
           }}
         >
           {MOBILE_ICONS.map((icon, i) => (
-            <div key={icon.label + i} className="flex items-end">
-              <MobileAutoIcon
-                virtualCursorX={virtualCursorX}
-                index={i}
-                iconSize={MOBILE_ICON_SIZE}
-                hasIndicator={icon.hasIndicator}
-                isHero={icon.isHero}
-              >
-                {icon.isHero ? (
-                  <div className="h-full w-full" style={{ padding: icon.padding }}>
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img src={icon.src} alt={icon.label} className="h-full w-full rounded-[11px] object-contain hero-edge-glow" draggable={false} />
-                  </div>
-                ) : (
-                  /* eslint-disable-next-line @next/next/no-img-element */
-                  <img
-                    src={icon.src}
-                    alt={icon.label}
-                    className="h-full w-full rounded-[11px] object-contain"
-                    style={icon.padding ? { padding: icon.padding } : undefined}
-                    draggable={false}
-                  />
-                )}
-              </MobileAutoIcon>
+            <div key={icon.label + i} className="flex items-end" style={{ position: "relative", width: MOBILE_ICON_SIZE, height: MOBILE_ICON_SIZE, flexShrink: 0 }}>
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src={icon.src}
+                alt={icon.label}
+                className="rounded-[11px] object-contain"
+                style={{ width: "100%", height: "100%", ...(icon.padding ? { padding: icon.padding } : {}) }}
+                draggable={false}
+              />
+              {icon.badge != null && (
+                <div style={{
+                  position: "absolute", top: "-4px", right: "-4px",
+                  minWidth: "20px", height: "20px",
+                  borderRadius: "10px",
+                  backgroundColor: "#ff3b30",
+                  color: "#fff",
+                  fontSize: "12px",
+                  fontWeight: 500,
+                  fontFamily: "-apple-system, 'SF Pro Text', system-ui, sans-serif",
+                  display: "flex", alignItems: "center", justifyContent: "center",
+                  padding: "0 5px",
+                  lineHeight: 1,
+                  pointerEvents: "none",
+                }}>
+                  {icon.badge}
+                </div>
+              )}
+              {icon.hasIndicator && (
+                <div style={{
+                  position: "absolute", bottom: "-6px", left: "50%", transform: "translateX(-50%)",
+                  width: "4px", height: "4px", borderRadius: "50%",
+                  backgroundColor: "rgba(255,255,255,0.5)",
+                }} />
+              )}
             </div>
           ))}
+          {/* Divider */}
+          <div style={{ width: "1px", height: MOBILE_ICON_SIZE * 0.65, backgroundColor: "rgba(255,255,255,0.2)", flexShrink: 0, alignSelf: "center", margin: "0 4px" }} />
+          {/* Trash */}
+          <div className="flex items-end" style={{ position: "relative", width: MOBILE_ICON_SIZE, height: MOBILE_ICON_SIZE, flexShrink: 0 }}>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src={MOBILE_TRASH.src}
+              alt={MOBILE_TRASH.label}
+              className="rounded-[11px] object-contain"
+              style={{ width: "100%", height: "100%" }}
+              draggable={false}
+            />
+          </div>
         </div>
       </div>
     </div>

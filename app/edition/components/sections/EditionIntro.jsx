@@ -212,10 +212,10 @@ export function EditionIntro() {
                   </span>
                   <span
                     style={{
-                      fontFamily: "'PP Mori', var(--font-sans)",
-                      fontWeight: isActive ? 500 : 400,
-                      fontSize: "0.8rem",
-                      letterSpacing: "-0.01em",
+                      fontFamily: "var(--font-mono, monospace)",
+                      fontWeight: 400,
+                      fontSize: "0.75rem",
+                      letterSpacing: "0.02em",
                     }}
                   >
                     {section.label}
@@ -318,10 +318,10 @@ export function EditionIntroMobile() {
           >
             <span
               style={{
-                fontFamily: "var(--font-mono, monospace)",
-                fontSize: "0.6rem",
-                letterSpacing: "0.08em",
-                textTransform: "uppercase",
+                fontFamily: "'PP Mori', var(--font-sans)",
+                fontSize: "0.75rem",
+                letterSpacing: "-0.01em",
+                fontWeight: 400,
                 color: "rgba(255, 255, 255, 0.5)",
                 whiteSpace: "nowrap",
               }}

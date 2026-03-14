@@ -34,7 +34,10 @@ export function Header({ className }) {
         transition: "transform 0.8s cubic-bezier(0.25, 0.1, 0.25, 1)",
       }}
     >
-      <div className="flex items-center justify-between">
+      <div
+        className="flex items-center justify-between"
+        style={{ maxWidth: "80rem", margin: "0 auto" }}
+      >
         <Link href="/" className="transition-opacity hover:opacity-70" style={{ display: "flex", alignItems: "center" }}>
           <img
             src="/edition/logos/watermark.svg"
@@ -68,7 +71,7 @@ export function Header({ className }) {
             rel="noopener"
             style={{
               fontFamily: "'PP Mori', var(--font-sans)",
-              fontWeight: 500,
+              fontWeight: 600,
               fontSize: "0.85rem",
               color: "#101010",
               backgroundColor: "rgba(255, 255, 255, 0.9)",

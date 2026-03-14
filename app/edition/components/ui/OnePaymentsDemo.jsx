@@ -126,7 +126,7 @@ function Avatar({ initials, index }) {
         color: palette.color,
         flexShrink: 0,
         letterSpacing: "0.02em",
-        border: `1px solid ${palette.color}18`,
+        border: "none",
       }}
     >
       {initials}
@@ -1221,19 +1221,24 @@ export function OnePaymentsDemo({ inSplit = false }) {
                     cursor: matchedTab ? "pointer" : "default",
                     whiteSpace: "nowrap",
                     flexShrink: 0,
+                    transition: "color 0.3s ease",
                   }}
                 >
                   {label}
                   {isActive && (
-                    <span style={{
-                      position: "absolute",
-                      bottom: 0,
-                      left: 0,
-                      right: 0,
-                      height: "1.5px",
-                      backgroundColor: C.text,
-                      zIndex: 1,
-                    }} />
+                    <motion.span
+                      layoutId="payments-tab-underline-mobile"
+                      style={{
+                        position: "absolute",
+                        bottom: 0,
+                        left: 0,
+                        right: 0,
+                        height: "1.5px",
+                        backgroundColor: C.text,
+                        zIndex: 1,
+                      }}
+                      transition={{ type: "spring", stiffness: 400, damping: 35 }}
+                    />
                   )}
                 </span>
               );
@@ -1243,7 +1248,7 @@ export function OnePaymentsDemo({ inSplit = false }) {
         </div>
 
         {/* Content — fixed height to prevent layout shift */}
-        <div style={{ height: "360px", overflow: "hidden" }}>
+        <div style={{ height: "290px", overflow: "hidden" }}>
           <AnimatePresence mode="wait">
             {activeTab === "overview" && (
               <motion.div
@@ -1338,6 +1343,7 @@ export function OnePaymentsDemo({ inSplit = false }) {
         backgroundColor: C.bg,
         borderRadius: "10px",
         border: `1px solid ${C.border}`,
+        cursor: "default",
         boxShadow: "0 8px 30px rgba(0,0,0,0.08), 0 1px 3px rgba(0,0,0,0.06)",
         fontFamily: "'Inter', system-ui, sans-serif",
         overflow: "hidden",
@@ -1376,19 +1382,24 @@ export function OnePaymentsDemo({ inSplit = false }) {
                   padding: "10px 0",
                   position: "relative",
                   cursor: matchedTab ? "pointer" : "default",
+                  transition: "color 0.3s ease",
                 }}
               >
                 {label}
                 {isActive && (
-                  <span style={{
-                    position: "absolute",
-                    bottom: 0,
-                    left: 0,
-                    right: 0,
-                    height: "1px",
-                    backgroundColor: C.text,
-                    zIndex: 1,
-                  }} />
+                  <motion.span
+                    layoutId="payments-tab-underline"
+                    style={{
+                      position: "absolute",
+                      bottom: 0,
+                      left: 0,
+                      right: 0,
+                      height: "1px",
+                      backgroundColor: C.text,
+                      zIndex: 1,
+                    }}
+                    transition={{ type: "spring", stiffness: 400, damping: 35 }}
+                  />
                 )}
               </span>
             );

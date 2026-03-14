@@ -3,7 +3,6 @@
 import { useRef, useState, useEffect, useLayoutEffect, useCallback } from "react";
 import { motion, useInView } from "framer-motion";
 import { Play, X } from "lucide-react";
-import { LightBeam, ThemedClientHome } from "../ui";
 // import { AsciiHeroBackground } from "../ui/AsciiHeroBackground";
 
 /* ────────────────────────────────────────────────────────────
@@ -32,22 +31,7 @@ export function CollageHero() {
 
   const isPIP = isPlaying && !isHeroVisible;
 
-  /* Scale the ThemedClientHome preview to fit the video area.
-     Renders at a fixed internal width then scales down. */
-  const PREVIEW_WIDTH = 1100;
-  const PREVIEW_HEIGHT = PREVIEW_WIDTH * 9 / 16; // 618.75
   const previewContainerRef = useRef(null);
-  const [previewScale, setPreviewScale] = useState(0.87);
-
-  useEffect(() => {
-    const el = previewContainerRef.current;
-    if (!el) return;
-    const observer = new ResizeObserver(([entry]) => {
-      setPreviewScale(entry.contentRect.width / PREVIEW_WIDTH);
-    });
-    observer.observe(el);
-    return () => observer.disconnect();
-  }, []);
 
   /* Detect touch devices (no hover) — show play button always on mobile */
   useEffect(() => {
@@ -141,18 +125,7 @@ export function CollageHero() {
         style={{ backgroundColor: "#101010", paddingBottom: "clamp(5rem, 6vw, 4.5rem)" }}
         aria-label="Assembly 2.0 hero"
       >
-        {/* Gradient card background — clean rounded edges like CTA */}
-        <div style={{
-          position: "absolute",
-          top: 0,
-          left: "0.5rem",
-          right: "0.5rem",
-          bottom: "clamp(5rem, 6vw, 4.5rem)",
-          overflow: "hidden",
-          borderRadius: "20px",
-        }}>
-          <LightBeam />
-        </div>
+        {/* Gradient removed — flat off-black hero per brand guidelines */}
 
         {/* ASCII hands background — disabled */}
         {/* <AsciiHeroBackground /> */}
@@ -180,7 +153,7 @@ export function CollageHero() {
             style={{
               fontFamily: "'PP Mori', var(--font-sans)",
               fontWeight: 600,
-              fontSize: "clamp(2rem, 4.5vw, 3.4rem)",
+              fontSize: "clamp(2rem, 4.5vw, 3.8rem)",
               lineHeight: 1.08,
               letterSpacing: "-0.035em",
               color: "rgba(255, 255, 255, 0.92)",
@@ -205,7 +178,7 @@ export function CollageHero() {
               letterSpacing: "-0.01em",
               color: "rgba(255, 255, 255, 0.72)",
               margin: 0,
-              marginTop: "1.5rem",
+              marginTop: "1.425rem",
               textAlign: "center",
               maxWidth: "580px",
             }}
@@ -227,22 +200,12 @@ export function CollageHero() {
               transition: "opacity 0.8s ease-out 0.5s",
             }}
           >
-            {/* Soft ambient glow — wide and offset to avoid a central hotspot */}
-            <div
-              style={{
-                position: "absolute",
-                inset: "-60%",
-                background:
-                  "radial-gradient(ellipse 70% 50% at 50% 65%, rgba(0, 160, 140, 0.15) 0%, rgba(0, 120, 110, 0.06) 40%, transparent 70%)",
-                pointerEvents: "none",
-                zIndex: 0,
-              }}
-            />
-
-            {/* Product container — no glass frame, product emerges from background */}
+            {/* Video thumbnail + play button */}
             <div
               ref={previewContainerRef}
               onClick={!isPlaying ? () => setIsPlaying(true) : undefined}
+              onMouseEnter={() => setIsHovered(true)}
+              onMouseLeave={() => setIsHovered(false)}
               style={{
                 position: "absolute",
                 inset: 0,
@@ -252,72 +215,60 @@ export function CollageHero() {
                 zIndex: 1,
               }}
             >
-              {/* Scaled product preview — renders at 1100px then scales to fit */}
-              <div
-                style={{
-                  width: `${PREVIEW_WIDTH}px`,
-                  height: `${PREVIEW_HEIGHT}px`,
-                  transform: `scale(${previewScale})`,
-                  transformOrigin: "top left",
-                  pointerEvents: "none",
-                }}
-              >
-                <ThemedClientHome static />
-              </div>
-
-              {/* Subtle inner border glow — thin highlight at top edge */}
-              <div
-                style={{
-                  position: "absolute",
-                  inset: 0,
-                  borderRadius: "clamp(6px, 1vw, 10px)",
-                  boxShadow: "inset 0 0.5px 0 rgba(255, 255, 255, 0.08), inset 0 0 30px rgba(0, 0, 0, 0.15)",
-                  pointerEvents: "none",
-                  zIndex: 3,
-                }}
-              />
-
-              {/* Play button — fades in on hover, always visible on mobile */}
+              {/* YouTube thumbnail */}
               {!isPlaying && (
-                <div
-                  onMouseEnter={() => setIsHovered(true)}
-                  onMouseLeave={() => setIsHovered(false)}
-                  style={{
-                    position: "absolute",
-                    inset: 0,
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    pointerEvents: "auto",
-                    zIndex: 4,
-                    cursor: "pointer",
-                  }}
-                >
+                <>
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src="/images/video thumb desktop.png"
+                    alt="Assembly 2.0 Demo"
+                    style={{
+                      position: "absolute",
+                      inset: 0,
+                      width: "100%",
+                      height: "100%",
+                      objectFit: "cover",
+                    }}
+                  />
+
+                  {/* Play button */}
                   <div
                     style={{
-                      width: "48px",
-                      height: "48px",
-                      borderRadius: "50%",
-                      backgroundColor: "rgba(255, 255, 255, 0.12)",
-                      backdropFilter: "blur(12px)",
-                      WebkitBackdropFilter: "blur(12px)",
-                      border: "1px solid rgba(255, 255, 255, 0.1)",
+                      position: "absolute",
+                      inset: 0,
                       display: "flex",
                       alignItems: "center",
                       justifyContent: "center",
-                      opacity: isHovered || !hasHover ? 1 : 0,
-                      transform: isHovered || !hasHover ? "scale(1)" : "scale(0.9)",
-                      transition: "opacity 0.25s ease, transform 0.25s ease",
+                      zIndex: 2,
                     }}
                   >
-                    <Play
-                      size={20}
-                      style={{ color: "#fff", marginLeft: "2px" }}
-                      strokeWidth={0}
-                      fill="#fff"
-                    />
+                    <div
+                      style={{
+                        width: "clamp(52px, 8vw, 64px)",
+                        height: "clamp(52px, 8vw, 64px)",
+                        borderRadius: "50%",
+                        backgroundColor: "rgba(0, 0, 0, 0.45)",
+                        backdropFilter: "blur(16px)",
+                        WebkitBackdropFilter: "blur(16px)",
+                        border: "1px solid rgba(255, 255, 255, 0.12)",
+                        boxShadow: "0 4px 24px rgba(0, 0, 0, 0.3)",
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                        opacity: isHovered || !hasHover ? 1 : 0.8,
+                        transform: isHovered ? "scale(1.08)" : "scale(1)",
+                        transition: "opacity 0.25s ease, transform 0.25s ease",
+                      }}
+                    >
+                      <Play
+                        size={20}
+                        style={{ color: "#fff", marginLeft: "2px" }}
+                        strokeWidth={0}
+                        fill="#fff"
+                      />
+                    </div>
                   </div>
-                </div>
+                </>
               )}
             </div>
         </div>

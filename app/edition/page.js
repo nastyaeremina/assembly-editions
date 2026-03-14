@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect } from "react";
 import "./edition.css";
 import { Header, SplitScreenLayout, Footer } from "./components/layout";
 import { LoadingScreen } from "./components/ui";
@@ -15,6 +16,19 @@ import {
 } from "./components/sections";
 
 export default function EditionPage() {
+  /* Mark interactive demos as "interacted" on first click */
+  useEffect(() => {
+    const handler = (e) => {
+      const hint = e.target.closest(".interactive-hint, .interactive-hint--light");
+      if (hint && !hint.classList.contains("interacted")) {
+        hint.classList.add("interacted");
+      }
+    };
+    document.addEventListener("pointerdown", handler);
+    return () => document.removeEventListener("pointerdown", handler);
+  }, []);
+
+
   return (
     <div className="edition-page min-h-screen bg-background">
       {/* Loading intro — mouse-interactive "2.0" */}
@@ -38,9 +52,9 @@ export default function EditionPage() {
           <PaymentsSection />
           <DevelopersSection />
         </SplitScreenLayout>
-
-        <WhatsNextSection />
       </main>
+
+      <WhatsNextSection />
 
       <Footer />
     </div>

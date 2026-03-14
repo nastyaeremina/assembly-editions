@@ -26,15 +26,15 @@ const CONTENT = {
 const CONTENT_DARK = {
   bg: "transparent",
   cardBg: "rgba(255, 255, 255, 0.035)",
-  cardBorder: "rgba(255, 255, 255, 0.06)",
+  cardBorder: "rgba(255, 255, 255, 0.08)",
   textPrimary: "rgba(255, 255, 255, 0.82)",
   textSecondary: "rgba(255, 255, 255, 0.38)",
-  tableBorder: "rgba(255, 255, 255, 0.05)",
+  tableBorder: "rgba(255, 255, 255, 0.08)",
   tableRowBorder: "rgba(255, 255, 255, 0.03)",
   tableHeaderBg: "rgba(255, 255, 255, 0.03)",
   /* Glass overrides for sidebar + banner */
   sidebarBg: "transparent",
-  bannerBg: "rgba(255, 255, 255, 0.05)",
+  bannerBg: null, /* null = use segment gradient even in static mode */
 };
 
 /* ── Icon paths ── */
@@ -68,8 +68,9 @@ const SEGMENTS = [
     sidebarBadgeBg: "rgba(255,255,255,0.1)",
     sidebarBadgeText: "#e2e8f0",
     bannerBg: "#1e3a5f",
+    bannerGradient: "linear-gradient(135deg, #e8722a 0%, #d4567a 18%, #c24a8e 32%, #9b4cb8 46%, #6a6cd4 58%, #4a88cc 70%, #3d9bbe 82%, #35a8b5 94%, #2fb0ae 100%)",
     greeting: "Welcome back Sarah",
-    subtitle: "Here\u2019s what needs your attention today",
+    subtitle: "Here\u2019s everything in one place",
     navItems: [
       { icon: "home", label: "Home", active: true },
       { icon: "messages", label: "Messages" },
@@ -87,10 +88,19 @@ const SEGMENTS = [
       { icon: "tasks", label: "Tasks", count: 3, unit: "task" },
       { icon: "forms", label: "Forms", count: 1, unit: "form" },
     ],
+    bottomSection: "team",
+    bottomTitle: "Your team",
+    bottomSubtitle: "Meet the team working on your account. Reach out directly or send a message through the portal.",
+    tableHeaders: ["Team member", "Role", "Email", "Availability"],
+    tableRows: [
+      ["Sarah Kim", "Account Manager", "sarah@brandmages.com", "M\u2013F, 9AM\u20136PM"],
+      ["Jake Torres", "Designer", "jake@brandmages.com", "M\u2013F, 10AM\u20135PM"],
+      ["Priya Patel", "Strategist", "priya@brandmages.com", "M\u2013Th, 9AM\u20134PM"],
+    ],
   },
   {
     id: "standard",
-    name: "Standard",
+    name: "Silver",
     dotColor: "#f59e0b",
     clientCount: 60,
     accent: "#d97706",
@@ -101,8 +111,9 @@ const SEGMENTS = [
     sidebarBadgeBg: "rgba(251,191,36,0.12)",
     sidebarBadgeText: "#e2e8f0",
     bannerBg: "#4a3524",
+    bannerGradient: "linear-gradient(135deg, #1a0a00 0%, #4a1e00 14%, #7a3500 28%, #b04e08 42%, #d4700a 56%, #e8920e 68%, #f5b020 80%, #fcd878 92%, #fef3c7 100%)",
     greeting: "Welcome back Mike",
-    subtitle: "Here\u2019s what needs your attention today",
+    subtitle: "Your hub for files, tasks, and updates",
     navItems: [
       { icon: "home", label: "Home", active: true },
       { icon: "messages", label: "Messages" },
@@ -114,6 +125,15 @@ const SEGMENTS = [
     actionCards: [
       { icon: "billing", label: "Invoices", count: 1, unit: "invoice" },
       { icon: "tasks", label: "Tasks", count: 2, unit: "task" },
+    ],
+    bottomSection: "services",
+    bottomTitle: "Active services",
+    bottomSubtitle: "Here\u2019s a snapshot of what\u2019s currently running for your account.",
+    tableHeaders: ["Service", "Status", "Frequency", "Next delivery"],
+    tableRows: [
+      ["Social media management", "Active", "Weekly", "Mar 18"],
+      ["SEO audit", "Active", "Monthly", "Apr 1"],
+      ["Email campaign", "Scheduled", "Bi-weekly", "Mar 20"],
     ],
   },
   {
@@ -129,8 +149,9 @@ const SEGMENTS = [
     sidebarBadgeBg: "rgba(20,184,166,0.12)",
     sidebarBadgeText: "#e2e8f0",
     bannerBg: "#134e4a",
+    bannerGradient: "linear-gradient(135deg, #a8d8d0 0%, #8ccbc2 16%, #6ebdb4 32%, #52b0a6 48%, #3aa39a 62%, #28968e 76%, #1a8580 88%, #0d7377 100%)",
     greeting: "Welcome back Alex",
-    subtitle: "Here\u2019s what needs your attention today",
+    subtitle: "Everything you need, all in one place",
     navItems: [
       { icon: "home", label: "Home", active: true },
       { icon: "messages", label: "Messages" },
@@ -140,6 +161,15 @@ const SEGMENTS = [
     actionCards: [
       { icon: "billing", label: "Invoices", count: 1, unit: "invoice" },
       { icon: "tasks", label: "Tasks", count: 1, unit: "task" },
+    ],
+    bottomSection: "hours",
+    bottomTitle: "Office hours",
+    bottomSubtitle: "Our availability for calls and support requests.",
+    tableHeaders: ["Day", "Hours", "Timezone", "Support"],
+    tableRows: [
+      ["Monday \u2013 Friday", "9AM \u2013 6PM", "EST", "Full"],
+      ["Saturday", "10AM \u2013 5PM", "EST", "Limited"],
+      ["Sunday", "Closed", "\u2014", "\u2014"],
     ],
   },
 ];
@@ -248,6 +278,8 @@ export function ThemedClientHome({ inSplit = false, static: isStatic = false }) 
   const segment = SEGMENTS[activeIndex];
   const [showTooltip, setShowTooltip] = useState(false);
   const tooltipDismissed = useRef(false);
+  const silverBtnRef = useRef(null);
+  const [tooltipLeft, setTooltipLeft] = useState(0);
 
   /* Content-area palette — dark in hero preview, light elsewhere */
   const C = isStatic ? CONTENT_DARK : CONTENT;
@@ -337,13 +369,26 @@ export function ThemedClientHome({ inSplit = false, static: isStatic = false }) 
   /* ── Segment switcher (shared between mobile & desktop) ── */
   const segmentSwitcher = (
     <div
-      onMouseEnter={() => { if (!tooltipDismissed.current) setShowTooltip(true); }}
+      onMouseEnter={(e) => {
+        if (!tooltipDismissed.current) {
+          if (silverBtnRef.current) {
+            const btn = silverBtnRef.current;
+            const parent = btn.parentElement;
+            if (parent) {
+              const bRect = btn.getBoundingClientRect();
+              const pRect = parent.getBoundingClientRect();
+              setTooltipLeft(bRect.x + bRect.width / 2 - pRect.x);
+            }
+          }
+          setShowTooltip(true);
+        }
+      }}
       onMouseLeave={() => setShowTooltip(false)}
       style={{
         display: "flex",
         alignItems: "center",
         padding: "8px 14px 8px 4px",
-        borderBottom: "1px solid rgba(255,255,255,0.06)",
+        borderBottom: isStatic ? "1px solid rgba(255,255,255,0.06)" : "none",
         position: "relative",
       }}
     >
@@ -352,6 +397,7 @@ export function ThemedClientHome({ inSplit = false, static: isStatic = false }) 
         return (
           <button
             key={s.id}
+            ref={i === 1 ? silverBtnRef : undefined}
             onClick={() => handleSegmentClick(i)}
             style={{
               display: "inline-flex",
@@ -404,7 +450,7 @@ export function ThemedClientHome({ inSplit = false, static: isStatic = false }) 
               bottom: 0,
               left: 0,
               right: 0,
-              height: "1.5px",
+              height: "2px",
             }}
           >
             {/* Already-filled portion (previous segments) */}
@@ -417,8 +463,8 @@ export function ThemedClientHome({ inSplit = false, static: isStatic = false }) 
                   width: `${filledPercent}%`,
                   height: "100%",
                   backgroundColor: dotColor,
-                  opacity: 0.35,
-                  borderRadius: "1px",
+                  opacity: 0.6,
+                  borderRadius: 0,
                 }}
               />
             )}
@@ -432,8 +478,8 @@ export function ThemedClientHome({ inSplit = false, static: isStatic = false }) 
                 width: `${segmentPercent}%`,
                 height: "100%",
                 backgroundColor: dotColor,
-                opacity: 0.35,
-                borderRadius: "1px",
+                opacity: 0.7,
+                borderRadius: 0,
                 transformOrigin: "left",
                 animation: "segment-progress 2.5s linear forwards",
               }}
@@ -454,20 +500,21 @@ export function ThemedClientHome({ inSplit = false, static: isStatic = false }) 
       >
         {TOTAL_CLIENTS} clients
       </span>
-      {/* Tooltip — positioned over 2nd segment (Gold) since 1st is already active */}
+
+      {/* Tooltip below segment bar, centered on Silver */}
       <AnimatePresence>
         {!isStatic && showTooltip && (
           <motion.div
-            initial={{ opacity: 0, y: 4 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: 4 }}
+            initial={{ opacity: 0, y: -4, x: "-50%" }}
+            animate={{ opacity: 1, y: 0, x: "-50%" }}
+            exit={{ opacity: 0, y: -4, x: "-50%" }}
             transition={{ duration: 0.15 }}
             style={{
               position: "absolute",
               top: "calc(100% + 6px)",
-              left: "80px",
+              left: `${tooltipLeft}px`,
               pointerEvents: "none",
-              zIndex: 100,
+              zIndex: 200,
             }}
           >
             <div style={{
@@ -494,7 +541,8 @@ export function ThemedClientHome({ inSplit = false, static: isStatic = false }) 
               <div style={{
                 position: "absolute",
                 top: "-4px",
-                left: "16px",
+                left: "50%",
+                marginLeft: "-4px",
                 width: "8px",
                 height: "8px",
                 backgroundColor: "rgba(39, 39, 42, 0.95)",
@@ -513,6 +561,7 @@ export function ThemedClientHome({ inSplit = false, static: isStatic = false }) 
   if (isMobile) {
     return (
       <div ref={containerRef} style={isStatic ? { height: "100%" } : undefined}>
+
         <div className={isStatic ? undefined : "interactive-hint"} style={{
           borderRadius: isStatic ? 0 : "12px",
           border: isStatic ? "none" : "1px solid rgba(255,255,255,0.08)",
@@ -547,7 +596,7 @@ export function ThemedClientHome({ inSplit = false, static: isStatic = false }) 
           )}
 
           {/* Content area — no sidebar */}
-          <div style={{ backgroundColor: C.bg, padding: "20px 18px 28px", overflow: "hidden", flex: isStatic ? 1 : undefined }}>
+          <div style={{ backgroundColor: C.bg, padding: "20px 18px 18px", overflow: "hidden", flex: isStatic ? 1 : undefined }}>
             <AnimatePresence mode="wait">
               <motion.div
                 key={segment.id + "-greeting"}
@@ -580,7 +629,7 @@ export function ThemedClientHome({ inSplit = false, static: isStatic = false }) 
                   style={{
                     position: "absolute",
                     inset: 0,
-                    background: isStatic ? C.bannerBg : seg.bannerBg,
+                    background: isStatic ? (C.bannerBg ?? seg.bannerGradient) : (seg.bannerGradient || seg.bannerBg),
                     opacity: seg.id === segment.id ? 1 : 0,
                     transition: "opacity 600ms ease",
                   }}
@@ -604,7 +653,7 @@ export function ThemedClientHome({ inSplit = false, static: isStatic = false }) 
               }}>You have {segment.actionCards.reduce((sum, c) => sum + c.count, 0)} pending items</div>
 
               <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "8px" }}>
-                {segment.actionCards.map((card) => (
+                {segment.actionCards.slice(0, 2).map((card) => (
                   <ActionCard key={card.label} iconSrc={ICO[card.icon]} label={card.label} count={card.count} unit={card.unit} colors={C} />
                 ))}
               </div>
@@ -617,7 +666,7 @@ export function ThemedClientHome({ inSplit = false, static: isStatic = false }) 
 
   /* ── Desktop: full layout with sidebar ── */
   return (
-    <div ref={containerRef} style={isStatic ? { height: "100%" } : undefined}>
+    <div ref={containerRef} style={{ position: "relative", ...(isStatic ? { height: "100%" } : {}) }}>
 
       {/* ── Portal preview container ── */}
       <motion.div
@@ -638,7 +687,7 @@ export function ThemedClientHome({ inSplit = false, static: isStatic = false }) 
           <div style={{
             position: "relative", display: "flex", alignItems: "center",
             backgroundColor: "#141414", padding: "12px 16px",
-            borderBottom: "1px solid rgba(255, 255, 255, 0.06)",
+            borderBottom: "1px solid rgba(255, 255, 255, 0.1)",
           }}>
             <div style={{ display: "flex", gap: "7px", position: "relative", zIndex: 1 }}>
               {["#ff5f57", "#febc2e", "#28c840"].map((color) => (
@@ -652,13 +701,13 @@ export function ThemedClientHome({ inSplit = false, static: isStatic = false }) 
         )}
 
         {/* Portal layout: sidebar + content */}
-        <div style={{ display: "flex", height: isStatic ? "100%" : (inSplit ? "640px" : "640px") }}>
+        <div style={{ display: "flex", height: isStatic ? "100%" : (inSplit ? "640px" : "640px"), overflow: "hidden" }}>
 
           {/* ── Sidebar ── */}
           <div style={{
             width: inSplit ? "150px" : "175px", flexShrink: 0,
             backgroundColor: isStatic ? C.sidebarBg : segment.sidebarBg,
-            borderRight: isStatic ? "1px solid rgba(255, 255, 255, 0.05)" : "none",
+            borderRight: isStatic ? "1px solid rgba(255, 255, 255, 0.08)" : "none",
             padding: "10px 0",
             display: "flex", flexDirection: "column",
             transition: "background-color 400ms ease",
@@ -710,7 +759,7 @@ export function ThemedClientHome({ inSplit = false, static: isStatic = false }) 
               borderBottom: `1px solid ${C.cardBorder}`,
             }}>Home</div>
 
-            <div style={{ flex: 1, padding: inSplit ? "14px 14px 24px" : "18px 18px 30px", overflow: isStatic ? "hidden" : "auto" }}>
+            <div style={{ flex: 1, padding: inSplit ? "14px 14px 24px" : "18px 18px 30px", overflow: "hidden" }}>
                   {/* Greeting — cross-fades per segment */}
                   <AnimatePresence mode="wait">
                     <motion.div
@@ -744,7 +793,7 @@ export function ThemedClientHome({ inSplit = false, static: isStatic = false }) 
                         style={{
                           position: "absolute",
                           inset: 0,
-                          background: isStatic ? C.bannerBg : seg.bannerBg,
+                          background: isStatic ? (C.bannerBg ?? seg.bannerGradient) : (seg.bannerGradient || seg.bannerBg),
                           opacity: seg.id === segment.id ? 1 : 0,
                           transition: "opacity 600ms ease",
                         }}
@@ -774,26 +823,29 @@ export function ThemedClientHome({ inSplit = false, static: isStatic = false }) 
                     </div>
                   </div>
 
-                  {/* About us section */}
+                  {/* Bottom section — table for each segment with different content */}
                   <div style={{ marginTop: "14px" }}>
-                    <div style={{ fontSize: "12px", fontWeight: 500, color: C.textPrimary, fontFamily: "'Inter', system-ui, sans-serif", marginBottom: "4px" }}>About us</div>
+                    <div style={{ fontSize: "12px", fontWeight: 500, color: C.textPrimary, fontFamily: "'Inter', system-ui, sans-serif", marginBottom: "4px" }}>{segment.bottomTitle}</div>
                     <div style={{ fontSize: "10px", lineHeight: 1.5, color: C.textSecondary, fontFamily: "'Inter', system-ui, sans-serif", marginBottom: "10px" }}>
-                      BrandMages, a full-service marketing agency that helps businesses increase their brand awareness, attract new customers, and grow their bottom line. We specialize in crafting unique and effective marketing strategies that align with your business goals and help you stand out in a crowded marketplace.
+                      {segment.bottomSubtitle}
                     </div>
                     <div style={{ border: `1px solid ${C.tableBorder}`, borderRadius: "6px", overflow: "hidden" }}>
                       <table style={{ borderCollapse: "collapse", fontSize: "10px", fontFamily: "'Inter', system-ui, sans-serif", width: "100%" }}>
                         <thead>
                           <tr style={{ backgroundColor: C.tableHeaderBg }}>
-                            <td style={{ padding: "6px 10px", color: C.textSecondary, borderBottom: `1px solid ${C.tableBorder}`, fontWeight: 500 }}>Days</td>
-                            <td style={{ padding: "6px 10px", color: C.textSecondary, borderBottom: `1px solid ${C.tableBorder}`, fontWeight: 500 }}>Hours (EST)</td>
-                            <td style={{ padding: "6px 10px", color: C.textSecondary, borderBottom: `1px solid ${C.tableBorder}`, fontWeight: 500 }}>Phone</td>
-                            <td style={{ padding: "6px 10px", color: C.textSecondary, borderBottom: `1px solid ${C.tableBorder}`, fontWeight: 500 }}>Email</td>
+                            {segment.tableHeaders.map((h) => (
+                              <td key={h} style={{ padding: "6px 10px", color: C.textSecondary, borderBottom: `1px solid ${C.tableBorder}`, fontWeight: 500 }}>{h}</td>
+                            ))}
                           </tr>
                         </thead>
                         <tbody>
-                          <tr><td style={{ padding: "6px 10px", borderBottom: `1px solid ${C.tableRowBorder}`, color: C.textSecondary }}>M–F</td><td style={{ padding: "6px 10px", borderBottom: `1px solid ${C.tableRowBorder}`, color: C.textSecondary }}>9AM – 6PM</td><td style={{ padding: "6px 10px", borderBottom: `1px solid ${C.tableRowBorder}`, color: C.textSecondary }}>(555) 234-5678</td><td style={{ padding: "6px 10px", borderBottom: `1px solid ${C.tableRowBorder}`, color: C.textSecondary }}>hello@brandmages.com</td></tr>
-                          <tr><td style={{ padding: "6px 10px", borderBottom: `1px solid ${C.tableRowBorder}`, color: C.textSecondary }}>Sat</td><td style={{ padding: "6px 10px", borderBottom: `1px solid ${C.tableRowBorder}`, color: C.textSecondary }}>10AM – 5PM</td><td style={{ padding: "6px 10px", borderBottom: `1px solid ${C.tableRowBorder}`, color: C.textSecondary }}>(555) 234-5678</td><td style={{ padding: "6px 10px", borderBottom: `1px solid ${C.tableRowBorder}`, color: C.textSecondary }}>hello@brandmages.com</td></tr>
-                          <tr><td style={{ padding: "6px 10px", color: C.textSecondary }}>Sun</td><td style={{ padding: "6px 10px", color: C.textSecondary }}>Closed</td><td style={{ padding: "6px 10px", color: C.textSecondary }}>—</td><td style={{ padding: "6px 10px", color: C.textSecondary }}>—</td></tr>
+                          {segment.tableRows.map((row, i) => (
+                            <tr key={i}>
+                              {row.map((cell, j) => (
+                                <td key={j} style={{ padding: "6px 10px", color: C.textSecondary, ...(i < segment.tableRows.length - 1 ? { borderBottom: `1px solid ${C.tableRowBorder}` } : {}) }}>{cell}</td>
+                              ))}
+                            </tr>
+                          ))}
                         </tbody>
                       </table>
                     </div>
