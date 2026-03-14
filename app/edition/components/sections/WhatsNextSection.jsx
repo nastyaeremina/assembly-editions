@@ -42,8 +42,8 @@ export function WhatsNextSection() {
                 position: "absolute",
                 inset: 0,
                 background: `
-                  radial-gradient(ellipse 80% 35% at 50% 100%, rgba(160, 200, 240, 0.12) 0%, rgba(160, 200, 240, 0.04) 50%, transparent 70%),
-                  linear-gradient(to bottom, #101010 0%, #101010 60%, rgba(160, 200, 240, 0.03) 85%, rgba(160, 200, 240, 0.07) 100%),
+                  radial-gradient(ellipse 80% 45% at 50% 100%, rgba(160, 200, 240, 0.35) 0%, rgba(160, 200, 240, 0.14) 50%, transparent 70%),
+                  linear-gradient(to bottom, #101010 0%, #101010 45%, rgba(160, 200, 240, 0.10) 75%, rgba(160, 200, 240, 0.20) 100%),
                   #101010
                 `,
                 zIndex: 0,
