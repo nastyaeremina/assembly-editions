@@ -108,7 +108,7 @@ function SubsectionList({ subsections, activeSubsection, light = false }) {
               <span
                 style={{
                   fontFamily: "'PP Mori', var(--font-sans)",
-                  fontSize: "0.75rem",
+                  fontSize: "0.8rem",
                   letterSpacing: "-0.01em",
                   fontWeight: 400,
                   color: isActive
@@ -145,8 +145,8 @@ export function StorySpineNav() {
         height: "100vh",
         display: "flex",
         flexDirection: "column",
-        justifyContent: "center",
-        padding: "0 2rem 0 2.5rem",
+        justifyContent: "flex-start",
+        padding: "8rem 2rem 0 2.5rem",
         opacity: visible ? 1 : 0,
         transform: visible ? "translateX(0)" : "translateX(-8px)",
         transition:
@@ -205,9 +205,9 @@ export function StorySpineNav() {
                   style={{
                     display: "flex",
                     flexDirection: "column",
-                    gap: "0.15rem",
+                    gap: "0.35rem",
                     width: "100%",
-                    padding: "0.7rem 0",
+                    padding: "0.75rem 0",
                     background: "none",
                     border: "none",
                     cursor: "pointer",
@@ -215,34 +215,36 @@ export function StorySpineNav() {
                     transition: "color 0.3s ease",
                   }}
                 >
-                  <span
-                    style={{
-                      fontFamily: "var(--font-mono, monospace)",
-                      fontSize: "0.65rem",
-                      letterSpacing: "0.06em",
-                      color: numberColor,
-                      transition: "color 0.3s ease",
-                    }}
-                  >
-                    {section.number}
-                  </span>
-                  <span
-                    style={{
-                      fontFamily: "'PP Mori', var(--font-sans)",
-                      fontSize: "0.7rem",
-                      letterSpacing: "-0.01em",
-                      fontWeight: 400,
-                      color: labelColor,
-                      transition: "color 0.3s ease",
-                    }}
-                  >
-                    {section.label}
-                  </span>
+                  <div style={{ display: "flex", alignItems: "baseline", gap: "0.5rem" }}>
+                    <span
+                      style={{
+                        fontFamily: "var(--font-mono, monospace)",
+                        fontSize: "0.75rem",
+                        letterSpacing: "0.04em",
+                        color: numberColor,
+                        transition: "color 0.3s ease",
+                        flexShrink: 0,
+                      }}
+                    >
+                      {section.number}
+                    </span>
+                    <span
+                      style={{
+                        fontFamily: "'PP Mori', var(--font-sans)",
+                        fontSize: "0.9rem",
+                        letterSpacing: "-0.01em",
+                        fontWeight: 400,
+                        color: labelColor,
+                        transition: "color 0.3s ease",
+                      }}
+                    >
+                      {section.label}
+                    </span>
+                  </div>
 
                   <div
                     aria-hidden="true"
                     style={{
-                      marginTop: "0.25rem",
                       height: "1px",
                       width: "100%",
                       backgroundColor: progressTrackColor,

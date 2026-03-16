@@ -19,7 +19,7 @@ export function SplitScreenLayout({ children }) {
       id="split-content"
       style={{
         display: "grid",
-        gridTemplateColumns: "220px 1fr",
+        gridTemplateColumns: "260px 1fr",
       }}
     >
       <StorySpineNav />
