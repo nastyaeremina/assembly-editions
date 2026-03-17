@@ -19,15 +19,8 @@ const DEV_FEATURES = [
       "A completely rebuilt foundation for custom apps — faster rendering, better TypeScript support, and a modern app-bridge that handles authentication automatically.",
   },
   {
-    id: "secure-app-sessions",
-    number: "02",
-    title: "Secure app sessions",
-    description:
-      "Session tokens now expire after 5 minutes. The new @assembly-js/app-bridge handles refresh automatically — shared URLs no longer grant permanent access.",
-  },
-  {
     id: "tasks-api",
-    number: "03",
+    number: "02",
     title: "In Tasks API: comments, attachments, & client association",
     description:
       "Fetch comments, threaded replies, and attachment metadata including secure download URLs. The new client association feature is also supported in the API.",
@@ -174,7 +167,7 @@ export function DevelopersSection() {
           suffix: "A",
           title: "For developers",
           description:
-            "Rebuilt custom app base, secure session tokens, and a new Tasks API with comments and attachments.",
+            "Rebuilt custom app base and a new Tasks API with comments and attachments.",
           learnMoreUrl: "https://assembly.com/blog/introducing-assembly-2-0#for-developers",
           content: (
             <div style={{ maxWidth: "960px" }}>
