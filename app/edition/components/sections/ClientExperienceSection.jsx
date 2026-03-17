@@ -24,7 +24,7 @@ export function ClientExperienceSection() {
           id: "app-folders",
           suffix: "B",
           title: "Organize your apps into folders",
-          description: "Drag and drop apps into folders to organize the sidebar for you and your clients. Group links that your clients need, hide apps from your internal sidebar that you don't need. Manage and preview everything in a new App Library.",
+          description: "Drag and drop apps into folders to keep your dashboard and portal organized. Group your analytics apps together, tuck onboarding forms into one place, whatever makes sense for your workflow.",
           learnMoreUrl: "https://assembly.com/blog/introducing-assembly-2-0#organize-your-apps-into-folders",
           content: <InteractiveAppLibrary inSplit={false} />,
         },
