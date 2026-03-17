@@ -183,8 +183,7 @@ export function CollageHero() {
               maxWidth: "580px",
             }}
           >
-            This release touches nearly every part of the platform, including the
-            client portal, tasks, billing, and developer&nbsp;tools.
+            Portals that adapt to each client. Folders to organize your apps. Automations on a schedule. A desktop app. And that's just the&nbsp;start.
           </motion.p>
 
           {/* ── Video area (placeholder for layout — iframe overlays this) ── */}

@@ -13,7 +13,7 @@ export const BRAND = {
   version: "2.0",
   tagline: "The biggest update in Assembly history",
   description:
-    "This release touches nearly every part of the platform — how clients experience your portal, how you manage tasks and billing, how your team stays in context, and how developers build on top of Assembly.",
+    "Portals that adapt to each client. Folders to organize your apps. Automations on a schedule. A desktop app. And that's just the start.",
 };
 
 export const SPLIT_SECTIONS = [
