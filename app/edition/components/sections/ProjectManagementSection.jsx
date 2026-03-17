@@ -16,7 +16,7 @@ export function ProjectManagementSection() {
           id: "tasks-client-association",
           suffix: "A",
           title: "Tasks now associate with clients",
-          description: "Link internal team tasks to their relevant client. Selectively share tasks with clients to give them visibility into your progress and process.",
+          description: "You can now associate internal tasks with a client. Once linked, you can selectively share them so clients can follow along with progress.",
           learnMoreUrl: "https://assembly.com/blog/introducing-assembly-2-0#project-management-that-actually-fits-how-you-work",
           content: <CreateTaskDemo inSplit={false} />,
         },
