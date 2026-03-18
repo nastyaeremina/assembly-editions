@@ -59,7 +59,7 @@ export function CreateTaskDemo({ inSplit = false }) {
   const [todoStatus, setTodoStatus] = useState(0);
   const [dueDateSet, setDueDateSet] = useState(false);
   const [assigneeSet, setAssigneeSet] = useState(false);
-  const [titleValue, setTitleValue] = useState("Competitor analysis");
+  const [titleValue, setTitleValue] = useState("Review Onboarding Intake Form");
   const [titleEditing, setTitleEditing] = useState(false);
   const [createFlash, setCreateFlash] = useState(false);
   const titleInputRef = useRef(null);
@@ -83,7 +83,7 @@ export function CreateTaskDemo({ inSplit = false }) {
     setTodoStatus(0);
     setDueDateSet(false);
     setAssigneeSet(false);
-    setTitleValue("Competitor analysis");
+    setTitleValue("Review Onboarding Intake Form");
     setTitleEditing(false);
     setCreateFlash(false);
   };
@@ -121,7 +121,7 @@ export function CreateTaskDemo({ inSplit = false }) {
         setDueDateSet(true);       // "Jan 15, 2026" from the start
         setAssigneeSet(true);      // "Alex Werner" from the start
         setDescription("");
-        setTitleValue("Competitor analysis");
+        setTitleValue("Review Onboarding Intake Form");
         setTitleEditing(false);
         setCreateFlash(false);
         setActivePill(null);

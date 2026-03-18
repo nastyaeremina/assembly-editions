@@ -73,7 +73,6 @@ export const SPLIT_SECTIONS = [
     categoryLabel: "DEVELOPERS",
     subsections: [
       { id: "custom-app-base", label: "New Custom App Base" },
-      { id: "secure-app-sessions", label: "Secure App Sessions" },
       { id: "tasks-api", label: "Tasks API" },
     ],
   },
