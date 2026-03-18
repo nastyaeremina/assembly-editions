@@ -28,7 +28,7 @@ const C = {
 
 /* ── Icon paths ── */
 const ICO = {
-  avatar: "/edition/Icons/Avatar.svg",
+  avatar: "/edition/Icons/Avatar.png",
   person: "/edition/Icons/Icon-container.svg",
   document: "/edition/Icons/Icon (approved)-3 copy.svg",
   chat: "/edition/Icons/Icon (approved)-8.svg",
@@ -341,7 +341,7 @@ export function ContextBarDemo({ inSplit = false }) {
           }}
         >
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src="/edition/Icons/Avatar.svg" alt="" width={30} height={30} style={{ borderRadius: "6px", border: `1px solid ${C.border}` }} draggable={false} />
+          <img src="/edition/Icons/Avatar.png" alt="" width={30} height={30} style={{ borderRadius: "6px", border: `1px solid ${C.border}` }} draggable={false} />
           <div>
             <div style={{ fontSize: "14px", fontWeight: 500, color: C.text, lineHeight: 1.2 }}>Charles Musial</div>
             <div style={{ fontSize: "11px", color: C.textSec, marginTop: "2px" }}>Service Symphony</div>
@@ -743,7 +743,7 @@ export function ContextBarDemo({ inSplit = false }) {
                 </div>
                 <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
                   {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img src="/edition/Icons/Avatar.svg" alt="" width={24} height={24} style={{ borderRadius: "4px", border: `1px solid ${C.border}` }} draggable={false} />
+                  <img src="/edition/Icons/Avatar.png" alt="" width={24} height={24} style={{ borderRadius: "4px", border: `1px solid ${C.border}` }} draggable={false} />
                   <span style={{ fontSize: "11px", color: C.text }}>Service Symphony</span>
                 </div>
               </div>
