@@ -104,57 +104,15 @@ export function CreateTaskDemo({ inSplit = false }) {
   /* Idle hint — subtle glow pulse on "Related to" pill (desktop only) */
   const { containerRef: idleRef, isIdle: pillIdleActive, dismiss: dismissIdle } = useIdleHint({ delay: 2500 });
 
-  /* ── Mobile auto-play loop ──
-     Minimal: pre-fill everything, only animate "Related to" → Share → Create */
+  /* ── Mobile: pre-fill state once, no auto-play (user interacts directly) ── */
   useEffect(() => {
     if (!isMobile) return;
-    let cancelled = false;
-    const wait = (ms) => new Promise((r) => { const t = setTimeout(r, ms); if (cancelled) clearTimeout(t); });
-
-    async function loop() {
-      while (!cancelled) {
-        // Pre-fill everything except Related to + Share
-        setRelatedClient(null);
-        setShareWithClient(false);
-        setShowPicker(false);
-        setTodoStatus(1);          // "In progress" from the start
-        setDueDateSet(true);       // "Jan 15, 2026" from the start
-        setAssigneeSet(true);      // "Alex Werner" from the start
-        setDescription("");
-        setTitleValue("Review Onboarding Intake Form");
-        setTitleEditing(false);
-        setCreateFlash(false);
-        setActivePill(null);
-        setMobileCardVisible(true);
-        await wait(2000);
-        if (cancelled) break;
-
-        // Step 1: Press "Related to" pill, then select client
-        setActivePill("related");
-        await wait(350);
-        if (cancelled) break;
-        setActivePill(null);
-        setRelatedClient("ms");
-        await wait(1400);
-        if (cancelled) break;
-        if (cancelled) break;
-
-        // Step 2: Toggle share on
-        setShareWithClient(true);
-        await wait(1800);
-        if (cancelled) break;
-
-        // Hold the completed state, then fade out and reset
-        await wait(1800);
-        if (cancelled) break;
-        setMobileCardVisible(false);
-        await wait(600);
-        if (cancelled) break;
-      }
-    }
-
-    loop();
-    return () => { cancelled = true; };
+    setTodoStatus(1);
+    setDueDateSet(true);
+    setAssigneeSet(true);
+    setTitleValue("Review Onboarding Intake Form");
+    setTitleEditing(false);
+    setMobileCardVisible(true);
   }, [isMobile]);
 
   // Close picker on outside click (desktop only)
