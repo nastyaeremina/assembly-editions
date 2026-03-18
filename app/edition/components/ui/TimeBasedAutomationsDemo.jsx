@@ -153,60 +153,16 @@ export function TimeBasedAutomationsDemo({ inSplit = false }) {
   /* ── Mobile auto-play state ── */
   const [mDate, setMDate] = useState("Mon, Jan 12, 2026");
   const [mTime, setMTime] = useState("8:00 AM");
-  const [mRepeatOn, setMRepeatOn] = useState(false);
+  const [mRepeatOn, setMRepeatOn] = useState(true);
   const [mRepeatNum, setMRepeatNum] = useState(1);
   const [mUnit, setMUnit] = useState("month");
-  const mUserTookOver = useRef(false);
 
   /* ── Mobile dropdown states ── */
   const [mShowDatePicker, setMShowDatePicker] = useState(false);
   const [mShowTimePicker, setMShowTimePicker] = useState(false);
   const [mShowUnitPicker, setMShowUnitPicker] = useState(false);
 
-  const stopMobileAuto = useCallback(() => { mUserTookOver.current = true; }, []);
-
-  /* ── Mobile auto-play loop ── */
-  useEffect(() => {
-    if (isDesktop) return;
-    let cancelled = false;
-    const wait = (ms) => new Promise((r) => {
-      const t = setTimeout(r, ms);
-      if (cancelled) clearTimeout(t);
-    });
-
-    async function loop() {
-      while (!cancelled && !mUserTookOver.current) {
-        setMDate("Mon, Jan 12, 2026");
-        setMTime("8:00 AM");
-        setMRepeatOn(false);
-        setMRepeatNum(1);
-        setMUnit("month");
-        await wait(1500);
-        if (cancelled || mUserTookOver.current) break;
-
-        setMDate("Mon, Jan 31, 2026");
-        await wait(800);
-        if (cancelled || mUserTookOver.current) break;
-
-        setMTime("9:00 AM");
-        await wait(800);
-        if (cancelled || mUserTookOver.current) break;
-
-        setMRepeatOn(true);
-        await wait(1000);
-        if (cancelled || mUserTookOver.current) break;
-
-        setMRepeatNum(2);
-        await wait(2500);
-        if (cancelled || mUserTookOver.current) break;
-
-        await wait(1200);
-      }
-    }
-
-    loop();
-    return () => { cancelled = true; };
-  }, [isDesktop]);
+  const stopMobileAuto = useCallback(() => {}, []);
 
   /* ── Mobile: just the config panel with auto-play ── */
   if (!isDesktop) {

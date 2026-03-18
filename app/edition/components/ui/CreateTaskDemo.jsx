@@ -610,11 +610,12 @@ export function CreateTaskDemo({ inSplit = false }) {
         >
           <div style={{ padding: "4px 20px 12px" }}>
             <div
+              onClick={() => setShareWithClient(!shareWithClient)}
               style={{
                 display: "flex",
                 alignItems: "center",
                 gap: "10px",
-                cursor: "default",
+                cursor: "pointer",
               }}
             >
               <div
