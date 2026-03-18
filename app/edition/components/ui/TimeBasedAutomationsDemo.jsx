@@ -371,27 +371,24 @@ export function TimeBasedAutomationsDemo({ inSplit = false }) {
 
             <div style={{ flex: 1, position: "relative" }}>
               <div
-                onClick={() => { stopMobileAuto(); setMShowUnitPicker(!mShowUnitPicker); setMShowDatePicker(false); setMShowTimePicker(false); }}
+                onClick={() => {
+                  stopMobileAuto();
+                  const idx = UNIT_OPTIONS.indexOf(mUnit);
+                  setMUnit(UNIT_OPTIONS[(idx + 1) % UNIT_OPTIONS.length]);
+                }}
                 style={{
                   display: "flex", alignItems: "center", justifyContent: "space-between",
                   padding: "10px 12px", borderRadius: "6px",
-                  border: `1px solid ${mShowUnitPicker ? C.text : C.border}`,
+                  border: `1px solid ${C.border}`,
                   fontSize: "12px", color: C.text, cursor: "pointer",
                   transition: "border-color 150ms ease",
+                  userSelect: "none",
                 }}
               >
-                <span>{mUnit}</span>
+                <span key={mUnit}>{mUnit}</span>
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img src={ICO.chevronDown} alt="" width={10} height={7} style={{ display: "block", opacity: 0.4 }} />
               </div>
-              {mShowUnitPicker && (
-                <MiniDropdown
-                  options={UNIT_OPTIONS}
-                  value={mUnit}
-                  onSelect={(opt) => setMUnit(opt)}
-                  onClose={() => setMShowUnitPicker(false)}
-                />
-              )}
             </div>
           </div>
         </div>
