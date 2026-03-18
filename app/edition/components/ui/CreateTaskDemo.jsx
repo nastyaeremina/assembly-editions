@@ -434,7 +434,15 @@ export function CreateTaskDemo({ inSplit = false }) {
               return (
             <motion.button
               type="button"
-              onClick={() => { if (!isMobile) { setShowPicker(!showPicker); setShowRelatedTooltip(false); dismissIdle(); } }}
+              onClick={() => {
+                if (isMobile) {
+                  const ids = [null, ...CLIENTS.map(c => c.id)];
+                  const idx = ids.indexOf(relatedClient);
+                  setRelatedClient(ids[(idx + 1) % ids.length]);
+                } else {
+                  setShowPicker(!showPicker); setShowRelatedTooltip(false); dismissIdle();
+                }
+              }}
               onMouseEnter={() => { if (!showPicker && !isMobile) setShowRelatedTooltip(true); }}
               onMouseLeave={() => setShowRelatedTooltip(false)}
               whileHover={isMobile ? undefined : { backgroundColor: "#f9fafb" }}
@@ -463,7 +471,7 @@ export function CreateTaskDemo({ inSplit = false }) {
                 fontSize: "12px",
                 fontWeight: 400,
                 color: relatedClient ? C.text : C.textSec,
-                cursor: isMobile ? "default" : "pointer",
+                cursor: "pointer",
                 fontFamily: "'Inter', system-ui, sans-serif",
                 transition: "color 300ms ease, border-color 300ms ease",
                 ...mobilePillClip,
