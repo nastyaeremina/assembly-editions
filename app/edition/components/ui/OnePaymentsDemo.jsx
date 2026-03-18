@@ -1230,12 +1230,12 @@ export function OnePaymentsDemo({ inSplit = false }) {
                       layoutId="payments-tab-underline-mobile"
                       style={{
                         position: "absolute",
-                        bottom: 0,
+                        bottom: -1,
                         left: 0,
                         right: 0,
-                        height: "1.5px",
+                        height: "2px",
                         backgroundColor: C.text,
-                        zIndex: 1,
+                        zIndex: 2,
                       }}
                       transition={{ type: "spring", stiffness: 400, damping: 35 }}
                     />
@@ -1391,12 +1391,12 @@ export function OnePaymentsDemo({ inSplit = false }) {
                     layoutId="payments-tab-underline"
                     style={{
                       position: "absolute",
-                      bottom: 0,
+                      bottom: -1,
                       left: 0,
                       right: 0,
-                      height: "1px",
+                      height: "2px",
                       backgroundColor: C.text,
-                      zIndex: 1,
+                      zIndex: 2,
                     }}
                     transition={{ type: "spring", stiffness: 400, damping: 35 }}
                   />
