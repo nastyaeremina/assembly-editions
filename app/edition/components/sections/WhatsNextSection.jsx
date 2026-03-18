@@ -17,7 +17,7 @@ export function WhatsNextSection() {
         paddingBottom: "clamp(4rem, 8vw, 6rem)",
       }}
     >
-      <div style={{ padding: "0 1rem" }}>
+      <div style={{ padding: "0" }}>
         <motion.div
           initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -28,7 +28,7 @@ export function WhatsNextSection() {
             style={{
               maxWidth: "80rem",
               margin: "0 auto",
-              borderRadius: "20px",
+              borderRadius: "clamp(12px, 2vw, 20px)",
               position: "relative",
               overflow: "hidden",
               padding: "clamp(3.5rem, 7vw, 6rem) 2rem clamp(4rem, 8vw, 7rem)",
