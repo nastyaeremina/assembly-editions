@@ -284,6 +284,8 @@ export function MacOSDock({ className }) {
               <img
                 src={icon.src}
                 alt={icon.label}
+                width={MOBILE_ICON_SIZE * 2}
+                height={MOBILE_ICON_SIZE * 2}
                 className="rounded-[11px] object-contain"
                 style={{ width: "100%", height: "100%", ...(icon.padding ? { padding: icon.padding } : {}) }}
                 draggable={false}
@@ -323,6 +325,8 @@ export function MacOSDock({ className }) {
             <img
               src={MOBILE_TRASH.src}
               alt={MOBILE_TRASH.label}
+              width={MOBILE_ICON_SIZE * 2}
+              height={MOBILE_ICON_SIZE * 2}
               className="rounded-[11px] object-contain"
               style={{ width: "100%", height: "100%" }}
               draggable={false}
