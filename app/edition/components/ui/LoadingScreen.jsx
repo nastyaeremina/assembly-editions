@@ -167,8 +167,17 @@ const MONO = {
 export function LoadingScreen() {
   const [phase, setPhase] = useState("entering");
   const [activeMsg, setActiveMsg] = useState(0);
+  const [isMobile, setIsMobile] = useState(false);
   const scrambled = useScrambleText(DECODED_TEXT, 2000, 300);
   const counter = useCounter(COUNTER_DURATION);
+
+  useEffect(() => {
+    const mq = window.matchMedia("(max-width: 767px)");
+    setIsMobile(mq.matches);
+    const handler = (e) => setIsMobile(e.matches);
+    mq.addEventListener("change", handler);
+    return () => mq.removeEventListener("change", handler);
+  }, []);
 
   /* ── Phase timing ── */
   useEffect(() => {
@@ -232,14 +241,16 @@ export function LoadingScreen() {
         }
         aria-hidden="true"
       >
-        {/* ── Left: Scrolling messages ── */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: isExiting ? 0 : 1 }}
-          transition={{ delay: 0.1, duration: 0.5 }}
-        >
-          <ScrollingMessages activeIndex={activeMsg} />
-        </motion.div>
+        {/* ── Left: Scrolling messages (desktop only) ── */}
+        {!isMobile && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: isExiting ? 0 : 1 }}
+            transition={{ delay: 0.1, duration: 0.5 }}
+          >
+            <ScrollingMessages activeIndex={activeMsg} />
+          </motion.div>
+        )}
 
         {/* ── Center: ( 0.0 ) → ( 2.0 ) counter ── */}
         <motion.div
@@ -248,41 +259,69 @@ export function LoadingScreen() {
           transition={{ delay: 0.05, duration: 0.4 }}
           style={{
             ...MONO,
-            fontSize: "clamp(0.7rem, 1.1vw, 0.85rem)",
+            fontSize: isMobile ? "1.1rem" : "clamp(0.7rem, 1.1vw, 0.85rem)",
             color:
               counter === "2.0"
                 ? "rgba(255,255,255,0.9)"
                 : "rgba(255,255,255,0.5)",
             transition: "color 0.3s ease",
-            position: "relative",
+            position: isMobile ? "relative" : "relative",
             zIndex: 2,
+            ...(isMobile && {
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              gap: "1.5rem",
+            }),
           }}
         >
           ( {counter} )
+          {/* ── Mobile: scrambled text inline below counter ── */}
+          {isMobile && (
+            <motion.span
+              initial={{ opacity: 0 }}
+              animate={{ opacity: isExiting ? 0 : 1 }}
+              transition={{ delay: 0.2, duration: 0.5 }}
+              style={{
+                ...MONO,
+                fontSize: "0.6rem",
+                lineHeight: 1.7,
+                letterSpacing: "0.01em",
+                color: "rgba(255,255,255,0.35)",
+                textAlign: "center",
+                maxWidth: "260px",
+                wordBreak: "break-word",
+              }}
+            >
+              {scrambled}
+            </motion.span>
+          )}
         </motion.div>
 
-        {/* ── Right: Scramble/decode text ── */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: isExiting ? 0 : 1 }}
-          transition={{ delay: 0.2, duration: 0.5 }}
-          style={{
-            ...MONO,
-            position: "absolute",
-            right: "clamp(1rem, 4vw, 3rem)",
-            top: "50%",
-            transform: "translateY(-50%)",
-            width: "clamp(160px, 22vw, 300px)",
-            fontSize: "clamp(0.55rem, 0.85vw, 0.7rem)",
-            lineHeight: 1.6,
-            letterSpacing: "0.01em",
-            color: "rgba(255,255,255,0.4)",
-            textAlign: "right",
-            wordBreak: "break-word",
-          }}
-        >
-          {scrambled}
-        </motion.div>
+        {/* ── Right: Scramble/decode text (desktop only) ── */}
+        {!isMobile && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: isExiting ? 0 : 1 }}
+            transition={{ delay: 0.2, duration: 0.5 }}
+            style={{
+              ...MONO,
+              position: "absolute",
+              right: "clamp(1rem, 4vw, 3rem)",
+              top: "50%",
+              transform: "translateY(-50%)",
+              width: "clamp(160px, 22vw, 300px)",
+              fontSize: "clamp(0.55rem, 0.85vw, 0.7rem)",
+              lineHeight: 1.6,
+              letterSpacing: "0.01em",
+              color: "rgba(255,255,255,0.4)",
+              textAlign: "right",
+              wordBreak: "break-word",
+            }}
+          >
+            {scrambled}
+          </motion.div>
+        )}
 
         {/* ── Film grain ── */}
         <svg width="0" height="0" style={{ position: "absolute" }}>
