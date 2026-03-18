@@ -1200,9 +1200,12 @@ export function OnePaymentsDemo({ inSplit = false }) {
               gap: "14px",
               padding: "0 16px",
               overflowX: "auto",
+              overflowY: "hidden",
               WebkitOverflowScrolling: "touch",
               msOverflowStyle: "none",
               scrollbarWidth: "none",
+              overscrollBehaviorX: "contain",
+              touchAction: "pan-x",
             }}
           >
             {ALL_TAB_LABELS.map((label) => {
