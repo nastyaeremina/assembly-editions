@@ -157,6 +157,7 @@ function StatusBadge({ status }) {
       style={{
         display: "inline-flex",
         alignItems: "center",
+        justifyContent: "center",
         padding: "2px 10px",
         borderRadius: "999px",
         fontSize: "11px",
@@ -166,6 +167,8 @@ function StatusBadge({ status }) {
         border,
         whiteSpace: "nowrap",
         lineHeight: 1.5,
+        justifySelf: "start",
+        alignSelf: "center",
       }}
     >
       {status.charAt(0).toUpperCase() + status.slice(1)}
