@@ -227,7 +227,7 @@ export function TimeBasedAutomationsDemo({ inSplit = false }) {
           backgroundColor: C.cardBg,
           padding: "20px 18px",
           fontFamily: "'Inter', system-ui, sans-serif",
-          overflow: "hidden",
+          overflow: "visible",
         }}
       >
         {/* Panel title */}
