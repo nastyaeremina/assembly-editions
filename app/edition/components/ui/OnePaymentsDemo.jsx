@@ -33,7 +33,7 @@ const C = {
 
 const TAB_ORDER = ["overview", "invoices", "subscriptions", "payment-links", "stores", "services"];
 const AUTO_CYCLE_MS = 8000;
-const AUTO_CYCLE_INITIAL_DELAY = 3500;
+const AUTO_CYCLE_INITIAL_DELAY = 5500;
 
 /* ═══════════════════════════════════════════
    DATA
