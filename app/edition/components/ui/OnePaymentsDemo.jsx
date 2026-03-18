@@ -620,7 +620,7 @@ function MobileInvoicesTable() {
       <div
         style={{
           display: "grid",
-          gridTemplateColumns: "1fr auto auto",
+          gridTemplateColumns: "1fr 72px 90px",
           gap: "8px",
           padding: "0 0 8px",
           fontSize: "10px",
@@ -628,15 +628,15 @@ function MobileInvoicesTable() {
         }}
       >
         <span>Recipient</span>
-        <span style={{ textAlign: "right" }}>Price</span>
-        <span style={{ textAlign: "right" }}>Status</span>
+        <span>Price</span>
+        <span>Status</span>
       </div>
       {INVOICES_DATA.slice(0, 10).map((row, i) => (
         <div
           key={i}
           style={{
             display: "grid",
-            gridTemplateColumns: "1fr auto auto",
+            gridTemplateColumns: "1fr 72px 90px",
             gap: "8px",
             alignItems: "center",
             padding: "7px 0",
@@ -668,7 +668,7 @@ function MobileSubscriptionsTable() {
       <div
         style={{
           display: "grid",
-          gridTemplateColumns: "1fr auto auto",
+          gridTemplateColumns: "1fr 72px 90px",
           gap: "8px",
           padding: "0 0 8px",
           fontSize: "10px",
@@ -676,15 +676,15 @@ function MobileSubscriptionsTable() {
         }}
       >
         <span>Recipient</span>
-        <span style={{ textAlign: "right" }}>Price</span>
-        <span style={{ textAlign: "right" }}>Status</span>
+        <span>Price</span>
+        <span>Status</span>
       </div>
       {SUBSCRIPTIONS_DATA.slice(0, 10).map((row, i) => (
         <div
           key={i}
           style={{
             display: "grid",
-            gridTemplateColumns: "1fr auto auto",
+            gridTemplateColumns: "1fr 72px 90px",
             gap: "8px",
             alignItems: "center",
             padding: "7px 0",
@@ -716,7 +716,7 @@ function MobilePaymentLinksTable() {
       <div
         style={{
           display: "grid",
-          gridTemplateColumns: "1fr auto auto",
+          gridTemplateColumns: "1fr 72px 90px",
           gap: "8px",
           padding: "0 0 8px",
           fontSize: "10px",
@@ -724,15 +724,15 @@ function MobilePaymentLinksTable() {
         }}
       >
         <span>Name</span>
-        <span style={{ textAlign: "right" }}>Price</span>
-        <span style={{ textAlign: "right" }}>Status</span>
+        <span>Price</span>
+        <span>Status</span>
       </div>
       {PAYMENT_LINKS_DATA.map((row, i) => (
         <div
           key={i}
           style={{
             display: "grid",
-            gridTemplateColumns: "1fr auto auto",
+            gridTemplateColumns: "1fr 72px 90px",
             gap: "8px",
             alignItems: "center",
             padding: "7px 0",
@@ -761,7 +761,7 @@ function MobileStoresTable() {
       <div
         style={{
           display: "grid",
-          gridTemplateColumns: "1fr auto auto",
+          gridTemplateColumns: "1fr 72px 90px",
           gap: "8px",
           padding: "0 0 8px",
           fontSize: "10px",
@@ -769,15 +769,15 @@ function MobileStoresTable() {
         }}
       >
         <span>Name</span>
-        <span style={{ textAlign: "right" }}>Price</span>
-        <span style={{ textAlign: "right" }}>Status</span>
+        <span>Price</span>
+        <span>Status</span>
       </div>
       {STORES_DATA.map((row, i) => (
         <div
           key={i}
           style={{
             display: "grid",
-            gridTemplateColumns: "1fr auto auto",
+            gridTemplateColumns: "1fr 72px 90px",
             gap: "8px",
             alignItems: "center",
             padding: "7px 0",
@@ -806,7 +806,7 @@ function MobileServicesTable() {
       <div
         style={{
           display: "grid",
-          gridTemplateColumns: "1fr auto auto",
+          gridTemplateColumns: "1fr 72px 90px",
           gap: "8px",
           padding: "0 0 8px",
           fontSize: "10px",
@@ -814,15 +814,15 @@ function MobileServicesTable() {
         }}
       >
         <span>Name</span>
-        <span style={{ textAlign: "right" }}>Price</span>
-        <span style={{ textAlign: "right" }}>Status</span>
+        <span>Price</span>
+        <span>Status</span>
       </div>
       {SERVICES_DATA.map((row, i) => (
         <div
           key={i}
           style={{
             display: "grid",
-            gridTemplateColumns: "1fr auto auto",
+            gridTemplateColumns: "1fr 72px 90px",
             gap: "8px",
             alignItems: "center",
             padding: "7px 0",
