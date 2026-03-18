@@ -85,15 +85,15 @@ function MobileAutoIcon({
 
 /* ── Dock icons — 9 icons, Assembly centered ── */
 const DOCK_ICONS = [
-  { label: "Safari", hasIndicator: true, src: "/edition/dock-icons/_System App Icon-10.svg" },
-  { label: "Messages", hasIndicator: true, src: "/edition/dock-icons/_System App Icon-9.svg" },
-  { label: "Mail", hasIndicator: true, src: "/edition/dock-icons/_System App Icon-8.svg" },
-  { label: "Calendar", hasIndicator: false, src: "/edition/dock-icons/_System App Icon-7.svg" },
+  { label: "Safari", hasIndicator: true, src: "/edition/dock-icons/_System App Icon-10.png" },
+  { label: "Messages", hasIndicator: true, src: "/edition/dock-icons/_System App Icon-9.png" },
+  { label: "Mail", hasIndicator: true, src: "/edition/dock-icons/_System App Icon-8.png" },
+  { label: "Calendar", hasIndicator: false, src: "/edition/dock-icons/_System App Icon-7.png" },
   { label: "Assembly", hasIndicator: true, src: "/edition/dock-icons/swap.svg", isHero: true, padding: "3px", badge: 3 },
-  { label: "Notes", hasIndicator: false, src: "/edition/dock-icons/_System App Icon-4.svg" },
-  { label: "Reminders", hasIndicator: true, src: "/edition/dock-icons/_System App Icon-5.svg" },
-  { label: "System Settings", hasIndicator: false, src: "/edition/dock-icons/_System App Icon-2.svg" },
-  { label: "Trash", hasIndicator: false, src: "/edition/dock-icons/_System App Icon.svg" },
+  { label: "Notes", hasIndicator: false, src: "/edition/dock-icons/_System App Icon-4.png" },
+  { label: "Reminders", hasIndicator: true, src: "/edition/dock-icons/_System App Icon-5.png" },
+  { label: "System Settings", hasIndicator: false, src: "/edition/dock-icons/_System App Icon-2.png" },
+  { label: "Trash", hasIndicator: false, src: "/edition/dock-icons/_System App Icon.png" },
 ];
 
 const DIVIDER_AFTER = 7; // Divider before Trash
@@ -284,8 +284,8 @@ export function MacOSDock({ className }) {
               <img
                 src={icon.src}
                 alt={icon.label}
-                width={MOBILE_ICON_SIZE * 2}
-                height={MOBILE_ICON_SIZE * 2}
+                width={MOBILE_ICON_SIZE}
+                height={MOBILE_ICON_SIZE}
                 className="rounded-[11px] object-contain"
                 style={{ width: "100%", height: "100%", ...(icon.padding ? { padding: icon.padding } : {}) }}
                 draggable={false}
