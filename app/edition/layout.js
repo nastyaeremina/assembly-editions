@@ -1,4 +1,7 @@
+const OG_IMAGE = "https://assembly-editions-gamma.vercel.app/images/Blog%20Cover.png";
+
 export const metadata = {
+  metadataBase: new URL("https://assembly-editions-gamma.vercel.app"),
   title: "Meet Assembly 2.0 | Product Release Editions",
   description:
     "Assembly 2.0 is live. Dynamic client portals, app folders, time-based automations, desktop app, and more. The biggest update in Assembly history.",
@@ -8,7 +11,7 @@ export const metadata = {
       "Assembly 2.0 is live. Dynamic client portals, app folders, time-based automations, desktop app, and more. The biggest update in Assembly history.",
     images: [
       {
-        url: "/images/Blog Cover.png",
+        url: OG_IMAGE,
         width: 1200,
         height: 630,
         alt: "Assembly 2.0 Product Release",
@@ -21,7 +24,7 @@ export const metadata = {
     title: "Meet Assembly 2.0 | Product Release Editions",
     description:
       "Assembly 2.0 is live. Dynamic client portals, app folders, time-based automations, desktop app, and more. The biggest update in Assembly history.",
-    images: ["/images/Blog Cover.png"],
+    images: [OG_IMAGE],
   },
 };
 
