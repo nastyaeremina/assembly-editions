@@ -17,7 +17,7 @@ import { Play, X } from "lucide-react";
    overlap).
    ──────────────────────────────────────────────────────────── */
 
-const YOUTUBE_ID = "ykgHtwkspK8";
+const YOUTUBE_ID = "6ezvUi6UacA";
 
 export function CollageHero() {
   const sectionRef = useRef(null);
