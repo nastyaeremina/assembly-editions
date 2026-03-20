@@ -93,7 +93,7 @@ const COL_PLATFORM = {
     { label: "Custom Apps", href: "https://docs.assembly.com/docs/custom-apps-overview" },
     { label: "API Reference", href: "https://docs.assembly.com/reference/getting-started-introduction" },
     { label: "Assembly on Zapier", href: "https://zapier.com/apps/copilot/integrations" },
-    { label: "Aseembly on Make", href: "https://www.make.com/en/integrations/copilot" },
+    { label: "Assembly on Make", href: "https://www.make.com/en/integrations/copilot" },
   ],
 };
 
