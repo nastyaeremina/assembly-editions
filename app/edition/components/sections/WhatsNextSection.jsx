@@ -83,7 +83,7 @@ export function WhatsNextSection() {
 
             <div style={{ marginTop: "2rem", position: "relative", zIndex: 2 }}>
               <a
-                href="https://assembly.com/signup?utm_source=edition&utm_medium=web&utm_campaign=assembly2-launch"
+                href="https://assembly.com/signup"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="edition-cta-arrow"

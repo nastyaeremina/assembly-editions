@@ -66,7 +66,7 @@ export function Header({ className }) {
             Log in
           </a>
           <a
-            href="https://assembly.com/signup?utm_source=edition&utm_medium=web&utm_campaign=assembly2-launch"
+            href="https://assembly.com/signup"
             target="_blank"
             rel="noopener"
             style={{
