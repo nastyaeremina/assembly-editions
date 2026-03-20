@@ -762,9 +762,9 @@ export function ContextBarDemo({ inSplit = false }) {
                 <FieldRow label="Team" iconSrc="/edition/Icons/Status Icon.svg" placeholder="Add text" />
                 <FieldRow label="ID" iconSrc="/edition/Icons/heshtag.svg" placeholder="Add number" />
                 <FieldRow label="Phone" iconSrc="/edition/Icons/Icon-container-2.svg" placeholder="Add phone number" value="+1 (415) 392-8100" />
-                <FieldRow label="Link" iconSrc="/edition/Icons/Status Icon copy.svg" placeholder="Add phone number" />
+                <FieldRow label="Link" iconSrc="/edition/Icons/Status Icon copy.svg" placeholder="Add link" />
                 <FieldRow label="Address" iconSrc="/edition/Icons/Icon-container-1 copy.svg" placeholder="Add location" />
-                <FieldRow label="Tags" iconSrc="/edition/Icons/Icon-container copy 2.svg" placeholder="Add phone number" />
+                <FieldRow label="Tags" iconSrc="/edition/Icons/Icon-container copy 2.svg" placeholder="Add tags" />
               </div>
             </motion.div>
           )}
